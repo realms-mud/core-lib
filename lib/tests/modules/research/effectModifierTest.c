@@ -254,7 +254,7 @@ void ApplyModifiersCorrectlyAppliesResearchModifier()
 void ApplyModifiersCorrectlyAppliesTraitModifier()
 {
     mapping modifier = ([
-        "type":"trait",
+        "type": "trait",
         "name": "blah",
         "trait": "test",
         "formula": "additive",
@@ -316,7 +316,7 @@ void ApplyModifiersCorrectlyAppliesWeaponDamage()
         "types" : ({ "dagger", "short sword", "long sword",
             "hand and a half sword", "two-handed sword" }),
         "formula" : "additive",
-        "base": 10.0,
+        "base value": 10.0,
         "rate" : 1.0
     ]);
 
@@ -325,4 +325,79 @@ void ApplyModifiersCorrectlyAppliesWeaponDamage()
     User->equip(weapon);
     // Should be: 24 physical, 10 magical, 7 fire, and 7 acid and the base is -10
     ExpectEq(38, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ApplyModifiersCorrectlyAppliesDeferredAttack()
+{
+    
+    object Target = clone_object("/lib/tests/support/services/testMonster.c");
+    Target->Name("Nukulevee");
+    Target->Race("undead horse");
+    Target->effectiveLevel(20);
+    Target->Str(20);
+    Target->Dex(20);
+    Target->Con(20);
+    Target->Int(20);
+    Target->Wis(20);
+    move_object(User, "/lib/tests/support/environment/startingRoom.c");
+    move_object(Target, "/lib/tests/support/environment/startingRoom.c");
+
+    mapping modifier = ([
+        "type": "deferred attack",
+        "name" : "deferred attack",
+        "trait" : "do not attack",
+        "formula" : "multiplicative",
+        "rate" : 0.01
+    ]);
+
+    User->addTrait("do not attack");
+
+    ExpectEq(10, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+
+    User->ToggleMockTrait();
+    User->attack(Target);
+    Target->hitPoints(Target->maxHitPoints());
+    ExpectEq(16, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    ExpectEq(0, User->roundsSinceLastAttack());
+
+    User->attack(Target);
+    User->attack(Target);
+    ExpectEq(19, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    Target->hitPoints(Target->maxHitPoints());
+
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    ExpectEq(22, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    Target->hitPoints(Target->maxHitPoints());
+
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    ExpectEq(24, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    Target->hitPoints(Target->maxHitPoints());
+
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    ExpectEq(25, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    Target->hitPoints(Target->maxHitPoints());
+
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    User->attack(Target);
+    ExpectEq(10, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    Target->hitPoints(Target->maxHitPoints());
 }

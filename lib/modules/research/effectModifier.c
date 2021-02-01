@@ -10,7 +10,8 @@ private string ModifierObject = "/lib/items/modifierObject.c";
 
 private string *modifierTypes = ({ "skill", "attribute", "skill bonus", 
                                    "attribute bonus", "level", "research", "trait",
-                                   "highest skill", "weapon damage" });
+                                   "highest skill", "weapon damage", 
+                                   "deferred attack" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
                                       
@@ -126,6 +127,51 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                 }
                 break;
             }
+            case "deferred attack":
+            {
+                if (initiator->has("traits") &&
+                    member(modifier, "trait") &&
+                    initiator->isTraitOf(modifier["trait"]))
+                {
+                    int delayedRounds = initiator->roundsSinceLastAttack();
+                    switch (delayedRounds)
+                    {
+                        case 1:
+                        {
+                            ret = 165;
+                            break;
+                        }
+                        case 2:
+                        {
+                            ret = 190;
+                            break;
+                        }
+                        case 3:
+                        {
+                            ret = 225;
+                            break;
+                        }
+                        case 4:
+                        {
+                            ret = 240;
+                            break;
+                        }
+                        case 5..10:
+                        {
+                            ret = 240 +
+                                ((delayedRounds - 4) * 10);
+                            break;
+                        }
+                        default:
+                        {
+                            ret = 100;
+                            break;
+                        }
+                    }
+                    initiator->resetRoundsSinceLastAttack();
+                }
+                break;
+            }
             case "weapon damage":
             {
                 object weapon = 
@@ -140,7 +186,7 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                         m_indices(weapon->query("enchantments"));
 
                     damageTypes = m_indices(mkmapping(damageTypes));
-                    ret -= modifier["base"];
+                    ret -= modifier["base value"];
 
                     foreach(string damageType in damageTypes)
                     {

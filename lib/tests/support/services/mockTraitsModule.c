@@ -21,6 +21,12 @@ public nomask int isTraitOf(string trait)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int hasTraitOfRoot(string trait)
+{
+    return member(traits, trait) > -1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isValidTrait(string trait)
 {
     return useTrait;

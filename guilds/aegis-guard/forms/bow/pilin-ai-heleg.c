@@ -101,6 +101,13 @@ public void reset(int arg)
                 "rate" : 1.5
             ]),
             ([
+                "type": "deferred attack",
+                "name": "deferred attack",
+                "trait": "guilds/aegis-guard/forms/bow/aim-trait.c",
+                "formula": "multiplicative",
+                "rate": 0.01
+            ]),
+            ([
                 "type": "skill",
                 "name": "bow",
                 "formula": "additive",

@@ -13,7 +13,7 @@ public void reset(int arg)
         addSpecification("name", "Bregol Adleg");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge to set an arrow to magical stone as it flies from a bow.");
+            "knowledge to expertly fire an arrow from a bow.");
 
         addPrerequisite("guilds/aegis-guard/forms/bow/root.c",
             (["type":"research"]));
@@ -102,6 +102,13 @@ public void reset(int arg)
                 "rate": 1.25
             ]),
             ([
+                "type": "deferred attack",
+                "name": "deferred attack",
+                "trait": "guilds/aegis-guard/forms/bow/aim-trait.c",
+                "formula": "multiplicative",
+                "rate": 0.01
+            ]),
+            ([
                 "type": "weapon damage",
                 "name" : "bow",
                 "types" : ({ "bow" }),
@@ -157,13 +164,13 @@ public void reset(int arg)
         ]));
 
         addSpecification("cooldown", 60);
-/*        addSpecification("cooldown modifiers", ([
-            "guilds/aegis-guard/forms/bow/cu-ai-celair.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-edlothia.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-manadh.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-dagnir.c": 10,
+        addSpecification("cooldown modifiers", ([
+            "guilds/aegis-guard/forms/bow/gwedh-cun-celair.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-edlothia.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-manadh.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-dagnir.c": 10,
         ]));
-*/
+
         addSpecification("event handler", "bregolAdlegEvent");
         addSpecification("command template", "bregol adleg [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "

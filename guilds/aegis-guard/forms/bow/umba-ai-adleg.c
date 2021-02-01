@@ -10,12 +10,13 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Pilin ai Guruthos");
+        addSpecification("name", "Bregol Adleg");
         addSpecification("source", "Aegis Guard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge to set an arrow to destructive magic as it flies from a bow.");
+            "knowledge to simultaneously fire three arrows from a bow "
+            "at a single target.");
 
-        addPrerequisite("guilds/aegis-guard/forms/bow/angol-ai-cu.c",
+        addPrerequisite("guilds/aegis-guard/forms/bow/root.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({ "bow" })]));
@@ -23,7 +24,7 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "Aegis Guard",
-                "value": 11
+                "value": 35
             ]));
 
         addSpecification("scope", "targeted");
@@ -32,73 +33,74 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability": 80,
-                "base damage": 25,
-                "range": 50
+                "base damage": 250,
+                "range": 300
             ]),
             ([
                 "probability": 20,
-                "base damage": 50,
-                "range": 100
+                "base damage": 300,
+                "range": 600
             ])
         }));
 
-        addSpecification("damage type", "chaos");
+        addSpecification("damage type", "physical");
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-anwar.c",
-                "name": "pilin-anwar",
+                "research item": "guilds/aegis-guard/forms/bow/bregol-pilin.c",
+                "name": "bregol-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-celair.c",
-                "name": "pilin-celair",
+                "research item": "guilds/aegis-guard/forms/bow/alag-pilin.c",
+                "name": "alag-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-edlothia.c",
-                "name": "pilin-edlothia",
+                "research item": "guilds/aegis-guard/forms/bow/megor-pilin.c",
+                "name": "megor-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-eiliant.c",
-                "name": "pilin-eiliant",
+                "research item": "guilds/aegis-guard/forms/bow/lhegren-pilin.c",
+                "name": "lhegren-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-manadh.c",
-                "name": "pilin-manadh",
+                "research item": "guilds/aegis-guard/forms/bow/goeol-pilin.c",
+                "name": "goeol-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/aegis-guard/forms/bow/pilin-dagnir.c",
-                "name": "pilin-dagnir",
+                "research item": "guilds/aegis-guard/forms/bow/dagnir-pilin.c",
+                "name": "dagnir-pilin",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.15
             ]),
             ([
-                "type": "weapon damage",
-                "name" : "bow",
-                "types" : ({ "bow" }),
-                "formula" : "additive",
-                "rate" : 1.5
+                "type": "research",
+                "research item": "guilds/aegis-guard/forms/bow/maethor-pilin.c",
+                "name": "maethor-pilin",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
             ]),
             ([
                 "type": "deferred attack",
@@ -108,38 +110,33 @@ public void reset(int arg)
                 "rate": 0.01
             ]),
             ([
+                "type": "weapon damage",
+                "name" : "bow",
+                "types" : ({ "bow" }),
+                "formula" : "additive",
+                "rate" : 1.75
+            ]),
+            ([
                 "type": "skill",
                 "name": "bow",
-                "formula": "additive",
-                "rate": 0.15
-            ]),
-            ([
-                "type": "skill",
-                "name": "destruction",
                 "formula": "logarithmic",
-                "rate": 1.10
-            ]),
+                "rate": 1.25
+            ]), 
             ([
                 "type": "skill",
-                "name": "spellcraft",
-                "formula": "logarithmic",
-                "rate": 1.05
-            ]),
-            ([
-                "type": "skill",
-                "name": "magical essence",
+                "name": "anatomy and physiology",
                 "formula": "additive",
                 "rate": 0.10
             ]),
             ([
                 "type": "skill",
-                "name": "evocation",
+                "name": "physics",
                 "formula": "additive",
-                "rate": 0.05
-            ]), 
+                "rate": 0.10
+            ]),
             ([
                 "type": "skill",
-                "name": "anatomy and physiology",
+                "name": "mathematics",
                 "formula": "additive",
                 "rate": 0.10
             ]),
@@ -157,31 +154,29 @@ public void reset(int arg)
             ]),
         }));
 
-        addSpecification("consumables", (["arrow":1]));
+        addSpecification("consumables", (["arrow": 3]));
 
-        addSpecification("stamina point cost", 10);
-        addSpecification("spell point cost", 150);
-        addSpecification("spell point cost modifiers", ([
-            "guilds/aegis-guard/forms/bow/gwaelphilin-celair.c": 15,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-edlothia.c": 15,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c": 10,
-            "guilds/aegis-guard/forms/bow/gwaelphilin-dagnir.c": 10
+        addSpecification("stamina point cost", 160);
+        addSpecification("stamina point cost modifiers", ([
+            "guilds/aegis-guard/forms/bow/bregol-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/lhegren-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c": 10,
+            "guilds/aegis-guard/forms/bow/maethor-gwaelphilin.c": 10
         ]));
 
-        addSpecification("cooldown", 60);
+        addSpecification("cooldown", 100);
         addSpecification("cooldown modifiers", ([
-            "guilds/aegis-guard/forms/bow/cu-ai-celair.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-edlothia.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-manadh.c": 10,
-            "guilds/aegis-guard/forms/bow/cu-ai-dagnir.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-celair.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-edlothia.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-manadh.c": 10,
+            "guilds/aegis-guard/forms/bow/gwedh-cun-dagnir.c": 10,
         ]));
 
-        addSpecification("event handler", "pilinAiGuruthosEvent");
-        addSpecification("command template", "pilin ai guruthos [at ##Target##]");
+        addSpecification("event handler", "umbaAiAdlegEvent");
+        addSpecification("command template", "umba ai adleg [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::aim## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## and "
-            "##Infinitive::intone## 'Pilin ai guruthos!' The head of the arrow "
-            "glows dark crimson as it flies into ##TargetName##.");
+            "##InitiatorWeapon## at ##TargetName##. A volley of arrows "
+            "stream through the air toward ##TargetName##.");
     }
 }
