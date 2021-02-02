@@ -682,6 +682,7 @@ void PlayerSettingsSaved()
     Player->pageSize(35);
     Player->colorConfiguration("24-bit");
     Player->charsetConfiguration("unicode");
+    Player->combatVerbosity("digest");
     Player->save();
 
     destruct(Player);
@@ -693,6 +694,7 @@ void PlayerSettingsSaved()
     ExpectEq(35, Player->pageSize());
     ExpectEq("24-bit", Player->colorConfiguration());
     ExpectEq("unicode", Player->charsetConfiguration());
+    ExpectEq("digest", Player->combatVerbosity());
     ExpectEq(5, Player->attributePoints());
 }
 

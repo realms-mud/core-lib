@@ -705,6 +705,20 @@ void PlayerHelpDisplaysCorrectly()
         "\t                       supports the selected color option to ensure\n"
         "\t                       proper display.\n"
         "\t                       \n"
+        "\tcombat verbosity     - Sets the level of detail displayed during\n"
+        "\t                       combat. This can be:\n"
+        "\t                       normal - All attacks are displayed, whether\n"
+        "\t                                they are hits or misses\n"
+        "\t                       only hits - Only successful attacks are\n"
+        "\t                                   displayed\n"
+        "\t                       digest - A summary message is shown every\n"
+        "\t                                few rounds or if damage greater\n"
+        "\t                                than 25% of your total is taken\n"
+        "\t                       show vitals - Combatant vitals are displayed\n"
+        "\t                                     with all attacks\n"
+        "\t                       periodic vitals - Vitals are displayed with\n"
+        "\t                                         the digest view\n"
+        "\t                       \n"
         "\tdescription          - Sets the user's detailed character\n"
         "\t                       description\n"
         "\t                       \n"
@@ -832,6 +846,20 @@ void WizardHelpDisplaysCorrectly()
         "\t                       Be sure that your terminal / mud client\n"
         "\t                       supports the selected color option to ensure\n"
         "\t                       proper display.\n"
+        "\t                       \n"
+        "\tcombat verbosity     - Sets the level of detail displayed during\n"
+        "\t                       combat. This can be:\n"
+        "\t                       normal - All attacks are displayed, whether\n"
+        "\t                                they are hits or misses\n"
+        "\t                       only hits - Only successful attacks are\n"
+        "\t                                   displayed\n"
+        "\t                       digest - A summary message is shown every\n"
+        "\t                                few rounds or if damage greater\n"
+        "\t                                than 25% of your total is taken\n"
+        "\t                       show vitals - Combatant vitals are displayed\n"
+        "\t                                     with all attacks\n"
+        "\t                       periodic vitals - Vitals are displayed with\n"
+        "\t                                         the digest view\n"
         "\t                       \n"
         "\tdescription          - Sets the user's detailed character\n"
         "\t                       description\n"
@@ -982,4 +1010,51 @@ void CanSetPVPFlagOnlyOnce()
     ExpectEq("1", Player->onKillList());
     ExpectEq("You can not remove yourself from the player vs. player kill list.\n",
         Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetCombatVerbosityToNormal()
+{
+    Player->executeCommand("set -p combat verbosity -v normal");
+    ExpectSubStringMatch("You have set your combat verbosity to 'normal'.", Player->caughtMessage());
+    ExpectEq("normal", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetCombatVerbosityToOnlyHits()
+{
+    Player->executeCommand("set -p combat verbosity -v only hits");
+    ExpectSubStringMatch("You have set your combat verbosity to 'only hits'.", Player->caughtMessage());
+    ExpectEq("only hits", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetCombatVerbosityToDigest()
+{
+    Player->executeCommand("set -p combat verbosity -v digest");
+    ExpectSubStringMatch("You have set your combat verbosity to 'digest'.", Player->caughtMessage());
+    ExpectEq("digest", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetCombatVerbosityToShowVitals()
+{
+    Player->executeCommand("set -p combat verbosity -v show vitals");
+    ExpectSubStringMatch("You have set your combat verbosity to 'show vitals'.", Player->caughtMessage());
+    ExpectEq("show vitals", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCanSetCombatVerbosityToPeriodicVitals()
+{
+    Player->executeCommand("set -p combat verbosity -v periodic vitals");
+    ExpectSubStringMatch("You have set your combat verbosity to 'periodic vitals'.", Player->caughtMessage());
+    ExpectEq("periodic vitals", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerCannotSetInvalidCombatVerbosity()
+{
+    Player->executeCommand("set -p combat verbosity -v blarg");
+    ExpectEq("normal", Player->combatVerbosity());
 }

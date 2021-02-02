@@ -145,6 +145,23 @@ private mapping parametersToFunction = ([
         "suppress message": 1,
         "wizard only": 0
     ]),
+    "combat verbosity": ([
+        "method": "combatVerbosity",
+        "description": "Sets the level of detail displayed during combat. This can be:\n"
+            "normal - All attacks are displayed, whether\n"
+            "         they are hits or misses\n"
+            "only hits - Only successful attacks are\n"
+            "            displayed\n"
+            "digest - A summary message is shown every\n"
+            "         few rounds or if damage greater\n"
+            "         than 25% of your total is taken\n"
+            "show vitals - Combatant vitals are displayed\n"
+            "              with all attacks\n"
+            "periodic vitals - Vitals are displayed with\n"
+            "                  the digest view\n",
+        "suppress message": 1,
+        "wizard only": 0
+    ]),
     "busy": ([
         "method": "setBusy",
         "description": "Sets the user's 'busy' flag. When this is set, you will not "

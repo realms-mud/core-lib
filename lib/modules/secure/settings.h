@@ -12,6 +12,7 @@ private string PrimaryGuild = 0;
 private mapping blocks = ([ ]);
 private string colorSetting = "3-bit";
 private string characterSet = "ascii";
+private string combatVerbosity = "normal";
 private int lastSafetyTeleport = 0;
 private nosave object ReplyTo;
 
@@ -25,6 +26,7 @@ static nomask void loadSettings(mapping data, object persistence)
         PageSize = to_int(persistence->extractSaveData("page size", data));
         colorSetting = persistence->extractSaveData("color setting", data);
         characterSet = persistence->extractSaveData("character set", data);
+        combatVerbosity = persistence->extractSaveData("combat verbosity", data);
         PrimaryGuild = persistence->extractSaveData("primary guild", data);
         lastSafetyTeleport = persistence->extractSaveData("safety teleport", 
             data);
@@ -50,6 +52,12 @@ static nomask void loadSettings(mapping data, object persistence)
         characterSet = "ascii";
     }
 
+    if (member(({ "normal", "only hits", "digest", "show vitals", 
+        "periodic vitals" }), combatVerbosity) < 0)
+    {
+        combatVerbosity = "normal";
+    }
+
     if (!mappingp(blocks))
     {
         blocks = ([]);
@@ -70,5 +78,6 @@ static nomask mapping sendSettings()
         "safety teleport": lastSafetyTeleport,
         "display mini map": DisplayMiniMap,
         "display level comparison": DisplayLevelComparison,
+        "combat verbosity": combatVerbosity
     ]);
 }
