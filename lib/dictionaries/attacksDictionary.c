@@ -264,6 +264,68 @@ private nomask string getColorForDamage(int damageInflicted)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string getNormalCombatMessage(object attack, object foe,
+    int damageInflicted)
+{
+    string template = attack->getMessage(damageInflicted);
+
+    if ((damageInflicted < 1) && foe->hasTraitOfRoot("ethereal"))
+    {
+        template = "##AttackerPossessive[::Name]## attack harmlessly "
+            "passes through ##TargetName##.";
+    }
+    else if ((damageInflicted < 1) && 
+        (member(({ "physical", "slash", "bludgeon", "unarmed", 
+            "thrust", "arrow", "bolt", "bullet" }),
+            attack->getDamageType()) > -1))
+    {
+        int missType = random(51);
+        int parryRange = foe->getSkill("parry");
+        int dodgeRange = foe->getSkill("dodge") + parryRange;
+
+        if ((missType <= parryRange) && !random(2))
+        {
+            template = regreplace(template, "##Infinitive::miss##", 
+                "##TargetSubjective## ##ResponseInfinitive::parry## "
+                "the attack", 1);
+        }
+        else if (missType <= dodgeRange)
+        {
+            template = regreplace(template, "##Infinitive::miss##", 
+                "##TargetSubjective## ##ResponseInfinitive::dodge## "
+                "the attack", 1);
+        }
+    }
+    return template;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getMessageTemplate(int damageInflicted, string template,
+    string verbosityLevel, int shouldSeeVitals)
+{
+    string ret = 0;
+    
+    switch (verbosityLevel)
+    {
+        case "normal":
+        case "show vitals":
+        {
+            ret = template;
+            break;
+        }
+        case "only hits":
+        {
+            if (damageInflicted > 0)
+            {
+                ret = template;
+            }
+            break;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void displayMessage(object attacker, object foe,
                                   int damageInflicted, object weapon)
 {
@@ -273,36 +335,9 @@ public nomask void displayMessage(object attacker, object foe,
         
         if(damageType && objectp(damageType))
         {
-            // This can only happen if damageType is of type baseAttack
-            string template = damageType->getMessage(damageInflicted);
+            string template = getNormalCombatMessage(damageType, foe,
+                damageInflicted);
 
-            if ((damageInflicted < 1) && foe->hasTraitOfRoot("ethereal"))
-            {
-                template = "##AttackerPossessive[::Name]## attack harmlessly "
-                    "passes through ##TargetName##.";
-            }
-            else if ((damageInflicted < 1) && 
-                (member(({ "physical", "slash", "bludgeon", "unarmed", 
-                    "thrust", "arrow", "bolt", "bullet" }),
-                    damageType->getDamageType()) > -1))
-            {
-                int missType = random(51);
-                int parryRange = foe->getSkill("parry");
-                int dodgeRange = foe->getSkill("dodge") + parryRange;
-
-                if ((missType <= parryRange) && !random(2))
-                {
-                    template = regreplace(template, "##Infinitive::miss##", 
-                        "##TargetSubjective## ##ResponseInfinitive::parry## "
-                        "the attack", 1);
-                }
-                else if (missType <= dodgeRange)
-                {
-                    template = regreplace(template, "##Infinitive::miss##", 
-                        "##TargetSubjective## ##ResponseInfinitive::dodge## "
-                        "the attack", 1);
-                }
-            }
             // This annoying loop handles the fact that everyone has different
             // setting for color.
             object *characters = filter(all_inventory(environment(attacker)),
@@ -314,42 +349,47 @@ public nomask void displayMessage(object attacker, object foe,
 
             foreach(object person in characters)
             {
-                if(person && objectp(person))// && interactive(person))
+                if(person && objectp(person))
                 {
-                    string message;
-                    if(person == attacker)
-                    {
-                        message = parseTemplate(template, "attacker", attacker,
-                                                foe, weapon);
-                    }
-                    else if(person == foe)
-                    {
-                        message = parseTemplate(template, "defender", attacker,
-                                                foe, weapon);
-                    }
-                    else
-                    {
-                        message = parseTemplate(template, "other", attacker,
-                                                foe, weapon);
-                    }
+                    string message = getMessageTemplate(damageInflicted, template,
+                        person->combatVerbosity(), (person == attacker));
 
-                    if (damageInflicted)
+                    if (message)
                     {
-                        message = format(message, 78);
-                        
-                        message = configuration->decorate(
-                            message[0..sizeof(message) - 2],
-                            damageLevel, "combat", person->colorConfiguration()) +
-                            configuration->decorate(
-                                sprintf(" [ %d ]\n", damageInflicted),
-                                "damage", "combat", person->colorConfiguration());
+                        if (person == attacker)
+                        {
+                            message = parseTemplate(message, "attacker", attacker,
+                                foe, weapon);
+                        }
+                        else if (person == foe)
+                        {
+                            message = parseTemplate(message, "defender", attacker,
+                                foe, weapon);
+                        }
+                        else
+                        {
+                            message = parseTemplate(message, "other", attacker,
+                                foe, weapon);
+                        }
+
+                        if (damageInflicted)
+                        {
+                            message = format(message, 78);
+
+                            message = configuration->decorate(
+                                message[0..sizeof(message) - 2],
+                                damageLevel, "combat", person->colorConfiguration()) +
+                                configuration->decorate(
+                                    sprintf(" [ %d ]\n", damageInflicted),
+                                    "damage", "combat", person->colorConfiguration());
+                        }
+                        else
+                        {
+                            message = configuration->decorate(format(message, 78),
+                                "miss", "combat", person->colorConfiguration());
+                        }
+                        tell_object(person, message);
                     }
-                    else
-                    {
-                        message = configuration->decorate(format(message, 78),
-                            "miss", "combat", person->colorConfiguration());
-                    }
-                    tell_object(person, message);
                 }
             }
         }
@@ -371,6 +411,7 @@ public nomask void displayDeathMessage(object attacker, object foe,
     object configuration = getDictionary("configuration");
     string damageLevel = getColorForDamage(damageInflicted);
 
+    object weapon = getAttack("physical");
     foreach(object person in characters)
     {
         if(person && objectp(person))
@@ -379,17 +420,17 @@ public nomask void displayDeathMessage(object attacker, object foe,
             if(person == attacker)
             {
                 message = parseTemplate(template, "attacker", attacker,
-                                        foe, 0);
+                                        foe, weapon);
             }
             else if(person == foe)
             {
                 message = parseTemplate(template, "defender", attacker,
-                                        foe, 0);
+                                        foe, weapon);
             }
             else
             {
                 message = parseTemplate(template, "other", attacker,
-                                        foe, 0);
+                                        foe, weapon);
             }
 
             if (damageInflicted)

@@ -53,7 +53,7 @@ static nomask void loadSettings(mapping data, object persistence)
     }
 
     if (member(({ "normal", "only hits", "digest", "show vitals", 
-        "periodic vitals" }), combatVerbosity) < 0)
+        "only vitals" }), combatVerbosity) < 0)
     {
         combatVerbosity = "normal";
     }

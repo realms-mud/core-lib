@@ -1540,7 +1540,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
     {
         if(foe && objectp(foe))
         {
-            attackObject()->displayDeathMessage(this_object(), foe, 
+            attackObject()->displayDeathMessage(foe, this_object(),
                 ret);
         }
         say(sprintf("%s died.\n", capitalize(this_object()->RealName())));

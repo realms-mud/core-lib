@@ -192,7 +192,7 @@ public nomask varargs string charsetConfiguration(string newCharSet)
 public nomask varargs string combatVerbosity(string newCombatVerbosity)
 {
     if (member(({ "normal", "only hits", "digest", "show vitals",
-        "periodic vitals" }), newCombatVerbosity) > -1)
+        "only vitals" }), newCombatVerbosity) > -1)
     {
         combatVerbosity = newCombatVerbosity;
         tell_object(this_object(), sprintf("You have set your combat "
