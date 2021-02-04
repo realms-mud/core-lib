@@ -215,3 +215,9 @@ public nomask void toggleUnsafeFactionInteractions()
 {
 
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int unsafeFactionInteractions()
+{
+    return 0;
+}

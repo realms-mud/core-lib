@@ -44,6 +44,16 @@ public int block(string name)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string displayBlockedUsers()
+{
+    return sizeof(blocks) ?
+        implode(sort_array(
+            m_indices(filter(blocks, (: $2 == "block" :))),
+            (: $1 > $2 :)), ", ") :
+        "Nobody is currently blocked";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void unblock(string name)
 {
     if (member(blocks, name))
@@ -229,6 +239,10 @@ public nomask string primaryGuildSetting(string displayGuild)
         if (sizeof(guilds))
         {
             ret = guilds[0];
+        }
+        else
+        {
+            ret = "guildless";
         }
     }
     return ret;

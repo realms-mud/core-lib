@@ -243,7 +243,7 @@ void CanNotSetInvalidParameter()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanNotSetWithoutValue()
+void CanNotDisplayInvalidParameter()
 {
     ExpectFalse(Wizard->executeCommand("set -p blarg"));
 }
@@ -655,15 +655,17 @@ void PlayerHelpDisplaysCorrectly()
         "\x1b[0m\t\x1b[0;36mset [-p \x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36m] [-v \x1b[0m\x1b[0;36m\x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36m]\n"
         "\t\t\x1b[0m\n"
         "\x1b[0;36;1mDescription\n"
-        "\x1b[0m\x1b[0;36mSet allows a player to set various configuration parameters for their\n"
+        "\x1b[0m\x1b[0;36mSet allows a player to view or set various configuration parameters for their\n"
         "character. This includes color support, unicode support, and descriptions. It\n"
         "also allows a player to block messages coming from individuals, channels, or\n"
         "shout and can be used to  set a 'busy' flag - a temporary block of directed\n"
-        "(tell) messages.\n"
+        "(tell) messages. If no parameters are passed with the command, it will display\n"
+        "all settings.\n"
         "\x1b[0m\x1b[0;36;1m\nOptions\n"
         "\x1b[0m\n    \x1b[0;36;1m-p \x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36;1m\x1b[0m\n"
-        "\t\x1b[0;36mThis flag allows a user to specify the parameter they wish to set.\n"
-        "\tIt must be used in conjunction with the -v flag. Possible parameters\n\tare:\n"
+        "\t\x1b[0;36mThis flag allows a user to specify or view a parameter. If the user\n"
+        "\twishes to set a parameter, this flag must be used in conjunction with\n"
+        "\tthe -v flag. Possible parameters are:\n"
         "\t\n"
         "\tblock player         - This parameter will allow you to block all\n"
         "\t                       communication from the specified user. They\n"
@@ -795,15 +797,17 @@ void WizardHelpDisplaysCorrectly()
         "\x1b[0m\t\x1b[0;36mset [-p \x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36m] [-v \x1b[0m\x1b[0;36m\x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36m]\n"
         "\t\t\x1b[0m\n"
         "\x1b[0;36;1mDescription\n"
-        "\x1b[0m\x1b[0;36mSet allows a player to set various configuration parameters for their\n"
+        "\x1b[0m\x1b[0;36mSet allows a player to view or set various configuration parameters for their\n"
         "character. This includes color support, unicode support, and descriptions. It\n"
         "also allows a player to block messages coming from individuals, channels, or\n"
         "shout and can be used to  set a 'busy' flag - a temporary block of directed\n"
-        "(tell) messages.\n"
+        "(tell) messages. If no parameters are passed with the command, it will display\n"
+        "all settings.\n"
         "\x1b[0m\x1b[0;36;1m\nOptions\n"
         "\x1b[0m\n    \x1b[0;36;1m-p \x1b[0m\x1b[0;33m<Value>\x1b[0m\x1b[0;36;1m\x1b[0m\n"
-        "\t\x1b[0;36mThis flag allows a user to specify the parameter they wish to set.\n"
-        "\tIt must be used in conjunction with the -v flag. Possible parameters\n\tare:\n"
+        "\t\x1b[0;36mThis flag allows a user to specify or view a parameter. If the user\n"
+        "\twishes to set a parameter, this flag must be used in conjunction with\n"
+        "\tthe -v flag. Possible parameters are:\n"
         "\t\n"
         "\tblock player         - This parameter will allow you to block all\n"
         "\t                       communication from the specified user. They\n"
@@ -1047,9 +1051,9 @@ void PlayerCanSetCombatVerbosityToShowVitals()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCanSetCombatVerbosityToPeriodicVitals()
 {
-    Player->executeCommand("set -p combat verbosity -v periodic vitals");
-    ExpectSubStringMatch("You have set your combat verbosity to 'periodic vitals'.", Player->caughtMessage());
-    ExpectEq("periodic vitals", Player->combatVerbosity());
+    Player->executeCommand("set -p combat verbosity -v only vitals");
+    ExpectSubStringMatch("You have set your combat verbosity to 'only vitals'.", Player->caughtMessage());
+    ExpectEq("only vitals", Player->combatVerbosity());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1057,4 +1061,101 @@ void PlayerCannotSetInvalidCombatVerbosity()
 {
     Player->executeCommand("set -p combat verbosity -v blarg");
     ExpectEq("normal", Player->combatVerbosity());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetWithoutValueArgumentDisplaysSetting()
+{
+    Player->executeCommand("set -p combat verbosity");
+    ExpectSubStringMatch("Your 'combat verbosity' is set to 'normal'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p display map");
+    ExpectSubStringMatch("Your 'display map' is set to 'on'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p color");
+    ExpectSubStringMatch("Your 'color' is set to '3-bit'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p charset");
+    ExpectSubStringMatch("Your 'charset' is set to 'ascii'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p description -v is really neat");
+    Player->executeCommand("set -p description");
+    ExpectSubStringMatch("Your 'description' is set to 'is really neat'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p long description");
+    ExpectSubStringMatch(
+        "Your 'long description' is set to 'is really neat'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p block player");
+    ExpectSubStringMatch(
+        "Your 'block player' is set to 'Nobody is currently blocked'.",
+        Player->caughtMessage());
+
+    Player->executeCommand("set -p block player -v earl");
+    Player->executeCommand("set -p block player -v ralph");
+
+    Player->executeCommand("set -p block player");
+    ExpectSubStringMatch(
+        "Your 'block player' is set to 'earl, ralph'.",
+        Player->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetWithoutArgumentsDisplaysAllSettingsForPlayer()
+{
+    Player->executeCommand("set");
+    ExpectEq(({
+        "Your 'block player' is set to 'Nobody is currently blocked'.\n",
+        "Your 'busy' is set to 'off'.\n",
+        "Your 'charset' is set to 'ascii'.\n",
+        "Your 'color' is set to '3-bit'.\n",
+        "Your 'combat verbosity' is set to 'normal'.\n",
+        "Your 'description' is set to ''.\n",
+        "Your 'display comparison' is set to 'on'.\n",
+        "Your 'display map' is set to 'on'.\n",
+        "Your 'earmuffs' is set to 'off'.\n",
+        "Your 'page size' is set to '20'.\n",
+        "Your 'primary guild' is set to 'guildless'.\n",
+        "Your 'pvp' is set to 'off'.\n",
+        "Your 'silence' is set to '0'.\n",
+        "Your 'unsafe faction interactions' is set to 'off'.\n" }),
+        Player->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetWithoutArgumentsDisplaysAllSettingsForWizard()
+{
+    Wizard->executeCommand("set");
+    ExpectEq("Your 'block player' is set to 'Nobody is currently blocked'.\n"
+        "Your 'busy' is set to 'off'.\n"
+        "Your 'charset' is set to 'ascii'.\n"
+        "Your 'color' is set to '3-bit'.\n"
+        "Your 'combat verbosity' is set to 'normal'.\n"
+        "Your 'description' is set to 'This is a long description'.\n"
+        "Your 'display comparison' is set to 'off'.\n"
+        "Your 'display map' is set to 'off'.\n"
+        "Your 'earmuffs' is set to 'off'.\n"
+        "Your 'home location' is set to '0'.\n"
+        "Your 'magical message in' is set to 'blah'.\n"
+        "Your 'magical message out' is set to 'de-blahs'.\n"
+        "Your 'message clone' is set to 'does stuff'.\n"
+        "Your 'message home' is set to 'blarg'.\n"
+        "Your 'message in' is set to 'is now here'.\n"
+        "Your 'message out' is set to 'leaves'.\n"
+        "Your 'page size' is set to '20'.\n"
+        "Your 'pretitle' is set to 'Weasel Lord'.\n"
+        "Your 'primary guild' is set to 'fake mage'.\n"
+        "Your 'pvp' is set to 'on'.\n"
+        "Your 'short' is set to 'blah'.\n"
+        "Your 'silence' is set to '0'.\n"
+        "Your 'starting location' is set to '0'.\n"
+        "Your 'title' is set to 'the title-less'.\n"
+        "Your 'unsafe faction interactions' is set to 'off'.\n",
+        Wizard->caughtMessages());
 }

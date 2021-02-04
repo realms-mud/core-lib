@@ -1148,7 +1148,7 @@ public nomask varargs void toggleKillList()
     object player = getService("player");
     if (player)
     {
-            onKillList = !onKillList;
+        onKillList = !onKillList;
     }
 }
 
