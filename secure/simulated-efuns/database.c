@@ -7,7 +7,7 @@ private int hasBeenValidated = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask int DatabaseVersion()
 {
-    return 4;
+    return 5;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,8 @@ public nomask int canAccessDatabase(object previous)
         "lib/realizations/wizard.c", "lib/commands/player/save.c",
         "lib/commands/player/quit.c", "secure/login.c",
         "lib/modules/secure/login.c", "secure/master/user-management.c",
-        "lib/modules/creation/initializePlayer.c" });
+        "lib/modules/creation/initializePlayer.c",
+        "secure/simulated-efuns/database.c" });
 
     if (member(inherit_list(this_object()),
         "secure/simulated-efuns/testing.c") > -1)
@@ -157,6 +158,32 @@ private nomask varargs void validateDatabase(int dbHandle)
         createDatabase(dbHandle);
         migrateDatabase(dbHandle, 1, DatabaseVersion());
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string addRoleToPlayer(object character, string newRole)
+{
+    string ret = 0;
+
+    if (objectp(character))
+    {
+        object userService = load_object("/lib/modules/secure/dataAccess.c");
+        ret = userService->addRoleToPlayer(character, newRole);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removeRoleFromPlayer(object character, string newRole)
+{
+    int ret = 0;
+
+    if (objectp(character))
+    {
+        object userService = load_object("/lib/modules/secure/dataAccess.c");
+        ret = userService->removeRoleFromPlayer(character, newRole);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

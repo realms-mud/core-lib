@@ -32,6 +32,8 @@ drop function if exists saveEnvironmentalObject;
 ##
 drop function if exists authenticateUser;
 ##
+drop procedure if exists saveRoles;
+##
 drop procedure if exists saveEnvironmentExit;
 ##
 drop procedure if exists saveRegionMapDecorators;
@@ -133,6 +135,12 @@ drop function if exists saveUser;
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
+##
+drop table if exists playerRoles;
+##
+drop table if exists roles;
+##
+drop table if exists roleTypes;
 ##
 drop table if exists partyMembers;
 ##

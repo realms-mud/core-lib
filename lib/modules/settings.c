@@ -1,7 +1,4 @@
 //*****************************************************************************
-// Class: parties
-// File Name: parties.c
-//
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
@@ -246,4 +243,52 @@ public nomask string primaryGuildSetting(string displayGuild)
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayRoles()
+{
+    string ret = "";
+
+    if (sizeof(roles))
+    {
+        object configuration = getDictionary("configuration");
+        string colorConfiguration = this_player() ?
+            this_player()->colorConfiguration() :
+            this_object()->colorConfiguration();
+
+        ret = configuration->decorate(sprintf("%s has the following roles -> ",
+            capitalize(this_object()->Pronoun())),
+            "description", "roles", colorConfiguration);
+
+        foreach(string role in m_indices(roles))
+        {
+            ret += configuration->decorate(sprintf("    %s", role),
+                roles[role], "roles", colorConfiguration);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int addRole(string newRole)
+{
+    int ret = 0;
+    string roleLevel = addRoleToPlayer(this_object(), newRole);
+    if (roleLevel)
+    {
+        ret = 1;
+        roles[newRole] = roleLevel;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void removeRole(string role)
+{
+    int removeFromList = removeRoleFromPlayer(this_object(), role);
+    if (removeFromList)
+    {
+        m_delete(roles, role);
+    }
 }

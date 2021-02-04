@@ -560,6 +560,11 @@ public varargs string long(int brief)
     {
         ret += wizard->wizardInformation();
     }
+    object settings = getService("settings");
+    if (settings)
+    {
+        ret += settings->displayRoles();
+    }
 
     object combat = getService("combat");
     if(combat)

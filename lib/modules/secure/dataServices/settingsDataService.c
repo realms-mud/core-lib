@@ -102,6 +102,65 @@ public nomask void saveSettings(int dbHandle, mapping playerData)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
+public nomask string addRoleToPlayer(object character, string newRole)
+{
+    string level = 0;
+    string *inherits = this_player() ? inherit_list(this_player()) : 0;
+
+    if (inherits && objectp(character) && 
+        (member(inherits, "lib/realizations/wizard.c") > -1))
+    {
+        int dbHandle = connect();
+
+        string query = sprintf("select level from roles "
+            "inner join roleTypes on roleTypes.id = roles.typeId "
+            "where roles.name = '%s';",
+            sanitizeString(newRole));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        level = result ? to_string(result[0]) : 0;
+
+        if (level && (member(this_player()->groups(), level) > -1))
+        {
+            query = sprintf("call saveRoles('%s','%s');",
+                sanitizeString(character->RealName()),
+                sanitizeString(newRole));
+
+            db_exec(dbHandle, query);
+            result = db_fetch(dbHandle);
+        }
+        disconnect(dbHandle);
+    }
+    return level;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removeRoleFromPlayer(object character, string newRole)
+{
+    int ret = 0;
+    string *inherits = this_player() ? inherit_list(this_player()) : 0;
+
+    if (inherits && objectp(character) && 
+        (member(inherits, "lib/realizations/wizard.c") > -1))
+    {
+        int dbHandle = connect();
+
+        string query = sprintf("delete from playerRoles "
+            "where playerid = (select id from players where name = '%s') and "
+            "roleid = (select id from roles where name = '%s');",
+            sanitizeString(character->RealName()),
+            sanitizeString(newRole));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        ret = result ? 1 : 0;
+        disconnect(dbHandle);
+    }
+    return ret;
+}
+
 /*
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canSafetyTeleport()

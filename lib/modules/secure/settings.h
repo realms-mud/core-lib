@@ -13,6 +13,7 @@ private mapping blocks = ([ ]);
 private string colorSetting = "3-bit";
 private string characterSet = "ascii";
 private string combatVerbosity = "normal";
+private mapping roles = ([]);
 private int lastSafetyTeleport = 0;
 private nosave object ReplyTo;
 
@@ -35,6 +36,7 @@ static nomask void loadSettings(mapping data, object persistence)
         DisplayLevelComparison = to_int(persistence->extractSaveData(
             "display level comparison", data));
         blocks = persistence->extractSaveData("blocks", data);
+        roles = persistence->extractSaveData("roles", data);
     }
 
     if (!PageSize)
