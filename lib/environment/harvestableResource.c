@@ -213,7 +213,17 @@ public nomask object harvestResource(string resource, object user,
         userFactorsMet(user, user, 1))
     {
         harvestData["available quantity"][environment] -= 1;
-        ret = clone_object(harvestData["resource file"]);
+
+        ret = present_clone(harvestData["resource file"], user);
+        if (ret)
+        {
+            ret->set("quantity", ret->query("quantity") + 1);
+        }
+        else
+        {
+            ret = clone_object(harvestData["resource file"]);
+            ret->set("quantity", 1);
+        }
 
         if (member(harvestData, "description when harvested"))
         {

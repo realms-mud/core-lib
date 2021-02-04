@@ -145,3 +145,28 @@ void HarvestSucceedsIfLimitersAllMet()
 
     ExpectEq("You harvest some oak.\n", Player->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void HarvestingMultipleOfSameItemsIncrementsQuantity()
+{
+
+    object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
+    move_object(axe, Player);
+    command("wield axe", Player);
+    Player->resetCatchList();
+
+    Player->addSkillPoints(20);
+    Player->advanceSkill("forestry", 5);
+
+    ExpectFalse(present("oak", Player));
+    command("harvest oak", Player);
+    object oak = present("oak", Player);
+
+    ExpectTrue(oak);
+    ExpectEq(1, oak->query("quantity"));
+    ExpectEq("You harvest some oak.\n", Player->caughtMessage());
+
+    command("harvest oak", Player);
+    ExpectEq(2, oak->query("quantity"));
+    ExpectEq("You harvest some oak.\n", Player->caughtMessage());
+}
