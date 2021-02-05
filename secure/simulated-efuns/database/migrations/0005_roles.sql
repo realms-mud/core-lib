@@ -48,9 +48,9 @@ BEGIN
         from playerRoles
         inner join roles on playerRoles.roleid = roles.id
         where playerRoles.playerid = lPlayerId and roles.name = p_role;
-    
+
         if alreadyPersisted is null then
-            insert into roles (playerid, roleid) 
+            insert into playerRoles (playerid, roleid) 
                 values (lPlayerId, (select id from roles where name = p_role));
         end if;
     end if;
