@@ -161,14 +161,28 @@ private nomask varargs void validateDatabase(int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping availableRoles()
+{
+    object roleService = load_object("/lib/modules/secure/dataAccess.c");
+    return roleService->availableRoles();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int createRole(string newRole, string type)
+{
+    object roleService = load_object("/lib/modules/secure/dataAccess.c");
+    return roleService->addRole(newRole, type);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string addRoleToPlayer(object character, string newRole)
 {
     string ret = 0;
 
     if (objectp(character))
     {
-        object userService = load_object("/lib/modules/secure/dataAccess.c");
-        ret = userService->addRoleToPlayer(character, newRole);
+        object roleService = load_object("/lib/modules/secure/dataAccess.c");
+        ret = roleService->addRoleToPlayer(character, newRole);
     }
     return ret;
 }
@@ -180,8 +194,8 @@ public nomask int removeRoleFromPlayer(object character, string newRole)
 
     if (objectp(character))
     {
-        object userService = load_object("/lib/modules/secure/dataAccess.c");
-        ret = userService->removeRoleFromPlayer(character, newRole);
+        object roleService = load_object("/lib/modules/secure/dataAccess.c");
+        ret = roleService->removeRoleFromPlayer(character, newRole);
     }
     return ret;
 }

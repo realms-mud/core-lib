@@ -26,6 +26,29 @@ private nomask mapping getPlayerBlockList(int dbHandle, string playerName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask mapping getPlayerRoles(int dbHandle, string playerName)
+{
+    mapping ret = ([]);
+    string query = sprintf("select roles.name, roleTypes.type "
+        "from playerRoles "
+        "inner join roles on playerRoles.id = roles.id "
+        "inner join roleTypes on roles.typeid = roleTypes.id "
+        "inner join players on players.id = playerRoles.playerid "
+        "where players.name = '%s';",
+        sanitizeString(playerName));
+
+    db_exec(dbHandle, query);
+    mixed result;
+
+    while (result = db_fetch(dbHandle))
+    {
+        ret[result[0]] = result[1];
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPlayerSettings(int dbHandle, string playerName)
 {
     mapping ret = ([]);
@@ -43,6 +66,7 @@ public nomask mapping getPlayerSettings(int dbHandle, string playerName)
     }
 
     ret["blocks"] = getPlayerBlockList(dbHandle, playerName);
+    ret["roles"] = getPlayerRoles(dbHandle, playerName);
 
     return ret;
 }
@@ -103,41 +127,80 @@ public nomask void saveSettings(int dbHandle, mapping playerData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int addRole(string newRole, string type)
+{
+    int ret = 0;
+    string *inherits = this_player() ? inherit_list(this_player()) : 0;
+
+    if (inherits && 
+        (member(inherits, "lib/realizations/wizard.c") > -1) &&
+        (member(this_player()->groups(), "elder") > -1))
+    {
+        int dbHandle = connect();
+
+        string query = sprintf("select createRole('%s','%s');",
+            sanitizeString(newRole),
+            sanitizeString(type));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+        ret = result ? to_int(result[0]) : 0;
+        disconnect(dbHandle);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string isValidLevelForRole(int dbHandle, string role)
+{
+    string ret = 0;
+
+    string query = sprintf("select wizardTypes.type, roleTypes.type "
+        "from roles "
+        "inner join roleTypes on roleTypes.id = roles.typeId "
+        "inner join wizardTypes on roleTypes.level = wizardTypes.id "
+        "where roles.name = '%s';",
+        sanitizeString(role));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+    string level = result ? convertString(result[0]) : 0;
+
+    if (level && (member(this_player()->groups(), level) > -1))
+    {
+        ret = result ? convertString(result[1]) : 0;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string addRoleToPlayer(object character, string newRole)
 {
-    string level = 0;
+    string ret = 0;
     string *inherits = this_player() ? inherit_list(this_player()) : 0;
 
     if (inherits && objectp(character) && 
         (member(inherits, "lib/realizations/wizard.c") > -1))
     {
         int dbHandle = connect();
+        ret = isValidLevelForRole(dbHandle, newRole);
 
-        string query = sprintf("select level from roles "
-            "inner join roleTypes on roleTypes.id = roles.typeId "
-            "where roles.name = '%s';",
-            sanitizeString(newRole));
-
-        db_exec(dbHandle, query);
-        mixed result = db_fetch(dbHandle);
-        level = result ? to_string(result[0]) : 0;
-
-        if (level && (member(this_player()->groups(), level) > -1))
+        if (ret)
         {
-            query = sprintf("call saveRoles('%s','%s');",
+            string query = sprintf("call saveRoles('%s','%s');",
                 sanitizeString(character->RealName()),
                 sanitizeString(newRole));
 
             db_exec(dbHandle, query);
-            result = db_fetch(dbHandle);
+            mixed result = db_fetch(dbHandle);
         }
         disconnect(dbHandle);
     }
-    return level;
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int removeRoleFromPlayer(object character, string newRole)
+public nomask int removeRoleFromPlayer(object character, string roleToRemove)
 {
     int ret = 0;
     string *inherits = this_player() ? inherit_list(this_player()) : 0;
@@ -146,18 +209,51 @@ public nomask int removeRoleFromPlayer(object character, string newRole)
         (member(inherits, "lib/realizations/wizard.c") > -1))
     {
         int dbHandle = connect();
+        ret = isValidLevelForRole(dbHandle, roleToRemove) ? 1 : 0;
 
-        string query = sprintf("delete from playerRoles "
-            "where playerid = (select id from players where name = '%s') and "
-            "roleid = (select id from roles where name = '%s');",
-            sanitizeString(character->RealName()),
-            sanitizeString(newRole));
+        if (ret)
+        {
+            string query = sprintf("delete from playerRoles "
+                "where playerid = (select id from players where name = '%s') and "
+                "roleid = (select id from roles where name = '%s');",
+                sanitizeString(character->RealName()),
+                sanitizeString(roleToRemove));
 
-        db_exec(dbHandle, query);
-        mixed result = db_fetch(dbHandle);
-        ret = result ? 1 : 0;
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+        }
         disconnect(dbHandle);
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping availableRoles()
+{
+    mapping ret = ([]);
+    int dbHandle = connect();
+
+    string query = "select roles.name, wizardTypes.type, "
+        "roleTypes.type from roles "
+        "inner join roleTypes on roleTypes.id = roles.typeId "
+        "inner join wizardTypes on roleTypes.level = wizardTypes.id;";
+
+    db_exec(dbHandle, query);
+    mixed result;
+
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret[result[0]] = ([
+                "add level": convertString(result[1]),
+                "type": convertString(result[2])
+            ]);
+        }
+    } while (result);
+    disconnect(dbHandle);
+
     return ret;
 }
 

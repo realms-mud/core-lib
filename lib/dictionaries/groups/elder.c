@@ -23,4 +23,5 @@ protected nomask void applyGroupDetails()
     addCommand("hiz");
     addCommand("reboot");
     addCommand("promote");
+    addCommand("create-role");
 }

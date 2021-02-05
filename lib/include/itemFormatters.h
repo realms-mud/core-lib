@@ -166,6 +166,12 @@ private nosave mapping decorators = ([
         ]),
     ]),
     "roles":([
+        "no roles available": ([
+            "grayscale": "\x1b[0;38;5;248;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;12;1m",
+            "24-bit": "\x1b[0;38;2;150;230;190;1m"
+        ]),
         "description": ([
             "grayscale": "\x1b[0;38;5;237m",
             "3-bit": "\x1b[0;35m",

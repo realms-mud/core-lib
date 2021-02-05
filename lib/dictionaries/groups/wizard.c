@@ -26,4 +26,6 @@ protected nomask void applyGroupDetails()
     addCommand("stat");
     addCommand("mkdir");
     addCommand("generate");
+    addCommand("role");
+    addCommand("list roles");
 }

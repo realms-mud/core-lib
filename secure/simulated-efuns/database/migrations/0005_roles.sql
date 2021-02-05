@@ -56,3 +56,31 @@ BEGIN
     end if;
 END;
 ##
+CREATE FUNCTION `createRole` (p_role varchar(80), p_type varchar(20))
+RETURNS int(11) NOT DETERMINISTIC
+    READS SQL DATA
+BEGIN
+    declare lRoleId int;
+    declare lTypeId int;
+
+    select id into lRoleId
+    from roles where name = p_role;
+
+    select id into lTypeId
+    from roleTypes where type = p_type;
+
+    if lTypeId is not null then
+        if lRoleId is not null then
+            update roles set typeid = lTypeId
+            where id = lRoleId;
+        else
+            insert into roles (name, typeid) 
+            values (p_role, lTypeId);
+
+            select id into lRoleId
+            from roles where name = p_role;
+        end if;
+    end if;
+RETURN lRoleId;
+END;
+##

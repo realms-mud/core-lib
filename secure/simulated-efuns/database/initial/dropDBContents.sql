@@ -32,6 +32,8 @@ drop function if exists saveEnvironmentalObject;
 ##
 drop function if exists authenticateUser;
 ##
+drop function if exists createRole;
+##
 drop procedure if exists saveRoles;
 ##
 drop procedure if exists saveEnvironmentExit;

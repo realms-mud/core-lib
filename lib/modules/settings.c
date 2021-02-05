@@ -257,13 +257,13 @@ public nomask string displayRoles()
             this_player()->colorConfiguration() :
             this_object()->colorConfiguration();
 
-        ret = configuration->decorate(sprintf("%s has the following roles -> ",
+        ret = configuration->decorate(sprintf("%s has the following roles ->\n",
             capitalize(this_object()->Pronoun())),
             "description", "roles", colorConfiguration);
 
         foreach(string role in m_indices(roles))
         {
-            ret += configuration->decorate(sprintf("    %s", role),
+            ret += configuration->decorate(sprintf("    %s\n", role),
                 roles[role], "roles", colorConfiguration);
         }
     }
@@ -274,21 +274,24 @@ public nomask string displayRoles()
 public nomask int addRole(string newRole)
 {
     int ret = 0;
-    string roleLevel = addRoleToPlayer(this_object(), newRole);
-    if (roleLevel)
+
+    string roleType = addRoleToPlayer(this_object(), newRole);
+
+    if (roleType)
     {
         ret = 1;
-        roles[newRole] = roleLevel;
+        roles[newRole] = roleType;
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void removeRole(string role)
+public nomask int removeRole(string role)
 {
     int removeFromList = removeRoleFromPlayer(this_object(), role);
     if (removeFromList)
     {
         m_delete(roles, role);
     }
+    return removeFromList;
 }

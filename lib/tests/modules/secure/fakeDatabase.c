@@ -139,6 +139,7 @@ public nomask mapping Gorthaur()
                 ]),
             ]),
         ]),
+        "roles": ([ ]),
         "shortDescription": "blah",
         "skills": ([ 
             "blacksmith": 5,
@@ -315,6 +316,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
                 ]),
             ]),
         ]),
+        "roles": ([ ]),
         "shortDescription": "blah",
         "skills": ([ 
             "blacksmith": 5,
