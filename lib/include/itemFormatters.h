@@ -188,7 +188,7 @@ private nosave mapping decorators = ([
             "grayscale": "\x1b[0;38;5;240m",
             "3-bit": "\x1b[0;32m",
             "8-bit": "\x1b[0;38;5;2m",
-            "24-bit": "\x1b[0;38;2;150;230;190m"
+            "24-bit": "\x1b[0;38;2;220;190;190m"
         ]),
         "web master": ([
             "grayscale": "\x1b[0;38;5;255;1m",
@@ -200,7 +200,7 @@ private nosave mapping decorators = ([
             "grayscale": "\x1b[0;38;5;234m",
             "3-bit": "\x1b[0;34;1m",
             "8-bit": "\x1b[0;38;5;56m",
-            "24-bit": "\x1b[0;38;2;95;0;215m"
+            "24-bit": "\x1b[0;38;2;95;80;215m"
         ]),
         "guild": ([
             "grayscale": "\x1b[0;38;5;235m",

@@ -397,6 +397,31 @@ public nomask void displayMessage(object attacker, object foe,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void displayDigestMessage(object attacker, object foe,
+    mapping digestData)
+{
+    object weapon = getAttack("physical");
+
+    string message = sprintf("##TargetName## hit "
+        "##AttackerName## %d time%s for %d damage.\n"
+        "##AttackerName## hit "
+        "##TargetName## %d time%s for %d damage.\n",
+        digestData["hits inflicted"],
+        ((digestData["hits inflicted"] == 1) ? "" : "s"),
+        digestData["damage inflicted"],
+        digestData["hits taken"],
+        ((digestData["hits taken"] == 1) ? "" : "s"),
+        digestData["damage taken"]);
+
+    message = getDictionary("configuration")->decorate(
+        parseTemplate(message, "attacker", attacker, foe, weapon),
+        getColorForDamage(digestData["damage taken"]), "combat",
+        attacker->colorConfiguration());
+
+    tell_object(attacker, message);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void displayDeathMessage(object attacker, object foe,
                                   int damageInflicted)
 {  

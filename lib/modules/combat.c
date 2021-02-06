@@ -9,6 +9,7 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/combat.h"
 
 private mapping combatCache = ([]);
+private mapping combatSummaryDetails = ([]);
 
 //-----------------------------------------------------------------------------
 // Method: combatDelay
@@ -1449,6 +1450,40 @@ private nomask int calculateDamageResistance(int damage, string damageType)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void updateCombatSummary(object foe, int damageTaken,
+    int hitsTaken, int damageInflicted, int hitsInflicted)
+{
+    if(this_object()->combatVerbosity() == "digest")
+    {
+        if (!member(combatSummaryDetails, foe))
+        {
+            combatSummaryDetails[foe] = ([
+                "damage taken": damageTaken,
+                "hits taken": hitsTaken,
+                "damage inflicted": damageInflicted,
+                "hits inflicted": hitsInflicted,
+                "display time": time() + 10
+            ]);
+        }
+        else
+        {
+            combatSummaryDetails[foe]["damage taken"] += damageTaken;
+            combatSummaryDetails[foe]["hits taken"] += hitsTaken;
+            combatSummaryDetails[foe]["damage inflicted"] += damageInflicted;
+            combatSummaryDetails[foe]["hits inflicted"] += hitsInflicted;
+        }
+
+        if (time() >= combatSummaryDetails[foe]["display time"])
+        {
+            attackObject()->displayDigestMessage(this_object(), foe,
+                combatSummaryDetails[foe]);
+
+            m_delete(combatSummaryDetails, foe);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int hit(int damage, string damageType, object foe)
 {
     int ret = 0;
@@ -1497,6 +1532,8 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             ret = hitPoints;
         }
 
+        updateCombatSummary(foe, 0, 0, ret, (ret > 0));
+
         if(ret && foe && function_exists("addExperience", foe) &&
             function_exists("getExperienceFromHit", this_object()))
         {
@@ -1528,6 +1565,9 @@ public nomask varargs int hit(int damage, string damageType, object foe)
                     object victim = getTargetToAttack();
                     if (objectp(victim))
                     {
+                        updateCombatSummary(victim, reflection, 
+                            (reflection > 0), 0, 0);
+
                         victim->hit(reflection, damageType, this_object());
                         attackObject()->displayMessage(this_object(), victim,
                             damage, attackObject()->getAttack("reflection"));
@@ -1630,6 +1670,8 @@ protected nomask void doOneAttack(object foe, object weapon)
             getDictionary("combatChatter")->displayCombatChatter(damageInflicted, 
                 this_object(), foe);
 
+            updateCombatSummary(foe, damageInflicted, 
+                (damageInflicted > 0), 0, 0);
             attackObject()->displayMessage(this_object(), foe, damageInflicted,
                 weapon);
         }
@@ -1973,6 +2015,10 @@ static nomask void combatHeartBeat()
         {
             movement->runAway();
         }
+    }
+    else
+    {
+        combatSummaryDetails = ([]);
     }
 }
 
