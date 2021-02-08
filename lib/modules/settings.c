@@ -179,6 +179,12 @@ public nomask varargs string colorConfiguration(string newColorSetting)
         tell_object(this_object(), sprintf("You have set your color to '%s'.\n",
             colorSetting));
     }
+    else if (newColorSetting)
+    {
+        tell_object(this_object(), format("Invalid argument. The valid "
+            "options for color configuration are: none, 3-bit, 8-bit, "
+            "24-bit, or grayscale.", 78));
+    }
     return colorSetting;
 }
 
@@ -192,6 +198,12 @@ public nomask varargs string charsetConfiguration(string newCharSet)
         tell_object(this_object(), sprintf("You have set your character set to '%s'.\n",
             characterSet));
     }
+    else if (newCharSet)
+    {
+        tell_object(this_object(), format("Invalid argument. The valid "
+            "options for character set are: ascii, unicode, or "
+            "screen reader.", 78));
+    }
     return characterSet;
 }
 
@@ -204,6 +216,12 @@ public nomask varargs string combatVerbosity(string newCombatVerbosity)
         combatVerbosity = newCombatVerbosity;
         tell_object(this_object(), sprintf("You have set your combat "
             "verbosity to '%s'.\n", combatVerbosity));
+    }
+    else if(newCombatVerbosity)
+    {
+        tell_object(this_object(), format("Invalid argument. The valid "
+            "options for combat verbosity are: normal, only hits, digest"
+            ", show vitals, or digest with vitals.", 78));
     }
     return combatVerbosity;
 }

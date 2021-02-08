@@ -1453,7 +1453,8 @@ private nomask int calculateDamageResistance(int damage, string damageType)
 private nomask void updateCombatSummary(object foe, int damageTaken,
     int hitsTaken, int damageInflicted, int hitsInflicted)
 {
-    if(this_object()->combatVerbosity() == "digest")
+    if (member(({ "digest", "only vitals" }),
+        this_object()->combatVerbosity()) > -1)
     {
         if (!member(combatSummaryDetails, foe))
         {
@@ -1475,8 +1476,21 @@ private nomask void updateCombatSummary(object foe, int damageTaken,
 
         if (time() >= combatSummaryDetails[foe]["display time"])
         {
-            attackObject()->displayDigestMessage(this_object(), foe,
-                combatSummaryDetails[foe]);
+            switch (this_object()->combatVerbosity())
+            {
+                case "digest":
+                {
+                    attackObject()->displayDigestMessage(this_object(), 
+                        foe, combatSummaryDetails[foe]);
+                    break;
+                }
+                case "only vitals":
+                {
+                    attackObject()->displayVitals(this_object(),
+                        foe);
+                    break;
+                }
+            }
 
             m_delete(combatSummaryDetails, foe);
         }
@@ -2057,8 +2071,8 @@ static nomask void healingHeartBeat()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string vitalsDetails(string vital, object configuration,
-    string colorConfiguration, string charset)
+private nomask varargs string vitalsDetails(string vital, object configuration,
+    string colorConfiguration, string charset, int isConcise)
 {
     int current = call_other(this_object(), lower_case(vital) + "Points");
     int max = call_other(this_object(), "max" + capitalize(vital) + "Points");
@@ -2098,9 +2112,20 @@ private nomask string vitalsDetails(string vital, object configuration,
     }
 
     string extra = (vital != "Stamina") ? " Points" : "";
+    string label = "";
+    if (isConcise)
+    {
+        label = configuration->decorate(sprintf("%2s: ", 
+            (vital == "Stamina") ? "ST" : vital[0..0] + "P"),
+            "content", "score", colorConfiguration);
+    }
+    else
+    {
+        label = configuration->decorate(sprintf("%12s: ", vital + extra),
+            "content", "score", colorConfiguration);
+    }
 
-    return configuration->decorate(sprintf("%12s: ", vital + extra), 
-            "content", "score", colorConfiguration) + 
+    return label + 
         configuration->decorate(sprintf("%s", bar),
             "bar", "score", colorConfiguration) +
         configuration->decorate(sprintf("%s ", emptyBar),
@@ -2134,6 +2159,28 @@ public nomask varargs string vitals(string colorConfiguration, string charset)
                 maxSpellPoints()), "information", "score", colorConfiguration) + 
             configuration->decorate(sprintf("%18d/%-8d", staminaPoints(), 
                 maxStaminaPoints()), "information", "score", colorConfiguration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string singleLineVitals(string colorConfiguration, 
+    string charset)
+{
+    object settings = getService("settings");
+    if (objectp(settings) && !colorConfiguration)
+    {
+        colorConfiguration = settings->colorConfiguration() || "none";
+    }
+    if (objectp(settings) && !charset)
+    {
+        charset = settings->charsetConfiguration() || "ascii";
+    }
+
+    object configuration = getDictionary("configuration");
+    object commandDictionary = getDictionary("commands");
+
+    return vitalsDetails("Hit", configuration, colorConfiguration, charset, 1) + 
+           vitalsDetails("Spell", configuration, colorConfiguration, charset, 1) +
+           vitalsDetails("Stamina", configuration, colorConfiguration, charset, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////

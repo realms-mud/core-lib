@@ -326,6 +326,30 @@ private nomask string getMessageTemplate(int damageInflicted, string template,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void displayVitals(object attacker, object foe)
+{
+    if (attacker && attacker->isRealizationOfPlayer())
+    {
+        object configuration = getDictionary("configuration");
+        string colorConfiguration = attacker->colorConfiguration();
+        string charset = attacker->charsetConfiguration();
+
+        string message = configuration->decorate(
+            sprintf("%-20s - ",
+                capitalize(attacker->RealName())),
+            "information", "score", colorConfiguration) +
+            attacker->singleLineVitals(colorConfiguration, charset) + "\n" +
+            configuration->decorate(
+                sprintf("%-20s - ",
+                    capitalize(foe->RealName())),
+            "information", "score", colorConfiguration) +
+            foe->singleLineVitals(colorConfiguration, charset) + "\n";
+
+        tell_object(attacker, message);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void displayMessage(object attacker, object foe,
                                   int damageInflicted, object weapon)
 {
@@ -372,23 +396,32 @@ public nomask void displayMessage(object attacker, object foe,
                                 foe, weapon);
                         }
 
+                        string colorConfiguration = person->colorConfiguration();
+
                         if (damageInflicted)
                         {
                             message = format(message, 78);
 
                             message = configuration->decorate(
                                 message[0..sizeof(message) - 2],
-                                damageLevel, "combat", person->colorConfiguration()) +
+                                damageLevel, "combat", colorConfiguration) +
                                 configuration->decorate(
                                     sprintf(" [ %d ]\n", damageInflicted),
-                                    "damage", "combat", person->colorConfiguration());
+                                    "damage", "combat", colorConfiguration);
                         }
                         else
                         {
                             message = configuration->decorate(format(message, 78),
-                                "miss", "combat", person->colorConfiguration());
+                                "miss", "combat", colorConfiguration);
                         }
+
                         tell_object(person, message);
+
+                        if ((person->combatVerbosity() == "show vitals") &&
+                            (person == attacker))
+                        {
+                            displayVitals(attacker, foe);
+                        }
                     }
                 }
             }
