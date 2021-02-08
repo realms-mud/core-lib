@@ -1741,6 +1741,11 @@ public nomask int attack(object foe)
     {
         roundsSinceAttack++;
         registerAttack(this_object(), foe, 0);
+
+        if (this_object()->combatVerbosity() == "show vitals")
+        {
+            attackObject()->displayVitals(this_object(), foe);
+        }
     }
     else if(foe && objectp(foe))
     {
@@ -1772,6 +1777,11 @@ public nomask int attack(object foe)
                 weapon->setAttackValues(attack["damage"], attack["to hit"]);                
                 doOneAttack(foe, weapon);
             }
+        }
+
+        if (this_object()->combatVerbosity() == "show vitals")
+        {
+            attackObject()->displayVitals(this_object(), foe);
         }
 
         object persona = getService("personas");

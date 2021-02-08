@@ -328,7 +328,7 @@ private nomask string getMessageTemplate(int damageInflicted, string template,
 /////////////////////////////////////////////////////////////////////////////
 public nomask void displayVitals(object attacker, object foe)
 {
-    if (attacker && attacker->isRealizationOfPlayer())
+    if (attacker && foe && attacker->isRealizationOfPlayer())
     {
         object configuration = getDictionary("configuration");
         string colorConfiguration = attacker->colorConfiguration();
@@ -416,12 +416,6 @@ public nomask void displayMessage(object attacker, object foe,
                         }
 
                         tell_object(person, message);
-
-                        if ((person->combatVerbosity() == "show vitals") &&
-                            (person == attacker))
-                        {
-                            displayVitals(attacker, foe);
-                        }
                     }
                 }
             }

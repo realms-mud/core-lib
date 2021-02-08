@@ -378,6 +378,7 @@ public nomask int execute(string command, object initiator)
         }
         else if (!parameter && !value)
         {
+            ret = 1;
             displayAllParameters(initiator);
         }
         else
