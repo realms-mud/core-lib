@@ -660,7 +660,7 @@ void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
     ExpectTrue(Player);
     ExpectEq(StartLocation(), Player->savedLocation());
 
-    move_object(Player, "/lib/environment/environment.c");
+    move_object(Player, "/lib/tests/support/environment/startingRoom.c");
     setUsers(({ }));
 
     Player->heart_beat();
@@ -669,7 +669,7 @@ void HeartBeatChecksForLinkDeathThenSavesAndDestroysTheLinkDead()
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
 
-    ExpectEq("/lib/environment/environment", Player->savedLocation());
+    ExpectEq("/lib/tests/support/environment/startingRoom", Player->savedLocation());
     ToggleInteractive();
 }
 
