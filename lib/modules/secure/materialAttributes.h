@@ -25,6 +25,7 @@ private mapping properties = ([]);
 private string whenCreated;
 private string LastLogin;
 private string location = DefaultStart;
+private string lastStartLocation = DefaultStart;
 private int isGuest = 0;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -82,6 +83,8 @@ static nomask void loadMaterialAttributes(mapping data, object persistence)
         LastLogin = persistence->extractSaveData("LastLogin", data);
         location = persistence->extractSaveData("location", data);
         isGuest = persistence->extractSaveData("is guest", data);
+
+        lastStartLocation = location;
     }
 }
 
@@ -107,8 +110,12 @@ static nomask mapping sendMaterialAttributes()
     ret["invisible"] = invisibility;
     ret["is guest"] = isGuest;
 
-    ret["location"] = environment() && environment()->environmentName() ? 
-        environment()->environmentName() : DefaultStart;
+    ret["location"] = (environment() && environment()->environmentName() && 
+        (member(({ "lib/environment/environment.c",
+            "lib/environment/generatedEnvironment.c" }), 
+            program_name(environment())) == -1)) ?
+        environment()->environmentName() : lastStartLocation;
+    lastStartLocation = ret["location"];
 
     return ret;
 }

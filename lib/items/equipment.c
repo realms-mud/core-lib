@@ -443,32 +443,32 @@ public varargs int set(string element, mixed data)
                         raise_error(sprintf("Equipment: The passed '%s' data "
                             "must be a string.\n", element));
                     }
-                    break;                
+                    break;
                 }
                 case "equip method":
                 case "unequip method":
                 {
-                    if(data && stringp(data) && 
-                       function_exists(data, this_object()))
+                    if (data && stringp(data) &&
+                        function_exists(data, this_object()))
                     {
                         itemData[element] = data;
-                        ret = 1;                        
+                        ret = 1;
                     }
                     else
                     {
                         raise_error(sprintf("Equipment: The passed '%s' %s "
-                            "must be a function that exists in this item.\n", 
+                            "must be a function that exists in this item.\n",
                             data, element));
                     }
-                    break;                
+                    break;
                 }
                 case "cursed":
                 {
-                    if(data && mappingp(data) && member(data, "equip message") 
-                       && member(data, "failed unequip message"))
+                    if (data && mappingp(data) && member(data, "equip message")
+                        && member(data, "failed unequip message"))
                     {
-                        itemData[element] = data + ([ ]);
-                        ret = 1;                        
+                        itemData[element] = data + ([]);
+                        ret = 1;
                     }
                     else
                     {
@@ -487,7 +487,7 @@ public varargs int set(string element, mixed data)
                 {
                     raise_error("Equipment: The blueprint can only be set from "
                         "a derived type.\n");
-                            break;
+                    break;
                 }
                 default:
                 {
@@ -497,10 +497,10 @@ public varargs int set(string element, mixed data)
         }
         else
         {
-            raise_error(sprintf("Equipment: It is illegal to set the '%s' "
-                "element for this type of object.\n", element));
+        raise_error(sprintf("Equipment: It is illegal to set the '%s' "
+            "element for this type of object.\n", element));
         }
-    }   
+    }
 
     return ret;
 }
@@ -509,13 +509,13 @@ public varargs int set(string element, mixed data)
 public nomask int canEquip(object user)
 {
     int ret = prerequisitesMet(user);
-    
-    if(function_exists("spellAction", user) && user->spellAction())
+
+    if (function_exists("spellAction", user) && user->spellAction())
     {
         ret = 0;
         notify_fail("You can't do actions that quickly.\n");
     }
-    else if(user && function_exists("RealName", user) && query("owner"))
+    else if (user && function_exists("RealName", user) && query("owner"))
     {
         ret &&= query("owner") == user->RealName();
     }
@@ -526,15 +526,19 @@ public nomask int canEquip(object user)
 public int equip(string item)
 {
     int ret = 0;
-    
-    if (regexp(({ item }), "(first|second) .*") &&
-        (query("blueprint") == "ring"))
+
+    if (query("blueprint") == "ring")
     {
-        string ringLocation = regreplace(item, "(first|second).*", "\\1");
-        item = regreplace(item, "(first|second) (.*)", "\\2");
-        if (id(item) && (ringLocation == "second"))
+        itemData["equipment locations"] = Ring;
+
+        if (sizeof(regexp(({ item }), "(first|second) .*")))
         {
-            itemData["equipment locations"] = Ring2;
+            string ringLocation = regreplace(item, "(first|second).*", "\\1");
+            item = regreplace(item, "(first|second) (.*)", "\\2");
+            if (id(item) && (ringLocation == "second"))
+            {
+                itemData["equipment locations"] = Ring2;
+            }
         }
     }
 

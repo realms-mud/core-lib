@@ -2,6 +2,7 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/include/inventory.h"
 
 private int money;
 
@@ -67,7 +68,13 @@ static nomask void loadInventory(mapping data, object persistence)
                             ((member(inherit_list(itemObject), ArmorBlueprint) > -1) ||
                             (member(inherit_list(itemObject), WeaponBlueprint) > -1)))
                         {
-                            itemObject->equip(itemObject->query("name"));
+                            string equipString = itemObject->query("name");
+                            if (itemObject->query("equipment locations") == Ring2)
+                            {
+                                equipString = "second " + equipString;
+                            }
+                            
+                            itemObject->equip(equipString);
                         }
                         else if (!errors && items[item]["isEquipped"] &&
                             (member(inherit_list(itemObject), ModifierBlueprint) > -1))
@@ -98,8 +105,8 @@ static nomask void loadInventory(mapping data, object persistence)
                             "error message", "equipment", colorConfig) +
                         failedLoad + "\n");
                 }
-
             }
+            this_object()->resetCombatCache();
         }
     }
 }
