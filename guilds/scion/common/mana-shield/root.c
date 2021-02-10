@@ -81,7 +81,8 @@ public void reset(int arg)
         addSpecification("bonus resist psionic", 1);
         addSpecification("bonus resist undead", 1);
         addSpecification("bonus resist water", 1);
-        addSpecification("trait", "guilds/scion/common/mana-shield/shield-trait.c");
+        addSpecification("trait", 
+            "guilds/scion/common/mana-shield/shield-trait.c");
 
         addSpecification("use ability activate message", "A shield of "
             "scintillating energy wraps around ##InitiatorName##.");

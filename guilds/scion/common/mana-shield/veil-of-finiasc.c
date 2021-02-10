@@ -16,8 +16,8 @@ public void reset(int arg)
             "knowledge to express their raw magical energy as a magical shield. "
             "This form enhances the scion's mana shield.");
 
-        addSpecification("limited by", (["traits": ({
-            "guilds/scion/common/mana-shield/shield-trait.c" })]));
+        addSpecification("limited by", (["research active": ({
+            "guilds/scion/common/mana-shield/root.c" })]));
 
         addPrerequisite("level", 
             (["type":"level", 
