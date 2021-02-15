@@ -34,6 +34,12 @@ drop function if exists authenticateUser;
 ##
 drop function if exists createRole;
 ##
+drop procedure if exists removeCompositeResearchElement;
+##
+drop procedure if exists saveCompositeResearchElement;
+##
+drop procedure if exists saveCompositeResearch;
+##
 drop procedure if exists saveRoles;
 ##
 drop procedure if exists saveEnvironmentExit;
@@ -137,6 +143,10 @@ drop function if exists saveUser;
 drop function if exists saveBasicPlayerInformation;
 ##
 drop function if exists saveResearchChoice;
+##
+drop table if exists compositeResearchElements;
+##
+drop table if exists compositeResearch;
 ##
 drop table if exists playerRoles;
 ##
