@@ -2,14 +2,18 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/secure/master/security/priviledgeGroup.c";
+inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void applyGroupDetails()
+public void reset(int arg)
 {
-    setName("lib/dictionaries/attacksDictionary");
-    addPermission("/lib/dictionaries/attacks", Read);
+    if (!arg)
+    {
+        ::reset(arg);
+        setDamageType("magical");
 
-    addPriviledgedEfun("get_dir");
-    addPriviledgedEfun("file_size");
+        addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but fails to do any damage.");
+
+        addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-150");
+    }
 }

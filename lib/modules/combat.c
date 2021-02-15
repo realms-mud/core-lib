@@ -1766,7 +1766,18 @@ public nomask int attack(object foe)
                         weapon = attackObject()->getAttack("unarmed");
                     }
                     
-                    doOneAttack(foe, weapon);
+                    if (weapon->query("type") == "instrument")
+                    {
+                        object song = attackObject()->getAttack("musical");
+                        if (song && song->songIsQueued(weapon))
+                        {
+                            song->playSong(this_object(), weapon, foe);
+                        }
+                    }
+                    else
+                    {
+                        doOneAttack(foe, weapon);
+                    }
                 }                   
             }
             else if(attackObject()->isValidAttack(attack))

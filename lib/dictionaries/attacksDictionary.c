@@ -7,8 +7,8 @@
 //*****************************************************************************
 
 private string WeaponBlueprint = "lib/items/weapon.c";
-private string AttacksDir = "/lib/modules/combat/attacks";
-private string AttackBlueprint = "lib/modules/combat/attacks/baseAttack.c";
+private string AttacksDir = "/lib/dictionaries/attacks";
+private string AttackBlueprint = "lib/dictionaries/attacks/baseAttack.c";
 private string MaterialAttributes = "lib/modules/materialAttributes.c";
 private mapping attackObjects = ([]);
 private object MessageParser = 0;
