@@ -86,7 +86,7 @@ void LsDisplaysCompiledFilesCorrectly()
 void LsDisplaysDirectoriesCorrectly()
 {
     ExpectTrue(Wizard->executeCommand("ls /lib/modules"));
-    ExpectSubStringMatch("0;34;1mcombat/", Wizard->caughtMessages());
+    ExpectSubStringMatch("0;34;1mconversations/", Wizard->caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ void LsDisplaysUnreadableFilesCorrectly()
 void WildcardsWork()
 {
     ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/"));
-    ExpectEq(38, sizeof(explode(Wizard->caughtMessages(), "\n")));
+    ExpectEq(37, sizeof(explode(Wizard->caughtMessages(), "\n")));
 
     Wizard->resetCatchList();
     ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/b*"));
