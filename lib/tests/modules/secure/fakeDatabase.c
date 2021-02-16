@@ -17,6 +17,29 @@ public nomask mapping Gorthaur()
         "charisma": 15,
         "color setting": "3-bit",
         "combat verbosity": "normal",
+        "compositeResearch": ([
+            "Song of the Weasels": ([
+                "alias": "weasels",
+                "constraint": "bard song",
+                "elements": ({
+                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                       "type": "lyrics",
+                       "description": "Sing to me, oh Weasel Lord. You truly make us bored. Yeah, yeah, yeah.",
+                       "order in sequence": 1
+                    ]),
+                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                       "type": "lyrics",
+                       "description": "Sing to me, oh Weasel Lord. You smell quite untoward. Yeah, yeah, yeah.",
+                       "order in sequence": 2
+                    ]),
+                    ([ "research": "/lib/tests/support/research/testSustainedResearchItem.c",
+                       "type": "riff",
+                       "description": "Lute shredding at its finest",
+                       "order in sequence": 2
+                    ]),
+                })
+            ])
+        ]),
         "constitution": 14,
         "dexterity": 12,
         "drugged": 3,
@@ -195,6 +218,29 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "color setting": "3-bit",
         "constitution": 14,
         "combat verbosity": "normal",
+        "compositeResearch": ([
+            "Song of the Weasels": ([
+                "alias": "weasels",
+                "constraint": "bard song",
+                "elements": ({
+                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                       "type": "lyrics",
+                       "description": "Sing to me, oh Weasel Lord. You truly make us bored. Yeah, yeah, yeah.",
+                       "order in sequence": 1
+                    ]),
+                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                       "type": "lyrics",
+                       "description": "Sing to me, oh Weasel Lord. You smell quite untoward. Yeah, yeah, yeah.",
+                       "order in sequence": 2
+                    ]),
+                    ([ "research": "/lib/tests/support/research/testSustainedResearchItem.c",
+                       "type": "riff",
+                       "description": "Lute shredding at its finest",
+                       "order in sequence": 2
+                    ]),
+                })
+            ])
+        ]),
         "dexterity": 12,
         "drugged": 3,
         "earmuffs": 0,

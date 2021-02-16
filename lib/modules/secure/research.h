@@ -13,6 +13,7 @@ private mapping research = ([
 ]);
 private string *openResearchTrees = ({});
 private mapping researchChoices = ([]);
+private mapping compositeResearch = ([]);
 private int researchPoints = 0;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,6 +45,7 @@ static nomask void loadResearch(mapping data, object persistence)
             }
         }
         researchChoices = persistence->extractSavedMapping("researchChoices", data);
+        compositeResearch = persistence->extractSavedMapping("compositeResearch", data);
     }
 }
 
@@ -76,6 +78,7 @@ static nomask mapping sendResearch()
         "research": sendResearchMapping(research),
         "researchChoices": sendResearchMapping(researchChoices),
         "openResearchTrees": openResearchTrees,
-        "availableResearchPoints": researchPoints
+        "availableResearchPoints": researchPoints,
+        "compositeResearch": compositeResearch
     ]);
 }

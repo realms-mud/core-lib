@@ -111,6 +111,71 @@ protected nomask mapping getOpenResearchTrees(int playerId, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask mapping *getCompositeResearchElements(int compositeResearchId, 
+    int dbHandle)
+{
+    mapping *ret = ({ });
+
+    string query = sprintf("select research.path, "
+            "compositeResearchElements.type, "
+            "compositeResearchElements.description, "
+            "compositeResearchElements.orderInSequence "
+        "from compositeResearchElements "
+        "inner join research on compositeResearchElements.researchid = research.id "
+        "where compositeresearchid = '%d' "
+        "order by compositeResearchElements.orderInSequence, "
+        "compositeResearchElements.type;", 
+        compositeResearchId);
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+
+        if (result)
+        {
+            ret += ({ ([
+                "research": convertString(result[0]),
+                "type": convertString(result[1]),
+                "description": convertString(result[2]),
+                "order in sequence": to_int(result[3])
+            ]) });
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask mapping getCompositeResearch(int playerId, int dbHandle)
+{
+    mapping ret = (["compositeResearch":([]) ]);
+
+    string query = sprintf("select id, `name`, `alias`, `constraint` "
+        "from compositeResearch where playerid = '%d'", playerId);
+    db_exec(dbHandle, query);
+
+    mixed result;
+
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret["compositeResearch"][convertString(result[1])] = ([
+                "alias": convertString(result[2]),
+                "constraint": convertString(result[3]),
+                "elements": 
+                    getCompositeResearchElements(to_int(result[0]), dbHandle)
+            ]);
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void saveResearch(int dbHandle, int playerId, mapping playerData)
 {
     if (member(playerData, "research") &&
@@ -214,6 +279,62 @@ protected nomask void saveOpenResearchTrees(int dbHandle, int playerId, mapping 
                 playerId, sanitizeString(tree));
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveCompositeResearchElements(int dbHandle, 
+    string playerName, string compositeResearch, mapping *researchData)
+{
+    string query = sprintf("delete from compositeResearchElements "
+        "where compositeresearchid = (select id from compositeResearch "
+        "where name = '%s' and playerid = (select id from players "
+        "where name = '%s'));", compositeResearch, playerName);
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    foreach(mapping element in researchData)
+    {
+        query = sprintf("call saveCompositeResearchElement('%s','%s',"
+            "'%s','%s','%s',%d);",
+            sanitizeString(playerName),
+            sanitizeString(compositeResearch),
+            sanitizeString(element["research"]),
+            sanitizeString(element["type"]),
+            sanitizeString(element["description"]),
+            element["order in sequence"]);
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void saveCompositeResearch(int dbHandle, string playerName, 
+    mapping playerData)
+{
+    if (member(playerData, "compositeResearch") &&
+        sizeof(playerData["compositeResearch"]))
+    {
+        mapping data = playerData["compositeResearch"];
+        foreach(string compositeResearch in m_indices(data))
+        {
+            string query =
+                sprintf("call saveCompositeResearch('%s','%s','%s','%s');",
+                    sanitizeString(playerData["name"]),
+                    sanitizeString(compositeResearch),
+                    sanitizeString(data[compositeResearch]["alias"]),
+                    sanitizeString(data[compositeResearch]["constraint"]));
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (sizeof(data[compositeResearch]["elements"]))
+            {
+                saveCompositeResearchElements(dbHandle, playerData["name"],
+                    compositeResearch, data[compositeResearch]["elements"]);
+            }
         }
     }
 }

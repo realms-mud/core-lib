@@ -43,6 +43,7 @@ public nomask mapping getPlayerData(string name)
                 data += getResearch(data["playerId"], dbHandle);
                 data += getResearchChoices(data["playerId"], dbHandle);
                 data += getOpenResearchTrees(data["playerId"], dbHandle);
+                data += getCompositeResearch(data["playerId"], dbHandle);
                 data += getSkills(data["playerId"], dbHandle);
                 data += getTraits(data["playerId"], dbHandle);
                 data += getTemporaryTraits(data["playerId"], dbHandle);
@@ -82,6 +83,7 @@ public nomask void savePlayerData(mapping playerData)
             saveResearch(dbHandle, playerId, playerData);
             saveResearchChoices(dbHandle, playerId, playerData);
             saveOpenResearchTrees(dbHandle, playerId, playerData);
+            saveCompositeResearch(dbHandle, playerId, playerData);
             saveSkills(dbHandle, playerId, playerData);
             saveTraits(dbHandle, playerId, playerData);
             saveFactions(dbHandle, playerId, playerData);
