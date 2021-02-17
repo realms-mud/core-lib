@@ -165,11 +165,14 @@ public nomask int isValidArmorBlueprint(string type)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidInstrumentBlueprint(string type)
 {
-    return (instrumentBlueprints && mappingp(instrumentBlueprints) &&
+    return ((instrumentBlueprints && mappingp(instrumentBlueprints) &&
         member(instrumentBlueprints, type) &&
         member(instrumentBlueprints[type], "skill to craft") &&
         member(instrumentBlueprints[type], "type") &&
-        member(instrumentBlueprints[type], "default encumberance"));
+        member(instrumentBlueprints[type], "default encumberance")) ||
+        (member(({ "instrument: plucked", "instrument: bowed",
+                "instrument: woodwind", "instrument: brass",
+                "instrument: percussion" }), type) > -1));
 }
 
 /////////////////////////////////////////////////////////////////////////////

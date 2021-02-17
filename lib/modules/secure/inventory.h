@@ -8,6 +8,8 @@ private int money;
 
 private nosave string ArmorBlueprint = "lib/items/armor.c";
 private nosave string WeaponBlueprint = "lib/items/weapon.c";
+private nosave string InstrumentBlueprint = "lib/items/instrument.c";
+
 private nosave string ModifierBlueprint = "lib/items/modifierObject.c";
 private nosave int weight = 0;
 

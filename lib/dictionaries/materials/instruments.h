@@ -6,6 +6,8 @@
 private nosave mapping instrumentBlueprints = ([
     "bagpipes": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -28,6 +30,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "uilleann pipes": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -52,6 +56,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "warpipes": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -74,6 +80,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "fierabras": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -96,6 +104,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "zampogna": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -119,6 +129,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "surdullina": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -142,6 +154,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "hummelchen": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -164,6 +178,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "piffero": ([
         "type": "woodwind",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
@@ -185,6 +201,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "ciaramella": ([
         "type": "woodwind",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
@@ -206,6 +224,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "blaterpfeife": ([
         "type": "pipes",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
@@ -227,6 +247,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "cornamuse": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -248,6 +270,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "crumhorn": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -269,6 +293,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "kortholt": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 8,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -288,6 +314,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "recorder": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -307,6 +335,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "hirtenschalmei": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -326,6 +356,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "shawm": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -347,6 +379,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "dulcian": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -368,6 +402,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "shagbut": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -389,6 +425,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "cornett": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -410,6 +448,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "horn": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -431,6 +471,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "oboe": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -452,6 +494,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "lyserden": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -473,6 +517,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "gemshorn": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -494,6 +540,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "flute": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 27,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
@@ -518,6 +566,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "ocarina": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/woodwind/craftOcarina.c":(["type":"research"]),
@@ -538,6 +588,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "trumpet": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 27,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -562,6 +614,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bugle": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -584,6 +638,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "sackbut": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -607,6 +663,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "trombone": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 35,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -631,6 +689,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "tuba": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 35,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -655,6 +715,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "french horn": ([
         "type": "windcap",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 40,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
@@ -679,6 +741,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "dulcimer": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
@@ -701,6 +765,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "rebec": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
@@ -723,6 +789,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "harp": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
@@ -746,6 +814,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "zither": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
@@ -769,6 +839,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "gamba": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
@@ -792,6 +864,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bass viol": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
@@ -815,6 +889,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "violin": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
@@ -838,6 +914,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "viol": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
@@ -861,6 +939,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "hurdy-gurdy": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMechanical.c":(["type":"research"]),
@@ -886,6 +966,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "lute": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
@@ -909,6 +991,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "chittarone": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
@@ -932,6 +1016,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "archlute": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
@@ -955,6 +1041,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "gittern": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -978,6 +1066,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "vihuella": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 22,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1001,6 +1091,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "baroque guitar": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 22,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1024,6 +1116,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "citole": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 16,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1047,6 +1141,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "guitar": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1070,6 +1166,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bass guitar": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1093,6 +1191,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "12-string guitar": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1116,6 +1216,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "resonating guitar": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1139,6 +1241,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "banjo": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
@@ -1162,6 +1266,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "mandolin": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 18,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1185,6 +1291,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "cittern": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1208,6 +1316,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bandurria": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1231,6 +1341,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "mandore": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1254,6 +1366,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "gallichon": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1277,6 +1391,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "12-string mandolin": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1300,6 +1416,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "mandocello": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1323,6 +1441,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bozuk": ([
         "type": "string instrument",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
@@ -1346,6 +1466,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "adufe": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 6,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1369,6 +1491,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bodhran": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 6,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1392,6 +1516,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "tabor": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1415,6 +1541,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "timbrel": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 13,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1438,6 +1566,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "cymbals": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 8,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1457,6 +1587,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "snare drum": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1480,6 +1612,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "bass drum": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
@@ -1503,6 +1637,8 @@ private nosave mapping instrumentBlueprints = ([
     ]),
     "nakers": ([
         "type": "percussion",
+        "default location": TwohandedWeapon,
+        "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
             "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),

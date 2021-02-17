@@ -31,7 +31,7 @@ public void SetupGuild()
 
     addCriteria("weapon attack", ([
         "type":"attack",
-        "apply" : "1 every 10 levels"
+        "apply" : "1 every 15 levels"
     ]));
 
     addCriteria("attribute points", ([
@@ -42,5 +42,44 @@ public void SetupGuild()
     addCriteria("skill points", ([
         "type":"skill points",
         "apply" : "5 every level"
+    ]));
+
+    addCriteria("initial research points", ([
+        "type":"research points",
+        "apply": "2 at level 1"
+    ]));
+
+    addCriteria("research points", ([
+        "type":"research points",
+        "apply": "1 every level"
+    ]));
+
+    addCriteria("supplemental research points", ([
+        "type":"research points",
+        "apply": "2 every 5 levels"
+    ]));
+
+    addCriteria("bows", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/bows.c"
+    ]));
+
+    addCriteria("melee weapons", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/melee-attacks.c"
+    ]));
+
+    addCriteria("chants", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/chants.c"
+    ]));
+
+    addCriteria("compositions", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/compositions.c"
     ]));
 }

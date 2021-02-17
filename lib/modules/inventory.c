@@ -23,7 +23,8 @@ static nomask int isEquipment(object itemToCheck)
     // "cheat"
     if(itemToCheck && objectp(itemToCheck) &&
        ((member(inherit_list(itemToCheck), ArmorBlueprint) > -1) ||
-        (member(inherit_list(itemToCheck), WeaponBlueprint) > -1)))
+        (member(inherit_list(itemToCheck), WeaponBlueprint) > -1) ||
+        (member(inherit_list(itemToCheck), InstrumentBlueprint) > -1)))
     {
         ret = 1;
     }
@@ -119,6 +120,7 @@ public nomask varargs int usingEquipmentOfType(string type, int location)
         {
             ret ||= (equipment->query("weapon type") == type) ||
                 (equipment->query("armor type") == type) ||
+                (equipment->query("instrument type") == type) ||
                 (equipment->query("crafting tool") == type) ||
                 (member(
                     materialsObject()->slotsUsedByItemMask(equipment->query("equipment locations")),

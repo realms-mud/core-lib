@@ -212,6 +212,32 @@ void ModifierCriteriaWithAtLevelAppliesAtCorrectLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ModifierCriteriaWithAtLevelCanOptionallyApplyUsingValueOfOne()
+{
+    mapping criteria = ([
+        "type":"modifier",
+        "apply" : "1 at level 5",
+    ]);
+    ExpectTrue(Guild->testAddCriteria("hit points", criteria));
+    ExpectEq(0, Guild->queryBonus("bonus hit points", 1, ""));
+    ExpectEq(1, Guild->queryBonus("bonus hit points", 5, ""));
+    ExpectEq(1, Guild->queryBonus("bonus hit points", 15, ""));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ModifierCriteriaWithAtLevelCanOptionallyApplyWithNonOneValue()
+{
+    mapping criteria = ([
+        "type": "modifier",
+        "apply" : "3 at level 5",
+    ]);
+    ExpectTrue(Guild->testAddCriteria("hit points", criteria));
+    ExpectEq(0, Guild->queryBonus("bonus hit points", 1, ""));
+    ExpectEq(3, Guild->queryBonus("bonus hit points", 5, ""));
+    ExpectEq(3, Guild->queryBonus("bonus hit points", 15, ""));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ModifierCriteriaWithAtRankAppliesAtCorrectRank()
 {
     mapping rank = ([

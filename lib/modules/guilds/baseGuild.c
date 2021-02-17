@@ -427,11 +427,24 @@ private nomask int addAtLevelCriteria(string key, mapping criteria, string rank)
 {
     int ret = 1;
     int level;
-    sscanf(criteria["apply"], "at level %d", level);
+    int amount = 1;
+
+    if (sizeof(regexp(({ criteria["apply"] }), "at level [0-9]+")))
+    {
+        level = to_int(regreplace(criteria["apply"], ".*at level ([0-9]+)",
+            "\\1", 1));
+    }
+
+    if (sizeof(regexp(({ criteria["apply"] }), "[0-9]+ at level [0-9]+")))
+    {
+        amount = to_int(regreplace(criteria["apply"], "([0-9]+) at level.*",
+            "\\1", 1));
+    }
+
     if (member(({ "modifier", "skill", "attack" }),
         criteria["type"]) > -1)
     {
-        ret &&= insertBonusItem(level, rank, key, criteria["type"], 1);
+        ret &&= insertBonusItem(level, rank, key, criteria["type"], amount);
         for (int i = level + 1; i <= 20; i++)
         {
             bonusGrid[key][rank][i] = bonusGrid[key][rank][i - 1];

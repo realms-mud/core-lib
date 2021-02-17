@@ -333,6 +333,7 @@ private nomask int validEquipmentLimitor(mixed equipmentValue)
             {
                 isValid ||= materialsDictionary->isValidArmorType(equipment) ||
                     materialsDictionary->isValidArmorBlueprint(equipment) ||
+                    materialsDictionary->isValidInstrumentBlueprint(equipment) ||
                     materialsDictionary->isValidWeaponType(equipment) ||
                     materialsDictionary->isValidWeaponBlueprint(equipment);
             }
@@ -342,6 +343,7 @@ private nomask int validEquipmentLimitor(mixed equipmentValue)
         {
             ret = materialsDictionary->isValidArmorType(equipmentValue) ||
                 materialsDictionary->isValidArmorBlueprint(equipmentValue) ||
+                materialsDictionary->isValidInstrumentBlueprint(equipmentValue) ||
                 materialsDictionary->isValidWeaponType(equipmentValue) ||
                 materialsDictionary->isValidWeaponBlueprint(equipmentValue);
         }
