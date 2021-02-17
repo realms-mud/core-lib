@@ -34,7 +34,9 @@ drop function if exists authenticateUser;
 ##
 drop function if exists createRole;
 ##
-drop procedure if exists removeCompositeResearchElement;
+drop procedure if exists removeSustainedEffects;
+##
+drop procedure if exists removeCompositeResearch;
 ##
 drop procedure if exists saveCompositeResearchElement;
 ##
