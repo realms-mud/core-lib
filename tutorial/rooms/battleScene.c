@@ -42,6 +42,7 @@ public int resetEverything(string command)
     load_object("/tutorial/characters/berenar/berenar.c")->resetConversationState();
     load_object("/tutorial/characters/brendan/brendan.c")->resetConversationState();
     load_object("/tutorial/characters/bregar/bregar.c")->resetConversationState();
+
     StateMachine->beginIntroduction(this_player());
     return 1;
 }

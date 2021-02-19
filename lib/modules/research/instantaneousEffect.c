@@ -10,7 +10,7 @@ virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/commands/baseCommand.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
-string *validEffects = ({ 
+protected string *validEffects = ({ 
     "increase hit points", 
     "increase spell points",
     "increase stamina points", 
