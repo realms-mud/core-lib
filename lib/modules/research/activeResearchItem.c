@@ -25,6 +25,7 @@ protected int addSpecification(string type, mixed value)
         case "hit point cost":
         case "spell point cost":
         case "stamina point cost":
+        case "repeat effect":
         case "cooldown":
         {
             if(intp(value) && (value > 0))
@@ -78,6 +79,7 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "chained research":
         case "event handler":
         case "use ability message":
         case "use ability fail message":
@@ -243,6 +245,18 @@ private nomask int applyToScope(string command, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void repeatEffect(int timesRemaining, string command, 
+    object owner, string researchName)
+{
+    int ret = applyToScope(command, owner, researchName);
+    if (ret && (timesRemaining > 1))
+    {
+        call_out("repeatEffect", 2, timesRemaining - 1,
+            command, owner, researchName);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int useConsumables(object initiator)
 {
     int ret = 1;
@@ -309,9 +323,13 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
     string researchName = program_name(this_object());
 
-    if(initiator && objectp(initiator) && canExecuteCommand(command) &&
-       function_exists("isResearched", initiator) &&
-       initiator->isResearched(researchName))
+    string chainedResearch = member(specificationData, "chained research") ?
+        specificationData["chained research"] : 0;
+
+    if(initiator && objectp(initiator) && 
+        (canExecuteCommand(command) || (chainedResearch == command)) &&
+        function_exists("isResearched", initiator) &&
+        initiator->isResearched(researchName))
     {
         notify_fail("");
         ret = 1;
@@ -342,10 +360,16 @@ public nomask int execute(string command, object initiator)
             ret = 0;
         }
         
-        if(ret && !initiator->spellAction())
+        if(ret && (!initiator->spellAction() || chainedResearch))
         {
             ret = useConsumables(initiator) && 
                 applyToScope(command, initiator, researchName);
+
+            if (member(specificationData, "repeat effect"))
+            {
+                call_out("repeatEffect", 2, specificationData["repeat effect"],
+                    command, initiator, researchName);
+            }
 
             if(ret)
             {

@@ -496,3 +496,36 @@ void CostAffectedByOtherResearch()
                "spell point cost": 85,
                "stamina point cost": 90 ]), Effect->getUsageCosts("", User));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatingEffectsExecuteCorrectNumberOfTimes()
+{
+    Target->hitPoints(100);
+    mapping formula = ([
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
+    ]);
+
+    object subscriber = clone_object("/lib/tests/support/events/onHitSubscriber");
+    Target->registerEvent(subscriber);
+
+    ExpectTrue(Effect->testAddSpecification("damage hit points", ({ formula })));
+    ExpectTrue(Effect->testAddSpecification("repeat effect", 2));
+
+    // This proves that Bob is not one of Frank's attackers
+    ExpectFalse(Target->unregisterAttacker(User));
+
+    // Without the bypass in place, only one hit occurs
+    ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
+
+    ToggleCallOutBypass();
+    ExpectTrue(Effect->execute("throw turnip at frank", User));
+    ExpectEq(87, Target->hitPoints(), "Frank has taken damage");
+    ExpectEq(3, subscriber->TimesOnHitEventReceived());
+    ExpectEq(([ "damage": 25, "type": "magical" ]), 
+        (["damage":25, "type" : "magical"]), 
+        (["damage":25, "type" : "magical"]), 
+        subscriber->OnHitEventData());
+    ToggleCallOutBypass();
+}
