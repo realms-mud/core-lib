@@ -515,8 +515,6 @@ void RepeatingEffectsExecuteCorrectNumberOfTimes()
 
     // This proves that Bob is not one of Frank's attackers
     ExpectFalse(Target->unregisterAttacker(User));
-
-    // Without the bypass in place, only one hit occurs
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
 
     ToggleCallOutBypass();

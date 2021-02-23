@@ -89,7 +89,7 @@ private nomask int validateCombinationSet(mapping combinations)
     {
         ret = 1;
         object dictionary = getDictionary("research");
-        foreach(string key in combinations)
+        foreach(string key in m_indices(combinations))
         {
             ret &&= (member(validCombinationTypes, key) > -1) &&
                 pointerp(combinations[key]) &&
@@ -165,7 +165,6 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         }      
         case "maximum combination chain":
         {
-            object attacks = getDictionary("attacks");
             if(intp(value) && (value > 0))
             {
                 specificationData[type] = value;
