@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef environmentModule_h
+#define environmentModule_h
 
 private int currentYear;
 private int currentTime;
@@ -33,3 +35,5 @@ private nomask void saveEnvironmentalData()
 {
     service->saveEnvironmentData(currentTime, currentDayOfYear, currentYear);
 }
+
+#endif

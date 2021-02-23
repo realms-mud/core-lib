@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef traitsModule_h
+#define traitsModule_h
+
 private mapping traits = ([]);
 private string *temporaryTraits = ({});
 
@@ -60,3 +63,5 @@ static nomask mapping sendTraits()
     }
     return ret;
 }
+
+#endif

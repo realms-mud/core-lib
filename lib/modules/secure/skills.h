@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef skillsModule_h
+#define skillsModule_h
+
 private int availableSkillPoints;
 private mapping skills = ([]);
 
@@ -39,3 +42,5 @@ static nomask mapping sendSkills()
     }
     return ret;
 }
+
+#endif

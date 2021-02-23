@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef conversationsModule_h
+#define conversationsModule_h
 
 private nosave string BaseConversation = "lib/modules/conversations/baseConversation.c";
 private nosave mapping topics = ([]);
@@ -24,3 +26,5 @@ static nomask mapping sendConversation()
     return ([
     ]);
 }
+
+#endif

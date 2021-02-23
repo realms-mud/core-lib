@@ -79,7 +79,7 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
-        case "chained research":
+        case "composite research":
         case "event handler":
         case "use ability message":
         case "use ability fail message":
@@ -323,11 +323,11 @@ public nomask int execute(string command, object initiator)
     int ret = 0;
     string researchName = program_name(this_object());
 
-    string chainedResearch = member(specificationData, "chained research") ?
-        specificationData["chained research"] : 0;
+    string compositeResearch = member(specificationData, "composite research") ?
+        specificationData["composite research"] : 0;
 
     if(initiator && objectp(initiator) && 
-        (canExecuteCommand(command) || (chainedResearch == command)) &&
+        (canExecuteCommand(command) || (compositeResearch == command)) &&
         function_exists("isResearched", initiator) &&
         initiator->isResearched(researchName))
     {
@@ -360,7 +360,7 @@ public nomask int execute(string command, object initiator)
             ret = 0;
         }
         
-        if(ret && (!initiator->spellAction() || chainedResearch))
+        if(ret && (!initiator->spellAction() || compositeResearch))
         {
             ret = useConsumables(initiator) && 
                 applyToScope(command, initiator, researchName);

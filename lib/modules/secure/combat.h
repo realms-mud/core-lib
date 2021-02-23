@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef combatModule_h
+#define combatModule_h
 
 private int hitPoints;
 protected int maxHitPoints;
@@ -60,3 +62,5 @@ static nomask mapping sendCombat()
         "onKillList": onKillList
     ]);
 }
+
+#endif

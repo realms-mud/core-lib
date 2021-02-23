@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef settingsModule_h
+#define settingsModule_h
 
 private int IsBusy = 0;
 private int Earmuffs = 0;
@@ -83,3 +85,5 @@ static nomask mapping sendSettings()
         "combat verbosity": combatVerbosity
     ]);
 }
+
+#endif

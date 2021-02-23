@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef materialAttributesModule_h
+#define materialAttributesModule_h
 
 private nosave string DefaultStart = StartLocation();
 
@@ -119,3 +121,5 @@ static nomask mapping sendMaterialAttributes()
 
     return ret;
 }
+
+#endif

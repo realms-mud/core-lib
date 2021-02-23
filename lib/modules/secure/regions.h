@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef regionsModule_h
+#define regionsModule_h
 
 private object service = 
     load_object("/lib/modules/secure/dataServices/regionDataService.c");
@@ -18,3 +20,5 @@ private nomask void saveRegionData(string name, string type, int x, int y,
 {
     service->saveRegion(name, type, x, y, entryPoint, entryDirection, rooms);
 }
+
+#endif

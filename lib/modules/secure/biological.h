@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef biologicalModule_h
+#define biologicalModule_h
 
 private int intoxicated;
 private int stuffed;
@@ -35,3 +37,5 @@ static nomask mapping sendBiological()
         "headache": headache,
     ]);
 }
+
+#endif

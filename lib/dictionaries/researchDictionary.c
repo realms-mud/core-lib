@@ -973,3 +973,29 @@ public nomask string *getResearchBonuses(string researchItem)
 
     return ret + ({});
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidCompositeResearch(string itemName, mapping data)
+{
+    int ret = stringp(itemName) &&
+        member(data, "alias") && stringp(data["alias"]) &&
+        member(data, "constraint") && stringp(data["constraint"]) &&
+        member(data, "elements") && pointerp(data["elements"]) &&
+        sizeof(data["elements"]);
+
+    if (ret)
+    {
+        foreach(mapping element in data["elements"])
+        {
+            ret &&= member(element, "research") && 
+                stringp(element["research"]) &&
+                validResearch(element["research"]) &&
+                member(element, "type") && stringp(element["type"]) &&
+                member(element, "description") && 
+                stringp(element["description"]) &&
+                member(element, "order in sequence") && 
+                intp(element["order in sequence"]);
+        }
+    }
+    return ret;
+}

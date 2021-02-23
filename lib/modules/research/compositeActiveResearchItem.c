@@ -5,33 +5,33 @@
 virtual inherit "/lib/modules/research/activeResearchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
-private string *validChainTypes = ({
+private string *validCompositeTypes = ({
     "must include only one of",
     "must include any of",
     "can include only one of",
     "can include any of",
 });
 
-private mapping chainedResearchItems = ([]);
+private mapping compositeResearchItems = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int validateChainSet(mapping chain)
+private nomask int validateCompositeSet(mapping compositeList)
 {
     int ret = 0;
 
-    if (mappingp(chain) && sizeof(chain))
+    if (mappingp(compositeList) && sizeof(compositeList))
     {
         ret = 1;
         object dictionary = getDictionary("research");
-        foreach(string key in chain)
+        foreach(string key in m_indices(compositeList))
         {
-            ret &&= (member(validChainTypes, key) > -1) &&
-                pointerp(chain[key]) &&
-                sizeof(chain[key]);
+            ret &&= (member(validCompositeTypes, key) > -1) &&
+                pointerp(compositeList[key]) &&
+                sizeof(compositeList[key]);
 
             if (ret)
             {
-                foreach(string researchItem in chain[key])
+                foreach(string researchItem in compositeList[key])
                 {
                     object researchObj =
                         dictionary->researchObject(researchItem);
@@ -41,15 +41,15 @@ private nomask int validateChainSet(mapping chain)
                     {
                         string itemName = lower_case(researchObj->query("name"));
 
-                        if (member(chainedResearchItems, itemName))
+                        if (member(compositeResearchItems, itemName))
                         {
                             raise_error(sprintf("ERROR - "
-                                "chainedInstantaneousEffect: items (%s) can only "
+                                "compositeInstantaneousEffect: items (%s) can only "
                                 "be placed once in only one of 'must include only "
                                 "one of', 'must include any of', 'can include only "
                                 "one of', or 'can include any of'.\n", researchItem));
                         }
-                        chainedResearchItems[itemName] = researchItem;
+                        compositeResearchItems[itemName] = researchItem;
                     }
                 }
             }
@@ -65,7 +65,7 @@ protected nomask int addSpecification(string type, mixed value)
 
     switch(type)
     {  
-        case "max chain size modifier":
+        case "max composite size modifier":
         {
             if(value && pointerp(value) && sizeof(value) && 
                 mappingp(value[0]))
@@ -82,20 +82,20 @@ protected nomask int addSpecification(string type, mixed value)
                 }
                 else
                 {
-                    raise_error(sprintf("ERROR - chainedInstantaneousEffect: "
+                    raise_error(sprintf("ERROR - compositeInstantaneousEffect: "
                         "the '%s' specification must be a properly formatted "
                         "modifier.\n" , type));
                 }                
             }
             else
             {
-                raise_error(sprintf("ERROR - chainedInstantaneousEffect: "
+                raise_error(sprintf("ERROR - compositeInstantaneousEffect: "
                     "the '%s' specification must be a properly formatted "
                     "modifier.\n" , type));
             }
             break;
         }      
-        case "maximum chain size":
+        case "maximum composite size":
         {
             if(intp(value) && (value > 0))
             {
@@ -104,23 +104,23 @@ protected nomask int addSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - chainedInstantaneousEffect: the "
-                    "'maximum chain size' specification must be a "
+                raise_error("ERROR - compositeInstantaneousEffect: the "
+                    "'maximum composite size' specification must be a "
                     "positive integer.\n");
             }
             break;
         }
-        case "chain rules":
+        case "composite rules":
         {
-            if (validateChainSet(value))
+            if (validateCompositeSet(value))
             {
                 specificationData[type] = value;
                 ret = 1;
             }
             else
             {
-                raise_error("ERROR - chainedInstantaneousEffect: the "
-                    "'chain rules' specification must be a "
+                raise_error("ERROR - compositeInstantaneousEffect: the "
+                    "'composite rules' specification must be a "
                     "valid rule set.\n");
             }
             break;
@@ -134,38 +134,38 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int getMaximumSizeOfChainedResearch(object owner)
+private nomask int getMaximumSizeOfCompositeResearch(object owner)
 {
-    int ret = specificationData["maximum chain size"];
+    int ret = specificationData["maximum composite size"];
 
-    if (member(specificationData, "max chain size modifier"))
+    if (member(specificationData, "max composite size modifier"))
     {
         ret = applyModifiers(ret, owner,
-            specificationData["max chain size modifier"]);
+            specificationData["max composite size modifier"]);
     }
 
     if (!ret)
     {
-        raise_error("ERROR - chainedInstantaneousEffect: the "
+        raise_error("ERROR - compositeInstantaneousEffect: the "
             "'maximum chain size' specification must be set.\n");
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getComboRulesFor(string *chainItems, string type)
+private nomask mapping getComboRulesFor(string *compositeItems, string type)
 {
     mapping ret = ([]);
 
-    if (sizeof(chainItems) == sizeof(filter(chainItems,
-        (: (member($2, $1) > -1) :), m_indices(chainedResearchItems))))
+    if (sizeof(compositeItems) == sizeof(filter(compositeItems,
+        (: (member($2, $1) > -1) :), m_indices(compositeResearchItems))))
     {
-        mapping rules = specificationData["chain rules"];
-        string *list = member(rules, type) ? filter(chainItems,
-            (: (member($2[$3], chainedResearchItems[$1]) > -1) :),
+        mapping rules = specificationData["composite rules"];
+        string *list = member(rules, type) ? filter(compositeItems,
+            (: (member($2[$3], compositeResearchItems[$1]) > -1) :),
             rules, type) : ({});
 
-        ret = filter(chainedResearchItems,
+        ret = filter(compositeResearchItems,
             (: (member($3, $1) > -1) :), list);
     }
     return ret;
@@ -176,7 +176,7 @@ private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
 {
     string ret = 0;
 
-    if (member(specificationData["chain rules"],
+    if (member(specificationData["composite rules"],
         "must include only one of") && (sizeof(list) != 1))
     {
         if (sizeof(list) > 1)
@@ -189,8 +189,8 @@ private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
         {
             ret = sprintf("That is an invalid combination. "
                 "You must use exactly one of: %s.",
-                stringFromList(m_indices(filter(chainedResearchItems,
-                    (: (member(specificationData["chain rules"]
+                stringFromList(m_indices(filter(compositeResearchItems,
+                    (: (member(specificationData["composite rules"]
                         ["must include only one of"], $2) > -1) :))), 1));
         }
     }
@@ -203,13 +203,13 @@ private nomask string checkMustIncludeAnyOfRules(mapping list)
 {
     string ret = 0;
 
-    if (member(specificationData["chain rules"], 
+    if (member(specificationData["composite rules"], 
         "must include any of") && (sizeof(list) < 1))
     {
         ret = sprintf("That is an invalid combination. "
             "You must use at least one of: %s.",
-            stringFromList(m_indices(filter(chainedResearchItems,
-                (: (member(specificationData["chain rules"]
+            stringFromList(m_indices(filter(compositeResearchItems,
+                (: (member(specificationData["composite rules"]
                     ["must include any of"], $2) > -1) :))), 1));
     }
 

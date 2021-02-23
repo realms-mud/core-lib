@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef researchModule_h
+#define researchModule_h
 
 // This mapping contains all of the research items that the living knows.
 private mapping research = ([
@@ -82,3 +84,5 @@ static nomask mapping sendResearch()
         "compositeResearch": compositeResearch
     ]);
 }
+
+#endif

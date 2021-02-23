@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef loggingModule_h
+#define loggingModule_h
 
 private int Submitted = 0;
 private int Scheduled = 1;
@@ -35,3 +37,5 @@ private nomask void saveIssue(mapping data)
 {
     service->saveIssue(data);
 }
+
+#endif

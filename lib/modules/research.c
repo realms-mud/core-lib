@@ -869,3 +869,88 @@ static nomask void researchHeartBeat()
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs mapping getCompositeResearch(string constraint,
+    string itemName)
+{
+    mapping filteredList = filter(compositeResearch, 
+        (: (($2["constraint"] == $3) && (!$4 || ($1 == $4) ||
+            ($2["alias"] == $4))) :), constraint, itemName);
+
+    return itemName ? filteredList[itemName] : filteredList;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getOptionsForCompositeResearch(string constraint)
+{
+    return getCompositeResearch(constraint);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getNextItem(mapping selectedItem, int nextInSequence)
+{
+    mapping *nextItem = filter(selectedItem["elements"],
+        (: $1["order in sequence"] == nextInSequence :));
+    return sizeof(nextItem) ? nextItem[0] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getNextCompositeResearchElement(string constraint, 
+    string itemName)
+{
+    mapping ret = 0;
+    mapping selectedItem = getCompositeResearch(constraint, itemName);
+
+    if (sizeof(selectedItem) && member(selectedItem, "elements") &&
+        sizeof(selectedItem["elements"]))
+    {
+        int nextItem = 1;
+        if (member(selectedItem, "current item in sequence"))
+        {
+            nextItem = selectedItem["current item in sequence"]
+                ["order in sequence"] + 1;
+        }
+        ret = getNextItem(selectedItem, nextItem);
+
+        if (ret)
+        {
+            selectedItem["current item in sequence"] = ret;
+        }
+        else
+        {
+            m_delete(selectedItem, "current item in sequence");
+        }
+    }
+    return ret ? ret + ([]) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int deactivateCompositeResearch(string constraint, 
+    string itemName)
+{
+    int ret = 0;
+    mapping selectedItem = getCompositeResearch(constraint, itemName);
+
+    if (mappingp(selectedItem) && sizeof(selectedItem))
+    {
+        ret = 1;
+        m_delete(selectedItem, "current item in sequence"); 
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int addCompositeResearch(string itemName, mapping data)
+{
+    int ret = 0;
+
+    if (researchDictionary()->isValidCompositeResearch(itemName, data) &&
+        !member(compositeResearch, itemName))
+    {
+        ret = 1;
+        compositeResearch[itemName] = data + ([]);
+    }
+
+    return ret;
+}

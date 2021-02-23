@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef wizardModule_h
+#define wizardModule_h
 
 private nosave string GroupObj = "/lib/dictionaries/groups/%s.c";
 private nosave string PathToCheck;
@@ -44,3 +46,5 @@ static nomask mapping sendWizard()
         "custom groups": customGroups
     ]);
 }
+
+#endif

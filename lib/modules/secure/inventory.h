@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef inventoryModule_h
+#define inventoryModule_h
+
 #include "/lib/include/inventory.h"
 
 private int money;
@@ -153,3 +156,5 @@ static nomask mapping sendInventory()
     }
     return ret;
 }
+
+#endif

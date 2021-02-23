@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef partyModule_h
+#define partyModule_h
 
 private int Identifier;
 private string Name;
@@ -222,3 +224,5 @@ public nomask void loadParty(mapping partyData)
 
     TotalWeight = 1;
 }
+
+#endif

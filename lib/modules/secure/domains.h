@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef domainsModule_h
+#define domainsModule_h
 
 private mapping holdings = ([]);
 private mapping henchmen = ([]);
@@ -28,3 +30,5 @@ static nomask mapping sendDomains()
 
     return ret;
 }
+
+#endif

@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef guildsModule_h
+#define guildsModule_h
 
 private mapping guilds = ([]);
 private int unassignedExperience;
@@ -54,3 +56,5 @@ static nomask mapping sendGuilds()
     }
     return ret;
 }
+
+#endif

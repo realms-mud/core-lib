@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef questsModule_h
+#define questsModule_h
 
 private nosave string BaseQuest = "lib/modules/quests/questItem.c";
 
@@ -69,3 +71,5 @@ static nomask mapping sendQuests()
     }
     return ret;
 }
+
+#endif

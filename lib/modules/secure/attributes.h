@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef attributesModule_h
+#define attributesModule_h
+
 // Flag to determine if an attribute is overwritten or incremented
 private nosave int IncrementAttribute = 1;
 
@@ -41,3 +44,5 @@ static nomask mapping sendAttributes()
         "availableAttributePoints": availableAttributePoints
     ]);
 }
+
+#endif

@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef factionsModule_h
+#define factionsModule_h
 
 private mapping factions = ([
     //  <faction file name>: ([
@@ -44,3 +46,5 @@ static nomask mapping sendFactions()
 
     return ret;
 }
+
+#endif
