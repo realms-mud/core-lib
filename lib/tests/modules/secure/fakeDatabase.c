@@ -21,6 +21,7 @@ public nomask mapping Gorthaur()
             "Song of the Weasels": ([
                 "alias": "weasels",
                 "constraint": "bard song",
+                "type": "/guilds/bard/compositions/verse-chorus.c",
                 "elements": ({
                     ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
                        "type": "lyrics",
@@ -222,6 +223,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
             "Song of the Weasels": ([
                 "alias": "weasels",
                 "constraint": "bard song",
+                "type": "/guilds/bard/compositions/verse-chorus.c",
                 "elements": ({
                     ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
                        "type": "lyrics",

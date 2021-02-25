@@ -3,7 +3,8 @@ CREATE TABLE `compositeResearch` (
   `name` varchar(100) NOT NULL,
   `alias` varchar(20),
   `playerid` int(11)  NOT NULL,
-  `constraint` varchar(100), 
+  `constraint` varchar(100),
+  `type` varchar(200),
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `compositeResearch_playerid` FOREIGN KEY (`playerid`) REFERENCES `players` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -23,7 +24,7 @@ CREATE TABLE `compositeResearchElements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
 CREATE PROCEDURE `saveCompositeResearch` (p_playername varchar(40), p_name varchar(100),
-    p_alias varchar(20), p_constraint varchar(100))
+    p_alias varchar(20), p_constraint varchar(100), p_type varchar(200))
 BEGIN
     declare alreadyPersisted int;
     declare lPlayerId int;
@@ -37,10 +38,12 @@ BEGIN
         where playerid = lPlayerId and name = p_name;
 
         if alreadyPersisted is null then
-            insert into compositeResearch (playerid, `name`, alias, `constraint`) 
-                values (lPlayerId, p_name, p_alias, p_constraint);
+            insert into compositeResearch (playerid, `name`, alias, `constraint`, `type`) 
+                values (lPlayerId, p_name, p_alias, p_constraint, p_type);
         else
-            update compositeResearch set alias = p_alias, `constraint` = p_constraint
+            update compositeResearch set alias = p_alias, 
+                                         `constraint` = p_constraint, 
+                                         `type` = p_type
             where id = alreadyPersisted;
         end if;
     end if;

@@ -37,6 +37,22 @@ public nomask void reset(int arg)
 protected nomask void setUpUserForSelection()
 {
     Description = sprintf("%s Song Menu", capitalize(SongSegmentType));
+    string *descriptions = 
+        getDictionary("research")->getCompositeSections(SongData);
+
+    int optionCount = 1;
+
+    foreach(mapping element in SongData["elements"])
+    {
+        Data[to_string(optionCount)] = ([
+            "name":  getDictionary("research")->getCompositeItemDetails(
+                element, colorConfiguration, configuration),
+            "description": "Select this option to edit or remove",
+            "type": "modify",
+            "value": SongData
+        ]);
+        optionCount++;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

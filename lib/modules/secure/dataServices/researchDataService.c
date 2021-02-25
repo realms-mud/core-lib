@@ -152,7 +152,7 @@ protected nomask mapping getCompositeResearch(int playerId, int dbHandle)
 {
     mapping ret = (["compositeResearch":([]) ]);
 
-    string query = sprintf("select id, `name`, `alias`, `constraint` "
+    string query = sprintf("select id, `name`, `alias`, `constraint`, `type` "
         "from compositeResearch where playerid = '%d'", playerId);
     db_exec(dbHandle, query);
 
@@ -166,6 +166,7 @@ protected nomask mapping getCompositeResearch(int playerId, int dbHandle)
             ret["compositeResearch"][convertString(result[1])] = ([
                 "alias": convertString(result[2]),
                 "constraint": convertString(result[3]),
+                "type": convertString(result[4]),
                 "elements": 
                     getCompositeResearchElements(to_int(result[0]), dbHandle)
             ]);
@@ -322,11 +323,12 @@ protected nomask void saveCompositeResearch(int dbHandle, string playerName,
         foreach(string compositeResearch in m_indices(data))
         {
             string query =
-                sprintf("call saveCompositeResearch('%s','%s','%s','%s');",
+                sprintf("call saveCompositeResearch('%s','%s','%s','%s','%s');",
                     sanitizeString(playerData["name"]),
                     sanitizeString(compositeResearch),
                     sanitizeString(data[compositeResearch]["alias"]),
-                    sanitizeString(data[compositeResearch]["constraint"]));
+                    sanitizeString(data[compositeResearch]["constraint"]),
+                    sanitizeString(data[compositeResearch]["type"]));
             db_exec(dbHandle, query);
             mixed result = db_fetch(dbHandle);
 

@@ -1011,6 +1011,37 @@ private nomask string researchRow(string title, string data,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string getCompositeItemDetails(mapping element,
+    string colorConfiguration, object configuration)
+{
+    string ret = "";
+
+    if (mappingp(element) && member(element, "research"))
+    {
+        object researchItem = researchObject(element["research"]);
+        if (researchItem)
+        {
+            ret += configuration->decorate("    * ",
+                "field header", "research", colorConfiguration) +
+                configuration->decorate(
+                    capitalize(researchItem->query("name")) + "\n",
+                    "field data", "research", colorConfiguration) +
+
+                configuration->decorate(sprintf("      %-15s : ",
+                    element["type"] + " " +
+                    researchItem->query("composite type")),
+                    "field header", "research", colorConfiguration) +
+                configuration->decorate(element["description"] + "\n",
+                    "field data", "research", colorConfiguration) +
+
+                "      " + implode(explode(
+                    researchItem->conciseResearchDetails(), "\n"), "\n      ");
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getCompositeDescription(string type, string itemName, 
     mapping itemData)
 {
@@ -1030,26 +1061,8 @@ public nomask string getCompositeDescription(string type, string itemName,
     {
         foreach(mapping element in itemData["elements"])
         {
-            object researchItem = researchObject(element["research"]);
-            if (researchItem)
-            {
-                ret += configuration->decorate("   * ",
-                        "field header", "research", colorConfiguration) +
-                    configuration->decorate(
-                        capitalize(researchItem->query("name")) + "\n",
-                        "field data", "research", colorConfiguration) +
-
-                    configuration->decorate(sprintf("     %-15s : ", 
-                        element["type"] + " " + 
-                        researchItem->query("composite type")),
-                        "field header", "research", colorConfiguration) +
-                    configuration->decorate(element["description"] + "\n",
-                        "field data", "research", colorConfiguration) +
-
-                    "     " + implode(explode(
-                        researchItem->conciseResearchDetails(), "\n"), "\n     ")
-                    + "\n";
-            }
+            ret += getCompositeItemDetails(element, colorConfiguration,
+                configuration) + "\n";
         }
     }
     return ret;
