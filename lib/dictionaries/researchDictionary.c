@@ -999,3 +999,58 @@ public nomask int isValidCompositeResearch(string itemName, mapping data)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string researchRow(string title, string data,
+    string colorConfiguration, object configuration)
+{
+    return configuration->decorate(sprintf("%-15s : ", title),
+        "field header", "research", colorConfiguration) +
+        configuration->decorate(data + "\n",
+            "field data", "research", colorConfiguration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getCompositeDescription(string type, string itemName, 
+    mapping itemData)
+{
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+
+    object configuration = getDictionary("configuration");
+
+    string ret = researchRow(sprintf("%s Name", type), capitalize(itemName),
+            colorConfiguration, configuration) +
+        (member(itemData, "alias") ? researchRow("Alias", itemData["alias"],
+            colorConfiguration, configuration) : "") +
+        researchRow("Composition Elements", to_string(sizeof(itemData["elements"])), 
+            colorConfiguration, configuration);
+
+    if (sizeof(itemData["elements"]))
+    {
+        foreach(mapping element in itemData["elements"])
+        {
+            object researchItem = researchObject(element["research"]);
+            if (researchItem)
+            {
+                ret += configuration->decorate("   * ",
+                        "field header", "research", colorConfiguration) +
+                    configuration->decorate(
+                        capitalize(researchItem->query("name")) + "\n",
+                        "field data", "research", colorConfiguration) +
+
+                    configuration->decorate(sprintf("     %-15s : ", 
+                        element["type"] + " " + 
+                        researchItem->query("composite type")),
+                        "field header", "research", colorConfiguration) +
+                    configuration->decorate(element["description"] + "\n",
+                        "field data", "research", colorConfiguration) +
+
+                    "     " + implode(explode(
+                        researchItem->conciseResearchDetails(), "\n"), "\n     ")
+                    + "\n";
+            }
+        }
+    }
+    return ret;
+}

@@ -779,8 +779,6 @@ public nomask string researchDetails()
 {
     string colorConfiguration = this_player() ?
         this_player()->colorConfiguration() : "none";
-    object configuration =
-        load_object("/lib/dictionaries/configurationDictionary.c");
 
     return researchRow("Research Name", capitalize(query("name")),
         colorConfiguration, configuration) +
@@ -801,4 +799,15 @@ public nomask string researchDetails()
         displayEffectInformation(colorConfiguration, configuration) +
         displayLimiters(colorConfiguration, configuration) +
         displayPrerequisites(colorConfiguration, configuration);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string conciseResearchDetails()
+{
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+
+    return displayExtraResearchInformation(colorConfiguration, configuration) +
+        displayEffectInformation(colorConfiguration, configuration) +
+        displayLimiters(colorConfiguration, configuration);
 }

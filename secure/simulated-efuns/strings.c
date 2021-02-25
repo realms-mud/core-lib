@@ -203,3 +203,9 @@ public nomask varargs string stringFromList(string *list, int isOr)
         (sizeof(list) == 2) ? delimeter : ", ");
     return regreplace(ret, ", ([^,]+)$", ", " + delimeter + "\\1", 1);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string convertToTextOfLength(string text, int length)
+{
+    return (sizeof(text) > length) ? (text[0..(length - 4)] + "...") : text;
+}

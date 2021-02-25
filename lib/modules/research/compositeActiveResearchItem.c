@@ -44,7 +44,7 @@ private nomask int validateCompositeSet(mapping compositeList)
                         if (member(compositeResearchItems, itemName))
                         {
                             raise_error(sprintf("ERROR - "
-                                "compositeInstantaneousEffect: items (%s) can only "
+                                "compositeActiveResearchItem: items (%s) can only "
                                 "be placed once in only one of 'must include only "
                                 "one of', 'must include any of', 'can include only "
                                 "one of', or 'can include any of'.\n", researchItem));
@@ -82,14 +82,14 @@ protected nomask int addSpecification(string type, mixed value)
                 }
                 else
                 {
-                    raise_error(sprintf("ERROR - compositeInstantaneousEffect: "
+                    raise_error(sprintf("ERROR - compositeActiveResearchItem: "
                         "the '%s' specification must be a properly formatted "
                         "modifier.\n" , type));
                 }                
             }
             else
             {
-                raise_error(sprintf("ERROR - compositeInstantaneousEffect: "
+                raise_error(sprintf("ERROR - compositeActiveResearchItem: "
                     "the '%s' specification must be a properly formatted "
                     "modifier.\n" , type));
             }
@@ -104,7 +104,7 @@ protected nomask int addSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - compositeInstantaneousEffect: the "
+                raise_error("ERROR - compositeActiveResearchItem: the "
                     "'maximum composite size' specification must be a "
                     "positive integer.\n");
             }
@@ -119,7 +119,7 @@ protected nomask int addSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - compositeInstantaneousEffect: the "
+                raise_error("ERROR - compositeActiveResearchItem: the "
                     "'composite rules' specification must be a "
                     "valid rule set.\n");
             }
@@ -146,7 +146,7 @@ private nomask int getMaximumSizeOfCompositeResearch(object owner)
 
     if (!ret)
     {
-        raise_error("ERROR - compositeInstantaneousEffect: the "
+        raise_error("ERROR - compositeActiveResearchItem: the "
             "'maximum chain size' specification must be set.\n");
     }
     return ret;

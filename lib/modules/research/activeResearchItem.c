@@ -80,6 +80,7 @@ protected int addSpecification(string type, mixed value)
             break;
         }
         case "composite research":
+        case "composite type":
         case "event handler":
         case "use ability message":
         case "use ability fail message":
