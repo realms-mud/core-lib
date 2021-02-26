@@ -1011,31 +1011,38 @@ private nomask string researchRow(string title, string data,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getCompositeItemDetails(mapping element,
-    string colorConfiguration, object configuration)
+public nomask varargs string getCompositeItemDetails(mapping element,
+    string colorConfiguration, object configuration, int padding, 
+    int showDecorator)
 {
     string ret = "";
+    padding = padding ? padding : 5;
+    string firstPadding = sprintf("%" + padding + "s%s ", " ",
+        (showDecorator ? "*" : " "));
+    string secondaryPadding = sprintf("%" + padding + "s  ", " ");
 
     if (mappingp(element) && member(element, "research"))
     {
         object researchItem = researchObject(element["research"]);
         if (researchItem)
         {
-            ret += configuration->decorate("    * ",
+            ret += configuration->decorate(firstPadding,
                 "field header", "research", colorConfiguration) +
                 configuration->decorate(
                     capitalize(researchItem->query("name")) + "\n",
                     "field data", "research", colorConfiguration) +
 
-                configuration->decorate(sprintf("      %-15s : ",
-                    element["type"] + " " +
+                configuration->decorate(sprintf(secondaryPadding +
+                    "%-15s : ",
+                    capitalize(element["type"]) + " " +
                     researchItem->query("composite type")),
                     "field header", "research", colorConfiguration) +
                 configuration->decorate(element["description"] + "\n",
                     "field data", "research", colorConfiguration) +
 
-                "      " + implode(explode(
-                    researchItem->conciseResearchDetails(), "\n"), "\n      ");
+                secondaryPadding + implode(explode(
+                    researchItem->conciseResearchDetails(), "\n"), "\n" + 
+                    secondaryPadding);
         }
     }
     return ret;
@@ -1062,7 +1069,7 @@ public nomask string getCompositeDescription(string type, string itemName,
         foreach(mapping element in itemData["elements"])
         {
             ret += getCompositeItemDetails(element, colorConfiguration,
-                configuration) + "\n";
+                configuration, 4, 1) + "\n";
         }
     }
     return ret;
