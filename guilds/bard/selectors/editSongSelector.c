@@ -34,24 +34,63 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int GetExistingElementsForSongSection(string section,
+    mapping SongData, int optionCount)
+{
+    mapping *elements = filter(SongData["elements"],
+        (: $1["type"] == $2 :), section);
+
+    foreach(mapping element in elements)
+    {
+        string info = regreplace(getDictionary("research")->getCompositeItemDetails(
+            element, colorConfiguration, configuration), "^       ", "", 1);
+        info = regreplace(info, "\n *$", "", 1);
+
+        Data[to_string(optionCount)] = ([
+            "name": info,
+            "description": "Select this option to edit or remove",
+            "type": "modify",
+            "value": element
+        ]);
+        optionCount++;
+    }
+
+    return optionCount;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
     Description = sprintf("%s Song Menu", capitalize(SongSegmentType));
-    string *descriptions = 
-        getDictionary("research")->getCompositeSections(SongData);
 
     int optionCount = 1;
 
-    foreach(mapping element in SongData["elements"])
+    if (mappingp(SongData))
     {
-        Data[to_string(optionCount)] = ([
-            "name":  getDictionary("research")->getCompositeItemDetails(
-                element, colorConfiguration, configuration),
-            "description": "Select this option to edit or remove",
-            "type": "modify",
-            "value": SongData
-        ]);
-        optionCount++;
+        object songTemplate = getDictionary("research")->researchObject(
+            SongData["type"]);
+
+        if (songTemplate && songTemplate->query("segments"))
+        {
+            foreach(string segment in songTemplate->query("segments"))
+            {
+                optionCount = GetExistingElementsForSongSection(segment,
+                    SongData, optionCount);
+                Data[to_string(optionCount)] = ([
+                    "name": sprintf("Add %s segment", segment),
+                    "description": sprintf("Select this option to add a new "
+                        "%s segment to your song.", segment),
+                    "type": "add",
+                    "value": ([
+                        "type": songTemplate,
+                        "segment": segment,
+                        "order in sequence": sizeof(filter(SongData["elements"],
+                            (: $1["type"] == $2 :), segment))
+                    ])
+                ]);
+                optionCount++;
+            }
+        }
     }
 }
 
@@ -84,4 +123,15 @@ public nomask void onSelectorCompleted(object caller)
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string choiceFormatter(string choice)
+{
+    return sprintf("[%s]%s - %s%s",
+        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        padSelectionDisplay(choice),
+        configuration->decorate("%-30s", "choice enabled", "selector", 
+            colorConfiguration),
+        " ");
 }

@@ -10,11 +10,14 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Temp Trait research");
+        addSpecification("name", "Gittern bedazzlement");
         addSpecification("scope", "targeted");
         addSpecification("research type", "granted");
-        addSpecification("cooldown", 4);
-        addSpecification("command template", "throw turnip at ##Target##");
-        addSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+        addSpecification("composite research",
+            "lib/tests/support/research/compositeRoot.c");
+        addSpecification("composite type", "instrumental");
+
+        addSpecification("penalty to attack", 5);
+        addSpecification("duration", 12);
     }
 }

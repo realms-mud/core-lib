@@ -15,7 +15,7 @@ void Setup()
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
-    User->colorConfiguration("none");
+    User->colorConfiguration("24-bit");
     User->addCommands();
 
     move_object(Selector, User);
@@ -47,6 +47,7 @@ void CreationDisplayWithCreatedSongsIsCorrect()
     mapping compositeElement = ([
         "alias": "weasel",
         "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
@@ -102,6 +103,7 @@ void DescribeASongShowsCorrectDetails()
     mapping compositeElement = ([
         "alias": "weasel",
         "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
@@ -151,4 +153,101 @@ void DescribeASongShowsCorrectDetails()
         "      Usage effect    : 100% chance to damage spell points 25\n"
         "      \n",
         User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectCreateASong()
+{
+    Selector->initiateSelector(User);
+    command("1", User);
+    //ExpectEq("Song Name       : Flight of the Weasels\n"
+    //    "Alias           : weasel\n"
+    //    "Composition Elements : 4\n"
+    //    "    * Lyric blast\n"
+    //    "      Verse 1 lyric   : Oh, sing me a song of the weasels, man.\n"
+    //    "      Usage effect    : 100% chance to damage hit points 25\n"
+    //    "      \n"
+    //    "    * Lyric verse thingy\n"
+    //    "      Verse 1 lyric   : Sing me a song tonight.\n"
+    //    "      Usage effect    : 100% chance to damage stamina points 25\n"
+    //    "      \n"
+    //    "    * Lyric blast\n"
+    //    "      Verse 1 lyric   : For the Mustelidae, they are now mocking me\n"
+    //    "      Usage effect    : 100% chance to damage hit points 25\n"
+    //    "      \n"
+    //    "    * Singy blast\n"
+    //    "      Verse 1 lyric   : and eating my intestines in spite.\n"
+    //    "      Usage effect    : 100% chance to damage spell points 25\n"
+    //    "      \n",
+    //    User->caughtMessages());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectModifyForASong()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "intro",
+                "description" : "Gittern, Cm7b5 arpeggio",
+                "order in sequence" : 1
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+                "type" : "verse 1",
+                "description" : "I'm walking through a reliquary",
+                "order in sequence" : 2
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+                "type": "verse 1",
+                "description": "Family of weasels snuck in...",
+                "order in sequence": 3
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "A big one sidled up next to me",
+                "order in sequence": 4
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "Climbed my body and chewed on my chin.",
+                "order in sequence": 5
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "verse 1",
+                "description" : "Gittern, chords: Am, D7, Cm7b5",
+                "order in sequence" : 6
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+                "type": "chorus 1",
+                "description": "Oh, sing me a song of the weasels, man.",
+                "order in sequence": 7
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "chorus 1",
+                "description": "Sing me a song tonight.",
+                "order in sequence": 8
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+                "type": "chorus 1",
+                "description": "For the Mustelidae, they are now mocking me",
+                "order in sequence": 9
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+                "type": "chorus 1",
+                "description": "and eating my intestines in spite.",
+                "order in sequence": 10
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->addCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+//    ExpectEq("x",
+//        User->caughtMessage());
 }
