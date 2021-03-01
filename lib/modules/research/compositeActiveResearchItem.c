@@ -6,6 +6,7 @@ virtual inherit "/lib/modules/research/activeResearchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 private string *validCompositeTypes = ({
+    "template must be one of",
     "must include only one of",
     "must include any of",
     "can include only one of",
@@ -39,7 +40,7 @@ private nomask int validateCompositeSet(mapping compositeList)
                     ret &&= objectp(researchObj);
                     if (ret)
                     {
-                        string itemName = lower_case(researchObj->query("name"));
+                        string itemName = researchObj->query("name");
 
                         if (member(compositeResearchItems, itemName))
                         {
@@ -112,6 +113,7 @@ protected nomask int addSpecification(string type, mixed value)
         }
         case "composite rules":
         {
+            ret = 1;
             if (validateCompositeSet(value))
             {
                 specificationData[type] = value;
@@ -147,7 +149,7 @@ private nomask int getMaximumSizeOfCompositeResearch(object owner)
     if (!ret)
     {
         raise_error("ERROR - compositeActiveResearchItem: the "
-            "'maximum chain size' specification must be set.\n");
+            "'maximum composite size' specification must be set.\n");
     }
     return ret;
 }
@@ -161,6 +163,7 @@ private nomask mapping getComboRulesFor(string *compositeItems, string type)
         (: (member($2, $1) > -1) :), m_indices(compositeResearchItems))))
     {
         mapping rules = specificationData["composite rules"];
+
         string *list = member(rules, type) ? filter(compositeItems,
             (: (member($2[$3], compositeResearchItems[$1]) > -1) :),
             rules, type) : ({});
@@ -172,12 +175,13 @@ private nomask mapping getComboRulesFor(string *compositeItems, string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
+private nomask string checkIncludeOnlyOneRule(mapping list,
+    string type)
 {
     string ret = 0;
 
-    if (member(specificationData["composite rules"],
-        "must include only one of") && (sizeof(list) != 1))
+    if (member(specificationData["composite rules"], type) && 
+        (sizeof(list) != 1))
     {
         if (sizeof(list) > 1)
         {
@@ -191,11 +195,23 @@ private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
                 "You must use exactly one of: %s.",
                 stringFromList(m_indices(filter(compositeResearchItems,
                     (: (member(specificationData["composite rules"]
-                        ["must include only one of"], $2) > -1) :))), 1));
+                        [type], $2) > -1) :))), 1));
         }
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
+{
+    return checkIncludeOnlyOneRule(list, "must include only one of");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeTemplateRules(mapping list)
+{
+    return checkIncludeOnlyOneRule(list, "template must be one of");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -232,8 +248,79 @@ private nomask string checkCanIncludeOnlyOneOfRules(mapping list)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int executeOnSelf(string unparsedCommand, object owner,
-    string researchName)
+//protected nomask varargs object *getCombinationList(string unparsedCommand,
+//    object owner, int doNotDisplayFeedback)
+//{
+//    object *ret = ({});
+//
+//    string itemsToCheck = regreplace(unparsedCommand,
+//        specificationData["command name"] + " (.*)", "\\1", 1);
+//    itemsToCheck = regreplace(itemsToCheck,
+//        "(.*)" + specificationData["command target"], "\\1", 1);
+//
+//    string *comboItems = explode(itemsToCheck, " ") - ({ "" });
+//
+//    string failureMessage = 0;
+//
+//    if ((sizeof(comboItems) > 1) &&
+//        (sizeof(comboItems) <= getMaximumSizeOfCompositeResearch(owner)))
+//    {
+//        mapping mustIncludeOnlyOneOf =
+//            getComboRulesFor(comboItems, "must include only one of");
+//        mapping mustIncludeAnyOf =
+//            getComboRulesFor(comboItems, "must include any of");
+//        mapping canIncludeOnlyOneOf =
+//            getComboRulesFor(comboItems, "can include only one of");
+//        mapping canIncludeAnyOf =
+//            getComboRulesFor(comboItems, "can include any of");
+//
+//        failureMessage = checkMustIncludeOnlyOneOfRules(mustIncludeOnlyOneOf) ||
+//            checkMustIncludeAnyOfRules(mustIncludeAnyOf) ||
+//            checkCanIncludeOnlyOneOfRules(canIncludeOnlyOneOf);
+//
+//        if (!failureMessage)
+//        {
+//            mapping validComboItems = mustIncludeOnlyOneOf + mustIncludeAnyOf +
+//                canIncludeOnlyOneOf + canIncludeAnyOf;
+//
+//            ret = getResearchObjectsFromComboList(comboItems, owner,
+//                validComboItems);
+//
+//            if (!ret)
+//            {
+//                failureMessage = sprintf("That is an invalid combination. You do "
+//                    "not have the following researched: %s.\n",
+//                    stringFromList(filter(comboItems,
+//                        (: !$2->isResearched($3[$1]) :),
+//                        owner, validComboItems)));
+//            }
+//        }
+//    }
+//    else
+//    {
+//        failureMessage = sprintf("That is an invalid combination. You can "
+//            "only chain 2 to %d actions together.\n",
+//            getMaximumSizeOfChainedCombination(owner));
+//    }
+//
+//    if (failureMessage)
+//    {
+//        ret = 0;
+//
+//        if (!doNotDisplayFeedback)
+//        {
+//            displayMessageToSelf(configuration->decorate(format(failureMessage,
+//                "failure message", "research", owner->colorConfiguration(), 78)),
+//                owner);
+//        }
+//    }
+//
+//    return ret;
+//}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getPossibleTemplates()
 {
-    return 0;
+    return getComboRulesFor(m_indices(compositeResearchItems), 
+        "template must be one of");
 }
