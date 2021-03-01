@@ -15,7 +15,7 @@ void Setup()
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
-    User->colorConfiguration("24-bit");
+    User->colorConfiguration("none");
     User->addCommands();
 
     move_object(Selector, User);
@@ -160,26 +160,23 @@ void CanSelectCreateASong()
 {
     Selector->initiateSelector(User);
     command("1", User);
-    //ExpectEq("Song Name       : Flight of the Weasels\n"
-    //    "Alias           : weasel\n"
-    //    "Composition Elements : 4\n"
-    //    "    * Lyric blast\n"
-    //    "      Verse 1 lyric   : Oh, sing me a song of the weasels, man.\n"
-    //    "      Usage effect    : 100% chance to damage hit points 25\n"
-    //    "      \n"
-    //    "    * Lyric verse thingy\n"
-    //    "      Verse 1 lyric   : Sing me a song tonight.\n"
-    //    "      Usage effect    : 100% chance to damage stamina points 25\n"
-    //    "      \n"
-    //    "    * Lyric blast\n"
-    //    "      Verse 1 lyric   : For the Mustelidae, they are now mocking me\n"
-    //    "      Usage effect    : 100% chance to damage hit points 25\n"
-    //    "      \n"
-    //    "    * Singy blast\n"
-    //    "      Verse 1 lyric   : and eating my intestines in spite.\n"
-    //    "      Usage effect    : 100% chance to damage spell points 25\n"
-    //    "      \n",
-    //    User->caughtMessages());
+    ExpectEq("Song - Select Song Structure Menu:\n"
+        "[1]  - AAA (Verse, Verse, Verse)      \n"
+        "[2]  - AABA (Verse, Verse, Bridge, Verse) \n"
+        "[3]  - ABAB (Verse/Chorus)            \n"
+        "[4]  - ABABCB (Verse/Chorus/Bridge/Solo) \n"
+        "[5]  - ABAC (4 eight bar sections)    \n"
+        "[6]  - ABACBAA (Chorus/Verse/Chorus/Bridge) \n"
+        "[7]  - Freeform                       \n"
+        "[8]  - Simple Ballad                  \n"
+        "[9]  - Verse/Chorus/Bridge            \n"
+        "[10] - Verse/Pre-Chorus/Chorus        \n"
+        "[11] - Return To Previous Menu        \n"
+        "You must select a number from 1 to 11.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
