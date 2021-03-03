@@ -7,6 +7,9 @@ inherit "/lib/core/baseSelector.c";
 private object SubselectorObj;
 private string SongSegmentType = "ERROR";
 private mapping SongData = ([]);
+private int SettingName = 0;
+private int SettingAlias = 0;
+private int DeletingSong = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
@@ -30,16 +33,17 @@ public nomask void reset(int arg)
         NumColumns = 1;
         SuppressColon = 1;
         Type = "Song";
-        Data = ([]);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int GetExistingElementsForSongSection(string section,
-    mapping SongData, int optionCount)
+    mapping SongData)
 {
     mapping *elements = filter(SongData["elements"],
         (: $1["type"] == $2 :), section);
+
+    int optionCount = sizeof(Data) + 1;
 
     foreach(mapping element in elements)
     {
@@ -60,21 +64,10 @@ private nomask int GetExistingElementsForSongSection(string section,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void setUpUserForSelection()
+private nomask string getSongDetails(object songTemplate, 
+    string colorConfiguration)
 {
-    Description = 
-        sprintf("%s Song Menu", capitalize(SongSegmentType)) + "\n";
-
-    string colorConfiguration = User->colorConfiguration();
-
-    int optionCount = 1;
-
-    if (mappingp(SongData) && sizeof(SongData) && member(SongData, "type"))
-    {
-        object songTemplate = getDictionary("research")->researchObject(
-            SongData["type"]);
-
-        Description += configuration->decorate("Song Type: ",
+    return configuration->decorate("Song Type: ",
                 "field header", "research", colorConfiguration) +
             configuration->decorate(songTemplate->query("name"),
                 "field data", "research", colorConfiguration) + "\n" +
@@ -90,52 +83,89 @@ protected nomask void setUpUserForSelection()
                     "field data", "research", colorConfiguration) :
                 configuration->decorate("<No Alias>",
                     "failure message", "research", colorConfiguration)) + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping addSongSegmentOption(string segment, 
+    object songTemplate)
+{
+    int optionCount = GetExistingElementsForSongSection(segment,
+        SongData);
+
+    return ([ to_string(optionCount): ([
+        "name": sprintf("Add %s segment", segment),
+        "description": sprintf("Select this option to add a new "
+            "%s segment to your song.", segment),
+        "type": "add",
+        "value": ([
+            "type": songTemplate,
+            "segment": segment,
+            "order in sequence": sizeof(filter(SongData["elements"],
+                (: $1["type"] == $2 :), segment))
+        ])
+    ]) ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void addOtherMenuOptions()
+{
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Set/change song name",
+        "type": "name",
+        "description": "Set or change the name of the song.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":"Set/change song alias",
+        "type": "alias",
+        "description": "Set or change the alias of the song. This alias "
+            "can then be used as shorthand for performing the song.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Save the song",
+        "type": "save",
+        "is disabled": (!SongData["name"] || !sizeof(SongData["elements"])),
+        "description": "This option saves the song data and allows you "
+            "to perform the song at a later point in time.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Delete the song",
+        "type": "delete",
+        "is disabled": !SongData["name"],
+        "description": "This option saves the song data and allows you "
+            "to perform the song at a later point in time.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Exit Menu",
+        "description": "This option leaves the song composition menu.",
+        "type": "exit",
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void setUpUserForSelection()
+{
+    Data = ([]);
+    Description = 
+        sprintf("%s Song Menu", capitalize(SongSegmentType)) + "\n";
+
+    string colorConfiguration = User->colorConfiguration();
+
+    if (mappingp(SongData) && sizeof(SongData) && member(SongData, "type"))
+    {
+        object songTemplate = getDictionary("research")->researchObject(
+            SongData["type"]);
+
+        Description += getSongDetails(songTemplate, colorConfiguration);
 
         if (songTemplate && songTemplate->query("segments"))
         {
             foreach(string segment in songTemplate->query("segments"))
             {
-                optionCount = GetExistingElementsForSongSection(segment,
-                    SongData, optionCount);
-                Data[to_string(optionCount)] = ([
-                    "name": sprintf("Add %s segment", segment),
-                    "description": sprintf("Select this option to add a new "
-                        "%s segment to your song.", segment),
-                    "type": "add",
-                    "value": ([
-                        "type": songTemplate,
-                        "segment": segment,
-                        "order in sequence": sizeof(filter(SongData["elements"],
-                            (: $1["type"] == $2 :), segment))
-                    ])
-                ]);
-                optionCount++;
+                Data += addSongSegmentOption(segment, songTemplate);
             }
         }
 
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name": "Set/change song name",
-            "type": "name",
-            "description": "Set or change the name of the song.\n"
-        ]);
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name":"Set/change song alias",
-            "type": "alias",
-            "description": "Set or change the alias of the song. This alias "
-                "can then be used as shorthand for performing the song.\n"
-        ]);
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name": "Save the song",
-            "type": "save",
-            "is disabled": (!SongData["name"] || !sizeof(SongData["elements"])),
-            "description": "This option saves the song data and allows you "
-                "to perform the song at a later point in time.\n"
-        ]);
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name": "Exit Menu",
-            "description": "This option leaves the song composition menu.",
-            "type": "exit",
-        ]);
+        addOtherMenuOptions();
     }
 }
 
@@ -143,12 +173,93 @@ protected nomask void setUpUserForSelection()
 protected nomask int processSelection(string selection)
 {
     int ret = -1;
+
     if (User)
     {
-        ret = (Data[selection]["type"] == "exit") || (selection == "abort");
+        if (SettingName)
+        {
+            ret = 0;
+            SettingName = 0;
+            SongData["name"] = selection;
+        }
+        else if (SettingAlias)
+        {
+            ret = 0;
+            SettingAlias = 0;
+            SongData["alias"] = selection;
+        }
+        else if (DeletingSong)
+        {
+            if (sizeof(regexp(({ selection }), "[Yy]([Ee][Ss]|)")))
+            {
+                User->deleteCompositeResearch(SongData["name"]);
+                ret = 1;
+            }
+            else
+            {
+                tell_object(User, configuration->decorate(
+                    "Deletion aborted.\n", "details",
+                    "selector", colorConfiguration));
+            }
+            DeletingSong = 0;
+        }
+        else
+        {
+            ret = (Data[selection]["type"] == "exit") || (selection == "abort");
+
+            if (!ret)
+            {
+                switch (Data[selection]["type"])
+                {
+                    case "name":
+                    {
+                        SettingName = 1;
+                        tell_object(User, configuration->decorate(
+                            "Please enter the song's new name: ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "alias":
+                    {
+                        SettingAlias = 1;
+                        tell_object(User, configuration->decorate(
+                            "Please enter the song's new alias: ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "delete":
+                    {
+                        DeletingSong = 1;
+                        tell_object(User, configuration->decorate(
+                            "Are you sure you want to delete this song?\n"
+                            "This process cannot be undone. (y/n): ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "save":
+                    {
+                        User->setCompositeResearch(SongData["name"], SongData);
+
+                        tell_object(User, configuration->decorate(
+                            "Song saved.\n", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "modify":
+                    {
+                        break;
+                    }
+                    case "add":
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
         if (!ret)
         {
-
+            setUpUserForSelection();
         }
     }
     return ret;
@@ -159,15 +270,23 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        SongData = caller->songData();
+        setUpUserForSelection();
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int handleSpecialSelection()
+{
+    return SettingName || SettingAlias || DeletingSong;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int suppressMenuDisplay()
 {
-    return objectp(SubselectorObj);
+    return objectp(SubselectorObj) || handleSpecialSelection();
 }
 
 /////////////////////////////////////////////////////////////////////////////

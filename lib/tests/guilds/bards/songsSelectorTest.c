@@ -196,8 +196,9 @@ void CreateSongTransitionsToModifyMenu()
         "[4] - Set/change song name             \n"
         "[5] - Set/change song alias            \n"
         "[6] - Save the song                 (X)\n"
-        "[7] - Exit Menu                        \n"
-        "You must select a number from 1 to 7.\n"
+        "[7] - Delete the song               (X)\n"
+        "[8] - Exit Menu                        \n"
+        "You must select a number from 1 to 8.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
@@ -314,10 +315,219 @@ void CanSelectModifyForASong()
         "[17] - Set/change song name             \n"
         "[18] - Set/change song alias            \n"
         "[19] - Save the song                    \n"
-        "[20] - Exit Menu                        \n"
-        "You must select a number from 1 to 20.\n"
+        "[20] - Delete the song                  \n"
+        "[21] - Exit Menu                        \n"
+        "You must select a number from 1 to 21.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
         User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetSongName()
+{
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
+        "Song Name: <Name Missing>\n"
+        "Song Alias: <No Alias>\n"
+        "\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Add verse 2 segment              \n"
+        "[3] - Add verse 3 segment              \n"
+        "[4] - Set/change song name             \n"
+        "[5] - Set/change song alias            \n"
+        "[6] - Save the song                 (X)\n"
+        "[7] - Delete the song               (X)\n"
+        "[8] - Exit Menu                        \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+
+    command("4", User);
+    ExpectEq("Please enter the song's new name: ",
+        User->caughtMessage());
+
+    command("Song of the Weasels", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
+        "Song Name: Song of the Weasels\n"
+        "Song Alias: <No Alias>\n"
+        "\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Add verse 2 segment              \n"
+        "[3] - Add verse 3 segment              \n"
+        "[4] - Set/change song name             \n"
+        "[5] - Set/change song alias            \n"
+        "[6] - Save the song                 (X)\n"
+        "[7] - Delete the song                  \n"
+        "[8] - Exit Menu                        \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetSongAlias()
+{
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
+        "Song Name: <Name Missing>\n"
+        "Song Alias: <No Alias>\n"
+        "\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Add verse 2 segment              \n"
+        "[3] - Add verse 3 segment              \n"
+        "[4] - Set/change song name             \n"
+        "[5] - Set/change song alias            \n"
+        "[6] - Save the song                 (X)\n"
+        "[7] - Delete the song               (X)\n"
+        "[8] - Exit Menu                        \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+
+    command("5", User);
+    ExpectEq("Please enter the song's new alias: ",
+        User->caughtMessage());
+
+    command("weasels", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
+        "Song Name: <Name Missing>\n"
+        "Song Alias: weasels\n"
+        "\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Add verse 2 segment              \n"
+        "[3] - Add verse 3 segment              \n"
+        "[4] - Set/change song name             \n"
+        "[5] - Set/change song alias            \n"
+        "[6] - Save the song                 (X)\n"
+        "[7] - Delete the song               (X)\n"
+        "[8] - Exit Menu                        \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSaveSong()
+{
+    destruct(Selector);
+    Selector = clone_object("/guilds/bard/selectors/editSongSelector.c");
+    Selector->setType("create");
+    Selector->setData(([
+        "name": 0,
+        "alias": 0,
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({ })
+    ]));
+    move_object(Selector, User);
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+
+    object subSelector =
+        clone_object("/lib/tests/support/research/fakeSegmentSelector.c");
+    Selector->onSelectorCompleted(subSelector);
+
+    ExpectFalse(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
+
+    command("10", User);
+
+    ExpectTrue(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDeleteSong()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "intro",
+                "description" : "Gittern, Cm7b5 arpeggio",
+                "order in sequence" : 1
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+    ExpectTrue(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("11", User);
+
+    ExpectEq("Are you sure you want to delete this song?\n"
+             "This process cannot be undone. (y/n): ",
+        User->caughtMessage());
+
+    command("y", User);
+    ExpectFalse(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+
+    ExpectEq("Song - Compose Songs Main Menu:\n"
+        "[1] - Create New Song                [2] - Exit Song Menu                 \n"
+        "You must select a number from 1 to 2.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NotTypingYAbortsDelete()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "intro",
+                "description" : "Gittern, Cm7b5 arpeggio",
+                "order in sequence" : 1
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+    ExpectTrue(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("11", User);
+
+    ExpectEq("Are you sure you want to delete this song?\n"
+             "This process cannot be undone. (y/n): ",
+        User->caughtMessage());
+
+    command("ddd", User);
+    ExpectTrue(member(User->getOptionsForCompositeResearch(
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 }

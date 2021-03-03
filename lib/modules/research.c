@@ -953,3 +953,17 @@ public nomask int setCompositeResearch(string itemName, mapping data)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int deleteCompositeResearch(string itemName)
+{
+    int ret = 0;
+
+    if (member(compositeResearch, itemName))
+    {
+        ret = 1;
+        m_delete(compositeResearch, itemName);
+    }
+
+    return ret;
+}
