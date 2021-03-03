@@ -1256,31 +1256,34 @@ public nomask varargs void getRandomCraftingMaterial(object item,
     if (!item->query("crafting in progress"))
     {
         object blueprint = getBlueprintFor(item);
-        if (useDefaultMaterial)
+        if(blueprint)
         {
-            blueprint->set("use default material", 1);
-        }
-        else
-        {
-            blueprint->unset("use default material");
-        }
-        mapping materialList = ([]);
+            if (useDefaultMaterial)
+            {
+                blueprint->set("use default material", 1);
+            }
+            else
+            {
+                blueprint->unset("use default material");
+            }
+            mapping materialList = ([]);
 
-        materialList += generateRandomMaterialList(blueprint) +
-            generateRandomComponents(blueprint);
+            materialList += generateRandomMaterialList(blueprint) +
+                generateRandomComponents(blueprint);
 
-        if (item->query("material"))
-        {
-            item->set("primary crafting material", item->query("material"));
+            if (item->query("material"))
+            {
+                item->set("primary crafting material", item->query("material"));
+            }
+            else if (blueprint->query("primary crafting material"))
+            {
+                item->set("primary crafting material",
+                    blueprint->query("primary crafting material"));
+                item->set("material", blueprint->query("primary crafting material"));
+            }
+            item->set("crafting materials", materialList);
+            destruct(blueprint);
         }
-        else if (blueprint->query("primary crafting material"))
-        {
-            item->set("primary crafting material",
-                blueprint->query("primary crafting material"));
-            item->set("material", blueprint->query("primary crafting material"));
-        }
-        item->set("crafting materials", materialList);
-        destruct(blueprint);
     }
 }
 
