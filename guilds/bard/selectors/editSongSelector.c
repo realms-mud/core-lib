@@ -173,7 +173,7 @@ protected nomask void setUpUserForSelection()
 protected nomask int processSelection(string selection)
 {
     int ret = -1;
-    printf("Selection = %O\n", selection);
+
     if (User)
     {
         if (SettingName)
@@ -209,35 +209,50 @@ protected nomask int processSelection(string selection)
 
             if (!ret)
             {
-                if (Data[selection]["type"] == "name")
+                switch (Data[selection]["type"])
                 {
-                    SettingName = 1;
-                    tell_object(User, configuration->decorate(
-                        "Please enter the song's new name: ", "details",
-                        "selector", colorConfiguration));
-                }
-                if (Data[selection]["type"] == "alias")
-                {
-                    SettingAlias = 1;
-                    tell_object(User, configuration->decorate(
-                        "Please enter the song's new alias: ", "details",
-                        "selector", colorConfiguration));
-                }
-                if (Data[selection]["type"] == "delete")
-                {
-                    DeletingSong = 1;
-                    tell_object(User, configuration->decorate(
-                        "Are you sure you want to delete this song?\n"
-                        "This process cannot be undone. (y/n): ", "details",
-                        "selector", colorConfiguration));
-                }
-                if (Data[selection]["type"] == "save")
-                {
-                    User->setCompositeResearch(SongData["name"], SongData);
+                    case "name":
+                    {
+                        SettingName = 1;
+                        tell_object(User, configuration->decorate(
+                            "Please enter the song's new name: ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "alias":
+                    {
+                        SettingAlias = 1;
+                        tell_object(User, configuration->decorate(
+                            "Please enter the song's new alias: ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "delete":
+                    {
+                        DeletingSong = 1;
+                        tell_object(User, configuration->decorate(
+                            "Are you sure you want to delete this song?\n"
+                            "This process cannot be undone. (y/n): ", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "save":
+                    {
+                        User->setCompositeResearch(SongData["name"], SongData);
 
-                    tell_object(User, configuration->decorate(
-                        "Song saved.\n", "details",
-                        "selector", colorConfiguration));
+                        tell_object(User, configuration->decorate(
+                            "Song saved.\n", "details",
+                            "selector", colorConfiguration));
+                        break;
+                    }
+                    case "modify":
+                    {
+                        break;
+                    }
+                    case "add":
+                    {
+                        break;
+                    }
                 }
             }
         }
