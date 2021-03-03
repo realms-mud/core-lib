@@ -72,17 +72,17 @@ void CreationDisplayWithCreatedSongsIsCorrect()
         })
     ]);
 
-    ExpectTrue(User->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
-    ExpectTrue(User->addCompositeResearch("Reprise the Weasels",
+    ExpectTrue(User->setCompositeResearch("Reprise the Weasels",
         compositeElement));
-    ExpectTrue(User->addCompositeResearch("Weasels Return",
+    ExpectTrue(User->setCompositeResearch("Weasels Return",
         compositeElement));
-    ExpectTrue(User->addCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
+    ExpectTrue(User->setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
         compositeElement));
 
     compositeElement["constraint"] = "lib/tests/support/research/flightOfWeasels.c";
-    ExpectTrue(User->addCompositeResearch("This shouldn't appear in list",
+    ExpectTrue(User->setCompositeResearch("This shouldn't appear in list",
         compositeElement));
 
     Selector->initiateSelector(User);
@@ -128,7 +128,7 @@ void DescribeASongShowsCorrectDetails()
         })
     ]);
 
-    ExpectTrue(User->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     Selector->initiateSelector(User);
@@ -176,6 +176,31 @@ void CanSelectCreateASong()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CreateSongTransitionsToModifyMenu()
+{
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
+        "Song Name: <Name Missing>\n"
+        "Song Alias: <No Alias>\n"
+        "\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Add verse 2 segment              \n"
+        "[3] - Add verse 3 segment              \n"
+        "[4] - Set/change song name             \n"
+        "[5] - Set/change song alias            \n"
+        "[6] - Save the song                 (X)\n"
+        "[7] - Exit Menu                        \n"
+        "You must select a number from 1 to 7.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
         User->caughtMessage());
 }
 
@@ -240,11 +265,59 @@ void CanSelectModifyForASong()
         })
     ]);
 
-    ExpectTrue(User->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     Selector->initiateSelector(User);
     command("1", User);
-//    ExpectEq("x",
-//        User->caughtMessage());
+    ExpectEq("Song - Modify Song Menu\n"
+        "Song Type: Simple Ballad\n"
+        "Song Name: Flight of the Weasels\n"
+        "Song Alias: weasel\n"
+        "\n"
+        "[1]  - Gittern bedazzlement\n"
+        "       Intro instrumental : Gittern, Cm7b5 arpeggio\n"
+        "                         (-5) Penalty to attack   \n"
+        "[2]  - Add intro segment                \n"
+        "[3]  - Lyric of doom\n"
+        "       Verse 1 lyric   : I'm walking through a reliquary\n"
+        "                         (-2) Penalty to intelligence   \n"
+        "[4]  - Lyric of doom\n"
+        "       Verse 1 lyric   : Family of weasels snuck in...\n"
+        "                         (-2) Penalty to intelligence   \n"
+        "[5]  - Lyric verse thingy\n"
+        "       Verse 1 lyric   : A big one sidled up next to me\n"
+        "       Usage effect    : 100% chance to damage stamina points 25   \n"
+        "[6]  - Lyric verse thingy\n"
+        "       Verse 1 lyric   : Climbed my body and chewed on my chin.\n"
+        "       Usage effect    : 100% chance to damage stamina points 25   \n"
+        "[7]  - Gittern bedazzlement\n"
+        "       Verse 1 instrumental : Gittern, chords: Am, D7, Cm7b5\n"
+        "                         (-5) Penalty to attack   \n"
+        "[8]  - Add verse 1 segment              \n"
+        "[9]  - Lyric blast\n"
+        "       Chorus 1 lyric  : Oh, sing me a song of the weasels, man.\n"
+        "       Usage effect    : 100% chance to damage hit points 25   \n"
+        "[10] - Lyric verse thingy\n"
+        "       Chorus 1 lyric  : Sing me a song tonight.\n"
+        "       Usage effect    : 100% chance to damage stamina points 25   \n"
+        "[11] - Lyric blast\n"
+        "       Chorus 1 lyric  : For the Mustelidae, they are now mocking me\n"
+        "       Usage effect    : 100% chance to damage hit points 25   \n"
+        "[12] - Singy blast\n"
+        "       Chorus 1 lyric  : and eating my intestines in spite.\n"
+        "       Usage effect    : 100% chance to damage spell points 25   \n"
+        "[13] - Add chorus 1 segment             \n"
+        "[14] - Add verse 2 segment              \n"
+        "[15] - Add chorus 2 segment             \n"
+        "[16] - Add outro segment                \n"
+        "[17] - Set/change song name             \n"
+        "[18] - Set/change song alias            \n"
+        "[19] - Save the song                    \n"
+        "[20] - Exit Menu                        \n"
+        "You must select a number from 1 to 20.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
 }
