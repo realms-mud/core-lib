@@ -16,13 +16,13 @@ public nomask void reset(int arg)
         NumColumns = 2;
         Description = "Compose Songs Main Menu";
         Type = "Song";
-        Data = ([]);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
+    Data = ([]);
     mapping currentSongs = User->getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c");
 
@@ -97,6 +97,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
+        setUpUserForSelection();
         tell_object(User, displayMessage());
     }
     caller->cleanUp();
