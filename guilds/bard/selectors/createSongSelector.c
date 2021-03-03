@@ -81,7 +81,13 @@ protected nomask void setUpUserForSelection()
                     "description": sprintf("Select this option to create a "
                         "song using the '%s' template.", songTemplate),
                     "type": songTemplate,
-                    "value": templates[songTemplate]
+                    "value": ([
+                        "name": 0,
+                        "alias": 0,
+                        "constraint": program_name(songOptions),
+                        "type": templates[songTemplate],
+                        "elements": ({ })
+                    ])
                 ]);
                 optionCount++;
             }
@@ -105,7 +111,13 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
         if (!ret)
         {
-
+            SubselectorObj =
+                clone_object("/guilds/bard/selectors/editSongSelector.c");
+            SubselectorObj->setType("create");
+            SubselectorObj->setData(Data[selection]["value"]);
+            move_object(SubselectorObj, User);
+            SubselectorObj->registerEvent(this_object());
+            SubselectorObj->initiateSelector(User);
         }
     }
     return ret;

@@ -17,7 +17,7 @@ public nomask void setType(string type)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setData(mapping data)
 {
-    SongData = data;
+    SongData = data + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,6 +28,7 @@ public nomask void reset(int arg)
         AllowUndo = 0;
         AllowAbort = 1;
         NumColumns = 1;
+        SuppressColon = 1;
         Type = "Song";
         Data = ([]);
     }
@@ -61,14 +62,34 @@ private nomask int GetExistingElementsForSongSection(string section,
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    Description = sprintf("%s Song Menu", capitalize(SongSegmentType));
+    Description = 
+        sprintf("%s Song Menu", capitalize(SongSegmentType)) + "\n";
+
+    string colorConfiguration = User->colorConfiguration();
 
     int optionCount = 1;
 
-    if (mappingp(SongData))
+    if (mappingp(SongData) && sizeof(SongData) && member(SongData, "type"))
     {
         object songTemplate = getDictionary("research")->researchObject(
             SongData["type"]);
+
+        Description += configuration->decorate("Song Type: ",
+                "field header", "research", colorConfiguration) +
+            configuration->decorate(songTemplate->query("name"),
+                "field data", "research", colorConfiguration) + "\n" +
+            configuration->decorate("Song Name: ",
+                "field header", "research", colorConfiguration) +
+            (SongData["name"] ? configuration->decorate(SongData["name"],
+                    "field data", "research", colorConfiguration) :
+                configuration->decorate("<Name Missing>",
+                    "failure message", "research", colorConfiguration)) + "\n" +
+            configuration->decorate("Song Alias: ",
+                "field header", "research", colorConfiguration) +
+            (SongData["alias"] ? configuration->decorate(SongData["alias"],
+                    "field data", "research", colorConfiguration) :
+                configuration->decorate("<No Alias>",
+                    "failure message", "research", colorConfiguration)) + "\n";
 
         if (songTemplate && songTemplate->query("segments"))
         {
@@ -91,6 +112,30 @@ protected nomask void setUpUserForSelection()
                 optionCount++;
             }
         }
+
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name": "Set/change song name",
+            "type": "name",
+            "description": "Set or change the name of the song.\n"
+        ]);
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name":"Set/change song alias",
+            "type": "alias",
+            "description": "Set or change the alias of the song. This alias "
+                "can then be used as shorthand for performing the song.\n"
+        ]);
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name": "Save the song",
+            "type": "save",
+            "is disabled": (!SongData["name"] || !sizeof(SongData["elements"])),
+            "description": "This option saves the song data and allows you "
+                "to perform the song at a later point in time.\n"
+        ]);
+        Data[to_string(sizeof(Data) + 1)] = ([
+            "name": "Exit Menu",
+            "description": "This option leaves the song composition menu.",
+            "type": "exit",
+        ]);
     }
 }
 
@@ -128,10 +173,14 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
+    string displayType = (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
+
     return sprintf("[%s]%s - %s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-30s", "choice enabled", "selector", 
+        configuration->decorate("%-30s", displayType, "selector",
             colorConfiguration),
-        " ");
+        ((colorConfiguration == "none") && 
+            (displayType == "choice disabled")) ? "(X)" : "   ");
 }

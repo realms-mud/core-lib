@@ -849,7 +849,7 @@ void EquivalenceCorrectlyApplied()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddCompositeResearchAndRetrieveByConstraint()
 {
-    ExpectTrue(Research->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq((["Flight of the Weasels": compositeElement]), 
@@ -860,7 +860,7 @@ void CanAddCompositeResearchAndRetrieveByConstraint()
 /////////////////////////////////////////////////////////////////////////////
 void GetNextCompositeResearchElementIteratesThroughElements()
 {
-    ExpectTrue(Research->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq(([ 
@@ -912,7 +912,7 @@ void GetNextCompositeResearchElementIteratesThroughElements()
 /////////////////////////////////////////////////////////////////////////////
 void DeactivateCompositeResearchDeactivatesResearch()
 {
-    ExpectTrue(Research->addCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq((["Flight of the Weasels":compositeElement]),

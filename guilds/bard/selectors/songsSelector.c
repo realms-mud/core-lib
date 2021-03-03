@@ -39,7 +39,7 @@ protected nomask void setUpUserForSelection()
                     getDictionary("research")->getCompositeDescription(
                         Type, song, currentSongs[song]),
                 "type": "modify",
-                "value": currentSongs[song]
+                "value": currentSongs[song] + ([ "name": song ])
             ]);
             optionCount++;
         }

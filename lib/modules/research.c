@@ -941,12 +941,11 @@ public nomask int deactivateCompositeResearch(string constraint,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int addCompositeResearch(string itemName, mapping data)
+public nomask int setCompositeResearch(string itemName, mapping data)
 {
     int ret = 0;
 
-    if (researchDictionary()->isValidCompositeResearch(itemName, data) &&
-        !member(compositeResearch, itemName))
+    if (researchDictionary()->isValidCompositeResearch(itemName, data))
     {
         ret = 1;
         compositeResearch[itemName] = data + ([]);
