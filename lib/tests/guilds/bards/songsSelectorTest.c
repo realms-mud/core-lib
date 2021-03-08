@@ -531,3 +531,126 @@ void NotTypingYAbortsDelete()
     ExpectTrue(member(User->getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanModifySongSegment()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "intro",
+                "description" : "Gittern, Cm7b5 arpeggio",
+                "order in sequence" : 1
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+                "type" : "verse 1",
+                "description" : "I'm walking through a reliquary",
+                "order in sequence" : 2
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+                "type": "verse 1",
+                "description": "Family of weasels snuck in...",
+                "order in sequence": 3
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "A big one sidled up next to me",
+                "order in sequence": 4
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "Climbed my body and chewed on my chin.",
+                "order in sequence": 5
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "verse 1",
+                "description" : "Gittern, chords: Am, D7, Cm7b5",
+                "order in sequence" : 6
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+                "type": "chorus 1",
+                "description": "Oh, sing me a song of the weasels, man.",
+                "order in sequence": 7
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "chorus 1",
+                "description": "Sing me a song tonight.",
+                "order in sequence": 8
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+                "type": "chorus 1",
+                "description": "For the Mustelidae, they are now mocking me",
+                "order in sequence": 9
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+                "type": "chorus 1",
+                "description": "and eating my intestines in spite.",
+                "order in sequence": 10
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("3", User);
+
+    ExpectSubStringMatch("Order in sequence: 2.*"
+        "Decrement segment ordering    .X.*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 3.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 4.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 5.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 6.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering    .X.*Delete",
+        User->caughtMessage());
+
+    command("2", User);
+    ExpectSubStringMatch("Order in sequence: 5.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("2", User);
+    ExpectSubStringMatch("Order in sequence: 4.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("2", User);
+    ExpectSubStringMatch("Order in sequence: 3.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("2", User);
+    ExpectSubStringMatch("Order in sequence: 2.*"
+        "Decrement segment ordering    .X.*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+}
