@@ -38,7 +38,7 @@ public nomask void reset(int arg)
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int GetExistingElementsForSongSection(string section,
-    mapping SongData)
+    mapping SongData, object songTemplate)
 {
     mapping *elements = filter(SongData["elements"],
         (: $1["type"] == $2 :), section);
@@ -65,6 +65,7 @@ private nomask int GetExistingElementsForSongSection(string section,
                 "first": firstEntry,
                 "last": lastEntry,
             ]),
+            "template": songTemplate,
             "value": element
         ]);
         optionCount++;
@@ -100,7 +101,7 @@ private nomask mapping addSongSegmentOption(string segment,
     object songTemplate)
 {
     int optionCount = GetExistingElementsForSongSection(segment,
-        SongData);
+        SongData, songTemplate);
 
     mapping *matchingSegments = filter(SongData["elements"],
         (: $1["type"] == $2 :), segment);
@@ -120,10 +121,13 @@ private nomask mapping addSongSegmentOption(string segment,
             "first": firstEntry,
             "last": lastEntry,
         ]),
+        "template": songTemplate,
         "value": ([
-            "type": songTemplate,
-            "segment": segment,
-            "order in sequence": optionCount
+            "research": 0,
+            "description": 0,
+            "add": 1,
+            "type": segment,
+            "order in sequence": lastEntry
         ])
     ]) ]);
 }
@@ -266,20 +270,17 @@ protected nomask int processSelection(string selection)
                             "selector", colorConfiguration));
                         break;
                     }
+                    case "add":
                     case "modify":
                     {
                         SubselectorObj =
                             clone_object("/guilds/bard/selectors/songSegmentSelector.c");
-                        SubselectorObj->setType("modify");
+                        SubselectorObj->setTemplate(Data[selection]["template"]);
                         SubselectorObj->setData(Data[selection]["range"],
                             Data[selection]["value"]);
                         move_object(SubselectorObj, User);
                         SubselectorObj->registerEvent(this_object());
                         SubselectorObj->initiateSelector(User);
-                        break;
-                    }
-                    case "add":
-                    {
                         break;
                     }
                 }
@@ -295,11 +296,48 @@ protected nomask int processSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void renumberSongElements()
+{
+    int currentElementNumber = 1;
+    SongData["elements"] = sort_array(SongData["elements"],
+        (: (($1["order in sequence"] == $2["order in sequence"]) ?
+            (member($1, "reordered") ? 1 : 0 )
+            : ($1["order in sequence"] > $2["order in sequence"])) :));
+
+    foreach(mapping element in SongData["elements"])
+    {
+        element["order in sequence"] = currentElementNumber;
+        m_delete(element, "reordered");
+        currentElementNumber++;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
-        SongData = caller->songData();
+        mapping element = caller->segment();
+        
+        if (member(element, "delete"))
+        {
+            SongData["elements"] -= ({ element });
+        }
+        else if (member(element, "add"))
+        {
+            m_delete(element, "add");
+            SongData["elements"] += ({ element });
+        }
+        if (member(element, "reordered"))
+        {
+            if (element["reordered"] == "decrement")
+            {
+                element["order in sequence"] -= 1;
+            }
+            element["reordered"] = 1;
+        }
+
+        renumberSongElements();
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
