@@ -10,6 +10,8 @@ private mapping SongData = ([]);
 private int SettingName = 0;
 private int SettingAlias = 0;
 private int DeletingSong = 0;
+private int minimumRangeValue;
+private int maximumRangeValue;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
@@ -18,8 +20,12 @@ public nomask void setType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setData(mapping data)
+public nomask void setData(mapping rangeData, mapping data)
 {
+    minimumRangeValue = rangeData["first"];
+    maximumRangeValue = rangeData["last"];
+
+    printf("first = %d, last = %d\n", minimumRangeValue, maximumRangeValue);
     SongData = data + ([]);
 }
 
@@ -37,123 +43,53 @@ public nomask void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int GetExistingElementsForSongSection(string section,
-    mapping SongData)
+private nomask string getSegmentDetails()
 {
-    mapping *elements = filter(SongData["elements"],
-        (: $1["type"] == $2 :), section);
+    string colorConfiguration = User->colorConfiguration();
 
-    int optionCount = sizeof(Data) + 1;
-    
-    int firstEntry = sizeof(elements) ?
-        elements[0]["order in sequence"] : 1;
-    int lastEntry = sizeof(elements) ?
-        elements[sizeof(elements) - 1]
-        ["order in sequence"] : 1;
+    string info = regreplace(
+        getDictionary("research")->getCompositeItemDetails(
+            SongData, colorConfiguration, configuration),
+        "       ", "", 1);
 
-    foreach(mapping element in elements)
-    {
-        string info = regreplace(getDictionary("research")->getCompositeItemDetails(
-            element, colorConfiguration, configuration), "^       ", "", 1);
-        info = regreplace(info, "\n *$", "", 1);
-
-        Data[to_string(optionCount)] = ([
-            "name": info,
-            "description": "Select this option to edit or remove",
-            "type": "modify",
-            "range": ([
-                "first": firstEntry,
-                "last": lastEntry,
-            ]),
-            "value": element
-        ]);
-        optionCount++;
-    }
-
-    return optionCount;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask string getSongDetails(object songTemplate, 
-    string colorConfiguration)
-{
-    return configuration->decorate("Song Type: ",
-                "field header", "research", colorConfiguration) +
-            configuration->decorate(songTemplate->query("name"),
-                "field data", "research", colorConfiguration) + "\n" +
-            configuration->decorate("Song Name: ",
-                "field header", "research", colorConfiguration) +
-            (SongData["name"] ? configuration->decorate(SongData["name"],
-                    "field data", "research", colorConfiguration) :
-                configuration->decorate("<Name Missing>",
-                    "failure message", "research", colorConfiguration)) + "\n" +
-            configuration->decorate("Song Alias: ",
-                "field header", "research", colorConfiguration) +
-            (SongData["alias"] ? configuration->decorate(SongData["alias"],
-                    "field data", "research", colorConfiguration) :
-                configuration->decorate("<No Alias>",
-                    "failure message", "research", colorConfiguration)) + "\n";
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask mapping addSongSegmentOption(string segment, 
-    object songTemplate)
-{
-    int optionCount = GetExistingElementsForSongSection(segment,
-        SongData);
-
-    mapping *matchingSegments = filter(SongData["elements"],
-        (: $1["type"] == $2 :), segment);
-
-    int firstEntry = sizeof(matchingSegments) ?
-        matchingSegments[0]["order in sequence"] : 1;
-    int lastEntry = sizeof(matchingSegments) ?
-        matchingSegments[sizeof(matchingSegments) - 1]
-        ["order in sequence"] : 1;
-
-    return ([ to_string(optionCount): ([
-        "name": sprintf("Add %s segment", segment),
-        "description": sprintf("Select this option to add a new "
-            "%s segment to your song.", segment),
-        "type": "add",
-        "range": ([
-            "first": firstEntry,
-            "last": lastEntry,
-        ]),
-        "value": ([
-            "type": songTemplate,
-            "segment": segment,
-            "order in sequence": optionCount
-        ])
-    ]) ]);
+    return configuration->decorate("Segment Type: ",
+            "field header", "research", colorConfiguration) +
+        regreplace(info, "\n *$", "", 1) + "\n" +
+        configuration->decorate("Order in sequence: ",
+            "field header", "research", colorConfiguration) + 
+        configuration->decorate(to_string(SongData["order in sequence"]),
+            "field data", "research", colorConfiguration) + "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void addOtherMenuOptions()
 {
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": "Set/change song name",
+        "name": "Set/change song segment",
         "type": "name",
         "description": "Set or change the name of the song.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Set/change song alias",
-        "type": "alias",
-        "description": "Set or change the alias of the song. This alias "
-            "can then be used as shorthand for performing the song.\n"
+        "name":"Decrement segment ordering",
+        "type": "decrement",
+        "is disabled": SongData["order in sequence"] <= minimumRangeValue,
+        "value": SongData["order in sequence"] - 1,
+        "description": "Move this song segment to a point earlier in the "
+            "section.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": "Save the song",
-        "type": "save",
-        "is disabled": (!SongData["name"] || !sizeof(SongData["elements"])),
+        "name":"Increment segment ordering",
+        "type": "increment",
+        "is disabled": SongData["order in sequence"] >= maximumRangeValue,
+        "value": SongData["order in sequence"] + 1,
+        "description": "Move this song segment to a point later in the "
+            "section.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Delete song segment",
+        "type": "delete",
         "description": "This option saves the song data and allows you "
             "to perform the song at a later point in time.\n"
-    ]);
-    Data[to_string(sizeof(Data) + 1)] = ([
-        "name": "Delete the song",
-        "type": "delete",
-        "is disabled": !SongData["name"],
-        "description": "This option deletes the song.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": "Exit Menu",
@@ -166,28 +102,10 @@ private nomask void addOtherMenuOptions()
 protected nomask void setUpUserForSelection()
 {
     Data = ([]);
-    Description = 
-        sprintf("%s Song Menu", capitalize(SongSegmentType)) + "\n";
+    Description = "Song Segment Menu" + "\n" +
+        getSegmentDetails();
 
-    string colorConfiguration = User->colorConfiguration();
-
-    if (mappingp(SongData) && sizeof(SongData) && member(SongData, "type"))
-    {
-        object songTemplate = getDictionary("research")->researchObject(
-            SongData["type"]);
-
-        Description += getSongDetails(songTemplate, colorConfiguration);
-
-        if (songTemplate && songTemplate->query("segments"))
-        {
-            foreach(string segment in songTemplate->query("segments"))
-            {
-                Data += addSongSegmentOption(segment, songTemplate);
-            }
-        }
-
-        addOtherMenuOptions();
-    }
+    addOtherMenuOptions();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -240,12 +158,12 @@ protected nomask int processSelection(string selection)
                             "selector", colorConfiguration));
                         break;
                     }
-                    case "alias":
+                    case "increment":
+                    case "decrement":
                     {
-                        SettingAlias = 1;
-                        tell_object(User, configuration->decorate(
-                            "Please enter the song's new alias: ", "details",
-                            "selector", colorConfiguration));
+                        ret = 0;
+                        SongData["order in sequence"] =
+                            Data[selection]["value"];
                         break;
                     }
                     case "delete":
@@ -268,14 +186,6 @@ protected nomask int processSelection(string selection)
                     }
                     case "modify":
                     {
-                        SubselectorObj =
-                            clone_object("/guilds/bard/selectors/songSegmentSelector.c");
-                        SubselectorObj->setType("modify");
-                        SubselectorObj->setData(Data[selection]["range"],
-                            Data[selection]["value"]);
-                        move_object(SubselectorObj, User);
-                        SubselectorObj->registerEvent(this_object());
-                        SubselectorObj->initiateSelector(User);
                         break;
                     }
                     case "add":

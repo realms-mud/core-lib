@@ -1027,7 +1027,7 @@ public nomask varargs string getCompositeItemDetails(mapping element,
         if (researchItem)
         {
             ret += configuration->decorate(firstPadding,
-                "field header", "research", colorConfiguration) +
+                    "field header", "research", colorConfiguration) +
                 configuration->decorate(
                     capitalize(researchItem->query("name")) + "\n",
                     "field data", "research", colorConfiguration) +
