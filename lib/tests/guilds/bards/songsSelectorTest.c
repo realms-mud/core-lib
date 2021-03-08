@@ -431,8 +431,8 @@ void CanSaveSong()
     Selector = clone_object("/guilds/bard/selectors/editSongSelector.c");
     Selector->setType("create");
     Selector->setData(([
-        "name": 0,
-        "alias": 0,
+        "name": "Song of the Weasels",
+        "alias": "weasels",
         "constraint": "/guilds/bard/compositions/root.c",
         "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({ })
@@ -440,8 +440,7 @@ void CanSaveSong()
     move_object(Selector, User);
 
     Selector->initiateSelector(User);
-    command("1", User);
-    command("1", User);
+    User->resetCatchList();
 
     object subSelector =
         clone_object("/lib/tests/support/research/fakeSegmentSelector.c");
@@ -451,7 +450,6 @@ void CanSaveSong()
         "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 
     command("10", User);
-
     ExpectTrue(member(User->getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 }
@@ -533,7 +531,7 @@ void NotTypingYAbortsDelete()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanModifySongSegment()
+void CanModifyOrderingOfSongSegment()
 {
     mapping compositeElement = ([
         "alias": "weasel",
@@ -629,6 +627,12 @@ void CanModifySongSegment()
         "Increment segment ordering    .X.*Delete",
         User->caughtMessage());
 
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 6.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering    .X.*Delete",
+        User->caughtMessage());
+
     command("2", User);
     ExpectSubStringMatch("Order in sequence: 5.*"
         "Decrement segment ordering[^X]*"
@@ -653,4 +657,202 @@ void CanModifySongSegment()
         "Increment segment ordering[^X]*Delete",
         User->caughtMessage());
 
+    command("2", User);
+    ExpectSubStringMatch("Order in sequence: 2.*"
+        "Decrement segment ordering    .X.*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanRemoveSongSegment()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+                "type" : "verse 1",
+                "description" : "I'm walking through a reliquary",
+                "order in sequence" : 1
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+                "type": "verse 1",
+                "description": "Family of weasels snuck in...",
+                "order in sequence": 2
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "A big one sidled up next to me",
+                "order in sequence": 3
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "Climbed my body and chewed on my chin.",
+                "order in sequence": 4
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "verse 1",
+                "description" : "Gittern, chords: Am, D7, Cm7b5",
+                "order in sequence" : 5
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    ExpectSubStringMatch("Family of weasels snuck in.*"
+        "You must select a number from 1 to 16",
+        User->caughtMessage());
+
+    command("3", User);
+    command("4", User);
+    command("y", User);
+
+    ExpectEq(User->caughtMessage(),
+        regreplace(User->caughtMessage(),
+            "Family of weasels snuck in", "", 1));
+
+    ExpectSubStringMatch("You must select a number from 1 to 15",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("A big one sidled up next to me",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanIncrementSongSegmentOrder()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+                "type" : "verse 1",
+                "description" : "I'm walking through a reliquary",
+                "order in sequence" : 1
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+                "type": "verse 1",
+                "description": "Family of weasels snuck in...",
+                "order in sequence": 2
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "A big one sidled up next to me",
+                "order in sequence": 3
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "Climbed my body and chewed on my chin.",
+                "order in sequence": 4
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "verse 1",
+                "description" : "Gittern, chords: Am, D7, Cm7b5",
+                "order in sequence" : 5
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    ExpectSubStringMatch("Family of weasels snuck in.*"
+        "A big one sidled up next to me",
+        User->caughtMessage());
+
+    command("3", User);
+    command("3", User);
+    command("5", User);
+
+    ExpectSubStringMatch("A big one sidled up next to me.*"
+        "Family of weasels snuck in.*",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDecrementSongSegmentOrder()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+                "type" : "verse 1",
+                "description" : "I'm walking through a reliquary",
+                "order in sequence" : 1
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+                "type": "verse 1",
+                "description": "Family of weasels snuck in...",
+                "order in sequence": 2
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "A big one sidled up next to me",
+                "order in sequence": 3
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+                "type": "verse 1",
+                "description": "Climbed my body and chewed on my chin.",
+                "order in sequence": 4
+            ]),
+            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+                "type" : "verse 1",
+                "description" : "Gittern, chords: Am, D7, Cm7b5",
+                "order in sequence" : 5
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    ExpectSubStringMatch("I'm walking through a reliquary.*"
+        "Family of weasels snuck in",
+        User->caughtMessage());
+
+    command("3", User);
+    command("2", User);
+    command("5", User);
+
+    ExpectSubStringMatch("Family of weasels snuck in.*"
+        "I'm walking through a reliquary",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanAddSongSegment()
+{
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("3", User);
+    command("2", User);
+
+    ExpectEq("Song - Song Segment Menu\n"
+        "Segment Type: <None selected>\n"
+        "Order in sequence: 1\n"
+        "\n"
+        "[1] - Set/change song segment          \n"
+        "[2] - Decrement segment ordering    (X)\n"
+        "[3] - Increment segment ordering    (X)\n"
+        "[4] - Delete song segment              \n"
+        "[5] - Return to Edit Song Menu         \n"
+        "You must select a number from 1 to 5.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
 }

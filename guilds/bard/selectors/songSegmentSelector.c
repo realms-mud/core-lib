@@ -5,18 +5,17 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
-private string SongSegmentType = "ERROR";
+private object SongTemplate;
 private mapping SongData = ([]);
-private int SettingName = 0;
-private int SettingAlias = 0;
-private int DeletingSong = 0;
+private int SettingDescription = 0;
+private int DeletingSegment = 0;
 private int minimumRangeValue;
 private int maximumRangeValue;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setType(string type)
+public nomask void setTemplate(object template)
 {
-    SongSegmentType = type;
+    SongTemplate = template;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,8 +24,13 @@ public nomask void setData(mapping rangeData, mapping data)
     minimumRangeValue = rangeData["first"];
     maximumRangeValue = rangeData["last"];
 
-    printf("first = %d, last = %d\n", minimumRangeValue, maximumRangeValue);
-    SongData = data + ([]);
+    SongData = data;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping segment()
+{
+    return SongData;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -51,6 +55,11 @@ private nomask string getSegmentDetails()
         getDictionary("research")->getCompositeItemDetails(
             SongData, colorConfiguration, configuration),
         "       ", "", 1);
+    if (info == "")
+    {
+        info = configuration->decorate("<None selected>",
+            "failure message", "research", colorConfiguration);
+    }
 
     return configuration->decorate("Segment Type: ",
             "field header", "research", colorConfiguration) +
@@ -88,12 +97,11 @@ private nomask void addOtherMenuOptions()
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": "Delete song segment",
         "type": "delete",
-        "description": "This option saves the song data and allows you "
-            "to perform the song at a later point in time.\n"
+        "description": "This option removes the song segment from the song.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": "Exit Menu",
-        "description": "This option leaves the song composition menu.",
+        "name": "Return to Edit Song Menu",
+        "description": "This option leaves the segment composition menu.",
         "type": "exit",
     ]);
 }
@@ -115,23 +123,17 @@ protected nomask int processSelection(string selection)
 
     if (User)
     {
-        if (SettingName)
+        if (SettingDescription)
         {
             ret = 0;
-            SettingName = 0;
+            SettingDescription = 0;
             SongData["name"] = selection;
         }
-        else if (SettingAlias)
-        {
-            ret = 0;
-            SettingAlias = 0;
-            SongData["alias"] = selection;
-        }
-        else if (DeletingSong)
+        else if (DeletingSegment)
         {
             if (sizeof(regexp(({ selection }), "[Yy]([Ee][Ss]|)")))
             {
-                User->deleteCompositeResearch(SongData["name"]);
+                SongData["delete"] = 1;
                 ret = 1;
             }
             else
@@ -140,7 +142,7 @@ protected nomask int processSelection(string selection)
                     "Deletion aborted.\n", "details",
                     "selector", colorConfiguration));
             }
-            DeletingSong = 0;
+            DeletingSegment = 0;
         }
         else
         {
@@ -152,36 +154,35 @@ protected nomask int processSelection(string selection)
                 {
                     case "name":
                     {
-                        SettingName = 1;
+                        SettingDescription = 1;
                         tell_object(User, configuration->decorate(
-                            "Please enter the song's new name: ", "details",
-                            "selector", colorConfiguration));
+                            "Please enter the lyrics/descriptive text: \n", 
+                            "details", "selector", colorConfiguration));
                         break;
                     }
-                    case "increment":
                     case "decrement":
+                    case "increment":
                     {
-                        ret = 0;
-                        SongData["order in sequence"] =
-                            Data[selection]["value"];
+                        if (!Data[selection]["is disabled"])
+                        {
+                            ret = 0;
+                            SongData["reordered"] = Data[selection]["type"];
+                            SongData["order in sequence"] =
+                                Data[selection]["value"];
+                        }
                         break;
                     }
                     case "delete":
                     {
-                        DeletingSong = 1;
+                        DeletingSegment = 1;
                         tell_object(User, configuration->decorate(
-                            "Are you sure you want to delete this song?\n"
+                            "Are you sure you want to delete this segment?\n"
                             "This process cannot be undone. (y/n): ", "details",
                             "selector", colorConfiguration));
                         break;
                     }
                     case "save":
                     {
-                        User->setCompositeResearch(SongData["name"], SongData);
-
-                        tell_object(User, configuration->decorate(
-                            "Song saved.\n", "details",
-                            "selector", colorConfiguration));
                         break;
                     }
                     case "modify":
@@ -209,7 +210,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
-        SongData = caller->songData();
+        SongData["research"] = caller->research();
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
@@ -219,7 +220,7 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected int handleSpecialSelection()
 {
-    return SettingName || SettingAlias || DeletingSong;
+    return SettingDescription || DeletingSegment;
 }
 
 /////////////////////////////////////////////////////////////////////////////
