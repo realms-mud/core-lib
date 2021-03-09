@@ -226,6 +226,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "section type":
+            {
+                if (value && stringp(value))
+                {
+                    ret = 1;
+                    specificationData["composite type"] = value;
+                }
+                else
+                {
+                    raise_error("ERROR - researchItem: The value of 'composite type' "
+                        "must be a string value.\n");
+                }
+                break;
+            }
             case "equivalence":
             {
                 if (value && stringp(value))
@@ -258,7 +272,8 @@ protected int addSpecification(string type, mixed value)
             {
                 if (stringp(value) &&
                     (member(({ "percentage", "bonus", "max combination chain",
-                        "decrease cost", "decrease cooldown" }), value) > -1))
+                        "decrease cost", "decrease cooldown", "composite" }), 
+                        value) > -1))
                 {
                     specificationData[type] = value;
                     ret = 1;
@@ -399,12 +414,20 @@ private nomask string displayRelatedResearchEffects(string colorConfiguration,
     if (query("maximum combination chain"))
     {
         ret += configuration->decorate(sprintf("%-15s : ", "Max Combo Size"),
-            "field header", "research", colorConfiguration) +
+                "field header", "research", colorConfiguration) +
             configuration->decorate(sprintf("%d\n", 
                 query("maximum combination chain")),
                 "field data", "research", colorConfiguration);
     }
 
+    if (query("section type"))
+    {
+        ret += configuration->decorate(sprintf("%-15s : ", "Section Type"),
+                "field header", "research", colorConfiguration) +
+            configuration->decorate(sprintf("%s\n", 
+                query("section type")),
+                "field data", "research", colorConfiguration);
+    }
     return ret;
 }
 
