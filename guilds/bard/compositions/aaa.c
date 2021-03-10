@@ -20,7 +20,11 @@ public void reset(int arg)
         addSpecification("spell point cost", 25);
         addSpecification("stamina point cost", 25);
 
-        addSpecification("segments", ({ "verse 1", "verse 2", "verse 3" }));
+        addSpecification("segments", ({ 
+            ([ "verse 1": ({ "lyric", "instrumental rhythm" }) ]),
+            ([ "verse 2": ({ "lyric", "instrumental rhythm" }) ]),
+            ([ "verse 3": ({ "lyric", "instrumental rhythm" }) ])
+        }));
         addSpecification("event handler", "aaaEvent");
     }
 }

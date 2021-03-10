@@ -55,6 +55,7 @@ private nomask string getSegmentDetails()
         getDictionary("research")->getCompositeItemDetails(
             SongData, colorConfiguration, configuration),
         "       ", "", 1);
+
     if (info == "")
     {
         info = configuration->decorate("<None selected>",
@@ -74,9 +75,17 @@ private nomask string getSegmentDetails()
 private nomask void addOtherMenuOptions()
 {
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name": "Set/change song segment",
+        "name": "Select Segment Details",
+        "type": "segment type",
+        "description": "Set or change the type of lyrical or instrumental "
+            "component for this segment of the song.\n"
+    ]);
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name": "Change lyrics/instrumental",
         "type": "name",
-        "description": "Set or change the name of the song.\n"
+        "is disabled": SongData["research"] == 0,
+        "description": "Set or change the lyrics or instrumental component "
+            "for this segment of the song.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Decrement segment ordering",
@@ -127,7 +136,7 @@ protected nomask int processSelection(string selection)
         {
             ret = 0;
             SettingDescription = 0;
-            SongData["name"] = selection;
+            SongData["description"] = selection;
         }
         else if (DeletingSegment)
         {
@@ -154,10 +163,13 @@ protected nomask int processSelection(string selection)
                 {
                     case "name":
                     {
-                        SettingDescription = 1;
-                        tell_object(User, configuration->decorate(
-                            "Please enter the lyrics/descriptive text: \n", 
-                            "details", "selector", colorConfiguration));
+                        if (!Data[selection]["is disabled"])
+                        {
+                            SettingDescription = 1;
+                            tell_object(User, configuration->decorate(
+                                "Please enter the lyrics/descriptive text: \n",
+                                "details", "selector", colorConfiguration));
+                        }
                         break;
                     }
                     case "decrement":
@@ -181,16 +193,14 @@ protected nomask int processSelection(string selection)
                             "selector", colorConfiguration));
                         break;
                     }
-                    case "save":
+                    case "segment type":
                     {
-                        break;
-                    }
-                    case "modify":
-                    {
-                        break;
-                    }
-                    case "add":
-                    {
+                        SubselectorObj =
+                            clone_object("/guilds/bard/selectors/segmentSelector.c");
+                        SubselectorObj->setData(SongTemplate, SongData["type"]);
+                        move_object(SubselectorObj, User);
+                        SubselectorObj->registerEvent(this_object());
+                        SubselectorObj->initiateSelector(User);
                         break;
                     }
                 }

@@ -277,7 +277,7 @@ void CanSelectModifyForASong()
         "Song Alias: weasel\n"
         "\n"
         "[1]  - Gittern bedazzlement\n"
-        "       Intro instrumental : Gittern, Cm7b5 arpeggio\n"
+        "       Intro instrumental rhythm : Gittern, Cm7b5 arpeggio\n"
         "                         (-5) Penalty to attack   \n"
         "[2]  - Add intro segment                \n"
         "[3]  - Lyric of doom\n"
@@ -293,7 +293,7 @@ void CanSelectModifyForASong()
         "       Verse 1 lyric   : Climbed my body and chewed on my chin.\n"
         "       Usage effect    : 100% chance to damage stamina points 25   \n"
         "[7]  - Gittern bedazzlement\n"
-        "       Verse 1 instrumental : Gittern, chords: Am, D7, Cm7b5\n"
+        "       Verse 1 instrumental rhythm : Gittern, chords: Am, D7, Cm7b5\n"
         "                         (-5) Penalty to attack   \n"
         "[8]  - Add verse 1 segment              \n"
         "[9]  - Lyric blast\n"
@@ -603,8 +603,38 @@ void CanModifyOrderingOfSongSegment()
         "Increment segment ordering[^X]*Delete",
         User->caughtMessage());
 
-    command("3", User);
+    command("4", User);
     ExpectSubStringMatch("Order in sequence: 3.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("4", User);
+    ExpectSubStringMatch("Order in sequence: 4.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("4", User);
+    ExpectSubStringMatch("Order in sequence: 5.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering[^X]*Delete",
+        User->caughtMessage());
+
+    command("4", User);
+    ExpectSubStringMatch("Order in sequence: 6.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering    .X.*Delete",
+        User->caughtMessage());
+
+    command("4", User);
+    ExpectSubStringMatch("Order in sequence: 6.*"
+        "Decrement segment ordering[^X]*"
+        "Increment segment ordering    .X.*Delete",
+        User->caughtMessage());
+
+    command("3", User);
+    ExpectSubStringMatch("Order in sequence: 5.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
         User->caughtMessage());
@@ -616,48 +646,18 @@ void CanModifyOrderingOfSongSegment()
         User->caughtMessage());
 
     command("3", User);
-    ExpectSubStringMatch("Order in sequence: 5.*"
-        "Decrement segment ordering[^X]*"
-        "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
-
-    command("3", User);
-    ExpectSubStringMatch("Order in sequence: 6.*"
-        "Decrement segment ordering[^X]*"
-        "Increment segment ordering    .X.*Delete",
-        User->caughtMessage());
-
-    command("3", User);
-    ExpectSubStringMatch("Order in sequence: 6.*"
-        "Decrement segment ordering[^X]*"
-        "Increment segment ordering    .X.*Delete",
-        User->caughtMessage());
-
-    command("2", User);
-    ExpectSubStringMatch("Order in sequence: 5.*"
-        "Decrement segment ordering[^X]*"
-        "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
-
-    command("2", User);
-    ExpectSubStringMatch("Order in sequence: 4.*"
-        "Decrement segment ordering[^X]*"
-        "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
-
-    command("2", User);
     ExpectSubStringMatch("Order in sequence: 3.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
         User->caughtMessage());
 
-    command("2", User);
+    command("3", User);
     ExpectSubStringMatch("Order in sequence: 2.*"
         "Decrement segment ordering    .X.*"
         "Increment segment ordering[^X]*Delete",
         User->caughtMessage());
 
-    command("2", User);
+    command("3", User);
     ExpectSubStringMatch("Order in sequence: 2.*"
         "Decrement segment ordering    .X.*"
         "Increment segment ordering[^X]*Delete",
@@ -710,7 +710,7 @@ void CanRemoveSongSegment()
         User->caughtMessage());
 
     command("3", User);
-    command("4", User);
+    command("5", User);
     command("y", User);
 
     ExpectEq(User->caughtMessage(),
@@ -771,8 +771,8 @@ void CanIncrementSongSegmentOrder()
         User->caughtMessage());
 
     command("3", User);
-    command("3", User);
-    command("5", User);
+    command("4", User);
+    command("6", User);
 
     ExpectSubStringMatch("A big one sidled up next to me.*"
         "Family of weasels snuck in.*",
@@ -825,8 +825,8 @@ void CanDecrementSongSegmentOrder()
         User->caughtMessage());
 
     command("3", User);
-    command("2", User);
-    command("5", User);
+    command("3", User);
+    command("6", User);
 
     ExpectSubStringMatch("Family of weasels snuck in.*"
         "I'm walking through a reliquary",
@@ -845,14 +845,155 @@ void CanAddSongSegment()
         "Segment Type: <None selected>\n"
         "Order in sequence: 1\n"
         "\n"
-        "[1] - Set/change song segment          \n"
-        "[2] - Decrement segment ordering    (X)\n"
-        "[3] - Increment segment ordering    (X)\n"
-        "[4] - Delete song segment              \n"
-        "[5] - Return to Edit Song Menu         \n"
-        "You must select a number from 1 to 5.\n"
+        "[1] - Select Segment Details           \n"
+        "[2] - Change lyrics/instrumental    (X)\n"
+        "[3] - Decrement segment ordering    (X)\n"
+        "[4] - Increment segment ordering    (X)\n"
+        "[5] - Delete song segment              \n"
+        "[6] - Return to Edit Song Menu         \n"
+        "You must select a number from 1 to 6.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectSegmentDetails()
+{
+    User->addResearchPoints(6);
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("3", User);
+    command("2", User);
+    command("1", User);
+
+    ExpectEq("Song - Select Song Segment Menu\n"
+        "\n"
+        "[1] - Gittern bedazzlement             [2] - Lyric blast                      \n"
+        "[3] - Lyric of doom                    [4] - Lyric verse thingy               \n"
+        "[5] - Singy blast                      [6] - Return to Previous Menu          \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
+
+    command("? 1", User);
+    ExpectEq("Gittern bedazzlement\n"
+        "Chorus 1 instrumental rhythm : Transition from chords G to Em\n"
+        "    (-5) Penalty to attack\n",
+        User->caughtMessage());
+
+    User->resetCatchList();
+    command("1", User);
+
+    ExpectEq("Song - Song Segment Menu\n"
+        "Segment Type: Gittern bedazzlement\n"
+        "Chorus 1 instrumental rhythm : Transition from chords G to Em\n"
+        "    (-5) Penalty to attack\n"
+        "Order in sequence: 1\n"
+        "\n"
+        "[1] - Select Segment Details           \n"
+        "[2] - Change lyrics/instrumental       \n"
+        "[3] - Decrement segment ordering    (X)\n"
+        "[4] - Increment segment ordering    (X)\n"
+        "[5] - Delete song segment              \n"
+        "[6] - Return to Edit Song Menu         \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanModfiySegmentDescription()
+{
+    User->addResearchPoints(6);
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("3", User);
+    command("2", User);
+    command("1", User);
+    command("2", User);
+
+    ExpectEq("Song - Song Segment Menu\n"
+        "Segment Type: Lyric blast\n"
+        "Chorus 1 lyric  : This is lyric blast!\n"
+        "Usage effect    : 100% chance to damage hit points 25\n"
+        "Order in sequence: 1\n"
+        "\n"
+        "[1] - Select Segment Details           \n"
+        "[2] - Change lyrics/instrumental       \n"
+        "[3] - Decrement segment ordering    (X)\n"
+        "[4] - Increment segment ordering    (X)\n"
+        "[5] - Delete song segment              \n"
+        "[6] - Return to Edit Song Menu         \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
+
+    command("2", User);
+    ExpectEq("Please enter the lyrics/descriptive text: \n",
+        User->caughtMessage());
+
+    command("Sing to me, oh weasel of yesteryear...", 
+        User);
+    ExpectEq("Song - Song Segment Menu\n"
+        "Segment Type: Lyric blast\n"
+        "Chorus 1 lyric  : Sing to me, oh weasel of yesteryear...\n"
+        "Usage effect    : 100% chance to damage hit points 25\n"
+        "Order in sequence: 1\n"
+        "\n"
+        "[1] - Select Segment Details           \n"
+        "[2] - Change lyrics/instrumental       \n"
+        "[3] - Decrement segment ordering    (X)\n"
+        "[4] - Increment segment ordering    (X)\n"
+        "[5] - Delete song segment              \n"
+        "[6] - Return to Edit Song Menu         \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+
+    command("6", User);
+    ExpectEq("Song - Create Song Menu\n"
+        "Song Type: ABAB (Verse/Chorus)\n"
+        "Song Name: <Name Missing>\n"
+        "Song Alias: <No Alias>\n"
+        "\n"
+        "[1]  - Add verse 1 segment              \n"
+        "[2]  - Lyric blast\n"
+        "       Chorus 1 lyric  : Sing to me, oh weasel of yesteryear...\n"
+        "       Usage effect    : 100% chance to damage hit points 25   \n"
+        "[3]  - Add chorus 1 segment             \n"
+        "[4]  - Add verse 2 segment              \n"
+        "[5]  - Add chorus 2 segment             \n"
+        "[6]  - Set/change song name             \n"
+        "[7]  - Set/change song alias            \n"
+        "[8]  - Save the song                 (X)\n"
+        "[9]  - Delete the song               (X)\n"
+        "[10] - Exit Menu                        \n"
+        "You must select a number from 1 to 10.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
         User->caughtMessage());
 }

@@ -21,7 +21,10 @@ public void reset(int arg)
         addSpecification("spell point cost", 25);
         addSpecification("stamina point cost", 25);
 
-        addSpecification("segments", ({ "section" }));
+        addSpecification("segments", ({
+            (["section": ({ "lyric", "chorus lyric", "instrumental rhythm",
+                "instrumental solo" })]),
+        }));  
         addSpecification("event handler", "aaaEvent");
     }
 }

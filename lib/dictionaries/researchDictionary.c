@@ -1026,6 +1026,10 @@ public nomask varargs string getCompositeItemDetails(mapping element,
         object researchItem = researchObject(element["research"]);
         if (researchItem)
         {
+            string description = (member(element, "description") &&
+                element["description"]) ? element["description"] :
+                researchItem->query("default composite description");
+
             ret += configuration->decorate(firstPadding,
                     "field header", "research", colorConfiguration) +
                 configuration->decorate(
@@ -1037,7 +1041,7 @@ public nomask varargs string getCompositeItemDetails(mapping element,
                     capitalize(element["type"]) + " " +
                     researchItem->query("composite type")),
                     "field header", "research", colorConfiguration) +
-                configuration->decorate(element["description"] + "\n",
+                configuration->decorate(description + "\n",
                     "field data", "research", colorConfiguration) +
 
                 secondaryPadding + implode(explode(
@@ -1073,4 +1077,13 @@ public nomask string getCompositeDescription(string type, string itemName,
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object *getResearchItemsBySectionType(object user,
+    string *types)
+{
+    return filter(m_values(researchItemCache),
+        (: ($3->isResearched(program_name($1)) &&
+            (member($2, $1->query("composite type")) > -1)) :), types, user);
 }

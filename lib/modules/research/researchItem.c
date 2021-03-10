@@ -226,20 +226,6 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
-            case "section type":
-            {
-                if (value && stringp(value))
-                {
-                    ret = 1;
-                    specificationData["composite type"] = value;
-                }
-                else
-                {
-                    raise_error("ERROR - researchItem: The value of 'composite type' "
-                        "must be a string value.\n");
-                }
-                break;
-            }
             case "equivalence":
             {
                 if (value && stringp(value))
@@ -420,14 +406,6 @@ private nomask string displayRelatedResearchEffects(string colorConfiguration,
                 "field data", "research", colorConfiguration);
     }
 
-    if (query("section type"))
-    {
-        ret += configuration->decorate(sprintf("%-15s : ", "Section Type"),
-                "field header", "research", colorConfiguration) +
-            configuration->decorate(sprintf("%s\n", 
-                query("section type")),
-                "field data", "research", colorConfiguration);
-    }
     return ret;
 }
 

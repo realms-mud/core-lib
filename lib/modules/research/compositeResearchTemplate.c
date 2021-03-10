@@ -14,7 +14,7 @@ protected nomask int addSpecification(string type, mixed value)
         case "segments":
         {
             if(value && pointerp(value) && sizeof(value) && 
-                stringp(value[0]))
+                mappingp(value[0]))
             {
                 specificationData[type] = value;
                 ret = 1;           
@@ -22,7 +22,7 @@ protected nomask int addSpecification(string type, mixed value)
             else
             {
                 raise_error(sprintf("ERROR - compositeResearchTemplate: "
-                    "the '%s' specification must be an array of strings.\n", 
+                    "the '%s' specification must be a valid segment array.\n", 
                     type));
             }
             break;

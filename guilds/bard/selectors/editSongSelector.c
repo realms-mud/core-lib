@@ -184,9 +184,9 @@ protected nomask void setUpUserForSelection()
 
         if (songTemplate && songTemplate->query("segments"))
         {
-            foreach(string segment in songTemplate->query("segments"))
+            foreach(mapping segment in songTemplate->query("segments"))
             {
-                Data += addSongSegmentOption(segment, songTemplate);
+                Data += addSongSegmentOption(m_indices(segment)[0], songTemplate);
             }
         }
 

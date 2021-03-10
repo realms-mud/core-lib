@@ -21,8 +21,14 @@ public void reset(int arg)
         addSpecification("spell point cost", 25);
         addSpecification("stamina point cost", 25);
 
-        addSpecification("segments", ({ "verse 1", "pre-chorus", "chorus 1", 
-            "verse 2", "chorus 2" }));
+        addSpecification("segments", ({
+            (["verse 1": ({ "lyric", "instrumental rhythm" })]),
+            (["pre-chorus": ({ "lyric", "instrumental rhythm" })]),
+            (["chorus 1": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
+            (["verse 2": ({ "lyric", "instrumental rhythm" })]),
+            (["chorus 2": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
+        }));   
+
         addSpecification("event handler", "verseChorusEvent");
     }
 }

@@ -15,7 +15,9 @@ public void reset(int arg)
         addSpecification("research type", "granted");
         addSpecification("composite research",
             "lib/tests/support/research/compositeRoot.c");
-        addSpecification("composite type", "instrumental");
+        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("default composite description",
+            "Transition from chords G to Em");
 
         addSpecification("penalty to attack", 5);
         addSpecification("duration", 12);

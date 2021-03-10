@@ -15,6 +15,8 @@ public void reset(int arg)
         addSpecification("composite research", 
             "lib/tests/support/research/compositeRoot.c");
         addSpecification("composite type", "lyric");
+        addSpecification("default composite description",
+            "Sing me a singy blast");
 
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
