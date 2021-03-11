@@ -997,3 +997,22 @@ void CanModfiySegmentDescription()
         "X is the option about which you would like further details.\n",
         User->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void BardsCanInitiateSongSelector()
+{
+    load_object("/guilds/bard/compositions/compose-song.c");
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+
+    command("exit", User);
+
+    command("compose song", User);
+    ExpectEq("Song - Compose Songs Main Menu:\n"
+        "[1] - Create New Song                [2] - Exit Song Menu                 \n"
+        "You must select a number from 1 to 2.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}

@@ -59,6 +59,12 @@ public void SetupGuild()
         "apply": "2 every 5 levels"
     ]));
 
+    addCriteria("compose songs", ([
+        "type": "research",
+        "apply": "at level 1",
+        "research object": "guilds/bard/compositions/compose-song.c"
+    ]));
+
     addCriteria("bows", ([
         "type":"research tree",
         "apply": "at level 1",
