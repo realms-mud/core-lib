@@ -933,7 +933,7 @@ void CanModfiySegmentDescription()
 
     ExpectEq("Song - Song Segment Menu\n"
         "Segment Type: Lyric blast\n"
-        "Chorus 1 lyric  : This is lyric blast!\n"
+        "Chorus 1 lyric  : I'll tell you a tale that is terribly true...\n"
         "Usage effect    : 100% chance to damage hit points 25\n"
         "Order in sequence: 1\n"
         "\n"

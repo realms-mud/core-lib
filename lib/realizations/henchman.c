@@ -312,7 +312,7 @@ public nomask int canAttack(object initiator)
 {
     object *party = getParty()->members(1);
 
-    return (initiator != leader) && 
+    return (initiator != Leader) &&
         (!party || (member(party, initiator) < 0)) &&
-        (objectp(leader) ? leader->onKillList() : 1);
+        (objectp(Leader) ? Leader->onKillList() : 1);
 }
