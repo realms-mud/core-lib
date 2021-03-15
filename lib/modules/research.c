@@ -896,17 +896,20 @@ private nomask mapping getNextItem(mapping selectedItem, int nextInSequence)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask mapping getNextCompositeResearchElement(string constraint, 
-    string itemName)
+public nomask mapping getNextCompositeResearchElement()
 {
     mapping ret = 0;
-    mapping selectedItem = getCompositeResearch(constraint, itemName);
+    mapping selectedItem = activeCompositeResearch ?
+        getCompositeResearch(
+        activeCompositeResearch["constraint"],
+        activeCompositeResearch["name"]) : 0;
 
     if (sizeof(selectedItem) && member(selectedItem, "elements") &&
-        sizeof(selectedItem["elements"]))
+        sizeof(selectedItem["elements"]) &&
+        member(selectedItem, "current item in sequence"))
     {
         int nextItem = 1;
-        if (member(selectedItem, "current item in sequence"))
+        if (selectedItem["current item in sequence"] != 0)
         {
             nextItem = selectedItem["current item in sequence"]
                 ["order in sequence"] + 1;
@@ -932,10 +935,42 @@ public nomask int deactivateCompositeResearch(string constraint,
     int ret = 0;
     mapping selectedItem = getCompositeResearch(constraint, itemName);
 
-    if (mappingp(selectedItem) && sizeof(selectedItem))
+    if (mappingp(selectedItem) && sizeof(selectedItem) &&
+        activeCompositeResearch && 
+        (activeCompositeResearch["constraint"] == constraint) &&
+        (activeCompositeResearch["name"] == itemName))
     {
         ret = 1;
+        activeCompositeResearch = 0;
         m_delete(selectedItem, "current item in sequence"); 
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int hasActiveCompositeResearch()
+{
+    return activeCompositeResearch != 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int activateCompositeResearch(string constraint, 
+    string itemName)
+{
+    int ret = 0;
+    mapping selectedItem = getCompositeResearch(constraint, itemName);
+
+    if (mappingp(selectedItem) && sizeof(selectedItem) &&
+        !activeCompositeResearch &&
+        !member(selectedItem, "current item in sequence"))
+    {
+        activeCompositeResearch = ([
+            "constraint": constraint,
+            "name": itemName
+        ]);
+
+        selectedItem["current item in sequence"] = 0;
+        ret = 1;
     }
     return ret;
 }

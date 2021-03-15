@@ -38,5 +38,6 @@ public void reset(int arg)
 
         addSpecification("scope", "self");
         addSpecification("research type", "tree root");
+        addSpecification("command template", "perform [##Song##] [for ##Target##]");
     }
 }

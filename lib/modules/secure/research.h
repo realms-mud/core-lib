@@ -16,6 +16,8 @@ private mapping research = ([
 private string *openResearchTrees = ({});
 private mapping researchChoices = ([]);
 private mapping compositeResearch = ([]);
+private mapping activeCompositeResearch = 0;
+
 private int researchPoints = 0;
 
 /////////////////////////////////////////////////////////////////////////////

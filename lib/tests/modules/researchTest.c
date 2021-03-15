@@ -858,10 +858,35 @@ void CanAddCompositeResearchAndRetrieveByConstraint()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetNextCompositeResearchElementIteratesThroughElements()
+void InvalidCompositeActivationReturnsFalse()
 {
     ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
         compositeElement));
+
+    ExpectFalse(Research->activateCompositeResearch(
+        "lib/tests/support/research/flightOfWeasels.c",
+        "Weasels, Glorious Weasels"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetNextCompositeResearchElementReturnsZeroWhenResearchNotActivated()
+{
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    ExpectEq(0, 
+        Research->getNextCompositeResearchElement());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated()
+{
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    ExpectTrue(Research->activateCompositeResearch(
+        "lib/tests/support/research/flightOfWeasels.c",
+        "Flight of the Weasels"));
 
     ExpectEq(([ 
             "research": "lib/tests/support/research/testResearchA.c",
@@ -869,9 +894,7 @@ void GetNextCompositeResearchElementIteratesThroughElements()
             "description": "Oh, sing me a song of the weasels, man.",
             "order in sequence": 1
         ]), 
-        Research->getNextCompositeResearchElement(
-        "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels"));
+        Research->getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "lib/tests/support/research/testResearchB.c",
@@ -879,9 +902,7 @@ void GetNextCompositeResearchElementIteratesThroughElements()
             "description": "Sing me a song tonight.",
             "order in sequence": 2
         ]), 
-        Research->getNextCompositeResearchElement(
-        "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels"));
+        Research->getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "lib/tests/support/research/testResearchA.c",
@@ -889,9 +910,7 @@ void GetNextCompositeResearchElementIteratesThroughElements()
             "description": "For the Mustelidae, they are now mocking me",
             "order in sequence": 3
         ]), 
-        Research->getNextCompositeResearchElement(
-        "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels"));
+        Research->getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "lib/tests/support/research/testResearchC.c",
@@ -899,14 +918,13 @@ void GetNextCompositeResearchElementIteratesThroughElements()
             "description": "and eating my intestines in spite.",
             "order in sequence": 4
         ]), 
-        Research->getNextCompositeResearchElement(
-        "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels"));
+        Research->getNextCompositeResearchElement());
 
     ExpectEq(0, 
-        Research->getNextCompositeResearchElement(
-        "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels"));
+        Research->getNextCompositeResearchElement());
+
+    ExpectEq(0, 
+        Research->getNextCompositeResearchElement());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -915,13 +933,15 @@ void DeactivateCompositeResearchDeactivatesResearch()
     ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    ExpectEq((["Flight of the Weasels":compositeElement]),
+    ExpectEq((["Flight of the Weasels": compositeElement]),
         Research->getOptionsForCompositeResearch(
             "lib/tests/support/research/flightOfWeasels.c"));
 
-    Research->getNextCompositeResearchElement(
+    ExpectTrue(Research->activateCompositeResearch(
         "lib/tests/support/research/flightOfWeasels.c",
-        "Flight of the Weasels");
+        "Flight of the Weasels"));
+
+    Research->getNextCompositeResearchElement();
 
     ExpectEq((["Flight of the Weasels": compositeElement +
         (["current item in sequence": ([ 
@@ -937,7 +957,18 @@ void DeactivateCompositeResearchDeactivatesResearch()
         "lib/tests/support/research/flightOfWeasels.c",
         "Flight of the Weasels"));
 
-    ExpectEq((["Flight of the Weasels":compositeElement]),
+    ExpectEq((["Flight of the Weasels": compositeElement]),
         Research->getOptionsForCompositeResearch(
             "lib/tests/support/research/flightOfWeasels.c"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DeactivateCompositeResearchDoesNotAffectInactiveResearch()
+{
+    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    ExpectFalse(Research->deactivateCompositeResearch(
+        "lib/tests/support/research/flightOfWeasels.c",
+        "Flight of the Weasels"));
 }
