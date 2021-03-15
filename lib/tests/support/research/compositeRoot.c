@@ -11,33 +11,28 @@ public void reset(int arg)
     {
         compositeActiveResearchItem::reset(arg);
         addSpecification("name", "Musical Compositions");
-        addSpecification("source", "bard");
+        addSpecification("source", "blarg");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of composing and playing songs that can provide "
             "complex effects.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: plucked", "instrument: bowed",
-                "instrument: woodwind", "instrument: brass",
-                "instrument: percussion" }) ]));
+        //addSpecification("limited by", ([
+        //    "equipment": ({ "instrument: plucked", "instrument: bowed",
+        //        "instrument: woodwind", "instrument: brass",
+        //        "instrument: percussion" }) ]));
 
         addSpecification("composite rules", ([
             "template must be one of": ({
-                "guilds/bard/compositions/aaa.c",
-                "guilds/bard/compositions/aaba.c",
-                "guilds/bard/compositions/abab.c",
-                "guilds/bard/compositions/ababcb.c",
-                "guilds/bard/compositions/abac.c",
-                "guilds/bard/compositions/abacbaa.c",
-                "guilds/bard/compositions/freeform.c",
-                "guilds/bard/compositions/simple-ballad.c",
-                "guilds/bard/compositions/verse-chorus-bridge.c",
-                "guilds/bard/compositions/verse-pre-chorus.c",
+                "lib/tests/support/research/aaa.c",
+                "lib/tests/support/research/aaba.c",
+                "lib/tests/support/research/abab.c",
             }),
         ]));
 
         addSpecification("scope", "area");
         addSpecification("research type", "tree root");
-        addSpecification("command template", "perform [##Song##]");
+        addSpecification("command template", "perform ##Value##");
+        addSpecification("use ability message", "##InitiatorName## "
+            "##Infinitive::begin## to play a song...");
     }
 }

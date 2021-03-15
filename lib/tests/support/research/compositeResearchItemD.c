@@ -20,10 +20,11 @@ public void reset(int arg)
 
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
-        addSpecification("scope", "targeted");
+        addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
         addSpecification("penalty to intelligence", 2);
         addSpecification("duration", 12);
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::squeal##, '##CompositeSegment##'");
     }
 }

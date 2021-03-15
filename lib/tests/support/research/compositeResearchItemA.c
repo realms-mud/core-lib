@@ -16,10 +16,10 @@ public void reset(int arg)
             "lib/tests/support/research/compositeRoot.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "This is lyric blast!");
+            "I'll tell you a tale that is terribly true...");
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
-        addSpecification("scope", "targeted");
+        addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
         addSpecification("damage hit points", ({ ([
@@ -29,6 +29,6 @@ public void reset(int arg)
         ]) }));
         addSpecification("damage type", "physical");
         addSpecification("event handler", "usedResearchEvent");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::sing##, 'I'll tell you a tale that is terribly true...'");
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");
     }
 }

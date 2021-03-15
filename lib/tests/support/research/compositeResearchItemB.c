@@ -19,7 +19,7 @@ public void reset(int arg)
         addSpecification("composite type", "lyric");
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
-        addSpecification("scope", "targeted");
+        addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
         addSpecification("damage stamina points", ({ ([
@@ -29,6 +29,6 @@ public void reset(int arg)
         ]) }));
         addSpecification("damage type", "sonic");
         addSpecification("event handler", "usedResearchEvent");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::sing##, 'Started out as a rumor, but suddenly grew...'");
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::drone## on, '##CompositeSegment##'");
     }
 }

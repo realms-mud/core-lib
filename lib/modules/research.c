@@ -871,14 +871,15 @@ static nomask void researchHeartBeat()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask varargs mapping getCompositeResearch(string constraint,
-    string itemName)
+public nomask varargs mapping getCompositeResearch(string constraint,
+    string itemName, int addParent)
 {
-    mapping filteredList = filter(compositeResearch, 
+    mapping filteredList = filter(compositeResearch,
         (: (($2["constraint"] == $3) && (!$4 || ($1 == $4) ||
-            ($2["alias"] == $4))) :), constraint, itemName);
+           ($2["alias"] == $4))) :), constraint, itemName);
 
-    return itemName ? filteredList[itemName] : filteredList;
+    return (!itemName || addParent || !sizeof(filteredList)) ? 
+        filteredList : filteredList[m_indices(filteredList)[0]];
 }
 
 /////////////////////////////////////////////////////////////////////////////

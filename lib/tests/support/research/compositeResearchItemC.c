@@ -20,7 +20,7 @@ public void reset(int arg)
 
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
-        addSpecification("scope", "targeted");
+        addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
         addSpecification("damage spell points", ({ ([
@@ -30,6 +30,6 @@ public void reset(int arg)
         ]) }));
         addSpecification("damage type", "sonic");
         addSpecification("event handler", "usedResearchEvent");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::strum## a bit.");
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::yowl##, '##CompositeSegment##'");
     }
 }

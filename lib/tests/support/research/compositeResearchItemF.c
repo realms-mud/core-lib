@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         persistedActiveResearchItem::reset(arg);
         addSpecification("name", "Gittern shredding");
-        addSpecification("scope", "targeted");
+        addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("composite research",
             "lib/tests/support/research/compositeRoot.c");
@@ -21,5 +21,6 @@ public void reset(int arg)
 
         addSpecification("penalty to attack", 5);
         addSpecification("duration", 12);
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::riff##, '##CompositeSegment##'");
     }
 }

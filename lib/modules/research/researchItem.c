@@ -523,13 +523,15 @@ private nomask string displayUsageInfo(string colorConfiguration,
         {
             string currentCommand = regreplace(command, "\\|", "", 1);
 
-            currentCommand = configuration->decorate(
-                regreplace(currentCommand, "##([^#]+)##(.*)", 
-                    configuration->decorate("<\\1>", "target", "research",
-                        colorConfiguration) + configuration->decorate("\\2",
-                            "command", "research", colorConfiguration), 1),
-                "command", "research", colorConfiguration);
-
+            while(sizeof(regexp(({ currentCommand }), "##([^#]+)##")))
+            {
+                currentCommand = configuration->decorate(
+                    regreplace(currentCommand, "##([^#]+)##(.*)", 
+                        configuration->decorate("<\\1>", "target", "research",
+                            colorConfiguration) + configuration->decorate("\\2",
+                                "command", "research", colorConfiguration), 1),
+                    "command", "research", colorConfiguration);
+            }
             commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });
         }
         ret = implode(commandText, "\n                  ");

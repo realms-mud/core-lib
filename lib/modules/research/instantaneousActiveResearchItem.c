@@ -68,7 +68,8 @@ protected nomask int applyEffect(object initiator, object target)
     if(target && objectp(target) && member(specificationData, "damage type") && 
         ((target->onKillList() && !target->isRealizationOf("player")) || 
         (target->isRealizationOf("player") && initiator->isRealizationOf("player") &&
-        target->onKillList() && initiator->onKillList())))
+        target->onKillList() && initiator->onKillList()) ||
+        target->canAttack(initiator)))
     {
         if(member(specificationData, "damage spell points"))
         {

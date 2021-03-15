@@ -75,3 +75,13 @@ public nomask int restoreFollowerData(string data)
 {
     return restore_object(data);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canAttack(object initiator)
+{
+    object *party = getParty()->members(1);
+
+    return (initiator != leader) && 
+        (!party || (member(party, initiator) < 0)) &&
+        (objectp(leader) ? leader->onKillList() : 1);
+}

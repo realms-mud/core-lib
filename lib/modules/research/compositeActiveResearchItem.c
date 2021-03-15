@@ -95,7 +95,21 @@ protected nomask int addSpecification(string type, mixed value)
                     "modifier.\n" , type));
             }
             break;
-        }      
+        }
+        case "is single shot":
+        {
+            if(intp(value) && (value > 0))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error("ERROR - compositeActiveResearchItem: the "
+                    "'is single shot' specification must be either 0 or 1.\n");
+            }
+            break;
+        }
         case "maximum composite size":
         {
             if(intp(value) && (value > 0))
@@ -323,4 +337,125 @@ public nomask mapping getPossibleTemplates()
 {
     return getComboRulesFor(m_indices(compositeResearchItems), 
         "template must be one of");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private mapping determineCompositeResearch(string unparsedCommand,
+    object owner)
+{
+    mapping ret = 0;
+    string compositeItem = getTargetString(owner, unparsedCommand);
+
+    if (compositeItem)
+    {
+        ret = owner->getCompositeResearch(
+            program_name(this_object()), compositeItem, 1);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int activateCompositeResearch(object owner, 
+    mapping researchToUse)
+{
+    int ret = owner->activateCompositeResearch(program_name(this_object()),
+        m_indices(researchToUse)[0]);
+
+    if (ret && member(specificationData, "use ability message") &&
+        stringp(specificationData["use ability message"]))
+    {
+        displayMessage(specificationData["use ability message"],
+            owner, owner);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int executeCompositeResearch(object owner)
+{
+    int ret = 0;
+    mapping nextItem = owner->getNextCompositeResearchElement();
+
+    if (nextItem)
+    {
+        object researchItem = load_object(nextItem["research"]);
+        if (researchItem)
+        {
+            ret = researchItem->execute(program_name(this_object()), owner);
+            if (ret)
+            {
+                string message = 
+                    researchItem->query("use composite message") ||
+                    nextItem["description"];
+
+                message = regreplace(message, "##CompositeSegment##",
+                    nextItem["description"], 1);
+
+                displayMessage(message, owner, owner);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int executeOnSelf(string unparsedCommand, object owner, 
+    string researchName)
+{
+    int ret = 0;
+    mapping researchToUse =
+        determineCompositeResearch(unparsedCommand, owner);
+
+    if (sizeof(researchToUse))
+    {
+        if (member(specificationData, "is single shot"))
+        {
+
+        }
+        else
+        {
+            ret = 1;
+            activateCompositeResearch(owner, researchToUse);
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int executeOnTarget(string unparsedCommand, object owner,
+    string researchName)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int executeInArea(string unparsedCommand, object owner,
+    string researchName)
+{
+    int ret = 0;
+    mapping researchToUse =
+        determineCompositeResearch(unparsedCommand, owner);
+
+    if (sizeof(researchToUse))
+    {
+        if (member(specificationData, "is single shot"))
+        {
+
+        }
+        else
+        {
+            ret = 1;
+            activateCompositeResearch(owner, researchToUse);
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int executeOnEnvironment(string unparsedCommand, object owner,
+    string researchName)
+{
+    return 0;
 }

@@ -1136,9 +1136,20 @@ public nomask int onKillList()
     int ret = 1;
 
     object player = getService("player");
+    object npc = getService("npc");
+    object henchman = getService("henchman");
+
     if (player)
     {
         ret = onKillList;
+    }
+    else if(npc)
+    {
+        ret = npc->canAttack(this_player());
+    }
+    else if (henchman)
+    {
+        ret = henchman->canAttack(this_player());
     }
     return ret;
 }
