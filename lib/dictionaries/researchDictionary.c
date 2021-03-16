@@ -980,6 +980,7 @@ public nomask int isValidCompositeResearch(string itemName, mapping data)
     int ret = stringp(itemName) &&
         member(data, "alias") && stringp(data["alias"]) &&
         member(data, "constraint") && stringp(data["constraint"]) &&
+        member(data, "type") && stringp(data["type"]) &&
         member(data, "elements") && pointerp(data["elements"]) &&
         sizeof(data["elements"]);
 

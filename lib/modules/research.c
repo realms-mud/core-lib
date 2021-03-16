@@ -937,7 +937,11 @@ public nomask mapping getNextCompositeResearchElement()
         tell_object(this_object(), 
             "Your performance has been aborted.\n");
         activeCompositeResearch = 0;
-        m_delete(selectedItem, "current item in sequence");
+
+        if (sizeof(selectedItem))
+        {
+            m_delete(selectedItem, "current item in sequence");
+        }
     }
     return ret ? ret + ([]) : 0;
 }
