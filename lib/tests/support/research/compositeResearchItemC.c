@@ -2,14 +2,14 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
+inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
-        instantaneousActiveResearchItem::reset(arg);
+        persistedActiveResearchItem::reset(arg);
         addSpecification("name", "Singy blast");
         addSpecification("source", "blarg");
         addSpecification("composite research", 
@@ -18,17 +18,18 @@ public void reset(int arg)
         addSpecification("default composite description",
             "Sing me a singy blast");
 
+        addSpecification("limited by", ([
+            "equipment": ({ "instrument: plucked" }) ]));
+
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
         addSpecification("scope", "area");
         addSpecification("research type", "granted");
         addSpecification("research cost", 1);
-        addSpecification("damage spell points", ({ ([
-            "probability": 100,
-            "base damage": 25,
-            "range": 0
-        ]) }));
-        addSpecification("damage type", "sonic");
+
+        addSpecification("penalty to strength", 2);
+        addSpecification("duration", 30);
+
         addSpecification("event handler", "usedResearchEvent");
         addSpecification("use composite message", "##InitiatorName## ##Infinitive::yowl##, '##CompositeSegment##'");
     }

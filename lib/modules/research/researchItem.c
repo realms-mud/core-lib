@@ -361,52 +361,10 @@ private nomask string displayCost(string colorConfiguration,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string displayRelatedResearchEffects(string colorConfiguration,
+protected string displayRelatedResearchEffects(string colorConfiguration,
     object configuration)
 {
-    string ret = "";
-
-    mapping rules = query("combination rules");
-    if (mappingp(rules) && sizeof(rules))
-    {
-        object dictionary = getDictionary("research");
-        foreach(string ruleType in m_indices(rules))
-        {
-            ret += configuration->decorate(sprintf("%-15s : ", "Combination Rule"),
-                "field header", "research", colorConfiguration) +
-                configuration->decorate(capitalize(ruleType) + ":\n",
-                    "field data", "research", colorConfiguration);
-
-            if (sizeof(rules[ruleType]))
-            {
-                foreach(string item in rules[ruleType])
-                {
-                    object researchObj = dictionary->researchObject(item);
-                    if (researchObj && researchObj->query("usage summary"))
-                    {
-                        ret += sprintf("%-18s", "") +
-                            configuration->decorate(
-                                lower_case(researchObj->query("name")) + ": ",
-                                "field data", "research", colorConfiguration) +
-                            configuration->decorate(
-                                capitalize(researchObj->query("usage summary")) + "\n",
-                                "formula", "research", colorConfiguration);
-                    }
-                }
-            }
-        }
-    }
-
-    if (query("maximum combination chain"))
-    {
-        ret += configuration->decorate(sprintf("%-15s : ", "Max Combo Size"),
-                "field header", "research", colorConfiguration) +
-            configuration->decorate(sprintf("%d\n", 
-                query("maximum combination chain")),
-                "field data", "research", colorConfiguration);
-    }
-
-    return ret;
+    return "";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -511,6 +469,12 @@ private nomask string displayExtraResearchInformation(string colorConfiguration,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected string usagePrompt()
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string displayUsageInfo(string colorConfiguration,
     object configuration)
 {
@@ -527,9 +491,11 @@ private nomask string displayUsageInfo(string colorConfiguration,
             {
                 currentCommand = configuration->decorate(
                     regreplace(currentCommand, "##([^#]+)##(.*)", 
-                        configuration->decorate("<\\1>", "target", "research",
-                            colorConfiguration) + configuration->decorate("\\2",
-                                "command", "research", colorConfiguration), 1),
+                        configuration->decorate("<" + 
+                            (usagePrompt() ? usagePrompt() : "\\1") + ">", 
+                            "target", "research",
+                        colorConfiguration) + configuration->decorate("\\2",
+                            "command", "research", colorConfiguration), 1),
                     "command", "research", colorConfiguration);
             }
             commandText += ({ regreplace(currentCommand, "\n", "\n\t\t", 1) });

@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         activeResearchItem::reset(arg);
         addSpecification("name", "ABAB (Verse/Chorus)");
+        addSpecification("usage summary", "A song with two verses and two choruses");
         addSpecification("source", "blarg");
         addSpecification("description", "This research provides the user with the "
             "knowledge of how to create songs structured as a pair of verse/chorus "

@@ -130,15 +130,18 @@ private nomask mapping memberInfo(object *memberList)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void saveParty()
 {
-    mapping saveData = ([
-        "ID": Identifier,
-        "name": Name,
-        "leader": Creator->RealName(),
-        "members": memberInfo(m_indices(Members)) +
-                   memberInfo(information["npcs"])
-    ]);
+    if(Creator)
+    {
+        mapping saveData = ([
+            "ID": Identifier,
+            "name": Name,
+            "leader": Creator->RealName(),
+            "members": memberInfo(m_indices(Members)) +
+                       memberInfo(information["npcs"])
+        ]);
 
-    Identifier = service->savePartyData(saveData);
+        Identifier = service->savePartyData(saveData);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

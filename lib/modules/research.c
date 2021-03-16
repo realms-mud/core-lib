@@ -782,7 +782,7 @@ public nomask int researchCommand(string command)
             }
         }
     }
-    if(commandToExecute && canApplyLimitedEffect(commandToExecute))
+    if(commandToExecute && canApplyLimitedEffect(commandToExecute, command))
     {
         ret = researchDictionary()->researchCommand(commandToExecute,
             command, this_object());
@@ -905,9 +905,15 @@ public nomask mapping getNextCompositeResearchElement()
         activeCompositeResearch["constraint"],
         activeCompositeResearch["name"]) : 0;
 
+    object researchObj = activeCompositeResearch ?
+        getDictionary("research")->researchObject(
+            activeCompositeResearch["constraint"]) : 0;
+
     if (sizeof(selectedItem) && member(selectedItem, "elements") &&
         sizeof(selectedItem["elements"]) &&
-        member(selectedItem, "current item in sequence"))
+        member(selectedItem, "current item in sequence") &&
+        researchObj && researchObj->canApplySpecification(
+            activeCompositeResearch["name"], this_object(), 0, 1))
     {
         int nextItem = 1;
         if (selectedItem["current item in sequence"] != 0)
@@ -925,6 +931,13 @@ public nomask mapping getNextCompositeResearchElement()
         {
             m_delete(selectedItem, "current item in sequence");
         }
+    }
+    else
+    {
+        tell_object(this_object(), 
+            "Your performance has been aborted.\n");
+        activeCompositeResearch = 0;
+        m_delete(selectedItem, "current item in sequence");
     }
     return ret ? ret + ([]) : 0;
 }
@@ -952,6 +965,18 @@ public nomask int deactivateCompositeResearch(string constraint,
 public nomask int hasActiveCompositeResearch()
 {
     return activeCompositeResearch != 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object activeCompositeResearch()
+{
+    object ret = 0;
+    if (activeCompositeResearch)
+    {
+        ret = getDictionary("research")->researchObject(
+            activeCompositeResearch["constraint"]);
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

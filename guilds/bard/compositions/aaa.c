@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         activeResearchItem::reset(arg);
         addSpecification("name", "AAA (Verse, Verse, Verse)");
+        addSpecification("usage summary", "A song with three verses");
         addSpecification("source", "bard");
         addSpecification("description", "This research provides the user with the "
             "knowledge of how to create songs structured as three verses.");

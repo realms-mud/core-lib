@@ -977,85 +977,93 @@ public nomask mapping *getAttacks()
     }
     else
     {
+        int allowOnlyOneAttack = 0;
         attacksToReturn = attacks;
         object inventory = getService("inventory");
-        if (inventory->equipmentInSlot("wielded primary"))
+
+        object weapon = inventory->equipmentInSlot("wielded primary");
+        if (weapon)
         {
+            allowOnlyOneAttack = (weapon->query("type") == "instrument");
+
             attacksToReturn += ({ (["attack type":"wielded primary"]) });
         }
 
-        object offhand = inventory->equipmentInSlot("wielded offhand");
-
-        // Don't add attacks for defense-only shields.
-        if (offhand && offhand->query("weapon class") &&
-            (offhand != inventory->equipmentInSlot("wielded primary")))
+        if (!allowOnlyOneAttack)
         {
-            attacksToReturn += ({ (["attack type":"wielded offhand"]) });
-        }
+            object offhand = inventory->equipmentInSlot("wielded offhand");
 
-        if (!sizeof(attacksToReturn))
-        {
-            attacksToReturn += ({ ([
-                "attack type":"unarmed",
-                "to hit" : 50,
-                "damage" : 10
-            ]) });
-        }
-
-        // Add attacks from external sources
-        string *servicesToCheck = ({ "races", "guilds", "research", "traits", "background" });
-        int addOffhandWeapon = 0;
-
-        foreach(string serviceToCheck in servicesToCheck)
-        {
-            object service = getService(serviceToCheck);
-            if (service)
+            // Don't add attacks for defense-only shields.
+            if (offhand && offhand->query("weapon class") &&
+                (offhand != inventory->equipmentInSlot("wielded primary")))
             {
-                mapping *extraAttacks =
-                    call_other(service, sprintf("%sExtraAttacks", serviceToCheck));
+                attacksToReturn += ({ (["attack type":"wielded offhand"]) });
+            }
 
-                if (sizeof(extraAttacks))
+            if (!sizeof(attacksToReturn))
+            {
+                attacksToReturn += ({ ([
+                    "attack type":"unarmed",
+                    "to hit" : 50,
+                    "damage" : 10
+                ]) });
+            }
+
+            // Add attacks from external sources
+            string *servicesToCheck = ({ "races", "guilds", "research", "traits", "background" });
+            int addOffhandWeapon = 0;
+
+            foreach(string serviceToCheck in servicesToCheck)
+            {
+                object service = getService(serviceToCheck);
+                if (service)
                 {
-                    foreach(mapping extraAttack in extraAttacks)
+                    mapping *extraAttacks =
+                        call_other(service, sprintf("%sExtraAttacks", serviceToCheck));
+
+                    if (sizeof(extraAttacks))
                     {
-                        if (attackObject()->isWeaponAttack(extraAttack))
+                        foreach(mapping extraAttack in extraAttacks)
                         {
-                            attacksToReturn += getWeaponAttacksFromBonus(1, addOffhandWeapon % 2);
-                            addOffhandWeapon++;
-                        }
-                        else if (attackObject()->isValidAttack(extraAttack))
-                        {
-                            attacksToReturn += ({ extraAttack });
+                            if (attackObject()->isWeaponAttack(extraAttack))
+                            {
+                                attacksToReturn += getWeaponAttacksFromBonus(1, addOffhandWeapon % 2);
+                                addOffhandWeapon++;
+                            }
+                            else if (attackObject()->isValidAttack(extraAttack))
+                            {
+                                attacksToReturn += ({ extraAttack });
+                            }
                         }
                     }
                 }
             }
-        }
 
-        object *modifiers = inventory->registeredInventoryObjects();
+            object *modifiers = inventory->registeredInventoryObjects();
 
-        if (modifiers && pointerp(modifiers) && sizeof(modifiers))
-        {
-            object attacksDictionary = getDictionary("attacks");
-            if (attacksDictionary && function_exists("validAttackTypes",
-                attacksDictionary))
+            if (modifiers && pointerp(modifiers) && sizeof(modifiers))
             {
-                string *attackList = attacksDictionary->validAttackTypes();
-
-                foreach(object modifier in modifiers)
+                object attacksDictionary = getDictionary("attacks");
+                if (attacksDictionary && function_exists("validAttackTypes",
+                    attacksDictionary))
                 {
-                    foreach(string attack in attackList)
+                    string *attackList = attacksDictionary->validAttackTypes();
+
+                    foreach(object modifier in modifiers)
                     {
-                        if (modifier->query(sprintf("bonus %s attack", attack)))
-                            attacksToReturn += ({ (["attack type":attack,
-                                "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
-                                "damage" : modifier->query(sprintf("bonus %s attack", attack))
-                        ]) });
-                    }
-                    if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
-                    {
-                        int numAttacks = modifier->query("bonus weapon attack");
-                        attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
+                        foreach(string attack in attackList)
+                        {
+                            if (modifier->query(sprintf("bonus %s attack", attack)))
+                                attacksToReturn += ({ (["attack type":attack,
+                                    "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
+                                    "damage" : modifier->query(sprintf("bonus %s attack", attack))
+                            ]) });
+                        }
+                        if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
+                        {
+                            int numAttacks = modifier->query("bonus weapon attack");
+                            attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
+                        }
                     }
                 }
             }
@@ -1780,7 +1788,7 @@ public nomask int attack(object foe)
                     if (weapon->query("type") == "instrument")
                     {
                         object song = attackObject()->getAttack("musical");
-                        if (song && song->songIsQueued(weapon))
+                        if (song && song->songIsQueued(this_object()))
                         {
                             song->playSong(this_object(), weapon, foe);
                         }
@@ -2016,8 +2024,21 @@ static nomask void combatHeartBeat()
         }
     }
     
+    object inventory = getService("inventory");
     object attacker = getTargetToAttack();
-    if(attacker)
+
+    if (this_object()->hasActiveCompositeResearch())
+    {
+        object instrument = inventory ?
+            inventory->equipmentInSlot("wielded primary") : 0;
+
+        object song = attackObject()->getAttack("musical");
+        if (song && song->songIsQueued(this_object()))
+        {
+            song->playSong(this_object(), instrument);
+        }
+    }
+    else if(attacker)
     {
         object chat = getService("combatChatter");
         if(chat)
@@ -2032,7 +2053,6 @@ static nomask void combatHeartBeat()
         }
 
         int numberAttackRounds = 1;
-        object inventory = getService("inventory");
         if(inventory)
         {
             numberAttackRounds -= 
@@ -2048,7 +2068,8 @@ static nomask void combatHeartBeat()
             }
 
             numberAttackRounds +=
-                inventory->inventoryGetModifier("combatModifiers", "haste") ? 1 : 0;
+                inventory->inventoryGetModifier("combatModifiers", "haste") ? 
+                    1 : 0;
         }
         while(numberAttackRounds > 0)
         {

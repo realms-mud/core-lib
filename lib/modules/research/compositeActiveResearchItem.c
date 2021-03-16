@@ -96,6 +96,20 @@ protected nomask int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "command name":
+        {
+            if(stringp(value))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error("ERROR - compositeActiveResearchItem: the "
+                    "'command name' specification must be a string.\n");
+            }
+            break;
+        }
         case "is single shot":
         {
             if(intp(value) && (value > 0))
@@ -262,75 +276,54 @@ private nomask string checkCanIncludeOnlyOneOfRules(mapping list)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-//protected nomask varargs object *getCombinationList(string unparsedCommand,
-//    object owner, int doNotDisplayFeedback)
-//{
-//    object *ret = ({});
-//
-//    string itemsToCheck = regreplace(unparsedCommand,
-//        specificationData["command name"] + " (.*)", "\\1", 1);
-//    itemsToCheck = regreplace(itemsToCheck,
-//        "(.*)" + specificationData["command target"], "\\1", 1);
-//
-//    string *comboItems = explode(itemsToCheck, " ") - ({ "" });
-//
-//    string failureMessage = 0;
-//
-//    if ((sizeof(comboItems) > 1) &&
-//        (sizeof(comboItems) <= getMaximumSizeOfCompositeResearch(owner)))
-//    {
-//        mapping mustIncludeOnlyOneOf =
-//            getComboRulesFor(comboItems, "must include only one of");
-//        mapping mustIncludeAnyOf =
-//            getComboRulesFor(comboItems, "must include any of");
-//        mapping canIncludeOnlyOneOf =
-//            getComboRulesFor(comboItems, "can include only one of");
-//        mapping canIncludeAnyOf =
-//            getComboRulesFor(comboItems, "can include any of");
-//
-//        failureMessage = checkMustIncludeOnlyOneOfRules(mustIncludeOnlyOneOf) ||
-//            checkMustIncludeAnyOfRules(mustIncludeAnyOf) ||
-//            checkCanIncludeOnlyOneOfRules(canIncludeOnlyOneOf);
-//
-//        if (!failureMessage)
-//        {
-//            mapping validComboItems = mustIncludeOnlyOneOf + mustIncludeAnyOf +
-//                canIncludeOnlyOneOf + canIncludeAnyOf;
-//
-//            ret = getResearchObjectsFromComboList(comboItems, owner,
-//                validComboItems);
-//
-//            if (!ret)
-//            {
-//                failureMessage = sprintf("That is an invalid combination. You do "
-//                    "not have the following researched: %s.\n",
-//                    stringFromList(filter(comboItems,
-//                        (: !$2->isResearched($3[$1]) :),
-//                        owner, validComboItems)));
-//            }
-//        }
-//    }
-//    else
-//    {
-//        failureMessage = sprintf("That is an invalid combination. You can "
-//            "only chain 2 to %d actions together.\n",
-//            getMaximumSizeOfChainedCombination(owner));
-//    }
-//
-//    if (failureMessage)
-//    {
-//        ret = 0;
-//
-//        if (!doNotDisplayFeedback)
-//        {
-//            displayMessageToSelf(configuration->decorate(format(failureMessage,
-//                "failure message", "research", owner->colorConfiguration(), 78)),
-//                owner);
-//        }
-//    }
-//
-//    return ret;
-//}
+protected nomask object *getCompositeDetails(string unparsedCommand,
+    object owner)
+{
+    object *ret = ({});
+
+    string itemToCheck = regreplace(unparsedCommand,
+        specificationData["command name"] + " (.*)", "\\1", 1);
+
+    if (!owner)
+    {
+        owner = this_player();
+    }
+
+    mapping compositeDetails = owner ? owner->getCompositeResearch(
+        program_name(this_object()), itemToCheck) : ([]);
+
+    if (compositeDetails && sizeof(compositeDetails))
+    {
+        ret += ({ load_object(compositeDetails["type"]) });
+
+        foreach(mapping element in compositeDetails["elements"])
+        {
+            ret += ({ load_object(element["research"]) });
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected mapping getUsageCosts(string command, object initiator)
+{
+    object *combo = getCompositeDetails(command, initiator);
+
+    mapping costs = researchItem::getUsageCosts(command, initiator);
+
+    if (sizeof(combo))
+    {
+        foreach(object item in combo)
+        {
+            mapping costData = item->getUsageCosts(command, initiator);
+            costs["hit point cost"] += costData["hit point cost"];
+            costs["spell point cost"] += costData["spell point cost"];
+            costs["stamina point cost"] += costData["stamina point cost"];
+        }
+    }
+
+    return costs + ([]);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPossibleTemplates()
@@ -371,7 +364,7 @@ private nomask int activateCompositeResearch(object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int executeCompositeResearch(object owner)
+public nomask int executeCompositeResearch(object owner)
 {
     int ret = 0;
     mapping nextItem = owner->getNextCompositeResearchElement();
@@ -458,4 +451,113 @@ protected int executeOnEnvironment(string unparsedCommand, object owner,
     string researchName)
 {
     return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string usagePrompt()
+{
+    return "name or alias of song";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string getCostsString(object researchObj)
+{
+    mapping costs = researchObj->getUsageCosts("", this_player());
+    string cost = "base cost - ";
+    if (member(costs, "hit point cost") && costs["hit point cost"])
+    {
+        cost += sprintf("%d HP ", costs["hit point cost"]);
+    }
+    if (member(costs, "spell point cost") && costs["spell point cost"])
+    {
+        cost += sprintf("%d SP ", costs["spell point cost"]);
+    }
+    if (member(costs, "stamina point cost") && costs["stamina point cost"])
+    {
+        cost += sprintf("%d ST", costs["stamina point cost"]);
+    }
+    if (cost == "base cost - ")
+    {
+        cost += "N/A";
+    }
+    return cost;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string displayRelatedResearchEffects(string colorConfiguration,
+    object configuration)
+{
+    string ret = "";
+
+    mapping rules = query("composite rules");
+    if (mappingp(rules) && sizeof(rules))
+    {
+        object dictionary = getDictionary("research");
+        foreach(string ruleType in m_indices(rules))
+        {
+            ret += configuration->decorate(sprintf("%-15s : ", "Creation Rules"),
+                "field header", "research", colorConfiguration) +
+                configuration->decorate(capitalize(ruleType) + ":\n",
+                    "field data", "research", colorConfiguration);
+
+            if (sizeof(rules[ruleType]))
+            {
+                foreach(string item in rules[ruleType])
+                {
+                    object researchObj = dictionary->researchObject(item);
+                    if (researchObj)
+                    {
+                        ret += sprintf("%-18s", "") +
+                            configuration->decorate(
+                                researchObj->query("name") + "\n",
+                                "field data", "research", colorConfiguration) +
+                            sprintf("%-22s", "") +
+                            configuration->decorate(
+                                getCostsString(researchObj) + "\n",
+                                "formula", "research", colorConfiguration);
+                    }
+                }
+            }
+        }
+    }
+
+    mapping songs = this_player() ?
+        this_player()->getOptionsForCompositeResearch(
+            program_name(this_object())) :
+        ([]);
+    if (sizeof(songs))
+    {
+        ret += configuration->decorate(sprintf("%-15s : ", "Available Songs"),
+            "field header", "research", colorConfiguration) + "\n";
+
+        foreach(string song in m_indices(songs))
+        {
+            ret += sprintf("%-18s", "") +
+                configuration->decorate(song,
+                    "field data", "research", colorConfiguration) +
+                configuration->decorate((member(songs[song], "alias") ?
+                    (" - alias: " + songs[song]["alias"]) : ""),
+                    "formula", "research", colorConfiguration) + "\n";
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int blockSpecificationApplication(string command, object owner,
+    object target)
+{
+    int ret = 1;
+
+    object *components = getCompositeDetails(command, owner);
+
+    if (sizeof(components))
+    {
+        foreach(object item in components)
+        {
+            ret &&= item->canApplySpecification(command, owner, target, 1);
+        }
+    }
+    return !ret;
 }

@@ -11,6 +11,7 @@ public void reset(int arg)
     {
         activeResearchItem::reset(arg);
         addSpecification("name", "AABA (Verse, Verse, Bridge, Verse)");
+        addSpecification("usage summary", "A song with three verses and a bridge");
         addSpecification("source", "blarg");
         addSpecification("description", "This research provides the user with the "
             "knowledge of how to create songs structured as two verses, a bridge, "

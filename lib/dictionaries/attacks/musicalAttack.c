@@ -15,13 +15,17 @@ public void reset(int arg)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int songIsQueued(object instrument)
+public nomask int songIsQueued(object initiator)
 {
-    return 0;
+    return initiator && initiator->hasActiveCompositeResearch();
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void playSong(object musician, object instrument, object foe)
+public nomask varargs void playSong(object musician, object instrument, object foe)
 {
-
+    object song = musician->activeCompositeResearch();
+    if (song)
+    {
+        song->executeCompositeResearch(musician);
+    }
 }

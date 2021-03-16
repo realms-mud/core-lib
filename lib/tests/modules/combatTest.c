@@ -19,6 +19,7 @@ void SetUpAttacker()
     Attacker->Con(20);
     Attacker->Int(20);
     Attacker->Wis(20);
+    Attacker->addCommands();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -214,6 +215,22 @@ void GetAttacksReturnsExtraAttacksFromServices()
     Attacker->ToggleMockBiological();
     Attacker->ToggleMockBackground();
     ExpectEq(5, sizeof(Attacker->getAttacks()), "5 attacks returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetAttacksReturnsOnlyOneAttackWhenInstrumentWielded()
+{
+    object instrument =
+        clone_object("/lib/instances/items/instruments/strings/lute.c");
+    move_object(instrument, Attacker);
+    ExpectTrue(instrument->equip("lute"), "instrument equip called");
+
+    Attacker->ToggleMockGuilds();
+    Attacker->ToggleMockResearch();
+    Attacker->ToggleMockTrait();
+    Attacker->ToggleMockBiological();
+    Attacker->ToggleMockBackground();
+    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////

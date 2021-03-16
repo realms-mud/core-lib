@@ -89,7 +89,8 @@ protected int addSpecification(string type, mixed value)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int EffectIsLimited()
 {
-    return member(specificationData, "limited by");
+    return member(specificationData, "limited by") ||
+        member(specificationData, "composite rules");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -102,14 +103,14 @@ protected int blockSpecificationApplication(string skill, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs int environmentalFactorsMet(object owner, int verbose)
+protected varargs int environmentalFactorsMet(object owner, int verbose)
 {
     return getDictionary("limitor")->environmentalFactorsMet(
         specificationData, owner, verbose);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs int userFactorsMet(object owner, 
+protected varargs int userFactorsMet(object owner, 
     object target, int verbose)
 {
     return getDictionary("limitor")->userFactorsMet(
