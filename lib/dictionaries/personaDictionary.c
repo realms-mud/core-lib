@@ -17,6 +17,12 @@ private nomask mapping personaBlueprints()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidPersona(string persona)
+{
+    return member(personaBlueprints(), persona);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void SetStats(object character)
 {
     int level = character->effectiveLevel() * 2;

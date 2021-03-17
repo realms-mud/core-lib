@@ -16,30 +16,16 @@ protected nomask int addSpecification(string type, mixed value)
     { 
         case "related research":
         {
-            if(mappingp(value))
+            if(pointerp(value) && sizeof(value) && stringp(value[0]))
             {
-                int validModifier = 1;
-                foreach(mixed key in m_indices(value))
-                {
-                    validModifier &&= stringp(key) && intp(value[key]);
-                }
-                if(validModifier)
-                {
-                    specificationData[type] = value;
-                    ret = 1;
-                }
-                else
-                {
-                    raise_error(sprintf("ERROR - knowledgeResearchItem: "
-                        "the '%s' specification must be a properly formatted "
-                        "modifier.\n" , type));
-                }                
+                specificationData[type] = value;
+                ret = 1;           
             }
             else
             {
                 raise_error(sprintf("ERROR - knowledgeResearchItem: "
-                    "the '%s' specification must be a properly formatted "
-                    "modifier.\n" , type));
+                    "the '%s' specification must be a list of related "
+                    "research.\n" , type));
             }
             break;
         }      
@@ -60,4 +46,26 @@ public void reset(int arg)
         addSpecification("scope", "self");
         addSpecification("effect", "strategic");
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected string displayRelatedResearchEffects(string colorConfiguration,
+    object configuration)
+{
+    string ret = "";
+    if (member(specificationData, "related research"))
+    {
+        object dictionary = getDictionary("research");
+
+        foreach(string researchItem in specificationData["related research"])
+        {
+            object research = dictionary->researchObject(researchItem);
+            if (research)
+            {
+                ret += research->getRelatedResearchEffects(this_object(),
+                    colorConfiguration, configuration);
+            }
+        }
+    }
+    return ret;
 }

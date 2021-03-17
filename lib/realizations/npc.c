@@ -6,7 +6,7 @@ virtual inherit "/lib/realizations/monster.c";
 virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
 
-private object leader;
+protected object leader;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfNpc()
