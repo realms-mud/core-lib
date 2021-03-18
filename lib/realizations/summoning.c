@@ -15,29 +15,39 @@ public nomask int isRealizationOfSummoning()
 /////////////////////////////////////////////////////////////////////////////
 public void onAttack(object caller)
 {
-    printf("onAttack called from %O\n", caller);
+    if (caller && caller->getTargetToAttack())
+    {
+        registerAttacker(caller->getTargetToAttack());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onAttacked(object caller)
 {
-    printf("onAttacked called from %O\n", caller);
+    if (caller && caller->getTargetToAttack())
+    {
+        registerAttacker(caller->getTargetToAttack());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onHit(object caller)
 {
-    printf("onHit called from %O\n", caller);
+    if (caller && caller->getTargetToAttack())
+    {
+        registerAttacker(caller->getTargetToAttack());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    printf("onDeath called from %O\n", caller);
+    destruct(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void onAdvancedLevel(object caller)
 {
-    printf("onAdvancedLevel called from %O\n", caller);
+    effectiveLevel(effectiveLevel() + 1);
+    getDictionary("persona")->advanceLevel(this_object());
 }

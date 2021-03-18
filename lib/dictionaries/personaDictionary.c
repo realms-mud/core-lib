@@ -35,10 +35,12 @@ private nomask void SetStats(object character)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void SetPrimarySkills(object character, string persona)
+private nomask varargs void SetPrimarySkills(object character, 
+    string persona, int onlyAdvanceLevel)
 {
     string *primarySkills = personaBlueprints()[persona]["primary skills"];
-    int level = to_int(character->effectiveLevel() * 2);
+    int level = onlyAdvanceLevel ? 2 :
+        to_int(character->effectiveLevel() * 2);
 
     foreach(string skill in primarySkills)
     {
@@ -49,10 +51,11 @@ private nomask void SetPrimarySkills(object character, string persona)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void SetSecondarySkills(object character, string persona)
+private nomask varargs void SetSecondarySkills(object character, 
+    string persona, int onlyAdvanceLevel)
 {
     string *secondarySkills = personaBlueprints()[persona]["secondary skills"];
-    int skillLevel = character->effectiveLevel();
+    int skillLevel = onlyAdvanceLevel ? 1 : character->effectiveLevel();
 
     if (skillLevel)
     {
@@ -147,6 +150,7 @@ private nomask void SetAttacks(object character, string persona)
         string *attacks = m_indices(personaBlueprints()[persona]["attacks"]);
         int level = character->effectiveLevel();
 
+        character->clearAttacks();
         foreach(string attack in attacks)
         {
             character->addAttack(attack,
@@ -255,6 +259,22 @@ public nomask void setupPersona(string persona, object character)
     else
     {
         raise_error("personaDictionary: Personas can only be set for NPCs.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void advanceLevel(object character)
+{
+    if (objectp(character) && character->persona() &&
+        sizeof(character->Traits("persona")) &&
+        ((member(inherit_list(character), "lib/realizations/monster.c") > -1) ||
+            (member(inherit_list(character), "lib/realizations/henchman.c") > -1)))
+    {
+        SetStats(character);
+        SetPrimarySkills(character, character->persona(), 1);
+        SetSecondarySkills(character, character->persona(), 1);
+        SetAttacks(character, character->persona());
+        SetCombatAttributes(character, character->persona());
     }
 }
 

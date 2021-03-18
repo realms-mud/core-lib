@@ -61,12 +61,10 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWithUnResearchedModifierDoesNotApplyModifier()
 {
-//    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
-
     ExpectEq(2, sizeof(all_inventory(Room)));
 
     command("summon weasel", User);
-    ExpectEq(3, sizeof(all_inventory(Room)));
+    ExpectEq(4, sizeof(all_inventory(Room)));
 
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
     ExpectEq(10, weasel->Str());
@@ -88,7 +86,7 @@ void SummoningWithResearchedModifierAppliesModifier()
     ExpectEq(2, sizeof(all_inventory(Room)));
 
     command("summon weasel", User);
-    ExpectEq(3, sizeof(all_inventory(Room)));
+    ExpectEq(4, sizeof(all_inventory(Room)));
 
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
     ExpectEq(13, weasel->Str());
@@ -99,7 +97,39 @@ void SummoningWithResearchedModifierAppliesModifier()
     ExpectEq(9, weasel->Chr());
     ExpectEq(160, weasel->hitPoints());
     ExpectEq(269, weasel->staminaPoints());
+
     ExpectEq("You scream, `Let there be weasels!'\n", User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummoningWilNotExceedMaximumAllowed()
+{
+    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+
+    User->heart_beat();
+    command("summon weasel", User);
+    ExpectEq(5, sizeof(all_inventory(Room)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummoningCanReAddUpToMaximumAllowed()
+{
+    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    destruct((all_inventory(Room) - ({ User, Target }))[0]);
+
+    User->heart_beat();
+    command("summon weasel", User);
+    ExpectEq(5, sizeof(all_inventory(Room)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -125,4 +155,135 @@ void CanDisplayResearchInfo()
         "                  (-1) Penalty to charisma\n"
         "                  Fortified is applied to summoned creature\n",
         effect->researchDetails());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnAttackedFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object summoned = (all_inventory(Room) - ({ User, Target }))[0];
+    object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
+
+    ExpectFalse(summoned->getTargetToAttack());
+    ExpectFalse(summoned2->getTargetToAttack());
+
+    Target->attack(User);
+
+    ExpectTrue(summoned->getTargetToAttack());
+    ExpectTrue(summoned2->getTargetToAttack());
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnAttackFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object summoned = (all_inventory(Room) - ({ User, Target }))[0];
+    object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
+
+    ExpectFalse(summoned->getTargetToAttack());
+    ExpectFalse(summoned2->getTargetToAttack());
+
+    User->heart_beat();
+    command("kill frank", User);
+
+    ExpectTrue(summoned->getTargetToAttack());
+    ExpectTrue(summoned2->getTargetToAttack());
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnHitFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object summoned = (all_inventory(Room) - ({ User, Target }))[0];
+    object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
+
+    ExpectFalse(summoned->getTargetToAttack());
+    ExpectFalse(summoned2->getTargetToAttack());
+
+    User->hit(25, "magical", Target);
+
+    ExpectTrue(summoned->getTargetToAttack());
+    ExpectTrue(summoned2->getTargetToAttack());
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnDeathFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object summoned = (all_inventory(Room) - ({ User, Target }))[0];
+    object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
+
+    ExpectTrue(summoned);
+    ExpectTrue(summoned2);
+
+    User->hit(2500, "magical", Target);
+
+    ExpectFalse(summoned);
+    ExpectFalse(summoned2);
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnAdvancedLevelFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+    load_object("/lib/tests/support/guilds/fighterGuild.c");
+    User->joinGuild("fake fighter");
+    command("3", User);
+    User->addExperience(20000);
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object weasel = (all_inventory(Room) - ({ User, Target }))[0];
+
+    ExpectEq(5, weasel->effectiveLevel());
+    ExpectEq(10, weasel->Str());
+    ExpectEq(10, weasel->Int());
+    ExpectEq(10, weasel->Wis());
+    ExpectEq(10, weasel->Dex());
+    ExpectEq(10, weasel->Con());
+    ExpectEq(10, weasel->Chr());
+    ExpectEq(110, weasel->hitPoints());
+    ExpectEq(310, weasel->staminaPoints());
+
+    command("level up", User);
+    command("1", User);
+    command("exit", User);
+
+    ExpectEq(6, weasel->effectiveLevel());
+    ExpectEq(12, weasel->Str());
+    ExpectEq(12, weasel->Int());
+    ExpectEq(12, weasel->Wis());
+    ExpectEq(12, weasel->Dex());
+    ExpectEq(12, weasel->Con());
+    ExpectEq(12, weasel->Chr());
+    ExpectEq(132, weasel->hitPoints());
+    ExpectEq(372, weasel->staminaPoints());
+
+    ToggleCallOutBypass();
 }

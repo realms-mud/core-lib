@@ -20,7 +20,7 @@ public void reset(int arg)
         addSpecification("stamina point cost", 25);
 
         addSpecification("number to summon", 2);
-        addSpecification("maximum number to summon", 3);
+        addSpecification("maximum that can be summoned", 3);
 
         addSpecification("persona level", 5);
         addSpecification("persona", "weasel");

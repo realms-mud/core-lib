@@ -38,7 +38,7 @@ public nomask varargs object *members(int includeNPCs)
     {
         ret += information["npcs"];
     }
-    return ret + ({});
+    return ret - ({ 0 }) + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -415,8 +415,11 @@ public nomask void addNPC(object npc)
         ((member(inherit_list(npc), "lib/realizations/henchman.c") > -1) ||
         (member(inherit_list(npc), "lib/realizations/npc.c") > -1)))
     {
+        information["npcs"] -= ({ 0 });
         object *npcsWithSameName = filter(information["npcs"],
-            (: $1->RealName() == $2 :), npc->RealName());
+            (: ($1->RealName() == $2) && (member(inherit_list($1), 
+                "lib/realizations/summoning.c") < 0) :), npc->RealName());
+
         if (sizeof(npcsWithSameName))
         {
             foreach(object duplicateNPC in npcsWithSameName)

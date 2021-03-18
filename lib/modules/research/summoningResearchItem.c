@@ -12,7 +12,7 @@ protected nomask int addSpecification(string type, mixed value)
     {
         case "number to summon":
         case "persona level":
-        case "maximum number to summon":
+        case "maximum that can be summoned":
         {
             if(intp(value) && (value > 0))
             {
@@ -113,49 +113,90 @@ private nomask void setSummoningModifier(object modifierObj, object summoning,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void setSummoningModifiers(object summoning, object owner)
+{
+    if (member(specificationData, "modifiers"))
+    {
+        object dictionary = getDictionary("research");
+        object modifierObj = 0;
+        foreach(string research in specificationData["modifiers"])
+        {
+            if (owner->isResearched(research))
+            {
+                foreach(mapping modifier in
+                    specificationData["modifiers"][research])
+                {
+                    modifierObj = modifierObject(summoning, modifierObj);
+                    setSummoningModifier(modifierObj, summoning, modifier);
+                }
+            }
+        }
+        if (modifierObj)
+        {
+            modifierObj->registerModifierWithTargetList(({ summoning }));
+            summoning->hitPoints(summoning->maxHitPoints());
+            summoning->spellPoints(summoning->maxSpellPoints());
+            summoning->staminaPoints(summoning->maxStaminaPoints());
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void summonCreature(object owner)
+{
+    object summoning = clone_object("/lib/realizations/summoning.c");
+
+    int personaLevel = member(specificationData, "persona level") ?
+        specificationData["persona level"] : 0;
+
+    summoning->SetUpPersonaOfLevel(specificationData["persona"],
+        personaLevel);
+    summoning->Name(specificationData["persona"]);
+    summoning->setLeader(owner);
+    owner->registerEvent(summoning);
+    summoning->setProperty(program_name(this_object()), owner->RealName());
+    setSummoningModifiers(summoning, owner);
+    move_object(summoning, environment(owner));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int getNumberToSummon(object owner)
+{
+    int numberToSummon = member(specificationData, "number to summon") ?
+        specificationData["number to summon"] : 1;
+
+    int availableToSummon =
+        member(specificationData, "maximum that can be summoned") ?
+        specificationData["maximum that can be summoned"] : numberToSummon;
+
+    int currentlySummoned = owner->getParty() ?
+        sizeof(filter(owner->getParty()->members(1),
+            (: ($1 && $1->queryProperty(program_name(this_object())) == $2) :),
+            owner->RealName())) : 0;
+
+    if ((availableToSummon - currentlySummoned) < numberToSummon)
+    {
+        numberToSummon = availableToSummon - currentlySummoned;
+    }
+
+    return (numberToSummon > 0) ? numberToSummon : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int executeOnSelf(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 0;
 
-    if (member(specificationData, "persona"))
+    int numberToSummon = getNumberToSummon(owner);
+
+    if (member(specificationData, "persona") && numberToSummon)
     {
         ret = 1;
-        object summoning = clone_object("/lib/realizations/summoning.c");
-
-        int personaLevel = member(specificationData, "persona level") ?
-            specificationData["persona level"] : 0;
-
-        summoning->SetUpPersonaOfLevel(specificationData["persona"], 
-            personaLevel);
-        summoning->setLeader(owner);
-        summoning->registerEvent(owner);
-
-        if (member(specificationData, "modifiers"))
+        for (int i = 0; i < numberToSummon; i++)
         {
-            object dictionary = getDictionary("research");
-            object modifierObj = 0;
-            foreach(string research in specificationData["modifiers"])
-            {
-                if (owner->isResearched(research))
-                {
-                    foreach(mapping modifier in
-                        specificationData["modifiers"][research])
-                    {
-                        modifierObj = modifierObject(summoning, modifierObj);
-                        setSummoningModifier(modifierObj, summoning, modifier);
-                    }
-                }
-            }
-            if (modifierObj)
-            {
-                modifierObj->registerModifierWithTargetList(({ summoning }));
-                summoning->hitPoints(summoning->maxHitPoints());
-                summoning->spellPoints(summoning->maxSpellPoints());
-                summoning->staminaPoints(summoning->maxStaminaPoints());
-            }
+            summonCreature(owner);
         }
-        move_object(summoning, environment(owner));
     }
 
     if (ret && member(specificationData, "use ability message") &&
