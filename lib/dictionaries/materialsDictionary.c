@@ -1232,8 +1232,7 @@ private nomask string *bonusList(object item)
         "bonus spell points", "bonus stamina points", "bonus heal hit points rate",
         "bonus heal hit points", "bonus heal spell points", "bonus hit points",
         "bonus heal spell points rate", "bonus heal stamina",
-        "bonus heal stamina rate", "bonus defense class", "bonus damage", 
-        "bonus weapon attack" });
+        "bonus heal stamina rate", "bonus damage", "bonus weapon attack" });
 
     if (item->query("weapon type"))
     {

@@ -16,6 +16,14 @@ public void reset(int arg)
             "knowledge of how to create songs structured as a pair of verse/chorus "
             "sections");
 
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "bard",
+                "value": 5
+            ]));
+        addPrerequisite("guilds/bard/compositions/abab.c",
+            (["type":"research"]));
+
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("spell point cost", 25);

@@ -15,10 +15,18 @@ public void reset(int arg)
         addSpecification("description", "This research provides the user with the "
             "knowledge of how to create songs structured as simple 32-bar ballads.");
 
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "bard",
+                "value": 5
+            ]));
+        addPrerequisite("guilds/bard/compositions/aaa.c",
+            (["type":"research"]));
+
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
-        addSpecification("stamina point cost", 25);
+        addSpecification("spell point cost", 35);
+        addSpecification("stamina point cost", 35);
 
         addSpecification("segments", ({
             (["intro": ({ "instrumental rhythm", "instrumental solo" })]),

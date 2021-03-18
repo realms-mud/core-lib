@@ -16,10 +16,18 @@ public void reset(int arg)
             "knowledge of how to create songs structured in a free-form manner - "
             "meaning that the only rule is that there are no rules.");
 
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "bard",
+                "value": 21
+            ]));
+        addPrerequisite("guilds/bard/compositions/abacbaa.c",
+            (["type":"research"]));
+
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
-        addSpecification("stamina point cost", 25);
+        addSpecification("spell point cost", 100);
+        addSpecification("stamina point cost", 100);
 
         addSpecification("segments", ({
             (["section": ({ "lyric", "chorus lyric", "instrumental rhythm",

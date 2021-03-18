@@ -972,6 +972,12 @@ public nomask int hasActiveCompositeResearch()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getActiveCompositeResearch()
+{
+    return activeCompositeResearch ? (activeCompositeResearch + ([])) : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object activeCompositeResearch()
 {
     object ret = 0;

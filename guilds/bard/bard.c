@@ -46,7 +46,7 @@ public void SetupGuild()
 
     addCriteria("initial research points", ([
         "type":"research points",
-        "apply": "2 at level 1"
+        "apply": "5 at level 1"
     ]));
 
     addCriteria("research points", ([
@@ -63,6 +63,12 @@ public void SetupGuild()
         "type": "research",
         "apply": "at level 1",
         "research object": "guilds/bard/compositions/compose-song.c"
+    ]));
+
+    addCriteria("stop performance", ([
+        "type": "research",
+        "apply": "at level 1",
+        "research object": "guilds/bard/compositions/stop-performance.c"
     ]));
 
     addCriteria("bows", ([

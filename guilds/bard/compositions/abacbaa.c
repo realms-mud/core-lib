@@ -17,10 +17,18 @@ public void reset(int arg)
             "instrumental, a verse, pre-chorus, chorus, a bridge, a verse "
             "breakdown, a chorus, and an outro.");
 
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "bard",
+                "value": 15
+            ]));
+        addPrerequisite("guilds/bard/compositions/ababcb.c",
+            (["type":"research"]));
+
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
-        addSpecification("stamina point cost", 25);
+        addSpecification("spell point cost", 75);
+        addSpecification("stamina point cost", 75);
 
         addSpecification("segments", ({ 
             (["chorus 1": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
