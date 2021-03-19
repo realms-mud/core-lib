@@ -9,10 +9,16 @@ private void FirstLevel()
 {
     addResearchElement("guilds/bard/compositions/aaa.c");
     addResearchElement("guilds/bard/compositions/inspiring-lyrics.c");
+    addResearchElement("guilds/bard/compositions/demoralizing-lyrics.c");
+    addResearchElement("guilds/bard/compositions/a-rats-serenade.c");
 
     addChild("guilds/bard/compositions/aaa.c",
         "guilds/bard/compositions/root.c");
     addChild("guilds/bard/compositions/inspiring-lyrics.c",
+        "guilds/bard/compositions/root.c");
+    addChild("guilds/bard/compositions/demoralizing-lyrics.c",
+        "guilds/bard/compositions/root.c");
+    addChild("guilds/bard/compositions/a-rats-serenade.c",
         "guilds/bard/compositions/root.c");
 }
 
@@ -35,6 +41,15 @@ private void ThirdLevel()
         "guilds/bard/compositions/aaa.c");
     addChild("guilds/bard/compositions/abac.c",
         "guilds/bard/compositions/aaa.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FourthLevel()
+{
+    addResearchElement("guilds/bard/compositions/rous.c");
+
+    addChild("guilds/bard/compositions/rous.c",
+        "guilds/bard/compositions/a-rats-serenade.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -67,13 +82,19 @@ private void EighthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
+    addResearchElement("guilds/bard/compositions/silver-tongue.c");
 
+    addChild("guilds/bard/compositions/silver-tongue.c",
+        "guilds/bard/compositions/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TenthLevel()
 {
+    addResearchElement("guilds/bard/compositions/king-rodent.c");
 
+    addChild("guilds/bard/compositions/king-rodent.c",
+        "guilds/bard/compositions/rous.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -232,6 +253,7 @@ public void reset(int arg)
         FirstLevel();
         SecondLevel();
         ThirdLevel();
+        FourthLevel();
         FifthLevel();
         SeventhLevel();
         EighthLevel();

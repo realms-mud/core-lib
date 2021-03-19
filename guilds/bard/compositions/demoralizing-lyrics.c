@@ -10,17 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Inspiring Lyrics");
+        addSpecification("name", "Demoralizing Lyrics");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "I'll tell you a tale that is terribly true...");
+            "'Twas a day full of malfeance...");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of creating basic inspirational lyrics for songs. These "
-            "provide a boost to all allies' morale and combat abilities.");
+            "knowledge of creating basic demoralizing lyrics for songs. These "
+            "provide a penalty to all foes' morale and combat abilities.");
 
         addPrerequisite("singing",
             ([  "type": "skill",
@@ -51,7 +51,7 @@ public void reset(int arg)
                 "rate": 0.05
             ]), 
             ([
-                "type":"attribute",
+                "type": "attribute",
                 "name": "charisma",
                 "formula": "additive",
                 "rate": 0.05
@@ -64,13 +64,13 @@ public void reset(int arg)
 
         addSpecification("spell point cost", 15);
 
-        addSpecification("bonus attack", 2);
-        addSpecification("bonus defense", 1);
-        addSpecification("bonus damage", 1);
+        addSpecification("penalty to attack", 2);
+        addSpecification("penalty to defense", 1);
+        addSpecification("penalty to damage", 1);
 
         addSpecification("duration", 20);
 
-        addSpecification("event handler", "inspiringLyricEvent");
-        addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");
+        addSpecification("event handler", "demoralizingLyricEvent");
+        addSpecification("use composite message", "##InitiatorName## poetically ##Infinitive::lilt##, '##CompositeSegment##'");
     }
 }
