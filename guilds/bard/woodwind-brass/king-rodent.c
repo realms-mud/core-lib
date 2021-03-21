@@ -10,24 +10,24 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Rodents of Unusual Size");
+        addSpecification("name", "King Rodent");
         addSpecification("source", "bard");
         addSpecification("description", "This research attunes the "
-            "'A Rat's Serenade' research to bring forth only the "
-            "largest of rats.");
+            "'A Rat's Serenade' research to bring forth king-sized "
+            "rats.");
 
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "bard",
-            "value": 4
+            "value": 10
         ]));
 
-        addPrerequisite("guilds/bard/compositions/a-rats-serenade.c",
+        addPrerequisite("guilds/bard/woodwind-brass/rous.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("related research", ({
-            "guilds/bard/compositions/a-rats-serenade.c" }));
+            "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
     }
 }

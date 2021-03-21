@@ -10,15 +10,16 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Silver Tongue");
+        addSpecification("name", "The Inner Muse");
         addSpecification("source", "bard");
-        addSpecification("description", "This skill provides the user with "
-            "knowledge on how to make their lyrical content more poignant "
-            "and therefore, more powerful.");
+        addSpecification("description", "This provides the user with "
+            "a keen knowledge of their performing prowess, providing an "
+            "increase to the speed at which they can begin their next "
+            "performance.");
 
         addPrerequisite("level",
             (["type":"level",
-                "guild": "Aegis Guard",
+                "guild": "bard",
                 "value": 9
             ]));
         addPrerequisite("guilds/bard/compositions/root.c",
@@ -27,9 +28,8 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "Inspiring Lyrics": 100,
-            "Demoralizing Lyrics": 100,
+            "Musical Compositions": 10
         ]));
-        addSpecification("affected research type", "percentage");
+        addSpecification("affected research type", "decrease cooldown");
     }
 }

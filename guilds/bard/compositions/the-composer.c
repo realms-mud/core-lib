@@ -10,24 +10,26 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "King Rodent");
+        addSpecification("name", "The Composer");
         addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'A Rat's Serenade' research to bring forth king-sized "
-            "rats.");
+        addSpecification("description", "This provides the user with "
+            "a keen knowledge of their performing prowess, providing an "
+            "increase to the speed at which they can begin their next "
+            "performance.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 10
-        ]));
-
-        addPrerequisite("guilds/bard/compositions/rous.c",
+        addPrerequisite("level",
+            (["type":"level",
+                "guild": "bard",
+                "value": 25
+            ]));
+        addPrerequisite("guilds/bard/compositions/the-troubador.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/compositions/a-rats-serenade.c" }));
+        addSpecification("affected research", ([
+            "Musical Compositions": 15
+        ]));
+        addSpecification("affected research type", "decrease cooldown");
     }
 }

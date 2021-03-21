@@ -26,13 +26,13 @@ public void reset(int arg)
             ([  "type": "skill",
                 "value": 5
             ]));
-        addPrerequisite("guilds/bard/compositions/root.c",
+        addPrerequisite("guilds/bard/lyrics/root.c",
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/compositions/silver-tongue.c",
+                "research item": "guilds/bard/lyrics/silver-tongue.c",
                 "name": "silver-tongue",
                 "formula": "multiplicative",
                 "base value": 1,

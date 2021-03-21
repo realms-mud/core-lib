@@ -16,11 +16,6 @@ public void reset(int arg)
             "knowledge of composing and playing songs that can provide "
             "complex effects.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: plucked", "instrument: bowed",
-                "instrument: woodwind", "instrument: brass",
-                "instrument: percussion" }) ]));
-
         addSpecification("composite rules", ([
             "template must be one of": ({
                 "guilds/bard/compositions/aaa.c",
@@ -34,6 +29,14 @@ public void reset(int arg)
                 "guilds/bard/compositions/verse-chorus-bridge.c",
                 "guilds/bard/compositions/verse-pre-chorus.c",
             }),
+        ]));
+
+        addSpecification("cooldown", 60);
+        addSpecification("cooldown modifiers", ([
+            "guilds/bard/compositions/the-inner-muse.c": 10,
+            "guilds/bard/compositions/the-minstrel.c": 10,
+            "guilds/bard/compositions/the-troubador.c": 15,
+            "guilds/bard/compositions/the-composer.c": 15,
         ]));
 
         addSpecification("scope", "area");

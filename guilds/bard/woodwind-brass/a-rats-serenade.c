@@ -22,7 +22,7 @@ public void reset(int arg)
             "knowledge of a rat-summoning arpeggio that can be played with "
             "woodwind and brass instruments.");
 
-        addPrerequisite("guilds/bard/compositions/root.c",
+        addPrerequisite("guilds/bard/woodwind-brass/root.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({ 
@@ -33,7 +33,7 @@ public void reset(int arg)
         addSpecification("persona", "rat");
 
         addSpecification("modifiers", ([
-            "guilds/bard/compositions/rous.c":({
+            "guilds/bard/woodwind-brass/rous.c":({
                 (["modifier": "bonus strength",
                    "value": 3]),
                 (["modifier": "bonus dexterity",
@@ -45,7 +45,7 @@ public void reset(int arg)
                 (["modifier":"bonus hit points",
                    "value" : 100]),
             }),
-            "guilds/bard/compositions/king-rodent.c":({
+            "guilds/bard/woodwind-brass/king-rodent.c":({
                 (["modifier": "bonus attack",
                    "value": 10 ]),
                 (["modifier": "bonus damage",

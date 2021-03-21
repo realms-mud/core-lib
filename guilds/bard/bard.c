@@ -94,4 +94,28 @@ public void SetupGuild()
         "apply": "at level 1",
         "research tree": "guilds/bard/compositions.c"
     ]));
+
+    addCriteria("lyrics", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/lyrics.c"
+    ]));
+
+    addCriteria("strings", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/strings.c"
+    ]));
+
+    addCriteria("woodwind-brass", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/woodwind-brass.c"
+    ]));
+
+    addCriteria("percussion", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/bard/percussion.c"
+    ]));
 }
