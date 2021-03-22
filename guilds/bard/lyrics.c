@@ -43,13 +43,13 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    addResearchElement("guilds/bard/lyrics/daedruns-lament.c");
+    addResearchElement("guilds/bard/lyrics/daedruns-fury.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void EighthLevel()
-{
-
+    addChild("guilds/bard/lyrics/daedruns-lament.c",
+        "guilds/bard/lyrics/root.c");
+    addChild("guilds/bard/lyrics/daedruns-fury.c",
+        "guilds/bard/lyrics/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,10 @@ private void SixteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventeenthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/daedruns-might.c");
 
+    addChild("guilds/bard/lyrics/daedruns-might.c",
+        "guilds/bard/lyrics/daedruns-lament.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -130,7 +133,10 @@ private void TwentyFifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
+    addResearchElement("guilds/bard/lyrics/daedruns-sorrow.c");
 
+    addChild("guilds/bard/lyrics/daedruns-sorrow.c",
+        "guilds/bard/lyrics/daedruns-might.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -166,7 +172,10 @@ private void ThirtyFifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtySeventhLevel()
 {
+    addResearchElement("guilds/bard/lyrics/daedruns-regret.c");
 
+    addChild("guilds/bard/lyrics/daedruns-regret.c",
+        "guilds/bard/lyrics/daedruns-sorrow.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -184,7 +193,10 @@ private void FortyFifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FortySeventhLevel()
 {
+    addResearchElement("guilds/bard/lyrics/daedruns-despair.c");
 
+    addChild("guilds/bard/lyrics/daedruns-despair.c",
+        "guilds/bard/lyrics/daedruns-regret.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -217,7 +229,6 @@ public void reset(int arg)
         FourthLevel();
         FifthLevel();
         SeventhLevel();
-        EighthLevel();
         NinthLevel();
         TenthLevel();
         EleventhLevel();
