@@ -47,7 +47,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/lyrics/daedruns-sorrow.c",
-                "name": "daedruns-might",
+                "name": "daedruns-sorrow",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
@@ -55,7 +55,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/lyrics/daedruns-regret.c",
-                "name": "daedruns-might",
+                "name": "daedruns-regret",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
@@ -63,10 +63,18 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/lyrics/daedruns-despair.c",
-                "name": "daedruns-might",
+                "name": "daedruns-despair",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/compositions/aaba.c",
+                "name": "aaba",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.1
             ]),
             ([
                 "type": "skill",

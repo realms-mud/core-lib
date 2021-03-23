@@ -17,27 +17,21 @@ private void FirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void SecondLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("guilds/bard/lyrics/muses-melody.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourthLevel()
-{
-
+    addChild("guilds/bard/lyrics/muses-melody.c",
+        "guilds/bard/lyrics/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/lay-of-landros.c");
 
+    addChild("guilds/bard/lyrics/lay-of-landros.c",
+        "guilds/bard/lyrics/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -64,37 +58,37 @@ private void NinthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TenthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/tune-of-the-muse.c");
 
+    addChild("guilds/bard/lyrics/tune-of-the-muse.c",
+        "guilds/bard/lyrics/muses-melody.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EleventhLevel()
 {
+    addResearchElement("guilds/bard/lyrics/duelers-dance.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwelfthLevel()
-{
-
+    addChild("guilds/bard/lyrics/duelers-dance.c",
+        "guilds/bard/lyrics/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirteenthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/song-for-aelin.c");
 
+    addChild("guilds/bard/lyrics/song-for-aelin.c",
+        "guilds/bard/lyrics/lay-of-landros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/a-rhyme-of-the-deep.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
+    addChild("guilds/bard/lyrics/a-rhyme-of-the-deep.c",
+        "guilds/bard/lyrics/lay-of-landros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,25 +103,37 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/archers-jig.c");
+    addResearchElement("guilds/bard/lyrics/axemans-song.c");
+    addResearchElement("guilds/bard/lyrics/macemans-melody.c");
+    addResearchElement("guilds/bard/lyrics/swordmasters-serenade.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyFirstLevel()
-{
-
+    addChild("guilds/bard/lyrics/archers-jig.c",
+        "guilds/bard/lyrics/duelers-dance.c");
+    addChild("guilds/bard/lyrics/axemans-song.c",
+        "guilds/bard/lyrics/duelers-dance.c");
+    addChild("guilds/bard/lyrics/macemans-melody.c",
+        "guilds/bard/lyrics/duelers-dance.c");
+    addChild("guilds/bard/lyrics/swordmasters-serenade.c",
+        "guilds/bard/lyrics/duelers-dance.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
+    addResearchElement("guilds/bard/lyrics/danse-macabre.c");
 
+    addChild("guilds/bard/lyrics/danse-macabre.c",
+        "guilds/bard/lyrics/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/boon-of-landros.c");
 
+    addChild("guilds/bard/lyrics/boon-of-landros.c",
+        "guilds/bard/lyrics/a-rhyme-of-the-deep.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -140,33 +146,21 @@ private void TwentySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwentyNinthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtyFirstLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
+    addResearchElement("guilds/bard/lyrics/boneflower.c");
 
+    addChild("guilds/bard/lyrics/boneflower.c",
+        "guilds/bard/lyrics/danse-macabre.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFifthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/day-is-coming.c");
 
+    addChild("guilds/bard/lyrics/day-is-coming.c",
+        "guilds/bard/lyrics/boon-of-landros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -181,13 +175,19 @@ private void ThirtySeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
+    addResearchElement("guilds/bard/lyrics/ballad-of-the-bones.c");
 
+    addChild("guilds/bard/lyrics/ballad-of-the-bones.c",
+        "guilds/bard/lyrics/boneflower.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FortyFifthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/bloods-depth.c");
 
+    addChild("guilds/bard/lyrics/bloods-depth.c",
+        "guilds/bard/lyrics/day-is-coming.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -202,13 +202,10 @@ private void FortySeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FiftyFifthLevel()
 {
+    addResearchElement("guilds/bard/lyrics/into-the-dream.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixtyFifthLevel()
-{
-
+    addChild("guilds/bard/lyrics/into-the-dream.c",
+        "guilds/bard/lyrics/bloods-depth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -224,27 +221,19 @@ public void reset(int arg)
         TreeRoot("guilds/bard/lyrics/root.c");
 
         FirstLevel();
-        SecondLevel();
         ThirdLevel();
-        FourthLevel();
         FifthLevel();
         SeventhLevel();
         NinthLevel();
         TenthLevel();
         EleventhLevel();
-        TwelfthLevel();
         ThirteenthLevel();
         FifteenthLevel();
-        SixteenthLevel();
         SeventeenthLevel();
         NineteenthLevel();
-        TwentyFirstLevel();
         TwentyThirdLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-        ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();
         ThirtySeventhLevel();
@@ -252,6 +241,5 @@ public void reset(int arg)
         FortyFifthLevel();
         FortySeventhLevel();
         FiftyFifthLevel();
-        SixtyFifthLevel();
     }
 }

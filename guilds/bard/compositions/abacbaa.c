@@ -42,6 +42,14 @@ public void reset(int arg)
             (["outro": ({ "instrumental rhythm", "instrumental solo" })]),
         }));   
 
-        addSpecification("event handler", "verseChorusEvent");
+        addSpecification("event handler", "abacbaaEvent");
+        addSpecification("affected research", ([
+            "Dueler's Dance": 10,
+            "Archer's Jig": 10,
+            "Axeman's Song": 10,
+            "Maceman's Melody": 10,
+            "Swordmaster's Serenade": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

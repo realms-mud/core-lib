@@ -10,23 +10,27 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Demoralizing Lyrics");
+        addSpecification("name", "Muse's Melody");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "'Twas a day full of malfeance...");
+            "My weary eyes have seen the pains of this wretched life...");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of creating basic demoralizing lyrics for songs. These "
-            "provide a penalty to all foes' morale and combat abilities.");
+            "knowledge of creating basic healing lyrics for songs. These "
+            "provide a boost to all allies' rates of healing.");
 
+        addPrerequisite("level", 
+            (["type": "level", 
+              "guild": "bard",
+              "value": 3 ]));
         addPrerequisite("singing",
             ([  "type": "skill",
                 "value": 5
             ]));
-        addPrerequisite("guilds/bard/lyrics/root.c",
+        addPrerequisite("guilds/bard/lyrics/inspiring-lyrics.c",
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
@@ -40,8 +44,8 @@ public void reset(int arg)
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/compositions/abac.c",
-                "name": "abac",
+                "research item": "guilds/bard/compositions/aaba.c",
+                "name": "aaba",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
@@ -59,7 +63,7 @@ public void reset(int arg)
                 "rate": 0.05
             ]), 
             ([
-                "type": "attribute",
+                "type":"attribute",
                 "name": "charisma",
                 "formula": "additive",
                 "rate": 0.05
@@ -70,15 +74,15 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 15);
+        addSpecification("spell point cost", 25);
 
-        addSpecification("penalty to attack", 2);
-        addSpecification("penalty to defense", 1);
-        addSpecification("penalty to damage", 1);
+        addSpecification("bonus heal hit points rate", 25);
+        addSpecification("bonus heal spell points rate", 25);
+        addSpecification("bonus heal stamina rate", 25);
 
         addSpecification("duration", 20);
 
-        addSpecification("event handler", "demoralizingLyricEvent");
-        addSpecification("use composite message", "##InitiatorName## poetically ##Infinitive::lilt##, '##CompositeSegment##'");
+        addSpecification("event handler", "inspiringLyricEvent");
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");
     }
 }

@@ -10,21 +10,25 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Inspiring Lyrics");
+        addSpecification("name", "Swordmaster's Serenade");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "I'll tell you a tale that is terribly true...");
+            "I'll slice you from the navel to the nape!");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of creating basic inspirational lyrics for songs. These "
-            "provide a boost to all allies' morale and combat abilities.");
+            "knowledge of the great balladeer Reinlen's combat-driven songs. This "
+            "lyric provides a boost to all allies' sword-swinging abilities.");
 
+        addPrerequisite("level", 
+            (["type": "level", 
+              "guild": "bard",
+              "value": 19 ]));
         addPrerequisite("singing",
             ([  "type": "skill",
-                "value": 5
+                "value": 15
             ]));
         addPrerequisite("guilds/bard/lyrics/root.c",
             (["type":"research"]));
@@ -32,19 +36,19 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/silver-tongue.c",
-                "name": "silver-tongue",
-                "formula": "multiplicative",
-                "base value": 1,
-                "rate": 2.0
-            ]),
-            ([
-                "type": "research",
-                "research item": "guilds/bard/compositions/aaba.c",
-                "name": "aaba",
+                "research item": "guilds/bard/compositions/abacbaa.c",
+                "name": "abacbaa",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
+            ]),
+            ([
+                "type": "highest skill",
+                "name" : "sword skills",
+                "skills": ({ "dagger", "short sword", "long sword", 
+                    "hand and a half sword", "two-handed sword" }),
+                "formula" : "additive",
+                "rate" : 0.5
             ]),
             ([
                 "type": "skill",
@@ -59,6 +63,30 @@ public void reset(int arg)
                 "rate": 0.05
             ]), 
             ([
+                "type": "skill",
+                "name": "acrobatics",
+                "formula": "additive",
+                "rate": 0.05
+            ]),
+            ([
+                "type": "skill",
+                "name": "anatomy and physiology",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "physics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "mathematics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
                 "type":"attribute",
                 "name": "charisma",
                 "formula": "additive",
@@ -70,11 +98,13 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 15);
+        addSpecification("spell point cost", 35);
 
-        addSpecification("bonus attack", 2);
-        addSpecification("bonus defense", 1);
-        addSpecification("bonus damage", 1);
+        addSpecification("bonus dagger", 10);
+        addSpecification("bonus long sword", 10);
+        addSpecification("bonus short sword", 10);
+        addSpecification("bonus hand and a half sword", 10);
+        addSpecification("bonus two-handed sword", 10);
 
         addSpecification("duration", 20);
 

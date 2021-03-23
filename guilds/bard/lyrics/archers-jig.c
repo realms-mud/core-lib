@@ -10,21 +10,25 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Demoralizing Lyrics");
+        addSpecification("name", "Archer's Jig");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "'Twas a day full of malfeance...");
+            "Shaft is loaded. Your doom is now here!");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of creating basic demoralizing lyrics for songs. These "
-            "provide a penalty to all foes' morale and combat abilities.");
+            "knowledge of the great balladeer Reinlen's combat-driven songs. This "
+            "lyric provides a boost to all allies' bow and crossbow abilities.");
 
+        addPrerequisite("level", 
+            (["type": "level", 
+              "guild": "bard",
+              "value": 19 ]));
         addPrerequisite("singing",
             ([  "type": "skill",
-                "value": 5
+                "value": 15
             ]));
         addPrerequisite("guilds/bard/lyrics/root.c",
             (["type":"research"]));
@@ -32,19 +36,18 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/silver-tongue.c",
-                "name": "silver-tongue",
-                "formula": "multiplicative",
-                "base value": 1,
-                "rate": 2.0
-            ]),
-            ([
-                "type": "research",
-                "research item": "guilds/bard/compositions/abac.c",
-                "name": "abac",
+                "research item": "guilds/bard/compositions/abacbaa.c",
+                "name": "abacbaa",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
+            ]),
+            ([
+                "type": "highest skill",
+                "name" : "sword skills",
+                "skills": ({ "bow", "crossbow", }),
+                "formula" : "additive",
+                "rate" : 0.5
             ]),
             ([
                 "type": "skill",
@@ -59,7 +62,31 @@ public void reset(int arg)
                 "rate": 0.05
             ]), 
             ([
-                "type": "attribute",
+                "type": "skill",
+                "name": "acrobatics",
+                "formula": "additive",
+                "rate": 0.05
+            ]),
+            ([
+                "type": "skill",
+                "name": "anatomy and physiology",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "physics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "mathematics",
+                "formula": "additive",
+                "rate": 0.10
+            ]),
+            ([
+                "type":"attribute",
                 "name": "charisma",
                 "formula": "additive",
                 "rate": 0.05
@@ -70,15 +97,14 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 15);
+        addSpecification("spell point cost", 35);
 
-        addSpecification("penalty to attack", 2);
-        addSpecification("penalty to defense", 1);
-        addSpecification("penalty to damage", 1);
+        addSpecification("bonus bow", 10);
+        addSpecification("bonus crossbow", 10);
 
         addSpecification("duration", 20);
 
-        addSpecification("event handler", "demoralizingLyricEvent");
-        addSpecification("use composite message", "##InitiatorName## poetically ##Infinitive::lilt##, '##CompositeSegment##'");
+        addSpecification("event handler", "inspiringLyricEvent");
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");
     }
 }

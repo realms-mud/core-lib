@@ -785,6 +785,9 @@ private nosave mapping creatureBlueprints = ([
             "claw": 5,
             "sonic": 5,
         ]),
+        "research": ([
+            "sonic-blast": 5,
+        ]),
         "base hit points": 35,
         "base spell points" : 20,
         "base stamina points" : 20

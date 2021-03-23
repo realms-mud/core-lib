@@ -36,5 +36,13 @@ public void reset(int arg)
             (["verse 3": ({ "lyric", "instrumental rhythm" }) ])
         }));            
         addSpecification("event handler", "aabaEvent");
+
+        addSpecification("affected research", ([
+            "Inspiring Lyrics": 10,
+            "Muse's Melody": 10,
+            "Tune of the Muse": 10,
+            "Daedrun's Fury": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

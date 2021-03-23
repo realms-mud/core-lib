@@ -357,29 +357,32 @@ public nomask varargs int spellPoints(int increase)
 {
     if(intp(increase) && (increase != 0))
     {
-        spellPoints += increase;
-
         object inventory = getService("inventory");
         if(increase > 0)
         {
             if(inventory)
             {
-                spellPoints += inventory->inventoryGetModifier("guildModifiers",
+                increase += inventory->inventoryGetModifier("guildModifiers",
                     "bonus recover spell points");
             }
             
-            spellPoints += calculateServiceBonuses("RecoverSpellPoints");
+            increase += calculateServiceBonuses("RecoverSpellPoints");
         }
         else
         {
             if(inventory)
             {
-                spellPoints += inventory->inventoryGetModifier("guildModifiers",
+                increase += inventory->inventoryGetModifier("guildModifiers",
                     "bonus reduce spell points");
             }
             
-            spellPoints += calculateServiceBonuses("ReduceSpellPoints");
+            increase += calculateServiceBonuses("ReduceSpellPoints");
+            if (increase > 0)
+            {
+                increase = 0;
+            }
         }
+        spellPoints += increase;
         
         combatNotification("onSpellPointsChanged");
     }
@@ -461,29 +464,32 @@ public nomask varargs int staminaPoints(int increase)
 {
     if(intp(increase) && (increase != 0))
     {
-        staminaPoints += increase;
-
         object inventory = getService("inventory");
         if(increase > 0)
         {
             if(inventory)
             {
-                staminaPoints += inventory->inventoryGetModifier("guildModifiers",
+                increase += inventory->inventoryGetModifier("guildModifiers",
                     "bonus recover stamina points");
             }
             
-            staminaPoints += calculateServiceBonuses("RecoverStaminaPoints");
+            increase += calculateServiceBonuses("RecoverStaminaPoints");
         }
         else
         {
             if(inventory)
             {
-                staminaPoints += inventory->inventoryGetModifier("guildModifiers",
+                increase += inventory->inventoryGetModifier("guildModifiers",
                     "bonus reduce stamina points");
             }
             
-            staminaPoints += calculateServiceBonuses("ReduceStaminaPoints");
-        }        
+            increase += calculateServiceBonuses("ReduceStaminaPoints");
+            if (increase > 0)
+            {
+                increase = 0;
+            }
+        }    
+        staminaPoints += increase;
         combatNotification("onStaminaPointsChanged");       
     }
     if (staminaPoints > maxStaminaPoints())

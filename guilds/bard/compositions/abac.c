@@ -36,5 +36,11 @@ public void reset(int arg)
             (["bridge": ({ "lyric", "instrumental rhythm" })]),
         }));
         addSpecification("event handler", "abacEvent");
+
+        addSpecification("affected research", ([
+            "Demoralizing Lyrics": 10,
+            "Daedrun's Lament": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

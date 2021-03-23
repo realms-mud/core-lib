@@ -11,6 +11,7 @@ protected nomask int addSpecification(string type, mixed value)
     switch(type)
     {
         case "number to summon":
+        case "percent chance for magical equipment":
         case "persona level":
         case "maximum that can be summoned":
         {
@@ -151,6 +152,17 @@ private nomask void summonCreature(object owner)
 
     summoning->SetUpPersonaOfLevel(specificationData["persona"],
         personaLevel);
+    summoning->setUpRandomEquipment(member(specificationData,
+        "percent chance for magical equipment") ? specificationData[
+        "percent chance for magical equipment"] : 0);
+    object *equipment = all_inventory(summoning);
+    if (sizeof(all_inventory(summoning)))
+    {
+        foreach(object item in all_inventory(summoning))
+        {
+            item->set("undroppable", 1);
+        }
+    }
     summoning->Name(specificationData["persona"]);
     summoning->setLeader(owner);
     owner->registerEvent(summoning);

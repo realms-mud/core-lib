@@ -10,68 +10,75 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Daedrun's Lament");
+        addSpecification("name", "Lay of Landros");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
         addSpecification("default composite description", 
-            "Let the ice descend on the weak and the broken...");
+            "In the darkest hour, you're not alone...");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of Daedrun's Lament, a lyrical style of potent magic "
-            "that crushes a foe's defenses.");
-
-        addPrerequisite("singing",
-            ([  "type": "skill",
-                "value": 7
-            ]));
+            "knowledge of creating Landros the Skald's famous power well "
+            "effects. With these, allied creatures do not require as many "
+            "spell or stamina points to use abilities.");
 
         addPrerequisite("level", 
-            (["type":"level", 
+            (["type": "level", 
               "guild": "bard",
-              "value": 7 ]));
-
-        addPrerequisite("guilds/bard/lyrics/demoralizing-lyric.c",
+              "value": 5 ]));
+        addPrerequisite("singing",
+            ([  "type": "skill",
+                "value": 10
+            ]));
+        addPrerequisite("guilds/bard/lyrics/root.c",
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/daedruns-might.c",
-                "name": "daedruns-might",
+                "research item": "guilds/bard/lyrics/a-rhyme-of-the-deep.c",
+                "name": "rhyme of the deep",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 2.0
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/daedruns-sorrow.c",
-                "name": "daedruns-might",
+                "research item": "guilds/bard/lyrics/boon-of-landros.c",
+                "name": "boon-of-landros",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/daedruns-regret.c",
-                "name": "daedruns-might",
+                "research item": "guilds/bard/lyrics/day-is-coming.c",
+                "name": "day-is-coming",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/lyrics/daedruns-despair.c",
-                "name": "daedruns-might",
+                "research item": "guilds/bard/lyrics/bloods-depth.c",
+                "name": "bloods-depth",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/compositions/abac.c",
-                "name": "abac",
+                "research item": "guilds/bard/lyrics/into-the-dream.c",
+                "name": "into-the-dream",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.5
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/compositions/simple-ballad.c",
+                "name": "simple-ballad",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
@@ -80,6 +87,7 @@ public void reset(int arg)
                 "type": "skill",
                 "name": "singing",
                 "formula": "additive",
+                "base value": 10,
                 "rate": 0.05
             ]),
             ([
@@ -89,7 +97,13 @@ public void reset(int arg)
                 "rate": 0.05
             ]), 
             ([
-                "type":"attribute",
+                "type": "skill",
+                "name": "spellcraft",
+                "formula": "additive",
+                "rate": 0.05
+            ]), 
+            ([
+                "type": "attribute",
                 "name": "charisma",
                 "formula": "additive",
                 "rate": 0.05
@@ -100,33 +114,14 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 40);
+        addSpecification("spell point cost", 25);
 
-        addSpecification("penalty to defense", 1);
-        addSpecification("penalty to resist acid", 2);
-        addSpecification("penalty to resist air", 2);
-        addSpecification("penalty to resist chaos", 2);
-        addSpecification("penalty to resist cold", 2);
-        addSpecification("penalty to resist disease", 2);
-        addSpecification("penalty to resist earth", 2);
-        addSpecification("penalty to resist electricity", 2);
-        addSpecification("penalty to resist energy", 2);
-        addSpecification("penalty to resist evil", 2);
-        addSpecification("penalty to resist fire", 2);
-        addSpecification("penalty to resist good", 2);
-        addSpecification("penalty to resist magical", 2);
-        addSpecification("penalty to resist neutral", 2);
-        addSpecification("penalty to resist paralysis", 2);
-        addSpecification("penalty to resist physical", 2);
-        addSpecification("penalty to resist poison", 2);
-        addSpecification("penalty to resist psionic", 2);
-        addSpecification("penalty to resist sonic", 2);
-        addSpecification("penalty to resist undead", 2);
-        addSpecification("penalty to resist water", 2);
+        addSpecification("bonus reduce spell points", 5);
+        addSpecification("bonus reduce stamina points", 5);
 
         addSpecification("duration", 20);
 
-        addSpecification("event handler", "daedrunsLyricEvent");
-        addSpecification("use composite message", "##InitiatorName## ##Infinitive::intone##, '##CompositeSegment##'");
+        addSpecification("event handler", "layLyricEvent");
+        addSpecification("use composite message", "##InitiatorName## rhythmically ##Infinitive::chant##, '##CompositeSegment##'");
     }
 }

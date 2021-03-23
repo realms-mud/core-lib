@@ -37,5 +37,10 @@ public void reset(int arg)
         }));            
 
         addSpecification("event handler", "verseChorusEvent");
+
+        addSpecification("affected research", ([
+            "Strength of summoned creatures": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

@@ -38,5 +38,12 @@ public void reset(int arg)
         }));   
 
         addSpecification("event handler", "simpleBalladEvent");
+
+        addSpecification("affected research", ([
+            "Lay of Landros": 10,
+            "Song for Aelin": 10,
+            "Ballad of Mynstra": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }
