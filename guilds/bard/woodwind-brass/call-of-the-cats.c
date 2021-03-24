@@ -10,11 +10,11 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Mephits of Malice");
+        addSpecification("name", "Call of the Cats");
         addSpecification("source", "bard");
         addSpecification("description", "This research attunes the "
-            "'Pan's Mephit' and 'Majesty's Mephit' research to "
-            "bring forth only more capable mephits.");
+            "'The Wailing Cat' research to "
+            "bring forth only the mightiest of animals.");
 
         addSpecification("limited by", ([
             "equipment": ({ "instrument: woodwind", "instrument: brass" }) ]));
@@ -22,18 +22,16 @@ public void reset(int arg)
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "bard",
-            "value": 7
+            "value": 19
         ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/pans-mephit.c",
+        addPrerequisite("guilds/bard/woodwind-brass/creatures-of-might.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("related research", ({
-            "guilds/bard/woodwind-brass/pans-mephit.c",
-            "guilds/bard/woodwind-brass/majestys-mephit.c",
-            "guilds/bard/woodwind-brass/minstrels-muse.c",
-       }));
+            "guilds/bard/woodwind-brass/the-wailing-cat.c",
+        }));
     }
 }

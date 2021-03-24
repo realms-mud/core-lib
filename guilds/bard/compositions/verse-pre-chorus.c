@@ -37,6 +37,16 @@ public void reset(int arg)
             (["chorus 2": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
         }));   
 
-        addSpecification("event handler", "verseChorusEvent");
+        addSpecification("event handler", "versePreChorusEvent");
+
+        addSpecification("affected research", ([
+            "Snare of the Soldier": 10,
+            "Percussive Blast": 10,
+            "Drums of Doom": 10,
+            "Drums of Dedication": 10,
+            "Beat of the Broken": 10,
+            "Mystic Rhythms": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

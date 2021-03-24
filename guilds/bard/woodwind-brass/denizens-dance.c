@@ -10,10 +10,10 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Denizen's Dance");
+        addSpecification("name", "Dexterous Denizens");
         addSpecification("source", "bard");
         addSpecification("description", "This research attunes the "
-            "'Creatures of the Forest' and 'The Wailing Cat' research to "
+            "sundry creature summoning arpeggio research to "
             "bring forth only the mightiest of animals.");
 
         addSpecification("limited by", ([
@@ -25,7 +25,7 @@ public void reset(int arg)
             "value": 23
         ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/creatures-of-might.c",
+        addPrerequisite("guilds/bard/woodwind-brass/denizens-dance.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
@@ -34,6 +34,7 @@ public void reset(int arg)
             "guilds/bard/woodwind-brass/creatures-of-the-forest.c",
             "guilds/bard/woodwind-brass/the-wailing-cat.c",
             "guilds/bard/woodwind-brass/ballad-of-the-bear.c",
+            "guilds/bard/woodwind-brass/ursine-tune.c",
         }));
     }
 }

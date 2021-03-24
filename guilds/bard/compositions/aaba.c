@@ -38,10 +38,7 @@ public void reset(int arg)
         addSpecification("event handler", "aabaEvent");
 
         addSpecification("affected research", ([
-            "Inspiring Lyrics": 10,
-            "Muse's Melody": 10,
-            "Tune of the Muse": 10,
-            "Daedrun's Fury": 10,
+            "Strength of summoned creatures": 10,
         ]));
         addSpecification("affected research type", "percentage");
     }

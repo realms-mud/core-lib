@@ -124,9 +124,9 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
         if(modifier && member(specificationData, "duration"))
         {
             ret = modifier->registerModifierWithTargetList(({ owner }));
-
             if(ret)
             {
+                move_object(modifier, owner);
                 call_out("deactivateModifierObject", specificationData["duration"],
                     modifier);
             }

@@ -148,7 +148,8 @@ private nomask void summonCreature(object owner)
     object summoning = clone_object("/lib/realizations/summoning.c");
 
     int personaLevel = member(specificationData, "persona level") ?
-        specificationData["persona level"] : 0;
+        specificationData["persona level"] : 
+        owner->guildLevel(query("source"));
 
     summoning->SetUpPersonaOfLevel(specificationData["persona"],
         personaLevel);

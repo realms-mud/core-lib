@@ -933,7 +933,7 @@ private nosave mapping equipmentEnchantments =
             "evocation": (["type":"skill", "value": 10]),
         ]),
         "effects": ([
-            "bonus weapon attack":1,
+            "bonus weapon attack": 1,
         ]),
         "rune": "eihwaz",
         "description": "",

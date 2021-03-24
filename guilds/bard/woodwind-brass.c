@@ -112,7 +112,13 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/call-of-the-cats.c");
+    addResearchElement("guilds/bard/woodwind-brass/flight-of-the-fox.c");
 
+    addChild("guilds/bard/woodwind-brass/call-of-the-cats.c",
+        "guilds/bard/woodwind-brass/creatures-of-might.c");
+    addChild("guilds/bard/woodwind-brass/flight-of-the-fox.c",
+        "guilds/bard/woodwind-brass/creatures-of-might.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,73 +142,55 @@ private void TwentyThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/bears-dance.c");
 
+    addChild("guilds/bard/woodwind-brass/bears-dance.c",
+        "guilds/bard/woodwind-brass/creatures-of-might.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/a-mephits-ballad.c");
 
+    addChild("guilds/bard/woodwind-brass/a-mephits-ballad.c",
+        "guilds/bard/woodwind-brass/lay-of-mephias.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/dexterous-denizens.c");
 
+    addChild("guilds/bard/woodwind-brass/dexterous-denizens.c",
+        "guilds/bard/woodwind-brass/denizens-dance.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/ursine-tune.c");
 
+    addChild("guilds/bard/woodwind-brass/ursine-tune.c",
+        "guilds/bard/woodwind-brass/ballad-of-the-bear.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/march-of-the-mephits.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtySeventhLevel()
-{
-
+    addChild("guilds/bard/woodwind-brass/march-of-the-mephits.c",
+        "guilds/bard/woodwind-brass/a-mephits-ballad.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
+    addResearchElement("guilds/bard/woodwind-brass/minstrels-muse.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FortyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FortySeventhLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FiftyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixtyFifthLevel()
-{
-
+    addChild("guilds/bard/woodwind-brass/minstrels-muse.c",
+        "guilds/bard/woodwind-brass/majestys-mephit.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -236,12 +224,6 @@ public void reset(int arg)
         TwentyNinthLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
         FortyThirdLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
-        FiftyFifthLevel();
-        SixtyFifthLevel();
     }
 }

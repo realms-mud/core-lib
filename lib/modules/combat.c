@@ -1044,32 +1044,34 @@ public nomask mapping *getAttacks()
                     }
                 }
             }
+        }
 
-            object *modifiers = inventory->registeredInventoryObjects();
+        object *modifiers = inventory->registeredInventoryObjects();
 
-            if (modifiers && pointerp(modifiers) && sizeof(modifiers))
+        if (modifiers && pointerp(modifiers) && sizeof(modifiers))
+        {
+            object attacksDictionary = getDictionary("attacks");
+            if (attacksDictionary && function_exists("validAttackTypes",
+                attacksDictionary))
             {
-                object attacksDictionary = getDictionary("attacks");
-                if (attacksDictionary && function_exists("validAttackTypes",
-                    attacksDictionary))
-                {
-                    string *attackList = attacksDictionary->validAttackTypes();
+                string *attackList = attacksDictionary->validAttackTypes();
 
-                    foreach(object modifier in modifiers)
+                foreach(object modifier in modifiers)
+                {
+                    foreach(string attack in attackList)
                     {
-                        foreach(string attack in attackList)
-                        {
-                            if (modifier->query(sprintf("bonus %s attack", attack)))
-                                attacksToReturn += ({ (["attack type":attack,
-                                    "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
-                                    "damage" : modifier->query(sprintf("bonus %s attack", attack))
-                            ]) });
-                        }
-                        if (modifier->query("bonus weapon attack") && inventory->equipmentInSlot("wielded primary"))
-                        {
-                            int numAttacks = modifier->query("bonus weapon attack");
-                            attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
-                        }
+                        if (modifier->query(sprintf("bonus %s attack", attack)))
+                            attacksToReturn += ({ (["attack type": attack,
+                                "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
+                                "damage" : modifier->query(sprintf("bonus %s attack", attack))
+                        ]) });
+                    }
+                    if (modifier->query("bonus weapon attack") && 
+                        inventory->equipmentInSlot("wielded primary") &&
+                        !allowOnlyOneAttack)
+                    {
+                        int numAttacks = modifier->query("bonus weapon attack");
+                        attacksToReturn += getWeaponAttacksFromBonus(numAttacks);
                     }
                 }
             }
@@ -2024,7 +2026,7 @@ static nomask void combatHeartBeat()
             {
                 if (foe && !member(hostileList, foe))
                 {
-                    hostileList[foe] = (["time":time()]);
+                    hostileList[foe] = (["time": time()]);
                 }
             }
         }
@@ -2042,6 +2044,11 @@ static nomask void combatHeartBeat()
         if (song && song->songIsQueued(this_object()))
         {
             song->playSong(this_object(), instrument);
+        }
+
+        if (sizeof(getAttacks()) > 1)
+        {
+            attack(attacker);
         }
     }
     else if(attacker)

@@ -33,6 +33,7 @@ public void reset(int arg)
         addSpecification("related research", ({
             "guilds/bard/woodwind-brass/pans-mephit.c",
             "guilds/bard/woodwind-brass/majestys-mephit.c",
+            "guilds/bard/woodwind-brass/minstrels-muse.c",
         }));
     }
 }

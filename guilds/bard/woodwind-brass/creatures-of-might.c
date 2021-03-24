@@ -36,6 +36,7 @@ public void reset(int arg)
             "guilds/bard/woodwind-brass/creatures-of-the-forest.c",
             "guilds/bard/woodwind-brass/the-wailing-cat.c",
             "guilds/bard/woodwind-brass/ballad-of-the-bear.c",
+            "guilds/bard/woodwind-brass/ursine-tune.c",
         }));
     }
 }

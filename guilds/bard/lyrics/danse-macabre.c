@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
-        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite type", "chorus lyric");
         addSpecification("default composite description", 
             "In skull forest, life has fled. Now I come to summon the dead.");
 
@@ -28,9 +28,6 @@ public void reset(int arg)
             ]));
         addPrerequisite("guilds/bard/lyrics/root.c",
             (["type":"research"]));
-
-        addSpecification("limited by", (["equipment":({ 
-            "instrument: woodwind", "instrument: brass" })]));
 
         addSpecification("number to summon", 2);
         addSpecification("persona level", 20);

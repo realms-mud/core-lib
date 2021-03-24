@@ -929,6 +929,7 @@ public nomask mapping getNextCompositeResearchElement()
         }
         else
         {
+            activeCompositeResearch = 0;
             m_delete(selectedItem, "current item in sequence");
         }
     }

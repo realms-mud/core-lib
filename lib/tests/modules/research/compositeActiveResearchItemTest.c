@@ -67,8 +67,8 @@ void Setup()
     User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
 
     Friend = clone_object("/lib/realizations/henchman.c");
-    Friend->Name("Bob");
-    Friend->addAlias("bob");
+    Friend->Name("Earl");
+    Friend->addAlias("earl");
     Friend->Str(20);
     Friend->Int(20);
     Friend->Dex(20);
@@ -179,6 +179,58 @@ void CanExecuteCompositeActiveResearch()
     ExpectEq(0, User->caughtMessage());
 
     ExpectFalse(compositeResearch->executeCompositeResearch(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanGiveBonusAttackTypes()
+{
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
+
+    mapping research = ([
+        "alias": "attack",
+        "constraint": "lib/tests/support/research/compositeRoot.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "elements": ({
+            ([ "research": "lib/tests/support/research/compositeResearchItemG.c",
+                "type": "Verse 1",
+                "description": "Sing me a song tonight.",
+                "order in sequence": 1
+            ]),
+            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+                "type": "Verse 1",
+                "description": "Oh, sing me a song of the weasels, man.",
+                "order in sequence": 2
+            ]),
+        })
+    ]);
+    object instrument =
+        clone_object("/lib/instances/items/instruments/strings/lute.c");
+    move_object(instrument, User);
+    command("equip lute", User);
+
+    ExpectTrue(User->setCompositeResearch("Weasel Blast",
+        research));
+
+    ExpectFalse(User->hasActiveCompositeResearch());
+
+    command("perform Weasel Blast", User);
+    ExpectEq("You begin to play a song...\n", User->caughtMessage());
+    ExpectTrue(User->hasActiveCompositeResearch());
+
+    object compositeResearch = 
+        load_object("lib/tests/support/research/compositeRoot.c");
+
+    ExpectEq(1, sizeof(User->getAttacks()));
+    ExpectEq(1, sizeof(Friend->getAttacks()));
+    ExpectEq(1, sizeof(Target->getAttacks()));
+
+    User->heart_beat();
+    ExpectEq("You riff, 'Sing me a song tonight.'\n", 
+        User->caughtMessage());
+
+    ExpectEq(2, sizeof(User->getAttacks()));
+    ExpectEq(1, sizeof(Friend->getAttacks()));
+    ExpectEq(1, sizeof(Target->getAttacks()));
 }
 
 /////////////////////////////////////////////////////////////////////////////

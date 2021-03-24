@@ -7,85 +7,88 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
+    addResearchElement("guilds/bard/percussion/snare-of-the-soldier.c");
 
+    addChild("guilds/bard/percussion/snare-of-the-soldier.c",
+        "guilds/bard/percussion/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
+    addResearchElement("guilds/bard/percussion/percussive-blast.c");
 
+    addChild("guilds/bard/percussion/percussive-blast.c",
+        "guilds/bard/percussion/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("guilds/bard/percussion/drums-of-doom.c");
+    addResearchElement("guilds/bard/percussion/drums-of-dedication.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourthLevel()
-{
-
+    addChild("guilds/bard/percussion/drums-of-doom.c",
+        "guilds/bard/percussion/root.c");
+    addChild("guilds/bard/percussion/drums-of-dedication.c",
+        "guilds/bard/percussion/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
+    addResearchElement("guilds/bard/percussion/beat-of-the-broken.c");
 
+    addChild("guilds/bard/percussion/beat-of-the-broken.c",
+        "guilds/bard/percussion/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    addResearchElement("guilds/bard/percussion/double-time.c");
+    addResearchElement("guilds/bard/percussion/slow-dance.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void EighthLevel()
-{
-
+    addChild("guilds/bard/percussion/double-time.c",
+        "guilds/bard/percussion/drums-of-dedication.c");
+    addChild("guilds/bard/percussion/slow-dance.c",
+        "guilds/bard/percussion/drums-of-doom.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
+    addResearchElement("guilds/bard/percussion/mystic-rhythms.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TenthLevel()
-{
-
+    addChild("guilds/bard/percussion/mystic-rhythms.c",
+        "guilds/bard/percussion/beat-of-the-broken.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EleventhLevel()
 {
+    addResearchElement("guilds/bard/percussion/keeping-time.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwelfthLevel()
-{
-
+    addChild("guilds/bard/percussion/keeping-time.c",
+        "guilds/bard/percussion/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirteenthLevel()
 {
+    addResearchElement("guilds/bard/percussion/metered-malaise.c");
 
+    addChild("guilds/bard/percussion/metered-malaise.c",
+        "guilds/bard/percussion/slow-dance.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
+    addResearchElement("guilds/bard/percussion/fell-beat.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
+    addChild("guilds/bard/percussion/fell-beat.c",
+        "guilds/bard/percussion/drums-of-dedication.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +106,10 @@ private void NineteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFirstLevel()
 {
+    addResearchElement("guilds/bard/percussion/advanced-timing.c");
 
+    addChild("guilds/bard/percussion/advanced-timing.c",
+        "guilds/bard/percussion/keeping-time.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -131,15 +137,12 @@ private void TwentyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/bard/percussion/modulated-timing.c");
 
+    addChild("guilds/bard/percussion/modulated-timing.c",
+        "guilds/bard/percussion/advanced-timing.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -161,6 +164,15 @@ private void ThirtySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement("guilds/bard/percussion/fibonacci-timing.c");
+
+    addChild("guilds/bard/percussion/fibonacci-timing.c",
+        "guilds/bard/percussion/modulated-timing.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
 
@@ -179,9 +191,12 @@ private void FortySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void FiftyFifthLevel()
+private void FiftyFirstLevel()
 {
+    addResearchElement("guilds/bard/percussion/golden-measures.c");
 
+    addChild("guilds/bard/percussion/golden-measures.c",
+        "guilds/bard/percussion/fibonacci-timing.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -205,17 +220,12 @@ public void reset(int arg)
         FirstLevel();
         SecondLevel();
         ThirdLevel();
-        FourthLevel();
         FifthLevel();
         SeventhLevel();
-        EighthLevel();
         NinthLevel();
-        TenthLevel();
         EleventhLevel();
-        TwelfthLevel();
         ThirteenthLevel();
         FifteenthLevel();
-        SixteenthLevel();
         SeventeenthLevel();
         NineteenthLevel();
         TwentyFirstLevel();
@@ -223,15 +233,15 @@ public void reset(int arg)
         TwentyFifthLevel();
         TwentySeventhLevel();
         TwentyNinthLevel();
-        ThirtiethLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();
         ThirtySeventhLevel();
+        FortyFirstLevel();
         FortyThirdLevel();
         FortyFifthLevel();
         FortySeventhLevel();
-        FiftyFifthLevel();
+        FiftyFirstLevel();
         SixtyFifthLevel();
     }
 }

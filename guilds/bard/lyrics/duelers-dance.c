@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
-        addSpecification("composite type", "lyric");
+        addSpecification("composite type", "chorus lyric");
         addSpecification("default composite description", 
             "'Tis a dodgy fellow, full of grace.");
 

@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
-        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite type", "instrumental solo");
         addSpecification("default composite description", 
             "simple Ab7 arpeggio");
 
@@ -77,6 +77,26 @@ public void reset(int arg)
                    "value": 20 ]),
                 (["modifier":"bonus spell points",
                    "value" : 100 ]),
+            }),
+            "guilds/bard/woodwind-brass/a-mephits-ballad.c":({
+                (["modifier": "bonus attack",
+                   "value": 8 ]),
+                (["modifier":"bonus defense",
+                   "value": 8 ]),
+                (["modifier": "bonus damage",
+                   "value": 5 ]),
+                (["modifier":"bonus soak",
+                   "value": 5 ]),
+            }),
+            "guilds/bard/woodwind-brass/march-of-the-mephits.c":({
+                (["modifier": "bonus heal hit points",
+                   "value": 10 ]),
+                (["modifier":"bonus heal spell points",
+                   "value": 10 ]),
+                (["modifier": "bonus heal hit points rate",
+                   "value": 5 ]),
+                (["modifier":"bonus heal spell points rate",
+                   "value": 5 ]),
             }),
         ]));
 

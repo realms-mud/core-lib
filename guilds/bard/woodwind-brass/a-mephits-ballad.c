@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Mephits of Malice");
+        addSpecification("name", "A Mephit's Ballad");
         addSpecification("source", "bard");
         addSpecification("description", "This research attunes the "
             "'Pan's Mephit' and 'Majesty's Mephit' research to "
@@ -22,10 +22,10 @@ public void reset(int arg)
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "bard",
-            "value": 7
+            "value": 27
         ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/pans-mephit.c",
+        addPrerequisite("guilds/bard/woodwind-brass/lay-of-mephias.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
@@ -34,6 +34,6 @@ public void reset(int arg)
             "guilds/bard/woodwind-brass/pans-mephit.c",
             "guilds/bard/woodwind-brass/majestys-mephit.c",
             "guilds/bard/woodwind-brass/minstrels-muse.c",
-       }));
+        }));
     }
 }

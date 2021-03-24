@@ -234,6 +234,27 @@ void GetAttacksReturnsOnlyOneAttackWhenInstrumentWielded()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void GetAttacksReturnsBonusAttackWhenInstrumentWieldedAndBonusInPlace()
+{
+    object instrument =
+        clone_object("/lib/instances/items/instruments/strings/lute.c");
+    move_object(instrument, Attacker);
+    ExpectTrue(instrument->equip("lute"), "instrument equip called");
+
+    object modifier = clone_object("/lib/items/modifierObject");
+    modifier->set("fully qualified name", "blah");
+    modifier->set("bonus sonic attack", 25);
+    modifier->set("registration list", ({ Attacker }));
+
+    Attacker->ToggleMockGuilds();
+    Attacker->ToggleMockResearch();
+    Attacker->ToggleMockTrait();
+    Attacker->ToggleMockBiological();
+    Attacker->ToggleMockBackground();
+    ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attacks returned");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GetAttacksWhenDualWieldedReturnsHalfExtraWeaponAttacksFromServices()
 {
     object weapon = CreateWeapon("blah");

@@ -10,30 +10,33 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Mephits of Malice");
+        addSpecification("name", "Golden Measures");
         addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'Pan's Mephit' and 'Majesty's Mephit' research to "
-            "bring forth only more capable mephits.");
+        addSpecification("description", "This research increases the "
+            "effectiveness of the various drumming techniques.");
 
         addSpecification("limited by", ([
-            "equipment": ({ "instrument: woodwind", "instrument: brass" }) ]));
+            "equipment": ({ "instrument: percussion" }) ]));
 
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "bard",
-            "value": 7
+            "value": 51
         ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/pans-mephit.c",
+        addPrerequisite("guilds/bard/percussion/fibonacci-timing.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/woodwind-brass/pans-mephit.c",
-            "guilds/bard/woodwind-brass/majestys-mephit.c",
-            "guilds/bard/woodwind-brass/minstrels-muse.c",
-       }));
+        addSpecification("affected research", ([
+            "Snare of the Soldier": 25,
+            "Percussive Blast": 25,
+            "Drums of Doom": 25,
+            "Drums of Dedication": 25,
+            "Beat of the Broken": 25,
+            "Mystic Rhythms": 25,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
-        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite type", "instrumental solo");
         addSpecification("default composite description", 
             "simple A7m3 arpeggio");
 
@@ -78,14 +78,34 @@ public void reset(int arg)
                 (["modifier":"bonus spell points",
                    "value" : 200 ]),
             }),
+            "guilds/bard/woodwind-brass/a-mephits-ballad.c":({
+                (["modifier": "bonus attack",
+                   "value": 8 ]),
+                (["modifier":"bonus defense",
+                   "value": 8 ]),
+                (["modifier": "bonus damage",
+                   "value": 5 ]),
+                (["modifier":"bonus soak",
+                   "value": 5 ]),
+            }),
+            "guilds/bard/woodwind-brass/march-of-the-mephits.c":({
+                (["modifier": "bonus heal hit points",
+                   "value": 10 ]),
+                (["modifier":"bonus heal spell points",
+                   "value": 10 ]),
+                (["modifier": "bonus heal hit points rate",
+                   "value": 5 ]),
+                (["modifier":"bonus heal spell points rate",
+                   "value": 5 ]),
+            }),
         ]));
 
         addSpecification("scope", "area");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 50);
-        addSpecification("stamina point cost", 50);
+        addSpecification("spell point cost", 125);
+        addSpecification("stamina point cost", 100);
 
         addSpecification("event handler", "pansMephitEvent");
         addSpecification("use composite message", "##InitiatorName## "

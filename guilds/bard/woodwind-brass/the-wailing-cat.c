@@ -25,6 +25,12 @@ public void reset(int arg)
         addPrerequisite("guilds/bard/woodwind-brass/root.c",
             (["type":"research"]));
 
+        addPrerequisite("level", ([  
+            "type":"level",
+            "guild": "bard",
+            "value": 3
+        ]));
+
         addSpecification("limited by", ([
             "equipment":({ "instrument: woodwind", "instrument: brass" }),
             "environment": ({ "keeper's temple", "tol-dhurath", "city",
@@ -63,6 +69,24 @@ public void reset(int arg)
                    "value": 10 ]),
                 (["modifier":"bonus hit points",
                    "value" : 300]),
+            }),
+            "guilds/bard/woodwind-brass/call-of-the-cats.c":({
+                (["modifier": "bonus heal hit points",
+                   "value": 10 ]),
+                (["modifier":"bonus heal spell points",
+                   "value": 10 ]),
+                (["modifier": "bonus heal hit points rate",
+                   "value": 5 ]),
+                (["modifier":"bonus heal spell points rate",
+                   "value": 5 ]),
+            }),
+            "guilds/bard/woodwind-brass/dexterous-denizens.c":({
+                (["modifier": "bonus dexterity",
+                   "value": 6 ]),
+                (["modifier":"bonus dodge",
+                   "value": 10 ]),
+                (["modifier":"bonus no armor",
+                   "value": 10 ]),
             }),
         ]));
 

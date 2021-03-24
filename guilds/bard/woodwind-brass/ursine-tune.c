@@ -10,22 +10,22 @@ public void reset(int arg)
     if (!arg)
     {
         summoningResearchItem::reset(arg);
-        addSpecification("name", "Ballad of the Bear");
+        addSpecification("name", "Ursine Tune");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental solo");
         addSpecification("default composite description", 
-            "Gb7 arpeggio");
+            "Dm7 arpeggio");
 
         addSpecification("description", "This skill provides the user with the "
-            "knowledge of a bear-summoning arpeggio that can be played with "
+            "knowledge of a great-bear-summoning arpeggio that can be played with "
             "woodwind and brass instruments.");
 
         addPrerequisite("level", ([  
             "type":"level",
             "guild": "bard",
-            "value": 11
+            "value": 31
         ]));
 
         addPrerequisite("guilds/bard/woodwind-brass/root.c",
@@ -41,8 +41,7 @@ public void reset(int arg)
 
         addSpecification("number to summon", 1);
         addSpecification("maximum that can be summoned", 2);
-        addSpecification("persona level", 11);
-        addSpecification("persona", "black bear");
+        addSpecification("persona", "brown bear");
 
         addSpecification("modifiers", ([
             "guilds/bard/woodwind-brass/creatures-of-might.c":({

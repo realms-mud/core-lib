@@ -22,6 +22,12 @@ public void reset(int arg)
             "knowledge of a fox-summoning arpeggio that can be played with "
             "woodwind and brass instruments.");
 
+        addPrerequisite("level", ([  
+            "type":"level",
+            "guild": "bard",
+            "value": 3
+        ]));
+
         addPrerequisite("guilds/bard/woodwind-brass/root.c",
             (["type":"research"]));
 
@@ -60,6 +66,24 @@ public void reset(int arg)
                    "value": 10 ]),
                 (["modifier":"bonus hit points",
                    "value" : 300]),
+            }),
+            "guilds/bard/woodwind-brass/flight-of-the-fox.c":({
+                (["modifier": "bonus heal hit points",
+                   "value": 10 ]),
+                (["modifier":"bonus heal spell points",
+                   "value": 10 ]),
+                (["modifier": "bonus heal hit points rate",
+                   "value": 5 ]),
+                (["modifier":"bonus heal spell points rate",
+                   "value": 5 ]),
+            }),
+            "guilds/bard/woodwind-brass/dexterous-denizens.c":({
+                (["modifier": "bonus dexterity",
+                   "value": 6 ]),
+                (["modifier":"bonus dodge",
+                   "value": 10 ]),
+                (["modifier": "bonus no armor",
+                   "value": 10 ]),
             }),
         ]));
 
