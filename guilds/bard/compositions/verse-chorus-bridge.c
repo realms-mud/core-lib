@@ -37,7 +37,14 @@ public void reset(int arg)
             (["bridge": ({ "lyric", "instrumental rhythm" })]),
             (["chorus 3": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
         }));   
-
         addSpecification("event handler", "verseChorusBridgeEvent");
+        addSpecification("affected research", ([
+            "Counterspell Knell": 10,
+            "Blast Beat": 10,
+            "Blessing of Bhelac": 10,
+            "Bhelac's Tune": 10,
+            "Rhythm of Landros": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }

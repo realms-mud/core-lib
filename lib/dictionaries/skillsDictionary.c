@@ -428,7 +428,7 @@ private mapping skills = ([
             "instruments covered by this skill include the mandolin, ukulele, "
             "guitar, bass guitar, and harp.\n"
     ]),
-     "instrument: bowed": ([
+    "instrument: bowed": ([
         "type": "crafting",
         "attribute": "charisma",
         "bonus calculator": "one for two",
@@ -439,7 +439,7 @@ private mapping skills = ([
             "Other instruments covered by this skill include the cello, "
             "fiddle, viola, hurdy-gurdy, and bass.\n"
     ]),
-   "instrument: woodwind": ([
+    "instrument: woodwind": ([
         "type": "crafting",
         "attribute": "charisma",
         "bonus calculator": "one for two",

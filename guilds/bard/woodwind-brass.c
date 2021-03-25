@@ -199,7 +199,7 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("Musical Compositions");
+        Name("Woodwind/Brass Components for Compositions");
         Description("");
         Source("bard");
         addResearchElement("guilds/bard/woodwind-brass/root.c");

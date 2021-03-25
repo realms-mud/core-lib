@@ -94,13 +94,19 @@ private void FifteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventeenthLevel()
 {
+    addResearchElement("guilds/bard/percussion/counterspell-knell.c");
 
+    addChild("guilds/bard/percussion/counterspell-knell.c",
+        "guilds/bard/percussion/fell-beat.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/bard/percussion/blessing-of-bhelac.c");
 
+    addChild("guilds/bard/percussion/blessing-of-bhelac.c",
+        "guilds/bard/percussion/counterspell-knell.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,25 +121,28 @@ private void TwentyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
+    addResearchElement("guilds/bard/percussion/beat-of-baxeros.c");
 
+    addChild("guilds/bard/percussion/beat-of-baxeros.c",
+        "guilds/bard/percussion/fell-beat.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/bard/percussion/blast-beat.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentySeventhLevel()
-{
-
+    addChild("guilds/bard/percussion/blast-beat.c",
+        "guilds/bard/percussion/counterspell-knell.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
+    addResearchElement("guilds/bard/percussion/bhelacs-tune.c");
 
+    addChild("guilds/bard/percussion/bhelacs-tune.c",
+        "guilds/bard/percussion/blessing-of-bhelac.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -148,19 +157,19 @@ private void ThirtyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
+    addResearchElement("guilds/bard/percussion/baxeros-meter.c");
 
+    addChild("guilds/bard/percussion/baxeros-meter.c",
+        "guilds/bard/percussion/beat-of-baxeros.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFifthLevel()
 {
+    addResearchElement("guilds/bard/percussion/rhythm-of-landros.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtySeventhLevel()
-{
-
+    addChild("guilds/bard/percussion/rhythm-of-landros.c",
+        "guilds/bard/percussion/counterspell-knell.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -175,19 +184,10 @@ private void FortyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
+    addResearchElement("guilds/bard/percussion/duotime-drive.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FortyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FortySeventhLevel()
-{
-
+    addChild("guilds/bard/percussion/duotime-drive.c",
+        "guilds/bard/percussion/baxeros-meter.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -200,9 +200,12 @@ private void FiftyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void SixtyFifthLevel()
+private void FiftyThirdLevel()
 {
+    addResearchElement("guilds/bard/percussion/percussion-mastery.c");
 
+    addChild("guilds/bard/percussion/percussion-mastery.c",
+        "guilds/bard/percussion/duotime-drive.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -211,7 +214,7 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("Musical Compositions");
+        Name("Percussive Components for Compositions");
         Description("");
         Source("bard");
         addResearchElement("guilds/bard/percussion/root.c");
@@ -231,17 +234,13 @@ public void reset(int arg)
         TwentyFirstLevel();
         TwentyThirdLevel();
         TwentyFifthLevel();
-        TwentySeventhLevel();
         TwentyNinthLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();
-        ThirtySeventhLevel();
         FortyFirstLevel();
         FortyThirdLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
         FiftyFirstLevel();
-        SixtyFifthLevel();
+        FiftyThirdLevel();
     }
 }

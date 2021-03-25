@@ -7,25 +7,19 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
+    addResearchElement("guilds/bard/strings/riff-of-report.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SecondLevel()
-{
-
+    addChild("guilds/bard/strings/riff-of-report.c",
+        "guilds/bard/strings/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("guilds/bard/strings/coronach-of-capitulation.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourthLevel()
-{
-
+    addChild("guilds/bard/strings/coronach-of-capitulation.c",
+        "guilds/bard/strings/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,23 +31,14 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    addResearchElement("guilds/bard/strings/hammer-ons-and-pull-offs.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void EighthLevel()
-{
-
+    addChild("guilds/bard/strings/hammer-ons-and-pull-offs.c",
+        "guilds/bard/strings/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TenthLevel()
 {
 
 }
@@ -65,15 +50,12 @@ private void EleventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwelfthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirteenthLevel()
 {
+    addResearchElement("guilds/bard/strings/string-bending.c");
 
+    addChild("guilds/bard/strings/string-bending.c",
+        "guilds/bard/strings/hammer-ons-and-pull-offs.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -83,27 +65,30 @@ private void FifteenthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void SeventeenthLevel()
 {
+    addResearchElement("guilds/bard/strings/requiem-of-release.c");
 
+    addChild("guilds/bard/strings/requiem-of-release.c",
+        "guilds/bard/strings/riff-of-report.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
+    addResearchElement("guilds/bard/strings/slide-techniques.c");
 
+    addChild("guilds/bard/strings/slide-techniques.c",
+        "guilds/bard/strings/string-bending.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFirstLevel()
 {
+    addResearchElement("guilds/bard/strings/dirge-of-the-damned.c");
 
+    addChild("guilds/bard/strings/dirge-of-the-damned.c",
+        "guilds/bard/strings/coronach-of-capitulation.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -115,7 +100,10 @@ private void TwentyThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyFifthLevel()
 {
+    addResearchElement("guilds/bard/strings/string-skipping.c");
 
+    addChild("guilds/bard/strings/string-skipping.c",
+        "guilds/bard/strings/slide-techniques.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -131,15 +119,12 @@ private void TwentyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
+    addResearchElement("guilds/bard/strings/finger-picking.c");
 
+    addChild("guilds/bard/strings/finger-picking.c",
+        "guilds/bard/strings/string-skipping.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -196,26 +181,20 @@ public void reset(int arg)
     if (!arg)
     {
         researchTree::reset(arg);
-        Name("Musical Compositions");
+        Name("Stringed Components for Compositions");
         Description("");
         Source("bard");
         addResearchElement("guilds/bard/strings/root.c");
         TreeRoot("guilds/bard/strings/root.c");
 
         FirstLevel();
-        SecondLevel();
         ThirdLevel();
-        FourthLevel();
         FifthLevel();
         SeventhLevel();
-        EighthLevel();
         NinthLevel();
-        TenthLevel();
         EleventhLevel();
-        TwelfthLevel();
         ThirteenthLevel();
         FifteenthLevel();
-        SixteenthLevel();
         SeventeenthLevel();
         NineteenthLevel();
         TwentyFirstLevel();
@@ -223,7 +202,6 @@ public void reset(int arg)
         TwentyFifthLevel();
         TwentySeventhLevel();
         TwentyNinthLevel();
-        ThirtiethLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();

@@ -33,6 +33,11 @@ public void reset(int arg)
             (["section": ({ "lyric", "chorus lyric", "instrumental rhythm",
                 "instrumental solo" })]),
         }));  
-        addSpecification("event handler", "aaaEvent");
+
+        addSpecification("affected research", ([
+            "Counterspell Knell": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
+        addSpecification("event handler", "freeformEvent");
     }
 }

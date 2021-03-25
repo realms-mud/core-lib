@@ -40,6 +40,14 @@ public void reset(int arg)
             (["chorus 3": ({ "lyric", "chorus lyric", "instrumental rhythm" })]),
             (["outro": ({ "instrumental rhythm", "instrumental solo" })]),
         }));   
-        addSpecification("event handler", "verseChorusEvent");
+        addSpecification("event handler", "ABABCBEvent");
+
+        addSpecification("affected research", ([
+            "Riff of Report": 10,
+            "Coronach of Capitulation": 10,
+            "Requiem of Release": 10,
+            "Dirge of the Damned": 10,
+        ]));
+        addSpecification("affected research type", "percentage");
     }
 }
