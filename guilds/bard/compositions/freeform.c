@@ -35,7 +35,11 @@ public void reset(int arg)
         }));  
 
         addSpecification("affected research", ([
-            "Counterspell Knell": 10,
+            "Elegy of Energy": 10,
+            "Enchanting Ostinato": 10,
+            "Tune of Temerity": 10,
+            "Sanguine Solo": 10,
+            "Raena's Lament": 10,
         ]));
         addSpecification("affected research type", "percentage");
         addSpecification("event handler", "freeformEvent");

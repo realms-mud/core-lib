@@ -35,8 +35,8 @@ public void reset(int arg)
         addSpecification("cooldown modifiers", ([
             "guilds/bard/compositions/the-inner-muse.c": 10,
             "guilds/bard/compositions/the-minstrel.c": 10,
-            "guilds/bard/compositions/the-troubador.c": 15,
-            "guilds/bard/compositions/the-composer.c": 15,
+            "guilds/bard/compositions/the-troubador.c": 10,
+            "guilds/bard/compositions/the-composer.c": 10,
         ]));
 
         addSpecification("scope", "area");

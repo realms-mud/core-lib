@@ -10,17 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Coronach of Capitulation");
+        addSpecification("name", "Raena's Lament");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
-        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite type", "instrumental solo");
         addSpecification("default composite description", 
-            "Gm7b3 arpeggio");
+            "riff going from Cm7 to Abm7b3");
 
         addSpecification("description", "This research provides the user "
-            "knowledge of creating searing riffs that cause mana "
-            "and stamina damage to all nearby enemies.");
+            "knowledge of creating searing riffs that cause sonic "
+            "damage to all nearby enemies.");
 
         addSpecification("scope", "area");
         addSpecification("research type", "points");
@@ -29,85 +29,140 @@ public void reset(int arg)
         addPrerequisite("level", 
             (["type": "level", 
               "guild": "bard",
-              "value": 3 ]));
+              "value": 45 ]));
 
         addSpecification("limited by", ([
             "equipment":({ "instrument: plucked", "instrument: bowed" }),
         ]));
 
-        addPrerequisite("guilds/bard/strings/root.c",
+        addPrerequisite("guilds/bard/strings/raenas-rhythm.c",
             (["type":"research"]));
 
-        addSpecification("spell point cost", 15);
-        addSpecification("damage spell points", ({ 
-            ([
-                "probability": 80,
-                "base damage": 5,
-                "range": 5
+        addSpecification("spell point cost", 450);
+        addSpecification("damage hit points", ({ ([
+                "probability": 90,
+                "base damage": 150,
+                "range": 250
             ]),
             ([
-                "probability": 20,
-                "base damage": 10,
-                "range": 10
-            ]),
+                "probability": 10,
+                "base damage": 250,
+                "range": 600
+            ])
         }));
-        addSpecification("damage stamina points", ({ 
-            ([
-                "probability": 80,
-                "base damage": 5,
-                "range": 5
+        addSpecification("damage spell points", ({ ([
+                "probability":90,
+                "base damage": 100,
+                "range": 100
             ]),
             ([
-                "probability": 20,
-                "base damage": 10,
-                "range": 10
-            ]),
+                "probability": 10,
+                "base damage": 200,
+                "range": 200
+            ])
         }));
+
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/strings/hammer-ons-and-pull-offs.c",
-                "name": "hammer-ons-and-pull-offs",
-                "formula": "multiplicative",
-                "base value": 1,
-                "rate": 1.5
-            ]),
-            ([
-                "type": "research",
-                "research item": "guilds/bard/strings/string-bending.c",
-                "name": "string-bending",
+                "research item": "guilds/bard/strings/vibrato.c",
+                "name": "vibrato",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/strings/slide-techniques.c",
-                "name": "slide-techniques",
+                "research item": "guilds/bard/strings/staccato.c",
+                "name": "staccato",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/strings/string-skipping.c",
-                "name": "string-skipping",
+                "research item": "guilds/bard/strings/legato.c",
+                "name": "legato",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/strings/finger-picking.c",
-                "name": "finger-picking",
+                "research item": "guilds/bard/strings/ghost-notes.c",
+                "name": "ghost-notes",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/compositions/ababcb.c",
-                "name": "ababcb",
+                "research item": "guilds/bard/strings/tremolo.c",
+                "name": "tremolo",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/octave-course.c",
+                "name": "octave-course",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/poly-rhythms.c",
+                "name": "poly-rhythms",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]), 
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/two-handed-tapping.c",
+                "name": "two-handed-tapping",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/fluid-arpeggios.c",
+                "name": "fluid-arpeggios",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/palm-muting.c",
+                "name": "palm-muting",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/mixed-mode-playing.c",
+                "name": "mixed-mode-playing",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/strings/chromatic-movement.c",
+                "name": "chromatic-movement",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/bard/compositions/freeform.c",
+                "name": "freeform",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
@@ -164,10 +219,10 @@ public void reset(int arg)
             ]),
         }));
 
-        addSpecification("damage type", "sonic");
-        addSpecification("event handler", "coronachOfCapitulationEvent");
+        addSpecification("damage type", "energy");
+        addSpecification("event handler", "requiemOfReleaseEvent");
         addSpecification("use composite message", "##InitiatorName## "
-            "deftly ##Infinitive::thrum## ##InitiatorPossessive## "
+            "serenly ##Infinitive::strum## ##InitiatorPossessive## "
             "##InitiatorWeapon## in a ##CompositeSegment##.");
     }
 }

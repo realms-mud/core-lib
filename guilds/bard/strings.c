@@ -25,7 +25,13 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
+    addResearchElement("guilds/bard/strings/elegy-of-energy.c");
+    addResearchElement("guilds/bard/strings/enchanting-ostinato.c");
 
+    addChild("guilds/bard/strings/elegy-of-energy.c",
+        "guilds/bard/strings/root.c");
+    addChild("guilds/bard/strings/enchanting-ostinato.c",
+        "guilds/bard/strings/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,13 +46,22 @@ private void SeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
+    addResearchElement("guilds/bard/strings/tune-of-temerity.c");
+    addResearchElement("guilds/bard/strings/sanguine-solo.c");
 
+    addChild("guilds/bard/strings/tune-of-temerity.c",
+        "guilds/bard/strings/elegy-of-energy.c");
+    addChild("guilds/bard/strings/sanguine-solo.c",
+        "guilds/bard/strings/enchanting-ostinato.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void EleventhLevel()
 {
+    addResearchElement("guilds/bard/strings/vibrato.c");
 
+    addChild("guilds/bard/strings/vibrato.c",
+        "guilds/bard/strings/elegy-of-energy.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +76,10 @@ private void ThirteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
+    addResearchElement("guilds/bard/strings/staccato.c");
 
+    addChild("guilds/bard/strings/staccato.c",
+        "guilds/bard/strings/vibrato.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -94,7 +112,10 @@ private void TwentyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
+    addResearchElement("guilds/bard/strings/legato.c");
 
+    addChild("guilds/bard/strings/legato.c",
+        "guilds/bard/strings/staccato.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,13 +130,10 @@ private void TwentyFifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
+    addResearchElement("guilds/bard/strings/ghost-notes.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyNinthLevel()
-{
-
+    addChild("guilds/bard/strings/ghost-notes.c",
+        "guilds/bard/strings/legato.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -130,49 +148,91 @@ private void ThirtyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
+    addResearchElement("guilds/bard/strings/tremolo.c");
 
+    addChild("guilds/bard/strings/tremolo.c",
+        "guilds/bard/strings/ghost-notes.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyFifthLevel()
 {
+    addResearchElement("guilds/bard/strings/raenas-rhythm.c");
 
+    addChild("guilds/bard/strings/raenas-rhythm.c",
+        "guilds/bard/strings/requiem-of-release.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtySeventhLevel()
 {
+    addResearchElement("guilds/bard/strings/octave-course.c");
 
+    addChild("guilds/bard/strings/octave-course.c",
+        "guilds/bard/strings/tremolo.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
+    addResearchElement("guilds/bard/strings/poly-rhythms.c");
 
+    addChild("guilds/bard/strings/poly-rhythms.c",
+        "guilds/bard/strings/octave-course.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FortyFifthLevel()
 {
+    addResearchElement("guilds/bard/strings/raenas-lament.c");
 
+    addChild("guilds/bard/strings/raenas-lament.c",
+        "guilds/bard/strings/raenas-rhythm.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void FortySeventhLevel()
 {
+    addResearchElement("guilds/bard/strings/two-handed-tapping.c");
 
+    addChild("guilds/bard/strings/two-handed-tapping.c",
+        "guilds/bard/strings/poly-rhythms.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void FiftyFifthLevel()
+private void FiftyThirdLevel()
 {
+    addResearchElement("guilds/bard/strings/fluid-arpeggios.c");
 
+    addChild("guilds/bard/strings/fluid-arpeggios.c",
+        "guilds/bard/strings/two-handed-tapping.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyNinthLevel()
+{
+    addResearchElement("guilds/bard/strings/palm-muting.c");
+
+    addChild("guilds/bard/strings/palm-muting.c",
+        "guilds/bard/strings/fluid-arpeggios.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SixtyFifthLevel()
 {
+    addResearchElement("guilds/bard/strings/mixed-mode-playing.c");
 
+    addChild("guilds/bard/strings/mixed-mode-playing.c",
+        "guilds/bard/strings/palm-muting.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SeventyFirstLevel()
+{
+    addResearchElement("guilds/bard/strings/chromatic-movement.c");
+
+    addChild("guilds/bard/strings/chromatic-movement.c",
+        "guilds/bard/strings/mixed-mode-playing.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -201,7 +261,6 @@ public void reset(int arg)
         TwentyThirdLevel();
         TwentyFifthLevel();
         TwentySeventhLevel();
-        TwentyNinthLevel();
         ThirtyFirstLevel();
         ThirtyThirdLevel();
         ThirtyFifthLevel();
@@ -209,7 +268,9 @@ public void reset(int arg)
         FortyThirdLevel();
         FortyFifthLevel();
         FortySeventhLevel();
-        FiftyFifthLevel();
+        FiftyThirdLevel();
+        FiftyNinthLevel();
         SixtyFifthLevel();
+        SeventyFirstLevel();
     }
 }

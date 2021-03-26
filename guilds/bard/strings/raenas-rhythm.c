@@ -10,17 +10,17 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Coronach of Capitulation");
+        addSpecification("name", "Raena's Rhythm");
         addSpecification("source", "bard");
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental rhythm");
         addSpecification("default composite description", 
-            "Gm7b3 arpeggio");
+            "riff going from Cm7b4 to Ab");
 
         addSpecification("description", "This research provides the user "
-            "knowledge of creating searing riffs that cause mana "
-            "and stamina damage to all nearby enemies.");
+            "knowledge of creating searing riffs that cause sonic "
+            "damage to all nearby enemies.");
 
         addSpecification("scope", "area");
         addSpecification("research type", "points");
@@ -29,45 +29,44 @@ public void reset(int arg)
         addPrerequisite("level", 
             (["type": "level", 
               "guild": "bard",
-              "value": 3 ]));
+              "value": 35 ]));
 
         addSpecification("limited by", ([
             "equipment":({ "instrument: plucked", "instrument: bowed" }),
         ]));
 
-        addPrerequisite("guilds/bard/strings/root.c",
+        addPrerequisite("guilds/bard/strings/requiem-of-release.c",
             (["type":"research"]));
 
-        addSpecification("spell point cost", 15);
-        addSpecification("damage spell points", ({ 
-            ([
-                "probability": 80,
-                "base damage": 5,
-                "range": 5
+        addSpecification("spell point cost", 350);
+        addSpecification("damage hit points", ({ ([
+                "probability": 90,
+                "base damage": 100,
+                "range": 200
             ]),
             ([
-                "probability": 20,
-                "base damage": 10,
-                "range": 10
-            ]),
+                "probability": 10,
+                "base damage": 200,
+                "range": 500
+            ])
         }));
-        addSpecification("damage stamina points", ({ 
-            ([
-                "probability": 80,
-                "base damage": 5,
-                "range": 5
+        addSpecification("damage spell points", ({ ([
+                "probability":90,
+                "base damage": 50,
+                "range": 100
             ]),
             ([
-                "probability": 20,
-                "base damage": 10,
-                "range": 10
-            ]),
+                "probability": 10,
+                "base damage": 100,
+                "range": 200
+            ])
         }));
+
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
                 "research item": "guilds/bard/strings/hammer-ons-and-pull-offs.c",
-                "name": "hammer-ons-and-pull-offs",
+                "name": "keeping-time",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
@@ -75,7 +74,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/strings/string-bending.c",
-                "name": "string-bending",
+                "name": "advanced-timing",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
@@ -83,7 +82,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/strings/slide-techniques.c",
-                "name": "slide-techniques",
+                "name": "golden-measures",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
@@ -91,7 +90,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/strings/string-skipping.c",
-                "name": "string-skipping",
+                "name": "modulated-timing",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
@@ -99,7 +98,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/strings/finger-picking.c",
-                "name": "finger-picking",
+                "name": "fibonacci-timing",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
@@ -107,7 +106,7 @@ public void reset(int arg)
             ([
                 "type": "research",
                 "research item": "guilds/bard/compositions/ababcb.c",
-                "name": "ababcb",
+                "name": "verse-pre-chorus",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.1
@@ -165,9 +164,9 @@ public void reset(int arg)
         }));
 
         addSpecification("damage type", "sonic");
-        addSpecification("event handler", "coronachOfCapitulationEvent");
+        addSpecification("event handler", "requiemOfReleaseEvent");
         addSpecification("use composite message", "##InitiatorName## "
-            "deftly ##Infinitive::thrum## ##InitiatorPossessive## "
+            "vigorously ##Infinitive::strum## ##InitiatorPossessive## "
             "##InitiatorWeapon## in a ##CompositeSegment##.");
     }
 }

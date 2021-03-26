@@ -43,25 +43,25 @@ public void reset(int arg)
         addSpecification("spell point cost", 150);
 
         addSpecification("damage hit points", ({ ([
-                "probability":90,
-                "base damage" : 25,
-                "range" : 50
+                "probability": 90,
+                "base damage": 25,
+                "range": 50
             ]),
             ([
                 "probability": 10,
                 "base damage": 50,
-                "range" : 100
+                "range": 100
             ])
         }));
         addSpecification("damage spell points", ({ ([
                 "probability":90,
-                "base damage" : 10,
-                "range" : 25
+                "base damage": 10,
+                "range": 25
             ]),
             ([
                 "probability": 10,
                 "base damage": 25,
-                "range" : 50
+                "range": 50
             ])
         }));
         addSpecification("damage type", "electricity");

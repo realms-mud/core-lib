@@ -40,7 +40,7 @@ public void reset(int arg)
 
         addSpecification("spell point cost", 150);
         addSpecification("damage hit points", ({ ([
-                "probability":90,
+                "probability": 90,
                 "base damage": 25,
                 "range": 50
             ]),

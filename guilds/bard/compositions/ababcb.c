@@ -47,6 +47,7 @@ public void reset(int arg)
             "Coronach of Capitulation": 10,
             "Requiem of Release": 10,
             "Dirge of the Damned": 10,
+            "Raena's Rhythm": 10,
         ]));
         addSpecification("affected research type", "percentage");
     }
