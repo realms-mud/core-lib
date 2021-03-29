@@ -35,17 +35,17 @@ public void reset(int arg)
         addSpecification("scope", "targeted");
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
-        addSpecification("spell point cost", 15);
+        addSpecification("spell point cost", 10);
 
         addSpecification("damage hit points", ({ ([
-                "probability":80,
-                "base damage" : 5,
-                "range" : 5
+                "probability": 80,
+                "base damage": 5,
+                "range": 10
             ]),
             ([
-                "probability":20,
-                "base damage" : 10,
-                "range" : 10
+                "probability": 20,
+                "base damage": 10,
+                "range": 20
             ])
         }));
         addSpecification("damage type", "fire");

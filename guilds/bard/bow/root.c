@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         passiveResearchItem::reset(arg);
-        addSpecification("name", "Archery");
+        addSpecification("name", "Bardic Archery");
         addSpecification("source", "bard");
         addSpecification("description", "This skill provides the user with the "
             "knowledge of advanced archery techniques");

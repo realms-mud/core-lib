@@ -83,12 +83,6 @@ public void SetupGuild()
         "research tree": "guilds/bard/melee-attacks.c"
     ]));
 
-    addCriteria("chants", ([
-        "type":"research tree",
-        "apply": "at level 1",
-        "research tree": "guilds/bard/chants.c"
-    ]));
-
     addCriteria("compositions", ([
         "type":"research tree",
         "apply": "at level 1",
