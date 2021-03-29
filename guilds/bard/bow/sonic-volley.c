@@ -10,11 +10,11 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "The Arrow's Anthem");
+        addSpecification("name", "Sonic Volley");
         addSpecification("source", "bard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a song that converts their arrow into a sonic spear, a "
-            "large, powerful projectile that does sonic damage.");
+            "knowledge of a song that converts their arrow into a hail of sonic "
+            "arrows that target a single foe.");
 
         addPrerequisite("guilds/bard/bow/the-archers-song.c",
             (["type":"research"]));
@@ -24,7 +24,7 @@ public void reset(int arg)
         addPrerequisite("level",
             (["type":"level",
                 "guild": "bard",
-                "value": 13
+                "value": 29
             ]));
 
         addSpecification("scope", "targeted");
@@ -33,13 +33,25 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability": 90,
-                "base damage": 25,
-                "range": 50
+                "base damage" : 100,
+                "range" : 200
+            ]),
+            ([
+                "probability":10,
+                "base damage" : 200,
+                "range" : 500
+            ])
+        }));
+
+        addSpecification("damage spell points", ({ ([
+                "probability":90,
+                "base damage" : 50,
+                "range" : 100
             ]),
             ([
                 "probability": 10,
-                "base damage": 50,
-                "range": 100
+                "base damage": 100,
+                "range" : 200
             ])
         }));
 
@@ -149,7 +161,7 @@ public void reset(int arg)
 
         addSpecification("consumables", (["arrow": 1]));
 
-        addSpecification("spell point cost", 120);
+        addSpecification("spell point cost", 250);
         addSpecification("spell point cost modifiers", ([
             "guilds/bard/bow/rhythmic-release.c": 10,
             "guilds/bard/bow/bowmans-form.c": 10,
@@ -157,7 +169,7 @@ public void reset(int arg)
             "guilds/bard/bow/minstrels-aim.c": 10
         ]));
 
-        addSpecification("stamina point cost", 90);
+        addSpecification("stamina point cost", 150);
         addSpecification("stamina point cost modifiers", ([
             "guilds/bard/bow/rhythmic-release.c": 10,
             "guilds/bard/bow/bowmans-form.c": 10,
@@ -165,7 +177,7 @@ public void reset(int arg)
             "guilds/bard/bow/minstrels-aim.c": 10
         ]));
 
-        addSpecification("cooldown", 60);
+        addSpecification("cooldown", 80);
         addSpecification("cooldown modifiers", ([
             "guilds/bard/bow/archers-hand.c": 10,
             "guilds/bard/bow/song-of-the-swift.c": 10,
@@ -173,11 +185,11 @@ public void reset(int arg)
             "guilds/bard/bow/bowmans-pace.c": 10,
         ]));
 
-        addSpecification("event handler", "arrowsAnthemEvent");
-        addSpecification("command template", "arrow's anthem [at ##Target##]");
+        addSpecification("event handler", "sonicVolleyEvent");
+        addSpecification("command template", "sonic volley [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
             "##Infinitive::aim## ##InitiatorPossessive## "
             "##InitiatorWeapon## at ##TargetName## and ##Infinitive::chant##. As "
-            "the arrow looses, it turns into a spear-like projectile.");
+            "the arrow looses, it turns into a hail of sonic arrows.");
     }
 }

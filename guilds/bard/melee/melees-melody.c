@@ -10,21 +10,24 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "The Arrow's Anthem");
+        addSpecification("name", "Melee's Melody");
         addSpecification("source", "bard");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a song that converts their arrow into a sonic spear, a "
-            "large, powerful projectile that does sonic damage.");
+            "knowledge of a song that sends out a sonic wave from their "
+            "weapon that causes damage to a targeted enemy.");
 
-        addPrerequisite("guilds/bard/bow/the-archers-song.c",
+        addPrerequisite("guilds/bard/melee/root.c",
             (["type":"research"]));
 
-        addSpecification("limited by", (["equipment":({ "bow" })]));
+        addSpecification("limited by", (["equipment":({ "long sword",
+            "hand and a half sword", "two-handed sword", "axe",
+            "dagger", "short sword", "hammer", "mace", "flail",
+            "staff", "pole arm" })]));
 
         addPrerequisite("level",
             (["type":"level",
                 "guild": "bard",
-                "value": 13
+                "value": 1
             ]));
 
         addSpecification("scope", "targeted");
@@ -33,13 +36,13 @@ public void reset(int arg)
 
         addSpecification("damage hit points", ({ ([
                 "probability": 90,
-                "base damage": 25,
-                "range": 50
+                "base damage": 5,
+                "range": 10
             ]),
             ([
                 "probability": 10,
-                "base damage": 50,
-                "range": 100
+                "base damage": 15,
+                "range": 30
             ])
         }));
 
@@ -48,72 +51,77 @@ public void reset(int arg)
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/enhanced-sonic-shaft.c",
-                "name": "enhanced-sonic-shaft",
+                "research item": "guilds/bard/melee/melee-march.c",
+                "name": "melee-march",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/ballad-of-the-bow.c",
-                "name": "ballad-of-the-bow",
+                "research item": "guilds/bard/melee/soldiers-song.c",
+                "name": "soldiers-song",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/archers-elegy.c",
-                "name": "archers-elegy",
+                "research item": "guilds/bard/melee/serenade-of-the-soldier.c",
+                "name": "serenade-of-the-soldier",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/arrowheads-lament.c",
-                "name": "arrowheads-lament",
+                "research item": "guilds/bard/melee/arms-lament.c",
+                "name": "arms-lament",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/shafts-serenade.c",
-                "name": "shafts-serenade",
+                "research item": "guilds/bard/melee/footmans-ballad.c",
+                "name": "footmans-ballad",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/bowmans-tale.c",
-                "name": "bowmans-tale",
+                "research item": "guilds/bard/melee/weapon-masters-tale.c",
+                "name": "weapon-masters-tale",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/bow/lay-of-the-archer.c",
-                "name": "lay-of-the-archer",
+                "research item": "guilds/bard/melee/lay-of-the-armsmaster.c",
+                "name": "lay-of-the-armsmaster",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
             ]),
             ([
                 "type": "weapon damage",
-                "name" : "bow",
-                "types" : ({ "bow" }),
+                "name" : "sword",
+                "types" : ({ "long sword", "hand and a half sword", 
+                    "two-handed sword", "axe", "dagger", "short sword", 
+                    "hammer", "mace", "flail", "staff", "pole arm" }),
                 "formula" : "additive",
-                "rate" : 1.75
+                "rate" : 0.5
             ]),
             ([
-                "type": "skill",
-                "name": "bow",
-                "formula": "logarithmic",
-                "rate": 1.25
+                "type":"highest skill",
+                "name" : "sword skills",
+                "skills": ({ "long sword", "hand and a half sword", 
+                    "two-handed sword", "axe", "dagger", "short sword", 
+                    "hammer", "mace", "flail", "staff", "pole arm" }),
+                "formula" : "additive",
+                "rate" : 0.5
             ]), 
             ([
                 "type": "skill",
@@ -147,37 +155,35 @@ public void reset(int arg)
             ]),
         }));
 
-        addSpecification("consumables", (["arrow": 1]));
-
-        addSpecification("spell point cost", 120);
+        addSpecification("spell point cost", 15);
         addSpecification("spell point cost modifiers", ([
-            "guilds/bard/bow/rhythmic-release.c": 10,
-            "guilds/bard/bow/bowmans-form.c": 10,
-            "guilds/bard/bow/bowmans-breath.c": 10,
-            "guilds/bard/bow/minstrels-aim.c": 10
+            "guilds/bard/melee/rhythmic-riposte.c": 2,
+            "guilds/bard/melee/armsmans-form.c": 2,
+            "guilds/bard/melee/armsmans-breath.c": 3,
+            "guilds/bard/melee/minstrels-melee.c": 3
         ]));
 
-        addSpecification("stamina point cost", 90);
+        addSpecification("stamina point cost", 25);
         addSpecification("stamina point cost modifiers", ([
-            "guilds/bard/bow/rhythmic-release.c": 10,
-            "guilds/bard/bow/bowmans-form.c": 10,
-            "guilds/bard/bow/bowmans-breath.c": 10,
-            "guilds/bard/bow/minstrels-aim.c": 10
+            "guilds/bard/melee/rhythmic-riposte.c": 5,
+            "guilds/bard/melee/armsmans-form.c": 5,
+            "guilds/bard/melee/armsmans-breath.c": 5,
+            "guilds/bard/melee/minstrels-melee.c": 5
         ]));
 
-        addSpecification("cooldown", 60);
+        addSpecification("cooldown", 30);
         addSpecification("cooldown modifiers", ([
-            "guilds/bard/bow/archers-hand.c": 10,
-            "guilds/bard/bow/song-of-the-swift.c": 10,
-            "guilds/bard/bow/requiem-of-the-quick-draw.c": 10,
-            "guilds/bard/bow/bowmans-pace.c": 10,
+            "guilds/bard/melee/footmans-tune.c": 5,
+            "guilds/bard/melee/song-of-the-strong.c": 5,
+            "guilds/bard/melee/requiem-of-attack.c": 5,
+            "guilds/bard/melee/armsmasters-tale.c": 5,
         ]));
 
-        addSpecification("event handler", "arrowsAnthemEvent");
-        addSpecification("command template", "arrow's anthem [at ##Target##]");
+        addSpecification("event handler", "meleesMelodyEvent");
+        addSpecification("command template", "melee's melody [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-            "##Infinitive::aim## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## and ##Infinitive::chant##. As "
-            "the arrow looses, it turns into a spear-like projectile.");
+            "##Infinitive::point## ##InitiatorPossessive## "
+            "##InitiatorWeapon## at ##TargetName## and ##Infinitive::sing##, "
+            "`Tis thy time, oh stranger... Tis thy time to die.'");
     }
 }

@@ -14,7 +14,7 @@ public void reset(int arg)
         addSpecification("source", "bard");
         addSpecification("description", "This skill provides the user with the "
             "knowledge to decrease the cost for which they can use their "
-            "`The Archer's Song' ability.");
+            "offensive abilities.");
 
         addPrerequisite("level",
             (["type":"level",
@@ -29,6 +29,7 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "The Archer's Song": 10,
             "The Arrow's Anthem": 10,
+            "Sonic Volley": 10,
         ]));
         addSpecification("affected research type", "decrease cost");
     }

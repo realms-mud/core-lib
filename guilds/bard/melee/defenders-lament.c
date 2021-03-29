@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Dirge of the Deft");
+        addSpecification("name", "Defender's Lament");
         addSpecification("source", "bard");
 
         addSpecification("description", "This skill provides the user with the "
@@ -22,24 +22,32 @@ public void reset(int arg)
               "guild": "bard",
               "value": 5 ]));
 
-        addSpecification("limited by", (["equipment":({ "bow" })]));
+        addSpecification("limited by", (["equipment":({ "long sword",
+            "hand and a half sword", "two-handed sword", "axe",
+            "dagger", "short sword", "hammer", "mace", "flail",
+            "staff", "pole arm" })]));
 
-        addPrerequisite("guilds/bard/bow/root.c",
+        addPrerequisite("guilds/bard/melee/root.c",
             (["type":"research"]));
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "weapon damage",
-                "name" : "bow",
-                "types" : ({ "bow" }),
+                "name" : "sword",
+                "types" : ({ "long sword", "hand and a half sword", 
+                    "two-handed sword", "axe", "dagger", "short sword", 
+                    "hammer", "mace", "flail", "staff", "pole arm" }),
                 "formula" : "additive",
-                "rate" : 1.75
+                "rate" : 1.5
             ]),
             ([
-                "type": "skill",
-                "name": "bow",
-                "formula": "logarithmic",
-                "rate": 1.25
+                "type":"highest skill",
+                "name" : "sword skills",
+                "skills": ({ "long sword", "hand and a half sword", 
+                    "two-handed sword", "axe", "dagger", "short sword", 
+                    "hammer", "mace", "flail", "staff", "pole arm" }),
+                "formula" : "logarithmic",
+                "rate" : 1.25
             ]), 
             ([
                 "type": "skill",
@@ -85,9 +93,9 @@ public void reset(int arg)
         addSpecification("bonus parry", 10);
         addSpecification("duration", 12);
 
-        addSpecification("event handler", "dirgeOfTheDeftEvent");
-        addSpecification("command template", "dirge of the deft");
+        addSpecification("event handler", "defendersLamentEvent");
+        addSpecification("command template", "defender's lament");
         addSpecification("use ability message", "##InitiatorPossessive::Name## "
-            "##Infinitive::sing##, `Your fate is to fail. Your fall, my boon.'");
+            "##Infinitive::sing##, `Your move, the act of an oaf...'");
     }
 }

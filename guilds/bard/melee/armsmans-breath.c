@@ -10,27 +10,27 @@ public void reset(int arg)
     if (!arg)
     {
         knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Archer's Hand");
+        addSpecification("name", "Armsmans Breath");
         addSpecification("source", "bard");
         addSpecification("description", "This skill provides the user with the "
-            "knowledge to increase the speed with which they can use their "
-            "offensive abilities.");
+            "knowledge to decrease the cost for which they can use their "
+            "`Melee's Melody' and `Minstrel's Attack' abilities.");
 
         addPrerequisite("level",
             (["type":"level",
                 "guild": "bard",
-                "value": 7
+                "value": 23
             ]));
-        addPrerequisite("guilds/bard/bow/the-archers-song.c",
+        addPrerequisite("guilds/bard/melee/armsmans-form.c",
             (["type":"research"]));
 
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
         addSpecification("affected research", ([
-            "The Archer's Song": 10,
-            "The Arrow's Anthem": 10,
-            "Sonic Volley": 10,               
+            "Melee's Melody": 5,
+            "Minstrel's Attack": 10,
+            "Dirge of Destruction": 10,
         ]));
-        addSpecification("affected research type", "decrease cooldown");
+        addSpecification("affected research type", "decrease cost");
     }
 }

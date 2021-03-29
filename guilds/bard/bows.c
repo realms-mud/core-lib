@@ -152,9 +152,12 @@ private void TwentySeventhLevel()
 private void TwentyNinthLevel()
 {
     addResearchElement("guilds/bard/bow/shafts-serenade.c");
+    addResearchElement("guilds/bard/bow/sonic-volley.c");
 
     addChild("guilds/bard/bow/shafts-serenade.c",
         "guilds/bard/bow/arrowheads-lament.c");
+    addChild("guilds/bard/bow/sonic-volley.c",
+        "guilds/bard/bow/arrows-anthem.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

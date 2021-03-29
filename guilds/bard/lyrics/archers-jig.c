@@ -104,7 +104,7 @@ public void reset(int arg)
 
         addSpecification("duration", 20);
 
-        addSpecification("event handler", "inspiringLyricEvent");
+        addSpecification("event handler", "archersJigEvent");
         addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");
     }
 }

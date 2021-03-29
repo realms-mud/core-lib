@@ -10,7 +10,7 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Marksmans Meoldy");
+        addSpecification("name", "Marksmans Melody");
         addSpecification("source", "bard");
 
         addSpecification("description", "This skill provides the user with the "

@@ -13,8 +13,7 @@ public void reset(int arg)
         addSpecification("name", "Lay of the Archer");
         addSpecification("source", "bard");
         addSpecification("description", "This skill provides the user with "
-            "bardic knowledge that enhances the bard's `The Archer's Song' "
-            "ability.");
+            "bardic knowledge that enhances the bard's offensive abilities.");
 
         addPrerequisite("level",
             (["type":"level",
@@ -29,6 +28,7 @@ public void reset(int arg)
         addSpecification("affected research", ([
             "The Archer's Song": 50,
             "The Arrow's Anthem": 50,
+            "Sonic Volley": 25,
         ]));
         addSpecification("affected research type", "percentage");
     }
