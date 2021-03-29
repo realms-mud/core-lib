@@ -684,22 +684,26 @@ private nomask string displayEffectInformation(string colorConfiguration,
 {
     string ret = "";
     mapping *modifiers = query("modifiers");
+
     if (modifiers && sizeof(modifiers))
     {
         foreach(mapping modifier in modifiers)
         {
-            float rate = modifier["rate"];
-            ret += configuration->decorate(sprintf("%-18sModified -> ",
-                query("combination rules") ? "Combo Damage    : " : ""), 
-                "field data", "research", colorConfiguration) +
-                configuration->decorate(((rate > 1.00 || rate < 1.00) ? 
-                    sprintf("%1.2f * ", rate) : "by ") + 
-                    sprintf("your %s %s ", modifier["name"],
-                    modifier["type"]), "formula", "research",
-                    colorConfiguration) +
-                configuration->decorate(sprintf("(%s)\n",
-                    modifier["formula"]), "formula type", "research",
-                    colorConfiguration);
+            if (mappingp(modifier) && member(modifier, "rate"))
+            {
+                float rate = modifier["rate"];
+                ret += configuration->decorate(sprintf("%-18sModified -> ",
+                    query("combination rules") ? "Combo Damage    : " : ""),
+                    "field data", "research", colorConfiguration) +
+                    configuration->decorate(((rate > 1.00 || rate < 1.00) ?
+                        sprintf("%1.2f * ", rate) : "by ") +
+                        sprintf("your %s %s ", modifier["name"],
+                            modifier["type"]), "formula", "research",
+                        colorConfiguration) +
+                    configuration->decorate(sprintf("(%s)\n",
+                        modifier["formula"]), "formula type", "research",
+                        colorConfiguration);
+            }
         }
     }
 

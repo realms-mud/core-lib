@@ -9,7 +9,7 @@ public void SetupGuild()
 {
     guildName("bard");
     addPreferredSkillType("combat");
-    prohibitedGuildCombinations(({ "Scion of Dhuras", "monk" }));
+    prohibitedGuildCombinations(({ "monk" }));
 
     addCriteria("hit points", ([
         "type": "modifier",
