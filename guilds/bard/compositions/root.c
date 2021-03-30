@@ -42,6 +42,8 @@ public void reset(int arg)
         addSpecification("scope", "area");
         addSpecification("research type", "tree root");
         addSpecification("command name", "perform");
-        addSpecification("command template", "perform [##Song##]");
+        addSpecification("command template", "perform ##Value##");
+        addSpecification("use ability message", "##InitiatorName## "
+            "##Infinitive::begin## to play a song...");
     }
 }
