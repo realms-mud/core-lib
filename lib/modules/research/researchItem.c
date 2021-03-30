@@ -381,24 +381,24 @@ private nomask string displayAffectedResearch(string colorConfiguration,
         {
             case "percentage":
             {
-                appendType = "This research enhances '%s' by %s%%.\n";
+                appendType = "This research enhances '%s' by %s\n";
                 break;
             }
             case "max combination chain":
             {
                 appendType = "This increases the '%s' maximum "
-                    "combo chain size by %s.\n";
+                    "combo chain size by %s\n";
                 break;
             }
             case "decrease cost":
             {
-                appendType = "This reduces the cost to use '%s' by %s.\n";
+                appendType = "This reduces the cost to use '%s' by %s\n";
                 break;
             }
             case "decrease cooldown":
             {
                 appendType = "This reduces the cooldown delay to use '%s' "
-                    "by %s.\n";
+                    "by %s\n";
                 break;
             }
         }
@@ -407,9 +407,11 @@ private nomask string displayAffectedResearch(string colorConfiguration,
         {
             ret += configuration->decorate(
                 sprintf(appendType, key,
-                    configuration->decorate((affectedResearch[key] > 0) ?
+                    configuration->decorate(((affectedResearch[key] > 0) ?
                         "+" + to_string(affectedResearch[key]) :
-                        to_string(affectedResearch[key]),
+                        to_string(affectedResearch[key])) + 
+                        ((query("affected research type") == "percentage") ?
+                            "%" : ""),
                         ((affectedResearch[key] > 0) ? 
                         "bonus modifier" : "penalty modifier"), "research", 
                         colorConfiguration)),
@@ -624,7 +626,7 @@ private nomask string displayUsageCost(string colorConfiguration,
                 {
                     ret += sprintf("%-18s", "") +
                         configuration->decorate(
-                            sprintf("%s decreases cooldown by %d",
+                            sprintf("%s decreases cooldown by %d\n",
                                 researchObj->query("name"), 
                                 modifiers[researchItem]),
                             "field data", "research", colorConfiguration);

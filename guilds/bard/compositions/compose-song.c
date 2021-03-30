@@ -40,3 +40,9 @@ public nomask void onSelectorCompleted(object caller)
 {
     caller->cleanUp();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void onSelectorAborted(object caller)
+{
+    caller->cleanUp();
+}

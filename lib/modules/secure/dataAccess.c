@@ -199,3 +199,12 @@ public mapping getPlayerDomains(string player)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeCompositeResearch(string player, string name,
+    string constraint)
+{
+    int dbHandle = connect();
+    removeCompositeResearchData(dbHandle, player, name, constraint);
+    disconnect(dbHandle);
+}

@@ -1034,6 +1034,8 @@ public nomask int deleteCompositeResearch(string itemName)
     if (member(compositeResearch, itemName))
     {
         ret = 1;
+        removeCompositeResearch(this_object()->RealName(),
+            itemName, compositeResearch[itemName]["constraint"]);
         m_delete(compositeResearch, itemName);
     }
 

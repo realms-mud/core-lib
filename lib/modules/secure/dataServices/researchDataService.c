@@ -167,11 +167,21 @@ protected nomask mapping getCompositeResearch(int playerId, int dbHandle)
                 "alias": convertString(result[2]),
                 "constraint": convertString(result[3]),
                 "type": convertString(result[4]),
-                "elements": 
-                    getCompositeResearchElements(to_int(result[0]), dbHandle)
+                "id": to_int(result[0])
             ]);
         }
     } while (result);
+
+    if (sizeof(ret["compositeResearch"]))
+    {
+        foreach(string key in m_indices(ret["compositeResearch"]))
+        {
+            ret["compositeResearch"][key]["elements"] =
+                getCompositeResearchElements(
+                    ret["compositeResearch"][key]["id"], dbHandle);
+            m_delete(ret["compositeResearch"][key], "id");
+        }
+    }
 
     return ret;
 }
@@ -339,4 +349,18 @@ protected nomask void saveCompositeResearch(int dbHandle, string playerName,
             }
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void removeCompositeResearchData(int dbHandle, string playerName,
+    string name, string constraint)
+{
+    string query =
+        sprintf("call deleteCompositeResearch('%s','%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(name),
+            sanitizeString(constraint));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
 }

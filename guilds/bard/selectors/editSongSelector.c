@@ -54,8 +54,8 @@ private nomask int GetExistingElementsForSongSection(string section,
     foreach(mapping element in elements)
     {
         string info = regreplace(getDictionary("research")->getCompositeItemDetails(
-            element, colorConfiguration, configuration), "^       ", "", 1);
-        info = regreplace(info, "\n *$", "", 1);
+            element, colorConfiguration, configuration), "^([^ ]+|)       (\x1b.0m)*", "", 1);
+        info = regreplace(info, "\n( |\x1b.0m)*$", "", 1);
 
         Data[to_string(optionCount)] = ([
             "name": info,
@@ -263,6 +263,11 @@ protected nomask int processSelection(string selection)
                     }
                     case "save":
                     {
+                        ret = 1;
+                        if (!SongData["alias"])
+                        {
+                            SongData["alias"] = SongData["name"];
+                        }
                         User->setCompositeResearch(SongData["name"], SongData);
 
                         tell_object(User, configuration->decorate(

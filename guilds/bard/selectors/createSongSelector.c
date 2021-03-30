@@ -81,6 +81,7 @@ protected nomask void setUpUserForSelection()
                     "description": sprintf("Select this option to create a "
                         "song using the '%s' template.", songTemplate),
                     "type": songTemplate,
+                    "is disabled": !User->isResearched(templates[songTemplate]),
                     "value": ([
                         "name": 0,
                         "alias": 0,
@@ -109,7 +110,7 @@ protected nomask int processSelection(string selection)
     if (User)
     {
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
-        if (!ret)
+        if (!ret && !Data[selection]["is disabled"])
         {
             SubselectorObj =
                 clone_object("/guilds/bard/selectors/editSongSelector.c");
@@ -128,7 +129,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User)
     {
-        tell_object(User, displayMessage());
+        notifySynchronous("onSelectorCompleted");
     }
     caller->cleanUp();
 }
@@ -142,10 +143,14 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
+    string displayType = (member(Data[choice], "is disabled") &&
+        Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
+
     return sprintf("[%s]%s - %s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-30s", "choice enabled", "selector", 
+        configuration->decorate("%-40s", displayType, "selector",
             colorConfiguration),
-        " ");
+        ((colorConfiguration == "none") && 
+            (displayType == "choice disabled")) ? "(X)" : "   ");
 }

@@ -221,6 +221,16 @@ public nomask void onSelectorCompleted(object caller)
     if (User)
     {
         SongData["research"] = caller->research();
+        if (!SongData["description"])
+        {
+            object researchItem = getDictionary("research")->researchObject(
+                SongData["research"]);
+            if (researchItem)
+            {
+                SongData["description"] =
+                    researchItem->query("default composite description");
+            }
+        }
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }

@@ -138,15 +138,23 @@ public nomask mapping loadPartyList()
 
     db_exec(dbHandle, query);
     mixed result;
+    int *partyIds = ({});
     do
     {
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret += getMembersOfParty(dbHandle, to_int(result[0]), 1);
+            partyIds += ({ to_int(result[0]) });
         }
     } while (result);
 
+    if (sizeof(partyIds))
+    {
+        foreach(int partyId in partyIds)
+        {
+            ret += getMembersOfParty(dbHandle, partyId, 1);
+        }
+    }
     disconnect(dbHandle);
     return ret;
 }

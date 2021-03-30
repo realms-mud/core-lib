@@ -87,4 +87,12 @@ static nomask mapping sendResearch()
     ]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeCompositeResearch(string player, string name,
+    string constraint)
+{
+    load_object("/lib/modules/secure/dataAccess.c")->removeCompositeResearch(
+        player, name, constraint);
+}
+
 #endif

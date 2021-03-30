@@ -8,6 +8,26 @@ object User;
 object Selector;
 
 /////////////////////////////////////////////////////////////////////////////
+int AdvanceToLevel(int level, string guild)
+{
+    int runningLevel = User->guildLevel(guild);
+    while ((User->guildLevel(guild) < level) && User->memberOfGuild(guild))
+    {
+        User->addExperience(1000 * runningLevel);
+        User->advanceLevel(guild);
+        command("exit", User);
+        runningLevel = User->guildLevel(guild);
+    }
+    return runningLevel;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    ignoreList += ({ "AdvanceToLevel" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Selector = clone_object("/guilds/bard/selectors/songsSelector.c");
@@ -46,8 +66,8 @@ void CreationDisplayWithCreatedSongsIsCorrect()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
@@ -102,8 +122,8 @@ void DescribeASongShowsCorrectDetails()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
@@ -157,22 +177,53 @@ void DescribeASongShowsCorrectDetails()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CanSelectCreateASong()
+void CannotSelectCreateASongIfTemplatesNotResearched()
 {
     Selector->initiateSelector(User);
     command("1", User);
     ExpectEq("Song - Select Song Structure Menu:\n"
-        "[1]  - AAA (Verse, Verse, Verse)      \n"
-        "[2]  - AABA (Verse, Verse, Bridge, Verse) \n"
-        "[3]  - ABAB (Verse/Chorus)            \n"
-        "[4]  - ABABCB (Verse/Chorus/Bridge/Solo) \n"
-        "[5]  - ABAC (4 eight bar sections)    \n"
-        "[6]  - ABACBAA (Chorus/Verse/Chorus/Bridge) \n"
-        "[7]  - Freeform                       \n"
-        "[8]  - Simple Ballad                  \n"
-        "[9]  - Verse/Chorus/Bridge            \n"
-        "[10] - Verse/Pre-Chorus/Chorus        \n"
-        "[11] - Return To Previous Menu        \n"
+        "[1]  - AAA (Verse, Verse, Verse)               (X)\n"
+        "[2]  - AABA (Verse, Verse, Bridge, Verse)      (X)\n"
+        "[3]  - ABAB (Verse/Chorus)                     (X)\n"
+        "[4]  - ABABCB (Verse/Chorus/Bridge/Solo)       (X)\n"
+        "[5]  - ABAC (4 eight bar sections)             (X)\n"
+        "[6]  - ABACBAA (Chorus/Verse/Chorus/Bridge)    (X)\n"
+        "[7]  - Freeform                                (X)\n"
+        "[8]  - Simple Ballad                           (X)\n"
+        "[9]  - Verse/Chorus/Bridge                     (X)\n"
+        "[10] - Verse/Pre-Chorus/Chorus                 (X)\n"
+        "[11] - Return To Previous Menu                    \n"
+        "You must select a number from 1 to 11.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n", 
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSelectCreateASong()
+{
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
+    Selector->initiateSelector(User);
+    command("1", User);
+    ExpectEq("Song - Select Song Structure Menu:\n"
+        "[1]  - AAA (Verse, Verse, Verse)                  \n"
+        "[2]  - AABA (Verse, Verse, Bridge, Verse)      (X)\n"
+        "[3]  - ABAB (Verse/Chorus)                     (X)\n"
+        "[4]  - ABABCB (Verse/Chorus/Bridge/Solo)       (X)\n"
+        "[5]  - ABAC (4 eight bar sections)             (X)\n"
+        "[6]  - ABACBAA (Chorus/Verse/Chorus/Bridge)    (X)\n"
+        "[7]  - Freeform                                (X)\n"
+        "[8]  - Simple Ballad                           (X)\n"
+        "[9]  - Verse/Chorus/Bridge                     (X)\n"
+        "[10] - Verse/Pre-Chorus/Chorus                 (X)\n"
+        "[11] - Return To Previous Menu                    \n"
         "You must select a number from 1 to 11.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
@@ -183,6 +234,13 @@ void CanSelectCreateASong()
 /////////////////////////////////////////////////////////////////////////////
 void CreateSongTransitionsToModifyMenu()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -211,8 +269,8 @@ void CanSelectModifyForASong()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
@@ -329,6 +387,13 @@ void CanSelectModifyForASong()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetSongName()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -379,6 +444,13 @@ void CanSetSongName()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetSongAlias()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -435,8 +507,8 @@ void CanSaveSong()
     Selector->setData(([
         "name": "Song of the Weasels",
         "alias": "weasels",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({ })
     ]));
     move_object(Selector, User);
@@ -449,11 +521,11 @@ void CanSaveSong()
     Selector->onSelectorCompleted(subSelector);
 
     ExpectFalse(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Song of the Weasels"));
 
     command("10", User);
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Song of the Weasels"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -461,8 +533,8 @@ void CanDeleteSong()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
@@ -475,7 +547,7 @@ void CanDeleteSong()
     ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -487,7 +559,7 @@ void CanDeleteSong()
 
     command("y", User);
     ExpectFalse(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     ExpectEq("Song - Compose Songs Main Menu:\n"
         "[1] - Create New Song                [2] - Exit Song Menu                 \n"
@@ -503,8 +575,8 @@ void NotTypingYAbortsDelete()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
@@ -517,7 +589,7 @@ void NotTypingYAbortsDelete()
     ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -529,7 +601,7 @@ void NotTypingYAbortsDelete()
 
     command("ddd", User);
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -537,8 +609,8 @@ void CanModifyOrderingOfSongSegment()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
@@ -671,8 +743,8 @@ void CanRemoveSongSegment()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
@@ -732,8 +804,8 @@ void CanIncrementSongSegmentOrder()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
@@ -786,8 +858,8 @@ void CanDecrementSongSegmentOrder()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "/guilds/bard/compositions/root.c",
-        "type": "/guilds/bard/compositions/simple-ballad.c",
+        "constraint": "guilds/bard/compositions/root.c",
+        "type": "guilds/bard/compositions/simple-ballad.c",
         "elements": ({
             (["research":"lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
@@ -838,9 +910,16 @@ void CanDecrementSongSegmentOrder()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddSongSegment()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     Selector->initiateSelector(User);
     command("1", User);
-    command("3", User);
+    command("1", User);
     command("2", User);
 
     ExpectEq("Song - Song Segment Menu\n"
@@ -863,6 +942,13 @@ void CanAddSongSegment()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectSegmentDetails()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     User->addResearchPoints(6);
     User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
     User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
@@ -872,7 +958,7 @@ void CanSelectSegmentDetails()
     User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
     Selector->initiateSelector(User);
     command("1", User);
-    command("3", User);
+    command("1", User);
     command("2", User);
     command("1", User);
 
@@ -889,7 +975,7 @@ void CanSelectSegmentDetails()
 
     command("? 1", User);
     ExpectEq("Gittern bedazzlement\n"
-        "Chorus 1 instrumental rhythm : Transition from chords G to Em\n"
+        "Verse 2 instrumental rhythm : Transition from chords G to Em\n"
         "    (-5) Penalty to attack\n",
         User->caughtMessage());
 
@@ -898,7 +984,7 @@ void CanSelectSegmentDetails()
 
     ExpectEq("Song - Song Segment Menu\n"
         "Segment Type: Gittern bedazzlement\n"
-        "Chorus 1 instrumental rhythm : Transition from chords G to Em\n"
+        "Verse 2 instrumental rhythm : Transition from chords G to Em\n"
         "    (-5) Penalty to attack\n"
         "Order in sequence: 1\n"
         "\n"
@@ -918,6 +1004,13 @@ void CanSelectSegmentDetails()
 /////////////////////////////////////////////////////////////////////////////
 void CanModfiySegmentDescription()
 {
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
     User->addResearchPoints(6);
     User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
     User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
@@ -928,14 +1021,14 @@ void CanModfiySegmentDescription()
 
     Selector->initiateSelector(User);
     command("1", User);
-    command("3", User);
+    command("1", User);
     command("2", User);
     command("1", User);
     command("2", User);
 
     ExpectEq("Song - Song Segment Menu\n"
         "Segment Type: Lyric blast\n"
-        "Chorus 1 lyric  : I'll tell you a tale that is terribly true...\n"
+        "Verse 2 lyric   : I'll tell you a tale that is terribly true...\n"
         "Usage effect    : 100% chance to damage hit points 25\n"
         "Order in sequence: 1\n"
         "\n"
@@ -959,7 +1052,7 @@ void CanModfiySegmentDescription()
         User);
     ExpectEq("Song - Song Segment Menu\n"
         "Segment Type: Lyric blast\n"
-        "Chorus 1 lyric  : Sing to me, oh weasel of yesteryear...\n"
+        "Verse 2 lyric   : Sing to me, oh weasel of yesteryear...\n"
         "Usage effect    : 100% chance to damage hit points 25\n"
         "Order in sequence: 1\n"
         "\n"
@@ -977,23 +1070,22 @@ void CanModfiySegmentDescription()
 
     command("6", User);
     ExpectEq("Song - Create Song Menu\n"
-        "Song Type: ABAB (Verse/Chorus)\n"
+        "Song Type: AAA (Verse, Verse, Verse)\n"
         "Song Name: <Name Missing>\n"
         "Song Alias: <No Alias>\n"
         "\n"
-        "[1]  - Add verse 1 segment              \n"
-        "[2]  - Lyric blast\n"
-        "       Chorus 1 lyric  : Sing to me, oh weasel of yesteryear...\n"
+        "[1] - Add verse 1 segment              \n"
+        "[2] - Lyric blast\n"
+        "       Verse 2 lyric   : Sing to me, oh weasel of yesteryear...\n"
         "       Usage effect    : 100% chance to damage hit points 25   \n"
-        "[3]  - Add chorus 1 segment             \n"
-        "[4]  - Add verse 2 segment              \n"
-        "[5]  - Add chorus 2 segment             \n"
-        "[6]  - Set/change song name             \n"
-        "[7]  - Set/change song alias            \n"
-        "[8]  - Save the song                 (X)\n"
-        "[9]  - Delete the song               (X)\n"
-        "[10] - Exit Menu                        \n"
-        "You must select a number from 1 to 10.\n"
+        "[3] - Add verse 2 segment              \n"
+        "[4] - Add verse 3 segment              \n"
+        "[5] - Set/change song name             \n"
+        "[6] - Set/change song alias            \n"
+        "[7] - Save the song                 (X)\n"
+        "[8] - Delete the song               (X)\n"
+        "[9] - Exit Menu                        \n"
+        "You must select a number from 1 to 9.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",

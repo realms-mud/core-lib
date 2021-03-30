@@ -339,3 +339,26 @@ public nomask string getRelatedResearchEffects(object caller,
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected string displayRelatedResearchEffects(string colorConfiguration,
+    object configuration)
+{
+    string ret = "";
+
+    if (member(specificationData, "persona"))
+    {
+        int numToSummon = member(specificationData, "number to summon") ?
+            specificationData["number to summon"] : 1;
+
+        ret = configuration->decorate(sprintf("Summon %d %s%s %s\n",
+            numToSummon,
+            specificationData["persona"],
+            (numToSummon == 1 ? "" : "s"),
+            (member(specificationData, "persona level") ?
+                sprintf("of level %d", specificationData["persona level"]) :
+                "of your level")),
+            "bonus text", "research", colorConfiguration);
+    }
+    return ret;
+}
