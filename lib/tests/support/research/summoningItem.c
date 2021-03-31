@@ -38,6 +38,10 @@ public void reset(int arg)
                    "value" : -50]),
                 (["modifier":"apply fortified",
                    "value" : 1]),
+            }),
+            "lib/tests/support/research/weaselMagic.c":({
+                (["modifier": "apply research",
+                   "value": "lib/tests/support/research/weaselSpell.c" ]),
             })
         ]));
 

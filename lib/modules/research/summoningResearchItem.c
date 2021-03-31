@@ -55,9 +55,12 @@ protected nomask int addSpecification(string type, mixed value)
                            {
                                isOk &&= member(entry, "modifier") &&
                                    member(entry, "value") &&
-                                   getDictionary("bonuses")->isValidBonus(
+                                   (getDictionary("bonuses")->isValidBonus(
                                        regreplace(entry["modifier"], 
-                                           "(bonus|penalty to|apply) ", "", 1));
+                                           "(bonus|penalty to|apply) ", "", 1)) ||
+                                   ((entry["modifier"] == "apply research") &&
+                                       getDictionary("research")->researchObject(
+                                           entry["value"])));
                            }
                        }
                        else
@@ -127,8 +130,15 @@ private nomask void setSummoningModifiers(object summoning, object owner)
                 foreach(mapping modifier in
                     specificationData["modifiers"][research])
                 {
-                    modifierObj = modifierObject(summoning, modifierObj);
-                    setSummoningModifier(modifierObj, summoning, modifier);
+                    if (modifier["modifier"] == "apply research")
+                    {
+                        summoning->initiateResearch(modifier["value"]);
+                    }
+                    else
+                    {
+                        modifierObj = modifierObject(summoning, modifierObj);
+                        setSummoningModifier(modifierObj, summoning, modifier);
+                    }
                 }
             }
         }
@@ -299,16 +309,34 @@ private nomask string getRelatedApplies(mapping modifiers,
     string *applies =
         sort_array(filter(modifiers,
             (: (sizeof(regexp(({ $1["modifier"] }), "apply")) &&
-                ($1["value"] > 0)) :)), (: $1["modifier"] > $2["modifier"] :));
+                (stringp($1["value"]) || ($1["value"] > 0))) :)), 
+            (: $1["modifier"] > $2["modifier"] :));
 
     if (sizeof(applies))
     {
         foreach(mapping apply in applies)
         {
-            ret += configuration->decorate(sprintf("%18s%s", "",
-                capitalize(regreplace(apply["modifier"], "apply (.+)", 
-                    "\\1 is applied to summoned creature\n"))),
-                "apply modifier", "research", colorConfiguration); 
+            if (apply["modifier"] == "apply research")
+            {
+                object researchObj = getDictionary("research")->researchObject(
+                    apply["value"]);
+                if (researchObj)
+                {
+                        ret += configuration->decorate(sprintf("%18s%s", "",
+                            sprintf("Summoned creatures gains '%s' research\n", 
+                                researchObj->query("name"))),
+                            "apply modifier", "research", colorConfiguration) +
+                            regreplace(researchObj->conciseResearchDetails(),
+                                "your", "its", 1);
+                }
+            }
+            else
+            {
+                ret += configuration->decorate(sprintf("%18s%s", "",
+                    capitalize(regreplace(apply["modifier"], "apply (.+)",
+                        "\\1 is applied to summoned creature\n"))),
+                    "apply modifier", "research", colorConfiguration);
+            }
         }
     }
     return ret;

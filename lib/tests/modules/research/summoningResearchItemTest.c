@@ -102,6 +102,20 @@ void SummoningWithResearchedModifierAppliesModifier()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SummoningWithApplyResearchAppliesModifier()
+{
+    User->initiateResearch("lib/tests/support/research/weaselMagic.c");
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object weasel = (all_inventory(Room) - ({ User, Target }))[0];
+    ExpectEq(({ "lib/tests/support/research/weaselSpell.c" }), 
+        weasel->completedResearch());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SummoningWilNotExceedMaximumAllowed()
 {
     User->initiateResearch("lib/tests/support/research/weaselBuff.c");
@@ -154,6 +168,31 @@ void CanDisplayResearchInfo()
         "                  (-50) Penalty to stamina points\n"
         "                  (-1) Penalty to charisma\n"
         "                  Fortified is applied to summoned creature\n",
+        effect->researchDetails());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanDisplayResearchInfoForApplyResearch()
+{
+    object effect = clone_object("lib/tests/support/research/weaselMagic.c");
+
+    set_this_player(User);
+    User->colorConfiguration("none");
+
+    ExpectEq("Research Name   : Weasel Magic\n"
+        "Weasel magic is where it's at.\n"
+        "\n"
+        "Learning this costs 1 research point.\n"
+        "Research Type   : Knowledge\n"
+        "Scope           : Self\n"
+        "Effect          : Strategic\n"
+        "Effects for Summon Weasel :\n"
+        "                  Summoned creatures gains 'Weasel Spell' research\n"
+        "Usage effect    : 100% chance to damage hit points 25 - 50\n"
+        "                  Modified -> 1.10 * its mind skill (additive)\n"
+        "                  Modified -> 1.10 * its senses skill (additive)\n"
+        "                  Modified -> 1.10 * its spirit skill (additive)\n"
+        "                  Modified -> 1.20 * its intelligence attribute (logarithmic)\n",
         effect->researchDetails());
 }
 
