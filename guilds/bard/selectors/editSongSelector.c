@@ -52,9 +52,10 @@ private nomask int GetExistingElementsForSongSection(string section,
         elements[sizeof(elements) - 1]
         ["order in sequence"] : 1;
 
+    object researchDictionary = getDictionary("research");
     foreach(mapping element in elements)
     {
-        string info = regreplace(getDictionary("research")->getCompositeItemDetails(
+        string info = regreplace(researchDictionary->getCompositeItemDetails(
             element, colorConfiguration, configuration), "^([^ ]+|)       (\x1b.0m)*", "", 1);
         info = regreplace(info, "\n( |\x1b.0m)*$", "", 1);
 
@@ -182,6 +183,25 @@ protected nomask void setUpUserForSelection()
             SongData["type"]);
 
         Description += getSongDetails(songTemplate, colorConfiguration);
+
+        object researchDictionary = getDictionary("research");
+        int unsetInstrumentType = !sizeof(SongData["elements"]);
+
+        if (!unsetInstrumentType)
+        {
+            foreach(mapping element in SongData["elements"])
+            {
+                object elementObj =
+                    researchDictionary->researchObject(element["research"]);
+                unsetInstrumentType ||= elementObj &&
+                    (InstrumentType != elementObj->query("composite class")) &&
+                    ("lyrics" != elementObj->query("composite class"));
+            }
+        }
+        if (unsetInstrumentType)
+        {
+            InstrumentType = 0;
+        }
 
         if (songTemplate && songTemplate->query("segments"))
         {

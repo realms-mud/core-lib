@@ -1165,3 +1165,98 @@ void UnrelatedInstrumentsDisabled()
         "X is the option about which you would like further details.\n",
         User->caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void InstrumentsReEnabledWhenAllElementsRemoved()
+{
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
+    User->addResearchPoints(6);
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemH.c");
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+    command("2", User);
+    command("1", User);
+    command("1", User);
+    command("6", User);
+    command("2", User);
+    command("5", User);
+    command("y", User);
+
+    command("1", User);
+    command("1", User);
+
+    ExpectEq("Song - Select Song Segment Menu\n"
+        "\n"
+        "[1] - Drum Attack!                       [2] - Gittern Attack!                    \n"
+        "[3] - Gittern bedazzlement               [4] - Lyric blast                        \n"
+        "[5] - Lyric of doom                      [6] - Lyric verse thingy                 \n"
+        "[7] - Singy blast                        [8] - Return to Previous Menu            \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InstrumentsReEnabledWhenOffendingElementRemoved()
+{
+    load_object("/guilds/bard/bard.c");
+    User->joinGuild("bard");
+    command("exit", User);
+
+    User->addResearchPoints(10);
+    User->initiateResearch("guilds/bard/compositions/aaa.c");
+
+    User->addResearchPoints(6);
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("lib/tests/support/research/compositeResearchItemH.c");
+    Selector->initiateSelector(User);
+    command("1", User);
+    command("1", User);
+    command("2", User);
+    command("1", User);
+    command("1", User);
+    command("6", User);
+    command("3", User);
+    command("1", User);
+    command("4", User);
+    command("6", User);
+    command("2", User);
+    command("5", User);
+    command("y", User);
+    command("1", User);
+    command("1", User);
+
+    ExpectEq("Song - Select Song Segment Menu\n"
+        "\n"
+        "[1] - Drum Attack!                       [2] - Gittern Attack!                    \n"
+        "[3] - Gittern bedazzlement               [4] - Lyric blast                        \n"
+        "[5] - Lyric of doom                      [6] - Lyric verse thingy                 \n"
+        "[7] - Singy blast                        [8] - Return to Previous Menu            \n"
+        "You must select a number from 1 to 8.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User->caughtMessage());
+}
