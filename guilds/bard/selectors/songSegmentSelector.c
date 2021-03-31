@@ -19,12 +19,14 @@ public nomask void setTemplate(object template)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setData(mapping rangeData, mapping data)
+public nomask void setData(mapping rangeData, mapping data,
+    string instrumentType)
 {
     minimumRangeValue = rangeData["first"];
     maximumRangeValue = rangeData["last"];
 
     SongData = data;
+    SongData["instrument type"] = instrumentType;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -197,7 +199,8 @@ protected nomask int processSelection(string selection)
                     {
                         SubselectorObj =
                             clone_object("/guilds/bard/selectors/segmentSelector.c");
-                        SubselectorObj->setData(SongTemplate, SongData["type"]);
+                        SubselectorObj->setData(SongTemplate, SongData["type"],
+                            SongData["instrument type"]);
                         move_object(SubselectorObj, User);
                         SubselectorObj->registerEvent(this_object());
                         SubselectorObj->initiateSelector(User);
@@ -221,6 +224,8 @@ public nomask void onSelectorCompleted(object caller)
     if (User)
     {
         SongData["research"] = caller->research();
+        SongData["instrument type"] = caller->instrumentType();
+
         if (!SongData["description"])
         {
             object researchItem = getDictionary("research")->researchObject(

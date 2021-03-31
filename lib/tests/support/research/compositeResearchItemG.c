@@ -16,6 +16,7 @@ public void reset(int arg)
         addSpecification("composite research",
             "lib/tests/support/research/compositeRoot.c");
         addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite class", "strings");
         addSpecification("default composite description",
             "Arpeggio-wanking for fun.");
 

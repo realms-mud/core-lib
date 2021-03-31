@@ -7,18 +7,27 @@ inherit "/lib/core/baseSelector.c";
 private object SongTemplate;
 private string Section;
 private string Research = 0;
+private string InstrumentType = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setData(object songTemplate, string section)
+public nomask void setData(object songTemplate, string section,
+    string instrumentType)
 {
     SongTemplate = songTemplate;
     Section = section;
+    InstrumentType = instrumentType;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string research()
 {
     return Research;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string instrumentType()
+{
+    return InstrumentType;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +72,10 @@ protected nomask void setUpUserForSelection()
                         ]), colorConfiguration, configuration),
                         "       ", "", 1),
                 "type": "select",
+                "instrument type": element->query("composite class"),
+                "is disabled": InstrumentType && 
+                    (InstrumentType != element->query("composite class")) &&
+                    ("lyric" != element->query("composite class")),
                 "value": program_name(element)
             ]);
             optionCount++;
@@ -88,6 +101,11 @@ protected nomask int processSelection(string selection)
         {
             ret = 1;
             Research = Data[selection]["value"];
+
+            if (Data[selection]["instrument type"] != "lyric")
+            {
+                InstrumentType = Data[selection]["instrument type"];
+            }
         }
     }
     return ret;
@@ -99,7 +117,7 @@ protected string choiceFormatter(string choice)
     string displayType = (member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
 
-    return sprintf("[%s]%s - %s%s",
+    return sprintf("[%s]%s - %s%s  ",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
         configuration->decorate("%-30s", displayType, "selector",

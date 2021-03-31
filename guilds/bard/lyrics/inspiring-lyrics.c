@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "lyric");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "lyric");
+        addSpecification("default composite description",
             "I'll tell you a tale that is terribly true...");
 
         addSpecification("description", "This skill provides the user with the "

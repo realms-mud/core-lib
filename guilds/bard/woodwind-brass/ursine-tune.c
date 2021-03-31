@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental solo");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "woodwind");
+        addSpecification("default composite description",
             "Dm7 arpeggio");
 
         addSpecification("description", "This skill provides the user with the "

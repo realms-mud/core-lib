@@ -10,18 +10,22 @@ public void reset(int arg)
     if (!arg)
     {
         persistedActiveResearchItem::reset(arg);
-        addSpecification("name", "Gittern shredding");
-        addSpecification("scope", "area");
+        addSpecification("name", "Drum Attack!");
+        addSpecification("scope", "self");
         addSpecification("research type", "granted");
         addSpecification("composite research",
             "lib/tests/support/research/compositeRoot.c");
-        addSpecification("composite type", "instrumental solo");
-        addSpecification("composite class", "strings");
+        addSpecification("composite type", "instrumental rhythm");
+        addSpecification("composite class", "percussion");
         addSpecification("default composite description",
-            "Shreddifying for fun.");
+            "Drum-thumping for fun.");
 
-        addSpecification("penalty to attack", 5);
-        addSpecification("duration", 12);
-        addSpecification("use composite message", "##InitiatorName## ##Infinitive::riff##, '##CompositeSegment##'");
+        addSpecification("limited by", ([
+            "equipment":({ "instrument: percussion" }),
+        ]));
+
+        addSpecification("bonus sonic attack", 15);
+        addSpecification("duration", 4);
+        addSpecification("use composite message", "##InitiatorName## ##Infinitive::drum##, '##CompositeSegment##'");
     }
 }

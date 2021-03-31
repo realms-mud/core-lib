@@ -81,6 +81,7 @@ protected int addSpecification(string type, mixed value)
         }
         case "composite research":
         case "composite type":
+        case "composite class":
         case "default composite description":
         case "event handler":
         case "use composite message":

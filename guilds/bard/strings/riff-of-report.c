@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental rhythm");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "strings");
+        addSpecification("default composite description",
             "riff going from G to Em");
 
         addSpecification("description", "This research provides the user "

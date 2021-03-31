@@ -10,6 +10,7 @@ private mapping SongData = ([]);
 private int SettingName = 0;
 private int SettingAlias = 0;
 private int DeletingSong = 0;
+private string InstrumentType = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
@@ -282,7 +283,7 @@ protected nomask int processSelection(string selection)
                             clone_object("/guilds/bard/selectors/songSegmentSelector.c");
                         SubselectorObj->setTemplate(Data[selection]["template"]);
                         SubselectorObj->setData(Data[selection]["range"],
-                            Data[selection]["value"]);
+                            Data[selection]["value"], InstrumentType);
                         move_object(SubselectorObj, User);
                         SubselectorObj->registerEvent(this_object());
                         SubselectorObj->initiateSelector(User);
@@ -342,6 +343,7 @@ public nomask void onSelectorCompleted(object caller)
             element["reordered"] = 1;
         }
 
+        InstrumentType = element["instrument type"];
         renumberSongElements();
         setUpUserForSelection();
         tell_object(User, displayMessage());

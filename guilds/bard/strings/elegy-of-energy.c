@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental solo");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "strings");
+        addSpecification("default composite description",
             "solo in the key of A");
 
         addSpecification("description", "This research provides the user "

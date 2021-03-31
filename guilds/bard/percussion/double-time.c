@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental rhythm");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "percussion");
+        addSpecification("default composite description",
             "fast 16/16 beat");
 
         addSpecification("description", "This skill provides the user with the "

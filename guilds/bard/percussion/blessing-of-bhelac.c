@@ -15,7 +15,8 @@ public void reset(int arg)
         addSpecification("composite research",
             "guilds/bard/compositions/root.c");
         addSpecification("composite type", "instrumental rhythm");
-        addSpecification("default composite description", 
+        addSpecification("composite class", "percussion");
+        addSpecification("default composite description",
             "offbeat 8th");
 
         addSpecification("description", "This skill provides the user with the "

@@ -17,6 +17,8 @@ public void reset(int arg)
         addSpecification("default composite description",
             "I'm a lyric verse thingy woman!");
         addSpecification("composite type", "lyric");
+        addSpecification("composite class", "lyric");
+
         addSpecification("description", "This is limited active research");
         addSpecification("usage summary", "This lyrically blargifies stuff.");
         addSpecification("scope", "area");

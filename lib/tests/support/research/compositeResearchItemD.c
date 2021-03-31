@@ -15,6 +15,7 @@ public void reset(int arg)
         addSpecification("composite research",
             "lib/tests/support/research/compositeRoot.c");
         addSpecification("composite type", "lyric");
+        addSpecification("composite class", "lyric");
         addSpecification("default composite description",
             "Doom, doom... the broom explodified the room.");
 
