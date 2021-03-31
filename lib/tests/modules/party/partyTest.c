@@ -24,6 +24,8 @@ int AdvanceToLevel(object user, int level, string guild)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    destruct(getDictionary("party"));
+
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     database->PrepDatabase();

@@ -12,6 +12,8 @@ object Room;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    destruct(getDictionary("party"));
+
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User->Name("Bob");
     User->addAlias("bob");
@@ -124,6 +126,10 @@ void SummoningWilNotExceedMaximumAllowed()
 
     command("summon weasel", User);
     ExpectEq(4, sizeof(all_inventory(Room)));
+
+    User->heart_beat();
+    command("summon weasel", User);
+    ExpectEq(5, sizeof(all_inventory(Room)));
 
     User->heart_beat();
     command("summon weasel", User);

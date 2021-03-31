@@ -230,7 +230,7 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     }
     else
     {
-        displayMessageToSelf("Unable to summon a creature. This is a bug.\n", 
+        displayMessageToSelf("Unable to summon additional creatures.\n", 
             owner);
     }
 
