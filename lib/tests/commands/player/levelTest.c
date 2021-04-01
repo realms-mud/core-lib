@@ -131,13 +131,13 @@ void CanAdvanceInGuild()
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
         "[1]  - Spend Attribute Points\n"
         "[2]  - Spend Skill Points\n"
-        "[3]  - Research Choice: The Path (Axe)          (Prerequisite Missing)\n"
-        "[4]  - Research Choice: The Focus\n"
+        "[3]  - Research Choice: The Focus\n"
+        "[4]  - Research Choice: The Path (Axe)          (Prerequisite Missing)\n"
         "[5]  - Research Choice: The Path (Dagger)       (Prerequisite Missing)\n"
-        "[6]  - Research Choice: The Path (Staff)        (Prerequisite Missing)\n"
-        "[7]  - Research Choice: The Path (Hammer)       (Prerequisite Missing)\n"
-        "[8]  - Research Choice: The Path (Sword)        (Prerequisite Missing)\n"
-        "[9]  - Research Choice: The Path (Mace)         (Prerequisite Missing)\n"
+        "[6]  - Research Choice: The Path (Hammer)       (Prerequisite Missing)\n"
+        "[7]  - Research Choice: The Path (Mace)         (Prerequisite Missing)\n"
+        "[8]  - Research Choice: The Path (Staff)        (Prerequisite Missing)\n"
+        "[9]  - Research Choice: The Path (Sword)        (Prerequisite Missing)\n"
         "[10] - Spend Research Points                    (Select Choices First)\n"
         "[11] - Exit Advancement Menu\n"
         "You must select a number from 1 to 11.\n"
@@ -268,7 +268,7 @@ void CanSelectResearchChoice()
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
-    command("4", Player);
+    command("3", Player);
     ExpectFalse(Player->isResearched("guilds/scion/paths/sword/root.c"));
     ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
         "guilds/scion/common/mana-shield/mana-shield.c" }), 
@@ -315,7 +315,7 @@ void CanSelectResearchWhenAllChoicesMade()
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
-    command("4", Player);
+    command("3", Player);
     command("1", Player);
     command("3", Player);
     command("1", Player);
@@ -348,7 +348,7 @@ void CanSelectResearch()
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
-    command("4", Player);
+    command("3", Player);
     command("1", Player);
     command("3", Player);
     command("1", Player);

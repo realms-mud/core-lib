@@ -62,7 +62,8 @@ protected nomask void setUpUserForSelection()
         if (sizeof(ResearchChoices))
         {
             ChoicePresent = 1;
-            foreach(string choice in m_indices(ResearchChoices))
+            string *keys = sort_array(m_indices(ResearchChoices), (: $1 > $2 :));
+            foreach(string choice in keys)
             {
                 int canChoose = 1;
                 if (member(ResearchChoices[choice], "1") && 
