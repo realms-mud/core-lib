@@ -833,6 +833,33 @@ void ApplyIfChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ApplyIfAnyChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
+{
+    User->addSkillPoints(100);
+    User->advanceSkill("long sword", 10);
+    mapping criteria = ([
+        "type":"research tree",
+        "apply" : "at level 5",
+        "research tree": "lib/tests/support/guilds/testGuildResearchTree.c",
+        "apply if any chosen": ({ 
+            "lib/tests/support/research/testGrantedResearchItem.c",
+            "lib/tests/support/research/testResearchA.c" })
+    ]);
+    User->SetLevel(4);
+    User->SetExperience(5000);
+    ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
+
+    Guild->guildName("fake mage");
+
+    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
+
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectEq(({  }), User->availableResearchTrees(), "no research trees available");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ApplyIfChosenResearchTreeCriteriaAppliedIfCriteriaMet()
 {
     User->addSkillPoints(100);
@@ -842,6 +869,33 @@ void ApplyIfChosenResearchTreeCriteriaAppliedIfCriteriaMet()
         "apply" : "at level 5",
         "research tree" : "lib/tests/support/guilds/testGuildResearchTree.c",
         "apply if chosen" : ({ "lib/tests/support/research/testGrantedResearchItem.c" })
+    ]);
+    User->SetLevel(4);
+    User->SetExperience(5000);
+    ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
+
+    Guild->guildName("fake mage");
+    User->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c");
+    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
+
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectEq(({ "lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ApplyIfAnyChosenResearchTreeCriteriaAppliedIfCriteriaMet()
+{
+    User->addSkillPoints(100);
+    User->advanceSkill("long sword", 10);
+    mapping criteria = ([
+        "type": "research tree",
+        "apply" : "at level 5",
+        "research tree" : "lib/tests/support/guilds/testGuildResearchTree.c",
+        "apply if any chosen": ({ 
+            "lib/tests/support/research/testGrantedResearchItem.c",
+            "lib/tests/support/research/testResearchA.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -881,6 +935,32 @@ void ApplyIfChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ApplyIfAnyChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
+{
+    User->addSkillPoints(100);
+    User->advanceSkill("long sword", 10);
+    mapping criteria = ([
+        "type":"research",
+        "apply": "at level 5",
+        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
+        "apply if any chosen" : ({ 
+            "lib/tests/support/guilds/testGuildResearchTree.c",
+            "lib/tests/support/guilds/testDeepResearchTree.c",
+        })
+    ]);
+    User->SetLevel(4);
+    User->SetExperience(5000);
+    ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
+
+    Guild->guildName("fake mage");
+
+    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+
+    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ApplyIfChosenResearchCriteriaAppliedIfCriteriaMet()
 {
     User->addSkillPoints(100);
@@ -890,6 +970,33 @@ void ApplyIfChosenResearchCriteriaAppliedIfCriteriaMet()
         "apply": "at level 5",
         "research object": "lib/tests/support/research/testGrantedResearchItem.c",
         "apply if chosen" : ({ "lib/tests/support/guilds/testGuildResearchTree.c" })
+    ]);
+    User->SetLevel(4);
+    User->SetExperience(5000);
+    ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
+    User->addResearchTree("lib/tests/support/guilds/testGuildResearchTree.c");
+
+    Guild->guildName("fake mage");
+
+    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
+
+    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ApplyIfAnyChosenResearchCriteriaAppliedIfCriteriaMet()
+{
+    User->addSkillPoints(100);
+    User->advanceSkill("long sword", 10);
+    mapping criteria = ([
+        "type":"research",
+        "apply": "at level 5",
+        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
+        "apply if any chosen" : ({ 
+            "lib/tests/support/guilds/testGuildResearchTree.c",
+            "lib/tests/support/guilds/testDeepResearchTree.c",
+        })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);

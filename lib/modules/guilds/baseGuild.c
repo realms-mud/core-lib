@@ -732,13 +732,35 @@ private nomask int checkApplyIfChosenCriteria(mapping criterion, object guildMem
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int checkApplyIfAnyChosenCriteria(mapping criterion, 
+    object guildMember)
+{
+    int ret = 1;
+
+    if (member(criterion, "apply if any chosen") &&
+        criterion["apply if any chosen"] &&
+        pointerp(criterion["apply if any chosen"]))
+    {
+        ret = 0;
+        foreach(string researchItem in criterion["apply if any chosen"])
+        {
+            ret ||= (guildMember->isResearched(researchItem) ||
+                (member(guildMember->availableResearchTrees(), researchItem) > -1));
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int applyResearchCriterion(mapping criterion, object guildMember)
 {
     int ret = 0;
     if (isValidResearchCriterion(criterion, "research object", guildMember))
     {
         ret = 1;
-        if (checkApplyIfChosenCriteria(criterion, guildMember))
+        if (checkApplyIfChosenCriteria(criterion, guildMember) &&
+            checkApplyIfAnyChosenCriteria(criterion, guildMember))
         {
             ret = guildMember->initiateResearch(criterion["research object"]);
         }
@@ -753,7 +775,8 @@ private nomask int applyResearchTreeCriterion(mapping criterion, object guildMem
     if (isValidResearchCriterion(criterion, "research tree", guildMember))
     {
         ret = 1;
-        if (checkApplyIfChosenCriteria(criterion, guildMember))
+        if (checkApplyIfChosenCriteria(criterion, guildMember) &&
+            checkApplyIfAnyChosenCriteria(criterion, guildMember))
         {
             ret = guildMember->addResearchTree(criterion["research tree"]);
         }

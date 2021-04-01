@@ -1742,7 +1742,7 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 0,
         "base stamina points" : 25
     ]),
-    "wraith":([
+    "wraith": ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
@@ -1760,5 +1760,113 @@ private nosave mapping creatureBlueprints = ([
         "base hit points": 150,
         "base spell points" : 0,
         "base stamina points" : 100
+    ]),
+    "scion of blood":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "blood" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "evocation", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "evil": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
+    ]),
+    "scion of electricity":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "elemental air" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "evocation", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "electricity": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
+    ]),
+    "scion of ice":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "elemental water" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "evocation", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "cold": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
+    ]),
+    "scion of energy":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "evocation" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "destruction", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "energy": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
+    ]),
+    "scion of fire":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "elemental fire" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "evocation", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "fire": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
+    ]),
+    "scion of the spirit":([
+        "category": "creatures",
+        "primary skills":({ "parry", "dodge", "no armor", "unarmed",
+            "spellcraft", "spirit" }),
+        "secondary skills" : ({ "perception", "listen", "spot", 
+            "anatomy and physiology", "astronomy", "chemistry", "mathematics",
+            "physics", "evocation", "magical essence" }),
+        "traits" : ({}),
+        "potential traits" : ({}),
+        "aliases": ({ "scion" }),
+        "minimum level": 1,
+        "attacks": ([
+            "magical": 10,
+        ]),
+        "base hit points": 50,
+        "base spell points" : 50,
+        "base stamina points" : 50
     ]),
 ]);
