@@ -39,7 +39,7 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 100);
+        addSpecification("spell point cost", 50);
 
         addSpecification("apply fortified", 1);
         addSpecification("duration", 20);

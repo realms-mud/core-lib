@@ -1041,3 +1041,39 @@ public nomask int deleteCompositeResearch(string itemName)
 
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping categorizedResearch()
+{
+    mapping ret = ([]);
+    string *knownResearch =
+        filter(m_indices(research), #'isResearched) + 
+            availableResearchTrees() + ({});
+
+    object dictionary = researchDictionary();
+    foreach(string element in knownResearch)
+    {
+        object researchObj = dictionary->researchObject(element);
+        string source = "";
+        string name = "";
+
+        if (!researchObj)
+        {
+            researchObj = dictionary->researchTree(element);
+            name = researchObj->Name();
+            source = researchObj->Source();
+        }
+        else
+        {
+            name = researchObj->query("name");
+            source = researchObj->query("source");
+        }
+        if (!member(ret, source))
+        {
+            ret[source] = ([]);
+        }
+        ret[source][convertToTextOfLength(name, 22)] = element;
+    }
+
+    return ret;
+}

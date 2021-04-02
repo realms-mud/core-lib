@@ -107,7 +107,7 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 100);
+        addSpecification("spell point cost", 50);
 
         addSpecification("bonus resist acid", 50);
         addSpecification("bonus resist air", 50);

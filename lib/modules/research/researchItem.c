@@ -218,6 +218,7 @@ protected int addSpecification(string type, mixed value)
                 {
                     ret = 1;
                     specificationData["source"] = value;
+                    CommandType = value;
                 }
                 else
                 {

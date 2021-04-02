@@ -11,7 +11,7 @@ public void reset(int arg)
     {
         researchTree::reset(arg);
         Name("high elf");
-        Description("this research tree contains the story arc for the high elf race.");
+        Description("This research tree contains the story arc for the high elf race.");
         Source("traits");
     }
 }

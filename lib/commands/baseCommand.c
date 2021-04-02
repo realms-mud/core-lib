@@ -8,7 +8,7 @@ private string MessageParser = "/lib/core/messageParser.c";
 
 protected string *commands = ({});
 protected int SplitCommands;
-protected string CommandType = "general";
+protected string CommandType = "General";
 protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 
 protected int TargetEnvironment = 2;
@@ -372,7 +372,7 @@ protected string copyright(string colorConfiguration)
 {
     return configuration->decorate("\n\nCopyright\n", "heading", "help",
             colorConfiguration) +
-        configuration->decorate("\tCopyright (C) 1991-2020 Allen "
+        configuration->decorate("\tCopyright (C) 1991-2021 Allen "
             "Cummings. For additional licensing\n\tinformation, see ",
             "text", "help", colorConfiguration) +
         configuration->decorate("http://realmsmud.org/license/\n",

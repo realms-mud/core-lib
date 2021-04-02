@@ -107,9 +107,9 @@ public void reset(int arg)
         addSpecification("research type", "points");
         addSpecification("research cost", 1);
 
-        addSpecification("spell point cost", 100);
+        addSpecification("spell point cost", 50);
 
-        addSpecification("bonus sonic enchantment", 10);
+        addSpecification("bonus sonic enchantment", 15);
 
         addSpecification("duration", 10);
 

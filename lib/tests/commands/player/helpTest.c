@@ -29,7 +29,7 @@ void HelpAsPlayerDisplaysMainHelpMenuWithoutWizardCommands()
 {
     ExpectTrue(Player->executeCommand("help"));
     command(" ", Player);
-    ExpectSubStringMatch("zing.*Interactions.*General.*save", 
+    ExpectSubStringMatch("zing.*General.*save.*Interactions", 
         Player->caughtMessage());
     ExpectFalse(sizeof(regexp(({ Player->caughtMessage() }), "Wizard")));
 }
@@ -79,7 +79,7 @@ void HelpAsWizardDisplaysMainHelpMenuWithWizardCommands()
 
     ExpectTrue(wizard->executeCommand("help"));
     command(" ", wizard);
-    ExpectSubStringMatch("zing.*Interactions.*General.*save",
+    ExpectSubStringMatch("zing.*General.*save.*Interactions",
         wizard->caughtMessage());
     ExpectTrue(sizeof(regexp(({ wizard->caughtMessage() }), "Wizard")));
 
@@ -103,4 +103,34 @@ void HelpAsWizardDisplaysSpecificHelpForWizardCommands()
         wizard->caughtMessage());
 
     destruct(wizard);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HelpCorrectlySpacesTitleDecorator()
+{
+    Player->colorConfiguration("none");
+    ExpectTrue(Player->executeCommand("help"));
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    command(" ", Player);
+    ExpectSubStringMatch("| '              guild          party          race           repeat          |\n"
+        "| reply          say            shout          talk           talk to         |\n"
+        "| tell                                                                        |\n",
+        Player->caughtMessage());
 }

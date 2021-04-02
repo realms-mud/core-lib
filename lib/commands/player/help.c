@@ -42,7 +42,9 @@ private nomask string categoriesHelpList(string *commandCategories,
     string message = "";
     foreach(string commandCategory in commandCategories)
     {
-        int columnSize = (commandCategory == "Party") ? 25 : 15;
+        int columnSize = (member(({ "Wizard", "Social", "Player R&D",
+            "Player Information", "Interactions", "General", "Emote / Soul" }),
+            commandCategory) > -1) ? 15 : 25;
 
         message += Dictionary->buildBanner(colorConfiguration, charset,
             "top", capitalize(commandCategory), "Help");
@@ -64,6 +66,13 @@ private nomask string categoriesHelpList(string *commandCategories,
                 }
             }
             helpRow += sprintf("%-" + to_string(columnSize) + "s", commandEntry);
+            count++;
+        }
+
+        count = count % (80 / columnSize);
+        while(count && (count < (80 / columnSize)))
+        {
+            helpRow += sprintf("%-" + to_string(columnSize) + "s", "");
             count++;
         }
 
@@ -126,12 +135,33 @@ static nomask void responseToPage(string response, string message,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string displayHelpDetails(string commandFile, string command,
-    string colorConfiguration, string charset)
+    string colorConfiguration, string charset, object initiator)
 {
     string ret = "";
     object commandObj = load_object(commandFile);
 
-    if (commandObj)
+    if (commandObj &&
+        (member(inherit_list(commandObj),
+            "lib/modules/research/researchItem.c") > -1))
+    {
+        ret += commandObj->researchDetails();
+    }
+    else if (commandObj &&
+        (member(inherit_list(commandObj),
+            "lib/modules/research/researchTree.c") > -1))
+    {
+        ret += commandObj->researchTreeDetails(initiator) +
+            configuration->decorate("Items in this color are known.\n",
+                "known", "research", colorConfiguration) +
+            configuration->decorate("Items in this color are currently being researched.\n",
+                "in progress", "research", colorConfiguration) +
+            configuration->decorate("Items in this color are available to research.\n",
+                "field data", "research", colorConfiguration) +
+            configuration->decorate("Items in this color have unmet prerequisites "
+                "and can't be researched yet.\n",
+                "missing prerequisites", "research", colorConfiguration);
+    }
+    else if (commandObj)
     {
         ret += Dictionary->buildBanner(colorConfiguration, charset, "top", "Help for", command) +
             commandObj->displaySynopsis(command, colorConfiguration, charset);
@@ -152,7 +182,9 @@ public nomask int execute(string command, object initiator)
     if (canExecuteCommand(command))
     {
         object commandRegistry = load_object("/lib/commands/commandRegistry.c");
-        mapping commandList = commandRegistry->getListOfCommands(initiator);
+        mapping commandList = commandRegistry->getListOfCommands(initiator) +
+            initiator->categorizedResearch();
+
         mapping flattenedCommandList = flattenCommandList(commandList);
         string message = "";
 
@@ -177,7 +209,7 @@ public nomask int execute(string command, object initiator)
         else if(member(flattenedCommandList, command))
         {
             message = displayHelpDetails(flattenedCommandList[command], command,
-                colorConfiguration, charset);
+                colorConfiguration, charset, initiator);
         }
         else
         {
