@@ -37,7 +37,7 @@ private nosave string *validEventHandlers = ({ "onDeath", "onHeartBeat",
     "onConversationResponse", "receiveEvent", "onCraftingStarted", 
     "onCraftingCompleted", "onCraftingAborted", "onTriggerConversation",
     "onMessageReceived", "onConstructionStarted", "onConstructionCompleted",
-    "onDestructed", "onCreationIncomplete"
+    "onDestructed", "onCreationIncomplete", "onLeavingGame"
 });
     
 private nosave mapping eventList = ([ ]);

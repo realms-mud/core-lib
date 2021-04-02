@@ -48,6 +48,7 @@ public nomask int execute(string command, object initiator)
                 query_ip_number(initiator) || "???"), initiator);
             channels->unregisterUser(initiator);
         }
+        initiator->notifySynchronous("onLeavingGame");
 
         destruct(initiator);
     }

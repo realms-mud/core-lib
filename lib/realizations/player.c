@@ -95,6 +95,8 @@ private nomask void checkForLinkDeath(object player)
                 this_object()->queryProperty("IP address") || "???"), this_object());
             channels->unregisterUser(this_object());
         }
+        player->notifySynchronous("onLeavingGame");
+
         destruct(player);
     }
 }

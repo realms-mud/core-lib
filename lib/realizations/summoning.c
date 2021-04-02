@@ -40,8 +40,29 @@ public void onHit(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void cleanUpCharacter()
+{
+    object *allItems = deep_inventory(this_object());
+    if (sizeof(allItems))
+    {
+        foreach(object item in allItems)
+        {
+            destruct(item);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
+    cleanUpCharacter();
+    destruct(this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onLeavingGame(object caller)
+{
+    cleanUpCharacter();
     destruct(this_object());
 }
 

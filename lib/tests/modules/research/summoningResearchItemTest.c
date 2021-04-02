@@ -54,7 +54,10 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    destruct(User->getParty());
+    if (User)
+    {
+        destruct(User->getParty());
+    }
     destruct(Target);
     destruct(User);
     destruct(Room);
@@ -286,6 +289,29 @@ void SummonedCreatureOnDeathFromOwnerIsHandled()
     ExpectTrue(summoned2);
 
     User->hit(2500, "magical", Target);
+
+    ExpectFalse(summoned);
+    ExpectFalse(summoned2);
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SummonedCreatureOnLeavingGameFromOwnerIsHandled()
+{
+    ToggleCallOutBypass();
+
+    ExpectEq(2, sizeof(all_inventory(Room)));
+
+    command("summon weasel", User);
+    ExpectEq(4, sizeof(all_inventory(Room)));
+    object summoned = (all_inventory(Room) - ({ User, Target }))[0];
+    object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
+
+    ExpectTrue(summoned);
+    ExpectTrue(summoned2);
+
+    command("quit", User);
 
     ExpectFalse(summoned);
     ExpectFalse(summoned2);
