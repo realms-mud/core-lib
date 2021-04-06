@@ -9,17 +9,17 @@ public void SetupGuild()
 {
     guildName("fighter");
     addPreferredSkillType("combat");
-    prohibitedGuildCombinations(({ "Scion of Dhuras", "monk" }));
+    prohibitedGuildCombinations(({ "Scion of Dhuras", "Aegis Guard" }));
 
     addCriteria("hit points", ([
         "type": "modifier",
-        "apply" : "5 every level",
+        "apply" : "6 every level",
         "begin at level" : 1
     ]));
 
     addCriteria("stamina points", ([
         "type": "modifier",
-        "apply" : "2 every level",
+        "apply" : "4 every level",
         "begin at level" : 1
     ]));
 
@@ -36,5 +36,41 @@ public void SetupGuild()
     addCriteria("skill points", ([
         "type":"skill points",
         "apply" : "5 every level"
+    ]));
+
+    addCriteria("blade attacks", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/blade-attacks.c"
+    ]));
+
+    addCriteria("axe attacks", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/axe-attacks.c"
+    ]));
+
+    addCriteria("polearm attacks", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/polearm-attacks.c"
+    ]));
+
+    addCriteria("shields", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/shields.c"
+    ]));
+
+    addCriteria("bludgeon attacks", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/bludgeon-attacks.c"
+    ]));
+
+    addCriteria("combat techniques", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "guilds/fighter/combat-techniques.c"
     ]));
 }

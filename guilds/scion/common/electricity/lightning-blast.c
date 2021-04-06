@@ -54,7 +54,7 @@ public void reset(int arg)
             ])
         }));
         addSpecification("damage spell points", ({ ([
-                "probability":90,
+                "probability": 90,
                 "base damage": 10,
                 "range": 25
             ]),

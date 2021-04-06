@@ -10,23 +10,22 @@ public void reset(int arg)
     if (!arg)
     {
         instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Melee's Melody");
-        addSpecification("source", "bard");
+        addSpecification("name", "Slash");
+        addSpecification("source", "fighter");
         addSpecification("description", "This research provides the user with the "
-            "knowledge of a song that sends out a sonic wave from their "
-            "weapon that causes damage to a targeted enemy.");
+            "knowledge of a slashing blade technique that causes damage to "
+            "an enemy.");
 
-        addPrerequisite("guilds/bard/melee/root.c",
+        addPrerequisite("guilds/fighter/blades/root.c",
             (["type":"research"]));
 
         addSpecification("limited by", (["equipment":({ "long sword",
-            "hand and a half sword", "two-handed sword", "axe",
-            "dagger", "short sword", "hammer", "mace", "flail",
-            "staff", "pole arm" })]));
+            "hand and a half sword", "two-handed sword", "dagger", 
+            "short sword", })]));
 
         addPrerequisite("level",
             (["type":"level",
-                "guild": "bard",
+                "guild": "fighter",
                 "value": 1
             ]));
 
@@ -46,80 +45,109 @@ public void reset(int arg)
             ])
         }));
 
-        addSpecification("damage type", "sonic");
+        addSpecification("damage type", "slash");
 
         addSpecification("modifiers", ({ 
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/melee-march.c",
-                "name": "melee-march",
+                "research item": "guilds/fighter/blades/under-cutting.c",
+                "name": "under-cutting",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/soldiers-song.c",
-                "name": "soldiers-song",
+                "research item": "guilds/fighter/blades/reverse-cut.c",
+                "name": "reverse-cut",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/serenade-of-the-soldier.c",
-                "name": "serenade-of-the-soldier",
+                "research item": "guilds/fighter/blades/double-back.c",
+                "name": "double-back",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/arms-lament.c",
-                "name": "arms-lament",
+                "research item": "guilds/fighter/blades/riposte.c",
+                "name": "riposte",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/footmans-ballad.c",
-                "name": "footmans-ballad",
+                "research item": "guilds/fighter/blades/reversing-the-blade.c",
+                "name": "reversing-the-blade",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/weapon-masters-tale.c",
-                "name": "weapon-masters-tale",
+                "research item": "guilds/fighter/blades/over-cutting.c",
+                "name": "over-cutting",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.25
             ]),
             ([
                 "type": "research",
-                "research item": "guilds/bard/melee/lay-of-the-armsmaster.c",
-                "name": "lay-of-the-armsmaster",
+                "research item": "guilds/fighter/blades/cross-cutting.c",
+                "name": "cross-slashing",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/fighter/blades/dancing-blade.c",
+                "name": "dancing-blade",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/fighter/blades/hanging-cut.c",
+                "name": "hanging-cut",
+                "formula": "multiplicative",
+                "base value": 1,
+                "rate": 1.25
+            ]),
+            ([
+                "type": "research",
+                "research item": "guilds/fighter/blades/master-stroke.c",
+                "name": "master-stroke",
                 "formula": "multiplicative",
                 "base value": 1,
                 "rate": 1.5
             ]),
             ([
+                "type": "deferred attack",
+                "name": "deferred attack",
+                "trait": "guilds/fighter/blades/calculated-attack.c",
+                "formula": "multiplicative",
+                "rate": 0.01
+            ]),
+            ([
                 "type": "weapon damage",
-                "name" : "weapon",
+                "name" : "sword",
                 "types" : ({ "long sword", "hand and a half sword", 
-                    "two-handed sword", "axe", "dagger", "short sword", 
-                    "hammer", "mace", "flail", "staff", "pole arm" }),
+                    "two-handed sword", "dagger", "short sword" }),
                 "formula" : "additive",
-                "rate" : 0.5
+                "rate" : 0.75
             ]),
             ([
                 "type":"highest skill",
-                "name" : "weapon skills",
+                "name" : "sword skills",
                 "skills": ({ "long sword", "hand and a half sword", 
-                    "two-handed sword", "axe", "dagger", "short sword", 
-                    "hammer", "mace", "flail", "staff", "pole arm" }),
+                    "two-handed sword", "dagger", "short sword" }),
                 "formula" : "additive",
                 "rate" : 0.5
             ]), 
@@ -128,6 +156,18 @@ public void reset(int arg)
                 "name": "anatomy and physiology",
                 "formula": "additive",
                 "rate": 0.10
+            ]),
+            ([
+                "type": "skill",
+                "name": "acrobatics",
+                "formula": "additive",
+                "rate": 0.05
+            ]),
+            ([
+                "type": "skill",
+                "name": "dancing",
+                "formula": "additive",
+                "rate": 0.05
             ]),
             ([
                 "type": "skill",
@@ -149,41 +189,38 @@ public void reset(int arg)
             ]),
             ([
                 "type": "attribute",
-                "name": "wisdom",
+                "name": "strength",
                 "formula": "additive",
                 "rate": 0.25
             ]),
+            ([
+                "type": "attribute",
+                "name": "wisdom",
+                "formula": "additive",
+                "rate": 0.15
+            ]),
         }));
 
-        addSpecification("spell point cost", 15);
-        addSpecification("spell point cost modifiers", ([
-            "guilds/bard/melee/rhythmic-riposte.c": 2,
-            "guilds/bard/melee/armsmans-form.c": 2,
-            "guilds/bard/melee/armsmans-breath.c": 3,
-            "guilds/bard/melee/minstrels-melee.c": 3
-        ]));
-
-        addSpecification("stamina point cost", 25);
+        addSpecification("stamina point cost", 30);
         addSpecification("stamina point cost modifiers", ([
-            "guilds/bard/melee/rhythmic-riposte.c": 5,
-            "guilds/bard/melee/armsmans-form.c": 5,
-            "guilds/bard/melee/armsmans-breath.c": 5,
-            "guilds/bard/melee/minstrels-melee.c": 5
+            "guilds/fighter/blades/blademasters-reserve.c": 5,
+            "guilds/fighter/blades/blademasters-call.c": 5,
+            "guilds/fighter/blades/blademasters-might.c": 5,
+            "guilds/fighter/blades/blademasters-fury.c": 5
         ]));
 
-        addSpecification("cooldown", 30);
+        addSpecification("cooldown", 25);
         addSpecification("cooldown modifiers", ([
-            "guilds/bard/melee/footmans-tune.c": 5,
-            "guilds/bard/melee/song-of-the-strong.c": 5,
-            "guilds/bard/melee/requiem-of-attack.c": 5,
-            "guilds/bard/melee/armsmasters-tale.c": 5,
+            "guilds/fighter/blades/blademasters-boon.c": 5,
+            "guilds/fighter/blades/blademasters-speed.c": 5,
+            "guilds/fighter/blades/blademasters-endurance.c": 5,
+            "guilds/fighter/blades/blademasters-strength.c": 5,
         ]));
 
-        addSpecification("event handler", "meleesMelodyEvent");
-        addSpecification("command template", "melee's melody [at ##Target##]");
+        addSpecification("event handler", "slashEvent");
+        addSpecification("command template", "slash [at ##Target##]");
         addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-            "##Infinitive::point## ##InitiatorPossessive## "
-            "##InitiatorWeapon## at ##TargetName## and ##Infinitive::sing##, "
-            "`Tis thy time, oh stranger... Tis thy time to die.'");
+            "##Infinitive::slash## ##InitiatorPossessive## "
+            "##InitiatorWeapon## at ##TargetName## in a relentless onslaught.");
     }
 }
