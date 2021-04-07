@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "marsh hag");
-        addSpecification("description", "You are a marsh hag.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist disease", 25);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "marsh hag");
+    addSpecification("description", "You are a marsh hag.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist disease", 25);
 }

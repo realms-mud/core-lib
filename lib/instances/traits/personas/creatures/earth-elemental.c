@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "earth elemental");
-        addSpecification("description", "You are an earth elemental.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist earth", 100);
-        addSpecification("bonus resist physical", 50);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "earth elemental");
+    addSpecification("description", "You are an earth elemental.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist earth", 100);
+    addSpecification("bonus resist physical", 50);
 }

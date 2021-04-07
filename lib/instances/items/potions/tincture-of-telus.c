@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Tincture of Telus");
-        set("short", "Tincture of Telus");
-        set("aliases", ({ "tincture", "potion", "tincture of telus" }));
-        set("blueprint", "tincture of telus");
-    }
+    set("name", "Tincture of Telus");
+    set("short", "Tincture of Telus");
+    set("aliases", ({ "tincture", "potion", "tincture of telus" }));
+    set("blueprint", "tincture of telus");
 }

@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "professional");
-        addSpecification("name", "journeyman carpenter");
-        addSpecification("description", "You are an adept carpenter");
-        addSpecification("root", "carpenter");
-        addSpecification("opinion", 1);
-        addSpecification("bonus carpentry", 10);
-        addSpecification("bonus wood crafting", 5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "professional");
+    addSpecification("name", "journeyman carpenter");
+    addSpecification("description", "You are an adept carpenter");
+    addSpecification("root", "carpenter");
+    addSpecification("opinion", 1);
+    addSpecification("bonus carpentry", 10);
+    addSpecification("bonus wood crafting", 5);
 }

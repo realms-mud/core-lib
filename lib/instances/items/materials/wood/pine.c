@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/material.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Pine");
-        set("short", "Pine");
-        set("aliases", ({ "wood", "pine" }));
-        set("blueprint", "pine");
-    }
+    set("name", "Pine");
+    set("short", "Pine");
+    set("aliases", ({ "wood", "pine" }));
+    set("blueprint", "pine");
 }

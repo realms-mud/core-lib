@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "mordant");
-        addSpecification("description", "You are a wholly detestable and "
-            "utterly distasteful creature.");
-        addSpecification("root", "harsh");
-        addSpecification("opinion", -15);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "mordant");
+    addSpecification("description", "You are a wholly detestable and "
+        "utterly distasteful creature.");
+    addSpecification("root", "harsh");
+    addSpecification("opinion", -15);
 }

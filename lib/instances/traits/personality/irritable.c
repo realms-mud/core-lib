@@ -5,19 +5,15 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "irritable");
-        addSpecification("description", "You're cranky. There are a lot of "
-            "things that annoy you. Most of them talk.");
-        addSpecification("root", "harsh");
-        addSpecification("opposing root", "kind");
-        addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -5);
-        addSpecification("penalty to diplomacy", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "irritable");
+    addSpecification("description", "You're cranky. There are a lot of "
+        "things that annoy you. Most of them talk.");
+    addSpecification("root", "harsh");
+    addSpecification("opposing root", "kind");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -5);
+    addSpecification("penalty to diplomacy", 1);
 }

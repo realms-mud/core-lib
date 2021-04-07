@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Potion of Magic Resistance");
-        set("short", "Potion of Magic Resistance");
-        set("aliases", ({ "magic resistance", "potion", "magic resistance potion",
-            "potion of magic resistance" }));
-        set("blueprint", "magic resistance potion");
-    }
+    set("name", "Potion of Magic Resistance");
+    set("short", "Potion of Magic Resistance");
+    set("aliases", ({ "magic resistance", "potion", "magic resistance potion",
+        "potion of magic resistance" }));
+    set("blueprint", "magic resistance potion");
 }

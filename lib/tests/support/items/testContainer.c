@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/container.c";
 
 /////////////////////////////////////////////////////////////////////////////
-void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("name", "Box");
-        set("short", "Box");
-        set("aliases", ({ "box" }));
-        set("long", "This is the box of weasels. It's neat.");
-    }
+    set("name", "Box");
+    set("short", "Box");
+    set("aliases", ({ "box" }));
+    set("long", "This is the box of weasels. It's neat.");
 }

@@ -5,19 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "professional");
-        addSpecification("name", "journeyman foreman");
-        addSpecification("description", "You are able to lead building projects");
-        addSpecification("root", "foreman");
-        addSpecification("opinion", 5);
-        addSpecification("bonus engineering", 10);
-        addSpecification("bonus mathematics", 5);
-        addSpecification("bonus physics", 5);
-
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "professional");
+    addSpecification("name", "journeyman foreman");
+    addSpecification("description", "You are able to lead building projects");
+    addSpecification("root", "foreman");
+    addSpecification("opinion", 5);
+    addSpecification("bonus engineering", 10);
+    addSpecification("bonus mathematics", 5);
+    addSpecification("bonus physics", 5);
 }

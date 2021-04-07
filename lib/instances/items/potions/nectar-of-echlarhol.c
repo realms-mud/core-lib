@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Nectar of Echlarhol");
-        set("short", "Nectar of Echlarhol");
-        set("aliases", ({ "nectar", "potion", "nectar of echlarhol" }));
-        set("blueprint", "nectar of echlarhol");
-    }
+    set("name", "Nectar of Echlarhol");
+    set("short", "Nectar of Echlarhol");
+    set("aliases", ({ "nectar", "potion", "nectar of echlarhol" }));
+    set("blueprint", "nectar of echlarhol");
 }

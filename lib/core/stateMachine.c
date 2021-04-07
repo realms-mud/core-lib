@@ -10,6 +10,12 @@ protected object *stateActors = ({});
 protected mapping stateTree = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -18,6 +24,7 @@ public void reset(int arg)
         CurrentState = "default";
         stateActors = ({});
         stateTree = ([]);
+        Setup();
     }
 }
 

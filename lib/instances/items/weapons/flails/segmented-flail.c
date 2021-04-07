@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Segmented flail");
-        set("short", "Segmented flail");
-        set("aliases", ({ "flail", "segmented flail" }));
-        set("blueprint", "segmented flail");
-    }
+    set("name", "Segmented flail");
+    set("short", "Segmented flail");
+    set("aliases", ({ "flail", "segmented flail" }));
+    set("blueprint", "segmented flail");
 }

@@ -5,16 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "genetic");
-        addSpecification("name", "copper hair");
-        addSpecification("description", "Your hair is red-orange with very vibrant highlights.");
-        addSpecification("root", "hair");
-        "baseTrait"::reset(arg);
-    }
-
+    addSpecification("type", "genetic");
+    addSpecification("name", "copper hair");
+    addSpecification("description", "Your hair is red-orange with very vibrant highlights.");
+    addSpecification("root", "hair");
 }
-

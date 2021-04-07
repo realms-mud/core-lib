@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "aquamancer");
-        addSpecification("description", "You are an aquamancer.");
-        addSpecification("root", "mage persona");
-        addSpecification("bonus resist water", 75);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "aquamancer");
+    addSpecification("description", "You are an aquamancer.");
+    addSpecification("root", "mage persona");
+    addSpecification("bonus resist water", 75);
 }

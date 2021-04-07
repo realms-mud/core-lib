@@ -5,15 +5,12 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Athame");
-        set("short", "Athame");
-        set("long", "It has a short blade that is only as long as the "
-            "hilt. Its blade is about six inches long (.2 meters).");
-        set("aliases", ({ "dagger" }));
-        set("blueprint", "athame");
-    }
+    set("name", "Athame");
+    set("short", "Athame");
+    set("long", "It has a short blade that is only as long as the "
+        "hilt. Its blade is about six inches long (.2 meters).");
+    set("aliases", ({ "dagger" }));
+    set("blueprint", "athame");
 }

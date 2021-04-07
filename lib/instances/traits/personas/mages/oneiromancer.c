@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "oneiromancer");
-        addSpecification("description", "You are an oneiromancer.");
-        addSpecification("root", "mage persona");
-        addSpecification("bonus resist psionic", 75);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "oneiromancer");
+    addSpecification("description", "You are an oneiromancer.");
+    addSpecification("root", "mage persona");
+    addSpecification("bonus resist psionic", 75);
 }

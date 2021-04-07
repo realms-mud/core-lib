@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "owlbear");
-        addSpecification("description", "You are an owlbear.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist physical", 15);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "owlbear");
+    addSpecification("description", "You are an owlbear.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist physical", 15);
 }

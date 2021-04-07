@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "Inconsequential Boy");
-        addSpecification("description", "blah blah blah");
-        addSpecification("bonus energy attack", 15);
-        addSpecification("root", "ethereal");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "Inconsequential Boy");
+    addSpecification("description", "blah blah blah");
+    addSpecification("bonus energy attack", 15);
+    addSpecification("root", "ethereal");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "bloodthirsty");
-        addSpecification("description", "You have a rather savage demeanor and are "
-            "apt to resolve personal issues through violence.");
-        addSpecification("root", "brutal");
-        addSpecification("opinion", -5);
-        addSpecification("penalty to persuasion", 1);
-        addSpecification("bonus intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "bloodthirsty");
+    addSpecification("description", "You have a rather savage demeanor and are "
+        "apt to resolve personal issues through violence.");
+    addSpecification("root", "brutal");
+    addSpecification("opinion", -5);
+    addSpecification("penalty to persuasion", 1);
+    addSpecification("bonus intimidation", 1);
 }

@@ -5,20 +5,16 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "deceitful");
-        addSpecification("description", "You are a dishonest, mendacious "
-            "person.");
-        addSpecification("root", "dishonorable");
-        addSpecification("opposing root", "honorable");
-        addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -15);
-        addSpecification("bonus bluff", 1);
-        addSpecification("penalty to diplomacy", 2);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "deceitful");
+    addSpecification("description", "You are a dishonest, mendacious "
+        "person.");
+    addSpecification("root", "dishonorable");
+    addSpecification("opposing root", "honorable");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -15);
+    addSpecification("bonus bluff", 1);
+    addSpecification("penalty to diplomacy", 2);
 }

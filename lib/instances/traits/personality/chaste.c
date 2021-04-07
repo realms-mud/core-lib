@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "chaste");
-        addSpecification("description", "You have chosen to abstain from "
-            "sexual relationships.");
-        addSpecification("root", "celibate");
-        addSpecification("opposing root", "hedonist");
-        addSpecification("opinion", 10);
-        addSpecification("opposing opinion", -10);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "chaste");
+    addSpecification("description", "You have chosen to abstain from "
+        "sexual relationships.");
+    addSpecification("root", "celibate");
+    addSpecification("opposing root", "hedonist");
+    addSpecification("opinion", 10);
+    addSpecification("opposing opinion", -10);
 }

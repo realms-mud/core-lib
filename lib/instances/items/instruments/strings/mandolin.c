@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/instrument.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Mandolin");
-        set("short", "Mandolin");
-        set("aliases", ({ "mandolin", "strings", "instrument" }));
-        set("blueprint", "mandolin");
-    }
+    set("name", "Mandolin");
+    set("short", "Mandolin");
+    set("aliases", ({ "mandolin", "strings", "instrument" }));
+    set("blueprint", "mandolin");
 }

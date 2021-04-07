@@ -5,20 +5,16 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "effect");
-        addSpecification("name", "Charisma");
-        addSpecification("description", "You have quaffed the 'Charisma' "
-            "potion and are currently benefitting from its effects.");
-        addSpecification("root", "abilities");
-        addSpecification("opinion", 25);
-        addSpecification("duration", 180);
-        addSpecification("bonus charisma", 2);
-        addSpecification("expire message", "The effects of the 'Charisma' "
-            "potion subside.");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "effect");
+    addSpecification("name", "Charisma");
+    addSpecification("description", "You have quaffed the 'Charisma' "
+        "potion and are currently benefitting from its effects.");
+    addSpecification("root", "abilities");
+    addSpecification("opinion", 25);
+    addSpecification("duration", 180);
+    addSpecification("bonus charisma", 2);
+    addSpecification("expire message", "The effects of the 'Charisma' "
+        "potion subside.");
 }

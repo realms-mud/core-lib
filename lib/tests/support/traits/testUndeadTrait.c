@@ -5,14 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "Dead guy");
-        addSpecification("description", "blah blah blah");
-        addSpecification("root", "undead");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "Dead guy");
+    addSpecification("description", "blah blah blah");
+    addSpecification("root", "undead");
 }

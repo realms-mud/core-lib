@@ -5,19 +5,15 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "gloryhound");
-        addSpecification("description", "You seek recognition as a doer of "
-            "great deeds and go out of your way to achieve them - or at "
-            "least convince others that you have.");
-        addSpecification("root", "braggart");
-        addSpecification("opposing root", "humble");
-        addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -15);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "gloryhound");
+    addSpecification("description", "You seek recognition as a doer of "
+        "great deeds and go out of your way to achieve them - or at "
+        "least convince others that you have.");
+    addSpecification("root", "braggart");
+    addSpecification("opposing root", "humble");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -15);
 }

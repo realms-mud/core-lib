@@ -5,14 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "genetic");
-        addSpecification("name", "light violet eyes");
-        addSpecification("description", "Your eyes are light violet.");
-        addSpecification("root", "eyes");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "genetic");
+    addSpecification("name", "light violet eyes");
+    addSpecification("description", "Your eyes are light violet.");
+    addSpecification("root", "eyes");
 }

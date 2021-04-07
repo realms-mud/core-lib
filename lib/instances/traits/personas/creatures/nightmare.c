@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "nightmare");
-        addSpecification("description", "You are a nightmare.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist fire", 50);
-        addSpecification("bonus resist evil", 50);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "nightmare");
+    addSpecification("description", "You are a nightmare.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist fire", 50);
+    addSpecification("bonus resist evil", 50);
 }

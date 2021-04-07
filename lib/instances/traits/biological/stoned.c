@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "stoned");
-        addSpecification("description", "You are completely stoned on psychedelic drugs.");
-        addSpecification("root", "biological");
-        addSpecification("opinion", -15);
-        addSpecification("duration", 300);
-        addSpecification("expire message", "You are no longer stoned.");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "stoned");
+    addSpecification("description", "You are completely stoned on psychedelic drugs.");
+    addSpecification("root", "biological");
+    addSpecification("opinion", -15);
+    addSpecification("duration", 300);
+    addSpecification("expire message", "You are no longer stoned.");
 }

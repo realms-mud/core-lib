@@ -5,20 +5,16 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "malicious");
-        addSpecification("description", "You tend to revel in mean-spirited "
-            "and spiteful behavior, be it speech, kicking orphans, and so on. "
-            "In short, you're a real jerk.");
-        addSpecification("root", "cruel");
-        addSpecification("opposing root", "kind");
-        addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -25);
-        addSpecification("bonus intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "malicious");
+    addSpecification("description", "You tend to revel in mean-spirited "
+        "and spiteful behavior, be it speech, kicking orphans, and so on. "
+        "In short, you're a real jerk.");
+    addSpecification("root", "cruel");
+    addSpecification("opposing root", "kind");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -25);
+    addSpecification("bonus intimidation", 1);
 }

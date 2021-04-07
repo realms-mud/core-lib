@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "fire wyrm");
-        addSpecification("description", "You are a fire wyrm.");
-        addSpecification("root", "large creature persona");
-        addSpecification("bonus resist fire", 100);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "fire wyrm");
+    addSpecification("description", "You are a fire wyrm.");
+    addSpecification("root", "large creature persona");
+    addSpecification("bonus resist fire", 100);
 }

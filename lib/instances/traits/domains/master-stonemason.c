@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "professional");
-        addSpecification("name", "master stonemason");
-        addSpecification("description", "You are a master stonemason");
-        addSpecification("root", "stonemason");
-        addSpecification("opinion", 5);
-        addSpecification("bonus stonemasonry", 25);
-        addSpecification("bonus engineering", 5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "professional");
+    addSpecification("name", "master stonemason");
+    addSpecification("description", "You are a master stonemason");
+    addSpecification("root", "stonemason");
+    addSpecification("opinion", 5);
+    addSpecification("bonus stonemasonry", 25);
+    addSpecification("bonus engineering", 5);
 }

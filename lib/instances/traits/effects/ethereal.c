@@ -5,14 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "effect");
-        addSpecification("name", "ethereal");
-        addSpecification("description", "You are ethereal.");
-        addSpecification("root", "ethereal");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "effect");
+    addSpecification("name", "ethereal");
+    addSpecification("description", "You are ethereal.");
+    addSpecification("root", "ethereal");
 }

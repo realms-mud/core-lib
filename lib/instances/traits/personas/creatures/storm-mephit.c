@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "storm mephit");
-        addSpecification("description", "You are a storm mephit.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist electricity", 25);
-        addSpecification("bonus resist physical", 20);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "storm mephit");
+    addSpecification("description", "You are a storm mephit.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist electricity", 25);
+    addSpecification("bonus resist physical", 20);
 }

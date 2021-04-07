@@ -5,15 +5,12 @@
 virtual inherit "/lib/items/drink.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Brandy Barrel Aged Weissenbock");
-        set("short", "Brandy Barrel Aged Weissenbock");
-        set("biological effect", "alcohol");
-        set("biological strength", 3);
-        set("aliases", ({ "weissenbock", "beer", "lager", "barrel aged weissenbock" }));
-        set("blueprint", "brandy barrel aged weissenbock");
-    }
+    set("name", "Brandy Barrel Aged Weissenbock");
+    set("short", "Brandy Barrel Aged Weissenbock");
+    set("biological effect", "alcohol");
+    set("biological strength", 3);
+    set("aliases", ({ "weissenbock", "beer", "lager", "barrel aged weissenbock" }));
+    set("blueprint", "brandy barrel aged weissenbock");
 }

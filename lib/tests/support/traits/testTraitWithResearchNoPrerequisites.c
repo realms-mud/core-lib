@@ -5,23 +5,20 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "educational");
-        addSpecification("name", "Duelist");
-        addSpecification("description", "blah blah blah");
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus weapon attack", 1);
-        addSpecification("root", "jock");
-        addSpecification("opposing root", "nerd");
-        addSpecification("opinion", 5);
-        addSpecification("opposing opinion", -5);
-        addSpecification("cost", 1);
-        addSpecification("research tree", "lib/tests/support/research/testResearchTreeNoPrerequisites.c");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "educational");
+    addSpecification("name", "Duelist");
+    addSpecification("description", "blah blah blah");
+    addSpecification("bonus long sword", 1);
+    addSpecification("bonus weapon attack", 1);
+    addSpecification("root", "jock");
+    addSpecification("opposing root", "nerd");
+    addSpecification("opinion", 5);
+    addSpecification("opposing opinion", -5);
+    addSpecification("cost", 1);
+    addSpecification("research tree", 
+        "lib/tests/support/research/testResearchTreeNoPrerequisites.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

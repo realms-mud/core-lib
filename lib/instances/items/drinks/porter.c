@@ -5,15 +5,12 @@
 virtual inherit "/lib/items/drink.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Porter Beer");
-        set("short", "Porter Beer");
-        set("biological effect", "alcohol");
-        set("biological strength", 1);
-        set("aliases", ({ "porter", "beer" }));
-        set("blueprint", "porter beer");
-    }
+    set("name", "Porter Beer");
+    set("short", "Porter Beer");
+    set("biological effect", "alcohol");
+    set("biological strength", 1);
+    set("aliases", ({ "porter", "beer" }));
+    set("blueprint", "porter beer");
 }

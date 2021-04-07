@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Rapier");
-        set("short", "Rapier");
-        set("aliases", ({ "sword", "rapier" }));
-        set("blueprint", "rapier");
-    }
+    set("name", "Rapier");
+    set("short", "Rapier");
+    set("aliases", ({ "sword", "rapier" }));
+    set("blueprint", "rapier");
 }

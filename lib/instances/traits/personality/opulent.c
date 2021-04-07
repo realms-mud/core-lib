@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "opulent");
-        addSpecification("description", "You have extremely expensive "
-            "and luxurious tastes. Some might even accuse them of being "
-            "gaudy to the extreme.");
-        addSpecification("root", "refined");
-        addSpecification("opinion", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "opulent");
+    addSpecification("description", "You have extremely expensive "
+        "and luxurious tastes. Some might even accuse them of being "
+        "gaudy to the extreme.");
+    addSpecification("root", "refined");
+    addSpecification("opinion", 1);
 }

@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "genetic");
-        addSpecification("name", "Freak");
-        addSpecification("description", "blah blah blah");
-        addSpecification("root", "disfigured");
-        addSpecification("opposing root", "normal");
-        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "genetic");
+    addSpecification("name", "Freak");
+    addSpecification("description", "blah blah blah");
+    addSpecification("root", "disfigured");
+    addSpecification("opposing root", "normal");
+    addPrerequisite("long sword", (["type":"skill", "value" : 10]));
 }

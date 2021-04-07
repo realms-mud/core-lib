@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Potion of Psionic Resistance");
-        set("short", "Potion of Psionic Resistance");
-        set("aliases", ({ "psionic resistance", "potion", "psionic resistance potion",
-            "potion of psionic resistance" }));
-        set("blueprint", "psionic resistance potion");
-    }
+    set("name", "Potion of Psionic Resistance");
+    set("short", "Potion of Psionic Resistance");
+    set("aliases", ({ "psionic resistance", "potion", "psionic resistance potion",
+        "potion of psionic resistance" }));
+    set("blueprint", "psionic resistance potion");
 }

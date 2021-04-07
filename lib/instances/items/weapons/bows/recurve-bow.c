@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Recurve bow");
-        set("short", "Recurve bow");
-        set("aliases", ({ "bow", "recurve bow" }));
-        set("blueprint", "recurve bow");
-    }
+    set("name", "Recurve bow");
+    set("short", "Recurve bow");
+    set("aliases", ({ "bow", "recurve bow" }));
+    set("blueprint", "recurve bow");
 }

@@ -5,15 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "knight of the storm");
-        addSpecification("description", "You are a knight of the storm.");
-        addSpecification("root", "fighter persona");
-        "baseTrait"::reset(arg);
-        addSpecification("bonus resist electricity", 50);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "knight of the storm");
+    addSpecification("description", "You are a knight of the storm.");
+    addSpecification("root", "fighter persona");
 }

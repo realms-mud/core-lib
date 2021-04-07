@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "gargoyle");
-        addSpecification("description", "You are a gargoyle.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus defense", 6);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "gargoyle");
+    addSpecification("description", "You are a gargoyle.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus defense", 6);
 }

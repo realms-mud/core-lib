@@ -5,20 +5,16 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "generous");
-        addSpecification("description", "You tend to be very free with your "
-            "time and wealth, happily giving to those in need.");
-        addSpecification("root", "generous");
-        addSpecification("opposing root", "miserly");
-        addSpecification("opinion", 15);
-        addSpecification("opposing opinion", -5);
-        addSpecification("bonus persuasion", 1);
-        addSpecification("bonus diplomacy", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "generous");
+    addSpecification("description", "You tend to be very free with your "
+        "time and wealth, happily giving to those in need.");
+    addSpecification("root", "generous");
+    addSpecification("opposing root", "miserly");
+    addSpecification("opinion", 15);
+    addSpecification("opposing opinion", -5);
+    addSpecification("bonus persuasion", 1);
+    addSpecification("bonus diplomacy", 1);
 }

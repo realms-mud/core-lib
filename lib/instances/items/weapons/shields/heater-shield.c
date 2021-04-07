@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Heater shield");
-        set("short", "Heater shield");
-        set("aliases", ({ "shield", "heater shield" }));
-        set("blueprint", "heater shield");
-    }
+    set("name", "Heater shield");
+    set("short", "Heater shield");
+    set("aliases", ({ "shield", "heater shield" }));
+    set("blueprint", "heater shield");
 }

@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/food.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Bubinga Seed Pod");
-        set("short", "Bubinga Seed Pod");
-        set("aliases", ({ "bubinga seed pod", "seed pod", "pod", "seed",
-            "bubinga seed" }));
-        set("blueprint", "bubinga seed pod");
-    }
+    set("name", "Bubinga Seed Pod");
+    set("short", "Bubinga Seed Pod");
+    set("aliases", ({ "bubinga seed pod", "seed pod", "pod", "seed",
+        "bubinga seed" }));
+    set("blueprint", "bubinga seed pod");
 }

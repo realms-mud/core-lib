@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "caffeinated");
-        addSpecification("description", "You are stimulated by a large intake of caffeine.");
-        addSpecification("root", "biological");
-        addSpecification("duration", 60);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "caffeinated");
+    addSpecification("description", "You are stimulated by a large intake of caffeine.");
+    addSpecification("root", "biological");
+    addSpecification("duration", 60);
 }

@@ -5,21 +5,17 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "drunk");
-        addSpecification("description", "You are drunk.");
-        addSpecification("root", "biological");
-        addSpecification("opinion", -25);
-        addSpecification("bonus heal spell points", 10);
-        addSpecification("penalty to defense", 3);
-        addSpecification("penalty to wisdom", 1);
-        addSpecification("penalty to dexterity", 2);
-        addSpecification("duration", 300);
-        addSpecification("expire message", "You are no longer drunk.");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "drunk");
+    addSpecification("description", "You are drunk.");
+    addSpecification("root", "biological");
+    addSpecification("opinion", -25);
+    addSpecification("bonus heal spell points", 10);
+    addSpecification("penalty to defense", 3);
+    addSpecification("penalty to wisdom", 1);
+    addSpecification("penalty to dexterity", 2);
+    addSpecification("duration", 300);
+    addSpecification("expire message", "You are no longer drunk.");
 }

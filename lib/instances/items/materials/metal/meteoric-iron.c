@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/material.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Meteoric iron");
-        set("short", "Meteoric iron");
-        set("aliases", ({ "iron" }));
-        set("aliases", ({ "metal", "meteoric iron", "iron" }));
-        set("blueprint", "meteoric iron");
-    }
+    set("name", "Meteoric iron");
+    set("short", "Meteoric iron");
+    set("aliases", ({ "iron" }));
+    set("aliases", ({ "metal", "meteoric iron", "iron" }));
+    set("blueprint", "meteoric iron");
 }

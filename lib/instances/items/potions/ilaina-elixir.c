@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Ilaina's Elixir");
-        set("short", "Ilaina's Elixir");
-        set("aliases", ({ "elixir", "potion", "ilaina's elixir" }));
-        set("blueprint", "ilaina's elixir");
-    }
+    set("name", "Ilaina's Elixir");
+    set("short", "Ilaina's Elixir");
+    set("aliases", ({ "elixir", "potion", "ilaina's elixir" }));
+    set("blueprint", "ilaina's elixir");
 }

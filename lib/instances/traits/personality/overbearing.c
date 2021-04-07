@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "overbearing");
-        addSpecification("description", "Why nurture when you can dominate? "
-            "You tend to have an unpleasant, bullying way about you.");
-        addSpecification("root", "overbearing");
-        addSpecification("opinion", -10);
-        addSpecification("penalty to diplomacy", 1);
-        addSpecification("bonus intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "overbearing");
+    addSpecification("description", "Why nurture when you can dominate? "
+        "You tend to have an unpleasant, bullying way about you.");
+    addSpecification("root", "overbearing");
+    addSpecification("opinion", -10);
+    addSpecification("penalty to diplomacy", 1);
+    addSpecification("bonus intimidation", 1);
 }

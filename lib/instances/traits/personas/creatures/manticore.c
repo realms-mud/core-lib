@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "manticore");
-        addSpecification("description", "You are a manticore.");
-        addSpecification("root", "large creature persona");
-        addSpecification("bonus soak", 3);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "manticore");
+    addSpecification("description", "You are a manticore.");
+    addSpecification("root", "large creature persona");
+    addSpecification("bonus soak", 3);
 }

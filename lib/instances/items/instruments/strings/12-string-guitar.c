@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/instrument.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "12-String Guitar");
-        set("short", "12-String Guitar");
-        set("aliases", ({ "12-string guitar", "12 string", "12 string guitar",
-            "guitar", "strings", "instrument" }));
-        set("blueprint", "12-string guitar");
-    }
+    set("name", "12-String Guitar");
+    set("short", "12-String Guitar");
+    set("aliases", ({ "12-string guitar", "12 string", "12 string guitar",
+        "guitar", "strings", "instrument" }));
+    set("blueprint", "12-string guitar");
 }

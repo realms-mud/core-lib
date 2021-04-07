@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "envious");
-        addSpecification("description", "You want it all. You want it now. "
-            "You covet what others have.");
-        addSpecification("root", "envious");
-        addSpecification("opinion", -5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "envious");
+    addSpecification("description", "You want it all. You want it now. "
+        "You covet what others have.");
+    addSpecification("root", "envious");
+    addSpecification("opinion", -5);
 }

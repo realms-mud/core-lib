@@ -5,15 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "genetic");
-        addSpecification("name", "transgender");
-        addSpecification("description", "The gender you associate with differs from your birth sex.");
-        addSpecification("root", "sexual identity");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "genetic");
+    addSpecification("name", "transgender");
+    addSpecification("description", "The gender you associate with differs from your birth sex.");
+    addSpecification("root", "sexual identity");
 }
-

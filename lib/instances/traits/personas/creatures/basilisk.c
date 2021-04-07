@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "basilisk");
-        addSpecification("description", "You are a basilisk.");
-        addSpecification("root", "large creature persona");
-        addSpecification("bonus soak", 5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "basilisk");
+    addSpecification("description", "You are a basilisk.");
+    addSpecification("root", "large creature persona");
+    addSpecification("bonus soak", 5);
 }

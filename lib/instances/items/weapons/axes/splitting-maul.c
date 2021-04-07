@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Splitting maul");
-        set("short", "Splitting maul");
-        set("aliases", ({ "axe", "maul", "splitting maul" }));
-        set("blueprint", "splitting maul");
-    }
+    set("name", "Splitting maul");
+    set("short", "Splitting maul");
+    set("aliases", ({ "axe", "maul", "splitting maul" }));
+    set("blueprint", "splitting maul");
 }

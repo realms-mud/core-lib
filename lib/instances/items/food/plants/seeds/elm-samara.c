@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/food.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Elm Samara");
-        set("short", "Elm Samara");
-        set("aliases", ({ "elm samaras", "elm samara", "samaras", "samara" }));
-        set("blueprint", "elm samara");
-    }
+    set("name", "Elm Samara");
+    set("short", "Elm Samara");
+    set("aliases", ({ "elm samaras", "elm samara", "samaras", "samara" }));
+    set("blueprint", "elm samara");
 }

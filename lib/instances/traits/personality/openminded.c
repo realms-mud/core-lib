@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "open-minded");
-        addSpecification("description", "You are a free thinker who is very "
-            "open to considering the arguments of others.");
-        addSpecification("root", "open-minded");
-        addSpecification("opinion", 15);
-        addSpecification("bonus diplomacy", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "open-minded");
+    addSpecification("description", "You are a free thinker who is very "
+        "open to considering the arguments of others.");
+    addSpecification("root", "open-minded");
+    addSpecification("opinion", 15);
+    addSpecification("bonus diplomacy", 1);
 }

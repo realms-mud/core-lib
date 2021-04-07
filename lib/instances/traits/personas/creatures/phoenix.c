@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "phoenix");
-        addSpecification("description", "You are a phoenix.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist fire", 100);
-        addSpecification("bonus resist good", 100);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "phoenix");
+    addSpecification("description", "You are a phoenix.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist fire", 100);
+    addSpecification("bonus resist good", 100);
 }

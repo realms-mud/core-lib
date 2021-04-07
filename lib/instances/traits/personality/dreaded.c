@@ -5,22 +5,18 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "dreaded");
-        addSpecification("description", "People regard you with a great "
-            "deal of apprehension and fear.");
-        addSpecification("root", "harsh");
-        addSpecification("opposing root", "kind");
-        addSpecification("penalty to charisma", 1);
-        addSpecification("opinion", -15);
-        addSpecification("opposing opinion", -15);
-        addSpecification("penalty to persuasion", 1);
-        addSpecification("penalty to diplomacy", 1);
-        addSpecification("bonus intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "dreaded");
+    addSpecification("description", "People regard you with a great "
+        "deal of apprehension and fear.");
+    addSpecification("root", "harsh");
+    addSpecification("opposing root", "kind");
+    addSpecification("penalty to charisma", 1);
+    addSpecification("opinion", -15);
+    addSpecification("opposing opinion", -15);
+    addSpecification("penalty to persuasion", 1);
+    addSpecification("penalty to diplomacy", 1);
+    addSpecification("bonus intimidation", 1);
 }

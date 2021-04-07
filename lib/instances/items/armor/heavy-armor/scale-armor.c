@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/armor.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Scale armor");
-        set("short", "Scale armor");
-        set("aliases", ({ "armor", "scale", "scale armor" }));
-        set("blueprint", "scale armor");
-    }
+    set("name", "Scale armor");
+    set("short", "Scale armor");
+    set("aliases", ({ "armor", "scale", "scale armor" }));
+    set("blueprint", "scale armor");
 }

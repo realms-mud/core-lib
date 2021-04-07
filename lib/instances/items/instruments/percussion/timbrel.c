@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/instrument.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Timbrel");
-        set("short", "Timbrel");
-        set("aliases", ({ "timbrel", "drum", "percussion", "instrument" }));
-        set("blueprint", "timbrel");
-    }
+    set("name", "Timbrel");
+    set("short", "Timbrel");
+    set("aliases", ({ "timbrel", "drum", "percussion", "instrument" }));
+    set("blueprint", "timbrel");
 }

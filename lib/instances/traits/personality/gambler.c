@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "gambler");
-        addSpecification("description", "You have a tendency to take "
-            "chances - even when wisdom would dictate a different course.");
-        addSpecification("root", "arbitrary");
-        addSpecification("opposing root", "reasonable");
-        addSpecification("opinion", -5);
-        addSpecification("opposing opinion", -5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "gambler");
+    addSpecification("description", "You have a tendency to take "
+        "chances - even when wisdom would dictate a different course.");
+    addSpecification("root", "arbitrary");
+    addSpecification("opposing root", "reasonable");
+    addSpecification("opinion", -5);
+    addSpecification("opposing opinion", -5);
 }

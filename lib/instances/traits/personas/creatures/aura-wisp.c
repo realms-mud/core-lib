@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "aura wisp");
-        addSpecification("description", "You are an aura wisp.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus resist magical", 100);
-        addSpecification("bonus resist physical", 20);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "aura wisp");
+    addSpecification("description", "You are an aura wisp.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus resist magical", 100);
+    addSpecification("bonus resist physical", 20);
 }

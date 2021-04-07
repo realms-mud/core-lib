@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "ambitious");
-        addSpecification("description", "You have a strong desire to achieve and succeed.");
-        addSpecification("root", "self-motivated");
-        addSpecification("opposing root", "lazy");
-        addSpecification("opinion", 5);
-        addSpecification("opposing opinion", -5);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "ambitious");
+    addSpecification("description", "You have a strong desire to achieve and succeed.");
+    addSpecification("root", "self-motivated");
+    addSpecification("opposing root", "lazy");
+    addSpecification("opinion", 5);
+    addSpecification("opposing opinion", -5);
 }

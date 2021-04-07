@@ -5,13 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
     addSpecification("type", "personality");
     addSpecification("name", "thespian");
     addSpecification("description", "");
     addSpecification("root", "archetype");
-
-    "baseTrait"::reset(arg);
 }
-

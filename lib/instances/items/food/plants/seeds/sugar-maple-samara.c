@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/food.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Sugar Maple Samara");
-        set("short", "Sugar Maple Samara");
-        set("aliases", ({ "sugar maple samaras", "sugar maple samara", "samaras", "samara",
-            "maple samaras", "maple samara" }));
-        set("blueprint", "sugar maple samara");
-    }
+    set("name", "Sugar Maple Samara");
+    set("short", "Sugar Maple Samara");
+    set("aliases", ({ "sugar maple samaras", "sugar maple samara", "samaras", "samara",
+        "maple samaras", "maple samara" }));
+    set("blueprint", "sugar maple samara");
 }

@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "spirited");
-        addSpecification("description", "You are full of energy, entusiasm, "
-            "and determination.");
-        addSpecification("root", "passionate");
-        addSpecification("opinion", 5);
-        addSpecification("bonus persuasion", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "spirited");
+    addSpecification("description", "You are full of energy, entusiasm, "
+        "and determination.");
+    addSpecification("root", "passionate");
+    addSpecification("opinion", 5);
+    addSpecification("bonus persuasion", 1);
 }

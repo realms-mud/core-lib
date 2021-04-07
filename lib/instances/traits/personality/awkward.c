@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "awkward");
-        addSpecification("description", "You have a lack of social grace.");
-        addSpecification("root", "awkward");
-        addSpecification("opinion", -1);
-        addSpecification("penalty to persuasion", 1);
-        addSpecification("penalty to diplomacy", 1);
-        addSpecification("penalty to intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "awkward");
+    addSpecification("description", "You have a lack of social grace.");
+    addSpecification("root", "awkward");
+    addSpecification("opinion", -1);
+    addSpecification("penalty to persuasion", 1);
+    addSpecification("penalty to diplomacy", 1);
+    addSpecification("penalty to intimidation", 1);
 }

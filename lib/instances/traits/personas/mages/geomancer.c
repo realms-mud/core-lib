@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "geomancer");
-        addSpecification("description", "You are a geomancer.");
-        addSpecification("root", "mage persona");
-        addSpecification("bonus resist earth", 75);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "geomancer");
+    addSpecification("description", "You are a geomancer.");
+    addSpecification("root", "mage persona");
+    addSpecification("bonus resist earth", 75);
 }

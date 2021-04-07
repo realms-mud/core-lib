@@ -5,18 +5,14 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "coward");
-        addSpecification("description", "You are a craven - when strife "
-            "comes calling, you flee to your safe place.");
-        addSpecification("root", "coward");
-        addSpecification("opposing root", "brave");
-        addSpecification("opinion", 5);
-        addSpecification("opposing opinion", -10);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "coward");
+    addSpecification("description", "You are a craven - when strife "
+        "comes calling, you flee to your safe place.");
+    addSpecification("root", "coward");
+    addSpecification("opposing root", "brave");
+    addSpecification("opinion", 5);
+    addSpecification("opposing opinion", -10);
 }

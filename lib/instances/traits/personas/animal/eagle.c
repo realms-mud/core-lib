@@ -5,14 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "eagle");
-        addSpecification("description", "You are an eagle.");
-        addSpecification("root", "animal persona");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "eagle");
+    addSpecification("description", "You are an eagle.");
+    addSpecification("root", "animal persona");
 }

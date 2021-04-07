@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/potion.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Potion of Earth Resistance");
-        set("short", "Potion of Earth Resistance");
-        set("aliases", ({ "earth resistance", "potion", "earth resistance potion",
-            "potion of earth resistance" }));
-        set("blueprint", "earth resistance potion");
-    }
+    set("name", "Potion of Earth Resistance");
+    set("short", "Potion of Earth Resistance");
+    set("aliases", ({ "earth resistance", "potion", "earth resistance potion",
+        "potion of earth resistance" }));
+    set("blueprint", "earth resistance potion");
 }

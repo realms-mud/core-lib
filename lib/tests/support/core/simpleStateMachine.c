@@ -7,21 +7,17 @@ inherit "/lib/core/stateMachine.c";
 private string *events = ({});
 
 /////////////////////////////////////////////////////////////////////////////
-void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        "stateMachine"::reset(arg);
-        addState("default", "");
+    addState("default", "");
 
-        addState("blah", "");
-        addTransition("default", "blah", "blahTransition");
+    addState("blah", "");
+    addTransition("default", "blah", "blahTransition");
 
-        addState("blah2", "");
-        addTransition("blah", "blah2", "blahTwoTransition");
+    addState("blah2", "");
+    addTransition("blah", "blah2", "blahTwoTransition");
 
-        setInitialState("default");
-    }
+    setInitialState("default");
 }
 
 /////////////////////////////////////////////////////////////////////////////

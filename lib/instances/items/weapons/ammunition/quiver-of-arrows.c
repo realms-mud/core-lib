@@ -5,14 +5,11 @@
 virtual inherit "/lib/items/ammunition.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "quiver");
-        set("short", "A quiver");
-        set("ammunition type", "arrow");
-        set("max capacity", 24);
-        set("quantity", 24);
-    }
+    set("name", "quiver");
+    set("short", "A quiver");
+    set("ammunition type", "arrow");
+    set("max capacity", 24);
+    set("quantity", 24);
 }

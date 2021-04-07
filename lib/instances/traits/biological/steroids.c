@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "on steroids");
-        addSpecification("description", "You are under the influence of steroids.");
-        addSpecification("root", "biological");
-        addSpecification("opinion", -5);
-        addSpecification("duration", 300);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "on steroids");
+    addSpecification("description", "You are under the influence of steroids.");
+    addSpecification("root", "biological");
+    addSpecification("opinion", -5);
+    addSpecification("duration", 300);
 }

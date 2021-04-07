@@ -5,21 +5,17 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "personality");
-        addSpecification("name", "ill-tempered");
-        addSpecification("description", "You have a tendency to anger rather "
-            "quickly and a malicious, cruel, and vindictive manner with which you "
-            "express said anger.");
-        addSpecification("root", "harsh");
-        addSpecification("opposing root", "kind");
-        addSpecification("opinion", -10);
-        addSpecification("opposing opinion", -15);
-        addSpecification("penalty to diplomacy", 1);
-        addSpecification("bonus intimidation", 1);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "personality");
+    addSpecification("name", "ill-tempered");
+    addSpecification("description", "You have a tendency to anger rather "
+        "quickly and a malicious, cruel, and vindictive manner with which you "
+        "express said anger.");
+    addSpecification("root", "harsh");
+    addSpecification("opposing root", "kind");
+    addSpecification("opinion", -10);
+    addSpecification("opposing opinion", -15);
+    addSpecification("penalty to diplomacy", 1);
+    addSpecification("bonus intimidation", 1);
 }

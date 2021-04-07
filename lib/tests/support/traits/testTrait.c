@@ -5,25 +5,21 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "role");
-        addSpecification("name", "Sword Boy");
-        addSpecification("description", "blah blah blah");
-        addSpecification("bonus strength", 2);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus fire attack", 15);
-        addSpecification("bonus weapon attack", 1);
-        addSpecification("bonus resist fire", 10);
-        addSpecification("root", "jock");
-        addSpecification("opposing root", "nerd");
-        addSpecification("opinion", 5);
-        addSpecification("opposing opinion", -5);
-        addSpecification("cost", 8);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "role");
+    addSpecification("name", "Sword Boy");
+    addSpecification("description", "blah blah blah");
+    addSpecification("bonus strength", 2);
+    addSpecification("bonus long sword", 1);
+    addSpecification("bonus fire attack", 15);
+    addSpecification("bonus weapon attack", 1);
+    addSpecification("bonus resist fire", 10);
+    addSpecification("root", "jock");
+    addSpecification("opposing root", "nerd");
+    addSpecification("opinion", 5);
+    addSpecification("opposing opinion", -5);
+    addSpecification("cost", 8);
 }
 
 /////////////////////////////////////////////////////////////////////////////

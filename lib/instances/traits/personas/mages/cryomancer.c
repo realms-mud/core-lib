@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "cryomancer");
-        addSpecification("description", "You are a cryomancer.");
-        addSpecification("root", "mage persona");
-        addSpecification("bonus resist cold", 75);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "cryomancer");
+    addSpecification("description", "You are a cryomancer.");
+    addSpecification("root", "mage persona");
+    addSpecification("bonus resist cold", 75);
 }

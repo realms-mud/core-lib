@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/book.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg) 
+protected void Setup()
 {
-    if (!arg) 
-    {
-        set("name", "Book");
-        set("short", "Book");
-        set("aliases", ({ "book" }));
-        set("blueprint", "book");
-    }
+    set("name", "Book");
+    set("short", "Book");
+    set("aliases", ({ "book" }));
+    set("blueprint", "book");
 }

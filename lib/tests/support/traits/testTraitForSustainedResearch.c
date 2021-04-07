@@ -5,22 +5,19 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "sustained effect");
-        addSpecification("name", "Sustained Jerk");
-        addSpecification("description", "blah blah blah");
-        addSpecification("root", "mean");
-        addSpecification("opposing root", "nice");
-        addSpecification("opinion", 10);
-        addSpecification("opposing opinion", -10);
-        addSpecification("cost", 1);
-        addSpecification("triggering research", "lib/tests/support/research/testSustainedTraitResearch.c");
-        addSpecification("expire message", "This is an expire message.");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "sustained effect");
+    addSpecification("name", "Sustained Jerk");
+    addSpecification("description", "blah blah blah");
+    addSpecification("root", "mean");
+    addSpecification("opposing root", "nice");
+    addSpecification("opinion", 10);
+    addSpecification("opposing opinion", -10);
+    addSpecification("cost", 1);
+    addSpecification("triggering research", 
+        "lib/tests/support/research/testSustainedTraitResearch.c");
+    addSpecification("expire message", "This is an expire message.");
 }
 
 /////////////////////////////////////////////////////////////////////////////

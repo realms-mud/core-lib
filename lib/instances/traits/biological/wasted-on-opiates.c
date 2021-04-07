@@ -5,17 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "health");
-        addSpecification("name", "wasted on opiates");
-        addSpecification("description", "You are under the influence of strong opiates.");
-        addSpecification("root", "biological");
-        addSpecification("opinion", -50);
-        addSpecification("duration", 360);
-        addSpecification("expire message", "You are no longer wasted.");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "health");
+    addSpecification("name", "wasted on opiates");
+    addSpecification("description", "You are under the influence of strong opiates.");
+    addSpecification("root", "biological");
+    addSpecification("opinion", -50);
+    addSpecification("duration", 360);
+    addSpecification("expire message", "You are no longer wasted.");
 }

@@ -5,14 +5,10 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "battle mage");
-        addSpecification("description", "You are a battle mage.");
-        addSpecification("root", "mage persona");
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "battle mage");
+    addSpecification("description", "You are a battle mage.");
+    addSpecification("root", "mage persona");
 }

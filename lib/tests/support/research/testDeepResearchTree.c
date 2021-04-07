@@ -22,16 +22,28 @@ protected void Setup()
     addResearchElement("lib/tests/support/research/testResearchF.c");
     addResearchElement("lib/tests/support/research/testResearchG.c");
     TreeRoot("lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/testLimitedByIntoxResearchItem.c", "lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/itemWithModifier.c", "lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/mockResearchTimed.c", "lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/testResearchA.c", "lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/testResearchB.c", "lib/tests/support/research/testTreeRoot.c");
-    addChild("lib/tests/support/research/testResearchC.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
-    addChild("lib/tests/support/research/testResearchD.c", "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
-    addChild("lib/tests/support/research/testResearchD.c", "lib/tests/support/research/testResearchB.c");
-    addChild("lib/tests/support/research/testResearchE.c", "lib/tests/support/research/testResearchB.c");
-    addChild("lib/tests/support/research/testResearchF.c", "lib/tests/support/research/testResearchE.c");
-    addChild("lib/tests/support/research/testResearchG.c", "lib/tests/support/research/testResearchE.c");
-    addChild("lib/tests/support/research/testResearchG.c", "lib/tests/support/research/testResearchD.c");
+    addChild("lib/tests/support/research/testLimitedByIntoxResearchItem.c", 
+        "lib/tests/support/research/testTreeRoot.c");
+    addChild("lib/tests/support/research/itemWithModifier.c", 
+        "lib/tests/support/research/testTreeRoot.c");
+    addChild("lib/tests/support/research/mockResearchTimed.c", 
+        "lib/tests/support/research/testTreeRoot.c");
+    addChild("lib/tests/support/research/testResearchA.c", 
+        "lib/tests/support/research/testTreeRoot.c");
+    addChild("lib/tests/support/research/testResearchB.c", 
+        "lib/tests/support/research/testTreeRoot.c");
+    addChild("lib/tests/support/research/testResearchC.c", 
+        "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
+    addChild("lib/tests/support/research/testResearchD.c", 
+        "lib/tests/support/research/testLimitedByIntoxResearchItem.c");
+    addChild("lib/tests/support/research/testResearchD.c", 
+        "lib/tests/support/research/testResearchB.c");
+    addChild("lib/tests/support/research/testResearchE.c", 
+        "lib/tests/support/research/testResearchB.c");
+    addChild("lib/tests/support/research/testResearchF.c", 
+        "lib/tests/support/research/testResearchE.c");
+    addChild("lib/tests/support/research/testResearchG.c", 
+        "lib/tests/support/research/testResearchE.c");
+    addChild("lib/tests/support/research/testResearchG.c", 
+        "lib/tests/support/research/testResearchD.c");
 }

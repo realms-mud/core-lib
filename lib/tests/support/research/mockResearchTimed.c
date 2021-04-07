@@ -16,5 +16,4 @@ protected void Setup()
     addSpecification("bonus weapon attack", 1); // Don't care about the value
     addSpecification("bonus fire attack", 25);  // value is the damage if not a
                                                 // weapon attack
-    }
 }

@@ -5,15 +5,11 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "terlang");
-        addSpecification("description", "You are a terlang.");
-        addSpecification("root", "creature persona");
-        addSpecification("bonus soak", 10);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "terlang");
+    addSpecification("description", "You are a terlang.");
+    addSpecification("root", "creature persona");
+    addSpecification("bonus soak", 10);
 }

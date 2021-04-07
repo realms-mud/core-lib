@@ -5,19 +5,16 @@
 virtual inherit "/lib/items/weapon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("name", "Sword of Weasels");
-        set("short", "Sword of Weasels");
-        set("aliases", ({ "sword", "long sword" }));
-        set("long", "This is the sword of weasels. It's neat.");
-        set("weapon type", "long sword");
-        set("material", "galvorn");
-        set("value", 850);
-        set("bonus armor class", 5);
-    }
+    set("name", "Sword of Weasels");
+    set("short", "Sword of Weasels");
+    set("aliases", ({ "sword", "long sword" }));
+    set("long", "This is the sword of weasels. It's neat.");
+    set("weapon type", "long sword");
+    set("material", "galvorn");
+    set("value", 850);
+    set("bonus armor class", 5);
 }
 
 /////////////////////////////////////////////////////////////////////////////

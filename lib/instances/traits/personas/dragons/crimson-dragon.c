@@ -5,16 +5,12 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "persona");
-        addSpecification("name", "crimson dragon");
-        addSpecification("description", "You are a crimson dragon.");
-        addSpecification("root", "large creature persona");
-        addSpecification("bonus resist evil", 75);
-        addSpecification("bonus resist undead", 75);
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("type", "persona");
+    addSpecification("name", "crimson dragon");
+    addSpecification("description", "You are a crimson dragon.");
+    addSpecification("root", "large creature persona");
+    addSpecification("bonus resist evil", 75);
+    addSpecification("bonus resist undead", 75);
 }
