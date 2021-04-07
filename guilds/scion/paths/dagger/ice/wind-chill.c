@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/wind-chill.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

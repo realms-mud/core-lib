@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/sweeping-caress.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Crooked Strike");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a master stab maneuver - the crooked strike. This is a vertical "
-            "stab maneuver from above that reaches across the opponent, traveling from "
-            "left to right and then back, ending in a wide, diagonal sideways "
-            "step. This attack breaks the ox guard.");
+    addSpecification("name", "Crooked Strike");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a master stab maneuver - the crooked strike. This is a vertical "
+        "stab maneuver from above that reaches across the opponent, traveling from "
+        "left to right and then back, ending in a wide, diagonal sideways "
+        "step. This attack breaks the ox guard.");
 
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" })]));
+    addSpecification("limited by", (["equipment":({
+        "dagger", "short sword" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 13 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 13 ]));
 
-        addPrerequisite("guilds/scion/paths/dagger/forms/middle-strike.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/paths/dagger/forms/middle-strike.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus dagger", 1);
-        addSpecification("bonus short sword", 1);
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus dagger", 1);
+    addSpecification("bonus short sword", 1);
 
-        addSpecification("bonus attack", 2);
-    }
+    addSpecification("bonus attack", 2);
 }

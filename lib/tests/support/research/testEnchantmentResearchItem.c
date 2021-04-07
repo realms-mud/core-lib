@@ -5,18 +5,14 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Enchantment research");
-        addSpecification("source", "mage guild");
-        addSpecification("description", "This is enchantment research");
-        addSpecification("scope", "self");
-        addSpecification("research type", "granted");
-        addSpecification("bonus fire enchantment", 2);
-        addSpecification("bonus electricity enchantment", 5);
-        addSpecification("bonus magical enchantment", 1);
-    }
+    addSpecification("name", "Enchantment research");
+    addSpecification("source", "mage guild");
+    addSpecification("description", "This is enchantment research");
+    addSpecification("scope", "self");
+    addSpecification("research type", "granted");
+    addSpecification("bonus fire enchantment", 2);
+    addSpecification("bonus electricity enchantment", 5);
+    addSpecification("bonus magical enchantment", 1);
 }

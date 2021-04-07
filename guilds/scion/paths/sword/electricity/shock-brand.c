@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/shock-brand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

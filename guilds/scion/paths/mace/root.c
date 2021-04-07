@@ -5,20 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "The Way of the Mace");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to use maces and flails as their magical focus.");
-        addSpecification("limited by", (["equipment":({ "mace", "flail" }) ]));
+    addSpecification("name", "The Way of the Mace");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to use maces and flails as their magical focus.");
+    addSpecification("limited by", (["equipment":({ "mace", "flail" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus mace", 1);
-        addSpecification("bonus flail", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus mace", 1);
+    addSpecification("bonus flail", 1);
 }

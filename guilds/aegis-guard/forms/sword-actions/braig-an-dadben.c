@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Braig an Dadben");
     addSpecification("source", "Aegis Guard");

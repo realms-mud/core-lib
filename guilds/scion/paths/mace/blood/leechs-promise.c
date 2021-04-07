@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/leechs-promise.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

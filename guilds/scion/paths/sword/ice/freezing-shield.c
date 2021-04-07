@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/freezing-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

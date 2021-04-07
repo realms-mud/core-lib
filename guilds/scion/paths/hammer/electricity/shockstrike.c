@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/shockstrike.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

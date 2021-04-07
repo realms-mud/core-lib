@@ -5,16 +5,12 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Enchant Items");
-        addSpecification("source", "enchanting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to imbue crafted items with enchantments.");
-        addSpecification("research type", "granted");
-        addSpecification("bonus crafting enchantments", 1);
-    }
+    addSpecification("name", "Enchant Items");
+    addSpecification("source", "enchanting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to imbue crafted items with enchantments.");
+    addSpecification("research type", "granted");
+    addSpecification("bonus crafting enchantments", 1);
 }

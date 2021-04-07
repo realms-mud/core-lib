@@ -5,20 +5,16 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Fire Touch");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research gives your "
-            "avatar the `Fire Touch' spell.");
+    addSpecification("name", "Fire Touch");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research gives your "
+        "avatar the `Fire Touch' spell.");
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/scion/avatars/flame/root.c",
-        }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/scion/avatars/flame/root.c",
+    }));
 }

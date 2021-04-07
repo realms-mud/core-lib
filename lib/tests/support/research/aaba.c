@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/compositeResearchTemplate.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        activeResearchItem::reset(arg);
-        addSpecification("name", "AABA (Verse, Verse, Bridge, Verse)");
-        addSpecification("usage summary", "A song with three verses and a bridge");
-        addSpecification("source", "blarg");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of how to create songs structured as two verses, a bridge, "
-            "and a final verse.");
+    addSpecification("name", "AABA (Verse, Verse, Bridge, Verse)");
+    addSpecification("usage summary", "A song with three verses and a bridge");
+    addSpecification("source", "blarg");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of how to create songs structured as two verses, a bridge, "
+        "and a final verse.");
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
-        addSpecification("stamina point cost", 25);
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("spell point cost", 25);
+    addSpecification("stamina point cost", 25);
 
-        addSpecification("segments", ({ 
-            (["verse 1": ({ "lyric", "instrumental rhythm" }) ]),
-            (["verse 2": ({ "lyric", "instrumental rhythm" }) ]),
-            (["bridge": ({ "lyric", "instrumental rhythm", "instrumental solo" }) ]),
-            (["verse 3": ({ "lyric", "instrumental rhythm" }) ])
-        }));            
-        addSpecification("event handler", "aabaEvent");
-    }
+    addSpecification("segments", ({ 
+        (["verse 1": ({ "lyric", "instrumental rhythm" }) ]),
+        (["verse 2": ({ "lyric", "instrumental rhythm" }) ]),
+        (["bridge": ({ "lyric", "instrumental rhythm", "instrumental solo" }) ]),
+        (["verse 3": ({ "lyric", "instrumental rhythm" }) ])
+    }));            
+    addSpecification("event handler", "aabaEvent");
 }

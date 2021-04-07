@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/fire-shroud.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

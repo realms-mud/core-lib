@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Duotime Drive");
     addSpecification("source", "bard");

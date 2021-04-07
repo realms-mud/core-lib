@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/fuel-the-flames.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

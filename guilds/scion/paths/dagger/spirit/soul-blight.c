@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/soul-blight.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
     WeaponSkill = "dagger";

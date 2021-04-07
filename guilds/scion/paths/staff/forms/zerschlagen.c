@@ -5,31 +5,27 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Zerschlagen");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a form of attack wherein the staff "
-            "is slammed against a body and then driven along the "
-            "surface in a slicing motion during the follow-through.");
-        addSpecification("limited by", (["equipment":({ "staff" })]));
+    addSpecification("name", "Zerschlagen");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a form of attack wherein the staff "
+        "is slammed against a body and then driven along the "
+        "surface in a slicing motion during the follow-through.");
+    addSpecification("limited by", (["equipment":({ "staff" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 12 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 12 ]));
 
-        addPrerequisite("guilds/scion/paths/staff/forms/smite.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/paths/staff/forms/smite.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus attack", 1);
-        addSpecification("bonus damage", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus attack", 1);
+    addSpecification("bonus damage", 1);
 }

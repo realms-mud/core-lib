@@ -209,7 +209,7 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Hur ai Megil");
     Description("");

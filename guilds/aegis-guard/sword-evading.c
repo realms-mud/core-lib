@@ -101,7 +101,7 @@ private void ThirtiethLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Pelthaes ai Megil");
     Description("");

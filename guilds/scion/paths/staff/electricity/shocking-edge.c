@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/shocking-edge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
 

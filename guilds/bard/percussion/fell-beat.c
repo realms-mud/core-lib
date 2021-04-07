@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Fell Beat");
     addSpecification("source", "bard");

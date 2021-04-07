@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/compositeResearchTemplate.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "ABABCB (Verse/Chorus/Bridge/Solo)");
     addSpecification("source", "bard");

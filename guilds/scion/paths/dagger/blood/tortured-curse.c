@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/tortured-curse.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

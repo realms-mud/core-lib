@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/static-charge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

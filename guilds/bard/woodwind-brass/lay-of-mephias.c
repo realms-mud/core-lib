@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Lay of Mephias");
     addSpecification("source", "bard");

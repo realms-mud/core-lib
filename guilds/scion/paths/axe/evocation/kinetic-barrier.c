@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/kinetic-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

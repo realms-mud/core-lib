@@ -7,36 +7,32 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Nienwyn's Boon");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the Nienwyn's Boon technique. This form enhances "
-            "the scion's Soul Brand and Brand of Laiwyth abilities.");
-        Setup();
+    addSpecification("name", "Nienwyn's Boon");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of the Nienwyn's Boon technique. This form enhances "
+        "the scion's Soul Brand and Brand of Laiwyth abilities.");
+    SetupResearch();
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild" : "Scion of Dhuras",
-                "value" : 21]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
-            (["type":"research"]));
+    addPrerequisite("level",
+        (["type":"level",
+            "guild" : "Scion of Dhuras",
+            "value" : 21]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Soul Brand": 100,
-            "Brand of Laiwyth": 75
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Soul Brand": 100,
+        "Brand of Laiwyth": 75
+    ]));
+    addSpecification("affected research type", "percentage");
 }

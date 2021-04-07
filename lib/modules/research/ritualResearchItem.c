@@ -8,7 +8,7 @@
 virtual inherit "/lib/modules/research/researchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
 
 }

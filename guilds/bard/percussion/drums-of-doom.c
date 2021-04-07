@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Drums of Doom");
     addSpecification("source", "bard");
@@ -113,5 +113,5 @@ public void Setup()
     addSpecification("event handler", "drumsOfDoomEvent");
     addSpecification("use composite message", "##InitiatorName## "
         "##Infinitive::beat## ##InitiatorPossessive## "
-        "##InitiatorWeapon## in a ##CompositeSegment##.");    }
+        "##InitiatorWeapon## in a ##CompositeSegment##.");    
 }

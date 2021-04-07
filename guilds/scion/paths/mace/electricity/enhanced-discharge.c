@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/enhanced-discharge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

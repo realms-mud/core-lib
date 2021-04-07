@@ -5,7 +5,7 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("type", "sustained effect");
     addSpecification("name", "Calculated Attack");

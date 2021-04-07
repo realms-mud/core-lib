@@ -236,7 +236,7 @@ private void SeventyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Stringed Components for Compositions");
     Description("");

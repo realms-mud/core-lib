@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/corrupting-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

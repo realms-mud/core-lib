@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/compositeResearchTemplate.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "AAA (Verse, Verse, Verse)");
     addSpecification("usage summary", "A song with three verses");

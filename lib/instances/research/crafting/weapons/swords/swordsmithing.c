@@ -153,23 +153,19 @@ public void Techniques()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Swordsmithing");
-        Description("This research tree tracks the knowledge required to craft knives, daggers, and swords");
-        Source("crafting");
-        addPrerequisite("weapon smithing", 
-            (["type":"skill", "value" : 3]));
-        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c",
-            (["type":"research"]));
-        addResearchElement("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
-        TreeRoot("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
+    Name("Swordsmithing");
+    Description("This research tree tracks the knowledge required to craft knives, daggers, and swords");
+    Source("crafting");
+    addPrerequisite("weapon smithing", 
+        (["type":"skill", "value" : 3]));
+    addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c",
+        (["type":"research"]));
+    addResearchElement("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
+    TreeRoot("lib/instances/research/crafting/weapons/swords/craftBasicSwords.c");
 
-        CommonResearch();
-        CraftSwordResearch();
-        Techniques();
-    }
+    CommonResearch();
+    CraftSwordResearch();
+    Techniques();
 }

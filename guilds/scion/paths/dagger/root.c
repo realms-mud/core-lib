@@ -5,22 +5,17 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "The Way of the Dagger");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to use daggers as their magical focus.");
-        addSpecification("limited by", (["equipment":({
-            "dagger", "short sword" }) ]));
+    addSpecification("name", "The Way of the Dagger");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to use daggers as their magical focus.");
+    addSpecification("limited by", (["equipment":({
+        "dagger", "short sword" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus dagger", 1);
-        addSpecification("bonus short sword", 1);
-
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus dagger", 1);
+    addSpecification("bonus short sword", 1);
 }

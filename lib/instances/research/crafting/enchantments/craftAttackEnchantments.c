@@ -5,21 +5,17 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Mutate Attack");
-        addSpecification("source", "enchanting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to mutate a physical attack into a different form.");
-        addSpecification("research type", "granted");
+    addSpecification("name", "Mutate Attack");
+    addSpecification("source", "enchanting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to mutate a physical attack into a different form.");
+    addSpecification("research type", "granted");
 
-        addSpecification("limited by", (["crafting type":"staff"]));
+    addSpecification("limited by", (["crafting type":"staff"]));
 
-        addSpecification("bonus crafting enchantments", 1);
-        addSpecification("bonus crafting weapon class", 2);
-        addSpecification("bonus crafting attack", 3);
-    }
+    addSpecification("bonus crafting enchantments", 1);
+    addSpecification("bonus crafting weapon class", 2);
+    addSpecification("bonus crafting attack", 3);
 }

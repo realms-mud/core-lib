@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/soul-brand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

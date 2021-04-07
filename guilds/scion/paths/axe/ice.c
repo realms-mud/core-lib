@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/ice.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 }

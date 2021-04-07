@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "The Axeman's Song");
     addSpecification("source", "bard");

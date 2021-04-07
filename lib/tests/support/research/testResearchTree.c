@@ -5,15 +5,11 @@
 inherit "/lib/modules/research/researchTree.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("tree of researchiness");
-        Description("this is the land-loving mother pigeon of all research trees");
-        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-        addResearchElement("lib/tests/support/research/testTreeRoot.c");
-        TreeRoot("lib/tests/support/research/testTreeRoot.c");
-    }
+    Name("tree of researchiness");
+    Description("this is the land-loving mother pigeon of all research trees");
+    addPrerequisite("long sword", (["type":"skill", "value" : 10]));
+    addResearchElement("lib/tests/support/research/testTreeRoot.c");
+    TreeRoot("lib/tests/support/research/testTreeRoot.c");
 }

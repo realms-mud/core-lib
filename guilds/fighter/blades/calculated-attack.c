@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/sustainedResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Calculated Attack");
     addSpecification("source", "fighter");

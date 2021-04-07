@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/malefic-strike.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

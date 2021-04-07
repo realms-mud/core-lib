@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Dagnir Rhinc");
     addSpecification("source", "Aegis Guard");

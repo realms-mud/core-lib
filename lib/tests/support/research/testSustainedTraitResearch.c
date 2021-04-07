@@ -5,18 +5,14 @@
 inherit "/lib/modules/research/sustainedResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        sustainedResearchItem::reset(arg);
-        addSpecification("source", "guild");
-        addSpecification("name", "Sustained research");
-        addSpecification("scope", "targeted");
-        addSpecification("research type", "granted");
-        addSpecification("cooldown", 4);
-        addSpecification("spell point cost", 10);
-        addSpecification("command template", "throw turnip at ##Target##");
-        addSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
-    }
+    addSpecification("source", "guild");
+    addSpecification("name", "Sustained research");
+    addSpecification("scope", "targeted");
+    addSpecification("research type", "granted");
+    addSpecification("cooldown", 4);
+    addSpecification("spell point cost", 10);
+    addSpecification("command template", "throw turnip at ##Target##");
+    addSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
 }

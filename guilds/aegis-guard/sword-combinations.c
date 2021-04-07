@@ -122,7 +122,7 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Godrebh ai Megil");
     Description("");

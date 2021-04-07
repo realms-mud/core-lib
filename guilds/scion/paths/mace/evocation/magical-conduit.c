@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/magical-conduit.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

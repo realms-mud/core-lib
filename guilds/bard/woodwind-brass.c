@@ -194,7 +194,7 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Woodwind/Brass Components for Compositions");
     Description("");

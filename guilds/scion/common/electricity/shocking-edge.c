@@ -7,37 +7,33 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Shocking Edge");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the shocking edge technique. This form enhances "
-            "the scion's Shock Strike and Lightning Strike abilities.");
-        Setup();
+    addSpecification("name", "Shocking Edge");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of the shocking edge technique. This form enhances "
+        "the scion's Shock Strike and Lightning Strike abilities.");
+    SetupResearch();
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild" : "Scion of Dhuras",
-                "value" : 15
-            ]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Shock Strike": 40,
-            "Lightning Strike" : 30
+    addPrerequisite("level",
+        (["type":"level",
+            "guild" : "Scion of Dhuras",
+            "value" : 15
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Shock Strike": 40,
+        "Lightning Strike" : 30
+    ]));
+    addSpecification("affected research type", "percentage");
 }

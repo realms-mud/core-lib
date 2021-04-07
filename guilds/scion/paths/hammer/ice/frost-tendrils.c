@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/frost-tendrils.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
     WeaponSkill = "hammer";

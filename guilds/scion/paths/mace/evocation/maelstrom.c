@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/maelstrom.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
     WeaponSkill = "mace";

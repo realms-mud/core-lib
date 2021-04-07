@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Eithagos");
     addSpecification("source", "Aegis Guard");

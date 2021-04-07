@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/tempest.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
     WeaponSkill = "axe";

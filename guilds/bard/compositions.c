@@ -131,7 +131,7 @@ private void TwentyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Musical Compositions");
     Description("");

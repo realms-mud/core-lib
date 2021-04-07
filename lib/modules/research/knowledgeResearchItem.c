@@ -38,6 +38,12 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -45,6 +51,7 @@ public void reset(int arg)
         addSpecification("type", "knowledge");
         addSpecification("scope", "self");
         addSpecification("effect", "strategic");
+        Setup();
     }
 }
 

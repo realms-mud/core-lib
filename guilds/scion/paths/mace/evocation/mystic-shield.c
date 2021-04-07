@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/mystic-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

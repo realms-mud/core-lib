@@ -7,39 +7,35 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Static Charge");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the static charge technique. This form enhances "
-            "the Scion's offensive spells.");
-        Setup();
+    addSpecification("name", "Static Charge");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of the static charge technique. This form enhances "
+        "the Scion's offensive spells.");
+    SetupResearch();
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 5 ]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
-            (["type":"research"]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 5 ]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Sparks": 50,
-            "Lightning": 25,
-            "Lightning Blast": 25,
-            "Maelstrom": 25,
-            "Plasma Ball": 25
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Sparks": 50,
+        "Lightning": 25,
+        "Lightning Blast": 25,
+        "Maelstrom": 25,
+        "Plasma Ball": 25
+    ]));
+    addSpecification("affected research type", "percentage");
 }

@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/shield-the-spirit.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

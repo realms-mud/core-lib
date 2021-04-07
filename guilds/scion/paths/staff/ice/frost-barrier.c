@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/frost-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
 

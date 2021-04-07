@@ -209,7 +209,7 @@ private void FiftyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Percussive Components for Compositions");
     Description("");

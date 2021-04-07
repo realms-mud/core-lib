@@ -5,15 +5,11 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Brew Potions");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to brew potions.");
-        addSpecification("research type", "granted");
-    }
+    addSpecification("name", "Brew Potions");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to brew potions.");
+    addSpecification("research type", "granted");
 }

@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/energized-strike.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

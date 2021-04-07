@@ -209,7 +209,7 @@ private void SixtyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Blade Attacks");
     Description("");

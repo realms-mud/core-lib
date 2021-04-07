@@ -35,7 +35,7 @@ private void FifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("A Manipulative Little Shit");
     Description("");

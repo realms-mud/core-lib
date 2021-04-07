@@ -7,37 +7,33 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Inferno Barrier");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the inferno barrier technique. This form enhances "
-            "the Scion's defense degradation spells.");
-        Setup();
+    addSpecification("name", "Inferno Barrier");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of the inferno barrier technique. This form enhances "
+        "the Scion's defense degradation spells.");
+    SetupResearch();
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 31 ]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
-            (["type":"research"]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 31 ]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Searing Tendrils": 50,
-            "Burning Barrier": 50,
-            "Inferno": 50
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Searing Tendrils": 50,
+        "Burning Barrier": 50,
+        "Inferno": 50
+    ]));
+    addSpecification("affected research type", "percentage");
 }

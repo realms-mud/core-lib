@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/burning-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
     WeaponSkill = "mace";

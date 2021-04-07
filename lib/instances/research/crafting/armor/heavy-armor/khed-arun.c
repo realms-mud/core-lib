@@ -5,28 +5,24 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Khed-arun");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "arcane techniques of imbuing the heavy armor with their own essence. "
-            "This is a skill mastered by the great smiths of Khazurath.");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
+    addSpecification("name", "Khed-arun");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "arcane techniques of imbuing the heavy armor with their own essence. "
+        "This is a skill mastered by the great smiths of Khazurath.");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
 
-        addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/khazuraths-legacy.c", 
-            (["type":"research"]));
-        addPrerequisite("armorer", (["type":"skill", "value" : 42]));
-        addPrerequisite("spellcraft", (["type":"skill", "value" : 42]));
+    addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/khazuraths-legacy.c", 
+        (["type":"research"]));
+    addPrerequisite("armorer", (["type":"skill", "value" : 42]));
+    addPrerequisite("spellcraft", (["type":"skill", "value" : 42]));
 
-        addSpecification("limited by", (["crafting type":
-            ({ "plate armor", "splint armor", "scale armor" })]));
+    addSpecification("limited by", (["crafting type":
+        ({ "plate armor", "splint armor", "scale armor" })]));
 
-        addSpecification("bonus crafting value multiplier", 10);
-        addSpecification("bonus crafting magical enchantment", 3);
-    }
+    addSpecification("bonus crafting value multiplier", 10);
+    addSpecification("bonus crafting magical enchantment", 3);
 }

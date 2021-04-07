@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/tendrils-of-laiwyth.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
     WeaponSkill = "staff";

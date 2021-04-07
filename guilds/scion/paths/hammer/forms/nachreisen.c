@@ -5,31 +5,27 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Nachreisen");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a maneuver wherein a counter-attack is placed "
-            "after an opponent has pulled back from an attack, missed on "
-            "an attack, or has attempted another action in place of an attack.");
-        addSpecification("limited by", (["equipment":({ "hammer" })]));
+    addSpecification("name", "Nachreisen");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a maneuver wherein a counter-attack is placed "
+        "after an opponent has pulled back from an attack, missed on "
+        "an attack, or has attempted another action in place of an attack.");
+    addSpecification("limited by", (["equipment":({ "hammer" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 16 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 16 ]));
 
-        addPrerequisite("guilds/scion/paths/hammer/forms/striking.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/paths/hammer/forms/striking.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus hammer", 1);
-        addSpecification("bonus attack", 2);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus hammer", 1);
+    addSpecification("bonus attack", 2);
 }

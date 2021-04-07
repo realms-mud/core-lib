@@ -141,23 +141,19 @@ public void Techniques()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Axe Forging");
-        Description("This research tree tracks the knowledge required to craft maces");
-        Source("crafting");
-        addPrerequisite("weapon smithing", 
-            (["type":"skill", "value" : 3]));
-        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c",
-            (["type":"research"]));
-        addResearchElement("lib/instances/research/crafting/weapons/maces/craftBasicMace.c");
-        TreeRoot("lib/instances/research/crafting/weapons/maces/craftBasicMace.c");
+    Name("Axe Forging");
+    Description("This research tree tracks the knowledge required to craft maces");
+    Source("crafting");
+    addPrerequisite("weapon smithing", 
+        (["type":"skill", "value" : 3]));
+    addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c",
+        (["type":"research"]));
+    addResearchElement("lib/instances/research/crafting/weapons/maces/craftBasicMace.c");
+    TreeRoot("lib/instances/research/crafting/weapons/maces/craftBasicMace.c");
 
-        CommonResearch();
-        CraftMaceResearch();
-        Techniques();
-    }
+    CommonResearch();
+    CraftMaceResearch();
+    Techniques();
 }

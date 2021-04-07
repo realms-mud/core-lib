@@ -323,7 +323,7 @@ private void SixtyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Rad ai Fain Cu");
     Description("");

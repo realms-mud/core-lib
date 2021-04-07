@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/activeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Stop Performance");
     addSpecification("source", "bard");
@@ -26,21 +26,21 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     int ret = 0;
     if (owner->hasActiveCompositeResearch())
     {
-    mapping activeResearch = owner->getActiveCompositeResearch();
-    ret = owner->deactivateCompositeResearch(
-        activeResearch["constraint"],
-        activeResearch["name"]);
+        mapping activeResearch = owner->getActiveCompositeResearch();
+        ret = owner->deactivateCompositeResearch(
+            activeResearch["constraint"],
+            activeResearch["name"]);
 
-    if (ret)
-    {
-        displayMessage(specificationData, "use ability message",
-            owner, owner);
-    }
+        if (ret)
+        {
+            displayMessage(specificationData, "use ability message",
+                owner, owner);
+        }
     }
     else
     {
-    displayMessageToSelf("You are not currently performing any songs.", 
-        owner);
+        displayMessageToSelf("You are not currently performing any songs.", 
+            owner);
     }
     return ret;
 }

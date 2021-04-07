@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/frozen-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

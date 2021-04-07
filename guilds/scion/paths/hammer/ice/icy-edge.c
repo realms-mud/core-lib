@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/icy-edge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/activeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Compose Song");
     addSpecification("source", "bard");
@@ -23,7 +23,8 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     string researchName)
 {
     object selectorObj =
-    clone_object("/guilds/bard/selectors/songsSelector.c");
+        clone_object("/guilds/bard/selectors/songsSelector.c");
+
     move_object(selectorObj, owner);
     selectorObj->registerEvent(this_object());
     selectorObj->initiateSelector(owner);

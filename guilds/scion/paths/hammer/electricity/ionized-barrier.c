@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/ionized-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

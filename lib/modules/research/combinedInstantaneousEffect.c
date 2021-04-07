@@ -2,7 +2,6 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-
 virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/commands/baseCommand.c";

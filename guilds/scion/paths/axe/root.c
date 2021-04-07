@@ -5,20 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "The Way of the Axe");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to use axes as their magical focus.");
-        addSpecification("limited by", (["equipment":({
-            "axe" }) ]));
+    addSpecification("name", "The Way of the Axe");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to use axes as their magical focus.");
+    addSpecification("limited by", (["equipment":({
+        "axe" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus axe", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus axe", 1);
 }

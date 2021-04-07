@@ -5,34 +5,30 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Evasion II");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research attunes the "
-            "scion's avatar to be more adept at evading attacks.");
+    addSpecification("name", "Evasion II");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research attunes the "
+        "scion's avatar to be more adept at evading attacks.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "Scion of Dhuras Guild",
-            "value": 7
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "Scion of Dhuras Guild",
+        "value": 7
+    ]));
 
-        addPrerequisite("guilds/scion/avatars/common/evasion-i.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/avatars/common/evasion-i.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/scion/avatars/blood/root.c",
-            "guilds/scion/avatars/electricity/root.c",
-            "guilds/scion/avatars/evocation/root.c",
-            "guilds/scion/avatars/flame/root.c",
-            "guilds/scion/avatars/ice/root.c",
-            "guilds/scion/avatars/spirit/root.c",
-        }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/scion/avatars/blood/root.c",
+        "guilds/scion/avatars/electricity/root.c",
+        "guilds/scion/avatars/evocation/root.c",
+        "guilds/scion/avatars/flame/root.c",
+        "guilds/scion/avatars/ice/root.c",
+        "guilds/scion/avatars/spirit/root.c",
+    }));
 }

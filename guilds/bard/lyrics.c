@@ -209,7 +209,7 @@ private void FiftyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Lyrical Components for Compositions");
     Description("");

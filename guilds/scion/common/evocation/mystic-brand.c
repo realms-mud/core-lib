@@ -7,36 +7,32 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Mystic Brand");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of the mystic brand technique. This form enhances "
-            "the scion's Magical Strike and Power Strike abilities.");
-        Setup();
+    addSpecification("name", "Mystic Brand");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of the mystic brand technique. This form enhances "
+        "the scion's Magical Strike and Power Strike abilities.");
+    SetupResearch();
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 7 ]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/sweeping-energy.c", WeaponType),
-            (["type":"research"]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 7 ]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/sweeping-energy.c", WeaponType),
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Magical Strike": 40,
-            "Power Strike" : 30
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Magical Strike": 40,
+        "Power Strike" : 30
+    ]));
+    addSpecification("affected research type", "percentage");
 }

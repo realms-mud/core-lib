@@ -125,7 +125,7 @@ private void ThirtySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Bludgeon Attacks");
     Description("");

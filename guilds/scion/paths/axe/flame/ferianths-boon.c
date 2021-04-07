@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/ferianths-boon.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

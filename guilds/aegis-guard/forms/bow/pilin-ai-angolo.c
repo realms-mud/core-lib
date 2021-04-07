@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Pilin ai Angolo");
     addSpecification("source", "Aegis Guard");

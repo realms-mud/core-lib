@@ -5,45 +5,41 @@
 inherit "/lib/modules/research/combinedInstantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        combinedInstantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "combo blarg2");
-        addSpecification("source", "blarg");
-        addSpecification("description", "This is combo active research");
-        addSpecification("scope", "self");
-        addSpecification("research type", "granted");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 1);
-        addSpecification("maximum combination chain", 3);
-        addSpecification("combination rules", ([
-            "must include only one of": ({ 
-                "lib/tests/support/research/comboPartResearchItemA.c",
-                "lib/tests/support/research/comboPartResearchItemB.c", }),
-            "must include any of": ({ 
-                "lib/tests/support/research/comboPartResearchItemC.c",
-                "lib/tests/support/research/comboPartResearchItemD.c",
-                "lib/tests/support/research/comboPartResearchItemI.c", }),
-            "can include only one of": ({ 
-                "lib/tests/support/research/comboPartResearchItemE.c",
-                "lib/tests/support/research/comboPartResearchItemF.c", }),
-            "can include any of": ({ 
-                "lib/tests/support/research/comboPartResearchItemG.c",
-                "lib/tests/support/research/comboPartResearchItemH.c", })]));
-        addSpecification("modifiers", ({ 
-        ([
-            "type": "research",
-            "research item": "lib/tests/support/research/comboPartResearchItemH.c",
-            "name": "Combo stuff",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.25
-        ]) }));
-        addSpecification("cooldown", 1);
-        addSpecification("event handler", "usedComboEvent");
-        addSpecification("command template", "do to self ##Combinations##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::ready## a turnip ");
-    }
+    addSpecification("name", "combo blarg2");
+    addSpecification("source", "blarg");
+    addSpecification("description", "This is combo active research");
+    addSpecification("scope", "self");
+    addSpecification("research type", "granted");
+    addSpecification("research cost", 1);
+    addSpecification("spell point cost", 1);
+    addSpecification("maximum combination chain", 3);
+    addSpecification("combination rules", ([
+        "must include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemA.c",
+            "lib/tests/support/research/comboPartResearchItemB.c", }),
+        "must include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemC.c",
+            "lib/tests/support/research/comboPartResearchItemD.c",
+            "lib/tests/support/research/comboPartResearchItemI.c", }),
+        "can include only one of": ({ 
+            "lib/tests/support/research/comboPartResearchItemE.c",
+            "lib/tests/support/research/comboPartResearchItemF.c", }),
+        "can include any of": ({ 
+            "lib/tests/support/research/comboPartResearchItemG.c",
+            "lib/tests/support/research/comboPartResearchItemH.c", })]));
+    addSpecification("modifiers", ({ 
+    ([
+        "type": "research",
+        "research item": "lib/tests/support/research/comboPartResearchItemH.c",
+        "name": "Combo stuff",
+        "formula": "multiplicative",
+        "base value": 1,
+        "rate": 1.25
+    ]) }));
+    addSpecification("cooldown", 1);
+    addSpecification("event handler", "usedComboEvent");
+    addSpecification("command template", "do to self ##Combinations##");
+    addSpecification("use ability message", "##InitiatorName## ##Infinitive::ready## a turnip ");
 }

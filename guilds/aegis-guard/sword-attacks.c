@@ -218,7 +218,7 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Maetha ai Megil");
     Description("");

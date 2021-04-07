@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/spectral-brand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

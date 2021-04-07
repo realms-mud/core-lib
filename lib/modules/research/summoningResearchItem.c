@@ -238,6 +238,12 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -245,6 +251,7 @@ public void reset(int arg)
         activeResearchItem::reset(arg);
         addSpecification("scope", "self");
         addSpecification("effect", "summoning");
+        Setup();
     }
 }
 

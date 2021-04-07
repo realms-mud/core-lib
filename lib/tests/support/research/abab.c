@@ -5,30 +5,26 @@
 inherit "/lib/modules/research/compositeResearchTemplate.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        activeResearchItem::reset(arg);
-        addSpecification("name", "ABAB (Verse/Chorus)");
-        addSpecification("usage summary", "A song with two verses and two choruses");
-        addSpecification("source", "blarg");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of how to create songs structured as a pair of verse/chorus "
-            "sections");
+    addSpecification("name", "ABAB (Verse/Chorus)");
+    addSpecification("usage summary", "A song with two verses and two choruses");
+    addSpecification("source", "blarg");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of how to create songs structured as a pair of verse/chorus "
+        "sections");
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 25);
-        addSpecification("stamina point cost", 25);
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("spell point cost", 25);
+    addSpecification("stamina point cost", 25);
 
-        addSpecification("segments", ({
-            ([ "verse 1": ({ "lyric", "instrumental rhythm" }) ]),
-            ([ "chorus 1": ({ "lyric", "chorus lyric", "instrumental rhythm" }) ]),
-            ([ "verse 2": ({ "lyric", "instrumental rhythm" }) ]),
-            ([ "chorus 2": ({ "lyric", "chorus lyric", "instrumental rhythm" }) ]),
-        }));            
+    addSpecification("segments", ({
+        ([ "verse 1": ({ "lyric", "instrumental rhythm" }) ]),
+        ([ "chorus 1": ({ "lyric", "chorus lyric", "instrumental rhythm" }) ]),
+        ([ "verse 2": ({ "lyric", "instrumental rhythm" }) ]),
+        ([ "chorus 2": ({ "lyric", "chorus lyric", "instrumental rhythm" }) ]),
+    }));            
 
-        addSpecification("event handler", "verseChorusEvent");
-    }
+    addSpecification("event handler", "verseChorusEvent");
 }

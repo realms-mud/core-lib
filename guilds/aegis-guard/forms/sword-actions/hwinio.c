@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Hwinio");
     addSpecification("source", "Aegis Guard");

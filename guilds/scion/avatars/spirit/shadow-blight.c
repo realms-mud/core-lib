@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Shadow Blight");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research gives your "
-            "avatar the `Shadow Blight' spell.");
+    addSpecification("name", "Shadow Blight");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research gives your "
+        "avatar the `Shadow Blight' spell.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "Scion of Dhuras Guild",
-            "value": 27
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "Scion of Dhuras Guild",
+        "value": 27
+    ]));
 
-        addPrerequisite("guilds/scion/avatars/spirit/spirit-shards.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/avatars/spirit/spirit-shards.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/scion/avatars/spirit/root.c",
-        }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/scion/avatars/spirit/root.c",
+    }));
 }

@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/stoking-rage.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
 

@@ -5,18 +5,13 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "sustained effect");
-        addSpecification("name", "Mana Shield");
-        addSpecification("root", "mana shield");
-        addSpecification("description", "You are surrounded by a mana shield.");
-        
-        addSpecification("triggering research", 
-            "guilds/scion/common/mana-shield/root.c");
+    addSpecification("type", "sustained effect");
+    addSpecification("name", "Mana Shield");
+    addSpecification("root", "mana shield");
+    addSpecification("description", "You are surrounded by a mana shield.");
 
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("triggering research",
+        "guilds/scion/common/mana-shield/root.c");
 }

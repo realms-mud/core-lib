@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Lay of Landros");
     addSpecification("source", "bard");

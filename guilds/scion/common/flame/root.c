@@ -7,24 +7,20 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "The Flame");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to express their raw magical energy as flames.");
-        Setup();
+    addSpecification("name", "The Flame");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to express their raw magical energy as flames.");
+    SetupResearch();
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus elemental fire", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus elemental fire", 1);
 }

@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Beat of the Broken");
     addSpecification("source", "bard");
@@ -114,5 +114,5 @@ public void Setup()
     addSpecification("event handler", "beatOfTheBrokenEvent");
     addSpecification("use composite message", "##InitiatorName## "
         "##Infinitive::rap## ##InitiatorPossessive## "
-        "##InitiatorWeapon## in a ##CompositeSegment##.");    }
+        "##InitiatorWeapon## in a ##CompositeSegment##.");
 }

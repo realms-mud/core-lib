@@ -5,16 +5,12 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Complex Mace");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft complex maces like flanged maces and morning stars.");
-        addSpecification("research type", "granted");
-        addPrerequisite("lib/instances/research/crafting/weapons/maces/craftBasicMace.c", (["type":"research"]));
-    }
+    addSpecification("name", "Craft Complex Mace");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to craft complex maces like flanged maces and morning stars.");
+    addSpecification("research type", "granted");
+    addPrerequisite("lib/instances/research/crafting/weapons/maces/craftBasicMace.c", (["type":"research"]));
 }

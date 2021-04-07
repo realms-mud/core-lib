@@ -158,7 +158,7 @@ private void SeventyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Arnen ai Megil");
     Description("");

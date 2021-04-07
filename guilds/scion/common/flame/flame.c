@@ -7,7 +7,7 @@ inherit "/lib/modules/research/researchTree.c";
 protected string WeaponType;
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
@@ -215,43 +215,39 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
+    Name("Path of the Flame");
+    Source("Scion of Dhuras Guild");
+    Description("This skill provides the user with the "
+        "knowledge to express their raw magical energy as flames.");
+    SetupResearch();
+
+    if (WeaponType)
     {
-        researchTree::reset(arg);
-        Name("Path of the Flame");
-        Source("Scion of Dhuras Guild");
-        Description("This skill provides the user with the "
-            "knowledge to express their raw magical energy as flames.");
-        Setup();
+        addResearchElement(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType));
+        TreeRoot(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType));
 
-        if (WeaponType)
-        {
-            addResearchElement(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType));
-            TreeRoot(sprintf("guilds/scion/paths/%s/flame/root.c", WeaponType));
-
-            FirstLevel();
-            ThirdLevel();
-            FifthLevel();
-            SeventhLevel();
-            NinthLevel();
-            EleventhLevel();
-            ThirteenthLevel();
-            FifteenthLevel();
-            SeventeenthLevel();
-            NineteenthLevel();
-            TwentyFirstLevel();
-            TwentyThirdLevel();
-            TwentyFifthLevel();
-            TwentySeventhLevel();
-            TwentyNinthLevel();
-            ThirtyFirstLevel();
-            ThirtyThirdLevel();
-            ThirtyFifthLevel();
-            ThirtySeventhLevel();
-            ThirtyNinthLevel();
-            AdditionalResearch();
-        }
+        FirstLevel();
+        ThirdLevel();
+        FifthLevel();
+        SeventhLevel();
+        NinthLevel();
+        EleventhLevel();
+        ThirteenthLevel();
+        FifteenthLevel();
+        SeventeenthLevel();
+        NineteenthLevel();
+        TwentyFirstLevel();
+        TwentyThirdLevel();
+        TwentyFifthLevel();
+        TwentySeventhLevel();
+        TwentyNinthLevel();
+        ThirtyFirstLevel();
+        ThirtyThirdLevel();
+        ThirtyFifthLevel();
+        ThirtySeventhLevel();
+        ThirtyNinthLevel();
+        AdditionalResearch();
     }
 }

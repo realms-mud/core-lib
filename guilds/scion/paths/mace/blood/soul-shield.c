@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/soul-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

@@ -5,13 +5,9 @@
 inherit "/lib/modules/research/researchTree.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("high elf");
-        Description("This research tree contains the story arc for the high elf race.");
-        Source("traits");
-    }
+    Name("high elf");
+    Description("This research tree contains the story arc for the high elf race.");
+    Source("traits");
 }

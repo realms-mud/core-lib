@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/summoningResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "A Rat's Serenade");
     addSpecification("source", "bard");

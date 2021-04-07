@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/inferno.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
     WeaponSkill = "staff";

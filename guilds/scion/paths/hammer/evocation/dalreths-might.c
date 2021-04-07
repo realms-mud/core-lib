@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/dalreths-might.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
 

@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/icy-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

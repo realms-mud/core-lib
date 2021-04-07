@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/blazing-barrier.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
 

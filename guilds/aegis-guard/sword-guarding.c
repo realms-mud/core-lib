@@ -128,7 +128,7 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Tirith ai Megil");
     Description("");

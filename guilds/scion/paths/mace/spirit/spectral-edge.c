@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/spectral-edge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

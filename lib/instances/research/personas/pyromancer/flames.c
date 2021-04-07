@@ -5,39 +5,35 @@
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Flames");
-        addSpecification("description", "This is a persona research item.");
-        addSpecification("effect", "combat");
-        addSpecification("scope", "targeted");
-        addSpecification("research type", "granted");
-        addSpecification("spell point cost", 5);
-        addSpecification("damage type", "fire");
-        addSpecification("damage hit points", ({ ([
-            "probability":100,
-                "base damage" : 25,
-                "range" : 25
-        ]) }));
-        addSpecification("modifiers", ({ ([
-            "type":"skill",
-            "name": "elemental fire",
-            "formula": "additive",
-            "rate": 1.25
-        ]), ([
-            "type":"attribute",
-            "name": "intelligence",
-            "formula": "logarithmic",
-            "base value": 5,
-            "rate": 1.2
-        ]) }));
-        addSpecification("cooldown", 4);
-        addSpecification("command template", "flames at ##Target##");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## "
-            "##InitiatorPossessive## hand and a thin fiery bolt "
-            "slams into ##TargetName##.");
-    }
+    addSpecification("name", "Flames");
+    addSpecification("description", "This is a persona research item.");
+    addSpecification("effect", "combat");
+    addSpecification("scope", "targeted");
+    addSpecification("research type", "granted");
+    addSpecification("spell point cost", 5);
+    addSpecification("damage type", "fire");
+    addSpecification("damage hit points", ({ ([
+        "probability":100,
+            "base damage" : 25,
+            "range" : 25
+    ]) }));
+    addSpecification("modifiers", ({ ([
+        "type":"skill",
+        "name": "elemental fire",
+        "formula": "additive",
+        "rate": 1.25
+    ]), ([
+        "type":"attribute",
+        "name": "intelligence",
+        "formula": "logarithmic",
+        "base value": 5,
+        "rate": 1.2
+    ]) }));
+    addSpecification("cooldown", 4);
+    addSpecification("command template", "flames at ##Target##");
+    addSpecification("use ability message", "##InitiatorName## ##Infinitive::raise## "
+        "##InitiatorPossessive## hand and a thin fiery bolt "
+        "slams into ##TargetName##.");
 }

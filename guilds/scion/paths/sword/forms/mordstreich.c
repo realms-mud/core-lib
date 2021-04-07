@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Mordstreich");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a maneuver wherein a counter-attack is placed "
-            "with the hilt of the sword in an attempt to first stun and then "
-            "slice into the opponent.");
-        addSpecification("limited by", (["equipment":({
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+    addSpecification("name", "Mordstreich");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a maneuver wherein a counter-attack is placed "
+        "with the hilt of the sword in an attempt to first stun and then "
+        "slice into the opponent.");
+    addSpecification("limited by", (["equipment":({
+        "long sword", "hand and a half sword", "two-handed sword" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Scion of Dhuras",
-              "value": 27 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Scion of Dhuras",
+          "value": 27 ]));
 
-        addPrerequisite("guilds/scion/paths/sword/forms/dance-of-death.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/paths/sword/forms/dance-of-death.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus hand and a half sword", 1);
-        addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus attack", 2);
-        addSpecification("bonus damage", 2);
-        addSpecification("equivalence", "mordstreich");
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus long sword", 1);
+    addSpecification("bonus hand and a half sword", 1);
+    addSpecification("bonus two-handed sword", 1);
+    addSpecification("bonus attack", 2);
+    addSpecification("bonus damage", 2);
+    addSpecification("equivalence", "mordstreich");
 }

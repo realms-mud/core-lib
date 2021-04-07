@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/sustainedResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Meitha Ture");
     addSpecification("source", "Aegis Guard");

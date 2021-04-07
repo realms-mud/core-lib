@@ -206,35 +206,31 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Evocation Avatar");
-        Description("This skill tree provides the user with the knowledge "
-            "to summon an avatar of electricity magic.");
-        Source("Scion of Dhuras Guild");
-        addResearchElement("guilds/scion/avatars/evocation/root.c");
-        TreeRoot("guilds/scion/avatars/evocation/root.c");
+    Name("Evocation Avatar");
+    Description("This skill tree provides the user with the knowledge "
+        "to summon an avatar of electricity magic.");
+    Source("Scion of Dhuras Guild");
+    addResearchElement("guilds/scion/avatars/evocation/root.c");
+    TreeRoot("guilds/scion/avatars/evocation/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        TenthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    TenthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
 }

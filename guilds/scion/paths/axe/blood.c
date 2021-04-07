@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/blood.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 }

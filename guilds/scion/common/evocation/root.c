@@ -7,24 +7,20 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected string WeaponType = "ERROR";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "The Bolt");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to channel their raw magical energy through their weapon.");
-        Setup();
+    addSpecification("name", "The Bolt");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to channel their raw magical energy through their weapon.");
+    SetupResearch();
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus evocation", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus evocation", 1);
 }

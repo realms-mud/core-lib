@@ -5,17 +5,13 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("source", "mage guild");
-        addSpecification("description", "This is a description");
-        addSpecification("name", "zap thingy");
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus long sword", 2);
-    }
+    addSpecification("source", "mage guild");
+    addSpecification("description", "This is a description");
+    addSpecification("name", "zap thingy");
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus long sword", 2);
 }

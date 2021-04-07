@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/soul-shear.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "sword";
     WeaponSkill = "long sword";

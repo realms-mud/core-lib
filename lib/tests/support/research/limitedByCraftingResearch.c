@@ -5,18 +5,15 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Craft Swords");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft knives, daggers, and swords out of "
-            "typical bladed weapon materials such as iron, bronze, and steel.");
-        addSpecification("research type", "granted");
-        addSpecification("limited by", (["crafting type":"sword"]));
-        addSpecification("bonus weapon smithing", 30);
-    }
+    addSpecification("name", "Craft Swords");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to craft knives, daggers, and swords out of "
+        "typical bladed weapon materials such as iron, bronze, and steel.");
+
+    addSpecification("research type", "granted");
+    addSpecification("limited by", (["crafting type":"sword"]));
+    addSpecification("bonus weapon smithing", 30);
 }

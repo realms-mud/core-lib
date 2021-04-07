@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/blood/wicked-edge.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

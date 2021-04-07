@@ -5,26 +5,22 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Annealing - Weapons");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of annealing metal - a heat treatment that reduces a "
-            "metal's hardness and making it much easier to work.");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
+    addSpecification("name", "Annealing - Weapons");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of annealing metal - a heat treatment that reduces a "
+        "metal's hardness and making it much easier to work.");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
 
-        addPrerequisite("blacksmithing", (["type":"skill", "value" : 1]));
+    addPrerequisite("blacksmithing", (["type":"skill", "value" : 1]));
 
-        addSpecification("limited by", (["crafting type":({ "sword", "dagger", 
-            "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow", 
-            "bow", "sling", "thrown", "shield" })]));
+    addSpecification("limited by", (["crafting type":({ "sword", "dagger", 
+        "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow", 
+        "bow", "sling", "thrown", "shield" })]));
 
-        addSpecification("penalty to crafting defense class", 1);
-        addSpecification("penalty to crafting weapon class", 1);
-    }
+    addSpecification("penalty to crafting defense class", 1);
+    addSpecification("penalty to crafting weapon class", 1);
 }

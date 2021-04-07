@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/evocation/plasma-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

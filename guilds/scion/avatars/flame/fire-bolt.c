@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Fire Bolt");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research gives your "
-            "avatar the `Fire Bolt' spell.");
+    addSpecification("name", "Fire Bolt");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research gives your "
+        "avatar the `Fire Bolt' spell.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "Scion of Dhuras Guild",
-            "value": 13
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "Scion of Dhuras Guild",
+        "value": 13
+    ]));
 
-        addPrerequisite("guilds/scion/avatars/flame/fire-touch.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/avatars/flame/fire-touch.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/scion/avatars/flame/root.c",
-        }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/scion/avatars/flame/root.c",
+    }));
 }

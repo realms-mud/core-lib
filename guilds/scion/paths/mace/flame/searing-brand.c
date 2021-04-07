@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/searing-brand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
 

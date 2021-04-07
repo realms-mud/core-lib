@@ -5,24 +5,20 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Mauling");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively maul with hammers.");
-        addSpecification("limited by", (["equipment":({ "hammer" })]));
+    addSpecification("name", "Mauling");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of how to more effectively maul with hammers.");
+    addSpecification("limited by", (["equipment":({ "hammer" })]));
 
-        addPrerequisite("guilds/scion/paths/hammer/root.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/scion/paths/hammer/root.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus attack", 1);
-        addSpecification("bonus damage", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus attack", 1);
+    addSpecification("bonus damage", 1);
 }

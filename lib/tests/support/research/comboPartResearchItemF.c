@@ -5,30 +5,26 @@
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "clerb");
-        addSpecification("source", "blarg");
-        addSpecification("description", "This is limited active research");
-        addSpecification("usage summary", "Beware the clerb.");
-        addSpecification("scope", "targeted");
-        addSpecification("research type", "granted");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 10);
-        addSpecification("damage hit points", ({ ([
-            "probability": 100,
-            "base damage": 11,
-            "range": 0
-        ]) }));
-        addSpecification("damage type", "fire");
+    addSpecification("name", "clerb");
+    addSpecification("source", "blarg");
+    addSpecification("description", "This is limited active research");
+    addSpecification("usage summary", "Beware the clerb.");
+    addSpecification("scope", "targeted");
+    addSpecification("research type", "granted");
+    addSpecification("research cost", 1);
+    addSpecification("spell point cost", 10);
+    addSpecification("damage hit points", ({ ([
+        "probability": 100,
+        "base damage": 11,
+        "range": 0
+    ]) }));
+    addSpecification("damage type", "fire");
 
-        addSpecification("cooldown", 4);
-        addSpecification("event handler", "usedResearchEvent");
-        addSpecification("command template", "clerb [at ##Target##]");
-        addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
-        addSpecification("use combination message", "clerb at ##TargetName## with fiery death");
-    }
+    addSpecification("cooldown", 4);
+    addSpecification("event handler", "usedResearchEvent");
+    addSpecification("command template", "clerb [at ##Target##]");
+    addSpecification("use ability message", "##InitiatorName## ##Infinitive::throw## a turnip at ##TargetName##.");
+    addSpecification("use combination message", "clerb at ##TargetName## with fiery death");
 }

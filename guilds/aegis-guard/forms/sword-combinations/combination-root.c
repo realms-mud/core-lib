@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/combinedInstantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Godrebh ai Megil");
     addSpecification("source", "Aegis Guard");

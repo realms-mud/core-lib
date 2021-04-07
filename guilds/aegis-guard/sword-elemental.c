@@ -189,7 +189,7 @@ private void SixtyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Manadh ai Megil");
     Description("");

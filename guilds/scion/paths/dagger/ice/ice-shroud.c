@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/ice-shroud.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

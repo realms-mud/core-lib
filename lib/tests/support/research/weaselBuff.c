@@ -5,18 +5,14 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Weasel Buff");
-        addSpecification("source", "blarg");
-        addSpecification("description", "Weasel buffing is where it's at.");
+    addSpecification("name", "Weasel Buff");
+    addSpecification("source", "blarg");
+    addSpecification("description", "Weasel buffing is where it's at.");
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "lib/tests/support/research/summoningItem.c" }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "lib/tests/support/research/summoningItem.c" }));
 }

@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/laiwyths-mark.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
 

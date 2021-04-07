@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/root.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

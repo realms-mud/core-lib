@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/flame/inferno-spear.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
     WeaponSkill = "axe";

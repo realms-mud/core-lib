@@ -5,19 +5,15 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("source", "mage guild");
-        addSpecification("description", "This is a description");
-        addSpecification("name", "weasel improvement");
-        addSpecification("scope", "self");
-        addSpecification("research type", "timed");
-        addSpecification("research cost", 20);
-        addSpecification("bonus long sword", 2);
-        addPrerequisite("lib/tests/support/research/testResearchA.c",
-            (["type":"research"]));
-    }
+    addSpecification("source", "mage guild");
+    addSpecification("description", "This is a description");
+    addSpecification("name", "weasel improvement");
+    addSpecification("scope", "self");
+    addSpecification("research type", "timed");
+    addSpecification("research cost", 20);
+    addSpecification("bonus long sword", 2);
+    addPrerequisite("lib/tests/support/research/testResearchA.c",
+        (["type":"research"]));
 }

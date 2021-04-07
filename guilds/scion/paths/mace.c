@@ -290,40 +290,36 @@ private void ThirtiethLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("The Way of the Mace");
-        Description("");
-        Source("Scion of Dhuras Guild");
-        addResearchElement("guilds/scion/paths/mace/root.c");
+    Name("The Way of the Mace");
+    Description("");
+    Source("Scion of Dhuras Guild");
+    addResearchElement("guilds/scion/paths/mace/root.c");
 
-        TreeRoot("guilds/scion/paths/mace/root.c");
+    TreeRoot("guilds/scion/paths/mace/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SixthLevel();
-        SeventhLevel();
-        EighthLevel();
-        NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
-        ThirteenthLevel();
-        FourteenLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentiethLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
+    SixthLevel();
+    SeventhLevel();
+    EighthLevel();
+    NinthLevel();
+    TenthLevel();
+    TwelfthLevel();
+    ThirteenthLevel();
+    FourteenLevel();
+    FifteenthLevel();
+    SixteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentiethLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtiethLevel();
 }

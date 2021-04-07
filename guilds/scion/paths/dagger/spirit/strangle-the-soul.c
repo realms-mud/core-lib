@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/strangle-the-soul.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

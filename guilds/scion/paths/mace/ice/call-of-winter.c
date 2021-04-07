@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/call-of-winter.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "mace";
     WeaponSkill = "mace";

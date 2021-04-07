@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/winters-rage.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "axe";
 

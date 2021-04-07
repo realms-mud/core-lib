@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/shocking-tendrils.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
     WeaponSkill = "dagger";

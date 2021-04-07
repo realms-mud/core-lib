@@ -5,19 +5,15 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Craft Basic Swords");
-        addSpecification("source", "crafting");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge required to craft knives, daggers, and swords out of "
-            "typical bladed weapon materials such as iron, bronze, and steel.");
-        addSpecification("research type", "tree root");
-        addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", 
-            (["type":"research"]));
-        addPrerequisite("weapon smithing", (["type":"skill", "value" : 1]));
-    }
+    addSpecification("name", "Craft Basic Swords");
+    addSpecification("source", "crafting");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to craft knives, daggers, and swords out of "
+        "typical bladed weapon materials such as iron, bronze, and steel.");
+    addSpecification("research type", "tree root");
+    addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", 
+        (["type":"research"]));
+    addPrerequisite("weapon smithing", (["type":"skill", "value" : 1]));
 }

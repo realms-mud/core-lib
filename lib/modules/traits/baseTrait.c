@@ -9,7 +9,7 @@ virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
 
 }

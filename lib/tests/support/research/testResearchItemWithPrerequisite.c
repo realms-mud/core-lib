@@ -5,11 +5,7 @@
 inherit "/lib/modules/research/activeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        activeResearchItem::reset(arg);
-        addPrerequisite("long sword", (["type":"skill", "value" : 10]));
-    }
+    addPrerequisite("long sword", (["type":"skill", "value" : 10]));
 }

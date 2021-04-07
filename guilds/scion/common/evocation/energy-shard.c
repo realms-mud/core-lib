@@ -9,96 +9,92 @@ protected string WeaponSkill = "unarmed";
 protected string *ValidWeaponTypes = ({ });
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        instantaneousActiveResearchItem::reset(arg);
-        addSpecification("name", "Energy Shard");
-        addSpecification("source", "Scion of Dhuras Guild");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the energy missiles technique. By means of this, the "
-            "Scion is able to use their weapon as a conduit for emitting a shard "
-            "of magical energy at a foe.");
-        Setup();
+    addSpecification("name", "Energy Shard");
+    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of the energy missiles technique. By means of this, the "
+        "Scion is able to use their weapon as a conduit for emitting a shard "
+        "of magical energy at a foe.");
+    SetupResearch();
 
-        addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
-            (["type":"research"]));
-        addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/root.c", WeaponType),
-            (["type":"research"]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+        (["type":"research"]));
+    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/root.c", WeaponType),
+        (["type":"research"]));
 
-        addSpecification("scope", "targeted");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("spell point cost", 15);
+    addSpecification("scope", "targeted");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("spell point cost", 15);
 
-        addSpecification("damage hit points", ({ ([
-                "probability": 80,
-                "base damage": 5,
-                "range": 10
-            ]),
-            ([
-                "probability": 20,
-                "base damage": 10,
-                "range": 20
-            ])
-        }));
-        addSpecification("damage type", "energy");
+    addSpecification("damage hit points", ({ ([
+            "probability": 80,
+            "base damage": 5,
+            "range": 10
+        ]),
+        ([
+            "probability": 20,
+            "base damage": 10,
+            "range": 20
+        ])
+    }));
+    addSpecification("damage type", "energy");
 
-        addSpecification("modifiers", ({ 
-            ([
-                "type":"research",
-                "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
-                "name" : "Mystic Charge",
-                "formula" : "additive",
-                "base value" : 1,
-                "rate": 1.5
-            ]),
-            ([
-                "type":"research",
-                "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
-                "name" : "Magical Conduit",
-                "formula" : "additive",
-                "base value" : 1,
-                "rate": 2.0
-            ]),
-            ([
-                "type": "weapon damage",
-                "name": WeaponSkill,
-                "types": ValidWeaponTypes,
-                "formula": "additive",
-                "rate": 1.0
-            ]),
-            ([
-                "type":"skill",
-                "name" : WeaponSkill,
-                "formula" : "additive",
-                "rate" : 1.05
-            ]),
-            ([
-                "type":"skill",
-                "name" : "evocation",
-                "formula" : "additive",
-                "rate" : 1.10
-            ]),
-            ([
-                "type":"attribute",
-                "name" : "intelligence",
-                "formula" : "additive",
-                "rate" : 1.05
-            ]) 
-        }));
+    addSpecification("modifiers", ({ 
+        ([
+            "type":"research",
+            "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
+            "name" : "Mystic Charge",
+            "formula" : "additive",
+            "base value" : 1,
+            "rate": 1.5
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
+            "name" : "Magical Conduit",
+            "formula" : "additive",
+            "base value" : 1,
+            "rate": 2.0
+        ]),
+        ([
+            "type": "weapon damage",
+            "name": WeaponSkill,
+            "types": ValidWeaponTypes,
+            "formula": "additive",
+            "rate": 1.0
+        ]),
+        ([
+            "type":"skill",
+            "name" : WeaponSkill,
+            "formula" : "additive",
+            "rate" : 1.05
+        ]),
+        ([
+            "type":"skill",
+            "name" : "evocation",
+            "formula" : "additive",
+            "rate" : 1.10
+        ]),
+        ([
+            "type":"attribute",
+            "name" : "intelligence",
+            "formula" : "additive",
+            "rate" : 1.05
+        ]) 
+    }));
 
-        addSpecification("cooldown", 6);
-        addSpecification("event handler", "energyShardEvent");
-        addSpecification("command template", "energy shard [at ##Target##]");
-        addSpecification("use ability message",  "Small shards of magical energy "
-            "fly from ##InitiatorPossessive::Name## "
-            "##InitiatorWeapon## into ##TargetName##.");
-    }
+    addSpecification("cooldown", 6);
+    addSpecification("event handler", "energyShardEvent");
+    addSpecification("command template", "energy shard [at ##Target##]");
+    addSpecification("use ability message",  "Small shards of magical energy "
+        "fly from ##InitiatorPossessive::Name## "
+        "##InitiatorWeapon## into ##TargetName##.");
 }

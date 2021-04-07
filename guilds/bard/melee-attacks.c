@@ -188,7 +188,7 @@ private void ThirtySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     Name("Melee Weapons");
     Description("");

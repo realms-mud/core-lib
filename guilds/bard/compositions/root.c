@@ -5,7 +5,7 @@
 inherit "/lib/modules/research/compositeActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
     addSpecification("name", "Musical Compositions");
     addSpecification("source", "bard");

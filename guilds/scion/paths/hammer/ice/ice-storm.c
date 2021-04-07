@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/ice/ice-storm.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "hammer";
     WeaponSkill = "hammer";

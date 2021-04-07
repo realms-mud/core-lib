@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/spirit/chill-the-blood.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "dagger";
 

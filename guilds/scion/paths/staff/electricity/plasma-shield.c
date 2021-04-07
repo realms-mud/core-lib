@@ -5,7 +5,7 @@
 inherit "/guilds/scion/common/electricity/plasma-shield.c";
 
 /////////////////////////////////////////////////////////////////////////////
-protected void Setup()
+protected void SetupResearch()
 {
     WeaponType = "staff";
 

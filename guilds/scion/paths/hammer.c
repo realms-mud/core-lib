@@ -290,40 +290,36 @@ private void ThirtiethLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("The Way of the Hammer");
-        Description("");
-        Source("Scion of Dhuras Guild");
-        addResearchElement("guilds/scion/paths/hammer/root.c");
+    Name("The Way of the Hammer");
+    Description("");
+    Source("Scion of Dhuras Guild");
+    addResearchElement("guilds/scion/paths/hammer/root.c");
 
-        TreeRoot("guilds/scion/paths/hammer/root.c");
+    TreeRoot("guilds/scion/paths/hammer/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SixthLevel();
-        SeventhLevel();
-        EighthLevel();
-        NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
-        ThirteenthLevel();
-        FourteenLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentiethLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
+    SixthLevel();
+    SeventhLevel();
+    EighthLevel();
+    NinthLevel();
+    TenthLevel();
+    TwelfthLevel();
+    ThirteenthLevel();
+    FourteenLevel();
+    FifteenthLevel();
+    SixteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentiethLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtiethLevel();
 }
