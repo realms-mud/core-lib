@@ -35,21 +35,17 @@ private void FifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("A Miscreant");
-        Description("");
-        Source("background");
-        addResearchElement("guilds/background/paths/miscreant/root.c");
-        TreeRoot("guilds/background/paths/miscreant/root.c");
+    Name("A Miscreant");
+    Description("");
+    Source("background");
+    addResearchElement("guilds/background/paths/miscreant/root.c");
+    TreeRoot("guilds/background/paths/miscreant/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
 }

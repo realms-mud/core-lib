@@ -5,20 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Axes");
-        addSpecification("source", "fighter");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of general axe attack techniques");
+    addSpecification("name", "Axes");
+    addSpecification("source", "fighter");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of general axe attack techniques");
 
-        addSpecification("limited by", (["equipment": ({ "axe" }) ]));
+    addSpecification("limited by", (["equipment": ({ "axe" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus attack", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus attack", 1);
 }

@@ -5,33 +5,29 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Hanging Cut");
-        addSpecification("source", "fighter");
-        addSpecification("description", "This skill provides the user with "
-            "knowledge that enhances the fighter's combat abilities.");
+    addSpecification("name", "Hanging Cut");
+    addSpecification("source", "fighter");
+    addSpecification("description", "This skill provides the user with "
+        "knowledge that enhances the fighter's combat abilities.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "fighter",
-                "value": 57
-            ]));
-        addPrerequisite("guilds/fighter/blades/dancing-blade.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Slash": 25,
-            "Thrust": 25,
-            "Whirlwind": 25,
-            "Cleave": 25,
-            "Piercing Strike": 25,
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "fighter",
+            "value": 57
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/fighter/blades/dancing-blade.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Slash": 25,
+        "Thrust": 25,
+        "Whirlwind": 25,
+        "Cleave": 25,
+        "Piercing Strike": 25,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

@@ -5,31 +5,27 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Enhanced Sonic Shaft");
-        addSpecification("source", "bard");
-        addSpecification("description", "This skill provides the user with "
-            "bardic knowledge that enhances the bard's offensive abilities.");
+    addSpecification("name", "Enhanced Sonic Shaft");
+    addSpecification("source", "bard");
+    addSpecification("description", "This skill provides the user with "
+        "bardic knowledge that enhances the bard's offensive abilities.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "bard",
-                "value": 9
-            ]));
-        addPrerequisite("guilds/bard/bow/the-archers-song.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "The Archer's Song": 25,
-            "The Arrow's Anthem": 25,
-            "Sonic Volley": 25,
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "bard",
+            "value": 9
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/bard/bow/the-archers-song.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "The Archer's Song": 25,
+        "The Arrow's Anthem": 25,
+        "Sonic Volley": 25,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

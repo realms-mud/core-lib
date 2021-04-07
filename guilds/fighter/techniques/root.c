@@ -5,22 +5,18 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Techniques");
-        addSpecification("source", "fighter");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of general combat techniques.");
+    addSpecification("name", "Techniques");
+    addSpecification("source", "fighter");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of general combat techniques.");
 
-        addSpecification("limited by", (["equipment": ({ "soft leather",
-            "hard leather", "scalemail", "chainmail", "splint armor",
-            "plate armor" }) ]));
+    addSpecification("limited by", (["equipment": ({ "soft leather",
+        "hard leather", "scalemail", "chainmail", "splint armor",
+        "plate armor" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus soak", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus soak", 1);
 }

@@ -5,31 +5,27 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "The Troubador");
-        addSpecification("source", "bard");
-        addSpecification("description", "This provides the user with "
-            "a keen knowledge of their performing prowess, providing an "
-            "increase to the speed at which they can begin their next "
-            "performance.");
+    addSpecification("name", "The Troubador");
+    addSpecification("source", "bard");
+    addSpecification("description", "This provides the user with "
+        "a keen knowledge of their performing prowess, providing an "
+        "increase to the speed at which they can begin their next "
+        "performance.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "bard",
-                "value": 19
-            ]));
-        addPrerequisite("guilds/bard/compositions/the-minstrel.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Musical Compositions": 15
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "bard",
+            "value": 19
         ]));
-        addSpecification("affected research type", "decrease cooldown");
-    }
+    addPrerequisite("guilds/bard/compositions/the-minstrel.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Musical Compositions": 15
+    ]));
+    addSpecification("affected research type", "decrease cooldown");
 }

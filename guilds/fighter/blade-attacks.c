@@ -209,37 +209,33 @@ private void SixtyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Blade Attacks");
-        Description("");
-        Source("fighter");
-        addResearchElement("guilds/fighter/blades/root.c");
-        TreeRoot("guilds/fighter/blades/root.c");
+    Name("Blade Attacks");
+    Description("");
+    Source("fighter");
+    addResearchElement("guilds/fighter/blades/root.c");
+    TreeRoot("guilds/fighter/blades/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtySeventhLevel();
-        ThirtyNinthLevel();
-        FortyFifthLevel();
-        FiftyFirstLevel();
-        FiftySeventhLevel();
-        SixtyThirdLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtySeventhLevel();
+    ThirtyNinthLevel();
+    FortyFifthLevel();
+    FiftyFirstLevel();
+    FiftySeventhLevel();
+    SixtyThirdLevel();
 }

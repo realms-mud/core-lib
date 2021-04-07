@@ -5,21 +5,17 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Bludgeon Weapons");
-        addSpecification("source", "fighter");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of general bludgeon weapon attack techniques.");
+    addSpecification("name", "Bludgeon Weapons");
+    addSpecification("source", "fighter");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of general bludgeon weapon attack techniques.");
 
-        addSpecification("limited by", (["equipment": ({ "mace", "hammer",
-            "flail", "staff" }) ]));
+    addSpecification("limited by", (["equipment": ({ "mace", "hammer",
+        "flail", "staff" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus attack", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus attack", 1);
 }

@@ -5,22 +5,18 @@
 inherit "/lib/modules/research/activeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        activeResearchItem::reset(arg);
-        addSpecification("name", "Stop Performance");
-        addSpecification("source", "bard");
-        addSpecification("description", "This skill allows a bard to prematurely "
-            "end a performance that's in progress.");
+    addSpecification("name", "Stop Performance");
+    addSpecification("source", "bard");
+    addSpecification("description", "This skill allows a bard to prematurely "
+        "end a performance that's in progress.");
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "granted");
-        addSpecification("command template", "stop performance");
-        addSpecification("use ability message", "##InitiatorName## "
-            "##Infinitive::stop## performing ##InitiatorPossessive## song.");
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "granted");
+    addSpecification("command template", "stop performance");
+    addSpecification("use ability message", "##InitiatorName## "
+        "##Infinitive::stop## performing ##InitiatorPossessive## song.");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -30,21 +26,21 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     int ret = 0;
     if (owner->hasActiveCompositeResearch())
     {
-        mapping activeResearch = owner->getActiveCompositeResearch();
-        ret = owner->deactivateCompositeResearch(
-            activeResearch["constraint"],
-            activeResearch["name"]);
+    mapping activeResearch = owner->getActiveCompositeResearch();
+    ret = owner->deactivateCompositeResearch(
+        activeResearch["constraint"],
+        activeResearch["name"]);
 
-        if (ret)
-        {
-            displayMessage(specificationData, "use ability message",
-                owner, owner);
-        }
+    if (ret)
+    {
+        displayMessage(specificationData, "use ability message",
+            owner, owner);
+    }
     }
     else
     {
-        displayMessageToSelf("You are not currently performing any songs.", 
-            owner);
+    displayMessageToSelf("You are not currently performing any songs.", 
+        owner);
     }
     return ret;
 }

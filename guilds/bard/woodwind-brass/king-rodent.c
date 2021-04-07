@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "King Rodent");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'A Rat's Serenade' research to bring forth king-sized "
-            "rats.");
+    addSpecification("name", "King Rodent");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research attunes the "
+        "'A Rat's Serenade' research to bring forth king-sized "
+        "rats.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 10
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 10
+    ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/rous.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/woodwind-brass/rous.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
 }

@@ -236,41 +236,37 @@ private void SeventyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Stringed Components for Compositions");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/strings/root.c");
-        TreeRoot("guilds/bard/strings/root.c");
+    Name("Stringed Components for Compositions");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/strings/root.c");
+    TreeRoot("guilds/bard/strings/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
-        FortyThirdLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
-        FiftyThirdLevel();
-        FiftyNinthLevel();
-        SixtyFifthLevel();
-        SeventyFirstLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    ThirtySeventhLevel();
+    FortyThirdLevel();
+    FortyFifthLevel();
+    FortySeventhLevel();
+    FiftyThirdLevel();
+    FiftyNinthLevel();
+    SixtyFifthLevel();
+    SeventyFirstLevel();
 }

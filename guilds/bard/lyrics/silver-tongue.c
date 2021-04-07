@@ -5,31 +5,27 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Silver Tongue");
-        addSpecification("source", "bard");
-        addSpecification("description", "This skill provides the user with "
-            "knowledge on how to make their lyrical content more poignant "
-            "and therefore, more powerful.");
+    addSpecification("name", "Silver Tongue");
+    addSpecification("source", "bard");
+    addSpecification("description", "This skill provides the user with "
+        "knowledge on how to make their lyrical content more poignant "
+        "and therefore, more powerful.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 9
-            ]));
-        addPrerequisite("guilds/bard/lyrics/root.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Inspiring Lyrics": 100,
-            "Demoralizing Lyrics": 100,
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 9
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/bard/lyrics/root.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Inspiring Lyrics": 100,
+        "Demoralizing Lyrics": 100,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

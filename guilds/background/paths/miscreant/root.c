@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "A Miscreant");
-        addSpecification("source", "background");
-        addSpecification("description", "This skill provides the user with the "
-            "basic knowledge learned from a life avoiding duty.");
+    addSpecification("name", "A Miscreant");
+    addSpecification("source", "background");
+    addSpecification("description", "This skill provides the user with the "
+        "basic knowledge learned from a life avoiding duty.");
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus wisdom", 1);
-        addSpecification("bonus search", 1);
-        addSpecification("bonus spot", 1);
-        addSpecification("bonus open lock", 1);
-        addSpecification("bonus move silently", 1);
-        addSpecification("bonus listen", 1);
-        addSpecification("bonus hide", 1);
-        addSpecification("bonus disable traps", 1);
-        addSpecification("bonus find traps", 1);
-        addSpecification("bonus set traps and snares", 1);
-        addSpecification("bonus tracking", 1);
-        addSpecification("bonus perception", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus wisdom", 1);
+    addSpecification("bonus search", 1);
+    addSpecification("bonus spot", 1);
+    addSpecification("bonus open lock", 1);
+    addSpecification("bonus move silently", 1);
+    addSpecification("bonus listen", 1);
+    addSpecification("bonus hide", 1);
+    addSpecification("bonus disable traps", 1);
+    addSpecification("bonus find traps", 1);
+    addSpecification("bonus set traps and snares", 1);
+    addSpecification("bonus tracking", 1);
+    addSpecification("bonus perception", 1);
 }

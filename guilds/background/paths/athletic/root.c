@@ -5,25 +5,21 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "A Background in Athletics");
-        addSpecification("source", "background");
-        addSpecification("description", "This skill provides the user with the "
-            "basic knowledge learned from athletic pursuits.");
+    addSpecification("name", "A Background in Athletics");
+    addSpecification("source", "background");
+    addSpecification("description", "This skill provides the user with the "
+        "basic knowledge learned from athletic pursuits.");
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus strength", 1);
-        addSpecification("bonus dexterity", 1);
-        addSpecification("bonus dodge", 1);
-        addSpecification("bonus unarmed", 1);
-        addSpecification("bonus anatomy and physiology", 1);
-        addSpecification("bonus climb", 1);
-        addSpecification("bonus hunting", 1);
-        addSpecification("bonus swimming", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus strength", 1);
+    addSpecification("bonus dexterity", 1);
+    addSpecification("bonus dodge", 1);
+    addSpecification("bonus unarmed", 1);
+    addSpecification("bonus anatomy and physiology", 1);
+    addSpecification("bonus climb", 1);
+    addSpecification("bonus hunting", 1);
+    addSpecification("bonus swimming", 1);
 }

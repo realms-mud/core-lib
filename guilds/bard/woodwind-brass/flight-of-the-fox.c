@@ -5,33 +5,29 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Flight of the Fox");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'Creatures of the Forest' research to "
-            "bring forth only the mightiest of animals.");
+    addSpecification("name", "Flight of the Fox");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research attunes the "
+        "'Creatures of the Forest' research to "
+        "bring forth only the mightiest of animals.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: woodwind", "instrument: brass" }) ]));
+    addSpecification("limited by", ([
+        "equipment": ({ "instrument: woodwind", "instrument: brass" }) ]));
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 19
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 19
+    ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/creatures-of-might.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/woodwind-brass/creatures-of-might.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/woodwind-brass/creatures-of-the-forest.c"
-        }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/bard/woodwind-brass/creatures-of-the-forest.c"
+    }));
 }

@@ -209,37 +209,33 @@ private void FiftyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Lyrical Components for Compositions");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/lyrics/root.c");
-        TreeRoot("guilds/bard/lyrics/root.c");
+    Name("Lyrical Components for Compositions");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/lyrics/root.c");
+    TreeRoot("guilds/bard/lyrics/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        TenthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
-        FortyThirdLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
-        FiftyFifthLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    TenthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    ThirtySeventhLevel();
+    FortyThirdLevel();
+    FortyFifthLevel();
+    FortySeventhLevel();
+    FiftyFifthLevel();
 }

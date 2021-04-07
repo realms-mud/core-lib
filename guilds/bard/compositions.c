@@ -131,29 +131,25 @@ private void TwentyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Musical Compositions");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/compositions/root.c");
-        TreeRoot("guilds/bard/compositions/root.c");
+    Name("Musical Compositions");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/compositions/root.c");
+    TreeRoot("guilds/bard/compositions/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
 }

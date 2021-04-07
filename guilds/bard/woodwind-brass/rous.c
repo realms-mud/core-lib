@@ -5,34 +5,30 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Rodents of Unusual Size");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'A Rat's Serenade' research to bring forth only the "
-            "largest of rats.");
+    addSpecification("name", "Rodents of Unusual Size");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research attunes the "
+        "'A Rat's Serenade' research to bring forth only the "
+        "largest of rats.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: plucked", "instrument: bowed",
-                "instrument: woodwind", "instrument: brass",
-                "instrument: percussion" }) ]));
+    addSpecification("limited by", ([
+        "equipment": ({ "instrument: plucked", "instrument: bowed",
+            "instrument: woodwind", "instrument: brass",
+            "instrument: percussion" }) ]));
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 4
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 4
+    ]));
 
-        addPrerequisite("guilds/bard/woodwind-brass/a-rats-serenade.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/woodwind-brass/a-rats-serenade.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
 }

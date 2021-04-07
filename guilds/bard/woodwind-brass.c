@@ -194,36 +194,32 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Woodwind/Brass Components for Compositions");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/woodwind-brass/root.c");
-        TreeRoot("guilds/bard/woodwind-brass/root.c");
+    Name("Woodwind/Brass Components for Compositions");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/woodwind-brass/root.c");
+    TreeRoot("guilds/bard/woodwind-brass/root.c");
 
-        FirstLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        TenthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        FortyThirdLevel();
-    }
+    FirstLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    TenthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    FortyThirdLevel();
 }

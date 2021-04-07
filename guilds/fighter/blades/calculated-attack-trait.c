@@ -5,21 +5,16 @@
 inherit "/lib/modules/traits/baseTrait.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        addSpecification("type", "sustained effect");
-        addSpecification("name", "Calculated Attack");
-        addSpecification("root", "do not attack");
-        addSpecification("description", "You are carefully poising your weapon. "
-            "While this is in effect, you cannot attack, but your blade "
-            "skills will receive a bonus dependent on how long you have "
-            "taken to attack.");
+    addSpecification("type", "sustained effect");
+    addSpecification("name", "Calculated Attack");
+    addSpecification("root", "do not attack");
+    addSpecification("description", "You are carefully poising your weapon. "
+        "While this is in effect, you cannot attack, but your blade "
+        "skills will receive a bonus dependent on how long you have "
+        "taken to attack.");
         
-        addSpecification("triggering research", 
-            "guilds/fighter/blades/calculated-attack.c");
-
-        "baseTrait"::reset(arg);
-    }
+    addSpecification("triggering research", 
+        "guilds/fighter/blades/calculated-attack.c");
 }

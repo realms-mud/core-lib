@@ -125,36 +125,32 @@ private void ThirtySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Polearm Attacks");
-        Description("");
-        Source("fighter");
-        addResearchElement("guilds/fighter/polearms/root.c");
-        TreeRoot("guilds/fighter/polearms/root.c");
+    Name("Polearm Attacks");
+    Description("");
+    Source("fighter");
+    addResearchElement("guilds/fighter/polearms/root.c");
+    TreeRoot("guilds/fighter/polearms/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        TenthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtySeventhLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    TenthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtySeventhLevel();
 }

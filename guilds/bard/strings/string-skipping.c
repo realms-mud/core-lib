@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "String Skipping");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research increases the "
-            "effectiveness of the various strumming techniques.");
+    addSpecification("name", "String Skipping");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research increases the "
+        "effectiveness of the various strumming techniques.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: plucked", "instrument: bowed" }) ]));
+    addSpecification("limited by", ([
+        "equipment": ({ "instrument: plucked", "instrument: bowed" }) ]));
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 25
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 25
+    ]));
 
-        addPrerequisite("guilds/bard/strings/slide-techniques.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/strings/slide-techniques.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Riff of Report": 25,
-            "Coronach of Capitulation": 25,
-            "Requiem of Release": 25,
-            "Dirge of the Damned": 25,
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Riff of Report": 25,
+        "Coronach of Capitulation": 25,
+        "Requiem of Release": 25,
+        "Dirge of the Damned": 25,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

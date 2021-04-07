@@ -5,18 +5,14 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Woodwind and Brass");
-        addSpecification("source", "bard");
-        addSpecification("description", "This skill provides the user with the "
-            "basic knowledge of creating spell-like effects with woodwind "
-            "and brass instruments.");
+    addSpecification("name", "Woodwind and Brass");
+    addSpecification("source", "bard");
+    addSpecification("description", "This skill provides the user with the "
+        "basic knowledge of creating spell-like effects with woodwind "
+        "and brass instruments.");
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
 }

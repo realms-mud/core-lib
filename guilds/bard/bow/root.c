@@ -5,20 +5,16 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Bardic Archery");
-        addSpecification("source", "bard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of advanced archery techniques");
+    addSpecification("name", "Bardic Archery");
+    addSpecification("source", "bard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of advanced archery techniques");
 
-        addSpecification("limited by", (["equipment":({ "bow" }) ]));
+    addSpecification("limited by", (["equipment":({ "bow" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus bow", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus bow", 1);
 }

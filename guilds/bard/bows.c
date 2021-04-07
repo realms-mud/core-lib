@@ -188,36 +188,32 @@ private void ThirtySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Archery");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/bow/root.c");
-        TreeRoot("guilds/bard/bow/root.c");
+    Name("Archery");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/bow/root.c");
+    TreeRoot("guilds/bard/bow/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        TenthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtySeventhLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    TenthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SixteenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtySeventhLevel();
 }

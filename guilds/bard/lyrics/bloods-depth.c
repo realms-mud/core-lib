@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Blood's Depth");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of the legendary muse Landros's advanced vocal techniques.");
+    addSpecification("name", "Blood's Depth");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of the legendary muse Landros's advanced vocal techniques.");
 
-        addPrerequisite("level", 
-            (["type": "level", 
-              "guild": "bard",
-              "value": 45 ]));
-        addPrerequisite("guilds/bard/lyrics/day-is-coming.c",
-            (["type":"research"]));
+    addPrerequisite("level", 
+        (["type": "level", 
+          "guild": "bard",
+          "value": 45 ]));
+    addPrerequisite("guilds/bard/lyrics/day-is-coming.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Lay of Landros": 50,
-            "Song for Aelin": 50,
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Lay of Landros": 50,
+        "Song for Aelin": 50,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

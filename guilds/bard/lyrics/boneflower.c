@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Boneflower");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research attunes the "
-            "'Danse Macabre' research to bring forth significantly "
-            "more lethal skeletons.");
+    addSpecification("name", "Boneflower");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research attunes the "
+        "'Danse Macabre' research to bring forth significantly "
+        "more lethal skeletons.");
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 33
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 33
+    ]));
 
-        addPrerequisite("guilds/bard/lyrics/danse-macabre.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/lyrics/danse-macabre.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("related research", ({
-            "guilds/bard/lyrics/danse-macabre.c" }));
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("related research", ({
+        "guilds/bard/lyrics/danse-macabre.c" }));
 }

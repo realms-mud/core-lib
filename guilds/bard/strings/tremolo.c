@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Tremelo");
-        addSpecification("source", "bard");
-        addSpecification("description", "This research increases the "
-            "effectiveness of the various soloing techniques.");
+    addSpecification("name", "Tremelo");
+    addSpecification("source", "bard");
+    addSpecification("description", "This research increases the "
+        "effectiveness of the various soloing techniques.");
 
-        addSpecification("limited by", ([
-            "equipment": ({ "instrument: plucked", "instrument: bowed" }) ]));
+    addSpecification("limited by", ([
+        "equipment": ({ "instrument: plucked", "instrument: bowed" }) ]));
 
-        addPrerequisite("level", ([  
-            "type":"level",
-            "guild": "bard",
-            "value": 33
-        ]));
+    addPrerequisite("level", ([  
+        "type":"level",
+        "guild": "bard",
+        "value": 33
+    ]));
 
-        addPrerequisite("guilds/bard/strings/ghost-notes.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/bard/strings/ghost-notes.c",
+        (["type":"research"]));
 
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Elegy of Energy": 25,
-            "Enchanting Ostinato": 25,
-            "Tune of Temerity": 25,
-            "Sanguine Solo": 25,
-        ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Elegy of Energy": 25,
+        "Enchanting Ostinato": 25,
+        "Tune of Temerity": 25,
+        "Sanguine Solo": 25,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

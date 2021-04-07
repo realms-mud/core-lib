@@ -209,38 +209,34 @@ private void FiftyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Percussive Components for Compositions");
-        Description("");
-        Source("bard");
-        addResearchElement("guilds/bard/percussion/root.c");
-        TreeRoot("guilds/bard/percussion/root.c");
+    Name("Percussive Components for Compositions");
+    Description("");
+    Source("bard");
+    addResearchElement("guilds/bard/percussion/root.c");
+    TreeRoot("guilds/bard/percussion/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        FortyFirstLevel();
-        FortyThirdLevel();
-        FiftyFirstLevel();
-        FiftyThirdLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    FortyFirstLevel();
+    FortyThirdLevel();
+    FiftyFirstLevel();
+    FiftyThirdLevel();
 }

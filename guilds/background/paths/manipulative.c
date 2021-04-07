@@ -35,21 +35,17 @@ private void FifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("A Manipulative Little Shit");
-        Description("");
-        Source("background");
-        addResearchElement("guilds/background/paths/manipulative/root.c");
-        TreeRoot("guilds/background/paths/manipulative/root.c");
+    Name("A Manipulative Little Shit");
+    Description("");
+    Source("background");
+    addResearchElement("guilds/background/paths/manipulative/root.c");
+    TreeRoot("guilds/background/paths/manipulative/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
 }

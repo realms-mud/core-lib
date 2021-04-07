@@ -35,21 +35,17 @@ private void FifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("A Childhood of Structured Military Learning");
-        Description("");
-        Source("background");
-        addResearchElement("guilds/background/paths/martial/root.c");
-        TreeRoot("guilds/background/paths/martial/root.c");
+    Name("A Childhood of Structured Military Learning");
+    Description("");
+    Source("background");
+    addResearchElement("guilds/background/paths/martial/root.c");
+    TreeRoot("guilds/background/paths/martial/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
 }
