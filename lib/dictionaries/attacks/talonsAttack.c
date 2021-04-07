@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "slash", "slice", "gouge", "whack" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "slash", "slice", "gouge", "whack" }));
 
-        addSimileDictionary(({
-            "cutting ##TargetPossessive## ##BodyPart## deeply", "repeatedly in "
-            "the ##BodyPart##", "with a ##BodyPart##-rending force" }));
+    addSimileDictionary(({
+        "cutting ##TargetPossessive## ##BodyPart## deeply", "repeatedly in "
+        "the ##BodyPart##", "with a ##BodyPart##-rending force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::admire## ##AttackerPossessive##"
-            " beautifully manicured talons.");
+    addMissMessage("##AttackerName## ##Infinitive::admire## ##AttackerPossessive##"
+        " beautifully manicured talons.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## talons.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive## talons.", "1-150");
 }

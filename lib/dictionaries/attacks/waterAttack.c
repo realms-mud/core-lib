@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("water");
-        addHitDictionary(({
-            "spray", "lash", "shoot", "splash", "drench" }));
+    setDamageType("water");
+    addHitDictionary(({
+        "spray", "lash", "shoot", "splash", "drench" }));
 
-        addSimileDictionary(({
-            "with a ferocious deluge of water", "with a blast of icy water",
-            "with a roaring wave of water" }));
+    addSimileDictionary(({
+        "with a ferocious deluge of water", "with a blast of icy water",
+        "with a roaring wave of water" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::resemble## a wet dishcloth. "
-            "How sad.");
+    addMissMessage("##AttackerName## ##Infinitive::resemble## a wet dishcloth. "
+        "How sad.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

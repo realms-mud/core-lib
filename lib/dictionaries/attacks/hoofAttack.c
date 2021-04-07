@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "stomp", "trample", "pummel", "pound", "smack", "assault" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "stomp", "trample", "pummel", "pound", "smack", "assault" }));
 
-        addSimileDictionary(({
-            "smashing into ##TargetPossessive## ##BodyPart##", "repeatedly in "
-            "the ##BodyPart##" }));
+    addSimileDictionary(({
+        "smashing into ##TargetPossessive## ##BodyPart##", "repeatedly in "
+        "the ##BodyPart##" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::rear## up wildly and "
-            "##Infinitive::paw## at the air with ##AttackerPossessive## hooves.");
+    addMissMessage("##AttackerName## ##Infinitive::rear## up wildly and "
+        "##Infinitive::paw## at the air with ##AttackerPossessive## hooves.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## hooves.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive## hooves.", "1-150");
 }

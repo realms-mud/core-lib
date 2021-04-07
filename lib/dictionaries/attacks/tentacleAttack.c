@@ -5,26 +5,22 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "crush", "squeeze", "crunch", "strangle", "constrict", "clutch",
-            "grip" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "crush", "squeeze", "crunch", "strangle", "constrict", "clutch",
+        "grip" }));
 
-        addSimileDictionary(({
-            "squashing ##TargetPossessive## ##BodyPart## tightly",
-            "on ##TargetPossessive## ##BodyPart## like a tourniquet",
-            "with a ##BodyPart##-choking force" }));
+    addSimileDictionary(({
+        "squashing ##TargetPossessive## ##BodyPart## tightly",
+        "on ##TargetPossessive## ##BodyPart## like a tourniquet",
+        "with a ##BodyPart##-choking force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::wave## ##AttackerPossessive##"
-            " tentacles wildly around!");
+    addMissMessage("##AttackerName## ##Infinitive::wave## ##AttackerPossessive##"
+        " tentacles wildly around!");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## tentacles.",
-            "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive## tentacles.",
+        "1-150");
 }

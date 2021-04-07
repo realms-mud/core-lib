@@ -5,30 +5,26 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Dagnir Pilin");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with "
-            "mystic knowledge that enhances mundane archery attacks.");
+    addSpecification("name", "Dagnir Pilin");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with "
+        "mystic knowledge that enhances mundane archery attacks.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 33
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/bow/goeol-pilin.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Bregol Adleg": 15,
-            "Umba ai Adleg": 15,
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 33
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/bow/goeol-pilin.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Bregol Adleg": 15,
+        "Umba ai Adleg": 15,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

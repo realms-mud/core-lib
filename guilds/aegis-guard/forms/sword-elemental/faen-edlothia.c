@@ -5,40 +5,36 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Faen Edlothia");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to decrease the cost for which they can use their "
-            "elemental magic skills.");
+    addSpecification("name", "Faen Edlothia");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to decrease the cost for which they can use their "
+        "elemental magic skills.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 29
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-elemental/faen-celair.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Ambar": 15,
-            "Naurtho": 15,
-            "Heleg": 15,
-            "Glauro": 15,
-            "Geilo": 15,
-            "Alagos": 15,
-            "Lhorn": 15,
-            "Gwaeren": 15,
-            "Luithia": 15,
-            "Gonatsai": 15,
-            "Lhacha": 15
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 29
         ]));
-        addSpecification("affected research type", "decrease cost");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/faen-celair.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Ambar": 15,
+        "Naurtho": 15,
+        "Heleg": 15,
+        "Glauro": 15,
+        "Geilo": 15,
+        "Alagos": 15,
+        "Lhorn": 15,
+        "Gwaeren": 15,
+        "Luithia": 15,
+        "Gonatsai": 15,
+        "Lhacha": 15
+    ]));
+    addSpecification("affected research type", "decrease cost");
 }

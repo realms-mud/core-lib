@@ -5,28 +5,24 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("electricity");
-        damagesEthereal();
-        addHitDictionary(({
-            "shock", "singe", "fry", "zap", "blast", "zing", "jolt",
-            "zap" }));
+    setDamageType("electricity");
+    damagesEthereal();
+    addHitDictionary(({
+        "shock", "singe", "fry", "zap", "blast", "zing", "jolt",
+        "zap" }));
 
-        addSimileDictionary(({
-            "through ##TargetPossessive::Name## ##BodyPart##", "leaving a scent of ozone",
-            "with a sickening crackle" }));
+    addSimileDictionary(({
+        "through ##TargetPossessive::Name## ##BodyPart##", "leaving a scent of ozone",
+        "with a sickening crackle" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::look## quite "
-            "surprised as ##AttackerSubjective## ##Infinitive::shock## "
-            "##AttackerReflexive## with a bolt of electricity.");
+    addMissMessage("##AttackerName## ##Infinitive::look## quite "
+        "surprised as ##AttackerSubjective## ##Infinitive::shock## "
+        "##AttackerReflexive## with a bolt of electricity.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-50");
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##, "
-            "scorching ##TargetPossessive## ##BodyPart##.", "51-190");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-50");
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##, "
+        "scorching ##TargetPossessive## ##BodyPart##.", "51-190");
 }

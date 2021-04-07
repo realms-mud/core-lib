@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "bash", "slam", "slap", "pummel", "crush", "pound", "buffet", "smack",
-            "assault" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "bash", "slam", "slap", "pummel", "crush", "pound", "buffet", "smack",
+        "assault" }));
 
-        addSimileDictionary(({
-            "smashing ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
-            "the ##BodyPart##", "with a ##BodyPart##-whipping force" }));
+    addSimileDictionary(({
+        "smashing ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
+        "the ##BodyPart##", "with a ##BodyPart##-whipping force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::flap## ##AttackerPossessive##"
-            " wings wildly!");
+    addMissMessage("##AttackerName## ##Infinitive::flap## ##AttackerPossessive##"
+        " wings wildly!");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## wings.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive## wings.", "1-150");
 }

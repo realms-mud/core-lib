@@ -323,45 +323,41 @@ private void SixtyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Rad ai Fain Cu");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement("guilds/aegis-guard/forms/bow/root.c");
-        TreeRoot("guilds/aegis-guard/forms/bow/root.c");
+    Name("Rad ai Fain Cu");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement("guilds/aegis-guard/forms/bow/root.c");
+    TreeRoot("guilds/aegis-guard/forms/bow/root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FifthLevel();
-        SeventhLevel();
-        EighthLevel();
-        NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
-        FortyThirdLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
-        FiftyFifthLevel();
-        SixtyFifthLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FifthLevel();
+    SeventhLevel();
+    EighthLevel();
+    NinthLevel();
+    TenthLevel();
+    TwelfthLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SixteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtiethLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    ThirtySeventhLevel();
+    FortyThirdLevel();
+    FortyFifthLevel();
+    FortySeventhLevel();
+    FiftyFifthLevel();
+    SixtyFifthLevel();
 }

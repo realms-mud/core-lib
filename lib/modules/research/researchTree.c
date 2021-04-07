@@ -17,6 +17,12 @@ private mapping tree = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -25,6 +31,7 @@ public void reset(int arg)
         description = "";
         treeRoot = 0;
         tree = ([]);
+        Setup();
     }
 }
 

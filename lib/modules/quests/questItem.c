@@ -63,6 +63,12 @@ private object configuration =
     //     "is final state": "failure",
 
 /////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
@@ -70,6 +76,7 @@ public void reset(int arg)
         Name = 0;
         Description = "";
         "stateMachine"::reset(arg);
+        Setup();
     }
 }
 

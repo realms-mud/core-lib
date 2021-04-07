@@ -5,15 +5,13 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("magical");
+    setDamageType("magical");
 
-        addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but fails to do any damage.");
+    addMissMessage("##AttackerName## ##Infinitive::reflect## the attack, but "
+        "fails to do any damage.");
 
-        addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back to ##TargetName##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##Infinitive::reflect## the attack back "
+        "to ##TargetName##.", "1-150");
 }

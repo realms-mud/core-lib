@@ -200,24 +200,12 @@ private void TwentyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwentySeventhLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-attacks/maego.c");
 
     addChild("guilds/aegis-guard/forms/sword-attacks/maego.c",
         "guilds/aegis-guard/forms/sword-attacks/maetha.c");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -230,40 +218,34 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Maetha ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement("guilds/aegis-guard/forms/sword-attacks/attack-root.c");
-        TreeRoot("guilds/aegis-guard/forms/sword-attacks/attack-root.c");
+    Name("Maetha ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement("guilds/aegis-guard/forms/sword-attacks/attack-root.c");
+    TreeRoot("guilds/aegis-guard/forms/sword-attacks/attack-root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SixthLevel();
-        SeventhLevel();
-        EighthLevel();
-        NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
-        ThirteenthLevel();
-        FourteenLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentiethLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-        ThirtyFirstLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    ThirdLevel();
+    FourthLevel();
+    FifthLevel();
+    SixthLevel();
+    SeventhLevel();
+    EighthLevel();
+    NinthLevel();
+    TenthLevel();
+    TwelfthLevel();
+    ThirteenthLevel();
+    FourteenLevel();
+    FifteenthLevel();
+    SixteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentiethLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
 }

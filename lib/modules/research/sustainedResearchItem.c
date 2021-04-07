@@ -9,11 +9,18 @@ virtual inherit "/lib/modules/research/researchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 /////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
         addSpecification("type", "sustained");
+        Setup();
     }
 }
 

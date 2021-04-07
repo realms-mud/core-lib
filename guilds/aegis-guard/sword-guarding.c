@@ -32,12 +32,6 @@ private void SecondLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirdLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void FourthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-guarding/an-craban.c");
@@ -107,12 +101,6 @@ private void EighthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void NinthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void TenthLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-guarding/nir-nuquerna.c");
@@ -131,78 +119,6 @@ private void TwelfthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void ThirteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FourteenLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void FifteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SixteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SeventeenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void NineteenthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyThirdLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentySeventhLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void TwentyNinthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtiethLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
     addResearchElement("guilds/aegis-guard/forms/sword-guarding/mithrannon.c");
@@ -212,40 +128,22 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Tirith ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
-        TreeRoot("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
+    Name("Tirith ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
+    TreeRoot("guilds/aegis-guard/forms/sword-guarding/guarding-root.c");
 
-        FirstLevel();
-        SecondLevel();
-        ThirdLevel();
-        FourthLevel();
-        FifthLevel();
-        SixthLevel();
-        SeventhLevel();
-        EighthLevel();
-        NinthLevel();
-        TenthLevel();
-        TwelfthLevel();
-        ThirteenthLevel();
-        FourteenLevel();
-        FifteenthLevel();
-        SixteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentiethLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-        ThirtyFirstLevel();
-    }
+    FirstLevel();
+    SecondLevel();
+    FourthLevel();
+    FifthLevel();
+    SixthLevel();
+    SeventhLevel();
+    EighthLevel();
+    TenthLevel();
+    TwelfthLevel();
+    ThirtyFirstLevel();
 }

@@ -5,30 +5,26 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Laeg Hannas");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a mid guard to mid attack transition to use during "
-            "combination attacks.");
+    addSpecification("name", "Laeg Hannas");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a mid guard to mid attack transition to use during "
+        "combination attacks.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 19
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Godrebh ai Megil": 5
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 19
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Godrebh ai Megil": 5
+    ]));
+    addSpecification("affected research type", "percentage");
 }

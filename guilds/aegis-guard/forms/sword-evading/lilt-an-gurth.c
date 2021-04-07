@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Lilt an Gurth");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to more effectively evade an attack whilst "
-            "using a sword.");
-        addSpecification("limited by", (["equipment":({ "dagger", "short sword",
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+    addSpecification("name", "Lilt an Gurth");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of how to more effectively evade an attack whilst "
+        "using a sword.");
+    addSpecification("limited by", (["equipment":({ "dagger", "short sword",
+        "long sword", "hand and a half sword", "two-handed sword" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Aegis Guard",
-              "value": 13 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Aegis Guard",
+          "value": 13 ]));
 
-        addPrerequisite("guilds/aegis-guard/forms/sword-evading/sa-pad.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/aegis-guard/forms/sword-evading/sa-pad.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus dagger", 1);
-        addSpecification("bonus short sword", 1);
-        addSpecification("bonus long sword", 1);
-        addSpecification("bonus hand and a half sword", 1);
-        addSpecification("bonus two-handed sword", 1);
-        addSpecification("bonus dodge", 3);
-        addSpecification("equivalence", "dance of death");
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus dagger", 1);
+    addSpecification("bonus short sword", 1);
+    addSpecification("bonus long sword", 1);
+    addSpecification("bonus hand and a half sword", 1);
+    addSpecification("bonus two-handed sword", 1);
+    addSpecification("bonus dodge", 3);
+    addSpecification("equivalence", "dance of death");
 }

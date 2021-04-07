@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("cold");
-        addHitDictionary(({
-            "blast", "whip", "slice", "freeze", "chill", "crush", "slam" }));
+    setDamageType("cold");
+    addHitDictionary(({
+        "blast", "whip", "slice", "freeze", "chill", "crush", "slam" }));
 
-        addSimileDictionary(({
-            "and ##Infinitive::lash## ##TargetPossessive## body with icy tendrils",
-            "leaving ice crystals hanging in the air", "with a spine-tingling"
-            " arctic force", "in ##TargetPossessive::Name## ##BodyPart##" }));
+    addSimileDictionary(({
+        "and ##Infinitive::lash## ##TargetPossessive## body with icy tendrils",
+        "leaving ice crystals hanging in the air", "with a spine-tingling"
+        " arctic force", "in ##TargetPossessive::Name## ##BodyPart##" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::make## a bunch of pretty "
-            "snowflakes.");
+    addMissMessage("##AttackerName## ##Infinitive::make## a bunch of pretty "
+        "snowflakes.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

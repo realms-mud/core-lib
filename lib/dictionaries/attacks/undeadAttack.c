@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("undead");
-        addHitDictionary(({
-            "eviscerate", "shred", "menace", "flatten", "crush", "rip", }));
+    setDamageType("undead");
+    addHitDictionary(({
+        "eviscerate", "shred", "menace", "flatten", "crush", "rip", }));
 
-        addSimileDictionary(({
-            "with a deathly howl", "leaving a stench of decay", }));
+    addSimileDictionary(({
+        "with a deathly howl", "leaving a stench of decay", }));
 
-        addMissMessage("##AttackerName## ##Infinitive::intone##, `Klaatu..."
-            " verata... n... Necktie. Nectar. Nickel. Noodle.'");
+    addMissMessage("##AttackerName## ##Infinitive::intone##, `Klaatu..."
+        " verata... n... Necktie. Nectar. Nickel. Noodle.'");
 
-        addHitMessage("##AttackerName## ##Infinitive::intone## menacing words "
-            "of death and ##HitDictionary## ##TargetName## ##SimileDictionary##.",
-            "1-150");
-    }
+    addHitMessage("##AttackerName## ##Infinitive::intone## menacing words "
+        "of death and ##HitDictionary## ##TargetName## ##SimileDictionary##.",
+        "1-150");
 }

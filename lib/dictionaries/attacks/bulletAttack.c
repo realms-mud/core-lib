@@ -5,27 +5,23 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("bullet");
-        addHitDictionary(({
-            "impale", "pierce", "puncture", "skewer", "shoot", "riddle",
-            "perforate", "stick", "prick", "hit" }));
+    setDamageType("bullet");
+    addHitDictionary(({
+        "impale", "pierce", "puncture", "skewer", "shoot", "riddle",
+        "perforate", "stick", "prick", "hit" }));
 
-        addSimileDictionary(({
-            "expertly with a bullet", 
-            "with a well-aimed bullet", 
-            "through ##TargetPossessive::Name## ##BodyPart## with a bullet",
-            "with a bullet" }));
+    addSimileDictionary(({
+        "expertly with a bullet", 
+        "with a well-aimed bullet", 
+        "through ##TargetPossessive::Name## ##BodyPart## with a bullet",
+        "with a bullet" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::shoot## a bullet at"
-            " nothing whatsoever!");
+    addMissMessage("##AttackerName## ##Infinitive::shoot## a bullet at"
+        " nothing whatsoever!");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## from ##AttackerPossessive##"
-            " ##AttackerWeapon##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## from ##AttackerPossessive##"
+        " ##AttackerWeapon##.", "1-150");
 }

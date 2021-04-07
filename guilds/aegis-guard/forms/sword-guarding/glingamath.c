@@ -5,37 +5,33 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Glingamath");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a defensive maneuver while in the fool guard wherein "
-            "the hilt of the sword is quickly raised into a parry.");
-        addSpecification("limited by", (["equipment":({ "dagger", "short sword",
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+    addSpecification("name", "Glingamath");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a defensive maneuver while in the fool guard wherein "
+        "the hilt of the sword is quickly raised into a parry.");
+    addSpecification("limited by", (["equipment":({ "dagger", "short sword",
+        "long sword", "hand and a half sword", "two-handed sword" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Aegis Guard",
-              "value": 8 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Aegis Guard",
+          "value": 8 ]));
 
-        addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-foph.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-foph.c",
+        (["type":"research"]));
 
-        addSpecification("affected research", ([
-            "Athra": 10,
-            "Celeg": 10
-        ]));
-        addSpecification("affected research type", "percentage");
+    addSpecification("affected research", ([
+        "Athra": 10,
+        "Celeg": 10
+    ]));
+    addSpecification("affected research type", "percentage");
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus parry", 2);
-        addSpecification("equivalence", "hanging parry");
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus parry", 2);
+    addSpecification("equivalence", "hanging parry");
 }

@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "poke", "pierce", "impale", "puncture" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "poke", "pierce", "impale", "puncture" }));
 
-        addSimileDictionary(({
-            "in ##TargetPossessive## ##BodyPart##", "repeatedly in "
-            "the ##BodyPart##", "with a ##BodyPart##-splitting force" }));
+    addSimileDictionary(({
+        "in ##TargetPossessive## ##BodyPart##", "repeatedly in "
+        "the ##BodyPart##", "with a ##BodyPart##-splitting force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
-            " mandibles at the air.");
+    addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
+        " mandibles at the air.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive## mandibles.",
-            "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive## mandibles.",
+        "1-150");
 }

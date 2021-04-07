@@ -5,29 +5,25 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Neledh-Godref");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge to chain an additional attack to their combinations.");
+    addSpecification("name", "Neledh-Godref");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to chain an additional attack to their combinations.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 31
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Godrebh ai Megil": 1
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 31
         ]));
-        addSpecification("affected research type", "max combination chain");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Godrebh ai Megil": 1
+    ]));
+    addSpecification("affected research type", "max combination chain");
 }

@@ -5,13 +5,9 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("musical");
-    }
+    setDamageType("musical");
 }
 
 /////////////////////////////////////////////////////////////////////////////

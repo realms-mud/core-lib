@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "bite", "puncture", "lacerate", "slash" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "bite", "puncture", "lacerate", "slash" }));
 
-        addSimileDictionary(({
-            "slicing into ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
-            "the ##BodyPart##", "with a ##BodyPart##-tearing force" }));
+    addSimileDictionary(({
+        "slicing into ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
+        "the ##BodyPart##", "with a ##BodyPart##-tearing force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
-            " fangs at the empty air.");
+    addMissMessage("##AttackerName## ##Infinitive::snap## ##AttackerPossessive##"
+        " fangs at the empty air.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## using ##AttackerPossessive## fangs.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## using ##AttackerPossessive## fangs.", "1-150");
 }

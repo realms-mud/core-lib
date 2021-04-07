@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("paralysis");
-        addHitDictionary(({
-            "stun", "immobilize", "stupefy", "daze", "startle", "befuddle",
-            "shock" }));
+    setDamageType("paralysis");
+    addHitDictionary(({
+        "stun", "immobilize", "stupefy", "daze", "startle", "befuddle",
+        "shock" }));
 
-        addSimileDictionary(({
-            "with a mind-bending force", "with a brain-scrambling force",
-            "with a dumbfounding force" }));
+    addSimileDictionary(({
+        "with a mind-bending force", "with a brain-scrambling force",
+        "with a dumbfounding force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::drool##, momentarily "
-            "stupefied.");
+    addMissMessage("##AttackerName## ##Infinitive::drool##, momentarily "
+        "stupefied.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

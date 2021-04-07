@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("bludgeon");
-        addHitDictionary(({
-            "bash", "smash", "pummel", "slam", "smack", "clobber",
-            "whack" }));
+    setDamageType("bludgeon");
+    addHitDictionary(({
+        "bash", "smash", "pummel", "slam", "smack", "clobber",
+        "whack" }));
 
-        addSimileDictionary(({
-            "soundly", "solidly", "on ##TargetPossessive## ##BodyPart##",
-            "viciously", "with bone-crushing force" }));
+    addSimileDictionary(({
+        "soundly", "solidly", "on ##TargetPossessive## ##BodyPart##",
+        "viciously", "with bone-crushing force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::bludgeon## invisible foes!");
+    addMissMessage("##AttackerName## ##Infinitive::bludgeon## invisible foes!");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

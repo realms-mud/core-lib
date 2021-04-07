@@ -189,36 +189,32 @@ private void SixtyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Manadh ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement(
-            "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
-        TreeRoot(
-            "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
+    Name("Manadh ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement(
+        "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
+    TreeRoot(
+        "guilds/aegis-guard/forms/sword-elemental/elemental-root.c");
 
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
-        ThirtyNinthLevel();
-        FortyFifthLevel();
-        FortySeventhLevel();
-        FortyNinthLevel();
-        FiftyFifthLevel();
-        SixtyFifthLevel();
-    }
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyFifthLevel();
+    ThirtySeventhLevel();
+    ThirtyNinthLevel();
+    FortyFifthLevel();
+    FortySeventhLevel();
+    FortyNinthLevel();
+    FiftyFifthLevel();
+    SixtyFifthLevel();
 }

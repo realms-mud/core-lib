@@ -5,25 +5,21 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("disease");
-        addHitDictionary(({
-            "infect", "beplague", "inject", "inflict", "impart", "defile",
-            "corrupt", "assail" }));
+    setDamageType("disease");
+    addHitDictionary(({
+        "infect", "beplague", "inject", "inflict", "impart", "defile",
+        "corrupt", "assail" }));
 
-        addSimileDictionary(({
-            "with a horrible disease", "with a horrfying sickness",
-            "with a nasty infection", "with a debilitating illness" }));
+    addSimileDictionary(({
+        "with a horrible disease", "with a horrfying sickness",
+        "with a nasty infection", "with a debilitating illness" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::sputter## something about"
-            " icky germs.");
+    addMissMessage("##AttackerName## ##Infinitive::sputter## something about"
+        " icky germs.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##. Eeew.",
-            "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##. Eeew.",
+        "1-150");
 }

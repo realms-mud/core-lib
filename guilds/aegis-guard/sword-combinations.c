@@ -122,31 +122,27 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Godrebh ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement(
-            "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
-        TreeRoot(
-            "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
+    Name("Godrebh ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement(
+        "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
+    TreeRoot(
+        "guilds/aegis-guard/forms/sword-combinations/combination-root.c");
 
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FifteenthLevel();
-        NineteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        FortyThirdLevel();
-    }
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FifteenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    FortyThirdLevel();
 }

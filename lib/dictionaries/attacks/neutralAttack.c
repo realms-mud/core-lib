@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("neutral");
-        addHitDictionary(({
-            "strike", "hit", "damage", "thump", "lash" }));
+    setDamageType("neutral");
+    addHitDictionary(({
+        "strike", "hit", "damage", "thump", "lash" }));
 
-        addSimileDictionary(({
-            "with waves of colorless energy", "with a shock of colorless force",
-            "soundly", "resoundingly" }));
+    addSimileDictionary(({
+        "with waves of colorless energy", "with a shock of colorless force",
+        "soundly", "resoundingly" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::get## a not-so-bright "
-            "look on ##AttackerPossessive## face.");
+    addMissMessage("##AttackerName## ##Infinitive::get## a not-so-bright "
+        "look on ##AttackerPossessive## face.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

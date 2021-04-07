@@ -5,21 +5,17 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Pelthaes ai Megil");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of advanced evasion for swordplay.");
+    addSpecification("name", "Pelthaes ai Megil");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of advanced evasion for swordplay.");
 
-        addSpecification("limited by", (["equipment":({ "dagger", "short sword",
-            "long sword", "hand and a half sword", "two-handed sword" }) ]));
+    addSpecification("limited by", (["equipment":({ "dagger", "short sword",
+        "long sword", "hand and a half sword", "two-handed sword" }) ]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "tree root");
-        addSpecification("bonus dodge", 1);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "tree root");
+    addSpecification("bonus dodge", 1);
 }

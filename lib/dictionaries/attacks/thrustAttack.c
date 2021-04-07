@@ -5,25 +5,21 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("thrust");
-        addHitDictionary(({
-            "impale", "pierce", "puncture", "skewer", "gore", "gouge",
-            "perforate" }));
+    setDamageType("thrust");
+    addHitDictionary(({
+        "impale", "pierce", "puncture", "skewer", "gore", "gouge",
+        "perforate" }));
 
-        addSimileDictionary(({
-            "expertly", "fiercely", "through ##TargetPossessive::Name## ##BodyPart##",
-            "viciously" }));
+    addSimileDictionary(({
+        "expertly", "fiercely", "through ##TargetPossessive::Name## ##BodyPart##",
+        "viciously" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::thrust## impressively at"
-            " nothing whatsoever!");
+    addMissMessage("##AttackerName## ##Infinitive::thrust## impressively at"
+        " nothing whatsoever!");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## with ##AttackerPossessive##"
-            " ##AttackerWeapon##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## with ##AttackerPossessive##"
+        " ##AttackerWeapon##.", "1-150");
 }

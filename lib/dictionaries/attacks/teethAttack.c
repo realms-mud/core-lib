@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "puncture", "bite", "chew", "gnaw", "crush", "crunch", "masticate" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "puncture", "bite", "chew", "gnaw", "crush", "crunch", "masticate" }));
 
-        addSimileDictionary(({
-            "mashing ##TargetPossessive## ##BodyPart## soundly", "repeatedly on "
-            "the ##BodyPart##", "with a ##BodyPart##-munching force" }));
+    addSimileDictionary(({
+        "mashing ##TargetPossessive## ##BodyPart## soundly", "repeatedly on "
+        "the ##BodyPart##", "with a ##BodyPart##-munching force" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::grind## ##AttackerPossessive##"
-            " teeth obnoxiously.");
+    addMissMessage("##AttackerName## ##Infinitive::grind## ##AttackerPossessive##"
+        " teeth obnoxiously.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## using ##AttackerPossessive## teeth.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## using ##AttackerPossessive## teeth.", "1-150");
 }

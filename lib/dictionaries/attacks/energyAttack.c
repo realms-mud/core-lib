@@ -5,26 +5,21 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("energy");
-        damagesEthereal();
-        addHitDictionary(({
-            "blast", "beam", "flare", "radiate", "irradiate", "coruscate" }));
+    setDamageType("energy");
+    damagesEthereal();
+    addHitDictionary(({
+        "blast", "beam", "flare", "radiate", "irradiate", "coruscate" }));
 
+    addSimileDictionary(({
+        "with a vivid red bolt of energy", "with a searing bolt of energy",
+        "with a blinding yellow bolt of energy", "with a scintillating " +
+        "blue bolt of energy" }));
 
-        addSimileDictionary(({
-            "with a vivid red bolt of energy", "with a searing bolt of energy",
-            "with a blinding yellow bolt of energy", "with a scintillating " +
-            "blue bolt of energy" }));
+    addMissMessage("##AttackerName## ##Infinitive::look## confused as tiny "
+        "motes of light encircle ##AttackerPossessive## head.");
 
-        addMissMessage("##AttackerName## ##Infinitive::look## confused as tiny "
-            "motes of light encircle ##AttackerPossessive## head.");
-
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

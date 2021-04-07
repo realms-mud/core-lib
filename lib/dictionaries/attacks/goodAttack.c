@@ -5,25 +5,21 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("good");
-        damagesEthereal();
-        addHitDictionary(({
-            "smite", "slam", "punish", "flatten", "crush", "hammer", "pound",
-            "maul" }));
+    setDamageType("good");
+    damagesEthereal();
+    addHitDictionary(({
+        "smite", "slam", "punish", "flatten", "crush", "hammer", "pound",
+        "maul" }));
 
-        addSimileDictionary(({
-            "with a pure silvery force", "with a blast of blinding white light",
-            "with a shining blade of silver light" }));
+    addSimileDictionary(({
+        "with a pure silvery force", "with a blast of blinding white light",
+        "with a shining blade of silver light" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::smile## pleasantly " +
-            "at ##TargetName##.");
+    addMissMessage("##AttackerName## ##Infinitive::smile## pleasantly " +
+        "at ##TargetName##.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

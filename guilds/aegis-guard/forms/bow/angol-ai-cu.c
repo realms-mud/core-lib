@@ -5,30 +5,26 @@
 inherit "/lib/modules/research/passiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        passiveResearchItem::reset(arg);
-        addSpecification("name", "Angol ai Cu");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of how to magically enchant arrows as they are "
-            "released.");
-        addSpecification("limited by", (["equipment":({ "bow" })]));
+    addSpecification("name", "Angol ai Cu");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of how to magically enchant arrows as they are "
+        "released.");
+    addSpecification("limited by", (["equipment":({ "bow" })]));
 
-        addPrerequisite("level", 
-            (["type":"level", 
-              "guild": "Aegis Guard",
-              "value": 10 ]));
+    addPrerequisite("level", 
+        (["type":"level", 
+          "guild": "Aegis Guard",
+          "value": 10 ]));
 
-        addPrerequisite("guilds/aegis-guard/forms/bow/bregol-adleg.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/aegis-guard/forms/bow/bregol-adleg.c",
+        (["type":"research"]));
 
-        addSpecification("scope", "self");
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("bonus bow", 2);
-        addSpecification("bonus spellcraft", 3);
-    }
+    addSpecification("scope", "self");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("bonus bow", 2);
+    addSpecification("bonus spellcraft", 3);
 }

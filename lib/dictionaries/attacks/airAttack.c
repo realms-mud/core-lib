@@ -5,28 +5,24 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("air");
-        addHitDictionary(({
-            "blast", "whip", "slice", "concuss", "flatten", "crush", "slam",
-            "crash", "buffet" }));
+    setDamageType("air");
+    addHitDictionary(({
+        "blast", "whip", "slice", "concuss", "flatten", "crush", "slam",
+        "crash", "buffet" }));
 
-        addSimileDictionary(({
-            "against ##TargetPossessive## ##BodyPart##", "with a whip-like force",
-            "with an ear-piercing whistle" }));
+    addSimileDictionary(({
+        "against ##TargetPossessive## ##BodyPart##", "with a whip-like force",
+        "with an ear-piercing whistle" }));
 
-        addMissMessage("A pleasant breeze wafts in from ##AttackerPossessive::Name## "
-            "direction.");
+    addMissMessage("A pleasant breeze wafts in from ##AttackerPossessive::Name## "
+        "direction.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary## that leaves a scent of ozone in the air.",
-            "1-50");
-        addHitMessage("##AttackerName## ##Infinitive::slam## ##TargetName## "
-            "backwards with a violent blast of wind.",
-            "51-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary## that leaves a scent of ozone in the air.",
+        "1-50");
+    addHitMessage("##AttackerName## ##Infinitive::slam## ##TargetName## "
+        "backwards with a violent blast of wind.",
+        "51-150");
 }

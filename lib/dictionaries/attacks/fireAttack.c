@@ -5,25 +5,21 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("fire");
-        damagesEthereal();
-        addHitDictionary(({
-            "scorch", "immolate", "blast", "burn", "torch", "ignite", "singe",
-            "roast", "melt", "broil", "char" }));
+    setDamageType("fire");
+    damagesEthereal();
+    addHitDictionary(({
+        "scorch", "immolate", "blast", "burn", "torch", "ignite", "singe",
+        "roast", "melt", "broil", "char" }));
 
-        addSimileDictionary(({
-            "with a stream of flame", "with flaming tendrils", "with a pillar of " +
-            "flame", "with a roaring conflagration" }));
+    addSimileDictionary(({
+        "with a stream of flame", "with flaming tendrils", "with a pillar of " +
+        "flame", "with a roaring conflagration" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::produce## a tiny mote of "
-            "inconsequential flame.");
+    addMissMessage("##AttackerName## ##Infinitive::produce## a tiny mote of "
+        "inconsequential flame.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## " +
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## " +
+        "##SimileDictionary##.", "1-150");
 }

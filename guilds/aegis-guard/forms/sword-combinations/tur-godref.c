@@ -5,33 +5,29 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Tur Godref");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with the "
-            "knowledge of a running through transition to use during "
-            "combination attacks.");
+    addSpecification("name", "Tur Godref");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge of a running through transition to use during "
+        "combination attacks.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 35
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Godrebh ai Megil": 25,
-            "Raeg": 50,
-            "Lanc": 50,
-            "Gleina": 50
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 35
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Godrebh ai Megil": 25,
+        "Raeg": 50,
+        "Lanc": 50,
+        "Gleina": 50
+    ]));
+    addSpecification("affected research type", "percentage");
 }

@@ -158,34 +158,30 @@ private void SeventyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Arnen ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement(
-            "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
-        TreeRoot(
-            "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+    Name("Arnen ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement(
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
+    TreeRoot(
+        "guilds/aegis-guard/forms/sword-mythic/mythic-root.c");
 
-        FifteenthLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentyNinthLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        FortyFirstLevel();
-        FortyThirdLevel();
-        FortyFifthLevel();
-        FiftyFirstLevel();
-        FiftyThirdLevel();
-        FiftyFifthLevel();
-        SixtyFifthLevel();
-        SeventyFifthLevel();
-    }
+    FifteenthLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentyNinthLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    FortyFirstLevel();
+    FortyThirdLevel();
+    FortyFifthLevel();
+    FiftyFirstLevel();
+    FiftyThirdLevel();
+    FiftyFifthLevel();
+    SixtyFifthLevel();
+    SeventyFifthLevel();
 }

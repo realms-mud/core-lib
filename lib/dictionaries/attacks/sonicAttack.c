@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("sonic");
-        addHitDictionary(({
-            "blast", "slam", "flatten", "crush", "ram", "crash", "hammer" }));
+    setDamageType("sonic");
+    addHitDictionary(({
+        "blast", "slam", "flatten", "crush", "ram", "crash", "hammer" }));
 
-        addSimileDictionary(({
-            "with a wave of sonic energy", "with shrieking whips of sonic waves",
-            "with a thunderous BOOM of sonic energy" }));
+    addSimileDictionary(({
+        "with a wave of sonic energy", "with shrieking whips of sonic waves",
+        "with a thunderous BOOM of sonic energy" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::cover## "
-            "##AttackerPossessive## ears and ##Infinitive::scream##,"
-            "'LA LA LA LA LA!'");
+    addMissMessage("##AttackerName## ##Infinitive::cover## "
+        "##AttackerPossessive## ears and ##Infinitive::scream##,"
+        "'LA LA LA LA LA!'");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

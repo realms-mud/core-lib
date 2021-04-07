@@ -5,36 +5,32 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Delu an Beraid");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This research provides the user with the "
-            "knowledge of an improved hewing technique for Beraid, Naergo, and "
-            "Bauglo.");
+    addSpecification("name", "Delu an Beraid");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This research provides the user with the "
+        "knowledge of an improved hewing technique for Beraid, Naergo, and "
+        "Bauglo.");
 
-        addPrerequisite("guilds/aegis-guard/forms/sword-actions/beraid.c",
-            (["type":"research"]));
+    addPrerequisite("guilds/aegis-guard/forms/sword-actions/beraid.c",
+        (["type":"research"]));
 
-        addSpecification("limited by", (["equipment":({ "dagger", "short sword",
-            "long sword", "hand and a half sword", "two-handed sword" })]));
+    addSpecification("limited by", (["equipment":({ "dagger", "short sword",
+        "long sword", "hand and a half sword", "two-handed sword" })]));
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 27
-            ]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Beraid": 25,
-            "Naergo": 25,
-            "Bauglo": 25
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 27
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Beraid": 25,
+        "Naergo": 25,
+        "Bauglo": 25
+    ]));
+    addSpecification("affected research type", "percentage");
 }

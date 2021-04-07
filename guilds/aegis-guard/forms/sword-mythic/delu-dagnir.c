@@ -5,33 +5,29 @@
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        knowledgeResearchItem::reset(arg);
-        addSpecification("name", "Delu Dagnir");
-        addSpecification("source", "Aegis Guard");
-        addSpecification("description", "This skill provides the user with "
-            "knowledge that enhances mythic magical attacks.");
+    addSpecification("name", "Delu Dagnir");
+    addSpecification("source", "Aegis Guard");
+    addSpecification("description", "This skill provides the user with "
+        "knowledge that enhances mythic magical attacks.");
 
-        addPrerequisite("level",
-            (["type":"level",
-                "guild": "Aegis Guard",
-                "value": 75
-            ]));
-        addPrerequisite("guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
-            (["type":"research"]));
-
-        addSpecification("research type", "points");
-        addSpecification("research cost", 1);
-        addSpecification("affected research", ([
-            "Auth": 25,
-            "Sereg": 25,
-            "Guruthos": 25,
-            "Lhutha": 25,
-            "Angolo": 25,
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "Aegis Guard",
+            "value": 75
         ]));
-        addSpecification("affected research type", "percentage");
-    }
+    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
+        (["type":"research"]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("affected research", ([
+        "Auth": 25,
+        "Sereg": 25,
+        "Guruthos": 25,
+        "Lhutha": 25,
+        "Angolo": 25,
+    ]));
+    addSpecification("affected research type", "percentage");
 }

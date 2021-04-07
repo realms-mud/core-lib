@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("earth");
-        addHitDictionary(({
-            "blast", "crush", "pummel", "concuss", "flatten", "beat", "slam",
-            "bash", "smash", "pound", "cudgel" }));
+    setDamageType("earth");
+    addHitDictionary(({
+        "blast", "crush", "pummel", "concuss", "flatten", "beat", "slam",
+        "bash", "smash", "pound", "cudgel" }));
 
-        addSimileDictionary(({
-            "upside ##TargetPossessive## ##BodyPart##", "with an earth-shaking "
-            "rumble", "with a head-splitting roar" }));
+    addSimileDictionary(({
+        "upside ##TargetPossessive## ##BodyPart##", "with an earth-shaking "
+        "rumble", "with a head-splitting roar" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::gesticulate## wildly but "
-            "##Infinitive::produce## little more than street theater.");
+    addMissMessage("##AttackerName## ##Infinitive::gesticulate## wildly but "
+        "##Infinitive::produce## little more than street theater.");
 
-        addHitMessage("##AttackerName## ##Infinitive::summon## the powers of earth"
-            " and ##HitDictionary## ##TargetName## ##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##Infinitive::summon## the powers of earth"
+        " and ##HitDictionary## ##TargetName## ##SimileDictionary##.", "1-150");
 }

@@ -209,40 +209,36 @@ private void FortyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        researchTree::reset(arg);
-        Name("Hur ai Megil");
-        Description("");
-        Source("Aegis Guard");
-        addResearchElement(
-            "guilds/aegis-guard/forms/sword-actions/action-root.c");
-        TreeRoot(
-            "guilds/aegis-guard/forms/sword-actions/action-root.c");
+    Name("Hur ai Megil");
+    Description("");
+    Source("Aegis Guard");
+    addResearchElement(
+        "guilds/aegis-guard/forms/sword-actions/action-root.c");
+    TreeRoot(
+        "guilds/aegis-guard/forms/sword-actions/action-root.c");
 
-        SeventhLevel();
-        NinthLevel();
-        EleventhLevel();
-        ThirteenthLevel();
-        FourteenLevel();
-        FifteenthLevel();
-        SeventeenthLevel();
-        NineteenthLevel();
-        TwentiethLevel();
-        TwentyFirstLevel();
-        TwentyThirdLevel();
-        TwentyFifthLevel();
-        TwentySeventhLevel();
-        TwentyNinthLevel();
-        ThirtiethLevel();
-        ThirtyFirstLevel();
-        ThirtyThirdLevel();
-        ThirtyFifthLevel();
-        ThirtySeventhLevel();
-        ThirtyNinthLevel();
-        FortyFirstLevel();
-        FortyThirdLevel();
-    }
+    SeventhLevel();
+    NinthLevel();
+    EleventhLevel();
+    ThirteenthLevel();
+    FourteenLevel();
+    FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentiethLevel();
+    TwentyFirstLevel();
+    TwentyThirdLevel();
+    TwentyFifthLevel();
+    TwentySeventhLevel();
+    TwentyNinthLevel();
+    ThirtiethLevel();
+    ThirtyFirstLevel();
+    ThirtyThirdLevel();
+    ThirtyFifthLevel();
+    ThirtySeventhLevel();
+    ThirtyNinthLevel();
+    FortyFirstLevel();
+    FortyThirdLevel();
 }

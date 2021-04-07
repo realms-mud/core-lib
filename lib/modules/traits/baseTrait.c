@@ -9,10 +9,18 @@ virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
 
 /////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
     if (!arg)
     {
+        Setup();
+
         object traitsDictionary = getDictionary("traits");
         if (traitsDictionary &&
             !traitsDictionary->traitIsRegistered(program_name(this_object())))

@@ -5,23 +5,19 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("psionic");
-        addHitDictionary(({
-            "blast", "slam", "menace", "blast", "crush" }));
+    setDamageType("psionic");
+    addHitDictionary(({
+        "blast", "slam", "menace", "blast", "crush" }));
 
-        addSimileDictionary(({
-            "with a blast of psionic energy", "with a wave of mental force",
-            "with ripples of mental energy" }));
+    addSimileDictionary(({
+        "with a blast of psionic energy", "with a wave of mental force",
+        "with ripples of mental energy" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::stare## deeply at "
-            "##TargetName##. Everyone is impressed.");
+    addMissMessage("##AttackerName## ##Infinitive::stare## deeply at "
+        "##TargetName##. Everyone is impressed.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##"
-            " ##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName##"
+        " ##SimileDictionary##.", "1-150");
 }

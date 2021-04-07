@@ -5,24 +5,20 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("physical");
-        addHitDictionary(({
-            "impale", "stab", "puncture", "gore", "strike" }));
+    setDamageType("physical");
+    addHitDictionary(({
+        "impale", "stab", "puncture", "gore", "strike" }));
 
-        addSimileDictionary(({
-            "rending ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
-            "the ##BodyPart##" }));
+    addSimileDictionary(({
+        "rending ##TargetPossessive## ##BodyPart## soundly", "repeatedly in "
+        "the ##BodyPart##" }));
 
-        // Had to be as generic as possible to allow for single or multiple horns.
+    // Had to be as generic as possible to allow for single or multiple horns.
 
-        addMissMessage("##AttackerName## ##Infinitive::stab## wildly at the air.");
+    addMissMessage("##AttackerName## ##Infinitive::stab## wildly at the air.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "##SimileDictionary##.", "1-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "##SimileDictionary##.", "1-150");
 }

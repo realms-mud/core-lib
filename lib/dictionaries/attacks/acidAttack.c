@@ -5,26 +5,22 @@
 inherit "/lib/dictionaries/attacks/baseAttack.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void Setup()
 {
-    if (!arg)
-    {
-        ::reset(arg);
-        setDamageType("acid");
-        addHitDictionary(({
-            "corrode", "dissolve", "erode", "etch", "burn", "melt", "liquify" }));
+    setDamageType("acid");
+    addHitDictionary(({
+        "corrode", "dissolve", "erode", "etch", "burn", "melt", "liquify" }));
 
-        addSimileDictionary(({
-            "through ##TargetPossessive## ##BodyPart##", "causing a sickening sizzle",
-            "and a nasty stench wafts from the vicinity of ##TargetName##" }));
+    addSimileDictionary(({
+        "through ##TargetPossessive## ##BodyPart##", "causing a sickening sizzle",
+        "and a nasty stench wafts from the vicinity of ##TargetName##" }));
 
-        addMissMessage("##AttackerName## ##Infinitive::spray## acid everywhere "
-            "except ##TargetName##.");
+    addMissMessage("##AttackerName## ##Infinitive::spray## acid everywhere "
+        "except ##TargetName##.");
 
-        addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
-            "with acid ##SimileDictionary##.", "default");
-        addHitMessage("##AttackerName## ##Infinitive::splash## ##TargetName## right "
-            "in the ##BodyPart## with a jet of acid.",
-            "51-150");
-    }
+    addHitMessage("##AttackerName## ##HitDictionary## ##TargetName## "
+        "with acid ##SimileDictionary##.", "default");
+    addHitMessage("##AttackerName## ##Infinitive::splash## ##TargetName## right "
+        "in the ##BodyPart## with a jet of acid.",
+        "51-150");
 }
