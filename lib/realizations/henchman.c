@@ -31,7 +31,7 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        "living"::reset(arg);
+        living::reset(arg);
         registerHeartBeat("henchman");
         customCombatAssessment("henchman");
     }

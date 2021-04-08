@@ -14,7 +14,7 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        "stateMachine"::reset(arg);
+        stateMachine::reset(arg);
         addState("initiate story", "");
         addEntryAction("initiate story", "displayIntroduction");
 

@@ -394,7 +394,7 @@ public void init()
         deferredRegion = 0;
     }
 
-    "environment"::init();
+    environment::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -54,7 +54,7 @@ protected int addSpecification(string type, mixed value)
     }
     else
     {
-        ret = "researchItem"::addSpecification(type, value);
+        ret = researchItem::addSpecification(type, value);
     }
     return ret;
 }

@@ -41,55 +41,55 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public varargs string testSetInitialState(string state)
 {
-    return "stateMachine"::setInitialState(state);
+    return stateMachine::setInitialState(state);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void testAddEntryAction(string state, string action)
 {
-    return "stateMachine"::addEntryAction(state, action);
+    return stateMachine::addEntryAction(state, action);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void testAddExitAction(string state, string action)
 {
-    return "stateMachine"::addExitAction(state, action);
+    return stateMachine::addExitAction(state, action);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddFinalState(string state, string result)
 {
-    "stateMachine"::addFinalState(state, result);
+    stateMachine::addFinalState(state, result);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddState(string state, string description, string entryEvent, string isFinalState)
 {
-    "stateMachine"::addState(state, description, entryEvent, isFinalState);
+    stateMachine::addState(state, description, entryEvent, isFinalState);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testRegisterStateActor(object actor)
 {
-    "stateMachine"::registerStateActor(actor);
+    stateMachine::registerStateActor(actor);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testAddTransition(string state, string newState, string eventName, string initiator)
 {
-    "stateMachine"::addTransition(state, newState, eventName, initiator);
+    stateMachine::addTransition(state, newState, eventName, initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs void testStartStateMachine()
 {
-    "stateMachine"::startStateMachine();
+    stateMachine::startStateMachine();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public varargs string getCurrentState(object caller)
 {
-    return "stateMachine"::getCurrentState(caller);
+    return stateMachine::getCurrentState(caller);
 }
 
 /////////////////////////////////////////////////////////////////////////////

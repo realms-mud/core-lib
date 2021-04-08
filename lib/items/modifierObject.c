@@ -10,7 +10,7 @@ inherit "/lib/items/item.c";
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)
 {
-    return "item"::query(element);
+    return item::query(element);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ public nomask varargs int set(string element, mixed data)
                         itemData[sprintf("bonus %s", bonusToCheck)] = -data;
                     }
                 }
-                ret = "item"::set(element, data);
+                ret = item::set(element, data);
 
                 object *targetList = itemData["registration list"];
                 if (ret && sizeof(targetList))

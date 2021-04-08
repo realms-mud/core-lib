@@ -477,7 +477,7 @@ private nomask string getComboMessage(string initialMessage, object *combo)
     {
         object dictionary = getDictionary("research");
 
-        foreach(string item in combo)
+        foreach(object item in combo)
         {
             if (item->query("use combination message"))
             {

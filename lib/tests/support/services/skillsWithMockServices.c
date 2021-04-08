@@ -2,6 +2,7 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+virtual inherit "/lib/core/thing.c";
 virtual inherit "/lib/realizations/realization.c";
 virtual inherit "/lib/core/events.c";
 virtual inherit "/lib/modules/materialAttributes.c";
@@ -28,7 +29,7 @@ public int has(string service)
     }
     else
     {
-        return "thing"::has(service);
+        return thing::has(service);
     }
 }
 

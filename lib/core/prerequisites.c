@@ -485,7 +485,7 @@ private nomask int checkPresence(object researcher, string *characters)
 
         foreach(string character in characters)
         {
-            ret &&= present(character, location);
+            ret &&= objectp(present(character, location));
         }
     }
     return ret;

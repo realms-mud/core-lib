@@ -132,7 +132,7 @@ public int moveToIsAllowed(object user, object toLocation)
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    "environment"::init();
+    environment::init();
 
     if (present(this_player()))
     {

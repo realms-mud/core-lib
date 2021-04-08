@@ -966,7 +966,7 @@ private nomask void updateItemExperience(object item)
 
         if (sizeof(components))
         {
-            foreach(mapping component in components)
+            foreach(string component in components)
             {
                 string key = craftingMaterials[component]["type"];
 

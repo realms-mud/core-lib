@@ -90,7 +90,7 @@ protected int addSpecification(string type, mixed value)
     }    
     else
     {
-        ret = "ritualResearchItem"::addSpecification(type, value);
+        ret = ritualResearchItem::addSpecification(type, value);
     }
     return ret;
 }

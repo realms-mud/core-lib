@@ -22,7 +22,7 @@ public nomask mixed query(string element)
         }
         case "short":
         {
-            ret = "item"::query("short");
+            ret = item::query("short");
             if ((isIlluminated() > 8) && itemData["ammunition type"])
             {
                 if (itemData["quantity"])
@@ -53,7 +53,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
 
@@ -129,7 +129,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "item"::set(element, data);
+                ret = item::set(element, data);
             }
         }
     }
@@ -146,5 +146,5 @@ public nomask int doNotDestroyWhenConsumed()
 public int id(string item)
 {
     return (item == itemData["ammunition type"]) ||
-        "item"::id(item);
+        item::id(item);
 }

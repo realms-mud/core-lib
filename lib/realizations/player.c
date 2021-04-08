@@ -51,7 +51,7 @@ public nomask int executeCommand(string command)
 /////////////////////////////////////////////////////////////////////////////
 public void reset(int arg)
 {
-    "living"::reset(arg);
+    living::reset(arg);
     if (!arg)
     {
         addCommands();
@@ -104,7 +104,7 @@ private nomask void checkForLinkDeath(object player)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void heart_beat()
 {
-    "living"::heart_beat();
+    living::heart_beat();
 
     int currentTime = time();
     if (currentTime >= timeForNextSave)

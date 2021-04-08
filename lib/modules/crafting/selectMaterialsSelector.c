@@ -338,5 +338,5 @@ protected nomask int suppressMenuDisplay()
 public void onSelectorAborted(object caller)
 {
     User->abortCrafting();
-    "baseSelector"::onSelectorAborted(caller);
+    baseSelector::onSelectorAborted(caller);
 }

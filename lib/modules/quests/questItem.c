@@ -69,7 +69,7 @@ public void reset(int arg)
     {
         Name = 0;
         Description = "";
-        "stateMachine"::reset(arg);
+        stateMachine::reset(arg);
     }
 }
 
@@ -78,7 +78,7 @@ public varargs string getCurrentState(object caller)
 {
     return (caller && function_exists("questState", caller)) ? 
         caller->questState(program_name(this_object())) :
-        "stateMachine"::getCurrentState(caller);
+        stateMachine::getCurrentState(caller);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ public nomask int isValidQuest()
 /////////////////////////////////////////////////////////////////////////////
 protected void advanceState(object caller, string newState)
 {
-    "stateMachine"::advanceState(caller, newState);
+    stateMachine::advanceState(caller, newState);
     caller->advanceQuestState(program_name(this_object()), newState);
 
     if (isValidQuest() && member(stateTree[newState], "is final state"))

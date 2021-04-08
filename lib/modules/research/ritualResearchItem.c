@@ -112,7 +112,7 @@ protected int addSpecification(string type, mixed value)
         }
         default:
         {
-            ret = "researchItem"::addSpecification(type, value);
+            ret = researchItem::addSpecification(type, value);
         }
     }
     return ret;

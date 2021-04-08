@@ -54,7 +54,7 @@ public nomask mixed query(string element)
         case "blueprint":
         {
             ret = member(itemData, "blueprint") ? itemData["blueprint"] :
-                "equipment"::query("weapon type");
+                equipment::query("weapon type");
             break;
         }
         case "weapon type":
@@ -85,7 +85,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "equipment"::query(element);
+            ret = equipment::query(element);
         }
     }
 
@@ -195,7 +195,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "equipment"::set(element, data);
+                ret = equipment::set(element, data);
             }
         }
     }
@@ -226,7 +226,7 @@ public nomask int equip(string item)
         // via the 'set' method. This approach is also called "a hack"
         itemData["offhand"] = 1;
         item = regreplace(item, "(.*) offhand", "\\1");
-        ret = "equipment"::equip(item);
+        ret = equipment::equip(item);
         
         if(!ret)
         {
@@ -236,7 +236,7 @@ public nomask int equip(string item)
     }
     else
     {
-        ret = "equipment"::equip(item);
+        ret = equipment::equip(item);
     }
     
     return ret;
@@ -245,7 +245,7 @@ public nomask int equip(string item)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs int unequip(string item, int silently)
 {
-    int ret = "equipment"::unequip(item, silently);
+    int ret = equipment::unequip(item, silently);
     
     // If this was wielded offhand, remove that property
     if(query("offhand"))
@@ -267,7 +267,7 @@ public void init()
     add_action("equip", "wield");
     add_action("offhand", "offhand");
     add_action("unequip", "unwield");
-    "equipment"::init();
+    equipment::init();
 }
 
 /////////////////////////////////////////////////////////////////////////////

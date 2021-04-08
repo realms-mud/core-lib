@@ -18,7 +18,7 @@ public nomask mixed query(string element)
         case "blueprint":
         {
             ret = member(itemData, "blueprint") ? itemData["blueprint"] :
-                "item"::query("potion type");
+                item::query("potion type");
             break;
         }
         case "potion type":
@@ -60,7 +60,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
 
@@ -106,7 +106,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "item"::set(element, data);
+                ret = item::set(element, data);
             }
         }
     }

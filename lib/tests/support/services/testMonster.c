@@ -7,17 +7,17 @@ virtual inherit "/lib/realizations/monster.c";
 /////////////////////////////////////////////////////////////////////////////
 public nomask void testMaxHitPoints(int value)
 {
-    "monster"::setMaxHitPoints(value);
+    monster::setMaxHitPoints(value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void testMaxSpellPoints(int value)
 {
-    "monster"::setMaxSpellPoints(value);
+    monster::setMaxSpellPoints(value);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void testMaxStaminaPoints(int value)
 {
-    "monster"::setMaxStaminaPoints(value);
+    monster::setMaxStaminaPoints(value);
 }

@@ -36,7 +36,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
 

@@ -154,7 +154,7 @@ public mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
     return ret;
@@ -491,7 +491,7 @@ public varargs int set(string element, mixed data)
                 }
                 default:
                 {
-                    ret = "item"::set(element, data);
+                    ret = item::set(element, data);
                 }
             }
         }

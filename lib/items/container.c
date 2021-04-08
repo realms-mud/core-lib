@@ -39,7 +39,7 @@ public mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
 
@@ -150,7 +150,7 @@ private nomask string inventoryText(object *allItems)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string long(int doNotApplyUserStatistics)
 {
-    string ret = "item"::long(doNotApplyUserStatistics);
+    string ret = item::long(doNotApplyUserStatistics);
 
     object *inventory = sort_array(all_inventory(), 
         (: $1->query("short") > $2->query("short") :));

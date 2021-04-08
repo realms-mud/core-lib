@@ -15,7 +15,7 @@ public void reset(int arg)
 {
     if (!arg)
     {
-        "henchman"::reset(arg);
+        henchman::reset(arg);
         customCombatAssessment("companion");
     }
 }

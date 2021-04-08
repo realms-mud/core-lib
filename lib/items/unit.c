@@ -63,7 +63,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "item"::query(element);
+            ret = item::query(element);
         }
     }
 
@@ -99,7 +99,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "item"::set(element, data);
+                ret = item::set(element, data);
             }
         }
     }

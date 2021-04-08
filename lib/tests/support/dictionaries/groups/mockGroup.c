@@ -21,11 +21,11 @@ public int ApplyWasCalled()
 /////////////////////////////////////////////////////////////////////////////
 public void testSetName(string name)
 {
-    "baseGroup"::setName(name);
+    baseGroup::setName(name);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public void testAddPermission(string path, int permission)
 {
-    "baseGroup"::addPermission(path, permission);
+    baseGroup::addPermission(path, permission);
 }

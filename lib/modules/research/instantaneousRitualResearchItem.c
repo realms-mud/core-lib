@@ -14,7 +14,7 @@ protected nomask int addSpecification(string type, mixed value)
     int ret = addInstantaneousSpecification(type, value);
     if(!ret)
     {
-        ret = "ritualResearchItem"::addSpecification(type, value);
+        ret = ritualResearchItem::addSpecification(type, value);
     }
     return ret;
 }

@@ -20,7 +20,7 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void init()
 {
-    "environment"::init();
+    environment::init();
 
      catch(add_action("resetEverything", "resetEverything"));
 }

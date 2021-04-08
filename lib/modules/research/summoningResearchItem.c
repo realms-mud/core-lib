@@ -83,7 +83,7 @@ protected nomask int addSpecification(string type, mixed value)
         }
         default:
         {
-            ret = "activeResearchItem"::addSpecification(type, value);
+            ret = activeResearchItem::addSpecification(type, value);
         }
     }
 
@@ -260,7 +260,7 @@ private nomask string getRelatedBonuses(mapping modifiers,
     string colorConfiguration, object configuration)
 {
     string ret = "";
-    string *bonuses =
+    mapping *bonuses =
         sort_array(filter(modifiers,
             (: (sizeof(regexp(({ $1["modifier"] }), "bonus")) &&
                 ($1["value"] > 0)) :)), (: $1["modifier"] > $2["modifier"] :));
@@ -285,7 +285,7 @@ private nomask string getRelatedPenalties(mapping modifiers,
     string colorConfiguration, object configuration)
 {
     string ret = "";
-    string *penalties =
+    mapping *penalties =
         sort_array(filter(modifiers,
             (: (sizeof(regexp(({ $1["modifier"] }), "penalty to")) &&
                 ($1["value"] > 0)) || (sizeof(regexp(({ $1["modifier"] }), "bonus")) &&
@@ -313,7 +313,7 @@ private nomask string getRelatedApplies(mapping modifiers,
 {
     string ret = "";
 
-    string *applies =
+    mapping *applies =
         sort_array(filter(modifiers,
             (: (sizeof(regexp(({ $1["modifier"] }), "apply")) &&
                 (stringp($1["value"]) || ($1["value"] > 0))) :)), 

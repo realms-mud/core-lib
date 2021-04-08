@@ -41,7 +41,7 @@ public nomask int effectiveExperience()
 /////////////////////////////////////////////////////////////////////////////
 public varargs string Name(string newName)
 {
-    string ret = "materialAttributes"::Name(newName);
+    string ret = living::Name(newName);
     if (newName && (ret == newName))
     {
         addLiving(this_object());
@@ -59,7 +59,7 @@ public void reset(int arg)
         {
             addLiving(this_object());
         }
-        "living"::reset(arg);
+        living::reset(arg);
     }
 }
 

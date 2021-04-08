@@ -158,7 +158,7 @@ protected nomask int addSpecification(string type, mixed value)
     }
     if(!ret)
     {
-        ret = "activeResearchItem"::addSpecification(type, value);
+        ret = activeResearchItem::addSpecification(type, value);
     }
     return ret;
 }

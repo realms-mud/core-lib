@@ -27,7 +27,7 @@ public nomask mixed query(string element)
         case "blueprint":
         {
             ret = member(itemData, "blueprint") ? itemData["blueprint"] :
-                "equipment"::query("armor type");
+                equipment::query("armor type");
             break;
         }
         case "armor type":
@@ -60,7 +60,7 @@ public nomask mixed query(string element)
         }
         default:
         {
-            ret = "equipment"::query(element);
+            ret = equipment::query(element);
         }
     }
     return ret;
@@ -136,7 +136,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "equipment"::set(element, data);
+                ret = equipment::set(element, data);
             }
         }
     }
@@ -148,5 +148,5 @@ public void init()
 {
     add_action("equip", "wear");
     add_action("unequip", "remove");
-    "equipment"::init();
+    equipment::init();
 }

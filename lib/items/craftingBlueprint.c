@@ -76,7 +76,7 @@ public nomask varargs int set(string element, mixed data)
             }
             default:
             {
-                ret = "item"::set(element, data);
+                ret = item::set(element, data);
             }
         }
     }

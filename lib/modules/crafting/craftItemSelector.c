@@ -183,5 +183,5 @@ protected nomask string additionalInstructions()
 public void onSelectorAborted(object caller)
 {
     User->abortCrafting();
-    "baseSelector"::onSelectorAborted(caller);
+    baseSelector::onSelectorAborted(caller);
 }
