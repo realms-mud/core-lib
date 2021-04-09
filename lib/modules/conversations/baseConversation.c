@@ -299,7 +299,7 @@ private int isValidEffect(mapping effectMap)
                 {
                     ret &&= stringp(effectMap[effect]) &&
                         file_size(effectMap[effect]) &&
-                        load_object(effectMap[effect]);
+                        objectp(load_object(effectMap[effect]));
                     break;
                 }
             }

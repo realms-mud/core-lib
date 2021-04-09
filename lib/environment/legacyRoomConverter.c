@@ -7,7 +7,7 @@ protected string *dest_dir;
 protected mapping exits;
 protected string short_desc = "";
 protected string long_desc = "";
-protected string *items;
+protected mixed *items;
 protected mixed property;
 protected int no_castle_flag;
 protected string long_exit, short_exit;

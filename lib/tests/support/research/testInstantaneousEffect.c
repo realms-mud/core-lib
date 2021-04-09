@@ -52,7 +52,7 @@ public int testAddInstantaneousSpecification(string type, mixed value)
 /////////////////////////////////////////////////////////////////////////////
 public object testGetTarget(object owner, string command)
 {
-    return baseCommand::getTarget(owner, command);
+    return instantaneousEffect::getTarget(owner, command);
 }
 
 /////////////////////////////////////////////////////////////////////////////

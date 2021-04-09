@@ -55,7 +55,7 @@ public varargs string testSetInitialState(string state)
 /////////////////////////////////////////////////////////////////////////////
 public varargs int testAddPrerequisite(string key, mapping prerequisite, string grouping)
 {
-    return prerequisites::addPrerequisite(key, prerequisite, grouping);
+    return questItem::addPrerequisite(key, prerequisite, grouping);
 }
 
 /////////////////////////////////////////////////////////////////////////////

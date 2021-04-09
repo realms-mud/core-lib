@@ -309,7 +309,7 @@ protected mapping getUsageCosts(string command, object initiator)
 {
     object *combo = getCompositeDetails(command, initiator);
 
-    mapping costs = researchItem::getUsageCosts(command, initiator);
+    mapping costs = activeResearchItem::getUsageCosts(command, initiator);
 
     if (sizeof(combo))
     {

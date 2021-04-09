@@ -7,7 +7,7 @@ inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 public object testGetTarget(object owner, string command)
 {
-    return baseCommand::getTarget(owner, command);
+    return persistedActiveResearchItem::getTarget(owner, command);
 }
 
 /////////////////////////////////////////////////////////////////////////////

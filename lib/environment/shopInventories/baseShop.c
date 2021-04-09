@@ -12,7 +12,7 @@ private string ShopItemSubType = "all";
 private int ItemsToGenerate = 15;
 private string *equipmentTypes = ({ "armor", "instruments", "weapons" });
 private mapping *specifiedItems = ({});
-private mapping *individualItems = ({});
+private string *individualItems = ({});
 
 /////////////////////////////////////////////////////////////////////////////
 public int itemListIsSpecified()
