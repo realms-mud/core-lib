@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 35
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

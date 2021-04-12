@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Lyric of doom");
     addSpecification("source", "blarg");
     addSpecification("composite research",
-        "lib/tests/support/research/compositeRoot.c");
+        "/lib/tests/support/research/compositeRoot.c");
     addSpecification("composite type", "lyric");
     addSpecification("composite class", "lyric");
     addSpecification("default composite description",

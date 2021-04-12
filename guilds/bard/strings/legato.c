@@ -21,7 +21,7 @@ protected void Setup()
         "value": 23
     ]));
 
-    addPrerequisite("guilds/bard/strings/staccato.c",
+    addPrerequisite("/guilds/bard/strings/staccato.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

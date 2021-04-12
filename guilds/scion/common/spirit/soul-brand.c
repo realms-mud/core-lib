@@ -22,15 +22,15 @@ protected void Setup()
         "weapon. Doing so is wearying and will decrease available stamina.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/spirit/root.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
             "name" : "sweeping caress",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -38,7 +38,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-brand.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/spectral-brand.c", WeaponType),
             "name" : "freezing brand",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -46,7 +46,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType),
             "name" : "soul strike",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -54,7 +54,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
             "name" : "spectral edge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -62,7 +62,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/nienwyns-boon.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/nienwyns-boon.c", WeaponType),
             "name" : "Nienwyn's Boon",
             "formula" : "multiplicative",
             "base value" : 1,

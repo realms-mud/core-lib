@@ -22,11 +22,11 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 15 ]));
 
-    addPrerequisite("guilds/scion/paths/staff/forms/over-smite.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/over-smite.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/staff/forms/wrath-guard.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/wrath-guard.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/staff/forms/wechsel.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/wechsel.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

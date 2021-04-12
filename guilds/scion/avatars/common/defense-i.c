@@ -16,11 +16,11 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/blood/root.c",
-        "guilds/scion/avatars/electricity/root.c",
-        "guilds/scion/avatars/evocation/root.c",
-        "guilds/scion/avatars/flame/root.c",
-        "guilds/scion/avatars/ice/root.c",
-        "guilds/scion/avatars/spirit/root.c",
+        "/guilds/scion/avatars/blood/root.c",
+        "/guilds/scion/avatars/electricity/root.c",
+        "/guilds/scion/avatars/evocation/root.c",
+        "/guilds/scion/avatars/flame/root.c",
+        "/guilds/scion/avatars/ice/root.c",
+        "/guilds/scion/avatars/spirit/root.c",
     }));
 }

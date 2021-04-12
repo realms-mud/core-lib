@@ -18,12 +18,12 @@ protected void Setup()
         "value": 13
     ]));
 
-    addPrerequisite("guilds/scion/avatars/evocation/mystic-touch.c",
+    addPrerequisite("/guilds/scion/avatars/evocation/mystic-touch.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/evocation/root.c",
+        "/guilds/scion/avatars/evocation/root.c",
     }));
 }

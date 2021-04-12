@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of how to more effectively strike with maces.");
     addSpecification("limited by", (["equipment":({ "mace", "flail" })]));
 
-    addPrerequisite("guilds/scion/paths/mace/root.c",
+    addPrerequisite("/guilds/scion/paths/mace/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

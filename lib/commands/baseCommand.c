@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string MaterialAttributes = "lib/modules/materialAttributes.c";
+private string MaterialAttributes = "/lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
 
 protected string *commands = ({});
@@ -41,6 +41,7 @@ private nomask string prepCommandRegExp(string command)
 {
     string ret = regreplace(command, "\\] *\\[", ")*( ", 1);
     ret = regreplace(ret, " \\[(.+)\\]", "( \\1)\*", 1);
+    ret = regreplace(ret, "([?])", "\\\\1", 1);
 
     return "^" + ret + "$";
 }

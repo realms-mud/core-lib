@@ -14,7 +14,7 @@ protected void Setup()
         "held above the head.");
     addSpecification("limited by", (["equipment":({ "hammer" })]));
 
-    addPrerequisite("guilds/scion/paths/hammer/root.c",
+    addPrerequisite("/guilds/scion/paths/hammer/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

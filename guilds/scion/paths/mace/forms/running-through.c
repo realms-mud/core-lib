@@ -20,7 +20,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 19 ]));
 
-    addPrerequisite("guilds/scion/paths/mace/forms/dance-of-death.c",
+    addPrerequisite("/guilds/scion/paths/mace/forms/dance-of-death.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

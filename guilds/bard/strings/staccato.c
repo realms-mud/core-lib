@@ -21,7 +21,7 @@ protected void Setup()
         "value": 15
     ]));
 
-    addPrerequisite("guilds/bard/strings/vibrato.c",
+    addPrerequisite("/guilds/bard/strings/vibrato.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

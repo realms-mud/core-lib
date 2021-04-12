@@ -66,25 +66,25 @@ void CreationDisplayWithCreatedSongsIsCorrect()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
                 "description": "Oh, sing me a song of the weasels, man.",
                 "order in sequence": 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "Verse 1",
                 "description": "Sing me a song tonight.",
                 "order in sequence": 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
                 "description": "For the Mustelidae, they are now mocking me",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                 "type": "Verse 1",
                 "description": "and eating my intestines in spite.",
                 "order in sequence": 4
@@ -101,7 +101,7 @@ void CreationDisplayWithCreatedSongsIsCorrect()
     ExpectTrue(User->setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
         compositeElement));
 
-    compositeElement["constraint"] = "lib/tests/support/research/flightOfWeasels.c";
+    compositeElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
     ExpectTrue(User->setCompositeResearch("This shouldn't appear in list",
         compositeElement));
 
@@ -122,25 +122,25 @@ void DescribeASongShowsCorrectDetails()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
                 "description": "Oh, sing me a song of the weasels, man.",
                 "order in sequence": 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "Verse 1",
                 "description": "Sing me a song tonight.",
                 "order in sequence": 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
                 "description": "For the Mustelidae, they are now mocking me",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                 "type": "Verse 1",
                 "description": "and eating my intestines in spite.",
                 "order in sequence": 4
@@ -208,7 +208,7 @@ void CanSelectCreateASong()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -239,7 +239,7 @@ void CreateSongTransitionsToModifyMenu()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -269,55 +269,55 @@ void CanSelectModifyForASong()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
                 "description" : "Gittern, Cm7b5 arpeggio",
                 "order in sequence" : 1
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
                 "description" : "I'm walking through a reliquary",
                 "order in sequence" : 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
                 "type": "verse 1",
                 "description": "Family of weasels snuck in...",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "A big one sidled up next to me",
                 "order in sequence": 4
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "Climbed my body and chewed on my chin.",
                 "order in sequence": 5
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "verse 1",
                 "description" : "Gittern, chords: Am, D7, Cm7b5",
                 "order in sequence" : 6
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "chorus 1",
                 "description": "Oh, sing me a song of the weasels, man.",
                 "order in sequence": 7
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "chorus 1",
                 "description": "Sing me a song tonight.",
                 "order in sequence": 8
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "chorus 1",
                 "description": "For the Mustelidae, they are now mocking me",
                 "order in sequence": 9
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                 "type": "chorus 1",
                 "description": "and eating my intestines in spite.",
                 "order in sequence": 10
@@ -392,7 +392,7 @@ void CanSetSongName()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -449,7 +449,7 @@ void CanSetSongAlias()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -507,8 +507,8 @@ void CanSaveSong()
     Selector->setData(([
         "name": "Song of the Weasels",
         "alias": "weasels",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({ })
     ]));
     move_object(Selector, User);
@@ -521,11 +521,11 @@ void CanSaveSong()
     Selector->onSelectorCompleted(subSelector);
 
     ExpectFalse(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Song of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 
     command("10", User);
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Song of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -533,10 +533,10 @@ void CanDeleteSong()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
                 "description" : "Gittern, Cm7b5 arpeggio",
                 "order in sequence" : 1
@@ -547,7 +547,7 @@ void CanDeleteSong()
     ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -559,7 +559,7 @@ void CanDeleteSong()
 
     command("y", User);
     ExpectFalse(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     ExpectEq("Song - Compose Songs Main Menu:\n"
         "[1] - Create New Song                [2] - Exit Song Menu                 \n"
@@ -575,10 +575,10 @@ void NotTypingYAbortsDelete()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
                 "description" : "Gittern, Cm7b5 arpeggio",
                 "order in sequence" : 1
@@ -589,7 +589,7 @@ void NotTypingYAbortsDelete()
     ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -601,7 +601,7 @@ void NotTypingYAbortsDelete()
 
     command("ddd", User);
     ExpectTrue(member(User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c"), "Flight of the Weasels"));
+        "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -609,55 +609,55 @@ void CanModifyOrderingOfSongSegment()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "intro",
                 "description" : "Gittern, Cm7b5 arpeggio",
                 "order in sequence" : 1
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
                 "description" : "I'm walking through a reliquary",
                 "order in sequence" : 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
                 "type": "verse 1",
                 "description": "Family of weasels snuck in...",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "A big one sidled up next to me",
                 "order in sequence": 4
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "Climbed my body and chewed on my chin.",
                 "order in sequence": 5
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "verse 1",
                 "description" : "Gittern, chords: Am, D7, Cm7b5",
                 "order in sequence" : 6
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "chorus 1",
                 "description": "Oh, sing me a song of the weasels, man.",
                 "order in sequence": 7
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "chorus 1",
                 "description": "Sing me a song tonight.",
                 "order in sequence": 8
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "chorus 1",
                 "description": "For the Mustelidae, they are now mocking me",
                 "order in sequence": 9
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                 "type": "chorus 1",
                 "description": "and eating my intestines in spite.",
                 "order in sequence": 10
@@ -743,30 +743,30 @@ void CanRemoveSongSegment()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
                 "description" : "I'm walking through a reliquary",
                 "order in sequence" : 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
                 "type": "verse 1",
                 "description": "Family of weasels snuck in...",
                 "order in sequence": 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "A big one sidled up next to me",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "Climbed my body and chewed on my chin.",
                 "order in sequence": 4
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "verse 1",
                 "description" : "Gittern, chords: Am, D7, Cm7b5",
                 "order in sequence" : 5
@@ -804,30 +804,30 @@ void CanIncrementSongSegmentOrder()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
                 "description" : "I'm walking through a reliquary",
                 "order in sequence" : 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
                 "type": "verse 1",
                 "description": "Family of weasels snuck in...",
                 "order in sequence": 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "A big one sidled up next to me",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "Climbed my body and chewed on my chin.",
                 "order in sequence": 4
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "verse 1",
                 "description" : "Gittern, chords: Am, D7, Cm7b5",
                 "order in sequence" : 5
@@ -858,30 +858,30 @@ void CanDecrementSongSegmentOrder()
 {
     mapping compositeElement = ([
         "alias": "weasel",
-        "constraint": "guilds/bard/compositions/root.c",
-        "type": "guilds/bard/compositions/simple-ballad.c",
+        "constraint": "/guilds/bard/compositions/root.c",
+        "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            (["research":"lib/tests/support/research/compositeResearchItemD.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemD.c",
                 "type" : "verse 1",
                 "description" : "I'm walking through a reliquary",
                 "order in sequence" : 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
                 "type": "verse 1",
                 "description": "Family of weasels snuck in...",
                 "order in sequence": 2
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "A big one sidled up next to me",
                 "order in sequence": 3
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                 "type": "verse 1",
                 "description": "Climbed my body and chewed on my chin.",
                 "order in sequence": 4
             ]),
-            (["research":"lib/tests/support/research/compositeResearchItemE.c",
+            (["research":"/lib/tests/support/research/compositeResearchItemE.c",
                 "type" : "verse 1",
                 "description" : "Gittern, chords: Am, D7, Cm7b5",
                 "order in sequence" : 5
@@ -915,7 +915,7 @@ void CanAddSongSegment()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -947,15 +947,15 @@ void CanSelectSegmentDetails()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     User->addResearchPoints(6);
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -1009,15 +1009,15 @@ void CanModfiySegmentDescription()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     User->addResearchPoints(6);
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
 
     Selector->initiateSelector(User);
     command("1", User);
@@ -1119,17 +1119,17 @@ void UnrelatedInstrumentsDisabled()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     User->addResearchPoints(6);
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -1174,17 +1174,17 @@ void InstrumentsReEnabledWhenAllElementsRemoved()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     User->addResearchPoints(6);
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);
@@ -1220,17 +1220,17 @@ void InstrumentsReEnabledWhenOffendingElementRemoved()
     command("exit", User);
 
     User->addResearchPoints(10);
-    User->initiateResearch("guilds/bard/compositions/aaa.c");
+    User->initiateResearch("/guilds/bard/compositions/aaa.c");
 
     User->addResearchPoints(6);
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
     Selector->initiateSelector(User);
     command("1", User);
     command("1", User);

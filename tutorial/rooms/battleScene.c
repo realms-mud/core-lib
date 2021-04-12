@@ -37,7 +37,7 @@ public int resetEverything(string command)
         destruct(item);
     }
 
-    this_player()->resetQuest("tutorial/stateMachines/introStateMachine.c");
+    this_player()->resetQuest("/tutorial/stateMachines/introStateMachine.c");
     load_object("/tutorial/characters/galadhel/galadhel.c")->resetConversationState();
     load_object("/tutorial/characters/berenar/berenar.c")->resetConversationState();
     load_object("/tutorial/characters/brendan/brendan.c")->resetConversationState();

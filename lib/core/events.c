@@ -196,16 +196,17 @@ public varargs nomask int notifySynchronous(string event, mixed message)
 
         // May want/need to limit calls of this method
         object *filteredEvents = filter(m_indices(eventList),
+            (: (objectp($1) && function_exists("receiveEvent", $1)) :));
+
+        call_direct(filteredEvents, "receiveEvent", this_object(), event, message);
+
+        filteredEvents = filter(m_indices(eventList),
             (: (objectp($1) &&
             (member(eventList[$1], $2) > -1) &&
                 function_exists($2, $1)) :), event);
 
         call_direct(filteredEvents, event, this_object(), message);
 
-        filteredEvents = filter(m_indices(eventList),
-            (: (objectp($1) && function_exists("receiveEvent", $1)) :));
-
-        call_direct(filteredEvents, "receiveEvent", this_object(), event, message);
         ret = 1;
     }
     return ret;

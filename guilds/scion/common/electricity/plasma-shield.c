@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 35 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/static-shield.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/static-shield.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

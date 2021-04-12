@@ -21,7 +21,7 @@ protected void Setup()
         "value": 13
     ]));
 
-    addPrerequisite("guilds/bard/strings/hammer-ons-and-pull-offs.c",
+    addPrerequisite("/guilds/bard/strings/hammer-ons-and-pull-offs.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

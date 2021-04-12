@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of how to more effectively strike with staffs.");
     addSpecification("limited by", (["equipment":({ "staff" })]));
 
-    addPrerequisite("guilds/scion/paths/staff/root.c",
+    addPrerequisite("/guilds/scion/paths/staff/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

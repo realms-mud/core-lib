@@ -9,7 +9,7 @@ public string *customGroups(object user)
     string *ret = ({});
 
     if (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1)
+        "/secure/simulated-efuns/testing.c") > -1)
     {
         ret = call_direct(this_object(), "testingGroups");
     }

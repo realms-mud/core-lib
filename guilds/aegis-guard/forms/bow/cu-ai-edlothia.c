@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 27
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/cu-ai-celair.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/cu-ai-celair.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -1367,7 +1367,7 @@ private nosave mapping food =
     "roasted chicken": ([
         "type": "chicken",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
             "cooking": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([

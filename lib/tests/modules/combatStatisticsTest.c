@@ -67,13 +67,13 @@ void CombatStatisticsAreGenerated()
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
-        "key" : "lib/realizations/monster.c#Nukulevee",
+        "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 1]),
         Attacker->getBestKill());
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
-        "key" : "lib/realizations/monster.c#Nukulevee",
+        "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 1]),
         Attacker->getNemesis());
     ExpectTrue(Attacker->racialKillsMeetCount("undead horse", 1), "One undead horse has been killed");
@@ -93,7 +93,7 @@ void CombatStatisticsNemesisIsMostFrequestKill()
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
-        "key" : "lib/realizations/monster.c#Nukulevee",
+        "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 2]),
         Attacker->getNemesis());
 }

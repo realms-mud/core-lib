@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "A technique projecting a destructive "
         "acid spray");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -50,7 +50,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-anwar.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-anwar.c",
             "name": "delu-anwar",
             "formula": "multiplicative",
             "base value": 1,
@@ -58,7 +58,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-celair.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-celair.c",
             "name": "delu-celair",
             "formula": "multiplicative",
             "base value": 1,
@@ -66,7 +66,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-edlothia.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-edlothia.c",
             "name": "delu-edlothia",
             "formula": "multiplicative",
             "base value": 1,
@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
             "name": "delu-eiliant",
             "formula": "multiplicative",
             "base value": 1,
@@ -82,7 +82,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
             "name": "delu-manadh",
             "formula": "multiplicative",
             "base value": 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-mythic/delu-dagnir.c",
+            "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-dagnir.c",
             "name": "delu-dagnir",
             "formula": "multiplicative",
             "base value": 1,
@@ -154,18 +154,18 @@ protected void Setup()
 
     addSpecification("spell point cost", 150);
     addSpecification("spell point cost modifiers", ([
-        "guilds/aegis-guard/forms/sword-mythic/tur-celair.c": 15,
-        "guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c": 15,
-        "guilds/aegis-guard/forms/sword-mythic/tur-manadh.c": 10,
-        "guilds/aegis-guard/forms/sword-mythic/tur-dagnir.c": 10
+        "/guilds/aegis-guard/forms/sword-mythic/tur-celair.c": 15,
+        "/guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c": 15,
+        "/guilds/aegis-guard/forms/sword-mythic/tur-manadh.c": 10,
+        "/guilds/aegis-guard/forms/sword-mythic/tur-dagnir.c": 10
     ]));
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/aegis-guard/forms/sword-mythic/braig-celair.c": 10,
-        "guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c": 10,
-        "guilds/aegis-guard/forms/sword-mythic/braig-manadh.c": 10,
-        "guilds/aegis-guard/forms/sword-mythic/braig-dagnir.c": 10,
+        "/guilds/aegis-guard/forms/sword-mythic/braig-celair.c": 10,
+        "/guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c": 10,
+        "/guilds/aegis-guard/forms/sword-mythic/braig-manadh.c": 10,
+        "/guilds/aegis-guard/forms/sword-mythic/braig-dagnir.c": 10,
     ]));
 
     addSpecification("event handler", "guruthosEvent");

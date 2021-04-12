@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 25
         ]));
-    addPrerequisite("guilds/bard/bow/archers-elegy.c",
+    addPrerequisite("/guilds/bard/bow/archers-elegy.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

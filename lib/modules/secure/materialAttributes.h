@@ -113,8 +113,8 @@ static nomask mapping sendMaterialAttributes()
     ret["is guest"] = isGuest;
 
     ret["location"] = (environment() && environment()->environmentName() && 
-        (member(({ "lib/environment/environment.c",
-            "lib/environment/generatedEnvironment.c" }), 
+        (member(({ "/lib/environment/environment.c",
+            "/lib/environment/generatedEnvironment.c" }), 
             program_name(environment())) == -1)) ?
         environment()->environmentName() : lastStartLocation;
     lastStartLocation = ret["location"];

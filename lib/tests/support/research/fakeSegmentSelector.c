@@ -7,7 +7,7 @@
 public mapping segment()
 {
     return ([
-        "research": "lib/tests/support/research/compositeResearchItemE.c",
+        "research": "/lib/tests/support/research/compositeResearchItemE.c",
         "type" : "intro",
         "description" : "Gittern, Cm7b5 arpeggio",
         "order in sequence" : 1,

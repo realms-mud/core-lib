@@ -13,7 +13,7 @@ private mapping guests = ([]);
 public nomask int interactive(object user)
 {
     return (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1) ? 
+        "/secure/simulated-efuns/testing.c") > -1) ? 
         this_object()->testingInteractive() :
         efun::interactive(user);
 }
@@ -26,11 +26,11 @@ public nomask void addUser(object user)
             sizeof(regexp(({ program_name(previous_object()) }),
                 "^/*(lib/modules/secure|secure)"))))
     {
-        if (member(inherit_list(user), "lib/realizations/wizard.c") > -1)
+        if (member(inherit_list(user), "/lib/realizations/wizard.c") > -1)
         {
             wizards[lower_case(user->RealName())] = user;
         }
-        else if (member(inherit_list(user), "lib/realizations/player.c") > -1)
+        else if (member(inherit_list(user), "/lib/realizations/player.c") > -1)
         {
             players[lower_case(user->RealName())] = user;
         }
@@ -52,13 +52,13 @@ static nomask void pruneLivingObjects()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void addLiving(object creature)
 {
-    if ((member(inherit_list(creature), "lib/realizations/wizard.c") > -1) ||
-        (member(inherit_list(creature), "lib/realizations/player.c") > -1))
+    if ((member(inherit_list(creature), "/lib/realizations/wizard.c") > -1) ||
+        (member(inherit_list(creature), "/lib/realizations/player.c") > -1))
     {
         addUser(creature);
     }
     else if((member(inherit_list(creature), 
-        "lib/realizations/living.c") > -1) && living(creature))
+        "/lib/realizations/living.c") > -1) && living(creature))
     {
         livingObjects[lower_case(creature->Name())] = creature;
         call_out("pruneLivingObjects", 1);
@@ -127,7 +127,7 @@ public nomask object *users()
             !$1->isInvisibleToCaller($2)) :), previous_object());
 
     if (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1)
+        "/secure/simulated-efuns/testing.c") > -1)
     {
         ret = call_direct(this_object(), "cannedUserList");
     }
@@ -140,7 +140,7 @@ private nomask object *usersFromMapping(mapping userMapping)
     object *ret = ({});
 
     if (previous_object() && (member(inherit_list(previous_object()),
-        "secure/login.c") > -1) && sizeof(userMapping))
+        "/secure/login.c") > -1) && sizeof(userMapping))
     {
         ret = m_values(userMapping);
     }

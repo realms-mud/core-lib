@@ -21,7 +21,7 @@ protected void Setup()
         "value": 65
     ]));
 
-    addPrerequisite("guilds/bard/strings/palm-muting.c",
+    addPrerequisite("/guilds/bard/strings/palm-muting.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

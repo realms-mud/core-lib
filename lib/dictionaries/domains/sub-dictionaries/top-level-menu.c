@@ -16,7 +16,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector" : "administration",
             "selector file": sprintf(DomainSelectorBase, "administration"),
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/domains/administration/basicAdministration.c",
+                "/lib/instances/research/domains/administration/basicAdministration.c",
                 "diplomacy")                  
         ]),
         "2":([
@@ -25,7 +25,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "build",
             "selector file": sprintf(DomainSelectorBase, "build"),
             "canShow": user->canApplyResearchBonus(
-                "lib/instances/research/domains/construction/basicBuilding.c",
+                "/lib/instances/research/domains/construction/basicBuilding.c",
                 "carpentry")                    
         ]),
         "3":([
@@ -35,7 +35,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "improvement",
             "selector file": sprintf(DomainSelectorBase, "improvement"),
             "canShow": user->canApplyResearchBonus(
-                "lib/instances/research/domains/holdings/basicHoldings.c",
+                "/lib/instances/research/domains/holdings/basicHoldings.c",
                 "engineering")                
         ]),
         "4":([
@@ -45,7 +45,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "hiring",
             "selector file": sprintf(DomainSelectorBase, "hiring"),
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/domains/hiring/basicHiring.c",
+                "/lib/instances/research/domains/hiring/basicHiring.c",
                 "persuasion")  
         ]),
         "5":([
@@ -55,7 +55,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "task",
             "selector file": sprintf(DomainSelectorBase, "task"),
             "canShow": user->canApplyResearchBonus(
-                "lib/instances/research/domains/tasks/basicTasks.c",
+                "/lib/instances/research/domains/tasks/basicTasks.c",
                 "persuasion")                 
         ]),
         "6":([
@@ -65,7 +65,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "troops",
             "selector file": sprintf(DomainSelectorBase, "troops"),
             "canShow": user->canApplyResearchBonus(
-                "lib/instances/research/domains/troops/basicTroops.c",
+                "/lib/instances/research/domains/troops/basicTroops.c",
                 "persuasion")                 
         ]),
     ]);

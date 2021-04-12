@@ -21,7 +21,7 @@ protected void Setup()
         "value": 33
     ]));
 
-    addPrerequisite("guilds/bard/percussion/beat-of-baxeros.c",
+    addPrerequisite("/guilds/bard/percussion/beat-of-baxeros.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 55
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/angol-eiliant.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/angol-eiliant.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

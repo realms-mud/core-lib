@@ -47,7 +47,7 @@ private nomask string *LoadCoreLib()
     if (ShouldAutoLoadCoreLib)
     {
         string *files = get_dir("/lib/*", 0x10) -
-            ({ "lib/.", "lib/.." });
+            ({ "/lib/.", "/lib/.." });
 
         ret += traverseDirectoryForSourceFiles(files);
     }

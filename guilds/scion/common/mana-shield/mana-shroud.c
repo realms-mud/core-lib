@@ -17,7 +17,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 15 ]));
-    addPrerequisite("guilds/scion/common/mana-shield/boon-of-dhuras.c",
+    addPrerequisite("/guilds/scion/common/mana-shield/boon-of-dhuras.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

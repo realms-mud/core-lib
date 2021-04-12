@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "bard",
           "value": 17 ]));
 
-    addPrerequisite("guilds/bard/compositions/the-inner-muse.c",
+    addPrerequisite("/guilds/bard/compositions/the-inner-muse.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

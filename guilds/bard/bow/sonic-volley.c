@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of a song that converts their arrow into a hail of sonic "
         "arrows that target a single foe.");
 
-    addPrerequisite("guilds/bard/bow/the-archers-song.c",
+    addPrerequisite("/guilds/bard/bow/the-archers-song.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "bow" })]));
@@ -57,7 +57,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/enhanced-sonic-shaft.c",
+            "research item": "/guilds/bard/bow/enhanced-sonic-shaft.c",
             "name": "enhanced-sonic-shaft",
             "formula": "multiplicative",
             "base value": 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/ballad-of-the-bow.c",
+            "research item": "/guilds/bard/bow/ballad-of-the-bow.c",
             "name": "ballad-of-the-bow",
             "formula": "multiplicative",
             "base value": 1,
@@ -73,7 +73,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/archers-elegy.c",
+            "research item": "/guilds/bard/bow/archers-elegy.c",
             "name": "archers-elegy",
             "formula": "multiplicative",
             "base value": 1,
@@ -81,7 +81,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/arrowheads-lament.c",
+            "research item": "/guilds/bard/bow/arrowheads-lament.c",
             "name": "arrowheads-lament",
             "formula": "multiplicative",
             "base value": 1,
@@ -89,7 +89,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/shafts-serenade.c",
+            "research item": "/guilds/bard/bow/shafts-serenade.c",
             "name": "shafts-serenade",
             "formula": "multiplicative",
             "base value": 1,
@@ -97,7 +97,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/bowmans-tale.c",
+            "research item": "/guilds/bard/bow/bowmans-tale.c",
             "name": "bowmans-tale",
             "formula": "multiplicative",
             "base value": 1,
@@ -105,7 +105,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/bow/lay-of-the-archer.c",
+            "research item": "/guilds/bard/bow/lay-of-the-archer.c",
             "name": "lay-of-the-archer",
             "formula": "multiplicative",
             "base value": 1,
@@ -160,26 +160,26 @@ protected void Setup()
 
     addSpecification("spell point cost", 250);
     addSpecification("spell point cost modifiers", ([
-        "guilds/bard/bow/rhythmic-release.c": 10,
-        "guilds/bard/bow/bowmans-form.c": 10,
-        "guilds/bard/bow/bowmans-breath.c": 10,
-        "guilds/bard/bow/minstrels-aim.c": 10
+        "/guilds/bard/bow/rhythmic-release.c": 10,
+        "/guilds/bard/bow/bowmans-form.c": 10,
+        "/guilds/bard/bow/bowmans-breath.c": 10,
+        "/guilds/bard/bow/minstrels-aim.c": 10
     ]));
 
     addSpecification("stamina point cost", 150);
     addSpecification("stamina point cost modifiers", ([
-        "guilds/bard/bow/rhythmic-release.c": 10,
-        "guilds/bard/bow/bowmans-form.c": 10,
-        "guilds/bard/bow/bowmans-breath.c": 10,
-        "guilds/bard/bow/minstrels-aim.c": 10
+        "/guilds/bard/bow/rhythmic-release.c": 10,
+        "/guilds/bard/bow/bowmans-form.c": 10,
+        "/guilds/bard/bow/bowmans-breath.c": 10,
+        "/guilds/bard/bow/minstrels-aim.c": 10
     ]));
 
     addSpecification("cooldown", 80);
     addSpecification("cooldown modifiers", ([
-        "guilds/bard/bow/archers-hand.c": 10,
-        "guilds/bard/bow/song-of-the-swift.c": 10,
-        "guilds/bard/bow/requiem-of-the-quick-draw.c": 10,
-        "guilds/bard/bow/bowmans-pace.c": 10,
+        "/guilds/bard/bow/archers-hand.c": 10,
+        "/guilds/bard/bow/song-of-the-swift.c": 10,
+        "/guilds/bard/bow/requiem-of-the-quick-draw.c": 10,
+        "/guilds/bard/bow/bowmans-pace.c": 10,
     ]));
 
     addSpecification("event handler", "sonicVolleyEvent");

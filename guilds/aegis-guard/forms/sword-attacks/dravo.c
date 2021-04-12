@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "A hewing technique moving from "
         "various guards to a counter attack.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/dravnu.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/dravnu.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
             "name": "thar-dravn",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/nuath-dravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/nuath-dravn.c",
             "name": "nuath-dravn",
             "formula": "multiplicative",
             "base value": 1,
@@ -66,7 +66,7 @@ protected void Setup()
 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/enaidravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/enaidravn.c",
             "name": "enaidravn",
             "formula": "multiplicative",
             "base value": 1,
@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
             "name" : "edaid-lhewig",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -82,7 +82,7 @@ protected void Setup()
         ]),            
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/raica-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/raica-dravn.c",
             "name" : "raica-dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
             "name" : "gwistamacil",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -98,7 +98,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
             "name" : "ruth-dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -106,7 +106,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
             "name" : "lanna-dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -114,7 +114,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
             "name" : "centhlein-dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -122,7 +122,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
             "name" : "asta-dravn",
             "formula" : "multiplicative",
             "base value" : 1,

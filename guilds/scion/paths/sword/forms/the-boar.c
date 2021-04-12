@@ -23,7 +23,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 8 ]));
 
-    addPrerequisite("guilds/scion/paths/sword/forms/eisenport.c",
+    addPrerequisite("/guilds/scion/paths/sword/forms/eisenport.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

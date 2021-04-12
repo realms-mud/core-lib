@@ -5,7 +5,7 @@
 #ifndef conversationsModule_h
 #define conversationsModule_h
 
-private nosave string BaseConversation = "lib/modules/conversations/baseConversation.c";
+private nosave string BaseConversation = "/lib/modules/conversations/baseConversation.c";
 private nosave mapping topics = ([]);
 private nosave object CurrentTopic = 0;
 

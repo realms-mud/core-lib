@@ -72,7 +72,7 @@ public nomask void broadcastMessage(string channelName, string message,
 private nomask string *getWizardChannels(object user)
 {
     string *ret = ({});
-    if (member(inherit_list(user), "lib/realizations/wizard.c") > -1)
+    if (member(inherit_list(user), "/lib/realizations/wizard.c") > -1)
     {
         ret += ({ "wiz", "status", "issue logged by" });
 

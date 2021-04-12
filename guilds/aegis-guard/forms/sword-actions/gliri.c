@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "An artful dance of blades that "
         "shatters defenses.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/raeg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/raeg.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -50,7 +50,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-actions/delu-an-gliri.c",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-gliri.c",
             "name": "angannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -58,7 +58,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/braig-an-gliri.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-gliri.c",
             "name": "glingamath",
             "formula": "multiplicative",
             "base value": 1,
@@ -66,7 +66,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-guarding/tur-gliraen.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-gliraen.c",
             "name" : "raud-angannon",
             "formula" : "multiplicative",
             "base value" : 1,

@@ -21,7 +21,7 @@ protected void Setup()
         "value": 47
     ]));
 
-    addPrerequisite("guilds/bard/strings/poly-rhythms.c",
+    addPrerequisite("/guilds/bard/strings/poly-rhythms.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

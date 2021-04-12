@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/swords/rengils-way.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/swords/rengils-way.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 28]));
     addPrerequisite("gem crafting", (["type":"skill", "value" : 15]));

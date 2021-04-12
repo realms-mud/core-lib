@@ -21,7 +21,7 @@ protected void Setup()
         "value": 25
     ]));
 
-    addPrerequisite("guilds/bard/strings/slide-techniques.c",
+    addPrerequisite("/guilds/bard/strings/slide-techniques.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

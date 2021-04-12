@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 21
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/godramin.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-combinations/godramin.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -23,7 +23,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/middle-strike.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/middle-strike.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

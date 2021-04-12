@@ -65,7 +65,7 @@ protected nomask void setUpUserForSelection()
     if (mappingp(SongData))
     {
         object songOptions = getDictionary("research")->researchObject(
-            "guilds/bard/compositions/root.c");
+            "/guilds/bard/compositions/root.c");
 
         mapping templates = songOptions->getPossibleTemplates();
         if (mappingp(templates) && sizeof(templates))

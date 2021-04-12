@@ -22,15 +22,15 @@ protected void Setup()
         "weapon. Doing so is wearying and will decrease available stamina.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/root.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
             "name" : "sweeping shock",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -38,7 +38,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
             "name" : "shock brand",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -46,7 +46,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
             "name" : "energized strike",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -54,7 +54,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType),
             "name" : "shocking edge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -62,7 +62,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
             "name" : "Thunder's Boon",
             "formula" : "multiplicative",
             "base value" : 1,

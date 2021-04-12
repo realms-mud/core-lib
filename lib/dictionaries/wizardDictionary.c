@@ -75,7 +75,7 @@ public nomask int getSortOrder(object wizard)
 {
     int ret = 0;
 
-    if (wizard && (member(inherit_list(wizard), "lib/realizations/wizard.c") > -1) &&
+    if (wizard && (member(inherit_list(wizard), "/lib/realizations/wizard.c") > -1) &&
         member(WizardGroups, wizard->wizardLevel()))
     {
         ret = WizardGroups[wizard->wizardLevel()]["sort order"];
@@ -88,7 +88,7 @@ public nomask string getWizardTitle(object wizard)
 {
     string ret = "Player";
 
-    if (wizard && (member(inherit_list(wizard), "lib/realizations/wizard.c") > -1) &&
+    if (wizard && (member(inherit_list(wizard), "/lib/realizations/wizard.c") > -1) &&
         member(WizardGroups, wizard->wizardLevel()))
     {
         ret = WizardGroups[wizard->wizardLevel()]["name"];

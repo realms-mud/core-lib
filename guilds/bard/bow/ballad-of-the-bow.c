@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 15
         ]));
-    addPrerequisite("guilds/bard/bow/enhanced-sonic-shaft.c",
+    addPrerequisite("/guilds/bard/bow/enhanced-sonic-shaft.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

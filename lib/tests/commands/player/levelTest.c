@@ -63,7 +63,7 @@ void GuildAdvancementLevelNotDisplayedIfYouAreNotInGuild()
 void TopLevelGuildMenuDisplaysCorrectly()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     Player->addExperience(2000);
     command("level up", Player);
@@ -81,10 +81,10 @@ void TopLevelGuildMenuDisplaysCorrectly()
 void DoesNotAllowForGuildsNotReadyForAdvancement()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     Player->joinGuild("fake fighter");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
@@ -102,9 +102,9 @@ void DoesNotAllowForGuildsNotReadyForAdvancement()
 void CanAdvanceMultipleGuilds()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->joinGuild("fake fighter");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     Player->addExperience(5000);
     command("level up", Player);
@@ -123,7 +123,7 @@ void CanAdvanceMultipleGuilds()
 void CanAdvanceInGuild()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
@@ -151,7 +151,7 @@ void CanAdvanceInGuild()
 void CanUpdateAttributes()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->addExperience(2000);
     Player->addAttributePointsToSpend(1);
     command("level up", Player);
@@ -191,7 +191,7 @@ void CanUpdateAttributes()
 void CanUpdateSkills()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 4);
     Player->advanceSkill("dagger", 1);
     Player->addExperience(2000);
@@ -263,15 +263,15 @@ void CanUpdateSkills()
 void CanSelectResearchChoice()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);
     command("1", Player);
     command("3", Player);
-    ExpectFalse(Player->isResearched("guilds/scion/paths/sword/root.c"));
-    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "guilds/scion/common/mana-shield/mana-shield.c" }), 
+    ExpectFalse(Player->isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
+        "/guilds/scion/common/mana-shield/mana-shield.c" }), 
         Player->availableResearchTrees());
 
     ExpectEq("A new research choice is available: The Focus\n"
@@ -287,10 +287,10 @@ void CanSelectResearchChoice()
         Player->caughtMessage());
 
     command("1", Player);
-    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/root.c"));
-    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "guilds/scion/common/mana-shield/mana-shield.c",
-        "guilds/scion/paths/sword.c" }),
+    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
+        "/guilds/scion/common/mana-shield/mana-shield.c",
+        "/guilds/scion/paths/sword.c" }),
         Player->availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
@@ -310,7 +310,7 @@ void CanSelectResearchChoice()
 void CanSelectResearchWhenAllChoicesMade()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);
@@ -320,11 +320,11 @@ void CanSelectResearchWhenAllChoicesMade()
     command("3", Player);
     command("1", Player);
 
-    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/root.c"));
-    ExpectTrue(Player->isResearched("guilds/scion/paths/sword/flame/root.c"));
-    ExpectEq(({ "lib/instances/research/races/highElfResearchTree.c",
-        "guilds/scion/paths/sword.c", "guilds/scion/paths/sword/flame.c",
-        "guilds/scion/common/mana-shield/mana-shield.c" }),
+    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/flame/root.c"));
+    ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
+        "/guilds/scion/paths/sword.c", "/guilds/scion/paths/sword/flame.c",
+        "/guilds/scion/common/mana-shield/mana-shield.c" }),
         Player->availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
@@ -343,7 +343,7 @@ void CanSelectResearchWhenAllChoicesMade()
 void CanSelectResearch()
 {
     Player->joinGuild("Scion of Dhuras");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->advanceSkill("long sword", 5);
     Player->addExperience(2000);
     command("level up", Player);

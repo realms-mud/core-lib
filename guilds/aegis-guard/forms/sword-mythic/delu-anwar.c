@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 25
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/mythic-root.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

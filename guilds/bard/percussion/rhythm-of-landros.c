@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Rhythm of Landros");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "percussion");
     addSpecification("default composite description",
@@ -30,13 +30,13 @@ protected void Setup()
         "equipment":({ "instrument: percussion" }),
     ]));
 
-    addPrerequisite("guilds/bard/percussion/counterspell-knell.c",
+    addPrerequisite("/guilds/bard/percussion/counterspell-knell.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/beat-of-baxeros.c",
+            "research item": "/guilds/bard/percussion/beat-of-baxeros.c",
             "name": "beat-of-baxeros",
             "formula": "multiplicative",
             "base value": 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/baxteros-meter.c",
+            "research item": "/guilds/bard/percussion/baxteros-meter.c",
             "name": "baxteros-meter",
             "formula": "multiplicative",
             "base value": 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/duotime-drive.c",
+            "research item": "/guilds/bard/percussion/duotime-drive.c",
             "name": "duotime-drive",
             "formula": "multiplicative",
             "base value": 1,
@@ -60,7 +60,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/percussion-mastery.c",
+            "research item": "/guilds/bard/percussion/percussion-mastery.c",
             "name": "percussion-mastery",
             "formula": "multiplicative",
             "base value": 1,
@@ -68,7 +68,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/verse-chorus-bridge.c",
+            "research item": "/guilds/bard/compositions/verse-chorus-bridge.c",
             "name": "verse-chorus-bridge",
             "formula": "multiplicative",
             "base value": 1,

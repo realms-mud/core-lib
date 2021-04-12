@@ -23,9 +23,9 @@ protected void Setup()
         "energy that swarms around a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/shockstrike.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/shockstrike.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -36,7 +36,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
             "name" : "Static Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
             "name" : "Ionized multiplicative",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
             "name" : "Plasma Barrier",
             "formula" : "multiplicative",
             "base value" : 1,

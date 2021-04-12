@@ -41,36 +41,36 @@ public void SetupGuild()
     addCriteria("blade attacks", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/blade-attacks.c"
+        "research tree": "/guilds/fighter/blade-attacks.c"
     ]));
 
     addCriteria("axe attacks", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/axe-attacks.c"
+        "research tree": "/guilds/fighter/axe-attacks.c"
     ]));
 
     addCriteria("polearm attacks", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/polearm-attacks.c"
+        "research tree": "/guilds/fighter/polearm-attacks.c"
     ]));
 
     addCriteria("shields", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/shields.c"
+        "research tree": "/guilds/fighter/shields.c"
     ]));
 
     addCriteria("bludgeon attacks", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/bludgeon-attacks.c"
+        "research tree": "/guilds/fighter/bludgeon-attacks.c"
     ]));
 
     addCriteria("combat techniques", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/fighter/combat-techniques.c"
+        "research tree": "/guilds/fighter/combat-techniques.c"
     ]));
 }

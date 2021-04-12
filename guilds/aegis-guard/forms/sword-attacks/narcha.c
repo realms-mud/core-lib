@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "A master hewing technique suitable "
         "against all defenses.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
             "name": "Lelyan Isilme",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-evading/dagnir-rhinc.c",
+            "research item": "/guilds/aegis-guard/forms/sword-evading/dagnir-rhinc.c",
             "name": "dagnir-rhinc",
             "formula": "multiplicative",
             "base value": 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-evading/pirin-maed-tir.c",
+            "research item": "/guilds/aegis-guard/forms/sword-evading/pirin-maed-tir.c",
             "name": "pirin-maed-tir",
             "formula": "multiplicative",
             "base value": 1,
@@ -73,7 +73,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
             "name": "Mithrannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -81,7 +81,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-evading/nista-ai-mab.c",
+            "research item": "/guilds/aegis-guard/forms/sword-evading/nista-ai-mab.c",
             "name": "nista-ai-mab",
             "formula": "multiplicative",
             "base value": 1,

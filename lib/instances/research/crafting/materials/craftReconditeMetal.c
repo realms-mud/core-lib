@@ -14,6 +14,6 @@ protected void Setup()
         "difficult to acquire in usable form such as aluminum or nickel.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftUncommonMetal.c", (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/materials/craftAlloyMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftUncommonMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftAlloyMetal.c", (["type":"research"]));
 }

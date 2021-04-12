@@ -20,7 +20,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 5
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/bregol-adleg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/bregol-adleg.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
@@ -29,7 +29,7 @@ protected void Setup()
     addSpecification("cooldown", 4);
     addSpecification("stamina point cost", 50);
     addSpecification("command template", "meitha ture");
-    addSpecification("trait", "guilds/aegis-guard/forms/bow/aim-trait.c");
+    addSpecification("trait", "/guilds/aegis-guard/forms/bow/aim-trait.c");
 
     addSpecification("use ability activate message", "##InitiatorName## "
         "##Infinitive::take## a stance of carefully aiming "

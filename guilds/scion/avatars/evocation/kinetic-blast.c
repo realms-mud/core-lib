@@ -18,12 +18,12 @@ protected void Setup()
         "value": 27
     ]));
 
-    addPrerequisite("guilds/scion/avatars/evocation/energy-bolt.c",
+    addPrerequisite("/guilds/scion/avatars/evocation/energy-bolt.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/evocation/root.c",
+        "/guilds/scion/avatars/evocation/root.c",
     }));
 }

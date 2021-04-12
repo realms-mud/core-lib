@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of a master hewing technique for Beraid, Naergo, and "
         "Bauglo.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/braig-an-beraid.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/braig-an-beraid.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

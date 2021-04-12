@@ -14,6 +14,6 @@ protected void Setup()
         "knowledge is the building blocks for creating plate, splint, and "
         "scale armor.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/armor/craftArmor.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/armor/craftArmor.c", (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 3]));
 }

@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
 
-    addPrerequisite("guilds/scion/paths/hammer/forms/side-stepping.c",
+    addPrerequisite("/guilds/scion/paths/hammer/forms/side-stepping.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

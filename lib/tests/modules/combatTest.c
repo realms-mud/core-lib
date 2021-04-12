@@ -336,7 +336,7 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectFalse(member(roomItems, Target) > -1, "target is in room");
-    ExpectEq("lib/items/corpse.c", program_name(roomItems[0]));
+    ExpectEq("/lib/items/corpse.c", program_name(roomItems[0]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -361,7 +361,7 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
     ExpectTrue(Attacker->isDead(), "attacker is now dead");
-    ExpectEq("lib/items/corpse.c", program_name(roomItems[0]));
+    ExpectEq("/lib/items/corpse.c", program_name(roomItems[0]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -374,7 +374,7 @@ void OnHitFiresWhenLegalHitIsDone()
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Attacker->hit(5, "physical"), "attacker hit is called"));
-    ExpectEq("*event handler: onHit called, data: physical 5, caller: lib/tests/support/services/combatWithMockServices.c", 
+    ExpectEq("*event handler: onHit called, data: physical 5, caller: /lib/tests/support/services/combatWithMockServices.c", 
         err, "onHit event fired");
     ToggleCallOutBypass();
 }
@@ -397,7 +397,7 @@ void OnDeathFiresWhenKillingBlowLands()
     ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
 
     string err = catch (ExpectTrue(Attacker->hit(500, "physical"), "attacker hit is called"));
-    ExpectEq("*event handler: onDeath called: lib/tests/support/services/combatWithMockServices.c",
+    ExpectEq("*event handler: onDeath called: /lib/tests/support/services/combatWithMockServices.c",
         err, "onDeath event fired");
     ToggleCallOutBypass();
 }
@@ -499,7 +499,7 @@ void TargetAttackedDuringHeartBeat()
     ExpectTrue(Target->registerEvent(handler), "event handler registered for attacker");
 
     string err = catch (Attacker->heart_beat());
-    ExpectEq("*event handler: onAttacked called: lib/tests/support/services/testMonster.c",
+    ExpectEq("*event handler: onAttacked called: /lib/tests/support/services/testMonster.c",
         err, "onAttacked event fired");
     ToggleCallOutBypass();
 }
@@ -693,7 +693,7 @@ void DamageReflectionIsTriggered()
     ExpectEq(1, modifier->set("registration list", ({ Target })), "registration list can be set");
 
     string err = catch (ExpectTrue(Target->hit(25, "physical"), "attack reflected on attacker"));
-    ExpectEq("*event handler: onHit called, data: physical 3, caller: lib/tests/support/services/combatWithMockServices.c",
+    ExpectEq("*event handler: onHit called, data: physical 3, caller: /lib/tests/support/services/combatWithMockServices.c",
         err, "onHit event fired");
     ToggleCallOutBypass();
 }
@@ -918,7 +918,7 @@ void DamageResistanceReducesDamageTaken()
 
     Target->hitPoints(Target->maxHitPoints());
     ExpectEq(1000, Target->hitPoints());
-    Target->addTrait("lib/tests/support/traits/testTrait.c");
+    Target->addTrait("/lib/tests/support/traits/testTrait.c");
 
     ExpectEq(445, Target->hit(500, "fire"));
 }
@@ -933,7 +933,7 @@ void DamageResistanceWithTraitAndEquipmentReducesDamageTaken()
 
     Target->hitPoints(Target->maxHitPoints());
     ExpectEq(1000, Target->hitPoints());
-    Target->addTrait("lib/tests/support/traits/testTrait.c");
+    Target->addTrait("/lib/tests/support/traits/testTrait.c");
     object weapon = CreateWeapon("sword");
     weapon->set("resistances", ([ "fire": 5 ]));
     move_object(weapon, Target);
@@ -998,7 +998,7 @@ void DefensiveStanceCorrectlyApplied()
     ExpectEq(5, Attacker->calculateDefendAttack());
     ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
 
-    Attacker->addTrait("lib/tests/support/traits/testDefensiveStanceTrait.c");
+    Attacker->addTrait("/lib/tests/support/traits/testDefensiveStanceTrait.c");
 
     ExpectEq(7, Attacker->calculateDefendAttack());
     ExpectEq(6, Attacker->calculateAttack(Target, weapon, 1));
@@ -1024,7 +1024,7 @@ void OffensiveStanceCorrectlyApplied()
     ExpectEq(5, Attacker->calculateDefendAttack());
     ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
 
-    Attacker->addTrait("lib/tests/support/traits/testOffensiveStanceTrait.c");
+    Attacker->addTrait("/lib/tests/support/traits/testOffensiveStanceTrait.c");
 
     ExpectEq(2, Attacker->calculateDefendAttack());
     ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1));
@@ -1063,7 +1063,7 @@ void AttackerDoesNotAttackWhenDoNotAttackTraitIsActive()
     ExpectEq(0, Attacker->roundsSinceLastAttack());
     ExpectEq(0, Target->roundsSinceLastAttack());
 
-    Attacker->addTrait("lib/tests/support/traits/testDoNotAttackTrait.c");
+    Attacker->addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
 
     Attacker->heart_beat();
     ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
@@ -1107,7 +1107,7 @@ void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
     ExpectEq(0, Attacker->roundsSinceLastAttack());
     ExpectEq(0, Target->roundsSinceLastAttack());
 
-    Attacker->addTrait("lib/tests/support/traits/testDoNotAttackTrait.c");
+    Attacker->addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
 
     Attacker->heart_beat();
     Attacker->heart_beat();

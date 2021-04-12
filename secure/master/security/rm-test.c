@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/rmTest");
+    setName("/lib/tests/commands/wizard/rmTest");
     addPermission("/players/earl", Read | Write);
 
     addPriviledgedEfun("copy_file");

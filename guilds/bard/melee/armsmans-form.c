@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 16
         ]));
-    addPrerequisite("guilds/bard/melee/rhythmic-riposte.c",
+    addPrerequisite("/guilds/bard/melee/rhythmic-riposte.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

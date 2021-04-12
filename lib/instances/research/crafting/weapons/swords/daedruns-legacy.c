@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/swords/daedruns-way.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/swords/daedruns-way.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 33]));
     addPrerequisite("metal crafting", (["type":"skill", "value" : 30]));

@@ -40,8 +40,8 @@ protected void Setup()
     Name("A Studious Childhood");
     Description("");
     Source("background");
-    addResearchElement("guilds/background/paths/learning/root.c");
-    TreeRoot("guilds/background/paths/learning/root.c");
+    addResearchElement("/guilds/background/paths/learning/root.c");
+    TreeRoot("/guilds/background/paths/learning/root.c");
 
     FirstLevel();
     SecondLevel();

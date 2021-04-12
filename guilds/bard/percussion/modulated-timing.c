@@ -21,7 +21,7 @@ protected void Setup()
         "value": 31
     ]));
 
-    addPrerequisite("guilds/bard/percussion/advanced-timing.c",
+    addPrerequisite("/guilds/bard/percussion/advanced-timing.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

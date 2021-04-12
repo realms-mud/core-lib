@@ -21,7 +21,7 @@ protected void Setup()
         "value": 33
     ]));
 
-    addPrerequisite("guilds/bard/strings/ghost-notes.c",
+    addPrerequisite("/guilds/bard/strings/ghost-notes.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

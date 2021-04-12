@@ -133,7 +133,7 @@ public nomask int addRole(string newRole, string type)
     string *inherits = this_player() ? inherit_list(this_player()) : 0;
 
     if (inherits && 
-        (member(inherits, "lib/realizations/wizard.c") > -1) &&
+        (member(inherits, "/lib/realizations/wizard.c") > -1) &&
         (member(this_player()->groups(), "elder") > -1))
     {
         int dbHandle = connect();
@@ -180,7 +180,7 @@ public nomask string addRoleToPlayer(object character, string newRole)
     string *inherits = this_player() ? inherit_list(this_player()) : 0;
 
     if (inherits && objectp(character) && 
-        (member(inherits, "lib/realizations/wizard.c") > -1))
+        (member(inherits, "/lib/realizations/wizard.c") > -1))
     {
         int dbHandle = connect();
         ret = isValidLevelForRole(dbHandle, newRole);
@@ -206,7 +206,7 @@ public nomask int removeRoleFromPlayer(object character, string roleToRemove)
     string *inherits = this_player() ? inherit_list(this_player()) : 0;
 
     if (inherits && objectp(character) && 
-        (member(inherits, "lib/realizations/wizard.c") > -1))
+        (member(inherits, "/lib/realizations/wizard.c") > -1))
     {
         int dbHandle = connect();
         ret = isValidLevelForRole(dbHandle, roleToRemove) ? 1 : 0;

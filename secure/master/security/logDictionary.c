@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/dictionaries/logDictionary");
+    setName("/lib/dictionaries/logDictionary");
     addPermission("/log", Read | Write);
 
     addPriviledgedEfun("write_file");

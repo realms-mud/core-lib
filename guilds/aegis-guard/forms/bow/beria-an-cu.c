@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 1 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/bow/root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

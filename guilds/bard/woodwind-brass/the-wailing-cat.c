@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "The Wailing Cat");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "woodwind");
     addSpecification("default composite description",
@@ -20,7 +20,7 @@ protected void Setup()
         "knowledge of a cat-summoning arpeggio that can be played with "
         "woodwind and brass instruments.");
 
-    addPrerequisite("guilds/bard/woodwind-brass/root.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/root.c",
         (["type":"research"]));
 
     addPrerequisite("level", ([  
@@ -46,7 +46,7 @@ protected void Setup()
     addSpecification("persona", "cat");
 
     addSpecification("modifiers", ([
-        "guilds/bard/woodwind-brass/creatures-of-might.c":({
+        "/guilds/bard/woodwind-brass/creatures-of-might.c":({
             (["modifier": "bonus strength",
                "value": 4 ]),
             (["modifier": "bonus dexterity",
@@ -58,7 +58,7 @@ protected void Setup()
             (["modifier":"bonus hit points",
                "value" : 200]),
         }),
-        "guilds/bard/woodwind-brass/denizens-dance.c":({
+        "/guilds/bard/woodwind-brass/denizens-dance.c":({
             (["modifier": "bonus attack",
                "value": 20 ]),
             (["modifier": "bonus damage",
@@ -68,7 +68,7 @@ protected void Setup()
             (["modifier":"bonus hit points",
                "value" : 300]),
         }),
-        "guilds/bard/woodwind-brass/call-of-the-cats.c":({
+        "/guilds/bard/woodwind-brass/call-of-the-cats.c":({
             (["modifier": "bonus heal hit points",
                "value": 10 ]),
             (["modifier":"bonus heal spell points",
@@ -78,7 +78,7 @@ protected void Setup()
             (["modifier":"bonus heal spell points rate",
                "value": 5 ]),
         }),
-        "guilds/bard/woodwind-brass/dexterous-denizens.c":({
+        "/guilds/bard/woodwind-brass/dexterous-denizens.c":({
             (["modifier": "bonus dexterity",
                "value": 6 ]),
             (["modifier":"bonus dodge",

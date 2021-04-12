@@ -9,11 +9,11 @@
 
 private int money;
 
-private nosave string ArmorBlueprint = "lib/items/armor.c";
-private nosave string WeaponBlueprint = "lib/items/weapon.c";
-private nosave string InstrumentBlueprint = "lib/items/instrument.c";
+private nosave string ArmorBlueprint = "/lib/items/armor.c";
+private nosave string WeaponBlueprint = "/lib/items/weapon.c";
+private nosave string InstrumentBlueprint = "/lib/items/instrument.c";
 
-private nosave string ModifierBlueprint = "lib/items/modifierObject.c";
+private nosave string ModifierBlueprint = "/lib/items/modifierObject.c";
 private nosave int weight = 0;
 
 private mapping itemRegistry =
@@ -141,9 +141,9 @@ static nomask mapping sendInventory()
     }
 
     object *inventoryObjects = filter(all_inventory(),
-        (: ((member(inherit_list($1), "lib/core/baseSelector.c") < 0) &&
-           (member(inherit_list($1), "lib/modules/guilds/researchChooser.c") < 0) &&
-           (member(inherit_list($1), "lib/items/modifierObject.c") < 0)) :))
+        (: ((member(inherit_list($1), "/lib/core/baseSelector.c") < 0) &&
+           (member(inherit_list($1), "/lib/modules/guilds/researchChooser.c") < 0) &&
+           (member(inherit_list($1), "/lib/items/modifierObject.c") < 0)) :))
         - registeredObjects;
     {
         foreach(object inventoryObject in inventoryObjects)

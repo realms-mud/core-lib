@@ -24,9 +24,9 @@ protected void Setup()
         "discharge at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/root.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("scope", "targeted");
@@ -50,7 +50,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
             "name" : "Static Charge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -58,7 +58,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
             "name" : "Electrostatic Induction",
             "formula" : "multiplicative",
             "base value" : 1,

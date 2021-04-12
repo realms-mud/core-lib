@@ -18,12 +18,12 @@ protected void Setup()
         "value": 13
     ]));
 
-    addPrerequisite("guilds/scion/avatars/blood/touch-of-the-damned.c",
+    addPrerequisite("/guilds/scion/avatars/blood/touch-of-the-damned.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/blood/root.c",
+        "/guilds/scion/avatars/blood/root.c",
     }));
 }

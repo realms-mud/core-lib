@@ -21,7 +21,7 @@ protected void Setup()
         "value": 27
     ]));
 
-    addPrerequisite("guilds/bard/strings/legato.c",
+    addPrerequisite("/guilds/bard/strings/legato.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -18,7 +18,7 @@ public nomask void setup(string name, int quantity, string resourceFile,
         object resourceObj;
         catch (resourceObj = load_object(resourceFile));
         if (resourceObj && stringp(name) && sizeof(name) &&
-            (member(inherit_list(resourceObj), "lib/items/item.c") > -1))
+            (member(inherit_list(resourceObj), "/lib/items/item.c") > -1))
         {
             owningElement = owner;
             harvestData = ([

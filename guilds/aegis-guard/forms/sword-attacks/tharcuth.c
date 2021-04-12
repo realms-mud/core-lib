@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 3 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/attack-root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/attack-root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

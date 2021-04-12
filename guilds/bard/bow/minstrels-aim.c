@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 31
         ]));
-    addPrerequisite("guilds/bard/bow/bowmans-breath.c",
+    addPrerequisite("/guilds/bard/bow/bowmans-breath.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

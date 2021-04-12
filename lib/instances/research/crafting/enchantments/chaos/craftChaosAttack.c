@@ -16,5 +16,5 @@ protected void Setup()
 
     addSpecification("limited by", (["crafting type":"staff"]));
 
-    addPrerequisite("lib/instances/research/crafting/enchantments/craftAttackEnchantments.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c", (["type":"research"]));
 }

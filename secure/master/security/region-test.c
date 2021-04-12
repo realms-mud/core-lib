@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/environment/regionTest");
+    setName("/lib/tests/environment/regionTest");
     addPermission("/lib/generated_region", Read | Write);
 
     addPriviledgedEfun("get_dir");

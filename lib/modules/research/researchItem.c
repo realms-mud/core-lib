@@ -9,7 +9,7 @@ virtual inherit "/lib/core/specification.c";
 virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/commands/baseCommand.c";
 
-private nosave string ResearchItemLocation = "lib/modules/research";
+private nosave string ResearchItemLocation = "/lib/modules/research";
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int checkValidType(string typeToCheck)
@@ -72,7 +72,7 @@ protected nomask int checkValidType(string typeToCheck)
             case "domain":
             {
                 if(member(inherit_list(this_object()), 
-                   "lib/modules/domains/domainResearchItem.c")
+                   "/lib/modules/domains/domainResearchItem.c")
                    < 0)
                 {
                     ret = 0;

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 43
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

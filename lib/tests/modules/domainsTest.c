@@ -227,7 +227,7 @@ void GetHenchmenReturnsCorrectTypeOfHenchmen()
         "name":"Tantor the Unclean",
         "type" : "carpenter",
         "persona" : "swordsman",
-        "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
+        "traits": ({ "/lib/instances/traits/domains/journeyman-carpenter.c" }),
         "level" : 10,
         "activity" : "building"
     ]);

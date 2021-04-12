@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of an improved hewing technique for Gliri and Hwinio.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/gliri.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/gliri.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

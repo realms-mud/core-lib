@@ -287,7 +287,7 @@ public nomask int drinkAlcohol(object drink)
     {
         tell_object(this_object(), "You fail to reach the drink with your mouth.\n");
     }
-    else if (objectp(drink) && (member(inherit_list(drink), "lib/items/drink.c") > -1))
+    else if (objectp(drink) && (member(inherit_list(drink), "/lib/items/drink.c") > -1))
     {
         ret = 1;
         intoxicated += drink->query("biological strength");
@@ -329,7 +329,7 @@ public nomask int consumeDrug(object drug)
     {
         tell_object(this_object(), "You fail to reach your mouth.\n");
     }
-    else if (objectp(drug) && (member(inherit_list(drug), "lib/items/food.c") > -1))
+    else if (objectp(drug) && (member(inherit_list(drug), "/lib/items/food.c") > -1))
     {
         ret = 1;
         drugged += drug->query("biological strength");
@@ -371,7 +371,7 @@ public nomask int drink(object drink)
         tell_object(this_object(), "You can't possibly drink that much right now!\n"
             "You feel crosslegged enough as it is.\n");
     }
-    else if(objectp(drink) && (member(inherit_list(drink), "lib/items/drink.c") > -1))
+    else if(objectp(drink) && (member(inherit_list(drink), "/lib/items/drink.c") > -1))
     {
         ret = 1;
         soaked += drink->query("biological strength");
@@ -413,7 +413,7 @@ public nomask int eat(object food)
         tell_object(this_object(), "This is much too rich for you right now! "
             "Perhaps something lighter?\n");
     }
-    else if (objectp(food) && (member(inherit_list(food), "lib/items/food.c") > -1))
+    else if (objectp(food) && (member(inherit_list(food), "/lib/items/food.c") > -1))
     {
         ret = 1;
         stuffed += food->query("biological strength");

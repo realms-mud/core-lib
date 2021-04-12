@@ -14,5 +14,5 @@ protected void Setup()
         "purple heart or koa.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftUncommonWood.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftUncommonWood.c", (["type":"research"]));
 }

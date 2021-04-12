@@ -14,14 +14,14 @@ protected void Setup()
         "This form enhances the scion's mana shield.");
 
     addSpecification("limited by", (["research active": ({
-        "guilds/scion/common/mana-shield/root.c" })]));
+        "/guilds/scion/common/mana-shield/root.c" })]));
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 43 ]));
 
-    addPrerequisite("guilds/scion/common/mana-shield/mantle-of-mana.c",
+    addPrerequisite("/guilds/scion/common/mana-shield/mantle-of-mana.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

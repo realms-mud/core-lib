@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Mystic Rhythms");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "percussion");
     addSpecification("default composite description",
@@ -29,13 +29,13 @@ protected void Setup()
         "equipment":({ "instrument: percussion" }),
     ]));
 
-    addPrerequisite("guilds/bard/percussion/root.c",
+    addPrerequisite("/guilds/bard/percussion/root.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/keeping-time.c",
+            "research item": "/guilds/bard/percussion/keeping-time.c",
             "name": "keeping-time",
             "formula": "multiplicative",
             "base value": 1,
@@ -43,7 +43,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/advanced-timing.c",
+            "research item": "/guilds/bard/percussion/advanced-timing.c",
             "name": "advanced-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -51,7 +51,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/modulated-timing.c",
+            "research item": "/guilds/bard/percussion/modulated-timing.c",
             "name": "modulated-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -59,7 +59,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/fibonacci-timing.c",
+            "research item": "/guilds/bard/percussion/fibonacci-timing.c",
             "name": "fibonacci-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -67,7 +67,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/percussion/golden-measures.c",
+            "research item": "/guilds/bard/percussion/golden-measures.c",
             "name": "golden-measures",
             "formula": "multiplicative",
             "base value": 1,
@@ -75,7 +75,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/verse-pre-chorus.c",
+            "research item": "/guilds/bard/compositions/verse-pre-chorus.c",
             "name": "aaba",
             "formula": "multiplicative",
             "base value": 1,

@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/commands/wizard/cp");
+    setName("/lib/commands/wizard/cp");
     addPermission("/", Read | Write);
 
     addPriviledgedEfun("copy_file");

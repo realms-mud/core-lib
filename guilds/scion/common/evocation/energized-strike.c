@@ -26,7 +26,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 11 ]));
     addPrerequisite(
-        sprintf("guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

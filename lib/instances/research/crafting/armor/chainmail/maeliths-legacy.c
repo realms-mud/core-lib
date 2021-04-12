@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/chainmail/maeliths-tradition.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/chainmail/maeliths-tradition.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 35]));
     addPrerequisite("spellcraft", (["type":"skill", "value" : 35]));

@@ -23,9 +23,9 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 23 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/the-fool.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/the-fool.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/over-strike.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/over-strike.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

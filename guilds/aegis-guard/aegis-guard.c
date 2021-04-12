@@ -138,48 +138,48 @@ public void SetupGuild()
     addCriteria("sword attacks", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/aegis-guard/sword-attacks.c"
+        "research tree": "/guilds/aegis-guard/sword-attacks.c"
     ]));
 
     addCriteria("sword evasion", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/aegis-guard/sword-evading.c"
+        "research tree": "/guilds/aegis-guard/sword-evading.c"
     ]));
 
     addCriteria("sword guarding", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/aegis-guard/sword-guarding.c"
+        "research tree": "/guilds/aegis-guard/sword-guarding.c"
     ]));
 
     addCriteria("bows", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/aegis-guard/bows.c"
+        "research tree": "/guilds/aegis-guard/bows.c"
     ]));
 
     addCriteria("combinations", ([
         "type":"research tree",
         "apply": "at level 5",
-        "research tree": "guilds/aegis-guard/sword-combinations.c"
+        "research tree": "/guilds/aegis-guard/sword-combinations.c"
     ]));
 
     addCriteria("actions", ([
         "type":"research tree",
         "apply": "at level 7",
-        "research tree": "guilds/aegis-guard/sword-actions.c"
+        "research tree": "/guilds/aegis-guard/sword-actions.c"
     ]));
 
     addCriteria("elemental", ([
         "type":"research tree",
         "apply": "at level 11",
-        "research tree": "guilds/aegis-guard/sword-elemental.c"
+        "research tree": "/guilds/aegis-guard/sword-elemental.c"
     ]));
 
     addCriteria("mythic", ([
         "type":"research tree",
         "apply": "at level 15",
-        "research tree": "guilds/aegis-guard/sword-mythic.c"
+        "research tree": "/guilds/aegis-guard/sword-mythic.c"
     ]));
 }

@@ -40,8 +40,8 @@ protected void Setup()
     Name("A Childhood of Structured Military Learning");
     Description("");
     Source("background");
-    addResearchElement("guilds/background/paths/martial/root.c");
-    TreeRoot("guilds/background/paths/martial/root.c");
+    addResearchElement("/guilds/background/paths/martial/root.c");
+    TreeRoot("/guilds/background/paths/martial/root.c");
 
     FirstLevel();
     SecondLevel();

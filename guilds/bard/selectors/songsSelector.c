@@ -21,7 +21,7 @@ protected nomask void setUpUserForSelection()
 {
     Data = ([]);
     mapping currentSongs = User->getOptionsForCompositeResearch(
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
 
     int optionCount = 1;
 

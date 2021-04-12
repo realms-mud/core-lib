@@ -40,8 +40,8 @@ protected void Setup()
     Name("A Manipulative Little Shit");
     Description("");
     Source("background");
-    addResearchElement("guilds/background/paths/manipulative/root.c");
-    TreeRoot("guilds/background/paths/manipulative/root.c");
+    addResearchElement("/guilds/background/paths/manipulative/root.c");
+    TreeRoot("/guilds/background/paths/manipulative/root.c");
 
     FirstLevel();
     SecondLevel();

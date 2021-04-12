@@ -23,11 +23,11 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 15 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/over-strike.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/over-strike.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/wrath-guard.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/wrath-guard.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/wechsel.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/wechsel.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

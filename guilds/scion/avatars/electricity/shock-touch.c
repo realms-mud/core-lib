@@ -15,6 +15,6 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/electricity/root.c",
+        "/guilds/scion/avatars/electricity/root.c",
     }));
 }

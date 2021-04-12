@@ -150,7 +150,7 @@ public void galadhelExclaims()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "tutorial/characters/jerith.c"))
+    if (caller && (program_name(caller) == "/tutorial/characters/jerith.c"))
     {
         handleJerithDeath(environment(Player));
         m_delete(actors, "jerith");
@@ -158,10 +158,10 @@ public void onDeath(object caller)
         call_out("galadhelExclaims", 0);
     }
 
-    else if (caller && (program_name(caller) == "tutorial/characters/keeper-of-the-night.c"))
+    else if (caller && (program_name(caller) == "/tutorial/characters/keeper-of-the-night.c"))
     {
         object *corpses = filter(all_inventory(environment(Player)),
-            (: (member(inherit_list($1), "lib/items/corpse.c") > -1) :));
+            (: (member(inherit_list($1), "/lib/items/corpse.c") > -1) :));
 
         foreach(object corpse in corpses)
         {

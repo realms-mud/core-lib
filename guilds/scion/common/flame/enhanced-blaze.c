@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 27 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

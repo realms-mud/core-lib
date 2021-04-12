@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 37
         ]));
-    addPrerequisite("guilds/bard/bow/bowmans-tale.c",
+    addPrerequisite("/guilds/bard/bow/bowmans-tale.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -53,7 +53,7 @@ void OnRestoreFailedInitiatesSelector()
     ExpectEq(({}), all_inventory(User));
     User->restore("newcharacter");
     ExpectTrue(objectp(Initializer));
-    ExpectEq(({ "lib/modules/creation/colorSelector.c" }), 
+    ExpectEq(({ "/lib/modules/creation/colorSelector.c" }), 
         all_inventory(User));
 }
 
@@ -63,7 +63,7 @@ void OnSelectorCompletedCleansUpCurrentSelectorAndTransitionsToNextState()
     User->registerEvent(Initializer);
     User->restore("newcharacter");
 
-    ExpectEq(({ "lib/modules/creation/colorSelector.c" }),
+    ExpectEq(({ "/lib/modules/creation/colorSelector.c" }),
         all_inventory(User));
 
     object selector = first_inventory(User);
@@ -72,7 +72,7 @@ void OnSelectorCompletedCleansUpCurrentSelectorAndTransitionsToNextState()
     selector->applySelection("1");
     ExpectFalse(objectp(selector));
 
-    ExpectEq(({ "lib/modules/creation/charsetSelector.c" }),
+    ExpectEq(({ "/lib/modules/creation/charsetSelector.c" }),
         all_inventory(User));
 }
 

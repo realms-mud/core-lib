@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 29
         ]));
-    addPrerequisite("guilds/bard/bow/arrowheads-lament.c",
+    addPrerequisite("/guilds/bard/bow/arrowheads-lament.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

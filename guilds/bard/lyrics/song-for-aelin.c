@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Song for Aelin");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "lyric");
     addSpecification("composite class", "lyric");
     addSpecification("default composite description",
@@ -29,13 +29,13 @@ protected void Setup()
         ([  "type": "skill",
             "value": 10
         ]));
-    addPrerequisite("guilds/bard/lyrics/lay-of-landros.c",
+    addPrerequisite("/guilds/bard/lyrics/lay-of-landros.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/a-rhyme-of-the-deep.c",
+            "research item": "/guilds/bard/lyrics/a-rhyme-of-the-deep.c",
             "name": "rhyme of the deep",
             "formula": "multiplicative",
             "base value": 1,
@@ -43,7 +43,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/boon-of-landros.c",
+            "research item": "/guilds/bard/lyrics/boon-of-landros.c",
             "name": "boon-of-landros",
             "formula": "multiplicative",
             "base value": 1,
@@ -51,7 +51,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/day-is-coming.c",
+            "research item": "/guilds/bard/lyrics/day-is-coming.c",
             "name": "day-is-coming",
             "formula": "multiplicative",
             "base value": 1,
@@ -59,7 +59,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/bloods-depth.c",
+            "research item": "/guilds/bard/lyrics/bloods-depth.c",
             "name": "bloods-depth",
             "formula": "multiplicative",
             "base value": 1,
@@ -67,7 +67,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/into-the-dream.c",
+            "research item": "/guilds/bard/lyrics/into-the-dream.c",
             "name": "into-the-dream",
             "formula": "multiplicative",
             "base value": 1,
@@ -75,7 +75,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/simple-ballad.c",
+            "research item": "/guilds/bard/compositions/simple-ballad.c",
             "name": "simple-ballad",
             "formula": "multiplicative",
             "base value": 1,

@@ -673,7 +673,7 @@ void ShortReturnsCorrectMessageInLowLight()
 
     ExpectEq("The silhouette of a humanoid", Attributes->short());
 
-    Attributes->addTrait("lib/instances/traits/personas/animal/beaver.c");
+    Attributes->addTrait("/lib/instances/traits/personas/animal/beaver.c");
     ExpectEq("The silhouette of a small animal", Attributes->short());
 
     destruct(dictionary);

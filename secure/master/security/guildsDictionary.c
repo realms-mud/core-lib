@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/dictionaries/guildsDictionary");
+    setName("/lib/dictionaries/guildsDictionary");
     addPermission("/lib/instances", Read);
     addPermission("/lib/tests", Read);
     addPermission("/areas", Read);

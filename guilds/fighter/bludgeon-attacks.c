@@ -130,8 +130,8 @@ protected void Setup()
     Name("Bludgeon Attacks");
     Description("");
     Source("fighter");
-    addResearchElement("guilds/fighter/bludgeon/root.c");
-    TreeRoot("guilds/fighter/bludgeon/root.c");
+    addResearchElement("/guilds/fighter/bludgeon/root.c");
+    TreeRoot("/guilds/fighter/bludgeon/root.c");
 
     FirstLevel();
     SecondLevel();

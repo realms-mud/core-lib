@@ -23,9 +23,9 @@ protected void Setup()
         "powerful negative energy storm that harries a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/enervating-barrier.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/enervating-barrier.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -36,7 +36,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/malefic-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/malefic-barrier.c", WeaponType),
             "name" : "Malefic Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/corrupting-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/corrupting-barrier.c", WeaponType),
             "name" : "Corrupting Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/nefarious-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/nefarious-barrier.c", WeaponType),
             "name" : "Nefarious Barrier",
             "formula" : "multiplicative",
             "base value" : 1,

@@ -18,7 +18,7 @@ protected void Setup()
     addPrerequisite("metal crafting", (["type":"skill", "value" : 28]));
     addPrerequisite("gem crafting", (["type":"skill", "value" : 28]));
 
-    addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/khazuraths-tradition.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/heavy-armor/khazuraths-tradition.c", 
         (["type":"research"]));
 
     addSpecification("limited by", (["crafting type":

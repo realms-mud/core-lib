@@ -49,7 +49,7 @@ private nomask object *getSpecificItem(object initiator, object source,
         present(targetString, environment(initiator));
 
     int isWizard = 
-        member(inherit_list(initiator), "lib/realizations/wizard.c") > -1;
+        member(inherit_list(initiator), "/lib/realizations/wizard.c") > -1;
 
     if (!target && isWizard)
     {
@@ -89,7 +89,7 @@ private nomask int getObjects(object initiator, object source, object *targets)
             {
                 tell_object(initiator, "You cannot get that.\n");
             }
-            else if (member(inherit_list(target), "lib/items/money.c") > -1)
+            else if (member(inherit_list(target), "/lib/items/money.c") > -1)
             {
                 displayMessage(sprintf("##InitiatorName## ##Infinitive::pick##"
                     " up %d coin%s.\n", target->query("value"),
@@ -144,7 +144,7 @@ private varargs nomask int getMoney(object initiator, int quantity)
 {
     int ret = 0;
     object *inventory = filter(all_inventory(environment(initiator)),
-        (: (member(inherit_list($1), "lib/items/money.c") > -1) :));
+        (: (member(inherit_list($1), "/lib/items/money.c") > -1) :));
 
     if (!quantity)
     {

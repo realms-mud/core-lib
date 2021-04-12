@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "level", 
           "guild": "bard",
           "value": 47 ]));
-    addPrerequisite("guilds/bard/lyrics/daedruns-lament.c",
+    addPrerequisite("/guilds/bard/lyrics/daedruns-lament.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

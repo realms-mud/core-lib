@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/modules/secure/fakeDatabase");
+    setName("/lib/tests/modules/secure/fakeDatabase");
     addPermission("/log", Read | Write);
     addPermission("/secure/simulated-efuns/database/", Read);
 

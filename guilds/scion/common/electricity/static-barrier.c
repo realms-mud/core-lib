@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 11 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -27,7 +27,7 @@ protected void Setup()
         "guild": "Scion of Dhuras",
         "value": 31 
     ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/sanguine-shroud.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/sanguine-shroud.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -335,7 +335,7 @@ void HarvestResourceCorrectlyHarvestsResources()
     move_object(axe, Player);
     command("equip axe", Player);
 
-    ExpectEq("lib/instances/items/materials/wood/yew.c", 
+    ExpectEq("/lib/instances/items/materials/wood/yew.c", 
         program_name(Resource->harvestResource("yew", Player, Environment)));
 
     ExpectEq("Name: Yew\n"
@@ -377,8 +377,8 @@ void CannotHarvestResourceWhenNoResourcesLeft()
         "There are currently no yew available for harvest.\n",
         Resource->getHarvestStatistics(Environment, Player));
     
-    ExpectEq("lib/instances/items/materials/wood/yew.c", program_name(yew1));
-    ExpectEq("lib/instances/items/materials/wood/yew.c", program_name(yew2));
+    ExpectEq("/lib/instances/items/materials/wood/yew.c", program_name(yew1));
+    ExpectEq("/lib/instances/items/materials/wood/yew.c", program_name(yew2));
     ExpectNotEq(object_name(yew1), object_name(yew2));
 
     ExpectFalse(Resource->harvestResource("yew", Player, Environment));

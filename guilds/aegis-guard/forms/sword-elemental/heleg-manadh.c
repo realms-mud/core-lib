@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 37
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/heleg-edlothia.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/heleg-edlothia.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

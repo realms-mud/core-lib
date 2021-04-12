@@ -19,9 +19,9 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 10 ]));
 
-    addPrerequisite("guilds/scion/paths/axe/forms/the-boar.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/the-boar.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/axe/forms/striking.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/striking.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

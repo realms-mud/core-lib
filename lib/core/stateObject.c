@@ -29,7 +29,7 @@ public nomask void setStateMachine(object sm)
         stateMachine = 0;
     }
     else if(sm && member(inherit_list(sm),
-              "lib/core/stateMachine.c") > -1)
+              "/lib/core/stateMachine.c") > -1)
     {
         stateMachine = sm;
     }

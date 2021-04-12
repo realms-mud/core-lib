@@ -21,7 +21,7 @@ protected void Setup()
         "value": 59
     ]));
 
-    addPrerequisite("guilds/bard/strings/fluid-arpeggios.c",
+    addPrerequisite("/guilds/bard/strings/fluid-arpeggios.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

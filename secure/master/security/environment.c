@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/environment/environment");
+    setName("/lib/environment/environment");
     addPermission("/lib", Read);
     addPermission("/areas", Read);
     addPermission("/guilds", Read);

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 37
         ]));
-    addPrerequisite("guilds/bard/melee/weapon-masters-tale.c",
+    addPrerequisite("/guilds/bard/melee/weapon-masters-tale.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

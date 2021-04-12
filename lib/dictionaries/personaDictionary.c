@@ -83,7 +83,7 @@ private nomask void SetResearch(object character, string persona)
                     personaBlueprints()[persona]["research"][research])
                 {
                     string fullyQualifiedResearch =
-                        sprintf("lib/instances/research/personas/%s/%s.c",
+                        sprintf("/lib/instances/research/personas/%s/%s.c",
                             regreplace(persona, " ", "-", 1),
                             regreplace(research, " ", "-", 1));
 
@@ -99,7 +99,7 @@ private nomask void SetTraits(object character, string persona)
 {
     string *traits = personaBlueprints()[persona]["traits"];
 
-    character->addTrait(sprintf("lib/instances/traits/personas/%s/%s.c",
+    character->addTrait(sprintf("/lib/instances/traits/personas/%s/%s.c",
         personaBlueprints()[persona]["category"], 
         regreplace(persona, " ", "-", 1)));
 
@@ -217,8 +217,8 @@ private nomask void SetAliases(object character, string persona)
 public nomask void setupPersona(string persona, object character)
 {
     if (objectp(character) &&
-        ((member(inherit_list(character), "lib/realizations/monster.c") > -1) ||
-        (member(inherit_list(character), "lib/realizations/henchman.c") > -1)))
+        ((member(inherit_list(character), "/lib/realizations/monster.c") > -1) ||
+        (member(inherit_list(character), "/lib/realizations/henchman.c") > -1)))
     {
         if (sizeof(character->Traits("persona")))
         {
@@ -267,8 +267,8 @@ public nomask void advanceLevel(object character)
 {
     if (objectp(character) && character->persona() &&
         sizeof(character->Traits("persona")) &&
-        ((member(inherit_list(character), "lib/realizations/monster.c") > -1) ||
-            (member(inherit_list(character), "lib/realizations/henchman.c") > -1)))
+        ((member(inherit_list(character), "/lib/realizations/monster.c") > -1) ||
+            (member(inherit_list(character), "/lib/realizations/henchman.c") > -1)))
     {
         SetStats(character);
         SetPrimarySkills(character, character->persona(), 1);
@@ -421,7 +421,7 @@ public nomask int getValidLevel(string persona, int level, object target)
     mapping blueprints = personaBlueprints();
 
     if (member(blueprints, persona) &&
-        (member(inherit_list(target), "lib/realizations/henchman.c") == -1))
+        (member(inherit_list(target), "/lib/realizations/henchman.c") == -1))
     {
         if (member(blueprints[persona], "minimum level") &&
             (ret < blueprints[persona]["minimum level"]))

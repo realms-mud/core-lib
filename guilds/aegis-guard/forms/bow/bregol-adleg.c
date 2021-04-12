@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge to expertly fire an arrow from a bow.");
 
-    addPrerequisite("guilds/aegis-guard/forms/bow/root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/root.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "bow" })]));
@@ -44,7 +44,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/bregol-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/bregol-pilin.c",
             "name": "bregol-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/alag-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/alag-pilin.c",
             "name": "alag-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -60,7 +60,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/megor-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/megor-pilin.c",
             "name": "megor-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -68,7 +68,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/lhegren-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/lhegren-pilin.c",
             "name": "lhegren-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -76,7 +76,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/goeol-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/goeol-pilin.c",
             "name": "goeol-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -84,7 +84,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/dagnir-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/dagnir-pilin.c",
             "name": "dagnir-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -92,7 +92,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/maethor-pilin.c",
+            "research item": "/guilds/aegis-guard/forms/bow/maethor-pilin.c",
             "name": "maethor-pilin",
             "formula": "multiplicative",
             "base value": 1,
@@ -101,7 +101,7 @@ protected void Setup()
         ([
             "type": "deferred attack",
             "name": "deferred attack",
-            "trait": "guilds/aegis-guard/forms/bow/aim-trait.c",
+            "trait": "/guilds/aegis-guard/forms/bow/aim-trait.c",
             "formula": "multiplicative",
             "rate": 0.01
         ]),
@@ -154,18 +154,18 @@ protected void Setup()
 
     addSpecification("stamina point cost", 50);
     addSpecification("stamina point cost modifiers", ([
-        "guilds/aegis-guard/forms/bow/bregol-gwaelphilin.c": 10,
-        "guilds/aegis-guard/forms/bow/lhegren-gwaelphilin.c": 10,
-        "guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c": 10,
-        "guilds/aegis-guard/forms/bow/maethor-gwaelphilin.c": 10
+        "/guilds/aegis-guard/forms/bow/bregol-gwaelphilin.c": 10,
+        "/guilds/aegis-guard/forms/bow/lhegren-gwaelphilin.c": 10,
+        "/guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c": 10,
+        "/guilds/aegis-guard/forms/bow/maethor-gwaelphilin.c": 10
     ]));
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/aegis-guard/forms/bow/gwedh-cun-celair.c": 10,
-        "guilds/aegis-guard/forms/bow/gwedh-cun-edlothia.c": 10,
-        "guilds/aegis-guard/forms/bow/gwedh-cun-manadh.c": 10,
-        "guilds/aegis-guard/forms/bow/gwedh-cun-dagnir.c": 10,
+        "/guilds/aegis-guard/forms/bow/gwedh-cun-celair.c": 10,
+        "/guilds/aegis-guard/forms/bow/gwedh-cun-edlothia.c": 10,
+        "/guilds/aegis-guard/forms/bow/gwedh-cun-manadh.c": 10,
+        "/guilds/aegis-guard/forms/bow/gwedh-cun-dagnir.c": 10,
     ]));
 
     addSpecification("event handler", "bregolAdlegEvent");

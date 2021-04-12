@@ -22,7 +22,7 @@ protected void Setup()
         "value": 11
     ]));
 
-    addPrerequisite("guilds/bard/percussion/snare-of-the-soldier.c",
+    addPrerequisite("/guilds/bard/percussion/snare-of-the-soldier.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

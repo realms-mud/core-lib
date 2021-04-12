@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 8
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/bregol-adleg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/bregol-adleg.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "A Rat's Serenade");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "woodwind");
     addSpecification("default composite description",
@@ -20,7 +20,7 @@ protected void Setup()
         "knowledge of a rat-summoning arpeggio that can be played with "
         "woodwind and brass instruments.");
 
-    addPrerequisite("guilds/bard/woodwind-brass/root.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/root.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ 
@@ -31,7 +31,7 @@ protected void Setup()
     addSpecification("persona", "rat");
 
     addSpecification("modifiers", ([
-        "guilds/bard/woodwind-brass/rous.c":({
+        "/guilds/bard/woodwind-brass/rous.c":({
             (["modifier": "bonus strength",
                "value": 3]),
             (["modifier": "bonus dexterity",
@@ -43,7 +43,7 @@ protected void Setup()
             (["modifier": "bonus hit points",
                "value": 100]),
         }),
-        "guilds/bard/woodwind-brass/king-rodent.c":({
+        "/guilds/bard/woodwind-brass/king-rodent.c":({
             (["modifier": "bonus attack",
                "value": 10 ]),
             (["modifier": "bonus damage",

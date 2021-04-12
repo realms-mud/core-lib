@@ -13,6 +13,6 @@ protected void Setup()
         "knowledge required to use clays as substitues for "
         "stone when crafting.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/materials/craftClay.c", (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftClay.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
 }

@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 27 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/ionization.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/evocation/ionization.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -623,11 +623,11 @@ void ResearchPointsCriteriaAppliedCorrectly()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectFalse(User->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 2");
 
-    ExpectTrue(User->initiateResearch("lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectTrue(User->isResearched("lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
+    ExpectTrue(User->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -749,7 +749,7 @@ void ResearchCriteriaAppliedCorrectly()
     mapping criteria = ([
         "type":"research",
         "apply": "at level 5",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c"
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c"
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -757,10 +757,10 @@ void ResearchCriteriaAppliedCorrectly()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -771,7 +771,7 @@ void ResearchTreeCriteriaAppliedCorrectly()
     mapping criteria = ([
         "type":"research tree",
         "apply" : "at level 5",
-        "research tree": "lib/tests/support/guilds/testGuildResearchTree.c"
+        "research tree": "/lib/tests/support/guilds/testGuildResearchTree.c"
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -779,12 +779,12 @@ void ResearchTreeCriteriaAppliedCorrectly()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
-    ExpectEq(({ "lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -793,7 +793,7 @@ void TraitCriteriaAppliedCorrectly()
     mapping criteria = ([
         "type":"trait",
         "apply": "at level 5",
-        "trait object": "lib/instances/traits/personality/abrasive.c"
+        "trait object": "/lib/instances/traits/personality/abrasive.c"
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -801,10 +801,10 @@ void TraitCriteriaAppliedCorrectly()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isTraitOf("lib/instances/traits/personality/abrasive.c"), "user does not have the trait");
+    ExpectFalse(User->isTraitOf("/lib/instances/traits/personality/abrasive.c"), "user does not have the trait");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectTrue(User->isTraitOf("lib/instances/traits/personality/abrasive.c"), "user has the trait");
+    ExpectTrue(User->isTraitOf("/lib/instances/traits/personality/abrasive.c"), "user has the trait");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -815,8 +815,8 @@ void ApplyIfChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
     mapping criteria = ([
         "type":"research tree",
         "apply" : "at level 5",
-        "research tree": "lib/tests/support/guilds/testGuildResearchTree.c",
-        "apply if chosen": ({ "lib/tests/support/research/testGrantedResearchItem.c" })
+        "research tree": "/lib/tests/support/guilds/testGuildResearchTree.c",
+        "apply if chosen": ({ "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -824,11 +824,11 @@ void ApplyIfChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
     ExpectEq(({  }), User->availableResearchTrees(), "no research trees available");
 }
 
@@ -840,10 +840,10 @@ void ApplyIfAnyChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
     mapping criteria = ([
         "type":"research tree",
         "apply" : "at level 5",
-        "research tree": "lib/tests/support/guilds/testGuildResearchTree.c",
+        "research tree": "/lib/tests/support/guilds/testGuildResearchTree.c",
         "apply if any chosen": ({ 
-            "lib/tests/support/research/testGrantedResearchItem.c",
-            "lib/tests/support/research/testResearchA.c" })
+            "/lib/tests/support/research/testGrantedResearchItem.c",
+            "/lib/tests/support/research/testResearchA.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -851,11 +851,11 @@ void ApplyIfAnyChosenResearchTreeCriteriaNotAppliedIfCriteriaNotMet()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
     ExpectEq(({  }), User->availableResearchTrees(), "no research trees available");
 }
 
@@ -867,21 +867,21 @@ void ApplyIfChosenResearchTreeCriteriaAppliedIfCriteriaMet()
     mapping criteria = ([
         "type":"research tree",
         "apply" : "at level 5",
-        "research tree" : "lib/tests/support/guilds/testGuildResearchTree.c",
-        "apply if chosen" : ({ "lib/tests/support/research/testGrantedResearchItem.c" })
+        "research tree" : "/lib/tests/support/guilds/testGuildResearchTree.c",
+        "apply if chosen" : ({ "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
 
     Guild->guildName("fake mage");
-    User->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c");
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    User->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
-    ExpectEq(({ "lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -892,23 +892,23 @@ void ApplyIfAnyChosenResearchTreeCriteriaAppliedIfCriteriaMet()
     mapping criteria = ([
         "type": "research tree",
         "apply" : "at level 5",
-        "research tree" : "lib/tests/support/guilds/testGuildResearchTree.c",
+        "research tree" : "/lib/tests/support/guilds/testGuildResearchTree.c",
         "apply if any chosen": ({ 
-            "lib/tests/support/research/testGrantedResearchItem.c",
-            "lib/tests/support/research/testResearchA.c" })
+            "/lib/tests/support/research/testGrantedResearchItem.c",
+            "/lib/tests/support/research/testResearchA.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research tree", criteria), "criteria added");
 
     Guild->guildName("fake mage");
-    User->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c");
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
+    User->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c");
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is not completed");
     ExpectEq(({}), User->availableResearchTrees(), "no research trees available");
 
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
-    ExpectEq(({ "lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "research is completed");
+    ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "no research trees available");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -919,8 +919,8 @@ void ApplyIfChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
     mapping criteria = ([
         "type":"research",
         "apply": "at level 5",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
-        "apply if chosen" : ({ "lib/tests/support/guilds/testGuildResearchTree.c" })
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c",
+        "apply if chosen" : ({ "/lib/tests/support/guilds/testGuildResearchTree.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
@@ -928,10 +928,10 @@ void ApplyIfChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -942,10 +942,10 @@ void ApplyIfAnyChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
     mapping criteria = ([
         "type":"research",
         "apply": "at level 5",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c",
         "apply if any chosen" : ({ 
-            "lib/tests/support/guilds/testGuildResearchTree.c",
-            "lib/tests/support/guilds/testDeepResearchTree.c",
+            "/lib/tests/support/guilds/testGuildResearchTree.c",
+            "/lib/tests/support/guilds/testDeepResearchTree.c",
         })
     ]);
     User->SetLevel(4);
@@ -954,10 +954,10 @@ void ApplyIfAnyChosenResearchCriteriaNotAppliedIfCriteriaNotMet()
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -968,20 +968,20 @@ void ApplyIfChosenResearchCriteriaAppliedIfCriteriaMet()
     mapping criteria = ([
         "type":"research",
         "apply": "at level 5",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
-        "apply if chosen" : ({ "lib/tests/support/guilds/testGuildResearchTree.c" })
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c",
+        "apply if chosen" : ({ "/lib/tests/support/guilds/testGuildResearchTree.c" })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
-    User->addResearchTree("lib/tests/support/guilds/testGuildResearchTree.c");
+    User->addResearchTree("/lib/tests/support/guilds/testGuildResearchTree.c");
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -992,23 +992,23 @@ void ApplyIfAnyChosenResearchCriteriaAppliedIfCriteriaMet()
     mapping criteria = ([
         "type":"research",
         "apply": "at level 5",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c",
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c",
         "apply if any chosen" : ({ 
-            "lib/tests/support/guilds/testGuildResearchTree.c",
-            "lib/tests/support/guilds/testDeepResearchTree.c",
+            "/lib/tests/support/guilds/testGuildResearchTree.c",
+            "/lib/tests/support/guilds/testDeepResearchTree.c",
         })
     ]);
     User->SetLevel(4);
     User->SetExperience(5000);
     ExpectTrue(Guild->testAddCriteria("research", criteria), "criteria added");
-    User->addResearchTree("lib/tests/support/guilds/testGuildResearchTree.c");
+    User->addResearchTree("/lib/tests/support/guilds/testGuildResearchTree.c");
 
     Guild->guildName("fake mage");
 
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is not completed");
     ExpectTrue(Guild->advanceLevel(User), "advance to level 5");
 
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "research is completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1188,8 +1188,8 @@ void ResearchChoiceCriteriaAppliedCorrectly()
         "name": "blah",
         "description": "blah blah",
         "apply" : "at level 2",
-        "research objects" : ({ "lib/tests/support/research/testLimitedActiveResearchItem.c",
-            "lib/tests/support/research/testGrantedResearchItem.c" })
+        "research objects" : ({ "/lib/tests/support/research/testLimitedActiveResearchItem.c",
+            "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]);
 
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
@@ -1201,14 +1201,14 @@ void ResearchChoiceCriteriaAppliedCorrectly()
         "1": ([ 
             "choice": "blah", 
             "description": "This is limited active research", 
-            "key": "lib/tests/support/research/testLimitedActiveResearchItem.c", 
+            "key": "/lib/tests/support/research/testLimitedActiveResearchItem.c", 
             "name": "Active research", 
             "type": "research object"
         ]), 
         "2": ([ 
             "choice": "blah", 
             "description": "This is granted research", 
-            "key": "lib/tests/support/research/testGrantedResearchItem.c", 
+            "key": "/lib/tests/support/research/testGrantedResearchItem.c", 
             "name": "Granted research", 
             "type": "research object"
         ])
@@ -1226,8 +1226,8 @@ void ResearchPathCriteriaAppliedCorrectly()
         "name": "blah",
         "description": "blah blah",
         "apply" : "at level 2",
-        "research objects" : ({ "lib/tests/support/guilds/testGuildResearchTree.c",
-            "lib/tests/support/research/testSecondResearchTree.c" })
+        "research objects" : ({ "/lib/tests/support/guilds/testGuildResearchTree.c",
+            "/lib/tests/support/research/testSecondResearchTree.c" })
     ]);
 
     ExpectTrue(Guild->testAddCriteria("research choice", criteria), "criteria added");
@@ -1239,17 +1239,17 @@ void ResearchPathCriteriaAppliedCorrectly()
         "1": ([ 
             "choice": "blah", 
             "description": "this is the land-loving mother pigeon of all research trees", 
-            "key": "lib/tests/support/guilds/testGuildResearchTree.c", 
+            "key": "/lib/tests/support/guilds/testGuildResearchTree.c", 
             "name": "tree of guild researchiness",
-            "obsoletes": ({ "lib/tests/support/research/testSecondResearchTree.c" }),
+            "obsoletes": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
             "type": "research tree"
         ]), 
         "2": ([ 
             "choice": "blah", 
             "description": "this is the land-loving mother pigeon of all research trees", 
-            "key": "lib/tests/support/research/testSecondResearchTree.c", 
+            "key": "/lib/tests/support/research/testSecondResearchTree.c", 
             "name": "tree of guild researchiness", 
-            "obsoletes": ({ "lib/tests/support/guilds/testGuildResearchTree.c" }),
+            "obsoletes": ({ "/lib/tests/support/guilds/testGuildResearchTree.c" }),
             "type": "research tree"
         ])
     ])]), User->getResearchChoices());

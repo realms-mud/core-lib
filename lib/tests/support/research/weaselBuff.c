@@ -14,5 +14,5 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "lib/tests/support/research/summoningItem.c" }));
+        "/lib/tests/support/research/summoningItem.c" }));
 }

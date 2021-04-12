@@ -8,8 +8,8 @@
 #include "/lib/dictionaries/environment/moon-phases.h"
 #include "/lib/modules/secure/environment.h"
 
-private string BaseEnvironment = "lib/environment/environment.c";
-private string BaseElement = "lib/environment/environmentalElement.c";
+private string BaseEnvironment = "/lib/environment/environment.c";
+private string BaseElement = "/lib/environment/environmentalElement.c";
 private string currentSeason;
 private string currentTimeOfDay;
 
@@ -549,7 +549,7 @@ public nomask int isValidKey(string key)
         if (file_size(key) > 0)
         {
             object keyObj = load_object(key);
-            ret = member(inherit_list(keyObj), "lib/items/key.c") > -1;
+            ret = member(inherit_list(keyObj), "/lib/items/key.c") > -1;
 
             if (!ret)
             {
@@ -574,7 +574,7 @@ public nomask object getDoor(string door)
     {
         ret = clone_object(door);
 
-        if (member(inherit_list(ret), "lib/environment/doors/baseDoor.c") < 0)
+        if (member(inherit_list(ret), "/lib/environment/doors/baseDoor.c") < 0)
         {
             raise_error(sprintf("ERROR in environment.c: '%s' is not a "
                 "valid door object.\n", door));

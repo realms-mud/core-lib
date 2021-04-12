@@ -19,17 +19,17 @@ protected void Setup()
         "value": 9
     ]));
 
-    addPrerequisite("guilds/scion/avatars/common/defense-i.c",
+    addPrerequisite("/guilds/scion/avatars/common/defense-i.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/blood/root.c",
-        "guilds/scion/avatars/electricity/root.c",
-        "guilds/scion/avatars/evocation/root.c",
-        "guilds/scion/avatars/flame/root.c",
-        "guilds/scion/avatars/ice/root.c",
-        "guilds/scion/avatars/spirit/root.c",
+        "/guilds/scion/avatars/blood/root.c",
+        "/guilds/scion/avatars/electricity/root.c",
+        "/guilds/scion/avatars/evocation/root.c",
+        "/guilds/scion/avatars/flame/root.c",
+        "/guilds/scion/avatars/ice/root.c",
+        "/guilds/scion/avatars/spirit/root.c",
     }));
 }

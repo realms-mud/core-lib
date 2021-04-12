@@ -135,21 +135,21 @@ void CanModifyCooldown()
 
     ExpectTrue(ResearchItem->addTestSpecification("cooldown", 30), "add cooldown specification");
     ExpectTrue(ResearchItem->addTestSpecification("cooldown modifiers", ([
-        "lib/tests/support/research/comboPartResearchItemA.c": 6,
-        "lib/tests/support/research/comboPartResearchItemB.c": 4,
-        "lib/tests/support/research/comboPartResearchItemC.c": 20 ])), 
+        "/lib/tests/support/research/comboPartResearchItemA.c": 6,
+        "/lib/tests/support/research/comboPartResearchItemB.c": 4,
+        "/lib/tests/support/research/comboPartResearchItemC.c": 20 ])), 
         "add cooldown modifiers specification");
 
     ExpectEq(30, ResearchItem->cooldown(User));
 
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
     ExpectEq(24, ResearchItem->cooldown(User));
 
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
     ExpectEq(20, ResearchItem->cooldown(User));
 
     // Cooldown cannot go below 2
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
     ExpectEq(2, ResearchItem->cooldown(User));
 }
 
@@ -374,7 +374,7 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
     ExpectTrue(ResearchItem->execute("the command", User), "initially have enough points");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(10, User->getSkill("long sword"), "long sword skill after ability used");
@@ -401,7 +401,7 @@ void ExecuteOnSelfAppliesCombatEffectOnSelf()
     ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(User->inventoryGetModifier("combatModifiers", "haste"));
@@ -418,7 +418,7 @@ void ExecuteOnTargetAppliesEffectOnTarget()
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
     object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(15, Target->getSkill("long sword"), "long sword skill after research used");
@@ -434,7 +434,7 @@ void ExecuteOnTargetAppliesCombatEffectOnTarget()
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
 
     object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(Target->inventoryGetModifier("combatModifiers", "haste"));
@@ -640,11 +640,11 @@ void ExecuteOnSelfAppliesTraitOnSelf()
 {
     ResearchItem->addTestSpecification("scope", "self");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     User->ToggleMockResearch();
     ExpectTrue(ResearchItem->execute("the command", User), "can execute command");
-    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(User->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -653,10 +653,10 @@ void ExecuteOnTargetAppliesTraitOnTarget()
     User->ToggleMockResearch();
     ResearchItem->addTestSpecification("scope", "targeted");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -665,10 +665,10 @@ void ExecuteOnTargetAppliesNegativeTrait()
     User->ToggleMockResearch();
     ResearchItem->addTestSpecification("scope", "targeted");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("negative trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -683,10 +683,10 @@ void ExecuteOnTargetFailsIfTraitNegativeAndTargetNotOnKillList()
 
     ResearchItem->addTestSpecification("scope", "targeted");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("negative trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -704,10 +704,10 @@ void ExecuteOnTargetFailsIfTraitNegativeAndTargetButNotUserOnKillList()
 
     ResearchItem->addTestSpecification("scope", "targeted");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("negative trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectFalse(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -732,10 +732,10 @@ void ExecuteOnTargetAppliesTraitIfBothPlayersOnKillList()
 
     ResearchItem->addTestSpecification("scope", "targeted");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("negative trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -761,13 +761,13 @@ void NegativeExecuteInAreaAppliesTraitOnCorrectTargets()
 
     ResearchItem->addTestSpecification("scope", "area");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("negative trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("negative trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
-    ExpectFalse(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
-    ExpectTrue(badguy->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
-    ExpectFalse(bystander->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(User->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectTrue(badguy->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
+    ExpectFalse(bystander->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -792,11 +792,11 @@ void ExecuteInAreaAppliesTraitOnCorrectTargets()
 
     ResearchItem->addTestSpecification("scope", "area");
     ResearchItem->addTestSpecification("hit point cost", 20);
-    ResearchItem->addTestSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    ResearchItem->addTestSpecification("trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 
     ExpectTrue(ResearchItem->execute("throw turnip at frank", User), "can execute command");
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "target");
-    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "user");
-    ExpectFalse(badguy->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "badguy");
-    ExpectTrue(bystander->isTraitOf("lib/tests/support/traits/testTraitForSustainedResearch.c"), "bystander");
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "target");
+    ExpectTrue(User->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "user");
+    ExpectFalse(badguy->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "badguy");
+    ExpectTrue(bystander->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "bystander");
 }

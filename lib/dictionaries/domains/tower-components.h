@@ -1114,7 +1114,7 @@ private mapping TowerComponents = ([
             "engineer": 1
         ]),
         "building prerequisites": ([
-            "lib/instances/research/crafting/materials/gunpowder.c":(["type":"research"]),
+            "/lib/instances/research/crafting/materials/gunpowder.c":(["type":"research"]),
             "stonemasonry": (["type":"skill", "value": 15]),
             "carpentry": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 15]),

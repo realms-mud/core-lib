@@ -160,7 +160,7 @@ private nomask int calculateServiceBonuses(string methodToCheck)
     }
     
     object room = environment(this_object());
-    if(room && (member(inherit_list(room), "lib/environment/environment.c") > -1))
+    if(room && (member(inherit_list(room), "/lib/environment/environment.c") > -1))
     {
         // this_object is passed as a type check - meaning that environmental
         // affects are not always applied to everything equally - there may
@@ -244,7 +244,7 @@ public nomask varargs int hitPoints(int increase)
     // hitPoints can ONLY be removed via the hit method
     if(intp(increase) && ((increase > 0) || (previous_object() && 
        (member(inherit_list(previous_object()), 
-       "lib/modules/research/researchItem.c") > -1) && (abs(increase) <= hitPoints))))
+       "/lib/modules/research/researchItem.c") > -1) && (abs(increase) <= hitPoints))))
     {
         hitPoints += increase;
         combatNotification("onHitPointsChanged");
@@ -1353,7 +1353,7 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
     object player = getService("player");
     if(player)
     {
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (persistence)
         {
             persistence->save();

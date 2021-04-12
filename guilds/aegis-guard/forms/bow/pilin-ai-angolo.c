@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge to set an arrow to magical energy as it flies from a bow.");
 
-    addPrerequisite("guilds/aegis-guard/forms/bow/angol-ai-cu.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/angol-ai-cu.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "bow" })]));
@@ -44,7 +44,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-anwar.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-anwar.c",
             "name": "pilin-anwar",
             "formula": "multiplicative",
             "base value": 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-celair.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-celair.c",
             "name": "pilin-celair",
             "formula": "multiplicative",
             "base value": 1,
@@ -60,7 +60,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-edlothia.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-edlothia.c",
             "name": "pilin-edlothia",
             "formula": "multiplicative",
             "base value": 1,
@@ -68,7 +68,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-eiliant.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-eiliant.c",
             "name": "pilin-eiliant",
             "formula": "multiplicative",
             "base value": 1,
@@ -76,7 +76,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-manadh.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-manadh.c",
             "name": "pilin-manadh",
             "formula": "multiplicative",
             "base value": 1,
@@ -84,7 +84,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/bow/pilin-dagnir.c",
+            "research item": "/guilds/aegis-guard/forms/bow/pilin-dagnir.c",
             "name": "pilin-dagnir",
             "formula": "multiplicative",
             "base value": 1,
@@ -100,7 +100,7 @@ protected void Setup()
         ([
             "type": "deferred attack",
             "name": "deferred attack",
-            "trait": "guilds/aegis-guard/forms/bow/aim-trait.c",
+            "trait": "/guilds/aegis-guard/forms/bow/aim-trait.c",
             "formula": "multiplicative",
             "rate": 0.01
         ]),
@@ -154,18 +154,18 @@ protected void Setup()
     addSpecification("stamina point cost", 10);
     addSpecification("spell point cost", 150);
     addSpecification("spell point cost modifiers", ([
-        "guilds/aegis-guard/forms/bow/gwaelphilin-celair.c": 15,
-        "guilds/aegis-guard/forms/bow/gwaelphilin-edlothia.c": 15,
-        "guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c": 10,
-        "guilds/aegis-guard/forms/bow/gwaelphilin-dagnir.c": 10
+        "/guilds/aegis-guard/forms/bow/gwaelphilin-celair.c": 15,
+        "/guilds/aegis-guard/forms/bow/gwaelphilin-edlothia.c": 15,
+        "/guilds/aegis-guard/forms/bow/gwaelphilin-manadh.c": 10,
+        "/guilds/aegis-guard/forms/bow/gwaelphilin-dagnir.c": 10
     ]));
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/aegis-guard/forms/bow/cu-ai-celair.c": 10,
-        "guilds/aegis-guard/forms/bow/cu-ai-edlothia.c": 10,
-        "guilds/aegis-guard/forms/bow/cu-ai-manadh.c": 10,
-        "guilds/aegis-guard/forms/bow/cu-ai-dagnir.c": 10,
+        "/guilds/aegis-guard/forms/bow/cu-ai-celair.c": 10,
+        "/guilds/aegis-guard/forms/bow/cu-ai-edlothia.c": 10,
+        "/guilds/aegis-guard/forms/bow/cu-ai-manadh.c": 10,
+        "/guilds/aegis-guard/forms/bow/cu-ai-dagnir.c": 10,
     ]));
 
     addSpecification("event handler", "pilinAiAngoloEvent");

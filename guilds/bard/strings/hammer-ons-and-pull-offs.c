@@ -21,7 +21,7 @@ protected void Setup()
         "value": 7
     ]));
 
-    addPrerequisite("guilds/bard/strings/root.c",
+    addPrerequisite("/guilds/bard/strings/root.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -24,7 +24,7 @@ protected void Setup()
     addPrerequisite("chemistry", (["type":"skill", "value" : 7]));
     addPrerequisite("physics", (["type":"skill", "value" : 3]));
 
-    addPrerequisite("lib/instances/research/crafting/weapons/common/quenching.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/quenching.c",
         (["type":"research"]));
     addSpecification("limited by", (["crafting type":({ "sword", "dagger",
         "pole arm", "staff", "axe", "hammer", "mace", "flail", "crossbow",

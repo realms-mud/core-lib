@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 16
         ]));
-    addPrerequisite("guilds/bard/bow/rhythmic-release.c",
+    addPrerequisite("/guilds/bard/bow/rhythmic-release.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -12,51 +12,51 @@
 /////////////////////////////////////////////////////////////////////////////
 private mapping drugEffects = ([
     "alcohol":([
-        "trait": "lib/instances/traits/biological/drunk.c",
+        "trait": "/lib/instances/traits/biological/drunk.c",
         "toxicity": 3,
     ]),
     "opiate": ([
-        "trait": "lib/instances/traits/biological/wasted-on-opiates.c",
+        "trait": "/lib/instances/traits/biological/wasted-on-opiates.c",
         "toxicity": 10,
     ]),
     "salicylate": ([
-        "trait": "lib/instances/traits/biological/salicylate.c",
+        "trait": "/lib/instances/traits/biological/salicylate.c",
         "toxicity": 1,
     ]),
     "psychedelic": ([
-        "trait": "lib/instances/traits/biological/stoned.c",
+        "trait": "/lib/instances/traits/biological/stoned.c",
         "toxicity": 4,
     ]),
     "dissociative": ([
-        "trait": "lib/instances/traits/biological/hallucinating.c",
+        "trait": "/lib/instances/traits/biological/hallucinating.c",
         "toxicity": 5,
     ]),
     "dileriant": ([
-        "trait": "lib/instances/traits/biological/drug-dilerious.c",
+        "trait": "/lib/instances/traits/biological/drug-dilerious.c",
         "toxicity": 5,
     ]),
     "steroid": ([
-        "trait": "lib/instances/traits/biological/steroids.c",
+        "trait": "/lib/instances/traits/biological/steroids.c",
         "toxicity": 4,
     ]),
     "barbituate": ([
-        "trait": "lib/instances/traits/biological/impaired-barbituates.c",
+        "trait": "/lib/instances/traits/biological/impaired-barbituates.c",
         "toxicity": 5,
     ]),
     "benzodiazepine": ([
-        "trait": "lib/instances/traits/biological/on-benzodiazepine.c",
+        "trait": "/lib/instances/traits/biological/on-benzodiazepine.c",
         "toxicity": 3,
     ]),
     "antidepressant": ([
-        "trait": "lib/instances/traits/biological/antidepressant.c",
+        "trait": "/lib/instances/traits/biological/antidepressant.c",
         "toxicity": 4,
     ]),
     "xanthine": ([
-        "trait": "lib/instances/traits/biological/caffeinated.c",
+        "trait": "/lib/instances/traits/biological/caffeinated.c",
         "toxicity": 1,
     ]),
     "adrenaline": ([
-        "trait": "lib/instances/traits/biological/adrenaline.c",
+        "trait": "/lib/instances/traits/biological/adrenaline.c",
         "toxicity": 1,
     ]),
     "sympathomimetic amine": ([
@@ -86,8 +86,8 @@ public nomask int applyBiologicalEffect(object livingToModify, object item)
     if (objectp(livingToModify) && objectp(item))
     {
         string *typeOfItem = filter(inherit_list(item),
-            (: (member(({ "lib/items/drink.c", "lib/items/food.c",
-                "lib/items/potion.c" }), $1) > -1) :));
+            (: (member(({ "/lib/items/drink.c", "/lib/items/food.c",
+                "/lib/items/potion.c" }), $1) > -1) :));
 
         string type = item->query("biological effect");
         if (sizeof(typeOfItem) && member(drugEffects, type))

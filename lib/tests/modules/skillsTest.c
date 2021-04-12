@@ -271,7 +271,7 @@ void AdvanceSkillFiresOnSkillAdvancedEventToSubscriber()
     object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
     Skills->registerEvent(subscriber);
 
-    string expected = "*event handler: onSkillAdvanced called, data: long sword, caller: lib/tests/support/services/skillsWithMockServices.c";
+    string expected = "*event handler: onSkillAdvanced called, data: long sword, caller: /lib/tests/support/services/skillsWithMockServices.c";
     string err = catch (Skills->advanceSkill("long sword", 2));
     ExpectEq(expected, err, "onSkillAdvanced called on subscriber");
 }
@@ -283,7 +283,7 @@ void AdvanceSkillFiresOnSkillPointsUsedEventToSubscriber()
     object subscriber = clone_object("/lib/tests/support/events/onSkillPointsUsedSubscriber");
     Skills->registerEvent(subscriber);
 
-    string expected = "*event handler: onSkillPointsUsed called, data: 4, caller: lib/tests/support/services/skillsWithMockServices.c";
+    string expected = "*event handler: onSkillPointsUsed called, data: 4, caller: /lib/tests/support/services/skillsWithMockServices.c";
     string err = catch (Skills->advanceSkill("long sword", 2));
     ExpectEq(expected, err, "onSkillPointsUsed called on subscriber");
 }
@@ -296,7 +296,7 @@ void DecrementSkillFiresOnSkillDecreasedEventToSubscriber()
     object subscriber = clone_object("/lib/tests/support/events/mockEventSubscriber");
     Skills->registerEvent(subscriber);
 
-    string expected = "*event handler: onSkillDecreased called, data: long sword, caller: lib/tests/support/services/skillsWithMockServices.c";
+    string expected = "*event handler: onSkillDecreased called, data: long sword, caller: /lib/tests/support/services/skillsWithMockServices.c";
     string err = catch (Skills->decrementSkill("long sword", 2));
     ExpectEq(expected, err, "onSkillDecreased called on subscriber");
 }
@@ -309,7 +309,7 @@ void DecrementSkillFiresOnSkillPointsIncreasedEventToSubscriber()
     object subscriber = clone_object("/lib/tests/support/events/onSkillPointsIncreasedSubscriber");
     Skills->registerEvent(subscriber);
 
-    string expected = "*event handler: onSkillPointsIncreased called, data: 4, caller: lib/tests/support/services/skillsWithMockServices.c";
+    string expected = "*event handler: onSkillPointsIncreased called, data: 4, caller: /lib/tests/support/services/skillsWithMockServices.c";
     string err = catch (Skills->decrementSkill("long sword", 2));
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }
@@ -320,7 +320,7 @@ void AddSkillPointsFiresOnSkillPointsIncreasedEventToSubscriber()
     object subscriber = clone_object("/lib/tests/support/events/onSkillPointsIncreasedSubscriber");
     Skills->registerEvent(subscriber);
 
-    string expected = "*event handler: onSkillPointsIncreased called, data: 100, caller: lib/tests/support/services/skillsWithMockServices.c";
+    string expected = "*event handler: onSkillPointsIncreased called, data: 100, caller: /lib/tests/support/services/skillsWithMockServices.c";
     string err = catch (Skills->addSkillPoints(100));
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 27
         ]));
-    addPrerequisite("guilds/bard/melee/requiem-of-attack.c",
+    addPrerequisite("/guilds/bard/melee/requiem-of-attack.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

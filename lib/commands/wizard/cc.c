@@ -23,7 +23,7 @@ private nomask void compileOneItem(string path, object initiator,
     if (objectp(existingBlueprint))
     {
         objectsToMove = filter(all_inventory(existingBlueprint),
-            (: (member(inherit_list($1), "lib/realizations/player.c") > -1) :));
+            (: (member(inherit_list($1), "/lib/realizations/player.c") > -1) :));
 
         foreach(object item in objectsToMove)
         {

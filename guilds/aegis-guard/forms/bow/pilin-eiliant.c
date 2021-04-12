@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 45
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/pilin-edlothia.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/pilin-edlothia.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

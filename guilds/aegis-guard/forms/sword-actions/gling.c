@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "An upward slash from a hanging "
         "point - effective at breaking guards.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/glin-an-aemas.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/glin-an-aemas.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-actions/delu-an-gling.c",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-gling.c",
             "name": "delu-an-gling",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-actions/braig-an-gling.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-actions/braig-an-gling.c",
             "name" : "braig-an-gling",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),            
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-actions/tur-glingal.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-actions/tur-glingal.c",
             "name" : "tur-glingal",
             "formula" : "multiplicative",
             "base value" : 1,

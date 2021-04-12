@@ -17,9 +17,9 @@ protected void Setup()
     addSpecification("usage summary", "An offensive onslaught designed to "
         "leave opponentsd prone.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/athra.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/athra.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/an-vund.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/an-vund.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -52,7 +52,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-actions/delu-an-dadben.c",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-dadben.c",
             "name": "angannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -60,7 +60,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/braig-an-dadben.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-dadben.c",
             "name": "glingamath",
             "formula": "multiplicative",
             "base value": 1,
@@ -68,7 +68,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-guarding/tur-dadben.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-dadben.c",
             "name" : "raud-angannon",
             "formula" : "multiplicative",
             "base value" : 1,

@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 11 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/choking-tendrils.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/choking-tendrils.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

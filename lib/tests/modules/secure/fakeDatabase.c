@@ -115,7 +115,7 @@ public nomask mapping Gorthaur()
         "playerId": 2,
         "pretitle": "Weasel Lord",
         "quests": ([ 
-            "lib/tests/support/quests/fakeQuestItem.c": ([ 
+            "/lib/tests/support/quests/fakeQuestItem.c": ([ 
                 "is active": 1,
                 "is completed": 0,
                 "name": "Hail to the king, baby!",
@@ -316,7 +316,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "playerId": 3,
         "pretitle": "Weasel Lord",
         "quests": ([ 
-            "lib/tests/support/quests/fakeQuestItem.c": ([ 
+            "/lib/tests/support/quests/fakeQuestItem.c": ([ 
                 "is active": 1,
                 "is completed": 0,
                 "name": "Hail to the king, baby!",

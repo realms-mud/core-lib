@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 3 ]));
 
-    addPrerequisite("guilds/scion/paths/mace/root.c",
+    addPrerequisite("/guilds/scion/paths/mace/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

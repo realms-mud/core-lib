@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "level", 
           "guild": "bard",
           "value": 45 ]));
-    addPrerequisite("guilds/bard/lyrics/day-is-coming.c",
+    addPrerequisite("/guilds/bard/lyrics/day-is-coming.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

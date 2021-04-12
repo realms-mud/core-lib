@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 4 ]));
 
-    addPrerequisite("guilds/scion/paths/hammer/forms/the-ox.c",
+    addPrerequisite("/guilds/scion/paths/hammer/forms/the-ox.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

@@ -22,15 +22,15 @@ protected void Setup()
         "weapon. Doing so is wearying and will decrease available stamina.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/ice/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/ice/root.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/sweeping-frost.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/sweeping-frost.c", WeaponType),
             "name" : "sweeping frost",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -38,7 +38,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/freezing-brand.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/freezing-brand.c", WeaponType),
             "name" : "freezing brand",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -46,7 +46,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType),
             "name" : "frigid strike",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -54,7 +54,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/icy-edge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/icy-edge.c", WeaponType),
             "name" : "icy edge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -62,7 +62,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/winters-boon.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/winters-boon.c", WeaponType),
             "name" : "Winter's Boon",
             "formula" : "multiplicative",
             "base value" : 1,

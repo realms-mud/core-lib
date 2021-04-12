@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft chainmail armor.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/armor/craftArmor.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/craftArmor.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 5]));
 }

@@ -26,7 +26,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 7 ]));
     addPrerequisite(
-        sprintf("guilds/scion/paths/%s/flame/sweeping-flames.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/sweeping-flames.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

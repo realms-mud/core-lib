@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of an aggressive hewing technique for Beraid, Naergo, and "
         "Bauglo.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

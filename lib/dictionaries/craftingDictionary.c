@@ -55,7 +55,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "armor",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/armor/craftArmor.c", "armorer")                  
+                "/lib/instances/research/crafting/armor/craftArmor.c", "armorer")                  
         ]),
         "2":([
             "name":"Craft Artwork",
@@ -63,7 +63,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "artwork",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/craftArtwork.c", "gem crafting")                  
+                "/lib/instances/research/crafting/craftArtwork.c", "gem crafting")                  
         ]),
         "3":([
             "name":"Craft Musical Instrument",
@@ -71,7 +71,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "instruments",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/craftInstrument.c", "luthiery")                  
+                "/lib/instances/research/crafting/craftInstrument.c", "luthiery")                  
         ]),
         "4":([
             "name":"Craft Weapons",
@@ -79,7 +79,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "weapons",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/weapons/craftWeapons.c", "weapon smithing")                  
+                "/lib/instances/research/crafting/weapons/craftWeapons.c", "weapon smithing")                  
         ]),
         "5":([
             "name":"Brew Potions",
@@ -87,7 +87,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "potions",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/brewPotions.c", "brewing")                  
+                "/lib/instances/research/crafting/brewPotions.c", "brewing")                  
         ]),
         "6":([
             "name":"Brew Beverages and Prepare Food",
@@ -95,7 +95,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper materials and equipment on hand.\n",
             "selector" : "beverages and food",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/brewBeveragesAndCookFood.c", "cooking")                  
+                "/lib/instances/research/crafting/brewBeveragesAndCookFood.c", "cooking")                  
         ]),
         "7":([
             "name":"Refine Materials",
@@ -103,7 +103,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "the proper equipment on hand.\n",
             "selector" : "refine materials",
             "canShow" : user->canApplyResearchBonus(
-                "lib/instances/research/crafting/refineMaterials.c", "blacksmithing")
+                "/lib/instances/research/crafting/refineMaterials.c", "blacksmithing")
         ]),
         "8":([
             "name":"Imbue with Magical Effects",
@@ -111,7 +111,7 @@ public nomask mapping getTopLevelCraftingMenu(object user)
                 "provided that you have the proper materials and knowledge on hand.\n",
             "selector": "imbue with magical effects",
             "canShow": user->canApplyResearchBonus(
-                "lib/instances/research/crafting/enchantments/imbueItems.c", "spellcraft")
+                "/lib/instances/research/crafting/enchantments/imbueItems.c", "spellcraft")
         ]),
     ]);
 }
@@ -161,15 +161,15 @@ private nomask object getBlueprintFor(object item)
     mapping items = ([]);
     string *itemInheritance = inherit_list(item);
 
-    if (member(itemInheritance, "lib/items/armor.c") > -1)
+    if (member(itemInheritance, "/lib/items/armor.c") > -1)
     {
         items = armorBlueprints;
     }
-    else if (member(itemInheritance, "lib/items/weapon.c") > -1)
+    else if (member(itemInheritance, "/lib/items/weapon.c") > -1)
     {
         items = weaponBlueprints;
     }
-    else if (member(itemInheritance, "lib/items/material.c") > -1)
+    else if (member(itemInheritance, "/lib/items/material.c") > -1)
     {
         items = materials;
     }
@@ -472,7 +472,7 @@ private nomask mapping getMaterialsOfTypeOnHand(string type, object user,
     mapping ret = ([]);
 
     object *inventory = filter(deep_inventory(user),
-        (: ((member(inherit_list($1), "lib/items/material.c") > -1) &&
+        (: ((member(inherit_list($1), "/lib/items/material.c") > -1) &&
             (member($2, $1->query("class")) > -1)) :), 
         getDictionary("materials")->getTypes(type, user));
 
@@ -829,7 +829,7 @@ private nomask int useCraftingMaterial(object user, string materialName, int qua
 {
     int ret = 0;
     object *inventory = filter(deep_inventory(user),
-        (: ((member(inherit_list($1), "lib/items/material.c") > -1) && 
+        (: ((member(inherit_list($1), "/lib/items/material.c") > -1) && 
             $1->id($2)) :), materialName);
 
     if (sizeof(inventory))
@@ -1022,7 +1022,7 @@ public nomask void setCraftingSkill(string type, string item,
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canEnchantItem(object item, object user)
 {
-    return user->isResearched("lib/instances/research/crafting/enchantments/craftEnchantments.c");
+    return user->isResearched("/lib/instances/research/crafting/enchantments/craftEnchantments.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

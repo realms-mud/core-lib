@@ -43,12 +43,12 @@ public void SetupGuild()
     addCriteria("test tree", ([
         "type":"research tree",
         "apply": "at level 5",
-        "research tree": "lib/tests/support/guilds/testGuildResearchTree.c"
+        "research tree": "/lib/tests/support/guilds/testGuildResearchTree.c"
     ]));
     addCriteria("test research", ([
         "type":"research",
         "apply": "at level 2",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c"
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c"
     ]));
     addCriteria("long sword", ([
         "type":"skill",
@@ -58,15 +58,15 @@ public void SetupGuild()
     addCriteria("acolyte research", ([
         "type":"research",
         "apply": "at rank acolyte",
-        "research object": "lib/tests/support/research/testGrantedResearchItem.c"
+        "research object": "/lib/tests/support/research/testGrantedResearchItem.c"
     ]));
 
     addCriteria("research choice", ([
         "name": "Test name",
         "description" : "Test description",
         "apply" : "at level 6",
-        "research objects" : ({ "lib/tests/support/research/testLimitedActiveResearchItem.c",
-            "lib/tests/support/research/testGrantedResearchItem.c" })
+        "research objects" : ({ "/lib/tests/support/research/testLimitedActiveResearchItem.c",
+            "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]));
 }
 

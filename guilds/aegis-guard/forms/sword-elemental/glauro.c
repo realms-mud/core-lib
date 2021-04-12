@@ -17,9 +17,9 @@ protected void Setup()
     addSpecification("usage summary", "A technique projecting a wave of "
         "elemental earth energy");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/alagos.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/alagos.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/geilo.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/geilo.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -62,7 +62,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-anwar.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-anwar.c",
             "name": "angol-anwar",
             "formula": "multiplicative",
             "base value": 1,
@@ -70,7 +70,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-celair.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-celair.c",
             "name": "angol-celair",
             "formula": "multiplicative",
             "base value": 1,
@@ -78,7 +78,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-edlothia.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-edlothia.c",
             "name": "angol-edlothia",
             "formula": "multiplicative",
             "base value": 1,
@@ -86,7 +86,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-eiliant.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-eiliant.c",
             "name": "angol-eiliant",
             "formula": "multiplicative",
             "base value": 1,
@@ -94,7 +94,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-manadh.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-manadh.c",
             "name": "angol-manadh",
             "formula": "multiplicative",
             "base value": 1,
@@ -102,7 +102,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-elemental/angol-dagnir.c",
+            "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-dagnir.c",
             "name": "angol-dagnir",
             "formula": "multiplicative",
             "base value": 1,
@@ -154,18 +154,18 @@ protected void Setup()
 
     addSpecification("spell point cost", 300);
     addSpecification("spell point cost modifiers", ([
-        "guilds/aegis-guard/forms/sword-elemental/faen-celair.c": 15,
-        "guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c": 15,
-        "guilds/aegis-guard/forms/sword-elemental/faen-manadh.c": 10,
-        "guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10
+        "/guilds/aegis-guard/forms/sword-elemental/faen-celair.c": 15,
+        "/guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c": 15,
+        "/guilds/aegis-guard/forms/sword-elemental/faen-manadh.c": 10,
+        "/guilds/aegis-guard/forms/sword-elemental/faen-dagnir.c": 10
     ]));
 
     addSpecification("cooldown", 150);
     addSpecification("cooldown modifiers", ([
-        "guilds/aegis-guard/forms/sword-elemental/heleg-celair.c": 10,
-        "guilds/aegis-guard/forms/sword-elemental/heleg-edlothia.c": 10,
-        "guilds/aegis-guard/forms/sword-elemental/heleg-manadh.c": 10,
-        "guilds/aegis-guard/forms/sword-elemental/heleg-dagnir.c": 10,
+        "/guilds/aegis-guard/forms/sword-elemental/heleg-celair.c": 10,
+        "/guilds/aegis-guard/forms/sword-elemental/heleg-edlothia.c": 10,
+        "/guilds/aegis-guard/forms/sword-elemental/heleg-manadh.c": 10,
+        "/guilds/aegis-guard/forms/sword-elemental/heleg-dagnir.c": 10,
     ]));
 
     addSpecification("event handler", "glauroEvent");

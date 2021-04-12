@@ -5,7 +5,7 @@
 #ifndef questsModule_h
 #define questsModule_h
 
-private nosave string BaseQuest = "lib/modules/quests/questItem.c";
+private nosave string BaseQuest = "/lib/modules/quests/questItem.c";
 
 private mapping quests = ([
     // "path to quest object" : ([

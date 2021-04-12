@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 29
         ]));
-    addPrerequisite("guilds/bard/melee/arms-lament.c",
+    addPrerequisite("/guilds/bard/melee/arms-lament.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

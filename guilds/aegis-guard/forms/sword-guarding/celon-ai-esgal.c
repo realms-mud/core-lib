@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
         "long sword", "hand and a half sword", "two-handed sword" })]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/guarding-root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/guarding-root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

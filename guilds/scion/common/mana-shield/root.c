@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": "guilds/scion/common/mana-shield/gift-of-dhuras.c",
+            "research item": "/guilds/scion/common/mana-shield/gift-of-dhuras.c",
             "name" : "Gift of Dhuras",
             "formula" : "additive",
             "base value" : 2,
@@ -23,7 +23,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/scion/common/mana-shield/boon-of-dhuras.c",
+            "research item": "/guilds/scion/common/mana-shield/boon-of-dhuras.c",
             "name" : "Boon of Dhuras",
             "formula" : "additive",
             "base value" : 2,
@@ -31,7 +31,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/scion/common/mana-shield/mana-shroud.c",
+            "research item": "/guilds/scion/common/mana-shield/mana-shroud.c",
             "name" : "Mana Shroud",
             "formula" : "additive",
             "base value" : 2,
@@ -39,7 +39,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/scion/common/mana-shield/hopes-embrace.c",
+            "research item": "/guilds/scion/common/mana-shield/hopes-embrace.c",
             "name" : "Hope's Embrace",
             "formula" : "additive",
             "base value" : 2,
@@ -47,7 +47,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/scion/common/mana-shield/blessing-of-dhuras.c",
+            "research item": "/guilds/scion/common/mana-shield/blessing-of-dhuras.c",
             "name" : "Blessing of Dhuras",
             "formula" : "additive",
             "base value" : 5,
@@ -79,7 +79,7 @@ protected void Setup()
     addSpecification("bonus resist undead", 1);
     addSpecification("bonus resist water", 1);
     addSpecification("trait", 
-        "guilds/scion/common/mana-shield/shield-trait.c");
+        "/guilds/scion/common/mana-shield/shield-trait.c");
 
     addSpecification("use ability activate message", "A shield of "
         "scintillating energy wraps around ##InitiatorName##.");

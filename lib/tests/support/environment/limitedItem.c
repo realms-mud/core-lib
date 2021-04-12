@@ -11,7 +11,7 @@ public void Setup()
     addDescriptionTemplate("a limited item");
     addItemTemplate("a nifty limited item");
     limitDisplayByResearchThatIsActive(
-        "lib/tests/support/research/testSustainedTraitResearch.c");
+        "/lib/tests/support/research/testSustainedTraitResearch.c");
     limitDisplayBySkill("spot", 5);
     limitDisplayByEquipment("axe");
     limitDisplayBySeason("autumn");

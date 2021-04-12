@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 45
         ]));
-    addPrerequisite("guilds/fighter/blades/over-cutting.c",
+    addPrerequisite("/guilds/fighter/blades/over-cutting.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

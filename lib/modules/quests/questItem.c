@@ -5,7 +5,7 @@
 virtual inherit "/lib/core/prerequisites.c";
 virtual inherit "/lib/core/stateMachine.c";
 
-private string BaseQuest = "lib/modules/quests/questItem.c";
+private string BaseQuest = "/lib/modules/quests/questItem.c";
 
 private string Name = 0;
 private string Description = 0;

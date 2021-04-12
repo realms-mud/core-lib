@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 10
         ]));
-    addPrerequisite("guilds/bard/melee/melees-melody.c",
+    addPrerequisite("/guilds/bard/melee/melees-melody.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

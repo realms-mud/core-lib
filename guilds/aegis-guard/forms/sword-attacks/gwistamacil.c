@@ -20,11 +20,11 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 14 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/dravnu.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/dravnu.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/nistaros.c",
         (["type":"research"]));
 
     addSpecification("affected research", ([

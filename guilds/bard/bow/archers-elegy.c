@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 21
         ]));
-    addPrerequisite("guilds/bard/bow/ballad-of-the-bow.c",
+    addPrerequisite("/guilds/bard/bow/ballad-of-the-bow.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

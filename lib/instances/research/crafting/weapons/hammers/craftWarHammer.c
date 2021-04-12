@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft basic hammers such as war hammers and lucerne hammers.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c", (["type":"research"]));
 }

@@ -265,10 +265,10 @@ void CanMoveToAttachedLocation()
     object person = clone_object("/lib/realizations/player.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     command("north", person);
-    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/toLocation.c", program_name(environment(person)));
     destruct(person);
 }
 
@@ -284,10 +284,10 @@ void MovesToLocationForAppropriateState()
     object person = clone_object("/lib/realizations/player.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     command("north", person);
-    ExpectEq("lib/tests/support/environment/fromLocation.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/fromLocation.c", program_name(environment(person)));
     destruct(person);
 }
 
@@ -303,10 +303,10 @@ void MovesToDefaultLocationWhenNotDefinedInState()
     object person = clone_object("/lib/realizations/player.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     command("north", person);
-    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/toLocation.c", program_name(environment(person)));
     destruct(person);
 }
 
@@ -322,10 +322,10 @@ void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
     object person = clone_object("/lib/realizations/player.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     command("south", person);
-    ExpectEq("lib/tests/support/environment/toLocation.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/toLocation.c", program_name(environment(person)));
     destruct(person);
 }
 
@@ -1548,7 +1548,7 @@ void ExitsWithDefaultDoorsBehavesCorrectly()
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
     observer->Name("fred");
@@ -1566,7 +1566,7 @@ void ExitsWithDefaultDoorsBehavesCorrectly()
     ExpectSubStringMatch("The door opens and Dwight enters",
         other->caughtMessage());   
 
-    ExpectEq("lib/tests/support/environment/not-so-dark-room.c",
+    ExpectEq("/lib/tests/support/environment/not-so-dark-room.c",
         program_name(environment(person)));
 
     destruct(person);
@@ -1588,7 +1588,7 @@ void BuildingsWithDoorsBehaveCorrectly()
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person->Name("dwight");
     move_object(person, Environment);
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
     observer->Name("fred");
@@ -1606,7 +1606,7 @@ void BuildingsWithDoorsBehaveCorrectly()
     ExpectSubStringMatch("The door opens and Dwight enters",
         other->caughtMessage());
 
-    ExpectEq("lib/tests/support/environment/not-so-dark-room.c",
+    ExpectEq("/lib/tests/support/environment/not-so-dark-room.c",
         program_name(environment(person)));
 
     destruct(person);
@@ -1628,7 +1628,7 @@ void CannotMoveThroughLockedDoor()
     person->Name("dwight");
     move_object(person, Environment);
 
-    ExpectEq("lib/tests/support/environment/testEnvironment.c", 
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c", 
         program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -1641,7 +1641,7 @@ void CannotMoveThroughLockedDoor()
     ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
         observer->caughtMessage());
 
-    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
 
     destruct(person);
@@ -1664,7 +1664,7 @@ void CannotGoIntoLockedBuilding()
     person->Name("dwight");
     move_object(person, Environment);
 
-    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -1677,7 +1677,7 @@ void CannotGoIntoLockedBuilding()
     ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
         observer->caughtMessage());
 
-    ExpectEq("lib/tests/support/environment/testEnvironment.c",
+    ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
 
     destruct(person);
@@ -2040,11 +2040,11 @@ void HarvestResourceReturnsCorrectResource()
         clone_object("/lib/tests/support/environment/harvestRoom.c");
     move_object(player, environment);
 
-    ExpectEq("lib/instances/items/materials/wood/oak.c", 
+    ExpectEq("/lib/instances/items/materials/wood/oak.c", 
         program_name(environment->harvestResource("oak tree", player)));
-    ExpectEq("lib/instances/items/food/plants/nuts/acorn.c", 
+    ExpectEq("/lib/instances/items/food/plants/nuts/acorn.c", 
         program_name(environment->harvestResource("acorn", player)));
-    ExpectEq("lib/instances/items/materials/wood/alder.c", 
+    ExpectEq("/lib/instances/items/materials/wood/alder.c", 
         program_name(environment->harvestResource("alder", player)));
     ExpectFalse(environment->harvestResource("weasel", player));
 
@@ -2152,7 +2152,7 @@ void DisplayOfElementIsShownByLimitors()
     ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
 
     player->spellPoints(player->maxSpellPoints());
-    player->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c");
+    player->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
     player->researchCommand("throw turnip");
     command("l", player);
     ExpectSubStringMatch("forest.*limited.*item.\nThe sun", player->caughtMessage());
@@ -2189,7 +2189,7 @@ void ElementIsManipulatableByLimitors()
     command("equip axe", player);
 
     player->spellPoints(player->maxSpellPoints());
-    player->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c");
+    player->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
     player->researchCommand("throw turnip");
     command("exa limited item", player);
     ExpectEq("You see a nifty limited item.\n", player->caughtMessage());

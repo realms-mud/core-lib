@@ -19,7 +19,7 @@ protected void Setup()
             "guild": "bard",
             "value": 25
         ]));
-    addPrerequisite("guilds/bard/compositions/the-troubador.c",
+    addPrerequisite("/guilds/bard/compositions/the-troubador.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

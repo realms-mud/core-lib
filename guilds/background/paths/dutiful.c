@@ -40,8 +40,8 @@ protected void Setup()
     Name("A Dutiful Child");
     Description("");
     Source("background");
-    addResearchElement("guilds/background/paths/dutiful/root.c");
-    TreeRoot("guilds/background/paths/dutiful/root.c");
+    addResearchElement("/guilds/background/paths/dutiful/root.c");
+    TreeRoot("/guilds/background/paths/dutiful/root.c");
 
     FirstLevel();
     SecondLevel();

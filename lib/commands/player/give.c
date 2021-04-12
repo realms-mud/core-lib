@@ -79,7 +79,7 @@ public nomask int execute(string command, object initiator)
                     if (!target->drop())
                     {
                         string itemName = target->query("name");
-                        if ((member(inherit_list(target), "lib/items/money.c") > -1))
+                        if ((member(inherit_list(target), "/lib/items/money.c") > -1))
                         {
                             itemName += " totaling " + target->query("value") +
                                 " in value";

@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string MaterialAttributes = "lib/modules/materialAttributes.c";
+private string MaterialAttributes = "/lib/modules/materialAttributes.c";
 private string MessageParser = "/lib/core/messageParser.c";
 
 /////////////////////////////////////////////////////////////////////////////

@@ -52,7 +52,7 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mCrafting - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -74,7 +74,7 @@ void TopLevelMenuWithCraftWeaponPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SelectUnavailableOptionReturnsToMainMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
 
@@ -97,7 +97,7 @@ void SelectUnavailableOptionReturnsToMainMenu()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftArmorPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mCraft Armor, Clothing, and Jewelry",
@@ -107,7 +107,7 @@ void TopLevelMenuWithCraftArmorPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftArtworkPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftArtwork.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/craftArtwork.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mCraft Artwork",
@@ -117,7 +117,7 @@ void TopLevelMenuWithCraftArtworkPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithCraftMusicalInstrumentPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/craftInstrument.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/craftInstrument.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mCraft Musical Instrument",
@@ -127,7 +127,7 @@ void TopLevelMenuWithCraftMusicalInstrumentPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithBrewPotionsPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/brewPotions.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/brewPotions.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mBrew Potions",
@@ -137,7 +137,7 @@ void TopLevelMenuWithBrewPotionsPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithBrewAndCookFoodMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/brewBeveragesAndCookFood.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/brewBeveragesAndCookFood.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mBrew Beverages and Prepare Food",
@@ -147,7 +147,7 @@ void TopLevelMenuWithBrewAndCookFoodMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithImbuePrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/imbueItems.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/imbueItems.c"), "added research");
     Player->Int(10);
     Player->addSkillPoints(20);
     Player->advanceSkill("spellcraft", 10);
@@ -160,7 +160,7 @@ void TopLevelMenuWithImbuePrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithRefineMaterialPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/refineMaterials.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/refineMaterials.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectSubStringMatch("32mRefine Materials",
@@ -179,7 +179,7 @@ void DescriptionsAreDisplayed()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingCraftArmorDisplaysCorrectSubmenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftArmor.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
     ExpectSubStringMatch("36mCraft Armor.*From this menu, you can craft items",

@@ -15,9 +15,9 @@ protected void Setup()
 
     addSpecification("composite rules", ([
         "template must be one of": ({
-            "lib/tests/support/research/aaa.c",
-            "lib/tests/support/research/aaba.c",
-            "lib/tests/support/research/abab.c",
+            "/lib/tests/support/research/aaa.c",
+            "/lib/tests/support/research/aaba.c",
+            "/lib/tests/support/research/abab.c",
         }),
     ]));
 

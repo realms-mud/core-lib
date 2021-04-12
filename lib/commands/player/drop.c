@@ -56,7 +56,7 @@ public nomask int execute(string command, object initiator)
                     !$1->query("undroppable") &&
                     $1->id($2) :), targetString);
         }
-        else if ((member(inherit_list(initiator), "lib/realizations/wizard.c") > -1) &&
+        else if ((member(inherit_list(initiator), "/lib/realizations/wizard.c") > -1) &&
             present_clone(targetString, initiator))
         {
             targets += ({ present_clone(targetString, initiator) });
@@ -77,7 +77,7 @@ public nomask int execute(string command, object initiator)
                 {
                     if (!function_exists("drop", target) &&
                         (member(inherit_list(initiator),
-                            "lib/realizations/wizard.c") > -1))
+                            "/lib/realizations/wizard.c") > -1))
                     {
                         move_object(target, environment(initiator));
                     }

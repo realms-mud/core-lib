@@ -22,9 +22,9 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 23 ]));
 
-    addPrerequisite("guilds/scion/paths/staff/forms/the-fool.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/the-fool.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/staff/forms/over-smite.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/over-smite.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

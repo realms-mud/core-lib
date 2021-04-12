@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/chainmail/kheleds-tradition.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/chainmail/kheleds-tradition.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 25]));
     addPrerequisite("blacksmithing", (["type":"skill", "value" : 22]));

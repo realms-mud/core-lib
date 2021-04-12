@@ -288,7 +288,7 @@ public nomask string UserName()
 public nomask void setUserName(string name)
 {
     if (sizeof(regexp(({ object_name(previous_object()) }), 
-        "secure/login")))
+        "/secure/login")))
     {
         UserName = name;
     }

@@ -21,11 +21,11 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 16 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/nistaros.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/lilt-an-gurth.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/lilt-an-gurth.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

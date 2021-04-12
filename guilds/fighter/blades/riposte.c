@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 27
         ]));
-    addPrerequisite("guilds/fighter/blades/double-back.c",
+    addPrerequisite("/guilds/fighter/blades/double-back.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

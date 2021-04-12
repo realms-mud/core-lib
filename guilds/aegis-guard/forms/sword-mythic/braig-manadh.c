@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 41
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/braig-edlothia.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

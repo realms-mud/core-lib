@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "A novice thrust best "
         "used against unarmored foes.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/nistaros.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -43,7 +43,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/alagos-tir-angannon.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/alagos-tir-angannon.c",
             "name": "Alagos Tir Angannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -51,7 +51,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
             "name" : "Raud Angannon",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -59,7 +59,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
             "name" : "gwistamacil",
             "formula" : "multiplicative",
             "base value" : 1,

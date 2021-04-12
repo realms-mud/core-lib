@@ -14,5 +14,5 @@ protected void Setup()
         "beasts such as the basilisk or wyvern.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftLeather.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftLeather.c", (["type":"research"]));
 }

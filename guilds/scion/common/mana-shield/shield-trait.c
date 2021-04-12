@@ -13,5 +13,5 @@ protected void Setup()
     addSpecification("description", "You are surrounded by a mana shield.");
 
     addSpecification("triggering research",
-        "guilds/scion/common/mana-shield/root.c");
+        "/guilds/scion/common/mana-shield/root.c");
 }

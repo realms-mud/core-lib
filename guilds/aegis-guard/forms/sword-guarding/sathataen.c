@@ -21,7 +21,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 8 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-foph.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-foph.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

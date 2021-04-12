@@ -40,8 +40,8 @@ protected void Setup()
     Name("An Athlete");
     Description("");
     Source("background");
-    addResearchElement("guilds/background/paths/athletic/root.c");
-    TreeRoot("guilds/background/paths/athletic/root.c");
+    addResearchElement("/guilds/background/paths/athletic/root.c");
+    TreeRoot("/guilds/background/paths/athletic/root.c");
 
     FirstLevel();
     SecondLevel();

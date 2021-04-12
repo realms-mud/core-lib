@@ -75,7 +75,7 @@ void AddSpecificationAllowsValidBonusesToBeApplied()
 void AddSpecificationThrowsForInvalidBonuses()
 {
     string err = catch (ResearchItem->testAddSpecification("bonus blarg", 10));
-    string expectedError = "*ERROR - persistedActiveResearchItem: the 'bonus blarg' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedActiveResearchItem: the 'bonus blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -92,7 +92,7 @@ void AddSpecificationAllowsValidPenaltiesToBeApplied()
 void AddSpecificationThrowsForInvalidPenalties()
 {
     string err = catch (ResearchItem->testAddSpecification("penalty to blarg", 10));
-    string expectedError = "*ERROR - persistedActiveResearchItem: the 'penalty to blarg' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedActiveResearchItem: the 'penalty to blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -114,7 +114,7 @@ void AddSpecificationAllowsValidCombatModifiersToBeApplied()
 void AddSpecificationThrowsForInvalidCombatModifiers()
 {
     string err = catch (ResearchItem->testAddSpecification("apply blarg", 10));
-    string expectedError = "*ERROR - persistedActiveResearchItem: the 'apply blarg' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedActiveResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -122,13 +122,13 @@ void AddSpecificationThrowsForInvalidCombatModifiers()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationAllowsTraitToBeApplied()
 {
-    ExpectTrue(ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(ResearchItem->testAddSpecification("trait", "/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectTraitsToBeApplied()
 {
-    string err = catch (ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testInvalidPersistedTrait.c"));
+    string err = catch (ResearchItem->testAddSpecification("trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"));
     string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -137,13 +137,13 @@ void AddSpecificationDoesNotAllowNonEffectTraitsToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationAllowsNegativeTraitToBeApplied()
 {
-    ExpectTrue(ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectNegativeTraitsToBeApplied()
 {
-    string err = catch (ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testInvalidPersistedTrait.c"));
+    string err = catch (ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"));
     string expectedError = "*ERROR - persistedActiveResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -273,7 +273,7 @@ void ExecuteOnSelfAppliesEffectOnSelf()
     ExpectTrue(ResearchItem->testExecuteOnSelf("command", User, program_name(ResearchItem)), "can execute command");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#Bob", 
+    ExpectEq("/lib/tests/support/research/testPersistedActiveResearchItem.c#Bob", 
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(15, User->getSkill("long sword"), "long sword skill after research used");
@@ -291,7 +291,7 @@ void ExecuteOnSelfAppliesCombatEffectOnSelf()
     ExpectTrue(ResearchItem->testExecuteOnSelf("command", User, program_name(ResearchItem)), "can execute command");
 
     object modifier = User->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(User->inventoryGetModifier("combatModifiers", "haste"));
@@ -321,7 +321,7 @@ void ExecuteOnTargetAppliesEffectOnTarget()
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
 
     object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectEq(15, Target->getSkill("long sword"), "long sword skill after research used");
@@ -420,7 +420,7 @@ void ExecuteOnTargetAppliesBeneficialCombatEffectOnTarget()
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
 
     object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(Target->inventoryGetModifier("combatModifiers", "haste"));
@@ -460,7 +460,7 @@ void ExecuteOnTargetSucceedsIfCombatEffectNegativeAndUserAndTargetOnKillList()
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
 
     object modifier = Target->registeredInventoryObject(program_name(ResearchItem) + "#" + User->RealName());
-    ExpectEq("lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
+    ExpectEq("/lib/tests/support/research/testPersistedActiveResearchItem.c#Bob",
         modifier->query("fully qualified name"), "Modifier with FQN is registered");
 
     ExpectTrue(Target->inventoryGetModifier("combatModifiers", "slow"));
@@ -545,27 +545,27 @@ void ExecuteInAreaAppliedOnCorrectTargets()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnSelfAppliesTraitOnSelf()
 {
-    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("trait", "/lib/tests/support/traits/testTraitWithDuration.c");
 
     ExpectTrue(ResearchItem->testExecuteOnSelf("command", User, program_name(ResearchItem)), "can execute command");
-    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(User->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnTargetAppliesTraitOnTarget()
 {
-    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("trait", "/lib/tests/support/traits/testTraitWithDuration.c");
 
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnTargetAppliesNegativeTrait()
 {
-    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -577,9 +577,9 @@ void ExecuteOnTargetFailsIfTraitNegativeAndTargetNotOnKillList()
     Target->addAlias("frank");
     move_object(Target, Room);
 
-    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectFalse(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -594,9 +594,9 @@ void ExecuteOnTargetFailsIfTraitNegativeAndTargetButNotUserOnKillList()
     Target->toggleKillList();
     move_object(Target, Room);
 
-    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectFalse(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -617,9 +617,9 @@ void ExecuteOnTargetAppliesTraitIfBothPlayersOnKillList()
     Target->advanceSkill("long sword", 10);
     move_object(Target, Room);
 
-    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectTrue(ResearchItem->testExecuteOnTarget("throw turnip at frank", User, program_name(ResearchItem)), "can execute command");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -641,13 +641,13 @@ void NegativeExecuteInAreaAppliesTraitOnCorrectTargets()
     badguy->advanceSkill("long sword", 10);
     move_object(badguy, Room);
 
-    ResearchItem->testAddSpecification("negative trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("negative trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectTrue(ResearchItem->testExecuteInArea("command", User, program_name(ResearchItem)), "can execute command");
 
-    ExpectFalse(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "user safe");
-    ExpectTrue(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "target applied");
-    ExpectTrue(badguy->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "badguy applied");
-    ExpectFalse(bystander->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"), "bystander safe");
+    ExpectFalse(User->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "user safe");
+    ExpectTrue(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "target applied");
+    ExpectTrue(badguy->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "badguy applied");
+    ExpectFalse(bystander->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "bystander safe");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -669,13 +669,13 @@ void ExecuteInAreaAppliesTraitOnCorrectTargets()
     badguy->advanceSkill("long sword", 10);
     move_object(badguy, Room);
 
-    ResearchItem->testAddSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    ResearchItem->testAddSpecification("trait", "/lib/tests/support/traits/testTraitWithDuration.c");
     ExpectTrue(ResearchItem->testExecuteInArea("command", User, program_name(ResearchItem)), "can execute command");
 
-    ExpectTrue(User->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
-    ExpectFalse(Target->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
-    ExpectFalse(badguy->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
-    ExpectTrue(bystander->isTraitOf("lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(User->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(Target->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectFalse(badguy->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
+    ExpectTrue(bystander->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -709,8 +709,9 @@ void DisplayDetailsShowCorrectInformation()
         "This is only applied when you're using: hand and a half sword, long sword, or\n"
         "two-handed sword.\n"
         "Prerequisites:\n"
-        "          Level: Level of 33 in Scion of Dhuras\n"
         "       Research: The Way Of The Sword\n"
-        "       Research: Shocking Barrier\n", research->researchDetails());
+        "       Research: Shocking Barrier\n"
+        "          Level: Level of 33 in Scion of Dhuras\n", 
+            research->researchDetails());
     destruct(research);
 }

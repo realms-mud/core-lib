@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
 
-    addPrerequisite("guilds/scion/paths/mace/forms/middle-smite.c",
+    addPrerequisite("/guilds/scion/paths/mace/forms/middle-smite.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

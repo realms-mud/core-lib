@@ -24,9 +24,9 @@ protected void Setup()
         "of negative energy at all foes in the area.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/soul-shear.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/soul-shear.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -66,7 +66,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/parasitic-charge.c", WeaponType),
             "name" : "Parasitic Charge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/leechs-promise.c", WeaponType),
             "name" : "The Leech's Promise",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -82,7 +82,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/enervation.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/enervation.c", WeaponType),
             "name" : "Enervation",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/malefic-discharge.c", WeaponType),
             "name" : "Malefic Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -98,7 +98,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType),
             "name" : "Crimson Eruption",
             "formula" : "multiplicative",
             "base value" : 1,

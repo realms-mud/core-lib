@@ -22,7 +22,7 @@ private string getPlayerStatus(object player)
     {
         playerStatus = "I";
     }
-    if ((member(inherit_list(player), "lib/realizations/wizard.c") > -1) &&
+    if ((member(inherit_list(player), "/lib/realizations/wizard.c") > -1) &&
         player->wizardStatus())
     {
         playerStatus = player->wizardStatus();
@@ -34,7 +34,7 @@ private string getPlayerStatus(object player)
 private string getPlayerLevel(object player)
 {
     string level = to_string(player->effectiveLevel());
-    if (member(inherit_list(player), "lib/realizations/wizard.c") > -1)
+    if (member(inherit_list(player), "/lib/realizations/wizard.c") > -1)
     {
         level = capitalize(player->wizardLevel());
     }
@@ -77,7 +77,7 @@ private object *getListOfUsers(string command)
     object wizardDictionary = load_object("/lib/dictionaries/wizardDictionary.c");
 
     object *wizardList = sort_array(filter(playerList,
-        (: (member(inherit_list($1), "lib/realizations/wizard.c") > -1) :)),
+        (: (member(inherit_list($1), "/lib/realizations/wizard.c") > -1) :)),
         (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardDictionary);
 
     if (sizeof(regexp(({ command }), "-w")))

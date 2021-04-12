@@ -5,7 +5,7 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-private string MaterialAttributes = "lib/modules/materialAttributes.c";
+private string MaterialAttributes = "/lib/modules/materialAttributes.c";
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidAttacker(object attacker)

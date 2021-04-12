@@ -140,7 +140,7 @@ void SectionUpdatedWhenSelected()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMaterialsMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
     material->set("quantity", 100);
@@ -191,7 +191,7 @@ void CorrectlyDisplaysMaterialsMenu()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectMaterialForComponent()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
     material->set("quantity", 100);
@@ -240,7 +240,7 @@ void CanSelectMaterialForComponent()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectMaterialsWithFailedPrerequisiteCheck()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
     material->set("quantity", 100);
@@ -292,7 +292,7 @@ void CannotSelectMaterialsWithFailedPrerequisiteCheck()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectMaterialsWithFailedMaterialsCheck()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
     material->set("quantity", 100);
@@ -344,12 +344,12 @@ void CannotSelectMaterialsWithFailedMaterialsCheck()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNonStandardMaterials()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftStone.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftClay.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftConcrete.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/useClaysAsStone.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/useCrystalsAsStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftClay.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftConcrete.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/useClaysAsStone.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/useCrystalsAsStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
     material->set("quantity", 100);
@@ -744,8 +744,8 @@ void CompletionTimeIsUpdated()
                     "benefits": ([ 
                         "duration": -5,
                         "traits": ({ 
-                            "lib/instances/traits/domains/apprentice-carpenter.c",
-                            "lib/instances/traits/personas/fighters/swordsman.c"
+                            "/lib/instances/traits/domains/apprentice-carpenter.c",
+                            "/lib/instances/traits/personas/fighters/swordsman.c"
                         }),
                         "structure": -5,
                         "level": "low end worker",
@@ -758,15 +758,15 @@ void CompletionTimeIsUpdated()
                         ]),
                     "description": "M: -5%, D: -5%, C: -5%, U: -5%, S: -5%"
                     ]),
-                    "object": "lib/realizations/henchman#344",
+                    "object": "/lib/realizations/henchman#344",
                     "level": "low end worker"
                 ]),
                 "Marik Argalen": ([ 
                     "benefits": ([ 
                         "duration": 17,
                         "traits": ({
-                           "lib/instances/traits/domains/master-carpenter.c",
-                         "lib/instances/traits/personas/fighters/swordsman.c"
+                           "/lib/instances/traits/domains/master-carpenter.c",
+                         "/lib/instances/traits/personas/fighters/swordsman.c"
                         }),
                         "structure": 15,
                         "level": "elite worker",
@@ -779,15 +779,15 @@ void CompletionTimeIsUpdated()
                         ]),
                         "description": "M: +17%, D: +17%, C: +10%, U: +10%, S: +15%"
                     ]),
-                    "object": "lib/realizations/henchman#337",
+                    "object": "/lib/realizations/henchman#337",
                     "level": "elite worker"
                 ]),
                 "Royce Eralkidh": ([
                     "benefits": ([
                         "duration": 0,
                         "traits": ({ 
-                            "lib/instances/traits/domains/journeyman-carpenter.c",
-                            "lib/instances/traits/personas/fighters/swordsman.c"
+                            "/lib/instances/traits/domains/journeyman-carpenter.c",
+                            "/lib/instances/traits/personas/fighters/swordsman.c"
                         }),
                         "structure": 0,
                         "level": "average worker",
@@ -800,7 +800,7 @@ void CompletionTimeIsUpdated()
                         ]),
                     "description": "No bonuses or penalties"
                     ]),
-                    "object": "lib/realizations/henchman#330",
+                    "object": "/lib/realizations/henchman#330",
                     "level": "average worker"
                 ])
             ])

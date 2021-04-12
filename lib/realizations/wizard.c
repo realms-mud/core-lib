@@ -53,7 +53,7 @@ public nomask int setWizardLevel(string level, object granter)
 {
     int ret = 0;
     if (granter && validWizardLevel(level) && 
-        (program_name(granter) == "lib/realizations/wizard.c") &&
+        (program_name(granter) == "/lib/realizations/wizard.c") &&
         (granter == this_player()) &&
         granter->hasExecuteAccess("promote"))
     {

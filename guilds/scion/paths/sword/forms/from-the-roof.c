@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("limited by", (["equipment":({
         "long sword", "hand and a half sword", "two-handed sword" })]));
 
-    addPrerequisite("guilds/scion/paths/sword/root.c",
+    addPrerequisite("/guilds/scion/paths/sword/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

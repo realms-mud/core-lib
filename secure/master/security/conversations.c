@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/modules/conversations");
+    setName("/lib/modules/conversations");
     addPermission("/", Read);
     allowInheritedPermissions();
 

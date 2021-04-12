@@ -318,7 +318,7 @@ private nosave mapping creatureBlueprints = ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
-        "traits" : ({ "lib/instances/traits/effects/ethereal" }),
+        "traits" : ({ "/lib/instances/traits/effects/ethereal" }),
         "potential traits" : ({}),
         "minimum level": 5,
         "attacks": ([
@@ -1327,7 +1327,7 @@ private nosave mapping creatureBlueprints = ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
-        "traits" : ({ "lib/instances/traits/effects/ethereal" }),
+        "traits" : ({ "/lib/instances/traits/effects/ethereal" }),
         "potential traits" : ({}),
         "minimum level": 10,
         "attacks": ([
@@ -1374,7 +1374,7 @@ private nosave mapping creatureBlueprints = ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
-        "traits" : ({ "lib/instances/traits/effects/ethereal" }),
+        "traits" : ({ "/lib/instances/traits/effects/ethereal" }),
         "potential traits" : ({}),
         "minimum level": 5,
         "attacks": ([
@@ -1700,7 +1700,7 @@ private nosave mapping creatureBlueprints = ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
-        "traits" : ({ "lib/instances/traits/effects/ethereal" }),
+        "traits" : ({ "/lib/instances/traits/effects/ethereal" }),
         "potential traits" : ({}),
         "minimum level": 6,
         "attacks": ([
@@ -1746,7 +1746,7 @@ private nosave mapping creatureBlueprints = ([
         "category": "undead",
         "primary skills":({ "parry", "dodge", "no armor" }),
         "secondary skills" : ({ "perception", "listen", "spot" }),
-        "traits" : ({ "lib/instances/traits/effects/ethereal" }),
+        "traits" : ({ "/lib/instances/traits/effects/ethereal" }),
         "potential traits" : ({}),
         "minimum level": 12,
         "attacks": ([

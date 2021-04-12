@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 31
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/dagnir-gwaelphilin.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 33
         ]));
-    addPrerequisite("guilds/fighter/blades/riposte.c",
+    addPrerequisite("/guilds/fighter/blades/riposte.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

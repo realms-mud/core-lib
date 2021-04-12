@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level",
             "guild" : "Scion of Dhuras",
             "value" : 21]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/blazing-edge.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/flame/blazing-edge.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

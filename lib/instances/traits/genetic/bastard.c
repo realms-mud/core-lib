@@ -14,6 +14,6 @@ protected void Setup()
     addSpecification("opposing root", "legitimate");
     addSpecification("opinion", -25);
     addSpecification("penalty to persuasion", 5);
-    addSpecification("research tree", "lib/instances/research/traits/bastardResearchTree.c");
+    addSpecification("research tree", "/lib/instances/research/traits/bastardResearchTree.c");
     addSpecification("cost", -1);
 }

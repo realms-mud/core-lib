@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "An advanced hew used to break down "
         "an opponent's high guards.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
             "name": "Lelyan Isilme",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
             "name": "Mithrannon",
             "formula": "multiplicative",
             "base value": 1,

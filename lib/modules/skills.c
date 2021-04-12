@@ -79,7 +79,7 @@ public nomask varargs int getSkill(string skill, int raw)
                 }
 
                 object room = environment(this_object());
-                if (room && (member(inherit_list(room), "lib/environment/environment.c") > -1))
+                if (room && (member(inherit_list(room), "/lib/environment/environment.c") > -1))
                 {
                     ret += room->environmentalBonusTo(skill, this_object());
                 }

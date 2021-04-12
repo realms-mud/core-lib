@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "A feint designed to box an opponent "
         "in, limiting future movement.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/lanc.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/lanc.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
             "name": "lelyan-isilme",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
             "name" : "raud-angannon",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),            
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
             "name" : "mithrannon",
             "formula" : "multiplicative",
             "base value" : 1,

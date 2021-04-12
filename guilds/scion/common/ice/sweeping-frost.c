@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 3 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/ice/frost-brand.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/ice/frost-brand.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

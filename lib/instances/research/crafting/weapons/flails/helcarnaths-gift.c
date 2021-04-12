@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/flails/feir-an-wol.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/flails/feir-an-wol.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 45]));
     addPrerequisite("spellcraft", (["type":"skill", "value" : 40]));

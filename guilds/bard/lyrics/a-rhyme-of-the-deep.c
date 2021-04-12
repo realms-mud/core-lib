@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "level", 
           "guild": "bard",
           "value": 15 ]));
-    addPrerequisite("guilds/bard/lyrics/lay-of-landros.c",
+    addPrerequisite("/guilds/bard/lyrics/lay-of-landros.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

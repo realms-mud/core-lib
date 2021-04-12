@@ -103,7 +103,7 @@ public nomask string *guildsResearchTrees()
     string *ret = ({});
     if (useGuilds && !experience)
     {
-        ret = ({ "lib/tests/support/guilds/testGuildResearchTree.c" });
+        ret = ({ "/lib/tests/support/guilds/testGuildResearchTree.c" });
     }
     return ret;
 }

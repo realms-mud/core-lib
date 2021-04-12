@@ -29,7 +29,9 @@ void Setup()
     User->toggleKillList();
     User->ToggleMockResearch();
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboResearchItem.c");
+    User->initiateResearch("/lib/tests/support/research/comboResearchItem.c");
+    User->colorConfiguration("none");
+    User->resetCatchList();
 
     Target = clone_object("/lib/realizations/monster.c");
     Target->Name("Frank");
@@ -60,14 +62,14 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DamageHitPointsWillExecuteAttack()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
     command("do stuff blarg frumbus clerb at frank", User);
@@ -83,14 +85,14 @@ void DamageHitPointsWillExecuteAttack()
 /////////////////////////////////////////////////////////////////////////////
 void WillNotExecuteInvalidCombinations()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
     command("do stuff blarg rarg clerb at frank", User);
@@ -108,14 +110,14 @@ void WillNotExecuteInvalidCombinations()
 /////////////////////////////////////////////////////////////////////////////
 void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
     command("do stuff blarg frumbus clerb at frank", User);
@@ -139,15 +141,15 @@ void NotSpecifyingTargetWillTargetCurrentForDamageResearch()
 /////////////////////////////////////////////////////////////////////////////
 void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemI.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemI.c");
 
     User->hit(130);
     ExpectEq(24, User->hitPoints());
@@ -162,10 +164,10 @@ void NotSpecifyingTargetWillTargetOwnerForBeneficialResearch()
 /////////////////////////////////////////////////////////////////////////////
 void CanUseSelfTargetCombinations()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemI.c");
-    User->initiateResearch("lib/tests/support/research/comboSelfResearchItem.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemI.c");
+    User->initiateResearch("/lib/tests/support/research/comboSelfResearchItem.c");
 
     User->hit(130);
     ExpectEq(24, User->hitPoints());
@@ -194,15 +196,15 @@ void CanExecuteAreaCombinations()
     herman->staminaPoints(herman->maxStaminaPoints());
     move_object(herman, Room);
 
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
-    User->initiateResearch("lib/tests/support/research/comboAreaResearchItem.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboAreaResearchItem.c");
 
     ExpectEq(150, Target->hitPoints(), "Frank's initial HP");
     ExpectEq(150, herman->hitPoints(), "Frank's initial HP");
@@ -221,14 +223,14 @@ void CanExecuteAreaCombinations()
 /////////////////////////////////////////////////////////////////////////////
 void CostCorrectlyApplied()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(150, User->hitPoints());
     ExpectEq(150, User->spellPoints());
@@ -243,14 +245,14 @@ void CostCorrectlyApplied()
 /////////////////////////////////////////////////////////////////////////////
 void ActionBlockedIfCostNotMet()
 {
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     User->spellPoints(-125);
 
@@ -272,7 +274,7 @@ void ActionBlockedIfCostNotMet()
 /////////////////////////////////////////////////////////////////////////////
 void CanDisplayResearchInfo()
 {
-    object effect = clone_object("lib/tests/support/research/comboResearchItem.c");
+    object effect = clone_object("/lib/tests/support/research/comboResearchItem.c");
 
     ExpectEq("Research Name   : Combo blarg\n"
         "This is combo active research\n"

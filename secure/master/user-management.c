@@ -11,8 +11,8 @@ public nomask int removeCharacter(object character)
     string *inherits = inherit_list(character);
 
     if (objectp(character) &&
-        (member(inherits, "lib/realizations/player.c") > -1) &&
-        (member(inherits, "lib/realizations/wizard.c") < 0) &&
+        (member(inherits, "/lib/realizations/player.c") > -1) &&
+        (member(inherits, "/lib/realizations/wizard.c") < 0) &&
         (character == this_player()))
     {
         string characterName = character->RealName();
@@ -35,7 +35,7 @@ public nomask varargs int createWizard(string wizardName, string level)
     object sponsor = this_player();
 
     if (sponsor && stringp(wizardName) && interactive(sponsor) &&
-        (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
+        (member(inherit_list(sponsor), "/lib/realizations/wizard.c") > -1) &&
         sponsor->hasExecuteAccess("promote"))
     {
         object player = efun::findPlayer(wizardName);
@@ -58,8 +58,8 @@ public nomask varargs int createWizard(string wizardName, string level)
         }
 
         if (player && ret &&
-            (member(inherit_list(player), "lib/realizations/player.c") > -1) &&
-            (member(inherit_list(player), "lib/realizations/wizard.c") < 0))
+            (member(inherit_list(player), "/lib/realizations/player.c") > -1) &&
+            (member(inherit_list(player), "/lib/realizations/wizard.c") < 0))
         {
             object currentEnvironment = environment(player);
             newWizardObject->restore(wizardName);
@@ -113,7 +113,7 @@ public nomask varargs int demoteWizardToPlayer(string wizardName)
     object sponsor = this_player();
 
     if (sponsor && stringp(wizardName) && interactive(sponsor) &&
-        (member(inherit_list(sponsor), "lib/realizations/wizard.c") > -1) &&
+        (member(inherit_list(sponsor), "/lib/realizations/wizard.c") > -1) &&
         sponsor->hasExecuteAccess("promote"))
     {
         ret = 1;

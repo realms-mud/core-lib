@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "fighter",
           "value": 2 ]));
 
-    addPrerequisite("guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/techniques/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

@@ -14,5 +14,5 @@ protected void Setup()
         "swamp ash or rosewood.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftCommonWood.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftCommonWood.c", (["type":"research"]));
 }

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 19
         ]));
-    addPrerequisite("guilds/bard/bow/song-of-the-swift.c",
+    addPrerequisite("/guilds/bard/bow/song-of-the-swift.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

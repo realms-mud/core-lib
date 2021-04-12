@@ -428,8 +428,8 @@ protected nomask varargs object *getCombinationList(string unparsedCommand,
 
         if (!doNotDisplayFeedback)
         {
-            displayMessageToSelf(configuration->decorate(format(failureMessage,
-                "failure message", "research", owner->colorConfiguration(), 78)),
+            displayMessageToSelf(configuration->decorate(format(failureMessage, 78),
+                "failure message", "research", owner->colorConfiguration()),
                 owner);
         }
     }
@@ -564,7 +564,7 @@ private nomask object getComboTarget(string unparsedCommand, object owner,
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int executeOnTarget(string unparsedCommand, object owner,
-    object researchName)
+    string researchName)
 {
     int ret = 0;
     object *combo = getCombinationList(unparsedCommand, owner);

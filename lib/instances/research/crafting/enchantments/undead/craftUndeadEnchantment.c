@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to imbue items with undead enchantments.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/enchantments/craftEnchantments.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/enchantments/craftEnchantments.c", (["type":"research"]));
 }

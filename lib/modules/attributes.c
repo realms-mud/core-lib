@@ -102,7 +102,7 @@ public varargs nomask int attributeValue(string attribute, int useRaw)
             }
 
             object room = environment(this_object());
-            if (room && (member(inherit_list(room), "lib/environment/environment.c") > -1))
+            if (room && (member(inherit_list(room), "/lib/environment/environment.c") > -1))
             {
                 value += room->environmentalBonusTo(attribute,
                     this_object());

@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft leather armor.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/armor/craftArmor.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/armor/craftArmor.c", (["type":"research"]));
 }

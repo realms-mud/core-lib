@@ -8,7 +8,7 @@ private nosave mapping drinks =
     "pilsner beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -22,7 +22,7 @@ private nosave mapping drinks =
     "bock beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -36,7 +36,7 @@ private nosave mapping drinks =
     "kolsche beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -50,7 +50,7 @@ private nosave mapping drinks =
     "amber ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -64,7 +64,7 @@ private nosave mapping drinks =
     "milk stout beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 5]),
         ]),        
         "crafting materials": ([
@@ -79,7 +79,7 @@ private nosave mapping drinks =
     "porter beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -93,7 +93,7 @@ private nosave mapping drinks =
     "stout beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -107,7 +107,7 @@ private nosave mapping drinks =
     "black pale ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -121,7 +121,7 @@ private nosave mapping drinks =
     "pale ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -136,7 +136,7 @@ private nosave mapping drinks =
     "dubbel beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -150,7 +150,7 @@ private nosave mapping drinks =
     "trippel beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -165,7 +165,7 @@ private nosave mapping drinks =
     "quad beer":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 3]),
         ]),        
         "crafting materials": ([
@@ -179,7 +179,7 @@ private nosave mapping drinks =
     "cherry lambic ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 6]),
         ]),        
         "crafting materials": ([
@@ -194,7 +194,7 @@ private nosave mapping drinks =
     "raspberry lambic ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 6]),
         ]),        
         "crafting materials": ([
@@ -209,7 +209,7 @@ private nosave mapping drinks =
     "blackberry lambic ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 6]),
         ]),        
         "crafting materials": ([
@@ -224,7 +224,7 @@ private nosave mapping drinks =
     "serendipitous lambic ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
@@ -241,7 +241,7 @@ private nosave mapping drinks =
     "dubbel pale ale":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 6]),
         ]),        
         "crafting materials": ([
@@ -255,7 +255,7 @@ private nosave mapping drinks =
     "blueberry lager":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 6]),
         ]),        
         "crafting materials": ([
@@ -270,7 +270,7 @@ private nosave mapping drinks =
     "brandy barrel aged weissenbock":([
         "type": "beer",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/drinks/brewBeer.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 10]),
         ]),        
         "crafting materials": ([

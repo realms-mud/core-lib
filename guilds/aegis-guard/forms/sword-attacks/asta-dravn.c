@@ -23,9 +23,9 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 23 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-foph.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-foph.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
         (["type":"research"]));
 
     addSpecification("affected research", ([

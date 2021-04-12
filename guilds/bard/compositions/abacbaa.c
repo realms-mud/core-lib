@@ -19,7 +19,7 @@ protected void Setup()
             "guild": "bard",
             "value": 15
         ]));
-    addPrerequisite("guilds/bard/compositions/ababcb.c",
+    addPrerequisite("/guilds/bard/compositions/ababcb.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

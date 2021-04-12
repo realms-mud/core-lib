@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/mkdirTest");
+    setName("/lib/tests/commands/wizard/mkdirTest");
     addPermission("/players/earl", Read | Write);
     addPermission("/secure/newDir", Read);
 

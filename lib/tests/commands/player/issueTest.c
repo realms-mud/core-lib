@@ -65,7 +65,7 @@ void CanLogIssue()
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
-        "lib/tests/support/environment/fakeEnvironment.c.*"
+        "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: issue.*"
         "Current trace data:.*",
@@ -80,7 +80,7 @@ void CanLogIssueWithComment()
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
-        "lib/tests/support/environment/fakeEnvironment.c.*"
+        "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*",
@@ -101,7 +101,7 @@ void CanLogIssueOnTarget()
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
-        "lib/instances/items/weapons/swords/long-sword.c.*"
+        "/lib/instances/items/weapons/swords/long-sword.c.*"
         "Location: lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*'CanLogIssueOnTarget' in "
@@ -125,7 +125,7 @@ void CanLogIssueWithTeleport()
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
-        "lib/tests/support/environment/fakeEnvironment.c.*"
+        "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "NOTE: Bob used teleport to safety.*",

@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/khed-arun.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/heavy-armor/khed-arun.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 45]));
     addPrerequisite("spellcraft", (["type":"skill", "value" : 45]));

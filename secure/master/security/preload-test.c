@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/secure/preloadTest");
+    setName("/lib/tests/secure/preloadTest");
     addPermission("/", Read);
 
     addPriviledgedEfun("get_dir");

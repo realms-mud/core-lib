@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/maces/maegyr-din.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/maces/maegyr-din.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 40]));
     addPrerequisite("gem crafting", (["type":"skill", "value" : 30]));

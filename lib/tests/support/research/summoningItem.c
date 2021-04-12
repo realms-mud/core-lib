@@ -22,7 +22,7 @@ protected void Setup()
     addSpecification("persona level", 5);
     addSpecification("persona", "weasel");
     addSpecification("modifiers", ([
-        "lib/tests/support/research/weaselBuff.c":({
+        "/lib/tests/support/research/weaselBuff.c":({
             (["modifier": "bonus strength",
                "value": 3]),
             (["modifier": "bonus wisdom",
@@ -36,9 +36,9 @@ protected void Setup()
             (["modifier":"apply fortified",
                "value" : 1]),
         }),
-        "lib/tests/support/research/weaselMagic.c":({
+        "/lib/tests/support/research/weaselMagic.c":({
             (["modifier": "apply research",
-               "value": "lib/tests/support/research/weaselSpell.c" ]),
+               "value": "/lib/tests/support/research/weaselSpell.c" ]),
         })
     ]));
 

@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "level", 
           "guild": "bard",
           "value": 55 ]));
-    addPrerequisite("guilds/bard/lyrics/bloods-depth.c",
+    addPrerequisite("/guilds/bard/lyrics/bloods-depth.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

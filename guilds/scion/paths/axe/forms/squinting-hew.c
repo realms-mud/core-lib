@@ -23,13 +23,13 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 20 ]));
 
-    addPrerequisite("guilds/scion/paths/axe/forms/striking.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/striking.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/axe/forms/langort.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/langort.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/axe/forms/over-hew.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/over-hew.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/axe/forms/the-plough.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/the-plough.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

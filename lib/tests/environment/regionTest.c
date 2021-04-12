@@ -279,7 +279,7 @@ void CanGenerateFiles()
     mkdir(originalDir);
 
     string *files = get_dir(originalDir + "/*", 0x10) -
-        ({ "lib/generated_region/.", "lib/generated_region/.." });
+        ({ "/lib/generated_region/.", "/lib/generated_region/.." });
 
     ExpectEq(({ }), files);
 
@@ -298,9 +298,9 @@ void CanGenerateFiles()
     Region->generateStaticFiles("/lib/generated_region");
 
     files = get_dir(originalDir + "/*", 0x10) -
-        ({ "lib/generated_region/.", "lib/generated_region/.." });
+        ({ "/lib/generated_region/.", "/lib/generated_region/.." });
 
-    ExpectEq(({ "lib/generated_region/a-forest--lib-tests-support-environment-startingRoom-c" }), 
+    ExpectEq(({ "/lib/generated_region/a-forest--lib-tests-support-environment-startingRoom-c" }), 
         files);
     string dirToDelete = files[0];
 

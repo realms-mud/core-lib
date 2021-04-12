@@ -19,7 +19,7 @@ protected void Setup()
         "value": 21 
     ]));
 
-    addPrerequisite("guilds/scion/common/mana-shield/mana-shroud.c",
+    addPrerequisite("/guilds/scion/common/mana-shield/mana-shroud.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

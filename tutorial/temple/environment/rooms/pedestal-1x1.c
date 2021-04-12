@@ -11,10 +11,10 @@ public void Setup()
 {
     cloneEnvironment();
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("tutorial/temple/environment/features/purple-liquid.c");
-    addFeature("tutorial/temple/environment/features/pedestal.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("/tutorial/temple/environment/features/purple-liquid.c");
+    addFeature("/tutorial/temple/environment/features/pedestal.c");
 
     addExit("north", "/tutorial/temple/environment/rooms/entry-to-pedestal.c",
         "entered room");
@@ -64,7 +64,7 @@ public int canGet(object target)
     {
         if (this_player())
         {
-            this_player()->beginQuest("tutorial/temple/stateMachine/obedienceStateMachine.c");
+            this_player()->beginQuest("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 
             if (StateMachine)
             {
@@ -147,7 +147,7 @@ public int resetEverything(string command)
 
     destruct(Uhrdalen);
     pedestal()->pressPlateOfDeath(1);
-    this_player()->resetQuest("tutorial/temple/stateMachine/obedienceStateMachine.c");
+    this_player()->resetQuest("/tutorial/temple/stateMachine/obedienceStateMachine.c");
     load_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
     StateMachine->startStateMachine();
     return 1;

@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level",
             "guild" : "Scion of Dhuras",
             "value" : 11]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/burning-brand.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/flame/burning-brand.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

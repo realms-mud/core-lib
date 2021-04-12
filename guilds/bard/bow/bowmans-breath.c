@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 23
         ]));
-    addPrerequisite("guilds/bard/bow/bowmans-form.c",
+    addPrerequisite("/guilds/bard/bow/bowmans-form.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

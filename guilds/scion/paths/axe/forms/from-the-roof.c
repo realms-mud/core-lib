@@ -14,7 +14,7 @@ protected void Setup()
         "held above the head.");
     addSpecification("limited by", (["equipment":({ "axe" })]));
 
-    addPrerequisite("guilds/scion/paths/axe/root.c",
+    addPrerequisite("/guilds/scion/paths/axe/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

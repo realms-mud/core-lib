@@ -130,8 +130,8 @@ protected void Setup()
     Name("Shields");
     Description("");
     Source("fighter");
-    addResearchElement("guilds/fighter/shields/root.c");
-    TreeRoot("guilds/fighter/shields/root.c");
+    addResearchElement("/guilds/fighter/shields/root.c");
+    TreeRoot("/guilds/fighter/shields/root.c");
 
     FirstLevel();
     SecondLevel();

@@ -24,7 +24,7 @@ public nomask void setRegion(object region)
 public nomask void setCoordinates(object region, int x, int y)
 {
     if (objectp(region) && 
-        (member(inherit_list(region), "lib/environment/region.c") > -1))
+        (member(inherit_list(region), "/lib/environment/region.c") > -1))
     {
         setRegion(region);
         xCoordinate = x;

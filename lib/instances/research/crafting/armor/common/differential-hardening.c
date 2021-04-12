@@ -18,7 +18,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/common/stepped-tempering.c",
+    addPrerequisite("/lib/instances/research/crafting/armor/common/stepped-tempering.c",
         (["type":"research"]));
     addPrerequisite("metal crafting", (["type":"skill", "value" : 7]));
     addPrerequisite("blacksmithing", (["type":"skill", "value" : 8]));

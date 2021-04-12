@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 31 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

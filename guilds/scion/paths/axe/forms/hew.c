@@ -18,7 +18,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 5 ]));
 
-    addPrerequisite("guilds/scion/paths/axe/forms/cleaving.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/cleaving.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

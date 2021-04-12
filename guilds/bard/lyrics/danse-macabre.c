@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Danse Macabre");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "chorus lyric");
     addSpecification("composite class", "lyric");
     addSpecification("default composite description",
@@ -24,7 +24,7 @@ protected void Setup()
             "guild": "bard",
             "value": 23
         ]));
-    addPrerequisite("guilds/bard/lyrics/root.c",
+    addPrerequisite("/guilds/bard/lyrics/root.c",
         (["type":"research"]));
 
     addSpecification("number to summon", 2);
@@ -32,7 +32,7 @@ protected void Setup()
     addSpecification("persona", "skeleton");
 
     addSpecification("modifiers", ([
-        "guilds/bard/lyrics/boneflower.c":({
+        "/guilds/bard/lyrics/boneflower.c":({
             (["modifier": "bonus attack",
                "value": 25]),
             (["modifier": "bonus damage",
@@ -40,7 +40,7 @@ protected void Setup()
             (["modifier":"bonus hit points",
                "value" : 350]),
         }),
-        "guilds/bard/lyrics/ballad-of-the-bones.c":({
+        "/guilds/bard/lyrics/ballad-of-the-bones.c":({
             (["modifier": "bonus resist acid",
                "value": 10 ]),
             (["modifier": "bonus resist air",

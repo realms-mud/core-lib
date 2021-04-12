@@ -108,14 +108,14 @@ void CreateWizardFailsIfSponsorNotValid()
 /////////////////////////////////////////////////////////////////////////////
 void CreateWizardSucceedsIfSponsorValid()
 {
-    ExpectEq("lib/realizations/player.c",
+    ExpectEq("/lib/realizations/player.c",
         program_name(findPlayer("gorthaur")));
 
     ExpectFalse(Users->createWizard("gorthaur"), "no sponsor set");
 
     set_this_player(Wizard);
     ExpectTrue(Users->createWizard("gorthaur"), "earl wizzed gorthaur");
-    ExpectEq("lib/realizations/wizard.c",
+    ExpectEq("/lib/realizations/wizard.c",
         program_name(findPlayer("gorthaur")));
 }
 

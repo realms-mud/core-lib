@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 65
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

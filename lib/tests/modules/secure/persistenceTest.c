@@ -136,11 +136,11 @@ void PlayerGuildsRestored()
 void PlayerQuestsRestored()
 {
     Player->restore("gorthaur");
-    ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->activeQuests());
+    ExpectEq(({ "/lib/tests/support/quests/fakeQuestItem.c" }), Player->activeQuests());
 
     object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
     ExpectEq(sprintf("\x1b[0;36m%s\x1b[0m", "I've been asked to meet the king! I met King Tantor the Unclean of Thisplace. He seems to like me. The king asked me - ME - to be his personal manservant. Yay me!"),
-        Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
+        Player->questStory("/lib/tests/support/quests/fakeQuestItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -333,14 +333,14 @@ void PlayerGuildsSaved()
 void PlayerQuestsSaved()
 {
     Player->restore("gorthaur");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "king is dead");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "king is dead");
     Player->save();
 
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
     Player->restore("gorthaur");
 
-    ExpectEq(({ "lib/tests/support/quests/fakeQuestItem.c" }), Player->completedQuests());
+    ExpectEq(({ "/lib/tests/support/quests/fakeQuestItem.c" }), Player->completedQuests());
 
     object quest = load_object("/lib/tests/support/quests/fakeQuestItem.c");
     ExpectEq(sprintf("\x1b[0;36m%s\x1b[0m\x1b[0;31;1m%s\x1b[0m", "I've been "
@@ -348,7 +348,7 @@ void PlayerQuestsSaved()
         "He seems to like me. The king asked me - ME - to be his personal "
         "manservant. Yay me! I must lay off the sauce - and the wenches. King "
         "Tantor is dead because of my night of debauchery.", " [Failure]"),
-        Player->questStory("lib/tests/support/quests/fakeQuestItem.c"));
+        Player->questStory("/lib/tests/support/quests/fakeQuestItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -458,8 +458,8 @@ void PlayerCanSaveMultiplesOfSameBlueprint()
 
     object *items = all_inventory(Player);
     ExpectEq(2, sizeof(items));
-    ExpectEq("lib/tests/support/items/testSword.c", items[0]);
-    ExpectEq("lib/tests/support/items/testSword.c", items[1]);
+    ExpectEq("/lib/tests/support/items/testSword.c", items[0]);
+    ExpectEq("/lib/tests/support/items/testSword.c", items[1]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ void ModifierObjectsAreSavedAndRestored()
 
     ExpectEq(({}), Player->registeredInventoryObjects());
     ExpectEq(1, modifier->set("registration list", ({ Player })), "registration list can be set");
-    ExpectEq(({"lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
+    ExpectEq(({"/lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
     Player->save();
 
     destruct(Player);
@@ -480,7 +480,7 @@ void ModifierObjectsAreSavedAndRestored()
     ExpectEq(({}), Player->registeredInventoryObjects());
     Player->restore("gorthaur");
 
-    ExpectEq(({"lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
+    ExpectEq(({"/lib/items/modifierObject.c"}), Player->registeredInventoryObjects());
     object item = Player->registeredInventoryObject("blah");
     ExpectTrue(item);
     ExpectEq(6, item->query("bonus hit points"));
@@ -529,16 +529,16 @@ void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
     ExpectFalse(present("Sword of Weasels", Player), "sword not present after re-clone");
     Player->restore("gorthaur");
     ExpectTrue(present("Sword of Weasels", Player), "sword equip after re-clone");
-    ExpectEq("lib/instances/items/weapons/swords/long-sword.c",
+    ExpectEq("/lib/instances/items/weapons/swords/long-sword.c",
         Player->equipmentInSlot("wielded primary"), "sword wielded after re-clone");
 
     shield = Player->equipmentInSlot("wielded offhand");
-    ExpectEq("lib/items/weapon.c", shield, "shield still in slot");
+    ExpectEq("/lib/items/weapon.c", shield, "shield still in slot");
     // It's also important that the "generic" items maintain set data!
     ExpectEq("Shield of Weasels", shield->query("name"));
 
     armor = Player->equipmentInSlot("armor");
-    ExpectEq("lib/items/armor.c", armor, "armor still in slot");
+    ExpectEq("/lib/items/armor.c", armor, "armor still in slot");
     // It's also important that the "generic" items maintain set data!
     ExpectEq("Armor of Weasels", armor->query("name"));
     ToggleCallOutBypass();
@@ -589,7 +589,7 @@ void GetBestKillReturnsBestKill()
 
     ExpectEq((["name":"Blarg",
                "level" : 18,
-               "key" : "lib/realizations/monster.c#Blarg",
+               "key" : "/lib/realizations/monster.c#Blarg",
                "times killed" : 1]),
         Player->getBestKill("gorthaur"));
 }
@@ -608,7 +608,7 @@ void GetNemesisReturnsNemesis()
 
     ExpectEq((["name":"Rargh!",
                "level" : 8,
-               "key" : "lib/realizations/monster.c#Rargh!",
+               "key" : "/lib/realizations/monster.c#Rargh!",
                "times killed" : 2]),
         Player->getNemesis("gorthaur"));
 }

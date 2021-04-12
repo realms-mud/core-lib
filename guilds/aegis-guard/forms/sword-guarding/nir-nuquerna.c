@@ -20,9 +20,9 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 10 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/caragpholg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/caragpholg.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/nistaros.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

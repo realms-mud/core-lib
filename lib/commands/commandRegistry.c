@@ -5,8 +5,8 @@
 private string PlayerCommands = "/lib/commands/player/*";
 private string WizardCommands = "/lib/commands/wizard/*";
 private string CannedEmotes = "/lib/commands/soul.c";
-private string BaseCommand = "lib/commands/baseCommand.c";
-private string Wizard = "lib/realizations/wizard.c";
+private string BaseCommand = "/lib/commands/baseCommand.c";
+private string Wizard = "/lib/realizations/wizard.c";
 
 private mapping commands = ([]);
 private mapping commandTypes = ([]);
@@ -32,7 +32,7 @@ private nomask void registerCommandAsType(object commandObj,
 private nomask void registerPlayerCommands()
 {
     string *commandFiles = get_dir(PlayerCommands, 0x10) - 
-        ({ "lib/commands/player/.", "lib/commands/player/.." });
+        ({ "/lib/commands/player/.", "/lib/commands/player/.." });
 
     if(sizeof(commandFiles))
     {
@@ -58,7 +58,7 @@ private nomask void registerPlayerCommands()
 private nomask void registerWizardCommands()
 {
     string *commandFiles = get_dir(WizardCommands, 0x10) - 
-        ({ "lib/commands/wizard/.", "lib/commands/wizard/.." });
+        ({ "/lib/commands/wizard/.", "/lib/commands/wizard/.." });
 
     if (sizeof(commandFiles))
     {

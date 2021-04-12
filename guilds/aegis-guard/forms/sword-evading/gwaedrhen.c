@@ -23,7 +23,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 25 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/seidia-dyr.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/seidia-dyr.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

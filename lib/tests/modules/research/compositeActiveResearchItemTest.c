@@ -13,25 +13,25 @@ object Room;
 
 mapping compositeElement = ([
     "alias": "weasel",
-    "constraint": "lib/tests/support/research/compositeRoot.c",
+    "constraint": "/lib/tests/support/research/compositeRoot.c",
     "type": "/guilds/bard/compositions/simple-ballad.c",
     "elements": ({
-        ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+        ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
             "type": "Verse 1",
             "description": "Oh, sing me a song of the weasels, man.",
             "order in sequence": 1
         ]),
-        ([ "research": "lib/tests/support/research/compositeResearchItemB.c",
+        ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
             "type": "Verse 1",
             "description": "Sing me a song tonight.",
             "order in sequence": 2
         ]),
-        ([ "research": "lib/tests/support/research/compositeResearchItemD.c",
+        ([ "research": "/lib/tests/support/research/compositeResearchItemD.c",
             "type": "Verse 1",
             "description": "For the Mustelidae, they are now mocking me",
             "order in sequence": 3
         ]),
-        ([ "research": "lib/tests/support/research/compositeResearchItemC.c",
+        ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
             "type": "Verse 1",
             "description": "and eating my intestines in spite.",
             "order in sequence": 4
@@ -59,12 +59,12 @@ void Setup()
     User->advanceSkill("long sword", 16);
     User->ToggleMockResearch();
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/compositeRoot.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/compositeRoot.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
 
     Friend = clone_object("/lib/realizations/henchman.c");
     Friend->Name("Earl");
@@ -127,7 +127,7 @@ void CanExecuteCompositeActiveResearch()
     ExpectTrue(User->hasActiveCompositeResearch());
 
     object compositeResearch = 
-        load_object("lib/tests/support/research/compositeRoot.c");
+        load_object("/lib/tests/support/research/compositeRoot.c");
 
     ExpectEq(150, User->hitPoints());
     ExpectEq(150, Friend->hitPoints());
@@ -184,19 +184,19 @@ void CanExecuteCompositeActiveResearch()
 /////////////////////////////////////////////////////////////////////////////
 void CanGiveBonusAttackTypes()
 {
-    User->initiateResearch("lib/tests/support/research/compositeResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
 
     mapping research = ([
         "alias": "attack",
-        "constraint": "lib/tests/support/research/compositeRoot.c",
+        "constraint": "/lib/tests/support/research/compositeRoot.c",
         "type": "/guilds/bard/compositions/simple-ballad.c",
         "elements": ({
-            ([ "research": "lib/tests/support/research/compositeResearchItemG.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemG.c",
                 "type": "Verse 1",
                 "description": "Sing me a song tonight.",
                 "order in sequence": 1
             ]),
-            ([ "research": "lib/tests/support/research/compositeResearchItemA.c",
+            ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                 "type": "Verse 1",
                 "description": "Oh, sing me a song of the weasels, man.",
                 "order in sequence": 2
@@ -218,7 +218,7 @@ void CanGiveBonusAttackTypes()
     ExpectTrue(User->hasActiveCompositeResearch());
 
     object compositeResearch = 
-        load_object("lib/tests/support/research/compositeRoot.c");
+        load_object("/lib/tests/support/research/compositeRoot.c");
 
     ExpectEq(1, sizeof(User->getAttacks()));
     ExpectEq(1, sizeof(Friend->getAttacks()));
@@ -236,7 +236,7 @@ void CanGiveBonusAttackTypes()
 /////////////////////////////////////////////////////////////////////////////
 void CanDisplayResearchInfo()
 {
-    object effect = clone_object("lib/tests/support/research/compositeRoot.c");
+    object effect = clone_object("/lib/tests/support/research/compositeRoot.c");
     ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
         compositeElement));
 

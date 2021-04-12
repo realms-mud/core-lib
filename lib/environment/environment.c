@@ -21,7 +21,7 @@ private nosave int SetupCompleted = 0;
 public nomask string environmentName()
 {
     return regreplace(object_name(this_object()), "([^#]*)(#[0-9]+|)",
-        "/\\1");
+        "\\1");
 }
 
 /////////////////////////////////////////////////////////////////////////////

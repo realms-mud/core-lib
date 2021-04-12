@@ -29,7 +29,7 @@ void TypeIsPassive()
 void SettingInvalidBonusThrowsError()
 {
     string err = catch (ResearchItem->addSpecification("bonus llama", 2));
-    string expectedError = "*ERROR - passiveResearchItem: the 'bonus llama' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - passiveResearchItem: the 'bonus llama' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }

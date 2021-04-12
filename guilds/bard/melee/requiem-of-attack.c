@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 19
         ]));
-    addPrerequisite("guilds/bard/melee/song-of-the-strong.c",
+    addPrerequisite("/guilds/bard/melee/song-of-the-strong.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

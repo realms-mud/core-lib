@@ -130,8 +130,8 @@ protected void Setup()
     Name("Axe Attacks");
     Description("");
     Source("fighter");
-    addResearchElement("guilds/fighter/axes/root.c");
-    TreeRoot("guilds/fighter/axes/root.c");
+    addResearchElement("/guilds/fighter/axes/root.c");
+    TreeRoot("/guilds/fighter/axes/root.c");
 
     FirstLevel();
     SecondLevel();

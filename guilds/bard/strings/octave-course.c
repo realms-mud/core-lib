@@ -21,7 +21,7 @@ protected void Setup()
         "value": 37
     ]));
 
-    addPrerequisite("guilds/bard/strings/tremolo.c",
+    addPrerequisite("/guilds/bard/strings/tremolo.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

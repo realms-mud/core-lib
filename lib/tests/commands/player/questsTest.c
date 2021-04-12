@@ -74,8 +74,8 @@ void SelectingOptionWithNoQuestsReturnsToMainMenu()
 /////////////////////////////////////////////////////////////////////////////
 void EntriesWithActiveQuestsDoNotShowNoQuests()
 {
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
     Player->executeCommand("quests");
 
     ExpectEq("\x1b[0;36mQuest - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's available quests\x1b[0m:\n"
@@ -95,8 +95,8 @@ void EntriesWithActiveQuestsDoNotShowNoQuests()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingOptionWithQuestsDisplaysSubmenu()
 {
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
     Player->executeCommand("quests");
     command("5", Player);
 
@@ -112,8 +112,8 @@ void SelectingOptionWithQuestsDisplaysSubmenu()
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionOfQuestChangesWithStateAdvancement()
 {
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
     Player->executeCommand("quests");
     command("5", Player);
     command("1", Player);
@@ -127,8 +127,8 @@ void DescriptionOfQuestChangesWithStateAdvancement()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
         Player->caughtMessage());
 
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "met the king");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "serve the king");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "met the king");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "serve the king");
 
     command("1", Player);
     command("1", Player);
@@ -147,10 +147,10 @@ void DescriptionOfQuestChangesWithStateAdvancement()
 /////////////////////////////////////////////////////////////////////////////
 void CanViewCompletedTests()
 {
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "met the king");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "met the king");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
     Player->executeCommand("quests");
     command("7", Player);
 
@@ -167,10 +167,10 @@ void CanViewCompletedTests()
 /////////////////////////////////////////////////////////////////////////////
 void CanViewDetails()
 {
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "met the king");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "met the king");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
     Player->executeCommand("quests");
     command("7", Player);
     command("describe 2", Player);
@@ -184,10 +184,10 @@ void CanDisplayUnicode()
 {
     Player->charsetConfiguration("unicode");
     Player->colorConfiguration("8-bit");
-    Player->beginQuest("lib/tests/support/quests/anotherQuest.c");
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "met the king");
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
+    Player->beginQuest("/lib/tests/support/quests/anotherQuest.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "met the king");
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c", "ignore the king");
     Player->executeCommand("quests");
     command("7", Player);
 

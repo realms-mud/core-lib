@@ -31,13 +31,13 @@ protected void Setup()
     ]));
     addSpecification("affected research type", "percentage");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/nistaros.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/nistaros.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/sathataen.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/sathataen.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-craban.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-craban.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

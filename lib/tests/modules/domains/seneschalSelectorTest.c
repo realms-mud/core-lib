@@ -69,7 +69,7 @@ void SelectUnavailableOptionReturnsToMainMenu()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithAdministrationProjectPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/administration/basicAdministration.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/administration/basicAdministration.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -89,7 +89,7 @@ void TopLevelMenuWithAdministrationProjectPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithBuildingProjectPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/construction/basicBuilding.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/construction/basicBuilding.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -109,7 +109,7 @@ void TopLevelMenuWithBuildingProjectPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithHiringPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/hiring/basicHiring.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/hiring/basicHiring.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -129,7 +129,7 @@ void TopLevelMenuWithHiringPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithHoldingsPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/holdings/basicHoldings.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/holdings/basicHoldings.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -149,7 +149,7 @@ void TopLevelMenuWithHoldingsPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithTaskPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/tasks/basicTasks.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/tasks/basicTasks.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -169,7 +169,7 @@ void TopLevelMenuWithTaskPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithTroopsPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/troops/basicTroops.c"), "added research");
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
@@ -189,7 +189,7 @@ void TopLevelMenuWithTroopsPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingTasksMovesToTaskMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/tasks/basicTasks.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/tasks/basicTasks.c"), "added research");
     Selector->initiateSelector(Player);
     command("5", Player);
 
@@ -200,7 +200,7 @@ void SelectingTasksMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingAdministrationsMovesToTaskMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/administration/basicAdministration.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/administration/basicAdministration.c"), "added research");
     Selector->initiateSelector(Player);
     command("1", Player);
 
@@ -211,7 +211,7 @@ void SelectingAdministrationsMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingBuildingMovesToTaskMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/construction/basicBuilding.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/construction/basicBuilding.c"), "added research");
     Selector->initiateSelector(Player);
     command("2", Player);
 
@@ -222,7 +222,7 @@ void SelectingBuildingMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingHoldingsMovesToTaskMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/holdings/basicHoldings.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/holdings/basicHoldings.c"), "added research");
     Selector->initiateSelector(Player);
     command("3", Player);
 
@@ -233,7 +233,7 @@ void SelectingHoldingsMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingHiringMovesToTaskMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/hiring/basicHiring.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/hiring/basicHiring.c"), "added research");
     Selector->initiateSelector(Player);
     command("4", Player);
 
@@ -244,7 +244,7 @@ void SelectingHiringMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingTroopsMovesToTroopsMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/domains/troops/basicTroops.c"), "added research");
     Selector->initiateSelector(Player);
     command("6", Player);
 

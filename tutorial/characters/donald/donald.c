@@ -33,8 +33,8 @@ protected void Setup()
 
     Race("maegenstryd");
     SetUpPersonaOfLevel("swordsman", 3);
-    addTrait("lib/instances/traits/educational/soldier.c");
-    addTrait("lib/instances/traits/background/human/eledhelean/noble/belathon.c");
+    addTrait("/lib/instances/traits/educational/soldier.c");
+    addTrait("/lib/instances/traits/background/human/eledhelean/noble/belathon.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     equipment->set("craftsmanship", 50);

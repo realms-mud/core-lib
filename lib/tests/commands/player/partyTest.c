@@ -80,6 +80,8 @@ void CanNotSeeOtherPartyMessages()
     ExpectSubStringMatch("Dwight is an idiot", Player->caughtMessage());
     ExpectSubStringMatch("Dwight is an idiot", Bystander->caughtMessage());
     ExpectEq(0, lowlyMage->caughtMessage());
+
+    command("leave party", lowlyMage);
     destruct(lowlyMage);
 }
 
@@ -200,6 +202,9 @@ void PartyShowsThreeBitColorsCorrectly()
     ExpectTrue(Player->executeCommand("party -i"));
     ExpectSubStringMatch("33;1mBob.*33mDwight.*31mFrank",
         Player->caughtMessage());
+
+    command("leave party", dwight);
+    destruct(dwight);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -227,6 +232,9 @@ void PartyShowsEightBitColorsCorrectly()
     ExpectTrue(Player->executeCommand("party -i"));
     ExpectSubStringMatch("38;5;190;1mBob.*38;5;190mDwight.*38;5;9mFrank",
         Player->caughtMessage());
+
+    command("leave party", dwight);
+    destruct(dwight);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -254,6 +262,9 @@ void PartyShowsTwentyFourBitColorsCorrectly()
     ExpectTrue(Player->executeCommand("party -i"));
     ExpectSubStringMatch("38;2;200;200;0;1mBob.*38;2;200;200;0mDwight.*38;2;200;0;0mFrank",
         Player->caughtMessage());
+
+    command("leave party", dwight);
+    destruct(dwight);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -281,6 +292,9 @@ void PartyShowsUnicodeCorrectly()
     ExpectTrue(Player->executeCommand("party -i"));
     ExpectSubStringMatch("\u2554",
         Player->caughtMessage());
+
+    command("leave party", dwight);
+    destruct(dwight);
 }
 
 /////////////////////////////////////////////////////////////////////////////

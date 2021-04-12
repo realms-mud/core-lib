@@ -135,10 +135,10 @@ void CompilingCurrentLocationMovesYouBackToLocationOnSuccessfulCompile()
     object room = load_object("/lib/environment/environment.c");
     ExpectTrue(room);
     move_object(Wizard, room);
-    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
     ExpectEq(1, Wizard->executeCommand("cc /lib/environment/environment.c"));
     ExpectFalse(room);
-    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
     ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
 }
 
@@ -150,6 +150,6 @@ void CompilingWithNoArgsBuildsCurrentEnvironment()
 
     ExpectEq(1, Wizard->executeCommand("cc"));
 
-    ExpectEq("lib/environment/environment", object_name(environment(Wizard)));
+    ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
     ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
 }

@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/commands/wizard/mkdir");
+    setName("/lib/commands/wizard/mkdir");
     addPermission("/", Read | Write);
 
     addPriviledgedEfun("mkdir");

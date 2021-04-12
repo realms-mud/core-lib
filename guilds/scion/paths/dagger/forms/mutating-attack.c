@@ -20,11 +20,11 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 14 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/doubling.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/doubling.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/plunge.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/plunge.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/thrusting.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/thrusting.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

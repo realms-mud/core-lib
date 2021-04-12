@@ -14,7 +14,7 @@ protected void Setup()
         "a projectile.");
     addSpecification("research type", "granted");
 
-    addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/weapons/craftWeapons.c", (["type":"research"]));
     addPrerequisite("chemistry", (["type":"skill", "value": 35 ]));
     addPrerequisite("physics", (["type":"skill", "value": 35 ]));
 }

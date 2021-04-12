@@ -38,14 +38,14 @@ public nomask void shutdown()
 
         string previousObject = object_name(previous_object());
 
-    if (member(({ "secure/master", "lib/commands/wizard/reboot" }), 
+    if (member(({ "/secure/master", "/lib/commands/wizard/reboot" }), 
         previousObject) > -1)
     {
         efun::shutdown();
     }
     else if (this_player() && interactive(this_player()) &&
         (member(inherit_list(this_player()),
-            "lib/realizations/wizard.c") > -1) &&
+            "/lib/realizations/wizard.c") > -1) &&
             (member(this_player()->groups(), "elder") > -1))
         efun::shutdown();
     return;
@@ -60,7 +60,7 @@ public nomask void set_environment(object ob)
 public nomask void set_this_player(object ob)
 {
     if (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1)
+        "/secure/simulated-efuns/testing.c") > -1)
     {
         efun::set_this_player(ob);
     }

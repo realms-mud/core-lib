@@ -15,7 +15,7 @@ protected void Setup()
         "combination attack.");
     addSpecification("usage summary", "A foundational cutting technique.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/tharcuth.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/tharcuth.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -48,7 +48,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
             "name": "diyacuth",
             "formula": "multiplicative",
             "base value": 1,

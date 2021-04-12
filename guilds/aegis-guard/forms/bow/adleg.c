@@ -18,7 +18,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 7 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/bow/peleth-eithad.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/peleth-eithad.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

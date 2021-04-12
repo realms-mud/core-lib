@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 5 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/sparks.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

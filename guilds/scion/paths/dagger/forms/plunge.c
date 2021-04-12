@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 5 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/stabbing.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/stabbing.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

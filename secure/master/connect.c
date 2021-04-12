@@ -9,7 +9,7 @@ public nomask object connect()
     object ret;
     string errorMessage;
 
-    errorMessage = catch (ret = clone_object("secure/login"));
+    errorMessage = catch (ret = clone_object("/secure/login"));
     write("\n");
     if (errorMessage)
     {

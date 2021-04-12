@@ -16,5 +16,5 @@ protected void Setup()
         "taken to aim.");
         
     addSpecification("triggering research", 
-        "guilds/aegis-guard/forms/bow/meitha-ture.c");
+        "/guilds/aegis-guard/forms/bow/meitha-ture.c");
 }

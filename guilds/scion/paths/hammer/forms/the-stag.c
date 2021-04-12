@@ -21,7 +21,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 3 ]));  
 
-    addPrerequisite("guilds/scion/paths/hammer/forms/from-the-roof.c",
+    addPrerequisite("/guilds/scion/paths/hammer/forms/from-the-roof.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

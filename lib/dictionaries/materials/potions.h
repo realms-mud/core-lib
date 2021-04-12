@@ -8,7 +8,7 @@ private nosave mapping potions =
     "healing potion":([
         "type": "health",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 5]),
         ]),        
         "crafting materials": ([
@@ -22,7 +22,7 @@ private nosave mapping potions =
     "mana potion":([
         "type": "health",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 5]),
         ]),        
         "crafting materials": ([
@@ -36,7 +36,7 @@ private nosave mapping potions =
     "stamina potion":([
         "type": "health",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 5]),
         ]),        
         "crafting materials": ([
@@ -50,13 +50,13 @@ private nosave mapping potions =
     "tears of ilyrth":([
         "type": "power",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewEpicPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewEpicPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 35]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/tears-of-ilyrth.c",
+            "apply trait": "/lib/instances/items/potions/traits/tears-of-ilyrth.c",
             "increase hit points": 100,
             "increase spell points": 100,
             "biological": "magical",
@@ -67,13 +67,13 @@ private nosave mapping potions =
     "tincture of telus":([
         "type": "power",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewEpicPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewEpicPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 12]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/tincture-of-telus.c",
+            "apply trait": "/lib/instances/items/potions/traits/tincture-of-telus.c",
             "biological": "magical",
         ]),
         "base experience": 5,
@@ -82,13 +82,13 @@ private nosave mapping potions =
     "nectar of echlarhol":([
         "type": "power",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewHighElvenPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewHighElvenPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 15]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/nectar-of-echlarhol.c",
+            "apply trait": "/lib/instances/items/potions/traits/nectar-of-echlarhol.c",
             "increase hit points": 100,
             "increase spell points": 200,
             "biological": "magical",
@@ -99,13 +99,13 @@ private nosave mapping potions =
     "ilaina's elixir":([
         "type": "health",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewElvenPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewElvenPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 15]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/ilainas-elixir.c",
+            "apply trait": "/lib/instances/items/potions/traits/ilainas-elixir.c",
             "increase spell points": 500,
             "biological": "magical",
         ]),
@@ -115,13 +115,13 @@ private nosave mapping potions =
     "acid resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/acid-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/acid-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -130,13 +130,13 @@ private nosave mapping potions =
     "air resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/air-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/air-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -145,13 +145,13 @@ private nosave mapping potions =
     "chaos resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/chaos-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/chaos-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -160,13 +160,13 @@ private nosave mapping potions =
     "cold resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/cold-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/cold-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -175,13 +175,13 @@ private nosave mapping potions =
     "disease resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/disease-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/disease-resistance.c",
             "biological": "salicylate",
         ]),
         "base experience": 5,
@@ -190,13 +190,13 @@ private nosave mapping potions =
     "earth resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/earth-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/earth-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -205,13 +205,13 @@ private nosave mapping potions =
     "electricity resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/electricity-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/electricity-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -220,13 +220,13 @@ private nosave mapping potions =
     "energy resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/energy-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/energy-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -235,13 +235,13 @@ private nosave mapping potions =
     "evil resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/evil-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/evil-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -250,13 +250,13 @@ private nosave mapping potions =
     "fire resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/fire-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/fire-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -265,13 +265,13 @@ private nosave mapping potions =
     "good resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/good-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/good-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -280,13 +280,13 @@ private nosave mapping potions =
     "magic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/magic-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/magic-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -295,13 +295,13 @@ private nosave mapping potions =
     "neutral resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/neutral-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/neutral-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -310,13 +310,13 @@ private nosave mapping potions =
     "paralysis resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/paralysis-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/paralysis-resistance.c",
             "biological": "neurotoxin",
         ]),
         "base experience": 5,
@@ -325,13 +325,13 @@ private nosave mapping potions =
     "physical resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/physical-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/physical-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -340,13 +340,13 @@ private nosave mapping potions =
     "poison resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/poison-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/poison-resistance.c",
             "biological": "adrenaline",
         ]),
         "base experience": 5,
@@ -355,13 +355,13 @@ private nosave mapping potions =
     "psionic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/magic-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/magic-resistance.c",
             "biological": "empathogen",
         ]),
         "base experience": 5,
@@ -370,13 +370,13 @@ private nosave mapping potions =
     "sonic resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/sonic-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/sonic-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -385,13 +385,13 @@ private nosave mapping potions =
     "undead resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/undead-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/undead-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -400,13 +400,13 @@ private nosave mapping potions =
     "water resistance potion":([
         "type": "resistance",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/water-resistance.c",
+            "apply trait": "/lib/instances/items/potions/traits/water-resistance.c",
             "biological": "neuroleptic",
         ]),
         "base experience": 5,
@@ -415,13 +415,13 @@ private nosave mapping potions =
     "strength potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/strength.c",
+            "apply trait": "/lib/instances/items/potions/traits/strength.c",
             "biological": "steroid",
         ]),
         "base experience": 5,
@@ -430,13 +430,13 @@ private nosave mapping potions =
     "intelligence potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/intelligence.c",
+            "apply trait": "/lib/instances/items/potions/traits/intelligence.c",
             "biological": "magical",
         ]),
         "base experience": 5,
@@ -445,13 +445,13 @@ private nosave mapping potions =
     "dexterity potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/dexterity.c",
+            "apply trait": "/lib/instances/items/potions/traits/dexterity.c",
             "biological": "xanthine",
         ]),
         "base experience": 5,
@@ -460,13 +460,13 @@ private nosave mapping potions =
     "wisdom potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/wisdom.c",
+            "apply trait": "/lib/instances/items/potions/traits/wisdom.c",
             "biological": "magical",
         ]),
         "base experience": 5,
@@ -475,13 +475,13 @@ private nosave mapping potions =
     "constitution potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/constitution.c",
+            "apply trait": "/lib/instances/items/potions/traits/constitution.c",
             "biological": "adrenaline",
         ]),
         "base experience": 5,
@@ -490,13 +490,13 @@ private nosave mapping potions =
     "charisma potion":([
         "type": "attributes",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/charisma.c",
+            "apply trait": "/lib/instances/items/potions/traits/charisma.c",
             "biological": "magical",
         ]),
         "base experience": 5,
@@ -505,13 +505,13 @@ private nosave mapping potions =
     "speed potion":([
         "type": "combat",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/speed.c",
+            "apply trait": "/lib/instances/items/potions/traits/speed.c",
             "biological": "xanthine",
         ]),
         "base experience": 5,
@@ -520,13 +520,13 @@ private nosave mapping potions =
     "fortification potion":([
         "type": "combat",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 8]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/fortification.c",
+            "apply trait": "/lib/instances/items/potions/traits/fortification.c",
             "biological": "steroids",
         ]),
         "base experience": 5,
@@ -535,13 +535,13 @@ private nosave mapping potions =
     "tincture of combat prowess":([
         "type": "combat",
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
+            "/lib/instances/research/crafting/potions/brewFortifyingPotions.c":(["type":"research"]),
             "brewing": (["type":"skill", "value": 15]),
         ]),        
         "crafting materials": ([
         ]),
         "effects": ([
-            "apply trait": "lib/instances/items/potions/traits/tincture-of-combat-prowess.c",
+            "apply trait": "/lib/instances/items/potions/traits/tincture-of-combat-prowess.c",
             "biological": "steroids",
        ]),
         "base experience": 5,

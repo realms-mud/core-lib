@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 17 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
         (["type":"research"]));
 
     addSpecification("affected research", ([

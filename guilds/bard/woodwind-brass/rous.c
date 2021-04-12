@@ -24,11 +24,11 @@ protected void Setup()
         "value": 4
     ]));
 
-    addPrerequisite("guilds/bard/woodwind-brass/a-rats-serenade.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/a-rats-serenade.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/bard/woodwind-brass/a-rats-serenade.c" }));
+        "/guilds/bard/woodwind-brass/a-rats-serenade.c" }));
 }

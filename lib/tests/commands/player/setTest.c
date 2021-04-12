@@ -296,7 +296,7 @@ void PlayerCannotSeeGuildMessageOfBlockedPlayer()
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player->joinGuild("fake mage");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
     channels->registerUser(Player);
@@ -415,7 +415,7 @@ void PlayerCanSeeGuildMessageOfUnblockedPlayer()
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player->joinGuild("fake mage");
-    destruct(present_clone("lib/modules/guilds/advanceLevelSelector.c", Player));
+    destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player->resetCatchList();
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");

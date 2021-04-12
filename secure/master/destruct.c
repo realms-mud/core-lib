@@ -27,7 +27,7 @@ private nomask int moveInteractiveObjectToSafety(object actor)
         object actorEnvironment;
         actorEnvironment = environment(actor);
 
-        move_object(actor, find_object("secure/master"));
+        move_object(actor, find_object("/secure/master"));
 
         // Uh oh. We're already in master.c!
         if (actorEnvironment == environment(actor))

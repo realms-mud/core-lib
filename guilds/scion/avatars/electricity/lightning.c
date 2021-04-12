@@ -18,12 +18,12 @@ protected void Setup()
         "value": 13
     ]));
 
-    addPrerequisite("guilds/scion/avatars/electricity/shock-touch.c",
+    addPrerequisite("/guilds/scion/avatars/electricity/shock-touch.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/electricity/root.c",
+        "/guilds/scion/avatars/electricity/root.c",
     }));
 }

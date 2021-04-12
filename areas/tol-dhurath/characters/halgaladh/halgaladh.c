@@ -37,8 +37,8 @@ protected void Setup()
     advanceSkill("long sword", 8);
     customCombatAssessment("Companion");
 
-    addTrait("lib/instances/traits/educational/educated.c");
-    addTrait("lib/instances/traits/background/human/eledhelean/noble/arthellyn.c");
+    addTrait("/lib/instances/traits/educational/educated.c");
+    addTrait("/lib/instances/traits/background/human/eledhelean/noble/arthellyn.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     equipment->set("craftsmanship", 70);

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 11
         ]));
-    addPrerequisite("guilds/fighter/blades/slash.c",
+    addPrerequisite("/guilds/fighter/blades/slash.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

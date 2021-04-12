@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/common/quenching.c",
+    addPrerequisite("/lib/instances/research/crafting/armor/common/quenching.c",
         (["type":"research"]));
     addPrerequisite("metal crafting", (["type":"skill", "value" : 8]));
     addPrerequisite("chemistry", (["type":"skill", "value" : 7]));

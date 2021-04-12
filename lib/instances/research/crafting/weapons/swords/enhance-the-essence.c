@@ -15,7 +15,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/swords/impart-the-essence.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/swords/impart-the-essence.c", 
         (["type":"research"]));
 
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 40]));

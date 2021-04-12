@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/commands/wizard/rm");
+    setName("/lib/commands/wizard/rm");
     addPermission("/", Read | Write);
 
     addPriviledgedEfun("rmdir");

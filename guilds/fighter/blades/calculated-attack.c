@@ -22,7 +22,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 5
         ]));
-    addPrerequisite("guilds/fighter/blades/root.c",
+    addPrerequisite("/guilds/fighter/blades/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
@@ -31,7 +31,7 @@ protected void Setup()
     addSpecification("cooldown", 4);
     addSpecification("stamina point cost", 50);
     addSpecification("command template", "calculated attack");
-    addSpecification("trait", "guilds/fighter/blades/calculated-attack-trait.c");
+    addSpecification("trait", "/guilds/fighter/blades/calculated-attack-trait.c");
 
     addSpecification("use ability activate message", "##InitiatorName## "
         "##Infinitive::take## a stance of carefully poising "

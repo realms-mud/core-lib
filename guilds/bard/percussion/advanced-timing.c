@@ -21,7 +21,7 @@ protected void Setup()
         "value": 21
     ]));
 
-    addPrerequisite("guilds/bard/percussion/keeping-time.c",
+    addPrerequisite("/guilds/bard/percussion/keeping-time.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

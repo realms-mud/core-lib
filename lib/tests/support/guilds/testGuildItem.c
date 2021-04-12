@@ -13,5 +13,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("bonus intelligence", 2);
     addSpecification("bonus long sword", 5);
-    addPrerequisite("lib/tests/support/guilds/testGuildTreeRoot.c", (["type":"research"]));
+    addPrerequisite("/lib/tests/support/guilds/testGuildTreeRoot.c", (["type":"research"]));
 }

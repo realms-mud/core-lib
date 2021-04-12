@@ -19,9 +19,9 @@ protected void Setup()
         (["type":"level",
           "value": 5 ]));
 
-    addPrerequisite("lib/instances/research/crafting/weapons/swords/craftLongSwords.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c", 
         (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/weapons/common/forge-welding.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/forge-welding.c",
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 10]));
 }

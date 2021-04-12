@@ -273,7 +273,7 @@ void CanSetLimitorForAttributes()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForQuests()
 {
-    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+    mapping limitor = (["quests":({ "/lib/tests/support/quests/fakeQuestItem.c" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -281,7 +281,7 @@ void CanSetLimitorForQuests()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForResearch()
 {
-    mapping limitor = (["research":({ "lib/tests/support/research/testTreeRoot.c" })]);
+    mapping limitor = (["research":({ "/lib/tests/support/research/testTreeRoot.c" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -289,7 +289,7 @@ void CanSetLimitorForResearch()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForResearchIsActive()
 {
-    mapping limitor = (["research active":({ "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+    mapping limitor = (["research active":({ "/lib/tests/support/research/testSustainedTraitResearch.c" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -297,7 +297,7 @@ void CanSetLimitorForResearchIsActive()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidActiveResearch()
 {
-    string err = catch (Specification->addSpecification("limited by", (["research active":({ "lib/tests/support/research/testTreeRoot.c" })])));
+    string err = catch (Specification->addSpecification("limited by", (["research active":({ "/lib/tests/support/research/testTreeRoot.c" })])));
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
@@ -306,7 +306,7 @@ void CannotSetLimitorForInvalidActiveResearch()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetLimitorForTrait()
 {
-    mapping limitor = (["traits":({ "lib/tests/support/traits/testTrait.c" })]);
+    mapping limitor = (["traits":({ "/lib/tests/support/traits/testTrait.c" })]);
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq(limitor, Specification->query("limited by"), "query the limitor");
 }
@@ -647,7 +647,7 @@ void CanApplySpecificationReturnsTrueWithLimitorForAttribute()
 /////////////////////////////////////////////////////////////////////////////
 void CanApplySpecificationReturnsTrueWithLimitorForQuests()
 {
-    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+    mapping limitor = (["quests":({ "/lib/tests/support/quests/fakeQuestItem.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
@@ -660,7 +660,7 @@ void CanApplySpecificationReturnsTrueWithLimitorForQuests()
 /////////////////////////////////////////////////////////////////////////////
 void CanApplySpecificationReturnsTrueWithLimitorForResearch()
 {
-    mapping limitor = (["research":({ "lib/tests/support/research/testResearchA.c" })]);
+    mapping limitor = (["research":({ "/lib/tests/support/research/testResearchA.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
@@ -674,7 +674,7 @@ void CanApplySpecificationReturnsTrueWithLimitorForResearch()
 void CanApplySpecificationReturnsTrueWithLimitorForResearchActive()
 {
     mapping limitor = (["research active":({ 
-        "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+        "/lib/tests/support/research/testSustainedTraitResearch.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
@@ -690,14 +690,14 @@ void CanApplySpecificationReturnsTrueWithLimitorForResearchActive()
 /////////////////////////////////////////////////////////////////////////////
 void CanApplySpecificationReturnsTrueWithLimitorForTraits()
 {
-    mapping limitor = (["traits":({ "lib/tests/support/traits/testGeneticTrait.c" })]);
+    mapping limitor = (["traits":({ "/lib/tests/support/traits/testGeneticTrait.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
 
     ExpectFalse(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 
     Attacker->ToggleMockTraits();
-    Attacker->addTrait("lib/tests/support/traits/testGeneticTrait.c");
+    Attacker->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
     ExpectTrue(Specification->canApplySpecification("blah", Attacker, Attacker), "limitors met");
 }
 
@@ -994,7 +994,7 @@ void DisplayLimitersStringCorrectWithLimitorForListOfAttributes()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForQuests()
 {
-    mapping limitor = (["quests":({ "lib/tests/support/quests/fakeQuestItem.c" })]);
+    mapping limitor = (["quests":({ "/lib/tests/support/quests/fakeQuestItem.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), 
         "set the limitor");
@@ -1006,7 +1006,7 @@ void DisplayLimitersStringCorrectWithLimitorForQuests()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForResearch()
 {
-    mapping limitor = (["research":({ "lib/tests/support/research/testResearchA.c" })]);
+    mapping limitor = (["research":({ "/lib/tests/support/research/testResearchA.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), "set the limitor");
     ExpectEq("\x1b[0;36mThis is only applied when you have completed any "
@@ -1018,7 +1018,7 @@ void DisplayLimitersStringCorrectWithLimitorForResearch()
 void DisplayLimitersStringCorrectWithLimitorForResearchActive()
 {
     mapping limitor = (["research active":({ 
-        "lib/tests/support/research/testSustainedTraitResearch.c" })]);
+        "/lib/tests/support/research/testSustainedTraitResearch.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), 
         "set the limitor");
@@ -1030,7 +1030,7 @@ void DisplayLimitersStringCorrectWithLimitorForResearchActive()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayLimitersStringCorrectWithLimitorForTraits()
 {
-    mapping limitor = (["traits":({ "lib/tests/support/traits/testGeneticTrait.c" })]);
+    mapping limitor = (["traits":({ "/lib/tests/support/traits/testGeneticTrait.c" })]);
 
     ExpectTrue(Specification->addSpecification("limited by", limitor), 
         "set the limitor");

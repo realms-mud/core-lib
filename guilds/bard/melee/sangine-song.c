@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of a song that sends out a sonic blast from their "
         "weapon that causes damage to a targeted enemy.");
 
-    addPrerequisite("guilds/bard/melee/melees-melody.c",
+    addPrerequisite("/guilds/bard/melee/melees-melody.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "long sword",
@@ -48,7 +48,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/melee-march.c",
+            "research item": "/guilds/bard/melee/melee-march.c",
             "name": "melee-march",
             "formula": "multiplicative",
             "base value": 1,
@@ -56,7 +56,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/soldiers-song.c",
+            "research item": "/guilds/bard/melee/soldiers-song.c",
             "name": "soldiers-song",
             "formula": "multiplicative",
             "base value": 1,
@@ -64,7 +64,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/serenade-of-the-soldier.c",
+            "research item": "/guilds/bard/melee/serenade-of-the-soldier.c",
             "name": "serenade-of-the-soldier",
             "formula": "multiplicative",
             "base value": 1,
@@ -72,7 +72,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/arms-lament.c",
+            "research item": "/guilds/bard/melee/arms-lament.c",
             "name": "arms-lament",
             "formula": "multiplicative",
             "base value": 1,
@@ -80,7 +80,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/footmans-ballad.c",
+            "research item": "/guilds/bard/melee/footmans-ballad.c",
             "name": "footmans-ballad",
             "formula": "multiplicative",
             "base value": 1,
@@ -88,7 +88,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/weapon-masters-tale.c",
+            "research item": "/guilds/bard/melee/weapon-masters-tale.c",
             "name": "weapon-masters-tale",
             "formula": "multiplicative",
             "base value": 1,
@@ -96,7 +96,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/melee/lay-of-the-armsmaster.c",
+            "research item": "/guilds/bard/melee/lay-of-the-armsmaster.c",
             "name": "lay-of-the-armsmaster",
             "formula": "multiplicative",
             "base value": 1,
@@ -154,26 +154,26 @@ protected void Setup()
 
     addSpecification("spell point cost", 120);
     addSpecification("spell point cost modifiers", ([
-        "guilds/bard/melee/rhythmic-riposte.c": 10,
-        "guilds/bard/melee/armsmans-form.c": 10,
-        "guilds/bard/melee/armsmans-breath.c": 10,
-        "guilds/bard/melee/minstrels-melee.c": 10
+        "/guilds/bard/melee/rhythmic-riposte.c": 10,
+        "/guilds/bard/melee/armsmans-form.c": 10,
+        "/guilds/bard/melee/armsmans-breath.c": 10,
+        "/guilds/bard/melee/minstrels-melee.c": 10
     ]));
 
     addSpecification("stamina point cost", 90);
     addSpecification("stamina point cost modifiers", ([
-        "guilds/bard/melee/rhythmic-riposte.c":10,
-        "guilds/bard/melee/armsmans-form.c": 10,
-        "guilds/bard/melee/armsmans-breath.c": 10,
-        "guilds/bard/melee/minstrels-melee.c": 10
+        "/guilds/bard/melee/rhythmic-riposte.c":10,
+        "/guilds/bard/melee/armsmans-form.c": 10,
+        "/guilds/bard/melee/armsmans-breath.c": 10,
+        "/guilds/bard/melee/minstrels-melee.c": 10
     ]));
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/bard/melee/footmans-tune.c": 10,
-        "guilds/bard/melee/song-of-the-strong.c": 10,
-        "guilds/bard/melee/requiem-of-attack.c": 10,
-        "guilds/bard/melee/armsmasters-tale.c": 10,
+        "/guilds/bard/melee/footmans-tune.c": 10,
+        "/guilds/bard/melee/song-of-the-strong.c": 10,
+        "/guilds/bard/melee/requiem-of-attack.c": 10,
+        "/guilds/bard/melee/armsmasters-tale.c": 10,
     ]));
 
     addSpecification("event handler", "sanguineSongEvent");

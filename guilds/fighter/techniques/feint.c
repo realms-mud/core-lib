@@ -24,7 +24,7 @@ protected void Setup()
         "dagger", "short sword", "hammer", "mace", "flail",
         "staff", "pole arm" })]));
 
-    addPrerequisite("guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/techniques/root.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 

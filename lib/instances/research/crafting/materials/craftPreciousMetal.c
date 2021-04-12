@@ -13,5 +13,5 @@ protected void Setup()
         "knowledge required to craft items using precious metals such as gold or silver.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftRareMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftRareMetal.c", (["type":"research"]));
 }

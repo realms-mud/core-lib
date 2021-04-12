@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 7 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -15,25 +15,25 @@ protected void Setup()
 
     addSpecification("composite rules", ([
         "template must be one of": ({
-            "guilds/bard/compositions/aaa.c",
-            "guilds/bard/compositions/aaba.c",
-            "guilds/bard/compositions/abab.c",
-            "guilds/bard/compositions/ababcb.c",
-            "guilds/bard/compositions/abac.c",
-            "guilds/bard/compositions/abacbaa.c",
-            "guilds/bard/compositions/freeform.c",
-            "guilds/bard/compositions/simple-ballad.c",
-            "guilds/bard/compositions/verse-chorus-bridge.c",
-            "guilds/bard/compositions/verse-pre-chorus.c",
+            "/guilds/bard/compositions/aaa.c",
+            "/guilds/bard/compositions/aaba.c",
+            "/guilds/bard/compositions/abab.c",
+            "/guilds/bard/compositions/ababcb.c",
+            "/guilds/bard/compositions/abac.c",
+            "/guilds/bard/compositions/abacbaa.c",
+            "/guilds/bard/compositions/freeform.c",
+            "/guilds/bard/compositions/simple-ballad.c",
+            "/guilds/bard/compositions/verse-chorus-bridge.c",
+            "/guilds/bard/compositions/verse-pre-chorus.c",
         }),
     ]));
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/bard/compositions/the-inner-muse.c": 10,
-        "guilds/bard/compositions/the-minstrel.c": 10,
-        "guilds/bard/compositions/the-troubador.c": 10,
-        "guilds/bard/compositions/the-composer.c": 10,
+        "/guilds/bard/compositions/the-inner-muse.c": 10,
+        "/guilds/bard/compositions/the-minstrel.c": 10,
+        "/guilds/bard/compositions/the-troubador.c": 10,
+        "/guilds/bard/compositions/the-composer.c": 10,
     ]));
 
     addSpecification("scope", "area");

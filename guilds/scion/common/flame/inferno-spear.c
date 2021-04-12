@@ -24,9 +24,9 @@ protected void Setup()
         "bolt of fiery plasma at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/fireball.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/flame/fireball.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType),
             "name" : "Fuel the Flames",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -75,7 +75,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
             "name" : "Scorching Mark",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -83,7 +83,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/flame/stoking-rage.c", WeaponType),
             "name" : "Stoking Rage",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -91,7 +91,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
             "name" : "Enhanced Blaze",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -99,7 +99,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
             "name" : "Inferno Mark",
             "formula" : "multiplicative",
             "base value" : 1,

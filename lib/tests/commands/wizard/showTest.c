@@ -55,7 +55,7 @@ void ExecuteRegexpIsNotGreedy()
 void CanShowFileBasedLocation()
 {
     ExpectTrue(Wizard->executeCommand("show /lib/tests/support/environment/toLocation.c"));
-    ExpectSubStringMatch("lib/tests/support/environment/toLocation", Wizard->caughtMessage());
+    ExpectSubStringMatch("/lib/tests/support/environment/toLocation", Wizard->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,7 +63,7 @@ void CanShowFileBasedLocationInCurrentDirectory()
 {
     Wizard->pwd("/lib/tests/support/environment");
     ExpectTrue(Wizard->executeCommand("show toLocation.c"));
-    ExpectSubStringMatch("lib/tests/support/environment/toLocation", Wizard->caughtMessage());
+    ExpectSubStringMatch("/lib/tests/support/environment/toLocation", Wizard->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,7 @@ void CanShowFileBasedLocationWithoutDotCInCurrentDirectory()
 {
     Wizard->pwd("/lib/tests/support/environment");
     ExpectTrue(Wizard->executeCommand("show toLocation"));
-    ExpectSubStringMatch("lib/tests/support/environment/toLocation", Wizard->caughtMessage());
+    ExpectSubStringMatch("/lib/tests/support/environment/toLocation", Wizard->caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ void CanShowEnvironmentWithItems()
     setUsers(({ Wizard, player }));
 
     ExpectTrue(Wizard->executeCommand("show /lib/tests/support/environment/toLocation.c"));
-    ExpectSubStringMatch("lib/tests/support/environment/toLocation.*lib/realizations/player#.*gorthaur",
+    ExpectSubStringMatch("/lib/tests/support/environment/toLocation.*lib/realizations/player#.*gorthaur",
         Wizard->caughtMessage());
 }
 
@@ -96,7 +96,7 @@ void CanShowPlayer()
     setUsers(({ Wizard, player }));
 
     ExpectTrue(Wizard->executeCommand("show gorthaur"));
-    ExpectSubStringMatch("lib/realizations/player#.*gorthaur.*lib/tests/support/environment/toLocation", 
+    ExpectSubStringMatch("/lib/realizations/player#.*gorthaur.*lib/tests/support/environment/toLocation", 
         Wizard->caughtMessage());
 }
 
@@ -108,7 +108,7 @@ void CanShowPresentObject()
     move_object(item, load_object("/lib/tests/support/environment/toLocation.c"));
 
     ExpectTrue(Wizard->executeCommand("show sword"));
-    ExpectSubStringMatch("lib/instances/items/weapons/swords/long-sword#.*Long sword.*lib/tests/support/environment/toLocation",
+    ExpectSubStringMatch("/lib/instances/items/weapons/swords/long-sword#.*Long sword.*lib/tests/support/environment/toLocation",
         Wizard->caughtMessage());
 }
 
@@ -128,7 +128,7 @@ void CanShowPresentObjectWithNestedItems()
     move_object(subItem, player);
 
     ExpectTrue(Wizard->executeCommand("show gorthaur"));
-    ExpectSubStringMatch("lib/realizations/player#.*gorthaur.*lib/tests/support/environment/toLocation.*ring.*lib/instances/items/weapons/swords/long-sword#.*Long sword.*robes",
+    ExpectSubStringMatch("/lib/realizations/player#.*gorthaur.*lib/tests/support/environment/toLocation.*ring.*lib/instances/items/weapons/swords/long-sword#.*Long sword.*robes",
         Wizard->caughtMessage());
 }
 /////////////////////////////////////////////////////////////////////////////

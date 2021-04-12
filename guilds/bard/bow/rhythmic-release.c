@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 10
         ]));
-    addPrerequisite("guilds/bard/bow/the-archers-song.c",
+    addPrerequisite("/guilds/bard/bow/the-archers-song.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

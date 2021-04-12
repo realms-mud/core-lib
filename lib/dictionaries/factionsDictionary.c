@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string BaseFaction = "lib/modules/factions/baseFaction.c";
+private string BaseFaction = "/lib/modules/factions/baseFaction.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object factionObject(string faction)

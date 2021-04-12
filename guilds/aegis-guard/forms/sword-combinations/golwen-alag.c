@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 27
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/an-alag.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-combinations/an-alag.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -19,7 +19,7 @@ protected void Setup()
         "value": 11 
     ]));
 
-    addPrerequisite("guilds/scion/common/mana-shield/gift-of-dhuras.c",
+    addPrerequisite("/guilds/scion/common/mana-shield/gift-of-dhuras.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

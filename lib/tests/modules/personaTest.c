@@ -27,12 +27,12 @@ void SetUpPersonaOfLevelWorksForMonsters()
     ExpectEq(0, Persona->effectiveLevel());
     ExpectEq(0, Persona->Str());
     ExpectEq(0, Persona->getSkill("long sword"));
-    ExpectFalse(Persona->isTraitOf("lib/instances/traits/personas/fighters/swordsman.c"));
+    ExpectFalse(Persona->isTraitOf("/lib/instances/traits/personas/fighters/swordsman.c"));
     Persona->Race("human");
 
     Persona->SetUpPersonaOfLevel("swordsman", 10);
 
-    ExpectTrue(Persona->isTraitOf("lib/instances/traits/personas/fighters/swordsman.c"));
+    ExpectTrue(Persona->isTraitOf("/lib/instances/traits/personas/fighters/swordsman.c"));
 
     ExpectEq(1120, Persona->maxHitPoints());
     ExpectEq(220, Persona->maxSpellPoints());
@@ -241,7 +241,7 @@ void CreaturesWithWeaponsGetAllAttacksSet()
 {
     Persona->Race("human");
     Persona->SetUpPersonaOfLevel("skeleton", 10);
-    ExpectTrue(Persona->isTraitOf("lib/instances/traits/personas/undead/skeleton.c"));
+    ExpectTrue(Persona->isTraitOf("/lib/instances/traits/personas/undead/skeleton.c"));
     Persona->setUpRandomEquipment();
 
     ExpectEq(3, sizeof(all_inventory(Persona)));
@@ -294,9 +294,9 @@ void MagicUsersGetResearchAdded()
 {
     Persona->SetUpPersonaOfLevel("aeromancer", 30);
 
-    ExpectEq(({ "lib/instances/research/personas/aeromancer/lightning.c", 
-        "lib/instances/research/personas/aeromancer/maelstrom.c", 
-        "lib/instances/research/personas/aeromancer/tempest.c" }), 
+    ExpectEq(({ "/lib/instances/research/personas/aeromancer/lightning.c", 
+        "/lib/instances/research/personas/aeromancer/maelstrom.c", 
+        "/lib/instances/research/personas/aeromancer/tempest.c" }), 
         Persona->completedResearch());
 }
 
@@ -305,8 +305,8 @@ void WillNotAddResearchIfNotHighEnoughLevel()
 {
     Persona->SetUpPersonaOfLevel("aeromancer", 10);
 
-    ExpectEq(({ "lib/instances/research/personas/aeromancer/lightning.c",
-        "lib/instances/research/personas/aeromancer/tempest.c" }),
+    ExpectEq(({ "/lib/instances/research/personas/aeromancer/lightning.c",
+        "/lib/instances/research/personas/aeromancer/tempest.c" }),
         Persona->completedResearch());
 }
 
@@ -399,7 +399,7 @@ void AreaEffectSpellsHitAllTargetsButCasterInArea()
     int initialCasterHP = Persona->hitPoints();
 
     Persona->executePersonaResearch(target->RealName(),
-        "lib/instances/research/personas/aeromancer/maelstrom.c");
+        "/lib/instances/research/personas/aeromancer/maelstrom.c");
 
     ExpectEq(initialCasterHP, Persona->hitPoints());
     ExpectNotEq(initialTargetOneHP, target->hitPoints());

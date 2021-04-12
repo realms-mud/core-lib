@@ -55,10 +55,10 @@ void Setup()
     material->set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
 }
@@ -108,7 +108,7 @@ void TopLevelMenuDisplaysWithMissingPrerequisitesAndMaterials()
 /////////////////////////////////////////////////////////////////////////////
 void AddingProperPrerequisitesRemovesPFlagFromDisplay()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftElegantSwords.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c"));
     Selector->initiateSelector(Player);
     command("12", Player);
 
@@ -183,7 +183,7 @@ void AddingProperMaterialsRemovesMFlagFromDisplay()
 /////////////////////////////////////////////////////////////////////////////
 void AddingProperPrerequisitesAndMaterialsRemovesPAndMFlagFromDisplay()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftElegantSwords.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c"));
     object material = clone_object("/lib/instances/items/materials/metal/steel.c");
     material->set("quantity", 10);
     move_object(material, Player);

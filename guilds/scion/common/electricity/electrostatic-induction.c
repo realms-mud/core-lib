@@ -26,7 +26,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
     addPrerequisite(
-        sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/tests/commands/wizard/catTest");
+    setName("/lib/tests/commands/wizard/catTest");
     addPermission("/players/earl", Read | Write);
     addPermission("/brokenFile.c", Read | Write);
 

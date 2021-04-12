@@ -58,10 +58,10 @@ void Setup()
     material->set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
 }
@@ -157,12 +157,12 @@ void SelectingComponentDisplaysComponentMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingMaterialChangesSelectedComponentInMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -248,12 +248,12 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -298,12 +298,12 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
 /////////////////////////////////////////////////////////////////////////////
 void CancelDoesNotSetValuesForWeaponCraftingMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -339,12 +339,12 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
 /////////////////////////////////////////////////////////////////////////////
 void ConfirmSetsValuesForWeaponCraftingMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -448,7 +448,7 @@ void OnCraftingStartedIsEmittedWhenCraftingBegins()
 
     ExpectEq(([]), eventSubscriber->events());
     Selector->initiateSelector(Player);
-    ExpectEq((["onCraftingStarted": "lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+    ExpectEq((["onCraftingStarted": "/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -538,7 +538,7 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
     command("25", Player);
     command("8", Player);
 
-    ExpectEq((["onCraftingCompleted":"lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+    ExpectEq((["onCraftingCompleted":"/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -566,8 +566,8 @@ void OptionalComponentsAreInitiallyDisabledAndEnabledWhenRequired()
 /////////////////////////////////////////////////////////////////////////////
 void CanOnlySelectOptionalMaterialWhenEnabled()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
 
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
     material->set("quantity", 5);
@@ -599,8 +599,8 @@ void CanOnlySelectOptionalMaterialWhenEnabled()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingComponentThatDoesNotUseOptionalResetsOptional()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
 
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
     material->set("quantity", 5);

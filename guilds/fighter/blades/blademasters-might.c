@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 31
         ]));
-    addPrerequisite("guilds/fighter/blades/blademasters-call.c",
+    addPrerequisite("/guilds/fighter/blades/blademasters-call.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -23,48 +23,48 @@ protected void Setup()
 
     addSpecification("combination rules", ([
         "must include any of": ({ 
-            "guilds/aegis-guard/forms/sword-attacks/ercho.c",
-            "guilds/aegis-guard/forms/sword-attacks/nestegi.c",
-            "guilds/aegis-guard/forms/sword-attacks/esgeri.c",
-            "guilds/aegis-guard/forms/sword-attacks/cirithu.c",
-            "guilds/aegis-guard/forms/sword-attacks/dravo.c",
-            "guilds/aegis-guard/forms/sword-attacks/naetho.c",
-            "guilds/aegis-guard/forms/sword-attacks/maetha.c",
-            "guilds/aegis-guard/forms/sword-attacks/hasto.c",
-            "guilds/aegis-guard/forms/sword-attacks/maego.c",
-            "guilds/aegis-guard/forms/sword-attacks/narcha.c"
+            "/guilds/aegis-guard/forms/sword-attacks/ercho.c",
+            "/guilds/aegis-guard/forms/sword-attacks/nestegi.c",
+            "/guilds/aegis-guard/forms/sword-attacks/esgeri.c",
+            "/guilds/aegis-guard/forms/sword-attacks/cirithu.c",
+            "/guilds/aegis-guard/forms/sword-attacks/dravo.c",
+            "/guilds/aegis-guard/forms/sword-attacks/naetho.c",
+            "/guilds/aegis-guard/forms/sword-attacks/maetha.c",
+            "/guilds/aegis-guard/forms/sword-attacks/hasto.c",
+            "/guilds/aegis-guard/forms/sword-attacks/maego.c",
+            "/guilds/aegis-guard/forms/sword-attacks/narcha.c"
         }),
         "can include only one of": ({ 
-            "guilds/aegis-guard/forms/sword-mythic/auth.c",
-            "guilds/aegis-guard/forms/sword-mythic/sereg.c",
-            "guilds/aegis-guard/forms/sword-mythic/guruthos.c",
-            "guilds/aegis-guard/forms/sword-mythic/lhutha.c",
-            "guilds/aegis-guard/forms/sword-mythic/angolo.c",
-            "guilds/aegis-guard/forms/sword-elemental/ambar.c",
-            "guilds/aegis-guard/forms/sword-elemental/naurtho.c",
-            "guilds/aegis-guard/forms/sword-elemental/heleg.c",
-            "guilds/aegis-guard/forms/sword-elemental/glauro.c",
-            "guilds/aegis-guard/forms/sword-elemental/geilo.c",
-            "guilds/aegis-guard/forms/sword-elemental/alagos.c",
-            "guilds/aegis-guard/forms/sword-elemental/lhorn.c",
-            "guilds/aegis-guard/forms/sword-elemental/luithia.c",
-            "guilds/aegis-guard/forms/sword-elemental/gonatsai.c",
-            "guilds/aegis-guard/forms/sword-elemental/lhacha.c",
-            "guilds/aegis-guard/forms/sword-elemental/gwaeren.c"
+            "/guilds/aegis-guard/forms/sword-mythic/auth.c",
+            "/guilds/aegis-guard/forms/sword-mythic/sereg.c",
+            "/guilds/aegis-guard/forms/sword-mythic/guruthos.c",
+            "/guilds/aegis-guard/forms/sword-mythic/lhutha.c",
+            "/guilds/aegis-guard/forms/sword-mythic/angolo.c",
+            "/guilds/aegis-guard/forms/sword-elemental/ambar.c",
+            "/guilds/aegis-guard/forms/sword-elemental/naurtho.c",
+            "/guilds/aegis-guard/forms/sword-elemental/heleg.c",
+            "/guilds/aegis-guard/forms/sword-elemental/glauro.c",
+            "/guilds/aegis-guard/forms/sword-elemental/geilo.c",
+            "/guilds/aegis-guard/forms/sword-elemental/alagos.c",
+            "/guilds/aegis-guard/forms/sword-elemental/lhorn.c",
+            "/guilds/aegis-guard/forms/sword-elemental/luithia.c",
+            "/guilds/aegis-guard/forms/sword-elemental/gonatsai.c",
+            "/guilds/aegis-guard/forms/sword-elemental/lhacha.c",
+            "/guilds/aegis-guard/forms/sword-elemental/gwaeren.c"
         }),
         "can include any of": ({ 
-            "guilds/aegis-guard/forms/sword-actions/athra.c",
-            "guilds/aegis-guard/forms/sword-actions/celeg.c",
-            "guilds/aegis-guard/forms/sword-actions/raeg.c",
-            "guilds/aegis-guard/forms/sword-actions/lanc.c",
-            "guilds/aegis-guard/forms/sword-actions/gleina.c",
-            "guilds/aegis-guard/forms/sword-actions/beraid.c",
-            "guilds/aegis-guard/forms/sword-actions/gling.c",
-            "guilds/aegis-guard/forms/sword-actions/naergo.c",
-            "guilds/aegis-guard/forms/sword-actions/bauglo.c",
-            "guilds/aegis-guard/forms/sword-actions/dadben.c",
-            "guilds/aegis-guard/forms/sword-actions/gliri.c",
-            "guilds/aegis-guard/forms/sword-actions/hwinio.c"
+            "/guilds/aegis-guard/forms/sword-actions/athra.c",
+            "/guilds/aegis-guard/forms/sword-actions/celeg.c",
+            "/guilds/aegis-guard/forms/sword-actions/raeg.c",
+            "/guilds/aegis-guard/forms/sword-actions/lanc.c",
+            "/guilds/aegis-guard/forms/sword-actions/gleina.c",
+            "/guilds/aegis-guard/forms/sword-actions/beraid.c",
+            "/guilds/aegis-guard/forms/sword-actions/gling.c",
+            "/guilds/aegis-guard/forms/sword-actions/naergo.c",
+            "/guilds/aegis-guard/forms/sword-actions/bauglo.c",
+            "/guilds/aegis-guard/forms/sword-actions/dadben.c",
+            "/guilds/aegis-guard/forms/sword-actions/gliri.c",
+            "/guilds/aegis-guard/forms/sword-actions/hwinio.c"
         })
     ]));
 
@@ -72,7 +72,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": 
-                "guilds/aegis-guard/forms/sword-combinations/godramin.c",
+                "/guilds/aegis-guard/forms/sword-combinations/godramin.c",
             "name": "Combo I",
             "formula": "additive",
             "base value": 1,
@@ -81,7 +81,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": 
-                "guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
+                "/guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
             "name": "Combo II",
             "formula": "additive",
             "base value": 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": 
-                "guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
+                "/guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
             "name": "Combo III",
             "formula": "additive",
             "base value": 1,
@@ -102,7 +102,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item":
-                "guilds/aegis-guard/forms/sword-combinations/an-alag.c",
+                "/guilds/aegis-guard/forms/sword-combinations/an-alag.c",
             "name": "an-alag",
             "formula": "multiplicative",
             "base value": 1,
@@ -111,7 +111,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item":
-                "guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
+                "/guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
             "name": "thel-hannas",
             "formula": "multiplicative",
             "base value": 1,
@@ -120,7 +120,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item":
-                "guilds/aegis-guard/forms/sword-combinations/laeg-hannas.c",
+                "/guilds/aegis-guard/forms/sword-combinations/laeg-hannas.c",
             "name": "laeg-hannas",
             "formula": "multiplicative",
             "base value": 1,
@@ -129,7 +129,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item":
-                "guilds/aegis-guard/forms/sword-combinations/bronadui-hannas.c",
+                "/guilds/aegis-guard/forms/sword-combinations/bronadui-hannas.c",
             "name": "bronadui-hannas",
             "formula": "multiplicative",
             "base value": 1,
@@ -138,7 +138,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item":
-                "guilds/aegis-guard/forms/sword-combinations/golwen-alag.c",
+                "/guilds/aegis-guard/forms/sword-combinations/golwen-alag.c",
             "name": "golwen-alag",
             "formula": "multiplicative",
             "base value": 1,
@@ -147,7 +147,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": 
-                "guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
+                "/guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
             "name": "tur-godref",
             "formula": "multiplicative",
             "base value": 1,
@@ -202,10 +202,10 @@ protected void Setup()
 
     addSpecification("cooldown", 60);
     addSpecification("cooldown modifiers", ([
-        "guilds/aegis-guard/forms/sword-combinations/heleg-alag.c": 10,
-        "guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c": 10,
-        "guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c": 15,
-        "guilds/aegis-guard/forms/sword-combinations/heleg-godref.c": 15,
+        "/guilds/aegis-guard/forms/sword-combinations/heleg-alag.c": 10,
+        "/guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c": 10,
+        "/guilds/aegis-guard/forms/sword-combinations/heleg-golwen.c": 15,
+        "/guilds/aegis-guard/forms/sword-combinations/heleg-godref.c": 15,
     ]));
 
     addSpecification("event handler", "godrebAiMegilEvent");

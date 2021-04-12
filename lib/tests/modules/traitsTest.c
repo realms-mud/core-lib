@@ -36,7 +36,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void AddTraitAddsTraitToUser()
 {
-    string trait = "lib/tests/support/traits/testTrait.c";
+    string trait = "/lib/tests/support/traits/testTrait.c";
 
     ExpectFalse(Traits->isTraitOf(trait));
     ExpectTrue(Traits->addTrait(trait));
@@ -46,7 +46,7 @@ void AddTraitAddsTraitToUser()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddTraitTwice()
 {
-    string trait = "lib/tests/support/traits/testTrait.c";
+    string trait = "/lib/tests/support/traits/testTrait.c";
 
     ExpectTrue(Traits->addTrait(trait));
     ExpectFalse(Traits->addTrait(trait));
@@ -56,7 +56,7 @@ void CannotAddTraitTwice()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsResearchTreesReturnEmptyWhenNoTraitsHaveTrees()
 {
-    string trait = "lib/tests/support/traits/testTraitWithoutResearch.c";
+    string trait = "/lib/tests/support/traits/testTraitWithoutResearch.c";
 
     ExpectTrue(Traits->addTrait(trait));
     ExpectEq(({}), Traits->traitsResearchTrees());
@@ -65,37 +65,37 @@ void TraitsResearchTreesReturnEmptyWhenNoTraitsHaveTrees()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsResearchTreesReturnsCorrectTrees()
 {
-    string trait = "lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c";
+    string trait = "/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c";
 
     ExpectTrue(Traits->addTrait(trait));
-    ExpectEq(({ "lib/tests/support/research/testResearchTreeNoPrerequisites.c" }), Traits->traitsResearchTrees());
+    ExpectEq(({ "/lib/tests/support/research/testResearchTreeNoPrerequisites.c" }), Traits->traitsResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TraitsResearchTreesDoesNotReturnTreesUntilPrerequisitesMet()
 {
-    string trait = "lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c";
+    string trait = "/lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c";
 
     ExpectTrue(Traits->addTrait(trait));
     ExpectEq(({}), Traits->traitsResearchTrees());
 
     Traits->addSkillPoints(100);
     Traits->advanceSkill("long sword", 10);
-    ExpectEq(({ "lib/tests/support/research/testResearchTree.c" }), Traits->traitsResearchTrees());
+    ExpectEq(({ "/lib/tests/support/research/testResearchTree.c" }), Traits->traitsResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TraitsResearchTreesReturnsMultipleTrees()
 {
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithoutResearch.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
 
     Traits->addSkillPoints(100);
     Traits->advanceSkill("long sword", 10);
-    ExpectEq(({ "lib/tests/support/research/testResearchTree.c",
-                "lib/tests/support/research/testResearchTreeNoPrerequisites.c" }),
+    ExpectEq(({ "/lib/tests/support/research/testResearchTree.c",
+                "/lib/tests/support/research/testResearchTreeNoPrerequisites.c" }),
         Traits->traitsResearchTrees());
 }
 
@@ -108,10 +108,10 @@ void TraitsReturnsEmptyWhenNoTraitsHaveBeenAdded()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsReturnsListOfTraits()
 {
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectEq(({ "lib/tests/support/traits/testTrait.c", 
-                "lib/tests/support/traits/testTraitWithoutResearch.c" }),
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithoutResearch.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectEq(({ "/lib/tests/support/traits/testTrait.c", 
+                "/lib/tests/support/traits/testTraitWithoutResearch.c" }),
         Traits->Traits());
 }
 
@@ -124,10 +124,10 @@ void TraitNamesReturnsEmptyWhenNoTraitsHaveBeenAdded()
 /////////////////////////////////////////////////////////////////////////////
 void TraitNamesReturnsListOfTraits()
 {
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithoutResearch.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchThatHasPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
     ExpectEq(({ "Armsmaster", "Jerk", "Sword Boy", "Duelist" }), Traits->TraitNames());
 }
 
@@ -138,8 +138,8 @@ void AddTraitFiresOnTraitAddedEvent()
 
     ToggleCallOutBypass();
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
-    string err = catch (Traits->addTrait("lib/tests/support/traits/testTrait.c"));
-    string expectedError = "*event handler: onTraitAdded called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
+    string err = catch (Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
+    string expectedError = "*event handler: onTraitAdded called, data: lib/tests/support/traits/testTrait.c, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
     ToggleCallOutBypass();
@@ -148,13 +148,13 @@ void AddTraitFiresOnTraitAddedEvent()
 /////////////////////////////////////////////////////////////////////////////
 void RemoveTraitReturnsFalseIfTraitNotPresent()
 {
-    ExpectFalse(Traits->removeTrait("lib/tests/support/traits/testTrait.c"));
+    ExpectFalse(Traits->removeTrait("/lib/tests/support/traits/testTrait.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RemoveTraitRemovesSpecifiedTrait()
 {
-    string trait = "lib/tests/support/traits/testTrait.c";
+    string trait = "/lib/tests/support/traits/testTrait.c";
 
     ExpectTrue(Traits->addTrait(trait));
     ExpectTrue(Traits->isTraitOf(trait));
@@ -168,11 +168,11 @@ void RemoveTraitFiresOnTraitRemovedEvent()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
 
     Traits->registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
-    string err = catch (Traits->removeTrait("lib/tests/support/traits/testTrait.c"));
-    string expectedError = "*event handler: onTraitRemoved called, data: lib/tests/support/traits/testTrait.c, caller: lib/tests/support/services/mockPlayer.c";
+    string err = catch (Traits->removeTrait("/lib/tests/support/traits/testTrait.c"));
+    string expectedError = "*event handler: onTraitRemoved called, data: lib/tests/support/traits/testTrait.c, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
     ToggleCallOutBypass();
@@ -182,7 +182,7 @@ void RemoveTraitFiresOnTraitRemovedEvent()
 void TraitSkillBonusesApplied()
 {
     ExpectEq(5, Traits->getSkill("long sword"), "initial long sword skill");
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add trait");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"), "add trait");
     ExpectEq(6, Traits->getSkill("long sword"), "after trait long sword skill");
 }
 
@@ -190,7 +190,7 @@ void TraitSkillBonusesApplied()
 void TraitAttributeBonusesApplied()
 {
     ExpectEq(20, Traits->Str(), "initial strength");
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add trait");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"), "add trait");
     ExpectEq(22, Traits->Str(), "after trait strength");
 }
 
@@ -198,8 +198,8 @@ void TraitAttributeBonusesApplied()
 void MultipleTraitsStackAttributeBonuses()
 {
     ExpectEq(20, Traits->Str(), "initial strength");
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add trait");
-    ExpectTrue(Traits->addTrait("lib/instances/traits/genetic/strong.c"), "add trait");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"), "add trait");
+    ExpectTrue(Traits->addTrait("/lib/instances/traits/genetic/strong.c"), "add trait");
     ExpectEq(24, Traits->Str(), "after trait strength");
 }
 
@@ -208,8 +208,8 @@ void SetBonusAttackAddsExtraAttack()
 {
     mapping *expectedAttacks = ({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) });
 
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"), "add test trait");
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"), "add trait");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"), "add test trait");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"), "add trait");
     ExpectEq(expectedAttacks, Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
 }
 
@@ -223,7 +223,7 @@ void LimitedByEquipmentCorrectlyApplied()
     ExpectEq(20, Traits->Str(), "initial strength");
     ExpectEq(({}), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
 
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByEquipmentTrait.c"), "initiate research");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testLimitedByEquipmentTrait.c"), "initiate research");
     ExpectEq(5, Traits->getSkill("long sword"), "trait no weapon long sword skill");
     ExpectEq(20, Traits->Str(), "trait no weapon strength");
     ExpectEq(({}), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
@@ -263,7 +263,7 @@ void LimitedByOpponentBonusesCorrectlyApplied()
     ExpectEq(20, Traits->Str(), "initial strength");
     ExpectEq(({}), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
 
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByOpponentTrait.c"), "initiate research");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testLimitedByOpponentTrait.c"), "initiate research");
     ExpectEq(5, Traits->getSkill("long sword"), "after trait long sword skill");
     ExpectEq(20, Traits->Str(), "after trait strength");
     ExpectEq(({}), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
@@ -298,7 +298,7 @@ void LimitedByNearDeathBonusesCorrectlyApplied()
     ExpectEq(20, Traits->Str(), "initial strength");
     ExpectEq(({}), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
 
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByNearDeathTrait.c"), "initiate research");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testLimitedByNearDeathTrait.c"), "initiate research");
     ExpectEq(6, Traits->getSkill("long sword"), "near death sword skill");
     ExpectEq(22, Traits->Str(), "near death strength");
     ExpectEq(({ (["attack type":"weapon"]) }), Traits->traitsExtraAttacks(), "traitsExtraAttacks returns the correct result");
@@ -320,8 +320,8 @@ void DefaultOpinionModifierIsZero()
 void OpinionModifierIsModifiedPositivelyBySameRoot()
 {
     object target = clone_object("/lib/realizations/player");
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
+    ExpectTrue(target->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
     ExpectEq(5, Traits->opinionModifier(target));
 }
 
@@ -329,8 +329,8 @@ void OpinionModifierIsModifiedPositivelyBySameRoot()
 void OpinionModifierIsNotModifiedNegativelyByOppositeRoot()
 {
     object target = clone_object("/lib/realizations/player");
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByOpponentTrait.c"));
+    ExpectTrue(target->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testLimitedByOpponentTrait.c"));
     ExpectEq(-5, Traits->opinionModifier(target));
 }
 
@@ -338,8 +338,8 @@ void OpinionModifierIsNotModifiedNegativelyByOppositeRoot()
 void OpinionModifierIsModifiedByUnrelatedRoot()
 {
     object target = clone_object("/lib/realizations/player");
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testNoOpposingRootTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithoutResearch.c"));
+    ExpectTrue(target->addTrait("/lib/tests/support/traits/testNoOpposingRootTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithoutResearch.c"));
     ExpectEq(10, Traits->opinionModifier(target));
 }
 
@@ -347,11 +347,11 @@ void OpinionModifierIsModifiedByUnrelatedRoot()
 void OpinionModifierHandlesMultipleTraitsWithoutApplyingSameModifierMoreThanOnce()
 {
     object target = clone_object("/lib/realizations/player");
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectTrue(target->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testLimitedByOpponentTrait.c"));
+    ExpectTrue(target->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(target->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testTraitWithResearchNoPrerequisites.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testLimitedByOpponentTrait.c"));
     ExpectEq(5, Traits->opinionModifier(target));
 }
 
@@ -359,19 +359,19 @@ void OpinionModifierHandlesMultipleTraitsWithoutApplyingSameModifierMoreThanOnce
 void HasTraitOfRootReturnsCorrectlyForQueriedRoot()
 {
     ExpectFalse(Traits->hasTraitOfRoot("disfigured"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testGeneticTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testGeneticTrait.c"));
     ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testHealthTrait.c"));
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testPersonalityTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testHealthTrait.c"));
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testPersonalityTrait.c"));
     ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
-    ExpectTrue(Traits->removeTrait("lib/tests/support/traits/testGeneticTrait.c"));
+    ExpectTrue(Traits->removeTrait("/lib/tests/support/traits/testGeneticTrait.c"));
     ExpectTrue(Traits->hasTraitOfRoot("disfigured"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TraitsWithDurationAreRemovedWhenTheyExpire()
 {
-    string trait = "lib/tests/support/traits/testTraitWithDuration.c";
+    string trait = "/lib/tests/support/traits/testTraitWithDuration.c";
 
     ExpectFalse(Traits->isTraitOf(trait), "trait initially not part of user");
     ExpectTrue(Traits->addTrait(trait), "trait added");
@@ -385,7 +385,7 @@ void TraitsWithDurationAreRemovedWhenTheyExpire()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsWithExpireMessagesReportMessageToUserOnExpiry()
 {
-    string trait = "lib/tests/support/traits/testTraitWithDuration.c";
+    string trait = "/lib/tests/support/traits/testTraitWithDuration.c";
 
     ExpectTrue(Traits->addTrait(trait), "trait added");
     ExpectFalse(Traits->caughtMessage());
@@ -398,8 +398,8 @@ void TraitsWithExpireMessagesReportMessageToUserOnExpiry()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsWithSustainedEffectAreRemovedWhenResearchNotSustained()
 {
-    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
-    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    string trait = "/lib/tests/support/traits/testTraitForSustainedResearch.c";
+    ExpectTrue(Traits->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
 
     ExpectTrue(Traits->addTrait(trait), "trait added");
     ExpectTrue(Traits->isTraitOf(trait), "trait added");
@@ -411,11 +411,11 @@ void TraitsWithSustainedEffectAreRemovedWhenResearchNotSustained()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
 {
-    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
+    string trait = "/lib/tests/support/traits/testTraitForSustainedResearch.c";
     object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
 
-    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Traits->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
     ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
 
     ExpectTrue(Traits->isTraitOf(trait), "trait is set on user");
@@ -427,11 +427,11 @@ void TraitsWithSustainedEffectsAreNotRemovedWhenAssociatedResearchActive()
 /////////////////////////////////////////////////////////////////////////////
 void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
 {
-    string trait = "lib/tests/support/traits/testTraitForSustainedResearch.c";
+    string trait = "/lib/tests/support/traits/testTraitForSustainedResearch.c";
     object room = clone_object("/lib/environment/environment");
     move_object(Traits, room);
 
-    ExpectTrue(Traits->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Traits->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
     ExpectTrue(Traits->researchCommand("throw turnip"), "command used");
 
     ExpectTrue(Traits->isTraitOf(trait), "trait added");
@@ -447,11 +447,11 @@ void TraitsWithSustainedEffectsAreRemovedAfterResearchInactivated()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectEnchantmentsReturned()
 {
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/testEnchantmentTrait.c"), "initiate research");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/testEnchantmentTrait.c"), "initiate research");
     ExpectEq((["electricity":5, "fire" : 2, "magical" : 1]),
         Traits->traitsEnchantments());
 
-    ExpectTrue(Traits->addTrait("lib/tests/support/traits/anotherEnchantmentTrait.c"), "initiate research");
+    ExpectTrue(Traits->addTrait("/lib/tests/support/traits/anotherEnchantmentTrait.c"), "initiate research");
     ExpectEq((["electricity":5, "fire" : 6, "magical" : 1]),
         Traits->traitsEnchantments());
 }

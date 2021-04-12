@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private mapping StateMachineRegistry = ([]);
-private nosave string BaseStateMachine = "lib/core/stateMachine.c";
+private nosave string BaseStateMachine = "/lib/core/stateMachine.c";
 
 ///////////////////////////////////////////////////////////////////////////////
 public nomask int validateStateMachine(string path)

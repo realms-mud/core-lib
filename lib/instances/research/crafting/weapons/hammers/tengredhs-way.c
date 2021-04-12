@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/hammers/tengredhs-tradition.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/hammers/tengredhs-tradition.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 28]));
     addPrerequisite("spellcraft", (["type":"skill", "value" : 25]));

@@ -15,7 +15,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -45,7 +45,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -75,7 +75,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 12]),
@@ -105,7 +105,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 8]),
             "weapon smithing": (["type":"skill", "value": 15]),
@@ -135,7 +135,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -165,7 +165,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -195,7 +195,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -225,7 +225,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftLongSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -255,7 +255,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -285,7 +285,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -315,7 +315,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -347,7 +347,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 6]),
             "weapon smithing": (["type":"skill", "value": 12]),
@@ -377,7 +377,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
@@ -405,7 +405,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftCurvedSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -433,7 +433,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -463,7 +463,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 3,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 1]),
@@ -491,7 +491,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -520,7 +520,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -549,7 +549,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -579,7 +579,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
@@ -609,7 +609,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 7,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftBasicSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -639,7 +639,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -669,7 +669,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 8]),
@@ -699,7 +699,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftGreatSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftGreatSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 15]),
@@ -729,7 +729,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftGreatSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftGreatSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -759,7 +759,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftExoticSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 10]),
             "weapon smithing": (["type":"skill", "value": 20]),
@@ -789,7 +789,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/swords/craftElegantSwords.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 7]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -819,7 +819,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 7]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 15]),
@@ -848,7 +848,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "primary component": "staff head", 
@@ -874,7 +874,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 30,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "gem crafting": (["type":"skill", "value" : 2]),
             "wood crafting": (["type":"skill", "value" : 3]),
@@ -905,7 +905,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftBasicRod.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftBasicRod.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "gem crafting": (["type":"skill", "value" : 2]),
             "wood crafting": (["type":"skill", "value" : 3]),
@@ -936,7 +936,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftBasicWand.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftBasicWand.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 2]),
             "gem crafting": (["type":"skill", "value" : 2]),
             "wood crafting": (["type":"skill", "value" : 3]),
@@ -966,7 +966,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
         ]),
         "primary component": "staff head", 
@@ -992,7 +992,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -1021,7 +1021,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1050,7 +1050,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1079,7 +1079,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/staffs/craftCompositeStaff.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 4]),
@@ -1109,7 +1109,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1139,7 +1139,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 4]),
@@ -1169,7 +1169,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 4]),
@@ -1199,7 +1199,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
@@ -1229,7 +1229,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1259,7 +1259,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1289,7 +1289,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -1319,7 +1319,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1349,7 +1349,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftExoticAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1379,7 +1379,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1409,7 +1409,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1439,7 +1439,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1469,7 +1469,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -1499,7 +1499,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -1529,7 +1529,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 4]),
@@ -1559,7 +1559,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -1589,7 +1589,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 18,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 4]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1619,7 +1619,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1649,7 +1649,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1679,7 +1679,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -1709,7 +1709,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -1739,7 +1739,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -1769,7 +1769,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1799,7 +1799,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1829,7 +1829,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1859,7 +1859,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1889,7 +1889,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1919,7 +1919,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftForkedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1949,7 +1949,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -1979,7 +1979,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBladedPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2009,7 +2009,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2039,7 +2039,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2069,7 +2069,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2099,7 +2099,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2129,7 +2129,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftComplexPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2159,7 +2159,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -2189,7 +2189,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2219,7 +2219,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -2249,7 +2249,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2280,7 +2280,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 6]),
@@ -2311,7 +2311,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2341,7 +2341,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/hammers/craftWarHammer.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2371,7 +2371,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "primary component": "club head", 
@@ -2397,7 +2397,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "primary component": "club head", 
@@ -2423,7 +2423,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2453,7 +2453,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 2]),
@@ -2483,7 +2483,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "metal crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
@@ -2512,7 +2512,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftComplexMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftComplexMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2542,7 +2542,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftComplexMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftComplexMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -2572,7 +2572,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/maces/craftBasicMace.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 3]),
@@ -2602,7 +2602,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 7,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftBasicFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftBasicFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 3]),
@@ -2633,7 +2633,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 4]),
             "weapon smithing": (["type":"skill", "value": 5]),
@@ -2666,7 +2666,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftBasicFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftBasicFlail.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "primary component": "whip body", 
@@ -2692,7 +2692,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 10]),
@@ -2723,7 +2723,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -2754,7 +2754,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
@@ -2786,7 +2786,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/flails/craftComplexFlail.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "metal crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 15]),
@@ -2817,7 +2817,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bolt",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 10]),
             "engineering": (["type":"skill", "value": 2]),
@@ -2848,7 +2848,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bolt",
         "skill to craft": 18,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 10]),
             "engineering": (["type":"skill", "value": 5]),
@@ -2880,7 +2880,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bolt",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "bowyer and fletcher": (["type":"skill", "value": 15]),
             "engineering": (["type":"skill", "value": 5]),
@@ -2912,7 +2912,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
@@ -2941,7 +2941,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
@@ -2970,7 +2970,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
@@ -2999,7 +2999,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "arrow",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
@@ -3029,7 +3029,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "arrow",
         "skill to craft": 18,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/bows/craftBow.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "bowyer and fletcher": (["type":"skill", "value": 7]),
         ]),
@@ -3060,7 +3060,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bullet",
         "skill to craft": 2,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 2]),
         ]),
         "primary component": "projectile pocket", 
@@ -3087,7 +3087,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bullet",
         "skill to craft": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
@@ -3117,7 +3117,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bullet",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "primary component": "projectile pocket", 
@@ -3147,7 +3147,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bullet",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/slings/craftSling.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "primary component": "projectile pocket", 
@@ -3174,7 +3174,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 5]),
         ]),
         "primary component": "spear head", 
@@ -3201,7 +3201,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 10]),
         ]),
         "primary component": "spear head", 
@@ -3252,7 +3252,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 1,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 1]),
         ]),
         "primary component": "dart head", 
@@ -3279,7 +3279,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "thrust",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "primary component": "spear head", 
@@ -3307,7 +3307,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "slash",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "primary component": "axe head", 
@@ -3335,7 +3335,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/thrown/craftThrown.c":(["type":"research"]),
             "weapon smithing": (["type":"skill", "value": 12]),
         ]),
         "primary component": "hammer head", 
@@ -3363,7 +3363,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 1]),
             "weapon smithing": (["type":"skill", "value": 4]),
         ]),
@@ -3390,7 +3390,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 12,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 5]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
@@ -3418,7 +3418,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
@@ -3445,7 +3445,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
@@ -3473,7 +3473,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
@@ -3501,7 +3501,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 5,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),
         ]),
@@ -3529,7 +3529,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftBasicShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "weapon smithing": (["type":"skill", "value": 7]),
         ]),
@@ -3556,7 +3556,7 @@ private nosave mapping weaponBlueprints = ([
         "damage type": "bludgeon",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/weapons/shields/craftSpikedShield.c":(["type":"research"]),
+            "/lib/instances/research/crafting/weapons/shields/craftSpikedShield.c":(["type":"research"]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 2]),
             "weapon smithing": (["type":"skill", "value": 3]),

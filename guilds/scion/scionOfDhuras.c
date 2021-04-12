@@ -98,7 +98,7 @@ public void SetupGuild()
     addCriteria("mana shield tree", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/scion/common/mana-shield/mana-shield.c"
+        "research tree": "/guilds/scion/common/mana-shield/mana-shield.c"
     ]));
 
     addCriteria("weapon focus", ([
@@ -106,12 +106,12 @@ public void SetupGuild()
         "name": "The Focus",
         "description": "Choose your weapon focus",
         "apply": "at level 1",
-        "research objects": ({ "guilds/scion/paths/sword.c",
-            "guilds/scion/paths/dagger.c",
-            "guilds/scion/paths/axe.c", 
-            "guilds/scion/paths/mace.c",
-            "guilds/scion/paths/hammer.c",
-            "guilds/scion/paths/staff.c" })
+        "research objects": ({ "/guilds/scion/paths/sword.c",
+            "/guilds/scion/paths/dagger.c",
+            "/guilds/scion/paths/axe.c", 
+            "/guilds/scion/paths/mace.c",
+            "/guilds/scion/paths/hammer.c",
+            "/guilds/scion/paths/staff.c" })
     ]));
 
     addCriteria("magical sword path", ([
@@ -119,13 +119,13 @@ public void SetupGuild()
         "name": "The Path (Sword)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/sword.c" }),
-        "research objects": ({ "guilds/scion/paths/sword/flame.c",
-            "guilds/scion/paths/sword/electricity.c",
-            "guilds/scion/paths/sword/ice.c",
-            "guilds/scion/paths/sword/blood.c",
-            "guilds/scion/paths/sword/evocation.c",
-            "guilds/scion/paths/sword/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/sword.c" }),
+        "research objects": ({ "/guilds/scion/paths/sword/flame.c",
+            "/guilds/scion/paths/sword/electricity.c",
+            "/guilds/scion/paths/sword/ice.c",
+            "/guilds/scion/paths/sword/blood.c",
+            "/guilds/scion/paths/sword/evocation.c",
+            "/guilds/scion/paths/sword/spirit.c" })
     ])); 
 
     addCriteria("magical axe path", ([
@@ -133,13 +133,13 @@ public void SetupGuild()
         "name": "The Path (Axe)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/axe.c" }),
-        "research objects": ({ "guilds/scion/paths/axe/flame.c",
-            "guilds/scion/paths/axe/electricity.c",
-            "guilds/scion/paths/axe/ice.c",
-            "guilds/scion/paths/axe/blood.c",
-            "guilds/scion/paths/axe/evocation.c",
-            "guilds/scion/paths/axe/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/axe.c" }),
+        "research objects": ({ "/guilds/scion/paths/axe/flame.c",
+            "/guilds/scion/paths/axe/electricity.c",
+            "/guilds/scion/paths/axe/ice.c",
+            "/guilds/scion/paths/axe/blood.c",
+            "/guilds/scion/paths/axe/evocation.c",
+            "/guilds/scion/paths/axe/spirit.c" })
     ])); 
 
     addCriteria("magical dagger path", ([
@@ -147,13 +147,13 @@ public void SetupGuild()
         "name": "The Path (Dagger)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/dagger.c" }),
-        "research objects": ({ "guilds/scion/paths/dagger/flame.c",
-            "guilds/scion/paths/dagger/electricity.c",
-            "guilds/scion/paths/dagger/ice.c",
-            "guilds/scion/paths/dagger/blood.c",
-            "guilds/scion/paths/dagger/evocation.c",
-            "guilds/scion/paths/dagger/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/dagger.c" }),
+        "research objects": ({ "/guilds/scion/paths/dagger/flame.c",
+            "/guilds/scion/paths/dagger/electricity.c",
+            "/guilds/scion/paths/dagger/ice.c",
+            "/guilds/scion/paths/dagger/blood.c",
+            "/guilds/scion/paths/dagger/evocation.c",
+            "/guilds/scion/paths/dagger/spirit.c" })
     ])); 
 
     addCriteria("magical mace path", ([
@@ -161,13 +161,13 @@ public void SetupGuild()
         "name": "The Path (Mace)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/mace.c" }),
-        "research objects": ({ "guilds/scion/paths/mace/flame.c",
-            "guilds/scion/paths/mace/electricity.c",
-            "guilds/scion/paths/mace/ice.c",
-            "guilds/scion/paths/mace/blood.c",
-            "guilds/scion/paths/mace/evocation.c",
-            "guilds/scion/paths/mace/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/mace.c" }),
+        "research objects": ({ "/guilds/scion/paths/mace/flame.c",
+            "/guilds/scion/paths/mace/electricity.c",
+            "/guilds/scion/paths/mace/ice.c",
+            "/guilds/scion/paths/mace/blood.c",
+            "/guilds/scion/paths/mace/evocation.c",
+            "/guilds/scion/paths/mace/spirit.c" })
     ])); 
 
     addCriteria("magical hammer path", ([
@@ -175,13 +175,13 @@ public void SetupGuild()
         "name": "The Path (Hammer)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/hammer.c" }),
-        "research objects": ({ "guilds/scion/paths/hammer/flame.c",
-            "guilds/scion/paths/hammer/electricity.c",
-            "guilds/scion/paths/hammer/ice.c",
-            "guilds/scion/paths/hammer/blood.c",
-            "guilds/scion/paths/hammer/evocation.c",
-            "guilds/scion/paths/hammer/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/hammer.c" }),
+        "research objects": ({ "/guilds/scion/paths/hammer/flame.c",
+            "/guilds/scion/paths/hammer/electricity.c",
+            "/guilds/scion/paths/hammer/ice.c",
+            "/guilds/scion/paths/hammer/blood.c",
+            "/guilds/scion/paths/hammer/evocation.c",
+            "/guilds/scion/paths/hammer/spirit.c" })
     ])); 
 
     addCriteria("magical staff path", ([
@@ -189,96 +189,96 @@ public void SetupGuild()
         "name": "The Path (Staff)",
         "description": "Choose your magical path",
         "apply": "at level 1",
-        "apply if chosen": ({ "guilds/scion/paths/staff.c" }),
-        "research objects": ({ "guilds/scion/paths/staff/flame.c",
-            "guilds/scion/paths/staff/electricity.c",
-            "guilds/scion/paths/staff/ice.c",
-            "guilds/scion/paths/staff/blood.c",
-            "guilds/scion/paths/staff/evocation.c",
-            "guilds/scion/paths/staff/spirit.c" })
+        "apply if chosen": ({ "/guilds/scion/paths/staff.c" }),
+        "research objects": ({ "/guilds/scion/paths/staff/flame.c",
+            "/guilds/scion/paths/staff/electricity.c",
+            "/guilds/scion/paths/staff/ice.c",
+            "/guilds/scion/paths/staff/blood.c",
+            "/guilds/scion/paths/staff/evocation.c",
+            "/guilds/scion/paths/staff/spirit.c" })
     ])); 
 
     addCriteria("blood avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/blood.c",
-            "guilds/scion/paths/dagger/blood.c",
-            "guilds/scion/paths/hammer/blood.c",
-            "guilds/scion/paths/mace/blood.c",
-            "guilds/scion/paths/sword/blood.c",
-            "guilds/scion/paths/staff/blood.c",
+            "/guilds/scion/paths/axe/blood.c",
+            "/guilds/scion/paths/dagger/blood.c",
+            "/guilds/scion/paths/hammer/blood.c",
+            "/guilds/scion/paths/mace/blood.c",
+            "/guilds/scion/paths/sword/blood.c",
+            "/guilds/scion/paths/staff/blood.c",
         }),
-        "research tree": "guilds/scion/avatars/blood-avatar.c"
+        "research tree": "/guilds/scion/avatars/blood-avatar.c"
     ]));
 
     addCriteria("electricity avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/electricity.c",
-            "guilds/scion/paths/dagger/electricity.c",
-            "guilds/scion/paths/hammer/electricity.c",
-            "guilds/scion/paths/mace/electricity.c",
-            "guilds/scion/paths/sword/electricity.c",
-            "guilds/scion/paths/staff/electricity.c",
+            "/guilds/scion/paths/axe/electricity.c",
+            "/guilds/scion/paths/dagger/electricity.c",
+            "/guilds/scion/paths/hammer/electricity.c",
+            "/guilds/scion/paths/mace/electricity.c",
+            "/guilds/scion/paths/sword/electricity.c",
+            "/guilds/scion/paths/staff/electricity.c",
         }),
-        "research tree": "guilds/scion/avatars/electricity-avatar.c"
+        "research tree": "/guilds/scion/avatars/electricity-avatar.c"
     ]));
 
     addCriteria("evocation avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/evocation.c",
-            "guilds/scion/paths/dagger/evocation.c",
-            "guilds/scion/paths/hammer/evocation.c",
-            "guilds/scion/paths/mace/evocation.c",
-            "guilds/scion/paths/sword/evocation.c",
-            "guilds/scion/paths/staff/evocation.c",
+            "/guilds/scion/paths/axe/evocation.c",
+            "/guilds/scion/paths/dagger/evocation.c",
+            "/guilds/scion/paths/hammer/evocation.c",
+            "/guilds/scion/paths/mace/evocation.c",
+            "/guilds/scion/paths/sword/evocation.c",
+            "/guilds/scion/paths/staff/evocation.c",
         }),
-        "research tree": "guilds/scion/avatars/evocation-avatar.c"
+        "research tree": "/guilds/scion/avatars/evocation-avatar.c"
     ]));
 
     addCriteria("flame avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/flame.c",
-            "guilds/scion/paths/dagger/flame.c",
-            "guilds/scion/paths/hammer/flame.c",
-            "guilds/scion/paths/mace/flame.c",
-            "guilds/scion/paths/sword/flame.c",
-            "guilds/scion/paths/staff/flame.c",
+            "/guilds/scion/paths/axe/flame.c",
+            "/guilds/scion/paths/dagger/flame.c",
+            "/guilds/scion/paths/hammer/flame.c",
+            "/guilds/scion/paths/mace/flame.c",
+            "/guilds/scion/paths/sword/flame.c",
+            "/guilds/scion/paths/staff/flame.c",
         }),
-        "research tree": "guilds/scion/avatars/flame-avatar.c"
+        "research tree": "/guilds/scion/avatars/flame-avatar.c"
     ]));
 
     addCriteria("ice avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/ice.c",
-            "guilds/scion/paths/dagger/ice.c",
-            "guilds/scion/paths/hammer/ice.c",
-            "guilds/scion/paths/mace/ice.c",
-            "guilds/scion/paths/sword/ice.c",
-            "guilds/scion/paths/staff/ice.c",
+            "/guilds/scion/paths/axe/ice.c",
+            "/guilds/scion/paths/dagger/ice.c",
+            "/guilds/scion/paths/hammer/ice.c",
+            "/guilds/scion/paths/mace/ice.c",
+            "/guilds/scion/paths/sword/ice.c",
+            "/guilds/scion/paths/staff/ice.c",
         }),
-        "research tree": "guilds/scion/avatars/ice-avatar.c"
+        "research tree": "/guilds/scion/avatars/ice-avatar.c"
     ]));
 
     addCriteria("spirit avatar tree", ([
         "type": "research tree",
         "apply": "at level 1",
         "apply if any chosen": ({
-            "guilds/scion/paths/axe/spirit.c",
-            "guilds/scion/paths/dagger/spirit.c",
-            "guilds/scion/paths/hammer/spirit.c",
-            "guilds/scion/paths/mace/spirit.c",
-            "guilds/scion/paths/sword/spirit.c",
-            "guilds/scion/paths/staff/spirit.c",
+            "/guilds/scion/paths/axe/spirit.c",
+            "/guilds/scion/paths/dagger/spirit.c",
+            "/guilds/scion/paths/hammer/spirit.c",
+            "/guilds/scion/paths/mace/spirit.c",
+            "/guilds/scion/paths/sword/spirit.c",
+            "/guilds/scion/paths/staff/spirit.c",
         }),
-        "research tree": "guilds/scion/avatars/spirit-avatar.c"
+        "research tree": "/guilds/scion/avatars/spirit-avatar.c"
     ]));
 }

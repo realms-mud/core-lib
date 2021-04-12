@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "level", 
           "guild": "bard",
           "value": 25 ]));
-    addPrerequisite("guilds/bard/lyrics/a-rhyme-of-the-deep.c",
+    addPrerequisite("/guilds/bard/lyrics/a-rhyme-of-the-deep.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

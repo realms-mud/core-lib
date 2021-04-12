@@ -11,7 +11,7 @@
 //              with the various lib modules.
 //
 //*****************************************************************************
-private nosave string LibDirectory = "lib";
+private nosave string LibDirectory = "/lib";
 private nosave object MessageParser = 0;
 
 //-----------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string BaseTrait = "lib/modules/traits/baseTrait.c";
+private string BaseTrait = "/lib/modules/traits/baseTrait.c";
 private string *validTraitTypes = ({ "health", "educational", "personality", 
     "genetic", "professional", "guild", "role", "effect", "sustained effect",
     "background", "racial", "persona" });

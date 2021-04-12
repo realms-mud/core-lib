@@ -20,7 +20,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 13 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/sa-pad.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/sa-pad.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

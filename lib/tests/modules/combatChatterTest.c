@@ -88,13 +88,13 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CombatChatterNotAvailableOnPlayers()
 {
-    ExpectEq(-1, member(inherit_list(Attacker), "lib/modules/combatChatter.c"));
+    ExpectEq(-1, member(inherit_list(Attacker), "/lib/modules/combatChatter.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CombatChatterAvailableOnMonsters()
 {
-    ExpectNotEq(-1, member(inherit_list(Target), "lib/modules/combatChatter.c"));
+    ExpectNotEq(-1, member(inherit_list(Target), "/lib/modules/combatChatter.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

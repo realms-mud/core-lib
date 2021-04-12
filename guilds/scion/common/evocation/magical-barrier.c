@@ -23,9 +23,9 @@ protected void Setup()
         "energy that swarms around and harries a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/eviscerating-tendrils.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/evocation/eviscerating-tendrils.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -36,7 +36,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
             "name" : "Static Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
             "name" : "Kinetic Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
             "name" : "Energy Barrier",
             "formula" : "multiplicative",
             "base value" : 1,

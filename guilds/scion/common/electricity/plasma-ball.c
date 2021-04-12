@@ -24,9 +24,9 @@ protected void Setup()
         "of plasma at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/lightning-blast.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/lightning-blast.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType),
             "name" : "Static Charge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -75,7 +75,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
             "name" : "Electrostatic Induction",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -83,7 +83,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/ionization.c", WeaponType),
             "name" : "Ionization",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -91,7 +91,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType),
             "name" : "Enhanced Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -99,7 +99,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
             "name" : "Plasma Eruption",
             "formula" : "multiplicative",
             "base value" : 1,

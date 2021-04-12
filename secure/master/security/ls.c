@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/commands/wizard/ls");
+    setName("/lib/commands/wizard/ls");
     addPermission("/", Read);
 
     addPriviledgedEfun("file_size");

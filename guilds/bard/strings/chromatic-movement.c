@@ -21,7 +21,7 @@ protected void Setup()
         "value": 71
     ]));
 
-    addPrerequisite("guilds/bard/strings/mixed-mode-playing.c",
+    addPrerequisite("/guilds/bard/strings/mixed-mode-playing.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

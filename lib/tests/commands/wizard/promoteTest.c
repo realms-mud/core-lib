@@ -151,7 +151,7 @@ void DemoteOfWizardToWithoutParameterDemotesToPlayer()
 
     object newPlayer = findPlayer("fred");
     ExpectEq(-1, member(inherit_list(newPlayer),
-        "lib/realizations/wizard.c"));
+        "/lib/realizations/wizard.c"));
 
     ExpectEq("You demote Fred to player.\n", Wizard->caughtMessage());
 }
@@ -164,7 +164,7 @@ void DemoteOfWizardToPlayerDemotesToPlayer()
 
     object newPlayer = findPlayer("fred");
     ExpectEq(-1, member(inherit_list(newPlayer),
-        "lib/realizations/wizard.c"));
+        "/lib/realizations/wizard.c"));
 
     ExpectEq("You demote Fred to player.\n", Wizard->caughtMessage());
 }

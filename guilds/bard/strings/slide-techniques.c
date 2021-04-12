@@ -21,7 +21,7 @@ protected void Setup()
         "value": 19
     ]));
 
-    addPrerequisite("guilds/bard/strings/string-bending.c",
+    addPrerequisite("/guilds/bard/strings/string-bending.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

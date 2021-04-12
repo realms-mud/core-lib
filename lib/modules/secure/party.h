@@ -51,19 +51,19 @@ private nomask string memberType(object member)
     string ret = "invalid";
 
     string *inheritList = inherit_list(member);
-    if (member(inheritList, "lib/realizations/companion.c") > -1)
+    if (member(inheritList, "/lib/realizations/companion.c") > -1)
     {
         ret = "companion";
     }
-    else if (member(inheritList, "lib/realizations/henchman.c") > -1)
+    else if (member(inheritList, "/lib/realizations/henchman.c") > -1)
     {
         ret = "henchman";
     }
-    else if (member(inheritList, "lib/realizations/npc.c") > -1)
+    else if (member(inheritList, "/lib/realizations/npc.c") > -1)
     {
         ret = "npc";
     }
-    else if (member(inheritList, "lib/realizations/player.c") > -1)
+    else if (member(inheritList, "/lib/realizations/player.c") > -1)
     {
         ret = "player";
     }

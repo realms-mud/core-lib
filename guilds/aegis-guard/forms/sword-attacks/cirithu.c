@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "A cleave well-suited against "
         "lightly-armored opponents.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/dravnu.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/dravnu.c",
             "name": "dravnu",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/enaidravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/enaidravn.c",
             "name": "enaidravn",
             "formula": "multiplicative",
             "base value": 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
             "name" : "edaid-lhewig",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -73,7 +73,7 @@ protected void Setup()
         ]),            
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/raica-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/raica-dravn.c",
             "name" : "raica-dravn",
             "formula" : "multiplicative",
             "base value" : 1,

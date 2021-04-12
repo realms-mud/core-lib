@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft basic pole arms like the trident or war fork.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c", (["type":"research"]));
 }

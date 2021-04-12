@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Lyric verse thingy");
     addSpecification("source", "blarg");
     addSpecification("composite research",
-        "lib/tests/support/research/compositeRoot.c");
+        "/lib/tests/support/research/compositeRoot.c");
     addSpecification("default composite description",
         "I'm a lyric verse thingy woman!");
     addSpecification("composite type", "lyric");

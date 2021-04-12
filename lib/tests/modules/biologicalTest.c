@@ -40,7 +40,7 @@ void IntoxicatedFiresOnIntoxicationChangedEventWhenValueChanges()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onIntoxicationChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onIntoxicationChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(0, Character->Intoxicated());
 
@@ -84,7 +84,7 @@ void AddIntoxicationFiresOnIntoxicationChangedEvent()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onIntoxicationChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onIntoxicationChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->addIntoxication(10));
     ExpectEq(expected, err, "onIntoxicationChanged called on subscriber");
@@ -103,7 +103,7 @@ void StuffedFiresOnStuffedChangedEventWhenValueChanges()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onStuffedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onStuffedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(0, Character->Stuffed());
 
@@ -147,7 +147,7 @@ void AddStuffedFiresOnIntoxicationChangedEvent()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onStuffedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onStuffedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->addStuffed(10));
     ExpectEq(expected, err, "onStuffedChanged called on subscriber");
@@ -166,7 +166,7 @@ void DruggedFiresOnDruggedChangedEventWhenValueChanges()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onDruggedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onDruggedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(0, Character->Drugged());
 
@@ -210,7 +210,7 @@ void AddDruggedFiresOnIntoxicationChangedEvent()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onDruggedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onDruggedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->addDrugged(10));
     ExpectEq(expected, err, "onDruggedChanged called on subscriber");
@@ -229,7 +229,7 @@ void SoakedFiresOnSoakedChangedEventWhenValueChanges()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onSoakedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onSoakedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     ExpectEq(0, Character->Soaked());
 
@@ -273,7 +273,7 @@ void AddSoakedFiresOnIntoxicationChangedEvent()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onSoakedChanged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onSoakedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->addSoaked(10));
     ExpectEq(expected, err, "onSoakedChanged called on subscriber");
@@ -291,9 +291,9 @@ void DrinkAlcoholIncreasesIntoxication()
 /////////////////////////////////////////////////////////////////////////////
 void DrinkAlcoholAddsDrunkTrait()
 {
-    ExpectFalse(Character->isTraitOf("lib/instances/traits/biological/drunk.c"));
+    ExpectFalse(Character->isTraitOf("/lib/instances/traits/biological/drunk.c"));
     ExpectTrue(Character->drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
-    ExpectTrue(Character->isTraitOf("lib/instances/traits/biological/drunk.c"));
+    ExpectTrue(Character->isTraitOf("/lib/instances/traits/biological/drunk.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,7 +323,7 @@ void DrinkAlcoholFiresOnDrunkWhenInebriated()
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink->set("biological strength", 20);
 
-    string expected = "*event handler: onDrunk called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onDrunk called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->drinkAlcohol(drink));
     ExpectEq(expected, err, "onDrunk called on subscriber");
@@ -373,7 +373,7 @@ void DrinkAlcoholFiresOnSoberWhenNoLongerInebriated()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onSober called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onSober called, caller: /lib/tests/support/services/mockPlayer.c";
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink->set("biological strength", -5);
 
@@ -400,7 +400,7 @@ void DetoxFromAlcoholFiresOnBeginDetox()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onBeginDetox called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onBeginDetox called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onBeginDetox called on subscriber");
@@ -440,7 +440,7 @@ void OnDetoxifiedFiresAfterDetox()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onDetoxified called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onDetoxified called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onDetoxified called on subscriber");
@@ -485,14 +485,14 @@ void CanConsumeDrugToWasted()
 /////////////////////////////////////////////////////////////////////////////
 void ConsumeDrugAddsCorrectDruggedTrait()
 {
-    ExpectFalse(Character->isTraitOf("lib/instances/traits/biological/wasted-on-opiates.c"));
+    ExpectFalse(Character->isTraitOf("/lib/instances/traits/biological/wasted-on-opiates.c"));
 
     object drug = clone_object("/lib/items/food.c");
     drug->set("biological effect", "opiate");
     drug->set("biological strength", 5);
 
     ExpectTrue(Character->consumeDrug(drug));   
-    ExpectTrue(Character->isTraitOf("lib/instances/traits/biological/wasted-on-opiates.c"));
+    ExpectTrue(Character->isTraitOf("/lib/instances/traits/biological/wasted-on-opiates.c"));
 
     destruct(drug);
 }
@@ -503,7 +503,7 @@ void ConsumeDrugFiresOnWastedOnDrugsWhenWasted()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onWastedOnDrugs called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onWastedOnDrugs called, caller: /lib/tests/support/services/mockPlayer.c";
     object drug = clone_object("/lib/items/food.c");
     drug->set("biological effect", "opiate");
     drug->set("biological strength", 20);
@@ -556,7 +556,7 @@ void ConsumeDrugFiresOnNoLongerDruggedWhenNoLongerDrugged()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onNoLongerDrugged called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onNoLongerDrugged called, caller: /lib/tests/support/services/mockPlayer.c";
 
     object drug = clone_object("/lib/items/food.c");
     drug->set("biological effect", "opiate");
@@ -593,7 +593,7 @@ void DetoxFromDrugsFiresOnBeginDetox()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onBeginDetox called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onBeginDetox called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onBeginDetox called on subscriber");
@@ -632,7 +632,7 @@ void DrinkFiresOnSoakedWhenTooMuchHasBeenDrunk()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onSoaked called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink->set("biological strength", 17);
@@ -685,7 +685,7 @@ void DrinkFiresOnNoLongerSoakedWhenNoLongerSoaked()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onNoLongerSoaked called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onNoLongerSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink->set("biological strength", -10);
@@ -713,7 +713,7 @@ void NoLongerSoakedFiresOnNoLongerSoaked()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onNoLongerSoaked called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onNoLongerSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onNoLongerSoaked called on subscriber");
@@ -757,7 +757,7 @@ void EatFiresOnStuffedWhenTooMuchHasBeenEaten()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onCannotEatMore called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onCannotEatMore called, caller: /lib/tests/support/services/mockPlayer.c";
 
     object food = clone_object("/lib/items/food.c");
     food->set("biological strength", 20);
@@ -811,7 +811,7 @@ void EatFiresOnHungryWhenNoLongerStuffed()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onHungry called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onHungry called, caller: /lib/tests/support/services/mockPlayer.c";
 
     object food = clone_object("/lib/items/food.c");
     food->set("biological strength", -5);
@@ -843,7 +843,7 @@ void NoLongerStuffedFiresOnHungry()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character->registerEvent(subscriber);
 
-    string expected = "*event handler: onHungry called, caller: lib/tests/support/services/mockPlayer.c";
+    string expected = "*event handler: onHungry called, caller: /lib/tests/support/services/mockPlayer.c";
 
     string err = catch (Character->heart_beat());
     ExpectEq(expected, err, "onHungry called on subscriber");

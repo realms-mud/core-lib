@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 33
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/goeol-pilin.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/goeol-pilin.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

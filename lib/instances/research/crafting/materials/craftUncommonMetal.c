@@ -13,5 +13,5 @@ protected void Setup()
         "knowledge required to craft items using uncommon metals such as tin or zinc.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftCommonMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftCommonMetal.c", (["type":"research"]));
 }

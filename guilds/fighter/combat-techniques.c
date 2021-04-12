@@ -7,28 +7,28 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
-    addResearchElement("guilds/fighter/techniques/press-attack.c");
+    addResearchElement("/guilds/fighter/techniques/press-attack.c");
 
-    addChild("guilds/fighter/techniques/press-attack.c",
-        "guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/press-attack.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void SecondLevel()
 {
-    addResearchElement("guilds/fighter/techniques/evade.c");
+    addResearchElement("/guilds/fighter/techniques/evade.c");
 
-    addChild("guilds/fighter/techniques/evade.c",
-        "guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/evade.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
-    addResearchElement("guilds/fighter/techniques/precision-attack.c");
+    addResearchElement("/guilds/fighter/techniques/precision-attack.c");
 
-    addChild("guilds/fighter/techniques/precision-attack.c",
-        "guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/precision-attack.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,19 +40,19 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
-    addResearchElement("guilds/fighter/techniques/feint.c");
+    addResearchElement("/guilds/fighter/techniques/feint.c");
 
-    addChild("guilds/fighter/techniques/feint.c",
-        "guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/feint.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
-    addResearchElement("guilds/fighter/techniques/goad.c");
+    addResearchElement("/guilds/fighter/techniques/goad.c");
 
-    addChild("guilds/fighter/techniques/goad.c",
-        "guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/goad.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -145,8 +145,8 @@ protected void Setup()
     Name("Combat Techniques");
     Description("");
     Source("fighter");
-    addResearchElement("guilds/fighter/techniques/root.c");
-    TreeRoot("guilds/fighter/techniques/root.c");
+    addResearchElement("/guilds/fighter/techniques/root.c");
+    TreeRoot("/guilds/fighter/techniques/root.c");
 
     FirstLevel();
     SecondLevel();

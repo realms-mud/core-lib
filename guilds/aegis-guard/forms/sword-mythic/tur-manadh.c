@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 43
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/tur-edlothia.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

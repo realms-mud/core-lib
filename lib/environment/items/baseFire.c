@@ -69,7 +69,7 @@ protected int processLightSourceActivation(string state, object environment)
 protected string getDescriptionFromSet()
 {
     object environment = ((member(inherit_list(previous_object()), 
-        "lib/environments/environment.c") > -1) || !this_player()) ? 
+        "/lib/environments/environment.c") > -1) || !this_player()) ? 
         previous_object() :
         environment(this_player());
 

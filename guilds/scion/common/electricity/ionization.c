@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 19 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

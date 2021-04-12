@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 11
         ]));
-    addPrerequisite("guilds/bard/melee/footmans-tune.c",
+    addPrerequisite("/guilds/bard/melee/footmans-tune.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

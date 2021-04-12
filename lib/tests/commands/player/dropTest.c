@@ -159,7 +159,7 @@ void DropWithAAndFFlagsReversedForcesDropOfEquippedItemsOfProperType()
 void CannotDropZeroCoins()
 {
     ExpectFalse(Player->executeCommand("drop 0 coins"));
-    ExpectFalse(present_clone("lib/items/money.c", Room));
+    ExpectFalse(present_clone("/lib/items/money.c", Room));
     ExpectEq("You cannot drop 0 coins.\n", Player->caughtMessage());
 }
 
@@ -168,7 +168,7 @@ void CannotDropMoreCoinsThanUserHas()
 {
     Player->addMoney(100);
     ExpectFalse(Player->executeCommand("drop 110 coins"));
-    ExpectFalse(present_clone("lib/items/money.c", Room));
+    ExpectFalse(present_clone("/lib/items/money.c", Room));
     ExpectEq("You cannot drop 110 coins.\n", Player->caughtMessage());
 }
 
@@ -177,8 +177,8 @@ void CanDropAllCoins()
 {
     Player->addMoney(100);
     ExpectTrue(Player->executeCommand("drop all money"));
-    ExpectTrue(present_clone("lib/items/money.c", Room));
-    ExpectEq(100, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectTrue(present_clone("/lib/items/money.c", Room));
+    ExpectEq(100, present_clone("/lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
 
@@ -187,8 +187,8 @@ void CanDropOneCoin()
 {
     Player->addMoney(100);
     ExpectTrue(Player->executeCommand("drop 1 coin"));
-    ExpectTrue(present_clone("lib/items/money.c", Room));
-    ExpectEq(1, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectTrue(present_clone("/lib/items/money.c", Room));
+    ExpectEq(1, present_clone("/lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
 
@@ -197,8 +197,8 @@ void CanDropCoin()
 {
     Player->addMoney(100);
     ExpectTrue(Player->executeCommand("drop coin"));
-    ExpectTrue(present_clone("lib/items/money.c", Room));
-    ExpectEq(1, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectTrue(present_clone("/lib/items/money.c", Room));
+    ExpectEq(1, present_clone("/lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
 
@@ -207,8 +207,8 @@ void CanDropSomeCoins()
 {
     Player->addMoney(100);
     ExpectTrue(Player->executeCommand("drop 25 coins"), "a");
-    ExpectTrue(present_clone("lib/items/money.c", Room), "b");
-    ExpectEq(25, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectTrue(present_clone("/lib/items/money.c", Room), "b");
+    ExpectEq(25, present_clone("/lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
 
@@ -217,8 +217,8 @@ void CanDropSomeMoney()
 {
     Player->addMoney(100);
     ExpectTrue(Player->executeCommand("drop 100 money"));
-    ExpectTrue(present_clone("lib/items/money.c", Room));
-    ExpectEq(100, present_clone("lib/items/money.c", Room)->query("value"));
+    ExpectTrue(present_clone("/lib/items/money.c", Room));
+    ExpectEq(100, present_clone("/lib/items/money.c", Room)->query("value"));
     ExpectEq("You drop money.\n", Player->caughtMessage());
 }
 

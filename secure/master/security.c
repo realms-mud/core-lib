@@ -71,7 +71,7 @@ public nomask int valid_trace(string name)
 {
     return this_player() && interactive(this_player()) &&
         interactive_info(this_player(), II_IP_NUMBER) &&
-        (member(inherit_list(this_player()), "lib/realizations/wizard.c") > -1) &&
+        (member(inherit_list(this_player()), "/lib/realizations/wizard.c") > -1) &&
         (member(this_player()->groups(), "archwizard") > -1);
 }
 
@@ -228,12 +228,12 @@ public nomask int privilege_violation(string what, mixed who, mixed where,
         }
         case "nomask simul_efun":
         {
-            ret = (who == "secure/simul_efun.c");
+            ret = (who == "/secure/simul_efun.c");
             break;
         }
         case "input_to":
         {
-            ret = (strstr(object_name(who), "secure/login#") == 0) ? 1 : -1;
+            ret = (strstr(object_name(who), "/secure/login#") == 0) ? 1 : -1;
             break;
         }
     }

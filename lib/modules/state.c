@@ -23,7 +23,7 @@ public nomask void onStateChanged(object caller, string newState)
 {
     if (objectp(caller))
     {
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (objectp(persistence))
         {
             persistence->characterState(caller, newState);
@@ -47,7 +47,7 @@ public nomask string stateFor(object caller)
 {
     string ret = 0;
 
-    object persistence = getService("secure/persistence");
+    object persistence = getService("/secure/persistence");
     if (objectp(persistence))
     {
         ret = persistence->characterState(caller);

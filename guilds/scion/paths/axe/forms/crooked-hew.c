@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
 
-    addPrerequisite("guilds/scion/paths/axe/forms/middle-hew.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/middle-hew.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

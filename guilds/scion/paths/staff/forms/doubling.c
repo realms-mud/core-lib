@@ -18,7 +18,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 10 ]));
 
-    addPrerequisite("guilds/scion/paths/staff/forms/smite.c",
+    addPrerequisite("/guilds/scion/paths/staff/forms/smite.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

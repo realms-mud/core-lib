@@ -167,7 +167,7 @@ public nomask varargs void setCoordinate(int x, int y, string path,
     object environment;
     string loadFailed = catch (environment = load_object(path));
     if(loadFailed || (member(inherit_list(environment), 
-        "lib/environment/environment.c") < 0))
+        "/lib/environment/environment.c") < 0))
     {
         raise_error(sprintf("Error in region.c: The provided path "
             "(%O) is not a valid environment.\n", path));

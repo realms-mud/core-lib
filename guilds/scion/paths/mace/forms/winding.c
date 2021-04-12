@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 25 ]));
 
-    addPrerequisite("guilds/scion/paths/mace/forms/off-setting.c",
+    addPrerequisite("/guilds/scion/paths/mace/forms/off-setting.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

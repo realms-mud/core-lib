@@ -91,7 +91,7 @@ public nomask int execute(string command, object initiator)
             // exec them into a new object.
             target = findPlayer(targetName);
             string* groups = (target && (member(inherit_list(target),
-                "lib/realizations/wizard.c") > -1)) ? target->groups() : ({});
+                "/lib/realizations/wizard.c") > -1)) ? target->groups() : ({});
 
             if(!ret && ((!isDemotion && (member(groups, level) < 0)) || 
                 (isDemotion && (member(groups, level) > -1))))

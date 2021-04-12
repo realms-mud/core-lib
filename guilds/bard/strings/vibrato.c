@@ -21,9 +21,9 @@ protected void Setup()
         "value": 11
     ]));
 
-    addPrerequisite("guilds/bard/strings/elegy-of-energy.c",
+    addPrerequisite("/guilds/bard/strings/elegy-of-energy.c",
         (["type":"research"]));
-    addPrerequisite("guilds/bard/strings/enchanting-ostinato.c",
+    addPrerequisite("/guilds/bard/strings/enchanting-ostinato.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

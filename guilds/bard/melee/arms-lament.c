@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 25
         ]));
-    addPrerequisite("guilds/bard/melee/serenade-of-the-soldier.c",
+    addPrerequisite("/guilds/bard/melee/serenade-of-the-soldier.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

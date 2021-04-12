@@ -85,7 +85,7 @@ void StoreItemPlacesItemInShopInventory()
 
     // Verify that the sword data is correct.
     sword = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    sword->set("all", Shop->storeInventory()["lib/instances/items/weapons/swords/long-sword"]["data"]);
+    sword->set("all", Shop->storeInventory()["/lib/instances/items/weapons/swords/long-sword"]["data"]);
     ExpectEq("Long sword", sword->query("name"));
     ExpectEq("galvorn", sword->query("material"));
     ExpectEq(80, sword->query("craftsmanship"));
@@ -102,7 +102,7 @@ void BuyItemRemovesItemFromInventory()
 
     ExpectTrue(Shop->storeItem(sword));
     ExpectEq(1, sizeof(Shop->storeInventory()));
-    ExpectTrue(Shop->buyItem("lib/instances/items/weapons/swords/long-sword"));
+    ExpectTrue(Shop->buyItem("/lib/instances/items/weapons/swords/long-sword"));
     ExpectEq(0, sizeof(Shop->storeInventory()));
     destruct(sword);
 }
@@ -118,10 +118,10 @@ void BuyItemWithQuantityRemovesItemWhenQuantityBecomesZero()
     ExpectTrue(Shop->storeItem(potion));
     ExpectEq(1, sizeof(Shop->storeInventory()));
 
-    ExpectTrue(Shop->buyItem("lib/instances/items/potions/healing.c"));
+    ExpectTrue(Shop->buyItem("/lib/instances/items/potions/healing.c"));
     ExpectEq(1, sizeof(Shop->storeInventory()));
 
-    ExpectTrue(Shop->buyItem("lib/instances/items/potions/healing.c"));
+    ExpectTrue(Shop->buyItem("/lib/instances/items/potions/healing.c"));
     ExpectEq(0, sizeof(Shop->storeInventory()));
 
     destruct(potion);
@@ -137,7 +137,7 @@ void BuyItemDoesNotRemovePermanentItemsFromInventory()
 
     ExpectTrue(Shop->storeItem(sword,1));
     ExpectEq(1, sizeof(Shop->storeInventory()));
-    ExpectTrue(Shop->buyItem("lib/instances/items/weapons/swords/long-sword"));
+    ExpectTrue(Shop->buyItem("/lib/instances/items/weapons/swords/long-sword"));
     ExpectEq(1, sizeof(Shop->storeInventory()));
     destruct(sword);
 }
@@ -152,7 +152,7 @@ void BuyNonExistantItemReturnsFalseAndDoesNotRemoveItemsFromInventory()
 
     ExpectTrue(Shop->storeItem(sword));
     ExpectEq(1, sizeof(Shop->storeInventory()));
-    ExpectFalse(Shop->buyItem("lib/instances/items/weapons/swords/weasel"));
+    ExpectFalse(Shop->buyItem("/lib/instances/items/weapons/swords/weasel"));
     ExpectEq(1, sizeof(Shop->storeInventory()));
     destruct(sword);
 }
@@ -277,7 +277,7 @@ void CustomItemsUpdateCorrectly()
 {
     Shop->shopType("unknown");
     Shop->shopSubType("all");
-    Shop->addItem("lib/tests/support/items/testSword.c");
+    Shop->addItem("/lib/tests/support/items/testSword.c");
 
     ExpectEq(0, sizeof(Shop->storeInventory()));
 

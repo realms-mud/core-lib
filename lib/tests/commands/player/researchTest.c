@@ -16,7 +16,7 @@ void Setup()
     Player->addSkillPoints(100);
     Player->advanceSkill("long sword", 10);
     Player->addCommands();
-    Player->addResearchTree("lib/tests/support/research/testDeepResearchTree.c");
+    Player->addResearchTree("/lib/tests/support/research/testDeepResearchTree.c");
 
     Selector = clone_object("/lib/modules/research/researchSelector.c");
     move_object(Selector, Player);
@@ -32,10 +32,10 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelResearchMenuDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
     Selector->initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research\x1b[0m:\n"
@@ -51,10 +51,10 @@ void TopLevelResearchMenuDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void ResearchSubmenuDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -203,7 +203,7 @@ void DescribeShowsResearchDetails()
 /////////////////////////////////////////////////////////////////////////////
 void ResearchInProcessOfBeingResearchedShowsTimeLeft()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -217,8 +217,8 @@ void ResearchInProcessOfBeingResearchedShowsTimeLeft()
 void ResearchTreesAreProperlyDisplayed()
 {
     Player->addResearchPoints(1);
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/itemWithModifier.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/itemWithModifier.c"), "d");
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -270,10 +270,10 @@ void SelectingToLearnResearchWhenPointsAvailableResearchesItem()
     command("1", Player);
     command("1", Player);
     command("11", Player);
-    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
     ExpectEq(1, Player->researchPoints());
     command("1", Player);
-    ExpectTrue(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectTrue(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
     ExpectEq(0, Player->researchPoints());
 }
 
@@ -284,10 +284,10 @@ void SelectingToReturnDoesNotInitiateResearch()
     Selector->initiateSelector(Player);
     command("1", Player);
     command("12", Player);
-    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
     ExpectEq(1, Player->researchPoints());
     command("2", Player);
-    ExpectFalse(Player->isResearched("lib/tests/support/research/itemWithModifier.c"));
+    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
     ExpectEq(1, Player->researchPoints());
 }
 
@@ -299,20 +299,20 @@ void SelectingToLearnTimedResearchDoesNotUsePointsAndInitiatesResearching()
     command("1", Player);
     command("1", Player);
     command("8", Player);
-    ExpectFalse(Player->isResearched("lib/tests/support/research/testResearchB.c"));
-    ExpectFalse(Player->isResearching("lib/tests/support/research/testResearchB.c"));
+    ExpectFalse(Player->isResearched("/lib/tests/support/research/testResearchB.c"));
+    ExpectFalse(Player->isResearching("/lib/tests/support/research/testResearchB.c"));
     ExpectEq(1, Player->researchPoints());
     command("1", Player);
-    ExpectFalse(Player->isResearched("lib/tests/support/research/testResearchB.c"));
-    ExpectTrue(Player->isResearching("lib/tests/support/research/testResearchB.c"));
+    ExpectFalse(Player->isResearched("/lib/tests/support/research/testResearchB.c"));
+    ExpectTrue(Player->isResearching("/lib/tests/support/research/testResearchB.c"));
     ExpectEq(1, Player->researchPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InvalidResearchDoesNotInterfereWithCommand()
 {
-    Player->initiateResearch("lib/tests/support/research/doesNotExist.c");
-    Player->initiateResearch("lib/tests/support/research/mockResearch.c");
+    Player->initiateResearch("/lib/tests/support/research/doesNotExist.c");
+    Player->initiateResearch("/lib/tests/support/research/mockResearch.c");
     Selector->initiateSelector(Player);
 
     command("1", Player);
@@ -325,14 +325,14 @@ void InvalidResearchDoesNotInterfereWithCommand()
 void ResearchDisplaysNoColorCorrectly()
 {
     Player->colorConfiguration("none");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player->addResearchPoints(1);
-    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
+    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -368,14 +368,14 @@ void ResearchDisplaysNoColorCorrectly()
 void ResearchDisplaysThreeBitColorCorrectly()
 {
     Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player->addResearchPoints(1);
-    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
+    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -412,14 +412,14 @@ void ResearchDisplaysThreeBitColorCorrectly()
 void ResearchDisplaysEightBitColorCorrectly()
 {
     Player->colorConfiguration("8-bit");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player->addResearchPoints(1);
-    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
+    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 
@@ -458,14 +458,14 @@ void ResearchDisplaysEightBitColorCorrectly()
 void ResearchDisplaysTwentyFourBitColorCorrectly()
 {
     Player->colorConfiguration("24-bit");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player->addResearchPoints(1);
-    Player->initiateResearch("lib/tests/support/research/equivalenceItem.c");
+    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector->showTreeElements();
     Selector->initiateSelector(Player);
 

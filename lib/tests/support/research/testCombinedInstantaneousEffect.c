@@ -26,13 +26,13 @@ public int customFormula(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyBeneficialEffect(object initiator, string *combo)
+public int applyBeneficialEffect(object initiator, object *combo)
 {
     return useBeneficialEffect;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyEffect(object initiator, object target, string *combo)
+public int applyEffect(object initiator, object target, object *combo)
 {
     return useApplyEffect;
 }

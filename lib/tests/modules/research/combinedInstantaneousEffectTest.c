@@ -134,17 +134,17 @@ void CanAddCombinationRulesSpecification()
 {
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemC.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemC.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     ExpectTrue(Effect->testAddInstantaneousSpecification("combination rules", rules));
@@ -155,17 +155,17 @@ void CannotAddSameCombinationItemsToMultipleScopesSpecification()
 {
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     string err = catch (Effect->testAddInstantaneousSpecification("combination rules", rules));
@@ -180,8 +180,8 @@ void CannotAddInvalidCombinationItemsSpecification()
 {
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "breaking junk": "stuff"
     ]);
 
@@ -222,11 +222,11 @@ void CanAddCommandTemplate()
 {
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("combination rules", rules);
@@ -243,37 +243,37 @@ void CanAddCommandTemplate()
 void GetCombinationListReturnsValidList()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemC.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemC.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
     Effect->testAddInstantaneousSpecification("combination rules", rules);
     Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
 
-    ExpectEq(({"lib/tests/support/research/comboPartResearchItemA.c",
-        "lib/tests/support/research/comboPartResearchItemD.c",
-        "lib/tests/support/research/comboPartResearchItemF.c" }), 
+    ExpectEq(({"/lib/tests/support/research/comboPartResearchItemA.c",
+        "/lib/tests/support/research/comboPartResearchItemD.c",
+        "/lib/tests/support/research/comboPartResearchItemF.c" }), 
         Effect->testGetCombinationList("combination blarg frumbus clerb at frank",
         User));
 }
@@ -282,21 +282,21 @@ void GetCombinationListReturnsValidList()
 void GetCombinationListCanGetMultipleOfTheSameItem()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
     Effect->testAddInstantaneousSpecification("combination rules", rules);
     Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
 
-    ExpectEq(({ "lib/tests/support/research/comboPartResearchItemA.c",
-        "lib/tests/support/research/comboPartResearchItemA.c" }),
+    ExpectEq(({ "/lib/tests/support/research/comboPartResearchItemA.c",
+        "/lib/tests/support/research/comboPartResearchItemA.c" }),
         Effect->testGetCombinationList("combination blarg blarg",
         User));
 }
@@ -306,17 +306,17 @@ void GetCombinationListReturnsFailureWhenItemsNotResearched()
 {
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemC.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemC.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
@@ -330,7 +330,7 @@ void GetCombinationListReturnsFailureWhenItemsNotResearched()
         "researched:\nblarg, clerb, and frumbus.\n", User->caughtMessage());
 
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
 
     ExpectEq(0, 
         Effect->testGetCombinationList("combination blarg frumbus clerb",
@@ -343,16 +343,16 @@ void GetCombinationListReturnsFailureWhenItemsNotResearched()
 void GetCombinationListFailsWhenMustIncludeOnlyOneOfRuleIsViolated()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
@@ -376,26 +376,26 @@ void GetCombinationListFailsWhenMustIncludeOnlyOneOfRuleIsViolated()
 void GetCombinationListFailsWhenCanIncludeOnlyOneOfRuleIsViolated()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
     Effect->testAddInstantaneousSpecification("combination rules", rules);
     Effect->testAddInstantaneousSpecification("command template", "combination ##Combinations## [at ##Target##]");
 
-    ExpectEq(({ "lib/tests/support/research/comboPartResearchItemA.c",
-        "lib/tests/support/research/comboPartResearchItemE.c" }),
+    ExpectEq(({ "/lib/tests/support/research/comboPartResearchItemA.c",
+        "/lib/tests/support/research/comboPartResearchItemE.c" }),
         Effect->testGetCombinationList("combination blarg surlac",
         User));
 
@@ -410,13 +410,13 @@ void GetCombinationListFailsWhenCanIncludeOnlyOneOfRuleIsViolated()
 void GetCombinationListFailsWhenMustIncludeAnyOfRuleIsViolated()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
 
     mapping rules = ([
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
@@ -434,28 +434,28 @@ void GetCombinationListFailsWhenMustIncludeAnyOfRuleIsViolated()
 void CanOnlyExecuteCombinationsOfValidSizes()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemC.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemC.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c",
-            "lib/tests/support/research/comboPartResearchItemH.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c",
+            "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
@@ -478,27 +478,27 @@ void CanOnlyExecuteCombinationsOfValidSizes()
 void ApplyAllFormulasAppliesAllResearchFormulasAndCombinationModifiers()
 {
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemD.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemE.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemF.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemG.c");
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemD.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemE.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemF.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemG.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     mapping rules = ([
         "must include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemA.c",
-            "lib/tests/support/research/comboPartResearchItemB.c", }),
+            "/lib/tests/support/research/comboPartResearchItemA.c",
+            "/lib/tests/support/research/comboPartResearchItemB.c", }),
         "must include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemC.c",
-            "lib/tests/support/research/comboPartResearchItemD.c", }),
+            "/lib/tests/support/research/comboPartResearchItemC.c",
+            "/lib/tests/support/research/comboPartResearchItemD.c", }),
         "can include only one of": ({ 
-            "lib/tests/support/research/comboPartResearchItemE.c",
-            "lib/tests/support/research/comboPartResearchItemF.c", }),
+            "/lib/tests/support/research/comboPartResearchItemE.c",
+            "/lib/tests/support/research/comboPartResearchItemF.c", }),
         "can include any of": ({ 
-            "lib/tests/support/research/comboPartResearchItemG.c", }),
+            "/lib/tests/support/research/comboPartResearchItemG.c", }),
     ]);
 
     Effect->testAddInstantaneousSpecification("maximum combination chain", 3);
@@ -507,17 +507,17 @@ void ApplyAllFormulasAppliesAllResearchFormulasAndCombinationModifiers()
 
     Effect->testAddInstantaneousSpecification("modifiers", ({ ([
         "type": "research",
-        "research item": "lib/tests/support/research/comboPartResearchItemH.c",
+        "research item": "/lib/tests/support/research/comboPartResearchItemH.c",
         "name": "Combo stuff",
         "formula": "multiplicative",
         "base value": 1,
         "rate": 1.5
      ]) }));
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemH.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemH.c");
 
     ExpectEq(93, Effect->testApplyAllFormulas(({
-        load_object("lib/tests/support/research/comboPartResearchItemA.c"),
-        load_object("lib/tests/support/research/comboPartResearchItemD.c"),
-        load_object("lib/tests/support/research/comboPartResearchItemE.c") }),
+        load_object("/lib/tests/support/research/comboPartResearchItemA.c"),
+        load_object("/lib/tests/support/research/comboPartResearchItemD.c"),
+        load_object("/lib/tests/support/research/comboPartResearchItemE.c") }),
         User, "damage hit points"));
 }

@@ -19,7 +19,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/common/mystic-folding.c",
+    addPrerequisite("/lib/instances/research/crafting/armor/common/mystic-folding.c",
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 10]));
     addPrerequisite("blacksmithing", (["type":"skill", "value" : 10]));

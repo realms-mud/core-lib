@@ -23,7 +23,7 @@ protected void Setup()
           "guild": "bard",
           "value": 23 ]));
 
-    addPrerequisite("guilds/bard/compositions/advanced-performances.c",
+    addPrerequisite("/guilds/bard/compositions/advanced-performances.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

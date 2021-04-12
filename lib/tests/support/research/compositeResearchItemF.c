@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "granted");
     addSpecification("composite research",
-        "lib/tests/support/research/compositeRoot.c");
+        "/lib/tests/support/research/compositeRoot.c");
     addSpecification("composite type", "instrumental solo");
     addSpecification("composite class", "strings");
     addSpecification("default composite description",

@@ -49,7 +49,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingClothingDisplaysClothingMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
     Selector->initiateSelector(Player);
     command("2", Player);
 
@@ -76,7 +76,7 @@ void ChoosingClothingDisplaysClothingMenu()
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingRobesDisplaysRobesMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
     Selector->initiateSelector(Player);
     command("2", Player);
     command("7", Player);
@@ -104,8 +104,8 @@ void ChoosingRobesDisplaysRobesMenu()
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingSelectMaterialDisplaysMaterialMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
     Player->advanceSkill("weaving and beadwork", 10);
     Selector->initiateSelector(Player);
     command("2", Player);
@@ -119,8 +119,8 @@ void ChoosingSelectMaterialDisplaysMaterialMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingMaterialUpdatesRobesMenu()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
     Player->advanceSkill("weaving and beadwork", 10);
     Selector->initiateSelector(Player);
     command("2", Player);
@@ -153,17 +153,17 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
 {
     Player->advanceSkill("spellcraft", 20);
     Player->advanceSkill("elemental fire", 20);
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
 
     ExpectFalse(present("robes", Player));
 
     object silk = present("silk", Player);
     ExpectEq(15, silk->query("quantity"));
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
     Player->advanceSkill("weaving and beadwork", 10);
     Selector->initiateSelector(Player);
     command("2", Player);
@@ -192,17 +192,17 @@ void CanSetNameAndDescription()
 {
     Player->advanceSkill("spellcraft", 20);
     Player->advanceSkill("elemental fire", 20);
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
 
     ExpectFalse(present("robes", Player));
 
     object silk = present("silk", Player);
     ExpectEq(15, silk->query("quantity"));
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftClothing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
     Player->advanceSkill("weaving and beadwork", 10);
     Selector->initiateSelector(Player);
     command("2", Player);
@@ -246,16 +246,16 @@ void CanCraftHeavyArmor()
     object silk = present("silk", Player);
     ExpectEq(15, silk->query("quantity"));
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/craftArmor.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/heavy-armor/craftHeavyArmor.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/armor/heavy-armor/craftPlateArmor.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftTextiles.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftArmor.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/heavy-armor/craftHeavyArmor.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/heavy-armor/craftPlateArmor.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
     Player->advanceSkill("weaving and beadwork", 10);
 
     Selector->initiateSelector(Player);

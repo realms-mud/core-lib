@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 57
         ]));
-    addPrerequisite("guilds/fighter/blades/dancing-blade.c",
+    addPrerequisite("/guilds/fighter/blades/dancing-blade.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -16,5 +16,5 @@ protected void Setup()
         "taken to attack.");
         
     addSpecification("triggering research", 
-        "guilds/fighter/blades/calculated-attack.c");
+        "/guilds/fighter/blades/calculated-attack.c");
 }

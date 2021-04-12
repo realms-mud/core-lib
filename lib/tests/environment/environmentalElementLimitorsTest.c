@@ -131,22 +131,22 @@ void CanLimitDisplayByAttribute()
 void CanLimitDisplayByQuest()
 {
     Element->testLimitDisplayByQuest(
-        "lib/tests/support/quests/fakeQuestItem.c");
+        "/lib/tests/support/quests/fakeQuestItem.c");
 
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
 
-    Player->beginQuest("lib/tests/support/quests/fakeQuestItem.c");
+    Player->beginQuest("/lib/tests/support/quests/fakeQuestItem.c");
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
 
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c",
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c",
         "met the king");
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
 
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c",
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c",
         "serve the king");
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
 
-    Player->advanceQuestState("lib/tests/support/quests/fakeQuestItem.c",
+    Player->advanceQuestState("/lib/tests/support/quests/fakeQuestItem.c",
         "save the king");
     ExpectTrue(Element->elementIsAvailable(Player), "value is set");
 }
@@ -155,11 +155,11 @@ void CanLimitDisplayByQuest()
 void CanLimitDisplayByResearch()
 {
     Element->testLimitDisplayByResearch(
-        "lib/tests/support/research/testResearchA.c");
+        "/lib/tests/support/research/testResearchA.c");
 
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
     Player->addResearchPoints(1);
-    Player->initiateResearch("lib/tests/support/research/testResearchA.c");
+    Player->initiateResearch("/lib/tests/support/research/testResearchA.c");
     ExpectTrue(Element->elementIsAvailable(Player), "value is set");
 }
 
@@ -167,10 +167,10 @@ void CanLimitDisplayByResearch()
 void CanLimitDisplayByTrait()
 {
     Element->testLimitDisplayByTrait(
-        "lib/tests/support/traits/testGeneticTrait.c");
+        "/lib/tests/support/traits/testGeneticTrait.c");
 
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
-    Player->addTrait("lib/tests/support/traits/testGeneticTrait.c");
+    Player->addTrait("/lib/tests/support/traits/testGeneticTrait.c");
     ExpectTrue(Element->elementIsAvailable(Player), "value is set");
 }
 
@@ -179,10 +179,10 @@ void CanLimitDisplayByResearchThatIsActive()
 {
     move_object(Player, "/lib/tests/support/environment/bonusRoom.c");
     Element->testLimitDisplayByResearchThatIsActive(
-        "lib/tests/support/research/testSustainedTraitResearch.c");
+        "/lib/tests/support/research/testSustainedTraitResearch.c");
     Player->spellPoints(Player->maxSpellPoints());
 
-    Player->initiateResearch("lib/tests/support/research/testSustainedTraitResearch.c");
+    Player->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
 
     ExpectFalse(Element->elementIsAvailable(Player), "value is not set");
     ExpectTrue(Player->researchCommand("throw turnip"));

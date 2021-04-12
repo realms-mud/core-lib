@@ -21,7 +21,7 @@ protected void Setup()
         "value": 53
     ]));
 
-    addPrerequisite("guilds/bard/strings/two-handed-tapping.c",
+    addPrerequisite("/guilds/bard/strings/two-handed-tapping.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 9
         ]));
-    addPrerequisite("guilds/bard/lyrics/root.c",
+    addPrerequisite("/guilds/bard/lyrics/root.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

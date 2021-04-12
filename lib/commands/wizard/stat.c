@@ -330,7 +330,7 @@ public nomask int execute(string command, object initiator)
             {
                 score = getLivingDetails(target, colorConfiguration, charset);
             }
-            else if (member(inherit_list(target), "lib/items/item.c") > -1)
+            else if (member(inherit_list(target), "/lib/items/item.c") > -1)
             {
                 score = Dictionary->buildBanner(colorConfiguration, charset,
                         "center", "File Information") +

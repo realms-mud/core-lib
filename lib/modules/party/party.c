@@ -72,7 +72,7 @@ private nomask void addMember(object newMember)
 public nomask void createParty(string name, object creator)
 {
     if (stringp(name) && objectp(creator) &&
-        (member(inherit_list(creator), "lib/realizations/player.c") > -1))
+        (member(inherit_list(creator), "/lib/realizations/player.c") > -1))
     {
         if (sizeof(name) < 40)
         {
@@ -287,9 +287,9 @@ private nomask string getMemberInformation(string colorConfiguration,
                 "active member";
 
             if ((member(inherit_list(memberObj[0]), 
-                    "lib/realizations/henchman.c") > -1) ||
+                    "/lib/realizations/henchman.c") > -1) ||
                 (member(inherit_list(memberObj[0]), 
-                    "lib/realizations/npc.c") > -1))
+                    "/lib/realizations/npc.c") > -1))
             {
                 displayColor = "npc";
             }
@@ -412,13 +412,13 @@ public nomask void removeNPC(object npc)
 public nomask void addNPC(object npc)
 {
     if (npc &&
-        ((member(inherit_list(npc), "lib/realizations/henchman.c") > -1) ||
-        (member(inherit_list(npc), "lib/realizations/npc.c") > -1)))
+        ((member(inherit_list(npc), "/lib/realizations/henchman.c") > -1) ||
+        (member(inherit_list(npc), "/lib/realizations/npc.c") > -1)))
     {
         information["npcs"] -= ({ 0 });
         object *npcsWithSameName = filter(information["npcs"],
             (: ($1->RealName() == $2) && (member(inherit_list($1), 
-                "lib/realizations/summoning.c") < 0) :), npc->RealName());
+                "/lib/realizations/summoning.c") < 0) :), npc->RealName());
 
         if (sizeof(npcsWithSameName))
         {

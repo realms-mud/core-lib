@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 63
         ]));
-    addPrerequisite("guilds/fighter/blades/hanging-cut.c",
+    addPrerequisite("/guilds/fighter/blades/hanging-cut.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

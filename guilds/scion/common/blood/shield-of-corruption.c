@@ -27,7 +27,7 @@ protected void Setup()
         "guild": "Scion of Dhuras",
         "value": 35 
     ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/blood/soul-shield.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/soul-shield.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

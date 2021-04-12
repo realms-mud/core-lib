@@ -22,14 +22,14 @@ protected void Setup()
         "value": 21
     ]));
 
-    addPrerequisite("guilds/bard/woodwind-brass/menace-of-a-mephit.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/menace-of-a-mephit.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/bard/woodwind-brass/pans-mephit.c",
-        "guilds/bard/woodwind-brass/majestys-mephit.c",
-        "guilds/bard/woodwind-brass/minstrels-muse.c",
+        "/guilds/bard/woodwind-brass/pans-mephit.c",
+        "/guilds/bard/woodwind-brass/majestys-mephit.c",
+        "/guilds/bard/woodwind-brass/minstrels-muse.c",
     }));
 }

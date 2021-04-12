@@ -14,6 +14,6 @@ protected void Setup()
         "metals when crafting.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/materials/craftReconditeMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftReconditeMetal.c", (["type":"research"]));
 }

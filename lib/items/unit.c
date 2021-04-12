@@ -117,7 +117,7 @@ public nomask int getAttack(object attacker)
 {
     int ret = 0;
     if (objectp(attacker) &&
-        (member(inherit_list(attacker), "lib/items/unit.c") > -1))
+        (member(inherit_list(attacker), "/lib/items/unit.c") > -1))
     {
         switch (attacker->query("unit type"))
         {

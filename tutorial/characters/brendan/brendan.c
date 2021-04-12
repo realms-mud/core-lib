@@ -19,7 +19,7 @@ protected void Setup()
     Gender("male");
     Race("maegenstryd");
     SetUpPersonaOfLevel("keeper of the night", 5);
-    addTrait("lib/instances/traits/educational/educated.c");
+    addTrait("/lib/instances/traits/educational/educated.c");
 
     addConversation("/tutorial/characters/brendan/startingConversation.c");
 }
@@ -61,7 +61,7 @@ public int secondLife()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "tutorial/characters/keeper-of-the-night.c"))
+    if (caller && (program_name(caller) == "/tutorial/characters/keeper-of-the-night.c"))
     {
         object *npcs = filter(all_inventory(environment(this_object())),
             (: $1->isRealizationOfNpc() :));

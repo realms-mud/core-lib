@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of a thrusting blade technique that causes massive damage to "
         "an enemy.");
 
-    addPrerequisite("guilds/fighter/blades/thrust.c",
+    addPrerequisite("/guilds/fighter/blades/thrust.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "long sword",
@@ -58,7 +58,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/under-cutting.c",
+            "research item": "/guilds/fighter/blades/under-cutting.c",
             "name": "under-cutting",
             "formula": "multiplicative",
             "base value": 1,
@@ -66,7 +66,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/reverse-cut.c",
+            "research item": "/guilds/fighter/blades/reverse-cut.c",
             "name": "reverse-cut",
             "formula": "multiplicative",
             "base value": 1,
@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/double-back.c",
+            "research item": "/guilds/fighter/blades/double-back.c",
             "name": "double-back",
             "formula": "multiplicative",
             "base value": 1,
@@ -82,7 +82,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/riposte.c",
+            "research item": "/guilds/fighter/blades/riposte.c",
             "name": "riposte",
             "formula": "multiplicative",
             "base value": 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/reversing-the-blade.c",
+            "research item": "/guilds/fighter/blades/reversing-the-blade.c",
             "name": "reversing-the-blade",
             "formula": "multiplicative",
             "base value": 1,
@@ -98,7 +98,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/over-cutting.c",
+            "research item": "/guilds/fighter/blades/over-cutting.c",
             "name": "over-cutting",
             "formula": "multiplicative",
             "base value": 1,
@@ -106,7 +106,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/cross-cutting.c",
+            "research item": "/guilds/fighter/blades/cross-cutting.c",
             "name": "cross-slashing",
             "formula": "multiplicative",
             "base value": 1,
@@ -114,7 +114,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/dancing-blade.c",
+            "research item": "/guilds/fighter/blades/dancing-blade.c",
             "name": "dancing-blade",
             "formula": "multiplicative",
             "base value": 1,
@@ -122,7 +122,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/hanging-cut.c",
+            "research item": "/guilds/fighter/blades/hanging-cut.c",
             "name": "hanging-cut",
             "formula": "multiplicative",
             "base value": 1,
@@ -130,7 +130,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/fighter/blades/master-stroke.c",
+            "research item": "/guilds/fighter/blades/master-stroke.c",
             "name": "master-stroke",
             "formula": "multiplicative",
             "base value": 1,
@@ -139,7 +139,7 @@ protected void Setup()
         ([
             "type": "deferred attack",
             "name": "deferred attack",
-            "trait": "guilds/fighter/blades/calculated-attack.c",
+            "trait": "/guilds/fighter/blades/calculated-attack.c",
             "formula": "multiplicative",
             "rate": 0.01
         ]),
@@ -211,18 +211,18 @@ protected void Setup()
 
     addSpecification("stamina point cost", 200);
     addSpecification("stamina point cost modifiers", ([
-        "guilds/fighter/blades/blademasters-reserve.c": 10,
-        "guilds/fighter/blades/blademasters-call.c": 10,
-        "guilds/fighter/blades/blademasters-might.c": 10,
-        "guilds/fighter/blades/blademasters-fury.c": 10
+        "/guilds/fighter/blades/blademasters-reserve.c": 10,
+        "/guilds/fighter/blades/blademasters-call.c": 10,
+        "/guilds/fighter/blades/blademasters-might.c": 10,
+        "/guilds/fighter/blades/blademasters-fury.c": 10
     ]));
 
     addSpecification("cooldown", 100);
     addSpecification("cooldown modifiers", ([
-        "guilds/fighter/blades/blademasters-boon.c": 10,
-        "guilds/fighter/blades/blademasters-speed.c": 10,
-        "guilds/fighter/blades/blademasters-endurance.c": 10,
-        "guilds/fighter/blades/blademasters-strength.c": 10,
+        "/guilds/fighter/blades/blademasters-boon.c": 10,
+        "/guilds/fighter/blades/blademasters-speed.c": 10,
+        "/guilds/fighter/blades/blademasters-endurance.c": 10,
+        "/guilds/fighter/blades/blademasters-strength.c": 10,
     ]));
 
     addSpecification("event handler", "piercingStrikeEvent");

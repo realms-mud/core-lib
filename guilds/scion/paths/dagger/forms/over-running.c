@@ -21,11 +21,11 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 16 ]));
 
-    addPrerequisite("guilds/scion/paths/dagger/forms/thrusting.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/thrusting.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/over-stab maneuver.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/over-stab maneuver.c",
         (["type":"research"]));
-    addPrerequisite("guilds/scion/paths/dagger/forms/dance-of-death.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/dance-of-death.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/environment/legacyRoomConverter");
+    setName("/lib/environment/legacyRoomConverter");
     addPermission("/lib/environment/legacyRoomTemplate.c", Read);
     addPermission("/lib/tests", Read);
     addPermission("/players", Read);

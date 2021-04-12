@@ -63,21 +63,21 @@ void CanModifyCooldown()
 
     ExpectTrue(ResearchItem->addSpecification("cooldown", 30), "add cooldown specification");
     ExpectTrue(ResearchItem->addSpecification("cooldown modifiers", ([
-        "lib/tests/support/research/comboPartResearchItemA.c": 6,
-        "lib/tests/support/research/comboPartResearchItemB.c": 4,
-        "lib/tests/support/research/comboPartResearchItemC.c": 20 ])), 
+        "/lib/tests/support/research/comboPartResearchItemA.c": 6,
+        "/lib/tests/support/research/comboPartResearchItemB.c": 4,
+        "/lib/tests/support/research/comboPartResearchItemC.c": 20 ])), 
         "add cooldown modifiers specification");
 
     ExpectEq(30, ResearchItem->cooldown(User));
 
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
     ExpectEq(24, ResearchItem->cooldown(User));
 
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemB.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemB.c");
     ExpectEq(20, ResearchItem->cooldown(User));
 
     // Cooldown cannot go below 2
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemC.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemC.c");
     ExpectEq(2, ResearchItem->cooldown(User));
 }
 

@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 29
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/bow/lhegren-pilin.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/lhegren-pilin.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -30,7 +30,7 @@ public nomask int isValidRegion(object region)
 {
     int ret = 0;
     if (objectp(region) &&
-        member(inherit_list(region), "lib/environment/region.c") > -1)
+        member(inherit_list(region), "/lib/environment/region.c") > -1)
     {
         ret = isValidRegionType(region->regionType());
     }
@@ -259,7 +259,7 @@ public nomask mapping loadRegion(string enterFrom, string location)
 public nomask void saveRegion(object region)
 {
     if (objectp(region) &&
-        (member(inherit_list(region), "lib/environment/region.c") > -1))
+        (member(inherit_list(region), "/lib/environment/region.c") > -1))
     {
         saveRegionData(region->regionName(),
             region->regionType(),

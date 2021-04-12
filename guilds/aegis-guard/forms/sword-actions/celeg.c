@@ -16,11 +16,11 @@ protected void Setup()
     addSpecification("usage summary", "A foundational slashing counter "
         "to the hanging guard.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/action-root.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/action-root.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-aras.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-aras.c",
         (["type":"research"]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/an-foph.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/an-foph.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -53,7 +53,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/angannon.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/angannon.c",
             "name": "angannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -61,7 +61,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/glingamath.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/glingamath.c",
             "name": "glingamath",
             "formula": "multiplicative",
             "base value": 1,
@@ -69,7 +69,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
             "name" : "raud-angannon",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -77,7 +77,7 @@ protected void Setup()
         ]),            
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
             "name" : "mithrannon",
             "formula" : "multiplicative",
             "base value" : 1,

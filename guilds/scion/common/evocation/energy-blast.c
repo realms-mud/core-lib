@@ -24,9 +24,9 @@ protected void Setup()
         "of deadly energy at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/energy-shard.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/evocation/energy-shard.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -56,7 +56,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
             "name" : "Mystic Charge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -64,7 +64,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
             "name" : "Magical Conduit",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -72,7 +72,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/ionization.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/ionization.c", WeaponType),
             "name" : "Ionization",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -80,7 +80,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/kinetic-discharge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/kinetic-discharge.c", WeaponType),
             "name" : "Kinetic Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -88,7 +88,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/plasma-eruption.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/plasma-eruption.c", WeaponType),
             "name" : "Plasma Eruption",
             "formula" : "multiplicative",
             "base value" : 1,

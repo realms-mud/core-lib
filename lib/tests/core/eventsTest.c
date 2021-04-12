@@ -279,7 +279,7 @@ void NotifyOnHitFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onHit called, data: physical 25, caller: lib/core/events.c";
+    string expected = "*event handler: onHit called, data: physical 25, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onHit", ([ "type": "physical", "damage": 25 ])));
     ExpectEq(expected, err, "onHit called on subscriber");
 }
@@ -309,7 +309,7 @@ void NotifyOnQuestStartedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestStarted called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestStarted called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestStarted", "blah"));
     ExpectEq(expected, err, "onQuestStarted called on subscriber");
 }
@@ -319,7 +319,7 @@ void NotifyOnQuestAdvancedStateFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestAdvancedState called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestAdvancedState called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestAdvancedState", "blah"));
     ExpectEq(expected, err, "onQuestAdvancedState called on subscriber");
 }
@@ -329,7 +329,7 @@ void NotifyOnQuestCompletedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestCompleted called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestCompleted called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestCompleted", "blah"));
     ExpectEq(expected, err, "onQuestCompleted called on subscriber");
 }
@@ -339,7 +339,7 @@ void NotifyOnQuestFailedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestFailed called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestFailed called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestFailed", "blah"));
     ExpectEq(expected, err, "onQuestFailed called on subscriber");
 }
@@ -349,7 +349,7 @@ void NotifyOnQuestSucceededFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestSucceeded called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestSucceeded called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestSucceeded", "blah"));
     ExpectEq(expected, err, "onQuestSucceeded called on subscriber");
 }
@@ -359,7 +359,7 @@ void NotifyOnQuestActivatedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onQuestActivated called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onQuestActivated called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onQuestActivated", "blah"));
     ExpectEq(expected, err, "onQuestActivated called on subscriber");
 }
@@ -452,7 +452,7 @@ void NotifOnSkillAdvancedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onSkillAdvanced called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onSkillAdvanced called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onSkillAdvanced", "blah"));
     ExpectEq(expected, err, "onSkillAdvanced called on subscriber");
 }
@@ -462,7 +462,7 @@ void NotifOnSkillDecreasedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onSkillDecreased called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onSkillDecreased called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onSkillDecreased", "blah"));
     ExpectEq(expected, err, "onSkillDecreased called on subscriber");
 }
@@ -472,7 +472,7 @@ void NotifyOnSkillPointsIncreasedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onSkillPointsIncreased called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onSkillPointsIncreased called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onSkillPointsIncreased", "blah"));
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }
@@ -482,7 +482,7 @@ void NotifyOnSkillPointsUsedFiresEventToSubscriber()
 {
     Events->registerEvent(Subscriber);
 
-    string expected = "*event handler: onSkillPointsUsed called, data: blah, caller: lib/core/events.c";
+    string expected = "*event handler: onSkillPointsUsed called, data: blah, caller: /lib/core/events.c";
     string err = catch (Events->notifySynchronous("onSkillPointsUsed", "blah"));
     ExpectEq(expected, err, "onSkillPointsUsed called on subscriber");
 }

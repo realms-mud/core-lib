@@ -13,5 +13,5 @@ protected void Setup()
         "knowledge required to craft items using alloys such as bronze or steel.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftCommonMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftCommonMetal.c", (["type":"research"]));
 }

@@ -62,54 +62,54 @@ public void SetupGuild()
     addCriteria("compose songs", ([
         "type": "research",
         "apply": "at level 1",
-        "research object": "guilds/bard/compositions/compose-song.c"
+        "research object": "/guilds/bard/compositions/compose-song.c"
     ]));
 
     addCriteria("stop performance", ([
         "type": "research",
         "apply": "at level 1",
-        "research object": "guilds/bard/compositions/stop-performance.c"
+        "research object": "/guilds/bard/compositions/stop-performance.c"
     ]));
 
     addCriteria("bows", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/bows.c"
+        "research tree": "/guilds/bard/bows.c"
     ]));
 
     addCriteria("melee weapons", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/melee-attacks.c"
+        "research tree": "/guilds/bard/melee-attacks.c"
     ]));
 
     addCriteria("compositions", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/compositions.c"
+        "research tree": "/guilds/bard/compositions.c"
     ]));
 
     addCriteria("lyrics", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/lyrics.c"
+        "research tree": "/guilds/bard/lyrics.c"
     ]));
 
     addCriteria("strings", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/strings.c"
+        "research tree": "/guilds/bard/strings.c"
     ]));
 
     addCriteria("woodwind-brass", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/woodwind-brass.c"
+        "research tree": "/guilds/bard/woodwind-brass.c"
     ]));
 
     addCriteria("percussion", ([
         "type":"research tree",
         "apply": "at level 1",
-        "research tree": "guilds/bard/percussion.c"
+        "research tree": "/guilds/bard/percussion.c"
     ]));
 }

@@ -9,7 +9,7 @@ virtual inherit "/lib/core/prerequisites.c";
 
 private int MaxLevel = 1000;
 private float ExperienceMultiplier = 1.0;
-private string PrerequisiteObject = "lib/core/prerequisites.c";
+private string PrerequisiteObject = "/lib/core/prerequisites.c";
 private string guildName = "BaseGuild";
 private string guildClass = "combat";
 private string *preferredSkills = ({ "general", "erudite", "language" });

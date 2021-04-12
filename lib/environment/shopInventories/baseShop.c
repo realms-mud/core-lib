@@ -37,7 +37,7 @@ public void addItem(string fileName)
 {
     object item;
     string error = catch (item = load_object(fileName));
-    if (!error && (member(inherit_list(item), "lib/items/item.c") > -1))
+    if (!error && (member(inherit_list(item), "/lib/items/item.c") > -1))
     {
         individualItems += ({ fileName });
     }
@@ -123,7 +123,7 @@ public nomask varargs int storeItem(object item, int isPermanent)
 {
     int ret = 0;
 
-    if (item && (member(inherit_list(item), "lib/items/item.c") > -1) &&
+    if (item && (member(inherit_list(item), "/lib/items/item.c") > -1) &&
         !item->query("no sell"))
     {
         ret = 1;

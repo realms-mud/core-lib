@@ -22,7 +22,7 @@ void CleanUp()
 void CanAddShop()
 {
     Environment->testAddShop("/lib/environment/shopInventories/swordsmith.c");
-    ExpectEq("lib/environment/shopInventories/swordsmith.c", Environment->getShop());
+    ExpectEq("/lib/environment/shopInventories/swordsmith.c", Environment->getShop());
 }
 
 /////////////////////////////////////////////////////////////////////////////

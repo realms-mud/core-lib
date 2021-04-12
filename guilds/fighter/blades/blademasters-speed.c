@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 17
         ]));
-    addPrerequisite("guilds/fighter/blades/blademasters-boon.c",
+    addPrerequisite("/guilds/fighter/blades/blademasters-boon.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

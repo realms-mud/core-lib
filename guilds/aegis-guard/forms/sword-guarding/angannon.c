@@ -21,7 +21,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 6 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/an-craban.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-craban.c",
         (["type":"research"]));
 
     addSpecification("affected research", ([

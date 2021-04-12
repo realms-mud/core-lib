@@ -29,19 +29,19 @@ protected void Setup()
     Race("deity");
     apparentRace("maegenstryd");
     SetUpPersonaOfLevel("aeromancer", 80);
-    addTrait("lib/instances/traits/archetypes/iitj.c");
-    addTrait("lib/instances/traits/educational/tactician.c");
-    addTrait("lib/instances/traits/educational/architect.c");
-    addTrait("lib/instances/traits/educational/articulate.c");
-    addTrait("lib/instances/traits/educational/arcane.c");
-    addTrait("lib/instances/traits/educational/educated.c");
-    addTrait("lib/instances/traits/educational/mastermind.c");
-    addTrait("lib/instances/traits/eyes/light-blue.c");
-    addTrait("lib/instances/traits/genetic/attractive.c");
-    addTrait("lib/instances/traits/genetic/genius.c");
-    addTrait("lib/instances/traits/hair/auburn.c");
-    addTrait("lib/instances/traits/personality/cold.c");
-    addTrait("lib/instances/traits/personality/feared.c");
+    addTrait("/lib/instances/traits/archetypes/iitj.c");
+    addTrait("/lib/instances/traits/educational/tactician.c");
+    addTrait("/lib/instances/traits/educational/architect.c");
+    addTrait("/lib/instances/traits/educational/articulate.c");
+    addTrait("/lib/instances/traits/educational/arcane.c");
+    addTrait("/lib/instances/traits/educational/educated.c");
+    addTrait("/lib/instances/traits/educational/mastermind.c");
+    addTrait("/lib/instances/traits/eyes/light-blue.c");
+    addTrait("/lib/instances/traits/genetic/attractive.c");
+    addTrait("/lib/instances/traits/genetic/genius.c");
+    addTrait("/lib/instances/traits/hair/auburn.c");
+    addTrait("/lib/instances/traits/personality/cold.c");
+    addTrait("/lib/instances/traits/personality/feared.c");
 
     addConversation("/areas/tol-dhurath/characters/seilyndria/startingConversation.c");
 

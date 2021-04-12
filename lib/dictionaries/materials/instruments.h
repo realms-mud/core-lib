@@ -10,7 +10,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -34,7 +34,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 2]),
             "sewing": (["type":"skill", "value": 2]),
@@ -60,7 +60,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -84,7 +84,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -108,7 +108,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -133,7 +133,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -158,7 +158,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -182,7 +182,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 6]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -205,7 +205,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftOboe.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -228,7 +228,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftPipes.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -251,7 +251,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -274,7 +274,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -297,7 +297,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 7]),
             "wood crafting": (["type":"skill", "value": 1])
         ]), 
@@ -318,7 +318,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 2])
         ]), 
@@ -339,7 +339,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 2])
         ]), 
@@ -360,7 +360,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -383,7 +383,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -406,7 +406,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -429,7 +429,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -452,7 +452,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -475,7 +475,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -498,7 +498,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "sewing": (["type":"skill", "value": 1]),
@@ -521,7 +521,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -544,7 +544,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 27,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftWindcap.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -570,7 +570,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/woodwind/craftOcarina.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/woodwind/craftOcarina.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 8]),
             "pottery": (["type":"skill", "value": 1]),
             "sculpture": (["type":"skill", "value": 1]),
@@ -592,7 +592,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 27,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -618,7 +618,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5]),
             "engineering": (["type":"skill", "value": 5]),
@@ -642,7 +642,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 10]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -667,7 +667,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 22]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -693,7 +693,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 35,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 22]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -719,7 +719,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 40,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/brass/craftTrumpet.c":(["type":"research"]),
             "aerophone crafting": (["type":"skill", "value": 24]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -745,7 +745,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -769,7 +769,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -793,7 +793,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -818,7 +818,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftDulcimer.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 2]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -843,7 +843,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -868,7 +868,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -893,7 +893,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -918,7 +918,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftViol.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "leather crafting": (["type":"skill", "value": 1]),
@@ -943,7 +943,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMechanical.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMechanical.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -970,7 +970,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -995,7 +995,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 15,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1020,7 +1020,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftLute.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1045,7 +1045,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1070,7 +1070,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 22,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1095,7 +1095,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 22,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1120,7 +1120,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 16,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1145,7 +1145,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1170,7 +1170,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1195,7 +1195,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1220,7 +1220,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1245,7 +1245,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftGuitar.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1270,7 +1270,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 18,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 10]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1295,7 +1295,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1320,7 +1320,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1345,7 +1345,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1370,7 +1370,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1395,7 +1395,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 25,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 15]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 2]),
@@ -1420,7 +1420,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1445,7 +1445,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/strings/craftMandolin.c":(["type":"research"]),
             "luthiery": (["type":"skill", "value": 12]),
             "wood crafting": (["type":"skill", "value": 5]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1470,7 +1470,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 3]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1495,7 +1495,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 6,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 3]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1520,7 +1520,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 10,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 7]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 1]),
@@ -1545,7 +1545,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 13,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 8]),
             "wood crafting": (["type":"skill", "value": 1]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -1570,7 +1570,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 8,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 4]),
             "metal crafting": (["type":"skill", "value": 4]),
         ]), 
@@ -1591,7 +1591,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 10]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -1616,7 +1616,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 10]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),
@@ -1641,7 +1641,7 @@ private nosave mapping instrumentBlueprints = ([
         "damage type": "musical",
         "skill to craft": 20,
         "crafting prerequisites": ([
-            "lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
+            "/lib/instances/research/crafting/instruments/percussion/craftDrum.c":(["type":"research"]),
             "drum crafting": (["type":"skill", "value": 10]),
             "wood crafting": (["type":"skill", "value": 3]),
             "metal crafting": (["type":"skill", "value": 3]),

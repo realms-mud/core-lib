@@ -25,7 +25,7 @@ void SetupHenchmen(string type)
                 "house": "Arthellyn",
                 "gender": "male",
                 "type": "architect",
-                "traits": ({ "lib/instances/traits/domains/journeyman-architect.c" }),
+                "traits": ({ "/lib/instances/traits/domains/journeyman-architect.c" }),
                 "persona": "swordsman",
                 "level": 12,
                 "activity": "idle"
@@ -36,7 +36,7 @@ void SetupHenchmen(string type)
                 "house": "Marannuminas",
                 "gender": "male",
                 "type": "architect",
-                "traits": ({ "lib/instances/traits/domains/master-architect.c" }),
+                "traits": ({ "/lib/instances/traits/domains/master-architect.c" }),
                 "persona": "swordsman",
                 "level": 10,
                 "activity": "building"
@@ -50,7 +50,7 @@ void SetupHenchmen(string type)
                 "house": "Evendim",
                 "gender": "male",
                 "type": "carpenter",
-                "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
+                "traits": ({ "/lib/instances/traits/domains/journeyman-carpenter.c" }),
                 "persona": "swordsman",
                 "level": 10,
                 "activity": "building"
@@ -60,7 +60,7 @@ void SetupHenchmen(string type)
                 "house": "Eralkidh",
                 "gender": "male",
                 "type": "carpenter",
-                "traits": ({ "lib/instances/traits/domains/journeyman-carpenter.c" }),
+                "traits": ({ "/lib/instances/traits/domains/journeyman-carpenter.c" }),
                 "persona": "swordsman",
                 "level": 10,
                 "activity": "idle"
@@ -70,7 +70,7 @@ void SetupHenchmen(string type)
                 "house": "Argalen",
                 "gender": "male",
                 "type": "carpenter",
-                "traits": ({ "lib/instances/traits/domains/master-carpenter.c" }),
+                "traits": ({ "/lib/instances/traits/domains/master-carpenter.c" }),
                 "persona": "swordsman",
                 "level": 10,
                 "activity": "idle"
@@ -80,7 +80,7 @@ void SetupHenchmen(string type)
                 "house": "Arator",
                 "gender": "male",
                 "type": "carpenter",
-                "traits": ({ "lib/instances/traits/domains/apprentice-carpenter.c" }),
+                "traits": ({ "/lib/instances/traits/domains/apprentice-carpenter.c" }),
                 "persona": "swordsman",
                 "level": 5,
                 "activity": "idle"

@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge required to craft knives, daggers, and swords out of "
         "typical bladed weapon materials such as iron, bronze, and steel.");
     addSpecification("research type", "tree root");
-    addPrerequisite("lib/instances/research/crafting/weapons/craftWeapons.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/craftWeapons.c", 
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 1]));
 }

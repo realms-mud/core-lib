@@ -141,13 +141,13 @@ private nomask string displayHelpDetails(string commandFile, string command,
 
     if (commandObj &&
         (member(inherit_list(commandObj),
-            "lib/modules/research/researchItem.c") > -1))
+            "/lib/modules/research/researchItem.c") > -1))
     {
         ret += commandObj->researchDetails();
     }
     else if (commandObj &&
         (member(inherit_list(commandObj),
-            "lib/modules/research/researchTree.c") > -1))
+            "/lib/modules/research/researchTree.c") > -1))
     {
         ret += commandObj->researchTreeDetails(initiator) +
             configuration->decorate("Items in this color are known.\n",

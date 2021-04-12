@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 21
         ]));
-    addPrerequisite("guilds/bard/melee/soldiers-song.c",
+    addPrerequisite("/guilds/bard/melee/soldiers-song.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of a master hewing technique for Dadben.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/braig-an-dadben.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/braig-an-dadben.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

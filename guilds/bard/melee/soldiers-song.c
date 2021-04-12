@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 15
         ]));
-    addPrerequisite("guilds/bard/melee/melee-march.c",
+    addPrerequisite("/guilds/bard/melee/melee-march.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

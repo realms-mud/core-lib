@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 27
         ]));
-    addPrerequisite("guilds/bard/bow/requiem-of-the-quick-draw.c",
+    addPrerequisite("/guilds/bard/bow/requiem-of-the-quick-draw.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

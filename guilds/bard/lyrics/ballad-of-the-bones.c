@@ -19,11 +19,11 @@ protected void Setup()
         "value": 43
     ]));
 
-    addPrerequisite("guilds/bard/lyrics/boneflower.c",
+    addPrerequisite("/guilds/bard/lyrics/boneflower.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/bard/lyrics/danse-macabre.c" }));
+        "/guilds/bard/lyrics/danse-macabre.c" }));
 }

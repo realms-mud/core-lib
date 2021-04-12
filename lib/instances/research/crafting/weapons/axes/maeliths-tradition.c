@@ -14,13 +14,13 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c", 
+    addPrerequisite("/lib/instances/research/crafting/weapons/axes/craftDoubleAxe.c", 
         (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/folding.c",
         (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/weapons/common/austempering.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/austempering.c",
         (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/weapons/common/differential-hardening.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/differential-hardening.c",
         (["type":"research"]));
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 25]));
     addPrerequisite("blacksmithing", (["type":"skill", "value" : 20]));

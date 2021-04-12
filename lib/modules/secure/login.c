@@ -36,7 +36,7 @@ private nomask object checkIfPlayerObjectExists(string name)
     if (sizeof(playersWithName))
     {
         ret = playersWithName[0];
-        if (member(inherit_list(ret), "lib/realizations/player.c") < 0)
+        if (member(inherit_list(ret), "/lib/realizations/player.c") < 0)
         {
             ret = 0;
         }

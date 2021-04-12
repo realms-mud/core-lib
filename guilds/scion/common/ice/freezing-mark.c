@@ -26,7 +26,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 13 ]));
     addPrerequisite(
-        sprintf("guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -16,7 +16,7 @@
 #include "materials/potions.h"
 #include "materials/components.h"
 
-private nosave string EquipmentBlueprint = "lib/items/equipment.c";
+private nosave string EquipmentBlueprint = "/lib/items/equipment.c";
 
 private nosave string *validBonuses = ({ "strength", "intelligence", "dexterity",
     "wisdom", "constitution", "charisma",  });
@@ -1309,7 +1309,7 @@ private nomask varargs string *getListOfBlueprints(string type, string subtype,
     }
     else
     {
-        string directory = sprintf("lib/instances/items/%s%s/", type,
+        string directory = sprintf("/lib/instances/items/%s%s/", type,
             ((subtype && (subtype != "")) ? "/" + subtype : ""));
 
         directory = regreplace(directory, " ", "-", 1);
@@ -1529,18 +1529,18 @@ public nomask mapping generateComponent(object item, string componentType,
 public string *getTypes(string type, object user)
 {
     string *types = ({ type });
-    if ((type == "metal") && user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
+    if ((type == "metal") && user->isResearched("/lib/instances/research/crafting/materials/useCrystalsAsMetal.c"))
     {
         types += ({ "crystal" });
     }
     else if (type == "stone")
     {
-        if (user->isResearched("lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
+        if (user->isResearched("/lib/instances/research/crafting/materials/useCrystalsAsStone.c"))
         {
             types += ({ "crystal" });
         }
 
-        if (user->isResearched("lib/instances/research/crafting/materials/useClaysAsStone.c"))
+        if (user->isResearched("/lib/instances/research/crafting/materials/useClaysAsStone.c"))
         {
             types += ({ "clay" });
         }

@@ -21,7 +21,7 @@ protected void Setup()
         "value": 41
     ]));
 
-    addPrerequisite("guilds/bard/percussion/modulated-timing.c",
+    addPrerequisite("/guilds/bard/percussion/modulated-timing.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

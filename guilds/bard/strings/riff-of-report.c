@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Riff of Report");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "strings");
     addSpecification("default composite description",
@@ -33,7 +33,7 @@ protected void Setup()
         "equipment":({ "instrument: plucked", "instrument: bowed" }),
     ]));
 
-    addPrerequisite("guilds/bard/strings/root.c",
+    addPrerequisite("/guilds/bard/strings/root.c",
         (["type":"research"]));
 
     addSpecification("spell point cost", 15);
@@ -53,7 +53,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/hammer-ons-and-pull-offs.c",
+            "research item": "/guilds/bard/strings/hammer-ons-and-pull-offs.c",
             "name": "keeping-time",
             "formula": "multiplicative",
             "base value": 1,
@@ -61,7 +61,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/string-bending.c",
+            "research item": "/guilds/bard/strings/string-bending.c",
             "name": "advanced-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -69,7 +69,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/slide-techniques.c",
+            "research item": "/guilds/bard/strings/slide-techniques.c",
             "name": "golden-measures",
             "formula": "multiplicative",
             "base value": 1,
@@ -77,7 +77,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/string-skipping.c",
+            "research item": "/guilds/bard/strings/string-skipping.c",
             "name": "modulated-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -85,7 +85,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/finger-picking.c",
+            "research item": "/guilds/bard/strings/finger-picking.c",
             "name": "fibonacci-timing",
             "formula": "multiplicative",
             "base value": 1,
@@ -93,7 +93,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/ababcb.c",
+            "research item": "/guilds/bard/compositions/ababcb.c",
             "name": "verse-pre-chorus",
             "formula": "multiplicative",
             "base value": 1,

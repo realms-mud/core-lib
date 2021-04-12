@@ -6,8 +6,8 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string BaseResearch = "lib/modules/research/researchItem.c";
-private string BaseResearchTree = "lib/modules/research/researchTree.c";
+private string BaseResearch = "/lib/modules/research/researchItem.c";
+private string BaseResearchTree = "/lib/modules/research/researchTree.c";
 private mapping researchCache = ([]);
 private mapping researchItemCache = ([]);
 private mapping researchEquivalencies = ([]);
@@ -224,7 +224,7 @@ public nomask int isSustainedResearchItem(string researchItem)
                 "/" + researchItem;
             ret = (file_size(researchItem) > 0) &&
                 (member(inherit_list(getResearchItem(researchItem)),
-                    "lib/modules/research/sustainedResearchItem.c") > -1);
+                    "/lib/modules/research/sustainedResearchItem.c") > -1);
             cacheValue(ret, researchItem, "sustained research");
         }
     }

@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 19
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

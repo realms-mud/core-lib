@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 51
         ]));
-    addPrerequisite("guilds/fighter/blades/cross-cutting.c",
+    addPrerequisite("/guilds/fighter/blades/cross-cutting.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

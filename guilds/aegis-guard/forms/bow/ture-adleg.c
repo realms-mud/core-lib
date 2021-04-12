@@ -18,7 +18,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 27 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/bow/maed-adleg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/bow/maed-adleg.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

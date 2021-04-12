@@ -24,9 +24,9 @@ protected void Setup()
         "blast of harmful spirit magic at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/spirit/shadow-storm.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/spirit/shadow-storm.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/chill-the-blood.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/chill-the-blood.c", WeaponType),
             "name" : "Fuel the Flames",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -75,7 +75,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType),
             "name" : "Scorching Mark",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -83,7 +83,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/spectral-rage.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/spectral-rage.c", WeaponType),
             "name" : "Spectral Rage",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -91,7 +91,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType),
             "name" : "Nienwyn's Kiss",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -99,7 +99,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/spirit/laiwyths-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/spirit/laiwyths-mark.c", WeaponType),
             "name" : "Laiwyth's Mark",
             "formula" : "multiplicative",
             "base value" : 1,

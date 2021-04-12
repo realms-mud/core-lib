@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 31
         ]));
-    addPrerequisite("guilds/bard/melee/armsmans-breath.c",
+    addPrerequisite("/guilds/bard/melee/armsmans-breath.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

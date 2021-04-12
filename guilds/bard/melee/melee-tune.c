@@ -24,7 +24,7 @@ protected void Setup()
         "dagger", "short sword", "hammer", "mace", "flail",
         "staff", "pole arm" })]));
 
-    addPrerequisite("guilds/bard/melee/root.c",
+    addPrerequisite("/guilds/bard/melee/root.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 

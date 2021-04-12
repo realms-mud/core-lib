@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 31
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/braig-celair.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/braig-celair.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

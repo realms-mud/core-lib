@@ -22,7 +22,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 29 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/pirin-tir.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/pirin-tir.c",
         (["type":"research"]));
 
     addSpecification("affected research", ([

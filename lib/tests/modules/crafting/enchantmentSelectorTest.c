@@ -32,12 +32,12 @@ void Setup()
     Player->advanceSkill("elemental fire", 20);
     Player->addResearchPoints(20);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
 
     move_object(Selector, Player);
 }
@@ -258,7 +258,7 @@ void SelectingExitReturnsToPreviousMenu()
 /////////////////////////////////////////////////////////////////////////////
 void CanNotAddMoreThanMaximumEnchantmentsAllowed()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("5", Player);
@@ -276,7 +276,7 @@ void CanNotAddMoreThanMaximumEnchantmentsAllowed()
 /////////////////////////////////////////////////////////////////////////////
 void SelectionCanBeZeroToThreeEntriesAndDoesNotIncreaseBeyondThree()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("5", Player);
@@ -294,7 +294,7 @@ void SelectionCanBeZeroToThreeEntriesAndDoesNotIncreaseBeyondThree()
 /////////////////////////////////////////////////////////////////////////////
 void CanUndoSelection()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("5", Player);
@@ -310,7 +310,7 @@ void CanUndoSelection()
 /////////////////////////////////////////////////////////////////////////////
 void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("5", Player);
@@ -326,7 +326,7 @@ void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectEnchantmentWithMissingPrerequisites()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("5", Player);
@@ -341,9 +341,9 @@ void CannotSelectEnchantmentWithMissingPrerequisites()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectEnchantmentLimitedByTypeNotBeingCrafted()
 {
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("2", Player);
@@ -358,10 +358,10 @@ void CanSelectEnchantmentLimitedByTypeBeingCraftedOnlyOnceWhenMutation()
     Selector->setType("weapons");
     Selector->setSubType("staffs");
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c"));
-    ExpectTrue(Player->initiateResearch("lib/tests/support/research/craftingBonusesResearch.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c"));
+    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
     Selector->initiateSelector(Player);
     command("3", Player);
     command("2", Player);

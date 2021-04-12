@@ -17,15 +17,15 @@ protected void Setup()
     addSpecification("persona", "scion of blood");
 
     addSpecification("modifiers", ([
-        "guilds/scion/avatars/common/evasion-i.c":({
+        "/guilds/scion/avatars/common/evasion-i.c":({
             (["modifier": "bonus dodge",
                "value": 4 ]),
         }),
-        "guilds/scion/avatars/common/parry-i.c":({
+        "/guilds/scion/avatars/common/parry-i.c":({
             (["modifier": "bonus parry",
                "value": 4 ]),
         }),
-        "guilds/scion/avatars/common/defense-i.c":({
+        "/guilds/scion/avatars/common/defense-i.c":({
             (["modifier": "bonus defense",
                "value": 6 ]),
             (["modifier":"bonus soak",
@@ -33,43 +33,43 @@ protected void Setup()
             (["modifier":"bonus no armor",
                "value": 4 ]),
         }),
-        "guilds/scion/avatars/common/spellcraft-i.c":({
+        "/guilds/scion/avatars/common/spellcraft-i.c":({
             (["modifier": "bonus spellcraft",
                "value": 4 ]),
             (["modifier": "bonus evocation",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/attack-i.c":({
+        "/guilds/scion/avatars/common/attack-i.c":({
             (["modifier": "bonus attack",
                "value": 6 ]),
         }),
-        "guilds/scion/avatars/common/damage-i.c":({
+        "/guilds/scion/avatars/common/damage-i.c":({
             (["modifier": "bonus damage",
                "value": 3 ]),
         }),
-        "guilds/scion/avatars/blood/touch-of-the-damned.c":({
+        "/guilds/scion/avatars/blood/touch-of-the-damned.c":({
             (["modifier": "apply research",
-               "value": "guilds/scion/avatars/blood/touch-of-the-damned-spell.c" ]),
+               "value": "/guilds/scion/avatars/blood/touch-of-the-damned-spell.c" ]),
         }),
-        "guilds/scion/avatars/common/spellpoints-i.c":({
+        "/guilds/scion/avatars/common/spellpoints-i.c":({
             (["modifier": "bonus spell points",
                "value": 100 ]),
         }),
-        "guilds/scion/avatars/common/hitpoints-i.c":({
+        "/guilds/scion/avatars/common/hitpoints-i.c":({
             (["modifier": "bonus hit points",
                "value": 100 ]),
         }),
-        "guilds/scion/avatars/common/evasion-ii.c":({
+        "/guilds/scion/avatars/common/evasion-ii.c":({
             (["modifier": "bonus dodge",
                "value": 6 ]),
             (["modifier": "bonus dexterity",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/parry-ii.c":({
+        "/guilds/scion/avatars/common/parry-ii.c":({
             (["modifier": "bonus parry",
                "value": 6 ]),
         }),
-        "guilds/scion/avatars/common/defense-ii.c":({
+        "/guilds/scion/avatars/common/defense-ii.c":({
             (["modifier": "bonus defense",
                "value": 10 ]),
             (["modifier":"bonus soak",
@@ -79,7 +79,7 @@ protected void Setup()
             (["modifier": "bonus constitution",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/spellcraft-ii.c":({
+        "/guilds/scion/avatars/common/spellcraft-ii.c":({
             (["modifier": "bonus spellcraft",
                "value": 6 ]),
             (["modifier": "bonus evocation",
@@ -87,35 +87,35 @@ protected void Setup()
             (["modifier": "bonus intelligence",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/attack-ii.c":({
+        "/guilds/scion/avatars/common/attack-ii.c":({
             (["modifier": "bonus attack",
                "value": 8 ]),
             (["modifier": "bonus wisdom",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/damage-ii.c":({
+        "/guilds/scion/avatars/common/damage-ii.c":({
             (["modifier": "bonus damage",
                "value": 4 ]),
             (["modifier": "bonus strength",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/spellpoints-ii.c":({
+        "/guilds/scion/avatars/common/spellpoints-ii.c":({
             (["modifier": "bonus spell points",
                "value": 150 ]),
         }),
-        "guilds/scion/avatars/common/hitpoints-ii.c":({
+        "/guilds/scion/avatars/common/hitpoints-ii.c":({
             (["modifier": "bonus hit points",
                "value": 150 ]),
         }),
-        "guilds/scion/avatars/blood/soul-scourge.c":({
+        "/guilds/scion/avatars/blood/soul-scourge.c":({
             (["modifier": "apply research",
-               "value": "guilds/scion/avatars/blood/soul-scourge-spell.c" ]),
+               "value": "/guilds/scion/avatars/blood/soul-scourge-spell.c" ]),
         }),
-        "guilds/scion/avatars/common/extra-attack.c":({
+        "/guilds/scion/avatars/common/extra-attack.c":({
             (["modifier": "bonus evil attack",
                "value": 15 ]),
         }),
-        "guilds/scion/avatars/common/healing-rate-i.c":({
+        "/guilds/scion/avatars/common/healing-rate-i.c":({
             (["modifier": "bonus heal hit points",
                "value": 10 ]),
             (["modifier":"bonus heal spell points",
@@ -125,17 +125,17 @@ protected void Setup()
             (["modifier":"bonus heal spell points rate",
                "value": 5 ]),
         }),
-        "guilds/scion/avatars/common/evasion-iii.c":({
+        "/guilds/scion/avatars/common/evasion-iii.c":({
             (["modifier": "bonus dodge",
                "value": 6 ]),
             (["modifier": "bonus dexterity",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/parry-iii.c":({
+        "/guilds/scion/avatars/common/parry-iii.c":({
             (["modifier": "bonus parry",
                "value": 6 ]),
         }),
-        "guilds/scion/avatars/common/defense-iii.c":({
+        "/guilds/scion/avatars/common/defense-iii.c":({
             (["modifier": "bonus defense",
                "value": 10 ]),
             (["modifier":"bonus soak",
@@ -145,7 +145,7 @@ protected void Setup()
             (["modifier": "bonus constitution",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/spellcraft-iii.c":({
+        "/guilds/scion/avatars/common/spellcraft-iii.c":({
             (["modifier": "bonus spellcraft",
                "value": 6 ]),
             (["modifier": "bonus evocation",
@@ -153,35 +153,35 @@ protected void Setup()
             (["modifier": "bonus intelligence",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/attack-iii.c":({
+        "/guilds/scion/avatars/common/attack-iii.c":({
             (["modifier": "bonus attack",
                "value": 8 ]),
             (["modifier": "bonus wisdom",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/damage-iii.c":({
+        "/guilds/scion/avatars/common/damage-iii.c":({
             (["modifier": "bonus damage",
                "value": 4 ]),
             (["modifier": "bonus strength",
                "value": 2 ]),
         }),
-        "guilds/scion/avatars/common/spellpoints-iii.c":({
+        "/guilds/scion/avatars/common/spellpoints-iii.c":({
             (["modifier": "bonus spell points",
                "value": 250 ]),
         }),
-        "guilds/scion/avatars/common/hitpoints-iii.c":({
+        "/guilds/scion/avatars/common/hitpoints-iii.c":({
             (["modifier": "bonus hit points",
                "value": 250 ]),
         }),
-        "guilds/scion/avatars/blood/sanguine-spear.c":({
+        "/guilds/scion/avatars/blood/sanguine-spear.c":({
             (["modifier": "apply research",
-               "value": "guilds/scion/avatars/blood/sanguine-spear-spell.c" ]),
+               "value": "/guilds/scion/avatars/blood/sanguine-spear-spell.c" ]),
         }),
-        "guilds/scion/avatars/common/extra-attack-ii.c":({
+        "/guilds/scion/avatars/common/extra-attack-ii.c":({
             (["modifier": "bonus evil attack",
                "value": 25 ]),
         }),
-        "guilds/scion/avatars/common/healing-rate-ii.c":({
+        "/guilds/scion/avatars/common/healing-rate-ii.c":({
             (["modifier": "bonus heal hit points",
                "value": 10 ]),
             (["modifier":"bonus heal spell points",

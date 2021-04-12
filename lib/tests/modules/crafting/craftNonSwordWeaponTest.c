@@ -62,7 +62,7 @@ void Setup()
     material->set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
 
     move_object(Selector, Player);
 }
@@ -77,7 +77,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectAxeCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/axes/craftBasicAxe.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/axes/craftBasicAxe.c"));
     Selector->initiateSelector(Player);
     command("1", Player);
     command("1", Player);
@@ -90,7 +90,7 @@ void CanSelectAxeCrafting()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectBowCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/bows/craftBow.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/bows/craftBow.c"));
     Selector->initiateSelector(Player);
     command("2", Player);
     command("5", Player);
@@ -103,7 +103,7 @@ void CanSelectBowCrafting()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectCrossbowCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/crossbows/craftCrossbow.c"));
     Selector->initiateSelector(Player);
     command("3", Player);
     command("2", Player);
@@ -116,7 +116,7 @@ void CanSelectCrossbowCrafting()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectFlailCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/flails/craftBasicFlail.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/flails/craftBasicFlail.c"));
     Selector->initiateSelector(Player);
     command("5", Player);
     command("2", Player);
@@ -129,7 +129,7 @@ void CanSelectFlailCrafting()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectHammerCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/hammers/craftBasicHammer.c"));
     Selector->initiateSelector(Player);
     command("6", Player);
     command("4", Player);
@@ -142,7 +142,7 @@ void CanSelectHammerCrafting()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectPoleArmCrafting()
 {
-    ExpectTrue(Player->initiateResearch("lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c"));
+    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/pole-arms/craftBasicPoleArm.c"));
     Selector->initiateSelector(Player);
     command("8", Player);
     command("4", Player);

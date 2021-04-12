@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Fell Beat");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "percussion");
     addSpecification("default composite description",
@@ -29,7 +29,7 @@ protected void Setup()
         "equipment":({ "instrument: percussion" }),
     ]));
 
-    addPrerequisite("guilds/bard/percussion/drums-of-dedication.c",
+    addPrerequisite("/guilds/bard/percussion/drums-of-dedication.c",
         (["type":"research"]));
 
     addSpecification("scope", "area");

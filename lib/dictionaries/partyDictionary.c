@@ -82,7 +82,7 @@ public nomask int createParty(string name, object creator)
 
     if (stringp(name) && objectp(creator) &&
         !member(PlayerParties, creator->RealName()) &&
-        (member(inherit_list(creator), "lib/realizations/player.c") > -1))
+        (member(inherit_list(creator), "/lib/realizations/player.c") > -1))
     {
         ret = 1;
         object newParty = clone_object("/lib/modules/party/party.c");
@@ -99,7 +99,7 @@ public nomask int joinParty(object party, object newMember)
     int ret = 0;
     if (objectp(party) && objectp(newMember) &&
         !member(PlayerParties, newMember->RealName()) &&
-        (member(inherit_list(newMember), "lib/realizations/player.c") > -1))
+        (member(inherit_list(newMember), "/lib/realizations/player.c") > -1))
     {
         ret = 1;
         PlayerParties[newMember->RealName()] = party;

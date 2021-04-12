@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 25
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/angol-anwar.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/angol-anwar.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

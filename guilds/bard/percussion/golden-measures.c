@@ -21,7 +21,7 @@ protected void Setup()
         "value": 51
     ]));
 
-    addPrerequisite("guilds/bard/percussion/fibonacci-timing.c",
+    addPrerequisite("/guilds/bard/percussion/fibonacci-timing.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

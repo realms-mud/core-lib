@@ -199,7 +199,7 @@ void CheckPrerequsistesCorrectlyHandlesEquivalentResearchChecks()
     ExpectFalse(Prerequisite->checkPrerequisites(Researcher), "check initially fails");
 
     ExpectTrue(Researcher->initiateResearch(
-        "lib/tests/support/research/equivalenceItem.c"), "initiate research");
+        "/lib/tests/support/research/equivalenceItem.c"), "initiate research");
 
     ExpectTrue(Prerequisite->checkPrerequisites(Researcher), "item researched");
 }
@@ -310,7 +310,7 @@ void CheckPrerequsistesCorrectlyHandlesOpinionChecks()
     ExpectTrue(Prerequisite->AddTestPrerequisite("opinion", (["type":"opinion", "value" : 20]), "group a"));
     ExpectFalse(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check initially fails for group a");
 
-    Researcher->addTrait("lib/instances/traits/educational/articulate.c");
+    Researcher->addTrait("/lib/instances/traits/educational/articulate.c");
     ExpectTrue(Prerequisite->checkPrerequisites(Researcher, "group a", owner), "check passes for group a");
 }
 
@@ -524,10 +524,10 @@ void DisplayPrerequisitesCorrectlyDisplaysPresenceWithPresencePrerequisites()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysEquivalence()
 {
-    getDictionary("research")->researchObject("lib/tests/support/research/testResearchA.c");    
-    getDictionary("research")->researchObject("lib/tests/support/research/equivalenceItem.c");
+    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");    
+    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
     object researchItem = getDictionary("research")->researchObject(
-        "lib/tests/support/research/testResearchPrereq.c");
+        "/lib/tests/support/research/testResearchPrereq.c");
 
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m       Research: "
         "\x1b[0m\x1b[0;35mWeasel Inversion\n"

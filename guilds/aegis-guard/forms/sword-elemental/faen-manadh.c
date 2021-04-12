@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 39
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/faen-edlothia.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

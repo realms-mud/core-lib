@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 33
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-combinations/heleg-bronadui.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

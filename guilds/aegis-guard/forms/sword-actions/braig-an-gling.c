@@ -12,7 +12,7 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of an aggressive hewing technique for Gling.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-actions/delu-an-gling.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/delu-an-gling.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

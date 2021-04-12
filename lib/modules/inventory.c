@@ -932,7 +932,7 @@ public varargs nomask object transferMoneyFrom(int moneyToDrop)
 public varargs nomask int transferMoneyTo(object money, int amount)
 {
     int ret = objectp(money) &&
-        (member(inherit_list(money), "lib/items/money.c") > -1) &&
+        (member(inherit_list(money), "/lib/items/money.c") > -1) &&
         (amount >= 0);
 
     if (ret)
@@ -1118,7 +1118,7 @@ private nomask string displayUnequippedItems(object banner, int verbose,
 
     object *equippedItems = equippedByMask(AllWielded | AllWorn);
     object *allItems = filter(all_inventory(this_object()), 
-        (: (member(inherit_list($1), "lib/items/modifierObject.c") < 0) &&
+        (: (member(inherit_list($1), "/lib/items/modifierObject.c") < 0) &&
            (member(equippedItems, $1) == -1) && $1->short() :));
 
     if (sizeof(allItems))

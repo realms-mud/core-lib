@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string BaseShop = "lib/environment/shopInventories/baseShop.c";
+private string BaseShop = "/lib/environment/shopInventories/baseShop.c";
 private object configuration = getDictionary("configuration");
 
 private mapping alwaysGenerate = ([
@@ -33,8 +33,8 @@ private mapping alwaysGenerate = ([
 
 private mapping consumables = ([
     "potions":([
-        "permanent": ({ "lib/instances/items/potions/healing.c" , 
-            "lib/instances/items/potions/mana.c" }),
+        "permanent": ({ "/lib/instances/items/potions/healing.c" , 
+            "/lib/instances/items/potions/mana.c" }),
         "base dir": "/lib/instances/items/potions/*"
     ]),
     "herbs":([
@@ -50,10 +50,10 @@ private mapping consumables = ([
         "base dir": "/lib/instances/items/books/*"
     ]),
     "metal":([
-        "permanent": ({ "lib/instances/items/materials/metal/iron.c",
-            "lib/instances/items/materials/metal/copper.c",
-            "lib/instances/items/materials/metal/cast-iron.c",
-            "lib/instances/items/materials/metal/bronze.c" }),
+        "permanent": ({ "/lib/instances/items/materials/metal/iron.c",
+            "/lib/instances/items/materials/metal/copper.c",
+            "/lib/instances/items/materials/metal/cast-iron.c",
+            "/lib/instances/items/materials/metal/bronze.c" }),
         "base dir": "/lib/instances/items/materials/metal/*"
     ]),
     "gems":([

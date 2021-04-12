@@ -25,7 +25,7 @@ protected void Setup()
         (["type":"level", 
           "guild": "Scion of Dhuras",
           "value": 39 ]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("research type", "points");

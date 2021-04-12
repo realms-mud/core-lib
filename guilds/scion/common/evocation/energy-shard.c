@@ -24,9 +24,9 @@ protected void Setup()
         "of magical energy at a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/evocation/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/evocation/root.c", WeaponType),
         (["type":"research"]));
 
     addSpecification("scope", "targeted");
@@ -50,7 +50,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType),
             "name" : "Mystic Charge",
             "formula" : "additive",
             "base value" : 1,
@@ -58,7 +58,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
             "name" : "Magical Conduit",
             "formula" : "additive",
             "base value" : 1,

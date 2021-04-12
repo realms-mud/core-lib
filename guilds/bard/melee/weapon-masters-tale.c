@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 33
         ]));
-    addPrerequisite("guilds/bard/melee/footmans-ballad.c",
+    addPrerequisite("/guilds/bard/melee/footmans-ballad.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

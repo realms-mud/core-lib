@@ -46,7 +46,7 @@ public nomask int execute(string command, object initiator)
         object configDictionary = load_object("/lib/dictionaries/configurationDictionary.c");
 
         object *wizardList = sort_array(filter(playerList,
-            (: (member(inherit_list($1), "lib/realizations/wizard.c") > -1) :)),
+            (: (member(inherit_list($1), "/lib/realizations/wizard.c") > -1) :)),
             (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardDictionary);
 
         if (sizeof(regexp(({ command }), "-w")))

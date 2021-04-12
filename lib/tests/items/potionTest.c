@@ -74,10 +74,10 @@ void DrinkingPotionWithBiologicalEffectHasEffectApplied()
     object potion = clone_object("/lib/instances/items/potions/stamina.c");
     move_object(potion, Player);
 
-    ExpectFalse(Player->isTraitOf("lib/instances/traits/biological/adrenaline.c"));
+    ExpectFalse(Player->isTraitOf("/lib/instances/traits/biological/adrenaline.c"));
 
     command("drink potion", Player);
-    ExpectTrue(Player->isTraitOf("lib/instances/traits/biological/adrenaline.c"));
+    ExpectTrue(Player->isTraitOf("/lib/instances/traits/biological/adrenaline.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ void DrinkingPotionWithTraitEffectHasTraitApplied()
         clone_object("/lib/instances/items/potions/tears-of-ilyrth.c");
     move_object(potion, Player);
 
-    ExpectFalse(Player->isTraitOf("lib/instances/items/potions/traits/tears-of-ilyrth.c"));
+    ExpectFalse(Player->isTraitOf("/lib/instances/items/potions/traits/tears-of-ilyrth.c"));
     ExpectEq(0, Player->hitPoints());
     ExpectEq(150, Player->maxHitPoints());
     ExpectEq(0, Player->spellPoints());
@@ -95,7 +95,7 @@ void DrinkingPotionWithTraitEffectHasTraitApplied()
 
     command("drink potion", Player);
 
-    ExpectTrue(Player->isTraitOf("lib/instances/items/potions/traits/tears-of-ilyrth.c"));
+    ExpectTrue(Player->isTraitOf("/lib/instances/items/potions/traits/tears-of-ilyrth.c"));
     ExpectEq(100, Player->hitPoints());
     ExpectEq(250, Player->maxHitPoints());
     ExpectEq(100, Player->spellPoints());

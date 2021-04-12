@@ -19,9 +19,9 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/common/folding.c",
+    addPrerequisite("/lib/instances/research/crafting/armor/common/folding.c",
         (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/armor/common/forge-welding.c",
+    addPrerequisite("/lib/instances/research/crafting/armor/common/forge-welding.c",
         (["type":"research"]));
 
     addPrerequisite("weapon smithing", (["type":"skill", "value" : 10]));

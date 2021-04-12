@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/heavy-armor/bergons-way.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/heavy-armor/bergons-way.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 30]));
     addPrerequisite("blacksmithing", (["type":"skill", "value" : 25]));

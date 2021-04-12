@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 65
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/angol-manadh.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/angol-manadh.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

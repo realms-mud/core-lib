@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 75
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

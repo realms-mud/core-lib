@@ -14,7 +14,7 @@ protected void Setup()
         "stone when crafting.");
     addSpecification("research type", "granted");
 
-    addPrerequisite("lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
-    addPrerequisite("lib/instances/research/crafting/materials/craftConcrete.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftGems.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftStone.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftConcrete.c", (["type":"research"]));
 }

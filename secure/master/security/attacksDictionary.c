@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/dictionaries/attacksDictionary");
+    setName("/lib/dictionaries/attacksDictionary");
     addPermission("/lib/dictionaries/attacks", Read);
 
     addPriviledgedEfun("get_dir");

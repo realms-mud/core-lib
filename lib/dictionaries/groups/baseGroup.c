@@ -35,11 +35,11 @@ public nomask string group()
     string group = 0;
 
     string *groupName = regexp(({ program_name(this_object()) }),
-        "^lib/.*dictionaries/groups/[a-zA-Z]+\.c$");
+        "^/lib/.*dictionaries/groups/[a-zA-Z]+\.c$");
     if (sizeof(groupName))
     {
         group = regreplace(groupName[0],
-            "^lib/.*dictionaries/groups/([a-zA-Z]+)\.c$",
+            "^/lib/.*dictionaries/groups/([a-zA-Z]+)\.c$",
             "\\1");
     }
     return group;
@@ -55,7 +55,7 @@ public nomask string name()
 public nomask int isMemberOf(object user)
 {
     object *members = filter(users(),
-        (: return (program_name($1) == "lib/realizations/wizard.c") &&
+        (: return (program_name($1) == "/lib/realizations/wizard.c") &&
             (member($1->groups(), group()) > -1); :));
 
     return user && objectp(user) && sizeof(members) &&

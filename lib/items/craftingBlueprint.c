@@ -123,7 +123,7 @@ private nomask mapping getMaterialsOnHand(object user)
 {
     mapping ret = ([]);
     object *inventory = filter(deep_inventory(user),
-        (: (member(inherit_list($1), "lib/items/material.c") > -1) :));
+        (: (member(inherit_list($1), "/lib/items/material.c") > -1) :));
 
     if (sizeof(inventory))
     {

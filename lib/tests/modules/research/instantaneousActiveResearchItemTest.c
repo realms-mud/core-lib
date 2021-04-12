@@ -459,12 +459,12 @@ void CooldownAffectedByOtherResearch()
 
     ExpectTrue(Effect->testAddSpecification("cooldown", 100));
     ExpectTrue(Effect->testAddSpecification("cooldown modifiers", 
-        (["lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
+        (["/lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
 
     ExpectEq(100, Effect->cooldown(User));
 
     User->addResearchPoints(1);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
 
     ExpectEq(75, Effect->cooldown(User));
 }
@@ -479,18 +479,18 @@ void CostAffectedByOtherResearch()
     ExpectTrue(Effect->testAddSpecification("spell point cost", 100));
     ExpectTrue(Effect->testAddSpecification("stamina point cost", 100));
     ExpectTrue(Effect->testAddSpecification("hit point cost modifiers",
-        (["lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
+        (["/lib/tests/support/research/comboPartResearchItemA.c": 25 ])));
     ExpectTrue(Effect->testAddSpecification("spell point cost modifiers",
-        (["lib/tests/support/research/comboPartResearchItemA.c": 15 ])));
+        (["/lib/tests/support/research/comboPartResearchItemA.c": 15 ])));
     ExpectTrue(Effect->testAddSpecification("stamina point cost modifiers",
-        (["lib/tests/support/research/comboPartResearchItemA.c": 10 ])));
+        (["/lib/tests/support/research/comboPartResearchItemA.c": 10 ])));
 
     ExpectEq((["hit point cost": 100,
                "spell point cost": 100,
                "stamina point cost": 100]), Effect->getUsageCosts("", User));
 
     User->addResearchPoints(1);
-    User->initiateResearch("lib/tests/support/research/comboPartResearchItemA.c");
+    User->initiateResearch("/lib/tests/support/research/comboPartResearchItemA.c");
 
     ExpectEq((["hit point cost": 75,
                "spell point cost": 85,

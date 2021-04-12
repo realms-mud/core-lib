@@ -18,7 +18,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/weapons/common/folding.c",
+    addPrerequisite("/lib/instances/research/crafting/weapons/common/folding.c",
         (["type":"research"]));
 
     addPrerequisite("metal crafting", (["type":"skill", "value" : 10]));

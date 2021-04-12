@@ -39,8 +39,8 @@ void Setup()
         "name": "test choice",
         "description": "Test description",
         "apply": "at level 5",
-        "research objects": ({ "lib/tests/support/research/testLimitedActiveResearchItem.c",
-            "lib/tests/support/research/testGrantedResearchItem.c" })
+        "research objects": ({ "/lib/tests/support/research/testLimitedActiveResearchItem.c",
+            "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]);
     User->addResearchChoice(researchChoice);
     User->registerEvent(ResearchChooser);
@@ -52,14 +52,14 @@ void Setup()
             "type": "research object",
             "name" : "second option",
             "description" : "second description",
-            "key" : "lib/tests/support/research/testLimitedActiveResearchItem.c"
+            "key" : "/lib/tests/support/research/testLimitedActiveResearchItem.c"
         ]),
         "1": ([
             "choice": "test choice",
             "type": "research object",
             "name" : "first option",
             "description" : "first description",
-            "key" : "lib/tests/support/research/testGrantedResearchItem.c"
+            "key" : "/lib/tests/support/research/testGrantedResearchItem.c"
         ])
     ]);
 }
@@ -142,7 +142,7 @@ void ApplyResearchChoiceReturnsSuccessWhenChooserSetUpAndOptionSelected()
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
     ExpectEq(Success, ResearchChooser->applyResearchChoice("1"));
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectFalse(ResearchChooser, "Chooser has been destroyed");
 }
 
@@ -160,7 +160,7 @@ void OnResearchChoiceAvailableSilentlySelectsOptionIfOnlyOneObjectAvailable()
     m_delete(Data, "2");
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"));
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectFalse(ResearchChooser, "Chooser has been destroyed");
 }
 
@@ -173,13 +173,13 @@ void OnResearchChoiceAvailableSilentlySelectsOptionIfOnlyOneTreeAvailable()
             "type": "research tree",
             "name" : "first option",
             "description" : "first description",
-            "key" : "lib/tests/support/guilds/testGuildResearchTree.c"
+            "key" : "/lib/tests/support/guilds/testGuildResearchTree.c"
         ])
     ]);
     ResearchChooser->setResearchTitle("test choice");
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
     ResearchChooser->onResearchChoiceAvailable(User, Data);
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -191,22 +191,22 @@ void ApplyResearchChoiceReturnsSuccessWhenPathSelected()
             "type": "research tree",
             "name" : "first option",
             "description" : "first description",
-            "key" : "lib/tests/support/guilds/testGuildResearchTree.c"
+            "key" : "/lib/tests/support/guilds/testGuildResearchTree.c"
         ]),
         "2": ([
             "choice": "test choice",
             "type": "research tree",
             "name" : "second option",
             "description" : "second description",
-            "key" : "lib/tests/support/research/testSecondResearchTree.c"
+            "key" : "/lib/tests/support/research/testSecondResearchTree.c"
         ])
     ]);
     
     ResearchChooser->setResearchTitle("test choice");
     ResearchChooser->onResearchChoiceAvailable(User, Data);
-    ExpectFalse(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
-    ExpectFalse(member(User->availableResearchTrees(), "lib/tests/support/research/testSecondResearchTree.c") > -1);
+    ExpectFalse(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectFalse(member(User->availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
     ExpectEq(Success, ResearchChooser->applyResearchChoice("2"));
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"));
-    ExpectTrue(member(User->availableResearchTrees(), "lib/tests/support/research/testSecondResearchTree.c") > -1);
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectTrue(member(User->availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
 }

@@ -19,7 +19,7 @@ protected void Setup()
             "guild": "bard",
             "value": 19
         ]));
-    addPrerequisite("guilds/bard/compositions/the-minstrel.c",
+    addPrerequisite("/guilds/bard/compositions/the-minstrel.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

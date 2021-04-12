@@ -21,7 +21,7 @@ protected void Setup()
         "value": 53
     ]));
 
-    addPrerequisite("guilds/bard/percussion/duotime-drive.c",
+    addPrerequisite("/guilds/bard/percussion/duotime-drive.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

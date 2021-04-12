@@ -24,9 +24,9 @@ protected void Setup()
         "of frigid mist at all foes in the area.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/ice/ice-javelin.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/ice/ice-javelin.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -66,7 +66,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
             "name" : "Chill the Blood",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
             "name" : "Freezing Mark",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -82,7 +82,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/winters-rage.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/winters-rage.c", WeaponType),
             "name" : "Winter's Rage",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -90,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/wind-chill.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/wind-chill.c", WeaponType),
             "name" : "Wind Chill",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -98,7 +98,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
             "name" : "Icy Mark",
             "formula" : "multiplicative",
             "base value" : 1,

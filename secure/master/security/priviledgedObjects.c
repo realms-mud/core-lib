@@ -11,10 +11,10 @@ private mapping priviledgedObjects = ([]);
 private nomask void Initialize()
 {
     string *priviledgedList = get_dir("/secure/master/security/*", 0x10) -
-        ({ "secure/master/security/.",
-            "secure/master/security/..",
-            "secure/master/security/priviledgedObjects.c",
-            "secure/master/security/priviledgeGroup.c" });
+        ({ "/secure/master/security/.",
+            "/secure/master/security/..",
+            "/secure/master/security/priviledgedObjects.c",
+            "/secure/master/security/priviledgeGroup.c" });
 
     foreach(string priviledgeGroup in priviledgedList)
     {

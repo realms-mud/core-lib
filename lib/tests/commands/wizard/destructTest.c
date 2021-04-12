@@ -56,7 +56,7 @@ void DestructOfExistingItemRemovesItFromInventory()
     move_object(item, Wizard);
 
     ExpectEq(1, sizeof(all_inventory(Wizard)));
-    ExpectEq("lib/instances/items/weapons/swords/long-sword.c", 
+    ExpectEq("/lib/instances/items/weapons/swords/long-sword.c", 
         program_name(all_inventory(Wizard)[0]));
     ExpectEq(1, Wizard->executeCommand("destruct sword"));
     ExpectEq(0, sizeof(all_inventory(Wizard)));
@@ -85,6 +85,6 @@ void DestructOfEnvironmentMovesCharacterBack()
     ExpectEq(({ Wizard, item }), all_inventory(load_object("/lib/environment/environment.c")));
     ExpectEq(1, Wizard->executeCommand("dest /lib/environment/environment.c"));
     
-    ExpectEq("lib/environment/environment.c", environment(Wizard));
+    ExpectEq("/lib/environment/environment.c", environment(Wizard));
     ExpectEq(({ Wizard }), all_inventory(load_object("/lib/environment/environment.c")));
 }

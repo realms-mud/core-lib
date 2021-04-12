@@ -9,9 +9,9 @@ public void Setup()
 {
     cloneEnvironment();
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("tutorial/temple/environment/features/purple-liquid.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
     // First test
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "first test");

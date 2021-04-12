@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 27
         ]));
-    addPrerequisite("guilds/fighter/blades/blademasters-speed.c",
+    addPrerequisite("/guilds/fighter/blades/blademasters-speed.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

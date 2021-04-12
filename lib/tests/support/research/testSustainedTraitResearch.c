@@ -14,5 +14,5 @@ protected void Setup()
     addSpecification("cooldown", 4);
     addSpecification("spell point cost", 10);
     addSpecification("command template", "throw turnip at ##Target##");
-    addSpecification("trait", "lib/tests/support/traits/testTraitForSustainedResearch.c");
+    addSpecification("trait", "/lib/tests/support/traits/testTraitForSustainedResearch.c");
 }

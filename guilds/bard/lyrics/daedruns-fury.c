@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Daedrun's Fury");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "lyric");
     addSpecification("composite class", "lyric");
     addSpecification("default composite description",
@@ -30,13 +30,13 @@ protected void Setup()
           "guild": "bard",
           "value": 7 ]));
 
-    addPrerequisite("guilds/bard/lyrics/inspiring-lyric.c",
+    addPrerequisite("/guilds/bard/lyrics/inspiring-lyric.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/daedruns-might.c",
+            "research item": "/guilds/bard/lyrics/daedruns-might.c",
             "name": "daedruns-might",
             "formula": "multiplicative",
             "base value": 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/daedruns-sorrow.c",
+            "research item": "/guilds/bard/lyrics/daedruns-sorrow.c",
             "name": "daedruns-sorrow",
             "formula": "multiplicative",
             "base value": 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/daedruns-regret.c",
+            "research item": "/guilds/bard/lyrics/daedruns-regret.c",
             "name": "daedruns-regret",
             "formula": "multiplicative",
             "base value": 1,
@@ -60,7 +60,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/daedruns-despair.c",
+            "research item": "/guilds/bard/lyrics/daedruns-despair.c",
             "name": "daedruns-despair",
             "formula": "multiplicative",
             "base value": 1,
@@ -68,7 +68,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/aaba.c",
+            "research item": "/guilds/bard/compositions/aaba.c",
             "name": "aaba",
             "formula": "multiplicative",
             "base value": 1,

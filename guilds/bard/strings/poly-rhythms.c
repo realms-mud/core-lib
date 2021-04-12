@@ -21,7 +21,7 @@ protected void Setup()
         "value": 43
     ]));
 
-    addPrerequisite("guilds/bard/strings/octave-course.c",
+    addPrerequisite("/guilds/bard/strings/octave-course.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -19,7 +19,7 @@ protected void Setup()
         "value": 25 
     ]));
 
-    addPrerequisite("guilds/scion/common/mana-shield/hopes-embrace.c",
+    addPrerequisite("/guilds/scion/common/mana-shield/hopes-embrace.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

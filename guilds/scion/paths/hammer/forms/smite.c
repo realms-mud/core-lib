@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 5 ]));
 
-    addPrerequisite("guilds/scion/paths/hammer/forms/mauling.c",
+    addPrerequisite("/guilds/scion/paths/hammer/forms/mauling.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

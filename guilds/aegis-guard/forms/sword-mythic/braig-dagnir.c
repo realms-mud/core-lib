@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 51
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-mythic/braig-manadh.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-mythic/braig-manadh.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

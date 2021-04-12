@@ -21,7 +21,7 @@ protected void Setup()
         "value": 23
     ]));
 
-    addPrerequisite("guilds/bard/percussion/fell-beat.c",
+    addPrerequisite("/guilds/bard/percussion/fell-beat.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

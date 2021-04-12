@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 23
         ]));
-    addPrerequisite("guilds/bard/melee/armsmans-form.c",
+    addPrerequisite("/guilds/bard/melee/armsmans-form.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

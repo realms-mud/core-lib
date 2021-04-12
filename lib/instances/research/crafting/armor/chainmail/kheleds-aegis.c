@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    addPrerequisite("lib/instances/research/crafting/armor/chainmail/kheleds-legacy.c", 
+    addPrerequisite("/lib/instances/research/crafting/armor/chainmail/kheleds-legacy.c", 
         (["type":"research"]));
     addPrerequisite("armorer", (["type":"skill", "value" : 35]));
 

@@ -21,7 +21,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 19 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/lilt-an-gurth.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/lilt-an-gurth.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

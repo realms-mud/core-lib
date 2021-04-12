@@ -19,15 +19,15 @@ public nomask string RealmsDatabase()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canAccessDatabase(object previous)
 {
-    string *programsWithPermission = ({ "lib/realizations/player.c",
-        "lib/realizations/wizard.c", "lib/commands/player/save.c",
-        "lib/commands/player/quit.c", "secure/login.c",
-        "lib/modules/secure/login.c", "secure/master/user-management.c",
-        "lib/modules/creation/initializePlayer.c",
-        "secure/simulated-efuns/database.c" });
+    string *programsWithPermission = ({ "/lib/realizations/player.c",
+        "/lib/realizations/wizard.c", "/lib/commands/player/save.c",
+        "/lib/commands/player/quit.c", "/secure/login.c",
+        "/lib/modules/secure/login.c", "/secure/master/user-management.c",
+        "/lib/modules/creation/initializePlayer.c",
+        "/secure/simulated-efuns/database.c" });
 
     if (member(inherit_list(this_object()),
-        "secure/simulated-efuns/testing.c") > -1)
+        "/secure/simulated-efuns/testing.c") > -1)
     {
         object restoreCaller = call_direct(this_object(), "restoreCaller");
         if (objectp(restoreCaller))
@@ -35,7 +35,7 @@ public nomask int canAccessDatabase(object previous)
             programsWithPermission += ({ program_name(restoreCaller) });
         }
         programsWithPermission += 
-            ({ "lib/tests/support/services/mockPlayer.c" });
+            ({ "/lib/tests/support/services/mockPlayer.c" });
     }
     
     return member(programsWithPermission, program_name(previous)) > -1;
@@ -44,8 +44,8 @@ public nomask int canAccessDatabase(object previous)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidPersistenceObject(object persistence)
 {
-    return member(({ "lib/realizations/player.c",
-       "lib/realizations/wizard.c" }), program_name(persistence)) > -1;
+    return member(({ "/lib/realizations/player.c",
+       "/lib/realizations/wizard.c" }), program_name(persistence)) > -1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

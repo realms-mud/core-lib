@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "bard",
             "value": 33
         ]));
-    addPrerequisite("guilds/bard/bow/shafts-serenade.c",
+    addPrerequisite("/guilds/bard/bow/shafts-serenade.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -70,9 +70,9 @@ void MemberOfGuildReturnsTrueWhenIfUserJoinedGuild()
 void JoinGuildAddsAdvancementSelector()
 {
     ExpectTrue(User->joinGuild("test"));
-    ExpectTrue(present_clone("lib/modules/guilds/advanceLevelSelector.c", User));
+    ExpectTrue(present_clone("/lib/modules/guilds/advanceLevelSelector.c", User));
     command("3", User);
-    ExpectFalse(present_clone("lib/modules/guilds/advanceLevelSelector.c", User));
+    ExpectFalse(present_clone("/lib/modules/guilds/advanceLevelSelector.c", User));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,14 +185,14 @@ void AdvanceLevelAdvancesLevelAndAppliesGuildCriteria()
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectEq(0, User->attributePoints(), "no attribute points available before advancing");
     ExpectEq(0, User->getSkill("long sword"), "no long sword skill before advancing");
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
     ExpectEq(2, User->guildLevel("test"), "guild level is 2");
     ExpectEq(160, User->maxHitPoints(), "maxHitPoints is 160 after advancing");
     ExpectEq(10, User->AvailableSkillPoints(), "skill points available after advancing");
     ExpectEq(1, User->attributePoints(), "attribute points available after advancing");
     ExpectEq(2, User->researchPoints(), "research points available after advancing");
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
     
     ExpectEq(1, User->getSkill("long sword"), "long sword skill after advancing");
 }
@@ -288,12 +288,12 @@ void AdvanceRankAppliesNewRank()
     ExpectEq("neophyte", User->guildRank("test"), "default guild rank is set");
 
     ExpectEq(2, User->ageWhenRankAdvanced("test"));
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
     User->heart_beat();
 
     ExpectTrue(User->advanceRank("test"), "guild rank advanced");
     ExpectEq("acolyte", User->guildRank("test"), "guild rank is set");
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
     ExpectEq(4, User->ageWhenRankAdvanced("test"));
 }
 
@@ -432,17 +432,17 @@ void LeavingGuildDoesNotRemoveLearnedGuildSkills()
     User->joinGuild("test");
     ExpectTrue(User->addExperience(1000), "experience added");
     ExpectEq(0, User->getSkill("long sword"), "no long sword skill before advancing");
-    ExpectFalse(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
+    ExpectFalse(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research not researched");
     ExpectTrue(User->advanceLevel("test"), "level advanced");
     ExpectEq(2, User->guildLevel("test"), "guild level is 2");
     ExpectEq(160, User->maxHitPoints(), "maxHitPoints is 160 after advancing");
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
     ExpectEq(1, User->getSkill("long sword"), "long sword skill after advancing");
 
     ExpectTrue(User->leaveGuild("test"), "user leaves the guild");
     ExpectEq(0, User->guildLevel("test"), "guild level is now 0");
     ExpectEq(160, User->maxHitPoints(), "maxHitPoints is unchanged after leaving");
-    ExpectTrue(User->isResearched("lib/tests/support/research/testGrantedResearchItem.c"), "test research is still researched");
+    ExpectTrue(User->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is still researched");
     ExpectEq(1, User->getSkill("long sword"), "long sword skill is still 6");
 }
 
@@ -477,7 +477,7 @@ void GuildsResearchTreesCorrectlyAppliesResearchTrees()
     AdvanceToLevel(4, "test");
     ExpectEq("", User->availableResearchTrees(), "still no trees before level 5");
     AdvanceToLevel(5, "test");
-    ExpectEq(({ "lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "correct trees after advancing to level 5");
+    ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }), User->availableResearchTrees(), "correct trees after advancing to level 5");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -485,11 +485,11 @@ void CanResearchItemsInGuildResearchTree()
 {
     User->addSkillPoints(100);
     User->advanceSkill("long sword", 10);
-    ExpectFalse(User->initiateResearch("lib/tests/support/guilds/testGuildItem.c"), "cannot initiate research when not in guild");
+    ExpectFalse(User->initiateResearch("/lib/tests/support/guilds/testGuildItem.c"), "cannot initiate research when not in guild");
     User->joinGuild("test");
-    ExpectFalse(User->initiateResearch("lib/tests/support/guilds/testGuildItem.c"), "cannot initiate research when tree not available");
+    ExpectFalse(User->initiateResearch("/lib/tests/support/guilds/testGuildItem.c"), "cannot initiate research when tree not available");
     AdvanceToLevel(5, "test");
-    ExpectTrue(User->initiateResearch("lib/tests/support/guilds/testGuildItem.c"), "can research when tree is available");
+    ExpectTrue(User->initiateResearch("/lib/tests/support/guilds/testGuildItem.c"), "can research when tree is available");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -500,8 +500,8 @@ void CannotResearchItemsInGuildResearchTreeAfterLeavingGuild()
     User->joinGuild("test");
     AdvanceToLevel(5, "test");
     User->leaveGuild("test");
-    ExpectTrue(User->isResearched("lib/tests/support/guilds/testGuildTreeRoot.c"), "tree root has been researched");
-    ExpectFalse(User->initiateResearch("lib/tests/support/guilds/testGuildItem.c"), "cannot research item from tree");
+    ExpectTrue(User->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "tree root has been researched");
+    ExpectFalse(User->initiateResearch("/lib/tests/support/guilds/testGuildItem.c"), "cannot research item from tree");
 }
 
 /////////////////////////////////////////////////////////////////////////////

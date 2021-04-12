@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "Aegis Guard",
             "value": 49
         ]));
-    addPrerequisite("guilds/aegis-guard/forms/sword-elemental/faen-manadh.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-elemental/faen-manadh.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft complex flails like military and segmented flails.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/weapons/flails/craftBasicFlail.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/weapons/flails/craftBasicFlail.c", (["type":"research"]));
 }

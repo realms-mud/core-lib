@@ -7,7 +7,7 @@ inherit "/secure/master/security/priviledgeGroup.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void applyGroupDetails()
 {
-    setName("lib/commands/commandRegistry");
+    setName("/lib/commands/commandRegistry");
     addPermission("/lib/commands", Read);
 
     addPriviledgedEfun("get_dir");

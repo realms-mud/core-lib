@@ -130,8 +130,8 @@ protected void Setup()
     Name("Polearm Attacks");
     Description("");
     Source("fighter");
-    addResearchElement("guilds/fighter/polearms/root.c");
-    TreeRoot("guilds/fighter/polearms/root.c");
+    addResearchElement("/guilds/fighter/polearms/root.c");
+    TreeRoot("/guilds/fighter/polearms/root.c");
 
     FirstLevel();
     SecondLevel();

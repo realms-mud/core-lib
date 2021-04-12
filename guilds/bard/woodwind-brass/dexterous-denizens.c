@@ -22,17 +22,17 @@ protected void Setup()
         "value": 29
     ]));
 
-    addPrerequisite("guilds/bard/woodwind-brass/creatures-of-the-forest.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/creatures-of-the-forest.c",
         (["type":"research"]));
-    addPrerequisite("guilds/bard/woodwind-brass/the-wailing-cat.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/the-wailing-cat.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/bard/woodwind-brass/creatures-of-the-forest.c",
-        "guilds/bard/woodwind-brass/the-wailing-cat.c",
-        "guilds/bard/woodwind-brass/ballad-of-the-bear.c",
-        "guilds/bard/woodwind-brass/ursine-tune.c",
+        "/guilds/bard/woodwind-brass/creatures-of-the-forest.c",
+        "/guilds/bard/woodwind-brass/the-wailing-cat.c",
+        "/guilds/bard/woodwind-brass/ballad-of-the-bear.c",
+        "/guilds/bard/woodwind-brass/ursine-tune.c",
     }));
 }

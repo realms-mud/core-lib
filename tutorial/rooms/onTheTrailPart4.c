@@ -102,7 +102,7 @@ public void runHeadlongIntoTrap()
     tell_room(this_object(), "Halgaladh, Thomas, and Galadhel leave west.\n");
 
     object *allies = filter(all_inventory(this_object()),
-        (: member(inherit_list($1), "lib/realizations/npc.c") > -1 :));
+        (: member(inherit_list($1), "/lib/realizations/npc.c") > -1 :));
 
     foreach(object ally in allies)
     {
@@ -114,7 +114,7 @@ public void runHeadlongIntoTrap()
 /////////////////////////////////////////////////////////////////////////////
 public void onDeath(object caller)
 {
-    if (caller && (program_name(caller) == "tutorial/characters/keeper-of-the-night.c"))
+    if (caller && (program_name(caller) == "/tutorial/characters/keeper-of-the-night.c"))
     {
         StateMachine->beginConversation("the corpse is human");
         call_out("runHeadlongIntoTrap", 0);

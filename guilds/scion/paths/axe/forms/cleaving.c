@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of how to more effectively cleave with axes.");
     addSpecification("limited by", (["equipment":({ "axe" })]));
 
-    addPrerequisite("guilds/scion/paths/axe/root.c",
+    addPrerequisite("/guilds/scion/paths/axe/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

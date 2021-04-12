@@ -62,7 +62,7 @@ public void runtime_error(string error, string program,
             "fabric of space.\n";
 
         if (member(inherit_list(this_player()),
-            "lib/realizations/wizard.c") > -1)
+            "/lib/realizations/wizard.c") > -1)
         {
             message = currentObject ?
                 sprintf("%s, program: %O, object: %O line %d\n",

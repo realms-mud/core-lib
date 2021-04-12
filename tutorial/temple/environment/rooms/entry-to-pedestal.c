@@ -8,9 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addFeature("tutorial/temple/environment/features/amethyst-floor.c");
-    addFeature("tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("tutorial/temple/environment/features/purple-liquid.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-floor.c");
+    addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
+    addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 

@@ -6,7 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string BaseQuest = "lib/modules/quests/questItem.c";
+private string BaseQuest = "/lib/modules/quests/questItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask object questObject(string questItem)

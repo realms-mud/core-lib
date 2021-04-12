@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Coronach of Capitulation");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "instrumental rhythm");
     addSpecification("composite class", "strings");
     addSpecification("default composite description",
@@ -33,7 +33,7 @@ protected void Setup()
         "equipment":({ "instrument: plucked", "instrument: bowed" }),
     ]));
 
-    addPrerequisite("guilds/bard/strings/root.c",
+    addPrerequisite("/guilds/bard/strings/root.c",
         (["type":"research"]));
 
     addSpecification("spell point cost", 15);
@@ -64,7 +64,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/hammer-ons-and-pull-offs.c",
+            "research item": "/guilds/bard/strings/hammer-ons-and-pull-offs.c",
             "name": "hammer-ons-and-pull-offs",
             "formula": "multiplicative",
             "base value": 1,
@@ -72,7 +72,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/string-bending.c",
+            "research item": "/guilds/bard/strings/string-bending.c",
             "name": "string-bending",
             "formula": "multiplicative",
             "base value": 1,
@@ -80,7 +80,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/slide-techniques.c",
+            "research item": "/guilds/bard/strings/slide-techniques.c",
             "name": "slide-techniques",
             "formula": "multiplicative",
             "base value": 1,
@@ -88,7 +88,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/string-skipping.c",
+            "research item": "/guilds/bard/strings/string-skipping.c",
             "name": "string-skipping",
             "formula": "multiplicative",
             "base value": 1,
@@ -96,7 +96,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/strings/finger-picking.c",
+            "research item": "/guilds/bard/strings/finger-picking.c",
             "name": "finger-picking",
             "formula": "multiplicative",
             "base value": 1,
@@ -104,7 +104,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/ababcb.c",
+            "research item": "/guilds/bard/compositions/ababcb.c",
             "name": "ababcb",
             "formula": "multiplicative",
             "base value": 1,

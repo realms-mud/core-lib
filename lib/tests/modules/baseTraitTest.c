@@ -23,7 +23,7 @@ void CleanUp()
 void SettingInvalidBonusThrowsError()
 {
     string err = catch (Trait->addSpecification("bonus llama", 2));
-    string expectedError = "*ERROR - trait: the 'bonus llama' specification must be a valid modifier as defined in lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - trait: the 'bonus llama' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
@@ -244,7 +244,7 @@ void CanSetCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidResearchTreeThrowsError()
 {
-    string err = catch (Trait->addSpecification("research tree", "lib/fake/research/tree.c"));
+    string err = catch (Trait->addSpecification("research tree", "/lib/fake/research/tree.c"));
     string expectedError = "*ERROR - trait: The 'research tree' value must be a valid research tree.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opinion");
@@ -253,8 +253,8 @@ void SettingInvalidResearchTreeThrowsError()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetResearchTree()
 {
-    ExpectEq(1, Trait->addSpecification("research tree", "lib/tests/support/research/testResearchTree.c"), "set the research tree");
-    ExpectEq("lib/tests/support/research/testResearchTree.c", Trait->query("research tree"), "can query the research tree");
+    ExpectEq(1, Trait->addSpecification("research tree", "/lib/tests/support/research/testResearchTree.c"), "set the research tree");
+    ExpectEq("/lib/tests/support/research/testResearchTree.c", Trait->query("research tree"), "can query the research tree");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -301,7 +301,7 @@ void EffectTraitsMustHaveDurationSetToBeConsideredValid()
 /////////////////////////////////////////////////////////////////////////////
 void SettingTriggeringResearchFailsIfNotSustainedResearch()
 {
-    string err = catch (Trait->addSpecification("triggering research", "lib/tests/support/research/testResearchItem.c"));
+    string err = catch (Trait->addSpecification("triggering research", "/lib/tests/support/research/testResearchItem.c"));
     string expectedError = "*ERROR - trait: The 'triggering research' value must be a valid sustained research.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid triggering research");
@@ -310,6 +310,6 @@ void SettingTriggeringResearchFailsIfNotSustainedResearch()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetTriggeringResearch()
 {
-    ExpectEq(1, Trait->addSpecification("triggering research", "lib/tests/support/research/testSustainedResearchItem.c"), "set the triggering research");
-    ExpectEq("lib/tests/support/research/testSustainedResearchItem.c", Trait->query("triggering research"), "can query the triggering research");
+    ExpectEq(1, Trait->addSpecification("triggering research", "/lib/tests/support/research/testSustainedResearchItem.c"), "set the triggering research");
+    ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c", Trait->query("triggering research"), "can query the triggering research");
 }

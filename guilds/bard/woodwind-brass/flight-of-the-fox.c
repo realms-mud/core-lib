@@ -22,12 +22,12 @@ protected void Setup()
         "value": 19
     ]));
 
-    addPrerequisite("guilds/bard/woodwind-brass/creatures-of-might.c",
+    addPrerequisite("/guilds/bard/woodwind-brass/creatures-of-might.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/bard/woodwind-brass/creatures-of-the-forest.c"
+        "/guilds/bard/woodwind-brass/creatures-of-the-forest.c"
     }));
 }

@@ -21,7 +21,7 @@ protected void Setup()
           "guild": "Scion of Dhuras",
           "value": 30 ]));
 
-    addPrerequisite("guilds/scion/paths/axe/forms/changing-through.c",
+    addPrerequisite("/guilds/scion/paths/axe/forms/changing-through.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

@@ -23,9 +23,9 @@ protected void Setup()
         "energy that swarms around a foe.");
     SetupResearch();
 
-    addPrerequisite(sprintf("guilds/scion/paths/%s/root.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type":"research"]));
-    addPrerequisite(sprintf("guilds/scion/paths/%s/ice/frost-brand.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/ice/frost-brand.c", WeaponType),
         (["type":"research"]));
     addPrerequisite("level",
         (["type":"level",
@@ -36,7 +36,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/frost-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/frost-barrier.c", WeaponType),
             "name" : "Frost Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType),
             "name" : "Frozen Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": sprintf("guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType),
+            "research item": sprintf("/guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType),
             "name" : "Icy Barrier",
             "formula" : "multiplicative",
             "base value" : 1,

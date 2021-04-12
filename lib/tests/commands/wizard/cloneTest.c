@@ -54,7 +54,7 @@ void CloneOfExistingItemPlacesItInInventory()
     ExpectEq(0, sizeof(all_inventory(Wizard)));
     ExpectEq(1, Wizard->executeCommand("clone /lib/items/weapon.c"));
     ExpectEq(1, sizeof(all_inventory(Wizard)));
-    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    ExpectEq("/lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
     destruct(all_inventory(Wizard)[0]);
 }
 
@@ -64,7 +64,7 @@ void CloneOfNonGettableItemPlacesItInEnvironment()
     ExpectEq(1, sizeof(all_inventory(environment(Wizard))));
     ExpectEq(1, Wizard->executeCommand("clone /lib/realizations/npc.c"));
     ExpectEq(2, sizeof(all_inventory(environment(Wizard))));
-    ExpectEq("lib/realizations/npc.c", 
+    ExpectEq("/lib/realizations/npc.c", 
         program_name(all_inventory(environment(Wizard))[0]));
     destruct(all_inventory(environment(Wizard))[0]);
 }
@@ -92,7 +92,7 @@ void CloneHandlesRelativePaths()
 {
     Wizard->pwd("/lib/items");
     ExpectEq(1, Wizard->executeCommand("clone weapon.c"));
-    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    ExpectEq("/lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
     destruct(all_inventory(Wizard)[0]);
 }
 
@@ -101,7 +101,7 @@ void CloneCanCloneValidObjectsWhenDotCMissing()
 {
     Wizard->pwd("/lib/items");
     ExpectEq(1, Wizard->executeCommand("clone weapon"));
-    ExpectEq("lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
+    ExpectEq("/lib/items/weapon.c", program_name(all_inventory(Wizard)[0]));
     destruct(all_inventory(Wizard)[0]);
 }
 

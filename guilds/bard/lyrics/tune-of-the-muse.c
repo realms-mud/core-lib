@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Tune of the Muse");
     addSpecification("source", "bard");
     addSpecification("composite research",
-        "guilds/bard/compositions/root.c");
+        "/guilds/bard/compositions/root.c");
     addSpecification("composite type", "lyric");
     addSpecification("composite class", "lyric");
     addSpecification("default composite description",
@@ -28,13 +28,13 @@ protected void Setup()
         ([  "type": "skill",
             "value": 5
         ]));
-    addPrerequisite("guilds/bard/lyrics/inspiring-lyrics.c",
+    addPrerequisite("/guilds/bard/lyrics/inspiring-lyrics.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/bard/lyrics/silver-tongue.c",
+            "research item": "/guilds/bard/lyrics/silver-tongue.c",
             "name": "silver-tongue",
             "formula": "multiplicative",
             "base value": 1,
@@ -42,7 +42,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/bard/compositions/aaba.c",
+            "research item": "/guilds/bard/compositions/aaba.c",
             "name": "aaba",
             "formula": "multiplicative",
             "base value": 1,

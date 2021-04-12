@@ -15,8 +15,8 @@ public nomask void SetupCommand()
 public nomask void shutdownGame()
 {
     string previousObject = object_name(previous_object());
-    if (member(({ object_name(this_object()), "secure/simul_efun",
-        "secure/master" }), previousObject) > -1)
+    if (member(({ object_name(this_object()), "/secure/simul_efun",
+        "/secure/master" }), previousObject) > -1)
     {
         shutdown();
     }

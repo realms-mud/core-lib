@@ -412,7 +412,7 @@ public nomask int advanceRank(string guild)
             events->notify("onAdvancedRank");
         }
 
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (persistence)
         {
             persistence->save();
@@ -454,7 +454,7 @@ public nomask int demoteRank(string guild)
             events->notify("onDemotedRank");
         }
 
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (persistence)
         {
             persistence->save();
@@ -530,7 +530,7 @@ public nomask int joinGuild(string guild)
         // Trigger distribution of unassigned experience points
         addExperience(0);
 
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (persistence)
         {
             persistence->save();
@@ -579,7 +579,7 @@ public nomask int leaveGuild(string guild)
             events->notify("onLeaveGuild");
         }
 
-        object persistence = getService("secure/persistence");
+        object persistence = getService("/secure/persistence");
         if (persistence)
         {
             persistence->save();

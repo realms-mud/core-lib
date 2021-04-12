@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("research type", "granted");
     addSpecification("cooldown", 4);
     addSpecification("command template", "throw turnip at ##Target##");
-    addSpecification("trait", "lib/tests/support/traits/testTraitWithDuration.c");
+    addSpecification("trait", "/lib/tests/support/traits/testTraitWithDuration.c");
 }

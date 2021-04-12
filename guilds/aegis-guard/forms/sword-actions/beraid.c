@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "A punishing stab capable of shattering "
         "any guards.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-guarding/gliri.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/gliri.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -50,7 +50,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
             "name": "angannon",
             "formula": "multiplicative",
             "base value": 1,
@@ -58,7 +58,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-guarding/braig-an-beraid.c",
+            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-beraid.c",
             "name": "glingamath",
             "formula": "multiplicative",
             "base value": 1,
@@ -66,7 +66,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item" : "guilds/aegis-guard/forms/sword-guarding/tur-beraid.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-beraid.c",
             "name" : "raud-angannon",
             "formula" : "multiplicative",
             "base value" : 1,

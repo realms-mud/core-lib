@@ -16,7 +16,7 @@ protected void Setup()
     addSpecification("usage summary", "An advanced thrusting technique "
         "well-suited to circumventing shields.");
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
         (["type":"research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",
@@ -49,7 +49,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
             "name": "Lelyan Isilme",
             "formula": "multiplicative",
             "base value": 1,
@@ -57,7 +57,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
             "name" : "Ruth Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -65,7 +65,7 @@ protected void Setup()
         ]),
         ([
             "type":"research",
-            "research item": "guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
+            "research item": "/guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
             "name" : "Lanna Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
@@ -73,7 +73,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item" : "guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
+            "research item" : "/guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
             "name" : "Centhlein Dravn",
             "formula" : "multiplicative",
             "base value" : 1,

@@ -31,7 +31,7 @@ void Setup()
     User->advanceSkill("long sword", 16);
     User->ToggleMockResearch();
     User->addResearchPoints(50);
-    User->initiateResearch("lib/tests/support/research/summoningItem.c");
+    User->initiateResearch("/lib/tests/support/research/summoningItem.c");
 
     Target = clone_object("/lib/realizations/monster.c");
     Target->Name("Frank");
@@ -86,7 +86,7 @@ void SummoningWithUnResearchedModifierDoesNotApplyModifier()
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWithResearchedModifierAppliesModifier()
 {
-    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
+    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -109,21 +109,21 @@ void SummoningWithResearchedModifierAppliesModifier()
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWithApplyResearchAppliesModifier()
 {
-    User->initiateResearch("lib/tests/support/research/weaselMagic.c");
+    User->initiateResearch("/lib/tests/support/research/weaselMagic.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
     command("summon weasel", User);
     ExpectEq(4, sizeof(all_inventory(Room)));
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
-    ExpectEq(({ "lib/tests/support/research/weaselSpell.c" }), 
+    ExpectEq(({ "/lib/tests/support/research/weaselSpell.c" }), 
         weasel->completedResearch());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWilNotExceedMaximumAllowed()
 {
-    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
+    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -142,7 +142,7 @@ void SummoningWilNotExceedMaximumAllowed()
 /////////////////////////////////////////////////////////////////////////////
 void SummoningCanReAddUpToMaximumAllowed()
 {
-    User->initiateResearch("lib/tests/support/research/weaselBuff.c");
+    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -158,7 +158,7 @@ void SummoningCanReAddUpToMaximumAllowed()
 /////////////////////////////////////////////////////////////////////////////
 void CanDisplayResearchInfo()
 {
-    object effect = clone_object("lib/tests/support/research/weaselBuff.c");
+    object effect = clone_object("/lib/tests/support/research/weaselBuff.c");
 
     set_this_player(User);
     User->colorConfiguration("none");
@@ -183,7 +183,7 @@ void CanDisplayResearchInfo()
 /////////////////////////////////////////////////////////////////////////////
 void CanDisplayResearchInfoForApplyResearch()
 {
-    object effect = clone_object("lib/tests/support/research/weaselMagic.c");
+    object effect = clone_object("/lib/tests/support/research/weaselMagic.c");
 
     set_this_player(User);
     User->colorConfiguration("none");

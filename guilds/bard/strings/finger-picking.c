@@ -21,7 +21,7 @@ protected void Setup()
         "value": 31
     ]));
 
-    addPrerequisite("guilds/bard/strings/string-skipping.c",
+    addPrerequisite("/guilds/bard/strings/string-skipping.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

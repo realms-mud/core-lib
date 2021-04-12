@@ -18,6 +18,6 @@ protected void Setup()
     addSpecification("opinion", -25);
     addSpecification("penalty to wisdom", 2);
     addSpecification("penalty to persuasion", 5);
-    addSpecification("research tree", "lib/instances/research/traits/insaneResearchTree.c");
+    addSpecification("research tree", "/lib/instances/research/traits/insaneResearchTree.c");
     addSpecification("cost", -2);
 }

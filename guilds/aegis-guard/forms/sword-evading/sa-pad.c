@@ -20,7 +20,7 @@ protected void Setup()
           "guild": "Aegis Guard",
           "value": 7 ]));
 
-    addPrerequisite("guilds/aegis-guard/forms/sword-evading/laiga-utha.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-evading/laiga-utha.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");

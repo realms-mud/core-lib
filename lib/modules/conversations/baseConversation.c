@@ -7,7 +7,7 @@ virtual inherit "/lib/core/prerequisites.c";
 protected object Configuration = 
     load_object("/lib/dictionaries/configurationDictionary.c");
 
-private string MaterialAttributes = "lib/modules/materialAttributes.c";
+private string MaterialAttributes = "/lib/modules/materialAttributes.c";
 private int ignoreTalk = 0;
 private int SetupCompleted = 0;
 

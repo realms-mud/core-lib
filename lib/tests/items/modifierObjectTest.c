@@ -71,7 +71,7 @@ void CanSetFullyQualifiedName()
 /////////////////////////////////////////////////////////////////////////////
 void FullyQualifiedNameReturnsCorrectly()
 {
-    ExpectEq("lib/items/modifierObject.c", Modifier->fullyQualifiedName(), "default fully qualified name was returned");
+    ExpectEq("/lib/items/modifierObject.c", Modifier->fullyQualifiedName(), "default fully qualified name was returned");
     ExpectTrue(Modifier->set("fully qualified name", "blah"), "fully qualified name can be set");
     ExpectEq("blah", Modifier->fullyQualifiedName(), "'blah' fully qualified name was returned");
 }

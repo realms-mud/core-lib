@@ -63,7 +63,7 @@ void CanGetParty()
     Dictionary->createParty("Test party", Creator);
     object party = Creator->getParty();
 
-    ExpectEq(({ "lib/modules/party/party.c" }), inherit_list(party));
+    ExpectEq(({ "/lib/modules/party/party.c" }), inherit_list(party));
 }
 
 /////////////////////////////////////////////////////////////////////////////

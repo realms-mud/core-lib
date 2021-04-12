@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 15
         ]));
-    addPrerequisite("guilds/fighter/blades/under-cutting.c",
+    addPrerequisite("/guilds/fighter/blades/under-cutting.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

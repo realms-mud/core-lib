@@ -18,12 +18,12 @@ protected void Setup()
         "value": 27
     ]));
 
-    addPrerequisite("guilds/scion/avatars/spirit/spirit-shards.c",
+    addPrerequisite("/guilds/scion/avatars/spirit/spirit-shards.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("related research", ({
-        "guilds/scion/avatars/spirit/root.c",
+        "/guilds/scion/avatars/spirit/root.c",
     }));
 }

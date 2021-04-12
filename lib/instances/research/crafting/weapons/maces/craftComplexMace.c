@@ -12,5 +12,5 @@ protected void Setup()
     addSpecification("description", "This skill provides the user with the "
         "knowledge required to craft complex maces like flanged maces and morning stars.");
     addSpecification("research type", "granted");
-    addPrerequisite("lib/instances/research/crafting/weapons/maces/craftBasicMace.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/weapons/maces/craftBasicMace.c", (["type":"research"]));
 }

@@ -17,7 +17,7 @@ protected void Setup()
             "guild": "fighter",
             "value": 21
         ]));
-    addPrerequisite("guilds/fighter/blades/reverse-cut.c",
+    addPrerequisite("/guilds/fighter/blades/reverse-cut.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

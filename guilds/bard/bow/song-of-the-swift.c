@@ -18,7 +18,7 @@ protected void Setup()
             "guild": "bard",
             "value": 11
         ]));
-    addPrerequisite("guilds/bard/bow/archers-hand.c",
+    addPrerequisite("/guilds/bard/bow/archers-hand.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

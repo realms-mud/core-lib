@@ -13,5 +13,5 @@ protected void Setup()
         "knowledge required to craft items using rare metals such as magnesium or lead.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addPrerequisite("lib/instances/research/crafting/materials/craftUncommonMetal.c", (["type":"research"]));
+    addPrerequisite("/lib/instances/research/crafting/materials/craftUncommonMetal.c", (["type":"research"]));
 }
