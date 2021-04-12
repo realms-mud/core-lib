@@ -8,13 +8,10 @@ private object Dictionary =
     load_object("/lib/dictionaries/commandsDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Wizard";
-        addCommandTemplate("stat ##Target##");
-    }
+    CommandType = "Wizard";
+    addCommandTemplate("stat ##Target##");
 }
 
 /////////////////////////////////////////////////////////////////////////////

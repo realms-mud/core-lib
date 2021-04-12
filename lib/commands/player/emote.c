@@ -5,14 +5,11 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Emote / Soul";
-        addCommandTemplate("emote [.*]");
-        addCommandTemplate(": [.*]");
-    }
+    CommandType = "Emote / Soul";
+    addCommandTemplate("emote [.*]");
+    addCommandTemplate(": [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

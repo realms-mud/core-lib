@@ -11,17 +11,14 @@ private object regionDictionary =
     load_object("/lib/dictionaries/regionDictionary.c");
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Wizard";
-        addCommandTemplate("generate region [-n(ame|) ##Value##] "
-            "[-p(ath|) ##Value##] [-t(ype|) \"##Value##\"] [-x ##Value##] "
-            "[-y ##Value##] [-dir(ection|) ##Value##] "
-            "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] "
-            "[-l(evel|) ##Value##] [-r(ooms|) ##Value##] [.*]");
-    }
+    CommandType = "Wizard";
+    addCommandTemplate("generate region [-n(ame|) ##Value##] "
+        "[-p(ath|) ##Value##] [-t(ype|) \"##Value##\"] [-x ##Value##] "
+        "[-y ##Value##] [-dir(ection|) ##Value##] "
+        "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] "
+        "[-l(evel|) ##Value##] [-r(ooms|) ##Value##] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

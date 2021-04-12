@@ -7,16 +7,13 @@ inherit "/lib/commands/baseCommand.c";
 private object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Player Information";
-        addCommandTemplate("score [-v]");
-        addCommandTemplate("? [-v]"); 
+    CommandType = "Player Information";
+    addCommandTemplate("score [-v]");
+    addCommandTemplate("? [-v]"); 
 
-        Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
-    }
+    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

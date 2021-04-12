@@ -5,16 +5,13 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Social";
-        addCommandTemplate("say [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
-            "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
-        addCommandTemplate("' [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
-            "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
-    }
+    CommandType = "Social";
+    addCommandTemplate("say [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
+        "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
+    addCommandTemplate("' [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
+        "[-l(anguage|) ##Language##] [-t(arget|) ##Target##] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

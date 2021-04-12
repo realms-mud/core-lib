@@ -1062,18 +1062,16 @@ mapping emoteTemplates = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
+    CommandType = "Emote / Soul";
+    SplitCommands = 1;
+    string *emoteList = m_indices(emoteTemplates);
+
+    foreach(string emote in emoteList)
     {
-        CommandType = "Emote / Soul";
-        SplitCommands = 1;
-        string *emoteList = m_indices(emoteTemplates);
-        foreach(string emote in emoteList)
-        {
-            addCommandTemplate(sprintf("%s [-a(dverb|) ##Adverb##] "
-                "[-t(arget|) ##Target##] [.*]", emote));
-        }
+        addCommandTemplate(sprintf("%s [-a(dverb|) ##Adverb##] "
+            "[-t(arget|) ##Target##] [.*]", emote));
     }
 }
 

@@ -5,15 +5,12 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Player R&D";
-        addCommandTemplate("skills [-co(mbat|)] [-cr(afting|)] [-e(rudite|)] "
-            "[-g(eneral|)] [-l(anguage|)] [-m(agic|)] [-s(ubterfuge|)] [-a(ll|)] "
-            "[-advance ##Item##] [-by ##Value##] [.*]");
-    }
+    CommandType = "Player R&D";
+    addCommandTemplate("skills [-co(mbat|)] [-cr(afting|)] [-e(rudite|)] "
+        "[-g(eneral|)] [-l(anguage|)] [-m(agic|)] [-s(ubterfuge|)] [-a(ll|)] "
+        "[-advance ##Item##] [-by ##Value##] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -5,12 +5,10 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        addCommandTemplate("who [-w] [-p] [-r ##Value##] [-g ##Value##]");
-    }
+    CommandType = "General";
+    addCommandTemplate("who [-w] [-p] [-r ##Value##] [-g ##Value##]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

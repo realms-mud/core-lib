@@ -7,14 +7,11 @@ inherit "/lib/commands/baseCommand.c";
 object Configuration;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Wizard";
-        addCommandTemplate("people [-w] [-p]");
-        Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
-    }
+    CommandType = "Wizard";
+    addCommandTemplate("people [-w] [-p]");
+    Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

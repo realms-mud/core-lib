@@ -5,13 +5,10 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Player R&D";
-        addCommandTemplate("level up [-g ##Value##]");
-    }
+    CommandType = "Player R&D";
+    addCommandTemplate("level up [-g ##Value##]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

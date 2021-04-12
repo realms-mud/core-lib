@@ -6,13 +6,10 @@ inherit "/lib/commands/baseCommand.c";
 #include "/lib/modules/secure/logging.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "General";
-        addCommandTemplate("issue [-teleport] [-t ##Target##] [-c ##Value##]");
-    }
+    CommandType = "General";
+    addCommandTemplate("issue [-teleport] [-t ##Target##] [-c ##Value##]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -5,15 +5,12 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Wizard";
-        addCommandTemplate("destruct ##Target##");
-        addCommandTemplate("unmake ##Target##");
-        addCommandTemplate("dest ##Target##");
-    }
+    CommandType = "Wizard";
+    addCommandTemplate("destruct ##Target##");
+    addCommandTemplate("unmake ##Target##");
+    addCommandTemplate("dest ##Target##");
 }
 
 /////////////////////////////////////////////////////////////////////////////

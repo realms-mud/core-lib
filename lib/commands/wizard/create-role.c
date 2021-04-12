@@ -5,13 +5,10 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Wizard";
-        addCommandTemplate("create-role [-t ##Values##] [-r ##Values##] [.*]");
-    }
+    CommandType = "Wizard";
+    addCommandTemplate("create-role [-t ##Values##] [-r ##Values##] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

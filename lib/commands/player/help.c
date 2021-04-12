@@ -6,13 +6,12 @@ inherit "/lib/commands/baseCommand.c";
 private object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
-        addCommandTemplate("help [##Item##]");
-    }
+    CommandType = "General";
+    addCommandTemplate("help [##Item##]");
+
+    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

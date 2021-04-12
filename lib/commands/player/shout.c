@@ -5,14 +5,11 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Social";
-        addCommandTemplate("shout [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
-            "[-l(anguage|) ##Language##] [.*]");
-    }
+    CommandType = "Social";
+    addCommandTemplate("shout [-v(erb|) ##Verb##] [-a(dverb|) ##Adverb##] "
+        "[-l(anguage|) ##Language##] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

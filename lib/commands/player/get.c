@@ -7,14 +7,11 @@ inherit "/lib/commands/baseCommand.c";
 private string TargetString;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Interactions";
-        addCommandTemplate("get [-a] [##Item##] [from ##Target##]");
-        addCommandTemplate("pick up [-a] ##Item##");
-    }
+    CommandType = "Interactions";
+    addCommandTemplate("get [-a] [##Item##] [from ##Target##]");
+    addCommandTemplate("pick up [-a] ##Item##");
 }
 
 /////////////////////////////////////////////////////////////////////////////

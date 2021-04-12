@@ -289,13 +289,10 @@ private mapping parametersToFunction = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "General";
-        addCommandTemplate("set [-p ##Value##] [-v ##Value##]");
-    }
+    CommandType = "General";
+    addCommandTemplate("set [-p ##Value##] [-v ##Value##]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

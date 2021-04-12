@@ -5,15 +5,12 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Player Information";
-        addCommandTemplate("inventory [-v]");
-        addCommandTemplate("i [-v]");
-        addCommandTemplate("inven [-v]");
-    }
+    CommandType = "Player Information";
+    addCommandTemplate("inventory [-v]");
+    addCommandTemplate("i [-v]");
+    addCommandTemplate("inven [-v]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

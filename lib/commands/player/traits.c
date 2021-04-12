@@ -5,15 +5,12 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Player Information";
-        addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
-            "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
-            "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");
-    }
+    CommandType = "Player Information";
+    addCommandTemplate("traits [-b(ackground|)] [-d(etails|)] [-ed(ucational|)] "
+        "[-ef(fect|)] [-ge(netic|)] [-g(uild|)] [-h(ealth|)] [-pe(rsonality|)] "
+        "[-pr(ofessional|)] [-ra(cial|)] [-ro(le|)] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

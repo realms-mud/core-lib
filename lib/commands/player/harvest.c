@@ -5,12 +5,10 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        addCommandTemplate("harvest [-s(tatus|)] [.*]");
-    }
+    CommandType = "General";
+    addCommandTemplate("harvest [-s(tatus|)] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -6,14 +6,11 @@ inherit "/lib/commands/baseCommand.c";
 #include "/lib/include/settings.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void SetupCommand()
 {
-    if (!arg)
-    {
-        CommandType = "Social";
-        addCommandTemplate("tell ##Target## ##Value##");
-        addCommandTemplate("reply ##Value##");
-    }
+    CommandType = "Social";
+    addCommandTemplate("tell ##Target## ##Value##");
+    addCommandTemplate("reply ##Value##");
 }
 
 /////////////////////////////////////////////////////////////////////////////
