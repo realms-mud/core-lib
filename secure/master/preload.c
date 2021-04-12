@@ -28,7 +28,7 @@ protected nomask string *traverseDirectoryForSourceFiles(string *baseDir)
         if ((sizeof(file) > 2) &&
             (file[(sizeof(file) - 2)..(sizeof(file) - 1)] == ".c"))
         {
-            ret += ({ "/" + file });
+            ret += ({ file });
         }
         else if (file_size(file) == -2)
         {

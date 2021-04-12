@@ -12,6 +12,18 @@ void Init()
     load_object("/lib/dictionaries/guildsDictionary.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     load_object("/lib/tests/support/guilds/fighterGuild.c");
+
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database->PrepDatabase();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    mapping actor = database->Gorthaur();
+    actor["name"] = "rob";
+    dataAccess->savePlayerData(actor);
+
+    destruct(dataAccess);
+    destruct(database);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,7 +98,7 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     ExpectTrue(Player->executeCommand("score"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
@@ -120,7 +132,7 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -129,7 +141,7 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -138,7 +150,7 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
@@ -237,7 +249,7 @@ void VFlagDisplaysCombatStatistics()
 /////////////////////////////////////////////////////////////////////////////
 void VFlagWithRealKillsDisplaysCombatStatistics()
 {
-    object foe = clone_object("/lib/realizations/monster");
+    object foe = clone_object("/lib/realizations/monster.c");
     foe->Name("Nukulevee");
     foe->Race("undead horse");
     foe->effectiveLevel(20);
@@ -246,7 +258,7 @@ void VFlagWithRealKillsDisplaysCombatStatistics()
     Player->generateCombatStatistics(foe);
     destruct(foe);
 
-    foe = clone_object("/lib/realizations/monster");
+    foe = clone_object("/lib/realizations/monster.c");
     foe->Name("Earl the Boorish");
     foe->Race("orc");
     foe->effectiveLevel(25);
@@ -267,7 +279,7 @@ void ScoreDisplaysUnicodeCharset()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -276,7 +288,7 @@ void ScoreDisplaysUnicodeCharset()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -285,7 +297,7 @@ void ScoreDisplaysUnicodeCharset()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
@@ -322,7 +334,7 @@ void ScoreDisplaysNoColorCorrectly()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -331,7 +343,7 @@ void ScoreDisplaysNoColorCorrectly()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -340,7 +352,7 @@ void ScoreDisplaysNoColorCorrectly()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("Rob the title-less\n"
@@ -377,7 +389,7 @@ void ScoreDisplaysEightBitColorCorrectly()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -386,7 +398,7 @@ void ScoreDisplaysEightBitColorCorrectly()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -395,7 +407,7 @@ void ScoreDisplaysEightBitColorCorrectly()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("\x1b[0;38;5;144mRob the title-less\n"
@@ -432,7 +444,7 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -441,7 +453,7 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -450,7 +462,7 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("\x1b[0;38;2;100;180;150mRob the title-less\n"
@@ -488,7 +500,7 @@ void ScoreDisplaysScreenReaderCorrectly()
     weapon->set("weapon type", "long sword");
     weapon->set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
     shield->set("name", "weasels");
@@ -497,7 +509,7 @@ void ScoreDisplaysScreenReaderCorrectly()
     shield->set("material", "steel");
     shield->set("weapon type", "shield");
     move_object(shield, Player);
-    shield->equip("weasels");
+    command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
     armor->set("name", "stuff");
@@ -506,7 +518,7 @@ void ScoreDisplaysScreenReaderCorrectly()
     armor->set("armor type", "chainmail");
     armor->set("equipment locations", 0x00000200);
     move_object(armor, Player);
-    armor->equip("stuff");
+    command("equip stuff", Player);
 
     ExpectTrue(Player->executeCommand("?"));
     ExpectEq("Rob the title-less\n"

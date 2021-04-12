@@ -66,7 +66,7 @@ void CanLogIssue()
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
-        "Location: lib/tests/support/environment/fakeEnvironment.c.*"
+        "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: issue.*"
         "Current trace data:.*",
         Wizard->caughtMessage());
@@ -81,7 +81,7 @@ void CanLogIssueWithComment()
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
-        "Location: lib/tests/support/environment/fakeEnvironment.c.*"
+        "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*",
         Wizard->caughtMessage());
@@ -102,7 +102,7 @@ void CanLogIssueOnTarget()
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/instances/items/weapons/swords/long-sword.c.*"
-        "Location: lib/tests/support/environment/fakeEnvironment.c.*"
+        "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*'CanLogIssueOnTarget' in "
         "'lib/tests/commands/player/issueTest.*",
@@ -126,7 +126,7 @@ void CanLogIssueWithTeleport()
         Player->caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
-        "Location: lib/tests/support/environment/fakeEnvironment.c.*"
+        "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "NOTE: Bob used teleport to safety.*",
         Wizard->caughtMessage());

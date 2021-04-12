@@ -70,7 +70,7 @@ void UnpriviledgedObjectsCannotExecuteWriteFunctions()
 
     ExpectFalse(writePath);
     ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
-        "(\"write_file\"), caller lib/realizations/player\n", 
+        "(\"write_file\"), caller /lib/realizations/player\n", 
         player->caughtMessage());
 }
 
@@ -150,7 +150,7 @@ void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirecto
         "write_file", cpTest));
 
     ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
-        "(\"write_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        "(\"write_file\"), caller /lib/tests/commands/wizard/cpTest\n",
         cpTest->caughtMessage());
     cpTest->resetCatchList();
 
@@ -158,7 +158,7 @@ void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirecto
         "copy_file", cpTest));
 
     ExpectEq("Bad file name (master::valid_write): \"/secure/master.c\" "
-        "(\"copy_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        "(\"copy_file\"), caller /lib/tests/commands/wizard/cpTest\n",
         cpTest->caughtMessage());
     cpTest->resetCatchList();
 
@@ -166,7 +166,7 @@ void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirecto
         "write_file", cpTest));
 
     ExpectEq("Bad file name (master::valid_write): \"/players/earl/blah.c\" "
-        "(\"write_file\"), caller lib/tests/commands/wizard/cpTest\n",
+        "(\"write_file\"), caller /lib/tests/commands/wizard/cpTest\n",
         cpTest->caughtMessage());
     cpTest->resetCatchList();
 
@@ -174,7 +174,7 @@ void PriviledgedEscalatedObjectsCanOnlyExecuteAuthorizedMethodsInEscaltedDirecto
         "get_dir", cpTest));
 
     ExpectEq("Bad file name (master::valid_read): \"/players/earl\" "
-        "(\"get_dir\"), caller lib/tests/commands/wizard/cpTest\n",
+        "(\"get_dir\"), caller /lib/tests/commands/wizard/cpTest\n",
         cpTest->caughtMessage());
     cpTest->resetCatchList();
 
@@ -215,7 +215,7 @@ void UnpriviledgedObjectsCannotExecuteReadFunctions()
 
     ExpectFalse(readPath);
     ExpectEq("Bad file name (master::valid_read): \"/secure/master.c\" "
-        "(\"read_file\"), caller lib/realizations/player\n", 
+        "(\"read_file\"), caller /lib/realizations/player\n", 
         player->caughtMessage());
 }
 

@@ -36,6 +36,7 @@ public nomask int execute(string command, object initiator)
             object *others = filter(all_inventory(environment(initiator)),
                 (: $1->canConverse($2) :), initiator);
 
+
             if (sizeof(others))
             {
                 ret = others[0]->beginConversation(initiator);

@@ -113,7 +113,7 @@ void CanStatMonsters()
         "|  Defend Attack:  22 to 44         Soak:   7 to 14  Encumberance:   0        |\n"
         "|          Wimpy:   0%         Hunted by: Nothing at all, aren't you lucky?   |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Other Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "| Filename: lib/realizations/monster.c                                        |\n"
+        "| Filename: /lib/realizations/monster.c                                       |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
         Wizard->caughtMessage());
 
@@ -139,7 +139,7 @@ void CanStatAnItem()
 
     command("stat staff", Wizard);
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ File Information +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "| Filename: lib/instances/items/weapons/staffs/ornate-staff.c                 |\n"
+        "| Filename: /lib/instances/items/weapons/staffs/ornate-staff.c                |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Detailed Information +=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "This is a roughly 5 foot long (152 cm) staff.\n"
         "This ornate staff is a masterwork item.\n"

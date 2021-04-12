@@ -170,7 +170,7 @@ void CannotAddSameCombinationItemsToMultipleScopesSpecification()
 
     string err = catch (Effect->testAddInstantaneousSpecification("combination rules", rules));
     string expectedError = "ERROR - combinedInstantaneousEffect: items "
-        ".lib/tests/support/research/comboPartResearchItemA.c. can only be "
+        "./lib/tests/support/research/comboPartResearchItemA.c. can only be "
         "placed once in only one of 'must include only";
     ExpectSubStringMatch(expectedError, err);
 }

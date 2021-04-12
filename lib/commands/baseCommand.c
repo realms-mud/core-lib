@@ -41,7 +41,6 @@ private nomask string prepCommandRegExp(string command)
 {
     string ret = regreplace(command, "\\] *\\[", ")*( ", 1);
     ret = regreplace(ret, " \\[(.+)\\]", "( \\1)\*", 1);
-    ret = regreplace(ret, "([?])", "\\\\1", 1);
 
     return "^" + ret + "$";
 }

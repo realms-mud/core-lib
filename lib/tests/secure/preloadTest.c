@@ -79,7 +79,7 @@ void PreloadExecutesTests()
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];
 
-    ExpectSubStringMatch("Testing lib/tests/support/master/fakeTest.*"
+    ExpectSubStringMatch("Testing /lib/tests/support/master/fakeTest.*"
         "PASSED", finalLogFile);
 }
 
