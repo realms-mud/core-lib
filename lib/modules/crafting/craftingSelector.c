@@ -7,16 +7,13 @@ inherit "/lib/core/baseSelector.c";
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Description = "Main Menu";
-        Type = "Crafting";
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Description = "Main Menu";
+    Type = "Crafting";
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

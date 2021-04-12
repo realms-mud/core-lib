@@ -10,12 +10,9 @@ private string *UndoDetails = ({ });
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        Description = "From this menu, you can choose your character's traits";
-    }
+    Description = "From this menu, you can choose your character's traits";
 }
 
 /////////////////////////////////////////////////////////////////////////////

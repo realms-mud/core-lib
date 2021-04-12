@@ -5,33 +5,30 @@
 inherit "/lib/core/baseSelector.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Choose your character set configuration";
-        AllowUndo = 0;
+    Description = "Choose your character set configuration";
+    AllowUndo = 0;
 
-        Data = ([
-            "1":([
-                "name":"ASCII-only",
-                "description" : "This option sends the user's client only "
-                    "simple 7-bit ASCII text. It is useful if your client "
-                    "does not support unicode or you are using a screen "
-                    "reader.\n",
-                "value": "ascii"
-            ]),
-            "2":([
-                "name":"Unicode",
-                "description" : "This option sends the user's client text "
-                    "with unicode support. Early clients often do not "
-                    "support these characters. If your client supports "
-                    "this, you should see a skull and crossbones here -> "
-                    "\u2620\n",
-                "value": "unicode",
-            ]),
-        ]);
-    }
+    Data = ([
+        "1":([
+            "name":"ASCII-only",
+            "description" : "This option sends the user's client only "
+                "simple 7-bit ASCII text. It is useful if your client "
+                "does not support unicode or you are using a screen "
+                "reader.\n",
+            "value": "ascii"
+        ]),
+        "2":([
+            "name":"Unicode",
+            "description" : "This option sends the user's client text "
+                "with unicode support. Early clients often do not "
+                "support these characters. If your client supports "
+                "this, you should see a skull and crossbones here -> "
+                "\u2620\n",
+            "value": "unicode",
+        ]),
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

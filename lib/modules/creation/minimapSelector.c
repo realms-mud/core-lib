@@ -5,13 +5,10 @@
 inherit "/lib/core/baseSelector.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        AllowUndo = 0;
-        SuppressColon = 1;
-    }
+    AllowUndo = 0;
+    SuppressColon = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

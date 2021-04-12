@@ -21,26 +21,24 @@ public nomask void setPointsRemaining(int points)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
+    Description = "Select a trait to add";
+    AllowUndo = 0;
+    NumColumns = 2;
+
+    TraitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
+    if (!TraitDictionary)
     {
-        Description = "Select a trait to add";
-        AllowUndo = 0;
-        NumColumns = 2;
-
-        TraitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
-        if (!TraitDictionary)
-        {
-            raise_error("skillSelectorSubmenu: ERROR - The skills dictionary is not present!\n");
-        }
-        Data = traitMenuSetup();
-
-        Data[to_string(sizeof(Data) + 1)] = ([
-            "name":"Return to previous menu",
-            "description": "Return to the main skill selection menu.\n"
-        ]);
+        raise_error("skillSelectorSubmenu: ERROR - The skills dictionary "
+            "is not present!\n");
     }
+    Data = traitMenuSetup();
+
+    Data[to_string(sizeof(Data) + 1)] = ([
+        "name":"Return to previous menu",
+        "description": "Return to the main skill selection menu.\n"
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

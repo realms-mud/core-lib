@@ -12,20 +12,18 @@ private string *Results = ({});
 private int TestTaken = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
+    Dictionary = load_object("/lib/dictionaries/backgroundDictionary.c");
+    if (!Dictionary)
     {
-        Dictionary = load_object("/lib/dictionaries/backgroundDictionary.c");
-        if (!Dictionary)
-        {
-            raise_error("personalityTraitQuestionnaire: ERROR - The background dictionary is not present!\n");
-        }
-
-        AllowUndo = 0;
-        HasDescription = 0;
-        TestTaken = 0;
+        raise_error("personalityTraitQuestionnaire: ERROR - The background "
+            "dictionary is not present!\n");
     }
+
+    AllowUndo = 0;
+    HasDescription = 0;
+    TestTaken = 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -33,17 +33,14 @@ public nomask void setComponent(string component)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        SuppressColon = 1;
-        Description = "Main Menu";
-        Type = "Building Projects";
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    SuppressColon = 1;
+    Description = "Main Menu";
+    Type = "Building Projects";
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -7,14 +7,11 @@ inherit "/lib/core/baseSelector.c";
 private object RacialDictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Choose your eye color";
-        AllowUndo = 0;
-        NumColumns = 2;
-    }
+    Description = "Choose your eye color";
+    AllowUndo = 0;
+    NumColumns = 2;
 }
 
 /////////////////////////////////////////////////////////////////////////////

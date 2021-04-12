@@ -9,17 +9,15 @@ private object SubselectorObj;
 private object Dictionary;
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        Description = "From this menu, you can view your character's available quests";
-        Type = "Quest";
+    AllowUndo = 0;
+    Description = "From this menu, you can view your character's "
+        "available quests";
+    Type = "Quest";
 
-        Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
-        Data = ([]);
-    }
+    Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -28,18 +28,15 @@ public nomask void setMaterialData(string type, mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        SuppressColon = 1;
-        NumColumns = 2;
-        Description = "Materials";
-        Type = "Building Projects";
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    SuppressColon = 1;
+    NumColumns = 2;
+    Description = "Materials";
+    Type = "Building Projects";
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -21,17 +21,14 @@ public nomask void setProhibitedTypes(string *types)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowAbort = 1;
-        AllowUndo = 0;
-        Description = "Welcome";
-        Type = "Shop";
+    AllowAbort = 1;
+    AllowUndo = 0;
+    Description = "Welcome";
+    Type = "Shop";
 
-        Data = ([]);
-    }
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

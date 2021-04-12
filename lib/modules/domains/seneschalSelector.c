@@ -14,16 +14,13 @@ public nomask void setLocation(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Description = "Main Menu";
-        Type = "Domain Management";
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Description = "Main Menu";
+    Type = "Domain Management";
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

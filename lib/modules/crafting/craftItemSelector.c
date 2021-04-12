@@ -22,16 +22,13 @@ public nomask void setSubType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
+    AllowUndo = 0;
+    AllowAbort = 1;
 
-        Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
-        Data = ([]);
-    }
+    Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

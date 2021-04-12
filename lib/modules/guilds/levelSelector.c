@@ -26,16 +26,13 @@ public void guildsToAdvance(string *guildList, object user)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Description = "Main Menu";
-        Type = "Advancement";
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Description = "Main Menu";
+    Type = "Advancement";
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

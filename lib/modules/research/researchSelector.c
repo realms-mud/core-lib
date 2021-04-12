@@ -16,18 +16,15 @@ public nomask void showTreeElements()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        Description = "From this menu, you can view your character's known research\n"
-            "as well as initiate new research";
-        Type = "Research";
+    AllowUndo = 0;
+    Description = "From this menu, you can view your character's known "
+        "research\nas well as initiate new research";
+    Type = "Research";
 
-        Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
-        Data = ([]);
-    }
+    Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

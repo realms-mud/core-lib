@@ -78,18 +78,15 @@ protected mapping researchMenuSetup(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Select a research item to view in more detail";
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Type = "Research";
-        Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
+    Description = "Select a research item to view in more detail";
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Type = "Research";
+    Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
 
-        Data = ([]);
-    }
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

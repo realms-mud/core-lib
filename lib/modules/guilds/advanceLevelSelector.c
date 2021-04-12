@@ -16,15 +16,12 @@ public void setGuild(string guild)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Description = "Menu";
-        Type = "Advancement";
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Description = "Menu";
+    Type = "Advancement";
 }
 
 /////////////////////////////////////////////////////////////////////////////

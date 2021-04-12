@@ -25,16 +25,13 @@ public nomask void setData(mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        NumColumns = 1;
-        SuppressColon = 1;
-        Type = "Song";
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    NumColumns = 1;
+    SuppressColon = 1;
+    Type = "Song";
 }
 
 /////////////////////////////////////////////////////////////////////////////

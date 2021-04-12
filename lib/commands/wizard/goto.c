@@ -5,7 +5,7 @@
 inherit "/lib/commands/baseCommand.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask SetupCommand()
+public nomask void SetupCommand()
 {
     CommandType = "Wizard";
     addCommandTemplate("goto ##Target##");

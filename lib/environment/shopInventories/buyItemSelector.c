@@ -15,18 +15,15 @@ public nomask void setStore(object store)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowAbort = 1;
-        AllowUndo = 0;
-        Description = "From this menu, you can view and purchase items";
-        Type = "Purchase Items";
+    AllowAbort = 1;
+    AllowUndo = 0;
+    Description = "From this menu, you can view and purchase items";
+    Type = "Purchase Items";
 
-        Dictionary = getDictionary("shop");
-        Data = ([]);
-    }
+    Dictionary = getDictionary("shop");
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

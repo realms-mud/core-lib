@@ -32,16 +32,13 @@ public nomask void setDetails(mapping data)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if(!arg)
-    {
-        AllowUndo = 0;
-        AllowAbort = 1;
-        NumColumns = 2;
-        Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
-        Data = ([]);
-    }
+    AllowUndo = 0;
+    AllowAbort = 1;
+    NumColumns = 2;
+    Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

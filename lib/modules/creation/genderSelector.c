@@ -5,24 +5,21 @@
 inherit "/lib/core/baseSelector.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Choose your biological sex";
-        AllowUndo = 0;
+    Description = "Choose your biological sex";
+    AllowUndo = 0;
 
-        Data = ([
-            "1":([
-                "name":"Male",
-                "description" : "Do you really need a description?"
-            ]),
-            "2":([
-                "name":"Female",
-                "description" : "Do you really need a description?"
-            ])
-        ]);
-    }
+    Data = ([
+        "1":([
+            "name":"Male",
+            "description" : "Do you really need a description?"
+        ]),
+        "2":([
+            "name":"Female",
+            "description" : "Do you really need a description?"
+        ])
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

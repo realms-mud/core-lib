@@ -40,18 +40,15 @@ protected mapping questMenuSetup(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Select a quest to view in more detail";
-        AllowUndo = 0;
-        AllowAbort = 1;
-        Type = "Quest";
-        Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    Description = "Select a quest to view in more detail";
+    AllowUndo = 0;
+    AllowAbort = 1;
+    Type = "Quest";
+    Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
 
-        Data = ([]);
-    }
+    Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -23,19 +23,17 @@ protected mapping skillMenuSetup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void InitializeSelector()
 {
-    if (!arg)
-    {
-        Description = "Select a skill to advance";
-        AllowUndo = 0;
-        NumColumns = 2;
+    Description = "Select a skill to advance";
+    AllowUndo = 0;
+    NumColumns = 2;
 
-        SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
-        if (!SkillDictionary)
-        {
-            raise_error("skillSelectorSubmenu: ERROR - The skills dictionary is not present!\n");
-        }
+    SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
+    if (!SkillDictionary)
+    {
+        raise_error("skillSelectorSubmenu: ERROR - The skills dictionary "
+            "is not present!\n");
     }
 }
 
