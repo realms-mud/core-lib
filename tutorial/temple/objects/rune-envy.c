@@ -5,18 +5,15 @@
 virtual inherit "/lib/items/treasure.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("name", "rune of envy");
-        set("short", "Rune of Envy");
-        set("aliases", ({ "rune", "rune of envy", "envy" }));
-        set("long", "A fist-sized slab of amethyst has some intricately carved "
-            "runes on it. You can distinguish the Khazdic symbol for the word "
-            "'envy' and see the words, 'I long for freedom restored' "
-            "next to it.\n");
-    }
+    set("name", "rune of envy");
+    set("short", "Rune of Envy");
+    set("aliases", ({ "rune", "rune of envy", "envy" }));
+    set("long", "A fist-sized slab of amethyst has some intricately carved "
+        "runes on it. You can distinguish the Khazdic symbol for the word "
+        "'envy' and see the words, 'I long for freedom restored' "
+        "next to it.\n");
 }
 
 /////////////////////////////////////////////////////////////////////////////

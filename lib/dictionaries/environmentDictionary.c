@@ -529,15 +529,12 @@ private nomask void calculateTimeOfDay()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void create()
 {
-    if (!arg)
-    {
-        loadEnvironmentalData();
-        calculateSeason();
-        calculateTimeOfDay();
-        advanceTime();
-    }
+    loadEnvironmentalData();
+    calculateSeason();
+    calculateTimeOfDay();
+    advanceTime();
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -14,13 +14,10 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        addSpecification("type", "ritual");
-        Setup();
-    }
+    addSpecification("type", "ritual");
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////

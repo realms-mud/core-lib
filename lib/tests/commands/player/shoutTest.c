@@ -14,19 +14,19 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->Race("human");
-    Player->reset();
+    Player->create();
     Player->colorConfiguration("none");
 
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("earl");
     Target->Race("human");
-    Target->reset();
+    Target->create();
     Target->colorConfiguration("none");
 
     Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
     Bystander->Name("frank");
     Bystander->Race("human");
-    Bystander->reset();
+    Bystander->create();
     Bystander->colorConfiguration("none");
 
     setUsers(({ Player, Target, Bystander }));

@@ -229,9 +229,9 @@ public void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void create()
 {
-    if (!arg && !setupCompleted)
+    if (!setupCompleted)
     {
         Setup();
         setupCompleted = 1;

@@ -171,22 +171,25 @@ public void init()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void reset()
 {
-    if (!arg)
-    {
-        if (!SetupCompleted)
-        {
-            Setup();
-            SetupCompleted = 1;
-        }
-    }
     object shopObj = getShop();
     if (objectp(shopObj))
     {
         shopObj->updateShopInventory();
     }
     createStateObjects();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void create()
+{
+    if (!SetupCompleted)
+    {
+        Setup();
+        SetupCompleted = 1;
+    }
+    reset();
 }
 
 /////////////////////////////////////////////////////////////////////////////

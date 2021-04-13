@@ -50,16 +50,12 @@ public varargs string Name(string newName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
+    living::create();
+    if (this_object()->Name() && (this_object()->Name() != ""))
     {
-        Setup();
-        if (this_object()->Name() && (this_object()->Name() != ""))
-        {
-            addLiving(this_object());
-        }
-        living::reset(arg);
+        addLiving(this_object());
     }
 }
 

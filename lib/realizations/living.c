@@ -42,12 +42,15 @@ static nomask int registerHeartBeat(string method)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (arg)
-    {
-        return;
-    }
+
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void create()
+{
+    Setup();
     enable_commands();
 
     registerHeartBeat("combat");

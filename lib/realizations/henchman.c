@@ -27,14 +27,11 @@ public nomask int isRealizationOfHenchman()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        living::reset(arg);
-        registerHeartBeat("henchman");
-        customCombatAssessment("henchman");
-    }
+    living::create();
+    registerHeartBeat("henchman");
+    customCombatAssessment("henchman");
 }
 
 /////////////////////////////////////////////////////////////////////////////

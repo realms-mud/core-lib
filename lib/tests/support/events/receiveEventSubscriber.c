@@ -7,7 +7,7 @@ private string eventReceived;
 private mixed dataReceived;
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create() 
 {
     eventReceived = "none";
     dataReceived = 0;

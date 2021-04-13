@@ -44,15 +44,12 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        addSpecification("type", "knowledge");
-        addSpecification("scope", "self");
-        addSpecification("effect", "strategic");
-        Setup();
-    }
+    addSpecification("type", "knowledge");
+    addSpecification("scope", "self");
+    addSpecification("effect", "strategic");
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////

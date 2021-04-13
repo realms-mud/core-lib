@@ -55,29 +55,11 @@ public string Type()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+public nomask void reset()
 {
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
-{
-    if (!arg)
-    {
-        if (!elementName)
-        {
-            Setup();
-        }
-
-        if (getDictionary("environment") && stringp(elementName) &&
-            !getDictionary("environment")->isValidEnvironmentItem(elementName))
-        {
-            getDictionary("environment")->registerElement(program_name(this_object()));
-        }
-    }
-
     object *harvestItems = m_values(
         filter(harvestData, (: $1 == $2->name() :)));
+
     if (sizeof(harvestItems))
     {
         foreach(object harvestItem in harvestItems)
@@ -96,6 +78,27 @@ public nomask void reset(int arg)
             bonusItem->setupBonus();
         }
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void create()
+{
+    if (!elementName)
+    {
+        Setup();
+    }
+
+    if (getDictionary("environment") && stringp(elementName) &&
+        !getDictionary("environment")->isValidEnvironmentItem(elementName))
+    {
+        getDictionary("environment")->registerElement(program_name(this_object()));
+    }
+    reset();
 }
 
 /////////////////////////////////////////////////////////////////////////////

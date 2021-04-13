@@ -13,12 +13,12 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("bob");
     Player->Race("human");
-    Player->reset();
+    Player->create();
 
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target->Name("earl");
     Target->Race("human");
-    Target->reset();
+    Target->create();
 
     setUsers(({ Player, Target }));
 }

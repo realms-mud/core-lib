@@ -22,7 +22,7 @@ void Setup()
     Movement->Chr(10);
     Movement->hitPoints(Movement->maxHitPoints());
     Movement->addCommands();
-    Movement->reset();
+    Movement->create();
 
     FromPlace = load_object("/lib/tests/support/environment/fromLocation.c");
     FromPlace->toggleLight();

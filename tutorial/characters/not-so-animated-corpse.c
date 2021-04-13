@@ -6,18 +6,15 @@ virtual inherit "/lib/items/corpse.c";
 object bow;
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("short", "A decaying corpse");
-        set("corpse", "human");
-        set("aliases", ({ "decaying corpse", "corpse" }));
+    set("short", "A decaying corpse");
+    set("corpse", "human");
+    set("aliases", ({ "decaying corpse", "corpse" }));
 
-        if (!bow)
-        {
-            move_object(clone_object("/lib/instances/items/weapons/bows/bow.c"), 
-                this_object());
-        }
+    if (!bow)
+    {
+        move_object(clone_object("/lib/instances/items/weapons/bows/bow.c"), 
+            this_object());
     }
 }

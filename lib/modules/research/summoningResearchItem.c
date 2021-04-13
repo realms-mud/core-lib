@@ -244,15 +244,12 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        activeResearchItem::reset(arg);
-        addSpecification("scope", "self");
-        addSpecification("effect", "summoning");
-        Setup();
-    }
+    activeResearchItem::create();
+    addSpecification("scope", "self");
+    addSpecification("effect", "summoning");
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////

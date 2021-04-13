@@ -11,15 +11,12 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
+    if (!SetupCompleted)
     {
-        if (!SetupCompleted)
-        {
-            Setup();
-            SetupCompleted = 1;
-        }
+        Setup();
+        SetupCompleted = 1;
     }
 }
 

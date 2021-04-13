@@ -16,16 +16,13 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        InitialState = "";
-        CurrentState = "default";
-        stateActors = ({});
-        stateTree = ([]);
-        Setup();
-    }
+    InitialState = "";
+    CurrentState = "default";
+    stateActors = ({});
+    stateTree = ([]);
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////

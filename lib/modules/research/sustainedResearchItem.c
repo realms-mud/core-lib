@@ -15,13 +15,10 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        addSpecification("type", "sustained");
-        Setup();
-    }
+    addSpecification("type", "sustained");
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////

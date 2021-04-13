@@ -49,14 +49,11 @@ public nomask int executeCommand(string command)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    living::reset(arg);
-    if (!arg)
-    {
-        addCommands();
-        set_heart_beat(1);
-    }
+    living::create();
+    addCommands();
+    set_heart_beat(1);
 }
 
 /////////////////////////////////////////////////////////////////////////////

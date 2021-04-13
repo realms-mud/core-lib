@@ -572,7 +572,7 @@ void AddObjectToDefaultStateCreatesObjectOnReset()
 /////////////////////////////////////////////////////////////////////////////
 void SetupIsOnlyCalledOnceByReset()
 {
-    Environment->reset();
+    Environment->create();
     ExpectEq(1, Environment->setupCalled());
     Environment->reset();
     ExpectEq(1, Environment->setupCalled());
@@ -698,7 +698,7 @@ void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
     Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment->testAddObject("/lib/tests/support/items/testSword.c");
     Environment->testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage::");
-    Environment->reset();
+    Environment->create();
 
     ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");
     ExpectSubStringMatch("a deciduous forest. You can feel a weaselish buzz in the air",

@@ -216,11 +216,8 @@ public void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        initialized = 1;
-        Setup();
-    }
+    initialized = 1;
+    Setup();
 }

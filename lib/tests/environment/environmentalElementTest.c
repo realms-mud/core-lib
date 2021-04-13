@@ -259,7 +259,7 @@ void HarvestableResourcesCorrectlySetUp()
         clone_object("/lib/tests/support/environment/harvestRoom.c");
     move_object(player, environment);
 
-    Element->reset();
+    Element->create();
     ExpectEq("Name: Oak\n"
         "Alias(es): deciduous tree, oak tree, tree\n"
         "This can only be harvested when the environment state is default.\n"
@@ -333,7 +333,7 @@ void EnvironmentalBonusCorrectlySetUp()
         clone_object("/lib/tests/support/environment/bonusRoom.c");
     move_object(player, environment);
 
-    Element->reset();
+    Element->create();
     ExpectEq("Name: Hit Points\n"
         "There is a -3 penalty to hit points active.\n"
         "This is only applied when the environment state is deadified.\n"

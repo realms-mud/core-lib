@@ -91,12 +91,8 @@ public int magicalDamageBonus()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (arg)
-    {
-        return;
-    }
     enable_commands();
 }
 

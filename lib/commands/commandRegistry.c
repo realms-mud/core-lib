@@ -93,15 +93,12 @@ public nomask int isInitialized()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void create()
 {
-    if (!arg)
-    {
-        commands = ([]);
-        registerPlayerCommands();
-        registerWizardCommands();
-        IsInitialized = 1;
-    }
+    commands = ([]);
+    registerPlayerCommands();
+    registerWizardCommands();
+    IsInitialized = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

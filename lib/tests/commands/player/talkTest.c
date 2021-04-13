@@ -27,11 +27,11 @@ void Setup()
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("gorthaur");
     Player->Race("human");
-    Player->reset();
+    Player->create();
 
     Target = clone_object("/lib/tests/support/conversations/testNPC.c");
     Target->resetConversationState();
-    Target->reset();
+    Target->create();
 
     move_object(Player, this_object());
     move_object(Target, this_object());

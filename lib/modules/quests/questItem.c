@@ -63,14 +63,11 @@ private object configuration =
     //     "is final state": "failure",
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public nomask void create()
 {
-    if (!arg)
-    {
-        Name = 0;
-        Description = "";
-        stateMachine::reset(arg);
-    }
+    Name = 0;
+    Description = "";
+    stateMachine::create();
 }
 
 /////////////////////////////////////////////////////////////////////////////

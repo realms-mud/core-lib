@@ -95,13 +95,10 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        addSpecification("type", "domain");
-        addSpecification("scope", "domain");
-        addSpecification("effect", "strategic");
-        Setup();
-    }
+    addSpecification("type", "domain");
+    addSpecification("scope", "domain");
+    addSpecification("effect", "strategic");
+    Setup();
 }

@@ -124,9 +124,9 @@ protected nomask void addDriverHooks()
     );
 
     // Various create / clone hooks
-    set_driver_hook(H_CREATE_SUPER, "reset");
-    set_driver_hook(H_CREATE_OB,    "reset");
-    set_driver_hook(H_CREATE_CLONE, "reset");
+    set_driver_hook(H_CREATE_SUPER, "create");
+    set_driver_hook(H_CREATE_OB,    "create");
+    set_driver_hook(H_CREATE_CLONE, "create");
 
     set_driver_hook(H_RESET,        "reset");
     set_driver_hook(H_CLEAN_UP,     "clean_up");

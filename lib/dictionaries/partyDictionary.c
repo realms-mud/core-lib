@@ -179,10 +179,7 @@ public nomask void acceptPartyRequest(object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void reset(int arg)
+public nomask void create()
 {
-    if (!arg)
-    {
-        PersistentParties = partyService->loadPartyList();
-    }
+    PersistentParties = partyService->loadPartyList();
 }

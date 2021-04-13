@@ -5,12 +5,9 @@
 virtual inherit "/lib/items/corpse.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("short", "The corpse of Haldor");
-        set("corpse", "haldor");
-        set("aliases", ({ "haldor", "corpse of haldor", "corpse" }));
-    }
+    set("short", "The corpse of Haldor");
+    set("corpse", "haldor");
+    set("aliases", ({ "haldor", "corpse of haldor", "corpse" }));
 }

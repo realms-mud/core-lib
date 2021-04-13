@@ -5,13 +5,10 @@
 virtual inherit "/lib/items/corpse.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("short", "Black-robed corpse with an arrow protruding from its "
-            "throat");
-        set("corpse", "black-robed figure");
-        set("aliases", ({ "black-robed corpse", "corpse" }));
-    }
+    set("short", "Black-robed corpse with an arrow protruding from its "
+        "throat");
+    set("corpse", "black-robed figure");
+    set("aliases", ({ "black-robed corpse", "corpse" }));
 }

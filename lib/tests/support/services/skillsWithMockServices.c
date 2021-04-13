@@ -34,12 +34,8 @@ public int has(string service)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (arg)
-    {
-        return;
-    }
     enable_commands();
 }
 

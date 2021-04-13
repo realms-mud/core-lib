@@ -10,47 +10,43 @@ inherit "/tutorial/stateMachines/initiateBackgroundStory.c";
 private object Player;
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        stateMachine::reset(arg);
-        addState("initiate story", "");
-        addEntryAction("initiate story", "displayIntroduction");
+    addState("initiate story", "");
+    addEntryAction("initiate story", "displayIntroduction");
 
-        addState("regain consciousness", "");
-        addEntryAction("regain consciousness", "galadhelAwakensPlayer");
-        addTransition("initiate story", "regain consciousness", "regainConsciousness");
+    addState("regain consciousness", "");
+    addEntryAction("regain consciousness", "galadhelAwakensPlayer");
+    addTransition("initiate story", "regain consciousness", "regainConsciousness");
 
-        addState("berenar interjects", "");
-        addEntryAction("berenar interjects", "berenarBeginsConversation");
-        addTransition("regain consciousness", "berenar interjects", "berenarInterjects");
+    addState("berenar interjects", "");
+    addEntryAction("berenar interjects", "berenarBeginsConversation");
+    addTransition("regain consciousness", "berenar interjects", "berenarInterjects");
 
-        addState("background story", "");
-        addEntryAction("background story", "playerTransitionsToBackgroundStory");
-        addTransition("berenar interjects", "background story", "playerAgainLosesConsciousness");
+    addState("background story", "");
+    addEntryAction("background story", "playerTransitionsToBackgroundStory");
+    addTransition("berenar interjects", "background story", "playerAgainLosesConsciousness");
 
-        addState("first fight", "");
-        addEntryAction("first fight", "firstFight");
-        addTransition("background story", "first fight", "onJoinGuild");
+    addState("first fight", "");
+    addEntryAction("first fight", "firstFight");
+    addTransition("background story", "first fight", "onJoinGuild");
 
-        addState("on the trail", "");
-        addEntryAction("on the trail", "onTheTrail");
-        addTransition("first fight", "on the trail", "first fight is over");
+    addState("on the trail", "");
+    addEntryAction("on the trail", "onTheTrail");
+    addTransition("first fight", "on the trail", "first fight is over");
 
-        addState("wake up, Donald", "");
-        addEntryAction("wake up, Donald", "wakeDonald");
-        addTransition("on the trail", "wake up, Donald", "halgaladhAwakensDonald");
+    addState("wake up, Donald", "");
+    addEntryAction("wake up, Donald", "wakeDonald");
+    addTransition("on the trail", "wake up, Donald", "halgaladhAwakensDonald");
 
-        addState("fight at the entrance", "");
-        addEntryAction("fight at the entrance", "setupFightAtTheEntrance");
-        addTransition("wake up, Donald", "fight at the entrance", "fightAtTheEntrance");
+    addState("fight at the entrance", "");
+    addEntryAction("fight at the entrance", "setupFightAtTheEntrance");
+    addTransition("wake up, Donald", "fight at the entrance", "fightAtTheEntrance");
 
-        addState("enter the lair", "");
-        addTransition("fight at the entrance", "enter the lair", "enterTheLair");
+    addState("enter the lair", "");
+    addTransition("fight at the entrance", "enter the lair", "enterTheLair");
 
-        setInitialState("initiate story");
-    }
+    setInitialState("initiate story");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -5,18 +5,15 @@
 virtual inherit "/lib/items/treasure.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("name", "rune of endurance");
-        set("short", "Rune of Endurance");
-        set("aliases", ({ "rune", "rune of endurance", "endurance" }));
-        set("long", "A fist-sized slab of amethyst has some intricately carved "
-            "runes on it. You can distinguish the Khazdic symbol for the word "
-            "'endurance' and see the words, 'Pushed past endurance' "
-            "next to it.\n");
-    }
+    set("name", "rune of endurance");
+    set("short", "Rune of Endurance");
+    set("aliases", ({ "rune", "rune of endurance", "endurance" }));
+    set("long", "A fist-sized slab of amethyst has some intricately carved "
+        "runes on it. You can distinguish the Khazdic symbol for the word "
+        "'endurance' and see the words, 'Pushed past endurance' "
+        "next to it.\n");
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -11,11 +11,9 @@ public nomask int isRealizationOfCompanion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        henchman::reset(arg);
+        henchman::create();
         customCombatAssessment("companion");
     }
 }

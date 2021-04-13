@@ -5,20 +5,17 @@
 virtual inherit "/lib/tests/support/tactical-combat/unitNotRandom.c";
 
 /////////////////////////////////////////////////////////////////////////////
-void reset(int arg)
+protected void Setup()
 {
-    if (!arg)
-    {
-        set("name", "archers");
-        set("short", "Archers");
-        set("long", "This is a powerful unit of archers.");
-        set("ground attack", 800);
-        set("air attack", 400);
-        set("defense", 100);
-        set("move", 6);
-        set("unit morale", 5);
-        set("troop count", 10);
-        set("range", 1);
-        set("unit type", "ground");
-    }
+    set("name", "archers");
+    set("short", "Archers");
+    set("long", "This is a powerful unit of archers.");
+    set("ground attack", 800);
+    set("air attack", 400);
+    set("defense", 100);
+    set("move", 6);
+    set("unit morale", 5);
+    set("troop count", 10);
+    set("range", 1);
+    set("unit type", "ground");
 }

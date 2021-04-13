@@ -15,18 +15,15 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        Setup();
+    Setup();
 
-        object traitsDictionary = getDictionary("traits");
-        if (traitsDictionary &&
-            !traitsDictionary->traitIsRegistered(program_name(this_object())))
-        {
-            traitsDictionary->registerTrait(this_object());
-        }
+    object traitsDictionary = getDictionary("traits");
+    if (traitsDictionary &&
+        !traitsDictionary->traitIsRegistered(program_name(this_object())))
+    {
+        traitsDictionary->registerTrait(this_object());
     }
 }
 

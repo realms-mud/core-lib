@@ -23,16 +23,13 @@ protected void Setup()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void reset(int arg)
+public void create()
 {
-    if (!arg)
-    {
-        name = "";
-        description = "";
-        treeRoot = 0;
-        tree = ([]);
-        Setup();
-    }
+    name = "";
+    description = "";
+    treeRoot = 0;
+    tree = ([]);
+    Setup();
 }
 
 /////////////////////////////////////////////////////////////////////////////
