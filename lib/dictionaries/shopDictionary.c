@@ -62,6 +62,8 @@ private mapping consumables = ([
     ]),
 ]);
 
+private mapping ItemBlueprints = ([]);
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask object getShopObject(string location)
 {
@@ -304,6 +306,7 @@ public nomask void sellItems(object user, object store, object *items)
                     sprintf("You sell %s.\n", item->query("name")),
                     "message", "shop", colorConfiguration));
                 store->storeItem(item);
+                move_object(item, this_object());
                 destruct(item);
             }
         }
@@ -352,12 +355,21 @@ private nomask void generateDefaultItems(object shop)
     {
         foreach(string itemName in defaultItems)
         {
-            object item = clone_object(sprintf("%s%s.c", dir, itemName));
+            string key = sprintf("%s%s.c", dir, itemName);
+
+            object item;
+            if (member(ItemBlueprints, key) && objectp(ItemBlueprints[key]))
+            {
+                item = ItemBlueprints[key];
+            }
+            else
+            {
+                item = clone_object(sprintf("%s%s.c", dir, itemName));
+            }
             craftingDictionary->getRandomCraftingMaterial(item, 1);
 
             item->identify();
             shop->storeItem(item, 1);
-            destruct(item);
         }
     }
 }

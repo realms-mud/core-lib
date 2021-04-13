@@ -41,9 +41,9 @@ are comfortable with doing that. For all others, I strongly encourage you to use
 I have not tested this mudlib with drivers other than the LDMud driver. When compiling it, you 
 will need to keep a few things in mind:
 
-This mudlib does not have any compat-mode dependencies that I am immediately aware of. However,
-there are some native mode dependencies that are also not in place and it has been a very low
-priority for me to resolve these issues. When compiling the driver, be sure to use the --compat flag
+There are some differences between the native regular expression engine and that provided via
+PCRE. While it's a task in my backlog, I have not yet resolved the issue. For now, make sure that
+PCRE is diabled using the --disable-use-pcre flag.
 
 There is a great deal more executional complexity when using this mudlib over typical libs. On the
 down side, there are most definitely many activities that will require more evaluation time and
@@ -87,7 +87,6 @@ I admit that several values are overkill, but it's what I use:
 # cd <location of extracted LDMud/src>
 # ./update-autoconf.sh
 # ./configure --prefix=<your mudlib directory> \
-              --enable-compat-mode \
               --with-read-file-max-size=0 \
               --with-portno=<your port> \
               --enable-erq=xerq \
@@ -112,6 +111,7 @@ I admit that several values are overkill, but it's what I use:
               --with-itable-size=32768 \
               --with-otable-size=65536 \
               --with-hard-malloc-limit=0 \
+              --disable-use-pcre \
               --enable-use-mysql=<path to mysql>
 # make
 ```

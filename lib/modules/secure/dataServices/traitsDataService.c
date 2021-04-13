@@ -20,22 +20,27 @@ protected nomask mapping getTraits(int playerId, int dbHandle)
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret["traits"][result[1]] = ([
-                "name":convertString(result[2]),
+            string item = convertString(result[1]);
+            if (item[0] != '/')
+            {
+                item = "/" + item;
+            }
+            ret["traits"][item] = ([
+                "name": convertString(result[2]),
                 "added" : to_int(result[3])
             ]);
 
             if (stringp(result[4]))
             {
-                ret["traits"][result[1]]["end time"] = to_int(result[4]);
+                ret["traits"][item]["end time"] = to_int(result[4]);
             }
             if (stringp(result[5]))
             {
-                ret["traits"][result[1]]["expire message"] = convertString(result[5]);
+                ret["traits"][item]["expire message"] = convertString(result[5]);
             }
             if (stringp(result[6]))
             {
-                ret["traits"][result[1]]["triggering research"] = convertString(result[6]);
+                ret["traits"][item]["triggering research"] = convertString(result[6]);
             }
         }
     } while (result);

@@ -25,36 +25,43 @@ protected nomask int applyBeneficialEffect(object initiator, object target)
     int ret = 0;
     if(member(specificationData, "increase hit points"))
     {
-        ret ||= target->hitPoints(applyFormula(initiator, 
+        ret = 1;
+        target->hitPoints(applyFormula(initiator, 
             "increase hit points"));
     }
     if(member(specificationData, "increase spell points"))
     {
-        ret ||= target->spellPoints(applyFormula(initiator, 
+        ret = 1;
+        target->spellPoints(applyFormula(initiator,
             "increase spell points"));
     }
     if(member(specificationData, "increase stamina points"))
     {
-        ret ||= target->staminaPoints(applyFormula(initiator, 
+        ret = 1;
+        target->staminaPoints(applyFormula(initiator,
             "increase stamina points"));
     }
     if(member(specificationData, "decrease intoxication"))
     {
-        ret ||= target->addIntoxication(-applyFormula(initiator, 
+        ret = 1;
+        target->addIntoxication(-applyFormula(initiator,
             "decrease intoxication"));
     }
     if(member(specificationData, "decrease druggedness"))
     {
-        ret ||= target->addDrugged(-applyFormula(initiator, 
+        ret = 1;
+        target->addDrugged(-applyFormula(initiator,
             "decrease druggedness"));
     }
     if(member(specificationData, "decrease soaked"))
     {
-        ret ||= target->addSoaked(-applyFormula(initiator, "decrease soaked"));
+        ret = 1;
+        target->addSoaked(-applyFormula(initiator, "decrease soaked"));
     }
     if(member(specificationData, "decrease stuffed"))
     {
-        ret ||= target->addStuffed(-applyFormula(initiator, 
+        ret = 1;
+        target->addStuffed(-applyFormula(initiator,
             "decrease stuffed"));
     }
     return ret;

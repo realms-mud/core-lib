@@ -376,6 +376,7 @@ public nomask string getRandomPersona(string type, int level)
             personas -= ({ "knight", "phaedra", "knight of the storm" });
 
             ret = personas[random(sizeof(personas))];
+            break;
         }
         case "magic user":
         {
@@ -383,6 +384,7 @@ public nomask string getRandomPersona(string type, int level)
                 (: $2[$1]["category"] == "mages" :), blueprints);
 
             ret = personas[random(sizeof(personas))];
+            break;
         }
         case "dragon":
         {
@@ -390,6 +392,7 @@ public nomask string getRandomPersona(string type, int level)
                 (: $2[$1]["category"] == "dragons" :), blueprints);
 
             ret = personas[random(sizeof(personas))];
+            break;
         }
         case "creature":
         {
@@ -397,6 +400,7 @@ public nomask string getRandomPersona(string type, int level)
                 (: $2[$1]["category"] == "creatures" :), blueprints);
 
             ret = personas[random(sizeof(personas))];
+            break;
         }
         case "undead":
         {
@@ -404,10 +408,12 @@ public nomask string getRandomPersona(string type, int level)
                 (: $2[$1]["category"] == "undead" :), blueprints);
 
             ret = personas[random(sizeof(personas))];
+            break;
         }
         case "hunter":
         {
             ret = random(2) ? "archer" : "crossbowman";
+            break;
         }
     }
     return ret;

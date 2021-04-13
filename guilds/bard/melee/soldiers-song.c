@@ -7,7 +7,7 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Melee March");
+    addSpecification("name", "Soldier's Song");
     addSpecification("source", "bard");
     addSpecification("description", "This skill provides the user with "
         "bardic knowledge that enhances the bard's `Melee's Melody' and "

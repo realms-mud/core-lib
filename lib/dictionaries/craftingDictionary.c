@@ -9,6 +9,8 @@
 #include "materials/components.h"
 #include "materials/enchantments.h"
 
+private mapping BlueprintObjects = ([]);
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidType(mixed type)
 {
@@ -158,33 +160,42 @@ private nomask mapping getBlueprintsByType(string type)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getBlueprintFor(object item)
 {
-    mapping items = ([]);
-    string *itemInheritance = inherit_list(item);
-
-    if (member(itemInheritance, "/lib/items/armor.c") > -1)
-    {
-        items = armorBlueprints;
-    }
-    else if (member(itemInheritance, "/lib/items/weapon.c") > -1)
-    {
-        items = weaponBlueprints;
-    }
-    else if (member(itemInheritance, "/lib/items/material.c") > -1)
-    {
-        items = materials;
-    }
-
-    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+    object blueprintObj = 0;
     string blueprint = item->query("blueprint");
-    if (sizeof(items) && member(items, blueprint))
+    if (member(BlueprintObjects, blueprint) &&
+        objectp(BlueprintObjects[blueprint]))
     {
-        blueprintObj->set("blueprint data", items[blueprint]);
-        blueprintObj->set("blueprint", blueprint);
+        blueprintObj = BlueprintObjects[blueprint];
     }
     else
     {
-        destruct(blueprintObj);
-        blueprintObj = 0;
+        mapping items = ([]);
+        string *itemInheritance = inherit_list(item);
+
+        if (member(itemInheritance, "/lib/items/armor.c") > -1)
+        {
+            items = armorBlueprints;
+        }
+        else if (member(itemInheritance, "/lib/items/weapon.c") > -1)
+        {
+            items = weaponBlueprints;
+        }
+        else if (member(itemInheritance, "/lib/items/material.c") > -1)
+        {
+            items = materials;
+        }
+
+        blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+        if (sizeof(items) && member(items, blueprint))
+        {
+            blueprintObj->set("blueprint data", items[blueprint]);
+            blueprintObj->set("blueprint", blueprint);
+            BlueprintObjects[blueprint] = blueprintObj;
+        }
+        else
+        {
+            blueprintObj = 0;
+        }
     }
     return blueprintObj;
 }
@@ -247,13 +258,23 @@ private nomask string *getEquipmentBySubType(string type, string subType)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getBlueprintItem(string type, string item)
 {
-    object blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
-    mapping blueprints = getBlueprintsByType(type);
-
-    if (sizeof(blueprints) && member(blueprints, item))
+    object blueprintObj = 0;
+    if (member(BlueprintObjects, item) &&
+        objectp(BlueprintObjects[item]))
     {
-        blueprintObj->set("blueprint data", blueprints[item]);
-        blueprintObj->set("blueprint", item);
+        blueprintObj = BlueprintObjects[item];
+    }
+    else
+    {
+        blueprintObj = clone_object("/lib/items/craftingBlueprint.c");
+        mapping blueprints = getBlueprintsByType(type);
+
+        if (sizeof(blueprints) && member(blueprints, item))
+        {
+            blueprintObj->set("blueprint data", blueprints[item]);
+            blueprintObj->set("blueprint", item);
+            BlueprintObjects[item] = blueprintObj;
+        }
     }
     return blueprintObj;
 }
@@ -325,7 +346,6 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
                 "do not format": 1
             ]);
             menuItem++;
-            destruct(blueprintObj);
         }
     }
     return ret;
@@ -447,7 +467,6 @@ public nomask mapping materialsUsedForCrafting(object item)
 
         object blueprintObj = getBlueprintFor(item);
         mapping blueprintMaterials = blueprintObj->query("crafting materials");
-        destruct(blueprintObj);
         if (sizeof(blueprintMaterials))
         {
             if (sizeof(components))
@@ -522,7 +541,6 @@ public nomask mapping getMaterialsOfType(string type, object user,
 
             object blueprintObj = getBlueprintItem("materials", material);
             int prerequisites = prerequisitesMet(blueprintObj, user);
-            destruct(blueprintObj);
 
             craftingItem->set("material", material);
 
@@ -616,7 +634,6 @@ public nomask mapping getMaterialsDataForItem(string type,
             "description": "This is " + craftingComponents[component]["description"] +
                 "\n" + getDescriptionDetails(blueprintObj) + "\n"
         ]);
-        destruct(blueprintObj);
         menuItem++;
     }
     return ret;
@@ -810,7 +827,6 @@ public nomask int allComponentsHaveBeenChosen(object item)
 
     object blueprintObj = getBlueprintFor(item);
     mapping blueprintMaterials = blueprintObj->query("crafting materials");
-    destruct(blueprintObj);
 
     if (sizeof(blueprintMaterials) && sizeof(materialsToUse))
     {
@@ -1065,7 +1081,6 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
 
             object blueprintObj = getBlueprintItem("enchantments", enchantment);
             int prerequisites = prerequisitesMet(blueprintObj, user);
-            destruct(blueprintObj);
 
             string nameDesc = (sizeof(enchantment) < 21) ? enchantment :
                 (enchantment[0..16] + "...");
@@ -1282,7 +1297,6 @@ public nomask varargs void getRandomCraftingMaterial(object item,
                 item->set("material", blueprint->query("primary crafting material"));
             }
             item->set("crafting materials", materialList);
-            destruct(blueprint);
         }
     }
 }
@@ -1318,7 +1332,5 @@ public nomask void updateMaterial(object item)
             item->set("crafting materials", materialList);
             item->unset("do not update material");
         }
-
-        destruct(blueprint);
     }
 }

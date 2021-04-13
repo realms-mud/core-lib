@@ -1307,6 +1307,11 @@ private nomask varargs string *getListOfBlueprints(string type, string subtype,
             }
         }
     }
+    else if (stringp(subtype) && sizeof(regexp(({ subtype }), "^[a-z-]+/[a-z-]+")))
+    {
+        itemBlueprints += 
+            ({ sprintf("/lib/instances/items/%s/%s.c", type, subtype ) });
+    }
     else
     {
         string directory = sprintf("/lib/instances/items/%s%s/", type,
@@ -1315,7 +1320,7 @@ private nomask varargs string *getListOfBlueprints(string type, string subtype,
         directory = regreplace(directory, " ", "-", 1);
         directory = regreplace(directory, "'", "", 1);
 
-        itemBlueprints = get_dir("/" + directory + "*", 0x10) - 
+        itemBlueprints = get_dir(directory + "*", 0x10) - 
             ({ directory + ".", directory + ".." });
     }
     return itemBlueprints;

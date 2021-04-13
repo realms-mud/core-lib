@@ -22,7 +22,12 @@ protected nomask mapping getResearch(int playerId, int dbHandle)
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret["research"][result[2]] = ([
+            string key = result[2];
+            if (key[0] != '/')
+            {
+                key = "/" + key;
+            }
+            ret["research"][key] = ([
                 "when research began":to_int(result[3]),
                 "when research complete": to_int(result[4]),
                 "time spent learning": to_int(result[5]),
@@ -34,17 +39,17 @@ protected nomask mapping getResearch(int playerId, int dbHandle)
                 "active modifier object": result[11]
             ]);
 
-            if (!ret["research"][result[2]]["sustained active"])
+            if (!ret["research"][key]["sustained active"])
             {
-                m_delete(ret["research"][result[2]], "sustained active");
+                m_delete(ret["research"][key], "sustained active");
             }
-            if (!ret["research"][result[2]]["active count"])
+            if (!ret["research"][key]["active count"])
             {
-                m_delete(ret["research"][result[2]], "active count");
+                m_delete(ret["research"][key], "active count");
             }
-            if (!ret["research"][result[2]]["active modifier object"])
+            if (!ret["research"][key]["active modifier object"])
             {
-                m_delete(ret["research"][result[2]], "active modifier object");
+                m_delete(ret["research"][key], "active modifier object");
             }
         }
     } while (result);
@@ -102,7 +107,12 @@ protected nomask mapping getOpenResearchTrees(int playerId, int dbHandle)
         result = db_fetch(dbHandle);
         if (result)
         {
-            ret["openResearchTrees"] += ({ convertString(result[0]) });
+            string item = convertString(result[0]);
+            if (item[0] != '/')
+            {
+                item = "/" + item;
+            }
+            ret["openResearchTrees"] += ({ item });
         }
     } while (result);
 

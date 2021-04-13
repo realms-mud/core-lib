@@ -54,8 +54,8 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                                 modifier["base value"] : 0);
                     }
                     ret = sort_array(m_values(items), (: $1 < $2 :))[0];
-                    break;
                 }
+                break;
             }
             case "skill":
             {
@@ -249,8 +249,11 @@ protected nomask int applyModifiers(int value, object initiator,
         {
             int modifierTypeValue = modifierValueByType(initiator, modifier);
 
-            ret += applyModifierToFormula(value, modifierTypeValue, 
-                modifier["formula"], modifier["rate"]);          
+            if (modifierTypeValue > 0)
+            {
+                ret += applyModifierToFormula(value, modifierTypeValue,
+                    modifier["formula"], modifier["rate"]);
+            }
         }
     }
     return to_int(ret * specialModifier());

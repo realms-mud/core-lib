@@ -1060,12 +1060,12 @@ public nomask mapping categorizedResearch()
         if (!researchObj)
         {
             researchObj = dictionary->researchTree(element);
-            name = researchObj->Name();
+            name = lower_case(researchObj->Name());
             source = researchObj->Source();
         }
         else
         {
-            name = researchObj->query("name");
+            name = lower_case(researchObj->query("name"));
             source = researchObj->query("source");
         }
         if (!member(ret, source))
