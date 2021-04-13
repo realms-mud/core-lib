@@ -13,7 +13,6 @@ public nomask int isRealizationOfCompanion()
 /////////////////////////////////////////////////////////////////////////////
 public void create()
 {
-        henchman::create();
-        customCombatAssessment("companion");
-    }
+    henchman::create();
+    customCombatAssessment("companion");
 }
