@@ -88,6 +88,7 @@ protected int addSpecification(string type, mixed value)
         case "composite class":
         case "default composite description":
         case "event handler":
+        case "cooldown group":
         case "use composite message":
         case "use ability message":
         case "use ability fail message":

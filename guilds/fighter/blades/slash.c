@@ -207,6 +207,7 @@ protected void Setup()
     ]));
 
     addSpecification("cooldown", 25);
+    addSpecification("cooldown group", "fighter weapon level 1");
     addSpecification("cooldown modifiers", ([
         "/guilds/fighter/blades/blademasters-boon.c": 5,
         "/guilds/fighter/blades/blademasters-speed.c": 5,

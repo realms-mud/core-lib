@@ -751,6 +751,33 @@ public nomask int researchBonusTo(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void applyCooldown(string researchItem, object researchObj)
+{
+    int cooldown = researchObj->cooldown(this_object());
+    if (cooldown)
+    {
+        research[researchItem]["cooldown"] = cooldown;
+
+        if (researchObj->query("cooldown group"))
+        {
+            string *otherItems =
+                getDictionary("research")->cooldownGroup(researchItem);
+
+            if (sizeof(otherItems))
+            {
+                foreach(string item in otherItems)
+                {
+                    if (isResearched(item))
+                    {
+                        research[item]["cooldown"] = cooldown;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int researchCommand(string command)
 {
     int ret = 0;
@@ -789,11 +816,7 @@ public nomask int researchCommand(string command)
 
         if (ret && researchObj && (researchObj->query("type") != "sustained"))
         {
-            int cooldown = researchObj->cooldown(this_object());
-            if (cooldown)
-            {
-                research[commandToExecute]["cooldown"] = cooldown;
-            }
+            applyCooldown(commandToExecute, researchObj);
         }
 
         object eventObj = getService("events");

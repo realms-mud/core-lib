@@ -11,6 +11,7 @@ private string BaseResearchTree = "/lib/modules/research/researchTree.c";
 private mapping researchCache = ([]);
 private mapping researchItemCache = ([]);
 private mapping researchEquivalencies = ([]);
+private mapping researchCooldownGroups = ([]);
 private mapping researchByNameAndSource = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,6 +47,38 @@ private nomask varargs void cacheValue(mixed value, string research,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void setUpEquivalence(string researchItem)
+{
+    string equivalence =
+        researchItemCache[researchItem]->query("equivalence");
+
+    if (equivalence)
+    {
+        if (!member(researchEquivalencies, equivalence))
+        {
+            researchEquivalencies[equivalence] = ({ });
+        }
+        researchEquivalencies[equivalence] += ({ researchItem });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void setUpCooldownGroup(string researchItem)
+{
+    string cooldownGroup =
+        researchItemCache[researchItem]->query("cooldown group");
+
+    if (cooldownGroup)
+    {
+        if (!member(researchCooldownGroups, cooldownGroup))
+        {
+            researchCooldownGroups[cooldownGroup] = ({ });
+        }
+        researchCooldownGroups[cooldownGroup] += ({ researchItem });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask object getResearchItem(string researchItem)
 {
     object ret = 0;
@@ -63,17 +96,8 @@ private nomask object getResearchItem(string researchItem)
             lower_case(researchItemCache[researchItem]->query("source")))] =
             researchItem;
 
-        string equivalence = 
-            researchItemCache[researchItem]->query("equivalence");
-
-        if (equivalence)
-        {
-            if (!member(researchEquivalencies, equivalence))
-            {
-                researchEquivalencies[equivalence] = ({ });
-            }
-            researchEquivalencies[equivalence] += ({ researchItem });
-        }
+        setUpEquivalence(researchItem);
+        setUpCooldownGroup(researchItem);
         ret = researchItemCache[researchItem];
     }
     return ret;
@@ -156,6 +180,21 @@ public nomask int validResearch(string researchItem)
     {
         object researchObj = researchObject(researchItem);
         ret = (researchObj && objectp(researchObj));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *cooldownGroup(string researchItem)
+{
+    string *ret = ({ });
+    object researchObj = researchObject(researchItem);
+
+    if (researchObj && objectp(researchObj) && 
+        researchObj->query("cooldown group"))
+    {
+        ret = researchCooldownGroups[researchObj->query("cooldown group")] -
+                ({ getFullyQualifiedPath(researchItem) });
     }
     return ret;
 }

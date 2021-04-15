@@ -31,7 +31,7 @@ public void SetupGuild()
 
     addCriteria("weapon attack", ([
         "type":"attack",
-        "apply" : "1 every 15 levels"
+        "apply" : "1 every 20 levels"
     ]));
 
     addCriteria("attribute points", ([

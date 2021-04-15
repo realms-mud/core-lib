@@ -42,8 +42,8 @@ I have not tested this mudlib with drivers other than the LDMud driver. When com
 will need to keep a few things in mind:
 
 There are some differences between the native regular expression engine and that provided via
-PCRE. While it's a task in my backlog, I have not yet resolved the issue. For now, make sure that
-PCRE is diabled using the --disable-use-pcre flag.
+PCRE. While it's a task in my backlog to resolve the issue so that PCRE can be used, I have not yet 
+done so. For now, make sure thatPCRE is disabled using the --disable-use-pcre flag.
 
 There is a great deal more executional complexity when using this mudlib over typical libs. On the
 down side, there are most definitely many activities that will require more evaluation time and
@@ -59,7 +59,7 @@ will create a user named 'realmslib' with the password it echoes out and will al
 a user and database. The database can be named anything you'd like, but if it is not named RealmsLib, you will need to modify the RealmsDatabase() method in
 /secure/simulated-efuns/database.c to return your desired name. After you create a database user for the library, you will need to make sure that the credentials 
 can be used by the driver. Getting access to your database is a security problem. This can be resolved in a couple ways. The
-more secure method is to modify pkg_mysql.c in the LDMud source. Search for the call to mysql_real_connect in that file and modify the call. For example, I did this: 
+more secure method is to modify pkg-mysql.c in the LDMud source. Search for the call to mysql_real_connect in that file and modify the call. For example, I did this: 
 ```
 if ( !mysql_real_connect( tmp->mysql_dat, "localhost"
     , user ? get_txt(user) : "My DB user"
