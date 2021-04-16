@@ -34,7 +34,10 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
+    addResearchElement("/guilds/fighter/techniques/calculated-attack.c");
 
+    addChild("/guilds/fighter/techniques/calculated-attack.c",
+        "/guilds/fighter/techniques/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

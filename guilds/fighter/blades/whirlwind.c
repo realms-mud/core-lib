@@ -139,7 +139,7 @@ protected void Setup()
         ([
             "type": "deferred attack",
             "name": "deferred attack",
-            "trait": "/guilds/fighter/blades/calculated-attack.c",
+            "trait": "/guilds/fighter/techniques/calculated-attack.c",
             "formula": "multiplicative",
             "rate": 0.01
         ]),

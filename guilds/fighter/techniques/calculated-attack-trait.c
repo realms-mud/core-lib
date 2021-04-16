@@ -11,10 +11,10 @@ protected void Setup()
     addSpecification("name", "Calculated Attack");
     addSpecification("root", "do not attack");
     addSpecification("description", "You are carefully poising your weapon. "
-        "While this is in effect, you cannot attack, but your blade "
-        "skills will receive a bonus dependent on how long you have "
+        "While this is in effect, you cannot attack, but your special "
+        "attack skills will receive a bonus dependent on how long you have "
         "taken to attack.");
         
     addSpecification("triggering research", 
-        "/guilds/fighter/blades/calculated-attack.c");
+        "/guilds/fighter/techniques/calculated-attack.c");
 }

@@ -25,9 +25,12 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
-    addResearchElement("/guilds/fighter/blades/calculated-attack.c");
+    addResearchElement("/guilds/fighter/blades/blade-guarding.c");
+    addResearchElement("/guilds/fighter/blades/basic-hews.c");
 
-    addChild("/guilds/fighter/blades/calculated-attack.c",
+    addChild("/guilds/fighter/blades/blade-guarding.c",
+        "/guilds/fighter/blades/root.c");
+    addChild("/guilds/fighter/blades/basic-hews.c",
         "/guilds/fighter/blades/root.c");
 }
 

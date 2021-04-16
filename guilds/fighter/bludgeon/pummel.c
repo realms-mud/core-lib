@@ -7,18 +7,17 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Slash");
+    addSpecification("name", "Pummel");
     addSpecification("source", "fighter");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of a slashing blade technique that causes damage to "
+        "knowledge of a swinging blunt weapon technique that causes damage to "
         "an enemy.");
 
-    addPrerequisite("/guilds/fighter/blades/root.c",
+    addPrerequisite("/guilds/fighter/bludgeon/root.c",
         (["type":"research"]));
 
-    addSpecification("limited by", (["equipment":({ "long sword",
-        "hand and a half sword", "two-handed sword", "dagger", 
-        "short sword", })]));
+    addSpecification("limited by", (["equipment":({ "mace", "hammer",
+        "flail", "staff" })]));
 
     addPrerequisite("level",
         (["type":"level",
@@ -42,85 +41,85 @@ protected void Setup()
         ])
     }));
 
-    addSpecification("damage type", "slash");
+    addSpecification("damage type", "bludgeon");
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/under-cutting.c",
-            "name": "under-cutting",
+            "research item": "/guilds/fighter/bludgeon/under-striking.c",
+            "name": "under-striking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/reverse-cut.c",
-            "name": "reverse-cut",
+            "research item": "/guilds/fighter/bludgeon/reverse-bash.c",
+            "name": "reverse-bash",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/double-back.c",
-            "name": "double-back",
+            "research item": "/guilds/fighter/bludgeon/redoubled-push.c",
+            "name": "redoubled-push",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/riposte.c",
-            "name": "riposte",
+            "research item": "/guilds/fighter/bludgeon/unrelenting-strike.c",
+            "name": "unrelenting-strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/reversing-the-blade.c",
-            "name": "reversing-the-blade",
+            "research item": "/guilds/fighter/bludgeon/reversing-the-swing.c",
+            "name": "reversing-the-swing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/over-cutting.c",
-            "name": "over-cutting",
+            "research item": "/guilds/fighter/bludgeon/over-driving.c",
+            "name": "over-driving",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/cross-cutting.c",
-            "name": "cross-slashing",
+            "research item": "/guilds/fighter/bludgeon/cross-driving.c",
+            "name": "cross-driving",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/dancing-blade.c",
-            "name": "dancing-blade",
+            "research item": "/guilds/fighter/bludgeon/dancing-cudgel.c",
+            "name": "dancing-cudgel",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/hanging-cut.c",
-            "name": "hanging-cut",
+            "research item": "/guilds/fighter/bludgeon/hanging-stroke.c",
+            "name": "hanging-stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/blades/master-stroke.c",
-            "name": "master-stroke",
+            "research item": "/guilds/fighter/bludgeon/master-bludgeon.c",
+            "name": "master-bludgeon",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -134,17 +133,15 @@ protected void Setup()
         ]),
         ([
             "type": "weapon damage",
-            "name" : "sword",
-            "types" : ({ "long sword", "hand and a half sword", 
-                "two-handed sword", "dagger", "short sword" }),
+            "name" : "blunt weapon",
+            "types" : ({ "mace", "hammer", "flail", "staff" }),
             "formula" : "additive",
             "rate" : 0.75
         ]),
         ([
             "type":"highest skill",
-            "name" : "sword skills",
-            "skills": ({ "long sword", "hand and a half sword", 
-                "two-handed sword", "dagger", "short sword" }),
+            "name" : "blunt skills",
+            "skills": ({ "mace", "hammer", "flail", "staff" }),
             "formula" : "additive",
             "rate" : 0.5
         ]), 
@@ -200,24 +197,24 @@ protected void Setup()
 
     addSpecification("stamina point cost", 30);
     addSpecification("stamina point cost modifiers", ([
-        "/guilds/fighter/blades/blademasters-reserve.c": 5,
-        "/guilds/fighter/blades/blademasters-call.c": 5,
-        "/guilds/fighter/blades/blademasters-might.c": 5,
-        "/guilds/fighter/blades/blademasters-fury.c": 5
+        "/guilds/fighter/bludgeon/bludgeoners-reserve.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-call.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-might.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-fury.c": 5
     ]));
 
     addSpecification("cooldown", 25);
     addSpecification("cooldown group", "fighter weapon level 1");
     addSpecification("cooldown modifiers", ([
-        "/guilds/fighter/blades/blademasters-boon.c": 5,
-        "/guilds/fighter/blades/blademasters-speed.c": 5,
-        "/guilds/fighter/blades/blademasters-endurance.c": 5,
-        "/guilds/fighter/blades/blademasters-strength.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-boon.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-speed.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-endurance.c": 5,
+        "/guilds/fighter/bludgeon/bludgeoners-strength.c": 5,
     ]));
 
-    addSpecification("event handler", "slashEvent");
-    addSpecification("command template", "slash [at ##Target##]");
+    addSpecification("event handler", "pummelEvent");
+    addSpecification("command template", "pummel [at ##Target##]");
     addSpecification("use ability message",  "##InitiatorPossessive::Name## "
-        "##Infinitive::slash## ##InitiatorPossessive## "
+        "##Infinitive::pummel## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## in a relentless onslaught.");
 }
