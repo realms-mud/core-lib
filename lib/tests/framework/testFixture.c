@@ -54,16 +54,8 @@ public int executeTests()
         timeStruct = rusage();
         int timeOfExecution = timeStruct[0] + timeStruct[1] - timeBeforeExecution;
 
-        if (timeOfExecution > 100)
-        {
-            debug_message(sprintf("%s %s (%dms)\n", Pass, test,
-                timeOfExecution), 0x5);
-        }
-        else
-        {
-            debug_message(sprintf("%s %s (%dms)\n", CurrentTestPassed ? Pass : Fail, test,
-                timeOfExecution), 0x5);
-        }
+        debug_message(sprintf("%s %s (%dms)\n", CurrentTestPassed ? Pass : Fail, test,
+            timeOfExecution), 0x5);
 
         CleanUp();
     }

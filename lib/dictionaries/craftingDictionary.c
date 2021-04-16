@@ -10,6 +10,7 @@
 #include "materials/enchantments.h"
 
 private mapping BlueprintObjects = ([]);
+private mapping MaterialsForClass = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidType(mixed type)
@@ -349,13 +350,6 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask mapping getMaterialByClass(string materialClass)
-{
-    return filter(m_indices(materials),
-        (: materials[$1]["class"] == $2 :), materialClass);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1163,10 +1157,13 @@ private nomask string getRandomMaterial(string materialClass,
 {
     object materialsDictionary = getDictionary("materials");
 
-    string *materialList = filter(m_indices(materials),
-        (: $2[$1]["class"] == $3 :), materials, materialClass);
+    if (!member(MaterialsForClass, materialClass))
+    {
+        MaterialsForClass[materialClass] = filter(m_indices(materials),
+            (: $2[$1]["class"] == $3 :), materials, materialClass);
+    }
 
-    if (member(materialList, defaultMaterial) == -1)
+    if (member(MaterialsForClass[materialClass], defaultMaterial) == -1)
     {
         defaultMaterial = 0;
     }

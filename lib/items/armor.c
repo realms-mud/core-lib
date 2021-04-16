@@ -67,6 +67,16 @@ public nomask mixed query(string element)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void generateRandomCraftingMaterials()
+{
+    if (!query("crafting materials"))
+    {
+        getDictionary("crafting")->getRandomCraftingMaterial(
+            this_object(), 1);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkBlueprint(string data)
 {
     int ret = 0;
@@ -78,8 +88,7 @@ private nomask int checkBlueprint(string data)
     if (ret)
     {
         itemData["blueprint"] = data;
-        getDictionary("crafting")->getRandomCraftingMaterial(
-            this_object(), 1);
+        call_out("generateRandomCraftingMaterials", 1);
     }
     else
     {

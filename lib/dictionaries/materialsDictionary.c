@@ -41,6 +41,8 @@ private mapping defaultValues = ([
 
 ]);
 
+private nosave mapping WeightedMaterials = ([]);
+
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidItem(object item)
 {
@@ -1159,33 +1161,37 @@ private nomask string *getWeightedMaterial(string material)
 public nomask varargs string getRandomMaterialFromClass(string materialClass,
     string defaultMaterial)
 {
-    int useCrystals = materialClass == "metal";
-
-    string *options = filter(m_indices(materials),
-        (: (($2[$1]["class"] == $3) ||
-        ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
-        materials, materialClass, useCrystals);
-
-    string *weightedMaterials = ({});
-
-    if (defaultMaterial)
+    if (!member(WeightedMaterials, materialClass))
     {
-        for (int i = 0; i < 100; i++)
+        int useCrystals = materialClass == "metal";
+
+        string *options = filter(m_indices(materials),
+            (: (($2[$1]["class"] == $3) ||
+            ($4 && !random(10) && ($2[$1]["class"] == "crystal"))) :),
+            materials, materialClass, useCrystals);
+
+        WeightedMaterials[materialClass] = ({});
+
+        if (defaultMaterial)
         {
-            weightedMaterials += ({ defaultMaterial });
+            for (int i = 0; i < 100; i++)
+            {
+                WeightedMaterials[materialClass] += ({ defaultMaterial });
+            }
+        }
+
+        if (sizeof(options))
+        {
+            foreach(string material in options)
+            {
+                WeightedMaterials[materialClass] += getWeightedMaterial(material);
+            }
         }
     }
 
-    if (sizeof(options))
-    {
-        foreach(string material in options)
-        {
-            weightedMaterials += getWeightedMaterial(material);
-        }
-    }
-
-    return sizeof(weightedMaterials) ?
-        weightedMaterials[random(sizeof(weightedMaterials))] : "error";
+    return sizeof(WeightedMaterials[materialClass]) ?
+        WeightedMaterials[materialClass][
+            random(sizeof(WeightedMaterials[materialClass]))] : "error";
 }
 
 /////////////////////////////////////////////////////////////////////////////

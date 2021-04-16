@@ -370,6 +370,7 @@ private nomask void generateDefaultItems(object shop)
 
             item->identify();
             shop->storeItem(item, 1);
+            destruct(item);
         }
     }
 }
