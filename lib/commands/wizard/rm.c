@@ -21,7 +21,7 @@ private nomask varargs int removeFile(string path, object initiator, int recurse
     }
 
     string *files = get_dir(path + "*", 0x10) -
-        ({ (path[1..] + "."), (path[1..] + "..") });
+        ({ (path + "."), (path + "..") });
 
     if (!initiator->hasWriteAccess(path))
     {

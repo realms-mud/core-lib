@@ -84,7 +84,7 @@ private nomask varargs int compile(string path, object initiator,
     }
 
     string *files = get_dir(path, 0x10) - 
-        ({ (directoryPath[1..] + "/."), (directoryPath[1..] + "/..") });
+        ({ (directoryPath + "/."), (directoryPath + "/..") });
 
     if (!sizeof(files) || !initiator->hasReadAccess(path))
     {

@@ -29,6 +29,13 @@ void Init()
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     database->PrepDatabase();
+
+    mapping actor = database->Gorthaur();
+    actor["name"] = "Bob";
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess->savePlayerData(actor);
+
     destruct(database);
 
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
