@@ -7,28 +7,28 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Blademaster's Speed");
+    addSpecification("name", "Axemaster's Might");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge to increase the speed with which they can use their "
-        "blade combat abilities.");
+        "knowledge to decrease the stamina cost for which they can use their "
+        "blade attack abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 17
+            "value": 31
         ]));
-    addPrerequisite("/guilds/fighter/blades/blademasters-boon.c",
+    addPrerequisite("/guilds/fighter/axes/axemasters-call.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Slash": 5,
-        "Thrust": 5,
-        "Whirlwind": 10,
-        "Cleave": 10,
-        "Piercing Strike": 10,
+        "Chop": 5,
+        "Thrash": 5,
+        "Sweeping Hew": 10,
+        "Hack": 10,
+        "Punishing Hack": 10,
     ]));
-    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research type", "decrease cost");
 }

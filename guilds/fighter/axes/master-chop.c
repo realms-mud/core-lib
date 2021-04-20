@@ -7,28 +7,27 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Blademaster's Speed");
+    addSpecification("name", "Master Chop");
     addSpecification("source", "fighter");
-    addSpecification("description", "This skill provides the user with the "
-        "knowledge to increase the speed with which they can use their "
-        "blade combat abilities.");
+    addSpecification("description", "This skill provides the user with "
+        "knowledge that enhances the fighter's combat abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 17
+            "value": 63
         ]));
-    addPrerequisite("/guilds/fighter/blades/blademasters-boon.c",
+    addPrerequisite("/guilds/fighter/axes/uplifting-sweep.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Slash": 5,
-        "Thrust": 5,
-        "Whirlwind": 10,
-        "Cleave": 10,
-        "Piercing Strike": 10,
+        "Chop": 50,
+        "Thrash": 50,
+        "Sweeping Hew": 50,
+        "Hack": 50,
+        "Punishing Hack": 50,
     ]));
-    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research type", "percentage");
 }

@@ -7,7 +7,7 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Blademasters Endurance");
+    addSpecification("name", "Blademaster's Endurance");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
         "knowledge to increase the speed with which they can use their "

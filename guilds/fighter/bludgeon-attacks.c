@@ -91,9 +91,9 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
-    addResearchElement("/guilds/fighter/bludgeon/whirlwind.c");
+    addResearchElement("/guilds/fighter/bludgeon/battering-arc.c");
 
-    addChild("/guilds/fighter/bludgeon/whirlwind.c",
+    addChild("/guilds/fighter/bludgeon/battering-arc.c",
         "/guilds/fighter/bludgeon/crush.c");
 }
 
@@ -124,9 +124,9 @@ private void TwentySeventhLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
-    addResearchElement("/guilds/fighter/bludgeon/piercing-strike.c");
+    addResearchElement("/guilds/fighter/bludgeon/crushing-strike.c");
 
-    addChild("/guilds/fighter/bludgeon/piercing-strike.c",
+    addChild("/guilds/fighter/bludgeon/crushing-strike.c",
         "/guilds/fighter/bludgeon/cudgel.c");
 }
 
