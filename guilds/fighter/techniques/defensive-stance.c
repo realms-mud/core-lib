@@ -7,19 +7,17 @@ inherit "/lib/modules/research/sustainedResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Calculated Attack");
+    addSpecification("name", "Defensive Stance");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge of an extremely meticulous means of discerning the "
-        "direction of combat. While this is in effect, you pause your "
-        "attacks, waiting for the best time to unleash a special attack. "
-        "Your attacks will receive a large damage bonus dependent on how "
-        "long you have taken to make your attack.");
+        "knowledge of how to move into a cautious, defense-oriented stance. "
+        "They will sacrifice attack ability with an enhanced ability to "
+        "prevent an enemy's attack.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 5
+            "value": 1
         ]));
     addPrerequisite("/guilds/fighter/techniques/root.c",
         (["type":"research"]));
@@ -28,14 +26,14 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("cooldown", 4);
-    addSpecification("stamina point cost", 50);
-    addSpecification("command template", "calculated attack");
-    addSpecification("trait", "/guilds/fighter/techniques/traits/calculated-attack-trait.c");
+    addSpecification("stamina point cost", 25);
+    addSpecification("command template", "defensive stance");
+    addSpecification("trait", 
+        "/guilds/fighter/techniques/traits/defensive-stance-trait.c");
 
     addSpecification("use ability activate message", "##InitiatorName## "
-        "##Infinitive::take## a stance of carefully poising "
-        "##InitiatorPossessive## ##InitiatorWeapon## for attack.");
+        "##Infinitive::take## a defensive stance, poising "
+        "##InitiatorPossessive## ##InitiatorWeapon## to parry attacks.");
     addSpecification("use ability deactivate message", "##InitiatorName## "
-        "##Infinitive::be## no longer carefully poising "
-        "##InitiatorPossessive## ##InitiatorWeapon## for attack.");
+        "##Infinitive::be## no longer in a defensive stance.");
 }

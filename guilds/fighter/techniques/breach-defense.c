@@ -7,7 +7,7 @@ inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Press Attack");
+    addSpecification("name", "Breach Defense");
     addSpecification("source", "fighter");
 
     addSpecification("description", "This skill provides the user with the "
@@ -17,14 +17,14 @@ protected void Setup()
     addPrerequisite("level", 
         (["type": "level", 
           "guild": "fighter",
-          "value": 3 ]));
+          "value": 19 ]));
 
     addSpecification("limited by", (["equipment":({ "long sword",
         "hand and a half sword", "two-handed sword", "axe",
         "dagger", "short sword", "hammer", "mace", "flail",
         "staff", "pole arm" })]));
 
-    addPrerequisite("/guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/techniques/press-attack.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
@@ -81,17 +81,17 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("cooldown", 6);
+    addSpecification("cooldown", 30);
 
-    addSpecification("stamina point cost", 15);
+    addSpecification("stamina point cost", 150);
 
-    addSpecification("bonus attack", 15);
+    addSpecification("bonus attack", 100);
+    addSpecification("bonus damage", 50);
     addSpecification("duration", 3);
 
-    addSpecification("event handler", "pressAttackEvent");
-    addSpecification("command template", "press attack");
+    addSpecification("event handler", "breachDefenseEvent");
+    addSpecification("command template", "breach defense");
     addSpecification("use ability message", "##InitiatorPossessive::Name## "
-        "deftly ##Infinitive::slide## ##InitiatorPossessive## "
-        "##InitiatorWeapon## under ##TargetName##'s guard and presses "
-        "##InitiatorPossessive## attack.");
+        "skillfully ##Infinitive::shatter## ##TargetName##'s guard "
+        "and presses ##InitiatorPossessive## attack.");
 }

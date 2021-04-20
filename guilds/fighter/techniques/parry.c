@@ -7,12 +7,12 @@ inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Press Attack");
+    addSpecification("name", "Parry Attack");
     addSpecification("source", "fighter");
 
     addSpecification("description", "This skill provides the user with the "
-        "knowledge of a maneuver that greatly improves their timing for their "
-        "next attack with a melee weapon.");
+        "knowledge of a technique that changes the fighter's next round "
+        "of combat to be intent on parrying an opponent's attack.");
 
     addPrerequisite("level", 
         (["type": "level", 
@@ -30,7 +30,7 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "weapon damage",
-            "name" : "weapons",
+            "name" : "weapon",
             "types" : ({ "long sword", "hand and a half sword", 
                 "two-handed sword", "axe", "dagger", "short sword", 
                 "hammer", "mace", "flail", "staff", "pole arm" }),
@@ -38,31 +38,25 @@ protected void Setup()
             "rate" : 1.5
         ]),
         ([
-            "type": "highest skill",
-            "name": "weapon skills",
+            "type":"highest skill",
+            "name" : "weapon skills",
             "skills": ({ "long sword", "hand and a half sword", 
                 "two-handed sword", "axe", "dagger", "short sword", 
                 "hammer", "mace", "flail", "staff", "pole arm" }),
             "formula" : "logarithmic",
-            "rate" : 1.25
+            "rate" : 1.15
         ]), 
+        ([
+            "type": "skill",
+            "name": "parry",
+            "formula": "additive",
+            "rate": 0.20
+        ]),
         ([
             "type": "skill",
             "name": "anatomy and physiology",
             "formula": "additive",
             "rate": 0.10
-        ]),
-        ([
-            "type": "skill",
-            "name": "physics",
-            "formula": "additive",
-            "rate": 0.10
-        ]),
-        ([
-            "type": "attribute",
-            "name": "strength",
-            "formula": "additive",
-            "rate": 0.25
         ]),
         ([
             "type": "attribute",
@@ -85,13 +79,12 @@ protected void Setup()
 
     addSpecification("stamina point cost", 15);
 
-    addSpecification("bonus attack", 15);
+    addSpecification("bonus parry", 15);
+    addSpecification("bonus defense", 15);
     addSpecification("duration", 3);
 
-    addSpecification("event handler", "pressAttackEvent");
-    addSpecification("command template", "press attack");
+    addSpecification("event handler", "parryEvent");
+    addSpecification("command template", "parry");
     addSpecification("use ability message", "##InitiatorPossessive::Name## "
-        "deftly ##Infinitive::slide## ##InitiatorPossessive## "
-        "##InitiatorWeapon## under ##TargetName##'s guard and presses "
-        "##InitiatorPossessive## attack.");
+        "##Infinitive::move## into a parry stance.");
 }

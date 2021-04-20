@@ -7,20 +7,19 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Evade");
+    addSpecification("name", "Pliant Armor Techniques");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge of how to more effectively evade an attack whilst "
-        "using a weapon.");
-    addSpecification("limited by", (["equipment":({ "long sword",
-        "hand and a half sword", "two-handed sword", "axe",
-        "dagger", "short sword", "hammer", "mace", "flail",
-        "staff", "pole arm" })]));
+        "knowledge of how to more effectively move in leathers and mail "
+        "armors as well as distribute and soften landed blows.");
+
+    addSpecification("limited by", (["equipment":({ "soft leather",
+        "scalemail", "chainmail", })]));
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "fighter",
-          "value": 2 ]));
+          "value": 10 ]));
 
     addPrerequisite("/guilds/fighter/techniques/root.c",
         (["type":"research"]));
@@ -28,6 +27,9 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus dodge", 2);
-    addSpecification("equivalence", "evade");
+    addSpecification("bonus defense", 2);
+    addSpecification("bonus soak", 1);
+    addSpecification("bonus soft leather", 2);
+    addSpecification("bonus scalemail", 2);
+    addSpecification("bonus chainmail", 2);
 }

@@ -7,24 +7,24 @@ inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Press Attack");
+    addSpecification("name", "Incite Ineptitude");
     addSpecification("source", "fighter");
 
     addSpecification("description", "This skill provides the user with the "
-        "knowledge of a maneuver that greatly improves their timing for their "
-        "next attack with a melee weapon.");
+        "knowledge knowledge of how best to get under the skin of one's "
+        "foes. The angered strike often misses.");
 
     addPrerequisite("level", 
         (["type": "level", 
           "guild": "fighter",
-          "value": 3 ]));
+          "value": 29 ]));
 
     addSpecification("limited by", (["equipment":({ "long sword",
         "hand and a half sword", "two-handed sword", "axe",
         "dagger", "short sword", "hammer", "mace", "flail",
         "staff", "pole arm" })]));
 
-    addPrerequisite("/guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/techniques/goad.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
@@ -78,20 +78,21 @@ protected void Setup()
         ]),
     }));
 
-    addSpecification("scope", "self");
+    addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("cooldown", 6);
+    addSpecification("cooldown", 10);
 
-    addSpecification("stamina point cost", 15);
+    addSpecification("stamina point cost", 150);
 
-    addSpecification("bonus attack", 15);
-    addSpecification("duration", 3);
+    addSpecification("penalty to attack", 100);
+    addSpecification("penalty to damage", 50);
+    addSpecification("penalty to defense", 100);
+    addSpecification("duration", 6);
 
-    addSpecification("event handler", "pressAttackEvent");
-    addSpecification("command template", "press attack");
+    addSpecification("event handler", "inciteIneptitudeEvent");
+    addSpecification("command template", "incite ineptitude [##Target##]");
     addSpecification("use ability message", "##InitiatorPossessive::Name## "
-        "deftly ##Infinitive::slide## ##InitiatorPossessive## "
-        "##InitiatorWeapon## under ##TargetName##'s guard and presses "
-        "##InitiatorPossessive## attack.");
+        "smugly ##Infinitive::badger## ##TargetName## into a series of "
+        "wildly-placed attacks.");
 }

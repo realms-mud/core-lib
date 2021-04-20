@@ -7,7 +7,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Evade");
+    addSpecification("name", "Advanced Evasion");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of how to more effectively evade an attack whilst "
@@ -20,14 +20,14 @@ protected void Setup()
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "fighter",
-          "value": 2 ]));
+          "value": 13 ]));
 
-    addPrerequisite("/guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/techniques/evade.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus dodge", 2);
-    addSpecification("equivalence", "evade");
+    addSpecification("bonus dodge", 3);
+    addSpecification("equivalence", "advanced evasion");
 }
