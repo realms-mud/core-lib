@@ -214,7 +214,7 @@ protected void Setup()
 
     addSpecification("event handler", "pummelEvent");
     addSpecification("command template", "pummel [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::pummel## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## in a relentless onslaught.");
 }

@@ -90,7 +90,7 @@ protected void Setup()
 
     addSpecification("event handler", "precisionAttackEvent");
     addSpecification("command template", "precision attack");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "artfully ##Infinitive::lunge## ##InitiatorPossessive## "
         "##InitiatorWeapon## through ##TargetName##'s defenses.");
 }

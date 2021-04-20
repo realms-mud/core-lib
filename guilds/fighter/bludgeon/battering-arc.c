@@ -225,7 +225,7 @@ protected void Setup()
 
     addSpecification("event handler", "batteringArcEvent");
     addSpecification("command template", "battering arc");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::begin## to spin frantically and ##Infinitive::swing## "
         "##InitiatorPossessive## ##InitiatorWeapon## at all foes within reach.");
 }

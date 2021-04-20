@@ -223,7 +223,7 @@ protected void Setup()
 
     addSpecification("event handler", "punishingHackEvent");
     addSpecification("command template", "punishing hack [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "violently ##Infinitive::hack## ##InitiatorPossessive## "
         "##InitiatorWeapon## into ##TargetName## with deft skill.");
 }

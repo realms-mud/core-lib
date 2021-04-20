@@ -7,45 +7,37 @@ inherit "/lib/modules/research/persistedActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Feint");
+    addSpecification("name", "Block Attack");
     addSpecification("source", "fighter");
 
     addSpecification("description", "This skill provides the user with the "
-        "knowledge of a maneuver that greatly improves their "
-        "next attack with a melee weapon.");
+        "knowledge of a technique that changes the fighter's next round "
+        "of combat to be intent on blocking an opponent's attack with "
+        "a shield.");
 
     addPrerequisite("level", 
         (["type": "level", 
           "guild": "fighter",
-          "value": 7 ]));
+          "value": 1 ]));
 
-    addSpecification("limited by", (["equipment":({ "long sword",
-        "hand and a half sword", "two-handed sword", "axe",
-        "dagger", "short sword", "hammer", "mace", "flail",
-        "staff", "pole arm" })]));
+    addSpecification("limited by", (["equipment":({ "shield" })]));
 
-    addPrerequisite("/guilds/fighter/techniques/root.c",
+    addPrerequisite("/guilds/fighter/shields/root.c",
         (["type":"research"]));
 
     addSpecification("modifiers", ({ 
         ([
-            "type": "weapon damage",
-            "name" : "weapons",
-            "types" : ({ "long sword", "hand and a half sword", 
-                "two-handed sword", "axe", "dagger", "short sword", 
-                "hammer", "mace", "flail", "staff", "pole arm" }),
+            "type": "skill",
+            "name" : "shield",
             "formula" : "additive",
             "rate" : 1.5
         ]),
         ([
-            "type": "highest skill",
-            "name": "weapon skills",
-            "skills": ({ "long sword", "hand and a half sword", 
-                "two-handed sword", "axe", "dagger", "short sword", 
-                "hammer", "mace", "flail", "staff", "pole arm" }),
-            "formula" : "logarithmic",
-            "rate" : 1.25
-        ]), 
+            "type": "skill",
+            "name": "parry",
+            "formula": "additive",
+            "rate": 0.20
+        ]),
         ([
             "type": "skill",
             "name": "anatomy and physiology",
@@ -60,13 +52,13 @@ protected void Setup()
         ]),
         ([
             "type": "attribute",
-            "name": "strength",
+            "name": "dexterity",
             "formula": "additive",
             "rate": 0.25
         ]),
         ([
             "type": "attribute",
-            "name": "dexterity",
+            "name": "strength",
             "formula": "additive",
             "rate": 0.25
         ]),
@@ -85,14 +77,14 @@ protected void Setup()
 
     addSpecification("stamina point cost", 25);
 
-    addSpecification("bonus attack", 25);
-    addSpecification("bonus damage", 15);
+    addSpecification("bonus shield", 15);
+    addSpecification("bonus defense", 15);
     addSpecification("bonus soak", 5);
     addSpecification("duration", 3);
 
-    addSpecification("event handler", "feintEvent");
-    addSpecification("command template", "feint");
+    addSpecification("event handler", "blockEvent");
+    addSpecification("command template", "block");
     addSpecification("use ability message", "##InitiatorName## "
-        "skillfully ##Infinitive::feint## with ##InitiatorPossessive## "
-        "##InitiatorWeapon##.");
+        "##Infinitive::ready## ##InitiatorPossessive## shield against "
+        "oncoming attacks.");
 }

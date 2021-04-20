@@ -7,22 +7,21 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Cudgel");
+    addSpecification("name", "Skewer");
     addSpecification("source", "fighter");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of a blunt weapon technique that causes damage to "
+        "knowledge of a polearm stabbing technique that causes damage to "
         "an enemy.");
 
-    addPrerequisite("/guilds/fighter/bludgeon/root.c",
+    addPrerequisite("/guilds/fighter/polearms/root.c",
         (["type":"research"]));
 
-    addSpecification("limited by", (["equipment":({ "mace", "hammer",
-        "flail", "staff" })]));
+    addSpecification("limited by", (["equipment":({ "pole arm" })]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 3
+            "value": 1
         ]));
 
     addSpecification("scope", "targeted");
@@ -31,95 +30,95 @@ protected void Setup()
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
-            "base damage": 10,
-            "range": 15
+            "base damage": 5,
+            "range": 10
         ]),
         ([
             "probability": 10,
-            "base damage": 25,
-            "range": 50
+            "base damage": 15,
+            "range": 30
         ])
     }));
 
-    addSpecification("damage type", "bludgeon");
+    addSpecification("damage type", "thrust");
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/under-striking.c",
-            "name": "under-striking",
+            "research item": "/guilds/fighter/polearms/forceful-thrust.c",
+            "name": "forceful-thrust",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/reverse-bash.c",
-            "name": "reverse-bash",
+            "research item": "/guilds/fighter/polearms/fools-bayonet.c",
+            "name": "fools-bayonet",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/redoubled-push.c",
-            "name": "redoubled-push",
+            "research item": "/guilds/fighter/polearms/hooking-thrust.c",
+            "name": "hooking-thrust",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/unrelenting-strike.c",
-            "name": "unrelenting-strike",
+            "research item": "/guilds/fighter/polearms/perforation.c",
+            "name": "perforation",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/reversing-the-swing.c",
-            "name": "reversing-the-swing",
+            "research item": "/guilds/fighter/polearms/transfix.c",
+            "name": "transfix",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/over-driving.c",
-            "name": "over-driving",
+            "research item": "/guilds/fighter/polearms/piercing-blow.c",
+            "name": "piercing-blow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/cross-driving.c",
-            "name": "cross-driving",
+            "research item": "/guilds/fighter/polearms/penetration.c",
+            "name": "penetration",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/dancing-cudgel.c",
-            "name": "dancing-cudgel",
+            "research item": "/guilds/fighter/polearms/slicing-stroke.c",
+            "name": "slicing-stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/hanging-stroke.c",
-            "name": "hanging-stroke",
+            "research item": "/guilds/fighter/polearms/lunging-strike.c",
+            "name": "lunging-strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/fighter/bludgeon/master-bludgeon.c",
-            "name": "master-bludgeon",
+            "research item": "/guilds/fighter/polearms/master-skewer.c",
+            "name": "master-skewer",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -133,15 +132,14 @@ protected void Setup()
         ]),
         ([
             "type": "weapon damage",
-            "name" : "blunt weapon",
-            "types" : ({ "mace", "hammer", "flail", "staff" }),
+            "name" : "polearm damage",
+            "types" : ({ "pole arm" }),
             "formula" : "additive",
             "rate" : 0.75
         ]),
         ([
-            "type":"highest skill",
-            "name" : "blunt skills",
-            "skills": ({ "mace", "hammer", "flail", "staff" }),
+            "type": "skill",
+            "name" : "pole arm",
             "formula" : "additive",
             "rate" : 0.5
         ]), 
@@ -195,26 +193,26 @@ protected void Setup()
         ]),
     }));
 
-    addSpecification("stamina point cost", 50);
+    addSpecification("stamina point cost", 30);
     addSpecification("stamina point cost modifiers", ([
-        "/guilds/fighter/bludgeon/bludgeoners-reserve.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-call.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-might.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-fury.c": 5
+        "/guilds/fighter/polearms/polemasters-reserve.c": 5,
+        "/guilds/fighter/polearms/polemasters-call.c": 5,
+        "/guilds/fighter/polearms/polemasters-might.c": 5,
+        "/guilds/fighter/polearms/polemasters-fury.c": 5
     ]));
 
-    addSpecification("cooldown", 30);
-    addSpecification("cooldown group", "fighter weapon level 3");
+    addSpecification("cooldown", 25);
+    addSpecification("cooldown group", "fighter weapon level 1");
     addSpecification("cooldown modifiers", ([
-        "/guilds/fighter/bludgeon/bludgeoners-boon.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-speed.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-endurance.c": 5,
-        "/guilds/fighter/bludgeon/bludgeoners-strength.c": 5,
+        "/guilds/fighter/polearms/polemasters-boon.c": 5,
+        "/guilds/fighter/polearms/polemasters-speed.c": 5,
+        "/guilds/fighter/polearms/polemasters-endurance.c": 5,
+        "/guilds/fighter/polearms/polemasters-strength.c": 5,
     ]));
 
-    addSpecification("event handler", "cudgelEvent");
-    addSpecification("command template", "cudgel [at ##Target##]");
+    addSpecification("event handler", "skewerEvent");
+    addSpecification("command template", "skewer [##Target##]");
     addSpecification("use ability message",  "##InitiatorName## "
-        "##Infinitive::cudgel## ##InitiatorPossessive## "
-        "##InitiatorWeapon## at ##TargetName## aggressively.");
+        "##Infinitive::skewer## ##InitiatorPossessive## "
+        "##InitiatorWeapon## into ##TargetName##.");
 }

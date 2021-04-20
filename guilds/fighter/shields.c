@@ -7,13 +7,10 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
+    addResearchElement("/guilds/fighter/shields/block.c");
 
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void SecondLevel()
-{
-
+    addChild("/guilds/fighter/shields/block.c",
+        "/guilds/fighter/shields/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +131,6 @@ protected void Setup()
     TreeRoot("/guilds/fighter/shields/root.c");
 
     FirstLevel();
-    SecondLevel();
     ThirdLevel();
     FifthLevel();
     SeventhLevel();

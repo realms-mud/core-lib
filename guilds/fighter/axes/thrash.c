@@ -212,7 +212,7 @@ protected void Setup()
 
     addSpecification("event handler", "thrashEvent");
     addSpecification("command template", "thrash [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::thrash## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## aggressively.");
 }

@@ -223,7 +223,7 @@ protected void Setup()
 
     addSpecification("event handler", "sweepingHewEvent");
     addSpecification("command template", "sweeping hew");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::swing## ##InitiatorPossessive## ##InitiatorWeapon## "
         "back and forth at all foes within reach.");
 }

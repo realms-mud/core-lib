@@ -215,7 +215,7 @@ protected void Setup()
 
     addSpecification("event handler", "crushEvent");
     addSpecification("command template", "crush [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "brutally ##Infinitive::crush## ##InitiatorPossessive## "
         "##InitiatorWeapon## into ##TargetName##.");
 }

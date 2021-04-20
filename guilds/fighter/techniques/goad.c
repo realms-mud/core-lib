@@ -92,6 +92,6 @@ protected void Setup()
 
     addSpecification("event handler", "goadEvent");
     addSpecification("command template", "goad [##Target##]");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::sneer##, `You are terrible at this!' to ##TargetName##.");
 }

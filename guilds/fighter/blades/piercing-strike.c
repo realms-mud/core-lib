@@ -228,7 +228,7 @@ protected void Setup()
 
     addSpecification("event handler", "piercingStrikeEvent");
     addSpecification("command template", "piercing strike [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::strike## ##InitiatorPossessive## "
         "##InitiatorWeapon## into ##TargetName## with deft skill.");
 }

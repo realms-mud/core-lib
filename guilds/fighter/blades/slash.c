@@ -217,7 +217,7 @@ protected void Setup()
 
     addSpecification("event handler", "slashEvent");
     addSpecification("command template", "slash [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::slash## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## in a relentless onslaught.");
 }

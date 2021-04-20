@@ -91,7 +91,7 @@ protected void Setup()
 
     addSpecification("event handler", "breachDefenseEvent");
     addSpecification("command template", "breach defense");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "skillfully ##Infinitive::shatter## ##TargetName##'s guard "
         "and presses ##InitiatorPossessive## attack.");
 }

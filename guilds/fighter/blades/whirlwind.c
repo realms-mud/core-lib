@@ -228,7 +228,7 @@ protected void Setup()
 
     addSpecification("event handler", "whirlwindEvent");
     addSpecification("command template", "whirlwind");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::begin## to spin frantically and ##Infinitive::swing## "
         "##InitiatorPossessive## ##InitiatorWeapon## at all foes within reach.");
 }

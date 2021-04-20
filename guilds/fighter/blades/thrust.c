@@ -217,7 +217,7 @@ protected void Setup()
 
     addSpecification("event handler", "thrustEvent");
     addSpecification("command template", "thrust [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::thrust## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## aggressively.");
 }

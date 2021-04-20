@@ -85,6 +85,6 @@ protected void Setup()
 
     addSpecification("event handler", "parryEvent");
     addSpecification("command template", "parry");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::move## into a parry stance.");
 }

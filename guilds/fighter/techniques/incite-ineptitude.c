@@ -92,7 +92,7 @@ protected void Setup()
 
     addSpecification("event handler", "inciteIneptitudeEvent");
     addSpecification("command template", "incite ineptitude [##Target##]");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "smugly ##Infinitive::badger## ##TargetName## into a series of "
         "wildly-placed attacks.");
 }

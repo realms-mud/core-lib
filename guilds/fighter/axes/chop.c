@@ -212,7 +212,7 @@ protected void Setup()
 
     addSpecification("event handler", "chopEvent");
     addSpecification("command template", "chop [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "##Infinitive::chop## ##InitiatorPossessive## "
         "##InitiatorWeapon## at ##TargetName## in a relentless onslaught.");
 }

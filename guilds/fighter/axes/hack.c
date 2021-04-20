@@ -212,7 +212,7 @@ protected void Setup()
 
     addSpecification("event handler", "hackEvent");
     addSpecification("command template", "hack [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "brutally ##Infinitive::hack## ##InitiatorPossessive## "
         "##InitiatorWeapon## into ##TargetName##.");
 }

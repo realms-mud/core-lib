@@ -217,7 +217,7 @@ protected void Setup()
 
     addSpecification("event handler", "cleaveEvent");
     addSpecification("command template", "cleave [at ##Target##]");
-    addSpecification("use ability message",  "##InitiatorPossessive::Name## "
+    addSpecification("use ability message",  "##InitiatorName## "
         "brutally ##Infinitive::cleave## ##InitiatorPossessive## "
         "##InitiatorWeapon## into ##TargetName##.");
 }

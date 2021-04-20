@@ -90,7 +90,7 @@ protected void Setup()
 
     addSpecification("event handler", "pressAttackEvent");
     addSpecification("command template", "press attack");
-    addSpecification("use ability message", "##InitiatorPossessive::Name## "
+    addSpecification("use ability message", "##InitiatorName## "
         "deftly ##Infinitive::slide## ##InitiatorPossessive## "
         "##InitiatorWeapon## under ##TargetName##'s guard and presses "
         "##InitiatorPossessive## attack.");
