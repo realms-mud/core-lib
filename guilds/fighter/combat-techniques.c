@@ -9,10 +9,13 @@ private void FirstLevel()
 {
     addResearchElement("/guilds/fighter/techniques/defensive-stance.c");
     addResearchElement("/guilds/fighter/techniques/offensive-stance.c");
+    addResearchElement("/guilds/fighter/techniques/occupy-foe.c");
 
     addChild("/guilds/fighter/techniques/defensive-stance.c",
         "/guilds/fighter/techniques/root.c");
     addChild("/guilds/fighter/techniques/offensive-stance.c",
+        "/guilds/fighter/techniques/root.c");
+    addChild("/guilds/fighter/techniques/occupy-foe.c",
         "/guilds/fighter/techniques/root.c");
 }
 

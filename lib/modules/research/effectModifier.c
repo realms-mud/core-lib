@@ -11,7 +11,7 @@ private string ModifierObject = "/lib/items/modifierObject.c";
 private string *modifierTypes = ({ "skill", "attribute", "skill bonus", 
                                    "attribute bonus", "level", "research", "trait",
                                    "highest skill", "weapon damage", 
-                                   "deferred attack" });
+                                   "offhand damage", "deferred attack" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
                                       
@@ -173,9 +173,11 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                 break;
             }
             case "weapon damage":
+            case "offhand damage":
             {
-                object weapon = 
-                    initiator->equipmentInSlot("wielded primary");
+                object weapon = (modifier["type"] == "weapon damage") ?
+                    initiator->equipmentInSlot("wielded primary") :
+                    initiator->equipmentInSlot("wielded offhand");
 
                 if (objectp(weapon) && pointerp(modifier["types"]) &&
                     (member(modifier["types"], weapon->query("weapon type")) > -1))

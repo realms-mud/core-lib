@@ -1129,3 +1129,25 @@ void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
     ExpectEq(0, Target->roundsSinceLastAttack());
     ToggleCallOutBypass();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SupercedeAttackersPlacesNewFoeAtTopOfList()
+{
+    load_object("/lib/dictionaries/environmentDictionary.c");
+
+    Attacker->registerAttacker(Target);
+    Target->registerAttacker(Attacker);
+
+    object newAttacker = 
+        clone_object("/lib/tests/support/services/mockPlayer.c");
+    newAttacker->Name("Norman");
+    move_object(newAttacker, Room);
+
+    newAttacker->registerAttacker(Target);
+    Target->registerAttacker(newAttacker);
+
+    ExpectEq(Attacker, Target->getTargetToAttack());
+
+    Target->supercedeAttackers(newAttacker);
+    ExpectEq(newAttacker, Target->getTargetToAttack());
+}

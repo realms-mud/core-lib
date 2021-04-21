@@ -72,7 +72,9 @@ protected nomask int applyEffect(object initiator, object target)
 {
     int ret = 0;
 
-    if(target && objectp(target) && member(specificationData, "damage type") && 
+    if(target && objectp(target) && 
+        (member(specificationData, "damage type") ||
+            member(specificationData, "supercede targets")) &&
         ((target->onKillList() && !target->isRealizationOf("player")) || 
         (target->isRealizationOf("player") && initiator->isRealizationOf("player") &&
         target->onKillList() && initiator->onKillList()) ||
@@ -124,6 +126,13 @@ protected nomask int applyEffect(object initiator, object target)
             // Trigger combat
             target->registerAttacker(initiator);
             initiator->registerAttacker(target);
+        }
+        else if (target &&
+            member(specificationData, "supercede targets"))
+        {
+            ret = 1;
+            initiator->registerAttacker(target);
+            target->supercedeAttackers(initiator);
         }
     }
     

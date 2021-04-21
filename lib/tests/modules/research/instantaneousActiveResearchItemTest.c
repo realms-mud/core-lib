@@ -527,3 +527,24 @@ void RepeatingEffectsExecuteCorrectNumberOfTimes()
         subscriber->OnHitEventData());
     ToggleCallOutBypass();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SupercedeTargetsPlacesNewFoeAtTopOfList()
+{
+    User->registerAttacker(Target);
+    Target->registerAttacker(User);
+
+    ExpectEq(User, Target->getTargetToAttack());
+
+    object newAttacker =
+        clone_object("/lib/tests/support/services/mockPlayer.c");
+    newAttacker->Name("Norman");
+    newAttacker->addCommands();
+    move_object(newAttacker, Room);
+
+    newAttacker->initiateResearch(
+        "/lib/tests/support/research/supercedeResearch.c");
+    command("supercede at frank", newAttacker);
+
+    ExpectEq(newAttacker, Target->getTargetToAttack());
+}

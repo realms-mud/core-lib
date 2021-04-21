@@ -88,6 +88,7 @@ protected void Setup()
     addSpecification("penalty to attack", 25);
     addSpecification("penalty to damage", 15);
     addSpecification("penalty to defense", 25);
+    addSpecification("supercede targets", 1);
     addSpecification("duration", 6);
 
     addSpecification("event handler", "goadEvent");

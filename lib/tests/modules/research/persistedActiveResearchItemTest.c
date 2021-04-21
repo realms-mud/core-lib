@@ -715,3 +715,24 @@ void DisplayDetailsShowCorrectInformation()
             research->researchDetails());
     destruct(research);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SupercedeTargetsPlacesNewFoeAtTopOfList()
+{
+    User->registerAttacker(Target);
+    Target->registerAttacker(User);
+
+    ExpectEq(User, Target->getTargetToAttack());
+
+    object newAttacker =
+        clone_object("/lib/tests/support/services/mockPlayer.c");
+    newAttacker->Name("Norman");
+    newAttacker->addCommands();
+    move_object(newAttacker, Room);
+
+    newAttacker->initiateResearch(
+        "/lib/tests/support/research/persistedSupercedeItem.c");
+    command("persisted supercede frank", newAttacker);
+
+    ExpectEq(newAttacker, Target->getTargetToAttack());
+}

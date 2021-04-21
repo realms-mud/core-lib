@@ -16,7 +16,10 @@ private void FirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("/guilds/fighter/shields/shield-bash.c");
 
+    addChild("/guilds/fighter/shields/shield-bash.c",
+        "/guilds/fighter/shields/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

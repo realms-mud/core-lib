@@ -24,7 +24,8 @@ protected string *validEffects = ({
     "increase intoxication", 
     "increase druggedness", 
     "increase soaked",
-    "increase stuffed" 
+    "increase stuffed",
+    "supercede targets"
 });
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,6 +195,12 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
                     "'damage type' specification must be a valid attack type "
                     "as defined in attacksDictionary.\n");
             }
+            break;
+        }
+        case "supercede targets":
+        {
+            specificationData[type] = value;
+            ret = 1;
             break;
         }
     }

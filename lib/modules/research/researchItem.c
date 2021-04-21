@@ -737,7 +737,12 @@ private nomask string displayEffectInformation(string colorConfiguration,
         displayEffectInformationForType("increase soaked",
             colorConfiguration, configuration) +
         displayEffectInformationForType("increase stuffed",
-            colorConfiguration, configuration) + ret;
+            colorConfiguration, configuration) + 
+        (query("supercede targets") ? 
+            configuration->decorate(sprintf("%-15s : ", "Usage effect"),
+                "field header", "research", colorConfiguration) +
+            configuration->decorate("Forces enemy to attack you\n",
+                "field data", "research", colorConfiguration) : "") + ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -12,8 +12,8 @@ virtual inherit "/lib/modules/research/effectModifier.c";
 protected int addSpecification(string type, mixed value)
 {
     int ret = 0;
-    
     string bonusToCheck;
+
     if(sscanf(type, "bonus %s", bonusToCheck) || 
        sscanf(type, "penalty to %s", bonusToCheck) ||
        sscanf(type, "apply %s", bonusToCheck))
@@ -23,6 +23,11 @@ protected int addSpecification(string type, mixed value)
             bonusDictionary->isValidBonusModifier(bonusToCheck, value))
         {
             specificationData[type] = value;
+
+            if (sizeof(regexp(({ type }), "penalty to")))
+            {
+                specificationData["is negative effect"] = 1;
+            }
             ret = 1;
         }
         else if(bonusDictionary)
@@ -88,6 +93,13 @@ protected int addSpecification(string type, mixed value)
                 "the '%s' specification must be a properly formatted "
                 "modifier.\n" , type));
         }    
+    }
+    else if ((type == "supercede targets") &&
+        (member(specificationData, "negative trait") ||
+            member(specificationData, "is negative effect")))
+    {
+        specificationData[type] = value;
+        ret = 1;
     }
     else
     {
@@ -156,7 +168,8 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
 {
     int ret = 0;
     object target = getTarget(owner, unparsedCommand);
-    if (target && (member(specificationData, "trait") || member(specificationData, "negative trait")))
+    if (target && (member(specificationData, "trait") || 
+        member(specificationData, "negative trait")))
     {
         if (target->has("traits") && member(specificationData, "trait"))
         {
@@ -191,6 +204,13 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
             }
         }  
     }
+    if (target && ret && checkKillList(owner, target) &&
+        member(specificationData, "supercede targets"))
+    {
+        owner->registerAttacker(target);
+        target->supercedeAttackers(owner);
+    }
+
     return ret;
 }
 

@@ -179,7 +179,7 @@ protected nomask varargs object getTarget(object owner, string command,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string getTargetString(object owner, string command)
+public nomask string getTargetString(object owner, string command)
 {
     string ret = 0;
     string template = commandString(command);
@@ -274,6 +274,15 @@ protected nomask string parseTemplate(string template, string perspective,
         {
             message = messageParser()->parseTargetWeapon(message, "Initiator",
                 weapon);
+        }
+
+        object offhand =
+            initiator->equipmentInSlot("wielded offhand");
+
+        if (offhand)
+        {
+            message = messageParser()->parseTargetWeapon(message, "Initiator",
+                offhand, 1);
         }
     }
 

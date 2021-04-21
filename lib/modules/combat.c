@@ -1251,7 +1251,25 @@ public nomask int registerAttacker(object attacker)
     int ret = hitIsAllowed(attacker);
     if (ret && !member(hostileList, attacker) && attacker->has("combat"))
     {
-        hostileList[attacker] = (["time":time()]);
+        hostileList[attacker] = (["time": time()]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int supercedeAttackers(object attacker)
+{
+    int ret = hitIsAllowed(attacker);
+    if (ret && attacker->has("combat"))
+    {
+        hostileList[attacker] = (["time": time() / 2]);
+        foreach(object otherAttacker in m_indices(hostileList))
+        {
+            if (attacker != otherAttacker)
+            {
+                hostileList[otherAttacker] = (["time": time()]);
+            }
+        }
     }
     return ret;
 }
