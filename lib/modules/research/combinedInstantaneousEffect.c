@@ -202,6 +202,8 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             }
             else if (member(specificationData, "combination rules"))
             {
+                specificationData["command template"] = value;
+
                 specificationData["command name"] =
                     regreplace(value, "(.*) ##Combinations##.*", "\\1", 1);
 

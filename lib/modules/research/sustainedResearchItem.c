@@ -106,6 +106,7 @@ protected nomask int addSpecification(string type, mixed value)
             {
                 if(value && stringp(value))
                 {
+                    specificationData[type] = value;
                     ret = addCommandTemplate(value);
                 }
                 else

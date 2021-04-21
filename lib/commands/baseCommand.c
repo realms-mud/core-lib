@@ -135,7 +135,7 @@ protected nomask string commandString(string passedCommand)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask varargs object getTarget(object owner, string command, 
+public nomask varargs object getTarget(object owner, string command, 
     int flags)
 {
     object ret = 0;
@@ -179,7 +179,7 @@ protected nomask varargs object getTarget(object owner, string command,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string getTargetString(object owner, string command)
+protected nomask string getTargetString(object owner, string command)
 {
     string ret = 0;
     string template = commandString(command);

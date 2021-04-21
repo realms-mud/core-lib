@@ -1133,8 +1133,6 @@ void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
 /////////////////////////////////////////////////////////////////////////////
 void SupercedeAttackersPlacesNewFoeAtTopOfList()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
-
     Attacker->registerAttacker(Target);
     Target->registerAttacker(Attacker);
 
@@ -1146,7 +1144,7 @@ void SupercedeAttackersPlacesNewFoeAtTopOfList()
     newAttacker->registerAttacker(Target);
     Target->registerAttacker(newAttacker);
 
-    ExpectEq(Attacker, Target->getTargetToAttack());
+    ExpectEq(Attacker, Target->getTargetToAttack(1));
 
     Target->supercedeAttackers(newAttacker);
     ExpectEq(newAttacker, Target->getTargetToAttack());

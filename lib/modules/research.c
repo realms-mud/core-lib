@@ -795,10 +795,20 @@ public nomask int researchCommand(string command)
         if(researchObj)
         {
             if ((researchObj->query("scope") == "targeted") &&
-                (researchObj->getTargetString(this_object(), command) == ""))
+                researchObj->query("command combinations") &&
+                !sizeof(regexp(({ command }), "at [A-Za-z]+")))
             {
-                tempCommand += " " + this_object()->Name();
+                tempCommand += " at " + this_object()->Name();
             }
+            else if ((researchObj->query("scope") == "targeted") &&
+                !researchObj->getTarget(this_object(), command))
+            {
+                tempCommand +=
+                    regreplace(researchObj->query("command template"),
+                        command + " [[]*([a-z]+) ##Target##.*",
+                        " \\1 " + this_object()->Name(), 1);
+            }
+
             if(researchObj->canExecuteCommand(tempCommand))
             {
                 customEvent = researchObj->query("event handler");

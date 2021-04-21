@@ -1082,7 +1082,7 @@ public nomask mapping *getAttacks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object getTargetToAttack()
+public nomask varargs object getTargetToAttack(int doNotRandomize)
 {
     object attacker = 0;
     
@@ -1093,11 +1093,18 @@ public nomask object getTargetToAttack()
     int numPotentialAttackers = sizeof(listOfPotentialAttackers);
     if(numPotentialAttackers)
     {        
-        attacker = listOfPotentialAttackers[0];
-        if(attacker && objectp(attacker) && 
-          ((random(101) + attacker->calculateDefendAttack()) > 50))
+        if (hostileList[listOfPotentialAttackers[0]]["time"] == 1)
         {
-            attacker = listOfPotentialAttackers[random(numPotentialAttackers)];
+            attacker = listOfPotentialAttackers[0];
+        }
+        else
+        {
+            attacker = listOfPotentialAttackers[0];
+            if (attacker && objectp(attacker) && !doNotRandomize &&
+                ((random(101) + attacker->calculateDefendAttack()) > 50))
+            {
+                attacker = listOfPotentialAttackers[random(numPotentialAttackers)];
+            }
         }
     }
     return attacker;    
@@ -1251,7 +1258,7 @@ public nomask int registerAttacker(object attacker)
     int ret = hitIsAllowed(attacker);
     if (ret && !member(hostileList, attacker) && attacker->has("combat"))
     {
-        hostileList[attacker] = (["time": time()]);
+        hostileList[attacker] = (["time": time() + sizeof(hostileList) ]);
     }
     return ret;
 }
@@ -1260,16 +1267,10 @@ public nomask int registerAttacker(object attacker)
 public nomask int supercedeAttackers(object attacker)
 {
     int ret = hitIsAllowed(attacker);
+
     if (ret && attacker->has("combat"))
     {
-        hostileList[attacker] = (["time": time() / 2]);
-        foreach(object otherAttacker in m_indices(hostileList))
-        {
-            if (attacker != otherAttacker)
-            {
-                hostileList[otherAttacker] = (["time": time()]);
-            }
-        }
+        hostileList[attacker] = ([ "time": 1 ]);
     }
     return ret;
 }
