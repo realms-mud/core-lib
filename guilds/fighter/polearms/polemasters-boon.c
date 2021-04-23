@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
         "knowledge to increase the speed with which they can use their "
-        "blade combat abilities.");
+        "polearm combat abilities.");
 
     addPrerequisite("level",
         (["type":"level",

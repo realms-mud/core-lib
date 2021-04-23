@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
         "knowledge to decrease the stamina cost for which they can use their "
-        "blade attack abilities.");
+        "axe attack abilities.");
 
     addPrerequisite("level",
         (["type":"level",

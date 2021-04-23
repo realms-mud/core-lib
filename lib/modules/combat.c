@@ -683,6 +683,10 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
             toHit += weapon->attackTypeCalculateAttack();
         }
 
+        if (inventory->inventoryGetModifier("combatModifiers", "poison"))
+        {
+            toHit = to_int(toHit * 0.8);
+        }
         if(inventory->inventoryGetModifier("combatModifiers", "disease"))
         {
             toHit = to_int(toHit * 0.9);
@@ -759,6 +763,10 @@ public nomask int calculateSoakDamage(string damageType)
     if (inventory->inventoryGetModifier("combatModifiers", "paralysis"))
     {
         ret = to_int(ret * 0.9);
+    }
+    if (inventory->inventoryGetModifier("combatModifiers", "poison"))
+    {
+        ret = to_int(ret * 0.8);
     }
 
     ret += this_object()->magicalDefenseBonus();
@@ -2070,6 +2078,11 @@ static nomask void combatHeartBeat()
             attack(attacker);
         }
     }
+    if (inventory->inventoryGetModifier("combatModifiers", "poison"))
+    {
+        hit(5, "poison");
+    }
+
     else if(attacker)
     {
         object chat = getService("combatChatter");
@@ -2102,6 +2115,12 @@ static nomask void combatHeartBeat()
             numberAttackRounds +=
                 inventory->inventoryGetModifier("combatModifiers", "haste") ? 
                     1 : 0;
+
+
+            if (inventory->inventoryGetModifier("combatModifiers", "paralysis"))
+            {
+                numberAttackRounds = 0;
+            }
         }
         while(numberAttackRounds > 0)
         {

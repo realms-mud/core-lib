@@ -7,10 +7,11 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Shield Bash");
+    addSpecification("name", "Shield Strike");
     addSpecification("source", "fighter");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of how to use an equipped shield to hit a foe.");
+        "knowledge of how to use an equipped shield to hit a foe with a "
+        "devastating attack.");
 
     addPrerequisite("/guilds/fighter/shields/root.c",
         (["type":"research"]));
@@ -20,7 +21,7 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 3
+            "value": 19
         ]));
 
     addSpecification("scope", "targeted");
@@ -29,13 +30,13 @@ protected void Setup()
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
-            "base damage": 15,
-            "range": 15
+            "base damage": 50,
+            "range": 100
         ]),
         ([
             "probability": 10,
-            "base damage": 25,
-            "range": 50
+            "base damage": 100,
+            "range": 200
         ])
     }));
 
@@ -179,25 +180,25 @@ protected void Setup()
         ]),
     }));
 
-    addSpecification("stamina point cost", 50);
+    addSpecification("stamina point cost", 160);
     addSpecification("stamina point cost modifiers", ([
-        "/guilds/fighter/shields/shieldmasters-reserve.c": 5,
-        "/guilds/fighter/shields/shieldmasters-call.c": 5,
-        "/guilds/fighter/shields/shieldmasters-might.c": 5,
-        "/guilds/fighter/shields/shieldmasters-fury.c": 5
+        "/guilds/fighter/shields/shieldmasters-reserve.c": 10,
+        "/guilds/fighter/shields/shieldmasters-call.c": 10,
+        "/guilds/fighter/shields/shieldmasters-might.c": 10,
+        "/guilds/fighter/shields/shieldmasters-fury.c": 10
     ]));
 
-    addSpecification("cooldown", 30);
+    addSpecification("cooldown", 100);
     addSpecification("cooldown modifiers", ([
-        "/guilds/fighter/shields/shieldmasters-boon.c": 5,
-        "/guilds/fighter/shields/shieldmasters-speed.c": 5,
-        "/guilds/fighter/shields/shieldmasters-endurance.c": 5,
-        "/guilds/fighter/shields/shieldmasters-strength.c": 5,
+        "/guilds/fighter/shields/shieldmasters-boon.c": 10,
+        "/guilds/fighter/shields/shieldmasters-speed.c": 10,
+        "/guilds/fighter/shields/shieldmasters-endurance.c": 10,
+        "/guilds/fighter/shields/shieldmasters-strength.c": 10,
     ]));
 
-    addSpecification("event handler", "shieldBashEvent");
-    addSpecification("command template", "shield bash [##Target##]");
+    addSpecification("event handler", "shieldStrikeEvent");
+    addSpecification("command template", "shield strike [##Target##]");
     addSpecification("use ability message",  "##InitiatorName## "
-        "##Infinitive::swing## ##InitiatorPossessive## "
+        "violently ##Infinitive::slam## ##InitiatorPossessive## "
         "##InitiatorWeapon::Offhand## into ##TargetName##.");
 }

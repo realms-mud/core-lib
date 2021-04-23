@@ -7,28 +7,25 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Axemaster's Fury");
+    addSpecification("name", "Shieldmaster's Speed");
     addSpecification("source", "fighter");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge to decrease the stamina cost for which they can use their "
-        "axe attack abilities.");
+        "knowledge to increase the speed with which they can use their "
+        "shield combat abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "fighter",
-            "value": 41
+            "value": 17
         ]));
-    addPrerequisite("/guilds/fighter/axes/axemasters-might.c",
+    addPrerequisite("/guilds/fighter/shields/shieldmasters-boon.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Chop": 5,
-        "Thrash": 5,
-        "Sweeping Hew": 10,
-        "Hack": 10,
-        "Punishing Hack": 10,
+        "Shield Bash": 5,
+        "Shield Strike": 10,
     ]));
-    addSpecification("affected research type", "decrease cost");
+    addSpecification("affected research type", "decrease cooldown");
 }
