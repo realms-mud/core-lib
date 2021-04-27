@@ -233,7 +233,9 @@ public nomask varargs string parseTargetWeapon(string message,
 
     if (objectp(weapon))
     {
-        string weaponType = weapon->query("weapon type") ? weapon->query("weapon type") : "";
+        string weaponType = weapon->query("weapon type") ? 
+            weapon->query("weapon type") : "";
+
         ret = regreplace(ret, sprintf("##%sWeapon%s##", typeOfTarget,
             (checkOffhand ? "::Offhand" : "")),
             weaponType, 1);

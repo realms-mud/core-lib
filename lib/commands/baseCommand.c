@@ -284,6 +284,9 @@ protected nomask string parseTemplate(string template, string perspective,
             message = messageParser()->parseTargetWeapon(message, "Initiator",
                 offhand, 1);
         }
+
+        // finally, if both of these queries failed, replace weapon with "hand"
+        message = regreplace(message, "##InitiatorWeapon##", "hand", 1);
     }
 
     if(isValidLiving(target))

@@ -4,29 +4,16 @@
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
-protected string WeaponType = "ERROR";
-protected string WeaponSkill = "unarmed";
-protected string *ValidWeaponTypes = ({ });
-
-/////////////////////////////////////////////////////////////////////////////
-protected void SetupResearch()
-{
-}
-
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Ice Bolt");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("name", "Shock");
+    addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the ice bolt technique. By means of this, the "
-        "Scion is able to use their weapon as a conduit for emitting a freezing "
-        "discharge at a foe.");
-    SetupResearch();
+        "knowledge of the shock spell. By means of this, the "
+        "aeromancer is able to emit a static discharge at a foe.");
 
-    addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
-        (["type":"research"]));
-    addPrerequisite(sprintf("/guilds/scion/paths/%s/ice/root.c", WeaponType),
+    addPrerequisite("/guilds/aeromancer/lightning/root.c",
         (["type":"research"]));
 
     addSpecification("scope", "targeted");
@@ -45,41 +32,28 @@ protected void Setup()
             "range": 20
         ])
     }));
-    addSpecification("damage type", "cold");
+    addSpecification("damage type", "electricity");
 
     addSpecification("modifiers", ({ 
-        ([
-            "type":"research",
-            "research item": sprintf("/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType),
-            "name" : "Chill the Blood",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.5
-        ]),
-        ([
-            "type":"research",
-            "research item": sprintf("/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
-            "name" : "Freezing Mark",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 2.0
-        ]),
-        ([
-            "type": "weapon damage",
-            "name": WeaponSkill,
-            "types": ValidWeaponTypes,
-            "formula": "additive",
-            "rate": 1.0
-        ]),
+        //([
+        //    "type":"research",
+        //    "research item": "/guilds/aeromancer/lightning/discharge.c",
+        //    "name" : "discharge",
+        //    "formula" : "multiplicative",
+        //    "base value" : 1,
+        //    "rate": 1.25
+        //]),
+        //([
+        //    "type":"research",
+        //    "research item": "/guilds/aeromancer/lightning/electrostatics.c",
+        //    "name": "electrostatics",
+        //    "formula": "multiplicative",
+        //    "base value" : 1,
+        //    "rate": 1.25
+        //]),
         ([
             "type":"skill",
-            "name" : WeaponSkill,
-            "formula" : "additive",
-            "rate" : 1.05
-        ]),
-        ([
-            "type":"skill",
-            "name" : "elemental water",
+            "name" : "elemental air",
             "formula" : "additive",
             "rate" : 1.10
         ]),
@@ -140,9 +114,9 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 6);
-    addSpecification("event handler", "iceBoltEvent");
-    addSpecification("command template", "ice bolt [at ##Target##]");
-    addSpecification("use ability message",  "Small shards of ice "
-        "fly from ##InitiatorPossessive::Name## "
+    addSpecification("event handler", "shockEvent");
+    addSpecification("command template", "shock [at ##Target##]");
+    addSpecification("use ability message",  "Sinuous tendrils of electricity "
+        "arc from ##InitiatorPossessive::Name## "
         "##InitiatorWeapon## into ##TargetName##.");
 }

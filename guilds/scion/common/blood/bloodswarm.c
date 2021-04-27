@@ -71,23 +71,59 @@ protected void Setup()
             "rate" : 1.10
         ]),
         ([
+            "type": "level",
+            "name": "level",
+            "formula": "logarithmic",
+            "rate": 1.05
+        ]),
+        ([
+            "type": "skill",
+            "name": "spellcraft",
+            "formula": "logarithmic",
+            "rate": 1.25
+        ]),
+        ([
             "type":"skill",
-            "name" : "spellcraft",
-            "formula" : "logarithmic",
-            "rate" : 1.10
+            "name": "magical essence",
+            "formula": "logarithmic",
+            "rate": 1.25
         ]),
         ([
-            "type":"level",
-            "name" : "level",
-            "formula" : "logarithmic",
-            "rate" : 1.10
-        ]),
-        ([
-            "type":"attribute",
-            "name" : "intelligence",
+            "type":"skill",
+            "name" : "physics",
             "formula" : "additive",
-            "rate" : 1.05
-        ]) 
+            "rate" : 1.10
+        ]),
+        ([
+            "type": "skill",
+            "name": "mathematics",
+            "formula": "additive",
+            "rate": 1.05
+        ]),
+        ([
+            "type": "skill",
+            "name": "chemistry",
+            "formula": "additive",
+            "rate": 1.05
+        ]),
+        ([
+            "type": "attribute",
+            "name": "intelligence",
+            "formula": "additive",
+            "rate": 1.05
+        ]), 
+        ([
+            "type": "attribute",
+            "name": "dexterity",
+            "formula": "additive",
+            "rate": 1.025
+        ]), 
+        ([
+            "type": "attribute",
+            "name": "wisdom",
+            "formula": "additive",
+            "rate": 1.025
+        ]), 
     }));
 
     addSpecification("scope", "targeted");
