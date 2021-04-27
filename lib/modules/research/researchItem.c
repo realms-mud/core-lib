@@ -700,7 +700,9 @@ private nomask string displayEffectInformation(string colorConfiguration,
                     "field data", "research", colorConfiguration) +
                     configuration->decorate(((rate > 1.00 || rate < 1.00) ?
                         sprintf("%1.2f * ", rate) : "by ") +
-                        sprintf("your %s %s ", modifier["name"],
+                        sprintf("your %s%s ", 
+                            ((modifier["name"] == modifier["type"]) ? "" : 
+                            (modifier["name"] + " ")),
                             modifier["type"]), "formula", "research",
                         colorConfiguration) +
                     configuration->decorate(sprintf("(%s)\n",

@@ -303,10 +303,13 @@ void ExecutionBlockedWhenLimitorsNotMetAfterActivated()
     ExpectEq("You sing, 'Oh, sing me a song of the weasels, man.'\n", 
         User->caughtMessage());
 
+    ExpectFalse(member(User->caughtMessages(),
+        "Your performance has been aborted.\n") > -1);
+
     destruct(instrument);
     User->heart_beat();
 
-    ExpectEq("Your performance has been aborted.\n",
-        User->caughtMessage());
+    ExpectTrue(member(User->caughtMessages(),
+        "Your performance has been aborted.\n") > -1);
     ExpectFalse(User->hasActiveCompositeResearch());
 }
