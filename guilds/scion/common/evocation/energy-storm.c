@@ -177,7 +177,6 @@ protected void Setup()
             "formula": "additive",
             "rate": 1.025
         ]), 
-        ]) 
     }));
 
     addSpecification("cooldown", 100);
