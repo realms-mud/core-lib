@@ -295,6 +295,6 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
             displayMessage(specificationData["use ability message"],
                 owner, owner);
         }
-     }
+    }
     return ret;
 }
