@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/blood/metastasis.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/blood/metastasis.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/blood/crimson-eruption.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/blood/infectious-miasma.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/blood/infectious-miasma.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/blood/metastasis.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/blood/septicemic-strike.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/blood/septicemic-strike.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/blood/infectious-miasma.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/blood/ulcerative-blight.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/blood/ulcerative-blight.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/blood/septicemic-strike.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of Blood");
@@ -248,7 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
-
     }
 }

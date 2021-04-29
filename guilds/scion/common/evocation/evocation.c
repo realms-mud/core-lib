@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/magical-condenser.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/magical-condenser.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/plasma-eruption.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/magical-inductance.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/magical-inductance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/magical-condenser.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/kinetic-blast.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/kinetic-blast.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/magical-inductance.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/plasma-condenser.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/plasma-condenser.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/kinetic-blast.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of the Beam");
@@ -248,6 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
     }
 }

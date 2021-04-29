@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/enhanced-flames.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/enhanced-flames.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/raging-inferno.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/raging-inferno.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/enhanced-flames.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scorching-blast.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scorching-blast.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/raging-inferno.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/incinerating-strike.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/incinerating-strike.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scorching-blast.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of the Flame");
@@ -248,6 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
     }
 }

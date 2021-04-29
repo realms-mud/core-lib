@@ -106,6 +106,38 @@ protected void Setup()
             "rate": 1.4
         ]),
         ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/ice/arctic-rage.c", WeaponType),
+            "name" : "arctic-rage",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/ice/frigid-blast.c", WeaponType),
+            "name" : "frigid-blast",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/ice/bitter-frost.c", WeaponType),
+            "name" : "bitter-frost",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/ice/crushing-chill.c", WeaponType),
+            "name" : "crushing-chill",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.5
+        ]),
+        ([
             "type": "weapon damage",
             "name": WeaponSkill,
             "types": ValidWeaponTypes,

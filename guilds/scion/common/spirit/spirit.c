@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/spirit-shear.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/spirit-shear.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/laiwyths-mark.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/laiwyths-lament.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/laiwyths-lament.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/spirit-shear.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/flay-the-soul.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/flay-the-soul.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/laiwyths-lament.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/soul-scourge.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/soul-scourge.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/flay-the-soul.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of the Spirit");
@@ -248,6 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
     }
 }

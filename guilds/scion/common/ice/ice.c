@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/arctic-rage.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/arctic-rage.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/icy-mark.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/frigid-blast.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/frigid-blast.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/arctic-rage.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/bitter-frost.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/bitter-frost.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/frigid-blast.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/crushing-chill.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/crushing-chill.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/bitter-frost.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of the Frost");
@@ -248,6 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
     }
 }

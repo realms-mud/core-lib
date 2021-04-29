@@ -106,6 +106,38 @@ protected void Setup()
             "rate": 1.4
         ]),
         ([
+            "type": "research",
+            "research item": sprintf("/guilds/scion/paths/%s/blood/metastasis.c", WeaponType),
+            "name": "metastasis",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": sprintf("/guilds/scion/paths/%s/blood/infectious-miasma.c", WeaponType),
+            "name": "infectious-miasma",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": sprintf("/guilds/scion/paths/%s/blood/septicemic-strike.c", WeaponType),
+            "name": "septicemic-strike",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": sprintf("/guilds/scion/paths/%s/blood/ulcerative-blight.c", WeaponType),
+            "name": "ulcerative-blight",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.5
+        ]),
+        ([
             "type": "weapon damage",
             "name" : WeaponSkill,
             "types" : ValidWeaponTypes,

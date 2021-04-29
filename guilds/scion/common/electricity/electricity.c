@@ -215,6 +215,42 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/corona-discharge.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/corona-discharge.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/enhanced-conductivity.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/enhanced-conductivity.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/corona-discharge.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-discharge.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-discharge.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/enhanced-conductivity.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-condenser.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-condenser.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/electrostatic-discharge.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of the Bolt");
@@ -248,6 +284,10 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFifthLevel();
+        FiftyFirstLevel();
+        FiftySeventhLevel();
+        SixtyThirdLevel();
         AdditionalResearch();
     }
 }
