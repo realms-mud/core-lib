@@ -105,6 +105,38 @@ protected void Setup()
             "rate": 1.4
         ]),
         ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-condenser.c", WeaponType),
+            "name" : "magical-condenser",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-inductance.c", WeaponType),
+            "name": "magical-inductance",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/kinetic-blast.c", WeaponType),
+            "name" : "kinetic-blast",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type":"research",
+            "research item": sprintf("/guilds/scion/paths/%s/evocation/plasma-condenser.c", WeaponType),
+            "name" : "plasma-condenser",
+            "formula" : "multiplicative",
+            "base value" : 1,
+            "rate": 1.5
+        ]),
+        ([
             "type": "weapon damage",
             "name": WeaponSkill,
             "types": ValidWeaponTypes,
@@ -115,13 +147,13 @@ protected void Setup()
             "type":"skill",
             "name" : WeaponSkill,
             "formula" : "additive",
-            "rate" : 1.05
+            "rate" : 0.05
         ]),
         ([
             "type":"skill",
             "name" : "evocation",
             "formula" : "additive",
-            "rate" : 1.10
+            "rate" : 0.10
         ]),
         ([
             "type": "level",
@@ -145,37 +177,37 @@ protected void Setup()
             "type":"skill",
             "name" : "physics",
             "formula" : "additive",
-            "rate" : 1.10
+            "rate" : 0.10
         ]),
         ([
             "type": "skill",
             "name": "mathematics",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]),
         ([
             "type": "skill",
             "name": "chemistry",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]),
         ([
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]), 
         ([
             "type": "attribute",
             "name": "dexterity",
             "formula": "additive",
-            "rate": 1.025
+            "rate": 0.025
         ]), 
         ([
             "type": "attribute",
             "name": "wisdom",
             "formula": "additive",
-            "rate": 1.025
+            "rate": 0.025
         ]), 
     }));
 

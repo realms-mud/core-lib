@@ -62,13 +62,13 @@ protected void Setup()
             "type":"skill",
             "name" : WeaponSkill,
             "formula" : "additive",
-            "rate" : 1.05
+            "rate" : 0.05
         ]),
         ([
             "type":"skill",
             "name" : "elemental fire",
             "formula" : "additive",
-            "rate" : 1.10
+            "rate" : 0.10
         ]),
         ([
             "type":"skill",
@@ -86,7 +86,7 @@ protected void Setup()
             "type":"attribute",
             "name" : "intelligence",
             "formula" : "additive",
-            "rate" : 1.05
+            "rate" : 0.05
         ]) 
     }));
 

@@ -148,13 +148,13 @@ protected void Setup()
             "type":"skill",
             "name" : WeaponSkill,
             "formula" : "additive",
-            "rate" : 1.05
+            "rate" : 0.05
         ]),
         ([
             "type":"skill",
             "name" : "blood",
             "formula" : "additive",
-            "rate" : 1.10
+            "rate" : 0.10
         ]),
         ([
             "type": "level",
@@ -178,37 +178,37 @@ protected void Setup()
             "type":"skill",
             "name" : "physics",
             "formula" : "additive",
-            "rate" : 1.10
+            "rate" : 0.10
         ]),
         ([
             "type": "skill",
             "name": "mathematics",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]),
         ([
             "type": "skill",
             "name": "chemistry",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]),
         ([
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 1.05
+            "rate": 0.05
         ]), 
         ([
             "type": "attribute",
             "name": "dexterity",
             "formula": "additive",
-            "rate": 1.025
+            "rate": 0.025
         ]), 
         ([
             "type": "attribute",
             "name": "wisdom",
             "formula": "additive",
-            "rate": 1.025
+            "rate": 0.025
         ]), 
     }));
 
