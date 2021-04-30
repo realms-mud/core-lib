@@ -36,7 +36,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/beat-of-baxeros.c",
-            "name": "beat-of-baxeros",
+            "name": "Beat of Baxeros",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -44,7 +44,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/baxteros-meter.c",
-            "name": "baxteros-meter",
+            "name": "Baxteros' Meter",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/duotime-drive.c",
-            "name": "duotime-drive",
+            "name": "Duotime Drive",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -60,7 +60,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/percussion-mastery.c",
-            "name": "percussion-mastery",
+            "name": "Percussion Mastery",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -68,7 +68,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/verse-chorus-bridge.c",
-            "name": "verse-chorus-bridge",
+            "name": "Verse/Chorus/Bridge",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

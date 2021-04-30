@@ -51,7 +51,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-anwar.c",
-            "name": "delu-anwar",
+            "name": "Delu Anwar",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -59,7 +59,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-celair.c",
-            "name": "delu-celair",
+            "name": "Delu Celair",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -67,7 +67,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-edlothia.c",
-            "name": "delu-edlothia",
+            "name": "Delu Edlothia",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -75,7 +75,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-eiliant.c",
-            "name": "delu-eiliant",
+            "name": "Delu Eiliant",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -83,7 +83,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-manadh.c",
-            "name": "delu-manadh",
+            "name": "Delu Manadh",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -91,7 +91,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-mythic/delu-dagnir.c",
-            "name": "delu-dagnir",
+            "name": "Delu Dagnir",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

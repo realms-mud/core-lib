@@ -57,7 +57,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/forceful-thrust.c",
-            "name": "forceful-thrust",
+            "name": "Forceful Thrust",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -65,7 +65,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/fools-bayonet.c",
-            "name": "fools-bayonet",
+            "name": "Fool's Bayonet",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -73,7 +73,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/hooking-thrust.c",
-            "name": "hooking-thrust",
+            "name": "Hooking Thrust",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -81,7 +81,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/perforation.c",
-            "name": "perforation",
+            "name": "Perforation",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -89,7 +89,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/transfix.c",
-            "name": "transfix",
+            "name": "Transfix",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -97,7 +97,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/piercing-blow.c",
-            "name": "piercing-blow",
+            "name": "Piercing Blow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -105,7 +105,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/penetration.c",
-            "name": "penetration",
+            "name": "Penetration",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -113,7 +113,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/slicing-stroke.c",
-            "name": "slicing-stroke",
+            "name": "Slicing Stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -121,7 +121,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/lunging-strike.c",
-            "name": "lunging-strike",
+            "name": "Lunging Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -129,7 +129,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/polearms/master-skewer.c",
-            "name": "master-skewer",
+            "name": "Master Skewer",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

@@ -41,7 +41,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf("/guilds/scion/paths/%s/evocation/mystic-shield.c", WeaponType),
-            "name" : "mystic shield",
+            "name" : "Mystic Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0
@@ -50,7 +50,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf(sprintf("/guilds/scion/paths/%s/evocation/plasma-shield.c", WeaponType), WeaponType),
-            "name" : "plasma shield",
+            "name" : "Plasma Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0

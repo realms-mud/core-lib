@@ -31,7 +31,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/blood/sweeping-torment.c", WeaponType),
-            "name" : "sweeping torment",
+            "name" : "Sweeping Torment",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.67
@@ -39,7 +39,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/blood/soul-brand.c", WeaponType),
-            "name" : "soul brand",
+            "name" : "Soul Brand",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -47,7 +47,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/blood/scourge-strike.c", WeaponType),
-            "name" : "scourge strike",
+            "name" : "Scourge Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -55,7 +55,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/blood/wicked-edge.c", WeaponType),
-            "name" : "wicked edge",
+            "name" : "Wicked Edge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -63,7 +63,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/blood/tortured-curse.c", WeaponType),
-            "name" : "tortured curse",
+            "name" : "Tortured Curse",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 2.0

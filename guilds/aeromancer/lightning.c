@@ -22,7 +22,10 @@ private void ThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifthLevel()
 {
+    addResearchElement("/guilds/aeromancer/lightning/thunderclap.c");
 
+    addChild("/guilds/aeromancer/lightning/thunderclap.c",
+        "/guilds/aeromancer/lightning/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -166,7 +169,7 @@ private void FiftyFirstLevel()
     addResearchElement("/guilds/aeromancer/lightning/corona-discharge.c");
 
     addChild("/guilds/aeromancer/lightning/corona-discharge.c",
-        "/guilds/aeromancer/lightning//electrostatic-condenser.c");
+        "/guilds/aeromancer/lightning/electrostatic-condenser.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

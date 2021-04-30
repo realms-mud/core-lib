@@ -108,7 +108,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/spirit-shear.c", WeaponType),
-            "name" : "spirit-shear",
+            "name" : "Spirit Shear",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -116,7 +116,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/laiwyths-lament.c", WeaponType),
-            "name" : "laiwyths-lament",
+            "name" : "Laiwyth's Lament",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -124,7 +124,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/flay-the-soul.c", WeaponType),
-            "name" : "flay-the-soul",
+            "name" : "Flay the Soul",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -132,7 +132,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/soul-scourge.c", WeaponType),
-            "name" : "soul-scourge",
+            "name" : "Soul Scourge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.5

@@ -107,11 +107,46 @@ protected nomask int applyEffect(object initiator, object target,
                 initiator, "increase stuffed"));
             ret = 1;
         }    
+        if (member(specificationData, "siphon spell points"))
+        {
+            int amount = applyAllFormulas(combo, initiator, 
+                "siphon spell points");
+            int addBack = amount / 4;
+
+            target->spellPoints(-amount);
+            initiator->hitPoints(addBack);
+            initiator->spellPoints(addBack);
+            initiator->staminaPoints(addBack);
+            ret = 1;
+        }
+        if (member(specificationData, "siphon stamina points"))
+        {
+            int amount = applyAllFormulas(combo, initiator, 
+                "siphon stamina points");
+            int addBack = amount / 4;
+
+            target->staminaPoints(-amount);
+            initiator->hitPoints(addBack);
+            initiator->spellPoints(addBack);
+            initiator->staminaPoints(addBack);
+            ret = 1;
+        }
         if(member(specificationData, "damage hit points"))
         {
             target->hit(applyAllFormulas(combo,
                 initiator, "damage hit points"),
                 specificationData["damage type"], initiator);
+            ret = 1;
+        }
+        if (target && member(specificationData, "siphon hit points"))
+        {
+            int amount = applyAllFormulas(combo, initiator, "siphon hit points");
+            int addBack = amount / 4;
+
+            target->hit(amount, specificationData["damage type"], initiator);
+            initiator->hitPoints(addBack);
+            initiator->spellPoints(addBack);
+            initiator->staminaPoints(addBack);
             ret = 1;
         }
 

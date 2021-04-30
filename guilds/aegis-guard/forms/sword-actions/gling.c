@@ -50,7 +50,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-gling.c",
-            "name": "delu-an-gling",
+            "name": "Delu an Gling",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -58,7 +58,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item" : "/guilds/aegis-guard/forms/sword-actions/braig-an-gling.c",
-            "name" : "braig-an-gling",
+            "name" : "Braig an Gling",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
@@ -66,7 +66,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-actions/tur-glingal.c",
-            "name" : "tur-glingal",
+            "name" : "Tur Glingal",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25

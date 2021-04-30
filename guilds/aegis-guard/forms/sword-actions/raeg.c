@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-attacks/lelyan-isilme.c",
-            "name": "lelyan-isilme",
+            "name": "Lelyan Isilme",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -60,7 +60,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
-            "name" : "raud-angannon",
+            "name" : "Ruth Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15
@@ -68,7 +68,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
-            "name" : "mithrannon",
+            "name" : "Tur Godref",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.50

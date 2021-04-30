@@ -37,7 +37,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
-            "name" : "Mystic Charge",
+            "name" : "Static Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -45,7 +45,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
-            "name" : "Ionization",
+            "name" : "Kinetic Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -53,7 +53,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
-            "name" : "Plasma Eruption",
+            "name" : "Energy Barrier",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.5

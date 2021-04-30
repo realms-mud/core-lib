@@ -51,23 +51,23 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-gliri.c",
-            "name": "angannon",
+            "name": "Delu an Gliri",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-gliri.c",
-            "name": "glingamath",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/braig-an-gliri.c",
+            "name": "Braig an Gliri",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type":"research",
-            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-gliraen.c",
-            "name" : "raud-angannon",
+            "research item" : "/guilds/aegis-guard/forms/sword-actions/tur-gliraen.c",
+            "name" : "Tur Gliraen",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25

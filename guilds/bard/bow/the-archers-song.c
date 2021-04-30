@@ -46,7 +46,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/enhanced-sonic-shaft.c",
-            "name": "enhanced-sonic-shaft",
+            "name": "Enhanced Sonic Shaft",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -54,7 +54,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/ballad-of-the-bow.c",
-            "name": "ballad-of-the-bow",
+            "name": "Ballad of the Bow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -62,7 +62,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/archers-elegy.c",
-            "name": "archers-elegy",
+            "name": "Archer's Elegy",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -70,7 +70,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/arrowheads-lament.c",
-            "name": "arrowheads-lament",
+            "name": "Arrowhead's Lament",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -78,7 +78,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/shafts-serenade.c",
-            "name": "shafts-serenade",
+            "name": "Shaft's Serenade",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -86,7 +86,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/bowmans-tale.c",
-            "name": "bowmans-tale",
+            "name": "Bowman's Tale",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -94,7 +94,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/bow/lay-of-the-archer.c",
-            "name": "lay-of-the-archer",
+            "name": "Lay of the Archer",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

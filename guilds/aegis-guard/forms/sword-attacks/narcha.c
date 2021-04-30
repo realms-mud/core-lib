@@ -58,7 +58,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-evading/dagnir-rhinc.c",
-            "name": "dagnir-rhinc",
+            "name": "Dagnir Rhinc",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -66,7 +66,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-evading/pirin-maed-tir.c",
-            "name": "pirin-maed-tir",
+            "name": "Pirin Maed Tir",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -82,7 +82,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-evading/nista-ai-mab.c",
-            "name": "nista-ai-mab",
+            "name": "Nista ai Mab",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

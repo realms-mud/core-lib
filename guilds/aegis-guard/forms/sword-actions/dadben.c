@@ -52,28 +52,28 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-dadben.c",
-            "name": "angannon",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
+            "name": "Delu an Beraid",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-dadben.c",
-            "name": "glingamath",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/braig-an-beraid.c",
+            "name": "Braig an Beraid",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type":"research",
-            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-dadben.c",
-            "name" : "raud-angannon",
+            "research item" : "/guilds/aegis-guard/forms/sword-actions/tur-beraid.c",
+            "name" : "Tur Beraid",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
-        ]), 
+        ]),       
         ([
             "type": "weapon damage",
             "name" : "sword",

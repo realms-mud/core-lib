@@ -66,7 +66,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/vibrato.c",
-            "name": "vibrato",
+            "name": "Vibrato",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -74,7 +74,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/staccato.c",
-            "name": "staccato",
+            "name": "Staccato",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -82,7 +82,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/legato.c",
-            "name": "legato",
+            "name": "Legato",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -90,7 +90,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/ghost-notes.c",
-            "name": "ghost-notes",
+            "name": "Ghost Notes",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -98,7 +98,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/tremolo.c",
-            "name": "tremolo",
+            "name": "Tremolo",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -106,7 +106,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/octave-course.c",
-            "name": "octave-course",
+            "name": "Octave Course",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -114,7 +114,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/poly-rhythms.c",
-            "name": "poly-rhythms",
+            "name": "Poly Rhythms",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -122,7 +122,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/two-handed-tapping.c",
-            "name": "two-handed-tapping",
+            "name": "Two-handed Tapping",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -130,7 +130,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/fluid-arpeggios.c",
-            "name": "fluid-arpeggios",
+            "name": "Fluid Arpeggios",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -138,7 +138,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/palm-muting.c",
-            "name": "palm-muting",
+            "name": "Palm Muting",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -146,7 +146,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/mixed-mode-playing.c",
-            "name": "mixed-mode-playing",
+            "name": "Mixed-mode Playing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -154,7 +154,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/chromatic-movement.c",
-            "name": "chromatic-movement",
+            "name": "Chromatic Movement",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -162,7 +162,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/freeform.c",
-            "name": "freeform",
+            "name": "Freeform",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

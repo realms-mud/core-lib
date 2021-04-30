@@ -108,7 +108,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-condenser.c", WeaponType),
-            "name" : "magical-condenser",
+            "name" : "Magical Condenser",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -116,7 +116,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/magical-inductance.c", WeaponType),
-            "name": "magical-inductance",
+            "name": "Magical Inductance",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -124,7 +124,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/kinetic-blast.c", WeaponType),
-            "name" : "kinetic-blast",
+            "name" : "Kinetic Blast",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -132,7 +132,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/evocation/plasma-condenser.c", WeaponType),
-            "name" : "plasma-condenser",
+            "name" : "Plasma Condenser",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.5

@@ -58,7 +58,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/under-striking.c",
-            "name": "under-striking",
+            "name": "Under Striking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -66,7 +66,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/reverse-bash.c",
-            "name": "reverse-bash",
+            "name": "Reverse Bash",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -74,7 +74,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/redoubled-push.c",
-            "name": "redoubled-push",
+            "name": "Redoubled Push",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -82,7 +82,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/unrelenting-strike.c",
-            "name": "unrelenting-strike",
+            "name": "Unrelenting Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -90,7 +90,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/reversing-the-swing.c",
-            "name": "reversing-the-swing",
+            "name": "Reversing the Swing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -98,7 +98,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/over-driving.c",
-            "name": "over-driving",
+            "name": "Over Driving",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -106,7 +106,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/cross-driving.c",
-            "name": "cross-driving",
+            "name": "Cross Driving",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -114,7 +114,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/dancing-cudgel.c",
-            "name": "dancing-cudgel",
+            "name": "Dancing Cudgel",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -122,7 +122,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/hanging-stroke.c",
-            "name": "hanging-stroke",
+            "name": "Hanging Stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -130,7 +130,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/bludgeon/master-bludgeon.c",
-            "name": "master-bludgeon",
+            "name": "Master Bludgeon",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

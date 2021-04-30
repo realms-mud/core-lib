@@ -46,7 +46,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/bregol-pilin.c",
-            "name": "bregol-pilin",
+            "name": "Bregol Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -54,7 +54,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/alag-pilin.c",
-            "name": "alag-pilin",
+            "name": "Alag Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -62,7 +62,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/megor-pilin.c",
-            "name": "megor-pilin",
+            "name": "Megor Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -70,7 +70,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/lhegren-pilin.c",
-            "name": "lhegren-pilin",
+            "name": "Lhegren Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -78,7 +78,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/goeol-pilin.c",
-            "name": "goeol-pilin",
+            "name": "Goeol Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -86,7 +86,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/dagnir-pilin.c",
-            "name": "dagnir-pilin",
+            "name": "Dagnir Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -94,7 +94,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/maethor-pilin.c",
-            "name": "maethor-pilin",
+            "name": "Maethor Pilin",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

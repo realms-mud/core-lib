@@ -50,7 +50,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-attacks/thar-dravn.c",
-            "name": "thar-dravn",
+            "name": "Thar Dravn",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -58,16 +58,15 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-attacks/nuath-dravn.c",
-            "name": "nuath-dravn",
+            "name": "Nuath Dravn",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
         ]),
-
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-attacks/enaidravn.c",
-            "name": "enaidravn",
+            "name": "Enaidravn",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -75,7 +74,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/edaid-lhewig.c",
-            "name" : "edaid-lhewig",
+            "name" : "Edaid Lhewig",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
@@ -83,7 +82,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/raica-dravn.c",
-            "name" : "raica-dravn",
+            "name" : "Raica Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
@@ -91,7 +90,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
-            "name" : "gwistamacil",
+            "name" : "Gwistamacil",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15
@@ -99,7 +98,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/ruth-dravn.c",
-            "name" : "ruth-dravn",
+            "name" : "Ruth Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
@@ -107,7 +106,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/lanna-dravn.c",
-            "name" : "lanna-dravn",
+            "name" : "Lanna Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15
@@ -115,7 +114,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/centhlein-dravn.c",
-            "name" : "centhlein-dravn",
+            "name" : "Centhlein Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15
@@ -123,7 +122,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/asta-dravn.c",
-            "name" : "asta-dravn",
+            "name" : "Asta Dravn",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15

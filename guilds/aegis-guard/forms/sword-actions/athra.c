@@ -54,7 +54,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-guarding/angannon.c",
-            "name": "angannon",
+            "name": "Angannon",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.10
@@ -62,7 +62,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-guarding/glingamath.c",
-            "name": "glingamath",
+            "name": "Glingamath",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.10
@@ -70,7 +70,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item" : "/guilds/aegis-guard/forms/sword-guarding/raud-angannon.c",
-            "name" : "raud-angannon",
+            "name" : "Raud Angannon",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15
@@ -78,7 +78,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-guarding/mithrannon.c",
-            "name" : "mithrannon",
+            "name" : "Mithrannon",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.50

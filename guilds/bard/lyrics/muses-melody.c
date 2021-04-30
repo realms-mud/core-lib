@@ -35,7 +35,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/silver-tongue.c",
-            "name": "silver-tongue",
+            "name": "Silver Tongue",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 2.0
@@ -43,7 +43,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/aaba.c",
-            "name": "aaba",
+            "name": "AABA",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

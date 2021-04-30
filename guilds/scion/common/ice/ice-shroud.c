@@ -41,7 +41,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf("/guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType),
-            "name" : "freezing shield",
+            "name" : "Freezing Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0
@@ -50,7 +50,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf(sprintf("/guilds/scion/paths/%s/ice/ice-shield.c", WeaponType), WeaponType),
-            "name" : "ice shield",
+            "name" : "Ice Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0

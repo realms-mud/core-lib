@@ -36,9 +36,9 @@ protected void Setup()
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"research",
+            "type": "research",
             "research item": "/guilds/aeromancer/lightning/discharge.c",
-            "name" : "discharge",
+            "name" : "Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -46,7 +46,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/electrostatics.c",
-            "name": "electrostatics",
+            "name": "Electrostatics",
             "formula": "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -54,7 +54,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/ionization.c",
-            "name" : "ionization",
+            "name" : "Ionization",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -62,7 +62,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/enhanced-discharge.c",
-            "name": "enhanced-discharge",
+            "name": "Enhanced Discharge",
             "formula": "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -70,7 +70,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/electrostatic-induction.c",
-            "name" : "electrostatic-induction",
+            "name" : "Electrostatic Induction",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -78,7 +78,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/enhanced-conductivity.c",
-            "name": "enhanced-conductivity",
+            "name": "Enhanced Conductivity",
             "formula": "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -86,7 +86,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/electrostatic-condenser.c",
-            "name" : "electrostatic-condenser",
+            "name" : "Electrostatic Condenser",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -94,7 +94,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/corona-discharge.c",
-            "name": "corona-discharge",
+            "name": "Corona Discharge",
             "formula": "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -102,7 +102,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/plasma-eruption.c",
-            "name" : "plasma-eruption",
+            "name" : "Plasma Eruption",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -110,7 +110,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": "/guilds/aeromancer/lightning/flux-condenser.c",
-            "name": "flux-condenser",
+            "name": "Flux Condenser",
             "formula": "multiplicative",
             "base value" : 1,
             "rate": 1.25

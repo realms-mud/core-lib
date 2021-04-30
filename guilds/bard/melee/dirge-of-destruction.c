@@ -60,7 +60,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/melee-march.c",
-            "name": "melee-march",
+            "name": "Melee March",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -68,7 +68,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/soldiers-song.c",
-            "name": "soldiers-song",
+            "name": "Soldier's Song",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -76,7 +76,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/serenade-of-the-soldier.c",
-            "name": "serenade-of-the-soldier",
+            "name": "Serenade of the Soldier",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -84,7 +84,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/arms-lament.c",
-            "name": "arms-lament",
+            "name": "Arm's Lament",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -92,7 +92,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/footmans-ballad.c",
-            "name": "footmans-ballad",
+            "name": "Footman's Ballad",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -100,7 +100,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/weapon-masters-tale.c",
-            "name": "weapon-masters-tale",
+            "name": "Weapon Master's Tale",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -108,7 +108,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/melee/lay-of-the-armsmaster.c",
-            "name": "lay-of-the-armsmaster",
+            "name": "Lay of the Armsmaster",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

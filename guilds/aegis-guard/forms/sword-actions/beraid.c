@@ -51,27 +51,27 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-actions/delu-an-beraid.c",
-            "name": "angannon",
+            "name": "Delu an Beraid",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aegis-guard/forms/sword-guarding/braig-an-beraid.c",
-            "name": "glingamath",
+            "research item": "/guilds/aegis-guard/forms/sword-actions/braig-an-beraid.c",
+            "name": "Braig an Beraid",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type":"research",
-            "research item" : "/guilds/aegis-guard/forms/sword-guarding/tur-beraid.c",
-            "name" : "raud-angannon",
+            "research item" : "/guilds/aegis-guard/forms/sword-actions/tur-beraid.c",
+            "name" : "Tur Beraid",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.25
-        ]),      
+        ]),       
         ([
             "type": "weapon damage",
             "name" : "sword",

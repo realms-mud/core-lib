@@ -36,7 +36,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/sweeping-flames.c", WeaponType),
-            "name" : "sweeping flames",
+            "name" : "Sweeping Flames",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3
@@ -44,7 +44,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/burning-brand.c", WeaponType),
-            "name" : "burning brand",
+            "name" : "Burning Brand",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3
@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/inferno-strike.c", WeaponType),
-            "name" : "inferno strike",
+            "name" : "Inferno Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3

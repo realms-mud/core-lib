@@ -7,7 +7,7 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Two-handed Tapping.");
+    addSpecification("name", "Two-handed Tapping");
     addSpecification("source", "bard");
     addSpecification("description", "This research increases the "
         "effectiveness of the various soloing techniques.");

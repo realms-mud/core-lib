@@ -97,7 +97,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/corona-discharge.c", WeaponType),
-            "name" : "corona-discharge",
+            "name" : "Corona Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -105,7 +105,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/enhanced-conductivity.c", WeaponType),
-            "name" : "enhanced-conductivity",
+            "name" : "Enhanced Conductivity",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -113,7 +113,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/electrostatic-discharge.c", WeaponType),
-            "name" : "electrostatic-discharge",
+            "name" : "Electrostatic Discharge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -121,7 +121,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/electrostatic-condenser.c", WeaponType),
-            "name" : "electrostatic-condenser",
+            "name" : "Electrostatic Condenser",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.5

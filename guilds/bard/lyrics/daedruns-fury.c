@@ -37,7 +37,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/daedruns-might.c",
-            "name": "daedruns-might",
+            "name": "Daedrun's Might",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 2.0
@@ -45,7 +45,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/daedruns-sorrow.c",
-            "name": "daedruns-sorrow",
+            "name": "Daedrun's Sorrow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -53,7 +53,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/daedruns-regret.c",
-            "name": "daedruns-regret",
+            "name": "Daedrun's Regret",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -61,7 +61,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/daedruns-despair.c",
-            "name": "daedruns-despair",
+            "name": "Daedrun's Despair",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -69,7 +69,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/aaba.c",
-            "name": "aaba",
+            "name": "AABA",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

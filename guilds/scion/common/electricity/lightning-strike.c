@@ -36,7 +36,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/sweeping-shock.c", WeaponType),
-            "name" : "sweeping shock",
+            "name" : "Sweeping Shock",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3
@@ -44,7 +44,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType),
-            "name" : "shock brand",
+            "name" : "Shock Brand",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3
@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
-            "name" : "energized strike",
+            "name" : "Energized Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.3

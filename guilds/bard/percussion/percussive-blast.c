@@ -36,7 +36,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/keeping-time.c",
-            "name": "keeping-time",
+            "name": "Keeping Time",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -44,7 +44,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/advanced-timing.c",
-            "name": "advanced-timing",
+            "name": "Advanced Timing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/modulated-timing.c",
-            "name": "modulated-timing",
+            "name": "Modulated Timing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -60,7 +60,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/fibonacci-timing.c",
-            "name": "fibonacci-timing",
+            "name": "Fibonacci Timing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -68,7 +68,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/percussion/golden-measures.c",
-            "name": "golden-measures",
+            "name": "Golden Measures",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -76,7 +76,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/verse-pre-chorus.c",
-            "name": "verse-pre-chorus",
+            "name": "Verse/Pre-Chorus/Chorus",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

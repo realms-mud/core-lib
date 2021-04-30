@@ -66,7 +66,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item" : "/guilds/aegis-guard/forms/sword-attacks/gwistamacil.c",
-            "name" : "gwistamacil",
+            "name" : "Gwistamacil",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate" : 1.15

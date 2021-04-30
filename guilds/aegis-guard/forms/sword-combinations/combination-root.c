@@ -73,7 +73,7 @@ protected void Setup()
             "type": "research",
             "research item": 
                 "/guilds/aegis-guard/forms/sword-combinations/godramin.c",
-            "name": "Combo I",
+            "name": "Godramin",
             "formula": "additive",
             "base value": 1,
             "rate": 1.0
@@ -82,7 +82,7 @@ protected void Setup()
             "type": "research",
             "research item": 
                 "/guilds/aegis-guard/forms/sword-combinations/tad-godref.c",
-            "name": "Combo II",
+            "name": "Tad Godref",
             "formula": "additive",
             "base value": 1,
             "rate": 1.0
@@ -91,7 +91,7 @@ protected void Setup()
             "type": "research",
             "research item": 
                 "/guilds/aegis-guard/forms/sword-combinations/neledh-godref.c",
-            "name": "Combo III",
+            "name": "Neledh Godref",
             "formula": "additive",
             "base value": 1,
             "rate": 1.0
@@ -103,7 +103,7 @@ protected void Setup()
             "type": "research",
             "research item":
                 "/guilds/aegis-guard/forms/sword-combinations/an-alag.c",
-            "name": "an-alag",
+            "name": "An Alag",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.05
@@ -112,7 +112,7 @@ protected void Setup()
             "type": "research",
             "research item":
                 "/guilds/aegis-guard/forms/sword-combinations/thel-hannas.c",
-            "name": "thel-hannas",
+            "name": "Thel Hannas",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.05
@@ -121,7 +121,7 @@ protected void Setup()
             "type": "research",
             "research item":
                 "/guilds/aegis-guard/forms/sword-combinations/laeg-hannas.c",
-            "name": "laeg-hannas",
+            "name": "Laeg Hannas",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.05
@@ -130,7 +130,7 @@ protected void Setup()
             "type": "research",
             "research item":
                 "/guilds/aegis-guard/forms/sword-combinations/bronadui-hannas.c",
-            "name": "bronadui-hannas",
+            "name": "Bronadui Hannas",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.10
@@ -139,7 +139,7 @@ protected void Setup()
             "type": "research",
             "research item":
                 "/guilds/aegis-guard/forms/sword-combinations/golwen-alag.c",
-            "name": "golwen-alag",
+            "name": "Golwen Alag",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -148,7 +148,7 @@ protected void Setup()
             "type": "research",
             "research item": 
                 "/guilds/aegis-guard/forms/sword-combinations/tur-godref.c",
-            "name": "tur-godref",
+            "name": "Tur Godref",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

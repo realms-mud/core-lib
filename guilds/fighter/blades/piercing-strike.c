@@ -59,7 +59,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/under-cutting.c",
-            "name": "under-cutting",
+            "name": "Under Cutting",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -67,7 +67,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/reverse-cut.c",
-            "name": "reverse-cut",
+            "name": "Reverse Cut",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -75,7 +75,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/double-back.c",
-            "name": "double-back",
+            "name": "Double Back",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -83,7 +83,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/riposte.c",
-            "name": "riposte",
+            "name": "Riposte",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -91,7 +91,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/reversing-the-blade.c",
-            "name": "reversing-the-blade",
+            "name": "Reversing the Blade",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -99,7 +99,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/over-cutting.c",
-            "name": "over-cutting",
+            "name": "Over Cutting",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -107,7 +107,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/cross-cutting.c",
-            "name": "cross-slashing",
+            "name": "Cross Slashing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -115,7 +115,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/dancing-blade.c",
-            "name": "dancing-blade",
+            "name": "Dancing Blade",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -123,7 +123,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/hanging-cut.c",
-            "name": "hanging-cut",
+            "name": "Hanging Cut",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -131,7 +131,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/blades/master-stroke.c",
-            "name": "master-stroke",
+            "name": "Master Stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

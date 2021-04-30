@@ -19,9 +19,12 @@ protected string *validEffects = ({
     "decrease soaked", 
     "decrease stuffed",
     "damage hit points", 
-    "damage spell points", 
+    "siphon hit points",
+    "damage spell points",
+    "siphon spell points",
     "damage stamina points",
-    "increase intoxication", 
+    "siphon stamina points",
+    "increase intoxication",
     "increase druggedness", 
     "increase soaked",
     "increase stuffed",
@@ -138,6 +141,9 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         case "increase druggedness":
         case "increase soaked":
         case "increase stuffed":
+        case "siphon hit points":
+        case "siphon spell points":
+        case "siphon stamina points":
         {
             if(isValidFormula(value))
             {

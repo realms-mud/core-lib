@@ -31,7 +31,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/sweeping-caress.c", WeaponType),
-            "name" : "sweeping caress",
+            "name" : "Sweeping Caress",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.67
@@ -39,7 +39,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/spectral-brand.c", WeaponType),
-            "name" : "freezing brand",
+            "name" : "Freezing Brand",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -47,7 +47,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType),
-            "name" : "soul strike",
+            "name" : "Soul Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -55,7 +55,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType),
-            "name" : "spectral edge",
+            "name" : "Spectral Edge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4

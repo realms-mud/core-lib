@@ -63,7 +63,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-anwar.c",
-            "name": "angol-anwar",
+            "name": "Angol Anwar",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -71,7 +71,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-celair.c",
-            "name": "angol-celair",
+            "name": "Angol Celair",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -79,7 +79,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-edlothia.c",
-            "name": "angol-edlothia",
+            "name": "Angol Edlothia",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -87,7 +87,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-eiliant.c",
-            "name": "angol-eiliant",
+            "name": "Angol Eiliant",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -95,7 +95,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-manadh.c",
-            "name": "angol-manadh",
+            "name": "Angol Manadh",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -103,7 +103,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-elemental/angol-dagnir.c",
-            "name": "angol-dagnir",
+            "name": "Angol Dagnir",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

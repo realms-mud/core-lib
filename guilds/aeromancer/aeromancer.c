@@ -37,4 +37,16 @@ public void SetupGuild()
         "type":"skill points",
         "apply" : "5 every level"
     ]));
+
+    addCriteria("lightning", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/lightning.c"
+    ]));
+
+    addCriteria("air", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/air.c"
+    ]));
 }

@@ -16,9 +16,12 @@ private string *validEffects = ({
     "decrease soaked", 
     "decrease stuffed",
     "damage hit points", 
-    "damage spell points", 
+    "siphon hit points",
+    "damage spell points",
+    "siphon spell points",
     "damage stamina points",
-    "increase intoxication", 
+    "siphon stamina points",
+    "increase intoxication",
     "increase druggedness", 
     "increase soaked",
     "increase stuffed" 
@@ -70,6 +73,9 @@ private nomask void registerEffectTypesForItem(object researchItem)
                 case "increase druggedness":
                 case "increase soaked":
                 case "increase stuffed":
+                case "siphon hit points":
+                case "siphon spell points":
+                case "siphon stamina points":
                 {
                     specificationData[effect] = 1;
                     break;

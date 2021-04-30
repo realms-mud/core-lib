@@ -31,7 +31,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/ice/sweeping-frost.c", WeaponType),
-            "name" : "sweeping frost",
+            "name" : "Sweeping Frost",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.67
@@ -39,7 +39,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/ice/freezing-brand.c", WeaponType),
-            "name" : "freezing brand",
+            "name" : "Freezing Brand",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -47,7 +47,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType),
-            "name" : "frigid strike",
+            "name" : "Frigid Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4
@@ -55,7 +55,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/ice/icy-edge.c", WeaponType),
-            "name" : "icy edge",
+            "name" : "Icy Edge",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.4

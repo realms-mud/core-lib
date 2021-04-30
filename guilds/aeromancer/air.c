@@ -7,10 +7,7 @@ inherit "/lib/modules/research/researchTree.c";
 /////////////////////////////////////////////////////////////////////////////
 private void FirstLevel()
 {
-    addResearchElement("/guilds/aeromancer/air/breeze.c");
 
-    addChild("/guilds/aeromancer/air/breeze.c",
-        "/guilds/aeromancer/air/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

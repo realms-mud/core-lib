@@ -46,7 +46,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/strike-the-blood.c",
-            "name": "strike-the-blood",
+            "name": "Strike the Blood",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -54,7 +54,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/fools-strike.c",
-            "name": "fools-strike",
+            "name": "Fool's Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -62,7 +62,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/hooking-strike.c",
-            "name": "hooking-strike",
+            "name": "Hooking Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -70,7 +70,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/horn-thrust.c",
-            "name": "horn-thrust",
+            "name": "Horn Thrust",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -78,7 +78,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/haft-strike.c",
-            "name": "haft-strike",
+            "name": "Haft Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -86,7 +86,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/arresting-blow.c",
-            "name": "arresting-blow",
+            "name": "Arresting Blow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -94,7 +94,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/arc-strike.c",
-            "name": "arc-strike",
+            "name": "Arc Strike",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -102,7 +102,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/broad-stroke.c",
-            "name": "broad-stroke",
+            "name": "Broad Stroke",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -110,7 +110,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/uplifting-sweep.c",
-            "name": "uplifting-sweep",
+            "name": "Uplifting Sweep",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -118,7 +118,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/axes/master-chop.c",
-            "name": "master-chop",
+            "name": "Master Chop",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

@@ -45,7 +45,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/improvised-attack.c",
-            "name": "improvised-attack",
+            "name": "Improvised Attack",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -53,7 +53,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/reverse-sweep.c",
-            "name": "reverse-sweep",
+            "name": "Reverse Sweep",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -61,7 +61,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/using-the-edge.c",
-            "name": "using-the-edge",
+            "name": "Using the Edge",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -69,7 +69,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/breaking-through.c",
-            "name": "breaking-through",
+            "name": "Breaking Through",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -77,7 +77,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/shield-thrusting.c",
-            "name": "shield-thrusting",
+            "name": "Shield Thrusting",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -85,7 +85,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/crushing-drive.c",
-            "name": "crushing-drive",
+            "name": "Crushing Drive",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -93,7 +93,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/disruptive-striking.c",
-            "name": "disruptive-striking",
+            "name": "Disruptive Striking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -101,7 +101,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/edge-striking.c",
-            "name": "edge-striking",
+            "name": "Edge Striking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -109,7 +109,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/face-striking.c",
-            "name": "face-striking",
+            "name": "Face Striking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -117,7 +117,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/fighter/shields/shield-mastery.c",
-            "name": "shield-mastery",
+            "name": "Shield Mastery",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

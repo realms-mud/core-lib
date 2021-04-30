@@ -36,7 +36,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/a-rhyme-of-the-deep.c",
-            "name": "rhyme of the deep",
+            "name": "A Rhyme of the Deep",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 2.0
@@ -44,7 +44,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/boon-of-landros.c",
-            "name": "boon-of-landros",
+            "name": "Boon of Landros",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -52,7 +52,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/day-is-coming.c",
-            "name": "day-is-coming",
+            "name": "Day is Coming",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -60,7 +60,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/bloods-depth.c",
-            "name": "bloods-depth",
+            "name": "Blood's Depth",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -68,7 +68,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/lyrics/into-the-dream.c",
-            "name": "into-the-dream",
+            "name": "Into the Dream",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -76,7 +76,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/simple-ballad.c",
-            "name": "simple-ballad",
+            "name": "Simple Ballad",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

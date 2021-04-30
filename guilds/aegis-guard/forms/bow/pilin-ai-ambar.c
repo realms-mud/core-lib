@@ -45,7 +45,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-anwar.c",
-            "name": "pilin-anwar",
+            "name": "Pilin Anwar",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -53,7 +53,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-celair.c",
-            "name": "pilin-celair",
+            "name": "Pilin Celair",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -61,7 +61,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-edlothia.c",
-            "name": "pilin-edlothia",
+            "name": "Pilin Edlothia",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -69,7 +69,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-eiliant.c",
-            "name": "pilin-eiliant",
+            "name": "Pilin Eiliant",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -77,7 +77,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-manadh.c",
-            "name": "pilin-manadh",
+            "name": "Pilin Manadh",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
@@ -85,7 +85,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/bow/pilin-dagnir.c",
-            "name": "pilin-dagnir",
+            "name": "Pilin Dagnir",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15

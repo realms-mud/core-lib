@@ -49,7 +49,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/aegis-guard/forms/sword-attacks/diyacuth.c",
-            "name": "diyacuth",
+            "name": "Diyacuth",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5

@@ -35,7 +35,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/abacbaa.c",
-            "name": "abacbaa",
+            "name": "ABACBAA",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

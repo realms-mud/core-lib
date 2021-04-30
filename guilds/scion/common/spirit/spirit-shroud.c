@@ -41,7 +41,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf("/guilds/scion/paths/%s/spirit/soul-shield.c", WeaponType),
-            "name" : "soul shield",
+            "name" : "Soul Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0

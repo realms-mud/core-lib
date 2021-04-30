@@ -53,7 +53,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/hammer-ons-and-pull-offs.c",
-            "name": "keeping-time",
+            "name": "Hammer-ons and Pull-offs",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.5
@@ -61,7 +61,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/string-bending.c",
-            "name": "advanced-timing",
+            "name": "String Bending",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -69,7 +69,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/slide-techniques.c",
-            "name": "golden-measures",
+            "name": "Slide Techniques",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -77,7 +77,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/string-skipping.c",
-            "name": "modulated-timing",
+            "name": "String Skipping",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -85,7 +85,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/strings/finger-picking.c",
-            "name": "fibonacci-timing",
+            "name": "Finger Picking",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -93,7 +93,7 @@ protected void Setup()
         ([
             "type": "research",
             "research item": "/guilds/bard/compositions/ababcb.c",
-            "name": "verse-pre-chorus",
+            "name": "ABABCB",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.1

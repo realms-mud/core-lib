@@ -41,7 +41,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf("/guilds/scion/paths/%s/flame/burning-shield.c", WeaponType),
-            "name" : "burning shield",
+            "name" : "Burning Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0
@@ -50,7 +50,7 @@ protected void Setup()
             "type":"research",
             "research item": 
                 sprintf(sprintf("/guilds/scion/paths/%s/flame/inferno-shield.c", WeaponType), WeaponType),
-            "name" : "inferno shield",
+            "name" : "Inferno Shield",
             "formula" : "additive",
             "base value" : 5,
             "rate": 1.0

@@ -108,7 +108,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/enhanced-flames.c", WeaponType),
-            "name" : "enhanced-flames",
+            "name" : "Enhanced Flames",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -116,7 +116,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/raging-inferno.c", WeaponType),
-            "name" : "raging-inferno",
+            "name" : "Raging Inferno",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -124,7 +124,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/scorching-blast.c", WeaponType),
-            "name" : "scorching-blast",
+            "name" : "Scorching Blast",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.25
@@ -132,7 +132,7 @@ protected void Setup()
         ([
             "type":"research",
             "research item": sprintf("/guilds/scion/paths/%s/flame/incinerating-strike.c", WeaponType),
-            "name" : "incinerating-strike",
+            "name" : "Incinerating Strike",
             "formula" : "multiplicative",
             "base value" : 1,
             "rate": 1.5
