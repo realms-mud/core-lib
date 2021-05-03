@@ -2975,6 +2975,30 @@ private mapping RuinedInteriorIcons = ([
             ({ "#floor2#\u2585", "#floor#\u2585", "#floor2#\u2585" }),
             ({ "#stairs#\u2338", "#stairs#\u2338", "#stairs#\u2338" }) })
     ]),
+    "ruined interior amethyst floor": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;235m",
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;235m",
+            "24-bit": "\x1b[0;38;2;66;0;86m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;234m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;234m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }),
+            ({ "#floor# ", "#floor# ", "#floor# ", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
+    ]),
 ]);
 
 #endif

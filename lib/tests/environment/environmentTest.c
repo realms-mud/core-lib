@@ -2065,14 +2065,14 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
     move_object(player, environment);
 
     command("s", player);
-    ExpectEq(" |       ' This is a very large and cavernous chamber - easily two hundred\n"
-        " P  o  o ' yards wide by two hundred yards long the ceiling is hard to\n"
-        "         ' discern from this distance, but it appears to be solid amethyst.\n"
-        "         ' The floor is fashioned out of what appears to be solid amethyst. A\n"
-        " o  o  o ' luminous, roiling purple liquid fills the room, occasion ripples\n"
-        "         ' gyrating along the visible surface where a path has been sliced\n"
+    ExpectEq("| |      ' This is a very large and cavernous chamber - easily two hundred\n"
+        "| |      ' yards wide by two hundred yards long the ceiling is hard to\n"
+        "+/+======' discern from this distance, but it appears to be solid amethyst.\n"
+        " @       ' The floor is fashioned out of what appears to be solid amethyst. A\n"
+        "@P@      ' luminous, roiling purple liquid fills the room, occasion ripples\n"
+        " @       ' gyrating along the visible surface where a path has been sliced\n"
         "         ' through it. The liquid is held at bay from the path by some unseen\n"
-        " o  o  o ' barrier - or perhaps, despite its appearance, it is as solid as\n"
+        "         ' barrier - or perhaps, despite its appearance, it is as solid as\n"
         "         ' rock. It is impossible to tell for sure - the constant bursts of\n"
         "lightning coursing through the substance are enough to keep even the most\n"
         "foolhardy away. Along the wall near the entry, many intricate runes have been\n"

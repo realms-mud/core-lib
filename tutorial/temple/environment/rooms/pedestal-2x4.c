@@ -13,6 +13,8 @@ public void Setup()
     addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
+    addDecorator("ruined interior amethyst floor", "default");
+
     // First test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-2x3.c", "first test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "first test");

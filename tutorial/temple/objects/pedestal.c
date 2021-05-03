@@ -142,7 +142,7 @@ private int canTransition()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private string getOrb(string which)
+public string getOrb(string which)
 {
     return (orbs[which] == -1) ? orb("default") : 
         orb(orbOrder[(orbs[which] % 4)]);
@@ -151,8 +151,9 @@ private string getOrb(string which)
 /////////////////////////////////////////////////////////////////////////////
 public string displayOrbs()
 {
-    return sprintf("\n%33s%s\n%30s%s%5s%s\n%33s%s\n", "", getOrb("north"), "",
-        getOrb("west"), "", getOrb("east"), "", getOrb("south"));
+    return (this_player() && this_player()->displayMiniMap()) ?
+        sprintf("\n%33s%s\n%30s%s%5s%s\n%33s%s\n", "", getOrb("north"), "",
+        getOrb("west"), "", getOrb("east"), "", getOrb("south")) : "";
 }
 
 /////////////////////////////////////////////////////////////////////////////

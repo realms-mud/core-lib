@@ -24,6 +24,8 @@ public void Setup()
 
     addObject("/tutorial/temple/objects/rune-resistance.c", "entered room");
 
+    addDecorator("amethyst interior floor", "default");
+
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 
     // First test
@@ -151,4 +153,18 @@ public int resetEverything(string command)
     load_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();
     StateMachine->startStateMachine();
     return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string **customIcon(string **baseIcon, string color, string charset)
+{
+    string baseColor = getDictionary("region")->iconColor(
+        decoratorType(), color);
+
+    baseIcon[0][1] = pedestal()->getOrb("north");
+    baseIcon[1][0] = pedestal()->getOrb("west");
+    baseIcon[1][2] = pedestal()->getOrb("east");
+    baseIcon[2][1] = pedestal()->getOrb("south");
+
+    return baseIcon;
 }
