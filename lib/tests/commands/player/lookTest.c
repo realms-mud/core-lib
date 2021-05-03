@@ -17,26 +17,26 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
 /////////////////////////////////////////////////////////////////////////////
 string PrepPlayerWithInventory()
 {
-    Player->Race("elf");
-    Player->Gender("male");
-    Player->hitPoints(Player->maxHitPoints());
-    Player->colorConfiguration("none");
+    Player.Race("elf");
+    Player.Gender("male");
+    Player.hitPoints(Player.maxHitPoints());
+    Player.colorConfiguration("none");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("user description", "##UserName## has a shiny blah!");
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("user description", "##UserName## has a shiny blah!");
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"37;1", "data" : "Sword of Blah"])]);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "blarg");
-    armor->set("short", "Equipment of equippedness");
-    armor->set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
+    armor.set("name", "blarg");
+    armor.set("short", "Equipment of equippedness");
+    armor.set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
     move_object(armor, Player);
-    armor->equip("blarg");
+    armor.equip("blarg");
     items["Worn Armor"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
     items["Worn Gloves"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
     items["Worn Boots"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
@@ -44,9 +44,9 @@ string PrepPlayerWithInventory()
     items["Worn Leg Greaves"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
 
     armor = clone_object("/lib/items/armor");
-    armor->set("name", "f");
-    armor->set("short", "Some junk");
-    armor->set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
+    armor.set("name", "f");
+    armor.set("short", "Some junk");
+    armor.set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
     move_object(armor, Player);
     string *unequipped = ({ "Some junk" });
 
@@ -74,24 +74,24 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->Str(10);
-    Player->Dex(10);
-    Player->Con(10);
-    Player->Int(10);
-    Player->Wis(10);
-    Player->hitPoints(30);
-    Player->colorConfiguration("none");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.Str(10);
+    Player.Dex(10);
+    Player.Con(10);
+    Player.Int(10);
+    Player.Wis(10);
+    Player.hitPoints(30);
+    Player.colorConfiguration("none");
 
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary->setYear(1);
-    Dictionary->setDay(92);
-    Dictionary->timeOfDay("noon");
+    Dictionary.setYear(1);
+    Dictionary.setDay(92);
+    Dictionary.timeOfDay("noon");
 
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     move_object(Player, Environment);
 }
 
@@ -106,15 +106,15 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Player->executeCommand("exam"));
-    ExpectFalse(Player->executeCommand("lo"));
-    ExpectFalse(Player->executeCommand("lookat"));
+    ExpectFalse(Player.executeCommand("exam"));
+    ExpectFalse(Player.executeCommand("lo"));
+    ExpectFalse(Player.executeCommand("lookat"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpFailsIfInvalidFlagsPassed()
 {
-    ExpectFalse(Player->executeCommand("look -t bob"));
+    ExpectFalse(Player.executeCommand("look -t bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,11 +122,11 @@ void LookAtLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("look at bob"));
+    ExpectTrue(Player.executeCommand("look at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" + 
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -134,11 +134,11 @@ void LookAtLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("look -b at bob"));
+    ExpectTrue(Player.executeCommand("look -b at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -146,11 +146,11 @@ void LookInLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("look in bob"));
+    ExpectTrue(Player.executeCommand("look in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" +
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -158,11 +158,11 @@ void LookInLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("look -b in bob"));
+    ExpectTrue(Player.executeCommand("look -b in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -170,11 +170,11 @@ void LAtLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("l at bob"));
+    ExpectTrue(Player.executeCommand("l at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" +
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,11 +182,11 @@ void LAtLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("l -b at bob"));
+    ExpectTrue(Player.executeCommand("l -b at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,11 +194,11 @@ void LInLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("l in bob"));
+    ExpectTrue(Player.executeCommand("l in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" +
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -206,11 +206,11 @@ void LInLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("l -b in bob"));
+    ExpectTrue(Player.executeCommand("l -b in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -218,11 +218,11 @@ void ExaLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("exa bob"));
+    ExpectTrue(Player.executeCommand("exa bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" +
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -230,11 +230,11 @@ void ExaLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("exa -b bob"));
+    ExpectTrue(Player.executeCommand("exa -b bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -242,11 +242,11 @@ void ExamineLivingShowsInventory()
 {
     string expectedInventory = PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("examine bob"));
+    ExpectTrue(Player.executeCommand("examine bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n    Carrying:\n" +
-        expectedInventory, Player->caughtMessage());
+        expectedInventory, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -254,11 +254,11 @@ void ExamineLivingWithBriefDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("examine -b bob"));
+    ExpectTrue(Player.executeCommand("examine -b bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -266,11 +266,11 @@ void GlanceAtDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("glance at bob"));
+    ExpectTrue(Player.executeCommand("glance at bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -278,25 +278,25 @@ void GlanceInDoesNotShowInventory()
 {
     PrepPlayerWithInventory();
 
-    ExpectTrue(Player->executeCommand("glance in bob"));
+    ExpectTrue(Player.executeCommand("glance in bob"));
     ExpectEq("Bob the title-less (male)"
         " (elf)\nHe is in good shape.\n"
         "Bob has a shiny blah!\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookAtItemShowsDetails()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
 
-    Player->addSkillPoints(100);
-    Player->advanceSkill("long sword", 6);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("long sword", 6);
 
     ExpectTrue(command("look at blah", Player));
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long.\n" + 
@@ -307,52 +307,52 @@ void LookAtItemShowsDetails()
         "    Defense: 2 to 3\n"
         "    Encumberance: 2\n"
         "    Weight: 5\n\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookAtNonexistentThingReturnsFailureMessage()
 {
-    ExpectTrue(Player->executeCommand("look at llama"));
+    ExpectTrue(Player.executeCommand("look at llama"));
     ExpectSubStringMatch("There is no 'llama' here.",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookWithoutArgsShowsEnvironment()
 {
-    ExpectTrue(Player->executeCommand("look"));
+    ExpectTrue(Player.executeCommand("look"));
     ExpectSubStringMatch("a deciduous forest. To the north.*Bob",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanLookAtEnvironmentElements()
 {
-    ExpectTrue(Player->executeCommand("look at oak"));
+    ExpectTrue(Player.executeCommand("look at oak"));
     ExpectSubStringMatch("many majestic oaks with branches laden with acorns",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanOnlyLookAtEnvironmentElementsWhenInCorrectState()
 {
-    ExpectTrue(Player->executeCommand("look at charred stumps"));
+    ExpectTrue(Player.executeCommand("look at charred stumps"));
     ExpectSubStringMatch("There is no 'charred stumps' here.",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
-    Environment->currentState("deadified");
-    ExpectTrue(Player->executeCommand("look at charred stumps"));
+    Environment.currentState("deadified");
+    ExpectTrue(Player.executeCommand("look at charred stumps"));
     ExpectSubStringMatch("You see many charred tree stumps.",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenBlindFailsWithBlindMessage()
 {
-    ExpectTrue(Player->addTrait("/lib/instances/traits/diseases/cataracts.c"));
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("You are blind.\n", Player->caughtMessage());
+    ExpectTrue(Player.addTrait("/lib/instances/traits/diseases/cataracts.c"));
+    ExpectTrue(Player.executeCommand("look"));
+    ExpectEq("You are blind.\n", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,26 +360,26 @@ void LookWhenDarkFailsWithDarkMessage()
 {
     move_object(Player, "/lib/tests/support/environment/darkRoom.c");
 
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("It is too dark.\n", Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("look"));
+    ExpectEq("It is too dark.\n", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LookWhenDarkSucceedsWhenUserHasDarkvision()
 {
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
-    elf->Name("gertrude");
-    elf->Gender("female");
-    elf->Race("elf");
+    elf.Name("gertrude");
+    elf.Gender("female");
+    elf.Race("elf");
     move_object(elf, environment(Player));
 
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary->timeOfDay("midnight");
-    Player->addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
+    dictionary.timeOfDay("midnight");
+    Player.addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
     command("look", Player);
 
     ExpectSubStringMatch("a deciduous forest. To the north.*Gertrude",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     destruct(elf);
     destruct(dictionary);
@@ -389,18 +389,18 @@ void LookWhenDarkSucceedsWhenUserHasDarkvision()
 void LookWhenDarkShowsLifeSignaturesWithInfravision()
 {
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
-    elf->Name("gertrude");
-    elf->Gender("female");
-    elf->Race("elf");
+    elf.Name("gertrude");
+    elf.Gender("female");
+    elf.Race("elf");
     move_object(elf, environment(Player));
 
     object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary->timeOfDay("midnight");
-    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    dictionary.timeOfDay("midnight");
+    Player.addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     command("look", Player);
 
     ExpectSubStringMatch("You can see objects faintly glowing in red.*A "
-        "female elf", Player->caughtMessage());
+        "female elf", Player.caughtMessage());
 
     destruct(elf);
     destruct(dictionary);
@@ -412,16 +412,16 @@ void LookWhenDarkDoesNotShowEtherealSignaturesWithInfravision()
     move_object(Player, "/lib/tests/support/environment/infraRoom.c");
 
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
-    elf->Name("gertrude");
-    elf->Gender("female");
-    elf->Race("elf");
+    elf.Name("gertrude");
+    elf.Gender("female");
+    elf.Race("elf");
     move_object(elf, environment(Player));
 
-    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
-    Player->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
-    elf->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("It is too dark.\n", Player->caughtMessage());
+    Player.addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    Player.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    elf.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    ExpectTrue(Player.executeCommand("look"));
+    ExpectEq("It is too dark.\n", Player.caughtMessage());
 
     destruct(elf);
 }
@@ -432,16 +432,16 @@ void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
     move_object(Player, "/lib/tests/support/environment/infraRoom.c");
 
     object elf = clone_object("/lib/tests/support/services/mockPlayer.c");
-    elf->Name("gertrude");
-    elf->Gender("female");
-    elf->Race("elf");
+    elf.Name("gertrude");
+    elf.Gender("female");
+    elf.Race("elf");
     move_object(elf, environment(Player));
 
-    Player->addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
-    Player->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
-    elf->addTrait("/lib/tests/support/traits/testUndeadTrait.c");
-    ExpectTrue(Player->executeCommand("look"));
-    ExpectEq("It is too dark.\n", Player->caughtMessage());
+    Player.addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
+    Player.addTrait("/lib/tests/support/traits/testUndeadTrait.c");
+    elf.addTrait("/lib/tests/support/traits/testUndeadTrait.c");
+    ExpectTrue(Player.executeCommand("look"));
+    ExpectEq("It is too dark.\n", Player.caughtMessage());
 
     destruct(elf);
 }
@@ -450,10 +450,10 @@ void LookWhenDarkDoesNotShowUndeadSignaturesWithInfravision()
 void LooksSupportsColorsAndUnicode()
 {
     string expectedInventory = PrepPlayerWithInventory();
-    Player->colorConfiguration("8-bit");
-    Player->charsetConfiguration("unicode");
+    Player.colorConfiguration("8-bit");
+    Player.charsetConfiguration("unicode");
 
-    ExpectTrue(Player->executeCommand("l at bob"));
+    ExpectTrue(Player.executeCommand("l at bob"));
     ExpectEq("\x1b[0;38;5;190mBob the title-less\x1b[0m\x1b[0;38;5;238m (male)\x1b[0m\x1b[0;38;5;2m (elf)\x1b[0m\n"
         "\x1b[0;38;5;9;1mHe is in good shape.\n"
         "\x1b[0mBob has a shiny blah!\n"
@@ -471,5 +471,5 @@ void LooksSupportsColorsAndUnicode()
         "\x1b[0m\x1b[0;38;5;124m\u2551\x1b[0m \x1b[0;38;5;231;1mSome junk                \x1b[0m                                                   \x1b[0;38;5;124m\u2551\x1b[0m\n"
         "\x1b[0;38;5;124m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561  \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n"
         "\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

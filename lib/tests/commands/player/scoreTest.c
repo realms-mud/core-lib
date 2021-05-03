@@ -15,12 +15,12 @@ void Init()
 
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    mapping actor = database->Gorthaur();
+    mapping actor = database.Gorthaur();
     actor["name"] = "rob";
-    dataAccess->savePlayerData(actor);
+    dataAccess.savePlayerData(actor);
 
     destruct(dataAccess);
     destruct(database);
@@ -30,29 +30,29 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("rob");
-    Player->hitPoints(30);
-    Player->spellPoints(30);
-    Player->staminaPoints(30);
-    Player->Str(10);
-    Player->Int(10);
-    Player->Dex(10);
-    Player->Wis(10);
-    Player->Con(10);
-    Player->Chr(10);
-    Player->addCommands();
-    Player->Race("high elf");
-    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
-    Player->addTrait("/lib/instances/traits/genetic/smart.c");
-    Player->spellPoints(Player->maxSpellPoints());
-    Player->staminaPoints(Player->maxStaminaPoints());
+    Player.Name("rob");
+    Player.hitPoints(30);
+    Player.spellPoints(30);
+    Player.staminaPoints(30);
+    Player.Str(10);
+    Player.Int(10);
+    Player.Dex(10);
+    Player.Wis(10);
+    Player.Con(10);
+    Player.Chr(10);
+    Player.addCommands();
+    Player.Race("high elf");
+    Player.addTrait("/lib/instances/traits/racial/hillgarathElf.c");
+    Player.addTrait("/lib/instances/traits/genetic/smart.c");
+    Player.spellPoints(Player.maxSpellPoints());
+    Player.staminaPoints(Player.maxStaminaPoints());
 
-    Player->joinGuild("fake mage");
-    Player->addExperience(1700);
-    Player->advanceLevel("fake mage");
+    Player.joinGuild("fake mage");
+    Player.addExperience(1700);
+    Player.advanceLevel("fake mage");
 
-    Player->joinGuild("fake fighter");
-    Player->addExperience(2000);
+    Player.joinGuild("fake fighter");
+    Player.addExperience(2000);
 
     move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
@@ -66,41 +66,41 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteScoreCommand()
 {
-    ExpectTrue(Player->executeCommand("score"));
+    ExpectTrue(Player.executeCommand("score"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteScoreAsQuestionmark()
 {
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Player->executeCommand("scoreblah"));
-    ExpectFalse(Player->executeCommand("ascored"));
-    ExpectFalse(Player->executeCommand("blah?"));
+    ExpectFalse(Player.executeCommand("scoreblah"));
+    ExpectFalse(Player.executeCommand("ascored"));
+    ExpectFalse(Player.executeCommand("blah?"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpFailsIfInvalidFlagsPassed()
 {
-    ExpectFalse(Player->executeCommand("score -t"));
-    ExpectFalse(Player->executeCommand("score -com"));
+    ExpectFalse(Player.executeCommand("score -t"));
+    ExpectFalse(Player.executeCommand("score -com"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysCorrectInformationWithWeaponEquipped()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
-    ExpectTrue(Player->executeCommand("score"));
+    ExpectTrue(Player.executeCommand("score"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
         "\x1b[0m\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mRace: \x1b[0m\x1b[0;32mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;36mOverall Level: \x1b[0m\x1b[0;32m3                    \x1b[0m \x1b[0;31m|\x1b[0m\n"
@@ -121,38 +121,38 @@ void ScoreDisplaysCorrectInformationWithWeaponEquipped()
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m", Player->caughtMessage());
+        "\x1b[0m", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
         "\x1b[0m\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mRace: \x1b[0m\x1b[0;32mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;36mOverall Level: \x1b[0m\x1b[0;32m3                    \x1b[0m \x1b[0;31m|\x1b[0m\n"
@@ -174,132 +174,132 @@ void ScoreDisplaysCorrectInformationWithWeaponShieldAndArmorEquipped()
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m|\x1b[0m \x1b[0;36mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m", Player->caughtMessage());
+        "\x1b[0m", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HitPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("score"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("score"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Hit Points:.*[^=]==[^=]")), "shows two bars");
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/121")), "shows 30/121");
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "30/121")), "shows 30/121");
 
-    Player->hitPoints(32);
-    ExpectTrue(Player->executeCommand("score"));
+    Player.hitPoints(32);
+    ExpectTrue(Player.executeCommand("score"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Hit Points:.*[^=]=====[^=]")), "shows 5 bars");
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "62/121")), "shows 62/121");
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "62/121")), "shows 62/121");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpellPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("score"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("score"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Spell Points:.*[^=]==========[^=]")));
-    Player->spellPoints(-30);
-    ExpectTrue(Player->executeCommand("score"));
+    Player.spellPoints(-30);
+    ExpectTrue(Player.executeCommand("score"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Spell Points:.*[^=]======[^=]")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void StaminaPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("score"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("score"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Stamina:.*[^=]==========[^=]")));
-    Player->staminaPoints(-30);
-    ExpectTrue(Player->executeCommand("score"));
+    Player.staminaPoints(-30);
+    ExpectTrue(Player.executeCommand("score"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Stamina:.*[^=]======[^=]")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SliderForExperienceDisplaysCorrectly()
 {
-    Player->addExperience(-2000);
-    ExpectTrue(Player->executeCommand("score"));
+    Player.addExperience(-2000);
+    ExpectTrue(Player.executeCommand("score"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Experience:.*[^=]===[^=]")));
-    ExpectFalse(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectFalse(sizeof(regexp(({ Player.caughtMessage() }),
         "Experience:.*Level up")));
 
-    Player->addExperience(2000);
-    ExpectTrue(Player->executeCommand("score"));
+    Player.addExperience(2000);
+    ExpectTrue(Player.executeCommand("score"));
 
-    ExpectFalse(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectFalse(sizeof(regexp(({ Player.caughtMessage() }),
         "Experience:.*[^=]===[^=]")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Experience:.*Level up")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void VFlagDisplaysCombatStatistics()
 {
-    ExpectTrue(Player->executeCommand("? -v"));
-    ExpectSubStringMatch("Best Kill.*Nemesis", Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("? -v"));
+    ExpectSubStringMatch("Best Kill.*Nemesis", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void VFlagWithRealKillsDisplaysCombatStatistics()
 {
     object foe = clone_object("/lib/realizations/monster.c");
-    foe->Name("Nukulevee");
-    foe->Race("undead horse");
-    foe->effectiveLevel(20);
+    foe.Name("Nukulevee");
+    foe.Race("undead horse");
+    foe.effectiveLevel(20);
 
-    Player->generateCombatStatistics(foe);
-    Player->generateCombatStatistics(foe);
+    Player.generateCombatStatistics(foe);
+    Player.generateCombatStatistics(foe);
     destruct(foe);
 
     foe = clone_object("/lib/realizations/monster.c");
-    foe->Name("Earl the Boorish");
-    foe->Race("orc");
-    foe->effectiveLevel(25);
-    Player->generateCombatStatistics(foe);
+    foe.Name("Earl the Boorish");
+    foe.Race("orc");
+    foe.effectiveLevel(25);
+    Player.generateCombatStatistics(foe);
     destruct(foe);
 
-    ExpectTrue(Player->executeCommand("score -v"));
-    ExpectSubStringMatch("Best Kill.*Earl.*Nemesis.*Nukulevee", Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("score -v"));
+    ExpectSubStringMatch("Best Kill.*Earl.*Nemesis.*Nukulevee", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysUnicodeCharset()
 {
-    Player->charsetConfiguration("unicode");
+    Player.charsetConfiguration("unicode");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("\x1b[0;32mRob the title-less\n"
         "\x1b[0m\x1b[0;31m\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 General \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n"
         "\x1b[0m\x1b[0;31m\u2551\x1b[0m \x1b[0;36mRace: \x1b[0m\x1b[0;32mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;36mOverall Level: \x1b[0m\x1b[0;32m3                    \x1b[0m \x1b[0;31m\u2551\x1b[0m\n"
@@ -321,40 +321,40 @@ void ScoreDisplaysUnicodeCharset()
         "\x1b[0m\x1b[0;31m\u2551\x1b[0m \x1b[0;36mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;31m\u2551\x1b[0m\n"
         "\x1b[0;31m\u2551\x1b[0m \x1b[0;36mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;31m\u2551\x1b[0m\n"
         "\x1b[0;31m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 \u2550 \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n"
-        "\x1b[0m", Player->caughtMessage());
+        "\x1b[0m", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysNoColorCorrectly()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("Rob the title-less\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Race: High elf (Hillgarathi elf)       Overall Level: 3                     |\n"
@@ -376,40 +376,40 @@ void ScoreDisplaysNoColorCorrectly()
         "| You are normal.  (Yeah, right)                                              |\n"
         "| You can find out more via the 'skills', 'traits', and 'research' commands.  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "", Player->caughtMessage());
+        "", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysEightBitColorCorrectly()
 {
-    Player->colorConfiguration("8-bit");
+    Player.colorConfiguration("8-bit");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("\x1b[0;38;5;144mRob the title-less\n"
         "\x1b[0m\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mRace: \x1b[0m\x1b[0;38;5;2mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;38;5;80mOverall Level: \x1b[0m\x1b[0;38;5;2m3                    \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
@@ -431,40 +431,40 @@ void ScoreDisplaysEightBitColorCorrectly()
         "\x1b[0m\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m|\x1b[0m \x1b[0;38;5;80mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;38;5;124m|\x1b[0m\n"
         "\x1b[0;38;5;124m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m", Player->caughtMessage());
+        "\x1b[0m", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysTwentyFourBitColorCorrectly()
 {
-    Player->colorConfiguration("24-bit");
+    Player.colorConfiguration("24-bit");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("\x1b[0;38;2;100;180;150mRob the title-less\n"
         "\x1b[0m\x1b[0;38;2;160;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;38;2;160;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mRace: \x1b[0m\x1b[0;38;2;170;180;110mHigh elf (Hillgarathi elf)       \x1b[0m\x1b[0;38;2;180;180;190mOverall Level: \x1b[0m\x1b[0;38;2;170;180;110m3                    \x1b[0m \x1b[0;38;2;160;10;0m|\x1b[0m\n"
@@ -486,41 +486,41 @@ void ScoreDisplaysTwentyFourBitColorCorrectly()
         "\x1b[0m\x1b[0;38;2;160;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mYou are normal.  (Yeah, right)                                             \x1b[0m \x1b[0;38;2;160;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;160;10;0m|\x1b[0m \x1b[0;38;2;180;180;190mYou can find out more via the 'skills', 'traits', and 'research' commands. \x1b[0m \x1b[0;38;2;160;10;0m|\x1b[0m\n"
         "\x1b[0;38;2;160;10;0m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "\x1b[0m", Player->caughtMessage());
+        "\x1b[0m", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScoreDisplaysScreenReaderCorrectly()
 {
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("screen reader");
+    Player.colorConfiguration("none");
+    Player.charsetConfiguration("screen reader");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah Really Long Name");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah Really Long Name");
     move_object(weapon, Player);
     command("equip blah", Player);
 
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", "weasels");
-    shield->set("short", "Shield of Weasels");
-    shield->set("defense class", 1);
-    shield->set("material", "steel");
-    shield->set("weapon type", "shield");
+    shield.set("name", "weasels");
+    shield.set("short", "Shield of Weasels");
+    shield.set("defense class", 1);
+    shield.set("material", "steel");
+    shield.set("weapon type", "shield");
     move_object(shield, Player);
     command("equip weasels", Player);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "stuff");
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", 0x00000200);
+    armor.set("name", "stuff");
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", 0x00000200);
     move_object(armor, Player);
     command("equip stuff", Player);
 
-    ExpectTrue(Player->executeCommand("?"));
+    ExpectTrue(Player.executeCommand("?"));
     ExpectEq("Rob the title-less\n"
         "                                     General                                    \n"
         "  Race: High elf (Hillgarathi elf)       Overall Level: 3                      \n"
@@ -542,5 +542,5 @@ void ScoreDisplaysScreenReaderCorrectly()
         "  You are normal.  (Yeah, right)                                               \n"
         "  You can find out more via the 'skills', 'traits', and 'research' commands.   \n"
         "                                                                                \n"
-        "", Player->caughtMessage());
+        "", Player.caughtMessage());
 }

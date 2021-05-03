@@ -15,14 +15,14 @@ string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Hel
 void BuildInventory()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus attack", 5);
-    weapon->set("bonus damage", 5);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus attack", 5);
+    weapon.set("bonus damage", 5);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"35;1", "data" : "Sword of Blah"])]);
 
     move_object(clone_object("/lib/instances/items/potions/healing.c"), Player);
@@ -39,46 +39,46 @@ void BuildInventory()
 
     object equipment = clone_object("/lib/instances/items/armor/accessories/amulet.c");
     move_object(equipment, Player);
-    equipment->equip("amulet");
+    equipment.equip("amulet");
 
     for (int i = 0; i < 7; i++)
     {
         equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-        equipment->set("craftsmanship", 200);
-        equipment->set("short", "A big claw thingy with a long name");
+        equipment.set("craftsmanship", 200);
+        equipment.set("short", "A big claw thingy with a long name");
         move_object(equipment, Player);
     }
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    equipment->set("bonus spirit", 1);
-    equipment->set("short", "The land-loving mother-pigeon of all things");
+    equipment.set("bonus spirit", 1);
+    equipment.set("short", "The land-loving mother-pigeon of all things");
     move_object(equipment, Player);
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    equipment->set("short", "Even more stuff");
+    equipment.set("short", "Even more stuff");
     move_object(equipment, Player);
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    equipment->set("craftsmanship", 200);
-    equipment->set("short", "Ring of Really Long Names");
+    equipment.set("craftsmanship", 200);
+    equipment.set("short", "Ring of Really Long Names");
     move_object(equipment, Player);
-    equipment->equip("ring");
+    equipment.equip("ring");
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    equipment->set("craftsmanship", 20);
-    equipment->set("short", "Ring of Shorter Names");
+    equipment.set("craftsmanship", 20);
+    equipment.set("short", "Ring of Shorter Names");
     move_object(equipment, Player);
-    equipment->equip("second ring");
+    equipment.equip("second ring");
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    equipment->set("short", "Cabbage");
+    equipment.set("short", "Cabbage");
     move_object(equipment, Player);
 
     equipment = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
-    equipment->set("bonus soak", 1);
-    equipment->set("short", "Chainmail of Chains");
+    equipment.set("bonus soak", 1);
+    equipment.set("short", "Chainmail of Chains");
     move_object(equipment, Player);
-    equipment->equip("armor");
+    equipment.equip("armor");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -91,8 +91,8 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
     move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
 }
 
@@ -105,57 +105,57 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteInventoryCommand()
 {
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteInvenCommand()
 {
-    ExpectTrue(Player->executeCommand("inven"));
+    ExpectTrue(Player.executeCommand("inven"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteICommand()
 {
-    ExpectTrue(Player->executeCommand("i"));
+    ExpectTrue(Player.executeCommand("i"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Player->executeCommand("invent"));
-    ExpectFalse(Player->executeCommand("in"));
-    ExpectFalse(Player->executeCommand("inventoryy"));
-    ExpectFalse(Player->executeCommand("hi"));
-    ExpectFalse(Player->executeCommand("sgjdfsdfginvent"));
-    ExpectFalse(Player->executeCommand("blarginventory"));
+    ExpectFalse(Player.executeCommand("invent"));
+    ExpectFalse(Player.executeCommand("in"));
+    ExpectFalse(Player.executeCommand("inventoryy"));
+    ExpectFalse(Player.executeCommand("hi"));
+    ExpectFalse(Player.executeCommand("sgjdfsdfginvent"));
+    ExpectFalse(Player.executeCommand("blarginventory"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpFailsIfInvalidFlagsPassed()
 {
-    ExpectFalse(Player->executeCommand("inventory -t bob"));
+    ExpectFalse(Player.executeCommand("inventory -t bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsSparselyPopulatedList()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"37;1", "data" : "Sword of Blah"])]);
 
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", "blarg");
-    armor->set("short", "Equipment of equippedness");
-    armor->set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
+    armor.set("name", "blarg");
+    armor.set("short", "Equipment of equippedness");
+    armor.set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
     move_object(armor, Player);
-    armor->equip("blarg");
+    armor.equip("blarg");
     items["Worn Armor"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
     items["Worn Gloves"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
     items["Worn Boots"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
@@ -163,13 +163,13 @@ void InventoryShowsSparselyPopulatedList()
     items["Worn Leg Greaves"] = (["type":"37;1", "data" : "Equipment of equippedness"]);
 
     armor = clone_object("/lib/items/armor");
-    armor->set("name", "f");
-    armor->set("short", "Some junk");
-    armor->set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
+    armor.set("name", "f");
+    armor.set("short", "Some junk");
+    armor.set("equipment locations", Gloves | Armor | ArmGreaves | LegGreaves | Boots);
     move_object(armor, Player);
     string *unequipped = ({ "Some junk" });
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: Sword of Blah         Offhand Weapon: nothing               |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -184,98 +184,98 @@ void InventoryShowsSparselyPopulatedList()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Money +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| You currently have 0 in cash on hand.                                       |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsWellCraftedItemsInGreen()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("craftsmanship", 20);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("craftsmanship", 20);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"32", "data" : "Sword of Blah"])]);
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectSubStringMatch("32mSword of Blah",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsMasterworkItemsInBoldGreen()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("craftsmanship", 50);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("craftsmanship", 50);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"32;1", "data" : "Sword of Blah"])]);
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectSubStringMatch("32;1mSword of Blah",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsMagicItemsInMagenta()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus attack", 1);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus attack", 1);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"35", "data" : "Sword of Blah"])]);
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectSubStringMatch("35mSword of Blah",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsPowerfulMagicItemsInBoldMagenta()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus attack", 5);
-    weapon->set("bonus damage", 5);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus attack", 5);
+    weapon.set("bonus damage", 5);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"35;1", "data" : "Sword of Blah"])]);
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectSubStringMatch("35;1mSword of Blah",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteVerboseInventory()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus attack", 5);
-    weapon->set("bonus damage", 5);
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus attack", 5);
+    weapon.set("bonus damage", 5);
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
     mapping items = (["Primary Weapon":(["type":"35;1", "data" : "Sword of Blah"])]);
 
-    ExpectTrue(Player->executeCommand("inventory -v"));
+    ExpectTrue(Player.executeCommand("inventory -v"));
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: Sword of Blah         Offhand Weapon: nothing               |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -288,30 +288,30 @@ void CanExecuteVerboseInventory()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Money +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| You currently have 0 in cash on hand.                                       |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsCorrectAmountOfMoney()
 {
-    Player->colorConfiguration("none");
-    Player->addMoney(123456);
-    ExpectTrue(Player->executeCommand("inventory"));
-    ExpectSubStringMatch("123456", Player->caughtMessage());
+    Player.colorConfiguration("none");
+    Player.addMoney(123456);
+    ExpectTrue(Player.executeCommand("inventory"));
+    ExpectSubStringMatch("123456", Player.caughtMessage());
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Money +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| You currently have 123456 in cash on hand.                                  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsDeckedOutCorrectlyWithNoColor()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
     BuildInventory();
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: Sword of Blah         Offhand Weapon: nothing               |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -328,16 +328,16 @@ void InventoryShowsDeckedOutCorrectlyWithNoColor()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Money +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| You currently have 0 in cash on hand.                                       |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InventoryShowsDeckedOutCorrectlyWithColor()
 {
-    Player->colorConfiguration("3-bit");
+    Player.colorConfiguration("3-bit");
     BuildInventory();
 
-    ExpectTrue(Player->executeCommand("inventory"));
+    ExpectTrue(Player.executeCommand("inventory"));
     ExpectEq("\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Wielded Weapons +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mPrimary Weapon: \x1b[0m\x1b[0;35;1mSword of Blah        \x1b[0m \x1b[0;36mOffhand Weapon: \x1b[0m\x1b[0;30;1mnothing              \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Worn Items +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -354,5 +354,5 @@ void InventoryShowsDeckedOutCorrectlyWithColor()
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Money +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;31m|\x1b[0m \x1b[0;36mYou currently have \x1b[0m\x1b[0;33m0\x1b[0m\x1b[0;36m in cash on hand.                                      \x1b[0m \x1b[0;31m|\x1b[0m\n"
         "\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+  +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

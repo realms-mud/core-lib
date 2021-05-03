@@ -10,34 +10,34 @@ object Player;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("rob");
-    Player->hitPoints(30);
-    Player->spellPoints(30);
-    Player->staminaPoints(30);
-    Player->Str(10);
-    Player->Int(10);
-    Player->Dex(10);
-    Player->Wis(10);
-    Player->Con(10);
-    Player->Chr(10);
-    Player->addCommands();
-    Player->Race("high elf");
-    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
-    Player->addTrait("/lib/instances/traits/genetic/smart.c");
-    Player->spellPoints(Player->maxSpellPoints());
-    Player->staminaPoints(Player->maxStaminaPoints());
+    Player.Name("rob");
+    Player.hitPoints(30);
+    Player.spellPoints(30);
+    Player.staminaPoints(30);
+    Player.Str(10);
+    Player.Int(10);
+    Player.Dex(10);
+    Player.Wis(10);
+    Player.Con(10);
+    Player.Chr(10);
+    Player.addCommands();
+    Player.Race("high elf");
+    Player.addTrait("/lib/instances/traits/racial/hillgarathElf.c");
+    Player.addTrait("/lib/instances/traits/genetic/smart.c");
+    Player.spellPoints(Player.maxSpellPoints());
+    Player.staminaPoints(Player.maxStaminaPoints());
 
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
-    guild->init();
-    Player->joinGuild("fake mage");
-    Player->addExperience(1700);
-    Player->advanceLevel("fake mage");
+    guild.create();
+    Player.joinGuild("fake mage");
+    Player.addExperience(1700);
+    Player.advanceLevel("fake mage");
 
     guild = load_object("/lib/tests/support/guilds/fighterGuild.c");
-    guild->init();
-    Player->joinGuild("fake fighter");
-    Player->addExperience(2000);
+    guild.create();
+    Player.joinGuild("fake fighter");
+    Player.addExperience(2000);
 
     move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
@@ -51,56 +51,56 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteVitalsCommand()
 {
-    ExpectTrue(Player->executeCommand("vitals"));
+    ExpectTrue(Player.executeCommand("vitals"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HitPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("vitals"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("vitals"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Hit Points:.*[^=]==[^=]")), "shows two bars");
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "30/121")), "shows 30/121");
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "30/121")), "shows 30/121");
 
-    Player->hitPoints(32);
-    ExpectTrue(Player->executeCommand("vitals"));
+    Player.hitPoints(32);
+    ExpectTrue(Player.executeCommand("vitals"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Hit Points:.*[^=]=====[^=]")), "shows 5 bars");
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "62/121")), "shows 62/121");
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "62/121")), "shows 62/121");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpellPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("vitals"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("vitals"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Spell Points:.*[^=]==========[^=]")));
-    Player->spellPoints(-30);
-    ExpectTrue(Player->executeCommand("vitals"));
+    Player.spellPoints(-30);
+    ExpectTrue(Player.executeCommand("vitals"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Spell Points:.*[^=]========[^=]")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void StaminaPointsSliderBarsDisplayCorrectly()
 {
-    ExpectTrue(Player->executeCommand("vitals"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("vitals"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Stamina:.*[^=]==========[^=]")));
-    Player->staminaPoints(-30);
-    ExpectTrue(Player->executeCommand("vitals"));
+    Player.staminaPoints(-30);
+    ExpectTrue(Player.executeCommand("vitals"));
 
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }),
         "Stamina:.*[^=]======[^=]")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HelpForVitalsDisplaysProperInfo()
 {
-    Player->pageSize(200);
-    ExpectTrue(Player->executeCommand("help vitals"));
+    Player.pageSize(200);
+    ExpectTrue(Player.executeCommand("help vitals"));
     ExpectEq("\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Help for Vitals +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;36;1mSynopsis\n"
         "\x1b[0m\x1b[0;36m\tvitals - Display a character's vitals\n"
@@ -124,5 +124,5 @@ void HelpForVitalsDisplaysProperInfo()
         "\x1b[0;36;1m\n\nCopyright\n"
         "\x1b[0m\x1b[0;36m\tCopyright (C) 1991-2021 Allen Cummings. For additional licensing\n"
         "\tinformation, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

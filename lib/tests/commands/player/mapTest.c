@@ -11,10 +11,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess.savePlayerData(database.Gorthaur());
 
     destruct(dataAccess);
     destruct(database);
@@ -24,9 +24,9 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("ralph");
-    Player->Race("elf");
-    Player->addCommands();
+    Player.Name("ralph");
+    Player.Race("elf");
+    Player.addCommands();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerSeesMessageWhenMapNotAvailable()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
     object unmappedRoom =
         clone_object("/lib/tests/support/environment/startingRoom.c");
 
@@ -46,7 +46,7 @@ void PlayerSeesMessageWhenMapNotAvailable()
 
     command("map", Player);
 
-    ExpectEq("There is no map available for this area.\n", Player->caughtMessage());
+    ExpectEq("There is no map available for this area.\n", Player.caughtMessage());
 
     destruct(unmappedRoom);
 }
@@ -54,11 +54,11 @@ void PlayerSeesMessageWhenMapNotAvailable()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerSeesMapWhenInSupportedRegion()
 {
-    Player->colorConfiguration("none");
+    Player.colorConfiguration("none");
     object mappedRoom =
         load_object("/lib/tests/support/environment/regionRoom.c");
 
-    mappedRoom->addGeneratedRegion("north", "forest", 5, 5);
+    mappedRoom.addGeneratedRegion("north", "forest", 5, 5);
 
     move_object(Player, mappedRoom);
 
@@ -67,7 +67,7 @@ void PlayerSeesMapWhenInSupportedRegion()
 
     // This should be 241 (5 x 5 x 9 + 16 '\n' characters)
     // Since it's randomly-generated, we can't verify the map by drawing it
-    ExpectEq(241, sizeof(Player->caughtMessage()));
+    ExpectEq(241, sizeof(Player.caughtMessage()));
 
     destruct(mappedRoom);
 }

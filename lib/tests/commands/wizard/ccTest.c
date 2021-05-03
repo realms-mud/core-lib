@@ -13,10 +13,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("creator"));
 
     destruct(dataAccess);
     destruct(database);
@@ -30,9 +30,9 @@ void Setup()
     Room = clone_object("/lib/environment/environment.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
-    Catch->beginShadow(Wizard);
+    Wizard.restore("earl");
+    Wizard.addCommands();
+    Catch.beginShadow(Wizard);
     setUsers(({ Wizard }));
 
     move_object(Wizard, Room);
@@ -48,85 +48,85 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("ccc"), "ccc");
-    ExpectFalse(Wizard->executeCommand("accelerate"), "accelerate");
+    ExpectFalse(Wizard.executeCommand("ccc"), "ccc");
+    ExpectFalse(Wizard.executeCommand("accelerate"), "accelerate");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfExistingProgramReturnsOneWhenSuccessfullyBuilds()
 {
-    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
-    ExpectSubStringMatch("Building: /lib/modules/combat.c", Wizard->caughtMessage());
+    ExpectEq(1, Wizard.executeCommand("cc /lib/modules/combat.c"));
+    ExpectSubStringMatch("Building: /lib/modules/combat.c", Wizard.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfNonexistantFileReturnsFalse()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /lib/include/inventory"));
+    ExpectEq(0, Wizard.executeCommand("cc /lib/include/inventory"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryWithoutRecurseFlagReturnsFalse()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /lib/modules"));
+    ExpectEq(0, Wizard.executeCommand("cc /lib/modules"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryRecursivelyBuilds()
 {
-    ExpectEq(4, Wizard->executeCommand("cc -r /lib/modules/guilds"));
+    ExpectEq(4, Wizard.executeCommand("cc -r /lib/modules/guilds"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RecursiveCCWithoutTargetRecursivelyBuildsPWD()
 {
-    Wizard->pwd("/lib/core");
-    ExpectEq(9, Wizard->executeCommand("cc -r"));
+    Wizard.pwd("/lib/core");
+    ExpectEq(9, Wizard.executeCommand("cc -r"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryWherePermissionDeniedDoesNotBuild()
 {
-    ExpectEq(0, Wizard->executeCommand("cc -r /secure"));
+    ExpectEq(0, Wizard.executeCommand("cc -r /secure"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfFileWherePermissionDeniedDoesNotBuild()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /secure/player/player.c"));
+    ExpectEq(0, Wizard.executeCommand("cc /secure/player/player.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfInvalidFileDoesNotBuild()
 {
-    ExpectEq(0, Wizard->executeCommand("cc /badfile.c"));
+    ExpectEq(0, Wizard.executeCommand("cc /badfile.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfProgramWithRelativePathSuccessfullyBuilds()
 {
-    Wizard->pwd("/lib/modules");
-    ExpectEq(1, Wizard->executeCommand("cc combat.c"));
+    Wizard.pwd("/lib/modules");
+    ExpectEq(1, Wizard.executeCommand("cc combat.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCOfProgramWithRelativeButNoDotCSuccessfullyBuilds()
 {
-    Wizard->pwd("/lib/modules");
-    ExpectEq(1, Wizard->executeCommand("cc combat"));
+    Wizard.pwd("/lib/modules");
+    ExpectEq(1, Wizard.executeCommand("cc combat"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CCWithoutParamsCompilesEnvironment()
 {
-    ExpectEq(1, Wizard->executeCommand("cc"));
+    ExpectEq(1, Wizard.executeCommand("cc"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanRecompile()
 {
-    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
-    ExpectEq(1, Wizard->executeCommand("cc /lib/modules/combat.c"));
+    ExpectEq(1, Wizard.executeCommand("cc /lib/modules/combat.c"));
+    ExpectEq(1, Wizard.executeCommand("cc /lib/modules/combat.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -136,10 +136,10 @@ void CompilingCurrentLocationMovesYouBackToLocationOnSuccessfulCompile()
     ExpectTrue(room);
     move_object(Wizard, room);
     ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
-    ExpectEq(1, Wizard->executeCommand("cc /lib/environment/environment.c"));
+    ExpectEq(1, Wizard.executeCommand("cc /lib/environment/environment.c"));
     ExpectFalse(room);
     ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
-    ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
+    ExpectSubStringMatch("Your environment has been recompiled", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -148,8 +148,8 @@ void CompilingWithNoArgsBuildsCurrentEnvironment()
     object room = load_object("/lib/environment/environment.c");
     move_object(Wizard, room);
 
-    ExpectEq(1, Wizard->executeCommand("cc"));
+    ExpectEq(1, Wizard.executeCommand("cc"));
 
     ExpectEq("/lib/environment/environment", object_name(environment(Wizard)));
-    ExpectSubStringMatch("Your environment has been recompiled", Wizard->caughtMessages());
+    ExpectSubStringMatch("Your environment has been recompiled", Wizard.caughtMessages());
 }

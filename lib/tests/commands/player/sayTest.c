@@ -12,24 +12,24 @@ object Bystander;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->Race("human");
-    Player->addCommands();
-    Player->colorConfiguration("none");
+    Player.Name("bob");
+    Player.Race("human");
+    Player.addCommands();
+    Player.colorConfiguration("none");
     move_object(Player, this_object());
 
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Target->Name("earl");
-    Target->Race("human");
-    Target->addCommands();
-    Target->colorConfiguration("none");
+    Target.Name("earl");
+    Target.Race("human");
+    Target.addCommands();
+    Target.colorConfiguration("none");
     move_object(Target, this_object());
 
     Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Bystander->Name("frank");
-    Bystander->Race("human");
-    Bystander->addCommands();
-    Bystander->colorConfiguration("none");
+    Bystander.Name("frank");
+    Bystander.Race("human");
+    Bystander.addCommands();
+    Bystander.colorConfiguration("none");
     move_object(Bystander, this_object());
 }
 
@@ -44,180 +44,180 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidFlagsDoNotParse()
 {
-    ExpectTrue(Player->executeCommand("say -ve blah Hi!"));
+    ExpectTrue(Player.executeCommand("say -ve blah Hi!"));
     ExpectEq("Command failed: The '-ve' flag is not valid.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
-    ExpectTrue(Player->executeCommand("say -adverbiage blah Hi!"));
+    ExpectTrue(Player.executeCommand("say -adverbiage blah Hi!"));
     ExpectEq("Command failed: The '-adverbiage' flag is not valid.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
-    ExpectTrue(Player->executeCommand("say -lan blah Hi!"));
+    ExpectTrue(Player.executeCommand("say -lan blah Hi!"));
     ExpectEq("Command failed: The '-lan' flag is not valid.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SayWithoutFlagsDisplaysCorrectMessage()
 {
-    ExpectTrue(Player->executeCommand("say Hi!"));
+    ExpectTrue(Player.executeCommand("say Hi!"));
 
-    ExpectEq("You say, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob says, `Hi!'\n", Target->caughtMessage());
+    ExpectEq("You say, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob says, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SayWithCustomVerbSecondPersonEndingWithSDisplaysCorrectly()
 {
-    ExpectTrue(Player->executeCommand("say -v growl Hi!"));
-    ExpectEq("You growl, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob growls, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("say -v growl Hi!"));
+    ExpectEq("You growl, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob growls, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SayWithCustomVerbSecondPersonEndingWithEsDisplaysCorrectly()
 {
-    ExpectTrue(Player->executeCommand("say -v voice Hi!"));
-    ExpectEq("You voice, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob voices, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("say -v voice Hi!"));
+    ExpectEq("You voice, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob voices, `Hi!'\n", Target.caughtMessage());
 
-    ExpectTrue(Player->executeCommand("say -verb profess Hi!"));
-    ExpectEq("You profess, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob professes, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("say -verb profess Hi!"));
+    ExpectEq("You profess, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob professes, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SayWithCustomVerbSecondPersonEndingWithYDisplaysCorrectly()
 {
-    ExpectTrue(Player->executeCommand("say -v imply Hi!"));
-    ExpectEq("You imply, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob implies, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("say -v imply Hi!"));
+    ExpectEq("You imply, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob implies, `Hi!'\n", Target.caughtMessage());
 
-    ExpectTrue(Player->executeCommand("' -v convey Hi!"));
-    ExpectEq("You convey, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob conveys, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("' -v convey Hi!"));
+    ExpectEq("You convey, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob conveys, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UsingSingleQuoteWithoutASpaceCorrectlyExecutesCommand()
 {
-    ExpectTrue(Player->executeCommand("'Hi!"));
-    ExpectEq("You say, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob says, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("'Hi!"));
+    ExpectEq("You say, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob says, `Hi!'\n", Target.caughtMessage());
 
-    ExpectTrue(Player->executeCommand("'-v snort -a derisively Hi!"));
-    ExpectEq("You derisively snort, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob derisively snorts, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("'-v snort -a derisively Hi!"));
+    ExpectEq("You derisively snort, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob derisively snorts, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TargetFlagCorrectlyAppliesTarget()
 {
-    ExpectTrue(Player->executeCommand("'-t earl Hi!"));
-    ExpectEq("You say to Earl, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob says to you, `Hi!'\n", Target->caughtMessage());
-    ExpectEq("Bob says to Earl, `Hi!'\n", Bystander->caughtMessage());
+    ExpectTrue(Player.executeCommand("'-t earl Hi!"));
+    ExpectEq("You say to Earl, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob says to you, `Hi!'\n", Target.caughtMessage());
+    ExpectEq("Bob says to Earl, `Hi!'\n", Bystander.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TargetFlagCorrectlyAppliesTargetWhenNoTargetFound()
 {
-    ExpectTrue(Player->executeCommand("'-t 'the voices' Hi!"));
-    ExpectEq("You say to the voices, `Hi!'\n", Player->caughtMessage());
-    ExpectEq("Bob says to the voices, `Hi!'\n", Target->caughtMessage());
+    ExpectTrue(Player.executeCommand("'-t 'the voices' Hi!"));
+    ExpectEq("You say to the voices, `Hi!'\n", Player.caughtMessage());
+    ExpectEq("Bob says to the voices, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelZeroCorrectlyApplied()
 {
-    ExpectTrue(Player->executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
-    ExpectFalse(sizeof(regexp(({ Player->caughtMessage() }),
+    ExpectTrue(Player.executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectFalse(sizeof(regexp(({ Player.caughtMessage() }),
         "This is a long message that will test how garbled stuff should get when a message is entered")));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "complete gibberish")));
-    ExpectTrue(sizeof(regexp(({ Target->caughtMessage() }), "complete gibberish")));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "complete gibberish")));
+    ExpectTrue(sizeof(regexp(({ Target.caughtMessage() }), "complete gibberish")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelTwoCorrectlyApplied()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("elven", 2);
-    ExpectTrue(Player->executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "gibberish with a hint of elven")));
-    ExpectTrue(sizeof(regexp(({ Target->caughtMessage() }), "gibberish with a hint of elven")));
+    Player.addSkillPoints(100);
+    Player.advanceSkill("elven", 2);
+    ExpectTrue(Player.executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "gibberish with a hint of elven")));
+    ExpectTrue(sizeof(regexp(({ Target.caughtMessage() }), "gibberish with a hint of elven")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelFiveCorrectlyApplied()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("elven", 5);
-    ExpectTrue(Player->executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "broken elven")));
-    ExpectTrue(sizeof(regexp(({ Target->caughtMessage() }), "broken elven")));
+    Player.addSkillPoints(100);
+    Player.advanceSkill("elven", 5);
+    ExpectTrue(Player.executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "broken elven")));
+    ExpectTrue(sizeof(regexp(({ Target.caughtMessage() }), "broken elven")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelEightCorrectlyApplied()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("elven", 8);
-    ExpectTrue(Player->executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
-    ExpectTrue(sizeof(regexp(({ Player->caughtMessage() }), "slightly broken elven")));
-    ExpectTrue(sizeof(regexp(({ Target->caughtMessage() }), "slightly broken elven")));
+    Player.addSkillPoints(100);
+    Player.advanceSkill("elven", 8);
+    ExpectTrue(Player.executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectTrue(sizeof(regexp(({ Player.caughtMessage() }), "slightly broken elven")));
+    ExpectTrue(sizeof(regexp(({ Target.caughtMessage() }), "slightly broken elven")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelTenCorrectlyApplied()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("elven", 10);
-    Target->addSkillPoints(100);
-    Target->advanceSkill("elven", 4);
-    ExpectTrue(Player->executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    Player.addSkillPoints(100);
+    Player.advanceSkill("elven", 10);
+    Target.addSkillPoints(100);
+    Target.advanceSkill("elven", 4);
+    ExpectTrue(Player.executeCommand("'-l elven This is a long message that will test how garbled stuff should get when a message is entered"));
     ExpectEq("You say in elven, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectNotEq("Bob says in elven, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n", 
-        Target->caughtMessage());
-    ExpectTrue(sizeof(regexp(({ Target->caughtMessage() }), "This is a long")));
+        Target.caughtMessage());
+    ExpectTrue(sizeof(regexp(({ Target.caughtMessage() }), "This is a long")));
     ExpectNotEq("Bob says in elven, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
-        Bystander->caughtMessage());
+        Bystander.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageLevelTenCorrectlyUnderstood()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("tirnosti", 10);
-    Target->addSkillPoints(100);
-    Target->advanceSkill("tirnosti", 10);
-    ExpectTrue(Player->executeCommand("'-l tirnosti This is a long message that will test how garbled stuff should get when a message is entered"));
+    Player.addSkillPoints(100);
+    Player.advanceSkill("tirnosti", 10);
+    Target.addSkillPoints(100);
+    Target.advanceSkill("tirnosti", 10);
+    ExpectTrue(Player.executeCommand("'-l tirnosti This is a long message that will test how garbled stuff should get when a message is entered"));
     ExpectEq("You say in tirnosti, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectEq("Bob says in tirnosti, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
-        Target->caughtMessage());
+        Target.caughtMessage());
     ExpectNotEq("Bob says in tirnosti, `This is a long message that will test how garbled stuff\nshould get when a message is entered'\n",
-        Bystander->caughtMessage());
+        Bystander.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageWithSpaceInNameCorrectlyParsed()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("high elven", 10);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("high elven", 10);
 
-    ExpectTrue(Player->executeCommand("'-l high elven This is a long message that will test how garbled stuff should get when a message is entered"));
+    ExpectTrue(Player.executeCommand("'-l high elven This is a long message that will test how garbled stuff should get when a message is entered"));
     ExpectEq("You say in high elven, `This is a long message that will test how garbled\nstuff should get when a message is entered'\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HelpForSayDisplaysProperInfo()
 {
-    Player->pageSize(200);
-    Player->colorConfiguration("3-bit");
+    Player.pageSize(200);
+    Player.colorConfiguration("3-bit");
 
-    ExpectTrue(Player->executeCommand("help say"));
+    ExpectTrue(Player.executeCommand("help say"));
 
     ExpectEq("\x1b[0;31m+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Help for Say +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "\x1b[0m\x1b[0;36;1mSynopsis\n"
@@ -293,48 +293,48 @@ void HelpForSayDisplaysProperInfo()
         "\x1b[0m\x1b[0;36m\tCopyright (C) 1991-2021 Allen Cummings. For additional licensing\n"
         "\tinformation, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n"
         "\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NoneColorIsSupported()
 {
-    Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->executeCommand("say Hi!"));
+    Player.colorConfiguration("3-bit");
+    ExpectTrue(Player.executeCommand("say Hi!"));
 
-    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player->caughtMessage());
-    ExpectEq("Bob says, `Hi!'\n", Target->caughtMessage());
+    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player.caughtMessage());
+    ExpectEq("Bob says, `Hi!'\n", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ThreeBitColorIsSupported()
 {
-    Target->colorConfiguration("3-bit");
-    Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->executeCommand("say Hi!"));
+    Target.colorConfiguration("3-bit");
+    Player.colorConfiguration("3-bit");
+    ExpectTrue(Player.executeCommand("say Hi!"));
 
-    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player->caughtMessage());
-    ExpectEq("\x1b[0;37mBob says, `Hi!'\n\x1b[0m", Target->caughtMessage());
+    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player.caughtMessage());
+    ExpectEq("\x1b[0;37mBob says, `Hi!'\n\x1b[0m", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EightBitColorIsSupported()
 {
-    Target->colorConfiguration("8-bit");
-    Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->executeCommand("say Hi!"));
+    Target.colorConfiguration("8-bit");
+    Player.colorConfiguration("3-bit");
+    ExpectTrue(Player.executeCommand("say Hi!"));
 
-    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player->caughtMessage());
-    ExpectEq("\x1b[0;38;5;15mBob says, `Hi!'\n\x1b[0m", Target->caughtMessage());
+    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player.caughtMessage());
+    ExpectEq("\x1b[0;38;5;15mBob says, `Hi!'\n\x1b[0m", Target.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TwentyFourBitColorIsSupported()
 {
-    Target->colorConfiguration("24-bit");
-    Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->executeCommand("say Hi!"));
+    Target.colorConfiguration("24-bit");
+    Player.colorConfiguration("3-bit");
+    ExpectTrue(Player.executeCommand("say Hi!"));
 
-    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player->caughtMessage());
-    ExpectEq("\x1b[0;38;2;255;255;255mBob says, `Hi!'\n\x1b[0m", Target->caughtMessage());
+    ExpectEq("\x1b[0;37mYou say, `Hi!'\n\x1b[0m", Player.caughtMessage());
+    ExpectEq("\x1b[0;38;2;255;255;255mBob says, `Hi!'\n\x1b[0m", Target.caughtMessage());
 }

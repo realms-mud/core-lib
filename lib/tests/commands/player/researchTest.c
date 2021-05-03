@@ -11,12 +11,12 @@ object Selector;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->Str(20);
-    Player->addSkillPoints(100);
-    Player->advanceSkill("long sword", 10);
-    Player->addCommands();
-    Player->addResearchTree("/lib/tests/support/research/testDeepResearchTree.c");
+    Player.Name("bob");
+    Player.Str(20);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("long sword", 10);
+    Player.addCommands();
+    Player.addResearchTree("/lib/tests/support/research/testDeepResearchTree.c");
 
     Selector = clone_object("/lib/modules/research/researchSelector.c");
     move_object(Selector, Player);
@@ -32,11 +32,11 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelResearchMenuDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mFighter guild       \x1b[0m\n"
@@ -45,18 +45,18 @@ void TopLevelResearchMenuDisplaysCorrectly()
         "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mExit Research Menu  \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchSubmenuDisplaysCorrectly()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    Selector->showTreeElements();
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    Selector.showTreeElements();
+    Selector.initiateSelector(Player);
 
     command("2", Player);
 
@@ -84,13 +84,13 @@ void ResearchSubmenuDisplaysCorrectly()
         "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
         "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
         "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("11", Player);
@@ -125,25 +125,25 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
         "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
         "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OptionToBeginResearchShownWhenLearningIsPossible()
 {
-    Player->addResearchPoints(1);
-    Selector->initiateSelector(Player);
+    Player.addResearchPoints(1);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("12", Player);
 
     ExpectSubStringMatch("You have 1 research point left to assign.",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeAsQuestionMarkShowsResearchDetails()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("? 11", Player);
@@ -166,13 +166,13 @@ void DescribeAsQuestionMarkShowsResearchDetails()
         "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
         "\x1b[0;36mResearch Prereqs : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"
         "\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeShowsResearchDetails()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("4", Player);
@@ -197,29 +197,29 @@ void DescribeShowsResearchDetails()
         "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
         "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
         "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchInProcessOfBeingResearchedShowsTimeLeft()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("7", Player);
 
     ExpectSubStringMatch("You still have another 9 seconds before research is completed.",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchTreesAreProperlyDisplayed()
 {
-    Player->addResearchPoints(1);
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/itemWithModifier.c"), "d");
-    Selector->initiateSelector(Player);
+    Player.addResearchPoints(1);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/itemWithModifier.c"), "d");
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -258,83 +258,83 @@ void ResearchTreesAreProperlyDisplayed()
         "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
         "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
         "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingToLearnResearchWhenPointsAvailableResearchesItem()
 {
-    Player->addResearchPoints(1);
-    Selector->initiateSelector(Player);
+    Player.addResearchPoints(1);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("11", Player);
-    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
-    ExpectEq(1, Player->researchPoints());
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player.researchPoints());
     command("1", Player);
-    ExpectTrue(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
-    ExpectEq(0, Player->researchPoints());
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(0, Player.researchPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingToReturnDoesNotInitiateResearch()
 {
-    Player->addResearchPoints(1);
-    Selector->initiateSelector(Player);
+    Player.addResearchPoints(1);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("12", Player);
-    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
-    ExpectEq(1, Player->researchPoints());
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player.researchPoints());
     command("2", Player);
-    ExpectFalse(Player->isResearched("/lib/tests/support/research/itemWithModifier.c"));
-    ExpectEq(1, Player->researchPoints());
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/itemWithModifier.c"));
+    ExpectEq(1, Player.researchPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingToLearnTimedResearchDoesNotUsePointsAndInitiatesResearching()
 {
-    Player->addResearchPoints(1);
-    Selector->initiateSelector(Player);
+    Player.addResearchPoints(1);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("8", Player);
-    ExpectFalse(Player->isResearched("/lib/tests/support/research/testResearchB.c"));
-    ExpectFalse(Player->isResearching("/lib/tests/support/research/testResearchB.c"));
-    ExpectEq(1, Player->researchPoints());
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/testResearchB.c"));
+    ExpectFalse(Player.isResearching("/lib/tests/support/research/testResearchB.c"));
+    ExpectEq(1, Player.researchPoints());
     command("1", Player);
-    ExpectFalse(Player->isResearched("/lib/tests/support/research/testResearchB.c"));
-    ExpectTrue(Player->isResearching("/lib/tests/support/research/testResearchB.c"));
-    ExpectEq(1, Player->researchPoints());
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/testResearchB.c"));
+    ExpectTrue(Player.isResearching("/lib/tests/support/research/testResearchB.c"));
+    ExpectEq(1, Player.researchPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InvalidResearchDoesNotInterfereWithCommand()
 {
-    Player->initiateResearch("/lib/tests/support/research/doesNotExist.c");
-    Player->initiateResearch("/lib/tests/support/research/mockResearch.c");
-    Selector->initiateSelector(Player);
+    Player.initiateResearch("/lib/tests/support/research/doesNotExist.c");
+    Player.initiateResearch("/lib/tests/support/research/mockResearch.c");
+    Selector.initiateSelector(Player);
 
     command("1", Player);
     command("1", Player);
 
-    ExpectSubStringMatch("Mock research", Player->caughtMessage());
+    ExpectSubStringMatch("Mock research", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchDisplaysNoColorCorrectly()
 {
-    Player->colorConfiguration("none");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
-    Player->addResearchPoints(1);
-    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
-    Selector->showTreeElements();
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("none");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    Player.addResearchPoints(1);
+    Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
+    Selector.showTreeElements();
+    Selector.initiateSelector(Player);
 
     command("2", Player);
 
@@ -361,23 +361,23 @@ void ResearchDisplaysNoColorCorrectly()
         "(!) denotes research in\nprogress, and (X) indicates that learning "
         "this research requires prerequisites\n"
         "that are missing - view description for details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchDisplaysThreeBitColorCorrectly()
 {
-    Player->colorConfiguration("3-bit");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
-    Player->addResearchPoints(1);
-    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
-    Selector->showTreeElements();
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("3-bit");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    Player.addResearchPoints(1);
+    Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
+    Selector.showTreeElements();
+    Selector.initiateSelector(Player);
 
     command("2", Player);
 
@@ -405,23 +405,23 @@ void ResearchDisplaysThreeBitColorCorrectly()
         "research tree, \x1b[0m\x1b[0;35m(!)\x1b[0m\x1b[0;32m denotes research in\nprogress, "
         "and \x1b[0m\x1b[0;31m(X)\x1b[0m\x1b[0;32m indicates that learning this research "
         "requires\nprerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchDisplaysEightBitColorCorrectly()
 {
-    Player->colorConfiguration("8-bit");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
-    Player->addResearchPoints(1);
-    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
-    Selector->showTreeElements();
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("8-bit");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    Player.addResearchPoints(1);
+    Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
+    Selector.showTreeElements();
+    Selector.initiateSelector(Player);
 
     command("2", Player);
 
@@ -451,23 +451,23 @@ void ResearchDisplaysEightBitColorCorrectly()
         "and \x1b[0m\x1b[0;38;5;9m(X)\x1b[0m\x1b[0;38;5;144m indicates that learning "
         "this research requires\nprerequisites that are missing - view description for "
         "details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchDisplaysTwentyFourBitColorCorrectly()
 {
-    Player->colorConfiguration("24-bit");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research")->researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research")->researchObject("/lib/tests/support/research/equivalenceItem.c");
-    Player->addResearchPoints(1);
-    Player->initiateResearch("/lib/tests/support/research/equivalenceItem.c");
-    Selector->showTreeElements();
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("24-bit");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "b");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    Player.addResearchPoints(1);
+    Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
+    Selector.showTreeElements();
+    Selector.initiateSelector(Player);
 
     command("2", Player);
 
@@ -498,5 +498,5 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
         "research in\nprogress, and \x1b[0m\x1b[0;38;2;200;0;0m(X)\x1b[0m"
         "\x1b[0;38;2;100;180;150m indicates that learning this research requires\n"
         "prerequisites that are missing - view description for details.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

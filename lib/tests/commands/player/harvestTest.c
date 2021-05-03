@@ -16,10 +16,10 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("ralph");
-    Player->Race("elf");
-    Player->colorConfiguration("none");
-    Player->addCommands();
+    Player.Name("ralph");
+    Player.Race("elf");
+    Player.colorConfiguration("none");
+    Player.addCommands();
 
     move_object(Player, "/lib/tests/support/environment/harvestRoom.c");
 }
@@ -69,17 +69,17 @@ void HarvestWithNoArgumentsReturnsStatus()
 {
     command("harvest", Player);
 
-    ExpectEq(statusMessage(), Player->caughtMessage());
+    ExpectEq(statusMessage(), Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HarvestWithStatusFlagReturnsStatus()
 {
     command("harvest -s", Player);
-    ExpectEq(statusMessage(), Player->caughtMessage());
+    ExpectEq(statusMessage(), Player.caughtMessage());
 
     command("harvest -status", Player);
-    ExpectEq(statusMessage(), Player->caughtMessage());
+    ExpectEq(statusMessage(), Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -92,13 +92,13 @@ void HarvestWithStatusFlagForSingleItemReturnsSpecificStatus()
         "This can only be harvested when the environment state is default.\n"
         "This can only be harvested when you're using: axe.\n"
         "This can only be harvested when your forestry skill is at least 5.\n\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HarvestFailsIfPrerequisitesNotMet()
 {
-    Player->resetCatchList();
+    Player.resetCatchList();
     command("harvest oak", Player);
 
     ExpectEq(({
@@ -106,7 +106,7 @@ void HarvestFailsIfPrerequisitesNotMet()
         "You must be using the proper equipment for that (axe).\n",
         "You need a minimum of 5 in forestry to do that.\n"
         }),
-        Player->caughtMessages());
+        Player.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ void HarvestFailsIfOnlySomePrerequisitesNotMet()
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, Player);
     command("wield axe", Player);
-    Player->resetCatchList();
+    Player.resetCatchList();
 
     command("harvest oak", Player);
 
@@ -124,7 +124,7 @@ void HarvestFailsIfOnlySomePrerequisitesNotMet()
         "You cannot harvest oak.\n",
         "You need a minimum of 5 in forestry to do that.\n"
         }),
-        Player->caughtMessages());
+        Player.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -134,16 +134,16 @@ void HarvestSucceedsIfLimitersAllMet()
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, Player);
     command("wield axe", Player);
-    Player->resetCatchList();
+    Player.resetCatchList();
 
-    Player->addSkillPoints(20);
-    Player->advanceSkill("forestry", 5);
+    Player.addSkillPoints(20);
+    Player.advanceSkill("forestry", 5);
 
     ExpectFalse(present("oak", Player));
     command("harvest oak", Player);
     ExpectTrue(present("oak", Player));
 
-    ExpectEq("You harvest some oak.\n", Player->caughtMessage());
+    ExpectEq("You harvest some oak.\n", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -153,20 +153,20 @@ void HarvestingMultipleOfSameItemsIncrementsQuantity()
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, Player);
     command("wield axe", Player);
-    Player->resetCatchList();
+    Player.resetCatchList();
 
-    Player->addSkillPoints(20);
-    Player->advanceSkill("forestry", 5);
+    Player.addSkillPoints(20);
+    Player.advanceSkill("forestry", 5);
 
     ExpectFalse(present("oak", Player));
     command("harvest oak", Player);
     object oak = present("oak", Player);
 
     ExpectTrue(oak);
-    ExpectEq(1, oak->query("quantity"));
-    ExpectEq("You harvest some oak.\n", Player->caughtMessage());
+    ExpectEq(1, oak.query("quantity"));
+    ExpectEq("You harvest some oak.\n", Player.caughtMessage());
 
     command("harvest oak", Player);
-    ExpectEq(2, oak->query("quantity"));
-    ExpectEq("You harvest some oak.\n", Player->caughtMessage());
+    ExpectEq(2, oak.query("quantity"));
+    ExpectEq("You harvest some oak.\n", Player.caughtMessage());
 }

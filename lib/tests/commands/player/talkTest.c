@@ -12,10 +12,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess.savePlayerData(database.Gorthaur());
 
     destruct(dataAccess);
     destruct(database);
@@ -25,13 +25,13 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("gorthaur");
-    Player->Race("human");
-    Player->create();
+    Player.Name("gorthaur");
+    Player.Race("human");
+    Player.create();
 
     Target = clone_object("/lib/tests/support/conversations/testNPC.c");
-    Target->resetConversationState();
-    Target->create();
+    Target.resetConversationState();
+    Target.create();
 
     move_object(Player, this_object());
     move_object(Target, this_object());
@@ -47,39 +47,39 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TalkToTargetInitiatesConversation()
 {
-    ExpectTrue(Player->executeCommand("talk to fred"));
+    ExpectTrue(Player.executeCommand("talk to fred"));
     ExpectSubStringMatch("We start talking for the first time.*1.*OK", 
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TalkTargetInitiatesConversation()
 {
-    ExpectTrue(Player->executeCommand("talk fred"));
+    ExpectTrue(Player.executeCommand("talk fred"));
     ExpectSubStringMatch("We start talking for the first time.*1.*OK",
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TalkWithoutTargetInitiatesConversation()
 {
-    ExpectTrue(Player->executeCommand("talk"));
+    ExpectTrue(Player.executeCommand("talk"));
     ExpectSubStringMatch("We start talking for the first time.*1.*OK",
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RepeatWillRepeatConversation()
 {
-    ExpectTrue(Player->executeCommand("talk fred"));
+    ExpectTrue(Player.executeCommand("talk fred"));
     ExpectSubStringMatch("We start talking for the first time.*1.*OK",
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 
-    Player->resetCatchList();
-    ExpectFalse(Player->caughtMessage());
-    ExpectTrue(Player->executeCommand("repeat fred"));
+    Player.resetCatchList();
+    ExpectFalse(Player.caughtMessage());
+    ExpectTrue(Player.executeCommand("repeat fred"));
     ExpectSubStringMatch("We start talking for the first time.*1.*OK",
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -87,11 +87,11 @@ void CanTraverseConversationTree()
 {
     command("talk to fred", Player);
     ExpectSubStringMatch("We start talking for the first time.*1.*OK",
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 
-    Player->resetCatchList();
+    Player.resetCatchList();
     command("1", Player);
-    ExpectSubStringMatch("Then let's talk", Player->caughtMessage());
+    ExpectSubStringMatch("Then let's talk", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -100,10 +100,10 @@ void CanTraverseConversationSecondTimeWithDifferentConversation()
     command("talk to fred", Player);
     command("1", Player);
     command("1", Player);
-    Player->resetCatchList();
+    Player.resetCatchList();
 
     command("talk to fred", Player);
     command("2", Player);
     ExpectSubStringMatch("A bitterly frigid chill emanates from the thing", 
-        implode(Player->caughtMessages(), " "));
+        implode(Player.caughtMessages(), " "));
 }

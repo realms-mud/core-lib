@@ -12,10 +12,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("creator"));
 
     destruct(dataAccess);
     destruct(database);
@@ -27,8 +27,8 @@ void Setup()
     Room = clone_object("/lib/environment/environment.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
+    Wizard.restore("earl");
+    Wizard.addCommands();
 
     move_object(Wizard, Room);
     setUsers(({ Wizard }));
@@ -44,8 +44,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("cdest"), "cdest");
-    ExpectFalse(Wizard->executeCommand("destr"), "destr");
+    ExpectFalse(Wizard.executeCommand("cdest"), "cdest");
+    ExpectFalse(Wizard.executeCommand("destr"), "destr");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ void DestructOfExistingItemRemovesItFromInventory()
     ExpectEq(1, sizeof(all_inventory(Wizard)));
     ExpectEq("/lib/instances/items/weapons/swords/long-sword.c", 
         program_name(all_inventory(Wizard)[0]));
-    ExpectEq(1, Wizard->executeCommand("destruct sword"));
+    ExpectEq(1, Wizard.executeCommand("destruct sword"));
     ExpectEq(0, sizeof(all_inventory(Wizard)));
 }
 
@@ -70,7 +70,7 @@ void DestructOfExistingItemRemovesItFromEnvironment()
     move_object(item, Room);
 
     ExpectEq(2, sizeof(all_inventory(Room)));
-    ExpectEq(1, Wizard->executeCommand("unmake sword"));
+    ExpectEq(1, Wizard.executeCommand("unmake sword"));
     ExpectEq(1, sizeof(all_inventory(Room)));
 }
 
@@ -83,7 +83,7 @@ void DestructOfEnvironmentMovesCharacterBack()
     move_object(Wizard, "/lib/environment/environment.c");
 
     ExpectEq(({ Wizard, item }), all_inventory(load_object("/lib/environment/environment.c")));
-    ExpectEq(1, Wizard->executeCommand("dest /lib/environment/environment.c"));
+    ExpectEq(1, Wizard.executeCommand("dest /lib/environment/environment.c"));
     
     ExpectEq("/lib/environment/environment.c", environment(Wizard));
     ExpectEq(({ Wizard }), all_inventory(load_object("/lib/environment/environment.c")));

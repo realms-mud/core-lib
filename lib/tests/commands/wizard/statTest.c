@@ -13,10 +13,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("creator"));
 
     destruct(dataAccess);
     destruct(database);
@@ -29,10 +29,10 @@ void Setup()
 
     Catch = clone_object("/lib/tests/support/services/catchShadow.c");
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
-    Wizard->colorConfiguration("none");
-    Catch->beginShadow(Wizard);
+    Wizard.restore("earl");
+    Wizard.addCommands();
+    Wizard.colorConfiguration("none");
+    Catch.beginShadow(Wizard);
 
     setUsers(({ Wizard }));
 }
@@ -48,7 +48,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanStatPlayers()
 {
-    Wizard->addExperience(200000);
+    Wizard.addExperience(200000);
     command("stat earl", Wizard);
     ExpectEq("Weasel Lord Earl the title-less\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
@@ -68,31 +68,31 @@ void CanStatPlayers()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Other Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| IP: ???               Age: 1 second                                         |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n", 
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanStatMonsters()
 {
     object monster = clone_object("/lib/realizations/monster.c");
-    monster->Race("human");
-    monster->SetUpPersonaOfLevel("oneiromancer", 20);
+    monster.Race("human");
+    monster.SetUpPersonaOfLevel("oneiromancer", 20);
     
     object item = clone_object("/lib/instances/items/weapons/staffs/ornate-staff.c");
 
-    item->set("material", "malorn");
-    item->set("name", "Staff of Weasels");
-    item->set("short", "Staff of Weasels");
-    item->set("identified", 1);
-    item->set("craftsmanship", 120);
-    item->set("primary damage type", "fire");
-    item->set("crafting materials", (["metal":"kirnalt",
+    item.set("material", "malorn");
+    item.set("name", "Staff of Weasels");
+    item.set("short", "Staff of Weasels");
+    item.set("identified", 1);
+    item.set("craftsmanship", 120);
+    item.set("primary damage type", "fire");
+    item.set("crafting materials", (["metal":"kirnalt",
         "wood" : "malorn"]));
 
     move_object(item, monster);
     command("wield staff", monster);
 
-    monster->Name("fred");
+    monster.Name("fred");
     move_object(monster, this_object());
     move_object(Wizard, this_object());
     command("stat fred", Wizard);
@@ -115,7 +115,7 @@ void CanStatMonsters()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Other Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Filename: /lib/realizations/monster.c                                       |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 
     destruct(item);
     destruct(monster);
@@ -126,13 +126,13 @@ void CanStatAnItem()
 {
     object item = clone_object("/lib/instances/items/weapons/staffs/ornate-staff.c");
 
-    item->set("material", "malorn");
-    item->set("name", "Staff of Weasels");
-    item->set("short", "Staff of Weasels");
-    item->set("identified", 1);
-    item->set("craftsmanship", 120);
-    item->set("primary damage type", "fire");
-    item->set("crafting materials", (["metal":"kirnalt",
+    item.set("material", "malorn");
+    item.set("name", "Staff of Weasels");
+    item.set("short", "Staff of Weasels");
+    item.set("identified", 1);
+    item.set("craftsmanship", 120);
+    item.set("primary damage type", "fire");
+    item.set("crafting materials", (["metal":"kirnalt",
         "wood" : "malorn"]));
 
     move_object(item, Wizard);
@@ -149,5 +149,5 @@ void CanStatAnItem()
         "    Defense: 15 to 20\n"
         "    Encumberance: 2\n"
         "    Weight: 4\n\n",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 }

@@ -13,10 +13,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("creator"));
 
     destruct(dataAccess);
     destruct(database);
@@ -30,14 +30,14 @@ void Setup()
     Catch = clone_object("/lib/tests/support/services/catchShadow.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
-    Catch->beginShadow(Wizard);
+    Wizard.restore("earl");
+    Wizard.addCommands();
+    Catch.beginShadow(Wizard);
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->Gender("male");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.Gender("male");
+    Player.addCommands();
 
     move_object(Wizard, "/lib/tests/support/environment/fakeEnvironment.c");
     move_object(Player, "/lib/tests/support/environment/fakeEnvironment.c");
@@ -45,8 +45,8 @@ void Setup()
     setUsers(({ Wizard, Player }));
 
     object channels = load_object("/lib/dictionaries/channelDictionary.c");
-    channels->registerUser(Wizard);
-    channels->registerUser(Player);
+    channels.registerUser(Wizard);
+    channels.registerUser(Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -63,13 +63,13 @@ void CanLogIssue()
     command("issue", Player);
 
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: issue.*"
         "Current trace data:.*",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -78,13 +78,13 @@ void CanLogIssueWithComment()
     command("issue -c I feel lonely. Talk to me.", Player);
 
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -99,14 +99,14 @@ void CanLogIssueOnTarget()
     command("issue -t sword -c I feel lonely. Talk to me.", Player);
 
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/instances/items/weapons/swords/long-sword.c.*"
         "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "Current trace data:.*'CanLogIssueOnTarget' in "
         "'lib/tests/commands/player/issueTest.*",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 
     destruct(stuff);
 }
@@ -123,11 +123,11 @@ void CanLogIssueWithTeleport()
         environment(Player));
 
     ExpectEq("\x1b[0;32;1mYour issue details have been logged.\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectSubStringMatch("A new issue has been logged:.*Affected Object: "
         "/lib/tests/support/environment/fakeEnvironment.c.*"
         "Location: /lib/tests/support/environment/fakeEnvironment.c.*"
         "Details: I feel lonely. Talk to me.*"
         "NOTE: Bob used teleport to safety.*",
-        Wizard->caughtMessage());
+        Wizard.caughtMessage());
 }

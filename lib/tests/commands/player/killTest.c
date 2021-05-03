@@ -16,28 +16,28 @@ void Setup()
     Room = clone_object("/lib/environment/environment.c");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->Str(10);
-    Player->Dex(10);
-    Player->Con(10);
-    Player->Int(10);
-    Player->Wis(10);
-    Player->hitPoints(Player->maxHitPoints());
+    Player.Name("bob");
+    Player.addCommands();
+    Player.Str(10);
+    Player.Dex(10);
+    Player.Con(10);
+    Player.Int(10);
+    Player.Wis(10);
+    Player.hitPoints(Player.maxHitPoints());
 
     Target = clone_object("/lib/realizations/monster.c");
-    Target->Name("fred");
-    Target->Con(10);
-    Target->hitPoints(Target->maxHitPoints());
+    Target.Name("fred");
+    Target.Con(10);
+    Target.hitPoints(Target.maxHitPoints());
 
     move_object(Player, Room);
     move_object(Target, Room);
 
     AttackerEvents = clone_object("/lib/tests/support/events/killEventSubscriber.c");
-    Player->registerEvent(AttackerEvents);
+    Player.registerEvent(AttackerEvents);
 
     TargetEvents = clone_object("/lib/tests/support/events/killEventSubscriber.c");
-    Target->registerEvent(TargetEvents);
+    Target.registerEvent(TargetEvents);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -53,31 +53,31 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Player->executeCommand("killl"), "killl");
-    ExpectFalse(Player->executeCommand("akill"), "akill");
+    ExpectFalse(Player.executeCommand("killl"), "killl");
+    ExpectFalse(Player.executeCommand("akill"), "akill");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void KillInitiatesCombat()
 {
     ToggleCallOutBypass();
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectTrue(Player->executeCommand("kill fred"));
+    ExpectTrue(Player.executeCommand("kill fred"));
 
-    ExpectTrue(AttackerEvents->wasAttacker());
-    ExpectTrue(TargetEvents->wasAttacked());
-    ExpectTrue(Player->isInCombatWith(Target));
-    ExpectTrue(Target->isInCombatWith(Player));
+    ExpectTrue(AttackerEvents.wasAttacker());
+    ExpectTrue(TargetEvents.wasAttacked());
+    ExpectTrue(Player.isInCombatWith(Target));
+    ExpectTrue(Target.isInCombatWith(Player));
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void KillFailsForInvalidTarget()
 {
-    ExpectFalse(Player->executeCommand("kill henry"));
-    ExpectTrue(Player->executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill henry"));
+    ExpectTrue(Player.executeCommand("kill fred"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,19 +85,19 @@ void KillDoesNotInitiateCombatIfNeitherPlayerNorFoeOnKillList()
 {
     destruct(Target);
     Target = clone_object("/lib/realizations/player.c");
-    Target->Name("fred");
-    Target->registerEvent(TargetEvents);
+    Target.Name("fred");
+    Target.registerEvent(TargetEvents);
     move_object(Target, Room);
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectFalse(Player->executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
-    ExpectFalse(Player->isInCombatWith(Target));
-    ExpectFalse(Target->isInCombatWith(Player));
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
+    ExpectFalse(Player.isInCombatWith(Target));
+    ExpectFalse(Target.isInCombatWith(Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,21 +105,21 @@ void KillDoesNotInitiateCombatIfPlayerButNotFoeOnKillList()
 {
     destruct(Target);
     Target = clone_object("/lib/realizations/player.c");
-    Target->Name("fred");
-    Target->registerEvent(TargetEvents);
+    Target.Name("fred");
+    Target.registerEvent(TargetEvents);
     move_object(Target, Room);
 
-    Player->toggleKillList();
+    Player.toggleKillList();
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectFalse(Player->executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
-    ExpectFalse(Player->isInCombatWith(Target));
-    ExpectFalse(Target->isInCombatWith(Player));
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
+    ExpectFalse(Player.isInCombatWith(Target));
+    ExpectFalse(Target.isInCombatWith(Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -127,21 +127,21 @@ void KillDoesNotInitiateCombatIfFoeButNotPlayerOnKillList()
 {
     destruct(Target);
     Target = clone_object("/lib/realizations/player.c");
-    Target->Name("fred");
-    Target->registerEvent(TargetEvents);
+    Target.Name("fred");
+    Target.registerEvent(TargetEvents);
     move_object(Target, Room);
 
-    Target->toggleKillList();
+    Target.toggleKillList();
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectFalse(Player->executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
-    ExpectFalse(Player->isInCombatWith(Target));
-    ExpectFalse(Target->isInCombatWith(Player));
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
+    ExpectFalse(Player.isInCombatWith(Target));
+    ExpectFalse(Target.isInCombatWith(Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -150,25 +150,25 @@ void KillInitiatesCombatIfFoeAndPlayerOnKillList()
     ToggleCallOutBypass();
     destruct(Target);
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Target->Name("fred");
-    Target->Con(20);
-    Target->hitPoints(Target->maxHitPoints());
-    Target->registerEvent(TargetEvents);
+    Target.Name("fred");
+    Target.Con(20);
+    Target.hitPoints(Target.maxHitPoints());
+    Target.registerEvent(TargetEvents);
     move_object(Target, Room);
 
-    Target->toggleKillList();
-    Player->toggleKillList();
+    Target.toggleKillList();
+    Player.toggleKillList();
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectTrue(Player->executeCommand("kill fred"));
+    ExpectTrue(Player.executeCommand("kill fred"));
 
-    ExpectTrue(AttackerEvents->wasAttacker(), "was attacker event fired");
-    ExpectTrue(TargetEvents->wasAttacked(), "was attacked event fired");
+    ExpectTrue(AttackerEvents.wasAttacker(), "was attacker event fired");
+    ExpectTrue(TargetEvents.wasAttacked(), "was attacked event fired");
 
-    ExpectTrue(Player->isInCombatWith(Target), "player isInCombatWith target");
-    ExpectTrue(Target->isInCombatWith(Player), "target isInCombatWith player");
+    ExpectTrue(Player.isInCombatWith(Target), "player isInCombatWith target");
+    ExpectTrue(Target.isInCombatWith(Player), "target isInCombatWith player");
     ToggleCallOutBypass();
 }
 
@@ -177,33 +177,33 @@ void KillDoesNotInitiateCombatIfTargetNotInEnvironmentWithPlayer()
 {
     destruct(Target);
     Target = clone_object("/lib/realizations/player.c");
-    Target->Name("fred");
-    Target->registerEvent(TargetEvents);
+    Target.Name("fred");
+    Target.registerEvent(TargetEvents);
 
-    Target->toggleKillList();
-    Player->toggleKillList();
+    Target.toggleKillList();
+    Player.toggleKillList();
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
 
-    ExpectFalse(Player->executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
 
-    ExpectFalse(AttackerEvents->wasAttacker());
-    ExpectFalse(TargetEvents->wasAttacked());
-    ExpectFalse(Player->isInCombatWith(Target));
-    ExpectFalse(Target->isInCombatWith(Player));
+    ExpectFalse(AttackerEvents.wasAttacker());
+    ExpectFalse(TargetEvents.wasAttacked());
+    ExpectFalse(Player.isInCombatWith(Target));
+    ExpectFalse(Target.isInCombatWith(Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void KillDoesNotAllowCallsInRapidSuccession()
 {
-    ExpectTrue(Player->executeCommand("kill fred"));
-    ExpectTrue(Player->isInCombatWith(Target));
-    ExpectTrue(Target->isInCombatWith(Player));
+    ExpectTrue(Player.executeCommand("kill fred"));
+    ExpectTrue(Player.isInCombatWith(Target));
+    ExpectTrue(Target.isInCombatWith(Player));
 
-    ExpectFalse(Player->executeCommand("kill fred"));
-    ExpectFalse(Player->executeCommand("kill fred"));
-    ExpectFalse(Player->executeCommand("kill fred"));
-    ExpectTrue(Player->isInCombatWith(Target));
-    ExpectTrue(Target->isInCombatWith(Player));
+    ExpectFalse(Player.executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
+    ExpectFalse(Player.executeCommand("kill fred"));
+    ExpectTrue(Player.isInCombatWith(Target));
+    ExpectTrue(Target.isInCombatWith(Player));
 }

@@ -11,10 +11,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess.savePlayerData(database.Gorthaur());
 
     destruct(dataAccess);
     destruct(database);
@@ -24,9 +24,9 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/realizations/player.c");
-    Player->Name("ralph");
-    Player->Race("elf");
-    Player->addCommands();
+    Player.Name("ralph");
+    Player.Race("elf");
+    Player.addCommands();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,14 +39,14 @@ void CleanUp()
 void PlayerSavedAndQuitsWhenQuitIsCalled()
 {
     object persistedPlayer = clone_object("/lib/realizations/player.c");
-    persistedPlayer->restore("ralph");
-    ExpectEq(0, persistedPlayer->Race());
+    persistedPlayer.restore("ralph");
+    ExpectEq(0, persistedPlayer.Race());
 
-    ExpectTrue(Player->executeCommand("quit"));
+    ExpectTrue(Player.executeCommand("quit"));
     ExpectFalse(objectp(Player));
     persistedPlayer = clone_object("/lib/realizations/player.c");
-    persistedPlayer->restore("ralph");
-    ExpectEq("elf", persistedPlayer->Race());
+    persistedPlayer.restore("ralph");
+    ExpectEq("elf", persistedPlayer.Race());
     destruct(persistedPlayer);
 }
 
@@ -71,7 +71,7 @@ void QuitDestroysFullInventory()
     object effect = clone_object("/lib/items/modifierObject.c");
     move_object(effect, Player);
 
-    ExpectTrue(Player->executeCommand("quit"));
+    ExpectTrue(Player.executeCommand("quit"));
 
     ExpectFalse(objectp(bag));
     ExpectFalse(objectp(bagItem1));

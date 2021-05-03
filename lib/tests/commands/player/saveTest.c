@@ -11,10 +11,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess.savePlayerData(database.Gorthaur());
 
     destruct(dataAccess);
     destruct(database);
@@ -24,9 +24,9 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->Race("human");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.Race("human");
+    Player.addCommands();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,16 +39,16 @@ void CleanUp()
 void PlayerSavedWhenSaveIsCalled()
 {
     object persistedPlayer = clone_object("/lib/realizations/player.c");
-    persistedPlayer->restore("bob");
-    ExpectEq(0, persistedPlayer->Race());
+    persistedPlayer.restore("bob");
+    ExpectEq(0, persistedPlayer.Race());
     destruct(persistedPlayer);
 
-    ExpectTrue(Player->executeCommand("save"));
-    ExpectEq("Saving character...\n", Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("save"));
+    ExpectEq("Saving character...\n", Player.caughtMessage());
 
     persistedPlayer = clone_object("/lib/realizations/player.c");
-    persistedPlayer->restore("bob");
-    ExpectEq("human", persistedPlayer->Race());
+    persistedPlayer.restore("bob");
+    ExpectEq("human", persistedPlayer.Race());
     destruct(persistedPlayer);
 }
 

@@ -16,7 +16,10 @@ private void FirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void ThirdLevel()
 {
+    addResearchElement("/guilds/aeromancer/lightning/shocking-lash.c");
 
+    addChild("/guilds/aeromancer/lightning/shocking-lash.c",
+        "/guilds/aeromancer/lightning/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

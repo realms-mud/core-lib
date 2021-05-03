@@ -10,7 +10,7 @@ object Player;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
+    Player.Name("bob");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ void TopLevelShopMenuDisplaysCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@ void CannotShopInNonShopEnvironment()
     move_object(Player, load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 
     command("shop", Player);
-    ExpectEq("What?\n", Player->caughtMessage());
+    ExpectEq("What?\n", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -57,5 +57,5 @@ void CanNavigateToSubMenus()
         "\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

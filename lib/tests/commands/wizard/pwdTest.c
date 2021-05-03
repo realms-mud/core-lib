@@ -11,10 +11,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("creator"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("creator"));
 
     destruct(dataAccess);
     destruct(database);
@@ -24,8 +24,8 @@ void Init()
 void Setup()
 {
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
+    Wizard.restore("earl");
+    Wizard.addCommands();
     setUsers(({ Wizard }));
 }
 
@@ -38,21 +38,21 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("ppwd"), "ppwd");
-    ExpectFalse(Wizard->executeCommand("pwdd"), "pwdd");
+    ExpectFalse(Wizard.executeCommand("ppwd"), "ppwd");
+    ExpectFalse(Wizard.executeCommand("pwdd"), "pwdd");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PwdShowsCurrentWorkingDirctory()
 {
-    ExpectTrue(Wizard->executeCommand("pwd"));
-    ExpectEq("/players/earl", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("pwd"));
+    ExpectEq("/players/earl", Wizard.pwd());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PwdReflectsChangesToDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd /lib/tests/support"));
-    ExpectTrue(Wizard->executeCommand("pwd"));
-    ExpectEq("/lib/tests/support", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd /lib/tests/support"));
+    ExpectTrue(Wizard.executeCommand("pwd"));
+    ExpectEq("/lib/tests/support", Wizard.pwd());
 }

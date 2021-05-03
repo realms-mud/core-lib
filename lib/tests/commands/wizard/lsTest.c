@@ -12,10 +12,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("admin"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("admin"));
 
     destruct(dataAccess);
     destruct(database);
@@ -27,9 +27,9 @@ void Setup()
     Catch = clone_object("/lib/tests/support/services/catchShadow.c");
 
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
-    Catch->beginShadow(Wizard);
+    Wizard.restore("earl");
+    Wizard.addCommands();
+    Catch.beginShadow(Wizard);
     setUsers(({ Wizard }));
 }
 
@@ -42,74 +42,74 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("lss"), "lss");
-    ExpectFalse(Wizard->executeCommand("lls"), "lls");
+    ExpectFalse(Wizard.executeCommand("lss"), "lss");
+    ExpectFalse(Wizard.executeCommand("lls"), "lls");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsListsContentsOfSpecifiedDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("ls /"));
-    ExpectSubStringMatch("brokenFile.c.+guild", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls /"));
+    ExpectSubStringMatch("brokenFile.c.+guild", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsWithoutParameterListsContentsOfCurrentDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("ls"));
-    ExpectSubStringMatch("blah", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls"));
+    ExpectSubStringMatch("blah", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsWithLFlagListsLongContentsOfCurrentDirectory()
 {
-    Wizard->pwd("/lib");
-    ExpectTrue(Wizard->executeCommand("ls -l"));
-    ExpectSubStringMatch("dr-.*R: apprentice.*core/", Wizard->caughtMessages());
+    Wizard.pwd("/lib");
+    ExpectTrue(Wizard.executeCommand("ls -l"));
+    ExpectSubStringMatch("dr-.*R: apprentice.*core/", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsDisplaysNormalFilesCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls /"));
-    ExpectSubStringMatch("0;33mLICENSE[^\*]", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls /"));
+    ExpectSubStringMatch("0;33mLICENSE[^\*]", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsDisplaysCompiledFilesCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls /lib/modules"));
-    ExpectSubStringMatch("0;33;1mcombat.c\*", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls /lib/modules"));
+    ExpectSubStringMatch("0;33;1mcombat.c\*", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsDisplaysDirectoriesCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls /lib/modules"));
-    ExpectSubStringMatch("0;34;1mconversations/", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls /lib/modules"));
+    ExpectSubStringMatch("0;34;1mconversations/", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsDisplaysUnreadableFilesCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls /lib/modules"));
-    ExpectSubStringMatch("0;31msecure", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls /lib/modules"));
+    ExpectSubStringMatch("0;31msecure", Wizard.caughtMessages());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WildcardsWork()
 {
-    ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/"));
-    ExpectEq(37, sizeof(explode(Wizard->caughtMessages(), "\n")));
+    ExpectTrue(Wizard.executeCommand("ls -l /lib/modules/"));
+    ExpectEq(37, sizeof(explode(Wizard.caughtMessages(), "\n")));
 
-    Wizard->resetCatchList();
-    ExpectTrue(Wizard->executeCommand("ls -l /lib/modules/b*"));
-    ExpectEq(5, sizeof(explode(Wizard->caughtMessages(), "\n")));
+    Wizard.resetCatchList();
+    ExpectTrue(Wizard.executeCommand("ls -l /lib/modules/b*"));
+    ExpectEq(5, sizeof(explode(Wizard.caughtMessages(), "\n")));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LsOfEmptyDirectoryDisplaysCorrectly()
 {
-    ExpectTrue(Wizard->executeCommand("ls empty"));
-    ExpectSubStringMatch("No files present", Wizard->caughtMessages());
+    ExpectTrue(Wizard.executeCommand("ls empty"));
+    ExpectSubStringMatch("No files present", Wizard.caughtMessages());
 }

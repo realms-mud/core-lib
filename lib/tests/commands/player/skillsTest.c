@@ -15,12 +15,12 @@ string SkillPoints = "You have %d skill points available to spend.\n";
 void PrepSkillsOfType(string type)
 {
     object dictionary = load_object("/lib/dictionaries/skillsDictionary.c");
-    string *skills = dictionary->validSkillsOfType(type);
+    string *skills = dictionary.validSkillsOfType(type);
 
     int i = 0;
     foreach(string skill in skills)
     {
-        Player->advanceSkill(skill, (i % 10));
+        Player.advanceSkill(skill, (i % 10));
         i++;
     }
 }
@@ -35,9 +35,9 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->colorConfiguration("none");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.colorConfiguration("none");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -49,34 +49,34 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteSkillsCommand()
 {
-    ExpectTrue(Player->executeCommand("skills"));
+    ExpectTrue(Player.executeCommand("skills"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Player->executeCommand("skillsblah"));
-    ExpectFalse(Player->executeCommand("askillsd"));
-    ExpectFalse(Player->executeCommand("blahskills"));
+    ExpectFalse(Player.executeCommand("skillsblah"));
+    ExpectFalse(Player.executeCommand("askillsd"));
+    ExpectFalse(Player.executeCommand("blahskills"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpFailsIfInvalidFlagsPassed()
 {
-    ExpectFalse(Player->executeCommand("skills -t"));
-    ExpectFalse(Player->executeCommand("skills -com"));
+    ExpectFalse(Player.executeCommand("skills -t"));
+    ExpectFalse(Player.executeCommand("skills -com"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpFailsIfByFlagPassedWithoutAdvance()
 {
-    ExpectFalse(Player->executeCommand("skills -by 2"));
+    ExpectFalse(Player.executeCommand("skills -by 2"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CombatFlagOnlyDisplaysCombatSkills()
 {
-    Player->addSkillPoints(230);
+    Player.addSkillPoints(230);
     PrepSkillsOfType("combat");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -96,14 +96,14 @@ void CombatFlagOnlyDisplaysCombatSkills()
         sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -combat"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -combat"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CoFlagOnlyDisplaysCombatSkills()
 {
-    Player->addSkillPoints(230);
+    Player.addSkillPoints(230);
     PrepSkillsOfType("combat");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -123,14 +123,14 @@ void CoFlagOnlyDisplaysCombatSkills()
         sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -co"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -co"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingFlagOnlyDisplaysCraftingSkills()
 {
-    Player->addSkillPoints(225);
+    Player.addSkillPoints(225);
     PrepSkillsOfType("crafting");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -150,14 +150,14 @@ void CraftingFlagOnlyDisplaysCraftingSkills()
         sprintf(HalfRow, "Wood crafting", 6, "", "") +
         EndBar + sprintf(SkillPoints, 3);
 
-    ExpectTrue(Player->executeCommand("skills -crafting"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -crafting"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CrFlagOnlyDisplaysCraftingSkills()
 {
-    Player->addSkillPoints(225);
+    Player.addSkillPoints(225);
     PrepSkillsOfType("crafting");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Crafting Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -177,14 +177,14 @@ void CrFlagOnlyDisplaysCraftingSkills()
         sprintf(HalfRow, "Wood crafting", 6, "", "") +
         EndBar + sprintf(SkillPoints, 3);
 
-    ExpectTrue(Player->executeCommand("skills -cr"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -cr"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EruditeFlagOnlyDisplaysEruditeSkills()
 {
-    Player->addSkillPoints(175);
+    Player.addSkillPoints(175);
     PrepSkillsOfType("erudite");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -200,14 +200,14 @@ void EruditeFlagOnlyDisplaysEruditeSkills()
         sprintf(HalfRow, "Zoology", 8, "", "") +
         EndBar + sprintf(SkillPoints, 13);
 
-    ExpectTrue(Player->executeCommand("skills -erudite"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -erudite"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EFlagOnlyDisplaysEruditeSkills()
 {
-    Player->addSkillPoints(175);
+    Player.addSkillPoints(175);
     PrepSkillsOfType("erudite");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -223,14 +223,14 @@ void EFlagOnlyDisplaysEruditeSkills()
         sprintf(HalfRow, "Zoology", 8, "", "") +
         EndBar + sprintf(SkillPoints, 13);
 
-    ExpectTrue(Player->executeCommand("skills -e"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -e"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SubterfugeFlagOnlyDisplaysSubterfugeSkills()
 {
-    Player->addSkillPoints(105);
+    Player.addSkillPoints(105);
     PrepSkillsOfType("subterfuge");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -243,14 +243,14 @@ void SubterfugeFlagOnlyDisplaysSubterfugeSkills()
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
         EndBar + sprintf(SkillPoints, 3);
 
-    ExpectTrue(Player->executeCommand("skills -subterfuge"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -subterfuge"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SFlagOnlyDisplaysSubterfugeSkills()
 {
-    Player->addSkillPoints(105);
+    Player.addSkillPoints(105);
     PrepSkillsOfType("subterfuge");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Subterfuge Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -263,14 +263,14 @@ void SFlagOnlyDisplaysSubterfugeSkills()
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
         EndBar + sprintf(SkillPoints, 3);
 
-    ExpectTrue(Player->executeCommand("skills -s"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -s"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GeneralFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(110);
+    Player.addSkillPoints(110);
     PrepSkillsOfType("general");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -284,14 +284,14 @@ void GeneralFlagOnlyDisplaysGeneralSkills()
         sprintf(HalfRow, "Weather sense", 4, "", "") +
         EndBar + sprintf(SkillPoints, 0);
 
-    ExpectTrue(Player->executeCommand("skills -general"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -general"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GFlagOnlyDisplaysGeneralSkills()
 {
-    Player->addSkillPoints(110);
+    Player.addSkillPoints(110);
     PrepSkillsOfType("general");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -305,14 +305,14 @@ void GFlagOnlyDisplaysGeneralSkills()
         sprintf(HalfRow, "Weather sense", 4, "", "") +
         EndBar + sprintf(SkillPoints, 0);
 
-    ExpectTrue(Player->executeCommand("skills -g"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -g"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MagicFlagOnlyDisplaysMagicSkills()
 {
-    Player->addSkillPoints(140);
+    Player.addSkillPoints(140);
     PrepSkillsOfType("magic");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Magic Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -327,14 +327,14 @@ void MagicFlagOnlyDisplaysMagicSkills()
         sprintf(HalfRow, "Transformation", 6, "", "") +
         EndBar + sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -magic"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -magic"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MFlagOnlyDisplaysMagicSkills()
 {
-    Player->addSkillPoints(140);
+    Player.addSkillPoints(140);
     PrepSkillsOfType("magic");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Magic Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -349,14 +349,14 @@ void MFlagOnlyDisplaysMagicSkills()
         sprintf(HalfRow, "Transformation", 6, "", "") +
         EndBar + sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -m"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -m"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LanguageFlagOnlyDisplaysLanguageSkills()
 {
-    Player->addSkillPoints(100);
+    Player.addSkillPoints(100);
     PrepSkillsOfType("language");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -369,14 +369,14 @@ void LanguageFlagOnlyDisplaysLanguageSkills()
         sprintf(HalfRow, "Tirnosti", 2, "", "") +
         EndBar + sprintf(SkillPoints, 4);
 
-    ExpectTrue(Player->executeCommand("skills -language"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -language"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LFlagOnlyDisplaysLanguageSkills()
 {
-    Player->addSkillPoints(100);
+    Player.addSkillPoints(100);
     PrepSkillsOfType("language");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Language Skills +=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -389,14 +389,14 @@ void LFlagOnlyDisplaysLanguageSkills()
         sprintf(HalfRow, "Tirnosti", 2, "", "") +
         EndBar + sprintf(SkillPoints, 4);
 
-    ExpectTrue(Player->executeCommand("skills -l"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -l"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AllFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1068);
+    Player.addSkillPoints(1068);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -489,14 +489,14 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
         EndBar + sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -all"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -all"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NoFlagDisplaysAllSkills()
 {
-    Player->addSkillPoints(1068);
+    Player.addSkillPoints(1068);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -589,24 +589,24 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
         EndBar + sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MagicalEnhancementsModifySkillValues()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus long sword", 3);
-    weapon->set("bonus bow", 1);
-    weapon->set("bonus hammer", 5);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus long sword", 3);
+    weapon.set("bonus bow", 1);
+    weapon.set("bonus hammer", 5);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
 
-    Player->addSkillPoints(230);
+    Player.addSkillPoints(230);
     PrepSkillsOfType("combat");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -626,23 +626,23 @@ void MagicalEnhancementsModifySkillValues()
         sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -combat"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -combat"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MagicalEnhancementsDoNotModifySkillsThatAreZero()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus axe", 3);
-    weapon->set("bonus bow", 1);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus axe", 3);
+    weapon.set("bonus bow", 1);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
 
-    Player->addSkillPoints(230);
+    Player.addSkillPoints(230);
     PrepSkillsOfType("combat");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -662,29 +662,29 @@ void MagicalEnhancementsDoNotModifySkillsThatAreZero()
         sprintf(SkillsRow, "Two-handed sword", 6, "", "Unarmed", 0, "") + EndBar +
         sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -combat"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -combat"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillFailsIfNotAValidSkill()
 {
-    Player->addSkillPoints(230);
-    ExpectFalse(Player->executeCommand("skills -advance weasel"));
+    Player.addSkillPoints(230);
+    ExpectFalse(Player.executeCommand("skills -advance weasel"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillFailsIfNotEnoughSkillPointsToAdvance()
 {
-    ExpectFalse(Player->executeCommand("skills -advance long sword"));
+    ExpectFalse(Player.executeCommand("skills -advance long sword"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillSucceeds()
 {
-    Player->addSkillPoints(10);
-    ExpectTrue(Player->executeCommand("skills -advance long sword"));
-    ExpectEq("You have increased your 'long sword' skill by 1 and it is now 1.\n", Player->caughtMessage());
+    Player.addSkillPoints(10);
+    ExpectTrue(Player.executeCommand("skills -advance long sword"));
+    ExpectEq("You have increased your 'long sword' skill by 1 and it is now 1.\n", Player.caughtMessage());
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ Combat Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Axe", 0, "", "Blind fighting", 0, "") +
@@ -704,67 +704,67 @@ void AdvanceSkillSucceeds()
 
         sprintf(SkillPoints, 8);
 
-    ExpectTrue(Player->executeCommand("skills -combat"));
-    ExpectEq(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -combat"));
+    ExpectEq(message, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillByValueSucceeds()
 {
-    Player->addSkillPoints(10);
-    ExpectTrue(Player->executeCommand("skills -advance long sword -by 3"));
-    ExpectEq("You have increased your 'long sword' skill by 3 and it is now 3.\n", Player->caughtMessage());
+    Player.addSkillPoints(10);
+    ExpectTrue(Player.executeCommand("skills -advance long sword -by 3"));
+    ExpectEq("You have increased your 'long sword' skill by 3 and it is now 3.\n", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillByValueFailsWhenNotEnoughSkillPoints()
 {
-    Player->addSkillPoints(2);
-    ExpectFalse(Player->executeCommand("skills -advance long sword -by 3"));
+    Player.addSkillPoints(2);
+    ExpectFalse(Player.executeCommand("skills -advance long sword -by 3"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillByValueFailsWhenNotAnInteger()
 {
-    Player->addSkillPoints(2);
-    ExpectFalse(Player->executeCommand("skills -advance long sword -by cabbage"));
+    Player.addSkillPoints(2);
+    ExpectFalse(Player.executeCommand("skills -advance long sword -by cabbage"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillByValueFailsWhenNoValuePassed()
 {
-    Player->addSkillPoints(2);
-    ExpectFalse(Player->executeCommand("skills -advance long sword -by"));
+    Player.addSkillPoints(2);
+    ExpectFalse(Player.executeCommand("skills -advance long sword -by"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvanceSkillFailsWhenRelatedAttributeTooLow()
 {
-    Player->addSkillPoints(25);
-    ExpectTrue(Player->executeCommand("skills -advance long sword -by 10"));
-    ExpectEq("You have increased your 'long sword' skill by 10 and it is now 10.\n", Player->caughtMessage());
-    ExpectFalse(Player->executeCommand("skills -advance long sword"));
+    Player.addSkillPoints(25);
+    ExpectTrue(Player.executeCommand("skills -advance long sword -by 10"));
+    ExpectEq("You have increased your 'long sword' skill by 10 and it is now 10.\n", Player.caughtMessage());
+    ExpectFalse(Player.executeCommand("skills -advance long sword"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ColorsAreCorrectlyDisplayed()
 {
-    Player->colorConfiguration("3-bit");
+    Player.colorConfiguration("3-bit");
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("short", "Sword of Blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("bonus axe", 3);
-    weapon->set("bonus bow", 1);
+    weapon.set("name", "blah");
+    weapon.set("short", "Sword of Blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("bonus axe", 3);
+    weapon.set("bonus bow", 1);
     move_object(weapon, Player);
-    weapon->equip("blah");
+    weapon.equip("blah");
 
-    Player->addSkillPoints(230);
+    Player.addSkillPoints(230);
     PrepSkillsOfType("combat");
 
     string message = "31m.*Combat Skills.*36m.*Axe.*33m  0.*34;1m.+ "
         "1.*30;1mYou have";
 
-    ExpectTrue(Player->executeCommand("skills -combat"));
-    ExpectSubStringMatch(message, Player->caughtMessage());
+    ExpectTrue(Player.executeCommand("skills -combat"));
+    ExpectSubStringMatch(message, Player.caughtMessage());
 }

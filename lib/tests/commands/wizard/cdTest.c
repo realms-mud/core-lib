@@ -11,10 +11,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("admin"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("admin"));
 
     destruct(dataAccess);
     destruct(database);
@@ -24,8 +24,8 @@ void Init()
 void Setup()
 {
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
-    Wizard->addCommands();
+    Wizard.restore("earl");
+    Wizard.addCommands();
     setUsers(({ Wizard }));
 }
 
@@ -38,55 +38,55 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteRegexpIsNotGreedy()
 {
-    ExpectFalse(Wizard->executeCommand("ccd"), "ccd");
-    ExpectFalse(Wizard->executeCommand("cdd"), "cdd");
+    ExpectFalse(Wizard.executeCommand("ccd"), "ccd");
+    ExpectFalse(Wizard.executeCommand("cdd"), "cdd");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CdChangesCurrentDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd /lib/tests/support"));
-    ExpectEq("/lib/tests/support", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd /lib/tests/support"));
+    ExpectEq("/lib/tests/support", Wizard.pwd());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotCdToDirectoryiesWhenUserHasNoReadAccess()
 {
-    ExpectFalse(Wizard->executeCommand("cd /secure"));
+    ExpectFalse(Wizard.executeCommand("cd /secure"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotCdToDirectoryThatDoesNotExist()
 {
-    ExpectFalse(Wizard->executeCommand("cd /blarg"));
+    ExpectFalse(Wizard.executeCommand("cd /blarg"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CdWithoutArgumentsSetsPwdToHomeDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd"));
-    ExpectEq("/players/earl", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd"));
+    ExpectEq("/players/earl", Wizard.pwd());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCdIntoRelativeDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd /lib"));
-    ExpectTrue(Wizard->executeCommand("cd tests"));
-    ExpectEq("/lib/tests", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd /lib"));
+    ExpectTrue(Wizard.executeCommand("cd tests"));
+    ExpectEq("/lib/tests", Wizard.pwd());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TildeIsPlayerHomeDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd /lib"));
-    ExpectTrue(Wizard->executeCommand("cd ~"));
-    ExpectEq("/players/earl", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd /lib"));
+    ExpectTrue(Wizard.executeCommand("cd ~"));
+    ExpectEq("/players/earl", Wizard.pwd());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TildeWithOtherUserGoesToTheirHomeDirectory()
 {
-    ExpectTrue(Wizard->executeCommand("cd ~animal"));
-    ExpectEq("/players/animal", Wizard->pwd());
+    ExpectTrue(Wizard.executeCommand("cd ~maeglin"));
+    ExpectEq("/players/maeglin", Wizard.pwd());
 }

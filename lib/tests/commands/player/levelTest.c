@@ -18,23 +18,23 @@ void Init()
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->hitPoints(30);
-    Player->spellPoints(30);
-    Player->staminaPoints(30);
-    Player->Str(10);
-    Player->Int(10);
-    Player->Dex(10);
-    Player->Wis(10);
-    Player->Con(10);
-    Player->Chr(10);
-    Player->addCommands();
-    Player->Race("high elf");
-    Player->addTrait("/lib/instances/traits/racial/hillgarathElf.c");
-    Player->addTrait("/lib/instances/traits/genetic/smart.c");
-    Player->spellPoints(Player->maxSpellPoints());
-    Player->staminaPoints(Player->maxStaminaPoints());
-    Player->colorConfiguration("none");
+    Player.Name("bob");
+    Player.hitPoints(30);
+    Player.spellPoints(30);
+    Player.staminaPoints(30);
+    Player.Str(10);
+    Player.Int(10);
+    Player.Dex(10);
+    Player.Wis(10);
+    Player.Con(10);
+    Player.Chr(10);
+    Player.addCommands();
+    Player.Race("high elf");
+    Player.addTrait("/lib/instances/traits/racial/hillgarathElf.c");
+    Player.addTrait("/lib/instances/traits/genetic/smart.c");
+    Player.spellPoints(Player.maxSpellPoints());
+    Player.staminaPoints(Player.maxStaminaPoints());
+    Player.colorConfiguration("none");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,7 +48,7 @@ void GuildAdvancementLevelNotDisplayedIfYouCannotAdvance()
 {
     command("level up", Player);
     ExpectEq("You are not yet ready to advance in any guilds.\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,16 +56,16 @@ void GuildAdvancementLevelNotDisplayedIfYouAreNotInGuild()
 {
     command("level up -g weasels", Player);
     ExpectEq("You are not yet ready to advance in any guilds.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelGuildMenuDisplaysCorrectly()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
-    Player->addExperience(2000);
+    Player.addExperience(2000);
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
         "[1] - Advance Scion of Dhuras level\n"
@@ -74,16 +74,16 @@ void TopLevelGuildMenuDisplaysCorrectly()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DoesNotAllowForGuildsNotReadyForAdvancement()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->addExperience(2000);
-    Player->joinGuild("fake fighter");
+    Player.addExperience(2000);
+    Player.joinGuild("fake fighter");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     command("level up", Player);
@@ -95,18 +95,18 @@ void DoesNotAllowForGuildsNotReadyForAdvancement()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanAdvanceMultipleGuilds()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->joinGuild("fake fighter");
+    Player.joinGuild("fake fighter");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
-    Player->addExperience(5000);
+    Player.addExperience(5000);
     command("level up", Player);
     ExpectEq("Advancement - Main Menu:\n"
         "[1] - Advance fake fighter level\n"
@@ -116,15 +116,15 @@ void CanAdvanceMultipleGuilds()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanAdvanceInGuild()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->addExperience(2000);
+    Player.addExperience(2000);
     command("level up", Player);
     command("1", Player);
 
@@ -144,16 +144,16 @@ void CanAdvanceInGuild()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanUpdateAttributes()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->addExperience(2000);
-    Player->addAttributePointsToSpend(1);
+    Player.addExperience(2000);
+    Player.addAttributePointsToSpend(1);
     command("level up", Player);
     command("1", Player);
     command("1", Player);
@@ -169,7 +169,7 @@ void CanUpdateAttributes()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 2 points left to spend on attributes.\n", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("1", Player);
     ExpectEq("Level up - Advance your attributes:\n"
@@ -184,17 +184,17 @@ void CanUpdateAttributes()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 point left to spend on attributes.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanUpdateSkills()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->advanceSkill("long sword", 4);
-    Player->advanceSkill("dagger", 1);
-    Player->addExperience(2000);
+    Player.advanceSkill("long sword", 4);
+    Player.advanceSkill("dagger", 1);
+    Player.addExperience(2000);
     command("level up", Player);
     command("1", Player);
     command("2", Player);
@@ -211,9 +211,9 @@ void CanUpdateSkills()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 5 skills left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
-    ExpectEq(0, Player->getSkill("axe", 1));
+    ExpectEq(0, Player.getSkill("axe", 1));
 
     command("1", Player);
     command("1", Player);
@@ -239,9 +239,9 @@ void CanUpdateSkills()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "(##) denotes current skill level. You have 2 points to spend.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
-    ExpectEq(3, Player->getSkill("axe", 1));
+    ExpectEq(3, Player.getSkill("axe", 1));
     command("29", Player);
     ExpectEq("Level up - Advance your skills:\n"
         "    [1] - Combat              \n"
@@ -256,23 +256,23 @@ void CanUpdateSkills()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 2 skills left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearchChoice()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->advanceSkill("long sword", 5);
-    Player->addExperience(2000);
+    Player.advanceSkill("long sword", 5);
+    Player.addExperience(2000);
     command("level up", Player);
     command("1", Player);
     command("3", Player);
-    ExpectFalse(Player->isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectFalse(Player.isResearched("/guilds/scion/paths/sword/root.c"));
     ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
         "/guilds/scion/common/mana-shield/mana-shield.c" }), 
-        Player->availableResearchTrees());
+        Player.availableResearchTrees());
 
     ExpectEq("A new research choice is available: The Focus\n"
         "    [1] - The Way of the Sword\n"
@@ -284,14 +284,14 @@ void CanSelectResearchChoice()
         "You must select a number from 1 to 6.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("1", Player);
-    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectTrue(Player.isResearched("/guilds/scion/paths/sword/root.c"));
     ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
         "/guilds/scion/common/mana-shield/mana-shield.c",
         "/guilds/scion/paths/sword.c" }),
-        Player->availableResearchTrees());
+        Player.availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
         "[1] - Spend Attribute Points\n"
@@ -303,16 +303,16 @@ void CanSelectResearchChoice()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearchWhenAllChoicesMade()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->advanceSkill("long sword", 5);
-    Player->addExperience(2000);
+    Player.advanceSkill("long sword", 5);
+    Player.addExperience(2000);
     command("level up", Player);
     command("1", Player);
     command("3", Player);
@@ -320,12 +320,12 @@ void CanSelectResearchWhenAllChoicesMade()
     command("3", Player);
     command("1", Player);
 
-    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/root.c"));
-    ExpectTrue(Player->isResearched("/guilds/scion/paths/sword/flame/root.c"));
+    ExpectTrue(Player.isResearched("/guilds/scion/paths/sword/root.c"));
+    ExpectTrue(Player.isResearched("/guilds/scion/paths/sword/flame/root.c"));
     ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c",
         "/guilds/scion/paths/sword.c", "/guilds/scion/paths/sword/flame.c",
         "/guilds/scion/common/mana-shield/mana-shield.c" }),
-        Player->availableResearchTrees());
+        Player.availableResearchTrees());
 
     ExpectEq("Advancement - Scion of Dhuras Menu:\n"
         "[1] - Spend Attribute Points\n"
@@ -336,16 +336,16 @@ void CanSelectResearchWhenAllChoicesMade()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearch()
 {
-    Player->joinGuild("Scion of Dhuras");
+    Player.joinGuild("Scion of Dhuras");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
-    Player->advanceSkill("long sword", 5);
-    Player->addExperience(2000);
+    Player.advanceSkill("long sword", 5);
+    Player.addExperience(2000);
     command("level up", Player);
     command("1", Player);
     command("3", Player);
@@ -356,5 +356,5 @@ void CanSelectResearch()
 
     ExpectSubStringMatch("Research - Select a research item to view in more.*"
         "Way of the Sword.*Path of the Flame.*4 research points",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
