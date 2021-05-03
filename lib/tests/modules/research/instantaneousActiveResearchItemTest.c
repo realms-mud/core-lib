@@ -548,3 +548,90 @@ void SupercedeTargetsPlacesNewFoeAtTopOfList()
 
     ExpectEq(newAttacker, Target.getTargetToAttack());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SiphonHitPointsWillExecuteAttack()
+{
+    mapping formula = ([
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
+    ]);
+
+    ExpectTrue(Effect.testAddSpecification("siphon hit points", ({ formula })));
+
+    // This proves that Bob is not one of Frank's attackers
+    ExpectFalse(Target.unregisterAttacker(User));
+
+    ExpectEq(50, Target.hitPoints(), "Frank's initial HP");
+    ExpectEq(150, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(150, User.spellPoints(), "Bob's initial SP");
+    ExpectEq(150, User.staminaPoints(), "Bob's initial ST");
+
+    ExpectTrue(Effect.execute("throw turnip at frank", User));
+    ExpectEq(29, Target.hitPoints(), "Frank has taken damage");
+    ExpectEq(156, User.hitPoints(), "Bob's increased HP");
+    ExpectEq(158, User.spellPoints(), "Bob's increased SP");
+    ExpectEq(158, User.staminaPoints(), "Bob's increased ST");
+
+    // Proof that Bob and Frank are now fighting
+    ExpectTrue(Target.unregisterAttacker(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SiphonSpellPointsWillExecuteAttack()
+{
+    mapping formula = ([
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
+    ]);
+
+    ExpectTrue(Effect.testAddSpecification("siphon spell points", ({ formula })));
+
+    // This proves that Bob is not one of Frank's attackers
+    ExpectFalse(Target.unregisterAttacker(User));
+
+    ExpectEq(50, Target.spellPoints(), "Frank's initial SP");
+    ExpectEq(150, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(150, User.spellPoints(), "Bob's initial SP");
+    ExpectEq(150, User.staminaPoints(), "Bob's initial ST");
+
+    ExpectTrue(Effect.execute("throw turnip at frank", User));
+    ExpectEq(25, Target.spellPoints(), "Frank has taken SP damage");
+    ExpectEq(156, User.hitPoints(), "Bob's increased HP");
+    ExpectEq(158, User.spellPoints(), "Bob's increased SP");
+    ExpectEq(158, User.staminaPoints(), "Bob's increased ST");
+
+    // Proof that Bob and Frank are now fighting
+    ExpectTrue(Target.unregisterAttacker(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SiphonStaminaPointsWillExecuteAttack()
+{
+    mapping formula = ([
+        "probability": 100,
+        "base damage": 25,
+        "range": 0
+    ]);
+
+    ExpectTrue(Effect.testAddSpecification("siphon stamina points", ({ formula })));
+
+    // This proves that Bob is not one of Frank's attackers
+    ExpectFalse(Target.unregisterAttacker(User));
+
+    ExpectEq(50, Target.staminaPoints(), "Frank's initial ST");
+    ExpectEq(150, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(150, User.spellPoints(), "Bob's initial SP");
+    ExpectEq(150, User.staminaPoints(), "Bob's initial ST");
+
+    ExpectTrue(Effect.execute("throw turnip at frank", User));
+    ExpectEq(25, Target.staminaPoints(), "Frank has taken ST damage");
+    ExpectEq(156, User.hitPoints(), "Bob's increased HP");
+    ExpectEq(158, User.spellPoints(), "Bob's increased SP");
+    ExpectEq(158, User.staminaPoints(), "Bob's increased ST");
+
+    // Proof that Bob and Frank are now fighting
+    ExpectTrue(Target.unregisterAttacker(User));
+}
