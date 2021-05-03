@@ -10,9 +10,9 @@ object Selector;
 /////////////////////////////////////////////////////////////////////////////
 void AnswerPersonalityQuestionsTakeFirstChoice(object selector)
 {
-    while (objectp(selector) && !selector->testTaken())
+    while (objectp(selector) && !selector.testTaken())
     {
-        selector->applySelection("1");
+        selector.applySelection("1");
     }
 }
 
@@ -26,11 +26,11 @@ void Init()
 void Setup()
 {
     Selector = clone_object("/lib/modules/creation/traitSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
-    User->Race("human");
+    User.Name("Bob");
+    User.Race("human");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mFrom this menu, you can choose your character's traits\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mTake Personality Test\x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mEducational Traits  \x1b[0m\n"
@@ -54,26 +54,26 @@ void InitialCreationDisplayIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou have 6 trait points left to assign.\nYou have not yet taken the personality test.\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingExitFiresOnSelectorCompletedEvent()
 {
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
-    ExpectEq(0, subscriber->TimesEventReceived());
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
+    ExpectEq(0, subscriber.TimesEventReceived());
 
-    Selector->applySelection("6");
-    ExpectEq(1, subscriber->TimesEventReceived());
+    Selector.applySelection("6");
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TakingPersonalityTestShowsThatTestIsCompleted()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
 
     object personalityTest =
         present_clone("/lib/modules/creation/personalityTraitSelector.c", User);
@@ -92,14 +92,14 @@ void TakingPersonalityTestShowsThatTestIsCompleted()
         "\x1b[0;32;1mYou must select a number from 1 to 6. You may also undo or reset.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou have 6 trait points left to assign.\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotTakePersonalityTestTwice()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
 
     object personalityTest =
         present_clone("/lib/modules/creation/personalityTraitSelector.c", User);
@@ -108,15 +108,15 @@ void CannotTakePersonalityTestTwice()
     AnswerPersonalityQuestionsTakeFirstChoice(personalityTest);
     ExpectFalse(objectp(personalityTest), "The personality test was cleaned up");
 
-    Selector->applySelection("1");
+    Selector.applySelection("1");
     ExpectFalse(objectp(personalityTest), "The personality test was not created");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EducationalTraitsMenuIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
 
     object educationalTraits =
         present_clone("/lib/modules/creation/educationalTraitSelector.c", User);
@@ -151,39 +151,39 @@ void EducationalTraitsMenuIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 24.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 
-    educationalTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/educational/arcane.c"));
+    educationalTraits.applySelection("1");
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/educational/arcane.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EducationalTraitsCanBeSelected()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
 
     ExpectSubStringMatch("You have 6 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 
-    Selector->applySelection("2");
+    Selector.applySelection("2");
 
     object educationalTraits =
         present_clone("/lib/modules/creation/educationalTraitSelector.c", User);
 
     ExpectTrue(objectp(educationalTraits), "The educational trait selector was added to the player");
-    educationalTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/educational/arcane.c"));
+    educationalTraits.applySelection("1");
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/educational/arcane.c"));
     ExpectFalse(objectp(educationalTraits), "The educational trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 4 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GeneticTraitsMenuIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("3");
+    Selector.initiateSelector(User);
+    Selector.applySelection("3");
 
     object geneticTraits =
         present_clone("/lib/modules/creation/geneticTraitSelector.c", User);
@@ -214,36 +214,36 @@ void GeneticTraitsMenuIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 20.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GeneticTraitsCanBeSelected()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
 
     ExpectSubStringMatch("You have 6 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 
-    Selector->applySelection("3");
+    Selector.applySelection("3");
 
     object geneticTraits =
         present_clone("/lib/modules/creation/geneticTraitSelector.c", User);
 
     ExpectTrue(objectp(geneticTraits), "The genetic trait selector was added to the player");
-    geneticTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/genetic/attractive.c"));
+    geneticTraits.applySelection("1");
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/genetic/attractive.c"));
     ExpectFalse(objectp(geneticTraits), "The genetic trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 5 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthTraitsMenuIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("4");
+    Selector.initiateSelector(User);
+    Selector.applySelection("4");
 
     object healthTraits =
         present_clone("/lib/modules/creation/healthTraitSelector.c", User);
@@ -266,36 +266,36 @@ void HealthTraitsMenuIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HealthTraitsCanBeSelected()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
 
     ExpectSubStringMatch("You have 6 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 
-    Selector->applySelection("4");
+    Selector.applySelection("4");
 
     object healthTraits =
         present_clone("/lib/modules/creation/healthTraitSelector.c", User);
 
     ExpectTrue(objectp(healthTraits), "The health trait selector was added to the player");
-    healthTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/health/clubfooted.c"));
+    healthTraits.applySelection("1");
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/health/clubfooted.c"));
     ExpectFalse(objectp(healthTraits), "The health trait selector test was cleaned up");
 
     ExpectSubStringMatch("You have 7 trait points left to assign",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SexualityTraitsMenuIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("5");
+    Selector.initiateSelector(User);
+    Selector.applySelection("5");
 
     object sexualityTraits =
         present_clone("/lib/modules/creation/sexualityTraitSelector.c", User);
@@ -311,21 +311,21 @@ void SexualityTraitsMenuIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou may only select a trait once. \x1b[0;34;1m(*)\x1b[0m \x1b[0;32;1mdenotes an already-chosen trait.\n\x1b[0m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SexualityTraitsCanBeSelected()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
 
-    Selector->applySelection("5");
+    Selector.applySelection("5");
 
     object sexualityTraits =
         present_clone("/lib/modules/creation/sexualityTraitSelector.c", User);
 
     ExpectTrue(objectp(sexualityTraits), "The sexuality trait selector was added to the player");
-    sexualityTraits->applySelection("1");
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/sexuality/asexual.c"));
+    sexualityTraits.applySelection("1");
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/sexuality/asexual.c"));
     ExpectFalse(objectp(sexualityTraits), "The sexuality trait selector test was cleaned up");
 }

@@ -21,17 +21,17 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TypeIsKnowledge()
 {
-    ExpectEq("domain", ResearchItem->query("type"), "query the research type");
+    ExpectEq("domain", ResearchItem.query("type"), "query the research type");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ScopeIsSelf()
 {
-    ExpectEq("domain", ResearchItem->query("scope"), "query the research scope");
+    ExpectEq("domain", ResearchItem.query("scope"), "query the research scope");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EffectIsStrategic()
 {
-    ExpectEq("strategic", ResearchItem->query("effect"), "query the research effect");
+    ExpectEq("strategic", ResearchItem.query("effect"), "query the research effect");
 }

@@ -12,7 +12,7 @@ void Init()
 {
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    Database->PrepDatabase();
+    Database.PrepDatabase();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,50 +31,50 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void GetCharactersReturnsListOfUserCharacters()
 {
-    DataAccess->saveUser("earl", "earl", "127.0.0.1");
+    DataAccess.saveUser("earl", "earl", "127.0.0.1");
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(Database->GetWizardOfLevel("owner", "earl"));
+    dataAccess.savePlayerData(Database.GetWizardOfLevel("owner", "earl"));
 
-    mapping gorthaur = Database->Gorthaur();
+    mapping gorthaur = Database.Gorthaur();
     gorthaur["userName"] = "earl";
 
-    dataAccess->savePlayerData(gorthaur);
+    dataAccess.savePlayerData(gorthaur);
 
     gorthaur["name"] = "george";
-    dataAccess->savePlayerData(gorthaur);
+    dataAccess.savePlayerData(gorthaur);
     destruct(dataAccess);
 
     ExpectEq(({ "earl", "gorthaur", "george" }), 
-        DataAccess->getCharacters("earl"));
+        DataAccess.getCharacters("earl"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AuthenticateUserReturnsNoUserWhenUserDoesNotExist()
 {
-    ExpectEq("no user", DataAccess->authenticateUser("fred", "fred"));
+    ExpectEq("no user", DataAccess.authenticateUser("fred", "fred"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AuthenticateUserReturnsFailedWhenPasswordIncorrect()
 {
-    DataAccess->saveUser("fred", "password", "127.0.0.1");
+    DataAccess.saveUser("fred", "password", "127.0.0.1");
 
-    ExpectEq("failed", DataAccess->authenticateUser("fred", "fred"));
+    ExpectEq("failed", DataAccess.authenticateUser("fred", "fred"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AuthenticateUserReturnsAuthenticatedWhenPasswordCorrect()
 {
-    DataAccess->saveUser("fred", "password", "127.0.0.1");
+    DataAccess.saveUser("fred", "password", "127.0.0.1");
 
-    ExpectEq("authenticated", DataAccess->authenticateUser("fred", "password"));
+    ExpectEq("authenticated", DataAccess.authenticateUser("fred", "password"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UserExistsReturnsCorrectly()
 {
-    ExpectFalse(DataAccess->userExists("dwight"));
-    DataAccess->saveUser("dwight", "password", "127.0.0.1");
-    ExpectTrue(DataAccess->userExists("dwight"));
+    ExpectFalse(DataAccess.userExists("dwight"));
+    DataAccess.saveUser("dwight", "password", "127.0.0.1");
+    ExpectTrue(DataAccess.userExists("dwight"));
 }

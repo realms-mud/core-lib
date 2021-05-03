@@ -22,11 +22,11 @@ void CleanUp()
 void CanGenerateItemsWithOnlyComponent()
 {
     object sword = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    Dictionary->getRandomCraftingMaterial(sword);
+    Dictionary.getRandomCraftingMaterial(sword);
 
-    ExpectTrue(mappingp(sword->query("crafting materials")));
+    ExpectTrue(mappingp(sword.query("crafting materials")));
 
-    mapping components = sword->query("crafting materials");
+    mapping components = sword.query("crafting materials");
     ExpectEq(4, sizeof(components));
     ExpectTrue(member(components, "blade"));
     ExpectTrue(member(components, "crossguard"));
@@ -38,10 +38,10 @@ void CanGenerateItemsWithOnlyComponent()
 void CanGenerateItemsWithoutSubcomponents()
 {
     object armor = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
-    Dictionary->getRandomCraftingMaterial(armor);
-    ExpectTrue(mappingp(armor->query("crafting materials")));
+    Dictionary.getRandomCraftingMaterial(armor);
+    ExpectTrue(mappingp(armor.query("crafting materials")));
 
-    mapping components = armor->query("crafting materials");
+    mapping components = armor.query("crafting materials");
     ExpectEq(2, sizeof(components));
     ExpectTrue(member(components, "metal"));
     ExpectTrue(member(components, "textile"));
@@ -51,32 +51,32 @@ void CanGenerateItemsWithoutSubcomponents()
 void CanGenerateItemsWithBothSubcomponentsAndMaterials()
 {
     object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    ring->unset("primary crafting material");
-    ring->unset("material");
-    ring->unset("crafting materials");
+    ring.unset("primary crafting material");
+    ring.unset("material");
+    ring.unset("crafting materials");
 
-    Dictionary->getRandomCraftingMaterial(ring);
-    ExpectTrue(mappingp(ring->query("crafting materials")));
+    Dictionary.getRandomCraftingMaterial(ring);
+    ExpectTrue(mappingp(ring.query("crafting materials")));
 
-    mapping components = ring->query("crafting materials");
+    mapping components = ring.query("crafting materials");
     ExpectEq(2, sizeof(components));
     ExpectTrue(member(components, "metal"));
     ExpectTrue(member(components, "ring design"));
-    ExpectTrue(ring->query("primary crafting material"));
+    ExpectTrue(ring.query("primary crafting material"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HonorsGenerationWithDefaultMaterial()
 {
     object ring = clone_object("/lib/instances/items/armor/accessories/ring.c");
-    ring->unset("primary crafting material");
-    ring->unset("material");
-    ring->unset("crafting materials");
+    ring.unset("primary crafting material");
+    ring.unset("material");
+    ring.unset("crafting materials");
 
-    Dictionary->getRandomCraftingMaterial(ring, 1);
-    ExpectTrue(mappingp(ring->query("crafting materials")));
+    Dictionary.getRandomCraftingMaterial(ring, 1);
+    ExpectTrue(mappingp(ring.query("crafting materials")));
 
-    mapping components = ring->query("crafting materials");
+    mapping components = ring.query("crafting materials");
     ExpectEq(2, sizeof(components));
     ExpectTrue(member(components, "metal"));
     ExpectEq("silver", components["metal"]);

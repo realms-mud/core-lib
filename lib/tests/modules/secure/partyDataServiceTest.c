@@ -44,18 +44,18 @@ void Init()
 {
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    Database->PrepDatabase();
+    Database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
 
-    mapping gorthaur = Database->Gorthaur();
-    dataAccess->savePlayerData(gorthaur);
+    mapping gorthaur = Database.Gorthaur();
+    dataAccess.savePlayerData(gorthaur);
     
     gorthaur["name"] = "george";
-    dataAccess->savePlayerData(gorthaur);
+    dataAccess.savePlayerData(gorthaur);
 
     gorthaur["name"] = "earl";
-    dataAccess->savePlayerData(gorthaur);
+    dataAccess.savePlayerData(gorthaur);
 
     destruct(dataAccess);
 
@@ -78,46 +78,46 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void LoadPartyDataReturnsCorrectPartyInformation()
 {
-    ExpectEq(([]), DataAccess->loadPartyData("gorthaur"));
+    ExpectEq(([]), DataAccess.loadPartyData("gorthaur"));
 
     mapping saveData = SetupPartyData();
-    ExpectTrue(DataAccess->savePartyData(saveData));
+    ExpectTrue(DataAccess.savePartyData(saveData));
 
     saveData["ID"] = 1;
-    ExpectEq(saveData, DataAccess->loadPartyData("gorthaur"));
+    ExpectEq(saveData, DataAccess.loadPartyData("gorthaur"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LoadPartyListReturnsCorrectPlayersInParties()
 {
     mapping saveData = SetupPartyData();
-    ExpectTrue(DataAccess->savePartyData(saveData));
+    ExpectTrue(DataAccess.savePartyData(saveData));
 
     ExpectEq(([ "gorthaur": 1, "earl": 1, "george": 1 ]), 
-        DataAccess->loadPartyList());
+        DataAccess.loadPartyList());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RemovePartyMemberRemovesCorrectPlayer()
 {
     mapping saveData = SetupPartyData();
-    ExpectTrue(DataAccess->savePartyData(saveData));
+    ExpectTrue(DataAccess.savePartyData(saveData));
 
-    mapping result = DataAccess->loadPartyData("gorthaur");
+    mapping result = DataAccess.loadPartyData("gorthaur");
     ExpectEq(3, sizeof(result["members"]));
 
-    result = DataAccess->loadPartyData("earl");
+    result = DataAccess.loadPartyData("earl");
     ExpectEq(3, sizeof(result["members"]));
 
-    DataAccess->removePartyMember(1, "earl");
+    DataAccess.removePartyMember(1, "earl");
 
     ExpectEq((["gorthaur":1, "george" : 1]),
-        DataAccess->loadPartyList());
+        DataAccess.loadPartyList());
 
-    result = DataAccess->loadPartyData("gorthaur");
+    result = DataAccess.loadPartyData("gorthaur");
     ExpectEq(2, sizeof(result["members"]));
 
-    result = DataAccess->loadPartyData("earl");
+    result = DataAccess.loadPartyData("earl");
     ExpectEq(([]), result);
 }
 
@@ -125,13 +125,13 @@ void RemovePartyMemberRemovesCorrectPlayer()
 void DeletePartyRemovesMembersAndDeletesParty()
 {
     mapping saveData = SetupPartyData();
-    ExpectTrue(DataAccess->savePartyData(saveData));
+    ExpectTrue(DataAccess.savePartyData(saveData));
 
     ExpectEq((["gorthaur":1, "earl" : 1, "george" : 1]),
-        DataAccess->loadPartyList());
+        DataAccess.loadPartyList());
 
-    DataAccess->deleteParty(1);
+    DataAccess.deleteParty(1);
     
-    ExpectEq(([]), DataAccess->loadPartyList());
-    ExpectEq(([]), DataAccess->loadPartyData("gorthaur"));
+    ExpectEq(([]), DataAccess.loadPartyList());
+    ExpectEq(([]), DataAccess.loadPartyData("gorthaur"));
 }

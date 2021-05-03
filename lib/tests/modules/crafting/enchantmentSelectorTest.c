@@ -11,33 +11,33 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
-    Selector->setItem("long sword");
-    Selector->setType("weapons");
-    Selector->setSubType("swords");
+    Selector.setItem("long sword");
+    Selector.setType("weapons");
+    Selector.setSubType("swords");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 
-    Player->Wis(50);
-    Player->Str(50);
-    Player->Int(50);
-    Player->addSkillPoints(500);
-    Player->advanceSkill("blacksmithing", 20);
-    Player->advanceSkill("metal crafting", 10);
-    Player->advanceSkill("weapon smithing", 10);
-    Player->advanceSkill("chemistry", 10);
-    Player->advanceSkill("physics", 10);
-    Player->advanceSkill("spellcraft", 20);
-    Player->advanceSkill("elemental fire", 20);
-    Player->addResearchPoints(20);
+    Player.Wis(50);
+    Player.Str(50);
+    Player.Int(50);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("blacksmithing", 20);
+    Player.advanceSkill("metal crafting", 10);
+    Player.advanceSkill("weapon smithing", 10);
+    Player.advanceSkill("chemistry", 10);
+    Player.advanceSkill("physics", 10);
+    Player.advanceSkill("spellcraft", 20);
+    Player.advanceSkill("elemental fire", 20);
+    Player.addResearchPoints(20);
 
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player.addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
 
     move_object(Selector, Player);
 }
@@ -52,7 +52,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingEnchantDisplaysEnchantmentTypeMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
 
     ExpectEq("\x1b[0;36mSelect Enchantment type - \x1b[0m\x1b[0;37;1mchoose the enchantment type with which to craft\x1b[0m:\n"
@@ -68,13 +68,13 @@ void SelectingEnchantDisplaysEnchantmentTypeMenu()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingEnchantAbilitiesDisplaysAbilitiesMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("1", Player);
 
@@ -87,13 +87,13 @@ void SelectingEnchantAbilitiesDisplaysAbilitiesMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingEnchantAttributesDisplaysAttributesMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("3", Player);
 
@@ -112,13 +112,13 @@ void SelectingEnchantAttributesDisplaysAttributesMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("4", Player);
 
@@ -153,13 +153,13 @@ void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
 
@@ -194,13 +194,13 @@ void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingSkillsEnchantmentDisplaysSkillsMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("6", Player);
 
@@ -213,13 +213,13 @@ void SelectingSkillsEnchantmentDisplaysSkillsMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingVitalsEnchantmentDisplaysVitalsMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("7", Player);
 
@@ -241,132 +241,132 @@ void SelectingVitalsEnchantmentDisplaysVitalsMenu()
         "\x1b[0;32mEach \x1b[0m\x1b[0;34;1m*\x1b[0m\x1b[0;32m denotes that an enchantment has been chosen once (max 3 per option).\n"
         "\x1b[0m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingExitReturnsToPreviousMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("8", Player);
 
     ExpectSubStringMatch("Exit Craft Long sword Menu",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanNotAddMoreThanMaximumEnchantmentsAllowed()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionCanBeZeroToThreeEntriesAndDoesNotIncreaseBeyondThree()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)].*3 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)].*2 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*\\*[)].*1 more", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanUndoSelection()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)]", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*\\*[)]", Player.caughtMessage());
     command("undo", Player);
-    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[^(]+[(]\\*[)]", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*3 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*3 more.*out of 4", Player.caughtMessage());
     command("11", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*2 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*2 more.*out of 4", Player.caughtMessage());
     command("23", Player);
-    ExpectSubStringMatch("Select Enchantment type.*2 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("Select Enchantment type.*2 more.*out of 4", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectEnchantmentWithMissingPrerequisites()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("5", Player);
 
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player.caughtMessage());
     command("13", Player);
-    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player.caughtMessage());
     command("23", Player);
-    ExpectSubStringMatch("Select Enchantment type.*4 more.*out of 4", Player->caughtMessage());
+    ExpectSubStringMatch("Select Enchantment type.*4 more.*out of 4", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectEnchantmentLimitedByTypeNotBeingCrafted()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    Selector.initiateSelector(Player);
     command("5", Player);
     command("2", Player);
 
-    ExpectSubStringMatch("31mFire attack", Player->caughtMessage());
+    ExpectSubStringMatch("31mFire attack", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectEnchantmentLimitedByTypeBeingCraftedOnlyOnceWhenMutation()
 {
-    Selector->setItem("staff");
-    Selector->setType("weapons");
-    Selector->setSubType("staffs");
+    Selector.setItem("staff");
+    Selector.setType("weapons");
+    Selector.setSubType("staffs");
 
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c"));
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/staffs/craftBasicStaff.c"));
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/craftAttackEnchantments.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireAttack.c"));
+    Selector.initiateSelector(Player);
     command("3", Player);
     command("2", Player);
-    ExpectSubStringMatch("32mFire attack", Player->caughtMessage());
+    ExpectSubStringMatch("32mFire attack", Player.caughtMessage());
 
     command("9", Player);
-    ExpectSubStringMatch("31mFire attack", Player->caughtMessage());
+    ExpectSubStringMatch("31mFire attack", Player.caughtMessage());
 }

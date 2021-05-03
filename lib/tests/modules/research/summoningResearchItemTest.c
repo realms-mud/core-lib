@@ -15,36 +15,35 @@ void Setup()
     destruct(getDictionary("party"));
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
-    User->addAlias("bob");
-    User->Str(20);
-    User->Int(20);
-    User->Dex(20);
-    User->Con(20);
-    User->Wis(20);
-    User->Chr(20);
-    User->hitPoints(User->maxHitPoints());
-    User->spellPoints(User->maxSpellPoints());
-    User->staminaPoints(User->maxStaminaPoints());
-    User->addCommands();
-    User->addSkillPoints(200);
-    User->advanceSkill("long sword", 16);
-    User->ToggleMockResearch();
-    User->addResearchPoints(50);
-    User->initiateResearch("/lib/tests/support/research/summoningItem.c");
+    User.Name("Bob");
+    User.addAlias("bob");
+    User.Str(20);
+    User.Int(20);
+    User.Dex(20);
+    User.Con(20);
+    User.Wis(20);
+    User.Chr(20);
+    User.hitPoints(User.maxHitPoints());
+    User.spellPoints(User.maxSpellPoints());
+    User.staminaPoints(User.maxStaminaPoints());
+    User.addCommands();
+    User.addSkillPoints(200);
+    User.advanceSkill("long sword", 16);
+    User.addResearchPoints(50);
+    User.initiateResearch("/lib/tests/support/research/summoningItem.c");
 
     Target = clone_object("/lib/realizations/monster.c");
-    Target->Name("Frank");
-    Target->addAlias("frank");
-    Target->Str(20);
-    Target->Int(20);
-    Target->Dex(20);
-    Target->Con(20);
-    Target->Wis(20);
-    Target->Chr(20);
-    Target->hitPoints(Target->maxHitPoints());
-    Target->spellPoints(Target->maxSpellPoints());
-    Target->staminaPoints(Target->maxStaminaPoints());
+    Target.Name("Frank");
+    Target.addAlias("frank");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.hitPoints(Target.maxHitPoints());
+    Target.spellPoints(Target.maxSpellPoints());
+    Target.staminaPoints(Target.maxStaminaPoints());
 
     Room = clone_object("/lib/environment/environment");
     move_object(User, Room);
@@ -56,7 +55,7 @@ void CleanUp()
 {
     if (User)
     {
-        destruct(User->getParty());
+        destruct(User.getParty());
     }
     destruct(Target);
     destruct(User);
@@ -72,21 +71,21 @@ void SummoningWithUnResearchedModifierDoesNotApplyModifier()
     ExpectEq(4, sizeof(all_inventory(Room)));
 
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
-    ExpectEq(10, weasel->Str());
-    ExpectEq(10, weasel->Int());
-    ExpectEq(10, weasel->Wis());
-    ExpectEq(10, weasel->Dex());
-    ExpectEq(10, weasel->Con());
-    ExpectEq(10, weasel->Chr());
-    ExpectEq(110, weasel->hitPoints());
-    ExpectEq(310, weasel->staminaPoints());
-    ExpectEq("You scream, `Let there be weasels!'\n", User->caughtMessage());
+    ExpectEq(10, weasel.Str());
+    ExpectEq(10, weasel.Int());
+    ExpectEq(10, weasel.Wis());
+    ExpectEq(10, weasel.Dex());
+    ExpectEq(10, weasel.Con());
+    ExpectEq(10, weasel.Chr());
+    ExpectEq(110, weasel.hitPoints());
+    ExpectEq(310, weasel.staminaPoints());
+    ExpectEq("You scream, `Let there be weasels!'\n", User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWithResearchedModifierAppliesModifier()
 {
-    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
+    User.initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -94,22 +93,22 @@ void SummoningWithResearchedModifierAppliesModifier()
     ExpectEq(4, sizeof(all_inventory(Room)));
 
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
-    ExpectEq(13, weasel->Str());
-    ExpectEq(10, weasel->Int());
-    ExpectEq(13, weasel->Wis());
-    ExpectEq(10, weasel->Dex());
-    ExpectEq(10, weasel->Con());
-    ExpectEq(9, weasel->Chr());
-    ExpectEq(160, weasel->hitPoints());
-    ExpectEq(269, weasel->staminaPoints());
+    ExpectEq(13, weasel.Str());
+    ExpectEq(10, weasel.Int());
+    ExpectEq(13, weasel.Wis());
+    ExpectEq(10, weasel.Dex());
+    ExpectEq(10, weasel.Con());
+    ExpectEq(9, weasel.Chr());
+    ExpectEq(160, weasel.hitPoints());
+    ExpectEq(269, weasel.staminaPoints());
 
-    ExpectEq("You scream, `Let there be weasels!'\n", User->caughtMessage());
+    ExpectEq("You scream, `Let there be weasels!'\n", User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWithApplyResearchAppliesModifier()
 {
-    User->initiateResearch("/lib/tests/support/research/weaselMagic.c");
+    User.initiateResearch("/lib/tests/support/research/weaselMagic.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -117,24 +116,24 @@ void SummoningWithApplyResearchAppliesModifier()
     ExpectEq(4, sizeof(all_inventory(Room)));
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
     ExpectEq(({ "/lib/tests/support/research/weaselSpell.c" }), 
-        weasel->completedResearch());
+        weasel.completedResearch());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SummoningWilNotExceedMaximumAllowed()
 {
-    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
+    User.initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
     command("summon weasel", User);
     ExpectEq(4, sizeof(all_inventory(Room)));
 
-    User->heart_beat();
+    User.heart_beat();
     command("summon weasel", User);
     ExpectEq(5, sizeof(all_inventory(Room)));
 
-    User->heart_beat();
+    User.heart_beat();
     command("summon weasel", User);
     ExpectEq(5, sizeof(all_inventory(Room)));
 }
@@ -142,7 +141,7 @@ void SummoningWilNotExceedMaximumAllowed()
 /////////////////////////////////////////////////////////////////////////////
 void SummoningCanReAddUpToMaximumAllowed()
 {
-    User->initiateResearch("/lib/tests/support/research/weaselBuff.c");
+    User.initiateResearch("/lib/tests/support/research/weaselBuff.c");
 
     ExpectEq(2, sizeof(all_inventory(Room)));
 
@@ -150,7 +149,7 @@ void SummoningCanReAddUpToMaximumAllowed()
     ExpectEq(4, sizeof(all_inventory(Room)));
     destruct((all_inventory(Room) - ({ User, Target }))[0]);
 
-    User->heart_beat();
+    User.heart_beat();
     command("summon weasel", User);
     ExpectEq(5, sizeof(all_inventory(Room)));
 }
@@ -161,7 +160,7 @@ void CanDisplayResearchInfo()
     object effect = clone_object("/lib/tests/support/research/weaselBuff.c");
 
     set_this_player(User);
-    User->colorConfiguration("none");
+    User.colorConfiguration("none");
 
     ExpectEq("Research Name   : Weasel Buff\n"
         "Weasel buffing is where it's at.\n"
@@ -177,7 +176,7 @@ void CanDisplayResearchInfo()
         "                  (-50) Penalty to stamina points\n"
         "                  (-1) Penalty to charisma\n"
         "                  Fortified is applied to summoned creature\n",
-        effect->researchDetails());
+        effect.researchDetails());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,7 +185,7 @@ void CanDisplayResearchInfoForApplyResearch()
     object effect = clone_object("/lib/tests/support/research/weaselMagic.c");
 
     set_this_player(User);
-    User->colorConfiguration("none");
+    User.colorConfiguration("none");
 
     ExpectEq("Research Name   : Weasel Magic\n"
         "Weasel magic is where it's at.\n"
@@ -202,7 +201,7 @@ void CanDisplayResearchInfoForApplyResearch()
         "                  Modified -> 1.10 * its senses skill (additive)\n"
         "                  Modified -> 1.10 * its spirit skill (additive)\n"
         "                  Modified -> 1.20 * its intelligence attribute (logarithmic)\n",
-        effect->researchDetails());
+        effect.researchDetails());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -217,13 +216,13 @@ void SummonedCreatureOnAttackedFromOwnerIsHandled()
     object summoned = (all_inventory(Room) - ({ User, Target }))[0];
     object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
 
-    ExpectFalse(summoned->getTargetToAttack());
-    ExpectFalse(summoned2->getTargetToAttack());
+    ExpectFalse(summoned.getTargetToAttack());
+    ExpectFalse(summoned2.getTargetToAttack());
 
-    Target->attack(User);
+    Target.attack(User);
 
-    ExpectTrue(summoned->getTargetToAttack());
-    ExpectTrue(summoned2->getTargetToAttack());
+    ExpectTrue(summoned.getTargetToAttack());
+    ExpectTrue(summoned2.getTargetToAttack());
     ToggleCallOutBypass();
 }
 
@@ -239,14 +238,14 @@ void SummonedCreatureOnAttackFromOwnerIsHandled()
     object summoned = (all_inventory(Room) - ({ User, Target }))[0];
     object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
 
-    ExpectFalse(summoned->getTargetToAttack());
-    ExpectFalse(summoned2->getTargetToAttack());
+    ExpectFalse(summoned.getTargetToAttack());
+    ExpectFalse(summoned2.getTargetToAttack());
 
-    User->heart_beat();
+    User.heart_beat();
     command("kill frank", User);
 
-    ExpectTrue(summoned->getTargetToAttack());
-    ExpectTrue(summoned2->getTargetToAttack());
+    ExpectTrue(summoned.getTargetToAttack());
+    ExpectTrue(summoned2.getTargetToAttack());
 
     ToggleCallOutBypass();
 }
@@ -263,13 +262,13 @@ void SummonedCreatureOnHitFromOwnerIsHandled()
     object summoned = (all_inventory(Room) - ({ User, Target }))[0];
     object summoned2 = (all_inventory(Room) - ({ User, Target }))[1];
 
-    ExpectFalse(summoned->getTargetToAttack());
-    ExpectFalse(summoned2->getTargetToAttack());
+    ExpectFalse(summoned.getTargetToAttack());
+    ExpectFalse(summoned2.getTargetToAttack());
 
-    User->hit(25, "magical", Target);
+    User.hit(25, "magical", Target);
 
-    ExpectTrue(summoned->getTargetToAttack());
-    ExpectTrue(summoned2->getTargetToAttack());
+    ExpectTrue(summoned.getTargetToAttack());
+    ExpectTrue(summoned2.getTargetToAttack());
     ToggleCallOutBypass();
 }
 
@@ -288,7 +287,7 @@ void SummonedCreatureOnDeathFromOwnerIsHandled()
     ExpectTrue(summoned);
     ExpectTrue(summoned2);
 
-    User->hit(2500, "magical", Target);
+    User.hit(2500, "magical", Target);
 
     ExpectFalse(summoned);
     ExpectFalse(summoned2);
@@ -324,37 +323,37 @@ void SummonedCreatureOnAdvancedLevelFromOwnerIsHandled()
 {
     ToggleCallOutBypass();
     load_object("/lib/tests/support/guilds/fighterGuild.c");
-    User->joinGuild("fake fighter");
+    User.joinGuild("fake fighter");
     command("3", User);
-    User->addExperience(20000);
+    User.addExperience(20000);
 
     command("summon weasel", User);
     ExpectEq(4, sizeof(all_inventory(Room)));
     object weasel = (all_inventory(Room) - ({ User, Target }))[0];
 
-    ExpectEq(5, weasel->effectiveLevel());
-    ExpectEq(10, weasel->Str());
-    ExpectEq(10, weasel->Int());
-    ExpectEq(10, weasel->Wis());
-    ExpectEq(10, weasel->Dex());
-    ExpectEq(10, weasel->Con());
-    ExpectEq(10, weasel->Chr());
-    ExpectEq(110, weasel->hitPoints());
-    ExpectEq(310, weasel->staminaPoints());
+    ExpectEq(5, weasel.effectiveLevel());
+    ExpectEq(10, weasel.Str());
+    ExpectEq(10, weasel.Int());
+    ExpectEq(10, weasel.Wis());
+    ExpectEq(10, weasel.Dex());
+    ExpectEq(10, weasel.Con());
+    ExpectEq(10, weasel.Chr());
+    ExpectEq(110, weasel.hitPoints());
+    ExpectEq(310, weasel.staminaPoints());
 
     command("level up", User);
     command("1", User);
     command("exit", User);
 
-    ExpectEq(6, weasel->effectiveLevel());
-    ExpectEq(12, weasel->Str());
-    ExpectEq(12, weasel->Int());
-    ExpectEq(12, weasel->Wis());
-    ExpectEq(12, weasel->Dex());
-    ExpectEq(12, weasel->Con());
-    ExpectEq(12, weasel->Chr());
-    ExpectEq(132, weasel->hitPoints());
-    ExpectEq(372, weasel->staminaPoints());
+    ExpectEq(6, weasel.effectiveLevel());
+    ExpectEq(12, weasel.Str());
+    ExpectEq(12, weasel.Int());
+    ExpectEq(12, weasel.Wis());
+    ExpectEq(12, weasel.Dex());
+    ExpectEq(12, weasel.Con());
+    ExpectEq(12, weasel.Chr());
+    ExpectEq(132, weasel.hitPoints());
+    ExpectEq(372, weasel.staminaPoints());
 
     ToggleCallOutBypass();
 }

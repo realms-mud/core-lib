@@ -14,7 +14,7 @@ void Init()
 {
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    Database->PrepDatabase();
+    Database.PrepDatabase();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ void Setup()
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 
     Room = load_object("/lib/tests/support/environment/regionRoom.c");
-    Room->setGeneratedSettlementChance(100);
+    Room.setGeneratedSettlementChance(100);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanSaveToDatabase()
 {
-    DataAccess->saveRegion("test", "forest", 5, 6, "/path/to/nowhere.c",
+    DataAccess.saveRegion("test", "forest", 5, 6, "/path/to/nowhere.c",
         "north", ({ ([
             "x": 1,
             "y" : 2,
@@ -91,7 +91,7 @@ void CanSaveToDatabase()
         ]) }));
 
     mapping output =
-        DataAccess->loadRegion("north", "/path/to/nowhere.c");
+        DataAccess.loadRegion("north", "/path/to/nowhere.c");
 
     ExpectEq("north", output["entry direction"]);
     ExpectEq("/path/to/nowhere.c", output["entry point"]);
@@ -167,23 +167,23 @@ void CanSaveToDatabase()
 void CanRestoreRegion()
 {   
     object user = clone_object("/lib/tests/support/services/mockPlayer.c");
-    user->Name("bob");
-    user->addCommands();
+    user.Name("bob");
+    user.addCommands();
 
-    object region = Room->addGeneratedRegion("north", "forest", 15, 10);
-    region->save();
+    object region = Room.addGeneratedRegion("north", "forest", 15, 10);
+    region.save();
     destruct(Room);
 
     Room = load_object("/lib/tests/support/environment/regionRoom.c");
-    object newRegion = Room->addGeneratedRegion("north", "forest", 15, 10);
+    object newRegion = Room.addGeneratedRegion("north", "forest", 15, 10);
 
-    ExpectEq(region->displayMap(user), newRegion->displayMap(user));
+    ExpectEq(region.displayMap(user), newRegion.displayMap(user));
 
     move_object(user, Room);
 
     command("n", user);
-    ExpectEq(newRegion->getEntryCoordinates(), environment(user)->getCoordinates());
-    ExpectEq(newRegion->getEnvironment(newRegion->getEntryCoordinates()),
+    ExpectEq(newRegion.getEntryCoordinates(), environment(user).getCoordinates());
+    ExpectEq(newRegion.getEnvironment(newRegion.getEntryCoordinates()),
         environment(user));
 
     command("s", user);

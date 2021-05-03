@@ -20,7 +20,7 @@ void SetupHenchmen(string type)
     {
         case "architect":
         {
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Tirian",
                 "house": "Arthellyn",
                 "gender": "male",
@@ -31,7 +31,7 @@ void SetupHenchmen(string type)
                 "activity": "idle"
             ]));
 
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Beren",
                 "house": "Marannuminas",
                 "gender": "male",
@@ -45,7 +45,7 @@ void SetupHenchmen(string type)
         }
         case "carpenter":
         {
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Derek",
                 "house": "Evendim",
                 "gender": "male",
@@ -55,7 +55,7 @@ void SetupHenchmen(string type)
                 "level": 10,
                 "activity": "building"
             ]));
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Royce",
                 "house": "Eralkidh",
                 "gender": "male",
@@ -65,7 +65,7 @@ void SetupHenchmen(string type)
                 "level": 10,
                 "activity": "idle"
             ]));
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Marik",
                 "house": "Argalen",
                 "gender": "male",
@@ -75,7 +75,7 @@ void SetupHenchmen(string type)
                 "level": 10,
                 "activity": "idle"
             ]));
-            Player->addHenchman("argalach castle", ([
+            Player.addHenchman("argalach castle", ([
                 "name": "Arnalt",
                 "house": "Arator",
                 "gender": "male",
@@ -95,17 +95,17 @@ void SetupHenchmen(string type)
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/workerSelector.c");
-    Selector->setLocation("argalach castle");
-    Selector->setQuantityNeeded(1);
-    Selector->setDuration(500);
-    Selector->setWorkerType("architect");
+    Selector.setLocation("argalach castle");
+    Selector.setQuantityNeeded(1);
+    Selector.setDuration(500);
+    Selector.setWorkerType("architect");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("ascii");
-    Player->addPlayerHolding("argalach castle");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.colorConfiguration("none");
+    Player.charsetConfiguration("ascii");
+    Player.addPlayerHolding("argalach castle");
 
     move_object(Selector, Player);
 }
@@ -122,7 +122,7 @@ void CorrectlyDisplaysWorkerSelectionMenu()
 {
     SetupHenchmen("architect");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
         "From this menu, you can select the architects who will be executing your\n"
@@ -136,7 +136,7 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -144,7 +144,7 @@ void SelectingWorkerActsAsToggle()
 {
     SetupHenchmen("architect");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
         "From this menu, you can select the architects who will be executing your\n"
@@ -158,7 +158,7 @@ void SelectingWorkerActsAsToggle()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("2", Player);
 
@@ -176,7 +176,7 @@ void SelectingWorkerActsAsToggle()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 0 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("2", Player);
 
@@ -192,7 +192,7 @@ void SelectingWorkerActsAsToggle()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -200,7 +200,7 @@ void CannotSelectMoreWorkersThanNeeded()
 {
     SetupHenchmen("architect");
 
-    Player->addHenchman("argalach castle", ([
+    Player.addHenchman("argalach castle", ([
         "name": "Tantor the Unclean",
         "gender": "male",
         "type": "architect",
@@ -209,7 +209,7 @@ void CannotSelectMoreWorkersThanNeeded()
         "activity": "idle"
     ]));
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("3", Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
@@ -227,7 +227,7 @@ void CannotSelectMoreWorkersThanNeeded()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 0 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("2", Player);
 
@@ -246,17 +246,17 @@ void CannotSelectMoreWorkersThanNeeded()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 0 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectDetailsDisplayedForSelectedWorkers()
 {
     SetupHenchmen("carpenter");
-    Selector->setQuantityNeeded(3);
-    Selector->setWorkerType("carpenter");
+    Selector.setQuantityNeeded(3);
+    Selector.setWorkerType("carpenter");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("3", Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
@@ -273,7 +273,7 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 2 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("1", Player);
     ExpectEq("Building Projects - Assign Workers:\n"
@@ -291,7 +291,7 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("4", Player);
     ExpectEq("Building Projects - Assign Workers:\n"
@@ -311,18 +311,18 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 0 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanHireAWorker()
 {
-    Player->addMoney(12500);
+    Player.addMoney(12500);
     SetupHenchmen("carpenter");
-    Selector->setQuantityNeeded(3);
-    Selector->setWorkerType("carpenter");
+    Selector.setQuantityNeeded(3);
+    Selector.setWorkerType("carpenter");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
         "From this menu, you can select the carpenters who will be executing your\n"
@@ -337,20 +337,20 @@ void CanHireAWorker()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 3 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("5", Player);
 
-    string addedCharacter = regreplace(Player->caughtMessage(),
+    string addedCharacter = regreplace(Player.caughtMessage(),
         ".*    ([A-Za-z]+ [A-Za-z]+).*", "\\1", 1);
-    string newEntry = regreplace(Player->caughtMessage(),
+    string newEntry = regreplace(Player.caughtMessage(),
         ".*([0-9]+). - " + addedCharacter + ".*", "\\1", 1);
 
     ExpectSubStringMatch(sprintf("Carpenters selected: 1 of 3.*"
         "%s.*M: -5%%, D: -5%%, C: -5%%, U: -5%%, S: -5%%.*%s. - %s.*"
         "Hire Apprentice ..12500. low.*2 workers", 
         addedCharacter, newEntry, addedCharacter), 
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command(newEntry, Player);
 
@@ -367,17 +367,17 @@ void CanHireAWorker()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 3 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionShowsWorkDetails()
 {
     SetupHenchmen("carpenter");
-    Selector->setQuantityNeeded(3);
-    Selector->setWorkerType("carpenter");
+    Selector.setQuantityNeeded(3);
+    Selector.setWorkerType("carpenter");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("? 3", Player);
 
     ExpectEq("This option assigns Marik Argalen to the task of building the selected\n"
@@ -395,18 +395,18 @@ void DescriptionShowsWorkDetails()
         "This person increases the units accomodated by 10% on this project.\n"
         "This person increases the combat modifiers by 10% on this project.\n"
         "This person is considered an elite worker for this project.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionShowsWorkDetailsWhenNotInSameLocation()
 {
     SetupHenchmen("carpenter");
-    Selector->setLocation("durthan castle");
-    Selector->setQuantityNeeded(3);
-    Selector->setWorkerType("carpenter");
+    Selector.setLocation("durthan castle");
+    Selector.setQuantityNeeded(3);
+    Selector.setWorkerType("carpenter");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
         "From this menu, you can select the carpenters who will be executing your\n"
@@ -421,7 +421,7 @@ void DescriptionShowsWorkDetailsWhenNotInSameLocation()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 3 workers left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("? 3", Player);
 
@@ -441,5 +441,5 @@ void DescriptionShowsWorkDetailsWhenNotInSameLocation()
         "This person increases the combat modifiers by 10% on this project.\n"
         "This person is considered an elite worker for this project.\n"
         "The duration is increased because this person is not at Durthan Castle.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

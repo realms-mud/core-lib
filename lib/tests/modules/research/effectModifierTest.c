@@ -14,19 +14,19 @@ void Setup()
     EffectModifier = clone_object("/lib/tests/support/research/testEffectModifier");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
-    User->Name("Bob");
-    User->Str(20);
-    User->Int(20);
-    User->Dex(20);
-    User->Con(20);
-    User->Wis(20);
-    User->Chr(20);
-    User->hitPoints(User->maxHitPoints());
-    User->spellPoints(User->maxSpellPoints());
-    User->staminaPoints(User->maxStaminaPoints());
-    User->addSkillPoints(200);
-    User->advanceSkill("long sword", 16);
-    User->SetLevel(10);
+    User.Name("Bob");
+    User.Str(20);
+    User.Int(20);
+    User.Dex(20);
+    User.Con(20);
+    User.Wis(20);
+    User.Chr(20);
+    User.hitPoints(User.maxHitPoints());
+    User.spellPoints(User.maxSpellPoints());
+    User.staminaPoints(User.maxStaminaPoints());
+    User.addSkillPoints(200);
+    User.advanceSkill("long sword", 16);
+    User.SetLevel(10);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -46,7 +46,7 @@ void IsValidModifierReturnsTrueForSkillModifier()
         "rate": 1.1
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ void IsValidModifierReturnsTrueForAttributeModifier()
         "rate": 0.25
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -72,12 +72,12 @@ void IsValidModifierReturnsFalseForInvalidModifier()
         "rate": 1.2
     ]);
 
-    ExpectFalse(EffectModifier->testIsValidModifier(modifier));
+    ExpectFalse(EffectModifier.testIsValidModifier(modifier));
 
     modifier["type"] = "attribute";
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
     modifier["formula"] = "blah";
-    ExpectFalse(EffectModifier->testIsValidModifier(modifier));
+    ExpectFalse(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ void IsValidModifierReturnsTrueForAttributeBonusModifier()
         "rate": 1.2
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ void IsValidModifierReturnsTrueForSkillBonusModifier()
         "rate": 1.2
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ void IsValidModifierReturnsTrueForLevelModifier()
         "rate": 1.1
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ void IsValidModifierReturnsTrueForResearchModifier()
         "rate": 1.1
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@ void IsValidModifierReturnsTrueForTraitModifier()
         "rate": 1.1
     ]);
 
-    ExpectTrue(EffectModifier->testIsValidModifier(modifier));
+    ExpectTrue(EffectModifier.testIsValidModifier(modifier));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -162,7 +162,7 @@ void ApplyModifiersCorrectlyAddsToSkill()
         "rate": 1.25
     ]);
 
-    ExpectEq(20, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(20, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -175,7 +175,7 @@ void ApplyModifiersCorrectlySubtractsFromAttribute()
         "rate": 0.25
     ]);
 
-    ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(15, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,8 +188,8 @@ void ApplyModifiersCorrectlyMultipliesToSkillBonus()
         "rate": 1.5
     ]);
 
-    ExpectEq(9, User->getSkillModifier("long sword"));
-    ExpectEq(13, EffectModifier->testApplyModifiers(1, User, ({ modifier })));
+    ExpectEq(9, User.getSkillModifier("long sword"));
+    ExpectEq(13, EffectModifier.testApplyModifiers(1, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -202,7 +202,7 @@ void ApplyModifiersCorrectlyAppliesLogToAttributeBonus()
         "rate": 1.6
     ]);
 
-    ExpectEq(3, EffectModifier->testApplyModifiers(1, User, ({ modifier })));
+    ExpectEq(3, EffectModifier.testApplyModifiers(1, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -216,7 +216,7 @@ void ApplyModifiersCorrectlyAppliesBaseValues()
         "rate": 1.6
     ]);
 
-    ExpectEq(16, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(16, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -229,9 +229,9 @@ void ApplyModifiersCorrectlyAppliesLevelModifier()
         "rate": 1.2
     ]);
 
-    User->ToggleMockGuilds();
-    User->SetGuild("mage");
-    ExpectEq(12, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    User.ToggleMockGuilds();
+    User.SetGuild("mage");
+    ExpectEq(12, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -246,8 +246,8 @@ void ApplyModifiersCorrectlyAppliesResearchModifier()
         "rate": 1.5
     ]);
 
-    User->ToggleMockResearch();
-    ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    User.ToggleMockResearch();
+    ExpectEq(15, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -262,9 +262,9 @@ void ApplyModifiersCorrectlyAppliesTraitModifier()
         "rate": 1.5
     ]);
 
-    User->addTrait("test");
-    User->ToggleMockTrait();
-    ExpectEq(15, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    User.addTrait("test");
+    User.ToggleMockTrait();
+    ExpectEq(15, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -277,9 +277,9 @@ void ApplyModifiersAppliesSpecialModifier()
         "rate": 1.25
     ]);
 
-    ExpectEq(20, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
-    EffectModifier->ToggleSpecialModifier();
-    ExpectEq(40, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(20, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
+    EffectModifier.ToggleSpecialModifier();
+    ExpectEq(40, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ void ApplyModifiersCorrectlyAddsMultipleModifiers()
         "rate": 0.25
     ]) });
 
-    ExpectEq(35, EffectModifier->testApplyModifiers(0, User, modifiers));
+    ExpectEq(35, EffectModifier.testApplyModifiers(0, User, modifiers));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -306,8 +306,8 @@ void ApplyModifiersCorrectlyAppliesWeaponDamage()
 {
     object weapon = 
         clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon->set("material", "galvorn");
-    weapon->set("enchantments", (["magical":3, "fire" : 5, "acid" : 5]));
+    weapon.set("material", "galvorn");
+    weapon.set("enchantments", (["magical":3, "fire" : 5, "acid" : 5]));
     move_object(weapon, User);
    
     mapping modifier = ([
@@ -320,11 +320,11 @@ void ApplyModifiersCorrectlyAppliesWeaponDamage()
         "rate" : 1.0
     ]);
 
-    ExpectEq(0, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(0, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 
-    User->equip(weapon);
+    User.equip(weapon);
     // Should be: 24 physical, 10 magical, 7 fire, and 7 acid and the base is -10
-    ExpectEq(38, EffectModifier->testApplyModifiers(0, User, ({ modifier })));
+    ExpectEq(38, EffectModifier.testApplyModifiers(0, User, ({ modifier })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -332,14 +332,14 @@ void ApplyModifiersCorrectlyAppliesDeferredAttack()
 {
     
     object Target = clone_object("/lib/tests/support/services/testMonster.c");
-    Target->Name("Nukulevee");
-    Target->Race("undead horse");
-    Target->effectiveLevel(20);
-    Target->Str(20);
-    Target->Dex(20);
-    Target->Con(20);
-    Target->Int(20);
-    Target->Wis(20);
+    Target.Name("Nukulevee");
+    Target.Race("undead horse");
+    Target.effectiveLevel(20);
+    Target.Str(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Int(20);
+    Target.Wis(20);
     move_object(User, "/lib/tests/support/environment/startingRoom.c");
     move_object(Target, "/lib/tests/support/environment/startingRoom.c");
 
@@ -351,53 +351,53 @@ void ApplyModifiersCorrectlyAppliesDeferredAttack()
         "rate" : 0.01
     ]);
 
-    User->addTrait("do not attack");
+    User.addTrait("do not attack");
 
-    ExpectEq(10, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
+    ExpectEq(10, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
 
-    User->ToggleMockTrait();
-    User->attack(Target);
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(16, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    ExpectEq(0, User->roundsSinceLastAttack());
+    User.ToggleMockTrait();
+    User.attack(Target);
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(16, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    ExpectEq(0, User.roundsSinceLastAttack());
 
-    User->attack(Target);
-    User->attack(Target);
-    ExpectEq(19, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    Target->hitPoints(Target->maxHitPoints());
+    User.attack(Target);
+    User.attack(Target);
+    ExpectEq(19, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    Target.hitPoints(Target.maxHitPoints());
 
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    ExpectEq(22, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    Target->hitPoints(Target->maxHitPoints());
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    ExpectEq(22, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    Target.hitPoints(Target.maxHitPoints());
 
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    ExpectEq(24, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    Target->hitPoints(Target->maxHitPoints());
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    ExpectEq(24, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    Target.hitPoints(Target.maxHitPoints());
 
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    ExpectEq(25, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    Target->hitPoints(Target->maxHitPoints());
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    ExpectEq(25, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    Target.hitPoints(Target.maxHitPoints());
 
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    User->attack(Target);
-    ExpectEq(10, EffectModifier->testApplyModifiers(10, User, ({ modifier })));
-    Target->hitPoints(Target->maxHitPoints());
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    User.attack(Target);
+    ExpectEq(10, EffectModifier.testApplyModifiers(10, User, ({ modifier })));
+    Target.hitPoints(Target.maxHitPoints());
 }

@@ -15,10 +15,10 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/creation/genderSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
+    User.Name("Bob");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,60 +31,60 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your biological sex\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mMale                \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mFemale              \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mAvailable traits later in character creation cover gender identity concerns.\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfMaleSetsGenderToMale()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Male'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("male", User->Gender());
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Male'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("male", User.Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeMaleDisplaysMaleDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 1");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 1");
     ExpectEq("\x1b[0;36mDo you really need a description?\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfFemaleSetsGenderToFemale()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Female'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("female", User->Gender());
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Female'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("female", User.Gender());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeFemaleDisplaysFemaleDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 2");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 2");
     ExpectEq("\x1b[0;36mDo you really need a description?\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectorFiresOnSelectorCompletedWhenRaceChosen()
 {
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(0, subscriber->TimesEventReceived());
-    Selector->applySelection("1");
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(0, subscriber.TimesEventReceived());
+    Selector.applySelection("1");
+    ExpectEq(1, subscriber.TimesEventReceived());
 }

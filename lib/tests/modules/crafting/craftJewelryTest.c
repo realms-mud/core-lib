@@ -11,49 +11,49 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/crafting/craftItemSelector.c");
-    Selector->setType("armor");
+    Selector.setType("armor");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 
-    Player->Wis(50);
-    Player->Str(50);
-    Player->Int(50);
-    Player->addSkillPoints(500);
-    Player->advanceSkill("sewing", 10);
-    Player->advanceSkill("metal crafting", 50);
-    Player->advanceSkill("gem crafting", 20);
-    Player->advanceSkill("armorer", 10);
-    Player->advanceSkill("blacksmithing", 10);
-    Player->advanceSkill("chemistry", 10);
-    Player->advanceSkill("physics", 10);
-    Player->advanceSkill("sculpture", 10);
-    Player->addResearchPoints(20);
+    Player.Wis(50);
+    Player.Str(50);
+    Player.Int(50);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("sewing", 10);
+    Player.advanceSkill("metal crafting", 50);
+    Player.advanceSkill("gem crafting", 20);
+    Player.advanceSkill("armorer", 10);
+    Player.advanceSkill("blacksmithing", 10);
+    Player.advanceSkill("chemistry", 10);
+    Player.advanceSkill("physics", 10);
+    Player.advanceSkill("sculpture", 10);
+    Player.addResearchPoints(20);
 
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftJewelry.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/armor/craftJewelry.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
 
     object material = clone_object("/lib/instances/items/materials/textile/silk.c");
-    material->set("quantity", 15);
+    material.set("quantity", 15);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 15);
+    material.set("quantity", 15);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/gold.c");
-    material->set("quantity", 15);
+    material.set("quantity", 15);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 15);
+    material.set("quantity", 15);
     move_object(material, Player);
 
     move_object(Selector, Player);
@@ -69,7 +69,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingClothingDisplaysClothingMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
 
     ExpectEq("\x1b[0;36mCraft Accessory - \x1b[0m\x1b[0;37;1mFrom this menu, you can craft items\x1b[0m:\n"
@@ -100,14 +100,14 @@ void ChoosingClothingDisplaysClothingMenu()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingRingDisplaysRingMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
 
@@ -126,28 +126,28 @@ void ChoosingRingDisplaysRingMenu()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingSelectMaterialDisplaysMaterialMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
-    Player->advanceSkill("weaving and beadwork", 10);
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/armor/craftClothing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftTextiles.c"));
+    Player.advanceSkill("weaving and beadwork", 10);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("1", Player);
 
     ExpectSubStringMatch("32mAdmantite.*31mAluminum.*Exit Select Metal",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingMaterialUpdatesRingMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("1", Player);
@@ -168,13 +168,13 @@ void SelectingMaterialUpdatesRingMenu()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanAddComponentThatDoesNotModifyMaterials()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("2", Player);
@@ -196,49 +196,49 @@ void CanAddComponentThatDoesNotModifyMaterials()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectComponentUntilMaterialsChosen()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("2", Player);
     command("7", Player);
 
-    ExpectSubStringMatch("31mConfirm", Player->caughtMessage());
+    ExpectSubStringMatch("31mConfirm", Player.caughtMessage());
 
     command("1", Player);
     command("26", Player);
-    ExpectSubStringMatch("31mConfirm", Player->caughtMessage());
+    ExpectSubStringMatch("31mConfirm", Player.caughtMessage());
 
     command("2", Player);
     command("16", Player);
-    ExpectSubStringMatch("32mConfirm", Player->caughtMessage());
+    ExpectSubStringMatch("32mConfirm", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectComponentIfUnusedMaterialTypeNotSelected()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("2", Player);
     command("3", Player);
 
-    ExpectSubStringMatch("31mConfirm", Player->caughtMessage());
+    ExpectSubStringMatch("31mConfirm", Player.caughtMessage());
 
     command("2", Player);
     command("16", Player);
-    ExpectSubStringMatch("32mConfirm", Player->caughtMessage());
+    ExpectSubStringMatch("32mConfirm", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCraftItemWithBothPrimaryMaterialAndComponent()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("16", Player);
     command("2", Player);
@@ -255,5 +255,5 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     ExpectSubStringMatch("This is a small band of admantite worn on the finger. The ring design is a\n"
         "ring of gold and admantite that has been intricately carved into the shape of\n"
         "an eagle's talon embossed with gold. It is clutching "
-        "a large ruby.", present("ring", Player)->long());
+        "a large ruby.", present("ring", Player).long());
 }

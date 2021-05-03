@@ -11,57 +11,57 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
-    Selector->setItem("long sword");
-    Selector->setType("weapons");
-    Selector->setSubType("swords");
+    Selector.setItem("long sword");
+    Selector.setType("weapons");
+    Selector.setSubType("swords");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 
-    Player->Wis(50);
-    Player->Str(50);
-    Player->Int(50);
-    Player->addSkillPoints(500);
-    Player->advanceSkill("blacksmithing", 20);
-    Player->advanceSkill("metal crafting", 10);
-    Player->advanceSkill("weapon smithing", 10);
-    Player->advanceSkill("chemistry", 10);
-    Player->advanceSkill("physics", 10);
-    Player->addResearchPoints(20);
+    Player.Wis(50);
+    Player.Str(50);
+    Player.Int(50);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("blacksmithing", 20);
+    Player.advanceSkill("metal crafting", 10);
+    Player.advanceSkill("weapon smithing", 10);
+    Player.advanceSkill("chemistry", 10);
+    Player.advanceSkill("physics", 10);
+    Player.addResearchPoints(20);
 
     object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 6);
+    material.set("quantity", 6);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/steel.c");
-    material->set("quantity", 10);
+    material.set("quantity", 10);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/wood/koa.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player.addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
 }
@@ -76,7 +76,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SpecificWeaponMenuDisplaysCorrectly()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mCraft Long sword - \x1b[0m\x1b[0;37;1mFrom this menu, "
         "you will select the components that will be\nused to craft your long "
@@ -100,23 +100,23 @@ void SpecificWeaponMenuDisplaysCorrectly()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeShowsDetailsAboutComponent()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("? 1", Player);
 
     ExpectSubStringMatch("This option lets you craft the blade for your long sword",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingComponentDisplaysComponentMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
 
     ExpectEq("\x1b[0;36mCraft Blade - \x1b[0m\x1b[0;37;1mSelect materials and the type of blade you will craft\x1b[0m:\n"
@@ -151,19 +151,19 @@ void SelectingComponentDisplaysComponentMenu()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
         "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingMaterialChangesSelectedComponentInMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("1", Player);
@@ -200,13 +200,13 @@ void SelectingMaterialChangesSelectedComponentInMenu()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
         "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingTypeFlagsChosenTypeInComponentMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("6", Player);
 
@@ -242,19 +242,19 @@ void SelectingTypeFlagsChosenTypeInComponentMenu()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
         "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("1", Player);
@@ -292,19 +292,19 @@ void SelectingComponentTypeAndRequiredMaterialEnablesConfirm()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m<material>\x1b[0m\x1b[0;32m denotes a selected material.\n"
         "\x1b[0m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CancelDoesNotSetValuesForWeaponCraftingMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("1", Player);
@@ -333,19 +333,19 @@ void CancelDoesNotSetValuesForWeaponCraftingMenu()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ConfirmSetsValuesForWeaponCraftingMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
     command("1", Player);
@@ -374,140 +374,140 @@ void ConfirmSetsValuesForWeaponCraftingMenu()
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;34;1m(*)\x1b[0m\x1b[0;32m denotes that a specific component type has been chosen.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ConfirmDoesNothingWhenDisabled()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("25", Player);
 
     ExpectSubStringMatch("31mConfirm Selection",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ComponentsWithAdditionalPrerequisitesAreDisabledWhenPrerequisitesNotMet()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
 
     ExpectSubStringMatch("31mDracolich Form.*",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectDisabledComponents()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
     command("11", Player);
 
     ExpectSubStringMatch("31mDracolich Form[^*]*Dragon",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ComponentsAreEnabledWhenPrerequisitesAreMet()
 {
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
-    Player->advanceSkill("gem crafting", 10);
-    Player->advanceSkill("sculpture", 15);
+    Player.advanceSkill("gem crafting", 10);
+    Player.advanceSkill("sculpture", 15);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
     command("11", Player);
 
     ExpectSubStringMatch("Dracolich Form[^*]+\\*.*Dragon",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ComponentDescriptionsShowPrerequisitesAndMaterialsNeeded()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
     command("? 11", Player);
 
     ExpectSubStringMatch("This is an ornate metal knuckleguard that has been sculpted to appear as\nthough a "
         "dracolich with crystal eyes is protecting the user's hand.*Prerequisites.*Gem crafting of 5.*"
         "Sculpture of 15.*Materials.*Crystal needed.*2",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnCraftingStartedIsEmittedWhenCraftingBegins()
 {
     object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
-    Player->registerEvent(eventSubscriber);
+    Player.registerEvent(eventSubscriber);
 
-    ExpectEq(([]), eventSubscriber->events());
-    Selector->initiateSelector(Player);
-    ExpectEq((["onCraftingStarted": "/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+    ExpectEq(([]), eventSubscriber.events());
+    Selector.initiateSelector(Player);
+    ExpectEq((["onCraftingStarted": "/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber.events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnCraftingAbortedIsEmittedWhenCraftingIsExited()
 {
     object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
-    Player->registerEvent(eventSubscriber);
+    Player.registerEvent(eventSubscriber);
 
-    ExpectEq(([]), eventSubscriber->events());
-    Selector->initiateSelector(Player);
-    eventSubscriber->clearEvents();
+    ExpectEq(([]), eventSubscriber.events());
+    Selector.initiateSelector(Player);
+    eventSubscriber.clearEvents();
 
     command("9", Player);
-    ExpectEq((["onCraftingAborted":1]), eventSubscriber->events());
+    ExpectEq((["onCraftingAborted":1]), eventSubscriber.events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnCraftingAbortedIsEmittedWhenCraftingIsAborted()
 {
     object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
-    Player->registerEvent(eventSubscriber);
+    Player.registerEvent(eventSubscriber);
 
-    ExpectEq(([]), eventSubscriber->events());
-    Selector->initiateSelector(Player);
-    eventSubscriber->clearEvents();
+    ExpectEq(([]), eventSubscriber.events());
+    Selector.initiateSelector(Player);
+    eventSubscriber.clearEvents();
 
     command("1", Player);
     command("exit", Player);
-    ExpectEq((["onCraftingAborted":1]), eventSubscriber->events());
+    ExpectEq((["onCraftingAborted":1]), eventSubscriber.events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
 {
     object material = clone_object("/lib/instances/items/materials/metal/gold.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/platinum.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/galvorn.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     object eventSubscriber = clone_object("/lib/tests/support/events/craftingEventsSubscriber.c");
-    Player->registerEvent(eventSubscriber);
+    Player.registerEvent(eventSubscriber);
 
-    ExpectEq(([]), eventSubscriber->events());
-    Selector->initiateSelector(Player);
-    eventSubscriber->clearEvents();
+    ExpectEq(([]), eventSubscriber.events());
+    Selector.initiateSelector(Player);
+    eventSubscriber.clearEvents();
 
-    object sword = Player->itemBeingCrafted();
-    sword->set("crafting materials", ([
+    object sword = Player.itemBeingCrafted();
+    sword.set("crafting materials", ([
         "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
                     "metal": "admantite", 
                     "type": "Type XIII",
@@ -532,105 +532,105 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
                     "value": 50
         ])
     ]));
-    sword->set("material", "admantite");
+    sword.set("material", "admantite");
 
     command("1", Player);
     command("25", Player);
     command("8", Player);
 
-    ExpectEq((["onCraftingCompleted":"/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber->events());
+    ExpectEq((["onCraftingCompleted":"/lib/instances/items/weapons/swords/long-sword.c"]), eventSubscriber.events());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OptionalComponentsAreInitiallyDisabledAndEnabledWhenRequired()
 {
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
-    Player->advanceSkill("gem crafting", 10);
-    Player->advanceSkill("sculpture", 15);
+    Player.advanceSkill("gem crafting", 10);
+    Player.advanceSkill("sculpture", 15);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
 
     ExpectSubStringMatch("31mSelect crystal",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("11", Player);
 
     ExpectSubStringMatch("32mSelect crystal",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanOnlySelectOptionalMaterialWhenEnabled()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
 
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
-    Player->advanceSkill("gem crafting", 20);
-    Player->advanceSkill("chemistry", 5);
-    Player->advanceSkill("physics", 5);
-    Player->advanceSkill("sculpture", 15);
+    Player.advanceSkill("gem crafting", 20);
+    Player.advanceSkill("chemistry", 5);
+    Player.advanceSkill("physics", 5);
+    Player.advanceSkill("sculpture", 15);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
 
     ExpectSubStringMatch("31mSelect crystal.*none",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("1", Player);
 
     ExpectSubStringMatch("31mSelect crystal.*none",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("11", Player);
     command("1", Player);
     command("26", Player);
     ExpectSubStringMatch("32mSelect crystal.*ruby",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingComponentThatDoesNotUseOptionalResetsOptional()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
 
     object material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
-    Player->advanceSkill("gem crafting", 20);
-    Player->advanceSkill("chemistry", 5);
-    Player->advanceSkill("physics", 5);
-    Player->advanceSkill("sculpture", 15);
+    Player.advanceSkill("gem crafting", 20);
+    Player.advanceSkill("chemistry", 5);
+    Player.advanceSkill("physics", 5);
+    Player.advanceSkill("sculpture", 15);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("2", Player);
 
     command("11", Player);
     command("1", Player);
     command("26", Player);
     ExpectSubStringMatch("32mSelect crystal.*ruby",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("5", Player);
 
     ExpectSubStringMatch("31mSelect crystal.*none",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TurningOffColorDisplaysCorrectly()
 {
-    Player->colorConfiguration("none");
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("none");
+    Selector.initiateSelector(Player);
 
     ExpectEq("Craft Long sword - From this menu, you will select the components "
         "that will be\nused to craft your long sword. The relative statistics "
@@ -654,5 +654,5 @@ void TurningOffColorDisplaysCorrectly()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n"
         "(*) denotes that a specific component type has been chosen.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

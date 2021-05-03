@@ -192,17 +192,17 @@ void Init()
 
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    Database->PrepDatabase();
+    Database.PrepDatabase();
 
     object dataAccess = 
         clone_object("/lib/modules/secure/dataServices/authenticationDataService.c");
-    dataAccess->saveUser("maeglin", "maeglin", "127.0.0.1");
-    dataAccess->saveUser("gorthaur", "gorthaur", "127.0.0.1");
-    dataAccess->saveUser("earl", "earl", "127.0.0.1");
+    dataAccess.saveUser("maeglin", "maeglin", "127.0.0.1");
+    dataAccess.saveUser("gorthaur", "gorthaur", "127.0.0.1");
+    dataAccess.saveUser("earl", "earl", "127.0.0.1");
     destruct(dataAccess);
 
     dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(Database->GetWizardOfLevel("owner", "maeglin"));
+    dataAccess.savePlayerData(Database.GetWizardOfLevel("owner", "maeglin"));
     destruct(dataAccess);
 }
 
@@ -227,28 +227,28 @@ void DatabaseVersionIsCorrect()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerTypeReturnsCorrectWizardValueFromDatabase()
 {
-    ExpectEq("owner", DataAccess->playerType("maeglin"));
+    ExpectEq("owner", DataAccess.playerType("maeglin"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PlayerTypeReturnsPlayerWhenNotWizard()
 {
-    ExpectEq("player", DataAccess->playerType("gorthaur"));
+    ExpectEq("player", DataAccess.playerType("gorthaur"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PlayerTypeReturnsPlayerWhenNotInDatabase()
 {
-    ExpectEq("player", DataAccess->playerType("fake player"));
+    ExpectEq("player", DataAccess.playerType("fake player"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataReturnsDataFromDatabase()
 {
-    mapping expected = Database->Gorthaur();
+    mapping expected = Database.Gorthaur();
 
-    DataAccess->savePlayerData(expected);
-    mapping result = DataAccess->getPlayerData("gorthaur");
+    DataAccess.savePlayerData(expected);
+    mapping result = DataAccess.getPlayerData("gorthaur");
 
     // whenCreated uses "now()" and it's not feasible (without adding a test-only hack)
     // to add a static, testable value. For now, simply test its existance and
@@ -269,7 +269,7 @@ void GetPlayerDataForGuestReturnsSimpleMap()
         "is guest": 1,
         "location": StartLocation() ]);
 
-    mapping result = DataAccess->getPlayerData("guest");
+    mapping result = DataAccess.getPlayerData("guest");
 
     ExpectEq(expected, result);
 }
@@ -277,10 +277,10 @@ void GetPlayerDataForGuestReturnsSimpleMap()
 /////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataForWizardReturnsDataFromDatabase()
 {
-    mapping expected = Database->GetWizardOfLevel("creator");
+    mapping expected = Database.GetWizardOfLevel("creator");
 
-    DataAccess->savePlayerData(expected);
-    mapping result = DataAccess->getPlayerData("earl");
+    DataAccess.savePlayerData(expected);
+    mapping result = DataAccess.getPlayerData("earl");
 
     // whenCreated uses "now()" and it's not feasible (without adding a test-only hack)
     // to add a static, testable value. For now, simply test its existance and
@@ -296,21 +296,21 @@ void GetPlayerDataForWizardReturnsDataFromDatabase()
 /////////////////////////////////////////////////////////////////////////////
 void CanSaveDataMultipleTimes()
 {
-    DataAccess->savePlayerData(Database->Gorthaur());
-    mapping result = DataAccess->getPlayerData("gorthaur");
+    DataAccess.savePlayerData(Database.Gorthaur());
+    mapping result = DataAccess.getPlayerData("gorthaur");
     ExpectEq(100, result["hitPoints"]);
 
     result["hitPoints"] = 120;
-    DataAccess->savePlayerData(result);
+    DataAccess.savePlayerData(result);
 
-    result = DataAccess->getPlayerData("gorthaur");
+    result = DataAccess.getPlayerData("gorthaur");
     ExpectEq(120, result["hitPoints"]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
 {
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#bob", "bob", 10);
 
     int dbHandle = db_connect(RealmsDatabase());
@@ -328,7 +328,7 @@ void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
     ExpectEq(1, result[6], "is nemesis");
     ExpectEq(1, result[7], "is best kill");
 
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#bob", "bob", 10);
 
     dbHandle = db_connect(RealmsDatabase());
@@ -343,7 +343,7 @@ void SavingSameCombatStatisticMultipleTimesIncrementsTimesKilled()
 /////////////////////////////////////////////////////////////////////////////
 void SavingUpdatesNemesisToMostFrequentKillWithHighestLevel()
 {
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#fred", "fred", 12);
 
     int dbHandle = db_connect(RealmsDatabase());
@@ -359,7 +359,7 @@ void SavingUpdatesNemesisToMostFrequentKillWithHighestLevel()
     while(db_fetch(dbHandle));
     db_close(dbHandle);
 
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#fred", "fred", 12);
 
     dbHandle = db_connect(RealmsDatabase());
@@ -388,7 +388,7 @@ void SavingUpdatesBestKillToKillWithHighestLevel()
     while(db_fetch(dbHandle));
     db_close(dbHandle);
 
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#dwight", "dwight", 14);
 
     dbHandle = db_connect(RealmsDatabase());
@@ -409,69 +409,69 @@ void SavingUpdatesBestKillToKillWithHighestLevel()
 /////////////////////////////////////////////////////////////////////////////
 void BestKillMeetsLevelReturnsTrueWhenLevelMet()
 {
-    ExpectTrue(DataAccess->bestKillMeetsLevel("gorthaur", 10));
+    ExpectTrue(DataAccess.bestKillMeetsLevel("gorthaur", 10));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BestKillMeetsLevelReturnsFalseWhenLevelNotMet()
 {
-    ExpectFalse(DataAccess->bestKillMeetsLevel("gorthaur", 20));
+    ExpectFalse(DataAccess.bestKillMeetsLevel("gorthaur", 20));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RacialKillsMeetCountCorrectlyReturns()
 {
-    ExpectFalse(DataAccess->racialKillsMeetCount("gorthaur", "orc", 2));
-    DataAccess->saveCombatStatisticsForRace("gorthaur", "orc");
+    ExpectFalse(DataAccess.racialKillsMeetCount("gorthaur", "orc", 2));
+    DataAccess.saveCombatStatisticsForRace("gorthaur", "orc");
 
-    ExpectFalse(DataAccess->racialKillsMeetCount("gorthaur", "orc", 2));
-    DataAccess->saveCombatStatisticsForRace("gorthaur", "orc");
+    ExpectFalse(DataAccess.racialKillsMeetCount("gorthaur", "orc", 2));
+    DataAccess.saveCombatStatisticsForRace("gorthaur", "orc");
 
-    ExpectTrue(DataAccess->racialKillsMeetCount("gorthaur", "orc", 2));
+    ExpectTrue(DataAccess.racialKillsMeetCount("gorthaur", "orc", 2));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetBestKillReturnsBestKill()
 {
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#dwight", "dwight", 14);
 
     ExpectEq(([ "name": "dwight",
                 "level": 14,
                 "key": "/lib/realizations/monster.c#dwight",
                 "times killed": 2 ]),
-        DataAccess->getBestKill("gorthaur"));
+        DataAccess.getBestKill("gorthaur"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetNemesisKillReturnsNemesis()
 {
-    DataAccess->saveCombatStatistics("gorthaur",
+    DataAccess.saveCombatStatistics("gorthaur",
         "/lib/realizations/monster.c#fred", "fred", 12);
 
     ExpectEq((["name":"fred",
         "level" : 12,
         "key" : "/lib/realizations/monster.c#fred",
         "times killed" : 3]),
-        DataAccess->getNemesis("gorthaur"));
+        DataAccess.getNemesis("gorthaur"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetOpinionOfCharacterReturnsCorrectValue()
 {
-    DataAccess->setOpinionOfCharacter("gorthaur",
+    DataAccess.setOpinionOfCharacter("gorthaur",
         "/lib/realizations/monster.c#fred", 6);
 
-    ExpectEq(6, DataAccess->getOpinionOfCharacter("gorthaur", "/lib/realizations/monster.c#fred"));
+    ExpectEq(6, DataAccess.getOpinionOfCharacter("gorthaur", "/lib/realizations/monster.c#fred"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetCharacterStateReturnsCorrectValue()
 {
-    DataAccess->setCharacterState("gorthaur",
+    DataAccess.setCharacterState("gorthaur",
         "/lib/realizations/monster.c#fred", "first state");
 
-    ExpectEq("first state", DataAccess->getCharacterState("gorthaur", "/lib/realizations/monster.c#fred"));
+    ExpectEq("first state", DataAccess.getCharacterState("gorthaur", "/lib/realizations/monster.c#fred"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -479,10 +479,10 @@ void GetPlayerDomainsReturnsCorrectValue()
 {
     mapping data = SetupDomain();
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    DataAccess->savePlayerDomains("gorthaur", data);
+    DataAccess.savePlayerDomains("gorthaur", data);
+    DataAccess.savePlayerDomains("gorthaur", data);
 
-    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+    mapping loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"], loadedData);
 }
@@ -492,8 +492,8 @@ void UpdatesToHenchmanTraitsSavedCorrectly()
 {
     mapping data = SetupDomain();
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+    DataAccess.savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"],
         loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]);
@@ -505,8 +505,8 @@ void UpdatesToHenchmanTraitsSavedCorrectly()
             "/lib/instances/traits/personality/drunkard.c"
             });
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    loadedData = DataAccess->getPlayerDomains("gorthaur");
+    DataAccess.savePlayerDomains("gorthaur", data);
+    loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"],
         loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]);
@@ -520,8 +520,8 @@ void HenchmanResetsLeadingTroopsToIdleWhenIdNotSet()
     data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["henchmen"]
         ["3 - Tantor the Unclean"]["activity"] = "leading troops";
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+    DataAccess.savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq("idle", loadedData["argalach castle"]["keep"]["components"]
         ["main stone keep"]["henchmen"]["3 - Tantor the Unclean"]["activity"]);
@@ -532,8 +532,8 @@ void UpdatesToUnitTraitsSavedCorrectly()
 {
     mapping data = SetupDomain();
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    mapping loadedData = DataAccess->getPlayerDomains("gorthaur");
+    DataAccess.savePlayerDomains("gorthaur", data);
+    mapping loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"],
         loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["units"]);
@@ -545,8 +545,8 @@ void UpdatesToUnitTraitsSavedCorrectly()
             "well-rested"
             });
 
-    DataAccess->savePlayerDomains("gorthaur", data);
-    loadedData = DataAccess->getPlayerDomains("gorthaur");
+    DataAccess.savePlayerDomains("gorthaur", data);
+    loadedData = DataAccess.getPlayerDomains("gorthaur");
 
     ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"],
         loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["units"]);

@@ -11,15 +11,15 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/domains/buildComponentSelector.c");
-    Selector->setLocation("argalach castle");
-    Selector->setConstructionData((["type": "keep", "name": "stone keep"]));
+    Selector.setLocation("argalach castle");
+    Selector.setConstructionData((["type": "keep", "name": "stone keep"]));
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("ascii");
-    Player->addPlayerHolding("argalach castle");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.colorConfiguration("none");
+    Player.charsetConfiguration("ascii");
+    Player.addPlayerHolding("argalach castle");
 
     move_object(Selector, Player);
 }
@@ -34,7 +34,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
@@ -73,13 +73,13 @@ void TopLevelMenuWithoutAnyPrereqsMetDisplaysCorrectly()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysSectionMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
 
     ExpectEq("Building Projects - Stone Keep:\n"
@@ -103,13 +103,13 @@ void CorrectlyDisplaysSectionMenu()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SectionUpdatedWhenSelected()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("10", Player);
 
@@ -134,30 +134,30 @@ void SectionUpdatedWhenSelected()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMaterialsMenu()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 100);
+    material.set("quantity", 100);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 250);
+    material.set("quantity", 250);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/marble.c");
-    material->set("quantity", 500);
+    material.set("quantity", 500);
     move_object(material, Player);
 
-    Player->addSkillPoints(500);
-    Player->advanceSkill("stonemasonry", 10);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("stonemasonry", 10);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("2", Player);
 
@@ -185,30 +185,30 @@ void CorrectlyDisplaysMaterialsMenu()
         "X is the option about which you would like further details.\n"
         "P denotes unrealized prerequisites.\n"
         "M denotes that proper quantities of the material requirements are missing.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectMaterialForComponent()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 100);
+    material.set("quantity", 100);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 250);
+    material.set("quantity", 250);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/marble.c");
-    material->set("quantity", 500);
+    material.set("quantity", 500);
     move_object(material, Player);
 
-    Player->addSkillPoints(500);
-    Player->advanceSkill("stonemasonry", 10);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("stonemasonry", 10);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("2", Player);
     command("15", Player);
@@ -234,30 +234,30 @@ void CanSelectMaterialForComponent()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectMaterialsWithFailedPrerequisiteCheck()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 100);
+    material.set("quantity", 100);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 250);
+    material.set("quantity", 250);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/marble.c");
-    material->set("quantity", 500);
+    material.set("quantity", 500);
     move_object(material, Player);
 
-    Player->addSkillPoints(500);
-    Player->advanceSkill("stonemasonry", 10);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("stonemasonry", 10);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("2", Player);
     command("18", Player);
@@ -286,30 +286,30 @@ void CannotSelectMaterialsWithFailedPrerequisiteCheck()
         "X is the option about which you would like further details.\n"
         "P denotes unrealized prerequisites.\n"
         "M denotes that proper quantities of the material requirements are missing.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectMaterialsWithFailedMaterialsCheck()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 100);
+    material.set("quantity", 100);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 250);
+    material.set("quantity", 250);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/marble.c");
-    material->set("quantity", 500);
+    material.set("quantity", 500);
     move_object(material, Player);
 
-    Player->addSkillPoints(500);
-    Player->advanceSkill("stonemasonry", 10);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("stonemasonry", 10);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("2", Player);
     command("1", Player);
@@ -338,35 +338,35 @@ void CannotSelectMaterialsWithFailedMaterialsCheck()
         "X is the option about which you would like further details.\n"
         "P denotes unrealized prerequisites.\n"
         "M denotes that proper quantities of the material requirements are missing.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNonStandardMaterials()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftClay.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftConcrete.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/useClaysAsStone.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/useCrystalsAsStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftClay.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftConcrete.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/useClaysAsStone.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/useCrystalsAsStone.c"));
 
     object material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 100);
+    material.set("quantity", 100);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/granite.c");
-    material->set("quantity", 250);
+    material.set("quantity", 250);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/stone/marble.c");
-    material->set("quantity", 500);
+    material.set("quantity", 500);
     move_object(material, Player);
 
-    Player->addSkillPoints(500);
-    Player->advanceSkill("stonemasonry", 10);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("stonemasonry", 10);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("2", Player);
     command("1", Player);
@@ -413,13 +413,13 @@ void CorrectlyDisplaysNonStandardMaterials()
         "X is the option about which you would like further details.\n"
         "P denotes unrealized prerequisites.\n"
         "M denotes that proper quantities of the material requirements are missing.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysWorkerMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("4", Player);
 
     ExpectEq("Building Projects - Assign Workers:\n"
@@ -445,13 +445,13 @@ void CorrectlyDisplaysWorkerMenu()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysWorkerSelectionMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("4", Player);
     command("2", Player);
 
@@ -466,14 +466,14 @@ void CorrectlyDisplaysWorkerSelectionMenu()
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n"
         "You have 1 worker left to assign.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WorkerDisplayIsUpdatedOnAssignmentMenu()
 {
-    Player->addMoney(125000);
-    Selector->initiateSelector(Player);
+    Player.addMoney(125000);
+    Selector.initiateSelector(Player);
     command("4", Player);
     command("2", Player);
     command("1", Player);
@@ -502,7 +502,7 @@ void WorkerDisplayIsUpdatedOnAssignmentMenu()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -511,7 +511,7 @@ void WorkerDisplayIsUpdatedOnTopLevel()
     object workerSelector = 
         clone_object("/lib/modules/domains/workCrewSelector.c");
 
-    workerSelector->setConstructionData(([ 
+    workerSelector.setConstructionData(([ 
         "assigned workers": ([
             "architect": ([ 
                 "A Aladain": ([ 
@@ -542,8 +542,8 @@ void WorkerDisplayIsUpdatedOnTopLevel()
         ]),
     ]));
 
-    Selector->initiateSelector(Player);
-    Selector->onSelectorCompleted(workerSelector);
+    Selector.initiateSelector(Player);
+    Selector.onSelectorCompleted(workerSelector);
 
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
@@ -582,7 +582,7 @@ void WorkerDisplayIsUpdatedOnTopLevel()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -591,7 +591,7 @@ void SectionDisplayIsUpdatedOnTopLevel()
     object sectionSelector = 
         clone_object("/lib/modules/domains/sectionSelector.c");
 
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -620,8 +620,8 @@ void SectionDisplayIsUpdatedOnTopLevel()
         ]),
         "stone keep", "central stone tower");
 
-    Selector->initiateSelector(Player);
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.initiateSelector(Player);
+    Selector.onSelectorCompleted(sectionSelector);
 
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
@@ -663,7 +663,7 @@ void SectionDisplayIsUpdatedOnTopLevel()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -672,7 +672,7 @@ void SectionDisplayIsUpdatedOnSectionMenu()
     object sectionSelector = 
         clone_object("/lib/modules/domains/sectionSelector.c");
 
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -701,8 +701,8 @@ void SectionDisplayIsUpdatedOnSectionMenu()
         ]),
         "stone keep", "central stone tower");
 
-    Selector->initiateSelector(Player);
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.initiateSelector(Player);
+    Selector.onSelectorCompleted(sectionSelector);
 
     command("2", Player);
 
@@ -729,7 +729,7 @@ void SectionDisplayIsUpdatedOnSectionMenu()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 /////////////////////////////////////////////////////////////////////////////
 void CompletionTimeIsUpdated()
@@ -737,7 +737,7 @@ void CompletionTimeIsUpdated()
     object workerSelector =
         clone_object("/lib/modules/domains/workCrewSelector.c");
 
-    workerSelector->setConstructionData(([
+    workerSelector.setConstructionData(([
         "assigned workers":([
             "carpenter":([
                 "Arnalt Arator": ([ 
@@ -807,8 +807,8 @@ void CompletionTimeIsUpdated()
         ])
     ]));
 
-    Selector->initiateSelector(Player);
-    Selector->onSelectorCompleted(workerSelector);
+    Selector.initiateSelector(Player);
+    Selector.onSelectorCompleted(workerSelector);
 
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
@@ -847,12 +847,12 @@ void CompletionTimeIsUpdated()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     object sectionSelector = 
         clone_object("/lib/modules/domains/sectionSelector.c");
 
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -881,7 +881,7 @@ void CompletionTimeIsUpdated()
         ]),
         "stone keep", "central stone tower");
 
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.onSelectorCompleted(sectionSelector);
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
         "at Argalach Castle.\n\n"
@@ -922,13 +922,13 @@ void CompletionTimeIsUpdated()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CancelClearsSectionSelection()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("10", Player);
     command("14", Player);
@@ -970,7 +970,7 @@ void CancelClearsSectionSelection()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -979,7 +979,7 @@ void DisplayBenefitsFromBuilding()
     object sectionSelector = 
         clone_object("/lib/modules/domains/sectionSelector.c");
 
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -1008,12 +1008,12 @@ void DisplayBenefitsFromBuilding()
         ]),
         "stone keep", "central stone tower");
 
-    Selector->initiateSelector(Player);
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.initiateSelector(Player);
+    Selector.onSelectorCompleted(sectionSelector);
 
     sectionSelector =
         clone_object("/lib/modules/domains/sectionSelector.c");
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -1041,11 +1041,11 @@ void DisplayBenefitsFromBuilding()
             ]),
         ]),
         "stone keep", "stone battlement");
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.onSelectorCompleted(sectionSelector);
 
     sectionSelector =
         clone_object("/lib/modules/domains/sectionSelector.c");
-    sectionSelector->setDetails(
+    sectionSelector.setDetails(
         ([
             "main stone keep": ([ 
                 "metal": 10,
@@ -1073,7 +1073,7 @@ void DisplayBenefitsFromBuilding()
             ]),
         ]),
         "stone keep", "main stone keep");
-    Selector->onSelectorCompleted(sectionSelector);
+    Selector.onSelectorCompleted(sectionSelector);
 
     ExpectEq("Building Projects - Stone Keep:\n"
         "From this menu, you can initiate, modify, or abort projects in your holdings\n"
@@ -1117,5 +1117,5 @@ void DisplayBenefitsFromBuilding()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

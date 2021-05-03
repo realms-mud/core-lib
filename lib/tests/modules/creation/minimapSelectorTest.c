@@ -11,11 +11,11 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/creation/minimapSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
-    User->colorConfiguration("none");
+    User.Name("Bob");
+    User.colorConfiguration("none");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapSelectorDisplayCorrectMenu()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectSubStringMatch("Character creation - Would you like to display a mini map in room\n"
         "descriptions that support it. \n"
         "Without mini map: \n"
@@ -53,39 +53,39 @@ void MiniMapSelectorDisplayCorrectMenu()
         "For details on a given choice, type 'describe X' (or '. X') where\n"
         "X is the option about which you would like further details.\n"
         "You can change this value after character creation using the 'set' command.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OnDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 1");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 1");
     ExpectEq("\This option turns on mini map display.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void OffDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 2");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 2");
     ExpectEq("This option turns off mini map display.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UserMiniMapIsSetToOn()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectTrue(User->displayMiniMap());
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectTrue(User.displayMiniMap());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UserMiniMapIsSetToOff()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectFalse(User->displayMiniMap());
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectFalse(User.displayMiniMap());
 }

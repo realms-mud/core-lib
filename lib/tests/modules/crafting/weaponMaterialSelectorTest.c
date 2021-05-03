@@ -11,29 +11,29 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
-    Selector->setItem("long sword");
-    Selector->setType("weapons");
-    Selector->setSubType("swords");
+    Selector.setItem("long sword");
+    Selector.setType("weapons");
+    Selector.setSubType("swords");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 
-    Player->Wis(50);
-    Player->Str(50);
-    Player->Int(50);
-    Player->addSkillPoints(500);
-    Player->advanceSkill("blacksmithing", 20);
-    Player->advanceSkill("metal crafting", 10);
-    Player->advanceSkill("weapon smithing", 10);
-    Player->advanceSkill("chemistry", 10);
-    Player->advanceSkill("physics", 10);
-    Player->addResearchPoints(20);
+    Player.Wis(50);
+    Player.Str(50);
+    Player.Int(50);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("blacksmithing", 20);
+    Player.advanceSkill("metal crafting", 10);
+    Player.advanceSkill("weapon smithing", 10);
+    Player.advanceSkill("chemistry", 10);
+    Player.advanceSkill("physics", 10);
+    Player.addResearchPoints(20);
     
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player.addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 
     move_object(Selector, Player);
 }
@@ -48,7 +48,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingMaterialDisplaysComponentMenu()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -103,19 +103,19 @@ void SelectingMaterialDisplaysComponentMenu()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PFlagRemovedWhenPrerequisitesMet()
 {
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -170,17 +170,17 @@ void PFlagRemovedWhenPrerequisitesMet()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MFlagRemovedWhenQuantityMet()
 {
     object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 6);
+    material.set("quantity", 6);
     move_object(material, Player);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -235,29 +235,29 @@ void MFlagRemovedWhenQuantityMet()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void QuantityCanBeSpreadAcrossMultipleObjects()
 {
     object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 2);
+    material.set("quantity", 2);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 2);
+    material.set("quantity", 2);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 1);
+    material.set("quantity", 1);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 1);
+    material.set("quantity", 1);
     move_object(material, Player);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -312,23 +312,23 @@ void QuantityCanBeSpreadAcrossMultipleObjects()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FlagsMovedAndOptionEnabledWhenPrerequisitesAndQuantityMet()
 {
     object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 6);
+    material.set("quantity", 6);
     move_object(material, Player);
 
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    Selector->initiateSelector(Player);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    Selector.initiateSelector(Player);
     command("1", Player);
     command("1", Player);
 
@@ -383,5 +383,5 @@ void FlagsMovedAndOptionEnabledWhenPrerequisitesAndQuantityMet()
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1m\x1b[0;35mP\x1b[0m\x1b[0;32m denotes unrealized prerequisites.\n"
         "\x1b[0m\x1b[0;35mM\x1b[0m\x1b[0;32m denotes that proper quantities of the material requirements are missing.\n\x1b[0m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

@@ -15,10 +15,10 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/creation/raceSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
+    User.Name("Bob");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your race\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mDraconid            \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mDwarf               \x1b[0m\n"
@@ -48,122 +48,122 @@ void InitialCreationDisplayIsCorrect()
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') "
         "where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfDraconidSetsRaceToDraconid()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Draconid'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("draconid", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Draconid'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("draconid", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfDwarfSetsRaceToDwarf()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Dwarf'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("dwarf", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Dwarf'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("dwarf", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfElfSetsRaceToElf()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("3");
-    ExpectEq("\x1b[0;36mYou have selected 'Elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("elf", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("3");
+    ExpectEq("\x1b[0;36mYou have selected 'Elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("elf", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfFaerieSetsRaceToFaerie()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("4");
-    ExpectEq("\x1b[0;36mYou have selected 'Faerie'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("faerie", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("4");
+    ExpectEq("\x1b[0;36mYou have selected 'Faerie'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("faerie", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfGnomeSetsRaceToGnome()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("5");
-    ExpectEq("\x1b[0;36mYou have selected 'Gnome'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("gnome", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("5");
+    ExpectEq("\x1b[0;36mYou have selected 'Gnome'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("gnome", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfElfSetsRaceToHalfElf()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("6");
-    ExpectEq("\x1b[0;36mYou have selected 'Half elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("half elf", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("6");
+    ExpectEq("\x1b[0;36mYou have selected 'Half elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("half elf", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfOrcSetsRaceToHalfOrc()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("7");
-    ExpectEq("\x1b[0;36mYou have selected 'Half orc'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("half orc", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("7");
+    ExpectEq("\x1b[0;36mYou have selected 'Half orc'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("half orc", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfTrollSetsRaceToHalfTroll()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("8");
-    ExpectEq("\x1b[0;36mYou have selected 'Half troll'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("half troll", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("8");
+    ExpectEq("\x1b[0;36mYou have selected 'Half troll'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("half troll", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalflingSetsRaceToHalfling()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("9");
-    ExpectEq("\x1b[0;36mYou have selected 'Halfling'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("halfling", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("9");
+    ExpectEq("\x1b[0;36mYou have selected 'Halfling'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("halfling", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHighElfSetsRaceToHighElf()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("10");
-    ExpectEq("\x1b[0;36mYou have selected 'High elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("high elf", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("10");
+    ExpectEq("\x1b[0;36mYou have selected 'High elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("high elf", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHumanSetsRaceToHuman()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("11");
-    ExpectEq("\x1b[0;36mYou have selected 'Human'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("human", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("11");
+    ExpectEq("\x1b[0;36mYou have selected 'Human'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("human", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfMaegenstrydSetsRaceToMaegenstryd()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("12");
-    ExpectEq("\x1b[0;36mYou have selected 'Maegenstryd'.\n\x1b[0m", User->caughtMessage());
-    ExpectEq("maegenstryd", User->Race());
+    Selector.initiateSelector(User);
+    Selector.applySelection("12");
+    ExpectEq("\x1b[0;36mYou have selected 'Maegenstryd'.\n\x1b[0m", User.caughtMessage());
+    ExpectEq("maegenstryd", User.Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeDraconidDisplaysDraconidDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 1");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 1");
     ExpectEq("\x1b[0;36m\n\n"
         "The draconid race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m8\x1b[0m\n"
@@ -184,14 +184,14 @@ void DescribeDraconidDisplaysDraconidDescription()
         "\x1b[0m\x1b[0;32m    Bonus Spellcraft skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;34;1m    A special research tree only available to this race is unlocked.\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeDwarfDisplaysDwarfDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 2");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 2");
     ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally "
         "live in hilly\nor mountainous areas, usually inside caves or "
         "similar dwellings. Dwarven\ncraftsmanship is world renowned "
@@ -213,14 +213,14 @@ void DescribeDwarfDisplaysDwarfDescription()
         "\x1b[0m\x1b[0;32m    Bonus Dwarven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m    Bonus Hammer skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeElfDisplaysElfDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 3");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 3");
     ExpectEq("\x1b[0;36mIn appearance, elves typically have grey or blue eyes and blond "
         "hair. They\nare fair to look upon and typically stand taller than "
         "humans. In all ways,\ntheir bearing is majestic and sight of them "
@@ -244,15 +244,15 @@ void DescribeElfDisplaysElfDescription()
         "\x1b[0m\x1b[0;32m    Bonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m    Bonus Elven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeFaerieDisplaysFaerieDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 4");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 4");
     ExpectEq("\x1b[0;36mThe faeries are a magical race of winged humanoids. They are "
         "smaller than\nhumans, and are generally friendly to all. The "
         "faeries enjoy conversation,\nand enjoy companionship. They "
@@ -276,14 +276,14 @@ void DescribeFaerieDisplaysFaerieDescription()
         "\x1b[0m\x1b[0;32m    Bonus Magical essence skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\x1b[0;32m    Bonus Spellcraft skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeGnomeDisplaysGnomeDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 5");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 5");
     ExpectEq("\x1b[0;36mThe gnomes are an intelligent race of beings closely related "
         "to the dwarves.\nThey are short, but less stocky than their "
         "dwarven cousins, They tend to have\ndark skin and light colored "
@@ -303,14 +303,14 @@ void DescribeGnomeDisplaysGnomeDescription()
         "\x1b[0m\x1b[0;32m    Bonus Engineering skill \x1b[0m\x1b[0;34;1m+2\n"
         "\x1b[0m\x1b[0;32m    Bonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHalfElfDisplaysHalfElfDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 6");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 6");
     ExpectEq("\x1b[0;36m\n\n"
         "The half elf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m10\x1b[0m\n"
@@ -322,14 +322,14 @@ void DescribeHalfElfDisplaysHalfElfDescription()
         "\x1b[0m\x1b[0;32m    Bonus Elven skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\x1b[0;32m    Bonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHalfOrcDisplaysHalfOrcDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 7");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 7");
     ExpectEq("\x1b[0;36mHalf-orcs are people that have both human and orcish parents. "
         "Like most\ncrossbreeds, they are shunned by both of their races, "
         "they gain the physical\nstrength of their orcish heritage, along "
@@ -346,14 +346,14 @@ void DescribeHalfOrcDisplaysHalfOrcDescription()
         "\x1b[0m\x1b[0;32m    Stamina points \x1b[0m\x1b[0;34;1m+50\n"
         "\x1b[0m\x1b[0;32m    Bonus Orcish skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHalfTrollDisplaysHalfTrollDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 8");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 8");
     ExpectEq("\x1b[0;36mHalf-trolls are people that have both human and troll parents. "
         "Half trolls\nare often seen by other trolls in much the same light as "
         "pure-blood trolls -\ntrolls simply don't seem to care if half-trolls "
@@ -377,14 +377,14 @@ void DescribeHalfTrollDisplaysHalfTrollDescription()
         "\x1b[0m\x1b[0;32m    Stamina points \x1b[0m\x1b[0;34;1m+25\n"
         "\x1b[0m\x1b[0;32m    Bonus Orcish skill \x1b[0m\x1b[0;34;1m+8\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHalflingDisplaysHalflingDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 9");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 9");
     ExpectEq("\x1b[0;36mHalflings are a very small people that tend to look like "
         "miniaturized humans.\nThe halflings are a fairly peaceful race: "
         "they don't start wars amongst\nthemselves or others, they prefer "
@@ -403,14 +403,14 @@ void DescribeHalflingDisplaysHalflingDescription()
         "\x1b[0m\x1b[0;32m    Bonus Hide skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;32m    Bonus Move silently skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHighElfDisplaysHighElfDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 10");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 10");
     ExpectEq("\x1b[0;36mIn the crafting of items of wonder, in strength, in keen intelligence, "
         "and in\nthe learning of knowledge, few surpass the high elves. Indeed, "
         "written\nlanguage was first used by them. Industrious, no other race did "
@@ -442,14 +442,14 @@ void DescribeHighElfDisplaysHighElfDescription()
         "\x1b[0m\x1b[0;32m    Bonus Weapon smithing skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;34;1m    A special research tree only available to this race is unlocked.\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeHumanDisplaysHumanDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 11");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 11");
     ExpectEq("\x1b[0;36mHumans are the most common race on RealmsMUD. They don't have any "
         "real\npreferences on where they live, except that they prefer tropical "
         "or temperate\nregions. They live in above ground dwellings, and tend "
@@ -461,14 +461,14 @@ void DescribeHumanDisplaysHumanDescription()
         "\x1b[0;32m    Bonus to trait selection: \x1b[0m\x1b[0;34;1m6\x1b[0m\n"
         "\x1b[0;32m    Bonus Common skill \x1b[0m\x1b[0;34;1m+5\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeMaegenstrydDisplaysMaegenstrydDescription()
 {
-    Selector->initiateSelector(User);
-    Selector->applySelection("describe 12");
+    Selector.initiateSelector(User);
+    Selector.applySelection("describe 12");
     ExpectEq("\x1b[0;36mThe Maegenstryd are the descendants of the union of high elves, "
         "humans, and\nthe gods themselves. It is said that Aronath - son of Aradran, "
         "the high king\nof the elves and Eadwyn, a goddess of hope and the mistress "
@@ -502,26 +502,26 @@ void DescribeMaegenstrydDisplaysMaegenstrydDescription()
         "\x1b[0m\x1b[0;32m    Bonus Spellcraft skill \x1b[0m\x1b[0;34;1m+3\n"
         "\x1b[0m\x1b[0;34;1m    A special research tree only available to this race is unlocked.\n"
         "\x1b[0m\n\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectorFiresOnSelectorCompletedWhenRaceChosen()
 {
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(0, subscriber->TimesEventReceived());
-    Selector->applySelection("10");
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(0, subscriber.TimesEventReceived());
+    Selector.applySelection("10");
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NoneColorConfigurationDisplaysCorrectly()
 {
-    User->colorConfiguration("none");
-    Selector->initiateSelector(User);
+    User.colorConfiguration("none");
+    Selector.initiateSelector(User);
     ExpectEq("Character creation - Choose your race:\n"
         "    [1]  - Draconid            \n"
         "    [2]  - Dwarf               \n"
@@ -538,14 +538,14 @@ void NoneColorConfigurationDisplaysCorrectly()
         "You must select a number from 1 to 12.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EightBitColorConfigurationDisplaysCorrectly()
 {
-    User->colorConfiguration("8-bit");
-    Selector->initiateSelector(User);
+    User.colorConfiguration("8-bit");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;38;5;80mCharacter creation - \x1b[0m\x1b[0;38;5;15;1mChoose your race\x1b[0m:\n"
         "    [\x1b[0;38;5;9;1m1\x1b[0m]  - \x1b[0;38;5;2mDraconid            \x1b[0m\n"
         "    [\x1b[0;38;5;9;1m2\x1b[0m]  - \x1b[0;38;5;2mDwarf               \x1b[0m\n"
@@ -562,14 +562,14 @@ void EightBitColorConfigurationDisplaysCorrectly()
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') "
         "where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TwentyFourBitColorConfigurationDisplaysCorrectly()
 {
-    User->colorConfiguration("24-bit");
-    Selector->initiateSelector(User);
+    User.colorConfiguration("24-bit");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;38;2;180;180;190mCharacter creation - \x1b[0m"
         "\x1b[0;38;2;255;255;255;1mChoose your race\x1b[0m:\n"
         "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m]  - \x1b[0;38;2;170;180;110mDraconid            \x1b[0m\n"
@@ -588,5 +588,5 @@ void TwentyFourBitColorConfigurationDisplaysCorrectly()
         "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' "
         "(or '? X') where\nX is the option about which you would like further "
         "details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }

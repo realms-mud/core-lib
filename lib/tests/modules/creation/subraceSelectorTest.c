@@ -15,10 +15,10 @@ object Selector;
 void Setup()
 {
     Selector = clone_object("/lib/modules/creation/subraceSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
+    User.Name("Bob");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -31,8 +31,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrectForHighElf()
 {
-    User->Race("high elf");
-    Selector->initiateSelector(User);
+    User.Race("high elf");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mHalf elf            \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mHillgarathi elf     \x1b[0m\n"
@@ -40,57 +40,57 @@ void InitialCreationDisplayIsCorrectForHighElf()
         "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfHighElfAddsTrait()
 {
-    User->Race("high elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Half elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/deityTouchedElf.c"));
+    User.Race("high elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Half elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/deityTouchedElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHillgarathiHighElfAddsTrait()
 {
-    User->Race("high elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/hillgarathElf.c"));
+    User.Race("high elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/hillgarathElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfMoonHighElfAddsTrait()
 {
-    User->Race("high elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("3");
-    ExpectEq("\x1b[0;36mYou have selected 'Moon elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/echorluinElf.c"));
+    User.Race("high elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("3");
+    ExpectEq("\x1b[0;36mYou have selected 'Moon elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/echorluinElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfNoneDoesNotAddTraitButFiresOnSelectorCompleted()
 {
-    User->Race("high elf");
+    User.Race("high elf");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(0, subscriber->TimesEventReceived());
-    Selector->applySelection("4");
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(0, subscriber.TimesEventReceived());
+    Selector.applySelection("4");
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrectForElf()
 {
-    User->Race("elf");
-    Selector->initiateSelector(User);
+    User.Race("elf");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mDark elf            \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mGrey elf            \x1b[0m\n"
@@ -99,165 +99,165 @@ void InitialCreationDisplayIsCorrectForElf()
         "    [\x1b[0;31;1m5\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfDarkElfAddsTrait()
 {
-    User->Race("elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Dark elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/darkElf.c"));
+    User.Race("elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Dark elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/darkElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfGreyElfAddsTrait()
 {
-    User->Race("elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Grey elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/greyElf.c"));
+    User.Race("elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Grey elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/greyElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfSeaElfAddsTrait()
 {
-    User->Race("elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("3");
-    ExpectEq("\x1b[0;36mYou have selected 'Sea elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/seaElf.c"));
+    User.Race("elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("3");
+    ExpectEq("\x1b[0;36mYou have selected 'Sea elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/seaElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfWoodElfAddsTrait()
 {
-    User->Race("elf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("4");
-    ExpectEq("\x1b[0;36mYou have selected 'Wood elf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/woodElf.c"));
+    User.Race("elf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("4");
+    ExpectEq("\x1b[0;36mYou have selected 'Wood elf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/woodElf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrectForDwarf()
 {
-    User->Race("dwarf");
-    Selector->initiateSelector(User);
+    User.Race("dwarf");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mKhazurathi dwarf    \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMirosti dwarf       \x1b[0m\n"
         "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfKhazurathiDwarfAddsTrait()
 {
-    User->Race("dwarf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Khazurathi dwarf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/khazurathiDwarf.c"));
+    User.Race("dwarf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Khazurathi dwarf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/khazurathiDwarf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfMirostiDwarfAddsTrait()
 {
-    User->Race("dwarf");
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Mirosti dwarf'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/mirostiDwarf.c"));
+    User.Race("dwarf");
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Mirosti dwarf'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/mirostiDwarf.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfDraconidRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("draconid");
+    User.Race("draconid");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfilngRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("halfling");
+    User.Race("halfling");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfGnomeRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("gnome");
+    User.Race("gnome");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfElfRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("half elf");
+    User.Race("half elf");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfOrcRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("half orc");
+    User.Race("half orc");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHalfTrollRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("half troll");
+    User.Race("half troll");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfFaerieRaceFiresOnSelectorCompletedWithoutShowingSubraces()
 {
-    User->Race("faerie");
+    User.Race("faerie");
     object subscriber = clone_object("/lib/tests/support/events/onSelectorCompletedEventSubscriber.c");
-    Selector->registerEvent(subscriber);
-    Selector->initiateSelector(User);
+    Selector.registerEvent(subscriber);
+    Selector.initiateSelector(User);
 
-    ExpectEq(1, subscriber->TimesEventReceived());
+    ExpectEq(1, subscriber.TimesEventReceived());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrectForHuman()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
+    User.Race("human");
+    Selector.initiateSelector(User);
     ExpectEq("\x1b[0;36mCharacter creation - \x1b[0m\x1b[0;37;1mChoose your subrace\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mAndurathi           \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m]  - \x1b[0;32mCelebnosti          \x1b[0m\n"
@@ -273,115 +273,115 @@ void InitialCreationDisplayIsCorrectForHuman()
         "    [\x1b[0;31;1m12\x1b[0m] - \x1b[0;32mDo not add a subrace\x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 12.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfAndurathiAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("1");
-    ExpectEq("\x1b[0;36mYou have selected 'Andurathi'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/andurathHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("1");
+    ExpectEq("\x1b[0;36mYou have selected 'Andurathi'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/andurathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfCelebnostiAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("2");
-    ExpectEq("\x1b[0;36mYou have selected 'Celebnosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/celebnostHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("2");
+    ExpectEq("\x1b[0;36mYou have selected 'Celebnosti'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/celebnostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfEledheleanAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("3");
-    ExpectEq("\x1b[0;36mYou have selected 'Eledhelean'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/eledhelHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("3");
+    ExpectEq("\x1b[0;36mYou have selected 'Eledhelean'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/eledhelHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfEndurgishAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("4");
-    ExpectEq("\x1b[0;36mYou have selected 'Endurgish'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/endurghulHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("4");
+    ExpectEq("\x1b[0;36mYou have selected 'Endurgish'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/endurghulHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHelcarishAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("5");
-    ExpectEq("\x1b[0;36mYou have selected 'Helcarish'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/helcarionHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("5");
+    ExpectEq("\x1b[0;36mYou have selected 'Helcarish'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/helcarionHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfHillgarathiAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("6");
-    ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/hillgarathHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("6");
+    ExpectEq("\x1b[0;36mYou have selected 'Hillgarathi'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/hillgarathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfIarwatheanAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("7");
-    ExpectEq("\x1b[0;36mYou have selected 'Iarwathean'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/iarwathHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("7");
+    ExpectEq("\x1b[0;36mYou have selected 'Iarwathean'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/iarwathHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfLinmiriAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("8");
-    ExpectEq("\x1b[0;36mYou have selected 'Linmiri'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/linmirHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("8");
+    ExpectEq("\x1b[0;36mYou have selected 'Linmiri'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/linmirHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfMenadrostiAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("9");
-    ExpectEq("\x1b[0;36mYou have selected 'Menadrosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/menadrostHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("9");
+    ExpectEq("\x1b[0;36mYou have selected 'Menadrosti'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/menadrostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfTirnostiAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("10");
-    ExpectEq("\x1b[0;36mYou have selected 'Tirnosti'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/tirnostHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("10");
+    ExpectEq("\x1b[0;36mYou have selected 'Tirnosti'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/tirnostHuman.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectionOfZhenduliAddsTrait()
 {
-    User->Race("human");
-    Selector->initiateSelector(User);
-    Selector->applySelection("11");
-    ExpectEq("\x1b[0;36mYou have selected 'Zhenduli'.\n\x1b[0m", User->caughtMessage());
-    ExpectTrue(User->isTraitOf("/lib/instances/traits/racial/zhendulachHuman.c"));
+    User.Race("human");
+    Selector.initiateSelector(User);
+    Selector.applySelection("11");
+    ExpectEq("\x1b[0;36mYou have selected 'Zhenduli'.\n\x1b[0m", User.caughtMessage());
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/racial/zhendulachHuman.c"));
 }

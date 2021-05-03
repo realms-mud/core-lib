@@ -14,19 +14,19 @@ void Setup()
     Effect = clone_object("/lib/tests/support/research/testInstantaneousEffect");
 
     User = clone_object("/lib/tests/support/services/combatWithMockServices");
-    User->Name("Bob");
-    User->addAlias("bob");
-    User->Str(20);
-    User->Int(20);
-    User->Dex(20);
-    User->Con(20);
-    User->Wis(20);
-    User->Chr(20);
-    User->hitPoints(User->maxHitPoints());
-    User->spellPoints(User->maxSpellPoints());
-    User->staminaPoints(User->maxStaminaPoints());
-    User->addSkillPoints(200);
-    User->advanceSkill("long sword", 16);
+    User.Name("Bob");
+    User.addAlias("bob");
+    User.Str(20);
+    User.Int(20);
+    User.Dex(20);
+    User.Con(20);
+    User.Wis(20);
+    User.Chr(20);
+    User.hitPoints(User.maxHitPoints());
+    User.spellPoints(User.maxSpellPoints());
+    User.staminaPoints(User.maxStaminaPoints());
+    User.addSkillPoints(200);
+    User.advanceSkill("long sword", 16);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ void CanAddDamageHitPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ void CanAddDamageSpellPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage spell points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage spell points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ void CanAddDamageStaminaPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage stamina points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage stamina points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ void CanAddIncreaseHitPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase hit points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase hit points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ void CanAddIncreaseSpellPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase spell points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase spell points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ void CanAddIncreaseStaminaPointsSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase stamina points", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase stamina points", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ void CanAddIncreaseIntoxicationSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase intoxication", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase intoxication", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ void CanAddIncreaseDruggednessSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase druggedness", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase druggedness", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -141,7 +141,7 @@ void CanAddIncreaseSoakedSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase soaked", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase soaked", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ void CanAddIncreaseStuffedSpecification()
         "range": 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("increase stuffed", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("increase stuffed", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -165,7 +165,7 @@ void CanAddDecreaseIntoxicationSpecification()
             "range" : 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease intoxication", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("decrease intoxication", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -177,7 +177,7 @@ void CanAddDecreaseDruggednessSpecification()
             "range" : 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease druggedness", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("decrease druggedness", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -189,7 +189,7 @@ void CanAddDecreaseSoakedSpecification()
             "range" : 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease soaked", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("decrease soaked", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ void CanAddDecreaseStuffedSpecification()
             "range" : 25
     ]);
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("decrease stuffed", ({ formula })));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("decrease stuffed", ({ formula })));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -222,7 +222,7 @@ void CanAddComplexSpecification()
         "custom method": "customFormula"
     ]) });
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", formula));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage hit points", formula));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -234,7 +234,7 @@ void CannotAddFormulasThatAreLessThan100PercentProbability()
         "range": 25
     ]);
 
-    string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })));
     string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
@@ -247,7 +247,7 @@ void CannotAddFormulasWithCustomMethodsThatDoNotExist()
         "custom method": "thisMethodDoesNotExist"
     ]);
 
-    string err = catch (Effect->testAddInstantaneousSpecification("damage hit points", ({ formula })));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })));
     string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
@@ -268,7 +268,7 @@ void CanAddModifierSpecification()
         "rate": 0.25
     ]) });
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("modifiers", modifiers));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("modifiers", modifiers));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -280,7 +280,7 @@ void CannotAddInvalidModifierSpecification()
         "rate": 1.25
     ]);
 
-    string err = catch (Effect->testAddInstantaneousSpecification("modifiers", ({ modifier })));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })));
     string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -288,7 +288,7 @@ void CannotAddInvalidModifierSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddIncorrectModifierSpecification()
 {
-    string err = catch (Effect->testAddInstantaneousSpecification("modifiers", "blah"));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", "blah"));
     string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -296,13 +296,13 @@ void CannotAddIncorrectModifierSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddDamageTypeSpecification()
 {
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage type", "fire"));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage type", "fire"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddInvalidDamageTypeSpecification()
 {
-    string err = catch (Effect->testAddInstantaneousSpecification("damage type", "turnip"));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage type", "turnip"));
     string expectedError = "*ERROR - instantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
     ExpectEq(expectedError, err);
 }
@@ -316,8 +316,8 @@ void CanApplyFormula()
         "range": 0
     ]) });
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage hit points", formula));
-    ExpectEq(50, Effect->testApplyFormula(User, "damage hit points"));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage hit points", formula));
+    ExpectEq(50, Effect.testApplyFormula(User, "damage hit points"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -338,21 +338,21 @@ void CanApplyMultipleFormulas()
         "custom method": "customFormula"
     ]) });
 
-    ExpectTrue(Effect->testAddInstantaneousSpecification("damage spell points", formula));
-    ExpectEq(25, Effect->testApplyFormula(User, "damage spell points"));
+    ExpectTrue(Effect.testAddInstantaneousSpecification("damage spell points", formula));
+    ExpectEq(25, Effect.testApplyFormula(User, "damage spell points"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetTargetReturnsFalseIfCommandDoesNotParse()
 {
-    ExpectFalse(Effect->testGetTarget(User, "flumfrug blibblefro"));
+    ExpectFalse(Effect.testGetTarget(User, "flumfrug blibblefro"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetTargetReturnsFalseIfTargetDoesNotExist()
 {
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-    ExpectFalse(Effect->testGetTarget(User, "throw turnip at gertrude"));
+    Effect.addCommandTemplate("throw turnip at ##Target##");
+    ExpectFalse(Effect.testGetTarget(User, "throw turnip at gertrude"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,11 +360,11 @@ void GetTargetReturnsFalseIfTargetNotPresent()
 {
     object room = clone_object("/lib/environment/environment");
     object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
-    victim->Name("Frank");
-    victim->addAlias("frank");
+    victim.Name("Frank");
+    victim.addAlias("frank");
 
-    Effect->addCommandTemplate("throw turnip at ##Target##");
-    ExpectFalse(Effect->testGetTarget(User, "throw turnip at frank"));
+    Effect.addCommandTemplate("throw turnip at ##Target##");
+    ExpectFalse(Effect.testGetTarget(User, "throw turnip at frank"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -375,9 +375,9 @@ void GetTargetReturnsValidTarget()
     move_object(User, room);
     move_object(owner, room);
 
-    Effect->addCommandTemplate("throw turnip at ##Target##");
+    Effect.addCommandTemplate("throw turnip at ##Target##");
 
-    ExpectEq(User, Effect->testGetTarget(owner, "throw turnip at bob"));
+    ExpectEq(User, Effect.testGetTarget(owner, "throw turnip at bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -388,9 +388,9 @@ void GetTargetWithNoneSpecifiedReturnsUser()
     move_object(User, room);
     move_object(owner, room);
 
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
+    Effect.addCommandTemplate("throw turnip [at ##Target##]");
 
-    ExpectEq(User, Effect->testGetTarget(owner, "throw turnip"));
+    ExpectEq(User, Effect.testGetTarget(owner, "throw turnip"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -401,9 +401,9 @@ void GetTargetForDamageItemWithNoneSpecifiedReturnsNullIfNotInCombat()
     move_object(User, room);
     move_object(owner, room);
 
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
-    Effect->testAddInstantaneousSpecification("damage type", "fire");
-    ExpectEq(0, Effect->testGetTarget(owner, "throw turnip"));
+    Effect.addCommandTemplate("throw turnip [at ##Target##]");
+    Effect.testAddInstantaneousSpecification("damage type", "fire");
+    ExpectEq(0, Effect.testGetTarget(owner, "throw turnip"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -412,35 +412,35 @@ void GetTargetForDamageItemWithNoneSpecifiedReturnsAttackerInCombat()
     object room = clone_object("/lib/environment/environment");
 
     object victim = clone_object("/lib/tests/support/services/combatWithMockServices");
-    victim->Name("Frank");
-    victim->addAlias("frank");
-    victim->Con(20);
-    victim->hitPoints(victim->maxHitPoints());
+    victim.Name("Frank");
+    victim.addAlias("frank");
+    victim.Con(20);
+    victim.hitPoints(victim.maxHitPoints());
 
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
-    owner->Con(20);
-    owner->hitPoints(owner->maxHitPoints());
+    owner.Con(20);
+    owner.hitPoints(owner.maxHitPoints());
     move_object(victim, room);
     move_object(owner, room);
 
-    owner->attack(victim);
-    Effect->addCommandTemplate("throw turnip [at ##Target##]");
-    Effect->testAddInstantaneousSpecification("damage type", "fire");
-    ExpectEq(victim, Effect->testGetTarget(owner, "throw turnip"));
+    owner.attack(victim);
+    Effect.addCommandTemplate("throw turnip [at ##Target##]");
+    Effect.testAddInstantaneousSpecification("damage type", "fire");
+    ExpectEq(victim, Effect.testGetTarget(owner, "throw turnip"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnSelfDoesNotCallApplyEffect()
 {
-    Effect->ToggleApplyEffect();
-    ExpectFalse(Effect->testExecuteOnSelf("command", User, program_name(Effect)));
+    Effect.ToggleApplyEffect();
+    ExpectFalse(Effect.testExecuteOnSelf("command", User, program_name(Effect)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteOnSelfCallsApplyBeneficialEffect()
 {
-    Effect->ToggleBeneficialEffect();
-    ExpectTrue(Effect->testExecuteOnSelf("command", User, program_name(Effect)));
+    Effect.ToggleBeneficialEffect();
+    ExpectTrue(Effect.testExecuteOnSelf("command", User, program_name(Effect)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -450,14 +450,14 @@ void ExecuteOnTargetMustHaveAValidTarget()
     object owner = clone_object("/lib/tests/support/services/combatWithMockServices");
     move_object(owner, room);
 
-    Effect->ToggleApplyEffect();
-    Effect->addCommandTemplate("throw turnip at ##Target##");
+    Effect.ToggleApplyEffect();
+    Effect.addCommandTemplate("throw turnip at ##Target##");
 
-    ExpectFalse(Effect->testExecuteOnTarget("blarg flargleblarg", owner, program_name(Effect)), "invalid command sent");
-    ExpectFalse(Effect->testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is not present");
+    ExpectFalse(Effect.testExecuteOnTarget("blarg flargleblarg", owner, program_name(Effect)), "invalid command sent");
+    ExpectFalse(Effect.testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is not present");
 
     move_object(User, room);
-    ExpectTrue(Effect->testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is present");
+    ExpectTrue(Effect.testExecuteOnTarget("throw turnip at bob", owner, program_name(Effect)), "bob is present");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -472,7 +472,7 @@ void ExecuteInAreaCallsApplyEffect()
 
     move_object(User, room);
 
-    ExpectEq(1, Effect->testExecuteInArea("command", User, program_name(Effect)));
-    Effect->ToggleApplyEffect();
-    ExpectEq(3, Effect->testExecuteInArea("command", User, program_name(Effect)));
+    ExpectEq(1, Effect.testExecuteInArea("command", User, program_name(Effect)));
+    Effect.ToggleApplyEffect();
+    ExpectEq(3, Effect.testExecuteInArea("command", User, program_name(Effect)));
 }

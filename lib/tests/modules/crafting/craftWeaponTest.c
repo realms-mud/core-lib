@@ -18,91 +18,91 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void SetUpSkills()
 {
-    Player->Wis(50);
-    Player->Str(50);
-    Player->Int(50);
-    Player->addSkillPoints(500);
-    Player->advanceSkill("blacksmithing", 20);
-    Player->advanceSkill("metal crafting", 10);
-    Player->advanceSkill("weapon smithing", 10);
-    Player->advanceSkill("chemistry", 10);
-    Player->advanceSkill("physics", 10);
-    Player->advanceSkill("leatherworking", 20);
-    Player->advanceSkill("carpentry", 10);
-    Player->advanceSkill("wood crafting", 10);
-    Player->advanceSkill("gem crafting", 20);
-    Player->advanceSkill("sculpture", 15);
+    Player.Wis(50);
+    Player.Str(50);
+    Player.Int(50);
+    Player.addSkillPoints(500);
+    Player.advanceSkill("blacksmithing", 20);
+    Player.advanceSkill("metal crafting", 10);
+    Player.advanceSkill("weapon smithing", 10);
+    Player.advanceSkill("chemistry", 10);
+    Player.advanceSkill("physics", 10);
+    Player.advanceSkill("leatherworking", 20);
+    Player.advanceSkill("carpentry", 10);
+    Player.advanceSkill("wood crafting", 10);
+    Player.advanceSkill("gem crafting", 20);
+    Player.advanceSkill("sculpture", 15);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpInventory()
 {
     object material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/admantite.c");
-    material->set("quantity", 6);
+    material.set("quantity", 6);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/steel.c");
-    material->set("quantity", 10);
+    material.set("quantity", 10);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/iron.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/wood/koa.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/leather/pegasus-leather.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/gold.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/platinum.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/metal/galvorn.c");
-    material->set("quantity", 3);
+    material.set("quantity", 3);
     move_object(material, Player);
 
     material = clone_object("/lib/instances/items/materials/crystal/ruby.c");
-    material->set("quantity", 5);
+    material.set("quantity", 5);
     move_object(material, Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpResearch()
 {
-    Player->addResearchPoints(20);
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftLeather.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftExoticLeather.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftCommonWood.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftUncommonWood.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/materials/craftRareWood.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
-    ExpectTrue(Player->addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
+    Player.addResearchPoints(20);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareGems.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftAlloy.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftPreciousMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftMythicMetal.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftLeather.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftExoticLeather.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftCommonWood.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftUncommonWood.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/materials/craftRareWood.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/craftWeapons.c"));
+    ExpectTrue(Player.addResearchTree("/lib/instances/research/crafting/weapons/swords/swordsmithing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/common/annealing.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/weapons/swords/craftLongSwords.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -143,10 +143,10 @@ void CraftSword()
 /////////////////////////////////////////////////////////////////////////////
 void PopulateSwordData(object sword)
 {
-    sword->set("material", "admantite");
-    sword->set("primary crafting material", "admantite");
-    sword->set("primary component", "blade");
-    sword->set("crafting materials", ([
+    sword.set("material", "admantite");
+    sword.set("primary crafting material", "admantite");
+    sword.set("primary component", "blade");
+    sword.set("crafting materials", ([
         "blade": ([ "description": "a broad, flat, metal blade with parallel edges and a lenticular cross-section. The fuller is narrow and runs half of the length of the blade, ending in a rounded point.", 
                     "metal": "admantite", 
                     "type": "Type XIII",
@@ -173,7 +173,7 @@ void PopulateSwordData(object sword)
         ])
     ]));
 
-    load_object("/lib/dictionaries/craftingDictionary.c")->setCraftingMaterial(
+    load_object("/lib/dictionaries/craftingDictionary.c").setCraftingMaterial(
         sword, "metal", "admantite", "blade");
 
     command("1", Player);
@@ -191,8 +191,8 @@ public nomask mapping getMaterialsOnHand()
     {
         foreach(object item in inventory)
         {
-            string type = item->query("class");
-            string material = item->query("blueprint");
+            string type = item.query("class");
+            string material = item.query("blueprint");
             if (!member(ret, type))
             {
                 ret[type] = ([]);
@@ -201,7 +201,7 @@ public nomask mapping getMaterialsOnHand()
             {
                 ret[type][material] = 0;
             }
-            ret[type][material] += item->query("quantity");
+            ret[type][material] += item.query("quantity");
         }
     }
     return ret;
@@ -211,13 +211,13 @@ public nomask mapping getMaterialsOnHand()
 void Setup()
 {
     Selector = clone_object("/lib/modules/crafting/selectMaterialsSelector.c");
-    Selector->setItem("long sword");
-    Selector->setType("weapons");
-    Selector->setSubType("swords");
+    Selector.setItem("long sword");
+    Selector.setType("weapons");
+    Selector.setSubType("swords");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 
     SetUpSkills();
     SetUpResearch();
@@ -236,30 +236,30 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CraftSelectedOptionBecomesEnabledWhenAllCriteriaMet()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     ExpectSubStringMatch("31mCraft Selected Long sword",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     CraftSword();
 
     ExpectSubStringMatch("32mCraft Selected Long sword",
-            Player->caughtMessage());
+            Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ChoosingCraftSelectedFailsWhenDisabled()
 {
-    Selector->initiateSelector(Player);
-    string priorMessage = Player->caughtMessage();
+    Selector.initiateSelector(Player);
+    string priorMessage = Player.caughtMessage();
 
     command("8", Player);
-    ExpectEq(priorMessage, Player->caughtMessage());
+    ExpectEq(priorMessage, Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectFalse(present("long sword", Player));
     ExpectEq((["crystal": (["ruby": 5]),
@@ -272,37 +272,37 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
                    "steel": 10 ]),
         "wood": (["koa": 5]) ]), getMaterialsOnHand());
 
-    object sword = Player->itemBeingCrafted();
+    object sword = Player.itemBeingCrafted();
     ExpectTrue(sword, "Crafting item has been set");
     PopulateSwordData(sword);
 
     command("6", Player);
-    ExpectEq("\x1b[0;32mPlease enter the item's new name: \x1b[0m", Player->caughtMessage());
+    ExpectEq("\x1b[0;32mPlease enter the item's new name: \x1b[0m", Player.caughtMessage());
     command("Sword of Blah", Player);
 
     command("7", Player);
-    ExpectEq("\x1b[0;32mPlease enter the item's new description. Type '**' on a line by itself\nwhen you are done.\n\x1b[0m", Player->caughtMessage());
-    Player->resetCatchList();
+    ExpectEq("\x1b[0;32mPlease enter the item's new description. Type '**' on a line by itself\nwhen you are done.\n\x1b[0m", Player.caughtMessage());
+    Player.resetCatchList();
     command("this is a", Player);
-    ExpectEq(0, sizeof(Player->caughtMessages()));
+    ExpectEq(0, sizeof(Player.caughtMessages()));
     command("description", Player);
-    ExpectEq(0, sizeof(Player->caughtMessages()));
+    ExpectEq(0, sizeof(Player.caughtMessages()));
     command("**", Player);
-    ExpectEq(1, sizeof(Player->caughtMessages()));
+    ExpectEq(1, sizeof(Player.caughtMessages()));
 
     command("8", Player);
 
-    ExpectEq("Sword of Blah", sword->query("name"));
-    ExpectEq("Sword of Blah", sword->query("short"));
-    ExpectEq("Sword of Blah", sword->short());
-    ExpectTrue(sword->id("Sword of Blah"));
-    ExpectTrue(sword->id("sword of blah"));
-    ExpectTrue(sword->id("sword"));
-    ExpectTrue(sword->id("long sword"));
+    ExpectEq("Sword of Blah", sword.query("name"));
+    ExpectEq("Sword of Blah", sword.query("short"));
+    ExpectEq("Sword of Blah", sword.short());
+    ExpectTrue(sword.id("Sword of Blah"));
+    ExpectTrue(sword.id("sword of blah"));
+    ExpectTrue(sword.id("sword"));
+    ExpectTrue(sword.id("long sword"));
 
-    ExpectEq("this is a\ndescription\n", sword->query("long"));
+    ExpectEq("this is a\ndescription\n", sword.query("long"));
 
-    ExpectFalse(Player->itemBeingCrafted(), "Crafting item has been reset");
+    ExpectFalse(Player.itemBeingCrafted(), "Crafting item has been reset");
     ExpectEq(sword, present("long sword", Player));
 
     ExpectEq((["crystal":(["ruby":2]),
@@ -315,78 +315,78 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
             "steel" : 10
         ]),
         "wood": (["koa":4])]), getMaterialsOnHand());
-    ExpectEq(40, sword->query("craftsmanship"));
-    ExpectEq(2, load_object("/lib/dictionaries/materialsDictionary.c")->getMaterialCraftsmanshipBonus(sword));
+    ExpectEq(40, sword.query("craftsmanship"));
+    ExpectEq(2, load_object("/lib/dictionaries/materialsDictionary.c").getMaterialCraftsmanshipBonus(sword));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingIsNotAffectedByNotApplicableLimitedByCraftingTypeResearch()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/limitedByCraftingResearch.c"));
-    Selector->setItem("dagger");
-    Selector->setType("weapons");
-    Selector->setSubType("daggers");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/limitedByCraftingResearch.c"));
+    Selector.setItem("dagger");
+    Selector.setType("weapons");
+    Selector.setSubType("daggers");
 
-    ExpectEq(10, Player->getSkill("weapon smithing"));
-    Selector->initiateSelector(Player);
+    ExpectEq(10, Player.getSkill("weapon smithing"));
+    Selector.initiateSelector(Player);
 
-    object sword = Player->itemBeingCrafted();
+    object sword = Player.itemBeingCrafted();
     PopulateSwordData(sword);
 
-    ExpectEq(10, Player->getSkill("weapon smithing"));
+    ExpectEq(10, Player.getSkill("weapon smithing"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingItemIsNotAffectedByCraftingBonusesWhenOfDifferentType()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->setItem("dagger");
-    Selector->setType("weapons");
-    Selector->setSubType("daggers");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.setItem("dagger");
+    Selector.setType("weapons");
+    Selector.setSubType("daggers");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
-    object dagger = Player->itemBeingCrafted();
+    object dagger = Player.itemBeingCrafted();
     PopulateSwordData(dagger);
 
-    ExpectEq(3, dagger->query("weapon class"));
-    ExpectEq(1, dagger->query("defense class"));
-    ExpectEq(5, dagger->query("weapon attack"));
+    ExpectEq(3, dagger.query("weapon class"));
+    ExpectEq(1, dagger.query("defense class"));
+    ExpectEq(5, dagger.query("weapon attack"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingItemIsAffectedByCraftingBonusesWhenOfType()
 {
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    Selector->setItem("long sword");
-    Selector->setType("weapons");
-    Selector->setSubType("swords");
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    Selector.setItem("long sword");
+    Selector.setType("weapons");
+    Selector.setSubType("swords");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
-    object sword = Player->itemBeingCrafted();
+    object sword = Player.itemBeingCrafted();
     PopulateSwordData(sword);
 
-    ExpectEq(10, sword->query("weapon class"));
-    ExpectEq(2, sword->query("defense class"));
-    ExpectEq(6, sword->query("weapon attack"));
+    ExpectEq(10, sword.query("weapon class"));
+    ExpectEq(2, sword.query("defense class"));
+    ExpectEq(6, sword.query("weapon attack"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CraftingSetsEnchantments()
 {
-    Player->advanceSkill("spellcraft", 20);
-    Player->advanceSkill("elemental fire", 20);
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
-    ExpectTrue(Player->initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
-    ExpectTrue(Player->initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
-    ExpectEq(0, Player->effectiveExperience(), "initial experience");
+    Player.advanceSkill("spellcraft", 20);
+    Player.advanceSkill("elemental fire", 20);
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/craftEnchantments.c"));
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/crafting/enchantments/fire/craftFireEnchantment.c"));
+    ExpectTrue(Player.initiateResearch("/lib/tests/support/research/craftingBonusesResearch.c"));
+    ExpectEq(0, Player.effectiveExperience(), "initial experience");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
-    object sword = Player->itemBeingCrafted();
+    object sword = Player.itemBeingCrafted();
     PopulateSwordData(sword);
-    sword->set("crafting enchantments", (["spell points":1]));
+    sword.set("crafting enchantments", (["spell points":1]));
     command("5", Player);
     command("5", Player);
     command("11", Player);
@@ -395,13 +395,13 @@ void CraftingSetsEnchantments()
     command("8", Player);
 
     ExpectSubStringMatch("Spell points .x1.*Fire enchantment .x2", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("8", Player);
 
     ExpectEq(sword, present("long sword", Player));
 
-    ExpectEq((["fire":10]), sword->query("enchantments"));
-    ExpectEq(6, sword->query("bonus spell points"));
-    ExpectEq(139, Player->effectiveExperience(), "end experience");
+    ExpectEq((["fire":10]), sword.query("enchantments"));
+    ExpectEq(6, sword.query("bonus spell points"));
+    ExpectEq(139, Player.effectiveExperience(), "end experience");
 }
