@@ -14,10 +14,10 @@ void Setup()
 
     ToggleCallOutBypass();
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("Gorthaur");
+    Player.Name("Gorthaur");
     set_this_player(Player);
-    Player->addCommands();
-    Player->colorConfiguration("none");
+    Player.addCommands();
+    Player.colorConfiguration("none");
 
     MagicSquare = clone_object("/tutorial/temple/objects/magic-square.c");
     move_object(Player, this_object());
@@ -35,7 +35,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void BaseGridDisplaysCorrectBaseGrid()
 {
-    Player->colorConfiguration("3-bit");
+    Player.colorConfiguration("3-bit");
     ExpectEq("\x1b[0;31m\n\t\t+===+===+===+===+        +===+===+===+===+\n"
         "\t\t| \x1b[0;35m. \x1b[0;31m: \x1b[0;37;1mA \x1b[0;31m| \x1b[0;35m. \x1b[0;31m: \x1b[0;34;1mH \x1b[0;31m|        | \x1b[0;35mw \x1b[0;31m: \x1b[0;35m  \x1b[0;31m| \x1b[0;35ms \x1b[0;31m: \x1b[0;35m  \x1b[0;31m|\n"
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
@@ -45,14 +45,14 @@ void BaseGridDisplaysCorrectBaseGrid()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| \x1b[0;35m. \x1b[0;31m: \x1b[0;35m. \x1b[0;31m| \x1b[0;35m. \x1b[0;31m: \x1b[0;35m. \x1b[0;31m|        | \x1b[0;35mp \x1b[0;31m: \x1b[0;35me \x1b[0;31m| \x1b[0;35md \x1b[0;31m: \x1b[0;35mt \x1b[0;31m|\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n\x1b[0m", 
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BaseGridDisplaysCorrectBaseGridInUnicode()
 {
-    Player->colorConfiguration("3-bit");
-    Player->charsetConfiguration("unicode");
+    Player.colorConfiguration("3-bit");
+    Player.charsetConfiguration("unicode");
 
     ExpectEq("\x1b[0;31m\n\t\t\u2554\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2566\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2557"
              "        \u2554\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2566\u2550\u2550\u2550\u2564\u2550\u2550\u2550\u2557\n"
@@ -72,7 +72,7 @@ void BaseGridDisplaysCorrectBaseGridInUnicode()
              "        \u2551 \x1b[0;35mp \x1b[0;31m\u250a \x1b[0;35me \x1b[0;31m\u2551 \x1b[0;35md \x1b[0;31m\u250a \x1b[0;35mt \x1b[0;31m\u2551\n"
              "\t\t\u255a\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2569\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u255d"
              "        \u255a\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u2569\u2550\u2550\u2550\u2567\u2550\u2550\u2550\u255d\n\x1b[0m", 
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ void FirstGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n", 
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 
     command("push w", Player);
     ExpectEq("\n\t\t+===+===+===+===+        +===+===+===+===+\n"
@@ -100,7 +100,7 @@ void FirstGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 
 
     command("push w", Player);
@@ -113,7 +113,7 @@ void FirstGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 
     command("push W", Player);
     ExpectEq("\n\t\t+===+===+===+===+        +===+===+===+===+\n"
@@ -125,7 +125,7 @@ void FirstGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 
     command("push W", Player);
     ExpectEq("\n\t\t+===+===+===+===+        +===+===+===+===+\n"
@@ -137,7 +137,7 @@ void FirstGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ void SecondGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -169,7 +169,7 @@ void ThirdGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -185,7 +185,7 @@ void FourthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -201,7 +201,7 @@ void FifthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -217,7 +217,7 @@ void SixthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ void SeventhGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| Y : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -249,7 +249,7 @@ void EigthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : Y | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -265,7 +265,7 @@ void NinthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | Y : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -281,7 +281,7 @@ void TenthGridEntryCyclesWhenWPressed()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : Y |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ void DoNotCycleInitialSolvedSquares()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| . : . | . : . |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -339,7 +339,7 @@ void CanSolvePuzzle()
         "\t\t+---+---+---+---+        +---+---+---+---+\n"
         "\t\t| A : Y | H : F |        | p : e | d : t |\n"
         "\t\t+===+===+===+===+        +===+===+===+===+\n",
-        MagicSquare->displayMagicSquare());
+        MagicSquare.displayMagicSquare());
 
     ExpectTrue(present("rune", this_object()));
 }

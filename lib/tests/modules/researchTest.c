@@ -39,18 +39,18 @@ mapping compositeElement = ([
 void Setup()
 {
     Research = clone_object("/lib/tests/support/services/researchWithMockServices");
-    Research->Name("Bob");
-    Research->Str(20);
-    Research->Int(20);
-    Research->Dex(20);
-    Research->Con(20);
-    Research->Wis(20);
-    Research->Chr(20);
-    Research->hitPoints(Research->maxHitPoints());
-    Research->spellPoints(Research->maxSpellPoints());
-    Research->staminaPoints(Research->maxStaminaPoints());
-    Research->addSkillPoints(100);
-    Research->advanceSkill("long sword", 5);
+    Research.Name("Bob");
+    Research.Str(20);
+    Research.Int(20);
+    Research.Dex(20);
+    Research.Con(20);
+    Research.Wis(20);
+    Research.Chr(20);
+    Research.hitPoints(Research.maxHitPoints());
+    Research.spellPoints(Research.maxSpellPoints());
+    Research.staminaPoints(Research.maxStaminaPoints());
+    Research.addSkillPoints(100);
+    Research.advanceSkill("long sword", 5);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -62,24 +62,24 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchFailsWhenPrerequisitesNotMet()
 {
-    Research->addResearchPoints(1);
-    ExpectFalse(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
+    Research.addResearchPoints(1);
+    ExpectFalse(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchFailsWhenNoResearchPointsAvailable()
 {
-    Research->advanceSkill("long sword", 10);
-    ExpectFalse(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
+    Research.advanceSkill("long sword", 10);
+    ExpectFalse(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchSucceedsWhenAllConditionsMet()
 {
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -88,11 +88,11 @@ void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
 
-    Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -102,8 +102,8 @@ void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchSucceedsWhenAllConditionsMet()
 {
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "isResearched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "isResearched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -112,8 +112,8 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -123,20 +123,20 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateTimedBasedResearchSucceedsWhenAllConditionsMet()
 {
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    ExpectFalse(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "isResearched");
-    ExpectTrue(Research->isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
-    Research->heart_beat();
-    ExpectFalse(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    ExpectFalse(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "isResearched");
+    ExpectTrue(Research.isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
+    Research.heart_beat();
+    ExpectFalse(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
 
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    ExpectFalse(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "still not researched");
-    ExpectTrue(Research->isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
-    Research->heart_beat();
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
-    ExpectFalse(Research->isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    ExpectFalse(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "still not researched");
+    ExpectTrue(Research.isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
+    Research.heart_beat();
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
+    ExpectFalse(Research.isResearching("/lib/tests/support/research/testTimedResearchItem.c"), "not researched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -145,8 +145,8 @@ void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"));
     string expectedError = "*event handler: onResearchStarted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -159,14 +159,14 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c");
-    Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
+    Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c");
+    Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    string err = catch (Research->heart_beat());
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    string err = catch (Research.heart_beat());
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -176,142 +176,142 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
 /////////////////////////////////////////////////////////////////////////////
 void PassiveResearchAttributeBonusesApplied()
 {
-    ExpectEq(20, Research->Str(), "initial strength");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectEq(22, Research->Str(), "after research applied");
+    ExpectEq(20, Research.Str(), "initial strength");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectEq(22, Research.Str(), "after research applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MultipleResearchItemsStackAttributeBonuses()
 {
-    ExpectEq(20, Research->Str(), "initial strength");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/secondGrantedResearchItem.c"), "initiate second research");
-    ExpectEq(24, Research->Str(), "after research applied");
+    ExpectEq(20, Research.Str(), "initial strength");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/secondGrantedResearchItem.c"), "initiate second research");
+    ExpectEq(24, Research.Str(), "after research applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LimitedByIntoxBonusesCorrectlyApplied()
 {
-    ExpectEq(({}), Research->researchExtraAttacks(), "initial attacks");
-    ExpectEq(5, Research->getSkill("long sword"), "initial long sword skill");
-    ExpectEq(20, Research->Str(), "initial strength");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "initiate research");
-    ExpectEq(({}), Research->researchExtraAttacks(), "attacks after research");
-    ExpectEq(5, Research->getSkill("long sword"), "long sword skill after research");
-    ExpectEq(20, Research->Str(), "strength after research");
+    ExpectEq(({}), Research.researchExtraAttacks(), "initial attacks");
+    ExpectEq(5, Research.getSkill("long sword"), "initial long sword skill");
+    ExpectEq(20, Research.Str(), "initial strength");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"), "initiate research");
+    ExpectEq(({}), Research.researchExtraAttacks(), "attacks after research");
+    ExpectEq(5, Research.getSkill("long sword"), "long sword skill after research");
+    ExpectEq(20, Research.Str(), "strength after research");
 
-    Research->addIntoxication(10);
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with intox");
-    ExpectEq(3, Research->getSkill("long sword"), "long sword skill after research with intox");
-    ExpectEq(22, Research->Str(), "strength after research with intox");
+    Research.addIntoxication(10);
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research.researchExtraAttacks(), "attacks after research with intox");
+    ExpectEq(3, Research.getSkill("long sword"), "long sword skill after research with intox");
+    ExpectEq(22, Research.Str(), "strength after research with intox");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LimitedByOpponentBonusesCorrectlyApplied()
 {
     object target = clone_object("/lib/realizations/player");
-    target->Name("Frank");
-    target->addAlias("frank");
-    target->Race("elf");
-    target->Str(20);
-    target->Int(20);
-    target->Dex(20);
-    target->Con(20);
-    target->Wis(20);
-    target->Chr(20);
+    target.Name("Frank");
+    target.addAlias("frank");
+    target.Race("elf");
+    target.Str(20);
+    target.Int(20);
+    target.Dex(20);
+    target.Con(20);
+    target.Wis(20);
+    target.Chr(20);
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
     move_object(target, room);
 
-    Research->registerAttacker(target);
+    Research.registerAttacker(target);
 
-    ExpectEq(({}), Research->researchExtraAttacks(), "initial attacks");
-    ExpectEq(5, Research->getSkill("long sword"), "initial long sword skill");
-    ExpectEq(20, Research->Str(), "initial strength");
+    ExpectEq(({}), Research.researchExtraAttacks(), "initial attacks");
+    ExpectEq(5, Research.getSkill("long sword"), "initial long sword skill");
+    ExpectEq(20, Research.Str(), "initial strength");
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testLimitedByOpponentResearchItem.c"), "initiate research");
-    ExpectEq(({}), Research->researchExtraAttacks(), "attacks after research");
-    ExpectEq(5, Research->getSkill("long sword"), "long sword skill after research");
-    ExpectEq(20, Research->Str(), "strength after research");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testLimitedByOpponentResearchItem.c"), "initiate research");
+    ExpectEq(({}), Research.researchExtraAttacks(), "attacks after research");
+    ExpectEq(5, Research.getSkill("long sword"), "long sword skill after research");
+    ExpectEq(20, Research.Str(), "strength after research");
 
-    target->Race("dwarf");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "attacks after research with dwarf foe");
-    ExpectEq(10, Research->getSkill("long sword"), "long sword skill after research with dwarf foe");
-    ExpectEq(22, Research->Str(), "strength after research with dwarf foe");
+    target.Race("dwarf");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research.researchExtraAttacks(), "attacks after research with dwarf foe");
+    ExpectEq(10, Research.getSkill("long sword"), "long sword skill after research with dwarf foe");
+    ExpectEq(22, Research.Str(), "strength after research with dwarf foe");
 
     destruct(target);
-    ExpectEq(({}), Research->researchExtraAttacks(), "attacks after target gone");
-    ExpectEq(5, Research->getSkill("long sword"), "long sword skill after target gone");
-    ExpectEq(20, Research->Str(), "strength after target gone");
+    ExpectEq(({}), Research.researchExtraAttacks(), "attacks after target gone");
+    ExpectEq(5, Research.getSkill("long sword"), "long sword skill after target gone");
+    ExpectEq(20, Research.Str(), "strength after target gone");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PassiveResearchSkillBonusesApplied()
 {
-    ExpectEq(5, Research->getSkill("long sword"), "initial long sword skill");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectEq(10, Research->getSkill("long sword"), "after research long sword skill");
+    ExpectEq(5, Research.getSkill("long sword"), "initial long sword skill");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectEq(10, Research.getSkill("long sword"), "after research long sword skill");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PassiveResearchAttacksApplied()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("defense class", 2);
-    weapon->set("weapon class", 10);
-    weapon->set("material", "galvorn");
-    weapon->set("weapon type", "long sword");
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("defense class", 2);
+    weapon.set("weapon class", 10);
+    weapon.set("material", "galvorn");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Research);
-    weapon->equip("blah");
+    weapon.equip("blah");
 
-    ExpectEq(({}), Research->researchExtraAttacks(), "initial attacks");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectEq(({ (["attack type": "fire", "damage": 15, "to hit": 60]), (["attack type": "weapon"]), (["attack type": "weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
+    ExpectEq(({}), Research.researchExtraAttacks(), "initial attacks");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectEq(({ (["attack type": "fire", "damage": 15, "to hit": 60]), (["attack type": "weapon"]), (["attack type": "weapon"]) }), Research.researchExtraAttacks(), "after research attacks");
 
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research->researchExtraAttacks(), "after research attacks");
-    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) }), Research->getAttacks());
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"weapon"]), (["attack type":"weapon"]), (["attack type":"weapon"]) }), Research.researchExtraAttacks(), "after research attacks");
+    ExpectEq(({ (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"fire", "damage" : 15, "to hit" : 60]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]), (["attack type":"wielded primary"]) }), Research.getAttacks());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchCommandExecutesCommandBasedResearch()
 {
     // This is a laziness thing - I don't want to create a granted research 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
     object target = clone_object("/lib/realizations/player");
-    target->Name("Frank");
-    target->addAlias("frank");
-    target->Str(20);
-    target->Int(20);
-    target->Dex(20);
-    target->Con(20);
-    target->Wis(20);
-    target->Chr(20);
-    target->addSkillPoints(100);
-    target->advanceSkill("long sword", 5);
+    target.Name("Frank");
+    target.addAlias("frank");
+    target.Str(20);
+    target.Int(20);
+    target.Dex(20);
+    target.Con(20);
+    target.Wis(20);
+    target.Chr(20);
+    target.addSkillPoints(100);
+    target.advanceSkill("long sword", 5);
 
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
     move_object(target, room);
 
-    ExpectEq(5, target->getSkill("long sword"));
-    ExpectTrue(Research->researchCommand("throw turnip at frank"), "command executed");
-    ExpectTrue(target->registeredInventoryObject("/lib/tests/support/research/testTimedResearchItem.c#Bob"));
-    ExpectEq(10, target->getSkill("long sword"));
-    ExpectTrue(Research->sustainedResearchIsActive("/lib/tests/support/research/testTimedResearchItem.c"), "research is active");
+    ExpectEq(5, target.getSkill("long sword"));
+    ExpectTrue(Research.researchCommand("throw turnip at frank"), "command executed");
+    ExpectTrue(target.registeredInventoryObject("/lib/tests/support/research/testTimedResearchItem.c#Bob"));
+    ExpectEq(10, target.getSkill("long sword"));
+    ExpectTrue(Research.sustainedResearchIsActive("/lib/tests/support/research/testTimedResearchItem.c"), "research is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -320,17 +320,17 @@ void LimitedByEquipmentCorrectlyApplied()
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testLimitedActiveResearchItem.c"), "initiate research");
-    ExpectFalse(Research->researchCommand("throw turnip at Bob"), "cannot use research command");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testLimitedActiveResearchItem.c"), "initiate research");
+    ExpectFalse(Research.researchCommand("throw turnip at Bob"), "cannot use research command");
 
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Research);
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
 
-    ExpectTrue(Research->researchCommand("throw turnip at Bob"), "can now use research command");
+    ExpectTrue(Research.researchCommand("throw turnip at Bob"), "can now use research command");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -339,31 +339,31 @@ void TraitCorrectlyApplied()
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPersistedActiveTraitResearch.c"), "initiate research");
-    ExpectTrue(Research->researchCommand("throw turnip"), "can use research command");
-    ExpectTrue(Research->isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "trait applied");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPersistedActiveTraitResearch.c"), "initiate research");
+    ExpectTrue(Research.researchCommand("throw turnip"), "can use research command");
+    ExpectTrue(Research.isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"), "trait applied");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TargetedResearchWithoutAtRunsOnResearcher()
 {
     // This is a laziness thing - I don't want to create a granted research 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
-    ExpectEq(5, Research->getSkill("long sword"));
-    ExpectTrue(Research->researchCommand("throw turnip"));
-    ExpectTrue(Research->registeredInventoryObject("/lib/tests/support/research/testTimedResearchItem.c#Bob"));
-    ExpectEq(10, Research->getSkill("long sword"));
-    ExpectTrue(Research->sustainedResearchIsActive("/lib/tests/support/research/testTimedResearchItem.c"), "research is active");
+    ExpectEq(5, Research.getSkill("long sword"));
+    ExpectTrue(Research.researchCommand("throw turnip"));
+    ExpectTrue(Research.registeredInventoryObject("/lib/tests/support/research/testTimedResearchItem.c#Bob"));
+    ExpectEq(10, Research.getSkill("long sword"));
+    ExpectTrue(Research.sustainedResearchIsActive("/lib/tests/support/research/testTimedResearchItem.c"), "research is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -373,29 +373,29 @@ void CustomEventFiredWhenResearchUsed()
 
     ToggleCallOutBypass();
     // This is a laziness thing - I don't want to create a granted research 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
     object subscriber = clone_object("/lib/tests/support/events/customEventSubscriber");
-    Research->registerEvent(subscriber);
-    ExpectEq(0, subscriber->TimesUsedResearchEventReceived(), "event not fired yet");
-    Research->researchCommand("throw turnip");
-    ExpectEq(1, subscriber->TimesUsedResearchEventReceived(), "custom event fired");
+    Research.registerEvent(subscriber);
+    ExpectEq(0, subscriber.TimesUsedResearchEventReceived(), "event not fired yet");
+    Research.researchCommand("throw turnip");
+    ExpectEq(1, subscriber.TimesUsedResearchEventReceived(), "custom event fired");
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddNegativeResearchPoints()
 {
-    ExpectFalse(Research->addResearchPoints(-2));
+    ExpectFalse(Research.addResearchPoints(-2));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -404,9 +404,9 @@ void AddingResearchPointsFiresOnResearchPointsAdded()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Research->registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
-    string err = catch (Research->addResearchPoints(1));
+    string err = catch (Research.addResearchPoints(1));
     string expectedError = "*event handler: onResearchPointsAdded called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -417,105 +417,105 @@ void AddingResearchPointsFiresOnResearchPointsAdded()
 void CannotUseResearchWhileAwaitingCooldown()
 {
     // This is a laziness thing - I don't want to create a granted research 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTimedResearchItem.c"), "finally researched");
 
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
 
-    ExpectFalse(Research->blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "not blocked by cool down");
-    ExpectTrue(Research->researchCommand("throw turnip"), "command used");
-    ExpectFalse(Research->blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "not blocked by cool down");
+    ExpectFalse(Research.blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "not blocked by cool down");
+    ExpectTrue(Research.researchCommand("throw turnip"), "command used");
+    ExpectFalse(Research.blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "not blocked by cool down");
 
     // Deactivate the skill
-    ExpectTrue(Research->researchCommand("throw turnip"), "command used second time");
-    ExpectTrue(Research->blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "blocked by cool down");
-    Research->heart_beat();
-    ExpectTrue(Research->blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "blocked by cool down");
-    Research->heart_beat();
-    ExpectFalse(Research->blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "can use again");
+    ExpectTrue(Research.researchCommand("throw turnip"), "command used second time");
+    ExpectTrue(Research.blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "blocked by cool down");
+    Research.heart_beat();
+    ExpectTrue(Research.blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "blocked by cool down");
+    Research.heart_beat();
+    ExpectFalse(Research.blockedByCooldown("/lib/tests/support/research/testTimedResearchItem.c"), "can use again");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitiateTreeResearchFailsWhenAllConditionsNotMet()
 {
-    ExpectFalse(Research->addResearchTree("/lib/tests/support/research/testResearchTree.c"));
-    ExpectFalse(Research->isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
+    ExpectFalse(Research.addResearchTree("/lib/tests/support/research/testResearchTree.c"));
+    ExpectFalse(Research.isResearched("/lib/tests/support/research/testPointsResearchItem.c"), "isResearched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InitiateTreeResearchSucceedsWhenAllConditionsMet()
 {
-    Research->advanceSkill("long sword", 10);
-    ExpectTrue(Research->addResearchTree("/lib/tests/support/research/testResearchTree.c"));
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testTreeRoot.c"), "isResearched");
+    Research.advanceSkill("long sword", 10);
+    ExpectTrue(Research.addResearchTree("/lib/tests/support/research/testResearchTree.c"));
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testTreeRoot.c"), "isResearched");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesIsEmptyByDefault()
 {
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesReturnsAllTreesWithResearchedItems()
 {
-    Research->advanceSkill("long sword", 10);
-    ExpectEq(({}), Research->availableResearchTrees());
-    ExpectTrue(Research->addResearchTree("/lib/tests/support/research/testResearchTree.c"));
-    ExpectEq(({ "/lib/tests/support/research/testResearchTree.c" }), Research->availableResearchTrees(), "tree added");
-    ExpectTrue(Research->addResearchTree("/lib/tests/support/research/testSecondResearchTree.c"));
+    Research.advanceSkill("long sword", 10);
+    ExpectEq(({}), Research.availableResearchTrees());
+    ExpectTrue(Research.addResearchTree("/lib/tests/support/research/testResearchTree.c"));
+    ExpectEq(({ "/lib/tests/support/research/testResearchTree.c" }), Research.availableResearchTrees(), "tree added");
+    ExpectTrue(Research.addResearchTree("/lib/tests/support/research/testSecondResearchTree.c"));
     ExpectEq(({ "/lib/tests/support/research/testResearchTree.c", "/lib/tests/support/research/testSecondResearchTree.c" }), 
-        Research->availableResearchTrees());
+        Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesReturnsTreesAvailableFromGuilds()
 {
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 
-    Research->ToggleMockGuilds();
+    Research.ToggleMockGuilds();
 
     ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }),
-        Research->availableResearchTrees());
+        Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesReturnsTreesAvailableFromRaces()
 {
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 
-    Research->Race("high elf");
+    Research.Race("high elf");
 
     ExpectEq(({ "/lib/instances/research/races/highElfResearchTree.c" }),
-        Research->availableResearchTrees());
+        Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesReturnsTreesAvailableFromTraits()
 {
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 
-    Research->ToggleMockTrait();
+    Research.ToggleMockTrait();
 
     ExpectEq(({ "does/not/exist/traitResearchTree.c", "some/other/locale/traitResearchTree.c" }),
-        Research->availableResearchTrees());
+        Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AvailableResearchTreesReturnsTreesAvailableFromBackground()
 {
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 
-    Research->ToggleMockBackground();
+    Research.ToggleMockBackground();
 
     ExpectEq(({ "does/not/exist/backgroundResearchTree.c", "some/other/locale/backgroundResearchTree.c" }),
-        Research->availableResearchTrees());
+        Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -530,80 +530,80 @@ void AvailableResearchTreesReturnsTreesAvailableFromAllRelevantServices()
         "/lib/instances/research/races/highElfResearchTree.c",
         "/lib/tests/support/research/testResearchTree.c"
     });
-    ExpectEq(({}), Research->availableResearchTrees());
+    ExpectEq(({}), Research.availableResearchTrees());
 
-    Research->advanceSkill("long sword", 10);
-    ExpectTrue(Research->addResearchTree("/lib/tests/support/research/testResearchTree.c"));
+    Research.advanceSkill("long sword", 10);
+    ExpectTrue(Research.addResearchTree("/lib/tests/support/research/testResearchTree.c"));
 
-    Research->Race("high elf");
-    Research->ToggleMockGuilds();
-    Research->ToggleMockTrait();
-    Research->ToggleMockBackground();
-    ExpectEq(expectedTrees, Research->availableResearchTrees());
+    Research.Race("high elf");
+    Research.ToggleMockGuilds();
+    Research.ToggleMockTrait();
+    Research.ToggleMockBackground();
+    ExpectEq(expectedTrees, Research.availableResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CompletedResearchReturnsFinishedResearch()
 {
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectEq(({}), Research->completedResearch());
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectEq(({}), Research.completedResearch());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research->completedResearch());
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research.completedResearch());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
     ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c", "/lib/tests/support/research/testGrantedResearchItem.c" }),
-        Research->completedResearch());
+        Research.completedResearch());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CompletedResearchDoesNotReturnResearchInProgress()
 {
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectEq(({}), Research->completedResearch());
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectEq(({}), Research.completedResearch());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research->completedResearch());
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research.completedResearch());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research->completedResearch());
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testPointsResearchItem.c" }), Research.completedResearch());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchInProgressDoesNotReturnCompletedResearch()
 {
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectEq(({}), Research->researchInProgress());
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectEq(({}), Research.researchInProgress());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research->researchInProgress());
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research.researchInProgress());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research->researchInProgress());
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research.researchInProgress());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchInProgressTransitionsToCompletedWhenCompleted()
 {
-    Research->addResearchPoints(1);
-    Research->advanceSkill("long sword", 10);
-    ExpectEq(({}), Research->completedResearch());
+    Research.addResearchPoints(1);
+    Research.advanceSkill("long sword", 10);
+    ExpectEq(({}), Research.completedResearch());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
-    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research->researchInProgress(), "research begun");
-    ExpectEq(({}), Research->completedResearch(), "no research completed");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"), "initiate research");
+    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research.researchInProgress(), "research begun");
+    ExpectEq(({}), Research.completedResearch(), "no research completed");
 
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
-    Research->heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
+    Research.heart_beat();
 
-    ExpectEq(({ }), Research->researchInProgress(), "research ended");
-    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research->completedResearch(), "research completed");
+    ExpectEq(({ }), Research.researchInProgress(), "research ended");
+    ExpectEq(({ "/lib/tests/support/research/testTimedResearchItem.c" }), Research.completedResearch(), "research completed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -622,8 +622,8 @@ void AddResearchChoiceBroadcastsCorrectEventWithData()
     ]);
 
     object subscriber = clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c");
-    Research->registerEvent(subscriber);
-    ExpectTrue(Research->addResearchChoice(researchChoice));
+    Research.registerEvent(subscriber);
+    ExpectTrue(Research.addResearchChoice(researchChoice));
 
     mapping expectedChoices = ([
         "1": ([ 
@@ -642,7 +642,7 @@ void AddResearchChoiceBroadcastsCorrectEventWithData()
         ])
     ]);
 
-    ExpectEq(expectedChoices, subscriber->choices());
+    ExpectEq(expectedChoices, subscriber.choices());
     ToggleCallOutBypass();
 }
 
@@ -662,8 +662,8 @@ void AddResearchChoiceHandlesResearchPath()
     ]);
 
     object subscriber = clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c");
-    Research->registerEvent(subscriber);
-    ExpectTrue(Research->addResearchChoice(researchChoice));
+    Research.registerEvent(subscriber);
+    ExpectTrue(Research.addResearchChoice(researchChoice));
 
     mapping expectedChoices = ([
         "1":([
@@ -684,15 +684,15 @@ void AddResearchChoiceHandlesResearchPath()
         ])
     ]);
 
-    ExpectEq(expectedChoices, subscriber->choices());
+    ExpectEq(expectedChoices, subscriber.choices());
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchChoiceDoesNotAddResearchWhithoutChoiceSetUp()
 {
-    ExpectFalse(Research->selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
-    ExpectFalse(Research->isResearched("/lib/tests/support/research/testLimitedActiveResearchItem.c"));
+    ExpectFalse(Research.selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
+    ExpectFalse(Research.isResearched("/lib/tests/support/research/testLimitedActiveResearchItem.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -710,10 +710,10 @@ void SelectResearchChoiceFiresCorrectEvent()
             "/lib/tests/support/research/testGrantedResearchItem.c" })
     ]);
 
-    ExpectTrue(Research->addResearchChoice(researchChoice));
+    ExpectTrue(Research.addResearchChoice(researchChoice));
 
-    Research->registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research->selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
+    string err = catch (Research.selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
     string expectedError = "*event handler: onResearchChoiceChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -731,14 +731,14 @@ void SelectResearchPathSelectsCorrectResearchTree()
         "research objects" : ({ "/lib/tests/support/guilds/testGuildResearchTree.c",
             "/lib/tests/support/research/testSecondResearchTree.c" })
     ]);
-    Research->advanceSkill("long sword", 10);
+    Research.advanceSkill("long sword", 10);
 
-    ExpectTrue(Research->addResearchChoice(researchChoice));
-    ExpectFalse(Research->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
-    ExpectFalse(member(Research->availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
-    ExpectTrue(Research->selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
-    ExpectTrue(Research->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
-    ExpectTrue(member(Research->availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
+    ExpectTrue(Research.addResearchChoice(researchChoice));
+    ExpectFalse(Research.isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectFalse(member(Research.availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
+    ExpectTrue(Research.selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
+    ExpectTrue(Research.isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectTrue(member(Research.availableResearchTrees(), "/lib/tests/support/research/testSecondResearchTree.c") > -1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -755,12 +755,12 @@ void SelectResearchPathFiresCorrectEvent()
         "research objects" : ({ "/lib/tests/support/guilds/testGuildResearchTree.c",
             "/lib/tests/support/research/testSecondResearchTree.c" })
     ]);
-    Research->advanceSkill("long sword", 10);
+    Research.advanceSkill("long sword", 10);
 
-    ExpectTrue(Research->addResearchChoice(researchChoice));
+    ExpectTrue(Research.addResearchChoice(researchChoice));
 
-    Research->registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research->selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
+    Research.registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
+    string err = catch (Research.selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
     string expectedError = "*event handler: onResearchPathChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -770,101 +770,101 @@ void SelectResearchPathFiresCorrectEvent()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchPathDoesNotAddResearchWhithoutChoiceSetUp()
 {
-    ExpectFalse(Research->selectResearchChoice("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
-    ExpectFalse(Research->isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
+    ExpectFalse(Research.selectResearchChoice("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
+    ExpectFalse(Research.isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void PassiveResearchCombatBonusesApplied()
 {
-    ExpectEq(150, Research->maxSpellPoints(), "initial spell points");
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
-    ExpectEq(155, Research->maxSpellPoints(), "after research spell points");
+    ExpectEq(150, Research.maxSpellPoints(), "initial spell points");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"), "initiate research");
+    ExpectEq(155, Research.maxSpellPoints(), "after research spell points");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchSustainedCommandReducesByCost()
 {
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
-    ExpectTrue(Research->isResearched("/lib/tests/support/research/testSustainedTraitResearch.c"), "finally researched");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c"), "initiate research");
+    ExpectTrue(Research.isResearched("/lib/tests/support/research/testSustainedTraitResearch.c"), "finally researched");
 
     object target = clone_object("/lib/realizations/player");
-    target->Name("Frank");
-    target->addAlias("frank");
-    target->Str(20);
-    target->Int(20);
-    target->Dex(20);
-    target->Con(20);
-    target->Wis(20);
-    target->Chr(20);
+    target.Name("Frank");
+    target.addAlias("frank");
+    target.Str(20);
+    target.Int(20);
+    target.Dex(20);
+    target.Con(20);
+    target.Wis(20);
+    target.Chr(20);
 
     object room = clone_object("/lib/environment/environment");
     move_object(Research, room);
     move_object(target, room);
 
-    ExpectEq(150, Research->maxSpellPoints(), "initial max spell points");
-    ExpectTrue(Research->researchCommand("throw turnip at frank"));
-    ExpectEq(140, Research->maxSpellPoints(), "max spell points decreased");
-    ExpectTrue(Research->sustainedResearchIsActive("/lib/tests/support/research/testSustainedTraitResearch.c"), "research is active");
-    ExpectTrue(target->isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "trait is active");
+    ExpectEq(150, Research.maxSpellPoints(), "initial max spell points");
+    ExpectTrue(Research.researchCommand("throw turnip at frank"));
+    ExpectEq(140, Research.maxSpellPoints(), "max spell points decreased");
+    ExpectTrue(Research.sustainedResearchIsActive("/lib/tests/support/research/testSustainedTraitResearch.c"), "research is active");
+    ExpectTrue(target.isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "trait is active");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectEnchantmentsReturned()
 {
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/testEnchantmentResearchItem.c"), "initiate research");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/testEnchantmentResearchItem.c"), "initiate research");
     ExpectEq((["electricity":5, "fire": 2, "magical": 1 ]), 
-        Research->researchEnchantments());
+        Research.researchEnchantments());
 
-    ExpectTrue(Research->initiateResearch("/lib/tests/support/research/anotherEnchantmentResearch.c"), "initiate research");
+    ExpectTrue(Research.initiateResearch("/lib/tests/support/research/anotherEnchantmentResearch.c"), "initiate research");
     ExpectEq((["electricity":5, "fire" : 5, "magical" : 1]),
-        Research->researchEnchantments());
+        Research.researchEnchantments());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EquivalenceCorrectlyApplied()
 {
-    Research->addResearchPoints(2);
-    object researchItem = getDictionary("research")->researchObject(
+    Research.addResearchPoints(2);
+    object researchItem = getDictionary("research").researchObject(
         "/lib/tests/support/research/testResearchA.c");
 
-    ExpectFalse(Research->equivalentIsResearched(
+    ExpectFalse(Research.equivalentIsResearched(
         "/lib/tests/support/research/testResearchA.c"));
 
-    ExpectFalse(Research->initiateResearch(
+    ExpectFalse(Research.initiateResearch(
         "/lib/tests/support/research/testResearchPrereq.c"), "initiate research");
 
-    ExpectTrue(Research->initiateResearch(
+    ExpectTrue(Research.initiateResearch(
         "/lib/tests/support/research/equivalenceItem.c"), "initiate research");
 
-    ExpectTrue(Research->equivalentIsResearched(
+    ExpectTrue(Research.equivalentIsResearched(
         "/lib/tests/support/research/testResearchA.c"));
 
-    ExpectTrue(Research->initiateResearch(
+    ExpectTrue(Research.initiateResearch(
         "/lib/tests/support/research/testResearchPrereq.c"), "initiate research");
 
-    ExpectFalse(Research->initiateResearch(
+    ExpectFalse(Research.initiateResearch(
         "/lib/tests/support/research/testResearchA.c"), "initiate research");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanAddCompositeResearchAndRetrieveByConstraint()
 {
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq((["Flight of the Weasels": compositeElement]), 
-        Research->getOptionsForCompositeResearch(
+        Research.getOptionsForCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InvalidCompositeActivationReturnsFalse()
 {
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    ExpectFalse(Research->activateCompositeResearch(
+    ExpectFalse(Research.activateCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c",
         "Weasels, Glorious Weasels"));
 }
@@ -872,33 +872,33 @@ void InvalidCompositeActivationReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void GetNextCompositeResearchElementReturnsZeroWhenResearchNotActivated()
 {
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq(0, 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated()
 {
-    Research->addResearchPoints(50);
-    Research->initiateResearch("/lib/tests/support/research/compositeRoot.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    Research.addResearchPoints(50);
+    Research.initiateResearch("/lib/tests/support/research/compositeRoot.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
 
     object instrument =
         clone_object("/lib/instances/items/instruments/strings/lute.c");
     move_object(instrument, Research);
     command("equip lute", Research);
 
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    ExpectTrue(Research->activateCompositeResearch(
+    ExpectTrue(Research.activateCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c",
         "Flight of the Weasels"));
 
@@ -908,7 +908,7 @@ void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated
             "description": "Oh, sing me a song of the weasels, man.",
             "order in sequence": 1
         ]), 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "/lib/tests/support/research/compositeResearchItemB.c",
@@ -916,7 +916,7 @@ void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated
             "description": "Sing me a song tonight.",
             "order in sequence": 2
         ]), 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "/lib/tests/support/research/compositeResearchItemA.c",
@@ -924,7 +924,7 @@ void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated
             "description": "For the Mustelidae, they are now mocking me",
             "order in sequence": 3
         ]), 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 
     ExpectEq(([ 
             "research": "/lib/tests/support/research/compositeResearchItemC.c",
@@ -932,43 +932,43 @@ void GetNextCompositeResearchElementIteratesThroughElementsWhenResearchActivated
             "description": "and eating my intestines in spite.",
             "order in sequence": 4
         ]), 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 
     ExpectEq(0, 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 
     ExpectEq(0, 
-        Research->getNextCompositeResearchElement());
+        Research.getNextCompositeResearchElement());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DeactivateCompositeResearchDeactivatesResearch()
 {
-    Research->addResearchPoints(50);
-    Research->initiateResearch("/lib/tests/support/research/compositeRoot.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    Research->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    Research.addResearchPoints(50);
+    Research.initiateResearch("/lib/tests/support/research/compositeRoot.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
 
     object instrument =
         clone_object("/lib/instances/items/instruments/strings/lute.c");
     move_object(instrument, Research);
     command("equip lute", Research);
 
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
     ExpectEq((["Flight of the Weasels": compositeElement]),
-        Research->getOptionsForCompositeResearch(
+        Research.getOptionsForCompositeResearch(
             "/lib/tests/support/research/compositeRoot.c"));
 
-    ExpectTrue(Research->activateCompositeResearch(
+    ExpectTrue(Research.activateCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c",
         "Flight of the Weasels"));
 
-    Research->getNextCompositeResearchElement();
+    Research.getNextCompositeResearchElement();
 
     ExpectEq((["Flight of the Weasels": compositeElement +
         (["current item in sequence": ([ 
@@ -977,25 +977,25 @@ void DeactivateCompositeResearchDeactivatesResearch()
             "description": "Oh, sing me a song of the weasels, man.",
             "order in sequence": 1
         ])])]),
-        Research->getOptionsForCompositeResearch(
+        Research.getOptionsForCompositeResearch(
             "/lib/tests/support/research/compositeRoot.c"));
 
-    ExpectTrue(Research->deactivateCompositeResearch(
+    ExpectTrue(Research.deactivateCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c",
         "Flight of the Weasels"));
 
     ExpectEq((["Flight of the Weasels": compositeElement]),
-        Research->getOptionsForCompositeResearch(
+        Research.getOptionsForCompositeResearch(
             "/lib/tests/support/research/compositeRoot.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DeactivateCompositeResearchDoesNotAffectInactiveResearch()
 {
-    ExpectTrue(Research->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(Research.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    ExpectFalse(Research->deactivateCompositeResearch(
+    ExpectFalse(Research.deactivateCompositeResearch(
         "/lib/tests/support/research/compositeRoot.c",
         "Flight of the Weasels"));
 }

@@ -14,8 +14,8 @@ void Setup()
 
     ToggleCallOutBypass();
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("Gorthaur");
-    Player->addCommands();
+    Player.Name("Gorthaur");
+    Player.addCommands();
 
     Pedestal = clone_object("/tutorial/temple/objects/pedestal.c");
     move_object(Player, this_object());
@@ -34,219 +34,219 @@ void CleanUp()
 void NothingHappensWhenPlatePressedAndNoTestActive()
 {
     command("press envy", Player);
-    ExpectSubStringMatch("Nothing happens", Player->caughtMessage());
+    ExpectSubStringMatch("Nothing happens", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanPressPlateWhenTestActive()
 {
-    Pedestal->startFirstTest();
+    Pedestal.startFirstTest();
     command("press envy", Player);
     ExpectSubStringMatch("The orbs of energy atop the pedestals swirl", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanResetPlates()
 {
-    Pedestal->startFirstTest();
+    Pedestal.startFirstTest();
     command("press envy", Player);
 
-    string platePressed = Player->caughtMessage();
+    string platePressed = Player.caughtMessage();
 
     command("press death", Player);
-    ExpectNotEq(platePressed, Player->caughtMessage());
-    ExpectSubStringMatch("@.*@.*@.*@", Player->caughtMessage());
+    ExpectNotEq(platePressed, Player.caughtMessage());
+    ExpectSubStringMatch("@.*@.*@.*@", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteFirstTest()
 {
-    Pedestal->startFirstTest();
+    Pedestal.startFirstTest();
     command("press envy", Player);
-    ExpectSubStringMatch("B.*B.*B.*@", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*B.*@", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("G.*G.*G.*@", Player->caughtMessage());
+    ExpectSubStringMatch("G.*G.*G.*@", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("R.*R.*R.*@", Player->caughtMessage());
+    ExpectSubStringMatch("R.*R.*R.*@", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("R.*W.*W.*B", Player->caughtMessage());
+    ExpectSubStringMatch("R.*W.*W.*B", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("R.*B.*B.*G", Player->caughtMessage());
+    ExpectSubStringMatch("R.*B.*B.*G", Player.caughtMessage());
 
     command("press wrath", Player);
     ExpectSubStringMatch("W.*G.*B.*R", 
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteSecondTest()
 {
-    Pedestal->startSecondTest();
+    Pedestal.startSecondTest();
     command("press envy", Player);
-    ExpectSubStringMatch("B.*B.*B.*@", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*B.*@", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("B.*G.*G.*B", Player->caughtMessage());
+    ExpectSubStringMatch("B.*G.*G.*B", Player.caughtMessage());
 
     command("press sorrow", Player);
-    ExpectSubStringMatch("G.*G.*R.*G", Player->caughtMessage());
+    ExpectSubStringMatch("G.*G.*R.*G", Player.caughtMessage());
 
     command("press wrath", Player);
     ExpectSubStringMatch("R.*R.*R.*R",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteThirdTest()
 {
-    Pedestal->startThirdTest();
+    Pedestal.startThirdTest();
     command("press envy", Player);
-    ExpectSubStringMatch("B.*B.*B.*@", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*B.*@", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("G.*G.*G.*@", Player->caughtMessage());
+    ExpectSubStringMatch("G.*G.*G.*@", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("R.*R.*R.*@", Player->caughtMessage());
+    ExpectSubStringMatch("R.*R.*R.*@", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("W.*W.*W.*@", Player->caughtMessage());
+    ExpectSubStringMatch("W.*W.*W.*@", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("W.*B.*B.*B", Player->caughtMessage());
+    ExpectSubStringMatch("W.*B.*B.*B", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("W.*G.*G.*G", Player->caughtMessage());
+    ExpectSubStringMatch("W.*G.*G.*G", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("W.*R.*R.*R", Player->caughtMessage());
+    ExpectSubStringMatch("W.*R.*R.*R", Player.caughtMessage());
 
     command("press fear", Player);
     ExpectSubStringMatch("W.*W.*W.*W",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteFourthTest()
 {
-    Pedestal->startFourthTest();
+    Pedestal.startFourthTest();
     command("press envy", Player);
-    ExpectSubStringMatch("B.*B.*B.*@", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*B.*@", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("B.*G.*G.*B", Player->caughtMessage());
+    ExpectSubStringMatch("B.*G.*G.*B", Player.caughtMessage());
 
     command("press sorrow", Player);
-    ExpectSubStringMatch("G.*G.*R.*G", Player->caughtMessage());
+    ExpectSubStringMatch("G.*G.*R.*G", Player.caughtMessage());
 
     command("press wrath", Player);
-    ExpectSubStringMatch("R.*R.*R.*R", Player->caughtMessage());
+    ExpectSubStringMatch("R.*R.*R.*R", Player.caughtMessage());
 
     command("press envy", Player);
-    ExpectSubStringMatch("W.*W.*W.*R", Player->caughtMessage());
+    ExpectSubStringMatch("W.*W.*W.*R", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("W.*B.*B.*W", Player->caughtMessage());
+    ExpectSubStringMatch("W.*B.*B.*W", Player.caughtMessage());
 
     command("press sorrow", Player);
-    ExpectSubStringMatch("B.*B.*G.*B", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*G.*B", Player.caughtMessage());
 
     command("press wrath", Player);
     ExpectSubStringMatch("G.*G.*G.*G",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteFifthTest()
 {
-    Pedestal->startFifthTest();
+    Pedestal.startFifthTest();
     command("press sorrow", Player);
-    ExpectSubStringMatch("B.*@.*B.*B", Player->caughtMessage());
+    ExpectSubStringMatch("B.*@.*B.*B", Player.caughtMessage());
 
     command("press wrath", Player);
     ExpectSubStringMatch("G.*B.*B.*G",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteSixthTest()
 {
-    Pedestal->startSixthTest();
+    Pedestal.startSixthTest();
     command("press envy", Player);
-    ExpectSubStringMatch("B.*B.*B.*@", Player->caughtMessage());
+    ExpectSubStringMatch("B.*B.*B.*@", Player.caughtMessage());
 
     command("press fear", Player);
     ExpectSubStringMatch("B.*G.*G.*B",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteSeventhTest()
 {
-    Pedestal->startSeventhTest();
+    Pedestal.startSeventhTest();
     command("press fear", Player);
-    ExpectSubStringMatch("@.*B.*B.*B", Player->caughtMessage());
+    ExpectSubStringMatch("@.*B.*B.*B", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("@.*G.*G.*G", Player->caughtMessage());
+    ExpectSubStringMatch("@.*G.*G.*G", Player.caughtMessage());
 
     command("press fear", Player);
-    ExpectSubStringMatch("@.*R.*R.*R", Player->caughtMessage());
+    ExpectSubStringMatch("@.*R.*R.*R", Player.caughtMessage());
 
     command("press wrath", Player);
-    ExpectSubStringMatch("B.*W.*R.*W", Player->caughtMessage());
+    ExpectSubStringMatch("B.*W.*R.*W", Player.caughtMessage());
 
     command("press wrath", Player);
-    ExpectSubStringMatch("G.*B.*R.*B", Player->caughtMessage());
+    ExpectSubStringMatch("G.*B.*R.*B", Player.caughtMessage());
 
     command("press envy", Player);
     ExpectSubStringMatch("R.*G.*W.*B",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeUnicodeCharacters()
 {
-    Player->charsetConfiguration("unicode");
-    Pedestal->startFirstTest();
+    Player.charsetConfiguration("unicode");
+    Pedestal.startFirstTest();
     command("press envy", Player);
-    ExpectSubStringMatch("\u229b.*\u229b.*\u229b.*\u229b", Player->caughtMessage());
+    ExpectSubStringMatch("\u229b.*\u229b.*\u229b.*\u229b", Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeNoColors()
 {
-    Player->colorConfiguration("none");
-    Pedestal->startFirstTest();
+    Player.colorConfiguration("none");
+    Pedestal.startFirstTest();
     command("press envy", Player);
     ExpectSubStringMatch("[ \t\n]+B[ \t\n]+B[ \t\n]+B[ \t\n]+@", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("press envy", Player);
     command("press envy", Player);
@@ -255,17 +255,17 @@ void CanSeeNoColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("[ \t\n]+W[ \t\n]+G[ \t\n]+B[ \t\n]+R",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeThreeBitColors()
 {
-    Player->colorConfiguration("3-bit");
-    Pedestal->startFirstTest();
+    Player.colorConfiguration("3-bit");
+    Pedestal.startFirstTest();
     command("press envy", Player);
     ExpectSubStringMatch("0;34;1mB.*0;34;1mB.*0;34;1mB.*0;35;6m@", 
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("press envy", Player);
     command("press envy", Player);
@@ -274,17 +274,17 @@ void CanSeeThreeBitColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("0;37;1mW.*0;32;1mG.*0;34;1mB.*0;31;1mR",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeEightBitColors()
 {
-    Player->colorConfiguration("8-bit");
-    Pedestal->startFirstTest();
+    Player.colorConfiguration("8-bit");
+    Pedestal.startFirstTest();
     command("press envy", Player);
     ExpectSubStringMatch("0;38;5;20;1mB.*0;38;5;20;1mB.*0;38;5;20;1mB.*0;38;5;244;1m@",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("press envy", Player);
     command("press envy", Player);
@@ -293,18 +293,18 @@ void CanSeeEightBitColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("0;38;5;15;1mW.*0;38;5;28;1mG.*0;38;5;20;1mB.*0;38;5;124;1mR",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeTwentyFourBitColors()
 {
-    Player->colorConfiguration("24-bit");
-    Pedestal->startFirstTest();
+    Player.colorConfiguration("24-bit");
+    Pedestal.startFirstTest();
     command("press envy", Player);
     ExpectSubStringMatch("0;38;2;0;0;220;1mB.*0;38;2;0;0;220;1mB.*"
         "0;38;2;0;0;220;1mB.*0;38;2;120;120;120;1m@",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("press envy", Player);
     command("press envy", Player);
@@ -314,5 +314,5 @@ void CanSeeTwentyFourBitColors()
     command("press wrath", Player);
     ExpectSubStringMatch("0;38;2;255;255;255;1mW.*0;38;2;0;180;0;1mG.*"
         "0;38;2;0;0;220;1mB.*0;38;2;180;0;0;1mR",
-        Player->caughtMessages()[sizeof(Player->caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
 }

@@ -12,21 +12,21 @@ object Target;
 void SetUpAttacker()
 {
     Attacker = clone_object("/lib/realizations/player.c");
-    Attacker->restore("gorthaur");
+    Attacker.restore("gorthaur");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpTarget()
 {
     Target = clone_object("/lib/realizations/monster");
-    Target->Name("Nukulevee");
-    Target->Race("undead horse");
-    Target->effectiveLevel(20);
-    Target->Str(20);
-    Target->Dex(20);
-    Target->Con(20);
-    Target->Int(20);
-    Target->Wis(20);
+    Target.Name("Nukulevee");
+    Target.Race("undead horse");
+    Target.effectiveLevel(20);
+    Target.Str(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Int(20);
+    Target.Wis(20);
 }
 
 
@@ -41,10 +41,10 @@ void Setup()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->Gorthaur());
+    dataAccess.savePlayerData(database.Gorthaur());
 
     destruct(dataAccess);
     destruct(database);
@@ -63,76 +63,76 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CombatStatisticsAreGenerated()
 {
-    Attacker->generateCombatStatistics(Target);
+    Attacker.generateCombatStatistics(Target);
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
         "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 1]),
-        Attacker->getBestKill());
+        Attacker.getBestKill());
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
         "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 1]),
-        Attacker->getNemesis());
-    ExpectTrue(Attacker->racialKillsMeetCount("undead horse", 1), "One undead horse has been killed");
+        Attacker.getNemesis());
+    ExpectTrue(Attacker.racialKillsMeetCount("undead horse", 1), "One undead horse has been killed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CombatStatisticsNemesisIsMostFrequestKill()
 {
     object foe = clone_object("/lib/tests/support/services/combatWithMockServices");
-    foe->Name("Earl");
-    foe->Race("orc");
-    foe->effectiveLevel(25);
+    foe.Name("Earl");
+    foe.Race("orc");
+    foe.effectiveLevel(25);
 
-    Attacker->generateCombatStatistics(foe);
-    Attacker->generateCombatStatistics(Target);
-    Attacker->generateCombatStatistics(Target);
+    Attacker.generateCombatStatistics(foe);
+    Attacker.generateCombatStatistics(Target);
+    Attacker.generateCombatStatistics(Target);
 
     ExpectEq((["name":"Nukulevee",
         "level" : 20,
         "key" : "/lib/realizations/monster.c#Nukulevee",
         "times killed" : 2]),
-        Attacker->getNemesis());
+        Attacker.getNemesis());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CombatStatisticsRaceUpdatesCorrectly()
 {
     object foe = clone_object("/lib/realizations/monster");
-    foe->Name("Earl");
-    foe->Race("orc");
-    foe->effectiveLevel(25);
+    foe.Name("Earl");
+    foe.Race("orc");
+    foe.effectiveLevel(25);
 
-    ExpectFalse(Attacker->racialKillsMeetCount("orc", 1), "One orc has not been killed");
-    ExpectFalse(Attacker->racialKillsMeetCount("undead horse", 2), "Two undead horses have not been killed");
+    ExpectFalse(Attacker.racialKillsMeetCount("orc", 1), "One orc has not been killed");
+    ExpectFalse(Attacker.racialKillsMeetCount("undead horse", 2), "Two undead horses have not been killed");
 
-    Attacker->generateCombatStatistics(foe);
-    Attacker->generateCombatStatistics(Target);
+    Attacker.generateCombatStatistics(foe);
+    Attacker.generateCombatStatistics(Target);
 
-    ExpectTrue(Attacker->racialKillsMeetCount("orc", 1), "One orc has been killed");
-    ExpectFalse(Attacker->racialKillsMeetCount("undead horse", 2), "Two undead horses still have not been killed");
+    ExpectTrue(Attacker.racialKillsMeetCount("orc", 1), "One orc has been killed");
+    ExpectFalse(Attacker.racialKillsMeetCount("undead horse", 2), "Two undead horses still have not been killed");
 
-    Attacker->generateCombatStatistics(Target);
-    ExpectTrue(Attacker->racialKillsMeetCount("undead horse", 2), "Two undead horses have been killed");
+    Attacker.generateCombatStatistics(Target);
+    ExpectTrue(Attacker.racialKillsMeetCount("undead horse", 2), "Two undead horses have been killed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CombatStatisticsBestKillUpdatesCorrectly()
 {
     object foe = clone_object("/lib/realizations/monster");
-    foe->Name("Earl");
-    foe->Race("orc");
-    foe->effectiveLevel(25);
+    foe.Name("Earl");
+    foe.Race("orc");
+    foe.effectiveLevel(25);
 
-    ExpectFalse(Attacker->bestKillMeetsLevel(20), "nothing killed yet.");
-    Attacker->generateCombatStatistics(Target);
-    ExpectTrue(Attacker->bestKillMeetsLevel(20), "Level 20 thing killed");
-    ExpectFalse(Attacker->bestKillMeetsLevel(25), "Level 25 thing not killed");
-    Attacker->generateCombatStatistics(foe);
-    Attacker->generateCombatStatistics(Target);
+    ExpectFalse(Attacker.bestKillMeetsLevel(20), "nothing killed yet.");
+    Attacker.generateCombatStatistics(Target);
+    ExpectTrue(Attacker.bestKillMeetsLevel(20), "Level 20 thing killed");
+    ExpectFalse(Attacker.bestKillMeetsLevel(25), "Level 25 thing not killed");
+    Attacker.generateCombatStatistics(foe);
+    Attacker.generateCombatStatistics(Target);
 
-    ExpectTrue(Attacker->bestKillMeetsLevel(25), "Level 25 thing not killed");
+    ExpectTrue(Attacker.bestKillMeetsLevel(25), "Level 25 thing not killed");
 }

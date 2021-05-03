@@ -13,40 +13,39 @@ object Room;
 void SetUpAttacker()
 {
     Attacker = clone_object("/lib/tests/support/services/combatWithMockServices");
-    Attacker->Name("Bob");
-    Attacker->Str(20);
-    Attacker->Dex(20);
-    Attacker->Con(20);
-    Attacker->Int(20);
-    Attacker->Wis(20);
-    Attacker->addCommands();
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpTarget()
 {
     Target = clone_object("/lib/tests/support/services/testMonster.c");
-    Target->Name("Nukulevee");
-    Target->Race("undead horse");
-    Target->effectiveLevel(20);
-    Target->Str(20);
-    Target->Dex(20);
-    Target->Con(20);
-    Target->Int(20);
-    Target->Wis(20);
+    Target.Name("Nukulevee");
+    Target.Race("undead horse");
+    Target.effectiveLevel(20);
+    Target.Str(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Int(20);
+    Target.Wis(20);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 object CreateWeapon(string name)
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon->set("name", name);
-    weapon->set("defense class", 2);
-    weapon->set("weapon class", 10);
-    weapon->set("bonus hit points", 2);
-    weapon->set("material", "galvorn");
-    weapon->set("weapon type", "long sword");
-    weapon->set("equipment locations", OnehandedWeapon);
+    weapon.set("name", name);
+    weapon.set("defense class", 2);
+    weapon.set("weapon class", 10);
+    weapon.set("bonus hit points", 2);
+    weapon.set("material", "galvorn");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attacker);
 
     return weapon;
@@ -56,13 +55,13 @@ object CreateWeapon(string name)
 object CreateShield(string name)
 {
     object shield = clone_object("/lib/items/weapon");
-    shield->set("name", name);
-    shield->set("defense class", 1);
-    shield->set("bonus constitution", 3);
-    shield->set("material", "steel");
-    shield->set("craftsmanship", 20);
-    shield->set("equipment locations", Shield);
-    shield->set("weapon type", "shield");
+    shield.set("name", name);
+    shield.set("defense class", 1);
+    shield.set("bonus constitution", 3);
+    shield.set("material", "steel");
+    shield.set("craftsmanship", 20);
+    shield.set("equipment locations", Shield);
+    shield.set("weapon type", "shield");
     move_object(shield, Attacker);
 
     return shield;
@@ -72,11 +71,11 @@ object CreateShield(string name)
 object CreateArmor(string name)
 {
     object armor = clone_object("/lib/items/armor");
-    armor->set("name", name);
-    armor->set("bonus hit points", 4);
-    armor->set("armor class", 5);
-    armor->set("armor type", "chainmail");
-    armor->set("equipment locations", Armor);
+    armor.set("name", name);
+    armor.set("bonus hit points", 4);
+    armor.set("armor class", 5);
+    armor.set("armor type", "chainmail");
+    armor.set("equipment locations", Armor);
     move_object(armor, Attacker);
 
     return armor;
@@ -111,43 +110,43 @@ void CleanUp()
 void AddAttackDoesNotAddInvalidAttacks()
 {
     // With no attacks set, one unarmed attack is created
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack is in the list");
-    ExpectFalse(Attacker->addAttack("blah", 10, 10), "blah attack is not added");
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack is in the list");
-    ExpectEq("unarmed", Attacker->getAttacks()[0]["attack type"], "unarmed attack exists");
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack is in the list");
+    ExpectFalse(Attacker.addAttack("blah", 10, 10), "blah attack is not added");
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack is in the list");
+    ExpectEq("unarmed", Attacker.getAttacks()[0]["attack type"], "unarmed attack exists");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddAttackAddsValidAttacks()
 {
-    ExpectTrue(Attacker->addAttack("claw", 10, 10), "claw attack added");
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack is in the list");
-    ExpectEq("claw", Attacker->getAttacks()[0]["attack type"], "claw attack was added");
+    ExpectTrue(Attacker.addAttack("claw", 10, 10), "claw attack added");
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack is in the list");
+    ExpectEq("claw", Attacker.getAttacks()[0]["attack type"], "claw attack was added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddAttackAddsMultipleAttacks()
 {
     // With no attacks set, one unarmed attack is created
-    ExpectTrue(Attacker->addAttack("claw", 10, 10), "claw attack added");
-    ExpectTrue(Attacker->addAttack("horn", 10, 10), "horn attack added");
-    ExpectTrue(Attacker->addAttack("teeth", 10, 10), "teeth attack added");
-    ExpectTrue(Attacker->addAttack("fire", 10, 10), "fire attack added");
-    ExpectTrue(Attacker->addAttack("cold", 10, 10), "cold attack added");
-    ExpectFalse(Attacker->addAttack("fake", 10, 10), "fake attack added");
-    ExpectEq(5, sizeof(Attacker->getAttacks()), "5 attacks were added");
+    ExpectTrue(Attacker.addAttack("claw", 10, 10), "claw attack added");
+    ExpectTrue(Attacker.addAttack("horn", 10, 10), "horn attack added");
+    ExpectTrue(Attacker.addAttack("teeth", 10, 10), "teeth attack added");
+    ExpectTrue(Attacker.addAttack("fire", 10, 10), "fire attack added");
+    ExpectTrue(Attacker.addAttack("cold", 10, 10), "cold attack added");
+    ExpectFalse(Attacker.addAttack("fake", 10, 10), "fake attack added");
+    ExpectEq(5, sizeof(Attacker.getAttacks()), "5 attacks were added");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ClearAttacksClearsAllAttacks()
 {
-    ExpectTrue(Attacker->addAttack("claw", 10, 10), "claw attack added");
-    ExpectTrue(Attacker->addAttack("horn", 10, 10), "horn attack added");
-    ExpectEq(2, sizeof(Attacker->getAttacks()), "1 attack is in the list");
-    ExpectEq("claw", Attacker->getAttacks()[0]["attack type"], "claw attack was added");
-    Attacker->clearAttacks();
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "only 1 attack in the list");
-    ExpectEq("unarmed", Attacker->getAttacks()[0]["attack type"], "unarmed attack in list");
+    ExpectTrue(Attacker.addAttack("claw", 10, 10), "claw attack added");
+    ExpectTrue(Attacker.addAttack("horn", 10, 10), "horn attack added");
+    ExpectEq(2, sizeof(Attacker.getAttacks()), "1 attack is in the list");
+    ExpectEq("claw", Attacker.getAttacks()[0]["attack type"], "claw attack was added");
+    Attacker.clearAttacks();
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "only 1 attack in the list");
+    ExpectEq("unarmed", Attacker.getAttacks()[0]["attack type"], "unarmed attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -155,10 +154,10 @@ void GetAttacksReturnsWeaponAttack()
 {
     object weapon = CreateWeapon("blah");
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
 
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
-    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack returned");
+    ExpectEq("wielded primary", Attacker.getAttacks()[0]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -167,11 +166,11 @@ void GetAttacksDoesNotReturnWieldedNonAttackShields()
     object weapon = CreateWeapon("blah");
     object shield = CreateShield("shield");
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(shield->equip("shield offhand"), "shield equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectTrue(shield.equip("shield offhand"), "shield equip called");
 
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
-    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack returned");
+    ExpectEq("wielded primary", Attacker.getAttacks()[0]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -179,14 +178,14 @@ void GetAttacksReturnsWieldedShieldsWithAttacks()
 {
     object weapon = CreateWeapon("blah");
     object shield = CreateShield("shield");
-    shield->set("weapon class", 1);
+    shield.set("weapon class", 1);
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(shield->equip("shield offhand"), "shield equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectTrue(shield.equip("shield offhand"), "shield equip called");
 
-    ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attack returned");
-    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
-    ExpectEq("wielded offhand", Attacker->getAttacks()[1]["attack type"], "shield attack in list");
+    ExpectEq(2, sizeof(Attacker.getAttacks()), "2 attack returned");
+    ExpectEq("wielded primary", Attacker.getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded offhand", Attacker.getAttacks()[1]["attack type"], "shield attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -195,26 +194,26 @@ void GetAttacksReturnDualWieldWeaponsWithAttacks()
     object weapon = CreateWeapon("blah");
     object weapon2 = CreateWeapon("stuff");
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(weapon2->equip("stuff offhand"), "second weapon equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectTrue(weapon2.equip("stuff offhand"), "second weapon equip called");
 
-    ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attacks returned");
-    ExpectEq("wielded primary", Attacker->getAttacks()[0]["attack type"], "weapon attack in list");
-    ExpectEq("wielded offhand", Attacker->getAttacks()[1]["attack type"], "weapon attack in list");
+    ExpectEq(2, sizeof(Attacker.getAttacks()), "2 attacks returned");
+    ExpectEq("wielded primary", Attacker.getAttacks()[0]["attack type"], "weapon attack in list");
+    ExpectEq("wielded offhand", Attacker.getAttacks()[1]["attack type"], "weapon attack in list");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void GetAttacksReturnsExtraAttacksFromServices()
 {
     object weapon = CreateWeapon("blah");
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
 
-    Attacker->ToggleMockGuilds();
-    Attacker->ToggleMockResearch();
-    Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
-    Attacker->ToggleMockBackground();
-    ExpectEq(5, sizeof(Attacker->getAttacks()), "5 attacks returned");
+    Attacker.ToggleMockGuilds();
+    Attacker.ToggleMockResearch();
+    Attacker.ToggleMockTrait();
+    Attacker.ToggleMockBiological();
+    Attacker.ToggleMockBackground();
+    ExpectEq(5, sizeof(Attacker.getAttacks()), "5 attacks returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -223,14 +222,14 @@ void GetAttacksReturnsOnlyOneAttackWhenInstrumentWielded()
     object instrument =
         clone_object("/lib/instances/items/instruments/strings/lute.c");
     move_object(instrument, Attacker);
-    ExpectTrue(instrument->equip("lute"), "instrument equip called");
+    ExpectTrue(instrument.equip("lute"), "instrument equip called");
 
-    Attacker->ToggleMockGuilds();
-    Attacker->ToggleMockResearch();
-    Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
-    Attacker->ToggleMockBackground();
-    ExpectEq(1, sizeof(Attacker->getAttacks()), "1 attack returned");
+    Attacker.ToggleMockGuilds();
+    Attacker.ToggleMockResearch();
+    Attacker.ToggleMockTrait();
+    Attacker.ToggleMockBiological();
+    Attacker.ToggleMockBackground();
+    ExpectEq(1, sizeof(Attacker.getAttacks()), "1 attack returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -239,19 +238,19 @@ void GetAttacksReturnsBonusAttackWhenInstrumentWieldedAndBonusInPlace()
     object instrument =
         clone_object("/lib/instances/items/instruments/strings/lute.c");
     move_object(instrument, Attacker);
-    ExpectTrue(instrument->equip("lute"), "instrument equip called");
+    ExpectTrue(instrument.equip("lute"), "instrument equip called");
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus sonic attack", 25);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus sonic attack", 25);
+    modifier.set("registration list", ({ Attacker }));
 
-    Attacker->ToggleMockGuilds();
-    Attacker->ToggleMockResearch();
-    Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
-    Attacker->ToggleMockBackground();
-    ExpectEq(2, sizeof(Attacker->getAttacks()), "2 attacks returned");
+    Attacker.ToggleMockGuilds();
+    Attacker.ToggleMockResearch();
+    Attacker.ToggleMockTrait();
+    Attacker.ToggleMockBiological();
+    Attacker.ToggleMockBackground();
+    ExpectEq(2, sizeof(Attacker.getAttacks()), "2 attacks returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -260,15 +259,15 @@ void GetAttacksWhenDualWieldedReturnsHalfExtraWeaponAttacksFromServices()
     object weapon = CreateWeapon("blah");
     object weapon2 = CreateWeapon("stuff");
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectTrue(weapon2->equip("stuff offhand"), "second weapon equip called");
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectTrue(weapon2.equip("stuff offhand"), "second weapon equip called");
 
-    Attacker->ToggleMockGuilds();
-    Attacker->ToggleMockResearch();
-    Attacker->ToggleMockTrait();
-    Attacker->ToggleMockBiological();
-    Attacker->ToggleMockBackground();
-    ExpectEq(7, sizeof(Attacker->getAttacks()), "7 attacks returned");
+    Attacker.ToggleMockGuilds();
+    Attacker.ToggleMockResearch();
+    Attacker.ToggleMockTrait();
+    Attacker.ToggleMockBiological();
+    Attacker.ToggleMockBackground();
+    ExpectEq(7, sizeof(Attacker.getAttacks()), "7 attacks returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -277,11 +276,11 @@ void PlayersCanToggleKillList()
     destruct(Attacker);
     Attacker = clone_object("/lib/realizations/player");
 
-    ExpectFalse(Attacker->onKillList(), "initial value");
-    Attacker->toggleKillList();
-    ExpectTrue(Attacker->onKillList(), "first time toggled");
-    Attacker->toggleKillList();
-    ExpectFalse(Attacker->onKillList(), "second time toggled");
+    ExpectFalse(Attacker.onKillList(), "initial value");
+    Attacker.toggleKillList();
+    ExpectTrue(Attacker.onKillList(), "first time toggled");
+    Attacker.toggleKillList();
+    ExpectFalse(Attacker.onKillList(), "second time toggled");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -291,9 +290,9 @@ void AttackFiresOnAttackEvent()
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker->attack(Target), "target attacked"));
+    string err = catch (ExpectTrue(Attacker.attack(Target), "target attacked"));
     ExpectEq("*event handler: onAttack called", err, "onAttack event fired");
     ToggleCallOutBypass();
 }
@@ -305,9 +304,9 @@ void AttackFiresOnAttackedEvent()
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Target->attack(Attacker), "target attacks attacker"));
+    string err = catch (ExpectTrue(Target.attack(Attacker), "target attacks attacker"));
     ExpectEq("*event handler: onAttacked called", err, "onAttacked event fired");
     ToggleCallOutBypass();
 }
@@ -316,21 +315,21 @@ void AttackFiresOnAttackedEvent()
 void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
 {
     object weapon = CreateWeapon("sword");
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    weapon->set("bonus long sword", 50);
-    weapon->equip("sword");
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    weapon.set("bonus long sword", 50);
+    weapon.equip("sword");
 
-    Target->hitPoints(1);
+    Target.hitPoints(1);
 
-    Attacker->addSkillPoints(100);
-    Attacker->advanceSkill("long sword", 20);
+    Attacker.addSkillPoints(100);
+    Attacker.advanceSkill("long sword", 20);
 
     object *roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
 
-    ExpectTrue(Attacker->attack(Target));
+    ExpectTrue(Attacker.attack(Target));
 
     roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two object are in the room");
@@ -343,24 +342,24 @@ void AttackInvolvingDeathCreatesCorpseAndDestroysTarget()
 void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 {
     object weapon = CreateWeapon("sword");
-    Attacker->hitPoints(1);
-    weapon->equip("sword");
+    Attacker.hitPoints(1);
+    weapon.equip("sword");
 
-    Target->hitPoints(Target->maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
     object *roomItems = all_inventory(Room);
     ExpectEq(2, sizeof(roomItems), "two objects are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
-    ExpectFalse(Attacker->isDead(), "attacker is not dead");
+    ExpectFalse(Attacker.isDead(), "attacker is not dead");
 
-    ExpectTrue(Target->attack(Attacker));
+    ExpectTrue(Target.attack(Attacker));
 
     roomItems = all_inventory(Room);
     ExpectEq(3, sizeof(roomItems), "three objects are in the room");
     ExpectTrue(member(roomItems, Attacker) > -1, "attacker is in room");
     ExpectTrue(member(roomItems, Target) > -1, "target is in room");
-    ExpectTrue(Attacker->isDead(), "attacker is now dead");
+    ExpectTrue(Attacker.isDead(), "attacker is now dead");
     ExpectEq("/lib/items/corpse.c", program_name(roomItems[0]));
 }
 
@@ -371,9 +370,9 @@ void OnHitFiresWhenLegalHitIsDone()
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker->hit(5, "physical"), "attacker hit is called"));
+    string err = catch (ExpectTrue(Attacker.hit(5, "physical"), "attacker hit is called"));
     ExpectEq("*event handler: onHit called, data: physical 5, caller: /lib/tests/support/services/combatWithMockServices.c", 
         err, "onHit event fired");
     ToggleCallOutBypass();
@@ -382,9 +381,9 @@ void OnHitFiresWhenLegalHitIsDone()
 /////////////////////////////////////////////////////////////////////////////
 void HitAddsCorrectExperience()
 {
-    Target->hitPoints(Target->maxHitPoints());
-    Target->hit(10000, "physical", Attacker);
-    ExpectEq(337, Attacker->experience());
+    Target.hitPoints(Target.maxHitPoints());
+    Target.hit(10000, "physical", Attacker);
+    ExpectEq(337, Attacker.experience());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -394,9 +393,9 @@ void OnDeathFiresWhenKillingBlowLands()
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker->hit(500, "physical"), "attacker hit is called"));
+    string err = catch (ExpectTrue(Attacker.hit(500, "physical"), "attacker hit is called"));
     ExpectEq("*event handler: onDeath called: /lib/tests/support/services/combatWithMockServices.c",
         err, "onDeath event fired");
     ToggleCallOutBypass();
@@ -405,13 +404,13 @@ void OnDeathFiresWhenKillingBlowLands()
 /////////////////////////////////////////////////////////////////////////////
 void SettingWimpyWorksCorrectly()
 {
-    clone_object("/lib/tests/support/services/catchShadow.c")->beginShadow(Attacker);
-    ExpectEq(0, Attacker->Wimpy(), "Wimpy is initially 0");
-    ExpectEq(70, Attacker->Wimpy("70"), "A wimpy of 70 can be set");
-    ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
-    ExpectEq(0, Attacker->Wimpy("0"), "A wimpy of 0 can be set");
-    ExpectEq(70, Attacker->Wimpy("80"), "A wimpy of 80 caps at 70%");
-    ExpectEq(0, Attacker->Wimpy("-10"), "A wimpy of -10 floors at 0%");
+    clone_object("/lib/tests/support/services/catchShadow.c").beginShadow(Attacker);
+    ExpectEq(0, Attacker.Wimpy(), "Wimpy is initially 0");
+    ExpectEq(70, Attacker.Wimpy("70"), "A wimpy of 70 can be set");
+    ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
+    ExpectEq(0, Attacker.Wimpy("0"), "A wimpy of 0 can be set");
+    ExpectEq(70, Attacker.Wimpy("80"), "A wimpy of 80 caps at 70%");
+    ExpectEq(0, Attacker.Wimpy("-10"), "A wimpy of -10 floors at 0%");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -420,18 +419,18 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
+    ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
 
-    Attacker->hitPoints(100);
-    Target->hitPoints(Target->maxHitPoints());
-    Attacker->registerAttacker(Target);
+    Attacker.hitPoints(100);
+    Target.hitPoints(Target.maxHitPoints());
+    Attacker.registerAttacker(Target);
 
     object handler = clone_object("/lib/tests/support/events/onRunAwaySubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
-    ExpectEq(0, handler->TimesRunAwayEventReceived());
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
+    ExpectEq(0, handler.TimesRunAwayEventReceived());
 
-    string err = catch(Attacker->heart_beat());
-    ExpectEq(0, handler->TimesRunAwayEventReceived());
+    string err = catch(Attacker.heart_beat());
+    ExpectEq(0, handler.TimesRunAwayEventReceived());
     ToggleCallOutBypass();
 }
 
@@ -441,25 +440,25 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
+    ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
 
     object combatRoom = load_object("/lib/tests/support/environment/startingRoom.c");
     move_object(Attacker, combatRoom);
     move_object(Target, combatRoom);
 
-    Attacker->hitPoints(50);
-    Target->hitPoints(Target->maxHitPoints());
-    Attacker->registerAttacker(Target);
+    Attacker.hitPoints(50);
+    Target.hitPoints(Target.maxHitPoints());
+    Attacker.registerAttacker(Target);
 
     object handler = clone_object("/lib/tests/support/events/onRunAwaySubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
-    ExpectEq(0, handler->TimesRunAwayEventReceived());
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
+    ExpectEq(0, handler.TimesRunAwayEventReceived());
 
     ExpectEq(combatRoom, environment(Attacker));
 
-    string err = catch (Attacker->heart_beat());
+    string err = catch (Attacker.heart_beat());
     ExpectNotEq(object_name(combatRoom), object_name(environment(Attacker)));
-    ExpectEq(1, handler->TimesRunAwayEventReceived());
+    ExpectEq(1, handler.TimesRunAwayEventReceived());
 
     ToggleCallOutBypass();
 }
@@ -470,17 +469,17 @@ void AttackerAttacksDuringHeartBeat()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered for attacker");
 
-    ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ExpectEq(0, handler.TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
     ToggleCallOutBypass();
 }
 
@@ -490,15 +489,15 @@ void TargetAttackedDuringHeartBeat()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackedSubscriber");
-    ExpectTrue(Target->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Target.registerEvent(handler), "event handler registered for attacker");
 
-    string err = catch (Attacker->heart_beat());
+    string err = catch (Attacker.heart_beat());
     ExpectEq("*event handler: onAttacked called: /lib/tests/support/services/testMonster.c",
         err, "onAttacked event fired");
     ToggleCallOutBypass();
@@ -507,167 +506,167 @@ void TargetAttackedDuringHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsHitPointsWhenBelowMaxEveryFifthTime()
 {
-    Attacker->hitPoints(20);
-    Attacker->spellPoints(Attacker->maxSpellPoints());
-    Attacker->staminaPoints(Attacker->maxStaminaPoints());
+    Attacker.hitPoints(20);
+    Attacker.spellPoints(Attacker.maxSpellPoints());
+    Attacker.staminaPoints(Attacker.maxStaminaPoints());
 
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->hitPoints(), "3 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(23, Attacker.hitPoints(), "3 hit points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal hit points", 2);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal hit points", 2);
+    modifier.set("registration list", ({ Attacker }));
 
     for (int i = 0; i < 14; i++)
     {
-        Attacker->heart_beat();
-        ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
+        Attacker.heart_beat();
+        ExpectEq(23, Attacker.hitPoints(), "0 hit points healed");
     }
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(23, Attacker.hitPoints(), "0 hit points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->hitPoints(), "5 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(28, Attacker.hitPoints(), "5 hit points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsAtDifferentRatesWhenBonusApplied()
 {
-    Attacker->hitPoints(20);
-    Attacker->spellPoints(Attacker->maxSpellPoints());
-    Attacker->staminaPoints(Attacker->maxStaminaPoints());
+    Attacker.hitPoints(20);
+    Attacker.spellPoints(Attacker.maxSpellPoints());
+    Attacker.staminaPoints(Attacker.maxStaminaPoints());
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal hit points rate", 26);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal hit points rate", 26);
+    modifier.set("registration list", ({ Attacker }));
 
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->hitPoints(), "3 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(23, Attacker.hitPoints(), "3 hit points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(23, Attacker.hitPoints(), "0 hit points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(23, Attacker->hitPoints(), "0 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(23, Attacker.hitPoints(), "0 hit points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(26, Attacker->hitPoints(), "3 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(26, Attacker.hitPoints(), "3 hit points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(26, Attacker->hitPoints(), "0 hit points healed");
+    Attacker.heart_beat();
+    ExpectEq(26, Attacker.hitPoints(), "0 hit points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsSpellPointsWhenBelowMaxEveryFifthTime()
 {
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Attacker->spellPoints(20);
-    Attacker->staminaPoints(Attacker->maxStaminaPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Attacker.spellPoints(20);
+    Attacker.staminaPoints(Attacker.maxStaminaPoints());
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->spellPoints(), "4 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.spellPoints(), "4 spell points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal spell points", 2);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal spell points", 2);
+    modifier.set("registration list", ({ Attacker }));
 
     for (int i = 0; i < 14; i++)
     {
-        Attacker->heart_beat();
-        ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
+        Attacker.heart_beat();
+        ExpectEq(24, Attacker.spellPoints(), "0 spell points healed");
     }
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.spellPoints(), "0 spell points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(30, Attacker->spellPoints(), "6 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(30, Attacker.spellPoints(), "6 spell points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsSPAtDifferentRatesWhenBonusApplied()
 {
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Attacker->spellPoints(20);
-    Attacker->staminaPoints(Attacker->maxStaminaPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Attacker.spellPoints(20);
+    Attacker.staminaPoints(Attacker.maxStaminaPoints());
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal spell points rate", 26);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal spell points rate", 26);
+    modifier.set("registration list", ({ Attacker }));
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->spellPoints(), "4 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.spellPoints(), "4 spell points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.spellPoints(), "0 spell points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->spellPoints(), "0 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.spellPoints(), "0 spell points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->spellPoints(), "4 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(28, Attacker.spellPoints(), "4 spell points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->spellPoints(), "0 spell points healed");
+    Attacker.heart_beat();
+    ExpectEq(28, Attacker.spellPoints(), "0 spell points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsStaminaPointsWhenBelowMaxEveryFifthTime()
 {
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Attacker->spellPoints(Attacker->maxSpellPoints());
-    Attacker->staminaPoints(20);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Attacker.spellPoints(Attacker.maxSpellPoints());
+    Attacker.staminaPoints(20);
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->staminaPoints(), "4 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.staminaPoints(), "4 stamina points healed");
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal stamina", 2);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal stamina", 2);
+    modifier.set("registration list", ({ Attacker }));
 
     for (int i = 0; i < 14; i++)
     {
-        Attacker->heart_beat();
-        ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
+        Attacker.heart_beat();
+        ExpectEq(24, Attacker.staminaPoints(), "0 stamina points healed");
     }
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.staminaPoints(), "0 stamina points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(30, Attacker->staminaPoints(), "6 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(30, Attacker.staminaPoints(), "6 stamina points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 {
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Attacker->spellPoints(Attacker->maxSpellPoints());
-    Attacker->staminaPoints(20);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Attacker.spellPoints(Attacker.maxSpellPoints());
+    Attacker.staminaPoints(20);
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("bonus heal stamina rate", 26);
-    modifier->set("registration list", ({ Attacker }));
+    modifier.set("fully qualified name", "blah");
+    modifier.set("bonus heal stamina rate", 26);
+    modifier.set("registration list", ({ Attacker }));
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->staminaPoints(), "4 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.staminaPoints(), "4 stamina points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.staminaPoints(), "0 stamina points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(24, Attacker->staminaPoints(), "0 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(24, Attacker.staminaPoints(), "0 stamina points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->staminaPoints(), "4 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(28, Attacker.staminaPoints(), "4 stamina points healed");
 
-    Attacker->heart_beat();
-    ExpectEq(28, Attacker->staminaPoints(), "0 stamina points healed");
+    Attacker.heart_beat();
+    ExpectEq(28, Attacker.staminaPoints(), "0 stamina points healed");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -676,23 +675,23 @@ void DamageReflectionIsTriggered()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
-    Attacker->registerAttacker(Target);
-    Target->registerAttacker(Attacker);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
+    Attacker.registerAttacker(Target);
+    Target.registerAttacker(Attacker);
 
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
     // An onHit event would get triggered if Attacker is hit
-    ExpectTrue(Target->hit(25, "physical"), "target hit is called");
+    ExpectTrue(Target.hit(25, "physical"), "target hit is called");
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("damage reflection", 15);
-    ExpectEq(1, modifier->set("registration list", ({ Target })), "registration list can be set");
+    modifier.set("fully qualified name", "blah");
+    modifier.set("damage reflection", 15);
+    ExpectEq(1, modifier.set("registration list", ({ Target })), "registration list can be set");
 
-    string err = catch (ExpectTrue(Target->hit(25, "physical"), "attack reflected on attacker"));
+    string err = catch (ExpectTrue(Target.hit(25, "physical"), "attack reflected on attacker"));
     ExpectEq("*event handler: onHit called, data: physical 3, caller: /lib/tests/support/services/combatWithMockServices.c",
         err, "onHit event fired");
     ToggleCallOutBypass();
@@ -704,29 +703,29 @@ void SlowDoesNotAttackEveryRound()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("slow", 1);
-    ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
+    modifier.set("fully qualified name", "blah");
+    modifier.set("slow", 1);
+    ExpectEq(1, modifier.set("registration list", ({ Attacker })), "registration list can be set");
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered for attacker");
 
     // Expect that the first call to heart_beat does not initiate an attack
-    ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
-    Attacker->heart_beat();
-    ExpectEq(0, handler->TimesOnAttackReceived(), "after heart_beat, no onAttack events fired");
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after second heart_beat, one onAttack event fired");
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after third heart_beat, one onAttack event fired");
-    Attacker->heart_beat();
-    ExpectEq(2, handler->TimesOnAttackReceived(), "after fourth heart_beat, two onAttack event fired");
+    ExpectEq(0, handler.TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
+    Attacker.heart_beat();
+    ExpectEq(0, handler.TimesOnAttackReceived(), "after heart_beat, no onAttack events fired");
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after second heart_beat, one onAttack event fired");
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after third heart_beat, one onAttack event fired");
+    Attacker.heart_beat();
+    ExpectEq(2, handler.TimesOnAttackReceived(), "after fourth heart_beat, two onAttack event fired");
     ToggleCallOutBypass();
 }
 
@@ -736,102 +735,102 @@ void HasteAddsAnExtraAttack()
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->Con(30);
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.Con(30);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
     object modifier = clone_object("/lib/items/modifierObject");
-    modifier->set("fully qualified name", "blah");
-    modifier->set("haste", 1);
-    ExpectEq(1, modifier->set("registration list", ({ Attacker })), "registration list can be set");
+    modifier.set("fully qualified name", "blah");
+    modifier.set("haste", 1);
+    ExpectEq(1, modifier.set("registration list", ({ Attacker })), "registration list can be set");
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered for attacker");
 
-    ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
-    Attacker->heart_beat();
-    ExpectEq(2, handler->TimesOnAttackReceived(), "after heart_beat, two onAttack events fired");
-    Attacker->heart_beat();
-    ExpectEq(4, handler->TimesOnAttackReceived(), "after second heart_beat, four onAttack event fired");
-    Attacker->heart_beat();
+    ExpectEq(0, handler.TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
+    Attacker.heart_beat();
+    ExpectEq(2, handler.TimesOnAttackReceived(), "after heart_beat, two onAttack events fired");
+    Attacker.heart_beat();
+    ExpectEq(4, handler.TimesOnAttackReceived(), "after second heart_beat, four onAttack event fired");
+    Attacker.heart_beat();
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HitFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
 {
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(150, Target->hitPoints());
-    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(150, Target.hitPoints());
+    Target.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
-    ExpectFalse(Target->hit(100, "physical", Attacker));
-    ExpectEq(150, Target->hitPoints());
+    ExpectFalse(Target.hit(100, "physical", Attacker));
+    ExpectEq(150, Target.hitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HitSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 {
-    Target->setMaxHitPoints(1000);
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(1120, Target->hitPoints());
-    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    Target.setMaxHitPoints(1000);
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(1120, Target.hitPoints());
+    Target.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
-    ExpectTrue(Target->hit(100, "energy", Attacker));
-    ExpectEq(1024, Target->hitPoints());
+    ExpectTrue(Target.hit(100, "energy", Attacker));
+    ExpectEq(1024, Target.hitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AttackFailsWhenTargetEtherealAndDamageTypeCannotDamageThem()
 {
     object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    Attacker->addSkillPoints(100);
-    ExpectTrue(Attacker->advanceSkill("long sword", 20));
+    Attacker.addSkillPoints(100);
+    ExpectTrue(Attacker.advanceSkill("long sword", 20));
     move_object(weapon, Attacker);
-    ExpectTrue(weapon->equip("sword"));
+    ExpectTrue(weapon.equip("sword"));
 
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(150, Target->hitPoints());
-    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(150, Target.hitPoints());
+    Target.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
-    ExpectTrue(Attacker->attack(Target));
-    ExpectEq(150, Target->hitPoints());
+    ExpectTrue(Attacker.attack(Target));
+    ExpectEq(150, Target.hitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AttackSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
 {
     object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    Attacker->addSkillPoints(100);
-    ExpectTrue(Attacker->advanceSkill("long sword", 20));
-    weapon->set("material", "galvorn");
+    Attacker.addSkillPoints(100);
+    ExpectTrue(Attacker.advanceSkill("long sword", 20));
+    weapon.set("material", "galvorn");
 
     // Need to remove random miss chances
-    weapon->set("bonus attack", 200);
-    weapon->set("enchantments", (["energy":20]));
+    weapon.set("bonus attack", 200);
+    weapon.set("enchantments", (["energy":20]));
     move_object(weapon, Attacker);
-    ExpectTrue(weapon->equip("sword"));
+    ExpectTrue(weapon.equip("sword"));
 
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectTrue(Target->hitPoints() == Target->maxHitPoints());
-    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectTrue(Target.hitPoints() == Target.maxHitPoints());
+    Target.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
-    ExpectTrue(Attacker->attack(Target));
-    ExpectTrue(Target->hitPoints() < Target->maxHitPoints(), "target hit");
+    ExpectTrue(Attacker.attack(Target));
+    ExpectTrue(Target.hitPoints() < Target.maxHitPoints(), "target hit");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal()
 {
-    Target->setMaxHitPoints(1000);
-    ExpectTrue(Attacker->addAttack("energy", 50, 500),"add attack");
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectTrue(Target->hitPoints() == Target->maxHitPoints());
-    Target->addTrait("/lib/tests/support/traits/testEtherealTrait.c");
+    Target.setMaxHitPoints(1000);
+    ExpectTrue(Attacker.addAttack("energy", 50, 500),"add attack");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectTrue(Target.hitPoints() == Target.maxHitPoints());
+    Target.addTrait("/lib/tests/support/traits/testEtherealTrait.c");
 
-    ExpectTrue(Attacker->attack(Target));
-    ExpectTrue(Target->hitPoints() < Target->maxHitPoints());
+    ExpectTrue(Attacker.attack(Target));
+    ExpectTrue(Target.hitPoints() < Target.maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -839,143 +838,143 @@ void TargetAttacksWhenAttackerReturnsToArea()
 {
     load_object("/lib/dictionaries/environmentDictionary.c");
 
-    Target->setMaxHitPoints(1000);
+    Target.setMaxHitPoints(1000);
     ToggleCallOutBypass();
-    ExpectEq(50, Attacker->Wimpy("50"), "A wimpy of 50 can be set");
+    ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
 
-    Attacker->hitPoints(80);
-    Target->hitPoints(Target->maxHitPoints());
-    Attacker->registerAttacker(Target);
+    Attacker.hitPoints(80);
+    Target.hitPoints(Target.maxHitPoints());
+    Attacker.registerAttacker(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
     object targetHandler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Target->registerEvent(targetHandler), "event handler registered");
+    ExpectTrue(Target.registerEvent(targetHandler), "event handler registered");
 
-    Attacker->heart_beat();
-    Target->heart_beat();
+    Attacker.heart_beat();
+    Target.heart_beat();
 
-    ExpectEq(1, handler->TimesOnAttackReceived());
-    ExpectEq(1, targetHandler->TimesOnAttackReceived());
+    ExpectEq(1, handler.TimesOnAttackReceived());
+    ExpectEq(1, targetHandler.TimesOnAttackReceived());
 
     move_object(Attacker, this_object());
-    Attacker->heart_beat();
-    Target->heart_beat();
+    Attacker.heart_beat();
+    Target.heart_beat();
 
-    ExpectEq(1, handler->TimesOnAttackReceived());
-    ExpectEq(1, targetHandler->TimesOnAttackReceived());
+    ExpectEq(1, handler.TimesOnAttackReceived());
+    ExpectEq(1, targetHandler.TimesOnAttackReceived());
 
     move_object(Attacker, Room);
-    Attacker->heart_beat();
-    Target->heart_beat();
+    Attacker.heart_beat();
+    Target.heart_beat();
 
-    ExpectEq(2, handler->TimesOnAttackReceived());
-    ExpectEq(2, targetHandler->TimesOnAttackReceived());
+    ExpectEq(2, handler.TimesOnAttackReceived());
+    ExpectEq(2, targetHandler.TimesOnAttackReceived());
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSetMaxHitPoints()
 {
-    ExpectEq(150, Target->maxHitPoints());
-    Target->testMaxHitPoints(500);
+    ExpectEq(150, Target.maxHitPoints());
+    Target.testMaxHitPoints(500);
 
     // This should include 500 for the maxHitPoints value and
     // 120 for attribute bonuses
-    ExpectEq(620, Target->maxHitPoints());
+    ExpectEq(620, Target.maxHitPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSetMaxSpellPoints()
 {
-    ExpectEq(150, Target->maxSpellPoints());
-    Target->testMaxSpellPoints(500);
+    ExpectEq(150, Target.maxSpellPoints());
+    Target.testMaxSpellPoints(500);
 
     // This should include 500 for the maxSpellPoints value and
     // 120 for attribute bonuses
-    ExpectEq(620, Target->maxSpellPoints());
+    ExpectEq(620, Target.maxSpellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSetMaxStaminaPoints()
 {
-    ExpectEq(150, Target->maxStaminaPoints());
-    Target->testMaxStaminaPoints(500);
+    ExpectEq(150, Target.maxStaminaPoints());
+    Target.testMaxStaminaPoints(500);
 
     // This should include 500 for the maxStaminaPoints value and
     // 120 for attribute bonuses
-    ExpectEq(620, Target->maxStaminaPoints());
+    ExpectEq(620, Target.maxStaminaPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DamageResistanceReducesDamageTaken()
 {
-    Target->setMaxHitPoints(880);
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(1000, Target->hitPoints());
-    ExpectEq(496, Target->hit(500, "fire"));
+    Target.setMaxHitPoints(880);
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(1000, Target.hitPoints());
+    ExpectEq(496, Target.hit(500, "fire"));
 
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(1000, Target->hitPoints());
-    Target->addTrait("/lib/tests/support/traits/testTrait.c");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(1000, Target.hitPoints());
+    Target.addTrait("/lib/tests/support/traits/testTrait.c");
 
-    ExpectEq(445, Target->hit(500, "fire"));
+    ExpectEq(445, Target.hit(500, "fire"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DamageResistanceWithTraitAndEquipmentReducesDamageTaken()
 {
-    Target->setMaxHitPoints(880);
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(1000, Target->hitPoints());
-    ExpectEq(496, Target->hit(500, "fire"));
+    Target.setMaxHitPoints(880);
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(1000, Target.hitPoints());
+    ExpectEq(496, Target.hit(500, "fire"));
 
-    Target->hitPoints(Target->maxHitPoints());
-    ExpectEq(1000, Target->hitPoints());
-    Target->addTrait("/lib/tests/support/traits/testTrait.c");
+    Target.hitPoints(Target.maxHitPoints());
+    ExpectEq(1000, Target.hitPoints());
+    Target.addTrait("/lib/tests/support/traits/testTrait.c");
     object weapon = CreateWeapon("sword");
-    weapon->set("resistances", ([ "fire": 5 ]));
+    weapon.set("resistances", ([ "fire": 5 ]));
     move_object(weapon, Target);
-    weapon->equip("sword");
+    weapon.equip("sword");
 
-    ExpectEq(440, Target->hit(500, "fire"));
+    ExpectEq(440, Target.hit(500, "fire"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void HitSubtractsFromManaWhenManaShieldIsActive()
 {
-    Target->setMaxHitPoints(1000);
-    Target->hitPoints(Target->maxHitPoints());
-    Target->setMaxSpellPoints(100);
-    Target->spellPoints(Target->maxSpellPoints());
+    Target.setMaxHitPoints(1000);
+    Target.hitPoints(Target.maxHitPoints());
+    Target.setMaxSpellPoints(100);
+    Target.spellPoints(Target.maxSpellPoints());
 
-    ExpectEq(1120, Target->hitPoints());
-    ExpectEq(220, Target->spellPoints());
+    ExpectEq(1120, Target.hitPoints());
+    ExpectEq(220, Target.spellPoints());
 
-    Target->addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
+    Target.addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
 
-    Target->hit(100, "physical", Attacker);
-    ExpectEq(1120, Target->hitPoints());
-    ExpectEq(124, Target->spellPoints());
+    Target.hit(100, "physical", Attacker);
+    ExpectEq(1120, Target.hitPoints());
+    ExpectEq(124, Target.spellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DamageTransitionsToHitPointsWhenManaIsDepleted()
 {
-    Target->setMaxHitPoints(1000);
-    Target->hitPoints(Target->maxHitPoints());
-    Target->setMaxSpellPoints(100);
-    Target->spellPoints(Target->maxSpellPoints());
+    Target.setMaxHitPoints(1000);
+    Target.hitPoints(Target.maxHitPoints());
+    Target.setMaxSpellPoints(100);
+    Target.spellPoints(Target.maxSpellPoints());
 
-    ExpectEq(1120, Target->hitPoints());
-    ExpectEq(220, Target->spellPoints());
+    ExpectEq(1120, Target.hitPoints());
+    ExpectEq(220, Target.spellPoints());
 
-    Target->addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
+    Target.addTrait("/lib/tests/support/traits/testManaShieldTrait.c");
 
-    Target->hit(500, "physical", Attacker);
-    ExpectEq(844, Target->hitPoints());
-    ExpectEq(0, Target->spellPoints());
+    Target.hit(500, "physical", Attacker);
+    ExpectEq(844, Target.hitPoints());
+    ExpectEq(0, Target.spellPoints());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -983,25 +982,25 @@ void DefensiveStanceCorrectlyApplied()
 {
     destruct(Attacker);
     Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Attacker->Name("Bob");
-    Attacker->Str(20);
-    Attacker->Dex(20);
-    Attacker->Con(20);
-    Attacker->Int(20);
-    Attacker->Wis(20);
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
     object weapon = CreateWeapon("blah");
 
-    Attacker->addSkillPoints(100);
-    Attacker->advanceSkill("long sword", 8);
+    Attacker.addSkillPoints(100);
+    Attacker.advanceSkill("long sword", 8);
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(5, Attacker->calculateDefendAttack());
-    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectEq(5, Attacker.calculateDefendAttack());
+    ExpectEq(13, Attacker.calculateAttack(Target, weapon, 1));
 
-    Attacker->addTrait("/lib/tests/support/traits/testDefensiveStanceTrait.c");
+    Attacker.addTrait("/lib/tests/support/traits/testDefensiveStanceTrait.c");
 
-    ExpectEq(7, Attacker->calculateDefendAttack());
-    ExpectEq(6, Attacker->calculateAttack(Target, weapon, 1));
+    ExpectEq(7, Attacker.calculateDefendAttack());
+    ExpectEq(6, Attacker.calculateAttack(Target, weapon, 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1009,25 +1008,25 @@ void OffensiveStanceCorrectlyApplied()
 {
     destruct(Attacker);
     Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Attacker->Name("Bob");
-    Attacker->Str(20);
-    Attacker->Dex(20);
-    Attacker->Con(20);
-    Attacker->Int(20);
-    Attacker->Wis(20);
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
     object weapon = CreateWeapon("blah");
 
-    Attacker->addSkillPoints(100);
-    Attacker->advanceSkill("long sword", 8);
+    Attacker.addSkillPoints(100);
+    Attacker.advanceSkill("long sword", 8);
 
-    ExpectTrue(weapon->equip("blah"), "weapon equip called");
-    ExpectEq(5, Attacker->calculateDefendAttack());
-    ExpectEq(13, Attacker->calculateAttack(Target, weapon, 1));
+    ExpectTrue(weapon.equip("blah"), "weapon equip called");
+    ExpectEq(5, Attacker.calculateDefendAttack());
+    ExpectEq(13, Attacker.calculateAttack(Target, weapon, 1));
 
-    Attacker->addTrait("/lib/tests/support/traits/testOffensiveStanceTrait.c");
+    Attacker.addTrait("/lib/tests/support/traits/testOffensiveStanceTrait.c");
 
-    ExpectEq(2, Attacker->calculateDefendAttack());
-    ExpectEq(19, Attacker->calculateAttack(Target, weapon, 1));
+    ExpectEq(2, Attacker.calculateDefendAttack());
+    ExpectEq(19, Attacker.calculateAttack(Target, weapon, 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1035,45 +1034,45 @@ void AttackerDoesNotAttackWhenDoNotAttackTraitIsActive()
 {
     destruct(Attacker);
     Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Attacker->Name("Bob");
-    Attacker->Str(20);
-    Attacker->Dex(20);
-    Attacker->Con(20);
-    Attacker->Int(20);
-    Attacker->Wis(20);
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
     move_object(Attacker, Room);
 
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered for attacker");
 
-    ExpectEq(0, handler->TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
-    ExpectEq(0, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    ExpectEq(0, handler.TimesOnAttackReceived(), "before heart_beat, no onAttack events fired");
+    ExpectEq(0, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
-    ExpectEq(0, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ExpectEq(0, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
-    Attacker->addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
+    Attacker.addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
 
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
-    ExpectEq(1, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(1, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
-    ExpectEq(2, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(2, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
     ToggleCallOutBypass();
 }
@@ -1083,69 +1082,69 @@ void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
 {
     destruct(Attacker);
     Attacker = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Attacker->Name("Bob");
-    Attacker->Str(20);
-    Attacker->Dex(20);
-    Attacker->Con(20);
-    Attacker->Int(20);
-    Attacker->Wis(20);
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
     move_object(Attacker, Room);
 
     load_object("/lib/dictionaries/environmentDictionary.c");
 
     ToggleCallOutBypass();
-    Attacker->hitPoints(Attacker->maxHitPoints());
-    Target->hitPoints(Target->maxHitPoints());
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    Target.hitPoints(Target.maxHitPoints());
 
-    Attacker->attack(Target);
+    Attacker.attack(Target);
 
     object handler = clone_object("/lib/tests/support/events/onAttackSubscriber");
-    ExpectTrue(Attacker->registerEvent(handler), "event handler registered for attacker");
+    ExpectTrue(Attacker.registerEvent(handler), "event handler registered for attacker");
 
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
-    ExpectEq(0, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, one onAttack event fired");
+    ExpectEq(0, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
-    Attacker->addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
+    Attacker.addTrait("/lib/tests/support/traits/testDoNotAttackTrait.c");
 
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    Attacker->heart_beat();
-    ExpectEq(1, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
-    ExpectEq(10, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    Attacker.heart_beat();
+    ExpectEq(1, handler.TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(10, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
 
-    Attacker->heart_beat();
-    ExpectEq(2, handler->TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
-    ExpectEq(0, Attacker->roundsSinceLastAttack());
-    ExpectEq(0, Target->roundsSinceLastAttack());
+    Attacker.heart_beat();
+    ExpectEq(2, handler.TimesOnAttackReceived(), "after heart_beat, still one onAttack event fired");
+    ExpectEq(0, Attacker.roundsSinceLastAttack());
+    ExpectEq(0, Target.roundsSinceLastAttack());
     ToggleCallOutBypass();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SupercedeAttackersPlacesNewFoeAtTopOfList()
 {
-    Attacker->registerAttacker(Target);
-    Target->registerAttacker(Attacker);
+    Attacker.registerAttacker(Target);
+    Target.registerAttacker(Attacker);
 
     object newAttacker = 
         clone_object("/lib/tests/support/services/mockPlayer.c");
-    newAttacker->Name("Norman");
+    newAttacker.Name("Norman");
     move_object(newAttacker, Room);
 
-    newAttacker->registerAttacker(Target);
-    Target->registerAttacker(newAttacker);
+    newAttacker.registerAttacker(Target);
+    Target.registerAttacker(newAttacker);
 
-    ExpectEq(Attacker, Target->getTargetToAttack(1));
+    ExpectEq(Attacker, Target.getTargetToAttack(1));
 
-    Target->supercedeAttackers(newAttacker);
-    ExpectEq(newAttacker, Target->getTargetToAttack());
+    Target.supercedeAttackers(newAttacker);
+    ExpectEq(newAttacker, Target.getTargetToAttack());
 }

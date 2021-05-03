@@ -11,12 +11,12 @@ object Dictionary;
 /////////////////////////////////////////////////////////////////////////////
 int AdvanceToLevel(object user, int level, string guild)
 {
-    int runningLevel = user->guildLevel(guild);
-    while ((user->guildLevel(guild) < level) && user->memberOfGuild(guild))
+    int runningLevel = user.guildLevel(guild);
+    while ((user.guildLevel(guild) < level) && user.memberOfGuild(guild))
     {
-        user->addExperience(1000 * runningLevel);
-        user->advanceLevel(guild);
-        runningLevel = user->guildLevel(guild);
+        user.addExperience(1000 * runningLevel);
+        user.advanceLevel(guild);
+        runningLevel = user.guildLevel(guild);
     }
     return runningLevel;
 }
@@ -26,7 +26,7 @@ void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
-    dict->resetCache();
+    dict.resetCache();
 
     load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -37,13 +37,13 @@ void Init()
 void Setup()
 {
     Creator = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Creator->Name("Bob");
-    Creator->joinGuild("test");
+    Creator.Name("Bob");
+    Creator.joinGuild("test");
     AdvanceToLevel(Creator, 4, "test");
 
     Member = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Member->Name("Fred");
-    Member->joinGuild("test");
+    Member.Name("Fred");
+    Member.joinGuild("test");
     AdvanceToLevel(Member, 2, "test");
 
     Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
@@ -60,8 +60,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanGetParty()
 {
-    Dictionary->createParty("Test party", Creator);
-    object party = Creator->getParty();
+    Dictionary.createParty("Test party", Creator);
+    object party = Creator.getParty();
 
     ExpectEq(({ "/lib/modules/party/party.c" }), inherit_list(party));
 }
@@ -69,6 +69,6 @@ void CanGetParty()
 /////////////////////////////////////////////////////////////////////////////
 void CanGetPartyName()
 {
-    Dictionary->createParty("Test party", Creator);
-    ExpectEq("Test party", Creator->partyName());
+    Dictionary.createParty("Test party", Creator);
+    ExpectEq("Test party", Creator.partyName());
 }
