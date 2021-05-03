@@ -12,12 +12,12 @@ object Weapon;
 void Setup()
 {
     Selector = clone_object("/lib/environment/shopInventories/sellItemSelector.c");
-    Selector->setStore(load_object("/lib/environment/shopInventories/baseShop.c"));
+    Selector.setStore(load_object("/lib/environment/shopInventories/baseShop.c"));
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->colorConfiguration("3-bit");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.colorConfiguration("3-bit");
+    Player.addCommands();
 
     Weapon = clone_object("/lib/tests/support/items/testSword.c");
     move_object(Weapon, Player);
@@ -34,7 +34,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuDisplaysCorrectly()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mWeapons             \x1b[0m\n"
@@ -42,7 +42,7 @@ void TopLevelMenuDisplaysCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 2.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ void TopLevelMenuDisplaysOptionsForEachInventoryType()
     move_object(clone_object("/lib/items/scroll.c"), Player);
     move_object(clone_object("/lib/items/treasure.c"), Player);
     move_object(clone_object("/lib/items/vessel.c"), Player);
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
@@ -80,13 +80,13 @@ void TopLevelMenuDisplaysOptionsForEachInventoryType()
         "\x1b[0;32;1mYou must select a number from 1 to 14.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuDoesNotDisplayProhibitedTypes()
 {
-    Selector->setProhibitedTypes(({ "drink", "food", "potion", "ingredient" }));
+    Selector.setProhibitedTypes(({ "drink", "food", "potion", "ingredient" }));
     move_object(clone_object("/lib/items/armor.c"), Player);
     move_object(clone_object("/lib/items/book.c"), Player);
     move_object(clone_object("/lib/items/container.c"), Player);
@@ -99,7 +99,7 @@ void TopLevelMenuDoesNotDisplayProhibitedTypes()
     move_object(clone_object("/lib/items/scroll.c"), Player);
     move_object(clone_object("/lib/items/treasure.c"), Player);
     move_object(clone_object("/lib/items/vessel.c"), Player);
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mFrom this menu, you can view and sell your character's items\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m]  - \x1b[0;32mArmors              \x1b[0m\n"
@@ -115,34 +115,34 @@ void TopLevelMenuDoesNotDisplayProhibitedTypes()
         "\x1b[0;32;1mYou must select a number from 1 to 10.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingExitExitsTheMenu()
 {
-    Selector->initiateSelector(Player);
-    Selector->applySelection("2");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("2");
 
     ExpectSubStringMatch("You have selected 'Exit Sell Item Menu'",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescribeItemDisplaysCorrectMessage()
 {
-    Selector->initiateSelector(Player);
-    Selector->applySelection("describe 1");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("describe 1");
 
     ExpectSubStringMatch("This option will allow you to view your sellable\nweapons",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
 {
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;35m (?)\x1b[0m"
@@ -151,15 +151,15 @@ void SelectSubMenuDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnicodeDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
 {
-    Player->charsetConfiguration("unicode");    
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.charsetConfiguration("unicode");    
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;35m (\u2047)\x1b[0m"
@@ -168,15 +168,15 @@ void UnicodeDisplaysSellListWithUnidentifiedItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithIdentifiedItemsDenotedCorrectly()
 {
-    Weapon->identify();
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Weapon.identify();
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m    "
@@ -185,16 +185,16 @@ void SelectSubMenuDisplaysSellListWithIdentifiedItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithEquippedItemsDenotedCorrectly()
 {
-    Weapon->identify();
-    Weapon->equip("sword");
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Weapon.identify();
+    Weapon.equip("sword");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;34;1m (*)\x1b[0m"
@@ -203,17 +203,17 @@ void SelectSubMenuDisplaysSellListWithEquippedItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnicodeDisplaysSellListWithEquippedItemsDenotedCorrectly()
 {
-    Player->charsetConfiguration("unicode");
-    Weapon->identify();
-    Weapon->equip("sword");
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.charsetConfiguration("unicode");
+    Weapon.identify();
+    Weapon.equip("sword");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;34;1m (\u2020)\x1b[0m"
@@ -222,15 +222,15 @@ void UnicodeDisplaysSellListWithEquippedItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithUnsellableItemsDenotedCorrectly()
 {
-    Weapon->set("no sell", 1);
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Weapon.set("no sell", 1);
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;31m (X)\x1b[0m"
@@ -239,16 +239,16 @@ void SelectSubMenuDisplaysSellListWithUnsellableItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnicodeDisplaysSellListWithUnsellableItemsDenotedCorrectly()
 {
-    Player->charsetConfiguration("unicode");
-    Weapon->set("no sell", 1);
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.charsetConfiguration("unicode");
+    Weapon.set("no sell", 1);
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;31m (X)\x1b[0m"
@@ -257,19 +257,19 @@ void UnicodeDisplaysSellListWithUnsellableItemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
 {
-    Weapon->set("cursed", ([
+    Weapon.set("cursed", ([
         "equip message":"blah",
         "failed unequip message" : "halb"
     ]));
-    Weapon->identify();
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Weapon.identify();
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;30;1m (C)\x1b[0m"
@@ -278,20 +278,20 @@ void SelectSubMenuDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnicodeDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
 {
-    Player->charsetConfiguration("unicode");
-    Weapon->set("cursed", ([
+    Player.charsetConfiguration("unicode");
+    Weapon.set("cursed", ([
         "equip message":"blah",
         "failed unequip message" : "halb"
     ]));
-    Weapon->identify();
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Weapon.identify();
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32m\x1b[0;35mSword of Weasels   \x1b[0m\x1b[0m\x1b[0;30;1m (\u2620)\x1b[0m"
@@ -300,19 +300,19 @@ void UnicodeDisplaysSellListWithKnownCursedtemsDenotedCorrectly()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ItemDetailsShowLongPlusValue()
 {
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
     move_object(sword, Player);
-    sword->equip("sword");
+    sword.equip("sword");
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
     command("1", Player);
     command("? 1", Player);
@@ -326,13 +326,13 @@ void ItemDetailsShowLongPlusValue()
         "\x1b[0;33m    Bonus armor class: 5\n"
         "\x1b[0m\x1b[0;36m    Weight: \x1b[0m\x1b[0;33m7\x1b[0m\n\n"
         "\x1b[0;32mYou can sell this item for 42.\n\x1b[0m\n\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SellingItemRemovesItemFromOwnerAndSendsItToTheStoreForCorrectMoney()
 {
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
 
     string name = object_name(Weapon);
@@ -345,7 +345,7 @@ void SellingItemRemovesItemFromOwnerAndSendsItToTheStoreForCorrectMoney()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("1", Player);
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
@@ -353,27 +353,27 @@ void SellingItemRemovesItemFromOwnerAndSendsItToTheStoreForCorrectMoney()
         "\x1b[0;32;1mYou must select a number from 1 to 1.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectFalse(present_clone(name, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SellingAllUnequippedDoesNotSellEquippedItems()
 {
-    Weapon->equip("sword");
+    Weapon.equip("sword");
 
     string name = object_name(Weapon);
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
     move_object(sword, Player);
 
     sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of Swinginess");
-    sword->identify();
+    sword.set("name", "Sword of Swinginess");
+    sword.identify();
     move_object(sword, Player);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
 
     ExpectTrue(present_clone(name, Player));
@@ -387,7 +387,7 @@ void SellingAllUnequippedDoesNotSellEquippedItems()
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("4", Player);
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
@@ -397,31 +397,31 @@ void SellingAllUnequippedDoesNotSellEquippedItems()
         "\x1b[0;32;1mYou must select a number from 1 to 3.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectTrue(present_clone(name, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SellingAllUnequippedDoesNotSellCursedItems()
 {
-    Weapon->equip("sword");
+    Weapon.equip("sword");
 
     string name = object_name(Weapon);
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
-    sword->set("cursed", ([
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
+    sword.set("cursed", ([
         "equip message":"blah",
         "failed unequip message": "halb"
     ]));
     move_object(sword, Player);
 
     sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of Swinginess");
-    sword->identify();
+    sword.set("name", "Sword of Swinginess");
+    sword.identify();
     move_object(sword, Player);
 
-    Selector->initiateSelector(Player);
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
 
     ExpectTrue(present_clone(name, Player));
@@ -435,7 +435,7 @@ void SellingAllUnequippedDoesNotSellCursedItems()
         "\x1b[0;32;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 
     command("4", Player);
     ExpectEq("\x1b[0;36mSell Items - \x1b[0m\x1b[0;37;1mSelect an item to sell\x1b[0m:\n"
@@ -446,34 +446,34 @@ void SellingAllUnequippedDoesNotSellCursedItems()
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
     ExpectTrue(present_clone(name, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectSubMenuDisplaysSellListWithNoColorCorrectly()
 {
-    Weapon->equip("sword");
+    Weapon.equip("sword");
 
     string name = object_name(Weapon);
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
-    sword->set("cursed", ([
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
+    sword.set("cursed", ([
         "equip message":"blah",
             "failed unequip message" : "halb"
     ]));
     move_object(sword, Player);
 
     sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of Swinginess");
-    sword->set("bonus attack", 5);
-    sword->identify();
+    sword.set("name", "Sword of Swinginess");
+    sword.set("bonus attack", 5);
+    sword.identify();
     move_object(sword, Player);
 
-    Player->colorConfiguration("none");
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.colorConfiguration("none");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("Sell Items - Select an item to sell:\n"
         "    [1] - Sword of Swinginess  (P)    "
@@ -489,7 +489,7 @@ void SelectSubMenuDisplaysSellListWithNoColorCorrectly()
         "Items with a (M) to the right of their name are masterwork items.\n"
         "Items with a (E) to the right of their name are enchanted.\n"
         "Items with a (P) to the right of their name are enchanted with powerful magic.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -497,22 +497,22 @@ void SelectSubMenuDisplaysSellListWithEightBitColorCorrectly()
 {
     string name = object_name(Weapon);
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
-    sword->set("cursed", ([
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
+    sword.set("cursed", ([
         "equip message":"blah",
             "failed unequip message" : "halb"
     ]));
     move_object(sword, Player);
 
     sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of Swinginess");
-    sword->identify();
+    sword.set("name", "Sword of Swinginess");
+    sword.identify();
     move_object(sword, Player);
 
-    Player->colorConfiguration("8-bit");
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.colorConfiguration("8-bit");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;38;5;80mSell Items - \x1b[0m\x1b[0;38;5;15;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;38;5;9;1m1\x1b[0m] - \x1b[0;38;5;2m\x1b[0;38;5;31mSword of Swinginess\x1b[0m\x1b[0m    "
@@ -523,7 +523,7 @@ void SelectSubMenuDisplaysSellListWithEightBitColorCorrectly()
         "\x1b[0;38;5;2;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -531,22 +531,22 @@ void SelectSubMenuDisplaysSellListWithTwentyFourBitColorCorrectly()
 {
     string name = object_name(Weapon);
     object sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of really long namedness");
-    sword->identify();
-    sword->set("cursed", ([
+    sword.set("name", "Sword of really long namedness");
+    sword.identify();
+    sword.set("cursed", ([
         "equip message":"blah",
             "failed unequip message" : "halb"
     ]));
     move_object(sword, Player);
 
     sword = clone_object("/lib/tests/support/items/testSword.c");
-    sword->set("name", "Sword of Swinginess");
-    sword->identify();
+    sword.set("name", "Sword of Swinginess");
+    sword.identify();
     move_object(sword, Player);
 
-    Player->colorConfiguration("24-bit");
-    Selector->initiateSelector(Player);
-    Selector->applySelection("1");
+    Player.colorConfiguration("24-bit");
+    Selector.initiateSelector(Player);
+    Selector.applySelection("1");
 
     ExpectEq("\x1b[0;38;2;180;180;190mSell Items - \x1b[0m\x1b[0;38;2;255;255;255;1mSelect an item to sell\x1b[0m:\n"
         "    [\x1b[0;38;2;220;40;0;1m1\x1b[0m] - \x1b[0;38;2;170;180;110m\x1b[0;38;2;50;75;195mSword of Swinginess\x1b[0m\x1b[0m    "
@@ -557,5 +557,5 @@ void SelectSubMenuDisplaysSellListWithTwentyFourBitColorCorrectly()
         "\x1b[0;38;2;160;220;60;1mYou must select a number from 1 to 5.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

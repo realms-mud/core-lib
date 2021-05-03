@@ -12,72 +12,72 @@ object Store;
 void Init()
 {
     Store = clone_object("/lib/environment/shopInventories/baseShop.c");
-    Store->name("Bob's Swords");
-    Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Store->shopType("weapons");
-    Store->shopSubType("swords");
-    Store->setRandomItemsToGenerate(0);
-    getDictionary("shop")->generateInventory(Store);
+    Store.name("Bob's Swords");
+    Store.welcomeMessage("Remember: Nobody outsells Bob");
+    Store.shopType("weapons");
+    Store.shopSubType("swords");
+    Store.setRandomItemsToGenerate(0);
+    getDictionary("shop").generateInventory(Store);
 
     Store = clone_object("/lib/environment/shopInventories/baseShop.c");
-    Store->name("Bob's Swords");
-    Store->welcomeMessage("Remember: Nobody outsells Bob");
-    Store->shopType("weapons");
-    Store->shopSubType("swords");
+    Store.name("Bob's Swords");
+    Store.welcomeMessage("Remember: Nobody outsells Bob");
+    Store.shopType("weapons");
+    Store.shopSubType("swords");
 
     object weapon = clone_object("/lib/instances/items/weapons/swords/bastard-sword.c");
-    weapon->set("bonus strength", 5);
-    Store->storeItem(weapon);
+    weapon.set("bonus strength", 5);
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon->identify();
-    Store->storeItem(weapon);
+    weapon.identify();
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon->identify();
-    weapon->set("material", "galvorn");
-    weapon->set("name", "Sword of Weasels");
-    weapon->set("bonus strength", 1);
-    Store->storeItem(weapon);
+    weapon.identify();
+    weapon.set("material", "galvorn");
+    weapon.set("name", "Sword of Weasels");
+    weapon.set("bonus strength", 1);
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon->identify();
-    weapon->set("material", "admantite");
-    weapon->set("name", "Admantite Sword");
-    weapon->set("craftsmanship", 60);
-    Store->storeItem(weapon);
+    weapon.identify();
+    weapon.set("material", "admantite");
+    weapon.set("name", "Admantite Sword");
+    weapon.set("craftsmanship", 60);
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon->identify();
-    weapon->set("material", "admantite");
-    weapon->set("name", "Admantite Sword");
-    Store->storeItem(weapon);
+    weapon.identify();
+    weapon.set("material", "admantite");
+    weapon.set("name", "Admantite Sword");
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/claymore.c");
-    weapon->identify();
-    weapon->set("material", "admantite");
-    weapon->set("name", "Sword of Really Long Names");
-    weapon->set("bonus strength", 5);
-    weapon->set("bonus damage", 5);
-    Store->storeItem(weapon);
+    weapon.identify();
+    weapon.set("material", "admantite");
+    weapon.set("name", "Sword of Really Long Names");
+    weapon.set("bonus strength", 5);
+    weapon.set("bonus damage", 5);
+    Store.storeItem(weapon);
 
     weapon = clone_object("/lib/instances/items/weapons/swords/katana.c");
-    weapon->identify();
-    weapon->set("material", "kirdarium");
-    weapon->set("name", "Sword of the Grebes");
-    weapon->set("craftsmanship", 80);
-    Store->storeItem(weapon);
+    weapon.identify();
+    weapon.set("material", "kirdarium");
+    weapon.set("name", "Sword of the Grebes");
+    weapon.set("craftsmanship", 80);
+    Store.storeItem(weapon);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Selector = clone_object("/lib/environment/shopInventories/buyItemSelector.c");
-    Selector->setStore(Store);
+    Selector.setStore(Store);
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
+    Player.Name("bob");
+    Player.addCommands();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -90,8 +90,8 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayIsCorrectWithNoColorSelected()
 {
-    Player->colorConfiguration("none");
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("none");
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
     command("1", Player);
 
@@ -113,14 +113,14 @@ void DisplayIsCorrectWithNoColorSelected()
         "Items with a (M) to the right of their name are masterwork items.\n"
         "Items with a (E) to the right of their name are enchanted.\n"
         "Items with a (P) to the right of their name are enchanted with powerful magic.\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DisplayIsCorrectWithThreeBitColorSelected()
 {
-    Player->colorConfiguration("3-bit");
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("3-bit");
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
     command("1", Player);
 
@@ -138,14 +138,14 @@ void DisplayIsCorrectWithThreeBitColorSelected()
         "\x1b[0m\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n"
         "\x1b[0m\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DisplayIsCorrectWithEightBitColorSelected()
 {
-    Player->colorConfiguration("8-bit");
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("8-bit");
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
     command("1", Player);
 
@@ -163,14 +163,14 @@ void DisplayIsCorrectWithEightBitColorSelected()
         "\x1b[0m\x1b[0;38;5;144mType 'exit' if you do not wish to make a selection at this time.\n"
         "\x1b[0m\x1b[0;38;5;144mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n\x1b[0m\x1b[0;38;5;2;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DisplayIsCorrectWithTwentyFourBitColorSelected()
 {
-    Player->colorConfiguration("24-bit");
-    Selector->initiateSelector(Player);
+    Player.colorConfiguration("24-bit");
+    Selector.initiateSelector(Player);
     move_object(Selector, Player);
     command("1", Player);
 
@@ -188,5 +188,5 @@ void DisplayIsCorrectWithTwentyFourBitColorSelected()
         "\x1b[0m\x1b[0;38;2;100;180;150mType 'exit' if you do not wish to make a selection at this time.\n"
         "\x1b[0m\x1b[0;38;2;100;180;150mFor details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n\x1b[0m\x1b[0;38;2;160;220;60;1m\x1b[0m",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

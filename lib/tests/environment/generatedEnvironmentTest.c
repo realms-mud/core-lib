@@ -197,7 +197,7 @@ private mapping *getRegionData(object region)
 
     foreach(mapping room in data)
     {
-        Region->addTestRoom(room["x"], room["y"], room);
+        Region.addTestRoom(room["x"], room["y"], room);
     }
 
     return data;
@@ -210,10 +210,10 @@ void Setup()
     ToggleCallOutBypass();
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->colorConfiguration("none");
-    Player->charsetConfiguration("ascii");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.colorConfiguration("none");
+    Player.charsetConfiguration("ascii");
 
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 
@@ -233,10 +233,10 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void GenerateEnvironmentCorrectlyCreatesRoom()
 {
-    Region->setRegionName("a forest");
-    Region->setRegionType("forest");
+    Region.setRegionName("a forest");
+    Region.setRegionType("forest");
 
-    Region->setDimensions(10, 5);
+    Region.setDimensions(10, 5);
 
     mapping data = ([
         "x": 1,
@@ -249,18 +249,18 @@ void GenerateEnvironmentCorrectlyCreatesRoom()
         "environment": Environment
     ]);
 
-    Environment->generateEnvironment(data, Region);
+    Environment.generateEnvironment(data, Region);
     ExpectSubStringMatch("(grove|tree|forest).*one obvious exit: north", 
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanMoveFromOneGeneratedRoomToTheNext()
 {
-    Region->setRegionName("a forest");
-    Region->setRegionType("forest");
+    Region.setRegionName("a forest");
+    Region.setRegionType("forest");
 
-    Region->setDimensions(10, 5);
+    Region.setDimensions(10, 5);
 
     mapping data = ([
         "x":1,
@@ -271,7 +271,7 @@ void CanMoveFromOneGeneratedRoomToTheNext()
             "north": "1x3"
         ])
     ]);
-    Region->addTestRoom(1, 2, data);
+    Region.addTestRoom(1, 2, data);
 
     mapping data2 = ([
         "x":1,
@@ -282,7 +282,7 @@ void CanMoveFromOneGeneratedRoomToTheNext()
             "south": "1x2"
         ])
     ]);
-    Region->addTestRoom(1, 3, data2);
+    Region.addTestRoom(1, 3, data2);
 
     move_object(Player, data["environment"]);
     ExpectEq(object_name(data["environment"]), object_name(environment(Player)));
@@ -297,10 +297,10 @@ void CanMoveFromOneGeneratedRoomToTheNext()
 /////////////////////////////////////////////////////////////////////////////
 void EncountersGeneratedWhenUserEntersEnvironment()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping data = ([
         "x":1,
@@ -311,7 +311,7 @@ void EncountersGeneratedWhenUserEntersEnvironment()
             "north": "1x3"
         ])
     ]);
-    Region->addTestRoom(1, 2, data);
+    Region.addTestRoom(1, 2, data);
 
     move_object(Player, data["environment"]);
 
@@ -322,10 +322,10 @@ void EncountersGeneratedWhenUserEntersEnvironment()
 /////////////////////////////////////////////////////////////////////////////
 void ExitPointsConnectedToNewRegion()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping data = ([
         "x": 4,
@@ -339,29 +339,29 @@ void ExitPointsConnectedToNewRegion()
             "south":"4x3"
         ])
     ]);
-    Region->addTestRoom(4, 4, data);
+    Region.addTestRoom(4, 4, data);
 
     move_object(Player, data["environment"]);
 
-    ExpectEq("4x4", environment(Player)->getCoordinates());
-    ExpectEq(Region, environment(Player)->getRegion());
+    ExpectEq("4x4", environment(Player).getCoordinates());
+    ExpectEq(Region, environment(Player).getRegion());
 
     command("n", Player);
-    ExpectEq("4x0", environment(Player)->getCoordinates());
-    ExpectNotEq(Region, environment(Player)->getRegion());
+    ExpectEq("4x0", environment(Player).getCoordinates());
+    ExpectNotEq(Region, environment(Player).getRegion());
 
     command("s", Player);
-    ExpectEq("4x4", environment(Player)->getCoordinates());
-    ExpectEq(Region, environment(Player)->getRegion());
+    ExpectEq("4x4", environment(Player).getCoordinates());
+    ExpectEq(Region, environment(Player).getRegion());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MapCorrectlyDisplayed()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -380,16 +380,16 @@ void MapCorrectlyDisplayed()
         "    |     |  | \n"
         "    |     |  | \n"
         "    P  #--#--# \n"
-        "               \n", Region->displayMap(Player));
+        "               \n", Region.displayMap(Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedOnMinY()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -404,16 +404,16 @@ void MiniMapCorrectlyDisplayedOnMinY()
         "    |    '\n"
         "    P  #-'\n"
         "         '\n", 
-        implode(Region->getMiniMap(environment(Player), Player), "\n"));
+        implode(Region.getMiniMap(environment(Player), Player), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedOnMaxY()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -428,16 +428,16 @@ void MiniMapCorrectlyDisplayedOnMaxY()
         "       | '\n"
         " #--o--o '\n"
         "       | '\n",
-        implode(Region->getMiniMap(environment(Player), Player), "\n"));
+        implode(Region.getMiniMap(environment(Player), Player), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedOnMinX()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -452,16 +452,16 @@ void MiniMapCorrectlyDisplayedOnMinX()
         "       | '\n"
         "    o--o-'\n"
         "    |    '\n",
-        implode(Region->getMiniMap(environment(Player), Player), "\n"));
+        implode(Region.getMiniMap(environment(Player), Player), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedOnMaxX()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -476,17 +476,17 @@ void MiniMapCorrectlyDisplayedOnMaxX()
         "    |  | '\n"
         " #--#--# '\n"
         "         '\n",
-        implode(Region->getMiniMap(environment(Player), Player), "\n"));
+        implode(Region.getMiniMap(environment(Player), Player), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedInMapInterior()
 {
-    Player->colorConfiguration("3-bit");
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Player.colorConfiguration("3-bit");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -502,16 +502,16 @@ void MiniMapCorrectlyDisplayedInMapInterior()
         "\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m|\x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;31m'\x1b[0m\n"
         "\x1b[0;36m \x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0mo\x1b[0;36m-\x1b[0m\x1b[0;36m-\x1b[0m\x1b[0;34;1m#\x1b[0m\x1b[0;36m \x1b[0m\x1b[0;31m'\x1b[0m\n"
         "\x1b[0;36m \x1b[0m\x1b[0;36m|\x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m \x1b[0m\x1b[0;36m|\x1b[0m\x1b[0;36m \x1b[0m\x1b[0;31m'\x1b[0m\n",
-        implode(Region->getMiniMap(environment(Player), Player), "\n"));
+        implode(Region.getMiniMap(environment(Player), Player), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MiniMapCorrectlyDisplayedInEnvironment()
 {
-    Region->setRegionName("a temple");
-    Region->setRegionType("keeper's temple");
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
 
-    Region->setDimensions(5, 5);
+    Region.setDimensions(5, 5);
 
     mapping *data = getRegionData(Region);
 
@@ -529,5 +529,5 @@ void MiniMapCorrectlyDisplayedInEnvironment()
         "         '\n"
         "The sun is high in the summer sky.\n"
         " -=-=- There is one obvious exit: north\n",
-        Player->caughtMessage());
+        Player.caughtMessage());
 }

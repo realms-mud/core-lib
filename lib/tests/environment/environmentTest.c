@@ -11,9 +11,9 @@ object Dictionary;
 void Setup()
 {
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary->setYear(1);
-    Dictionary->setDay(92);
-    Dictionary->timeOfDay("noon");
+    Dictionary.setYear(1);
+    Dictionary.setDay(92);
+    Dictionary.timeOfDay("noon");
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
 }
 
@@ -27,243 +27,243 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectlyForTerrain()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
-    Environment->testAddFeature("fake feature", "east");
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
+    Environment.testAddFeature("fake feature", "east");
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a deciduous forest. To the south is a dark and foreboding cave largely obscured by foliage.*To the east, north and west is a stand of majestic oak trees with branches laden with acorns.*To the north is a sign.",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BuildingWithoutExitDisplaysCorrectly()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
-    Environment->testAddFeature("fake feature", "east");
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
+    Environment.testAddFeature("fake feature", "east");
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a deciduous forest. To the south is a dark and foreboding cave largely obscured by foliage.*To the east and west is a stand of majestic oak trees with branches laden with acorns.*To the north is a sign. To the north is a building.*no obvious exits",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BuildingWithExitDisplaysCorrectly()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north", "/lib/tests/support/environment/toLocation.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
-    Environment->testAddFeature("fake feature", "east");
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeSimpleFeature.c", "south");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "west");
+    Environment.testAddFeature("fake feature", "east");
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
 
     ExpectSubStringMatch("a deciduous forest. To the south is a dark and foreboding cave largely obscured by foliage.*To the east and west is a stand of majestic oak trees with branches laden with acorns.*To the north is a sign. To the north is a building.*one obvious exit: north",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SuppressMessageHidesYouSeeFromFeature()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/suppressEntryFeature.c", "south");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/suppressEntryFeature.c", "south");
 
     ExpectSubStringMatch("a deciduous forest. To the south a stand of majestic oak",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectlyForInteriors()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeInteriorFeature.c", "north");
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeInteriorFeature.c", "north");
 
     ExpectSubStringMatch("a stone hallway. To the north is an impressive tapestry of Tantor the Unclean dueling an undead unicorn with his trusty plunger.",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IsEnvironmentalElementReturnsFalseWhenElementNotInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectFalse(Environment->isEnvironmentalElement("raddish"));
+    ExpectFalse(Environment.isEnvironmentalElement("raddish"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IsEnvironmentalElementReturnsTrueWhenElementInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectTrue(Environment->isEnvironmentalElement("fake feature"));
+    ExpectTrue(Environment.isEnvironmentalElement("fake feature"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IsEnvironmentalElementReturnsTrueWhenAliasInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectTrue(Environment->isEnvironmentalElement("oak"), "oak is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("stand"), "stand is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("stand of oak trees"), "stand of oak trees is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("oak"), "oak is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("stand"), "stand is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("stand of oak trees"), "stand of oak trees is alias");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IdReturnsFalseWhenElementNotInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectFalse(Environment->id("raddish"));
+    ExpectFalse(Environment.id("raddish"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IdReturnsTrueWhenElementInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectTrue(Environment->id("fake feature"));
+    ExpectTrue(Environment.id("fake feature"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void IdReturnsTrueWhenAliasInEnvironment()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectTrue(Environment->id("oak"), "oak is alias");
-    ExpectTrue(Environment->id("stand"), "stand is alias");
-    ExpectTrue(Environment->id("stand of oak trees"), "stand of oak trees is alias");
+    ExpectTrue(Environment.id("oak"), "oak is alias");
+    ExpectTrue(Environment.id("stand"), "stand is alias");
+    ExpectTrue(Environment.id("stand of oak trees"), "stand of oak trees is alias");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AliasesForStateNotAvailableWhenNotInProperState()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
-    ExpectTrue(Environment->isEnvironmentalElement("oak"), "oak is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("stand"), "stand is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("stand of oak trees"), "stand of oak trees is alias");
-    ExpectFalse(Environment->isEnvironmentalElement("charred stumps"), "charred stumps is not alias");
-    ExpectFalse(Environment->isEnvironmentalElement("tree stumps"), "tree stumps is not alias");
-    ExpectFalse(Environment->isEnvironmentalElement("stumps"), "stumps is not alias");
+    ExpectTrue(Environment.isEnvironmentalElement("oak"), "oak is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("stand"), "stand is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("stand of oak trees"), "stand of oak trees is alias");
+    ExpectFalse(Environment.isEnvironmentalElement("charred stumps"), "charred stumps is not alias");
+    ExpectFalse(Environment.isEnvironmentalElement("tree stumps"), "tree stumps is not alias");
+    ExpectFalse(Environment.isEnvironmentalElement("stumps"), "stumps is not alias");
 
-    Environment->currentState("deadified");
-    ExpectFalse(Environment->isEnvironmentalElement("oak"), "oak is not alias");
-    ExpectFalse(Environment->isEnvironmentalElement("stand"), "stand is not alias");
-    ExpectFalse(Environment->isEnvironmentalElement("stand of oak trees"), "stand of oak trees is not alias");
-    ExpectTrue(Environment->isEnvironmentalElement("charred stumps"), "charred stumps is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("tree stumps"), "tree stumps is alias");
-    ExpectTrue(Environment->isEnvironmentalElement("stumps"), "stumps is alias");
+    Environment.currentState("deadified");
+    ExpectFalse(Environment.isEnvironmentalElement("oak"), "oak is not alias");
+    ExpectFalse(Environment.isEnvironmentalElement("stand"), "stand is not alias");
+    ExpectFalse(Environment.isEnvironmentalElement("stand of oak trees"), "stand of oak trees is not alias");
+    ExpectTrue(Environment.isEnvironmentalElement("charred stumps"), "charred stumps is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("tree stumps"), "tree stumps is alias");
+    ExpectTrue(Environment.isEnvironmentalElement("stumps"), "stumps is alias");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongShowsInventory()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     object person = clone_object("/lib/realizations/player.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
-    ExpectSubStringMatch("Dwight", Environment->long());
-    ExpectSubStringMatch("Sword of Blah", Environment->long());
+    ExpectSubStringMatch("Dwight", Environment.long());
+    ExpectSubStringMatch("Sword of Blah", Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongShowsNoObviousExits()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
 
     ExpectSubStringMatch("-=-=- There are no obvious exits",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongShowsOneObviousExit()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/some/path.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/some/path.c");
     ExpectSubStringMatch("-=-=- There is one obvious exit: north",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongShowsTwoObviousExits()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/some/path.c");
-    Environment->testAddExit("south", "/some/path2.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/some/path.c");
+    Environment.testAddExit("south", "/some/path2.c");
     ExpectSubStringMatch("-=-=- There are two obvious exits: [a-z]+, [a-z]+",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongShowsManyObviousExits()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/some/path.c");
-    Environment->testAddExit("south", "/some/path2.c");
-    Environment->testAddExit("east", "/some/path3.c");
-    Environment->testAddExit("west", "/some/path4.c");
-    Environment->testAddExit("up", "/some/path5.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/some/path.c");
+    Environment.testAddExit("south", "/some/path2.c");
+    Environment.testAddExit("east", "/some/path3.c");
+    Environment.testAddExit("west", "/some/path4.c");
+    Environment.testAddExit("up", "/some/path5.c");
 
     ExpectSubStringMatch("-=-=- There are five obvious exits: [a-z, ]+",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongOnlyShowsExitsWhenInCorrectState()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/some/path.c");
-    Environment->testAddExit("south", "/some/path2.c", "weasels");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/some/path.c");
+    Environment.testAddExit("south", "/some/path2.c", "weasels");
 
     ExpectSubStringMatch("-=-=- There is one obvious exit: north",
-        Environment->long());
+        Environment.long());
 
-    Environment->currentState("weasels");
+    Environment.currentState("weasels");
     ExpectSubStringMatch("-=-=- There are two obvious exits: [a-z]+, [a-z]+",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void LongRaisesErrorWhenTerrainOrInteriorNotSete()
 {
     string expected = "*ERROR in environment.c: Either a valid terrain or interior must be set.\n";
-    string err = catch (Environment->long());
+    string err = catch (Environment.long());
     ExpectEq(expected, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanMoveToAttachedLocation()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/realizations/player.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
@@ -275,14 +275,14 @@ void CanMoveToAttachedLocation()
 /////////////////////////////////////////////////////////////////////////////
 void MovesToLocationForAppropriateState()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
-    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
-    Environment->currentState("deadified");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment.currentState("deadified");
 
     object person = clone_object("/lib/realizations/player.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
@@ -294,14 +294,14 @@ void MovesToLocationForAppropriateState()
 /////////////////////////////////////////////////////////////////////////////
 void MovesToDefaultLocationWhenNotDefinedInState()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
-    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
-    Environment->currentState("otherstate");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment.currentState("otherstate");
 
     object person = clone_object("/lib/realizations/player.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
@@ -313,14 +313,14 @@ void MovesToDefaultLocationWhenNotDefinedInState()
 /////////////////////////////////////////////////////////////////////////////
 void DefaultMoveLocationsStillAvailableWhenInDifferentStateAndNotOverridden()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("south", "/lib/tests/support/environment/toLocation.c");
-    Environment->testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
-    Environment->currentState("deadified");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("south", "/lib/tests/support/environment/toLocation.c");
+    Environment.testAddExit("north", "/lib/tests/support/environment/fromLocation.c", "deadified");
+    Environment.currentState("deadified");
 
     object person = clone_object("/lib/realizations/player.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
@@ -336,7 +336,7 @@ void MoveToLocationShowsDarkMessageWhenEnteringDarkArea()
     move_object(player, "/lib/tests/support/environment/startingRoom.c");
 
     command("south", player);
-    ExpectSubStringMatch("It is too dark", player->caughtMessage());
+    ExpectSubStringMatch("It is too dark", player.caughtMessage());
 
     destruct(player);
 }
@@ -351,15 +351,15 @@ void MoveToLocationShowsCorrectMessageForTimeAndSeason()
     object x = clone_object("/tutorial/characters/keeper-of-the-night.c");
 
     command("south", player);
-    ExpectSubStringMatch("It is too dark", player->caughtMessage());
+    ExpectSubStringMatch("It is too dark", player.caughtMessage());
 
-    Dictionary->timeOfDay("night");
-    Dictionary->season("spring");
+    Dictionary.timeOfDay("night");
+    Dictionary.season("spring");
     move_object(player, "/lib/tests/support/environment/startingRoom.c");
 
     command("south", player);
     ExpectSubStringMatch("a stone hallway.*There is one obvious exit: "
-        "north.*A male human", player->caughtMessage());
+        "north.*A male human", player.caughtMessage());
 
     destruct(player);
 }
@@ -373,7 +373,7 @@ void MoveToLocationShowsDescriptionWhenEnteringArtificiallyLightedArea()
 
     command("west", player);
     ExpectSubStringMatch("a stone hallway.*There is one obvious exit: "
-        "east.*Black-robed figure", player->caughtMessage());
+        "east.*Black-robed figure", player.caughtMessage());
 
     destruct(player);
 }
@@ -382,7 +382,7 @@ void MoveToLocationShowsDescriptionWhenEnteringArtificiallyLightedArea()
 void AddFeatureRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddFeature("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddFeature("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -390,8 +390,8 @@ void AddFeatureRaisesErrorWhenUnableToRegiterObject()
 void AddFeatureRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeFeatureDuplicate.c'. A conflicting item with that name already exists.\n";
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    string err = catch (Environment->testAddFeature("/lib/tests/support/environment/fakeFeatureDuplicate.c", "north"));
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    string err = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeatureDuplicate.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -399,8 +399,8 @@ void AddFeatureRaisesErrorOnNamingConflict()
 void AddFeatureRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid feature.\n";
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddFeature("fake forest", "north"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment.testAddFeature("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
@@ -408,7 +408,7 @@ void AddFeatureRaisesErrorOnFailure()
 void AddItemRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddItem("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddItem("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -416,8 +416,8 @@ void AddItemRaisesErrorWhenUnableToRegiterObject()
 void AddItemRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeItemDuplicate.c'. A conflicting item with that name already exists.\n";
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment->testAddItem("/lib/tests/support/environment/fakeItemDuplicate.c", "north"));
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment.testAddItem("/lib/tests/support/environment/fakeItemDuplicate.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -425,8 +425,8 @@ void AddItemRaisesErrorOnNamingConflict()
 void AddItemRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid item.\n";
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddItem("fake forest", "north"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment.testAddItem("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
@@ -434,7 +434,7 @@ void AddItemRaisesErrorOnFailure()
 void AddExitRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'north' must be a string and '0' must be a valid destination file.\n";
-    string err = catch (Environment->testAddExit("north"));
+    string err = catch (Environment.testAddExit("north"));
     ExpectEq(expected, err);
 }
 
@@ -442,7 +442,7 @@ void AddExitRaisesErrorOnFailure()
 void AddBuildingRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testAddBuilding("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddBuilding("/lib/tests/some/bad/path.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -450,8 +450,8 @@ void AddBuildingRaisesErrorWhenUnableToRegiterObject()
 void AddBuildingRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeBuildingDuplicate.c'. A conflicting item with that name already exists.\n";
-    Environment->testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
-    string err = catch (Environment->testAddBuilding("/lib/tests/support/environment/fakeBuildingDuplicate.c", "north"));
+    Environment.testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
+    string err = catch (Environment.testAddBuilding("/lib/tests/support/environment/fakeBuildingDuplicate.c", "north"));
     ExpectEq(expected, err);
 }
 
@@ -459,8 +459,8 @@ void AddBuildingRaisesErrorOnNamingConflict()
 void AddBuildingRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid building with a valid location.\n";
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testAddBuilding("fake forest", "north"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment.testAddBuilding("fake forest", "north"));
     ExpectEq(expected, err);
 }
 
@@ -468,7 +468,7 @@ void AddBuildingRaisesErrorOnFailure()
 void SetTerrainRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testSetTerrain("/lib/tests/some/bad/path.c"));
+    string err = catch (Environment.testSetTerrain("/lib/tests/some/bad/path.c"));
     ExpectEq(expected, err);
 }
 
@@ -476,8 +476,8 @@ void SetTerrainRaisesErrorWhenUnableToRegiterObject()
 void SetTerrainRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeTerrainDuplicate.c'. A conflicting item with that name already exists.\n";
-    Dictionary->registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
-    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"));
+    Dictionary.registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"));
     ExpectEq(expected, err);
 }
 
@@ -485,8 +485,8 @@ void SetTerrainRaisesErrorOnNamingConflict()
 void SetTerrainRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake sign' is not a valid terrain.\n";
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment->testSetTerrain("fake sign"));
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment.testSetTerrain("fake sign"));
     ExpectEq(expected, err);
 }
 
@@ -494,8 +494,8 @@ void SetTerrainRaisesErrorOnFailure()
 void SetTerrainCanOnlyBeCalledOnce()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
     ExpectEq(expected, err);
 }
 
@@ -503,8 +503,8 @@ void SetTerrainCanOnlyBeCalledOnce()
 void SetTerrainCannotBeCalledIfInteriorSet()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string err = catch (Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
     ExpectEq(expected, err);
 }
 
@@ -512,8 +512,8 @@ void SetTerrainCannotBeCalledIfInteriorSet()
 void SetInteriorCannotBeCalledIfTerrainSet()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
     ExpectEq(expected, err);
 }
 
@@ -521,7 +521,7 @@ void SetInteriorCannotBeCalledIfTerrainSet()
 void SetInteriorRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment->testSetInterior("/lib/tests/some/bad/path.c"));
+    string err = catch (Environment.testSetInterior("/lib/tests/some/bad/path.c"));
     ExpectEq(expected, err);
 }
 
@@ -529,8 +529,8 @@ void SetInteriorRaisesErrorWhenUnableToRegiterObject()
 void SetInteriorRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeInteriorDuplicate.c'. A conflicting item with that name already exists.\n";
-    Dictionary->registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
-    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"));
+    Dictionary.registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"));
     ExpectEq(expected, err);
 }
 
@@ -538,8 +538,8 @@ void SetInteriorRaisesErrorOnNamingConflict()
 void SetInteriorRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake sign' is not a valid interior.\n";
-    Environment->testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment->testSetInterior("fake sign"));
+    Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+    string err = catch (Environment.testSetInterior("fake sign"));
     ExpectEq(expected, err);
 }
 
@@ -547,8 +547,8 @@ void SetInteriorRaisesErrorOnFailure()
 void SetInteriorCanOnlyBeCalledOnce()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string err = catch (Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
     ExpectEq(expected, err);
 }
 
@@ -556,50 +556,50 @@ void SetInteriorCanOnlyBeCalledOnce()
 void AddObjectRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid file.\n";
-    string err = catch (Environment->testAddObject("/lib/tests/bad/path.c"));
+    string err = catch (Environment.testAddObject("/lib/tests/bad/path.c"));
     ExpectEq(expected, err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddObjectToDefaultStateCreatesObjectOnReset()
 {
-    Environment->testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/weapon.c");
     ExpectFalse(sizeof(all_inventory(Environment)));
-    Environment->reset();
+    Environment.reset();
     ExpectEq(1, sizeof(all_inventory(Environment)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetupIsOnlyCalledOnceByReset()
 {
-    Environment->create();
-    ExpectEq(1, Environment->setupCalled());
-    Environment->reset();
-    ExpectEq(1, Environment->setupCalled());
+    Environment.create();
+    ExpectEq(1, Environment.setupCalled());
+    Environment.reset();
+    ExpectEq(1, Environment.setupCalled());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RepeatedResetsDoNotCreateMultiplesOfSameObject()
 {
-    Environment->testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/weapon.c");
     ExpectFalse(sizeof(all_inventory(Environment)));
-    Environment->reset();
+    Environment.reset();
     ExpectEq(1, sizeof(all_inventory(Environment)));
-    Environment->reset();
+    Environment.reset();
     ExpectEq(1, sizeof(all_inventory(Environment)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResetWillRecreateOnlyObjectsThatAreNotPresent()
 {
-    Environment->testAddObject("/lib/items/weapon.c");
-    Environment->testAddObject("/lib/items/armor.c");
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/armor.c");
     ExpectFalse(sizeof(all_inventory(Environment)));
-    Environment->reset();
+    Environment.reset();
     ExpectEq(2, sizeof(all_inventory(Environment)));
     destruct(all_inventory(Environment)[0]);
     ExpectEq(1, sizeof(all_inventory(Environment)));
-    Environment->reset();
+    Environment.reset();
     ExpectEq(2, sizeof(all_inventory(Environment)));
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment));
     ExpectTrue(present_clone("/lib/items/armor.c", Environment));
@@ -610,24 +610,24 @@ void OnlyObjectsForProperStateArePresent()
 {
     ToggleCallOutBypass();
     object stateMachine = 
-        load_object("/lib/dictionaries/stateMachineDictionary.c")->getStateMachine(
+        load_object("/lib/dictionaries/stateMachineDictionary.c").getStateMachine(
             "/lib/tests/support/core/simpleStateMachine.c");
 
-    Environment->setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
-    Environment->testAddObject("/lib/items/weapon.c");
-    Environment->testAddObject("/lib/items/armor.c", "blah");
-    Environment->testAddObject("/lib/items/item.c", "blah2");
+    Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/armor.c", "blah");
+    Environment.testAddObject("/lib/items/item.c", "blah2");
 
-    Environment->reset();
+    Environment.reset();
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
 
-    stateMachine->receiveEvent(Environment, "blahTransition");
+    stateMachine.receiveEvent(Environment, "blahTransition");
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
 
-    stateMachine->receiveEvent(Environment, "blahTwoTransition");
+    stateMachine.receiveEvent(Environment, "blahTwoTransition");
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/item.c", Environment), "item present");
@@ -641,25 +641,25 @@ void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 {
     ToggleCallOutBypass();
     object stateMachine =
-        load_object("/lib/dictionaries/stateMachineDictionary.c")->getStateMachine(
+        load_object("/lib/dictionaries/stateMachineDictionary.c").getStateMachine(
             "/lib/tests/support/core/simpleStateMachine.c");
 
-    Environment->setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
-    Environment->testAddObject("/lib/items/weapon.c");
-    Environment->testAddObject("/lib/items/armor.c", "blah");
-    Environment->testAddObject("/lib/items/item.c", "blah2");
+    Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/armor.c", "blah");
+    Environment.testAddObject("/lib/items/item.c", "blah2");
 
-    Environment->reset();
+    Environment.reset();
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
 
-    stateMachine->testOverrideCurrentState("blah");
-    Environment->onStateChanged(this_object(), "blah");
+    stateMachine.testOverrideCurrentState("blah");
+    Environment.onStateChanged(this_object(), "blah");
     ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible if state machine not initiator");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectFalse(present_clone("/lib/items/armor.c", Environment), "armor present");
 
-    Environment->onStateChanged(stateMachine, "blah");
+    Environment.onStateChanged(stateMachine, "blah");
     ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah2' state");
     ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
     ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
@@ -671,167 +671,167 @@ void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 /////////////////////////////////////////////////////////////////////////////
 void SetAdditionalLongDescriptionAddsCustomLong()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testSetAdditionalLongDescription("This is an extra message");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetAdditionalLongDescription("This is an extra message");
     ExpectSubStringMatch("a deciduous forest. To the north is a stand of majestic oak trees with branches laden with acorns.*This is an extra message",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdditionalLongDescriptionAddsCustomLongOnlyToCorrectState()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testSetAdditionalLongDescription("This is an extra message", "blah");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testSetAdditionalLongDescription("This is an extra message", "blah");
     ExpectSubStringMatch("a deciduous forest. To the north is a stand of majestic oak trees with branches laden with acorns.*",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 
-    Environment->currentState("blah");
+    Environment.currentState("blah");
     ExpectSubStringMatch("This is an extra message",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ParseEfunCallForCallOtherWithKeyDisplaysInLong()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddObject("/lib/tests/support/items/testSword.c");
-    Environment->testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage::");
-    Environment->create();
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddObject("/lib/tests/support/items/testSword.c");
+    Environment.testSetAdditionalLongDescription("##call_other::key::/lib/tests/support/items/testSword.c::swordMessage::");
+    Environment.create();
 
     ExpectTrue(present_clone("/lib/tests/support/items/testSword.c", Environment), "weapon present");
     ExpectSubStringMatch("a deciduous forest. You can feel a weaselish buzz in the air",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InteriorsReturnFalseForIsIlluminatedByDefault()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    ExpectFalse(Environment->isIlluminated());
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    ExpectFalse(Environment.isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TerrainReturnValueForTimeOfDayForIsIlluminatedByDefault()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Dictionary->timeOfDay("midnight");
-    Dictionary->setYear(1); 
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Dictionary.timeOfDay("midnight");
+    Dictionary.setYear(1); 
 
-    ExpectEq(3, Environment->isIlluminated());
+    ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("dawn");
-    ExpectEq(7, Environment->isIlluminated());
+    Dictionary.timeOfDay("dawn");
+    ExpectEq(7, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("afternoon");
-    ExpectEq(10, Environment->isIlluminated());
+    Dictionary.timeOfDay("afternoon");
+    ExpectEq(10, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("night");
-    ExpectEq(3, Environment->isIlluminated());
+    Dictionary.timeOfDay("night");
+    ExpectEq(3, Environment.isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TerrainAffectedByLightSources()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
-    Dictionary->setYear(1);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
+    Dictionary.setYear(1);
 
-    Dictionary->timeOfDay("midnight");
-    ExpectEq(3, Environment->isIlluminated());
+    Dictionary.timeOfDay("midnight");
+    ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("night");
-    ExpectEq(3, Environment->isIlluminated());
+    Dictionary.timeOfDay("night");
+    ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary->season("spring");
-    ExpectEq(8, Environment->isIlluminated());
+    Dictionary.season("spring");
+    ExpectEq(8, Environment.isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TerrainLightAffectedByMoonPhase()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Dictionary->timeOfDay("night");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Dictionary.timeOfDay("night");
 
-    Dictionary->setDay(0);
-    ExpectEq(1, Environment->isIlluminated());
+    Dictionary.setDay(0);
+    ExpectEq(1, Environment.isIlluminated());
 
-    Dictionary->setDay(3);
-    ExpectEq(2, Environment->isIlluminated());
+    Dictionary.setDay(3);
+    ExpectEq(2, Environment.isIlluminated());
 
-    Dictionary->setDay(7);
-    ExpectEq(3, Environment->isIlluminated());
+    Dictionary.setDay(7);
+    ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary->setDay(10);
-    ExpectEq(4, Environment->isIlluminated());
+    Dictionary.setDay(10);
+    ExpectEq(4, Environment.isIlluminated());
 
-    Dictionary->setDay(14);
-    ExpectEq(5, Environment->isIlluminated());
+    Dictionary.setDay(14);
+    ExpectEq(5, Environment.isIlluminated());
 
-    Dictionary->setDay(17);
-    ExpectEq(4, Environment->isIlluminated());
+    Dictionary.setDay(17);
+    ExpectEq(4, Environment.isIlluminated());
 
-    Dictionary->setDay(21);
-    ExpectEq(3, Environment->isIlluminated());
+    Dictionary.setDay(21);
+    ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary->setDay(24);
-    ExpectEq(2, Environment->isIlluminated());
+    Dictionary.setDay(24);
+    ExpectEq(2, Environment.isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InteriorLightNotAffectedByOutdoorLight()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
 
-    Dictionary->timeOfDay("afternoon");
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.timeOfDay("afternoon");
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("night");
+    Dictionary.timeOfDay("night");
 
-    Dictionary->setDay(0);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(0);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(3);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(3);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(7);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(7);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(10);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(10);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(14);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(14);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(17);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(17);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(21);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(21);
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->setDay(24);
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.setDay(24);
+    ExpectEq(0, Environment.isIlluminated());
 
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InteriorsAffectedByLightSources()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    Environment->testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment.testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
 
-    ExpectEq(0, Environment->isIlluminated());
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("midnight");
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.timeOfDay("midnight");
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->timeOfDay("night");
-    ExpectEq(0, Environment->isIlluminated());
+    Dictionary.timeOfDay("night");
+    ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary->season("spring");
-    ExpectEq(8, Environment->isIlluminated());
+    Dictionary.season("spring");
+    ExpectEq(8, Environment.isIlluminated());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -847,10 +847,10 @@ void CanAddCustomLocations()
         "z-rotation": 90
     ]);
 
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", location);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", location);
     ExpectSubStringMatch("To the slightly east of north and upwardish is .*",
-        regreplace(Environment->long(), "\n", " ", 1));
+        regreplace(Environment.long(), "\n", " ", 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -865,46 +865,46 @@ void CannotAddInvalidLocations()
             "z-rotation" : 90
     ]);
 
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string error = catch(Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", location));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string error = catch(Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", location));
     ExpectSubStringMatch("ERROR in environment.c.*slightly east of north and upwardish", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddUndefinedDefaultLocations()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string error = catch (Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"));
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    string error = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"));
     ExpectSubStringMatch("ERROR in environment.c.*turnip", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionDisplaysCorrectlyForObjectsWithoutDescriptions()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c");
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment.testAddItem("/lib/tests/support/environment/itemWithoutDescription.c");
 
     ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
-        regreplace(Environment->long(), ".+(a stone.+)", "\\1"));
-    ExpectTrue(Environment->id("descriptionless sign"));
+        regreplace(Environment.long(), ".+(a stone.+)", "\\1"));
+    ExpectTrue(Environment.id("descriptionless sign"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DescriptionDisplaysCorrectlyForObjectsWithEmptyDescriptions()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    Environment->testAddItem("/lib/tests/support/environment/itemWithEmptyDescription.c");
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    Environment.testAddItem("/lib/tests/support/environment/itemWithEmptyDescription.c");
 
     ExpectEq("a stone hallway.\n -=-=- There are no obvious exits. \n\n",
-        regreplace(Environment->long(), ".+(a stone.+)", "\\1"));
-    ExpectTrue(Environment->id("descriptionless sign"));
+        regreplace(Environment.long(), ".+(a stone.+)", "\\1"));
+    ExpectTrue(Environment.id("descriptionless sign"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ObjectsWithoutDescriptionsCannotHaveDirection()
 {
-    Environment->testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string error = catch (Environment->testAddItem("/lib/tests/support/environment/itemWithoutDescription.c", "north"));
+    Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
+    string error = catch (Environment.testAddItem("/lib/tests/support/environment/itemWithoutDescription.c", "north"));
 
     ExpectEq("*ERROR in environment.c: You cannot specify a direction for "
         "'descriptionless sign' as it has no description.\n", error);
@@ -913,19 +913,19 @@ void ObjectsWithoutDescriptionsCannotHaveDirection()
 /////////////////////////////////////////////////////////////////////////////
 void NoColorCorrectlyDisplayed()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("none");
+    person.Name("dwight");
+    person.colorConfiguration("none");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -933,25 +933,25 @@ void NoColorCorrectlyDisplayed()
         "laden with acorns.*glowing.\nThe sun is high in the summer sky.\n"
         " -=-=- There is one obvious exit: north\n"
         "Sword of Blah\n",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ThreeBitColorCorrectlyDisplayed()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("3-bit");
+    person.Name("dwight");
+    person.colorConfiguration("3-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -959,25 +959,25 @@ void ThreeBitColorCorrectlyDisplayed()
         "trees.*laden with acorns.*glowing.*"
         "35m -=-=- There is one obvious exit: north\n"
         ".*36mSword of Blah",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EightBitColorCorrectlyDisplayed()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -985,25 +985,25 @@ void EightBitColorCorrectlyDisplayed()
         "trees.*laden with acorns.*glowing.*"
         "0;38;5;238;1m -=-=- There is one obvious exit: north\n"
         ".*0;38;5;80mSword of Blah..0m\n",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TwentyFourBitColorCorrectlyDisplayed()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("24-bit");
+    person.Name("dwight");
+    person.colorConfiguration("24-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1011,30 +1011,30 @@ void TwentyFourBitColorCorrectlyDisplayed()
         "trees.*laden with acorns.*glowing.*"
         "0;38;2;60;60;70;1m -=-=- There is one obvious exit: north\n"
         ".*0;38;2;180;180;190mSword of Blah..0m\n",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnicodeCorrectlyDisplayed()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->charsetConfiguration("unicode");
+    person.Name("dwight");
+    person.charsetConfiguration("unicode");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("\u2558\u2550\u2550\u2550\u255b",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1044,12 +1044,12 @@ void EnvironmentNameReturnsProperValue()
         load_object("/lib/tests/support/environment/startingRoom.c");
 
     ExpectEq("/lib/tests/support/environment/startingRoom",
-        environment->environmentName());
+        environment.environmentName());
 
     environment = clone_object("/lib/tests/support/environment/startingRoom.c");
 
     ExpectEq("/lib/tests/support/environment/startingRoom",
-        environment->environmentName());
+        environment.environmentName());
 
     destruct(environment);
 }
@@ -1061,14 +1061,14 @@ void CorrectlyMoveToCloneWhenCloneEnvironmentSet()
         load_object("/lib/tests/support/environment/clonedRoom.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
 
-    environment->enterEnvironment(person);
+    environment.enterEnvironment(person);
 
     ExpectFalse(clonep(environment));
     ExpectTrue(clonep(environment(person)));
-    ExpectEq(environment->environmentName(),
-        environment(person)->environmentName());
+    ExpectEq(environment.environmentName(),
+        environment(person).environmentName());
 
     destruct(person);
 }
@@ -1080,16 +1080,16 @@ void CanReEnterSameClone()
         load_object("/lib/tests/support/environment/clonedRoom.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
 
-    environment->enterEnvironment(person);
+    environment.enterEnvironment(person);
 
     ExpectEq("/lib/tests/support/environment/clonedRoom",
-        environment(person)->environmentName());
+        environment(person).environmentName());
 
     object firstEntry = environment(person);
 
-    environment->enterEnvironment(person);
+    environment.enterEnvironment(person);
 
     ExpectEq(firstEntry, environment(person));
 
@@ -1103,13 +1103,13 @@ void DifferentPeopleMoveToDifferentClonedEnvironments()
         load_object("/lib/tests/support/environment/clonedRoom.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
 
     object person2 = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person2->Name("fred");
+    person2.Name("fred");
 
-    environment->enterEnvironment(person);
-    environment->enterEnvironment(person2);
+    environment.enterEnvironment(person);
+    environment.enterEnvironment(person2);
 
     ExpectNotEq(object_name(environment(person2)),
         object_name(environment(person)));
@@ -1125,17 +1125,17 @@ void HenchmenMoveToSameClonedEnvironment()
         load_object("/lib/tests/support/environment/clonedRoom.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
 
     object person2 = clone_object("/lib/realizations/henchman.c");
-    person2->Name("fred");
-    person2->setLeader(person);
+    person2.Name("fred");
+    person2.setLeader(person);
 
-    environment->enterEnvironment(person);
-    environment->enterEnvironment(person2);
+    environment.enterEnvironment(person);
+    environment.enterEnvironment(person2);
 
-    ExpectEq(environment(person2)->environmentName(),
-        environment(person)->environmentName());
+    ExpectEq(environment(person2).environmentName(),
+        environment(person).environmentName());
 
     destruct(person);
     destruct(person2);
@@ -1147,189 +1147,189 @@ void LongRecoversWhenDictionaryReset()
     destruct(Environment);
     Environment = load_object("/lib/tests/support/environment/darkRoom.c");
     ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
-        Environment->long());
+        Environment.long());
 
     destruct(Dictionary);
     Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
     ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
-        Environment->long());
+        Environment.long());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDawn()
 {
-    Dictionary->timeOfDay("dawn");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("dawn");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a forest with a little light.*faint.*dawn.*light.*"
         "38;5;166mThe red/orange glow to the east beckons the new day.*"
         "There is one obvious exit: north.*Long sword",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMorning()
 {
-    Dictionary->timeOfDay("morning");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("morning");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a deciduous forest.*"
         "38;5;184mThe sun is low in the eastern summer sky.*"
         "There is one obvious exit: north.*Sword of Blah",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNoon()
 {
-    Dictionary->timeOfDay("noon");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("noon");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a deciduous forest.*noonish.*"
         "38;5;226mThe sun is high in the summer sky.*"
         "There is one obvious exit: north.*Sword of Blah",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysAfternoon()
 {
-    Dictionary->timeOfDay("afternoon");
-    Dictionary->setDay(0);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("afternoon");
+    Dictionary.setDay(0);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a deciduous forest.*afternooningly.*"
         "38;5;190mThe sun has begun to wester in the spring sky.*"
         "There is one obvious exit: north.*Sword of Blah",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysEvening()
 {
-    Dictionary->timeOfDay("evening");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("evening");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a deciduous forest.*late-day.*"
         "38;5;184mThe sun is low in the western summer sky.*"
         "There is one obvious exit: north.*Sword of Blah",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDusk()
 {
-    Dictionary->timeOfDay("dusk");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("dusk");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
     ExpectSubStringMatch("a forest with a little light.*failing.*light.*"
         "38;5;166mThe red/orange glow in the western sky signals the day's end.*"
         "There is one obvious exit: north.*Long sword",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithNewMoon()
 {
-    Dictionary->timeOfDay("night");
-    Dictionary->setDay(0);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("night");
+    Dictionary.setDay(0);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1337,27 +1337,27 @@ void CorrectlyDisplaysNightWithNewMoon()
         "38;5;57mA canopy of stars blankets the region.*"
         "There is one obvious exit: north.*The silhouette of an item, but it "
         "is too dark to identify it",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithWaxingCrescent()
 {
-    Dictionary->timeOfDay("night");
-    Dictionary->setDay(4);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("night");
+    Dictionary.setDay(4);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1366,27 +1366,27 @@ void CorrectlyDisplaysNightWithWaxingCrescent()
         "is low in\nthe eastern sky.*"
         "There is one obvious exit: north.*The silhouette of an item, but it "
         "is too dark to identify it",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithFirstQuarter()
 {
-    Dictionary->timeOfDay("night");
-    Dictionary->setDay(6);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("night");
+    Dictionary.setDay(6);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1394,27 +1394,27 @@ void CorrectlyDisplaysNightWithFirstQuarter()
         "38;5;57mA canopy of stars blankets the region. The moon, a first quarter, "
         "is low in\nthe eastern sky.*"
         "There is one obvious exit: north.*The silhouette of a weapon",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithWaxingGibbous()
 {
-    Dictionary->timeOfDay("midnight");
-    Dictionary->setDay(10);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("midnight");
+    Dictionary.setDay(10);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1422,27 +1422,27 @@ void CorrectlyDisplaysMidnightWithWaxingGibbous()
         "38;5;56mA canopy of stars blankets the region. The moon, a waxing gibbous, "
         "is almost\ndirectly overhead.*"
         "There is one obvious exit: north.*The silhouette of a weapon",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithFullMoon()
 {
-    Dictionary->timeOfDay("midnight");
-    Dictionary->setDay(13);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("midnight");
+    Dictionary.setDay(13);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1450,27 +1450,27 @@ void CorrectlyDisplaysMidnightWithFullMoon()
         "38;5;56mA canopy of stars blankets the region. The moon, a full moon, "
         "is almost\ndirectly overhead.*"
         "There is one obvious exit: north.*An apparent long sword",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithWaningGibbous()
 {
-    Dictionary->timeOfDay("midnight");
-    Dictionary->setDay(16);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("midnight");
+    Dictionary.setDay(16);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1478,27 +1478,27 @@ void CorrectlyDisplaysMidnightWithWaningGibbous()
         "38;5;56mA canopy of stars blankets the region. The moon, a waning gibbous, "
         "is almost\ndirectly overhead.*"
         "There is one obvious exit: north.*The silhouette of a weapon",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysLateNightWithLastQuarter()
 {
-    Dictionary->timeOfDay("late night");
-    Dictionary->setDay(20);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("late night");
+    Dictionary.setDay(20);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1506,27 +1506,27 @@ void CorrectlyDisplaysLateNightWithLastQuarter()
         "38;5;57mA canopy of stars blankets the region. The moon, a last quarter, "
         "is low in the\nwestern sky.*"
         "There is one obvious exit: north.*The silhouette of a weapon",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysLateNightWithWaningCrescent()
 {
-    Dictionary->timeOfDay("late night");
-    Dictionary->setDay(24);
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    Environment->testAddExit("north", "/lib/tests/support/environment/toLocation.c");
+    Dictionary.timeOfDay("late night");
+    Dictionary.setDay(24);
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object weapon = clone_object("/lib/items/weapon.c");
-    weapon->set("name", "blah");
-    weapon->set("weapon type", "long sword");
-    weapon->set("short", "Sword of Blah");
+    weapon.set("name", "blah");
+    weapon.set("weapon type", "long sword");
+    weapon.set("short", "Sword of Blah");
     move_object(weapon, Environment);
 
     command("look", person);
@@ -1535,36 +1535,36 @@ void CorrectlyDisplaysLateNightWithWaningCrescent()
         "is low in\nthe western sky.*"
         "There is one obvious exit: north.*The silhouette of an item, "
         "but it is too dark to identify it",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExitsWithDefaultDoorsBehavesCorrectly()
 {
-    Environment->testAddExitWithDoor("north", 
+    Environment.testAddExitWithDoor("north", 
         "/lib/tests/support/environment/not-so-dark-room.c");
-    Environment->testAddItem("/lib/tests/support/environment/light.c");
+    Environment.testAddItem("/lib/tests/support/environment/light.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
+    observer.Name("fred");
     move_object(observer, Environment);
 
     object other = clone_object("/lib/tests/support/services/mockPlayer.c");
-    other->Name("harold");
+    other.Name("harold");
     move_object(other, "/lib/tests/support/environment/not-so-dark-room.c");
 
     command("north", person);
     ExpectSubStringMatch("You go through the door to the north", 
-        person->caughtMessages()[0]);
+        person.caughtMessages()[0]);
     ExpectSubStringMatch("Dwight goes through the door to the north.*The door closes",
-        implode(observer->caughtMessages(), "\n"));
+        implode(observer.caughtMessages(), "\n"));
     ExpectSubStringMatch("The door opens and Dwight enters",
-        other->caughtMessage());   
+        other.caughtMessage());   
 
     ExpectEq("/lib/tests/support/environment/not-so-dark-room.c",
         program_name(environment(person)));
@@ -1577,34 +1577,34 @@ void ExitsWithDefaultDoorsBehavesCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void BuildingsWithDoorsBehaveCorrectly()
 {
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddBuildingWithDoor(
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddBuildingWithDoor(
         "/lib/tests/support/environment/fakeBuilding.c",
         "north",
         "/lib/tests/support/environment/not-so-dark-room.c");
 
-    Environment->testAddItem("/lib/tests/support/environment/light.c");
+    Environment.testAddItem("/lib/tests/support/environment/light.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
+    observer.Name("fred");
     move_object(observer, Environment);
 
     object other = clone_object("/lib/tests/support/services/mockPlayer.c");
-    other->Name("harold");
+    other.Name("harold");
     move_object(other, "/lib/tests/support/environment/not-so-dark-room.c");
 
     command("north", person);
     ExpectSubStringMatch("You go through the door to the north",
-        implode(person->caughtMessages(), "\n"));
+        implode(person.caughtMessages(), "\n"));
     ExpectSubStringMatch("Dwight goes through the door to the north.*The door closes",
-        implode(observer->caughtMessages(), "\n"));
+        implode(observer.caughtMessages(), "\n"));
     ExpectSubStringMatch("The door opens and Dwight enters",
-        other->caughtMessage());
+        other.caughtMessage());
 
     ExpectEq("/lib/tests/support/environment/not-so-dark-room.c",
         program_name(environment(person)));
@@ -1617,29 +1617,29 @@ void BuildingsWithDoorsBehaveCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void CannotMoveThroughLockedDoor()
 {
-    Environment->testAddExitWithDoor("north",
+    Environment.testAddExitWithDoor("north",
         "/lib/tests/support/environment/not-so-dark-room.c",
         "/lib/environment/doors/door.c",
         "/lib/items/key.c");
 
-    Environment->testAddItem("/lib/tests/support/environment/light.c");
+    Environment.testAddItem("/lib/tests/support/environment/light.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
 
     ExpectEq("/lib/tests/support/environment/testEnvironment.c", 
         program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
+    observer.Name("fred");
     move_object(observer, Environment);
 
     command("north", person);
     ExpectSubStringMatch("You try to go through the door, but it is locked",
-        person->caughtMessage());
+        person.caughtMessage());
     ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
-        observer->caughtMessage());
+        observer.caughtMessage());
 
     ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
@@ -1651,31 +1651,31 @@ void CannotMoveThroughLockedDoor()
 /////////////////////////////////////////////////////////////////////////////
 void CannotGoIntoLockedBuilding()
 {
-    Environment->testAddBuildingWithDoor(
+    Environment.testAddBuildingWithDoor(
         "/lib/tests/support/environment/fakeBuilding.c",
         "north",
         "/lib/tests/support/environment/not-so-dark-room.c",
         "/lib/environment/doors/door.c",
         "/lib/items/key.c");
 
-    Environment->testAddItem("/lib/tests/support/environment/light.c");
+    Environment.testAddItem("/lib/tests/support/environment/light.c");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
+    person.Name("dwight");
     move_object(person, Environment);
 
     ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
+    observer.Name("fred");
     move_object(observer, Environment);
 
     command("north", person);
     ExpectSubStringMatch("You try to go through the door, but it is locked",
-        person->caughtMessage());
+        person.caughtMessage());
     ExpectSubStringMatch("Dwight tries to go through the door, but it is locked",
-        observer->caughtMessage());
+        observer.caughtMessage());
 
     ExpectEq("/lib/tests/support/environment/testEnvironment.c",
         program_name(environment(person)));
@@ -1687,191 +1687,191 @@ void CannotGoIntoLockedBuilding()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysActiveLight()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("an[ \n]unlit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("an[ \n]unlit.*candle", person.caughtMessage());
 
     command("light", person);
-    ExpectSubStringMatch("You light the following: candle", person->caughtMessage());
-    ExpectSubStringMatch("Dwight lights the following: candle", observer->caughtMessage());
+    ExpectSubStringMatch("You light the following: candle", person.caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: candle", observer.caughtMessage());
 
     command("look", person);
-    ExpectSubStringMatch("a[ \n]lit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("a[ \n]lit.*candle", person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDefaultActiveLight()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("a[ \n]lit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("a[ \n]lit.*candle", person.caughtMessage());
 
     command("extinguish", person);
-    ExpectSubStringMatch("You extinguish the following: candle", person->caughtMessage());
-    ExpectSubStringMatch("Dwight extinguishes the following: candle", observer->caughtMessage());
+    ExpectSubStringMatch("You extinguish the following: candle", person.caughtMessage());
+    ExpectSubStringMatch("Dwight extinguishes the following: candle", observer.caughtMessage());
 
     command("look", person);
-    ExpectSubStringMatch("an[ \n]unlit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("an[ \n]unlit.*candle", person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanRegisterItemsWithSameDisplayName()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "south");
-    Environment->testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "south");
+    Environment.testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
-    ExpectSubStringMatch("a[ \n]lit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("a[ \n]lit.*candle", person.caughtMessage());
 
     command("extinguish", person);
-    ExpectSubStringMatch("You extinguish the following: candle", person->caughtMessage());
-    ExpectSubStringMatch("Dwight extinguishes the following: candle", observer->caughtMessage());
+    ExpectSubStringMatch("You extinguish the following: candle", person.caughtMessage());
+    ExpectSubStringMatch("Dwight extinguishes the following: candle", observer.caughtMessage());
 
     command("look", person);
-    ExpectSubStringMatch("an[ \n]unlit.*candle", person->caughtMessage());
+    ExpectSubStringMatch("an[ \n]unlit.*candle", person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMultipleActiveLight()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch", 
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("light", person);
     ExpectSubStringMatch("You light the following: candle and torch", 
-        person->caughtMessage());
+        person.caughtMessage());
     ExpectSubStringMatch("Dwight lights the following: candle and torch", 
-        observer->caughtMessage());
+        observer.caughtMessage());
 
     command("look", person);
     ExpectSubStringMatch("a[ \n]lit[ \n]candle.*a[ \n]lit[ \n]torch", 
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyLightOneActiveLightSource()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch", 
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("light torch", person);
-    ExpectSubStringMatch("You light the following: torch", person->caughtMessage());
-    ExpectSubStringMatch("Dwight lights the following: torch", observer->caughtMessage());
+    ExpectSubStringMatch("You light the following: torch", person.caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: torch", observer.caughtMessage());
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*a[ \n]lit[ \n]torch", 
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyExtinguishActiveLightSource()
 {
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/lighting/torch.c", "west");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, Environment);
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch",
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("light torch", person);
-    ExpectSubStringMatch("You light the following: torch", person->caughtMessage());
-    ExpectSubStringMatch("Dwight lights the following: torch", observer->caughtMessage());
+    ExpectSubStringMatch("You light the following: torch", person.caughtMessage());
+    ExpectSubStringMatch("Dwight lights the following: torch", observer.caughtMessage());
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*a[ \n]lit[ \n]torch",
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("extinguish torch", person);
     ExpectSubStringMatch("You extinguish the following: torch", 
-        person->caughtMessage());
+        person.caughtMessage());
     ExpectSubStringMatch("Dwight extinguishes the following: torch", 
-        observer->caughtMessage());
+        observer.caughtMessage());
 
     command("look", person);
     ExpectSubStringMatch("an[ \n]unlit[ \n]candle.*an[ \n]unlit[ \n]torch",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1879,65 +1879,65 @@ void DecayingLightsCorrectlyDisplayed()
 {
     object campfire = load_object("/lib/environment/items/camp-fire.c");
 
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     command("look", person);
     ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("light campfire", person);
 
     command("look", person);
     ExpectSubStringMatch("little.*light.*flickering.*roil.*newly-added",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("little.*light.*flickering.*roil.*slightly-charred",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("dimly-lit.*flames.*ascend.*hisses.*pops",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("dimly-lit.*flames.*wrap.*charred.*coals",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("barely-lit.*low.*flames.*coals.*red",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("barely-lit.*faint.*flickers.*nearly-spent",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("barely-lit.*occasional.*flickers.*faintly",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("barely-lit.*faint.*light.*ashen.*embers",
-        person->caughtMessage());
+        person.caughtMessage());
 
-    campfire->decayFire("default", Environment);
+    campfire.decayFire("default", Environment);
     command("look", person);
     ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
-        person->caughtMessage());
+        person.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1945,41 +1945,41 @@ void EnvironmentsIndependentlyHandleTheSameLightSource()
 {
     object campfire = load_object("/lib/environment/items/camp-fire.c");
 
-    Dictionary->timeOfDay("midnight");
-    Environment->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Environment->testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment->testAddItem("/lib/environment/items/camp-fire.c", "west");
+    Dictionary.timeOfDay("midnight");
+    Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
+    Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
 
     object environment2 =
         clone_object("/lib/tests/support/environment/testEnvironment.c");
-    environment2->testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    environment2->testAddItem("/lib/environment/items/camp-fire.c", "west");
+    environment2.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
+    environment2.testAddItem("/lib/environment/items/camp-fire.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
-    person->Name("dwight");
-    person->colorConfiguration("8-bit");
+    person.Name("dwight");
+    person.colorConfiguration("8-bit");
     move_object(person, Environment);
 
     object observer = clone_object("/lib/tests/support/services/mockPlayer.c");
-    observer->Name("fred");
-    observer->colorConfiguration("3-bit");
+    observer.Name("fred");
+    observer.colorConfiguration("3-bit");
     move_object(observer, environment2);
 
     command("light campfire", person);
 
     command("look", person);
     ExpectSubStringMatch("little.*light.*flickering.*roil.*newly-added",
-        person->caughtMessage());
+        person.caughtMessage());
     command("exa fire", person);
     ExpectSubStringMatch("Flickering.*roil.*newly-added",
-        person->caughtMessage());
+        person.caughtMessage());
 
     command("look", observer);
     ExpectSubStringMatch("barely.*charred.*ashen remains.*small campfire",
-        observer->caughtMessage());
+        observer.caughtMessage());
     command("exa fire", observer);
     ExpectSubStringMatch("charred.*ashen remains.*small campfire",
-        observer->caughtMessage());
+        observer.caughtMessage());
 
     destruct(environment2);
 }
@@ -1988,13 +1988,13 @@ void EnvironmentsIndependentlyHandleTheSameLightSource()
 void HarvestDescriptionIsShown()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
-    player->addSkillPoints(20);
-    player->advanceSkill("forestry", 5);
+    player.addSkillPoints(20);
+    player.advanceSkill("forestry", 5);
 
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, player);
@@ -2006,12 +2006,12 @@ void HarvestDescriptionIsShown()
         clone_object("/lib/tests/support/environment/harvestRoom.c");
     move_object(player, environment);
 
-    string longDesc = regreplace(environment->long(), "\n", " ", 1);
+    string longDesc = regreplace(environment.long(), "\n", " ", 1);
     ExpectSubStringMatch("a stand of [^ ]+ oak trees with branches laden "
         "with acorns", longDesc);
-    environment->harvestResource("oak", player);
+    environment.harvestResource("oak", player);
 
-    longDesc = regreplace(environment->long(), "\n", " ", 1);
+    longDesc = regreplace(environment.long(), "\n", " ", 1);
     ExpectSubStringMatch("a heavily-forested stand of oak trees. Several "
         "trees remain with branches laden with acorns", longDesc);
 
@@ -2022,13 +2022,13 @@ void HarvestDescriptionIsShown()
 void HarvestResourceReturnsCorrectResource()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
-    player->addSkillPoints(20);
-    player->advanceSkill("forestry", 5);
+    player.addSkillPoints(20);
+    player.advanceSkill("forestry", 5);
 
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, player);
@@ -2041,12 +2041,12 @@ void HarvestResourceReturnsCorrectResource()
     move_object(player, environment);
 
     ExpectEq("/lib/instances/items/materials/wood/oak.c", 
-        program_name(environment->harvestResource("oak tree", player)));
+        program_name(environment.harvestResource("oak tree", player)));
     ExpectEq("/lib/instances/items/food/plants/nuts/acorn.c", 
-        program_name(environment->harvestResource("acorn", player)));
+        program_name(environment.harvestResource("acorn", player)));
     ExpectEq("/lib/instances/items/materials/wood/alder.c", 
-        program_name(environment->harvestResource("alder", player)));
-    ExpectFalse(environment->harvestResource("weasel", player));
+        program_name(environment.harvestResource("alder", player)));
+    ExpectFalse(environment.harvestResource("weasel", player));
 
     destruct(environment);
 }
@@ -2055,10 +2055,10 @@ void HarvestResourceReturnsCorrectResource()
 void VeryLongRoomDescriptionsDisplayCorrectly()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
     object environment =
         load_object("/tutorial/temple/environment/rooms/entry-to-pedestal.c");
@@ -2089,7 +2089,7 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
         " -=-=- There is one obvious exit: north\n"
         "A wall with many runes etched into it\n"
         "Rune of Resistance\n\n", 
-        player->caughtMessage());
+        player.caughtMessage());
     destruct(environment);
 }
 
@@ -2097,10 +2097,10 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
 void BonusIsApplied()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
     object element =
         load_object("/lib/tests/support/environment/fakeFeature.c");
@@ -2108,15 +2108,15 @@ void BonusIsApplied()
     object environment =
         clone_object("/lib/tests/support/environment/bonusRoom.c");
     move_object(player, environment);
-    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+    ExpectEq(0, environment.environmentalBonusTo("strength", player));
 
     object dictionary = getDictionary("environment");
-    dictionary->timeOfDay("morning");
-    dictionary->setDay(260);
-    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+    dictionary.timeOfDay("morning");
+    dictionary.setDay(260);
+    ExpectEq(0, environment.environmentalBonusTo("strength", player));
 
-    dictionary->timeOfDay("noon");
-    ExpectEq(4, environment->environmentalBonusTo("strength", player));
+    dictionary.timeOfDay("noon");
+    ExpectEq(4, environment.environmentalBonusTo("strength", player));
 
     destruct(environment);
 }
@@ -2125,37 +2125,37 @@ void BonusIsApplied()
 void DisplayOfElementIsShownByLimitors()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
     object environment =
         clone_object("/lib/tests/support/environment/limitedDisplayRoom.c");
     move_object(player, environment);
     command("l", player);
-    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+    ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
-    getDictionary("environment")->setDay(260);
+    getDictionary("environment").setDay(260);
     command("l", player);
-    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+    ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
-    player->addSkillPoints(20);
-    player->advanceSkill("spot", 5);
+    player.addSkillPoints(20);
+    player.advanceSkill("spot", 5);
     command("l", player);
-    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+    ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, player);
     command("equip axe", player);
     command("l", player);
-    ExpectSubStringMatch("forest.\nThe sun", player->caughtMessage());
+    ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
-    player->spellPoints(player->maxSpellPoints());
-    player->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
-    player->researchCommand("throw turnip");
+    player.spellPoints(player.maxSpellPoints());
+    player.initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
+    player.researchCommand("throw turnip");
     command("l", player);
-    ExpectSubStringMatch("forest.*limited.*item.\nThe sun", player->caughtMessage());
+    ExpectSubStringMatch("forest.*limited.*item.\nThe sun", player.caughtMessage());
 
     destruct(environment);
 }
@@ -2164,36 +2164,36 @@ void DisplayOfElementIsShownByLimitors()
 void ElementIsManipulatableByLimitors()
 {
     object player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    player->Name("bob");
-    player->addCommands();
-    player->colorConfiguration("none");
-    player->charsetConfiguration("ascii");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
 
     object environment =
         clone_object("/lib/tests/support/environment/limitedDisplayRoom.c");
     move_object(player, environment);
     command("exa limited item", player);
-    ExpectEq("There is no 'limited item' here.\n", player->caughtMessage());
-    ExpectEq(0, environment->environmentalBonusTo("strength", player));
+    ExpectEq("There is no 'limited item' here.\n", player.caughtMessage());
+    ExpectEq(0, environment.environmentalBonusTo("strength", player));
 
     command("harvest mana", player);
     ExpectFalse(present("mana", player));
 
-    getDictionary("environment")->setDay(260);
+    getDictionary("environment").setDay(260);
 
-    player->addSkillPoints(20);
-    player->advanceSkill("spot", 5);
+    player.addSkillPoints(20);
+    player.advanceSkill("spot", 5);
 
     object axe = clone_object("/lib/instances/items/weapons/axes/axe.c");
     move_object(axe, player);
     command("equip axe", player);
 
-    player->spellPoints(player->maxSpellPoints());
-    player->initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
-    player->researchCommand("throw turnip");
+    player.spellPoints(player.maxSpellPoints());
+    player.initiateResearch("/lib/tests/support/research/testSustainedTraitResearch.c");
+    player.researchCommand("throw turnip");
     command("exa limited item", player);
-    ExpectEq("You see a nifty limited item.\n", player->caughtMessage());
-    ExpectEq(4, environment->environmentalBonusTo("strength", player));
+    ExpectEq("You see a nifty limited item.\n", player.caughtMessage());
+    ExpectEq(4, environment.environmentalBonusTo("strength", player));
 
     command("harvest mana", player);
     ExpectTrue(present("mana", player), "mana potion found");

@@ -13,10 +13,10 @@ void Init()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database->PrepDatabase();
+    database.PrepDatabase();
 
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    dataAccess->savePlayerData(database->GetWizardOfLevel("elder"));
+    dataAccess.savePlayerData(database.GetWizardOfLevel("elder"));
 
     destruct(dataAccess);
     destruct(database);
@@ -33,7 +33,7 @@ void Setup()
 {
     Destruct = clone_object("/lib/tests/support/master/securityHelper.c");
     Wizard = clone_object("/lib/realizations/wizard.c");
-    Wizard->restore("earl");
+    Wizard.restore("earl");
     setUsers(({ Wizard }));
 }
 
@@ -47,14 +47,14 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InteractiveObjectsAreMovedToSafety()
 {
-    Destruct->ToggleInteractive(Wizard);
+    Destruct.ToggleInteractive(Wizard);
 
     object room = load_object("/lib/tests/support/environment/startingRoom.c");
 
     move_object(Wizard, room);
     ExpectEq(room, environment(Wizard));
 
-    Destruct->prepare_destruct(room);
+    Destruct.prepare_destruct(room);
 
     ExpectEq(load_object("/secure/master.c"), environment(Wizard));
 }
@@ -67,7 +67,7 @@ void NonInteractiveObjectsAreDestroyed()
     move_object(Wizard, room);
     ExpectEq(room, environment(Wizard));
 
-    Destruct->prepare_destruct(room);
+    Destruct.prepare_destruct(room);
 
     ExpectFalse(Wizard);
 }
@@ -89,7 +89,7 @@ void DestructTraversesNestedInventories()
     move_object(Wizard, room);
     ExpectEq(room, environment(Wizard));
 
-    Destruct->prepare_destruct(room);
+    Destruct.prepare_destruct(room);
 
     ExpectFalse(Wizard);
     ExpectFalse(item);
@@ -100,7 +100,7 @@ void DestructTraversesNestedInventories()
 /////////////////////////////////////////////////////////////////////////////
 void DestructDoesNotTraverseNestedInventoriesOfInteractiveObjects()
 {
-    Destruct->ToggleInteractive(Wizard);
+    Destruct.ToggleInteractive(Wizard);
     object room = load_object("/lib/tests/support/environment/startingRoom.c");
 
     object item = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
@@ -115,7 +115,7 @@ void DestructDoesNotTraverseNestedInventoriesOfInteractiveObjects()
     move_object(Wizard, room);
     ExpectEq(room, environment(Wizard));
 
-    Destruct->prepare_destruct(room);
+    Destruct.prepare_destruct(room);
 
     ExpectTrue(Wizard);
     ExpectTrue(item);

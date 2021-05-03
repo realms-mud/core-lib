@@ -10,13 +10,13 @@ object Selector;
 /////////////////////////////////////////////////////////////////////////////
 int AdvanceToLevel(int level, string guild)
 {
-    int runningLevel = User->guildLevel(guild);
-    while ((User->guildLevel(guild) < level) && User->memberOfGuild(guild))
+    int runningLevel = User.guildLevel(guild);
+    while ((User.guildLevel(guild) < level) && User.memberOfGuild(guild))
     {
-        User->addExperience(1000 * runningLevel);
-        User->advanceLevel(guild);
+        User.addExperience(1000 * runningLevel);
+        User.advanceLevel(guild);
         command("exit", User);
-        runningLevel = User->guildLevel(guild);
+        runningLevel = User.guildLevel(guild);
     }
     return runningLevel;
 }
@@ -31,12 +31,12 @@ void Init()
 void Setup()
 {
     Selector = clone_object("/guilds/bard/selectors/songsSelector.c");
-    Selector->init();
+    Selector.init();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User->Name("Bob");
-    User->colorConfiguration("none");
-    User->addCommands();
+    User.Name("Bob");
+    User.colorConfiguration("none");
+    User.addCommands();
 
     move_object(Selector, User);
 }
@@ -51,14 +51,14 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void InitialCreationDisplayIsCorrect()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectEq("Song - Compose Songs Main Menu:\n"
         "[1] - Create New Song                [2] - Exit Song Menu                 \n"
         "You must select a number from 1 to 2.\n"
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -92,20 +92,20 @@ void CreationDisplayWithCreatedSongsIsCorrect()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
-    ExpectTrue(User->setCompositeResearch("Reprise the Weasels",
+    ExpectTrue(User.setCompositeResearch("Reprise the Weasels",
         compositeElement));
-    ExpectTrue(User->setCompositeResearch("Weasels Return",
+    ExpectTrue(User.setCompositeResearch("Weasels Return",
         compositeElement));
-    ExpectTrue(User->setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
+    ExpectTrue(User.setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
         compositeElement));
 
     compositeElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
-    ExpectTrue(User->setCompositeResearch("This shouldn't appear in list",
+    ExpectTrue(User.setCompositeResearch("This shouldn't appear in list",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     ExpectEq("Song - Compose Songs Main Menu:\n"
         "[1] - Modify 'Flight of the Wea...'  [2] - Modify 'Reprise the Weasels'   \n"
         "[3] - Modify 'Weasels Return'        [4] - Modify 'Weasels are the l...'  \n"
@@ -114,7 +114,7 @@ void CreationDisplayWithCreatedSongsIsCorrect()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -148,10 +148,10 @@ void DescribeASongShowsCorrectDetails()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("? 1", User);
     ExpectEq("Song Name       : Flight of the Weasels\n"
         "Alias           : weasel\n"
@@ -173,13 +173,13 @@ void DescribeASongShowsCorrectDetails()
         "                        (-2) Penalty to strength\n"
         "      This is only applied when you're using: instrument: plucked.\n"
         "      \n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSelectCreateASongIfTemplatesNotResearched()
 {
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectEq("Song - Select Song Structure Menu:\n"
         "[1]  - AAA (Verse, Verse, Verse)               (X)\n"
@@ -197,20 +197,20 @@ void CannotSelectCreateASongIfTemplatesNotResearched()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectCreateASong()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectEq("Song - Select Song Structure Menu:\n"
         "[1]  - AAA (Verse, Verse, Verse)                  \n"
@@ -228,20 +228,20 @@ void CanSelectCreateASong()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CreateSongTransitionsToModifyMenu()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -261,7 +261,7 @@ void CreateSongTransitionsToModifyMenu()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -325,10 +325,10 @@ void CanSelectModifyForASong()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectEq("Song - Modify Song Menu\n"
         "Song Type: Simple Ballad\n"
@@ -381,20 +381,20 @@ void CanSelectModifyForASong()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSetSongName()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -414,11 +414,11 @@ void CanSetSongName()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectEq("Please enter the song's new name: ",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("Song of the Weasels", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -438,20 +438,20 @@ void CanSetSongName()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSetSongAlias()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -471,11 +471,11 @@ void CanSetSongAlias()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("5", User);
     ExpectEq("Please enter the song's new alias: ",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("weasels", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -495,7 +495,7 @@ void CanSetSongAlias()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -503,8 +503,8 @@ void CanSaveSong()
 {
     destruct(Selector);
     Selector = clone_object("/guilds/bard/selectors/editSongSelector.c");
-    Selector->setType("create");
-    Selector->setData(([
+    Selector.setType("create");
+    Selector.setData(([
         "name": "Song of the Weasels",
         "alias": "weasels",
         "constraint": "/guilds/bard/compositions/root.c",
@@ -513,18 +513,18 @@ void CanSaveSong()
     ]));
     move_object(Selector, User);
 
-    Selector->initiateSelector(User);
-    User->resetCatchList();
+    Selector.initiateSelector(User);
+    User.resetCatchList();
 
     object subSelector =
         clone_object("/lib/tests/support/research/fakeSegmentSelector.c");
-    Selector->onSelectorCompleted(subSelector);
+    Selector.onSelectorCompleted(subSelector);
 
-    ExpectFalse(member(User->getOptionsForCompositeResearch(
+    ExpectFalse(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 
     command("10", User);
-    ExpectTrue(member(User->getOptionsForCompositeResearch(
+    ExpectTrue(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Song of the Weasels"));
 }
 
@@ -544,21 +544,21 @@ void CanDeleteSong()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
-    ExpectTrue(member(User->getOptionsForCompositeResearch(
+    ExpectTrue(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("11", User);
 
     ExpectEq("Are you sure you want to delete this song?\n"
              "This process cannot be undone. (y/n): ",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("y", User);
-    ExpectFalse(member(User->getOptionsForCompositeResearch(
+    ExpectFalse(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
     ExpectEq("Song - Compose Songs Main Menu:\n"
@@ -567,7 +567,7 @@ void CanDeleteSong()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -586,21 +586,21 @@ void NotTypingYAbortsDelete()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
-    ExpectTrue(member(User->getOptionsForCompositeResearch(
+    ExpectTrue(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("11", User);
 
     ExpectEq("Are you sure you want to delete this song?\n"
              "This process cannot be undone. (y/n): ",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("ddd", User);
-    ExpectTrue(member(User->getOptionsForCompositeResearch(
+    ExpectTrue(member(User.getOptionsForCompositeResearch(
         "/guilds/bard/compositions/root.c"), "Flight of the Weasels"));
 }
 
@@ -665,77 +665,77 @@ void CanModifyOrderingOfSongSegment()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("3", User);
 
     ExpectSubStringMatch("Order in sequence: 2.*"
         "Decrement segment ordering    .X.*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectSubStringMatch("Order in sequence: 3.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectSubStringMatch("Order in sequence: 4.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectSubStringMatch("Order in sequence: 5.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectSubStringMatch("Order in sequence: 6.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering    .X.*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("4", User);
     ExpectSubStringMatch("Order in sequence: 6.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering    .X.*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("Order in sequence: 5.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("Order in sequence: 4.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("Order in sequence: 3.*"
         "Decrement segment ordering[^X]*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("Order in sequence: 2.*"
         "Decrement segment ordering    .X.*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("Order in sequence: 2.*"
         "Decrement segment ordering    .X.*"
         "Increment segment ordering[^X]*Delete",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -774,29 +774,29 @@ void CanRemoveSongSegment()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectSubStringMatch("Family of weasels snuck in.*"
         "You must select a number from 1 to 16",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     command("5", User);
     command("y", User);
 
-    ExpectEq(User->caughtMessage(),
-        regreplace(User->caughtMessage(),
+    ExpectEq(User.caughtMessage(),
+        regreplace(User.caughtMessage(),
             "Family of weasels snuck in", "", 1));
 
     ExpectSubStringMatch("You must select a number from 1 to 15",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     ExpectSubStringMatch("A big one sidled up next to me",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -835,14 +835,14 @@ void CanIncrementSongSegmentOrder()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectSubStringMatch("Family of weasels snuck in.*"
         "A big one sidled up next to me",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     command("4", User);
@@ -850,7 +850,7 @@ void CanIncrementSongSegmentOrder()
 
     ExpectSubStringMatch("A big one sidled up next to me.*"
         "Family of weasels snuck in.*",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -889,14 +889,14 @@ void CanDecrementSongSegmentOrder()
         })
     ]);
 
-    ExpectTrue(User->setCompositeResearch("Flight of the Weasels",
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
         compositeElement));
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     ExpectSubStringMatch("I'm walking through a reliquary.*"
         "Family of weasels snuck in",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("3", User);
     command("3", User);
@@ -904,20 +904,20 @@ void CanDecrementSongSegmentOrder()
 
     ExpectSubStringMatch("Family of weasels snuck in.*"
         "I'm walking through a reliquary",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanAddSongSegment()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -936,27 +936,27 @@ void CanAddSongSegment()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectSegmentDetails()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    User->addResearchPoints(6);
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
-    Selector->initiateSelector(User);
+    User.addResearchPoints(6);
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -971,15 +971,15 @@ void CanSelectSegmentDetails()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("? 1", User);
     ExpectEq("Gittern bedazzlement\n"
         "Verse 2 instrumental rhythm : Transition from chords G to Em\n"
         "    (-5) Penalty to attack\n",
-        User->caughtMessage());
+        User.caughtMessage());
 
-    User->resetCatchList();
+    User.resetCatchList();
     command("1", User);
 
     ExpectEq("Song - Song Segment Menu\n"
@@ -998,28 +998,28 @@ void CanSelectSegmentDetails()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanModfiySegmentDescription()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    User->addResearchPoints(6);
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User.addResearchPoints(6);
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
 
-    Selector->initiateSelector(User);
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -1042,11 +1042,11 @@ void CanModfiySegmentDescription()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("2", User);
     ExpectEq("Please enter the lyrics/descriptive text: \n",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("Sing to me, oh weasel of yesteryear...", 
         User);
@@ -1066,7 +1066,7 @@ void CanModfiySegmentDescription()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("6", User);
     ExpectEq("Song - Create Song Menu\n"
@@ -1089,7 +1089,7 @@ void CanModfiySegmentDescription()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1097,7 +1097,7 @@ void BardsCanInitiateSongSelector()
 {
     load_object("/guilds/bard/compositions/compose-song.c");
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
 
     command("exit", User);
 
@@ -1108,29 +1108,29 @@ void BardsCanInitiateSongSelector()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UnrelatedInstrumentsDisabled()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    User->addResearchPoints(6);
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
-    Selector->initiateSelector(User);
+    User.addResearchPoints(6);
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -1146,7 +1146,7 @@ void UnrelatedInstrumentsDisabled()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n", 
-        User->caughtMessage());
+        User.caughtMessage());
 
     command("1", User);
     command("6", User);
@@ -1163,29 +1163,29 @@ void UnrelatedInstrumentsDisabled()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InstrumentsReEnabledWhenAllElementsRemoved()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    User->addResearchPoints(6);
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
-    Selector->initiateSelector(User);
+    User.addResearchPoints(6);
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -1209,29 +1209,29 @@ void InstrumentsReEnabledWhenAllElementsRemoved()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void InstrumentsReEnabledWhenOffendingElementRemoved()
 {
     load_object("/guilds/bard/bard.c");
-    User->joinGuild("bard");
+    User.joinGuild("bard");
     command("exit", User);
 
-    User->addResearchPoints(10);
-    User->initiateResearch("/guilds/bard/compositions/aaa.c");
+    User.addResearchPoints(10);
+    User.initiateResearch("/guilds/bard/compositions/aaa.c");
 
-    User->addResearchPoints(6);
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
-    User->initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
-    Selector->initiateSelector(User);
+    User.addResearchPoints(6);
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemF.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemG.c");
+    User.initiateResearch("/lib/tests/support/research/compositeResearchItemH.c");
+    Selector.initiateSelector(User);
     command("1", User);
     command("1", User);
     command("2", User);
@@ -1258,5 +1258,5 @@ void InstrumentsReEnabledWhenOffendingElementRemoved()
         "Type 'exit' if you do not wish to make a selection at this time.\n"
         "For details on a given choice, type 'describe X' (or '? X') where\n"
         "X is the option about which you would like further details.\n",
-        User->caughtMessage());
+        User.caughtMessage());
 }

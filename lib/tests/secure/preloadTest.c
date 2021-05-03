@@ -21,8 +21,8 @@ void Init()
 void Setup()
 {
     Preload = clone_object("/lib/tests/support/master/preloadHelper.c");
-    Preload->SwapInitFile("/lib/tests/support/master/fake_init_file");
-    Preload->AutoLoadCoreLib(1);
+    Preload.SwapInitFile("/lib/tests/support/master/fake_init_file");
+    Preload.AutoLoadCoreLib(1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void WillAutoLoadCoreLibByDefault()
 {
-    string *listOfFiles = Preload->epilog(0);
+    string *listOfFiles = Preload.epilog(0);
 
     // Core lib file
     ExpectTrue(member(listOfFiles, "/lib/realizations/player.c") > -1,
@@ -57,7 +57,7 @@ void PreloadCompilesNormalFiles()
 
     string initialLogFile = read_file(logFile);
 
-    Preload->preload("/lib/realizations/player.c");
+    Preload.preload("/lib/realizations/player.c");
 
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];
@@ -74,7 +74,7 @@ void PreloadExecutesTests()
 
     string initialLogFile = read_file(logFile);
 
-    Preload->preload("/lib/tests/support/master/fakeTest.c");
+    Preload.preload("/lib/tests/support/master/fakeTest.c");
 
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];
@@ -91,7 +91,7 @@ void PreloadDoesNotExecuteTestFixtureExecuteTestsMethod()
 
     string initialLogFile = read_file(logFile);
 
-    Preload->preload("/lib/tests/framework/testFixture.c");
+    Preload.preload("/lib/tests/framework/testFixture.c");
 
     string finalLogFile = read_file(logFile);
     finalLogFile = finalLogFile[sizeof(initialLogFile)..];

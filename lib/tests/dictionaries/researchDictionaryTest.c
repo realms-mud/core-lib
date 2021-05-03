@@ -21,13 +21,13 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ResearchObjectReturnsNullIfNotResearchItem()
 {
-    ExpectFalse(Dictionary->researchObject("/lib/realizations/player.c"));
-    ExpectFalse(Dictionary->researchObject("/lib/not_a_file"));
-    ExpectFalse(Dictionary->researchObject("/lib/modules/research.c"));
+    ExpectFalse(Dictionary.researchObject("/lib/realizations/player.c"));
+    ExpectFalse(Dictionary.researchObject("/lib/not_a_file"));
+    ExpectFalse(Dictionary.researchObject("/lib/modules/research.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ResearchObjectReturnsObjectIfValid()
 {
-    ExpectTrue(Dictionary->researchObject("/lib/modules/research/activeResearchItem.c"));
+    ExpectTrue(Dictionary.researchObject("/lib/modules/research/activeResearchItem.c"));
 }

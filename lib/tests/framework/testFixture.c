@@ -86,8 +86,8 @@ public int sortArray(mixed a, mixed b)
 
     if (mappingp(a) && mappingp(b))
     {
-        compA = this_object()->convertDataToString(a);
-        compB = this_object()->convertDataToString(b);
+        compA = this_object().convertDataToString(a);
+        compB = this_object().convertDataToString(b);
     }
     else
     {

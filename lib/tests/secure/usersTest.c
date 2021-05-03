@@ -32,50 +32,50 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void LivingObjectsPlacedInList()
 {
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 
     object critter = clone_object("/lib/realizations/monster.c");
-    critter->Name("bob");
-    Users->addLiving(critter);
+    critter.Name("bob");
+    Users.addLiving(critter);
 
-    ExpectEq(critter, Users->findLiving("bob"));
+    ExpectEq(critter, Users.findLiving("bob"));
 
     destruct(critter);
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FindLivingCanFindPlayers()
 {
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 
     object critter = clone_object("/lib/realizations/player.c");
-    critter->Name("bob");
+    critter.Name("bob");
     setUsers(({ critter }));
 
-    Users->addLiving(critter);
+    Users.addLiving(critter);
 
-    ExpectEq(critter, Users->findLiving("bob"));
+    ExpectEq(critter, Users.findLiving("bob"));
 
     destruct(critter);
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FindLivingCanFindWizards()
 {
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 
     object critter = clone_object("/lib/realizations/wizard.c");
-    critter->Name("bob");
+    critter.Name("bob");
     setUsers(({ critter }));
 
-    Users->addLiving(critter);
+    Users.addLiving(critter);
 
-    ExpectEq(critter, Users->findLiving("bob"));
+    ExpectEq(critter, Users.findLiving("bob"));
 
     destruct(critter);
-    ExpectEq(0, Users->findLiving("bob"));
+    ExpectEq(0, Users.findLiving("bob"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,10 +84,10 @@ void PlayersPlacedInUsersList()
     ExpectEq(({}), users());
 
     object player = clone_object("/lib/realizations/player.c");
-    player->Name("earl");
+    player.Name("earl");
 
     object wizard = clone_object("/lib/realizations/wizard.c");
-    wizard->Name("fred");
+    wizard.Name("fred");
 
     setUsers(({ player, wizard }));
 
@@ -104,10 +104,10 @@ void PlayersPlacedInUsersList()
 void CanGetGuestNameReturnsNextAvailableName()
 {
     object player = clone_object("/lib/realizations/player.c");
-    player->Name("guest");
+    player.Name("guest");
 
     object player1 = clone_object("/lib/realizations/player.c");
-    player1->Name("guest");
+    player1.Name("guest");
 
     ExpectEq("guest01", getGuestName(player));
     ExpectEq("guest02", getGuestName(player1));
@@ -117,7 +117,7 @@ void CanGetGuestNameReturnsNextAvailableName()
     destruct(player1);
 
     player1 = clone_object("/lib/realizations/player.c");
-    player1->Name("guest");
+    player1.Name("guest");
 
     ExpectEq("guest02", getGuestName(player1));
 
