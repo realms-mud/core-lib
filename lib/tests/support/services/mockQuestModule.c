@@ -24,7 +24,7 @@ public int questIsCompleted(string quest)
 public void StartQuest(object questItem)
 {
     QuestItem = questItem;
-    CurrentState = QuestItem->initialState();
+    CurrentState = QuestItem.initialState();
 }
 
 /////////////////////////////////////////////////////////////////////////////

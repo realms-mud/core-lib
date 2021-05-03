@@ -21,13 +21,13 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void MoneyWithoutValueDefaultsShortToOneCoin()
 {
-    Money->set("value", 1);
-    ExpectEq("A coin", Money->query("short"));
+    Money.set("value", 1);
+    ExpectEq("A coin", Money.query("short"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MoneyWithValueReturnsProperDescription()
 {
-    Money->set("value", 126);
-    ExpectEq("A pile of 126 coins", Money->query("short"));
+    Money.set("value", 126);
+    ExpectEq("A pile of 126 coins", Money.query("short"));
 }

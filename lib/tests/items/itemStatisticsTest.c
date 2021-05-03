@@ -25,18 +25,18 @@ void Setup()
 {
     Statistics = clone_object("/lib/dictionaries/materialsDictionary.c");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("bob");
-    Player->addCommands();
-    Player->Str(10);
-    Player->Dex(10);
-    Player->Con(10);
-    Player->Int(10);
-    Player->Wis(10);
-    Player->colorConfiguration("3-bit");
+    Player.Name("bob");
+    Player.addCommands();
+    Player.Str(10);
+    Player.Dex(10);
+    Player.Con(10);
+    Player.Int(10);
+    Player.Wis(10);
+    Player.colorConfiguration("3-bit");
 
     Weapon = clone_object("/lib/items/weapon");
-    Weapon->set("weapon type", "long sword");
-    Weapon->set("short", "Sword of Blah");
+    Weapon.set("weapon type", "long sword");
+    Weapon.set("short", "Sword of Blah");
     move_object(Weapon, Player);
 }
 
@@ -51,64 +51,64 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void MasterworkItemsCorrectlyDisplayed()
 {
-    Weapon->set("craftsmanship", 50);
+    Weapon.set("craftsmanship", 50);
 
     string expected = sprintf(Masterwork, "This long sword is a masterwork item.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ExceptionalCraftsmanshipItemsCorrectlyDisplayed()
 {
-    Weapon->set("craftsmanship", 30);
+    Weapon.set("craftsmanship", 30);
 
     string expected = sprintf(WellCrafted, "This long sword is a well-crafted item.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void EnchantedItemsCorrectlyDisplayed()
 {
-    Weapon->set("bonus attack", 1);
+    Weapon.set("bonus attack", 1);
 
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void StrongEnchantmentItemsCorrectlyDisplayed()
 {
-    Weapon->set("bonus attack", 5);
-    Weapon->set("bonus strength", 5);
+    Weapon.set("bonus attack", 5);
+    Weapon.set("bonus strength", 5);
 
     string expected = sprintf(StrongEnchantment, "This long sword is enchanted with a powerful aura.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsNotShownWhenNotIdentified()
 {
-    Weapon->set("enchantments", (["fire":10, "magical" : 2]));
+    Weapon.set("enchantments", (["fire":10, "magical" : 2]));
 
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(SingleDetailText, "Weight", 5) + 
         sprintf(Unidentified, "This item has not been identified.\n");
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsWithDetailsShownWhenIdentified()
 {
-    Weapon->set("identified");
+    Weapon.set("identified");
 
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -118,14 +118,14 @@ void WeaponStatisticsWithDetailsShownWhenIdentified()
         sprintf(SingleDetailText, "Encumberance", 15) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsModifiedByMaterial()
 {
-    Weapon->set("identified");
-    Weapon->set("material", "galvorn");
+    Weapon.set("identified");
+    Weapon.set("material", "galvorn");
 
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
@@ -136,15 +136,15 @@ void WeaponStatisticsModifiedByMaterial()
         sprintf(SingleDetailText, "Encumberance", 17) +
         sprintf(SingleDetailText, "Weight", 7);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsModifiedByEnchantment()
 {
-    Weapon->set("identified");
-    Weapon->set("material", "galvorn");
-    Weapon->set("enchantments", (["fire":10, "magical" : 2]));
+    Weapon.set("identified");
+    Weapon.set("material", "galvorn");
+    Weapon.set("enchantments", (["fire":10, "magical" : 2]));
 
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
@@ -156,16 +156,16 @@ void WeaponStatisticsModifiedByEnchantment()
         sprintf(SingleDetailText, "Encumberance", 17) +
         sprintf(SingleDetailText, "Weight", 7);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsDisplayBonuses()
 {
-    Weapon->set("identified");
-    Weapon->set("bonus strength", 2);
-    Weapon->set("bonus attack", 1);
-    Weapon->set("bonus hit points", 10);
+    Weapon.set("identified");
+    Weapon.set("bonus strength", 2);
+    Weapon.set("bonus attack", 1);
+    Weapon.set("bonus hit points", 10);
 
     string expected = sprintf(StrongEnchantment, "This long sword is enchanted with a powerful aura.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -178,15 +178,15 @@ void WeaponStatisticsDisplayBonuses()
         sprintf(Value, sprintf("    %s: %d\n", "Bonus strength", 2)) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsModifiedBySkillOfUser()
 {
-    Weapon->set("identified");
-    Player->addSkillPoints(100);
-    Player->advanceSkill("long sword", 8);
+    Weapon.set("identified");
+    Player.addSkillPoints(100);
+    Player.advanceSkill("long sword", 8);
 
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -196,14 +196,14 @@ void WeaponStatisticsModifiedBySkillOfUser()
         sprintf(SingleDetailText, "Encumberance", 1) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WeaponStatisticsModifiedByItemCraftsmanship()
 {
-    Weapon->set("identified");
-    Weapon->set("craftsmanship", 35);
+    Weapon.set("identified");
+    Weapon.set("craftsmanship", 35);
 
     string expected = sprintf(WellCrafted, "This long sword is a well-crafted item.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -213,15 +213,15 @@ void WeaponStatisticsModifiedByItemCraftsmanship()
         sprintf(SingleDetailText, "Encumberance", 15) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AutoIdentifyWhenSkillSufficientlyHigh()
 {
-    Player->addSkillPoints(100);
-    Player->advanceSkill("metal crafting", 5);
-    Player->advanceSkill("weapon smithing", 10);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("metal crafting", 5);
+    Player.advanceSkill("weapon smithing", 10);
 
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -231,19 +231,19 @@ void AutoIdentifyWhenSkillSufficientlyHigh()
         sprintf(SingleDetailText, "Encumberance", 15) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectFalse(Weapon->query("identified"));
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
-    ExpectTrue(Weapon->query("identified"));
+    ExpectFalse(Weapon.query("identified"));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
+    ExpectTrue(Weapon.query("identified"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AutoIdentifyMagicWhenSpellcraftSufficientlyHigh()
 {
-    Weapon->set("bonus attack", 1);
-    Player->addSkillPoints(100);
-    Player->advanceSkill("metal crafting", 5);
-    Player->advanceSkill("weapon smithing", 10);
-    Player->advanceSkill("spellcraft", 10);
+    Weapon.set("bonus attack", 1);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("metal crafting", 5);
+    Player.advanceSkill("weapon smithing", 10);
+    Player.advanceSkill("spellcraft", 10);
 
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -254,18 +254,18 @@ void AutoIdentifyMagicWhenSpellcraftSufficientlyHigh()
         sprintf(Value, sprintf("    %s: %d\n", "Bonus attack", 1)) +
         sprintf(SingleDetailText, "Weight", 5);
 
-    ExpectFalse(Weapon->query("identified"));
-    ExpectEq(expected, Statistics->getEquipmentStatistics(Weapon, Player));
-    ExpectTrue(Weapon->query("identified"));
+    ExpectFalse(Weapon.query("identified"));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(Weapon, Player));
+    ExpectTrue(Weapon.query("identified"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ArmorStatisticsCorrectlyDisplayed()
 {
     object armor = clone_object("/lib/items/armor.c");
-    armor->set("armor type", "chainmail");
-    armor->set("short", "Chainmail of Blah");
-    armor->set("identified");
+    armor.set("armor type", "chainmail");
+    armor.set("short", "Chainmail of Blah");
+    armor.set("identified");
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Iron") +
@@ -273,17 +273,17 @@ void ArmorStatisticsCorrectlyDisplayed()
         sprintf(SingleDetailText, "Encumberance", 30) +
         sprintf(SingleDetailText, "Weight", 8);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(armor, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ArmorStatisticsModifiedByMaterial()
 {
     object armor = clone_object("/lib/items/armor.c");
-    armor->set("armor type", "chainmail");
-    armor->set("short", "Chainmail of Blah");
-    armor->set("material", "galvorn");
-    armor->set("identified");
+    armor.set("armor type", "chainmail");
+    armor.set("short", "Chainmail of Blah");
+    armor.set("material", "galvorn");
+    armor.set("identified");
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
@@ -293,20 +293,20 @@ void ArmorStatisticsModifiedByMaterial()
         sprintf(SingleDetailText, "Encumberance", 32) +
         sprintf(SingleDetailText, "Weight", 10);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(armor, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ArmorProtectionNotModifiedBySkill()
 {
     object armor = clone_object("/lib/items/armor.c");
-    armor->set("armor type", "chainmail");
-    armor->set("short", "Chainmail of Blah");
-    armor->set("material", "galvorn");
-    armor->set("identified");
+    armor.set("armor type", "chainmail");
+    armor.set("short", "Chainmail of Blah");
+    armor.set("material", "galvorn");
+    armor.set("identified");
 
-    Player->addSkillPoints(100);
-    Player->advanceSkill("chainmail", 10);
+    Player.addSkillPoints(100);
+    Player.advanceSkill("chainmail", 10);
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
         sprintf(DetailString, "Material", "Galvorn") +
@@ -316,17 +316,17 @@ void ArmorProtectionNotModifiedBySkill()
         sprintf(SingleDetailText, "Encumberance", 19) +
         sprintf(SingleDetailText, "Weight", 10);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(armor, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(armor, Player));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NonEquipmentItemsShowMagicalProperties()
 {
     object item = clone_object("/lib/items/item.c");
-    item->set("identified");
-    item->set("enchantments", (["fire":5, "air":3]));
-    item->set("resistances", (["fire":5]));
-    item->set("bonus attack", 3);
+    item.set("identified");
+    item.set("enchantments", (["fire":5, "air":3]));
+    item.set("resistances", (["fire":5]));
+    item.set("bonus attack", 3);
 
     string expected = sprintf(Enchanted, "This item is enchanted.\n") +
         sprintf("\x1b[0;33m    %s: \x1b[0m%s", "Enchantments", 
@@ -336,5 +336,5 @@ void NonEquipmentItemsShowMagicalProperties()
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "fire")) +
         sprintf("\x1b[0;33m    %s: %d\n\x1b[0m", "Bonus attack", 3);
 
-    ExpectEq(expected, Statistics->getEquipmentStatistics(item, Player));
+    ExpectEq(expected, Statistics.getEquipmentStatistics(item, Player));
 }

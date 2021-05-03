@@ -21,11 +21,11 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void LongReturnsCorrectMessageWhenEmpty()
 {
-    Container->set("long", "Blah blah blah");
-    Container->set("additional long", "even more blah");
+    Container.set("long", "Blah blah blah");
+    Container.set("additional long", "even more blah");
 
     ExpectEq("Blah blah blah\nThis item is typical for its type.\n\n", 
-        Container->long(), "long() returns correct value");
+        Container.long(), "long() returns correct value");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -35,11 +35,11 @@ void LongReturnsCorrectMessageWhenNotEmpty()
     move_object(sword, Container);
     move_object(Container, "/lib/tests/support/environment/fakeEnvironment.c");
 
-    Container->set("long", "Blah blah blah");
-    Container->set("additional long", "even more blah");
+    Container.set("long", "Blah blah blah");
+    Container.set("additional long", "even more blah");
 
     ExpectSubStringMatch("Blah blah blah.*This item contains the following.*Long sword",
-        Container->long(), "long() returns correct value");
+        Container.long(), "long() returns correct value");
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
 
@@ -54,11 +54,11 @@ void LongMergesDuplicateItems()
     move_object(sword, Container);
     move_object(Container, "/lib/tests/support/environment/fakeEnvironment.c");
 
-    Container->set("long", "Blah blah blah");
-    Container->set("additional long", "even more blah");
+    Container.set("long", "Blah blah blah");
+    Container.set("additional long", "even more blah");
 
     ExpectSubStringMatch("Blah blah blah.*This item contains the following.*3. Long sword",
-        Container->long(), "long() returns correct value");
+        Container.long(), "long() returns correct value");
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }
 
@@ -82,11 +82,11 @@ void LongDisplaysManyItemsCorrectly()
 
     move_object(Container, "/lib/tests/support/environment/fakeEnvironment.c");
 
-    Container->set("long", "Blah blah blah");
-    Container->set("additional long", "even more blah");
+    Container.set("long", "Blah blah blah");
+    Container.set("additional long", "even more blah");
 
     ExpectSubStringMatch("Blah blah blah.*This item contains the following.*"
         "Battle axe.*Healing.*3. Long sword.*Mana.*Short",
-        Container->long(), "long() returns correct value");
+        Container.long(), "long() returns correct value");
     destruct(load_object("/lib/tests/support/environment/fakeEnvironment.c"));
 }

@@ -22,29 +22,29 @@ void SetQuester(object quester)
 /////////////////////////////////////////////////////////////////////////////
 void DoMeetTheKingStuff()
 {
-    QuestItem->receiveEvent(Quester, "meetTheKing", this_object());
+    QuestItem.receiveEvent(Quester, "meetTheKing", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SureIWillServe()
 {
-    QuestItem->receiveEvent(Quester, "serveTheKing", this_object());
+    QuestItem.receiveEvent(Quester, "serveTheKing", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void TimeToFoldSocks()
 {
-    QuestItem->receiveEvent(Quester, "ignoreTheKing", this_object());
+    QuestItem.receiveEvent(Quester, "ignoreTheKing", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ConfuseTheForcesOfEvil()
 {
-    QuestItem->receiveEvent(Quester, "hailToTheKing", this_object());
+    QuestItem.receiveEvent(Quester, "hailToTheKing", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DoDebautchedThings()
 {
-    QuestItem->receiveEvent(Quester, "maybeNobodyWillNotice", this_object());
+    QuestItem.receiveEvent(Quester, "maybeNobodyWillNotice", this_object());
 }

@@ -34,7 +34,7 @@ public int addSpecification(string type, mixed value)
 /////////////////////////////////////////////////////////////////////////////
 public void decreaseHitPointsOnUser(object initiator)
 {
-    initiator->hitPoints(-1 * (initiator->hitPoints() - 10));
+    initiator.hitPoints(-1 * (initiator.hitPoints() - 10));
 }
 
 /////////////////////////////////////////////////////////////////////////////

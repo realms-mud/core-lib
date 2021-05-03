@@ -23,10 +23,10 @@ public void init()
 public int issueCommand()
 {
     object stateMachine = load_object("/lib/tests/support/core/testStateMachine.c");
-    stateMachine->registerEvent(this_player());
-    stateMachine->testStartStateMachine();
-    stateMachine->receiveEvent(this_player(), "meetTheKing", this_player());
-    stateMachine->receiveEvent(this_player(), "serveTheKing", this_player());
+    stateMachine.registerEvent(this_player());
+    stateMachine.testStartStateMachine();
+    stateMachine.receiveEvent(this_player(), "meetTheKing", this_player());
+    stateMachine.receiveEvent(this_player(), "serveTheKing", this_player());
     return 1;
 }
 
@@ -34,11 +34,11 @@ public int issueCommand()
 public int triggerSecond()
 {
     object stateMachine = load_object("/lib/tests/support/core/testStateMachine.c");
-    stateMachine->registerEvent(this_player());
-    stateMachine->testStartStateMachine();
-    stateMachine->receiveEvent(this_player(), "meetTheKing", this_player());
-    stateMachine->receiveEvent(this_player(), "serveTheKing", this_player());
-    stateMachine->receiveEvent(this_player(), "maybeNobodyWillNotice", this_player());
+    stateMachine.registerEvent(this_player());
+    stateMachine.testStartStateMachine();
+    stateMachine.receiveEvent(this_player(), "meetTheKing", this_player());
+    stateMachine.receiveEvent(this_player(), "serveTheKing", this_player());
+    stateMachine.receiveEvent(this_player(), "maybeNobodyWillNotice", this_player());
     return 1;
 }
 
@@ -46,10 +46,10 @@ public int triggerSecond()
 public int triggerThird()
 {
     object stateMachine = load_object("/lib/tests/support/core/testStateMachine.c");
-    stateMachine->registerEvent(this_player());
-    stateMachine->testStartStateMachine();
-    stateMachine->receiveEvent(this_player(), "meetTheKing", this_player());
-    stateMachine->receiveEvent(this_player(), "serveTheKing", this_player());
-    stateMachine->receiveEvent(this_player(), "hailToTheKing", this_player());
+    stateMachine.registerEvent(this_player());
+    stateMachine.testStartStateMachine();
+    stateMachine.receiveEvent(this_player(), "meetTheKing", this_player());
+    stateMachine.receiveEvent(this_player(), "serveTheKing", this_player());
+    stateMachine.receiveEvent(this_player(), "hailToTheKing", this_player());
     return 1;
 }
