@@ -18,6 +18,7 @@ public void Setup()
     // Seventh test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-4x1.c", "seventh test");
+    addDecorator("ruined interior amethyst floor north south", "seventh test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

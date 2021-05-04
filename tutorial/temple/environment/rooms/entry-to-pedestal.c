@@ -4,6 +4,8 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
+object region;
+
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -17,8 +19,16 @@ public void Setup()
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-1x1.c");
     
     addDecorator("ruined interior south entry alcove");
+    addDecorator("ruined interior south wall", "resistance rune placed");
+    addDecorator("ruined interior south wall", "first test");
+    addDecorator("ruined interior south wall", "second test");
+    addDecorator("ruined interior south wall", "third test");
+    addDecorator("ruined interior south wall", "fourth test");
+    addDecorator("ruined interior south wall", "fifth test");
+    addDecorator("ruined interior south wall", "sixth test");
+    addDecorator("ruined interior south wall", "seventh test");
 
-    object region = clone_object("/lib/environment/region.c");
+    region = clone_object("/lib/environment/region.c");
     region->setRegionName("temple of obedience");
     region->setRegionType("tol-dhurath");
     region->setDimensions(7, 8);
@@ -72,6 +82,8 @@ public void Setup()
         "/tutorial/temple/environment/rooms/pedestal-3x4.c", "none");
     region->setCoordinate(4, 4,
         "/tutorial/temple/environment/rooms/pedestal-3x5.c", "none");
+    region->setCoordinate(5, 4,
+        "/tutorial/temple/environment/rooms/chamber-of-sacrifice.c", "none");
 
     region->setCoordinate(0, 3,
         "/tutorial/temple/environment/rooms/pedestal-4x1.c", "none");
@@ -83,6 +95,8 @@ public void Setup()
         "/tutorial/temple/environment/rooms/pedestal-4x4.c", "none");
     region->setCoordinate(4, 3,
         "/tutorial/temple/environment/rooms/pedestal-4x5.c", "none");
+    region->setCoordinate(5, 3,
+        "/tutorial/temple/environment/rooms/rod-chamber.c", "none");
 
     region->setCoordinate(0, 2,
         "/tutorial/temple/environment/rooms/pedestal-5x1.c", "none");
@@ -94,4 +108,19 @@ public void Setup()
         "/tutorial/temple/environment/rooms/pedestal-5x4.c", "none");
     region->setCoordinate(4, 2,
         "/tutorial/temple/environment/rooms/pedestal-5x5.c", "none");
+    region->setCoordinate(5, 2,
+        "/tutorial/temple/environment/rooms/chamber-of-targets.c", "none");
+
+    region->setCoordinate(0, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x1.c", "none");
+    region->setCoordinate(1, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x2.c", "none");
+    region->setCoordinate(2, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x3.c", "none");
+    region->setCoordinate(3, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x4.c", "none");
+    region->setCoordinate(4, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x5.c", "none");
+    region->setCoordinate(5, 1,
+        "/tutorial/temple/environment/rooms/pedestal-6x6.c", "none");
 }

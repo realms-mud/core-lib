@@ -14,6 +14,11 @@ protected nosave string StateMachinePath = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string currentState(string newState)
 {
+    if (!StateMachine && this_player())
+    {
+        this_object().setupStateMachine(this_player()->RealName());
+    }
+
     if (newState && stringp(newState))
     {
         State = newState;
@@ -78,7 +83,14 @@ protected nomask void createStateObjects()
             {
                 StateMachine->registerStateActor(stateObject);
             }
-            move_object(stateObject, this_object());
+
+            object location = this_object();
+            if (member(environmentalElements, "clone owner") &&
+                member(instances, environmentalElements["clone owner"]))
+            {
+                location = instances[environmentalElements["clone owner"]];
+            }
+            move_object(stateObject, location);
         }
     }
 }

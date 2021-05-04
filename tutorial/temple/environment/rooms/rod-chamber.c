@@ -11,16 +11,19 @@ public void Setup()
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
     addFeature("/tutorial/temple/environment/features/amethyst-floor.c");
     addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("/tutorial/temple/environment/features/magic-square.c");
+    addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
     addDecorator("ruined interior west wall");
-    addDecorator("ruined interior west entry alcove", "first test");
+    addDecorator("ruined interior west entry alcove", "fourth test");
+    addDecorator("ruined interior west entry alcove", "fifth test");
 
-    // First test
-    addExit("west", "/tutorial/temple/environment/rooms/pedestal-1x5.c", "first test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "first test");
+    // Fourth test
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "fourth test");
 
-    addObject("/tutorial/temple/objects/magic-square.c");
+    // Fifth test
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "fourth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
@@ -28,7 +31,7 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 private object pilon()
 {
-    return present("square-hidden", this_object());
+    return present("pilon-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////

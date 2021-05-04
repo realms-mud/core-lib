@@ -181,6 +181,8 @@ void MapsChangeWithStateTransitions()
 {
     Player.colorConfiguration("none");
     Player.charsetConfiguration("ascii");
+    set_this_player(Player);
+
     move_object(Player,
         "/tutorial/temple/environment/rooms/entry-to-pedestal.c");
 
@@ -190,22 +192,25 @@ void MapsChangeWithStateTransitions()
     object stateMachine = environment(Player).stateMachine();
 
     ExpectEq("\n"
-        " |                   \n"
-        " P  o  o  o  o  #    \n"
-        "                     \n"
-        "                     \n"
-        " o  o  o  o  o  #    \n"
-        "                     \n"
-        "                     \n"
-        " o  o  o  o  o       \n"
-        "                     \n"
-        "                     \n"
-        " o  o  o  o  o       \n"
-        "                     \n"
-        "                     \n"
-        " o  o  o  o  o       \n"
-        "                     \n"
-        "                     \n"                     
+        "| |                  \n"
+        "| |                  \n"
+        "+/+============+==   \n"
+        ":@:::::::::::::|     \n"
+        "@P@::::::::::::|     \n"
+        ":@:::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        "===============+     \n"
         "                     \n"
         "                     \n"
         "                     \n"
@@ -214,25 +219,28 @@ void MapsChangeWithStateTransitions()
 
     command("get rune", Player);
     command("place rune", Player);
-    stateMachine.receiveEvent(Player, "startFirstTest");
+    stateMachine.receiveEvent(Player, "startFirstTest", Player);
 
     ExpectEq("\n"
-        " |                   \n"
-        " P--o  o  o  o--#-   \n"
-        "    |        |       \n"
-        "    |        |       \n"
-        " o  o--o--o  o  #    \n"
-        "          |  |       \n"
-        "          |  |       \n"
-        " o  o  o--o  o       \n"
-        "       |     |       \n"
-        "       |     |       \n"
-        " o  o  o--o--o       \n"
         "                     \n"
         "                     \n"
-        " o  o  o  o  o       \n"
-        "                     \n"
-        "                     \n"
+        "===============+==   \n"
+        ":@:::::::::::::+==   \n"
+        "@P@  ::::::::  /     \n"
+        ":@:: :::::::: :+==   \n"
+        ":::: :::::::: :|     \n"
+        "::::       :: :|     \n"
+        ":::::::::: :: :|     \n"
+        ":::::::::: :: :|     \n"
+        ":::::::    :: :|     \n"
+        "::::::: ::::: :|     \n"
+        "::::::: ::::: :|     \n"
+        ":::::::       :|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        ":::::::::::::::|     \n"
+        "===============+     \n"
         "                     \n"
         "                     \n"
         "                     \n"
@@ -352,6 +360,7 @@ void CanEnterTemplatedRegion()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithNoColorWithASCII()
 {
+    set_this_player(Player);
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
@@ -368,6 +377,7 @@ void GetMapIconReturnsWithNoColorWithASCII()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithCustomThreeBitColors()
 {
+    set_this_player(Player);
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
@@ -384,6 +394,7 @@ void GetMapIconReturnsWithCustomThreeBitColors()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithCustomTwentyFourBitColors()
 {
+    set_this_player(Player);
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
@@ -400,6 +411,7 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
 /////////////////////////////////////////////////////////////////////////////
 void MapsDisplayCustomIcons()
 {
+    set_this_player(Player);
     Player.colorConfiguration("none");
     Player.charsetConfiguration("ascii");
 

@@ -149,11 +149,12 @@ public string getOrb(string which)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string displayOrbs()
+public varargs string displayOrbs(int alwaysDisplay)
 {
-    return (this_player() && this_player()->displayMiniMap()) ?
+    return (alwaysDisplay || 
+        (this_player() && !this_player()->displayMiniMap())) ?
         sprintf("\n%33s%s\n%30s%s%5s%s\n%33s%s\n", "", getOrb("north"), "",
-        getOrb("west"), "", getOrb("east"), "", getOrb("south")) : "";
+        getOrb("west"), "", getOrb("east"), "", getOrb("south")) : "\n";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -260,7 +261,7 @@ public void finishPress()
     {
         tell_room(environment(this_player()), 
             sprintf("The orbs of energy atop the pedestals swirl vigorously "
-                "and a new pattern emerges:%s", displayOrbs()));
+                "and a new pattern emerges:%s", displayOrbs(1)));
 
         if (isValidPattern())
         {

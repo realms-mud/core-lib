@@ -13,6 +13,9 @@ public void Setup()
     addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
+    addDecorator("ruined interior west wall");
+    addDecorator("ruined interior west entry alcove", "second test");
+
     // Second test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "second test");
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-2.c", "second test");

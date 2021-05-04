@@ -24,7 +24,7 @@ public void Setup()
 
     addObject("/tutorial/temple/objects/rune-resistance.c", "entered room");
 
-    addDecorator("amethyst interior floor", "default");
+    addDecorator("ruined interior amethyst floor", "default");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 
@@ -35,7 +35,7 @@ public void Setup()
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "second test");
 
     // Third test
-    addExit("southeast", "/tutorial/temple/environment/rooms/pedestal-2x2.c", "third test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x2.c", "third test");
 
     // Fourth test
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x2.c", "fourth test");
@@ -89,7 +89,9 @@ public void uhrdalenLeft(object uhrdalen, object player)
 /////////////////////////////////////////////////////////////////////////////
 private object pedestal()
 {
-    return present("pedestal-hidden", this_object());
+    string owner = cloneOwner();
+    return present("pedestal-hidden", (owner && member(instances, owner)) ?
+        instances[owner] : this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -139,7 +141,17 @@ public void init()
     if (present(this_player()))
     {
         add_action("resetEverything", "resetEverything");
+        add_action("updateState", "updateState");
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int updateState(string command)
+{
+    printf("Sent %O event to all state objects.\n", command);
+
+    StateMachine->receiveEvent(this_object(), command, this_player());
+    return 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////

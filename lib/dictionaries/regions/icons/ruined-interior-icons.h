@@ -2978,27 +2978,268 @@ private mapping RuinedInteriorIcons = ([
     "ruined interior amethyst floor": ([
         "colors": ([
             "none": "",
-            "grayscale": "\x1b[0;38;5;235m",
-            "3-bit": "\x1b[0;35m",
-            "8-bit": "\x1b[0;38;5;235m",
-            "24-bit": "\x1b[0;38;2;66;0;86m",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
             "icons": ([
                 "floor":([
                     "none": "",
-                    "grayscale": "\x1b[0;38;5;234m",
+                    "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
-                    "8-bit": "\x1b[0;38;5;234m",
+                    "8-bit": "\x1b[0;38;5;53m",
                     "24-bit": "\x1b[0;38;2;66;0;86m",
                 ])
             ])
         ]),
-        "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
-            ({ "#floor# ", "#floor# ", "#floor# ", }),
-            ({ "#floor# ", "#floor# ", "#floor# ", }) }),
+        "ascii": ({ ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }) }),
         "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
             ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
             ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
     ]),
+    "ruined interior amethyst floor west south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ " ", " ", "#floor#:", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor west east": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ " ", " ", " ", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor west north": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ " ", " ", "#floor#:", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor west east south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ " ", " ", " ", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor west east north": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ " ", " ", " ", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor west east north south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ " ", " ", " ", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor east north": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ "#floor#:", " ", " ", }),
+            ({ "#floor#:", "#floor#:", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor east south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", "#floor#:", "#floor#:", }),
+            ({ "#floor#:", " ", " ", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor east north south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ "#floor#:", " ", " ", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+    "ruined interior amethyst floor north south": ([
+        "colors": ([
+            "none": "",
+            "grayscale": "\x1b[0;38;5;233m",
+            "3-bit": "\x1b[0;30m",
+            "8-bit": "\x1b[0;38;5;233m",
+            "24-bit": "\x1b[0;38;2;26;20;26m",
+            "icons": ([
+                "floor":([
+                    "none": "",
+                    "grayscale": "\x1b[0;38;5;236m",
+                    "3-bit": "\x1b[0;35m",
+                    "8-bit": "\x1b[0;38;5;53m",
+                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                ])
+            ])
+        ]),
+        "ascii": ({ ({ "#floor#:", " ", "#floor#:", }),
+            ({ "#floor#:", " ", "#floor#:", }),
+            ({ "#floor#:", " ", "#floor#:", }) }),
+        "unicode": ({ ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }),
+            ({ "#floor#\u2591", "\u2591", "#floor#\u2591" }) })
+    ]),
+
 ]);
 
 #endif

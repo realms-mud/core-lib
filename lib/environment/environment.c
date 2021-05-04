@@ -266,13 +266,17 @@ public nomask varargs void addDecorator(string decorator, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string decoratorType()
+public nomask string decoratorType(string state)
 {
     string ret = 0;
 
     if (member(environmentalElements, "decorator"))
     {
-        string state = currentState();
+        if (!state)
+        {
+            state = "default";
+        }
+
         if (member(environmentalElements["decorator"], state))
         {
             ret = environmentalElements["decorator"][state];

@@ -16,7 +16,7 @@ public void Setup()
         "grid with several glowing runes.\n\n"
         "##call_other::key::/tutorial/temple/objects/magic-square.c::displayMagicSquare::"
         "\nTo the right of the grid, there is another grid of slightly raised cubes of "
-        "onyx that look like they can be pushed into its surface. ");
+        "onyx that look like they can be pushed into its surface");
     addSourceOfLight(10);
 
     addAlias("grid");

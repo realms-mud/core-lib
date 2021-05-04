@@ -9,7 +9,6 @@ public void Setup()
 {
     cloneEnvironment();
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
-    addDecorator("ruined interior south wall");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
@@ -18,10 +17,10 @@ public void Setup()
 public string **customIcon(string **baseIcon, string color, string charset)
 {
     string baseColor = getDictionary("region")->iconColor(
-        decoratorType(), color);
+        "ruined interior north wall", color);
 
-    baseIcon[2][0] = sprintf("%s%s%s", baseColor,
-        (charset == "unicode") ? "\u2566" : "+",
+    baseIcon[0][0] = sprintf("%s%s%s", baseColor,
+        (charset == "unicode") ? "\u255d" : "+",
         (baseColor != "") ? "\x1b[0m" : baseColor);
 
     return baseIcon;

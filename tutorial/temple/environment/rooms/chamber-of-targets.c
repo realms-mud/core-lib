@@ -13,17 +13,30 @@ public void Setup()
     addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
     addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
-    addDecorator("ruined interior amethyst floor", "default");
+    addDecorator("ruined interior west wall");
+    addDecorator("ruined interior west entry alcove", "sixth test");
 
-    // Fifth test
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x2.c", "fifth test");
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x1.c", "fifth test");
-    addDecorator("ruined interior amethyst floor east south", "fifth test");
-
-    // Seventh test
-    addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x1.c", "seventh test");
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x1.c", "seventh test");
-    addDecorator("ruined interior amethyst floor north south", "seventh test");
+    // Second test
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "sixth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "sixth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private object pilon()
+{
+    return present("pilon-hidden", this_object());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int moveToIsAllowed(object user, object toLocation)
+{
+    int ret = 1;
+
+    if (pilon())
+    {
+        ret = pilon()->allowMove();
+    }
+    return ret;
 }

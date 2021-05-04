@@ -52,6 +52,21 @@ protected void Setup()
     addState("second test", "When I did more stuff, other things happened.");
     addTransition("first test", "second test", "startSecondTest");
 
+    addState("third test", "When I did more stuff, other things happened.");
+    addTransition("second test", "third test", "startThirdTest");
+
+    addState("fourth test", "When I did more stuff, other things happened.");
+    addTransition("third test", "fourth test", "startFourthTest");
+
+    addState("fifth test", "When I did more stuff, other things happened.");
+    addTransition("fourth test", "fifth test", "startFifthTest");
+
+    addState("sixth test", "When I did more stuff, other things happened.");
+    addTransition("fifth test", "sixth test", "startSixthTest");
+
+    addState("seventh test", "When I did more stuff, other things happened.");
+    addTransition("sixth test", "seventh test", "startSeventhTest");
+
     setInitialState("entered room");
     startStateMachine();
 

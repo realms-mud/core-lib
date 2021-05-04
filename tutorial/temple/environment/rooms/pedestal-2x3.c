@@ -18,14 +18,17 @@ public void Setup()
     // First test
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-2x4.c", "first test");
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-2x2.c", "first test");
+    addDecorator("ruined interior amethyst floor west east", "first test");
 
     // Third test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-1x3.c", "third test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-3x3.c", "third test");
+    addDecorator("ruined interior amethyst floor north south", "third test");
 
     // Sixth test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-1x3.c", "sixth test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-3x3.c", "sixth test");
+    addDecorator("ruined interior amethyst floor north south", "sixth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

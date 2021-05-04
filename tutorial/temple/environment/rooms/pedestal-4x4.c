@@ -18,26 +18,32 @@ public void Setup()
     // First test
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "first test");
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-4x3.c", "first test");
+    addDecorator("ruined interior amethyst floor west east", "first test");
 
     // Second test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x45.c", "second test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x4.c", "second test");
+    addDecorator("ruined interior amethyst floor north south", "second test");
 
     // Third test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "third test");
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-4x3.c", "third test");
+    addDecorator("ruined interior amethyst floor west north", "third test");
 
     // Fourth test
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fourth test");
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-4x3.c", "fourth test");
+    addDecorator("ruined interior amethyst floor west east", "fourth test");
 
     // Fifth test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "fifth test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x4.c", "fifth test");
+    addDecorator("ruined interior amethyst floor north south", "fifth test");
 
     // Sixth test
     addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "sixth test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x4.c", "sixth test");
+    addDecorator("ruined interior amethyst floor north south", "sixth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
