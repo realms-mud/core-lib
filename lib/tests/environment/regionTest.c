@@ -11,7 +11,7 @@ object Player;
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player.Name("bob");
+    Player.Name("henry");
     Player.addCommands();
     Player.colorConfiguration("24-bit");
     Player.charsetConfiguration("unicode");
@@ -183,8 +183,10 @@ void MapsChangeWithStateTransitions()
     Player.charsetConfiguration("ascii");
     set_this_player(Player);
 
-    move_object(Player,
-        "/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+    object environment = 
+        load_object("/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+
+    move_object(Player, environment);
 
     command("s", Player);
     
@@ -246,6 +248,9 @@ void MapsChangeWithStateTransitions()
         "                     \n"
         "                     \n"
         "                     \n", region.displayMap(Player, stateMachine.getCurrentState()));
+    
+    command("resetEverything", Player);
+    destruct(environment);
 }
 
 /////////////////////////////////////////////////////////////////////////////

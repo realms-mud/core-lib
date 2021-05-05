@@ -14,11 +14,6 @@ protected nosave string StateMachinePath = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string currentState(string newState)
 {
-    if (!StateMachine && this_player())
-    {
-        this_object().setupStateMachine(this_player()->RealName());
-    }
-
     if (newState && stringp(newState))
     {
         State = newState;
@@ -61,7 +56,8 @@ protected nomask void pruneStateObjects()
 protected nomask void createStateObjects()
 {
     string *stateObjects = ({});
-    if (member(environmentalElements["objects"], currentState()) && 
+    if ((currentState() != "default") &&
+        member(environmentalElements["objects"], currentState()) && 
         sizeof(environmentalElements["objects"][currentState()]))
     {
         stateObjects += environmentalElements["objects"][currentState()];
@@ -72,10 +68,11 @@ protected nomask void createStateObjects()
         stateObjects += environmentalElements["objects"]["default"];
     }
 
-    if (sizeof(stateObjects))
+    if (pointerp(stateObjects) && sizeof(stateObjects))
     {
         stateObjects = filter(m_indices(mkmapping(stateObjects)),
             (: return !present_clone($1); :));
+
         foreach(string stateObjectBlueprint in stateObjects)
         {
             object stateObject = clone_object(stateObjectBlueprint);
@@ -85,6 +82,7 @@ protected nomask void createStateObjects()
             }
 
             object location = this_object();
+
             if (member(environmentalElements, "clone owner") &&
                 member(instances, environmentalElements["clone owner"]))
             {
@@ -138,6 +136,7 @@ public nomask varargs void setupStateMachine(string owner)
         }
         StateMachine = newSM;
         StateMachine->registerStateActor(this_object());
+
         pruneStateObjects();
         currentState(StateMachine->getCurrentState());
         createStateObjects();

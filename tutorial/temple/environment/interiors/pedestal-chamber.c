@@ -11,5 +11,5 @@ public void Setup()
     suppressEntryMessage();
 
     addDescriptionTemplate("this is a very large and cavernous chamber - "
-        "easily two hundred yards wide by two hundred yards long");
+        "easily two hundred yards wide by two hundred yards long.");
 }

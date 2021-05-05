@@ -2988,7 +2988,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3012,7 +3012,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3036,7 +3036,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3060,7 +3060,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3084,7 +3084,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3108,7 +3108,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3132,7 +3132,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3156,7 +3156,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3180,7 +3180,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3204,7 +3204,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
@@ -3228,7 +3228,7 @@ private mapping RuinedInteriorIcons = ([
                     "grayscale": "\x1b[0;38;5;236m",
                     "3-bit": "\x1b[0;35m",
                     "8-bit": "\x1b[0;38;5;53m",
-                    "24-bit": "\x1b[0;38;2;66;0;86m",
+                    "24-bit": "\x1b[0;38;2;96;0;102m",
                 ])
             ])
         ]),
