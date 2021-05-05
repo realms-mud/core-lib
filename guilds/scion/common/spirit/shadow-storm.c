@@ -41,26 +41,27 @@ protected void Setup()
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
-            "base damage": 25,
-            "range": 50
+            "base damage": 40,
+            "range": 80
         ]),
         ([
             "probability": 10,
-            "base damage": 50,
-            "range": 100
+            "base damage": 80,
+            "range": 160
         ])
     }));
-    addSpecification("damage spell points", ({ ([
-            "probability":90,
-            "base damage" : 10,
-            "range" : 25
+    addSpecification("damage stamina points", ({ ([
+            "probability": 90,
+            "base damage": 20,
+            "range": 40
         ]),
         ([
             "probability": 10,
-            "base damage": 25,
-            "range" : 50
+            "base damage": 40,
+            "range": 80
         ])
     }));
+
     addSpecification("damage type", "magical");
 
     addSpecification("modifiers", ({ 

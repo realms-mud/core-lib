@@ -34,16 +34,23 @@ private void FifthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SeventhLevel()
 {
+    addResearchElement("/guilds/aeromancer/lightning/shocking-mist.c");
 
+    addChild("/guilds/aeromancer/lightning/shocking-mist.c",
+        "/guilds/aeromancer/lightning/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void NinthLevel()
 {
     addResearchElement("/guilds/aeromancer/lightning/discharge.c");
+    addResearchElement("/guilds/aeromancer/lightning/lightning-blades.c");
 
     addChild("/guilds/aeromancer/lightning/discharge.c",
         "/guilds/aeromancer/lightning/shock.c");
+
+    addChild("/guilds/aeromancer/lightning/lightning-blades.c",
+        "/guilds/aeromancer/lightning/root.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

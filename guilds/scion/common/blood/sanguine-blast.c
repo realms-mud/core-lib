@@ -40,27 +40,28 @@ protected void Setup()
     addSpecification("spell point cost", 150);
 
     addSpecification("damage hit points", ({ ([
-            "probability":90,
-            "base damage" : 25,
-            "range" : 50
-        ]),
-        ([
-            "probability": 10,
-            "base damage": 50,
-            "range" : 100
-        ])
-    }));
-    addSpecification("damage spell points", ({ ([
             "probability": 90,
-            "base damage" : 10,
-            "range" : 25
+            "base damage": 40,
+            "range": 80
         ]),
         ([
             "probability": 10,
-            "base damage": 25,
-            "range" : 50
+            "base damage": 80,
+            "range": 160
         ])
     }));
+    addSpecification("damage stamina points", ({ ([
+            "probability": 90,
+            "base damage": 20,
+            "range": 40
+        ]),
+        ([
+            "probability": 10,
+            "base damage": 40,
+            "range": 80
+        ])
+    }));
+
     addSpecification("damage type", "undead");
 
     addSpecification("modifiers", ({ 

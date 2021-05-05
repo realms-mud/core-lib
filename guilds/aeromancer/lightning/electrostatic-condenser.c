@@ -28,6 +28,7 @@ protected void Setup()
         "Ball Lightning": 25,
         "Electric Whip": 25,
         "Lightning Bolt": 25,
+        "Lightning Blades": 25,
         "Shock": 25,
         "Shocking Lash": 25,
         "Shocking Mist": 25,
