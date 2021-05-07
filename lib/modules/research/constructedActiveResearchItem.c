@@ -6,7 +6,11 @@ virtual inherit "/lib/modules/research/activeResearchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
 private string *validCompositeTypes = ({
-    "template must be one of",
+    "form must include only one of",
+    "function must include only one of",
+    "effect must include any of",
+    "effect can include only one of",
+    "effect can include any of",
 });
 
 private mapping compositeResearchItems = ([]);
@@ -160,6 +164,25 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int getMaximumSizeOfCompositeResearch(object owner)
+{
+    int ret = specificationData["maximum composite size"];
+
+    if (member(specificationData, "max composite size modifier"))
+    {
+        ret = applyModifiers(ret, owner,
+            specificationData["max composite size modifier"]);
+    }
+
+    if (!ret)
+    {
+        raise_error("ERROR - compositeActiveResearchItem: the "
+            "'maximum composite size' specification must be set.\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping getComboRulesFor(string *compositeItems, string type)
 {
     mapping ret = ([]);
@@ -176,6 +199,79 @@ private nomask mapping getComboRulesFor(string *compositeItems, string type)
         ret = filter(compositeResearchItems,
             (: (member($3, $1) > -1) :), list);
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkIncludeOnlyOneRule(mapping list,
+    string type)
+{
+    string ret = 0;
+
+    if (member(specificationData["composite rules"], type) && 
+        (sizeof(list) != 1))
+    {
+        if (sizeof(list) > 1)
+        {
+            ret = sprintf("That is an invalid combination. "
+                "You must use exactly one of: %s.",
+                stringFromList(m_indices(list), 1));
+        }
+        else if(!sizeof(list))
+        {
+            ret = sprintf("That is an invalid combination. "
+                "You must use exactly one of: %s.",
+                stringFromList(m_indices(filter(compositeResearchItems,
+                    (: (member(specificationData["composite rules"]
+                        [type], $2) > -1) :))), 1));
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
+{
+    return checkIncludeOnlyOneRule(list, "must include only one of");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeTemplateRules(mapping list)
+{
+    return checkIncludeOnlyOneRule(list, "template must be one of");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkMustIncludeAnyOfRules(mapping list)
+{
+    string ret = 0;
+
+    if (member(specificationData["composite rules"], 
+        "must include any of") && (sizeof(list) < 1))
+    {
+        ret = sprintf("That is an invalid combination. "
+            "You must use at least one of: %s.",
+            stringFromList(m_indices(filter(compositeResearchItems,
+                (: (member(specificationData["composite rules"]
+                    ["must include any of"], $2) > -1) :))), 1));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkCanIncludeOnlyOneOfRules(mapping list)
+{
+    string ret = 0;
+
+    if (sizeof(list) > 1)
+    {
+        ret = sprintf("That is an invalid combination. "
+            "You can only use one of: %s.",
+            stringFromList(m_indices(list), 1));
+    }
+
     return ret;
 }
 

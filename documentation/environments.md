@@ -104,7 +104,7 @@ The original intent was to break down each environment into a 3x3 grid and allow
 the wizard to place objects either "front-and-center" in the room (ie: location not specified),
 or a cardinal / primary intercardinal direction (ie: n, s, e, w, ne, nw, se, sw). Having
 said that, items can be placed in an arbitrary location and multiple items can be
-placed in the same general area. There is a work itm to change this to a coordinate system,
+placed in the same general area. There is a work item to change this to a coordinate system,
 but that is currently not implemented and may never be.
 
 The syntax for creating features - be they buildings, features, or static items - is identical
