@@ -302,7 +302,7 @@ public void Setup()
 
     addObject("/shards/of/glass.c", "missed target badly");
     addObject("/irate/homeowner.c", "missed target badly");
-    addObject("/exit/if/you/hit/target.c", "hit target");
+    addObject("/arrow/to/collect/from/target.c", "hit target");
 
     addExit("east", "/exit/if/you/hit/target.c", "hit target");
 
