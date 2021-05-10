@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 200);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/flame/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability":90,
@@ -213,6 +219,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 100);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/flame/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/flame/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "infernoSpearEvent");
     addSpecification("command template", "inferno spear [at ##Target##]");
     addSpecification("use ability message",  "A large, pulsating spear "

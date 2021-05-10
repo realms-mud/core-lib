@@ -72,11 +72,14 @@ private void EleventhLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/frost-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-reserve.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/frigid-strike.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/freezing-brand.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/ice/frost-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/frost-tendrils.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-reserve.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,14 @@ private void ThirteenthLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/freezing-barrier.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-boon.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/freezing-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/frost-tendrils.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/ice/freezing-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/chill-the-blood.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-boon.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,20 +129,26 @@ private void TwentyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/winters-boon.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-call.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/winters-boon.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/icy-edge.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/frost-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-call.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-reserve.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-finess.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/root.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-finess.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-boon.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,20 +183,26 @@ private void ThirtyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-might.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/freezing-shield.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/ice-shroud.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/ice/icy-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/frozen-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-might.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-call.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/ice/ice-storm.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-endurance.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/ice-storm.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/freezing-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-endurance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-finess.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,24 @@ private void ThirtyNinthLevel()
 
     addChild(sprintf("/guilds/scion/paths/%s/ice/icy-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/ice/wind-chill.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-fury.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-fury.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-might.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/ice/scions-strength.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/ice/scions-strength.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/ice/scions-endurance.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -284,6 +320,8 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFirstLevel();
+        FortyThirdLevel();
         FortyFifthLevel();
         FiftyFirstLevel();
         FiftySeventhLevel();

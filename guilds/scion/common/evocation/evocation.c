@@ -72,11 +72,14 @@ private void EleventhLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-reserve.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/energized-strike.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/mystic-brand.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/eviscerating-tendrils.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-reserve.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,14 @@ private void ThirteenthLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/magical-barrier.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-boon.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/magical-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/eviscerating-tendrils.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/evocation/magical-conduit.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/mystic-charge.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-boon.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,20 +129,26 @@ private void TwentyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/dalreths-might.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-call.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/dalreths-might.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/magical-edge.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/static-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-call.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-reserve.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/force-shroud.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-finess.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/force-shroud.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/root.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-finess.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-boon.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,20 +183,26 @@ private void ThirtyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/mystic-shield.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-might.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/mystic-shield.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/force-shroud.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/evocation/energy-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/kinetic-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-might.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-call.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/tempest.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-endurance.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/tempest.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/magical-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-endurance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-finess.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,24 @@ private void ThirtyNinthLevel()
 
     addChild(sprintf("/guilds/scion/paths/%s/evocation/plasma-eruption.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/evocation/kinetic-discharge.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-fury.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-fury.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-might.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/evocation/scions-strength.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/evocation/scions-strength.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/evocation/scions-endurance.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -284,6 +320,8 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFirstLevel();
+        FortyThirdLevel();
         FortyFifthLevel();
         FiftyFirstLevel();
         FiftySeventhLevel();

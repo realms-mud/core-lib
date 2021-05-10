@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 150);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/blood/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
@@ -213,6 +219,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 100);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/blood/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "sanguineBlastEvent");
     addSpecification("command template", "sanguine blast");
     addSpecification("use ability message",  "An intense cone of sickly purple "

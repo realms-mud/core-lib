@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 100);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/evocation/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability":90,
@@ -202,6 +208,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 60);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/evocation/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/evocation/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "energyBlastEvent");
     addSpecification("command template", "energy blast [at ##Target##]");
     addSpecification("use ability message",  "An intense beam of energy "

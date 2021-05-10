@@ -45,12 +45,14 @@ private void NinthLevel()
 {
     addResearchElement("/guilds/aeromancer/lightning/discharge.c");
     addResearchElement("/guilds/aeromancer/lightning/lightning-blades.c");
+    addResearchElement("/guilds/aeromancer/lightning/lightning-bolt.c");
 
     addChild("/guilds/aeromancer/lightning/discharge.c",
         "/guilds/aeromancer/lightning/shock.c");
-
     addChild("/guilds/aeromancer/lightning/lightning-blades.c",
         "/guilds/aeromancer/lightning/root.c");
+    addChild("/guilds/aeromancer/lightning/lightning-bolt.c",
+        "/guilds/aeromancer/lightning/shock.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

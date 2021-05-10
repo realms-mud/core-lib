@@ -104,22 +104,6 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type": "weapon damage",
-            "name" : "staff",
-            "types" : ({ "staff" }),
-            "formula" : "additive",
-            "rate" : 1.0
-        ]),
-        ([
-            "type": "weapon damage",
-            "name": "not a staff",
-            "types": ({ "dagger", "short sword", "long sword", "bow", "axe",
-                "hand and a half sword", "two-handed sword", "crossbow", 
-                "sling", "thrown", "pole arm", "mace", "hammer", "flail" }),
-            "formula": "subtractive",
-            "rate": 1.25
-        ]),
-        ([
             "type":"skill",
             "name" : "elemental air",
             "formula" : "additive",

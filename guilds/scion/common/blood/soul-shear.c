@@ -38,16 +38,22 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 100);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/blood/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
-            "probability":90,
-            "base damage" : 25,
-            "range" : 50
+            "probability": 90,
+            "base damage": 25,
+            "range": 50
         ]),
         ([
             "probability": 10,
             "base damage": 50,
-            "range" : 100
+            "range": 100
         ])
     }));
 
@@ -202,6 +208,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 60);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/blood/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/blood/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "soulShearEvent");
     addSpecification("command template", "soul shear [at ##Target##]");
     addSpecification("use ability message",  "An intense bolt of crimson "

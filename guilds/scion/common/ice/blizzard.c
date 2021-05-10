@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 250);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/ice/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability":90,
@@ -212,6 +218,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 180);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/ice/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "blizzardEvent");
     addSpecification("command template", "blizzard");
     addSpecification("use ability message",  "An intense storm of freezing shards "

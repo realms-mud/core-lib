@@ -72,11 +72,14 @@ private void EleventhLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/inferno-strike.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-reserve.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/inferno-strike.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/burning-brand.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/searing-tendrils.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-reserve.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,14 @@ private void ThirteenthLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/burning-barrier.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-boon.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/burning-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/searing-tendrils.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/flame/scorching-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/fuel-the-flames.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-boon.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,20 +129,26 @@ private void TwentyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/ferianths-boon.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-call.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/ferianths-boon.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/blazing-edge.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/flaming-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-call.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-reserve.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/fire-shroud.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-finess.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/fire-shroud.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/root.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-finess.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-boon.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,20 +183,26 @@ private void ThirtyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/burning-shield.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/inferno-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-might.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/burning-shield.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/fire-shroud.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/flame/inferno-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/blazing-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-might.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-call.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/flame/inferno.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-endurance.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/inferno.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/burning-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-endurance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-finess.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,24 @@ private void ThirtyNinthLevel()
 
     addChild(sprintf("/guilds/scion/paths/%s/flame/inferno-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/flame/enhanced-blaze.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-fury.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-fury.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-might.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/flame/scions-strength.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/flame/scions-strength.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/flame/scions-endurance.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -284,6 +320,8 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFirstLevel();
+        FortyThirdLevel();
         FortyFifthLevel();
         FiftyFirstLevel();
         FiftySeventhLevel();

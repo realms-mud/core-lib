@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 150);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/electricity/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
@@ -214,6 +220,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 100);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/electricity/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/electricity/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "lightningBlastEvent");
     addSpecification("command template", "lightning blast");
     addSpecification("use ability message",  "Intense bolts of lightning "

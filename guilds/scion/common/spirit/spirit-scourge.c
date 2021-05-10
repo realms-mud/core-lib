@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 200);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/spirit/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability":90,
@@ -213,6 +219,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 100);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/spirit/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/spirit/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "spiritScourgeEvent");
     addSpecification("command template", "spirit scourge [at ##Target##]");
     addSpecification("use ability message",  "Many large blades of transluscent white energy "

@@ -38,6 +38,12 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 100);
+    addSpecification("spell point cost modifiers", ([
+        sprintf("/guilds/scion/paths/%s/ice/scions-reserve.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-call.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-might.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-fury.c", WeaponType): 10,
+    ]));
 
     addSpecification("damage hit points", ({ ([
             "probability":90,
@@ -202,6 +208,13 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 60);
+    addSpecification("cooldown modifiers", ([
+        sprintf("/guilds/scion/paths/%s/ice/scions-boon.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-finess.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-endurance.c", WeaponType): 10,
+        sprintf("/guilds/scion/paths/%s/ice/scions-strength.c", WeaponType): 10,
+    ]));
+
     addSpecification("event handler", "iceJavelinEvent");
     addSpecification("command template", "ice javelin [at ##Target##]");
     addSpecification("use ability message",  "An intensly cold shard of ice "

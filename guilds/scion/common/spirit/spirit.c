@@ -72,11 +72,14 @@ private void EleventhLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/soul-sheath.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-reserve.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/soul-strike.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/spectral-brand.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/spirit/soul-sheath.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/tendrils-of-laiwyth.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-reserve.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,14 @@ private void ThirteenthLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/spectral-barrier.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-boon.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/spectral-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/tendrils-of-laiwyth.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/spirit/spirit-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/chill-the-blood.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-boon.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,20 +129,26 @@ private void TwentyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/nienwyns-boon.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-call.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/nienwyns-boon.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/spectral-edge.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/soul-sheath.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-call.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-reserve.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/spirit-shroud.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-finess.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/spirit-shroud.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/root.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-finess.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-boon.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,20 +183,26 @@ private void ThirtyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/soul-shield.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/shadow-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-might.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/soul-shield.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/spirit-shroud.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/spirit/shadow-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/strangle-the-soul.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-might.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-call.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/soul-blight.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-endurance.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/soul-blight.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/spectral-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-endurance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-finess.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,24 @@ private void ThirtyNinthLevel()
 
     addChild(sprintf("/guilds/scion/paths/%s/spirit/laiwyths-mark.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/spirit/nienwyns-kiss.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-fury.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-fury.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-might.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/spirit/scions-strength.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/spirit/scions-strength.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/spirit/scions-endurance.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -284,6 +320,8 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFirstLevel();
+        FortyThirdLevel();
         FortyFifthLevel();
         FiftyFirstLevel();
         FiftySeventhLevel();

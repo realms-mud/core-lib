@@ -72,11 +72,14 @@ private void EleventhLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-reserve.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/energized-strike.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/shock-brand.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-reserve.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -84,11 +87,14 @@ private void ThirteenthLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/shocking-barrier.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-boon.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/shocking-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/shocking-tendrils.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/electricity/electrostatic-induction.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/static-charge.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-boon.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/root.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -123,20 +129,26 @@ private void TwentyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-call.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/thunders-boon.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/shocking-edge.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/static-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-call.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-reserve.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void TwentyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/electric-shroud.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-finess.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/electric-shroud.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/root.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-finess.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-boon.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -171,20 +183,26 @@ private void ThirtyFirstLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/static-shield.c", WeaponType));
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-might.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/static-shield.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/electric-shroud.c", WeaponType));
     addChild(sprintf("/guilds/scion/paths/%s/electricity/plasma-barrier.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/ionized-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-might.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-call.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void ThirtyThirdLevel()
 {
     addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/tempest.c", WeaponType));
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-endurance.c", WeaponType));
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/tempest.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/shocking-barrier.c", WeaponType));
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-endurance.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-finess.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +230,24 @@ private void ThirtyNinthLevel()
 
     addChild(sprintf("/guilds/scion/paths/%s/electricity/plasma-eruption.c", WeaponType),
         sprintf("/guilds/scion/paths/%s/electricity/enhanced-discharge.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-fury.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-fury.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-might.c", WeaponType));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyThirdLevel()
+{
+    addResearchElement(sprintf("/guilds/scion/paths/%s/electricity/scions-strength.c", WeaponType));
+
+    addChild(sprintf("/guilds/scion/paths/%s/electricity/scions-strength.c", WeaponType),
+        sprintf("/guilds/scion/paths/%s/electricity/scions-endurance.c", WeaponType));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -284,6 +320,8 @@ protected void Setup()
         ThirtyFifthLevel();
         ThirtySeventhLevel();
         ThirtyNinthLevel();
+        FortyFirstLevel();
+        FortyThirdLevel();
         FortyFifthLevel();
         FiftyFirstLevel();
         FiftySeventhLevel();
