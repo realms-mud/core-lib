@@ -47,24 +47,24 @@ protected void Setup()
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
-            "base damage" : 100,
-            "range" : 200
+            "base damage": 100,
+            "range": 200
         ]),
         ([
-            "probability":10,
-            "base damage" : 200,
-            "range" : 500
+            "probability": 10,
+            "base damage": 200,
+            "range": 500
         ])
     }));
     addSpecification("damage spell points", ({ ([
-            "probability":90,
-            "base damage" : 50,
-            "range" : 100
+            "probability": 90,
+            "base damage": 50,
+            "range": 100
         ]),
         ([
             "probability": 10,
             "base damage": 100,
-            "range" : 200
+            "range": 200
         ])
     }));
 

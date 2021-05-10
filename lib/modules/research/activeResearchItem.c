@@ -89,6 +89,7 @@ protected int addSpecification(string type, mixed value)
         case "cooldown group":
         case "use composite message":
         case "use ability message":
+        case "repeated ability message":
         case "use ability fail message":
         case "use ability cooldown message":
         case "use combination message":

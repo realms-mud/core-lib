@@ -7,7 +7,7 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Tempest");
+    addSpecification("name", "Raging Tempest");
     addSpecification("description", "This is a persona research item.");
     addSpecification("effect", "combat");
     addSpecification("scope", "targeted");

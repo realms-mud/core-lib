@@ -7,36 +7,30 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Enhanced Discharge");
+    addSpecification("name", "Boltmaster's Call");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the aeromancer's electricity-based "
-        "abilities.");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to decrease the stamina cost for which they can use their "
+        "blade attack abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 27
+            "value": 21
         ]));
-
-    addPrerequisite("/guilds/aeromancer/lightning/ionization.c",
+    addPrerequisite("/guilds/aeromancer/lightning/boltmasters-reserve.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Ball Lightning": 25,
-        "Electric Whip": 25,
-        "Lightning Bolt": 25,
-        "Lightning Blades": 25,
-        "Shock": 25,
-        "Shocking Lash": 25,
-        "Shocking Mist": 25,
-        "Shocking Wave": 25,
-        "Static Discharge": 25,
-        "Raging Tempest": 25,
-        "Thunderclap": 25,
-        "Thundering Swarm": 25,
+        "Ball Lightning": 10,
+        "Electric Whip": 10,
+        "Lightning Bolt": 10,
+        "Shocking Wave": 10,
+        "Static Discharge": 10,
+        "Raging Tempest": 10,
+        "Thundering Swarm": 10,
     ]));
-    addSpecification("affected research type", "percentage");
+    addSpecification("affected research type", "decrease cost");
 }

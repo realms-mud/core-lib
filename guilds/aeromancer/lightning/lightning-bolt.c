@@ -23,7 +23,7 @@ protected void Setup()
             "value": 9
         ]));
 
-    addSpecification("scope", "area");
+    addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
@@ -201,20 +201,20 @@ protected void Setup()
     }));
 
     addSpecification("spell point cost", 100);
-    //addSpecification("spell point cost modifiers", ([
-    //    "/guilds/aeromancer/lightning/boltmasters-reserve.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-call.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-might.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-fury.c": 10
-    //]));
+    addSpecification("spell point cost modifiers", ([
+        "/guilds/aeromancer/lightning/boltmasters-reserve.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-call.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-might.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-fury.c": 10
+    ]));
 
     addSpecification("cooldown", 60);
-    //addSpecification("cooldown modifiers", ([
-    //    "/guilds/aeromancer/lightning/boltmasters-boon.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-finess.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-endurance.c": 10,
-    //    "/guilds/aeromancer/lightning/boltmasters-strength.c": 10,
-    //]));
+    addSpecification("cooldown modifiers", ([
+        "/guilds/aeromancer/lightning/boltmasters-boon.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-finess.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-endurance.c": 10,
+        "/guilds/aeromancer/lightning/boltmasters-strength.c": 10,
+    ]));
 
     addSpecification("event handler", "lightningBoltEvent");
     addSpecification("command template", "lightning bolt [at ##Target##]");

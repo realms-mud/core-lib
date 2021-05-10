@@ -19,6 +19,11 @@ protected void Setup()
     addPrerequisite("/guilds/aeromancer/lightning/root.c",
         (["type":"research"]));
 
+    addPrerequisite("level", 
+        (["type": "level", 
+          "guild": "aeromancer",
+          "value": 3 ]));
+
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

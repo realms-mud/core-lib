@@ -7,25 +7,26 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Staic Discharge");
+    addSpecification("name", "Raging Tempest");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the static discharge spell. By means of this, the "
-        "aeromancer releases three bolts of electrical energy into a foe, "
-        "causing massive damage and disrupting their flow of mana.");
+        "knowledge of the shocking wave spell. By means of this, the "
+        "aeromancer creates a raging tempest that lasts for 10 seconds, blasting "
+        "all foes with an assault of lightning bolts for.");
 
-    addPrerequisite("/guilds/aeromancer/lightning/lightning-bolt.c",
+    addPrerequisite("/guilds/aeromancer/lightning/ball-lightning.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 19
+            "value": 37
         ]));
 
-    addSpecification("scope", "targeted");
+    addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("repeat effect", 4);
 
     addSpecification("damage hit points", ({ ([
             "probability": 90,
@@ -40,27 +41,15 @@ protected void Setup()
     }));
     addSpecification("damage spell points", ({ ([
             "probability": 90,
-            "base damage": 25,
-            "range": 50
+            "base damage": 20,
+            "range": 40
         ]),
         ([
             "probability": 10,
-            "base damage": 50,
-            "range": 100
+            "base damage": 40,
+            "range": 80
         ])
     }));
-    addSpecification("damage stamina points", ({ ([
-            "probability": 90,
-            "base damage": 25,
-            "range": 50
-        ]),
-        ([
-            "probability": 10,
-            "base damage": 50,
-            "range": 100
-        ])
-    }));
-
 
     addSpecification("damage type", "electricity");
 
@@ -223,7 +212,7 @@ protected void Setup()
         ]), 
     }));
 
-    addSpecification("spell point cost", 160);
+    addSpecification("spell point cost", 300);
     addSpecification("spell point cost modifiers", ([
         "/guilds/aeromancer/lightning/boltmasters-reserve.c": 10,
         "/guilds/aeromancer/lightning/boltmasters-call.c": 10,
@@ -231,7 +220,7 @@ protected void Setup()
         "/guilds/aeromancer/lightning/boltmasters-fury.c": 10
     ]));
 
-    addSpecification("cooldown", 80);
+    addSpecification("cooldown", 120);
     addSpecification("cooldown modifiers", ([
         "/guilds/aeromancer/lightning/boltmasters-boon.c": 10,
         "/guilds/aeromancer/lightning/boltmasters-finess.c": 10,
@@ -239,9 +228,14 @@ protected void Setup()
         "/guilds/aeromancer/lightning/boltmasters-strength.c": 10,
     ]));
 
-    addSpecification("event handler", "staticDischargeEvent");
-    addSpecification("command template", "static discharge [at ##Target##]");
-    addSpecification("use ability message",  "Three bolts of electrical "
-        "energy - one magenta, one white, and one blue - fly from "
-        "##InitiatorPossessive::Name## arms into ##TargetName##.");
+    addSpecification("event handler", "ragingTempestEvent");
+    addSpecification("command template", "raging tempest");
+    addSpecification("use ability message",  "##InitiatorName## "
+        "##Infinitive::raise## ##InitiatorPossessive## arms and "
+        "a swirling tempest begins to rage around ##InitiatorObjective##. "
+        "Bolts of lightning begin to arc out and strike "
+        "##InitiatorPossessive## foes.");
+    addSpecification("repeated ability message", "Bolts of lightning arc "
+        "out from ##InitiatorName## and ##Infinitive::strike## "
+        "##InitiatorPossessive## foes.");
 }

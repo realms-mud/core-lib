@@ -34,7 +34,7 @@ protected void Setup()
         "Shocking Mist": 25,
         "Shocking Wave": 25,
         "Static Discharge": 25,
-        "Tempest": 25,
+        "Raging Tempest": 25,
         "Thunderclap": 25,
         "Thundering Swarm": 25,
     ]));
