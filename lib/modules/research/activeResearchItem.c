@@ -48,8 +48,7 @@ protected int addSpecification(string type, mixed value)
         case "cooldown modifiers":
         {
             if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
-                (: (getDictionary("research")->researchObject($1) &&
-                   intp($2) && ($2 < query("cooldown"))) :)))))
+                (: intp($2) && ($2 < query("cooldown")) :)))))
             {
                 specificationData[type] = value;
                 ret = 1;
@@ -69,8 +68,7 @@ protected int addSpecification(string type, mixed value)
             string cost = regreplace(type, "(.*) modifiers", "\\1", 1);
 
             if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
-                (: (getDictionary("research")->researchObject($1) &&
-                   intp($2) && ($2 < query(cost))) :)))))
+                (: intp($2) && ($2 < query($3)) :), cost))))
             {
                 specificationData[type] = value;
                 ret = 1;
