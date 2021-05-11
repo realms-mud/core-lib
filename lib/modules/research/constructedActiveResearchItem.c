@@ -5,34 +5,35 @@
 virtual inherit "/lib/modules/research/activeResearchItem.c";
 virtual inherit "/lib/modules/research/effectModifier.c";
 
-private string *validCompositeTypes = ({
+private string *validConstructedTypes = ({
     "form must include only one of",
     "function must include only one of",
+    "effect must include only one of",
     "effect must include any of",
     "effect can include only one of",
     "effect can include any of",
 });
 
-private mapping compositeResearchItems = ([]);
+private mapping constructedResearchItems = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int validateCompositeSet(mapping compositeList)
+private nomask int validateConstructedSet(mapping constructedList)
 {
     int ret = 0;
 
-    if (mappingp(compositeList) && sizeof(compositeList))
+    if (mappingp(constructedList) && sizeof(constructedList))
     {
         ret = 1;
         object dictionary = getDictionary("research");
-        foreach(string key in m_indices(compositeList))
+        foreach(string key in m_indices(constructedList))
         {
-            ret &&= (member(validCompositeTypes, key) > -1) &&
-                pointerp(compositeList[key]) &&
-                sizeof(compositeList[key]);
+            ret &&= (member(validConstructedTypes, key) > -1) &&
+                pointerp(constructedList[key]) &&
+                sizeof(constructedList[key]);
 
             if (ret)
             {
-                foreach(string researchItem in compositeList[key])
+                foreach(string researchItem in constructedList[key])
                 {
                     object researchObj =
                         dictionary->researchObject(researchItem);
@@ -42,15 +43,15 @@ private nomask int validateCompositeSet(mapping compositeList)
                     {
                         string itemName = researchObj->query("name");
 
-                        if (member(compositeResearchItems, itemName))
+                        if (member(constructedResearchItems, itemName))
                         {
                             raise_error(sprintf("ERROR - "
-                                "compositeActiveResearchItem: items (%s) can only "
+                                "constructedActiveResearchItem: items (%s) can only "
                                 "be placed once in only one of 'must include only "
                                 "one of', 'must include any of', 'can include only "
                                 "one of', or 'can include any of'.\n", researchItem));
                         }
-                        compositeResearchItems[itemName] = researchItem;
+                        constructedResearchItems[itemName] = researchItem;
                     }
                 }
             }
@@ -66,7 +67,7 @@ protected nomask int addSpecification(string type, mixed value)
 
     switch(type)
     {  
-        case "max composite size modifier":
+        case "max constructed size modifier":
         {
             if(value && pointerp(value) && sizeof(value) && 
                 mappingp(value[0]))
@@ -83,14 +84,14 @@ protected nomask int addSpecification(string type, mixed value)
                 }
                 else
                 {
-                    raise_error(sprintf("ERROR - compositeActiveResearchItem: "
+                    raise_error(sprintf("ERROR - constructedActiveResearchItem: "
                         "the '%s' specification must be a properly formatted "
                         "modifier.\n" , type));
                 }                
             }
             else
             {
-                raise_error(sprintf("ERROR - compositeActiveResearchItem: "
+                raise_error(sprintf("ERROR - constructedActiveResearchItem: "
                     "the '%s' specification must be a properly formatted "
                     "modifier.\n" , type));
             }
@@ -105,12 +106,12 @@ protected nomask int addSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - compositeActiveResearchItem: the "
+                raise_error("ERROR - constructedActiveResearchItem: the "
                     "'command name' specification must be a string.\n");
             }
             break;
         }
-        case "is single shot":
+        case "maximum constructed size":
         {
             if(intp(value) && (value > 0))
             {
@@ -119,38 +120,24 @@ protected nomask int addSpecification(string type, mixed value)
             }
             else
             {
-                raise_error("ERROR - compositeActiveResearchItem: the "
-                    "'is single shot' specification must be either 0 or 1.\n");
-            }
-            break;
-        }
-        case "maximum composite size":
-        {
-            if(intp(value) && (value > 0))
-            {
-                specificationData[type] = value;
-                ret = 1;
-            }
-            else
-            {
-                raise_error("ERROR - compositeActiveResearchItem: the "
-                    "'maximum composite size' specification must be a "
+                raise_error("ERROR - constructedActiveResearchItem: the "
+                    "'maximum constructed size' specification must be a "
                     "positive integer.\n");
             }
             break;
         }
-        case "composite rules":
+        case "constructed rules":
         {
             ret = 1;
-            if (validateCompositeSet(value))
+            if (validateConstructedSet(value))
             {
                 specificationData[type] = value;
                 ret = 1;
             }
             else
             {
-                raise_error("ERROR - compositeActiveResearchItem: the "
-                    "'composite rules' specification must be a "
+                raise_error("ERROR - constructedActiveResearchItem: the "
+                    "'constructed rules' specification must be a "
                     "valid rule set.\n");
             }
             break;
@@ -164,39 +151,39 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int getMaximumSizeOfCompositeResearch(object owner)
+private nomask int getMaximumSizeOfConstructedResearch(object owner)
 {
-    int ret = specificationData["maximum composite size"];
+    int ret = specificationData["maximum constructed size"];
 
-    if (member(specificationData, "max composite size modifier"))
+    if (member(specificationData, "max constructed size modifier"))
     {
         ret = applyModifiers(ret, owner,
-            specificationData["max composite size modifier"]);
+            specificationData["max constructed size modifier"]);
     }
 
     if (!ret)
     {
-        raise_error("ERROR - compositeActiveResearchItem: the "
-            "'maximum composite size' specification must be set.\n");
+        raise_error("ERROR - constructedActiveResearchItem: the "
+            "'maximum constructed size' specification must be set.\n");
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask mapping getComboRulesFor(string *compositeItems, string type)
+private nomask mapping getComboRulesFor(string *constructedItems, string type)
 {
     mapping ret = ([]);
 
-    if (sizeof(compositeItems) == sizeof(filter(compositeItems,
-        (: (member($2, $1) > -1) :), m_indices(compositeResearchItems))))
+    if (sizeof(constructedItems) == sizeof(filter(constructedItems,
+        (: (member($2, $1) > -1) :), m_indices(constructedResearchItems))))
     {
-        mapping rules = specificationData["composite rules"];
+        mapping rules = specificationData["constructed rules"];
 
-        string *list = member(rules, type) ? filter(compositeItems,
-            (: (member($2[$3], compositeResearchItems[$1]) > -1) :),
+        string *list = member(rules, type) ? filter(constructedItems,
+            (: (member($2[$3], constructedResearchItems[$1]) > -1) :),
             rules, type) : ({});
 
-        ret = filter(compositeResearchItems,
+        ret = filter(constructedResearchItems,
             (: (member($3, $1) > -1) :), list);
     }
     return ret;
@@ -208,7 +195,7 @@ private nomask string checkIncludeOnlyOneRule(mapping list,
 {
     string ret = 0;
 
-    if (member(specificationData["composite rules"], type) && 
+    if (member(specificationData["constructed rules"], type) && 
         (sizeof(list) != 1))
     {
         if (sizeof(list) > 1)
@@ -221,8 +208,8 @@ private nomask string checkIncludeOnlyOneRule(mapping list,
         {
             ret = sprintf("That is an invalid combination. "
                 "You must use exactly one of: %s.",
-                stringFromList(m_indices(filter(compositeResearchItems,
-                    (: (member(specificationData["composite rules"]
+                stringFromList(m_indices(filter(constructedResearchItems,
+                    (: (member(specificationData["constructed rules"]
                         [type], $2) > -1) :))), 1));
         }
     }
@@ -231,15 +218,21 @@ private nomask string checkIncludeOnlyOneRule(mapping list,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string checkMustIncludeOnlyOneOfRules(mapping list)
+private nomask string checkFormMustIncludeOnlyOneOfRules(mapping list)
 {
-    return checkIncludeOnlyOneRule(list, "must include only one of");
+    return checkIncludeOnlyOneRule(list, "form must include only one of");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string checkMustIncludeTemplateRules(mapping list)
+private nomask string checkFunctionMustIncludeOnlyOneOfRules(mapping list)
 {
-    return checkIncludeOnlyOneRule(list, "template must be one of");
+    return checkIncludeOnlyOneRule(list, "function must include only one of");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string checkEffectMustIncludeOnlyOneOfRules(mapping list)
+{
+    return checkIncludeOnlyOneRule(list, "effect must include only one of");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,13 +240,13 @@ private nomask string checkMustIncludeAnyOfRules(mapping list)
 {
     string ret = 0;
 
-    if (member(specificationData["composite rules"], 
+    if (member(specificationData["constructed rules"], 
         "must include any of") && (sizeof(list) < 1))
     {
         ret = sprintf("That is an invalid combination. "
             "You must use at least one of: %s.",
-            stringFromList(m_indices(filter(compositeResearchItems,
-                (: (member(specificationData["composite rules"]
+            stringFromList(m_indices(filter(constructedResearchItems,
+                (: (member(specificationData["constructed rules"]
                     ["must include any of"], $2) > -1) :))), 1));
     }
 
@@ -276,7 +269,7 @@ private nomask string checkCanIncludeOnlyOneOfRules(mapping list)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask object *getCompositeDetails(string unparsedCommand,
+protected nomask object *getConstructedDetails(string unparsedCommand,
     object owner)
 {
     object *ret = ({});
@@ -289,14 +282,14 @@ protected nomask object *getCompositeDetails(string unparsedCommand,
         owner = this_player();
     }
 
-    mapping compositeDetails = owner ? owner->getCompositeResearch(
+    mapping constructedDetails = owner ? owner->getConstructedResearch(
         program_name(this_object()), itemToCheck) : ([]);
 
-    if (compositeDetails && sizeof(compositeDetails))
+    if (constructedDetails && sizeof(constructedDetails))
     {
-        ret += ({ load_object(compositeDetails["type"]) });
+        ret += ({ load_object(constructedDetails["type"]) });
 
-        foreach(mapping element in compositeDetails["elements"])
+        foreach(mapping element in constructedDetails["elements"])
         {
             ret += ({ load_object(element["research"]) });
         }
@@ -307,7 +300,7 @@ protected nomask object *getCompositeDetails(string unparsedCommand,
 /////////////////////////////////////////////////////////////////////////////
 protected mapping getUsageCosts(string command, object initiator)
 {
-    object *combo = getCompositeDetails(command, initiator);
+    object *combo = getConstructedDetails(command, initiator);
 
     mapping costs = activeResearchItem::getUsageCosts(command, initiator);
 
@@ -328,30 +321,30 @@ protected mapping getUsageCosts(string command, object initiator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPossibleTemplates()
 {
-    return getComboRulesFor(m_indices(compositeResearchItems), 
+    return getComboRulesFor(m_indices(constructedResearchItems), 
         "template must be one of");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private mapping determineCompositeResearch(string unparsedCommand,
+private mapping determineConstructedResearch(string unparsedCommand,
     object owner)
 {
     mapping ret = 0;
-    string compositeItem = getTargetString(owner, unparsedCommand);
+    string constructedItem = getTargetString(owner, unparsedCommand);
 
-    if (compositeItem)
+    if (constructedItem)
     {
-        ret = owner->getCompositeResearch(
-            program_name(this_object()), compositeItem, 1);
+        ret = owner->getConstructedResearch(
+            program_name(this_object()), constructedItem, 1);
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int activateCompositeResearch(object owner, 
+private nomask int activateConstructedResearch(object owner, 
     mapping researchToUse)
 {
-    int ret = owner->activateCompositeResearch(program_name(this_object()),
+    int ret = owner->activateConstructedResearch(program_name(this_object()),
         m_indices(researchToUse)[0]);
 
     if (ret && member(specificationData, "use ability message") &&
@@ -364,10 +357,10 @@ private nomask int activateCompositeResearch(object owner,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int executeCompositeResearch(object owner)
+public nomask int executeConstructedResearch(object owner)
 {
     int ret = 0;
-    mapping nextItem = owner->getNextCompositeResearchElement();
+    mapping nextItem = owner->getNextConstructedResearchElement();
 
     if (nextItem)
     {
@@ -378,10 +371,10 @@ public nomask int executeCompositeResearch(object owner)
             if (ret)
             {
                 string message = 
-                    researchItem->query("use composite message") ||
+                    researchItem->query("use constructed message") ||
                     nextItem["description"];
 
-                message = regreplace(message, "##CompositeSegment##",
+                message = regreplace(message, "##ConstructedSegment##",
                     nextItem["description"], 1);
 
                 displayMessage(message, owner, owner);
@@ -397,7 +390,7 @@ protected int executeOnSelf(string unparsedCommand, object owner,
 {
     int ret = 0;
     mapping researchToUse =
-        determineCompositeResearch(unparsedCommand, owner);
+        determineConstructedResearch(unparsedCommand, owner);
 
     if (sizeof(researchToUse))
     {
@@ -408,7 +401,7 @@ protected int executeOnSelf(string unparsedCommand, object owner,
         else
         {
             ret = 1;
-            activateCompositeResearch(owner, researchToUse);
+            activateConstructedResearch(owner, researchToUse);
         }
     }
 
@@ -428,7 +421,7 @@ protected int executeInArea(string unparsedCommand, object owner,
 {
     int ret = 0;
     mapping researchToUse =
-        determineCompositeResearch(unparsedCommand, owner);
+        determineConstructedResearch(unparsedCommand, owner);
 
     if (sizeof(researchToUse))
     {
@@ -439,7 +432,7 @@ protected int executeInArea(string unparsedCommand, object owner,
         else
         {
             ret = 1;
-            activateCompositeResearch(owner, researchToUse);
+            activateConstructedResearch(owner, researchToUse);
         }
     }
 
@@ -489,7 +482,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
 {
     string ret = "";
 
-    mapping rules = query("composite rules");
+    mapping rules = query("constructed rules");
     if (mappingp(rules) && sizeof(rules))
     {
         object dictionary = getDictionary("research");
@@ -522,7 +515,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     }
 
     mapping songs = this_player() ?
-        this_player()->getOptionsForCompositeResearch(
+        this_player()->getOptionsForConstructedResearch(
             program_name(this_object())) :
         ([]);
     if (sizeof(songs))
@@ -550,7 +543,7 @@ protected int blockSpecificationApplication(string command, object owner,
 {
     int ret = 1;
 
-    object *components = getCompositeDetails(command, owner);
+    object *components = getConstructedDetails(command, owner);
 
     if (sizeof(components))
     {
