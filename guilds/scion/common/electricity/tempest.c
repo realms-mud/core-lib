@@ -15,7 +15,7 @@ protected void SetupResearch()
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Raging Tempest");
+    addSpecification("name", "Tempest");
     addSpecification("source", "Scion of Dhuras Guild");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the tempest technique. By means of this, the "

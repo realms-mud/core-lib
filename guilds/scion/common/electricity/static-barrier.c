@@ -33,7 +33,7 @@ protected void Setup()
     addSpecification("affected research", ([
         "Shocking Tendrils": 25,
         "Shocking Barrier": 25,
-        "Raging Tempest": 25
+        "Tempest": 25
     ]));
     addSpecification("affected research type", "percentage");
 }
