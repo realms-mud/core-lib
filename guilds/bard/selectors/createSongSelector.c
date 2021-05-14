@@ -45,7 +45,7 @@ private nomask int GetExistingElementsForSongSection(string section,
 
         Data[to_string(optionCount)] = ([
             "name": info,
-            "description": "Select this option to edit or remove",
+            "description": sprintf("Select this option to edit or remove %s", info),
             "type": "modify",
             "value": element
         ]);

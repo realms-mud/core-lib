@@ -23,14 +23,6 @@ public nomask int set_heart_beat(int flag)
 
 #endif
 
-#if ! __EFUN_DEFINED__(file_name)
-/////////////////////////////////////////////////////////////////////////////
-public nomask varargs string file_name(object ob)
-{
-    return object_name(ob);
-}
-#endif
-
 #if ! __EFUN_DEFINED__(query_once_interactive)
 
 /////////////////////////////////////////////////////////////////////////////

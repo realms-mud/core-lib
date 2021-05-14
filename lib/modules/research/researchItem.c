@@ -68,7 +68,17 @@ protected nomask int checkValidType(string typeToCheck)
                     ret = 0;
                 }
                 break;
-            }                
+            }     
+            case "constructed":
+            {
+                if(member(inherit_list(this_object()), 
+                   sprintf("%s/constructedResearchComponent.c", ResearchItemLocation))
+                   < 0)
+                {
+                    ret = 0;
+                }
+                break;
+            }         
             case "domain":
             {
                 if(member(inherit_list(this_object()), 
@@ -135,7 +145,8 @@ protected int addSpecification(string type, mixed value)
                     specificationData["type"] = value;
                 }
                 else if(stringp(value) && (member(({ "active", "passive", 
-                    "sustained", "ritual", "knowledge", "domain" }), value) > -1))
+                    "sustained", "ritual", "knowledge", "domain",
+                    "constructed" }), value) > -1))
                 {
                 
                     raise_error(sprintf("ERROR - researchItem: A '%s' type "
@@ -168,7 +179,7 @@ protected int addSpecification(string type, mixed value)
             }
             case "effect":
             {
-                if(value && stringp(value) && (member(({"beneficial", "combat",
+                if(value && stringp(value) && (member(({ "beneficial", "combat",
                    "enchantment", "summoning", "strategic" }),value) > -1))
                 {
                     ret = 1;
