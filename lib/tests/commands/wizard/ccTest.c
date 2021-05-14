@@ -74,7 +74,7 @@ void CCOfDirectoryWithoutRecurseFlagReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void CCOfDirectoryRecursivelyBuilds()
 {
-    ExpectEq(4, Wizard.executeCommand("cc -r /lib/modules/guilds"));
+    ExpectEq(3, Wizard.executeCommand("cc -r /lib/modules/quests"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
