@@ -38,8 +38,15 @@ possible to add these manually, but as a result, I would only use MySQL 8 with t
 are comfortable with doing that. For all others, I strongly encourage you to use MySQL 5.7.x.
 
 ### Mud Driver
-I have not tested this mudlib with drivers other than the LDMud driver. When compiling it, you 
-will need to keep a few things in mind:
+I have not tested this mudlib with drivers other than the LDMud driver. There are definitely some 
+nuances specific to the LD dialect of LPC and while it is certainly possible to transition to a
+different driver, it's not recommended. In particular, as new development with LD - particularly
+with respect to coroutines is introduced, it will almost certainly break compatibility with
+the other drivers as I intend to make full use of them. In addition, while I currently do not
+have any python efuns implemented, there are future plans to do so. In short, unless you have
+a really good reason to not use the LDMud driver, I strongly encourage you to do so.
+
+When compiling it, you will need to keep a few things in mind:
 
 There are some differences between the native regular expression engine and that provided via
 PCRE. While it's a task in my backlog to resolve the issue so that PCRE can be used, I have not yet 
