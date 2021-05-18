@@ -7,11 +7,11 @@ inherit "/lib/modules/research/constructedResearchComponent.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Shock Damage");
+    addSpecification("name", "Lightning Damage");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that damage targets by discharging "
-        "an electrical shock.");
+        "a lightning-based attack.");
 
     addPrerequisite("/guilds/aeromancer/functions/root.c",
         (["type":"research"]));
@@ -21,13 +21,13 @@ protected void Setup()
     addSpecification("damage type", "electricity");
 
     addSpecification("affected research", ([
-        "Constructed Spell Multiplier": 5,
+        "Constructed Spell Multiplier": 125,
     ]));
     addSpecification("affected research type", "percentage");
 
-    addSpecification("additional cooldown", 2);
-    addSpecification("additional spell point cost", 5);
+    addSpecification("additional cooldown", 30);
+    addSpecification("additional spell point cost", 75);
 
-    addSpecification("use combination message", "##Infinitive::discharge## "
-        "static electricity");
+    addSpecification("use combination message", "##Infinitive::release## "
+        "lightning");
 }
