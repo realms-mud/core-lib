@@ -25,7 +25,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     NumColumns = 2;
-    Description = sprintf("Construct %s Main Menu", Type);
+    Description = "Construct Spell Main Menu";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@ protected nomask void setUpUserForSelection()
         "value": ([])
     ]);
     Data[to_string(optionCount + 1)] = ([
-        "name": sprintf("Exit Construct %s Menu", Type),
+        "name": "Exit Construct Spell Menu",
         "description": sprintf("This option leaves the construct %s menu.", Type),
         "type": "exit",
     ]);
