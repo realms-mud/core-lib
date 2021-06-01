@@ -516,8 +516,8 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
 
     mapping songs = this_player() ?
         this_player()->getOptionsForConstructedResearch(
-            program_name(this_object())) :
-        ([]);
+            program_name(this_object())) : ([]);
+
     if (sizeof(songs))
     {
         ret += configuration->decorate(sprintf("%-15s : ", "Available Songs"),

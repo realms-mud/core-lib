@@ -148,5 +148,5 @@ protected nomask void addDriverHooks()
     );
 
     set_driver_hook(H_AUTO_INCLUDE,
-    "#pragma pedantic\n");
+        "#pragma pedantic\n");
 }
