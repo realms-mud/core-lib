@@ -22,9 +22,9 @@ protected void Setup()
             "/guilds/aeromancer/functions/lightning.c",
             "/guilds/aeromancer/functions/shock.c",
         }),
-        //"effect must include any of": ({
-        //    "/guilds/aeromancer/effects/damage-hp.c",
-        //}),
+        "effect must include any of": ({
+            "/guilds/aeromancer/effects/damage-hp.c",
+        }),
     ]));
 
     addSpecification("cooldown", 60);
