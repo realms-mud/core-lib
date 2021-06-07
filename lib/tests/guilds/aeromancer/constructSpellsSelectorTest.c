@@ -65,8 +65,8 @@ void InitialCreationDisplayIsCorrect()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//void ConstructionDisplayWithCreatedSpellsIsCorrect()
-//{
+void ConstructionDisplayWithCreatedSpellsIsCorrect()
+{
 //    mapping compositeElement = ([
 //        "alias": "weasel",
 //        "constraint": "/guilds/aeromancer/construct/root.c",
@@ -110,4 +110,4 @@ void InitialCreationDisplayIsCorrect()
 //        "For details on a given choice, type 'describe X' (or '? X') where\n"
 //        "X is the option about which you would like further details.\n",
 //        User.caughtMessage());
-//}
+}
