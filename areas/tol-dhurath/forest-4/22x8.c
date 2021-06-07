@@ -8,16 +8,12 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/red-oak-stand.c", "north");
-    addFeature("/lib/environment/features/landforms/dell.c", "south");
-    addFeature("/lib/environment/features/landforms/combe.c", "east");
+    addFeature("/lib/environment/features/landforms/knoll.c", "east");
+    addFeature("/lib/environment/features/trees/beech-stand.c", "east");
+    addFeature("/lib/environment/features/trees/elm-stand.c", "east");
 
-    addExit("east", "/areas/tol-dhurath/forest-3/4x0.c");
-    addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/areas/tol-dhurath/forest-3/3x1.c");
-    addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("west", "/areas/tol-dhurath/forest-3/2x0.c");
+    addExit("west", "/areas/tol-dhurath/forest-4/21x8.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("south", "/areas/tol-dhurath/forest-4/3x9.c");
+    addExit("south", "/areas/tol-dhurath/forest-4/22x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }

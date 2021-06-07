@@ -8,16 +8,14 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/trees/red-oak-stand.c", "north");
-    addFeature("/lib/environment/features/landforms/dell.c", "south");
-    addFeature("/lib/environment/features/landforms/combe.c", "east");
+    addFeature("/lib/environment/features/water/ravine-brook.c", "west");
+    addFeature("/lib/environment/features/landforms/cliff.c", "west");
+    addFeature("/lib/environment/features/landforms/glen.c", "west");
 
-    addExit("east", "/areas/tol-dhurath/forest-3/4x0.c");
-    addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/areas/tol-dhurath/forest-3/3x1.c");
+    addExit("north", "/areas/tol-dhurath/forest-4/8x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("west", "/areas/tol-dhurath/forest-3/2x0.c");
+    addExit("west", "/areas/tol-dhurath/forest-4/7x6.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("south", "/areas/tol-dhurath/forest-4/3x9.c");
-    addFeature("/lib/environment/features/paths/path.c", "south");
+
+    addRandomCreature(({"gopher","outlaw","warg","coyote","timber wolf","boar","mountain lion"}));
 }
