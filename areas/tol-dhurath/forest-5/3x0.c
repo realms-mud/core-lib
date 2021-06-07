@@ -8,12 +8,14 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/brook.c", "west");
+    addFeature("/lib/environment/features/water/canyon-creek.c", "east");
+    addFeature("/lib/environment/features/landforms/tor.c", "east");
+    addFeature("/lib/environment/features/water/brook.c", "east");
 
-    addExit("east", "/areas/tol-dhurath/temple-exterior/4x0.c");
-    addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/areas/tol-dhurath/temple-exterior/3x1.c");
+    addExit("north", "/areas/tol-dhurath/forest-5/3x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/areas/tol-dhurath/forest-5/3x9.c");
-    addFeature("/lib/environment/features/paths/path.c", "south");
+    addExit("west", "/areas/tol-dhurath/forest-5/2x0.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
+    addExit("east", "/areas/tol-dhurath/forest-5/4x0.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
 }

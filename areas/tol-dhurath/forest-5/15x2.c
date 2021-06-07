@@ -8,12 +8,13 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
-    addFeature("/lib/environment/features/water/brook.c", "west");
+    addFeature("/lib/environment/features/landforms/hill.c", "east");
+    addFeature("/lib/environment/features/landforms/hillock.c", "east");
 
-    addExit("east", "/areas/tol-dhurath/temple-exterior/4x0.c");
+    addExit("east", "/areas/tol-dhurath/forest-5/16x2.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/areas/tol-dhurath/temple-exterior/3x1.c");
-    addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/areas/tol-dhurath/forest-5/3x9.c");
-    addFeature("/lib/environment/features/paths/path.c", "south");
+    addExit("west", "/areas/tol-dhurath/forest-5/14x2.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
+
+    addRandomCreature(({"ruffian","hunter","keeper of the night","outlaw","opossum"}));
 }

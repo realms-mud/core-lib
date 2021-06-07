@@ -8,12 +8,13 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addFeature("/lib/environment/features/trees/beech-stand.c", "west");
     addFeature("/lib/environment/features/water/brook.c", "west");
 
-    addExit("east", "/areas/tol-dhurath/temple-exterior/4x0.c");
-    addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/areas/tol-dhurath/temple-exterior/3x1.c");
+    addExit("north", "/areas/tol-dhurath/forest-5/22x5.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/areas/tol-dhurath/forest-5/3x9.c");
-    addFeature("/lib/environment/features/paths/path.c", "south");
+    addExit("east", "/areas/tol-dhurath/forest-5/23x4.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
+
+    addRandomCreature(({"ruffian","coyote","keeper of the night","groundhog","red squirrel","mink","chipmunk"}));
 }
