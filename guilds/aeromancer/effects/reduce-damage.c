@@ -3,3 +3,9 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/constructedResearchComponent.c";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+
+}
