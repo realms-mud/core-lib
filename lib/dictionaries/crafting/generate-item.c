@@ -3,8 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/blueprints.c";
-#include "/lib/dictionaries/materials/materials.h"
-#include "/lib/dictionaries/materials/components.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getRandomCraftingElement(mapping elements, 

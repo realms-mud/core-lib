@@ -5,8 +5,8 @@
 #ifndef enchantments_h
 #define enchantments_h
 
-private nosave string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities", "attack mutations" });
-private nosave mapping equipmentEnchantments =
+protected string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities", "attack mutations" });
+protected mapping equipmentEnchantments =
 ([
     "fire enchantment":([
         "class": "offensive",

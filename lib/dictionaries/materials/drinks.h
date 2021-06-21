@@ -5,7 +5,7 @@
 #ifndef drinks_h
 #define drinks_h
 
-private nosave mapping drinks =
+protected mapping drinks =
 ([
     "pilsner beer":([
         "type": "beer",

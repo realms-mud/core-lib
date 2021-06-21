@@ -5,7 +5,7 @@
 #ifndef components_h
 #define components_h
 
-private nosave mapping craftingComponents =
+protected mapping craftingComponents =
 ([
     "Type X": ([
         "class": "blade",

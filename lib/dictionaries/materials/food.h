@@ -5,7 +5,7 @@
 #ifndef food_h
 #define food_h
 
-private nosave mapping food =
+protected mapping food =
 ([
     "tomato": ([
         "type": "vegetable",

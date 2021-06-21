@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/core.c";
-#include "/lib/dictionaries/materials/enchantments.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int getEnchantmentStrength(string enchantment, object user)

@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/blueprints.c";
-#include "/lib/dictionaries/materials/enchantments.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getEnchantmentTypes()

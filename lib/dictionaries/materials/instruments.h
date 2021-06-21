@@ -5,7 +5,7 @@
 #ifndef instruments_h
 #define instruments_h
 
-private nosave mapping instrumentBlueprints = ([
+protected mapping instrumentBlueprints = ([
     "bagpipes": ([
         "type": "pipes",
         "default location": TwohandedWeapon,

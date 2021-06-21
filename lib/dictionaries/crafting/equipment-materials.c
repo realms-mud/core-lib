@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/core.c";
-#include "/lib/dictionaries/materials/materials.h"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setCraftingMaterial(object item, string materialClass,

@@ -17,9 +17,6 @@ virtual inherit "/lib/dictionaries/crafting/materials.c";
 virtual inherit "/lib/dictionaries/crafting/materials-menu.c";
 virtual inherit "/lib/dictionaries/crafting/top-level-menu.c";
 
-#include "/lib/dictionaries/materials/weapons.h"
-#include "/lib/dictionaries/materials/armor.h"
-
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidType(mixed type)
 {

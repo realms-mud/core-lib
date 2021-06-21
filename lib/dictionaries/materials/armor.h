@@ -7,11 +7,11 @@
 
 #include "/lib/include/inventory.h"
 
-private nosave string *armorCategories = ({ "chainmail", "plate armor", 
+protected string *armorCategories = ({ "chainmail", "plate armor", 
     "clothing", "splint armor", "scale armor", "hard leather", "soft leather",
     "gloves", "helmet", "jewelry" });
 
-private nosave mapping armorBlueprints = ([
+protected mapping armorBlueprints = ([
     "chainmail": ([
         "type": "armor",
         "subtype": "medium armor",

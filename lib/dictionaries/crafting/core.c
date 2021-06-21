@@ -2,7 +2,11 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/dictionaries/materials/armor.h"
+#include "/lib/dictionaries/materials/components.h"
 #include "/lib/dictionaries/materials/enchantments.h"
+#include "/lib/dictionaries/materials/materials.h"
+#include "/lib/dictionaries/materials/weapons.h"
 
 protected mapping BlueprintObjects = ([]);
 protected mapping MaterialsForClass = ([]);

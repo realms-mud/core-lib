@@ -5,7 +5,7 @@
 #ifndef materials_h
 #define materials_h
 
-private nosave mapping potions =
+protected mapping potions =
 ([
     "healing potion":([
         "type": "health",

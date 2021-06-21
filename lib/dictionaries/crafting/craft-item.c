@@ -4,7 +4,6 @@
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/materials.c";
 virtual inherit "/lib/dictionaries/crafting/enchantments.c";
-#include "/lib/dictionaries/materials/components.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int useCraftingMaterial(object user, string materialName, int quantity)

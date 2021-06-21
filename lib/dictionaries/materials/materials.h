@@ -5,10 +5,10 @@
 #ifndef materials_h
 #define materials_h
 
-private nosave string *materialClasses = ({ "textile", "crystal", "clay", 
+protected string *materialClasses = ({ "textile", "crystal", "clay",
     "skeletal", "leather", "metal", "stone", "wood", "plumage" });
 
-private nosave mapping materials =
+protected mapping materials =
 ([
     "linen": ([
         "class": "textile",

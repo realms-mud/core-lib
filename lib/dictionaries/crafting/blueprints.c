@@ -3,11 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/core.c";
-#include "/lib/dictionaries/materials/materials.h"
-#include "/lib/dictionaries/materials/weapons.h"
-#include "/lib/dictionaries/materials/armor.h"
-#include "/lib/dictionaries/materials/components.h"
-#include "/lib/dictionaries/materials/enchantments.h"
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getBlueprintsByType(string type)

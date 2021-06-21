@@ -3,7 +3,6 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/crafting/materials.c";
-#include "/lib/dictionaries/materials/materials.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getMaterialsOfTypeOnHand(string type, object user, 

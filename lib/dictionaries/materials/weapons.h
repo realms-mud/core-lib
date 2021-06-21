@@ -7,11 +7,11 @@
 
 #include "/lib/include/inventory.h"
 
-private nosave string *weaponSubTypes = ({ "sword", "dagger", "pole arm",
+protected string *weaponSubTypes = ({ "sword", "dagger", "pole arm",
     "staff", "axe", "hammer", "mace", "flail", "crossbow", "bow", "sling",
     "thrown", "shield" });
 
-private nosave mapping weaponBlueprints = ([
+protected mapping weaponBlueprints = ([
     "long sword": ([
         "type": "weapon",
         "subtype": "sword",
