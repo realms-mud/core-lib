@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef materials_h
+#define materials_h
+
 private nosave string *materialClasses = ({ "textile", "crystal", "clay", 
     "skeletal", "leather", "metal", "stone", "wood", "plumage" });
 
@@ -4444,3 +4447,5 @@ private nosave mapping materials =
         "default value": 8500,
     ]),
 ]);
+
+#endif

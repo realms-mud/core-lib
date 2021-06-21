@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef instruments_h
+#define instruments_h
 
 private nosave mapping instrumentBlueprints = ([
     "bagpipes": ([
@@ -1661,3 +1663,5 @@ private nosave mapping instrumentBlueprints = ([
         "base experience": 10,
     ]),
 ]);
+
+#endif

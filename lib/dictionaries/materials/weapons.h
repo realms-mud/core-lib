@@ -2,6 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef weapons_h
+#define weapons_h
+
+#include "/lib/include/inventory.h"
 
 private nosave string *weaponSubTypes = ({ "sword", "dagger", "pole arm",
     "staff", "axe", "hammer", "mace", "flail", "crossbow", "bow", "sling",
@@ -3580,3 +3584,5 @@ private nosave mapping weaponBlueprints = ([
         "base experience": 10,
     ]),
 ]);
+
+#endif

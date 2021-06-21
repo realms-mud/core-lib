@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef components_h
+#define components_h
 
 private nosave mapping craftingComponents =
 ([
@@ -3733,3 +3735,5 @@ private nosave mapping craftingComponents =
         "experience modifier": 1.0
     ]),
 ]);
+
+#endif

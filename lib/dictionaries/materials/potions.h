@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef materials_h
+#define materials_h
 
 private nosave mapping potions =
 ([
@@ -548,3 +550,5 @@ private nosave mapping potions =
         "default value": 500,
     ]),
 ]);
+
+#endif

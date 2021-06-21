@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef enchantments_h
+#define enchantments_h
 
 private nosave string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities", "attack mutations" });
 private nosave mapping equipmentEnchantments =
@@ -1211,3 +1213,5 @@ private nosave mapping equipmentEnchantments =
         "experience modifier": 1.55
     ]),
 ]);
+
+#endif

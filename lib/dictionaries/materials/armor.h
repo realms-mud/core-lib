@@ -2,6 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef armor_h
+#define armor_h
+
+#include "/lib/include/inventory.h"
 
 private nosave string *armorCategories = ({ "chainmail", "plate armor", 
     "clothing", "splint armor", "scale armor", "hard leather", "soft leather",
@@ -1272,3 +1276,5 @@ private nosave mapping armorBlueprints = ([
         "base experience": 10,
     ]),
 ]);
+
+#endif

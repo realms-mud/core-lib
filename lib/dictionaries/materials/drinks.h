@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef drinks_h
+#define drinks_h
 
 private nosave mapping drinks =
 ([
@@ -284,3 +286,5 @@ private nosave mapping drinks =
         "base experience": 5,
     ])
 ]);
+
+#endif
