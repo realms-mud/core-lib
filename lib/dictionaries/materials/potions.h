@@ -2,8 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#ifndef materials_h
-#define materials_h
+#ifndef potions_h
+#define potions_h
 
 protected mapping potions =
 ([
