@@ -2,8 +2,11 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/armor-statistics.c";
-virtual inherit "/lib/dictionaries/materials/components/weapon-statistics.c";
+#ifndef _item_statistics_c
+#define _item_statistics_c
+
+#include "/lib/dictionaries/materials/components/armor-statistics.c"
+#include "/lib/dictionaries/materials/components/weapon-statistics.c"
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask string applyBonusDetails(object item, object initiator)
@@ -229,3 +232,5 @@ public nomask mapping getItemSummary(object equipment)
 
     return ret;
 }
+
+#endif

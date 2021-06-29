@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/blueprints.c";
+#ifndef _general_properties_c
+#define _general_properties_c
+
+#include "/lib/dictionaries/materials/components/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getMaterialTypeForMaterial(string material)
@@ -141,3 +144,5 @@ public nomask string getEncumberance(object item, object initiator)
     return detailsText(colorConfiguration(initiator), "Encumberance",
         to_string(encumberance));
 }
+
+#endif

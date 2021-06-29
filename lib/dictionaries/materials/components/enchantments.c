@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/combat-properties.c";
+#ifndef _enchantments_c
+#define _enchantments_c
+
+#include "/lib/dictionaries/materials/components/combat-properties.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string convertDamageMappingToString(mapping damages, 
@@ -173,3 +176,5 @@ protected nomask void addEnchantments(object item, int numEnchantments)
         }
     }
 }
+
+#endif

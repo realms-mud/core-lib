@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef _core_c
+#define _core_c
+
 #include "/lib/dictionaries/materials/armor.h"
 #include "/lib/dictionaries/materials/components.h"
 #include "/lib/dictionaries/materials/drinks.h"
@@ -96,3 +99,5 @@ protected nomask varargs string detailsText(string colorConfiguration,
 
     return ret + "\n";
 }
+
+#endif

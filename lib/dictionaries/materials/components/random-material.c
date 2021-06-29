@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/core.c";
+#ifndef _random_material_c
+#define _random_material_c
+
+#include "/lib/dictionaries/materials/components/core.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string *getWeightedMaterial(string material)
@@ -89,3 +92,5 @@ public nomask string getRandomMaterial(object item)
     }
     return ret;
 }
+
+#endif

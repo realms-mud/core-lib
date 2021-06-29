@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/general-properties.c";
+#ifndef _combat_properties_c
+#define _combat_properties_c
+
+#include "/lib/dictionaries/materials/components/general-properties.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *hasExtraAttackTypes(object item)
@@ -230,3 +233,5 @@ protected nomask int getWeaponDefenseData(object weapon, object initiator)
     }
     return baseDefense;
 }
+
+#endif

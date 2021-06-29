@@ -2,8 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/core.c";
+#ifndef _locations_c
+#define _locations_c
 
+#include "/lib/dictionaries/materials/components/core.c"
 #include "/lib/include/inventory.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -76,3 +78,5 @@ public nomask int isValidArmorLocation(string type)
 {
     return (member(validArmorLocations, type) > -1);
 }
+
+#endif

@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/enchantments.c";
+#ifndef _generate_random_item_c
+#define _generate_random_item_c
+
+#include "/lib/dictionaries/materials/components/enchantments.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs string *getListOfBlueprints(string type, string subtype,
@@ -122,3 +125,5 @@ public nomask varargs object generateRandomItem(string type, string subtype,
     }
     return item;
 }
+
+#endif

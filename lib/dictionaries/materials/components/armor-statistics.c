@@ -2,8 +2,11 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/combat-properties.c";
-virtual inherit "/lib/dictionaries/materials/components/enchantments.c";
+#ifndef _armor_statistics_c
+#define _armor_statistics_c
+
+#include "/lib/dictionaries/materials/components/combat-properties.c"
+#include "/lib/dictionaries/materials/components/enchantments.c"
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int getDamageProtectionData(object armor, object initiator)
@@ -45,3 +48,5 @@ protected nomask string applyArmorDetails(object armor, object initiator)
         ret + 
         getEncumberance(armor, initiator);
 }
+
+#endif

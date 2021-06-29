@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/blueprints.c";
+#ifndef _generate_component_c
+#define _generate_component_c
+
+#include "/lib/dictionaries/materials/components/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getComponentOfType(object item, string componentType,
@@ -106,3 +109,5 @@ public nomask mapping generateComponent(object item, string componentType,
     }
     return ret + ([]);
 }
+
+#endif

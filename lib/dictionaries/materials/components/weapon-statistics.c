@@ -2,8 +2,11 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/combat-properties.c";
-virtual inherit "/lib/dictionaries/materials/components/enchantments.c";
+#ifndef _weapon_statistics_c
+#define _weapon_statistics_c
+
+#include "/lib/dictionaries/materials/components/combat-properties.c"
+#include "/lib/dictionaries/materials/components/enchantments.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getWeaponAttackInformation(object weapon, object initiator)
@@ -55,3 +58,5 @@ protected nomask string applyWeaponDetails(object weapon, object initiator)
         getWeaponDefenseInformation(weapon, initiator) +
         getEncumberance(weapon, initiator);
 }
+
+#endif

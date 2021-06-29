@@ -6,18 +6,18 @@
 //                      the accompanying LICENSE file for details.
 //
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/materials/components/core.c";
-virtual inherit "/lib/dictionaries/materials/components/armor-statistics.c";
-virtual inherit "/lib/dictionaries/materials/components/blueprints.c";
-virtual inherit "/lib/dictionaries/materials/components/combat-properties.c";
-virtual inherit "/lib/dictionaries/materials/components/enchantments.c";
-virtual inherit "/lib/dictionaries/materials/components/general-properties.c";
-virtual inherit "/lib/dictionaries/materials/components/generate-component.c";
-virtual inherit "/lib/dictionaries/materials/components/generate-random-item.c";
-virtual inherit "/lib/dictionaries/materials/components/item-statistics.c";
-virtual inherit "/lib/dictionaries/materials/components/locations.c";
-virtual inherit "/lib/dictionaries/materials/components/random-material.c";
-virtual inherit "/lib/dictionaries/materials/components/weapon-statistics.c";
+#include "/lib/dictionaries/materials/components/core.c"
+#include "/lib/dictionaries/materials/components/armor-statistics.c"
+#include "/lib/dictionaries/materials/components/blueprints.c"
+#include "/lib/dictionaries/materials/components/combat-properties.c"
+#include "/lib/dictionaries/materials/components/enchantments.c"
+#include "/lib/dictionaries/materials/components/general-properties.c"
+#include "/lib/dictionaries/materials/components/generate-component.c"
+#include "/lib/dictionaries/materials/components/generate-random-item.c"
+#include "/lib/dictionaries/materials/components/item-statistics.c"
+#include "/lib/dictionaries/materials/components/locations.c"
+#include "/lib/dictionaries/materials/components/random-material.c"
+#include "/lib/dictionaries/materials/components/weapon-statistics.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public string *getTypes(string type, object user)
