@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/core.c";
+#ifndef _equipment_materials_c
+#define _equipment_materials_c
+
+#include "/lib/dictionaries/crafting/core.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setCraftingMaterial(object item, string materialClass,
@@ -114,3 +117,5 @@ public nomask string getEquipmentMaterials(object item)
     }
     return ret;
 }
+
+#endif

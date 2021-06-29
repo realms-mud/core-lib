@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
+#ifndef _enchantment_menu_c
+#define _enchantment_menu_c
+
+#include "/lib/dictionaries/crafting/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getEnchantmentTypes()
@@ -63,3 +66,5 @@ public nomask mapping getEnchantmentsOfType(string type, object user,
 
     return ret;
 }
+
+#endif

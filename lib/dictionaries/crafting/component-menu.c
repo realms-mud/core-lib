@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
+#ifndef _component_menu_c
+#define _component_menu_c
+
+#include "/lib/dictionaries/crafting/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getMaterialsDataForItem(string type,
@@ -120,3 +123,5 @@ public nomask string selectionForComponent(object item, string component)
     }
     return ret;
 }
+
+#endif

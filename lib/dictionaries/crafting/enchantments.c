@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/core.c";
+#ifndef _enchantment_c
+#define _enchantment_c
+
+#include "/lib/dictionaries/crafting/core.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int getEnchantmentStrength(string enchantment, object user)
@@ -133,3 +136,5 @@ public nomask varargs int addEnchantment(object item, string enchantment, int de
     }
     return ret;
 }
+
+#endif

@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
+#ifndef _craft_item_menu_c
+#define _craft_item_menu_c
+
+#include "/lib/dictionaries/crafting/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getCraftingDataForItem(string type, string item, object user)
@@ -38,3 +41,5 @@ public nomask mapping getCraftingDataForItem(string type, string item, object us
 
     return ret;
 }
+
+#endif

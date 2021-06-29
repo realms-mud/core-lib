@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/core.c";
+#ifndef _blueprints_c
+#define _blueprints_c
+
+#include "/lib/dictionaries/crafting/core.c"
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask mapping getBlueprintsByType(string type)
@@ -109,3 +112,5 @@ protected nomask object getBlueprintItem(string type, string item)
     }
     return blueprintObj;
 }
+
+#endif

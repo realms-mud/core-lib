@@ -2,8 +2,11 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/materials.c";
-virtual inherit "/lib/dictionaries/crafting/enchantments.c";
+#ifndef _craft_item_c
+#define _craft_item_c
+
+#include "/lib/dictionaries/crafting/materials.c"
+#include "/lib/dictionaries/crafting/enchantments.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int useCraftingMaterial(object user, string materialName, int quantity)
@@ -90,3 +93,5 @@ public nomask int craftItem(object item, object user)
 
     return canCraft;
 }
+
+#endif

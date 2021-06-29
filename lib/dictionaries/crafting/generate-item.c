@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
+#ifndef _generate_items_c
+#define _generate_items_c
+
+#include "/lib/dictionaries/crafting/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getRandomCraftingElement(mapping elements, 
@@ -160,3 +163,5 @@ public nomask varargs void getRandomCraftingMaterial(object item,
         }
     }
 }
+
+#endif

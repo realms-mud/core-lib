@@ -2,6 +2,9 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef _core_c
+#define _core_c
+
 #include "/lib/dictionaries/materials/armor.h"
 #include "/lib/dictionaries/materials/components.h"
 #include "/lib/dictionaries/materials/enchantments.h"
@@ -49,3 +52,5 @@ protected nomask string getDescriptionDetails(object blueprintObj)
     return blueprintObj->displayPrerequisites(colorConfiguration, configuration) +
         blueprintObj->displayNeededMaterials(colorConfiguration, configuration);
 }
+
+#endif

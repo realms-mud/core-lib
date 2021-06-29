@@ -2,6 +2,8 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#ifndef _top_level_menu_c
+#define _top_level_menu_c
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getTopLevelCraftingMenu(object user)
@@ -73,3 +75,5 @@ public nomask mapping getTopLevelCraftingMenu(object user)
         ]),
     ]);
 }
+
+#endif

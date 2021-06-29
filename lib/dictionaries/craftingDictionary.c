@@ -2,20 +2,20 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/core.c";
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
-virtual inherit "/lib/dictionaries/crafting/component-menu.c";
-virtual inherit "/lib/dictionaries/crafting/crafting-list-menu.c";
-virtual inherit "/lib/dictionaries/crafting/crafting-subtype-menu.c";
-virtual inherit "/lib/dictionaries/crafting/craft-item.c";
-virtual inherit "/lib/dictionaries/crafting/craft-item-menu.c";
-virtual inherit "/lib/dictionaries/crafting/enchantment-menu.c";
-virtual inherit "/lib/dictionaries/crafting/enchantments.c";
-virtual inherit "/lib/dictionaries/crafting/equipment-materials.c";
-virtual inherit "/lib/dictionaries/crafting/generate-item.c";
-virtual inherit "/lib/dictionaries/crafting/materials.c";
-virtual inherit "/lib/dictionaries/crafting/materials-menu.c";
-virtual inherit "/lib/dictionaries/crafting/top-level-menu.c";
+#include "/lib/dictionaries/crafting/core.c"
+#include "/lib/dictionaries/crafting/blueprints.c"
+#include "/lib/dictionaries/crafting/component-menu.c"
+#include "/lib/dictionaries/crafting/crafting-list-menu.c"
+#include "/lib/dictionaries/crafting/crafting-subtype-menu.c"
+#include "/lib/dictionaries/crafting/craft-item.c"
+#include "/lib/dictionaries/crafting/craft-item-menu.c"
+#include "/lib/dictionaries/crafting/enchantment-menu.c"
+#include "/lib/dictionaries/crafting/enchantments.c"
+#include "/lib/dictionaries/crafting/equipment-materials.c"
+#include "/lib/dictionaries/crafting/generate-item.c"
+#include "/lib/dictionaries/crafting/materials.c"
+#include "/lib/dictionaries/crafting/materials-menu.c"
+#include "/lib/dictionaries/crafting/top-level-menu.c"
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidType(mixed type)

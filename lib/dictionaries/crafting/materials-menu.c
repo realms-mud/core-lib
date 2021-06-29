@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/materials.c";
+#ifndef _materials_menu_c
+#define _materials_menu_c
+
+#include "/lib/dictionaries/crafting/materials.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping getMaterialsOfTypeOnHand(string type, object user, 
@@ -136,3 +139,5 @@ public nomask void setCraftingSkill(string type, string item,
         target->set("craftsmanship", craftingSkill);
     }
 }
+
+#endif

@@ -2,7 +2,10 @@
 // Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/dictionaries/crafting/blueprints.c";
+#ifndef _crafting_subtype_c
+#define _crafting_subtype_c
+
+#include "/lib/dictionaries/crafting/blueprints.c"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string *getEquipmentBySubType(string type, string subType)
@@ -62,3 +65,5 @@ public nomask mapping getCraftingListBySubType(string type, string subType,
     }
     return ret;
 }
+
+#endif
