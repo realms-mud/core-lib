@@ -67,25 +67,25 @@ void InitialCreationDisplayIsCorrect()
 ///////////////////////////////////////////////////////////////////////////////
 void ConstructionDisplayWithCreatedSpellsIsCorrect()
 {
-    //mapping compositeElement = ([
-    //    "alias": "weasel",
-    //    "constraint": "/guilds/aeromancer/construct/root.c",
-    //    "type": "/guilds/aeromancer/construct/root.c",
-    //    "elements": ({
-    //        ([ "research": "/guilds/aeromancer/forms/arc.c",
-    //            "type": "form",
-    //            "description": "This is the form."
-    //        ]),
-    //        ([ "research": "/guilds/aeromancer/functions/lightning.c",
-    //            "type": "function",
-    //            "description": "This is the function."
-    //        ]),
-    //        ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
-    //            "type": "effect",
-    //            "description": "This is the effect."
-    //        ]),
-    //    })
-    //]);
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form",
+                "description": "This is the form."
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function",
+                "description": "This is the function."
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect",
+                "description": "This is the effect."
+            ]),
+        })
+    ]);
 //
 //    ExpectTrue(User.setCompositeResearch("Zappy Thing",
 //        compositeElement));
