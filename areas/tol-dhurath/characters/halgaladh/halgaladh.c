@@ -41,13 +41,13 @@ protected void Setup()
     addTrait("/lib/instances/traits/background/human/eledhelean/noble/arthellyn.c");
 
     object equipment = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    equipment->set("craftsmanship", 70);
-    equipment->set("material", "meteoric iron");
+    equipment.set("craftsmanship", 70);
+    equipment.set("material", "meteoric iron");
     move_object(equipment, this_object());
     this_object()->equip(equipment);
 
     object generator = load_object("/tutorial/characters/aegis-equipment.c");
-    generator->CreateAegisEquipment(this_object());
+    generator.CreateAegisEquipment(this_object());
 
     addConversation("/areas/tol-dhurath/characters/halgaladh/startingConversation.c");
 }

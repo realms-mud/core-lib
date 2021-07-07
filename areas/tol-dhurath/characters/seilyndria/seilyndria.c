@@ -67,7 +67,7 @@ public void playerGaveName()
 /////////////////////////////////////////////////////////////////////////////
 public string speakPlayerName(object actor)
 {
-    return playerGaveName ? capitalize(actor->RealName()) : "unnamed ser";
+    return playerGaveName ? capitalize(actor.RealName()) : "unnamed ser";
 }
 
 /////////////////////////////////////////////////////////////////////////////
