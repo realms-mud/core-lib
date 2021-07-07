@@ -12,19 +12,19 @@ public void SetupGuild()
 
     addCriteria("hit points", ([
         "type": "modifier",
-        "apply" : "3 every level",
+        "apply": "3 every level",
         "begin at level" : 1
     ]));
 
     addCriteria("spell points", ([
         "type": "modifier",
-        "apply" : "5 every level",
+        "apply": "5 every level",
         "begin at level" : 1
     ]));
 
     addCriteria("stamina points", ([
         "type": "modifier",
-        "apply" : "3 every level",
+        "apply": "3 every level",
         "begin at level" : 1
     ]));
 
@@ -35,7 +35,7 @@ public void SetupGuild()
 
     addCriteria("skill points", ([
         "type":"skill points",
-        "apply" : "5 every level"
+        "apply": "5 every level"
     ]));
 
     addCriteria("lightning", ([
