@@ -12,7 +12,8 @@ private int totalAuthFailures = 0;
 /////////////////////////////////////////////////////////////////////////////
 private nomask void displayBanner()
 {
-    string *bannerArt = get_dir("/art/*", 0x10) - ({ "art/.", "art/.." });
+    string *bannerArt = get_dir("/art/*", 0x10) - 
+        ({ "/art/.", "/art/..", "/art/README" });
 
     if (sizeof(bannerArt))
     {
