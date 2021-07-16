@@ -1033,8 +1033,8 @@ public nomask int isValidCompositeResearch(string itemName, mapping data)
                 member(element, "type") && stringp(element["type"]) &&
                 member(element, "description") && 
                 stringp(element["description"]) &&
-                member(element, "order in sequence") && 
-                intp(element["order in sequence"]);
+                ((member(element, "order in sequence") && 
+                intp(element["order in sequence"])) || member(element, "unordered"));
         }
     }
     return ret;

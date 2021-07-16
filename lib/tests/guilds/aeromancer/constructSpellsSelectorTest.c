@@ -67,47 +67,50 @@ void InitialCreationDisplayIsCorrect()
 ///////////////////////////////////////////////////////////////////////////////
 void ConstructionDisplayWithCreatedSpellsIsCorrect()
 {
-    //mapping compositeElement = ([
-    //    "alias": "weasel",
-    //    "constraint": "/guilds/aeromancer/construct/root.c",
-    //    "type": "/guilds/aeromancer/construct/root.c",
-    //    "elements": ({
-    //        ([ "research": "/guilds/aeromancer/forms/arc.c",
-    //            "type": "form",
-    //            "description": "This is the form."
-    //        ]),
-    //        ([ "research": "/guilds/aeromancer/functions/lightning.c",
-    //            "type": "function",
-    //            "description": "This is the function."
-    //        ]),
-    //        ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
-    //            "type": "effect",
-    //            "description": "This is the effect."
-    //        ]),
-    //    })
-    //]);
-//
-//    ExpectTrue(User.setCompositeResearch("Zappy Thing",
-//        compositeElement));
-//    ExpectTrue(User.setCompositeResearch("Reprise the Weasels",
-//        compositeElement));
-//    ExpectTrue(User.setCompositeResearch("Weasels Return",
-//        compositeElement));
-//    ExpectTrue(User.setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
-//        compositeElement));
-//
-//    compositeElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
-//    ExpectTrue(User.setCompositeResearch("This shouldn't appear in list",
-//        compositeElement));
-//
-//    Selector.initiateSelector(User);
-//    ExpectEq("Song - Compose Songs Main Menu:\n"
-//        "[1] - Modify 'Flight of the Wea...'  [2] - Modify 'Reprise the Weasels'   \n"
-//        "[3] - Modify 'Weasels Return'        [4] - Modify 'Weasels are the l...'  \n"
-//        "[5] - Create New Song                [6] - Exit Song Menu                 \n"
-//        "You must select a number from 1 to 6.\n"
-//        "Type 'exit' if you do not wish to make a selection at this time.\n"
-//        "For details on a given choice, type 'describe X' (or '? X') where\n"
-//        "X is the option about which you would like further details.\n",
-//        User.caughtMessage());
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form",
+                "description": "This is the form.",
+                "unordered": 1
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function",
+                "description": "This is the function.",
+                "unordered": 1
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect",
+                "description": "This is the effect.",
+                "unordered": 1
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setCompositeResearch("Zappy Thing",
+        compositeElement));
+    ExpectTrue(User.setCompositeResearch("Weaselstrike",
+        compositeElement));
+    ExpectTrue(User.setCompositeResearch("Weasel Blast",
+        compositeElement));
+    ExpectTrue(User.setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
+        compositeElement));
+
+    compositeElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
+    ExpectTrue(User.setCompositeResearch("This shouldn't appear in list",
+        compositeElement));
+
+    Selector.initiateSelector(User);
+    ExpectEq("Aeromancer Spell - Construct Spell Main Menu:\n"
+        "[1] - Modify 'Weasel Blast'          [2] - Modify 'Weasels are the l...'  \n"
+        "[3] - Modify 'Weaselstrike'          [4] - Modify 'Zappy Thing'           \n"
+        "[5] - Create New Aeromancer Spell    [6] - Exit Construct Spell Menu      \n"
+        "You must select a number from 1 to 6.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n"
+        "For details on a given choice, type 'describe X' (or '? X') where\n"
+        "X is the option about which you would like further details.\n",
+        User.caughtMessage());
 }
