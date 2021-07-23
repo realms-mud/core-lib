@@ -76,13 +76,26 @@ protected nomask int processSelection(string selection)
         ret = (Data[selection]["type"] == "exit") || (selection == "abort");
         if (!ret)
         {
-            SubselectorObj =
-                clone_object("/lib/modules/guilds/selectors/constructedItemSelector.c");
-            SubselectorObj->setType(Data[selection]["type"]);
-            SubselectorObj->setData(Data[selection]["value"]);
-            move_object(SubselectorObj, User);
-            SubselectorObj->registerEvent(this_object());
-            SubselectorObj->initiateSelector(User);
+            if (Data[selection]["type"] == "create")
+            {
+                SubselectorObj =
+                    clone_object("/lib/modules/guilds/selectors/createResearchSelector.c");
+                SubselectorObj->setType(Data[selection]["type"]);
+                SubselectorObj->setData(Data[selection]["value"]);
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
+            }
+            else
+            {
+                SubselectorObj =
+                    clone_object("/lib/modules/guilds/selectors/editResearchSelector.c");
+                SubselectorObj->setType(Data[selection]["type"]);
+                SubselectorObj->setData(Data[selection]["value"]);
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
+            }
         }
     }
     return ret;

@@ -114,3 +114,57 @@ void ConstructionDisplayWithCreatedSpellsIsCorrect()
         "X is the option about which you would like further details.\n",
         User.caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeASpellShowsCorrectDetails()
+{
+    mapping compositeElement = ([
+        "alias": "weasel",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form",
+                "description": "This is the form.",
+                "unordered": 1
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function",
+                "description": "This is the function.",
+                "unordered": 1
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect",
+                "description": "This is the effect.",
+                "unordered": 1
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
+        compositeElement));
+
+    Selector.initiateSelector(User);
+    command("? 1", User);
+    //ExpectEq("Song Name       : Flight of the Weasels\n"
+    //    "Alias           : weasel\n"
+    //    "Composition Elements : 4\n"
+    //    "    * Lyric blast\n"
+    //    "      Verse 1 lyric   : Oh, sing me a song of the weasels, man.\n"
+    //    "      Usage effect    : 100% chance to damage hit points 25\n"
+    //    "      \n"
+    //    "    * Lyric verse thingy\n"
+    //    "      Verse 1 lyric   : Sing me a song tonight.\n"
+    //    "                        (+2) Bonus strength\n"
+    //    "      \n"
+    //    "    * Lyric blast\n"
+    //    "      Verse 1 lyric   : For the Mustelidae, they are now mocking me\n"
+    //    "      Usage effect    : 100% chance to damage hit points 25\n"
+    //    "      \n"
+    //    "    * Singy blast\n"
+    //    "      Verse 1 lyric   : and eating my intestines in spite.\n"
+    //    "                        (-2) Penalty to strength\n"
+    //    "      This is only applied when you're using: instrument: plucked.\n"
+    //    "      \n",
+    //    User.caughtMessage());
+}
