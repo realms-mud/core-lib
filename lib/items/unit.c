@@ -115,6 +115,9 @@ public int getSupportBonus(int initialValue)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getAttack(object attacker)
 {
+    // TODO - 1091: Add commander stats & bonuses to attack
+    // TODO - 1092: Add player stats & bonuses to attack
+
     int ret = 0;
     if (objectp(attacker) &&
         (member(inherit_list(attacker), "/lib/items/unit.c") > -1))
@@ -150,6 +153,9 @@ public nomask int getAttack(object attacker)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getDefense()
 {
+    // TODO - 1091: Add commander stats & bonuses to defense
+    // TODO - 1092: Add player stats & bonuses to defense
+
     return to_int(query("defense") * 
         ((100.0 + query("effect from terrain")) / 100.0) * 
         ((10 + query("unit skill") + query("unit morale")) / 15.0) *
