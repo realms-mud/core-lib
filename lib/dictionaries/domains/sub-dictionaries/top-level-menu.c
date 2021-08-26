@@ -65,7 +65,7 @@ public nomask mapping getTopLevelDomainMenu(object user)
             "selector": "troops",
             "selector file": sprintf(DomainSelectorBase, "troops"),
             "canShow": user->canApplyResearchBonus(
-                "/lib/instances/research/domains/troops/basicTroops.c",
+                "/lib/instances/research/domains/troops/troops/basicTroops.c",
                 "persuasion")                 
         ]),
     ]);

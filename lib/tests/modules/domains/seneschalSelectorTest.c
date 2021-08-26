@@ -244,7 +244,7 @@ void SelectingHiringMovesToTaskMenu()
 /////////////////////////////////////////////////////////////////////////////
 void SelectingTroopsMovesToTroopsMenu()
 {
-    ExpectTrue(Player.initiateResearch("/lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/domains/troops/troops/basicTroops.c"), "added research");
     Selector.initiateSelector(Player);
     command("6", Player);
 
