@@ -169,7 +169,7 @@ void TopLevelMenuWithTaskPrereqMetDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelMenuWithTroopsPrereqMetDisplaysCorrectly()
 {
-    ExpectTrue(Player.initiateResearch("/lib/instances/research/domains/troops/basicTroops.c"), "added research");
+    ExpectTrue(Player.initiateResearch("/lib/instances/research/domains/troops/troops/basicTroops.c"), "added research");
     Selector.initiateSelector(Player);
 
     ExpectEq("\x1b[0;36mDomain Management - \x1b[0m\x1b[0;37;1mMain Menu\x1b[0m:\n"
