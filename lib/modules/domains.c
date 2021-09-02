@@ -167,3 +167,9 @@ public nomask varargs mapping getHenchmen(string type, string location)
     }
     return ret + ([]);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs object getHenchman(string name, string location)
+{
+    return 0;
+}

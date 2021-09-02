@@ -151,7 +151,7 @@ public nomask int getAttack(object attacker)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int getDefense()
+public nomask int getDefense(object opponent)
 {
     // TODO - 1091: Add commander stats & bonuses to defense
     // TODO - 1092: Add player stats & bonuses to defense
@@ -367,11 +367,13 @@ public int attackUnit(string target)
     object targetObj = canAttack(target);
     if (targetObj)
     {
-        int defense = getDefense();
+        int defense = getDefense(targetObj);
         int offense = getSupportBonus(getAttack(targetObj));
         int troopCount = query("troop count");
 
-        int targetDefense = targetObj->getSupportBonus(targetObj->getDefense());
+        int targetDefense = targetObj->getSupportBonus(
+            targetObj->getDefense(this_object()));
+
         int targetOffense = targetObj->getAttack(this_object());
         int targetTroopCount = targetObj->query("troop count");
 
