@@ -31,10 +31,10 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getHiringMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Hiring Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the hiring menu.\n",
-            "canShow" : 1
+        "name": "Exit Hiring Menu",
+        "type": "exit",
+        "description": "This option lets you exit the hiring menu.\n",
+        "canShow": 1
     ]);
 }
 

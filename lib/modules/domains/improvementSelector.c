@@ -31,11 +31,11 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getHoldingsMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Resources and Holdings Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the resources "
+        "name": "Exit Resources and Holdings Menu",
+        "type": "exit",
+        "description": "This option lets you exit the resources "
             "and holdings menu.\n",
-            "canShow" : 1
+        "canShow": 1
     ]);
 }
 

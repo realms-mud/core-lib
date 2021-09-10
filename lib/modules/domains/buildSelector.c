@@ -63,11 +63,11 @@ protected nomask void setUpUserForSelection()
     }
 
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Building Projects Menu",
-        "type" : "exit",
-        "description" : "This option lets you exit the building "
-        "projects menu.\n",
-        "canShow" : 1
+        "name": "Exit Building Projects Menu",
+        "type": "exit",
+        "description": "This option lets you exit the building "
+            "projects menu.\n",
+        "canShow": 1
     ]);
 }
 

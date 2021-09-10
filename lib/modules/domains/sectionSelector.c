@@ -67,20 +67,20 @@ protected nomask void setUpUserForSelection()
         ConfirmChoice = to_string(sizeof(Data) + 1);
 
         Data[ConfirmChoice] = ([
-            "name":"Begin Construction",
+            "name": "Begin Construction",
             "type": "construct",
             "description": "This option lets you begin construction on "
                 "the building component.\n",
-            "is disabled" : !dictionary->beginConstructionIsEnabled(SectionData),
+            "is disabled": !dictionary->beginConstructionIsEnabled(SectionData),
             "canShow": 1
         ]);
 
         Data[to_string(sizeof(Data) + 1)] = ([
-            "name":"Exit Section Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the building "
+            "name": "Exit Section Menu",
+            "type": "exit",
+            "description": "This option lets you exit the building "
                 "projects menu.\n",
-            "canShow" : 1
+            "canShow": 1
         ]);
     }
 }

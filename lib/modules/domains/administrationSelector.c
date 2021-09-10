@@ -31,11 +31,11 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getAdministrationMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Administration Projects Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the administration "
-                "projects menu.\n",
-            "canShow" : 1
+        "name": "Exit Administration Projects Menu",
+        "type": "exit",
+        "description": "This option lets you exit the administration "
+            "projects menu.\n",
+        "canShow": 1
     ]);
 }
 
