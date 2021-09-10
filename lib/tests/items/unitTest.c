@@ -198,3 +198,13 @@ void TwentyFourBitColorsDisplayedCorrectly()
         "    5 of your archers still remain alive.\n",
         DefendingOwner.caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAndQueryUnitCommander()
+{
+    ExpectEq(0, AttackingUnit.query("unit commander"));
+
+    AttackingUnit.set("unit leader", "fred");
+    AttackingUnit.set("commander name", "fred");
+    ExpectEq(AttackingOwner, AttackingUnit.query("unit commander"));
+}

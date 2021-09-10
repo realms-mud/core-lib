@@ -28,7 +28,26 @@ public nomask mixed query(string element)
         }
         case "unit owner":
         {
-            ret = present(query("unit leader"), environment());
+            ret = 0;
+            
+            if (query("unit leader"))
+            {
+                ret = present(query("unit leader"), environment());
+            }
+            break;
+        }
+        case "unit commander":
+        {
+            ret = 0;
+            
+            if (query("commander name") && query("unit leader"))
+            {
+                object owner = present(query("unit leader"), environment());
+                if (owner)
+                {
+                    ret = owner.getHenchman(query("commander name"));
+                }
+            }
             break;
         }
         case "messages":

@@ -171,5 +171,5 @@ public nomask varargs mapping getHenchmen(string type, string location)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs object getHenchman(string name, string location)
 {
-    return 0;
+    return this_object();
 }
