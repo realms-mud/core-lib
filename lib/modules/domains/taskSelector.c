@@ -31,10 +31,10 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getTaskMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Task Management Menu",
-        "type" : "exit",
-        "description" : "This option lets you exit the task management menu.\n",
-        "canShow" : 1
+        "name": "Exit Task Management Menu",
+        "type": "exit",
+        "description": "This option lets you exit the task management menu.\n",
+        "canShow": 1
     ]);
 }
 

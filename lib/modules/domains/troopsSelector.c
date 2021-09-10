@@ -31,10 +31,10 @@ protected nomask void setUpUserForSelection()
         Data = dictionary->getTroopsMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
-        "name":"Exit Troop Management Menu",
-        "type" : "exit",
-        "description" : "This option lets you exit the troop management menu.\n",
-        "canShow" : 1
+        "name": "Exit Troop Management Menu",
+        "type": "exit",
+        "description": "This option lets you exit the troop management menu.\n",
+        "canShow": 1
     ]);
 }
 

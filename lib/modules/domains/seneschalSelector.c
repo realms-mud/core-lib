@@ -33,9 +33,9 @@ protected nomask void setUpUserForSelection()
     }
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Exit Domain Management Menu",
-            "type" : "exit",
-            "description" : "This option lets you exit the domain menu.\n",
-            "canShow" : 1
+        "type": "exit",
+        "description": "This option lets you exit the domain menu.\n",
+        "canShow": 1
     ]);
 }
 
