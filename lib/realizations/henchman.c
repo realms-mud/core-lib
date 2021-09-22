@@ -313,3 +313,9 @@ public nomask int canAttack(object initiator)
         (!party || (member(party, initiator) < 0)) &&
         (objectp(Leader) ? Leader->onKillList() : 1);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object isLeading()
+{
+    return 0;
+}

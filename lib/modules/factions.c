@@ -103,12 +103,12 @@ public nomask int joinFaction(string faction)
         }
 
         factions[faction] = ([
-                "disposition": "ally",
-                "reputation": reputation,
-                "last interaction": dispositionTime(),
-                "last interaction reputation": reputation,
-                "number of interactions": interactions + 1,
-                "disposition time": dispositionTime()
+            "disposition": "ally",
+            "reputation": reputation,
+            "last interaction": dispositionTime(),
+            "last interaction reputation": reputation,
+            "number of interactions": interactions + 1,
+            "disposition time": dispositionTime()
         ]);
 
         memberOfFactions += ({ faction });
@@ -131,12 +131,12 @@ public nomask int leaveFaction(string faction)
         int interactions = factions[faction]["number of interactions"];
 
         factions[faction] = ([
-                "disposition": "betrayed",
-                "reputation": reputation - 1000,
-                "number of interactions": interactions + 1,
-                "last interaction": dispositionTime(),
-                "last interaction reputation": reputation - 1000,
-                "disposition time": dispositionTime()
+            "disposition": "betrayed",
+            "reputation": reputation - 1000,
+            "number of interactions": interactions + 1,
+            "last interaction": dispositionTime(),
+            "last interaction reputation": reputation - 1000,
+            "disposition time": dispositionTime()
         ]);
 
         memberOfFactions -= ({ faction });
