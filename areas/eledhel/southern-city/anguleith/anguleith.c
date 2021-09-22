@@ -13,4 +13,6 @@ public void Setup()
 
     setCoordinate(3, 0,
         "/areas/eledhel/southern-city/anguleith/3x0.c", "room");
+    setCoordinate(3, 1,
+        "/areas/eledhel/southern-city/anguleith/3x1.c", "room");
 }
