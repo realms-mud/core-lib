@@ -172,11 +172,11 @@ public nomask int getAttack(object attacker)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getDefense(object opponent)
 {
-    // TODO - 1091: Add commander stats & bonuses to defense
-    // TODO - 1092: Add player stats & bonuses to defense
+    float bonuses = getDictionary("domain")->getDefenseBonus(this_object(),
+        opponent);
 
-    return to_int(query("defense") * 
-        ((100.0 + query("effect from terrain")) / 100.0) * 
+    return to_int(query("defense") * bonuses *
+        ((100.0 +query("effect from terrain")) / 100.0) *
         ((10 + query("unit skill") + query("unit morale")) / 15.0) *
         (0.1 * query("troop count")));
 }

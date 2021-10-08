@@ -14,6 +14,7 @@ virtual inherit "/lib/dictionaries/domains/sub-dictionaries/section-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/task-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/top-level-menu.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/troops-menu.c";
+virtual inherit "/lib/dictionaries/domains/sub-dictionaries/units.c";
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/workers-menu.c";
 
 #include "/lib/dictionaries/domains/buildings.h"
