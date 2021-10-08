@@ -105,4 +105,3 @@ public void Setup()
 
     // MapIcons
 }
-

@@ -14,4 +14,3 @@ public void Setup()
 
     addGeneratedRegion("south", "forest", 25, 10);
 }
-
