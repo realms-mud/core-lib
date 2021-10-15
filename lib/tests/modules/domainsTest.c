@@ -246,3 +246,9 @@ void GetHenchmenReturnsCorrectTypeOfHenchmen()
     ExpectEq("carpenter", tantor.type());
     ExpectTrue(tantor.hasTraitOfRoot("carpenter"), "is a carpenter");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void GetHenchmanReturnsCorrectHenchman()
+{
+
+}
