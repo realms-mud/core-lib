@@ -1,0 +1,19 @@
+//*****************************************************************************
+// Copyright (c) 2021 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/environment/generatedEnvironment.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    setTerrain("/lib/environment/terrain/forest.c");
+    addFeature("/lib/environment/features/water/canyon-dry-bed.c", "northwest");
+    addFeature("/lib/environment/features/landforms/knoll.c", "northwest");
+
+    addExit("east", "/players/maeglin/regstuff/11x4.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
+    addExit("north", "/players/maeglin/regstuff/10x5.c");
+    addFeature("/lib/environment/features/paths/path.c", "north");
+}
+
