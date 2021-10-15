@@ -23,6 +23,7 @@ protected mapping specificationData = ([
     //      "near death": <percentage of hit points left (0-100)>
     //      "stamina drained": <percentage of stamina left (0-100)>
     //      "spell points drained": <percentage of spell points left (0-100)>
+    //      "troop type": <class of troop: infantry, cavalry, archers, mage>
     // ])
     // Other data is specified in specific type-inherited methods
 ]);
