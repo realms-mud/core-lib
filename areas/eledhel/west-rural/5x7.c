@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/pear-stand.c", "southeast");
     addFeature("/lib/environment/features/water/gulley-creek.c", "southeast");
 
-    addExit("east", "/players/maeglin/regstuff/6x7.c");
+    addExit("east", "/areas/eledhel/west-rural/6x7.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/players/maeglin/regstuff/5x8.c");
+    addExit("north", "/areas/eledhel/west-rural/5x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

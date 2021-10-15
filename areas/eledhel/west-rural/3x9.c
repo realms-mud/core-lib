@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/willow-stand.c", "southeast");
 
-    addExit("west", "/players/maeglin/regstuff/2x9.c");
+    addExit("west", "/areas/eledhel/west-rural/2x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/4x9.c");
+    addExit("east", "/areas/eledhel/west-rural/4x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

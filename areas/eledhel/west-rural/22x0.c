@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/ridge.c", "south");
     addFeature("/lib/environment/features/landforms/hillock.c", "south");
 
-    addExit("north", "/players/maeglin/regstuff/22x1.c");
+    addExit("north", "/areas/eledhel/west-rural/22x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/23x0.c");
+    addExit("east", "/areas/eledhel/west-rural/23x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

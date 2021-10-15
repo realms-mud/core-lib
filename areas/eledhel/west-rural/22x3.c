@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hollow.c", "northeast");
     addFeature("/lib/environment/features/water/brook.c", "northeast");
 
-    addExit("south", "/players/maeglin/regstuff/22x2.c");
+    addExit("south", "/areas/eledhel/west-rural/22x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("east", "/players/maeglin/regstuff/23x3.c");
+    addExit("east", "/areas/eledhel/west-rural/23x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

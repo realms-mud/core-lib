@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/ridge.c", "northwest");
     addFeature("/lib/environment/features/water/rocky-lake-shore.c", "northwest");
 
-    addExit("east", "/players/maeglin/regstuff/16x8.c");
+    addExit("east", "/areas/eledhel/west-rural/16x8.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("south", "/players/maeglin/regstuff/15x7.c");
+    addExit("south", "/areas/eledhel/west-rural/15x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }
-

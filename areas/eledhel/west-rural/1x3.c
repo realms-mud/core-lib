@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/gorge-creek.c", "northeast");
 
-    addExit("south", "/players/maeglin/regstuff/1x2.c");
+    addExit("south", "/areas/eledhel/west-rural/1x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("east", "/players/maeglin/regstuff/2x3.c");
+    addExit("east", "/areas/eledhel/west-rural/2x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

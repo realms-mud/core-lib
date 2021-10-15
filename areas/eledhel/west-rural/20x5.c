@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/ravine-waterfall.c", "west");
     addFeature("/lib/environment/features/landforms/crag.c", "west");
 
-    addExit("north", "/players/maeglin/regstuff/20x6.c");
+    addExit("north", "/areas/eledhel/west-rural/20x6.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("west", "/players/maeglin/regstuff/19x5.c");
+    addExit("west", "/areas/eledhel/west-rural/19x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"otter","skunk","boar","skeleton"}));
 }
-

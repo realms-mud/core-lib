@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/knoll.c", "east");
     addFeature("/lib/environment/features/trees/persimmon-stand.c", "east");
 
-    addExit("south", "/players/maeglin/regstuff/23x4.c");
+    addExit("south", "/areas/eledhel/west-rural/23x4.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/22x5.c");
+    addExit("west", "/areas/eledhel/west-rural/22x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

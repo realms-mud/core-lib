@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/paper-birch-stand.c", "north");
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "north");
 
-    addExit("south", "/players/maeglin/regstuff/5x7.c");
+    addExit("south", "/areas/eledhel/west-rural/5x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("east", "/players/maeglin/regstuff/6x8.c");
+    addExit("east", "/areas/eledhel/west-rural/6x8.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

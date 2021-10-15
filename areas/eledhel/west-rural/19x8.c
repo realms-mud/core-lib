@@ -12,11 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/trees/beech-stand.c", "northeast");
     addFeature("/lib/environment/features/water/canyon-creek.c", "northeast");
 
-    addExit("south", "/players/maeglin/regstuff/19x7.c");
+    addExit("south", "/areas/eledhel/west-rural/19x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/19x9.c");
+    addExit("north", "/areas/eledhel/west-rural/19x9.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
     addRandomCreature(({"opossum","mink","chipmunk"}));
 }
-

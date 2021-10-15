@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/poplar-stand.c", "south");
     addFeature("/lib/environment/features/landforms/hill.c", "south");
 
-    addExit("south", "/players/maeglin/regstuff/24x2.c");
+    addExit("south", "/areas/eledhel/west-rural/24x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/24x4.c");
+    addExit("north", "/areas/eledhel/west-rural/24x4.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

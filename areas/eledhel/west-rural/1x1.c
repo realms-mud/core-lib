@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/ravine-brook.c", "northwest");
 
-    addExit("west", "/players/maeglin/regstuff/0x1.c");
+    addExit("west", "/areas/eledhel/west-rural/0x1.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/2x1.c");
+    addExit("east", "/areas/eledhel/west-rural/2x1.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

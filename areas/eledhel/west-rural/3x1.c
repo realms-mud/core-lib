@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/ravine-waterfall.c", "south");
 
-    addExit("north", "/players/maeglin/regstuff/3x2.c");
+    addExit("north", "/areas/eledhel/west-rural/3x2.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/4x1.c");
+    addExit("east", "/areas/eledhel/west-rural/4x1.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

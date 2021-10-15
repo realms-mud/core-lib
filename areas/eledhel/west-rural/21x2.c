@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/green-apple-stand.c", "south");
     addFeature("/lib/environment/features/trees/yew-stand.c", "south");
 
-    addExit("west", "/players/maeglin/regstuff/20x2.c");
+    addExit("west", "/areas/eledhel/west-rural/20x2.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/22x2.c");
+    addExit("east", "/areas/eledhel/west-rural/22x2.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

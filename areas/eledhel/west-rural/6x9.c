@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/ridge.c", "southeast");
     addFeature("/lib/environment/features/landforms/hummock.c", "southeast");
 
-    addExit("south", "/players/maeglin/regstuff/6x8.c");
+    addExit("south", "/areas/eledhel/west-rural/6x8.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("east", "/players/maeglin/regstuff/7x9.c");
+    addExit("east", "/areas/eledhel/west-rural/7x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/glen.c", "northwest");
 
-    addExit("west", "/players/maeglin/regstuff/6x9.c");
+    addExit("west", "/areas/eledhel/west-rural/6x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"black bear","muskrat","porcupine","mule deer","groundhog"}));
 }
-

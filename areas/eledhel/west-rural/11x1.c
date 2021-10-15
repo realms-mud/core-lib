@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/brook.c", "southwest");
     addFeature("/lib/environment/features/trees/winesap-apple-stand.c", "southwest");
 
-    addExit("west", "/players/maeglin/regstuff/10x1.c");
+    addExit("west", "/areas/eledhel/west-rural/10x1.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/11x2.c");
+    addExit("north", "/areas/eledhel/west-rural/11x2.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

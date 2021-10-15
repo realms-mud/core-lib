@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/hemlock-stand.c", "west");
 
-    addExit("west", "/players/maeglin/regstuff/3x3.c");
+    addExit("west", "/areas/eledhel/west-rural/3x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("south", "/players/maeglin/regstuff/4x2.c");
+    addExit("south", "/areas/eledhel/west-rural/4x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }
-

@@ -12,11 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/river.c", "north");
     addFeature("/lib/environment/features/trees/buckthorn-stand.c", "north");
 
-    addExit("north", "/players/maeglin/regstuff/20x7.c");
+    addExit("north", "/areas/eledhel/west-rural/20x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/players/maeglin/regstuff/20x5.c");
+    addExit("south", "/areas/eledhel/west-rural/20x5.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 
     addRandomCreature(({"hunter","outlaw","keeper of the night","red wolf"}));
 }
-

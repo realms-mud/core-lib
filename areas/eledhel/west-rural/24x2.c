@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/hollow.c", "southwest");
 
-    addExit("south", "/players/maeglin/regstuff/24x1.c");
+    addExit("south", "/areas/eledhel/west-rural/24x1.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/24x3.c");
+    addExit("north", "/areas/eledhel/west-rural/24x3.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-dry-bed.c", "south");
     addFeature("/lib/environment/features/landforms/hollow.c", "south");
 
-    addExit("west", "/players/maeglin/regstuff/14x4.c");
+    addExit("west", "/areas/eledhel/west-rural/14x4.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"weasel","skunk","boar","raccoon"}));
 }
-

@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/trees/spruce-stand.c", "northwest");
     addFeature("/lib/environment/features/landforms/glen.c", "northwest");
 
-    addExit("north", "/players/maeglin/regstuff/3x7.c");
+    addExit("north", "/areas/eledhel/west-rural/3x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/4x6.c");
+    addExit("east", "/areas/eledhel/west-rural/4x6.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"ruffian","coyote","porcupine","timber wolf"}));
 }
-

@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/beech-stand.c", "southeast");
     addFeature("/lib/environment/features/trees/paper-birch-stand.c", "southeast");
 
-    addExit("west", "/players/maeglin/regstuff/2x3.c");
+    addExit("west", "/areas/eledhel/west-rural/2x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/4x3.c");
+    addExit("east", "/areas/eledhel/west-rural/4x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

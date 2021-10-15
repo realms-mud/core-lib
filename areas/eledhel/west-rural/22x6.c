@@ -12,11 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/glen.c", "west");
     addFeature("/lib/environment/features/trees/nectarine-stand.c", "west");
 
-    addExit("south", "/players/maeglin/regstuff/22x5.c");
+    addExit("south", "/areas/eledhel/west-rural/22x5.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/22x7.c");
+    addExit("north", "/areas/eledhel/west-rural/22x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/23x6.c");
+    addExit("east", "/areas/eledhel/west-rural/23x6.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

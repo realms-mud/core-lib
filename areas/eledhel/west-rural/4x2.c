@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-dry-bed.c", "northeast");
     addFeature("/lib/environment/features/landforms/ridge.c", "northeast");
 
-    addExit("north", "/players/maeglin/regstuff/4x3.c");
+    addExit("north", "/areas/eledhel/west-rural/4x3.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("west", "/players/maeglin/regstuff/3x2.c");
+    addExit("west", "/areas/eledhel/west-rural/3x2.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

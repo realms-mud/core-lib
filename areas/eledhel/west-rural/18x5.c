@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/lake-shore-bluff.c", "northwest");
     addFeature("/lib/environment/features/landforms/hollow.c", "northwest");
 
-    addExit("west", "/players/maeglin/regstuff/17x5.c");
+    addExit("west", "/areas/eledhel/west-rural/17x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"warg","mule deer","outlaw"}));
 }
-

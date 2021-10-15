@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/ravine-creek.c", "south");
     addFeature("/lib/environment/features/landforms/glen.c", "south");
 
-    addExit("south", "/players/maeglin/regstuff/9x5.c");
+    addExit("south", "/areas/eledhel/west-rural/9x5.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/8x6.c");
+    addExit("west", "/areas/eledhel/west-rural/8x6.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/9x7.c");
+    addExit("north", "/areas/eledhel/west-rural/9x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

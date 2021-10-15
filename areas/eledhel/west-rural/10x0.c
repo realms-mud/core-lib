@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-stream.c", "northwest");
     addFeature("/lib/environment/features/landforms/glen.c", "northwest");
 
-    addExit("east", "/players/maeglin/regstuff/11x0.c");
+    addExit("east", "/areas/eledhel/west-rural/11x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/players/maeglin/regstuff/10x1.c");
+    addExit("north", "/areas/eledhel/west-rural/10x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

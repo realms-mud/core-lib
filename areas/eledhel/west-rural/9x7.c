@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/alder-stand.c", "southwest");
     addFeature("/lib/environment/features/landforms/valley.c", "southwest");
 
-    addExit("north", "/players/maeglin/regstuff/9x8.c");
+    addExit("north", "/areas/eledhel/west-rural/9x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/players/maeglin/regstuff/9x6.c");
+    addExit("south", "/areas/eledhel/west-rural/9x6.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }
-

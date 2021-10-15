@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/hemlock-stand.c", "east");
     addFeature("/lib/environment/features/landforms/cliff.c", "east");
 
-    addExit("west", "/players/maeglin/regstuff/23x0.c");
+    addExit("west", "/areas/eledhel/west-rural/23x0.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/24x1.c");
+    addExit("north", "/areas/eledhel/west-rural/24x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

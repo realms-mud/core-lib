@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/brook.c", "northwest");
     addFeature("/lib/environment/features/trees/cypress-stand.c", "northwest");
 
-    addExit("north", "/players/maeglin/regstuff/16x9.c");
+    addExit("north", "/areas/eledhel/west-rural/16x9.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("west", "/players/maeglin/regstuff/15x8.c");
+    addExit("west", "/areas/eledhel/west-rural/15x8.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"knight of the storm","outlaw","gray squirrel","red wolf"}));
 }
-

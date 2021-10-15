@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/willow-stand.c", "northwest");
     addFeature("/lib/environment/features/water/ravine-brook.c", "northwest");
 
-    addExit("north", "/players/maeglin/regstuff/15x7.c");
+    addExit("north", "/areas/eledhel/west-rural/15x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("south", "/players/maeglin/regstuff/15x5.c");
+    addExit("south", "/areas/eledhel/west-rural/15x5.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }
-

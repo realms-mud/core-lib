@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/hill.c", "northeast");
 
-    addExit("east", "/players/maeglin/regstuff/17x7.c");
+    addExit("east", "/areas/eledhel/west-rural/17x7.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("west", "/players/maeglin/regstuff/15x7.c");
+    addExit("west", "/areas/eledhel/west-rural/15x7.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

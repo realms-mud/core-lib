@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/McIntosh-apple-stand.c", "south");
     addFeature("/lib/environment/features/landforms/hollow.c", "south");
 
-    addExit("east", "/players/maeglin/regstuff/9x6.c");
+    addExit("east", "/areas/eledhel/west-rural/9x6.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("west", "/players/maeglin/regstuff/7x6.c");
+    addExit("west", "/areas/eledhel/west-rural/7x6.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

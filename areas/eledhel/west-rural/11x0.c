@@ -12,11 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "east");
     addFeature("/lib/environment/features/water/brook.c", "east");
 
-    addExit("west", "/players/maeglin/regstuff/10x0.c");
+    addExit("west", "/areas/eledhel/west-rural/10x0.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/12x0.c");
+    addExit("east", "/areas/eledhel/west-rural/12x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"gray fox","ruffian","porcupine","outlaw","white-tail deer"}));
 }
-

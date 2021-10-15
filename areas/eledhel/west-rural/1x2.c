@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-brook.c", "west");
     addFeature("/lib/environment/features/trees/ash-stand.c", "west");
 
-    addExit("east", "/players/maeglin/regstuff/2x2.c");
+    addExit("east", "/areas/eledhel/west-rural/2x2.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/players/maeglin/regstuff/1x3.c");
+    addExit("north", "/areas/eledhel/west-rural/1x3.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/pine-stand.c", "west");
 
-    addExit("west", "/players/maeglin/regstuff/9x8.c");
+    addExit("west", "/areas/eledhel/west-rural/9x8.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"opossum","weasel","otter"}));
 }
-

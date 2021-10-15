@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/brook.c", "southeast");
     addFeature("/lib/environment/features/trees/cedar-stand.c", "southeast");
 
-    addExit("south", "/players/maeglin/regstuff/2x8.c");
+    addExit("south", "/areas/eledhel/west-rural/2x8.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("east", "/players/maeglin/regstuff/3x9.c");
+    addExit("east", "/areas/eledhel/west-rural/3x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

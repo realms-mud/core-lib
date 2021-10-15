@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/cottonwood-stand.c", "northeast");
 
-    addExit("east", "/players/maeglin/regstuff/20x7.c");
+    addExit("east", "/areas/eledhel/west-rural/20x7.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("north", "/players/maeglin/regstuff/19x8.c");
+    addExit("north", "/areas/eledhel/west-rural/19x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

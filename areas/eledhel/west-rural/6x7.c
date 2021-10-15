@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "east");
     addFeature("/lib/environment/features/landforms/promontory.c", "east");
 
-    addExit("south", "/players/maeglin/regstuff/6x6.c");
+    addExit("south", "/areas/eledhel/west-rural/6x6.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/5x7.c");
+    addExit("west", "/areas/eledhel/west-rural/5x7.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

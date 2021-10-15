@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/montmorency-cherry-stand.c", "south");
     addFeature("/lib/environment/features/landforms/hollow.c", "south");
 
-    addExit("east", "/players/maeglin/regstuff/20x3.c");
+    addExit("east", "/areas/eledhel/west-rural/20x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"zombie","porcupine","outlaw","panther","groundhog","mink"}));
 }
-

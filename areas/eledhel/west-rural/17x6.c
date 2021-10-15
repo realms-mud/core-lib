@@ -12,11 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/glen.c", "southeast");
     addFeature("/lib/environment/features/trees/ash-stand.c", "southeast");
 
-    addExit("south", "/players/maeglin/regstuff/17x5.c");
+    addExit("south", "/areas/eledhel/west-rural/17x5.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/17x7.c");
+    addExit("north", "/areas/eledhel/west-rural/17x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
     addRandomCreature(({"black bear","boar","skeleton"}));
 }
-

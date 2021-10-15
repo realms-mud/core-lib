@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hollow.c", "southeast");
     addFeature("/lib/environment/features/trees/sycamore-stand.c", "southeast");
 
-    addExit("east", "/players/maeglin/regstuff/22x1.c");
+    addExit("east", "/areas/eledhel/west-rural/22x1.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"ruffian","zombie","gopher","boar"}));
 }
-

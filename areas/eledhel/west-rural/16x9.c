@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/ridge.c", "east");
     addFeature("/lib/environment/features/trees/basswood-stand.c", "east");
 
-    addExit("east", "/players/maeglin/regstuff/17x9.c");
+    addExit("east", "/areas/eledhel/west-rural/17x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("south", "/players/maeglin/regstuff/16x8.c");
+    addExit("south", "/areas/eledhel/west-rural/16x8.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
 }
-

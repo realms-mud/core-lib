@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/glen.c", "southeast");
     addFeature("/lib/environment/features/water/brook.c", "southeast");
 
-    addExit("north", "/players/maeglin/regstuff/0x1.c");
+    addExit("north", "/areas/eledhel/west-rural/0x1.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
     addRandomCreature(({"hunter","fisher","outlaw","keeper of the night","chipmunk"}));
 }
-

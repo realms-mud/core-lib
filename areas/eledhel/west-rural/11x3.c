@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/mound.c", "northeast");
     addFeature("/lib/environment/features/water/brook.c", "northeast");
 
-    addExit("south", "/players/maeglin/regstuff/11x2.c");
+    addExit("south", "/areas/eledhel/west-rural/11x2.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("north", "/players/maeglin/regstuff/11x4.c");
+    addExit("north", "/areas/eledhel/west-rural/11x4.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/12x3.c");
+    addExit("east", "/areas/eledhel/west-rural/12x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

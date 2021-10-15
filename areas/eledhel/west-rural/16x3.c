@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "west");
     addFeature("/lib/environment/features/landforms/ridge.c", "west");
 
-    addExit("east", "/players/maeglin/regstuff/17x3.c");
+    addExit("east", "/areas/eledhel/west-rural/17x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"gopher","skeleton","gray wolf"}));
 }
-

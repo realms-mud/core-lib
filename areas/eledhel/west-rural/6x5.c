@@ -10,11 +10,10 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/hill.c", "southeast");
 
-    addExit("north", "/players/maeglin/regstuff/6x6.c");
+    addExit("north", "/areas/eledhel/west-rural/6x6.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
-    addExit("east", "/players/maeglin/regstuff/7x5.c");
+    addExit("east", "/areas/eledhel/west-rural/7x5.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"outlaw","mule deer","raccoon","groundhog"}));
 }
-

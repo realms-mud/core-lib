@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/trees/ash-stand.c", "northeast");
     addFeature("/lib/environment/features/trees/spruce-stand.c", "northeast");
 
-    addExit("west", "/players/maeglin/regstuff/1x1.c");
+    addExit("west", "/areas/eledhel/west-rural/1x1.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/2x2.c");
+    addExit("north", "/areas/eledhel/west-rural/2x2.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/creek.c", "northwest");
     addFeature("/lib/environment/features/water/river.c", "northwest");
 
-    addExit("south", "/players/maeglin/regstuff/8x4.c");
+    addExit("south", "/areas/eledhel/west-rural/8x4.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/7x5.c");
+    addExit("west", "/areas/eledhel/west-rural/7x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

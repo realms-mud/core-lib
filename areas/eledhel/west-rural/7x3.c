@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/trees/hickory-stand.c", "northwest");
 
-    addExit("west", "/players/maeglin/regstuff/6x3.c");
+    addExit("west", "/areas/eledhel/west-rural/6x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"gray fox","ruffian","warg","otter","outlaw","badger"}));
 }
-

@@ -10,9 +10,8 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/water/rocky-lake-shore.c", "southeast");
 
-    addExit("west", "/players/maeglin/regstuff/5x1.c");
+    addExit("west", "/areas/eledhel/west-rural/5x1.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/6x2.c");
+    addExit("north", "/areas/eledhel/west-rural/6x2.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

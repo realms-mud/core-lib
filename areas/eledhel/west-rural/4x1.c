@@ -11,11 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/river.c", "north");
     addFeature("/lib/environment/features/trees/McIntosh-apple-stand.c", "north");
 
-    addExit("east", "/players/maeglin/regstuff/5x1.c");
+    addExit("east", "/areas/eledhel/west-rural/5x1.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
-    addExit("west", "/players/maeglin/regstuff/3x1.c");
+    addExit("west", "/areas/eledhel/west-rural/3x1.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"ruffian","mink","otter"}));
 }
-

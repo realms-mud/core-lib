@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/sinkhole.c", "northwest");
     addFeature("/lib/environment/features/water/river.c", "northwest");
 
-    addExit("west", "/players/maeglin/regstuff/5x8.c");
+    addExit("west", "/areas/eledhel/west-rural/5x8.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("north", "/players/maeglin/regstuff/6x9.c");
+    addExit("north", "/areas/eledhel/west-rural/6x9.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 }
-

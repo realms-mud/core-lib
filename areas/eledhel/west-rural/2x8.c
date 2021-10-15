@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "south");
     addFeature("/lib/environment/features/trees/crabapple-stand.c", "south");
 
-    addExit("north", "/players/maeglin/regstuff/2x9.c");
+    addExit("north", "/areas/eledhel/west-rural/2x9.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
 
     addRandomCreature(({"keeper of the night","knight of the storm","warg","mink","chipmunk"}));
 }
-

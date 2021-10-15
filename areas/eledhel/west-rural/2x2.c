@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/glen.c", "northeast");
     addFeature("/lib/environment/features/landforms/mound.c", "northeast");
 
-    addExit("south", "/players/maeglin/regstuff/2x1.c");
+    addExit("south", "/areas/eledhel/west-rural/2x1.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/1x2.c");
+    addExit("west", "/areas/eledhel/west-rural/1x2.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

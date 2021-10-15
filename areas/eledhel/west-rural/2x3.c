@@ -12,9 +12,8 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-stream.c", "east");
     addFeature("/lib/environment/features/trees/maple-stand.c", "east");
 
-    addExit("west", "/players/maeglin/regstuff/1x3.c");
+    addExit("west", "/areas/eledhel/west-rural/1x3.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
-    addExit("east", "/players/maeglin/regstuff/3x3.c");
+    addExit("east", "/areas/eledhel/west-rural/3x3.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 }
-

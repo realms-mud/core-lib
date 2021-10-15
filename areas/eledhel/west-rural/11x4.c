@@ -11,9 +11,8 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/butte.c", "east");
     addFeature("/lib/environment/features/trees/birch-stand.c", "east");
 
-    addExit("south", "/players/maeglin/regstuff/11x3.c");
+    addExit("south", "/areas/eledhel/west-rural/11x3.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
-    addExit("west", "/players/maeglin/regstuff/10x4.c");
+    addExit("west", "/areas/eledhel/west-rural/10x4.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 }
-

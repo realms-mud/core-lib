@@ -7,257 +7,256 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("Western");
+    setRegionName("West of Eledhel - Rural");
     setRegionType("forest");
     setDimensions(25, 10);
     // EntryCoordinate
     setSettlementChance(-1);
 
     setCoordinate(0, 0,
-        "/players/maeglin/regstuff/0x0.c", "room");
+        "/areas/eledhel/west-rural/0x0.c", "room");
     setCoordinate(0, 1,
-        "/players/maeglin/regstuff/0x1.c", "path");
+        "/areas/eledhel/west-rural/0x1.c", "path");
     setCoordinate(10, 0,
-        "/players/maeglin/regstuff/10x0.c", "path");
+        "/areas/eledhel/west-rural/10x0.c", "path");
     setCoordinate(10, 1,
-        "/players/maeglin/regstuff/10x1.c", "room");
+        "/areas/eledhel/west-rural/10x1.c", "room");
     setCoordinate(10, 2,
-        "/players/maeglin/regstuff/10x2.c", "path");
+        "/areas/eledhel/west-rural/10x2.c", "path");
     setCoordinate(10, 4,
-        "/players/maeglin/regstuff/10x4.c", "path");
+        "/areas/eledhel/west-rural/10x4.c", "path");
     setCoordinate(10, 5,
-        "/players/maeglin/regstuff/10x5.c", "path");
+        "/areas/eledhel/west-rural/10x5.c", "path");
     setCoordinate(10, 8,
-        "/players/maeglin/regstuff/10x8.c", "room");
+        "/areas/eledhel/west-rural/10x8.c", "room");
     setCoordinate(11, 0,
-        "/players/maeglin/regstuff/11x0.c", "room");
+        "/areas/eledhel/west-rural/11x0.c", "room");
     setCoordinate(11, 1,
-        "/players/maeglin/regstuff/11x1.c", "path");
+        "/areas/eledhel/west-rural/11x1.c", "path");
     setCoordinate(11, 2,
-        "/players/maeglin/regstuff/11x2.c", "path");
+        "/areas/eledhel/west-rural/11x2.c", "path");
     setCoordinate(11, 3,
-        "/players/maeglin/regstuff/11x3.c", "path");
+        "/areas/eledhel/west-rural/11x3.c", "path");
     setCoordinate(11, 4,
-        "/players/maeglin/regstuff/11x4.c", "path");
+        "/areas/eledhel/west-rural/11x4.c", "path");
     setCoordinate(11, 5,
-        "/players/maeglin/regstuff/11x5.c", "path");
+        "/areas/eledhel/west-rural/11x5.c", "path");
     setCoordinate(12, 0,
-        "/players/maeglin/regstuff/12x0.c", "exit");
+        "/areas/eledhel/west-rural/12x0.c", "exit");
     setCoordinate(12, 3,
-        "/players/maeglin/regstuff/12x3.c", "path");
+        "/areas/eledhel/west-rural/12x3.c", "path");
     setCoordinate(12, 5,
-        "/players/maeglin/regstuff/12x5.c", "room");
+        "/areas/eledhel/west-rural/12x5.c", "room");
     setCoordinate(13, 3,
-        "/players/maeglin/regstuff/13x3.c", "path");
+        "/areas/eledhel/west-rural/13x3.c", "path");
     setCoordinate(13, 4,
-        "/players/maeglin/regstuff/13x4.c", "path");
+        "/areas/eledhel/west-rural/13x4.c", "path");
     setCoordinate(13, 5,
-        "/players/maeglin/regstuff/13x5.c", "path");
+        "/areas/eledhel/west-rural/13x5.c", "path");
     setCoordinate(14, 4,
-        "/players/maeglin/regstuff/14x4.c", "path");
+        "/areas/eledhel/west-rural/14x4.c", "path");
     setCoordinate(14, 5,
-        "/players/maeglin/regstuff/14x5.c", "room");
+        "/areas/eledhel/west-rural/14x5.c", "room");
     setCoordinate(15, 4,
-        "/players/maeglin/regstuff/15x4.c", "room");
+        "/areas/eledhel/west-rural/15x4.c", "room");
     setCoordinate(15, 5,
-        "/players/maeglin/regstuff/15x5.c", "room");
+        "/areas/eledhel/west-rural/15x5.c", "room");
     setCoordinate(15, 6,
-        "/players/maeglin/regstuff/15x6.c", "path");
+        "/areas/eledhel/west-rural/15x6.c", "path");
     setCoordinate(15, 7,
-        "/players/maeglin/regstuff/15x7.c", "path");
+        "/areas/eledhel/west-rural/15x7.c", "path");
     setCoordinate(15, 8,
-        "/players/maeglin/regstuff/15x8.c", "path");
+        "/areas/eledhel/west-rural/15x8.c", "path");
     setCoordinate(16, 3,
-        "/players/maeglin/regstuff/16x3.c", "room");
+        "/areas/eledhel/west-rural/16x3.c", "room");
     setCoordinate(16, 7,
-        "/players/maeglin/regstuff/16x7.c", "path");
+        "/areas/eledhel/west-rural/16x7.c", "path");
     setCoordinate(16, 8,
-        "/players/maeglin/regstuff/16x8.c", "room");
+        "/areas/eledhel/west-rural/16x8.c", "room");
     setCoordinate(16, 9,
-        "/players/maeglin/regstuff/16x9.c", "path");
+        "/areas/eledhel/west-rural/16x9.c", "path");
     setCoordinate(17, 3,
-        "/players/maeglin/regstuff/17x3.c", "path");
+        "/areas/eledhel/west-rural/17x3.c", "path");
     setCoordinate(17, 5,
-        "/players/maeglin/regstuff/17x5.c", "path");
+        "/areas/eledhel/west-rural/17x5.c", "path");
     setCoordinate(17, 6,
-        "/players/maeglin/regstuff/17x6.c", "room");
+        "/areas/eledhel/west-rural/17x6.c", "room");
     setCoordinate(17, 7,
-        "/players/maeglin/regstuff/17x7.c", "path");
+        "/areas/eledhel/west-rural/17x7.c", "path");
     setCoordinate(17, 9,
-        "/players/maeglin/regstuff/17x9.c", "path");
+        "/areas/eledhel/west-rural/17x9.c", "path");
     setCoordinate(18, 3,
-        "/players/maeglin/regstuff/18x3.c", "path");
+        "/areas/eledhel/west-rural/18x3.c", "path");
     setCoordinate(18, 4,
-        "/players/maeglin/regstuff/18x4.c", "path");
+        "/areas/eledhel/west-rural/18x4.c", "path");
     setCoordinate(18, 5,
-        "/players/maeglin/regstuff/18x5.c", "room");
+        "/areas/eledhel/west-rural/18x5.c", "room");
     setCoordinate(18, 9,
-        "/players/maeglin/regstuff/18x9.c", "path");
+        "/areas/eledhel/west-rural/18x9.c", "path");
     setCoordinate(19, 3,
-        "/players/maeglin/regstuff/19x3.c", "room");
+        "/areas/eledhel/west-rural/19x3.c", "room");
     setCoordinate(19, 4,
-        "/players/maeglin/regstuff/19x4.c", "path");
+        "/areas/eledhel/west-rural/19x4.c", "path");
     setCoordinate(19, 5,
-        "/players/maeglin/regstuff/19x5.c", "path");
+        "/areas/eledhel/west-rural/19x5.c", "path");
     setCoordinate(19, 7,
-        "/players/maeglin/regstuff/19x7.c", "path");
+        "/areas/eledhel/west-rural/19x7.c", "path");
     setCoordinate(19, 8,
-        "/players/maeglin/regstuff/19x8.c", "room");
+        "/areas/eledhel/west-rural/19x8.c", "room");
     setCoordinate(19, 9,
-        "/players/maeglin/regstuff/19x9.c", "room");
+        "/areas/eledhel/west-rural/19x9.c", "room");
     setCoordinate(1, 1,
-        "/players/maeglin/regstuff/1x1.c", "path");
+        "/areas/eledhel/west-rural/1x1.c", "path");
     setCoordinate(1, 2,
-        "/players/maeglin/regstuff/1x2.c", "path");
+        "/areas/eledhel/west-rural/1x2.c", "path");
     setCoordinate(1, 3,
-        "/players/maeglin/regstuff/1x3.c", "path");
+        "/areas/eledhel/west-rural/1x3.c", "path");
     setCoordinate(20, 2,
-        "/players/maeglin/regstuff/20x2.c", "path");
+        "/areas/eledhel/west-rural/20x2.c", "path");
     setCoordinate(20, 3,
-        "/players/maeglin/regstuff/20x3.c", "path");
+        "/areas/eledhel/west-rural/20x3.c", "path");
     setCoordinate(20, 5,
-        "/players/maeglin/regstuff/20x5.c", "room");
+        "/areas/eledhel/west-rural/20x5.c", "room");
     setCoordinate(20, 6,
-        "/players/maeglin/regstuff/20x6.c", "room");
+        "/areas/eledhel/west-rural/20x6.c", "room");
     setCoordinate(20, 7,
-        "/players/maeglin/regstuff/20x7.c", "path");
+        "/areas/eledhel/west-rural/20x7.c", "path");
     setCoordinate(20, 8,
-        "/players/maeglin/regstuff/20x8.c", "room");
+        "/areas/eledhel/west-rural/20x8.c", "room");
     setCoordinate(21, 1,
-        "/players/maeglin/regstuff/21x1.c", "room");
+        "/areas/eledhel/west-rural/21x1.c", "room");
     setCoordinate(21, 2,
-        "/players/maeglin/regstuff/21x2.c", "path");
+        "/areas/eledhel/west-rural/21x2.c", "path");
     setCoordinate(21, 7,
-        "/players/maeglin/regstuff/21x7.c", "path");
+        "/areas/eledhel/west-rural/21x7.c", "path");
     setCoordinate(21, 8,
-        "/players/maeglin/regstuff/21x8.c", "path");
+        "/areas/eledhel/west-rural/21x8.c", "path");
     setCoordinate(22, 0,
-        "/players/maeglin/regstuff/22x0.c", "path");
+        "/areas/eledhel/west-rural/22x0.c", "path");
     setCoordinate(22, 1,
-        "/players/maeglin/regstuff/22x1.c", "path");
+        "/areas/eledhel/west-rural/22x1.c", "path");
     setCoordinate(22, 2,
-        "/players/maeglin/regstuff/22x2.c", "room");
+        "/areas/eledhel/west-rural/22x2.c", "room");
     setCoordinate(22, 3,
-        "/players/maeglin/regstuff/22x3.c", "path");
+        "/areas/eledhel/west-rural/22x3.c", "path");
     setCoordinate(22, 5,
-        "/players/maeglin/regstuff/22x5.c", "path");
+        "/areas/eledhel/west-rural/22x5.c", "path");
     setCoordinate(22, 6,
-        "/players/maeglin/regstuff/22x6.c", "path");
+        "/areas/eledhel/west-rural/22x6.c", "path");
     setCoordinate(22, 7,
-        "/players/maeglin/regstuff/22x7.c", "path");
+        "/areas/eledhel/west-rural/22x7.c", "path");
     setCoordinate(23, 0,
-        "/players/maeglin/regstuff/23x0.c", "path");
+        "/areas/eledhel/west-rural/23x0.c", "path");
     setCoordinate(23, 3,
-        "/players/maeglin/regstuff/23x3.c", "path");
+        "/areas/eledhel/west-rural/23x3.c", "path");
     setCoordinate(23, 4,
-        "/players/maeglin/regstuff/23x4.c", "path");
+        "/areas/eledhel/west-rural/23x4.c", "path");
     setCoordinate(23, 5,
-        "/players/maeglin/regstuff/23x5.c", "path");
+        "/areas/eledhel/west-rural/23x5.c", "path");
     setCoordinate(23, 6,
-        "/players/maeglin/regstuff/23x6.c", "room");
+        "/areas/eledhel/west-rural/23x6.c", "room");
     setCoordinate(24, 0,
-        "/players/maeglin/regstuff/24x0.c", "path");
+        "/areas/eledhel/west-rural/24x0.c", "path");
     setCoordinate(24, 1,
-        "/players/maeglin/regstuff/24x1.c", "path");
+        "/areas/eledhel/west-rural/24x1.c", "path");
     setCoordinate(24, 2,
-        "/players/maeglin/regstuff/24x2.c", "path");
+        "/areas/eledhel/west-rural/24x2.c", "path");
     setCoordinate(24, 3,
-        "/players/maeglin/regstuff/24x3.c", "path");
+        "/areas/eledhel/west-rural/24x3.c", "path");
     setCoordinate(24, 4,
-        "/players/maeglin/regstuff/24x4.c", "path");
+        "/areas/eledhel/west-rural/24x4.c", "path");
     setCoordinate(2, 1,
-        "/players/maeglin/regstuff/2x1.c", "path");
+        "/areas/eledhel/west-rural/2x1.c", "path");
     setCoordinate(2, 2,
-        "/players/maeglin/regstuff/2x2.c", "path");
+        "/areas/eledhel/west-rural/2x2.c", "path");
     setCoordinate(2, 3,
-        "/players/maeglin/regstuff/2x3.c", "path");
+        "/areas/eledhel/west-rural/2x3.c", "path");
     setCoordinate(2, 8,
-        "/players/maeglin/regstuff/2x8.c", "room");
+        "/areas/eledhel/west-rural/2x8.c", "room");
     setCoordinate(2, 9,
-        "/players/maeglin/regstuff/2x9.c", "path");
+        "/areas/eledhel/west-rural/2x9.c", "path");
     setCoordinate(3, 1,
-        "/players/maeglin/regstuff/3x1.c", "path");
+        "/areas/eledhel/west-rural/3x1.c", "path");
     setCoordinate(3, 2,
-        "/players/maeglin/regstuff/3x2.c", "path");
+        "/areas/eledhel/west-rural/3x2.c", "path");
     setCoordinate(3, 3,
-        "/players/maeglin/regstuff/3x3.c", "path");
+        "/areas/eledhel/west-rural/3x3.c", "path");
     setCoordinate(3, 6,
-        "/players/maeglin/regstuff/3x6.c", "room");
+        "/areas/eledhel/west-rural/3x6.c", "room");
     setCoordinate(3, 7,
-        "/players/maeglin/regstuff/3x7.c", "path");
+        "/areas/eledhel/west-rural/3x7.c", "path");
     setCoordinate(3, 9,
-        "/players/maeglin/regstuff/3x9.c", "path");
+        "/areas/eledhel/west-rural/3x9.c", "path");
     setCoordinate(4, 1,
-        "/players/maeglin/regstuff/4x1.c", "room");
+        "/areas/eledhel/west-rural/4x1.c", "room");
     setCoordinate(4, 2,
-        "/players/maeglin/regstuff/4x2.c", "path");
+        "/areas/eledhel/west-rural/4x2.c", "path");
     setCoordinate(4, 3,
-        "/players/maeglin/regstuff/4x3.c", "path");
+        "/areas/eledhel/west-rural/4x3.c", "path");
     setCoordinate(4, 6,
-        "/players/maeglin/regstuff/4x6.c", "room");
+        "/areas/eledhel/west-rural/4x6.c", "room");
     setCoordinate(4, 7,
-        "/players/maeglin/regstuff/4x7.c", "path");
+        "/areas/eledhel/west-rural/4x7.c", "path");
     setCoordinate(4, 8,
-        "/players/maeglin/regstuff/4x8.c", "path");
+        "/areas/eledhel/west-rural/4x8.c", "path");
     setCoordinate(4, 9,
-        "/players/maeglin/regstuff/4x9.c", "path");
+        "/areas/eledhel/west-rural/4x9.c", "path");
     setCoordinate(5, 1,
-        "/players/maeglin/regstuff/5x1.c", "path");
+        "/areas/eledhel/west-rural/5x1.c", "path");
     setCoordinate(5, 2,
-        "/players/maeglin/regstuff/5x2.c", "room");
+        "/areas/eledhel/west-rural/5x2.c", "room");
     setCoordinate(5, 3,
-        "/players/maeglin/regstuff/5x3.c", "path");
+        "/areas/eledhel/west-rural/5x3.c", "path");
     setCoordinate(5, 6,
-        "/players/maeglin/regstuff/5x6.c", "path");
+        "/areas/eledhel/west-rural/5x6.c", "path");
     setCoordinate(5, 7,
-        "/players/maeglin/regstuff/5x7.c", "path");
+        "/areas/eledhel/west-rural/5x7.c", "path");
     setCoordinate(5, 8,
-        "/players/maeglin/regstuff/5x8.c", "path");
+        "/areas/eledhel/west-rural/5x8.c", "path");
     setCoordinate(6, 1,
-        "/players/maeglin/regstuff/6x1.c", "path");
+        "/areas/eledhel/west-rural/6x1.c", "path");
     setCoordinate(6, 2,
-        "/players/maeglin/regstuff/6x2.c", "path");
+        "/areas/eledhel/west-rural/6x2.c", "path");
     setCoordinate(6, 3,
-        "/players/maeglin/regstuff/6x3.c", "path");
+        "/areas/eledhel/west-rural/6x3.c", "path");
     setCoordinate(6, 5,
-        "/players/maeglin/regstuff/6x5.c", "room");
+        "/areas/eledhel/west-rural/6x5.c", "room");
     setCoordinate(6, 6,
-        "/players/maeglin/regstuff/6x6.c", "path");
+        "/areas/eledhel/west-rural/6x6.c", "path");
     setCoordinate(6, 7,
-        "/players/maeglin/regstuff/6x7.c", "path");
+        "/areas/eledhel/west-rural/6x7.c", "path");
     setCoordinate(6, 8,
-        "/players/maeglin/regstuff/6x8.c", "path");
+        "/areas/eledhel/west-rural/6x8.c", "path");
     setCoordinate(6, 9,
-        "/players/maeglin/regstuff/6x9.c", "entry");
+        "/areas/eledhel/west-rural/6x9.c", "entry");
     setCoordinate(7, 2,
-        "/players/maeglin/regstuff/7x2.c", "path");
+        "/areas/eledhel/west-rural/7x2.c", "path");
     setCoordinate(7, 3,
-        "/players/maeglin/regstuff/7x3.c", "room");
+        "/areas/eledhel/west-rural/7x3.c", "room");
     setCoordinate(7, 5,
-        "/players/maeglin/regstuff/7x5.c", "path");
+        "/areas/eledhel/west-rural/7x5.c", "path");
     setCoordinate(7, 6,
-        "/players/maeglin/regstuff/7x6.c", "room");
+        "/areas/eledhel/west-rural/7x6.c", "room");
     setCoordinate(7, 9,
-        "/players/maeglin/regstuff/7x9.c", "room");
+        "/areas/eledhel/west-rural/7x9.c", "room");
     setCoordinate(8, 2,
-        "/players/maeglin/regstuff/8x2.c", "path");
+        "/areas/eledhel/west-rural/8x2.c", "path");
     setCoordinate(8, 4,
-        "/players/maeglin/regstuff/8x4.c", "room");
+        "/areas/eledhel/west-rural/8x4.c", "room");
     setCoordinate(8, 5,
-        "/players/maeglin/regstuff/8x5.c", "path");
+        "/areas/eledhel/west-rural/8x5.c", "path");
     setCoordinate(8, 6,
-        "/players/maeglin/regstuff/8x6.c", "path");
+        "/areas/eledhel/west-rural/8x6.c", "path");
     setCoordinate(9, 2,
-        "/players/maeglin/regstuff/9x2.c", "path");
+        "/areas/eledhel/west-rural/9x2.c", "path");
     setCoordinate(9, 5,
-        "/players/maeglin/regstuff/9x5.c", "path");
+        "/areas/eledhel/west-rural/9x5.c", "path");
     setCoordinate(9, 6,
-        "/players/maeglin/regstuff/9x6.c", "path");
+        "/areas/eledhel/west-rural/9x6.c", "path");
     setCoordinate(9, 7,
-        "/players/maeglin/regstuff/9x7.c", "path");
+        "/areas/eledhel/west-rural/9x7.c", "path");
     setCoordinate(9, 8,
-        "/players/maeglin/regstuff/9x8.c", "path");
+        "/areas/eledhel/west-rural/9x8.c", "path");
 
     // MapIcons
 }
-
