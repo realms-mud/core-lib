@@ -208,9 +208,10 @@ public int moveToIsAllowed(object user, object toLocation)
 private nomask string getCloneOwner(object actor, object party)
 {
     string owner = party ? party->partyName() : actor->RealName();
+
     if (!owner)
     {
-        owner = "default";
+        owner = this_player()->RealName();
     }
     return owner;
 }
@@ -221,6 +222,7 @@ public nomask varargs void enterEnvironment(object actor, object party)
     object location = this_object();
 
     string owner = getCloneOwner(actor, party);
+
     if (environmentalElements["cloned"])
     {
         if (member(instances, owner) && objectp(instances[owner]))
@@ -230,7 +232,17 @@ public nomask varargs void enterEnvironment(object actor, object party)
         else if(!clonep(this_object()))
         {
             environmentalElements["clone owner"] = owner;
-            location = clone_object(object_name(this_object()));
+
+            string sharedOwner = regreplace(owner, ".*#(.+)", "\\1", 1);
+
+            if ((owner != sharedOwner) && member(instances, sharedOwner))
+            {
+                location = instances[sharedOwner];
+            }
+            else
+            {
+                location = clone_object(object_name(this_object()));
+            }
             instances[owner] = location;
 
             if (getRegion())

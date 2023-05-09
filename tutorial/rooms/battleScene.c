@@ -32,6 +32,8 @@ public int resetEverything(string command)
 
     object *items = filter(all_inventory(this_object()),
         (: !$1->isRealizationOfLiving() :));
+    StateMachine->removeActors();
+
     foreach(object item in items)
     {
         destruct(item);

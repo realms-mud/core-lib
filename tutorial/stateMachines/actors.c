@@ -47,6 +47,45 @@ protected void setUpActors()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void deleteActor(string name)
+{
+    if (member(actors, name))
+    {
+        object actor = actors[name];
+        if (actor)
+        {
+            object party = actor->getParty();
+            party->removeNPC(actor);
+
+            object* items = deep_inventory(actor);
+            if (sizeof(items))
+            {
+                foreach(object item in items)
+                {
+                    destruct(item);
+                }
+            }
+
+            destruct(actor);
+        }
+
+        m_delete(actors, name);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeActors()
+{
+    if (sizeof(actors))
+    {
+        foreach(string actor in m_indices(actors))
+        {
+            deleteActor(actor);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void handleJerithDeath(object location)
 {
     tell_room(location,

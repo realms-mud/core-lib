@@ -454,46 +454,49 @@ public nomask void displayDeathMessage(object attacker, object foe,
 
     // This annoying loop handles the fact that everyone has different
     // setting for color.
-    object *characters = filter(all_inventory(environment(attacker)),
-        (: $1->isRealizationOfLiving() :));
-
-    object configuration = getDictionary("configuration");
-    string damageLevel = getColorForDamage(damageInflicted);
-
-    object weapon = getAttack("physical");
-    foreach(object person in characters)
+    if (attacker && environment(attacker))
     {
-        if(person && objectp(person))
-        {
-            string message;
-            if(person == attacker)
-            {
-                message = parseTemplate(template, "attacker", attacker,
-                                        foe, weapon);
-            }
-            else if(person == foe)
-            {
-                message = parseTemplate(template, "defender", attacker,
-                                        foe, weapon);
-            }
-            else
-            {
-                message = parseTemplate(template, "other", attacker,
-                                        foe, weapon);
-            }
+        object* characters = filter(all_inventory(environment(attacker)),
+            (: $1->isRealizationOfLiving() :));
 
-            if (damageInflicted)
+        object configuration = getDictionary("configuration");
+        string damageLevel = getColorForDamage(damageInflicted);
+
+        object weapon = getAttack("physical");
+        foreach(object person in characters)
+        {
+            if (person && objectp(person))
             {
-                message = format(message, 78);
-                        
-                message = configuration->decorate(
-                    message[0..sizeof(message) - 2],
-                    damageLevel, "combat", person->colorConfiguration()) +
-                    configuration->decorate(
-                        sprintf(" [ %d ]\n", damageInflicted),
-                        "damage", "combat", person->colorConfiguration());
+                string message;
+                if (person == attacker)
+                {
+                    message = parseTemplate(template, "attacker", attacker,
+                        foe, weapon);
+                }
+                else if (person == foe)
+                {
+                    message = parseTemplate(template, "defender", attacker,
+                        foe, weapon);
+                }
+                else
+                {
+                    message = parseTemplate(template, "other", attacker,
+                        foe, weapon);
+                }
+
+                if (damageInflicted)
+                {
+                    message = format(message, 78);
+
+                    message = configuration->decorate(
+                        message[0..sizeof(message) - 2],
+                        damageLevel, "combat", person->colorConfiguration()) +
+                        configuration->decorate(
+                            sprintf(" [ %d ]\n", damageInflicted),
+                            "damage", "combat", person->colorConfiguration());
+                }
+                tell_object(person, message);
             }
-            tell_object(person, message);
         }
     }
 }

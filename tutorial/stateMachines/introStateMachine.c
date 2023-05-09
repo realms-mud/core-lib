@@ -80,7 +80,7 @@ public void beginIntroduction(object player)
     foreach(string actor in m_indices(actors))
     {
         registerStateActor(actors[actor]);
-        actors[actor]->setLeader(Player);
+        actors[actor]->setLeader(Player, 1);
     }
 
     startStateMachine();

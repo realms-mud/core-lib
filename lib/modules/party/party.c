@@ -243,7 +243,7 @@ public nomask string following(object initiator)
 {
     string ret = 0;
 
-    object *potentialLeaders = m_indices(information["following"]);
+    object *potentialLeaders = m_indices(information["following"]) - ({ 0 });
     if (sizeof(potentialLeaders))
     {
         foreach(object leader in potentialLeaders)
@@ -361,6 +361,7 @@ public nomask void follow(object leader, object follower)
     else if(member(information["following"][leader], follower) < 0)
     {
         information["following"][leader] += ({ follower });
+        information["following"][leader] -= ({ 0 });
     }
 }
 
@@ -389,8 +390,10 @@ public nomask string stopFollowing(object follower)
 public nomask varargs void moveFollowers(object leader, string destination,
     string direction, int silently, object region)
 {
-    if (member(information["following"], leader) > -1)
+    if ((member(information["following"], leader) > -1) && 
+        information["following"][leader])
     {
+        information["following"][leader] -= ({ 0 });
         foreach(object follower in information["following"][leader])
         {
             follower->move(destination, direction, silently, region);
@@ -404,8 +407,8 @@ public nomask void removeNPC(object npc)
     stopFollowing(npc);
     information["npcs"] -= ({ npc });
     m_delete(information["experience earned"], npc->RealName());
-    saveParty();
     removePartyMember(npc->RealName());
+    saveParty();
 }
 
 /////////////////////////////////////////////////////////////////////////////
