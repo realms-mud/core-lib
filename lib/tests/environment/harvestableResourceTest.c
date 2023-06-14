@@ -35,7 +35,7 @@ void CleanUp()
 void SettingInvalidResourceFileThrowsError()
 {
     string error = catch (Resource.setup("alder", 25, 
-        "/lib/environment/environment.c", "description", ({ "tree" })));
+        "/lib/environment/environment.c", "description", ({ "tree" })); nolog);
 
     ExpectEq("*EnvironmentalElement: The resource "
         "\"/lib/environment/environment.c\" must exist and be clonable.\n", 

@@ -248,10 +248,10 @@ void LongOnlyShowsExitsWhenInCorrectState()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void LongRaisesErrorWhenTerrainOrInteriorNotSete()
+void LongRaisesErrorWhenTerrainOrInteriorNotSet()
 {
     string expected = "*ERROR in environment.c: Either a valid terrain or interior must be set.\n";
-    string err = catch (Environment.long());
+    string err = catch (Environment.long(); nolog);
     ExpectEq(expected, err);
 }
 
@@ -379,10 +379,10 @@ void MoveToLocationShowsDescriptionWhenEnteringArtificiallyLightedArea()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AddFeatureRaisesErrorWhenUnableToRegiterObject()
+void AddFeatureRaisesErrorWhenUnableToRegisterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment.testAddFeature("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddFeature("/lib/tests/some/bad/path.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -391,7 +391,7 @@ void AddFeatureRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeFeatureDuplicate.c'. A conflicting item with that name already exists.\n";
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
-    string err = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeatureDuplicate.c", "north"));
+    string err = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeatureDuplicate.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -400,7 +400,7 @@ void AddFeatureRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid feature.\n";
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment.testAddFeature("fake forest", "north"));
+    string err = catch (Environment.testAddFeature("fake forest", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -408,7 +408,7 @@ void AddFeatureRaisesErrorOnFailure()
 void AddItemRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment.testAddItem("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddItem("/lib/tests/some/bad/path.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -417,7 +417,7 @@ void AddItemRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeItemDuplicate.c'. A conflicting item with that name already exists.\n";
     Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment.testAddItem("/lib/tests/support/environment/fakeItemDuplicate.c", "north"));
+    string err = catch (Environment.testAddItem("/lib/tests/support/environment/fakeItemDuplicate.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -426,7 +426,7 @@ void AddItemRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid item.\n";
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment.testAddItem("fake forest", "north"));
+    string err = catch (Environment.testAddItem("fake forest", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -434,7 +434,7 @@ void AddItemRaisesErrorOnFailure()
 void AddExitRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'north' must be a string and '0' must be a valid destination file.\n";
-    string err = catch (Environment.testAddExit("north"));
+    string err = catch (Environment.testAddExit("north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -442,7 +442,7 @@ void AddExitRaisesErrorOnFailure()
 void AddBuildingRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment.testAddBuilding("/lib/tests/some/bad/path.c", "north"));
+    string err = catch (Environment.testAddBuilding("/lib/tests/some/bad/path.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -451,7 +451,7 @@ void AddBuildingRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeBuildingDuplicate.c'. A conflicting item with that name already exists.\n";
     Environment.testAddBuilding("/lib/tests/support/environment/fakeBuilding.c", "north");
-    string err = catch (Environment.testAddBuilding("/lib/tests/support/environment/fakeBuildingDuplicate.c", "north"));
+    string err = catch (Environment.testAddBuilding("/lib/tests/support/environment/fakeBuildingDuplicate.c", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -460,7 +460,7 @@ void AddBuildingRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake forest' is not a valid building with a valid location.\n";
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment.testAddBuilding("fake forest", "north"));
+    string err = catch (Environment.testAddBuilding("fake forest", "north"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -468,7 +468,7 @@ void AddBuildingRaisesErrorOnFailure()
 void SetTerrainRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment.testSetTerrain("/lib/tests/some/bad/path.c"));
+    string err = catch (Environment.testSetTerrain("/lib/tests/some/bad/path.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -477,7 +477,7 @@ void SetTerrainRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeTerrainDuplicate.c'. A conflicting item with that name already exists.\n";
     Dictionary.registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
-    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"));
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -486,7 +486,7 @@ void SetTerrainRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake sign' is not a valid terrain.\n";
     Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment.testSetTerrain("fake sign"));
+    string err = catch (Environment.testSetTerrain("fake sign"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -495,7 +495,7 @@ void SetTerrainCanOnlyBeCalledOnce()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -504,7 +504,7 @@ void SetTerrainCannotBeCalledIfInteriorSet()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
     Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"));
+    string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -513,7 +513,7 @@ void SetInteriorCannotBeCalledIfTerrainSet()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -521,7 +521,7 @@ void SetInteriorCannotBeCalledIfTerrainSet()
 void SetInteriorRaisesErrorWhenUnableToRegiterObject()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/some/bad/path.c'. Be sure that the file exists and inherits a valid environmental element.\n";
-    string err = catch (Environment.testSetInterior("/lib/tests/some/bad/path.c"));
+    string err = catch (Environment.testSetInterior("/lib/tests/some/bad/path.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -530,7 +530,7 @@ void SetInteriorRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeInteriorDuplicate.c'. A conflicting item with that name already exists.\n";
     Dictionary.registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
-    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"));
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -539,7 +539,7 @@ void SetInteriorRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: 'fake sign' is not a valid interior.\n";
     Environment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
-    string err = catch (Environment.testSetInterior("fake sign"));
+    string err = catch (Environment.testSetInterior("fake sign"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -548,7 +548,7 @@ void SetInteriorCanOnlyBeCalledOnce()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";
     Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"));
+    string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -556,7 +556,7 @@ void SetInteriorCanOnlyBeCalledOnce()
 void AddObjectRaisesErrorOnFailure()
 {
     string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid file.\n";
-    string err = catch (Environment.testAddObject("/lib/tests/bad/path.c"));
+    string err = catch (Environment.testAddObject("/lib/tests/bad/path.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -866,7 +866,7 @@ void CannotAddInvalidLocations()
     ]);
 
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string error = catch(Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", location));
+    string error = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", location); nolog);
     ExpectSubStringMatch("ERROR in environment.c.*slightly east of north and upwardish", error);
 }
 
@@ -874,7 +874,7 @@ void CannotAddInvalidLocations()
 void CannotAddUndefinedDefaultLocations()
 {
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    string error = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"));
+    string error = catch (Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "turnip"); nolog);
     ExpectSubStringMatch("ERROR in environment.c.*turnip", error);
 }
 
@@ -904,7 +904,7 @@ void DescriptionDisplaysCorrectlyForObjectsWithEmptyDescriptions()
 void ObjectsWithoutDescriptionsCannotHaveDirection()
 {
     Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
-    string error = catch (Environment.testAddItem("/lib/tests/support/environment/itemWithoutDescription.c", "north"));
+    string error = catch (Environment.testAddItem("/lib/tests/support/environment/itemWithoutDescription.c", "north"); nolog);
 
     ExpectEq("*ERROR in environment.c: You cannot specify a direction for "
         "'descriptionless sign' as it has no description.\n", error);

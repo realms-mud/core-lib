@@ -272,7 +272,7 @@ void AdvanceSkillFiresOnSkillAdvancedEventToSubscriber()
     Skills.registerEvent(subscriber);
 
     string expected = "*event handler: onSkillAdvanced called, data: long sword, caller: /lib/tests/support/services/skillsWithMockServices.c";
-    string err = catch (Skills.advanceSkill("long sword", 2));
+    string err = catch (Skills.advanceSkill("long sword", 2); nolog);
     ExpectEq(expected, err, "onSkillAdvanced called on subscriber");
 }
 
@@ -284,7 +284,7 @@ void AdvanceSkillFiresOnSkillPointsUsedEventToSubscriber()
     Skills.registerEvent(subscriber);
 
     string expected = "*event handler: onSkillPointsUsed called, data: 4, caller: /lib/tests/support/services/skillsWithMockServices.c";
-    string err = catch (Skills.advanceSkill("long sword", 2));
+    string err = catch (Skills.advanceSkill("long sword", 2); nolog);
     ExpectEq(expected, err, "onSkillPointsUsed called on subscriber");
 }
 
@@ -297,7 +297,7 @@ void DecrementSkillFiresOnSkillDecreasedEventToSubscriber()
     Skills.registerEvent(subscriber);
 
     string expected = "*event handler: onSkillDecreased called, data: long sword, caller: /lib/tests/support/services/skillsWithMockServices.c";
-    string err = catch (Skills.decrementSkill("long sword", 2));
+    string err = catch (Skills.decrementSkill("long sword", 2); nolog);
     ExpectEq(expected, err, "onSkillDecreased called on subscriber");
 }
 
@@ -310,7 +310,7 @@ void DecrementSkillFiresOnSkillPointsIncreasedEventToSubscriber()
     Skills.registerEvent(subscriber);
 
     string expected = "*event handler: onSkillPointsIncreased called, data: 4, caller: /lib/tests/support/services/skillsWithMockServices.c";
-    string err = catch (Skills.decrementSkill("long sword", 2));
+    string err = catch (Skills.decrementSkill("long sword", 2); nolog);
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }
 
@@ -321,6 +321,6 @@ void AddSkillPointsFiresOnSkillPointsIncreasedEventToSubscriber()
     Skills.registerEvent(subscriber);
 
     string expected = "*event handler: onSkillPointsIncreased called, data: 100, caller: /lib/tests/support/services/skillsWithMockServices.c";
-    string err = catch (Skills.addSkillPoints(100));
+    string err = catch (Skills.addSkillPoints(100); nolog);
     ExpectEq(expected, err, "onSkillPointsIncreased called on subscriber");
 }

@@ -1285,7 +1285,7 @@ void InvalidGuildsPrunedFromProhibitionList()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddInvalidEquipmentProhibition()
 {
-    string err = catch (Guild.testAddEquipmentProhibition("blah", ({ "stuff" })));
+    string err = catch (Guild.testAddEquipmentProhibition("blah", ({ "stuff" })); nolog);
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
 }
@@ -1300,7 +1300,7 @@ void CanAddMaterialEquipmentProhibition()
 void CannotAddInvalidMaterialToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("material",
-        ({ "iron", "stuff" })));
+        ({ "iron", "stuff" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -1316,7 +1316,7 @@ void CanAddMaterialTypeEquipmentProhibition()
 void CannotAddInvalidMaterialTypeToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("material type",
-        ({ "metal", "felt" })));
+        ({ "metal", "felt" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -1332,7 +1332,7 @@ void CanAddArmorTypeEquipmentProhibition()
 void CannotAddInvalidArmorTypeToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("armor type",
-        ({ "chainmail", "felt" })));
+        ({ "chainmail", "felt" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -1348,7 +1348,7 @@ void CanAddArmorLocationEquipmentProhibition()
 void CannotAddInvalidArmorLocationToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("armor location",
-        ({ "cloak", "felt" })));
+        ({ "cloak", "felt" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -1364,7 +1364,7 @@ void CanAddWeaponTypeEquipmentProhibition()
 void CannotAddInvalidWeaponTypeToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("weapon type",
-        ({ "axe", "felt" })));
+        ({ "axe", "felt" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -1380,7 +1380,7 @@ void CanAddDamageTypeEquipmentProhibition()
 void CannotAddInvalidDamageTypeToEquipmentProhibition()
 {
     string err = catch (Guild.testAddEquipmentProhibition("damage type",
-        ({ "thrust", "felt" })));
+        ({ "thrust", "felt" })); nolog);
 
     string expectedError = "*baseGuild::addEquipmentProhibition - an invalid prohibition was supplied.";
     ExpectEq(expectedError, err, "The correct exception is thrown");

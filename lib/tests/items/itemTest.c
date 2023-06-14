@@ -63,7 +63,7 @@ void QueryingUnsetValueCorrectlyReturns()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidBonusesThrowError()
 {
-    string err = catch(Item.set("bonus blarg", 5));
+    string err = catch (Item.set("bonus blarg", 5); nolog);
     string expectedError = "*Item: The 'bonus <thing>' element must be a string as defined in the keys of the bonusList mapping in /lib/dictionaries/bonusesDictionary.c and it must be set to an appropriate value.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid bonuses");
@@ -83,10 +83,10 @@ void SettingInvalidAliasThrowsError()
 {
     string expected = "*Item: The passed 'aliases' data must be an array of strings.\n";
 
-    string err = catch (Item.set("aliases", 1));
+    string err = catch (Item.set("aliases", 1); nolog);
     ExpectEq(expected, err, "aliases cannot be integers");
 
-    err = catch (Item.set("aliases", "blah"));
+    err = catch (Item.set("aliases", "blah"); nolog);
     ExpectEq(expected, err, "aliases cannot be simple strings");
 }
 
@@ -103,10 +103,10 @@ void SettingInvalidChargesThrowsError()
 {
     string expected = "*Item: The passed 'charges' data must be an integer greater than 0.\n";
 
-    string err = catch (Item.set("charges", -1));
+    string err = catch (Item.set("charges", -1); nolog);
     ExpectEq(expected, err, "charges cannot be negative");
 
-    err = catch (Item.set("charges", "blah"));
+    err = catch (Item.set("charges", "blah"); nolog);
     ExpectEq(expected, err, "charges cannot be a string");
 }
 
@@ -122,10 +122,10 @@ void SettingInvalidCraftsmanshipThrowsError()
 {
     string expected = "*Item: The passed 'craftsmanship' data must be an integer greater than 0.\n";
 
-    string err = catch (Item.set("craftsmanship", -1));
+    string err = catch (Item.set("craftsmanship", -1); nolog);
     ExpectEq(expected, err, "craftsmanship cannot be negative");
 
-    err = catch (Item.set("craftsmanship", "blah"));
+    err = catch (Item.set("craftsmanship", "blah"); nolog);
     ExpectEq(expected, err, "craftsmanship cannot be a string");
 }
 
@@ -150,7 +150,7 @@ void SettingInvalidValueThrowsError()
 {
     string expected = "*Item: The passed 'value' data must be an integer.\n";
 
-    string err = catch (Item.set("value", "blah"));
+    string err = catch (Item.set("value", "blah"); nolog);
     ExpectEq(expected, err, "value cannot be a string");
 }
 
@@ -166,7 +166,7 @@ void SettingInvalidWeightThrowsError()
 {
     string expected = "*Item: The passed 'weight' data must be an integer.\n";
 
-    string err = catch (Item.set("weight", "blah"));
+    string err = catch (Item.set("weight", "blah"); nolog);
     ExpectEq(expected, err, "weight cannot be a string");
 }
 
@@ -182,7 +182,7 @@ void SettingInvalidEncumberanceThrowsError()
 {
     string expected = "*Item: The passed 'encumberance' data must be an integer.\n";
 
-    string err = catch (Item.set("encumberance", "blah"));
+    string err = catch (Item.set("encumberance", "blah"); nolog);
     ExpectEq(expected, err, "encumberance cannot be a string");
 }
 
@@ -198,7 +198,7 @@ void SettingInvalidNoStealThrowsError()
 {
     string expected = "*Item: The passed 'no steal' data must be an integer.\n";
 
-    string err = catch (Item.set("no steal", "blah"));
+    string err = catch (Item.set("no steal", "blah"); nolog);
     ExpectEq(expected, err, "no steal cannot be a string");
 }
 
@@ -214,7 +214,7 @@ void SettingInvalidNoSellThrowsError()
 {
     string expected = "*Item: The passed 'no sell' data must be an integer.\n";
 
-    string err = catch (Item.set("no sell", "blah"));
+    string err = catch (Item.set("no sell", "blah"); nolog);
     ExpectEq(expected, err, "no sell cannot be a string");
 }
 
@@ -230,7 +230,7 @@ void SettingInvalidRegisterEventHandlerThrowsError()
 {
     string expected = "*Item: The passed 'register event handler' data must be an integer.\n";
 
-    string err = catch (Item.set("register event handler", "blah"));
+    string err = catch (Item.set("register event handler", "blah"); nolog);
     ExpectEq(expected, err, "register event handler cannot be a string");
 }
 
@@ -246,7 +246,7 @@ void SettingInvalidLightThrowsError()
 {
     string expected = "*Item: The passed 'light' data must be an integer.\n";
 
-    string err = catch (Item.set("light", "blah"));
+    string err = catch (Item.set("light", "blah"); nolog);
     ExpectEq(expected, err, "light cannot be a string");
 }
 
@@ -262,7 +262,7 @@ void SettingInvalidInfoThrowsError()
 {
     string expected = "*Item: The passed 'info' data must be a string.\n";
 
-    string err = catch (Item.set("info", 1));
+    string err = catch (Item.set("info", 1); nolog);
     ExpectEq(expected, err, "info cannot be an integer");
 }
 
@@ -278,7 +278,7 @@ void SettingInvalidLongThrowsError()
 {
     string expected = "*Item: The passed 'long' data must be a string.\n";
 
-    string err = catch (Item.set("long", 1));
+    string err = catch (Item.set("long", 1); nolog);
     ExpectEq(expected, err, "long cannot be an integer");
 }
 
@@ -294,7 +294,7 @@ void SettingInvalidAdditionalLongThrowsError()
 {
     string expected = "*Item: The passed 'additional long' data must be a string.\n";
 
-    string err = catch (Item.set("additional long", 1));
+    string err = catch (Item.set("additional long", 1); nolog);
     ExpectEq(expected, err, "additional long cannot be an integer");
 }
 
@@ -310,7 +310,7 @@ void SettingInvalidUserDescriptionThrowsError()
 {
     string expected = "*Item: The passed 'user description' data must be a string.\n";
 
-    string err = catch (Item.set("user description", 1));
+    string err = catch (Item.set("user description", 1); nolog);
     ExpectEq(expected, err, "user description cannot be an integer");
 }
 
@@ -326,7 +326,7 @@ void SettingInvalidNameThrowsError()
 {
     string expected = "*Item: The passed 'name' data must be a string.\n";
 
-    string err = catch (Item.set("name", 1));
+    string err = catch (Item.set("name", 1); nolog);
     ExpectEq(expected, err, "name cannot be an integer");
 }
 
@@ -342,7 +342,7 @@ void SettingInvalidOwnerThrowsError()
 {
     string expected = "*Item: The passed 'owner' data must be a string.\n";
 
-    string err = catch (Item.set("owner", 1));
+    string err = catch (Item.set("owner", 1); nolog);
     ExpectEq(expected, err, "owner cannot be an integer");
 }
 
@@ -358,7 +358,7 @@ void SettingInvalidReadMessageUnidentifiedThrowsError()
 {
     string expected = "*Item: The passed 'read message unidentified' data must be a string.\n";
 
-    string err = catch (Item.set("read message unidentified", 1));
+    string err = catch (Item.set("read message unidentified", 1); nolog);
     ExpectEq(expected, err, "read message unidentified cannot be an integer");
 }
 
@@ -374,7 +374,7 @@ void SettingInvalidReadMessageIdentifiedThrowsError()
 {
     string expected = "*Item: The passed 'read message identified' data must be a string.\n";
 
-    string err = catch (Item.set("read message identified", 1));
+    string err = catch (Item.set("read message identified", 1); nolog);
     ExpectEq(expected, err, "read message identified cannot be an integer");
 }
 
@@ -390,7 +390,7 @@ void SettingInvalidShortThrowsError()
 {
     string expected = "*Item: The passed 'short' data must be a string.\n";
 
-    string err = catch (Item.set("short", 1));
+    string err = catch (Item.set("short", 1); nolog);
     ExpectEq(expected, err, "short cannot be an integer");
 }
 
@@ -406,7 +406,7 @@ void DestructMethodMustExistOnObjectToBeSet()
 {
     string expected = "*Item: The passed 'blah' destruct method must be a function that exists in this item.\n";
 
-    string err = catch (Item.set("destruct method", "blah"));
+    string err = catch (Item.set("destruct method", "blah"); nolog);
     ExpectEq(expected, err, "destruct method must exist on the item");
 }
 
@@ -422,7 +422,7 @@ void SettingInvalidMaterialThrowsError()
 {
     string expected = "*Item: The 'material' element must be a string as defined in the keys of the materials mapping in /lib/dictionaries/materialsDictionary.c.\n";
 
-    string err = catch (Item.set("material", "blah"));
+    string err = catch (Item.set("material", "blah"); nolog);
     ExpectEq(expected, err, "material must be a valid material");
 }
 
@@ -461,7 +461,7 @@ void SettingInvalidEnchantmentsThrowsError()
 {
     string expected = "*Item: The enchantments element must be a mapping containing a valid damage type with a valid range as defined in /lib/dictionaries/attacksDictionary.c";
 
-    string err = catch (Item.set("enchantments", (["gelatin":10])));
+    string err = catch (Item.set("enchantments", (["gelatin":10])); nolog);
     ExpectEq(expected, err, "enchantments must be a valid enchantment");
 }
 
@@ -502,7 +502,7 @@ void SettingInvalidResistancesThrowsError()
 {
     string expected = "*Item: The resistances element must be a mapping containing a valid damage type with a valid range as defined in /lib/dictionaries/attacksDictionary.c";
 
-    string err = catch (Item.set("resistances", ([ "gelatin":10 ])));
+    string err = catch (Item.set("resistances", ([ "gelatin":10 ])); nolog);
     ExpectEq(expected, err, "resistances must be a valid resistance");
 }
 
@@ -511,7 +511,7 @@ void ArmorClassCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'armor class' element for this type of object.\n";
 
-    string err = catch (Item.set("armor class", 10));
+    string err = catch (Item.set("armor class", 10); nolog);
     ExpectEq(expected, err, "armor class cannot be set");
 }
 
@@ -520,7 +520,7 @@ void DefenseClassCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'defense class' element for this type of object.\n";
 
-    string err = catch (Item.set("defense class", 10));
+    string err = catch (Item.set("defense class", 10); nolog);
     ExpectEq(expected, err, "defense class cannot be set");
 }
 
@@ -529,7 +529,7 @@ void WeaponClassCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'weapon class' element for this type of object.\n";
 
-    string err = catch (Item.set("weapon class", 10));
+    string err = catch (Item.set("weapon class", 10); nolog);
     ExpectEq(expected, err, "weapon class cannot be set");
 }
 
@@ -538,7 +538,7 @@ void HitMethodCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'hit method' element for this type of object.\n";
 
-    string err = catch (Item.set("hit method", "blah"));
+    string err = catch (Item.set("hit method", "blah"); nolog);
     ExpectEq(expected, err, "hit method cannot be set");
 }
 
@@ -547,7 +547,7 @@ void ArmorTypeCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'armor type' element for this type of object.\n";
 
-    string err = catch (Item.set("armor type", "blah"));
+    string err = catch (Item.set("armor type", "blah"); nolog);
     ExpectEq(expected, err, "armor type cannot be set");
 }
 
@@ -556,7 +556,7 @@ void WeaponTypeCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'weapon type' element for this type of object.\n";
 
-    string err = catch (Item.set("weapon type", "blah"));
+    string err = catch (Item.set("weapon type", "blah"); nolog);
     ExpectEq(expected, err, "weapon type cannot be set");
 }
 
@@ -565,7 +565,7 @@ void OffhandCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'offhand' element for this type of object.\n";
 
-    string err = catch (Item.set("offhand", "blah"));
+    string err = catch (Item.set("offhand", "blah"); nolog);
     ExpectEq(expected, err, "offhand cannot be set");
 }
 
@@ -574,7 +574,7 @@ void CursedCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'cursed' element for this type of object.\n";
 
-    string err = catch (Item.set("cursed", 1));
+    string err = catch (Item.set("cursed", 1); nolog);
     ExpectEq(expected, err, "cursed cannot be set");
 }
 
@@ -583,7 +583,7 @@ void PrerequisitesCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'prerequisites' element for this type of object.\n";
 
-    string err = catch (Item.set("prerequisites", "blah"));
+    string err = catch (Item.set("prerequisites", "blah"); nolog);
     ExpectEq(expected, err, "prerequisites cannot be set");
 }
 
@@ -592,7 +592,7 @@ void EquipMessageCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'equip message' element for this type of object.\n";
 
-    string err = catch (Item.set("equip message", "blah"));
+    string err = catch (Item.set("equip message", "blah"); nolog);
     ExpectEq(expected, err, "equip message cannot be set");
 }
 
@@ -601,7 +601,7 @@ void EquipMethodCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'equip method' element for this type of object.\n";
 
-    string err = catch (Item.set("equip method", "blah"));
+    string err = catch (Item.set("equip method", "blah"); nolog);
     ExpectEq(expected, err, "equip method cannot be set");
 }
 
@@ -610,7 +610,7 @@ void UnequipMessageCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'unequip message' element for this type of object.\n";
 
-    string err = catch (Item.set("unequip message", "blah"));
+    string err = catch (Item.set("unequip message", "blah"); nolog);
     ExpectEq(expected, err, "unequip message cannot be set");
 }
 
@@ -619,7 +619,7 @@ void EquipmentLocationsCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'equipment locations' element for this type of object.\n";
 
-    string err = catch (Item.set("equipment locations", "blah"));
+    string err = catch (Item.set("equipment locations", "blah"); nolog);
     ExpectEq(expected, err, "equipment locations cannot be set");
 }
 
@@ -628,7 +628,7 @@ void UnequipMethodCannotBeSet()
 {
     string expected = "*Item: It is illegal to set the 'unequip method' element for this type of object.\n";
 
-    string err = catch (Item.set("unequip method", "blah"));
+    string err = catch (Item.set("unequip method", "blah"); nolog);
     ExpectEq(expected, err, "unequip method cannot be set");
 }
 

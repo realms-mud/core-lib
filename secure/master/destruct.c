@@ -46,6 +46,7 @@ private nomask void moveOrDestruct(object actor, object destination)
     string temp;
 
     string shortDescription = 0;
+
     catch (shortDescription = actor->short());
 
     if (actor->drop() || !shortDescription)

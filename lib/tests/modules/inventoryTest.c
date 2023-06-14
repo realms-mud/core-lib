@@ -159,7 +159,7 @@ void EquipEventHandlerTriggersOnEquip()
     armor.set("register event handler", 1);
     move_object(armor, Inventory);
 
-    string err = catch (ExpectTrue(armor.equip("blah"), "armor equip called"));
+    string err = catch (ExpectTrue(armor.equip("blah"), "armor equip called"); nolog);
     ExpectEq("*event handler: onEquip called", err, "onEquip event fired");
     ToggleCallOutBypass();
 }
@@ -174,10 +174,10 @@ void UnequipEventHandlerTriggersOnUnequip()
     move_object(armor, Inventory);
     armor.set("register event handler", 1);
 
-    catch (ExpectTrue(armor.equip("blah"), "armor equip called"));
+    catch (ExpectTrue(armor.equip("blah"), "armor equip called"); nolog);
 
     armor.set("register event handler", 1);
-    string err = catch (ExpectTrue(armor.unequip("blah"), "armor unequip called"));
+    string err = catch (ExpectTrue(armor.unequip("blah"), "armor unequip called"); nolog);
     ExpectEq("*event handler: onUnequip called", err, "onUnequip event fired");
     ToggleCallOutBypass();
 }
@@ -240,7 +240,7 @@ void RegisterEventHandlerTriggersOnRegister()
     modifier.set("register event handler", 1);
     modifier.set("fully qualified name", "blah");
 
-    string err = catch (ExpectEq(1, modifier.set("registration list", ({ Inventory })), "registration list can be set"));
+    string err = catch (ExpectEq(1, modifier.set("registration list", ({ Inventory })), "registration list can be set"); nolog);
     ExpectEq("*event handler: onRegisterItem called", err, "onRegisterItem event fired");
     ToggleCallOutBypass();
 }
@@ -254,9 +254,9 @@ void UnregisterEventHandlerTriggersOnUnregister()
     modifier.set("fully qualified name", "blah");
   
     object *list = ({ Inventory });
-    catch (ExpectEq(1, modifier.set("registration list", list), "registration list can be set"));
+    catch (ExpectEq(1, modifier.set("registration list", list), "registration list can be set"); nolog);
 
-    string err = catch (ExpectTrue(modifier.unregisterModifierFromTargetList(), "unregister modifier"));
+    string err = catch (ExpectTrue(modifier.unregisterModifierFromTargetList(), "unregister modifier"); nolog);
     ExpectEq("*event handler: onUnregisterItem called", err, "onUnregisterItem event fired");
     ToggleCallOutBypass();
 }

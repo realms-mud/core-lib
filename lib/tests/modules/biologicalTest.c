@@ -44,7 +44,7 @@ void IntoxicatedFiresOnIntoxicationChangedEventWhenValueChanges()
 
     ExpectEq(0, Character.Intoxicated());
 
-    string err = catch (Character.Intoxicated(10));
+    string err = catch (Character.Intoxicated(10); nolog);
     ExpectEq(expected, err, "onIntoxicationChanged called on subscriber");
 }
 
@@ -86,7 +86,7 @@ void AddIntoxicationFiresOnIntoxicationChangedEvent()
 
     string expected = "*event handler: onIntoxicationChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.addIntoxication(10));
+    string err = catch (Character.addIntoxication(10); nolog);
     ExpectEq(expected, err, "onIntoxicationChanged called on subscriber");
 }
 
@@ -107,7 +107,7 @@ void StuffedFiresOnStuffedChangedEventWhenValueChanges()
 
     ExpectEq(0, Character.Stuffed());
 
-    string err = catch (Character.Stuffed(10));
+    string err = catch (Character.Stuffed(10); nolog);
     ExpectEq(expected, err, "onStuffedChanged called on subscriber");
 }
 
@@ -149,7 +149,7 @@ void AddStuffedFiresOnIntoxicationChangedEvent()
 
     string expected = "*event handler: onStuffedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.addStuffed(10));
+    string err = catch (Character.addStuffed(10); nolog);
     ExpectEq(expected, err, "onStuffedChanged called on subscriber");
 }
 
@@ -170,7 +170,7 @@ void DruggedFiresOnDruggedChangedEventWhenValueChanges()
 
     ExpectEq(0, Character.Drugged());
 
-    string err = catch (Character.Drugged(10));
+    string err = catch (Character.Drugged(10); nolog);
     ExpectEq(expected, err, "onDruggedChanged called on subscriber");
 }
 
@@ -212,7 +212,7 @@ void AddDruggedFiresOnIntoxicationChangedEvent()
 
     string expected = "*event handler: onDruggedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.addDrugged(10));
+    string err = catch (Character.addDrugged(10); nolog);
     ExpectEq(expected, err, "onDruggedChanged called on subscriber");
 }
 
@@ -233,7 +233,7 @@ void SoakedFiresOnSoakedChangedEventWhenValueChanges()
 
     ExpectEq(0, Character.Soaked());
 
-    string err = catch (Character.Soaked(10));
+    string err = catch (Character.Soaked(10); nolog);
     ExpectEq(expected, err, "onSoakedChanged called on subscriber");
 }
 
@@ -275,7 +275,7 @@ void AddSoakedFiresOnIntoxicationChangedEvent()
 
     string expected = "*event handler: onSoakedChanged called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.addSoaked(10));
+    string err = catch (Character.addSoaked(10); nolog);
     ExpectEq(expected, err, "onSoakedChanged called on subscriber");
 }
 
@@ -325,7 +325,7 @@ void DrinkAlcoholFiresOnDrunkWhenInebriated()
 
     string expected = "*event handler: onDrunk called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.drinkAlcohol(drink));
+    string err = catch (Character.drinkAlcohol(drink); nolog);
     ExpectEq(expected, err, "onDrunk called on subscriber");
 
     destruct(drink);
@@ -377,7 +377,7 @@ void DrinkAlcoholFiresOnSoberWhenNoLongerInebriated()
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink.set("biological strength", -5);
 
-    string err = catch (Character.drinkAlcohol(drink));
+    string err = catch (Character.drinkAlcohol(drink); nolog);
     ExpectEq(expected, err, "onSober called on subscriber");
     destruct(drink);
 }
@@ -402,7 +402,7 @@ void DetoxFromAlcoholFiresOnBeginDetox()
 
     string expected = "*event handler: onBeginDetox called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.heart_beat());
+    string err = catch (Character.heart_beat(); nolog);
     ExpectEq(expected, err, "onBeginDetox called on subscriber");
 }
 
@@ -442,7 +442,7 @@ void OnDetoxifiedFiresAfterDetox()
 
     string expected = "*event handler: onDetoxified called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.heart_beat());
+    string err = catch (Character.heart_beat(); nolog);
     ExpectEq(expected, err, "onDetoxified called on subscriber");
 }
 
@@ -508,7 +508,7 @@ void ConsumeDrugFiresOnWastedOnDrugsWhenWasted()
     drug.set("biological effect", "opiate");
     drug.set("biological strength", 20);
 
-    string err = catch (Character.consumeDrug(drug));
+    string err = catch (Character.consumeDrug(drug); nolog);
     ExpectEq(expected, err, "onWastedOnDrugs called on subscriber");
     destruct(drug);
 }
@@ -562,7 +562,7 @@ void ConsumeDrugFiresOnNoLongerDruggedWhenNoLongerDrugged()
     drug.set("biological effect", "opiate");
     drug.set("biological strength", -5);
 
-    string err = catch (Character.consumeDrug(drug));
+    string err = catch (Character.consumeDrug(drug); nolog);
     ExpectEq(expected, err, "onNoLongerDrugged called on subscriber");
     destruct(drug);
 }
@@ -595,7 +595,7 @@ void DetoxFromDrugsFiresOnBeginDetox()
 
     string expected = "*event handler: onBeginDetox called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.heart_beat());
+    string err = catch (Character.heart_beat(); nolog);
     ExpectEq(expected, err, "onBeginDetox called on subscriber");
     destruct(drug);
 }
@@ -637,7 +637,7 @@ void DrinkFiresOnSoakedWhenTooMuchHasBeenDrunk()
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink.set("biological strength", 17);
 
-    string err = catch (Character.drink(drink));
+    string err = catch (Character.drink(drink); nolog);
     ExpectEq(expected, err, "onSoaked called on subscriber");
     destruct(drink);
 }
@@ -690,7 +690,7 @@ void DrinkFiresOnNoLongerSoakedWhenNoLongerSoaked()
     object drink = clone_object("/lib/instances/items/drinks/trippel.c");
     drink.set("biological strength", -10);
 
-    string err = catch (Character.drink(drink));
+    string err = catch (Character.drink(drink); nolog);
     ExpectEq(expected, err, "onNoLongerSoaked called on subscriber");
     destruct(drink);
 }
@@ -715,7 +715,7 @@ void NoLongerSoakedFiresOnNoLongerSoaked()
 
     string expected = "*event handler: onNoLongerSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.heart_beat());
+    string err = catch (Character.heart_beat(); nolog);
     ExpectEq(expected, err, "onNoLongerSoaked called on subscriber");
 }
 
@@ -762,7 +762,7 @@ void EatFiresOnStuffedWhenTooMuchHasBeenEaten()
     object food = clone_object("/lib/items/food.c");
     food.set("biological strength", 20);
 
-    string err = catch (Character.eat(food));
+    string err = catch (Character.eat(food); nolog);
     ExpectEq(expected, err, "onCannotEatMore called on subscriber");
     destruct(food);
 }
@@ -816,7 +816,7 @@ void EatFiresOnHungryWhenNoLongerStuffed()
     object food = clone_object("/lib/items/food.c");
     food.set("biological strength", -5);
 
-    string err = catch (Character.eat(food));
+    string err = catch (Character.eat(food); nolog);
     ExpectEq(expected, err, "onHungry called on subscriber");
     destruct(food);
 }
@@ -845,7 +845,7 @@ void NoLongerStuffedFiresOnHungry()
 
     string expected = "*event handler: onHungry called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    string err = catch (Character.heart_beat());
+    string err = catch (Character.heart_beat(); nolog);
     ExpectEq(expected, err, "onHungry called on subscriber");
     destruct(food);
 }

@@ -50,7 +50,7 @@ void CanSetSourceForResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void AddingInvalidResearchElementThrowsError()
 {
-    string err = catch (ResearchTree.addResearchElement("/lib/blah"));
+    string err = catch (ResearchTree.addResearchElement("/lib/blah"); nolog);
     string expectedError = "*ERROR - researchTree: The research element must exist in the location passed to this method and be a valid object before it can be added to any trees.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -60,7 +60,7 @@ void AddingInvalidResearchElementThrowsError()
 void AddingDuplicateResearchElementThrowsError()
 {
     ExpectTrue(ResearchTree.addResearchElement(ResearchItem), "add an element");
-    string err = catch (ResearchTree.addResearchElement(ResearchItem));
+    string err = catch (ResearchTree.addResearchElement(ResearchItem); nolog);
     string expectedError = "*ERROR - researchTree: The research item /lib/tests/support/research/testActiveResearchItem.c is already a member of the research tree.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -94,7 +94,7 @@ void CannotSetAResearchItemAsItsOwnParent()
 {
     ExpectTrue(ResearchTree.addResearchElement(ResearchItem), "add an element");
     ExpectTrue(ResearchTree.TreeRoot(ResearchItem), "set the tree root");
-    string err = catch (ResearchTree.addChild(ResearchItem, ResearchItem));
+    string err = catch (ResearchTree.addChild(ResearchItem, ResearchItem); nolog);
     string expectedError = "*ERROR - researchTree: The child (/lib/tests/support/research/testActiveResearchItem.c) and parent (/lib/tests/support/research/testActiveResearchItem.c) must be unique valid researchItem objects.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -200,7 +200,7 @@ void InfinitelyRecursingTreesWillThrowError()
     ExpectTrue(ResearchTree.addChild("/lib/modules/research/persistedActiveResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedActiveResearchItem");
     ExpectTrue(ResearchTree.addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/passiveResearchItem.c"), "set parent for persistedRitualResearchItem");
     ExpectTrue(ResearchTree.addChild("/lib/modules/research/persistedRitualResearchItem.c", "/lib/modules/research/knowledgeResearchItem.c"), "set parent for persistedRitualResearchItem");
-    string err = catch (ResearchTree.addChild(ResearchItem, "/lib/modules/research/persistedRitualResearchItem.c"));
+    string err = catch (ResearchTree.addChild(ResearchItem, "/lib/modules/research/persistedRitualResearchItem.c"); nolog);
     string expectedError = "*ERROR - researchTree: The relationship for child (/lib/tests/support/research/testActiveResearchItem.c) and parent (/lib/modules/research/persistedRitualResearchItem.c) results in infinite recursion.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");

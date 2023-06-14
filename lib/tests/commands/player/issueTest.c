@@ -90,7 +90,7 @@ void CanLogIssueWithComment()
 /////////////////////////////////////////////////////////////////////////////
 void CanLogIssueOnTarget()
 {
-    catch (load_object("this/will/throw/an/error"));
+    catch (load_object("this/will/throw/an/error"); nolog);
 
     object stuff = 
         clone_object("/lib/instances/items/weapons/swords/long-sword.c");

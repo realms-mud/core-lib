@@ -242,7 +242,7 @@ void HitPointsFiresOnHitPointsChangedEvent()
     ExpectEq(100, Attacker.hitPoints());
     ExpectEq(100, Attacker.hitPoints(-50));
 
-    string err = catch (ExpectEq(Attacker.hitPoints(100), "hit points increased"));
+    string err = catch (ExpectEq(Attacker.hitPoints(100), "hit points increased"); nolog);
     ExpectEq("*event handler: onHitPointsChanged called", err, "onHitPointsChanged event fired");
     ToggleCallOutBypass();
 }
@@ -433,10 +433,10 @@ void SpellPointsFiresOnSpellPointsChangedEvent()
 
     ExpectEq(100, Attacker.spellPoints());
 
-    string err = catch (ExpectEq(Attacker.spellPoints(-50), "spell points increased"));
+    string err = catch (ExpectEq(Attacker.spellPoints(-50), "spell points increased"); nolog);
     ExpectEq("*event handler: onSpellPointsChanged called", err, "onSpellPointsChanged event fired");
 
-    err = catch (ExpectEq(Attacker.spellPoints(100), "spell points increased"));
+    err = catch (ExpectEq(Attacker.spellPoints(100), "spell points increased"); nolog);
     ExpectEq("*event handler: onSpellPointsChanged called", err, "onSpellPointsChanged event fired");
     ToggleCallOutBypass();
 }
@@ -522,10 +522,10 @@ void StaminaPointsFiresOnStaminaPointsChangedEvent()
 
     ExpectEq(100, Attacker.staminaPoints());
 
-    string err = catch (ExpectEq(Attacker.staminaPoints(-50), "stamina points increased"));
+    string err = catch (ExpectEq(Attacker.staminaPoints(-50), "stamina points increased"); nolog);
     ExpectEq("*event handler: onStaminaPointsChanged called", err, "onStaminaPointsChanged event fired");
 
-    err = catch (ExpectEq(Attacker.staminaPoints(100), "stamina points increased"));
+    err = catch (ExpectEq(Attacker.staminaPoints(100), "stamina points increased"); nolog);
     ExpectEq("*event handler: onStaminaPointsChanged called", err, "onStaminaPointsChanged event fired");
     ToggleCallOutBypass();
 }

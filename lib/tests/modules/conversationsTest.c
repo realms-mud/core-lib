@@ -92,21 +92,21 @@ void AlterOpinionOfUpdatesOpinionOfTarget()
 void AddConversationFailsIfFileDoesNotExist()
 {
     ExpectEq("*ERROR - conversations.c, addConversation: '/a/bad/file.c' does not exist",
-        catch (Owner.testAddConversation("/a/bad/file.c")));
+        catch (Owner.testAddConversation("/a/bad/file.c"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddConversationFailsIfFileDoesNotInheritBaseConversation()
 {
     ExpectEq("*ERROR - conversations.c, addConversation: '/lib/realizations/player.c' must inherit /lib/modules/conversations/baseConversation.c",
-        catch (Owner.testAddConversation("/lib/realizations/player.c")));
+        catch (Owner.testAddConversation("/lib/realizations/player.c"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddConversationFailsIfFileHasNoTopics()
 {
     ExpectEq("*ERROR - conversations.c, addConversation: There are no conversations in '/lib/modules/conversations/baseConversation.c'",
-        catch (Owner.testAddConversation("/lib/modules/conversations/baseConversation.c")));
+        catch (Owner.testAddConversation("/lib/modules/conversations/baseConversation.c"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////

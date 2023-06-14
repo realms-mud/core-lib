@@ -81,7 +81,7 @@ void SettingInvalidFullyQualifiedNameThrowsError()
 {
     string expected = "*modifierObject: The passed 'fully qualified name' must be a string.\n";
 
-    string err = catch (Modifier.set("fully qualified name", 1));
+    string err = catch (Modifier.set("fully qualified name", 1); nolog);
     ExpectEq(expected, err, "fully qualified name cannot be an integer");
 }
 

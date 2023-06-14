@@ -47,7 +47,7 @@ void InvalidArmorClassCannotBeSet()
 {
     string expected = "*Armor: The passed 'armor class' data must be an integer.\n";
 
-    string err = catch (Armor.set("armor class", "spaghetti"));
+    string err = catch (Armor.set("armor class", "spaghetti"); nolog);
     ExpectEq(expected, err, "armor class cannot be set");
 }
 
@@ -76,7 +76,7 @@ void InvalidArmorTypeCannotBeSet()
 {
     string expected = "*Armor: The 'armor type' element must be a string as defined in the keys of the itemTypes mapping in /lib/dictionaries/materialsDictionary.c.\n";
 
-    string err = catch (Armor.set("armor type", "blah"));
+    string err = catch (Armor.set("armor type", "blah"); nolog);
     ExpectEq(expected, err, "armor type cannot be set");
 }
 
@@ -92,8 +92,6 @@ void InvalidBlueprintCannotBeSet()
 {
     string expected = "*Armor: The 'blueprint' element must be a string as defined in the keys of the armorBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
 
-    string err = catch (Armor.set("blueprint", "blah"));
+    string err = catch (Armor.set("blueprint", "blah"); nolog);
     ExpectEq(expected, err, "blueprint cannot be set");
 }
-
-

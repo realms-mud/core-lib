@@ -81,7 +81,7 @@ void JoinGuildFiresOnJoinGuildOnSuccess()
     ToggleCallOutBypass();
     User.registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
     User.joinGuild("test");
-    string err = catch (command("3", User));
+    string err = catch (command("3", User); nolog);
     string expectedError = "*event handler: onJoinGuild called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -271,7 +271,7 @@ void AdvanceLevelFiresOnAdvancedLevelOnSuccess()
 
     User.registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
     command("level up", User);
-    string err = catch (command("2", User));
+    string err = catch (command("2", User); nolog);
     string expectedError = "*event handler: onAdvancedLevel called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -303,7 +303,7 @@ void AdvanceRankFiresOnAdvancedRankOnSuccess()
     ToggleCallOutBypass();
     User.joinGuild("test");
     User.registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
-    string err = catch (User.advanceRank("test"));
+    string err = catch (User.advanceRank("test"); nolog);
     string expectedError = "*event handler: onAdvancedRank called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -352,7 +352,7 @@ void DemoteRankFiresOnDemotedRankOnSuccess()
     ExpectTrue(User.advanceRank("test"), "guild rank advanced");
 
     User.registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
-    string err = catch (User.demoteRank("test"));
+    string err = catch (User.demoteRank("test"); nolog);
     string expectedError = "*event handler: onDemotedRank called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -388,7 +388,7 @@ void LeaveGuildFiresOnLeaveGuildOnSuccess()
     User.joinGuild("test");
 
     User.registerEvent(clone_object("/lib/tests/support/guilds/guildEventsSubscriber"));
-    string err = catch (User.leaveGuild("test"));
+    string err = catch (User.leaveGuild("test"); nolog);
     string expectedError = "*event handler: onLeaveGuild called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");

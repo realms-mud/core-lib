@@ -50,7 +50,7 @@ void CanSetValidHitPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidHitPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("hit point cost", "blah"));
+    string err = catch (ResearchItem.addSpecification("hit point cost", "blah"); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'hit point cost' specification must be an integer greater than 0.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -66,7 +66,7 @@ void CanSetValidSpellPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidSpellPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("spell point cost", "blah"));
+    string err = catch (ResearchItem.addSpecification("spell point cost", "blah"); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'spell point cost' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -80,7 +80,7 @@ void CanSetValidStaminaPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidStaminaPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("stamina point cost", "blah"));
+    string err = catch (ResearchItem.addSpecification("stamina point cost", "blah"); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'stamina point cost' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -123,7 +123,7 @@ void CanModifyCooldown()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidCooldownThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("cooldown", "blah"));
+    string err = catch (ResearchItem.addSpecification("cooldown", "blah"); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'cooldown' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -138,7 +138,7 @@ void CanSetValidEventHandler()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidEventHandlerThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("event handler", 6));
+    string err = catch (ResearchItem.addSpecification("event handler", 6); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'event handler' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -153,7 +153,7 @@ void CanSetValidUseAbilityMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityMessageThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("use ability message", 1));
+    string err = catch (ResearchItem.addSpecification("use ability message", 1); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'use ability message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -168,7 +168,7 @@ void CanSetValidUseAbilityFailMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityFailMessageThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("use ability fail message", 1));
+    string err = catch (ResearchItem.addSpecification("use ability fail message", 1); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'use ability fail message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -183,7 +183,7 @@ void CanSetValidUseAbilityCooldownMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityCooldownMessageThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("use ability cooldown message", 1));
+    string err = catch (ResearchItem.addSpecification("use ability cooldown message", 1); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'use ability cooldown message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -199,7 +199,7 @@ void CanSetValidCommandTemplate()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidCommandTemplateThrowsError()
 {
-    string err = catch (ResearchItem.addSpecification("command template", 2));
+    string err = catch (ResearchItem.addSpecification("command template", 2); nolog);
     string expectedError = "*ERROR - activeResearchItem: the 'command template' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -264,7 +264,7 @@ void CallingExecuteOnSelfScopeCallsExecuteOnSelf()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeOnSelf called";
     ExpectEq(expectedError, err);
 }
@@ -277,7 +277,7 @@ void CallingExecuteOnTargetedScopeCallsExecuteOnTarget()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeOnTarget called";
     ExpectEq(expectedError, err);
 }
@@ -290,7 +290,7 @@ void CallingExecuteOnAreaScopeCallsExecuteInArea()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeInArea called";
     ExpectEq(expectedError, err);
 }
@@ -303,7 +303,7 @@ void CallingExecuteOnEnvironmentScopeCallsExecuteOnEnvironment()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeOnEnvironment called";
     ExpectEq(expectedError, err);
 }
@@ -316,7 +316,7 @@ void CallingExecuteOnRegionScopeCallsExecuteOnRegion()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeOnRegion called";
     ExpectEq(expectedError, err);
 }
@@ -329,7 +329,7 @@ void CallingExecuteOnGlobalScopeCallsExecuteGlobally()
 
     User.ToggleMockResearch();
 
-    string err = catch (ResearchItem.execute("the command", User));
+    string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeGlobally called";
     ExpectEq(expectedError, err);
 }

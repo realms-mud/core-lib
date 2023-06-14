@@ -65,7 +65,7 @@ void CannotAddInvalidModifierSpecification()
         "rate": 1.25
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })); nolog);
     string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -73,7 +73,7 @@ void CannotAddInvalidModifierSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddIncorrectModifierSpecification()
 {
-    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", "blah"));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", "blah"); nolog);
     string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -89,7 +89,7 @@ void CanAddMaximumCombinationChainSpecification()
 void CannotAddInvalidMaximumCombinationChainSpecification()
 {
     string err = catch (
-        Effect.testAddInstantaneousSpecification("maximum combination chain", -1));
+        Effect.testAddInstantaneousSpecification("maximum combination chain", -1); nolog);
     string expectedError = "*ERROR - combinedInstantaneousEffect: the "
         "'maximum combination chain' specification must be a "
         "positive integer.\n";
@@ -124,7 +124,7 @@ void CannotAddInvalidMaxCombinationChainModifierSpecification()
         "rate": 1.25
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })); nolog);
     string expectedError = "*ERROR - combinedInstantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -168,7 +168,7 @@ void CannotAddSameCombinationItemsToMultipleScopesSpecification()
             "/lib/tests/support/research/comboPartResearchItemH.c", }),
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("combination rules", rules));
+    string err = catch (Effect.testAddInstantaneousSpecification("combination rules", rules); nolog);
     string expectedError = "ERROR - combinedInstantaneousEffect: items "
         "./lib/tests/support/research/comboPartResearchItemA.c. can only be "
         "placed once in only one of 'must include only";
@@ -185,7 +185,7 @@ void CannotAddInvalidCombinationItemsSpecification()
         "breaking junk": "stuff"
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("combination rules", rules));
+    string err = catch (Effect.testAddInstantaneousSpecification("combination rules", rules); nolog);
     string expectedError = "*ERROR - combinedInstantaneousEffect: the "
         "'combination rules' specification must be a valid rule set.\n";
     ExpectEq(expectedError, err);
@@ -196,7 +196,7 @@ void CannotAddCommandTemplateBeforeCombinationRulesAreSet()
 {
     string err = catch (
         Effect.testAddInstantaneousSpecification("command template", 
-            "do stuff ##Combinations## [at ##Target##]"));
+            "do stuff ##Combinations## [at ##Target##]"); nolog);
 
     string expectedError = "*ERROR - combinedInstantaneousEffect: the "
         "'combination rules' specification must be set before a command "
@@ -209,7 +209,7 @@ void CannotAddCommandTemplateWithoutCombinationsKeyword()
 {
     string err = catch (
         Effect.testAddInstantaneousSpecification("command template", 
-            "do stuff [at ##Target##]"));
+            "do stuff [at ##Target##]"); nolog);
 
     string expectedError = "*ERROR - combinedInstantaneousEffect: the "
         "'command template' specification must include the ##Combinations## "

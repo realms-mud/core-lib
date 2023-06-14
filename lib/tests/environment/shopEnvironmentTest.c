@@ -41,7 +41,7 @@ void CanOnlyAddOneShop()
     Environment.testAddShop("/lib/environment/shopInventories/swordsmith.c");
 
     string expected = "*ERROR in environment.c: a shop has already been assigned to this environment.\n";
-    string err = catch (Environment.testAddShop("/lib/environment/shopInventories/tailor.c"));
+    string err = catch (Environment.testAddShop("/lib/environment/shopInventories/tailor.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -49,7 +49,7 @@ void CanOnlyAddOneShop()
 void AddShopRaisesErrorIfInvalidObjectPassed()
 {
     string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid shop.\n";
-    string err = catch (Environment.testAddShop("/lib/tests/bad/path.c"));
+    string err = catch (Environment.testAddShop("/lib/tests/bad/path.c"); nolog);
     ExpectEq(expected, err);
 }
 
@@ -57,6 +57,6 @@ void AddShopRaisesErrorIfInvalidObjectPassed()
 void AddShopRaisesErrorIfPassedFileIsNotAShop()
 {
     string expected = "*ERROR in environment.c: '/lib/environment/environment.c' is not a valid shop.\n";
-    string err = catch (Environment.testAddShop("/lib/environment/environment.c"));
+    string err = catch (Environment.testAddShop("/lib/environment/environment.c"); nolog);
     ExpectEq(expected, err);
 }

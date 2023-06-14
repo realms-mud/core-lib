@@ -32,7 +32,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetValidTypeFromResearchItemClass()
 {
-    string err = catch (ResearchItem.addSpecification("type", "active"));
+    string err = catch (ResearchItem.addSpecification("type", "active"); nolog);
     string expectedError = "*ERROR - researchItem: A 'active' type specification can only be used if 'activeResearchItem.c' is inherited.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting types");
@@ -41,7 +41,7 @@ void CannotSetValidTypeFromResearchItemClass()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidType()
 {
-    string err = catch (ResearchItem.addSpecification("type", "weasel"));
+    string err = catch (ResearchItem.addSpecification("type", "weasel"); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'type' must be one of: active, passive, sustained, ritual, or knowledge.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid type");
@@ -50,7 +50,7 @@ void CannotSetInvalidType()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidScope()
 {
-    string err = catch (ResearchItem.addSpecification("scope", "weasel"));
+    string err = catch (ResearchItem.addSpecification("scope", "weasel"); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'scope' must be one of: self, targeted, area, environmental, region, or global.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid scope");
@@ -101,7 +101,7 @@ void CanSetScopeToGlobal()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidEffect()
 {
-    string err = catch (ResearchItem.addSpecification("effect", "weasel"));
+    string err = catch (ResearchItem.addSpecification("effect", "weasel"); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'effect' must be one of: beneficial, combat, enchantment, summoning, or strategic.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid effect");
@@ -145,7 +145,7 @@ void CanSetEffectToStrategic()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidResearchType()
 {
-    string err = catch (ResearchItem.addSpecification("research type", "weasel"));
+    string err = catch (ResearchItem.addSpecification("research type", "weasel"); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'research type' must be one of: points, timed, or tree root.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid research type");
@@ -182,7 +182,7 @@ void CanSetResearchTypeToGranted()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetResearchCostNegative()
 {
-    string err = catch (ResearchItem.addSpecification("research cost", -2));
+    string err = catch (ResearchItem.addSpecification("research cost", -2); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'research cost' must be an integer value greater than 0.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid research type");
@@ -191,7 +191,7 @@ void CannotSetResearchCostNegative()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetResearchCostToZero()
 {
-    string err = catch (ResearchItem.addSpecification("research cost", 0));
+    string err = catch (ResearchItem.addSpecification("research cost", 0); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'research cost' must be an integer value greater than 0.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid research type");
@@ -210,7 +210,7 @@ void CanSetResearchCostToIntegerGreaterThanZero()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetSourceToNonString()
 {
-    string err = catch (ResearchItem.addSpecification("source", 0));
+    string err = catch (ResearchItem.addSpecification("source", 0); nolog);
     string expectedError = "*ERROR - researchItem: The value of 'source' must be a string value.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid source");

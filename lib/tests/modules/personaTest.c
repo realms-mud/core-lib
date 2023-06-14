@@ -72,14 +72,14 @@ void SetUpPersonaOfLevelWorksForMonsters()
 void SetUpPersonaOfLevelCanOnlyBeCalledOnce()
 {
     Persona.SetUpPersonaOfLevel("swordsman", 1);
-    string error = catch (load_object("/lib/dictionaries/personaDictionary.c").setupPersona("axeman", Persona));
+    string error = catch (load_object("/lib/dictionaries/personaDictionary.c").setupPersona("axeman", Persona); nolog);
     ExpectSubStringMatch("personaDictionary: A character may only have one persona", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidPersona()
 {
-    string error = catch (Persona.SetUpPersonaOfLevel("blargman", 10));
+    string error = catch (Persona.SetUpPersonaOfLevel("blargman", 10); nolog);
     ExpectSubStringMatch("personaDictionary: An invalid persona was selected", error);
 }
 
@@ -173,14 +173,14 @@ void SetUpPersonaOfLevelFailsOnNonMonsterOrHenchman()
     destruct(Persona);
     Persona = clone_object("/lib/realizations/player.c");
 
-    string error = catch(load_object("/lib/dictionaries/personaDictionary.c").setupPersona("swordsman", Persona));
+    string error = catch (load_object("/lib/dictionaries/personaDictionary.c").setupPersona("swordsman", Persona); nolog);
     ExpectSubStringMatch("personaDictionary: Personas can only be set for NPCs", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpRandomEquipmentFailsWhenPersonaNotSet()
 {
-    string error = catch (Persona.setUpRandomEquipment());
+    string error = catch (Persona.setUpRandomEquipment(); nolog);
     ExpectSubStringMatch("personaDictionary: A character must have a persona before creating equipment.", error);
 }
 
@@ -219,7 +219,7 @@ void SetUpRandomEquipmentWithEnchantmentSetsUpEquipmentForPersona()
 /////////////////////////////////////////////////////////////////////////////
 void MinimumLevelNotMetReturnsError()
 {
-    string error = catch (Persona.SetUpPersonaOfLevel("chimera", 10));
+    string error = catch (Persona.SetUpPersonaOfLevel("chimera", 10); nolog);
 
     ExpectSubStringMatch("personaDictionary: The character's level is lower than that required for this persona", error);
 }

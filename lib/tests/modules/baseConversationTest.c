@@ -65,7 +65,7 @@ void CannotAddSameTopicTwice()
 {
     Conversation.testAddTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addTopic: Topic 'test' already exists.\n",
-        catch (Conversation.testAddTopic("test", "This is a test message")));
+        catch (Conversation.testAddTopic("test", "This is a test message"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ void CannotAddSameRepeatableTopicTwice()
 {
     Conversation.testAddRepeatableTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addTopic: Topic 'test' already exists.\n",
-        catch (Conversation.testAddRepeatableTopic("test", "This is a test message")));
+        catch (Conversation.testAddRepeatableTopic("test", "This is a test message"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,8 @@ void AddTopicPrerequisiteHandlesSpokenTopicPrerequisite()
 void CannotAddTopicPrerequisiteIfTopicDoesNotExist()
 {
     ExpectEq("*ERROR - baseConversation.c, addTopicPrerequisite: Could not add the prerequisite to 'test'. Make sure that the topic exists.\n",
-        catch (Conversation.testAddTopicPrerequisite("test", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+        catch (Conversation.testAddTopicPrerequisite("test", 
+            (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -122,7 +123,8 @@ void CannotAddInvalidPrerequisiteToTopic()
 {
     Conversation.testAddTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addTopicPrerequisite: The passed prerequisite to 'test' is invalid.\n",
-        catch (Conversation.testAddTopicPrerequisite("test", (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])]))));
+        catch (Conversation.testAddTopicPrerequisite("test", 
+            (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -166,7 +168,7 @@ void AddTopicEventAddsAndTriggersEvent()
 void CannotAddTopicEventIfTopicDoesNotExist()
 {
     ExpectEq("*ERROR - baseConversation.c, addTopicEvent: Topic 'test' does not exist.\n",
-        catch (Conversation.testAddTopicEvent("test", "conversationEventHappened")));
+        catch (Conversation.testAddTopicEvent("test", "conversationEventHappened"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,7 +188,7 @@ void AddTopicTriggerAddsTrigger()
 void CannotAddTopicTriggerIfTopicDoesNotExist()
 {
     ExpectEq("*ERROR - baseConversation.c, addTopicTrigger: Topic 'test' does not exist.\n",
-        catch (Conversation.testAddTopicTrigger("test", "conversationEventHappened")));
+        catch (Conversation.testAddTopicTrigger("test", "conversationEventHappened"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -217,7 +219,7 @@ void AddMultipleResponsesShowsAvailableResponsesInSortedOrder()
 void CannotAddResponseIfTopicDoesNotExist()
 {
     ExpectEq("*ERROR - baseConversation.c, addResponse: Topic 'test' does not exist.\n",
-        catch (Conversation.testAddResponse("test", "Test response", "This is a test response")));
+        catch (Conversation.testAddResponse("test", "Test response", "This is a test response"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -265,7 +267,7 @@ void CannotAddInterjectionIfTopicDoesNotExist()
     ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Topic 'test' does not exist.\n",
         catch (Conversation.testAddTopicInterjection("test", 
             "/lib/tests/support/conversations/testNPC.c", 
-            "missing response")));
+            "missing response"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -276,7 +278,7 @@ void CannotAddInterjectionIfActorDoesNotExist()
     ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Actor '/lib/tests/support/conversations/badActor.c' does not exist.\n",
         catch (Conversation.testAddTopicInterjection("test",
             "/lib/tests/support/conversations/badActor.c",
-            "missing response")));
+            "missing response"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -287,7 +289,7 @@ void CannotAddInterjectionIfActorDoesButTopicDoesNotExist()
     ExpectEq("*ERROR - baseConversation.c, addTopicInterjection: Topic 'missing response' does not exist on actor.\n",
         catch (Conversation.testAddTopicInterjection("test",
             "/lib/tests/support/conversations/testNPC.c",
-            "missing response")));
+            "missing response"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -296,7 +298,7 @@ void CannotAddResponseIfItAlreadyExists()
     Conversation.testAddTopic("test", "This is a test message");
     Conversation.testAddResponse("test", "Test response", "This is a test response");
     ExpectEq("*ERROR - baseConversation.c, addResponse: The response 'Test response' already exists.\n",
-        catch (Conversation.testAddResponse("test", "Test response", "This is a test response")));
+        catch (Conversation.testAddResponse("test", "Test response", "This is a test response"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -360,11 +362,13 @@ void ResponsesAllDisplayedWhenPrerequisitesMet()
 void CannotAddResponsePrerequisiteIfTopicOrResponseDoNotExist()
 {
     ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: Could not add the prerequiste. Check to make sure that the topic and response exist.\n",
-        catch (Conversation.testAddResponsePrerequisite("test", "Another", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+        catch (Conversation.testAddResponsePrerequisite("test", "Another", 
+            (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])])); nolog));
 
     Conversation.testAddTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: Could not add the prerequiste. Check to make sure that the topic and response exist.\n",
-        catch (Conversation.testAddResponsePrerequisite("test", "Another", (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])]))));
+        catch (Conversation.testAddResponsePrerequisite("test", "Another", 
+            (["race":(["type":"race", "value" : ({ "elf", "high elf", "half elf" })])])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -373,7 +377,8 @@ void CannotAddInvalidPrerequisiteToResponse()
     Conversation.testAddTopic("test", "This is a test message");
     Conversation.testAddResponse("test", "Another", "This is another test response");
     ExpectEq("*ERROR - baseConversation.c, addResponsePrerequisite: The passed prerequisite to 'Another' is invalid.\n",
-        catch (Conversation.testAddResponsePrerequisite("test", "Another", (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])]))));
+        catch (Conversation.testAddResponsePrerequisite("test", "Another", 
+            (["blarg":(["type":"blah", "value" : ({ "elf", "high elf", "half elf" })])])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -398,7 +403,7 @@ void CannotAddResponseEventIfResponseDoesNotExist()
 {
     Conversation.testAddTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addResponseEvent: Could not add the event. Check to make sure that the topic and response exist.\n",
-        catch (Conversation.testAddResponseEvent("test", "Another", "conversationEventHappened")));
+        catch (Conversation.testAddResponseEvent("test", "Another", "conversationEventHappened"); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -406,7 +411,7 @@ void CannotAddResponseEffectIfResponseDoesNotExist()
 {
     Conversation.testAddTopic("test", "This is a test message");
     ExpectEq("*ERROR - baseConversation.c, addResponseEffect: Could not add the event. Check to make sure that the topic and response exist and that the effect is valid.\n",
-        catch (Conversation.testAddResponseEffect("test", "Another", (["opinion": 5 ]))));
+        catch (Conversation.testAddResponseEffect("test", "Another", (["opinion": 5 ])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -415,7 +420,7 @@ void CannotAddResponseEffectIfItIsInvalid()
     Conversation.testAddTopic("test", "This is a test message");
     Conversation.testAddResponse("test", "Another", "This is another test response");
     ExpectEq("*ERROR - baseConversation.c, addResponseEffect: Could not add the event. Check to make sure that the topic and response exist and that the effect is valid.\n",
-        catch (Conversation.testAddResponseEffect("test", "Another", (["blah":5]))));
+        catch (Conversation.testAddResponseEffect("test", "Another", (["blah":5])); nolog));
 }
 
 /////////////////////////////////////////////////////////////////////////////

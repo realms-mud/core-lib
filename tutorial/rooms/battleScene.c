@@ -22,7 +22,7 @@ public void init()
 {
     environment::init();
 
-     catch(add_action("resetEverything", "resetEverything"));
+    catch (add_action("resetEverything", "resetEverything"); nolog);
 }
 
 /////////////////////////////////////////////////////////////////////////////

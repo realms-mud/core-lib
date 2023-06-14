@@ -650,7 +650,11 @@ public varargs string short(int useLight)
 {
     if (!query("short"))
     {
-        raise_error("Item: No short description was set.\n");
+        if (!query("user description"))
+        {
+            raise_error("Item: No short description was set.\n");
+        }
+        return "";
     }
 
     string shortTemplate = (query("light") || useLight) ? query("short") : "";

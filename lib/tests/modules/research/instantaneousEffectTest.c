@@ -234,7 +234,7 @@ void CannotAddFormulasThatAreLessThan100PercentProbability()
         "range": 25
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })); nolog);
     string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
@@ -247,7 +247,7 @@ void CannotAddFormulasWithCustomMethodsThatDoNotExist()
         "custom method": "thisMethodDoesNotExist"
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage hit points", ({ formula })); nolog);
     string expectedError = "*ERROR - instantaneousEffect: the 'damage hit points' specification must be a properly formatted formula.\n";
     ExpectEq(expectedError, err);
 }
@@ -280,7 +280,7 @@ void CannotAddInvalidModifierSpecification()
         "rate": 1.25
     ]);
 
-    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", ({ modifier })); nolog);
     string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -288,7 +288,7 @@ void CannotAddInvalidModifierSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddIncorrectModifierSpecification()
 {
-    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", "blah"));
+    string err = catch (Effect.testAddInstantaneousSpecification("modifiers", "blah"); nolog);
     string expectedError = "*ERROR - instantaneousEffect: the 'modifiers' specification must be a properly formatted modifier.\n";
     ExpectEq(expectedError, err);
 }
@@ -302,7 +302,7 @@ void CanAddDamageTypeSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void CannotAddInvalidDamageTypeSpecification()
 {
-    string err = catch (Effect.testAddInstantaneousSpecification("damage type", "turnip"));
+    string err = catch (Effect.testAddInstantaneousSpecification("damage type", "turnip"); nolog);
     string expectedError = "*ERROR - instantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
     ExpectEq(expectedError, err);
 }

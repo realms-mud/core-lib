@@ -82,7 +82,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SetNameThrowsWhenNameNotValid()
 {
-    string err = catch (QuestItem.setName(3));
+    string err = catch (QuestItem.setName(3); nolog);
     ExpectEq("*ERROR - questItem: the name must be a string.", err);
 }
 
@@ -97,7 +97,7 @@ void SetNameSetsTheNameOfTheQuestItem()
 /////////////////////////////////////////////////////////////////////////////
 void SetDescriptionThrowsWhenNameNotValid()
 {
-    string err = catch (QuestItem.setDescription(3));
+    string err = catch (QuestItem.setDescription(3); nolog);
     ExpectEq("*ERROR - questItem: the description must be a string.", err);
 }
 
@@ -111,14 +111,14 @@ void SetDescriptionSetsTheNameOfTheQuestItem()
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenStateNotValid()
 {
-    string err = catch (QuestItem.testAddState());
+    string err = catch (QuestItem.testAddState(); nolog);
     ExpectEq("*ERROR - stateMachine: the state could not be added.", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenDescriptionNotValid()
 {
-    string err = catch (QuestItem.testAddState("blah"));
+    string err = catch (QuestItem.testAddState("blah"); nolog);
     ExpectEq("*ERROR - stateMachine: the state could not be added.", err);
 }
 
@@ -133,14 +133,14 @@ void AddStateSilentlySucceedsWhenStateIsValid()
 void AddStateThrowsWhenAddingTheSameStateTwice()
 {
     QuestItem.testAddState("meet the king", "I've been asked to meet the king!");
-    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!"));
+    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!"); nolog);
     ExpectEq("*ERROR - stateMachine: the 'meet the king' state has already been added.", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenAddingAnInvalidEntryEvent()
 {
-    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!", 25));
+    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!", 25); nolog);
     ExpectEq("*ERROR - stateMachine: the entry event must be a string.", err);
 }
 
@@ -154,7 +154,7 @@ void AddStateSilentlySucceedsWhenEntryEventIsValid()
 /////////////////////////////////////////////////////////////////////////////
 void AddStateThrowsWhenAddingAnInvalidFinalStateResult()
 {
-    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "blah"));
+    string err = catch (QuestItem.testAddState("meet the king", "I've been asked to meet the king!", "killTheKing", "blah"); nolog);
     ExpectEq("*ERROR - stateMachine: the final state result must be 'success' or 'failure'.", err);
 }
 
@@ -176,14 +176,14 @@ void AddStateSilentlySucceedsWhenFinalStateResultIsFailure()
 void InitialStateThrowsWhenStateNotPresent()
 {
     QuestItem.testAddState("meet the king", "I've been asked to meet the king!");
-    string err = catch (QuestItem.testSetInitialState("blah"));
+    string err = catch (QuestItem.testSetInitialState("blah"); nolog);
     ExpectEq("*ERROR - stateMachine: the initial state must have been added first.", err);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AddEntryActionThrowsWhenStateNotPresent()
 {
-    string err = catch (QuestItem.testAddEntryAction("blah", "things"));
+    string err = catch (QuestItem.testAddEntryAction("blah", "things"); nolog);
     ExpectEq("*ERROR - stateMachine: an entry action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
@@ -192,7 +192,7 @@ void AddEntryActionThrowsWhenAddingAnInvalidEntryAction()
 {
     QuestItem.testAddState("meet the king", "I've been asked to meet the king!");
 
-    string err = catch (QuestItem.testAddEntryAction("meet the king", "badMethod"));
+    string err = catch (QuestItem.testAddEntryAction("meet the king", "badMethod"); nolog);
     ExpectEq("*ERROR - stateMachine: an entry action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
@@ -207,7 +207,7 @@ void AddEntryActionSilentlySucceedsWhenEverythingValidates()
 /////////////////////////////////////////////////////////////////////////////
 void AddExitActionThrowsWhenStateNotPresent()
 {
-    string err = catch (QuestItem.testAddExitAction("blah", "things"));
+    string err = catch (QuestItem.testAddExitAction("blah", "things"); nolog);
     ExpectEq("*ERROR - stateMachine: an exit action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
@@ -216,7 +216,7 @@ void AddExitActionThrowsWhenAddingAnInvalidEntryAction()
 {
     QuestItem.testAddState("meet the king", "I've been asked to meet the king!");
 
-    string err = catch (QuestItem.testAddExitAction("meet the king", "badMethod"));
+    string err = catch (QuestItem.testAddExitAction("meet the king", "badMethod"); nolog);
     ExpectEq("*ERROR - stateMachine: an exit action can only be added if both the state exists and the method to call has been implemented on this object.", err);
 }
 
@@ -254,7 +254,7 @@ void SetInitialStateSetsTheInitialState()
 /////////////////////////////////////////////////////////////////////////////
 void AddTransitionThrowsWhenStatesDoNotExist()
 {
-    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"));
+    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"); nolog);
     ExpectEq("*ERROR - stateMachine: the transition could not be added.", err);
 }
 
@@ -262,7 +262,7 @@ void AddTransitionThrowsWhenStatesDoNotExist()
 void AddTransitionThrowsWhenFirstStateDoesNotExist()
 {
     QuestItem.testAddState("b", "do b stuff");
-    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"));
+    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"); nolog);
     ExpectEq("*ERROR - stateMachine: the transition could not be added.", err);
 }
 
@@ -270,7 +270,7 @@ void AddTransitionThrowsWhenFirstStateDoesNotExist()
 void AddTransitionThrowsWhenSecondStateDoesNotExist()
 {
     QuestItem.testAddState("a", "do a stuff");
-    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"));
+    string err = catch (QuestItem.testAddTransition("a", "b", "someEvent"); nolog);
     ExpectEq("*ERROR - stateMachine: the transition could not be added.", err);
 }
 
@@ -290,7 +290,7 @@ void AddTransitionThrowsWhenEventHasAlreadyBeenAdded()
     QuestItem.testAddTransition("a", "b", "someEvent");
 
     QuestItem.testAddState("c", "do c stuff");
-    string err = catch (QuestItem.testAddTransition("a", "c", "someEvent"));
+    string err = catch (QuestItem.testAddTransition("a", "c", "someEvent"); nolog);
     ExpectEq("*ERROR - stateMachine: a transition for that event already exists.", err);
 }
 
@@ -301,7 +301,7 @@ void AddTransitionThrowsWhenAnInvalidInitiatorIsPassed()
     QuestItem.testAddState("b", "do b stuff");
 
     string err = catch (QuestItem.testAddTransition("a", "b", "someEvent", 
-        "/lib/invalidInitiator"));
+        "/lib/invalidInitiator"); nolog);
     ExpectEq("*ERROR - stateMachine: the transition initiator must be a valid program name.", err);
 }
 

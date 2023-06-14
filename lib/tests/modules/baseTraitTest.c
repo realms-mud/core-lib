@@ -22,7 +22,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidBonusThrowsError()
 {
-    string err = catch (Trait.addSpecification("bonus llama", 2));
+    string err = catch (Trait.addSpecification("bonus llama", 2); nolog);
     string expectedError = "*ERROR - trait: the 'bonus llama' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -92,7 +92,7 @@ void CanSetMultipleBonusAttacks()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidTypeThrowsError()
 {
-    string err = catch (Trait.addSpecification("type", "blah"));
+    string err = catch (Trait.addSpecification("type", "blah"); nolog);
     string expectedError = "*ERROR - trait: 'blah' is not a valid trait type.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -164,7 +164,7 @@ void CanSetTypeToSustainedEffect()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidRootThrowsError()
 {
-    string err = catch (Trait.addSpecification("root", 3));
+    string err = catch (Trait.addSpecification("root", 3); nolog);
     string expectedError = "*ERROR - trait: The 'root' value must be a string.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid root");
@@ -180,7 +180,7 @@ void CanSetRoot()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidOpposingRootThrowsError()
 {
-    string err = catch (Trait.addSpecification("opposing root", ({ "blah" })));
+    string err = catch (Trait.addSpecification("opposing root", ({ "blah" })); nolog);
     string expectedError = "*ERROR - trait: The 'opposing root' value must be a string.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opposing root");
@@ -196,7 +196,7 @@ void CanSetOpposingRoot()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidOpinionThrowsError()
 {
-    string err = catch (Trait.addSpecification("opinion", ([ "blah": 5 ])));
+    string err = catch (Trait.addSpecification("opinion", ([ "blah": 5 ])); nolog);
     string expectedError = "*ERROR - trait: The 'opinion' value must be an integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opinion");
@@ -212,7 +212,7 @@ void CanSetOpinion()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidOpposingOpinionThrowsError()
 {
-    string err = catch (Trait.addSpecification("opposing opinion", "blah"));
+    string err = catch (Trait.addSpecification("opposing opinion", "blah"); nolog);
     string expectedError = "*ERROR - trait: The 'opposing opinion' value must be an integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opposing opinion");
@@ -228,7 +228,7 @@ void CanSetOpposingOpinion()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidCostThrowsError()
 {
-    string err = catch (Trait.addSpecification("cost", "blah"));
+    string err = catch (Trait.addSpecification("cost", "blah"); nolog);
     string expectedError = "*ERROR - trait: The 'cost' value must be an integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid cost");
@@ -244,7 +244,7 @@ void CanSetCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidResearchTreeThrowsError()
 {
-    string err = catch (Trait.addSpecification("research tree", "/lib/fake/research/tree.c"));
+    string err = catch (Trait.addSpecification("research tree", "/lib/fake/research/tree.c"); nolog);
     string expectedError = "*ERROR - trait: The 'research tree' value must be a valid research tree.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid opinion");
@@ -260,7 +260,7 @@ void CanSetResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidExpireMessageThrowsError()
 {
-    string err = catch (Trait.addSpecification("expire message", 3));
+    string err = catch (Trait.addSpecification("expire message", 3); nolog);
     string expectedError = "*ERROR - trait: The 'expire message' value must be a string.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid root");
@@ -276,7 +276,7 @@ void CanSetExpireMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidDurationThrowsError()
 {
-    string err = catch (Trait.addSpecification("duration", "blah"));
+    string err = catch (Trait.addSpecification("duration", "blah"); nolog);
     string expectedError = "*ERROR - trait: the duration specification must be a positive integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid cost");
@@ -301,7 +301,7 @@ void EffectTraitsMustHaveDurationSetToBeConsideredValid()
 /////////////////////////////////////////////////////////////////////////////
 void SettingTriggeringResearchFailsIfNotSustainedResearch()
 {
-    string err = catch (Trait.addSpecification("triggering research", "/lib/tests/support/research/testResearchItem.c"));
+    string err = catch (Trait.addSpecification("triggering research", "/lib/tests/support/research/testResearchItem.c"); nolog);
     string expectedError = "*ERROR - trait: The 'triggering research' value must be a valid sustained research.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid triggering research");

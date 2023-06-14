@@ -83,7 +83,7 @@ void CanSetValidHitPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidHitPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("hit point cost", "blah"));
+    string err = catch (ResearchItem.addTestSpecification("hit point cost", "blah"); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'hit point cost' specification must be an integer greater than 0.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -99,7 +99,7 @@ void CanSetValidSpellPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidSpellPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("spell point cost", "blah"));
+    string err = catch (ResearchItem.addTestSpecification("spell point cost", "blah"); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'spell point cost' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -113,7 +113,7 @@ void CanSetValidStaminaPointCost()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidStaminaPointCostThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("stamina point cost", "blah"));
+    string err = catch (ResearchItem.addTestSpecification("stamina point cost", "blah"); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'stamina point cost' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -156,7 +156,7 @@ void CanModifyCooldown()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidCooldownThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("cooldown", "blah"));
+    string err = catch (ResearchItem.addTestSpecification("cooldown", "blah"); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'cooldown' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -171,7 +171,7 @@ void CanSetValidEventHandler()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidEventHandlerThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("event handler", 6));
+    string err = catch (ResearchItem.addTestSpecification("event handler", 6); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'event handler' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -186,7 +186,7 @@ void CanSetValidUseAbilityActivateMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityActivateMessageThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("use ability activate message", 1));
+    string err = catch (ResearchItem.addTestSpecification("use ability activate message", 1); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'use ability activate message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -201,7 +201,7 @@ void CanSetValidUseAbilityDeactivateMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityDeactivateMessageThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("use ability deactivate message", 1));
+    string err = catch (ResearchItem.addTestSpecification("use ability deactivate message", 1); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'use ability deactivate message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -216,7 +216,7 @@ void CanSetValidUseAbilityFailMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityFailMessageThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("use ability fail message", 1));
+    string err = catch (ResearchItem.addTestSpecification("use ability fail message", 1); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'use ability fail message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -231,7 +231,7 @@ void CanSetValidUseAbilityCooldownMessage()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidUseAbilityCooldownMessageThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("use ability cooldown message", 1));
+    string err = catch (ResearchItem.addTestSpecification("use ability cooldown message", 1); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'use ability cooldown message' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -247,7 +247,7 @@ void CanSetValidCommandTemplate()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidCommandTemplateThrowsError()
 {
-    string err = catch (ResearchItem.addTestSpecification("command template", 2));
+    string err = catch (ResearchItem.addTestSpecification("command template", 2); nolog);
     string expectedError = "*ERROR - sustainedResearchItem: the 'command template' specification must be a string.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }

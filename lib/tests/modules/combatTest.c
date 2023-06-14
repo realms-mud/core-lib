@@ -292,7 +292,7 @@ void AttackFiresOnAttackEvent()
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker.attack(Target), "target attacked"));
+    string err = catch (ExpectTrue(Attacker.attack(Target), "target attacked"); nolog);
     ExpectEq("*event handler: onAttack called", err, "onAttack event fired");
     ToggleCallOutBypass();
 }
@@ -306,7 +306,7 @@ void AttackFiresOnAttackedEvent()
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Target.attack(Attacker), "target attacks attacker"));
+    string err = catch (ExpectTrue(Target.attack(Attacker), "target attacks attacker"); nolog);
     ExpectEq("*event handler: onAttacked called", err, "onAttacked event fired");
     ToggleCallOutBypass();
 }
@@ -372,7 +372,7 @@ void OnHitFiresWhenLegalHitIsDone()
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
     ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker.hit(5, "physical"), "attacker hit is called"));
+    string err = catch (ExpectTrue(Attacker.hit(5, "physical"), "attacker hit is called"); nolog);
     ExpectEq("*event handler: onHit called, data: physical 5, caller: /lib/tests/support/services/combatWithMockServices.c", 
         err, "onHit event fired");
     ToggleCallOutBypass();
@@ -395,7 +395,7 @@ void OnDeathFiresWhenKillingBlowLands()
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
     ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
 
-    string err = catch (ExpectTrue(Attacker.hit(500, "physical"), "attacker hit is called"));
+    string err = catch (ExpectTrue(Attacker.hit(500, "physical"), "attacker hit is called"); nolog);
     ExpectEq("*event handler: onDeath called: /lib/tests/support/services/combatWithMockServices.c",
         err, "onDeath event fired");
     ToggleCallOutBypass();
@@ -429,7 +429,7 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
     ExpectTrue(Attacker.registerEvent(handler), "event handler registered");
     ExpectEq(0, handler.TimesRunAwayEventReceived());
 
-    string err = catch(Attacker.heart_beat());
+    string err = catch (Attacker.heart_beat(); nolog);
     ExpectEq(0, handler.TimesRunAwayEventReceived());
     ToggleCallOutBypass();
 }
@@ -456,7 +456,7 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 
     ExpectEq(combatRoom, environment(Attacker));
 
-    string err = catch (Attacker.heart_beat());
+    string err = catch (Attacker.heart_beat(); nolog);
     ExpectNotEq(object_name(combatRoom), object_name(environment(Attacker)));
     ExpectEq(1, handler.TimesRunAwayEventReceived());
 
@@ -497,7 +497,7 @@ void TargetAttackedDuringHeartBeat()
     object handler = clone_object("/lib/tests/support/events/onAttackedSubscriber");
     ExpectTrue(Target.registerEvent(handler), "event handler registered for attacker");
 
-    string err = catch (Attacker.heart_beat());
+    string err = catch (Attacker.heart_beat(); nolog);
     ExpectEq("*event handler: onAttacked called: /lib/tests/support/services/testMonster.c",
         err, "onAttacked event fired");
     ToggleCallOutBypass();
@@ -691,7 +691,7 @@ void DamageReflectionIsTriggered()
     modifier.set("damage reflection", 15);
     ExpectEq(1, modifier.set("registration list", ({ Target })), "registration list can be set");
 
-    string err = catch (ExpectTrue(Target.hit(25, "physical"), "attack reflected on attacker"));
+    string err = catch (ExpectTrue(Target.hit(25, "physical"), "attack reflected on attacker"); nolog);
     ExpectEq("*event handler: onHit called, data: physical 3, caller: /lib/tests/support/services/combatWithMockServices.c",
         err, "onHit event fired");
     ToggleCallOutBypass();

@@ -74,7 +74,7 @@ void AddSpecificationAllowsValidBonusesToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationThrowsForInvalidBonuses()
 {
-    string err = catch (ResearchItem.testAddSpecification("bonus blarg", 10));
+    string err = catch (ResearchItem.testAddSpecification("bonus blarg", 10); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the 'bonus blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -91,7 +91,7 @@ void AddSpecificationAllowsValidPenaltiesToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationThrowsForInvalidPenalties()
 {
-    string err = catch (ResearchItem.testAddSpecification("penalty to blarg", 10));
+    string err = catch (ResearchItem.testAddSpecification("penalty to blarg", 10); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the 'penalty to blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -113,7 +113,7 @@ void AddSpecificationAllowsValidCombatModifiersToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationThrowsForInvalidCombatModifiers()
 {
-    string err = catch (ResearchItem.testAddSpecification("apply blarg", 10));
+    string err = catch (ResearchItem.testAddSpecification("apply blarg", 10); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -128,7 +128,7 @@ void AddSpecificationAllowsTraitToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectTraitsToBeApplied()
 {
-    string err = catch (ResearchItem.testAddSpecification("trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"));
+    string err = catch (ResearchItem.testAddSpecification("trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -143,7 +143,7 @@ void AddSpecificationAllowsNegativeTraitToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNonEffectNegativeTraitsToBeApplied()
 {
-    string err = catch (ResearchItem.testAddSpecification("negative trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"));
+    string err = catch (ResearchItem.testAddSpecification("negative trait", "/lib/tests/support/traits/testInvalidPersistedTrait.c"); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the trait specification must be a valid effect-based trait.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -157,7 +157,7 @@ void AddSpecificationAllowsDurationToBeApplied()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowNegativeDuration()
 {
-    string err = catch (ResearchItem.testAddSpecification("duration", -10));
+    string err = catch (ResearchItem.testAddSpecification("duration", -10); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the duration specification must be a positive integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -166,7 +166,7 @@ void AddSpecificationDoesNotAllowNegativeDuration()
 /////////////////////////////////////////////////////////////////////////////
 void DurationMustBeAnInteger()
 {
-    string err = catch (ResearchItem.testAddSpecification("duration", "blah"));
+    string err = catch (ResearchItem.testAddSpecification("duration", "blah"); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the duration specification must be a positive integer.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -206,7 +206,7 @@ void AddSpecificationDoesNotAllowInvalidModifierToBeSet()
         "rate": 0.25
     ]) });
 
-    string err = catch (ResearchItem.testAddSpecification("modifiers", modifiers));
+    string err = catch (ResearchItem.testAddSpecification("modifiers", modifiers); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifiers' specification must be a properly formatted modifier.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -216,7 +216,7 @@ void AddSpecificationDoesNotAllowInvalidModifierToBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void AddSpecificationDoesNotAllowMalformedModifierToBeSet()
 {
-    string err = catch (ResearchItem.testAddSpecification("modifiers", "blah"));
+    string err = catch (ResearchItem.testAddSpecification("modifiers", "blah"); nolog);
     string expectedError = "*ERROR - persistedRitualResearchItem: the 'modifiers' specification must be a properly formatted modifier.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");

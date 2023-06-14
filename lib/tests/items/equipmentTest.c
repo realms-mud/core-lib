@@ -47,7 +47,7 @@ void ArmorClassCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'armor class' element for this type of object.\n";
 
-    string err = catch (Equipment.set("armor class", 10));
+    string err = catch (Equipment.set("armor class", 10); nolog);
     ExpectEq(expected, err, "armor class cannot be set");
 }
 
@@ -56,7 +56,7 @@ void DefenseClassCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'defense class' element for this type of object.\n";
 
-    string err = catch (Equipment.set("defense class", 10));
+    string err = catch (Equipment.set("defense class", 10); nolog);
     ExpectEq(expected, err, "defense class cannot be set");
 }
 
@@ -65,7 +65,7 @@ void WeaponClassCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'weapon class' element for this type of object.\n";
 
-    string err = catch (Equipment.set("weapon class", 10));
+    string err = catch (Equipment.set("weapon class", 10); nolog);
     ExpectEq(expected, err, "weapon class cannot be set");
 }
 
@@ -74,7 +74,7 @@ void HitMethodCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'hit method' element for this type of object.\n";
 
-    string err = catch (Equipment.set("hit method", "blah"));
+    string err = catch (Equipment.set("hit method", "blah"); nolog);
     ExpectEq(expected, err, "hit method cannot be set");
 }
 
@@ -83,7 +83,7 @@ void ArmorTypeCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'armor type' element for this type of object.\n";
 
-    string err = catch (Equipment.set("armor type", "blah"));
+    string err = catch (Equipment.set("armor type", "blah"); nolog);
     ExpectEq(expected, err, "armor type cannot be set");
 }
 
@@ -92,7 +92,7 @@ void WeaponTypeCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'weapon type' element for this type of object.\n";
 
-    string err = catch (Equipment.set("weapon type", "blah"));
+    string err = catch (Equipment.set("weapon type", "blah"); nolog);
     ExpectEq(expected, err, "weapon type cannot be set");
 }
 
@@ -101,7 +101,7 @@ void OffhandCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'offhand' element for this type of object.\n";
 
-    string err = catch (Equipment.set("offhand", "blah"));
+    string err = catch (Equipment.set("offhand", "blah"); nolog);
     ExpectEq(expected, err, "offhand cannot be set");
 }
 
@@ -117,7 +117,7 @@ void SettingInvalidEquipMessageThrowsError()
 {
     string expected = "*Equipment: The passed 'equip message' data must be a string.\n";
 
-    string err = catch (Equipment.set("equip message", 1));
+    string err = catch (Equipment.set("equip message", 1); nolog);
     ExpectEq(expected, err, "equip message cannot be an integer");
 }
 
@@ -133,7 +133,7 @@ void EquipMethodMustExistOnObjectToBeSet()
 {
     string expected = "*Equipment: The passed 'blah' equip method must be a function that exists in this item.\n";
 
-    string err = catch (Equipment.set("equip method", "blah"));
+    string err = catch (Equipment.set("equip method", "blah"); nolog);
     ExpectEq(expected, err, "equip method must exist on the item");
 }
 
@@ -149,7 +149,7 @@ void SettingInvalidUnequipMessageThrowsError()
 {
     string expected = "*Equipment: The passed 'unequip message' data must be a string.\n";
 
-    string err = catch (Equipment.set("unequip message", 1));
+    string err = catch (Equipment.set("unequip message", 1); nolog);
     ExpectEq(expected, err, "unequip message cannot be an integer");
 }
 
@@ -165,7 +165,7 @@ void EquipmentLocationsMustBeAnInteger()
 {
     string expected = "*Equipment: The passed 'equipment locations' data must be an integer.\n";
 
-    string err = catch (Equipment.set("equipment locations", "blah"));
+    string err = catch (Equipment.set("equipment locations", "blah"); nolog);
     ExpectEq(expected, err, "equipment locations cannot be set");
 }
 
@@ -181,7 +181,7 @@ void UnequipMethodMustExistOnObjectToBeSet()
 {
     string expected = "*Equipment: The passed 'blah' unequip method must be a function that exists in this item.\n";
 
-    string err = catch (Equipment.set("unequip method", "blah"));
+    string err = catch (Equipment.set("unequip method", "blah"); nolog);
     ExpectEq(expected, err, "unequip method must exist on the item");
 }
 
@@ -204,7 +204,7 @@ void CannotSetInvalidRacePrerequisite()
 {
     string expected = "*Equipment: The passed 'prerequisites' mapping is invalid.\n";
 
-    string err = catch (Equipment.set("prerequisites", (["race":"turnip"])));
+    string err = catch (Equipment.set("prerequisites", (["race":"turnip"])); nolog);
     ExpectEq(expected, err, "race prerequisites must be valid");
 }
 
@@ -220,7 +220,7 @@ void CannotSetInvalidSkillsPrerequisite()
 {
     string expected = "*Equipment: The 'skills' element must be a string as defined in the keys of the skills mapping in /lib/dictionaries/skillsDictionary.c.\n";
 
-    string err = catch (Equipment.set("prerequisites", (["skills":(["basket weaving":5]) ]) ));
+    string err = catch (Equipment.set("prerequisites", (["skills":(["basket weaving":5]) ]) ); nolog);
     ExpectEq(expected, err, "skills prerequisites must be valid");
 }
 
@@ -248,7 +248,7 @@ void CannotSetInvalidGuildPrerequisite()
         ])
     ]);
 
-    string err = catch (Equipment.set("prerequisites", guilds));
+    string err = catch (Equipment.set("prerequisites", guilds); nolog);
     ExpectEq(expected, err, "guilds prerequisites must be valid");
 }
 
@@ -263,7 +263,7 @@ void CannotSetGuildPrerequisiteWithBothAllowedAndProhibited()
         ])
     ]);
 
-    string err = catch (Equipment.set("prerequisites", guilds));
+    string err = catch (Equipment.set("prerequisites", guilds); nolog);
     ExpectEq(expected, err, "guilds prerequisites must be valid");
 }
 
@@ -312,7 +312,7 @@ void CursedInformationWithoutFailMessageThrowsError()
         "equip message":"blah",
     ]);
 
-    string err = catch (Equipment.set("cursed", curseInfo));
+    string err = catch (Equipment.set("cursed", curseInfo); nolog);
     ExpectEq(expected, err, "cursed mapping must be valid");
 }
 
@@ -324,7 +324,7 @@ void CursedInformationWithoutEquipMessageThrowsError()
         "failed unequip message":"blah",
     ]);
 
-    string err = catch (Equipment.set("cursed", curseInfo));
+    string err = catch (Equipment.set("cursed", curseInfo); nolog);
     ExpectEq(expected, err, "cursed mapping must be valid");
 }
 
@@ -333,7 +333,7 @@ void CannotSetBlueprint()
 {
     string expected = "*Equipment: The blueprint can only be set from a derived type.\n";
 
-    string err = catch (Equipment.set("blueprint", "long sword"));
+    string err = catch (Equipment.set("blueprint", "long sword"); nolog);
     ExpectEq(expected, err, "blueprint cannot be set");
 }
 
@@ -701,7 +701,7 @@ void EquipExecutesEquipMethodOnSuccess()
     Equipment.set("equip method", "equipMethod");
 
     string expected = "*event handler: equipMethod called";
-    string err = catch (ExpectTrue(Equipment.equip("thingy")));
+    string err = catch (ExpectTrue(Equipment.equip("thingy")); nolog);
     ExpectEq(expected, err, "equip method called");
 }
 
@@ -722,7 +722,7 @@ void UnequipExecutesUnequipMethodOnSuccess()
     ExpectTrue(Equipment.equip("thingy"));
 
     string expected = "*event handler: unequipMethod called";
-    string err = catch (ExpectTrue(Equipment.unequip("thingy")));
+    string err = catch (ExpectTrue(Equipment.unequip("thingy")); nolog);
     ExpectEq(expected, err, "unequip method called");
 }
 

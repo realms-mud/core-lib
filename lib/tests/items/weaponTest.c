@@ -48,7 +48,7 @@ void InvalidWeaponClassCannotBeSet()
 {
     string expected = "*Weapon: The passed 'weapon class' data must be an integer.\n";
 
-    string err = catch (Weapon.set("weapon class", "spaghetti"));
+    string err = catch (Weapon.set("weapon class", "spaghetti"); nolog);
     ExpectEq(expected, err, "weapon class cannot be set");
 }
 
@@ -73,7 +73,7 @@ void InvalidDefenseClassCannotBeSet()
 {
     string expected = "*Weapon: The passed 'defense class' data must be an integer.\n";
 
-    string err = catch (Weapon.set("defense class", "spaghetti"));
+    string err = catch (Weapon.set("defense class", "spaghetti"); nolog);
     ExpectEq(expected, err, "defense class cannot be set");
 }
 
@@ -98,7 +98,7 @@ void InvalidWeaponAttackCannotBeSet()
 {
     string expected = "*Weapon: The passed 'weapon attack' data must be an integer.\n";
 
-    string err = catch (Weapon.set("weapon attack", "spaghetti"));
+    string err = catch (Weapon.set("weapon attack", "spaghetti"); nolog);
     ExpectEq(expected, err, "weapon attack cannot be set");
 }
 
@@ -123,7 +123,7 @@ void HitMethodMustExistOnObjectToBeSet()
 {
     string expected = "*Weapon: The passed 'blah' hit method must be a function that exists in this item.\n";
 
-    string err = catch (Weapon.set("hit method", "blah"));
+    string err = catch (Weapon.set("hit method", "blah"); nolog);
     ExpectEq(expected, err, "hit method must exist on the item");
 }
 
@@ -132,7 +132,7 @@ void OffhandCannotBeSet()
 {
     string expected = "*Equipment: It is illegal to set the 'offhand' element for this type of object.\n";
 
-    string err = catch (Weapon.set("offhand", 1));
+    string err = catch (Weapon.set("offhand", 1); nolog);
     ExpectEq(expected, err, "offhand cannot be set");
 }
 
@@ -152,7 +152,7 @@ void InvalidWeaponTypeCannotBeSet()
 {
     string expected = "*Weapon: The 'weapon type' element must be a string as defined in the keys of the itemTypes mapping in /lib/dictionaries/materialsDictionary.c.\n";
 
-    string err = catch (Weapon.set("weapon type", "blah"));
+    string err = catch (Weapon.set("weapon type", "blah"); nolog);
     ExpectEq(expected, err, "weapon type cannot be set");
 }
 
@@ -277,7 +277,7 @@ void InvalidBlueprintCannotBeSet()
 {
     string expected = "*Weapon: The 'blueprint' element must be a string as defined in the keys of the weaponBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
 
-    string err = catch (Weapon.set("blueprint", "blah"));
+    string err = catch (Weapon.set("blueprint", "blah"); nolog);
     ExpectEq(expected, err, "blueprint cannot be set");
 }
 
@@ -399,7 +399,7 @@ void SetComponentCorrectlySetsComponents()
 void SetComponentFailsWhenBlueprintNotSet()
 {
     string error = catch (Weapon.setComponent("blade", "Type XIIa",
-        (["metal":"galvorn"])));
+        (["metal":"galvorn"])); nolog);
 
     ExpectEq("*Equipment: A blueprint must be set before components can be assigned.\n",
         error);
@@ -410,7 +410,7 @@ void SetComponentFailsWhenInvalidComponentSet()
 {
     Weapon.set("blueprint", "long sword");
     string error = catch (Weapon.setComponent("blade", "Type Invalid",
-        (["metal":"galvorn"])));
+        (["metal":"galvorn"])); nolog);
 
     ExpectEq("*ERROR in materials: Type Invalid is not a valid blade component.\n",
         error);
@@ -421,7 +421,7 @@ void SetComponentFailsWhenInvalidComponentTypeSet()
 {
     Weapon.set("blueprint", "long sword");
     string error = catch (Weapon.setComponent("shaft", "Simple shaft",
-        (["wood":"pine"])));
+        (["wood":"pine"])); nolog);
 
     ExpectEq("*ERROR in materials: shaft is not a valid long sword component type.\n",
         error);
@@ -433,7 +433,7 @@ void SetComponentFailsWhenInvalidMaterialIsSet()
     Weapon.set("blueprint", "long sword");
 
     string error = catch (Weapon.setComponent("hilt", "Spiral Hilt",
-        (["metal":"gold", "wood": "copper", "leather" : "boar leather"])));
+        (["metal":"gold", "wood": "copper", "leather" : "boar leather"])); nolog);
 
     ExpectEq("*ERROR in materials: copper is not a valid material for the "
         "specified component (hilt - Spiral Hilt).\n",
@@ -446,7 +446,7 @@ void SetComponentFailsWhenMaterialIsMissing()
     Weapon.set("blueprint", "long sword");
 
     string error = catch (Weapon.setComponent("hilt", "Spiral Hilt",
-        (["metal": "gold", "wood": "koa" ])));
+        (["metal": "gold", "wood": "koa" ])); nolog);
 
     ExpectEq("*ERROR in materials: The leather material is missing from the "
         "component (hilt) definition.\n",

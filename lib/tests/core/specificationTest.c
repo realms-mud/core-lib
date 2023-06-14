@@ -52,7 +52,7 @@ void CanSetNameForSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidNameThrowsError()
 {
-    string err = catch (Specification.addSpecification("name", 2));
+    string err = catch (Specification.addSpecification("name", 2); nolog);
     string expectedError = "*ERROR - specification: The 'name' value must be a string.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -68,7 +68,7 @@ void CanSetDescriptionForSpecification()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidDescriptionThrowsError()
 {
-    string err = catch (Specification.addSpecification("description", 2));
+    string err = catch (Specification.addSpecification("description", 2); nolog);
     string expectedError = "*ERROR - specification: The 'description' value must be a string.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid descriptions");
@@ -77,7 +77,7 @@ void SettingInvalidDescriptionThrowsError()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidLimitedByValue()
 {
-    string err = catch (Specification.addSpecification("limited by", ([ ])));
+    string err = catch (Specification.addSpecification("limited by", ([ ])); nolog);
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
@@ -86,7 +86,7 @@ void CannotSetInvalidLimitedByValue()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidLimitedByKey()
 {
-    string err = catch (Specification.addSpecification("limited by", (["blarg": 2])));
+    string err = catch (Specification.addSpecification("limited by", (["blarg": 2])); nolog);
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
@@ -119,7 +119,7 @@ void CanSetLimitorForRace()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidRace()
 {
-    string err = catch (Specification.addSpecification("limited by", (["opponent race":"tomato"])));
+    string err = catch (Specification.addSpecification("limited by", (["opponent race":"tomato"])); nolog);
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
@@ -144,7 +144,7 @@ void CanSetLimitorForGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidGuild()
 {
-    string err = catch (Specification.addSpecification("limited by", (["opponent guild":"turnip"])));
+    string err = catch (Specification.addSpecification("limited by", (["opponent guild":"turnip"])); nolog);
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");
@@ -297,7 +297,7 @@ void CanSetLimitorForResearchIsActive()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetLimitorForInvalidActiveResearch()
 {
-    string err = catch (Specification.addSpecification("limited by", (["research active":({ "/lib/tests/support/research/testTreeRoot.c" })])));
+    string err = catch (Specification.addSpecification("limited by", (["research active":({ "/lib/tests/support/research/testTreeRoot.c" })])); nolog);
     string expectedError = "*ERROR - specification: The value of 'limited by' must be a valid limiting mapping. See the specification.validLimitor method for details.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid 'limited by'");

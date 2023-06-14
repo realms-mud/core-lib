@@ -34,7 +34,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidBonusThrowsError()
 {
-    string error = catch (Bonus.setup("blarg", 5));
+    string error = catch (Bonus.setup("blarg", 5); nolog);
 
     ExpectEq("*EnvironmentalElement: The bonus \"blarg\" must be valid as "
         "specified in bonusesDictionary.\n", error);

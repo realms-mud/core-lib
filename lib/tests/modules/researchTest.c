@@ -92,7 +92,7 @@ void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
     Research.advanceSkill("long sword", 10);
 
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c"); nolog);
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -113,7 +113,7 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
 
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"); nolog);
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -146,7 +146,7 @@ void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
-    string err = catch (Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"));
+    string err = catch (Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c"); nolog);
     string expectedError = "*event handler: onResearchStarted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -166,7 +166,7 @@ void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
     Research.heart_beat();
     Research.heart_beat();
     Research.heart_beat();
-    string err = catch (Research.heart_beat());
+    string err = catch (Research.heart_beat(); nolog);
     string expectedError = "*event handler: onResearchCompleted called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -406,7 +406,7 @@ void AddingResearchPointsFiresOnResearchPointsAdded()
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
 
-    string err = catch (Research.addResearchPoints(1));
+    string err = catch (Research.addResearchPoints(1); nolog);
     string expectedError = "*event handler: onResearchPointsAdded called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
@@ -713,7 +713,7 @@ void SelectResearchChoiceFiresCorrectEvent()
     ExpectTrue(Research.addResearchChoice(researchChoice));
 
     Research.registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research.selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"));
+    string err = catch (Research.selectResearchChoice("/lib/tests/support/research/testLimitedActiveResearchItem.c", "Test name", "1"); nolog);
     string expectedError = "*event handler: onResearchChoiceChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");
@@ -760,7 +760,7 @@ void SelectResearchPathFiresCorrectEvent()
     ExpectTrue(Research.addResearchChoice(researchChoice));
 
     Research.registerEvent(clone_object("/lib/tests/support/events/onResearchChoiceAvailableSubscriber.c"));
-    string err = catch (Research.selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"));
+    string err = catch (Research.selectResearchPath("/lib/tests/support/research/testSecondResearchTree.c", "Test name", "1"); nolog);
     string expectedError = "*event handler: onResearchPathChosen called";
 
     ExpectEq(expectedError, err, "The correct exception is thrown");

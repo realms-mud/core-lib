@@ -74,7 +74,7 @@ void NeuterGenderCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void OtherGendersCannotBeSet()
 {
-    string err = catch(ExpectFalse(Attributes.Gender(-2)));
+    string err = catch (ExpectFalse(Attributes.Gender(-2)); nolog);
     ExpectEq("*materialAttributes: gender can only be set to neuter, male, or female.\n", err);
 }
 

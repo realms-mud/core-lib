@@ -70,7 +70,7 @@ void SettingTroopCountHigherThanTenThrows()
 {
     ExpectEq(10, AttackingUnit.query("troop count"));
 
-    string error = catch(AttackingUnit.set("troop count", 20));
+    string error = catch (AttackingUnit.set("troop count", 20); nolog);
     ExpectEq("*unit.c: Troop count must be between 1 and 10.\n", error);
 }
 

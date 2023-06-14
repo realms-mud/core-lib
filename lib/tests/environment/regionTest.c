@@ -29,7 +29,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidRegionTypeThrowsError()
 {
-    string err = catch (Region.setRegionType("bad region name"));
+    string err = catch (Region.setRegionType("bad region name"); nolog);
     string expectedError = "*ERROR - region: The region must be a valid type "
         "as defined in /lib/dictionaries/regions/region-types.h\n";
 
@@ -41,7 +41,7 @@ void CannotGenerateRegionWithoutType()
 {
     Region.setRegionName("a forest");
 
-    string err = catch (Region.createRegion());
+    string err = catch (Region.createRegion(); nolog);
     string expectedError = "*ERROR - region: The region type must be set before it is generated.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
@@ -52,7 +52,7 @@ void CannotGenerateRegionWithoutName()
 {
     Region.setRegionType("forest");
 
-    string err = catch (Region.createRegion());
+    string err = catch (Region.createRegion(); nolog);
     string expectedError = "*ERROR - region: The region name must be set before it is generated.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
