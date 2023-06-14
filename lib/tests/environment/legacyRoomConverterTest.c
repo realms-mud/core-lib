@@ -154,6 +154,7 @@ void CanTranslateExtraMethods()
         "      \"'s arm (wielded).\\nBonebanded mail (worn).\\n\");\n"
         "    return 1;\n"
         "  }\n"
+        "  return 0;\n"
         "}\n"
         "\n"
         "int kill_me() {\n"

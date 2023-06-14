@@ -46,6 +46,7 @@ int look(string str) {
       "'s arm (wielded).\nBonebanded mail (worn).\n");
     return 1;
   }
+  return 0;
 }
 
 int kill_me() {
