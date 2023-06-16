@@ -9,10 +9,6 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-container:
-  image: realms-pipeline:latest
-  endpoint: 'Realms Registry'
-
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
