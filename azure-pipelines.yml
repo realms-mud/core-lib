@@ -8,10 +8,6 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-  pool: 
-   name: AgentPoolName('Realms')
-   demands:
-    - agent.name -equals Agentname ('Realms Core Library-Realms')
 
 container:
   image: realms-pipeline:latest
