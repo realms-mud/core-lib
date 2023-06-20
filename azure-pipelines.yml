@@ -14,5 +14,8 @@ container:
   endpoint: 'Realms Registry'
 
 steps:
-- bash: ls -laR /
-  displayName: 'Run a one-line script'
+- bash: cp -r /__w/1/s/ /mud; /prepSimulEfun; /configureBuild
+  displayName: 'Build pre-processing'
+
+- bash: /compiler/src/ldmud
+  displayName: 'Executing Build'
