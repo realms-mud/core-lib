@@ -14,5 +14,5 @@ container:
   endpoint: 'Realms Registry'
 
 steps:
-- script: echo Hello, world!
+- bash: echo Hello, world!
   displayName: 'Run a one-line script'
