@@ -14,7 +14,7 @@ container:
   endpoint: 'Realms Registry'
 
 steps:
-- bash: mv -f /mud/* /__w/1/s/; rm -rf /mud; ln -s /__w/1/s /mud; /prepSimulEfun; /configureBuild
+- bash: mv -f /mud/* /__w/1/s/; rm -rf /mud; ln -s /__w/1/s /mud; ls -laR /__w/1/s; /prepSimulEfun; /configureBuild
   displayName: 'Build pre-processing'
 
 - bash: /compiler/src/ldmud
