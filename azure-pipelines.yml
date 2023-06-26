@@ -29,7 +29,7 @@ steps:
 - bash: service mysql start; /create_db.pl
   displayName: 'Setting up the database'
 
-- bash: /compiler/src/ldmud
+- bash: /compiler/src/ldmud; mkdir /mud/debug; mv /mud/lib/*.log /mud/debug/compiler.log
   displayName: 'Building Library'
 
 - bash: /executeTests
