@@ -24,7 +24,7 @@ steps:
         /configureBuild
   displayName: 'Build pre-processing'
 
-- bash: /create_db.pl
+- bash: service mysql start; /create_db.pl
   displayName: 'Setting up the database'
 
 - bash: /compiler/src/ldmud
