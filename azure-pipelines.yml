@@ -17,7 +17,6 @@ steps:
 - bash: cp -r /mud/lib/* /__w/1/s; 
         rm -rf /mud/lib; 
         ln -s /__w/1/s /mud/lib; 
-        ls -la /mud/lib; 
         cp /mud/lib/secure/simul_efun.c /mud/lib/secure/simul_efun.orig; 
         cp /mud/lib/secure/master/preload.c /mud/lib/secure/master/preload.orig; 
         cp /mud/lib/init/init_file /mud/lib/init/init_file.orig; 
