@@ -24,18 +24,21 @@ steps:
         /configureBuild
   displayName: 'Build pre-processing'
 
+- bash: /create_db.pl
+  displayName: 'Setting up the database'
+
 - bash: /compiler/src/ldmud
   displayName: 'Building Library'
 
 - bash: /executeTests
   displayName: 'Executing Tests'
 
-- task: PublishPipelineArtifact@1
+- task: PublishBuildArtifacts@1
   displayName: Publishing Test Reports
   inputs:
-    targetPath: '/mud/debug'
-    artifact: 'Test Logs'
-    publishLocation: 'pipeline'
+    PathtoPublish: '/mud/debug'
+    ArtifactName: 'Test Logs'
+    publishLocation: 'container'
 
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
@@ -49,9 +52,9 @@ steps:
         mv /mud/lib/init/init_file.orig /mud/lib/init/init_file
   displayName: 'Packaging Library'
 
-- task: PublishPipelineArtifact@1
+- task: PublishBuildArtifacts@1
   displayName: Publishing Core Library
   inputs:
-    targetPath: '/mud/lib'
-    artifact: 'Core Library'
-    publishLocation: 'pipeline'
+    PathtoPublish: '/mud/lib'
+    ArtifactName: 'Core Library'
+    publishLocation: 'container'
