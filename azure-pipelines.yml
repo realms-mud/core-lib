@@ -14,14 +14,14 @@ container:
   endpoint: 'Realms Registry'
 
 steps:
-- bash: cp -r /mud/lib/* /__w/1/s; \
-        rm -rf /mud/lib; \
-        ln -s /__w/1/s /mud/lib; \
-        ls -la /mud/lib; \
-        cp /mud/lib/secure/simul_efun.c /mud/lib/secure/simul_efun.orig; \
-        cp /mud/lib/secure/master/preload.c /mud/lib/secure/master/preload.orig; \
-        cp /mud/lib/init/init_file /mud/lib/init/init_file.orig; \
-        /prepSimulEfun; \
+- bash: cp -r /mud/lib/* /__w/1/s; 
+        rm -rf /mud/lib; 
+        ln -s /__w/1/s /mud/lib; 
+        ls -la /mud/lib; 
+        cp /mud/lib/secure/simul_efun.c /mud/lib/secure/simul_efun.orig; 
+        cp /mud/lib/secure/master/preload.c /mud/lib/secure/master/preload.orig; 
+        cp /mud/lib/init/init_file /mud/lib/init/init_file.orig; 
+        /prepSimulEfun; 
         /configureBuild
   displayName: 'Build pre-processing'
 
@@ -38,15 +38,15 @@ steps:
     artifact: 'Test Logs'
     publishLocation: 'pipeline'
 
-- bash: rm -rf /mud/lib/players/* \
-               /mud/lib/brokenFile.c \
-               /mud/lib/include \
-               /mud/lib/README.md \
-               /mud/lib/git* \
-               /mud/lib/*.log \
-               /mud/lib/demo-videos; \
-        mv /mud/lib/secure/simul_efun.orig /mud/lib/secure/simul_efun.c; \
-        mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; \
+- bash: rm -rf /mud/lib/players/* 
+               /mud/lib/brokenFile.c 
+               /mud/lib/include 
+               /mud/lib/README.md 
+               /mud/lib/git*
+               /mud/lib/*.log 
+               /mud/lib/demo-videos;
+        mv /mud/lib/secure/simul_efun.orig /mud/lib/secure/simul_efun.c;
+        mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; 
         mv /mud/lib/init/init_file.orig /mud/lib/init/init_file
   displayName: 'Packaging Library'
 
