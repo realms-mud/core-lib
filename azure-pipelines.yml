@@ -37,18 +37,18 @@ steps:
 - bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
   displayName: 'Executing Tests'
 
-- bash: rm -rf /mud/lib/players/* 
-               /mud/lib/brokenFile.c 
-               /mud/lib/include 
-               /mud/lib/README.md 
-               /mud/lib/git*
-               /mud/lib/*.log 
-               /mud/lib/demo-videos;
-        mv /mud/lib/secure/simul_efun.orig /mud/lib/secure/simul_efun.c;
-        mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; 
-        mv /mud/lib/init/init_file.orig /mud/lib/init/init_file;
+- bash: rm -rf $(Build.SourcesDirectory)/players/* 
+               $(Build.SourcesDirectory)/brokenFile.c 
+               $(Build.SourcesDirectory)/include 
+               $(Build.SourcesDirectory)/README.md 
+               $(Build.SourcesDirectory)/.git*
+               $(Build.SourcesDirectory)/*.log 
+               $(Build.SourcesDirectory)/demo-videos;
+        mv $(Build.SourcesDirectory)/secure/simul_efun.orig $(Build.SourcesDirectory)/secure/simul_efun.c;
+        mv $(Build.SourcesDirectory)/secure/master/preload.orig $(Build.SourcesDirectory)/secure/master/preload.c; 
+        mv $(Build.SourcesDirectory)/init/init_file.orig $(Build.SourcesDirectory)/init/init_file;
         mkdir $(Build.ArtifactStagingDirectory)/mudlib;
-        cp -a /mud/lib/* $(Build.ArtifactStagingDirectory)/mudlib
+        cp -a $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/mudlib
   displayName: 'Packaging Library'
 
 - task: PublishBuildArtifacts@1
