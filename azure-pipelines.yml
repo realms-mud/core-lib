@@ -40,9 +40,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: Publishing Test Reports
-  inputs:
-    PathToPublish: '/mud/debug'
-    ArtifactName: 'Test Logs'
+
 
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
