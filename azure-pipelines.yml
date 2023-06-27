@@ -16,12 +16,12 @@ container:
   endpoint: 'Realms Registry'
 
 steps:
-- bash: cp -r /mud/lib/* /__w/1/s; 
+- bash: cp -r /mud/lib/* $(Build.SourcesDirectory); 
         rm -rf /mud/lib; 
-        ln -s /__w/1/s /mud/lib; 
-        cp /mud/lib/secure/simul_efun.c /mud/lib/secure/simul_efun.orig; 
-        cp /mud/lib/secure/master/preload.c /mud/lib/secure/master/preload.orig; 
-        cp /mud/lib/init/init_file /mud/lib/init/init_file.orig; 
+        ln -s $(Build.SourcesDirectory) /mud/lib; 
+        cp $(Build.SourcesDirectory)/secure/simul_efun.c $(Build.SourcesDirectory)/secure/simul_efun.orig; 
+        cp $(Build.SourcesDirectory)/secure/master/preload.c $(Build.SourcesDirectory)/secure/master/preload.orig; 
+        cp $(Build.SourcesDirectory)/init/init_file $(Build.SourcesDirectory)/init/init_file.orig; 
         /prepSimulEfun; 
         /configureBuild
   displayName: 'Build pre-processing'
@@ -29,10 +29,11 @@ steps:
 - bash: service mysql start; /create_db.pl
   displayName: 'Setting up the database'
 
-- bash: /compiler/src/ldmud; mkdir /__w/1/a/debug; mv /mud/lib/*.log /__w/1/a/debug/compiler.log
+- bash: 
+        mkdir $(Build.ArtifactStagingDirectory)/reports
   displayName: 'Building Library'
 
-- bash: /executeTests
+- bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
   displayName: 'Executing Tests'
 
 - bash: rm -rf /mud/lib/players/* 
@@ -45,8 +46,8 @@ steps:
         mv /mud/lib/secure/simul_efun.orig /mud/lib/secure/simul_efun.c;
         mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; 
         mv /mud/lib/init/init_file.orig /mud/lib/init/init_file;
-        mkdir /__w/1/a/mudlib;
-        cp -a /mud/lib/* /__w/1/a/mudlib
+        mkdir $(Build.ArtifactStagingDirectory)/mudlib;
+        cp -a /mud/lib/* $(Build.ArtifactStagingDirectory)/mudlib
   displayName: 'Packaging Library'
 
 - task: PublishBuildArtifacts@1
