@@ -7,7 +7,7 @@
 public nomask int unicodeIsSingleCharacter()
 {
     return (__VERSION_MAJOR__ >= 3) && (__VERSION_MINOR__ >= 6) &&
-        (__VERSION_MICRO__ >= 3);
+        (__VERSION_MICRO__ >= 3) || __EFUN_DEFINED__(text_width);
 }
 
 /////////////////////////////////////////////////////////////////////////////
