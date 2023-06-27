@@ -40,9 +40,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   displayName: Publishing Test Reports
-  inputs:
-    PathToPublish: '/mud/debug'
-    ArtifactName: 'Test Logs'
+
 
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
@@ -55,10 +53,3 @@ steps:
         mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; 
         mv /mud/lib/init/init_file.orig /mud/lib/init/init_file
   displayName: 'Packaging Library'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publishing Core Library
-  inputs:
-    PathtoPublish: '/mud/lib'
-    ArtifactName: 'Core Library'
-    publishLocation: 'container'
