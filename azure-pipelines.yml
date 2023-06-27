@@ -29,8 +29,9 @@ steps:
 - bash: service mysql start; /create_db.pl
   displayName: 'Setting up the database'
 
-- bash: 
-        mkdir $(Build.ArtifactStagingDirectory)/reports
+- bash: /compiler/src/ldmud; 
+        mkdir $(Build.ArtifactStagingDirectory)/reports;
+        mv $(Build.SourcesDirectory)/*.log $(Build.ArtifactStagingDirectory)/reports
   displayName: 'Building Library'
 
 - bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
