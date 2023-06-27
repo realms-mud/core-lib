@@ -29,18 +29,14 @@ steps:
 - bash: service mysql start; /create_db.pl
   displayName: 'Setting up the database'
 
-- bash: /compiler/src/ldmud; mkdir /mud/debug; mv /mud/lib/*.log /mud/debug/compiler.log
+- bash: /compiler/src/ldmud; mkdir /__w/1/a/debug; mv /mud/lib/*.log /__w/1/a/debug/compiler.log
   displayName: 'Building Library'
 
 - bash: /executeTests
   displayName: 'Executing Tests'
 
-- bash: ls -la /mud/debug
+- bash: ls -la /__w/1/a/debug
   displayName: 'Flark Tests'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publishing Test Reports
-
 
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
@@ -51,5 +47,10 @@ steps:
                /mud/lib/demo-videos;
         mv /mud/lib/secure/simul_efun.orig /mud/lib/secure/simul_efun.c;
         mv /mud/lib/secure/master/preload.orig /mud/lib/secure/master/preload.c; 
-        mv /mud/lib/init/init_file.orig /mud/lib/init/init_file
+        mv /mud/lib/init/init_file.orig /mud/lib/init/init_file;
+        mkdir /__w/1/a/mudlib;
+        cp -a /mud/lib/* /__w/1/a/mudlib
   displayName: 'Packaging Library'
+
+- task: PublishBuildArtifacts@1
+  displayName: Publishing Test Reports
