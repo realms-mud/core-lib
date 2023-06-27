@@ -35,9 +35,6 @@ steps:
 - bash: /executeTests
   displayName: 'Executing Tests'
 
-- bash: ls -la /__w/1/a/debug
-  displayName: 'Flark Tests'
-
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
                /mud/lib/include 
