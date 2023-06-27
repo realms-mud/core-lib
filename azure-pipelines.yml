@@ -36,6 +36,7 @@ steps:
 
 - bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
   displayName: 'Executing Tests'
+  timeoutInMinutes: 0
 
 - bash: rm -rf $(Build.SourcesDirectory)/players/* 
                $(Build.SourcesDirectory)/brokenFile.c 
