@@ -35,12 +35,14 @@ steps:
 - bash: /executeTests
   displayName: 'Executing Tests'
 
+- bash: ls -la /mud/debug
+  displayName: 'Flark Tests'
+
 - task: PublishBuildArtifacts@1
   displayName: Publishing Test Reports
   inputs:
-    PathtoPublish: '/mud/debug'
+    PathToPublish: '/mud/debug'
     ArtifactName: 'Test Logs'
-    publishLocation: 'container'
 
 - bash: rm -rf /mud/lib/players/* 
                /mud/lib/brokenFile.c 
