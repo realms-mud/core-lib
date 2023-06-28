@@ -6,51 +6,54 @@
 trigger:
 - master
 
-continueOnError: true 
+jobs: 
+- job: corelib
+  cancelTimeoutInMinutes: 2
+  timeoutInMinutes: 600
+  continueOnError: true 
+  pool:
+    vmImage: 'ubuntu-latest'
 
-pool:
-  vmImage: 'ubuntu-latest'
+  container:
+    image: corelib/realms-lib
+    endpoint: 'Realms Registry'
 
-container:
-  image: corelib/realms-lib
-  endpoint: 'Realms Registry'
+  steps:
+  - bash: cp -r /mud/lib/* $(Build.SourcesDirectory); 
+          rm -rf /mud/lib; 
+          ln -s $(Build.SourcesDirectory) /mud/lib; 
+          cp $(Build.SourcesDirectory)/secure/simul_efun.c $(Build.SourcesDirectory)/secure/simul_efun.orig; 
+          cp $(Build.SourcesDirectory)/secure/master/preload.c $(Build.SourcesDirectory)/secure/master/preload.orig; 
+          cp $(Build.SourcesDirectory)/init/init_file $(Build.SourcesDirectory)/init/init_file.orig; 
+          /prepSimulEfun; 
+          /configureBuild
+    displayName: 'Build pre-processing'
 
-steps:
-- bash: cp -r /mud/lib/* $(Build.SourcesDirectory); 
-        rm -rf /mud/lib; 
-        ln -s $(Build.SourcesDirectory) /mud/lib; 
-        cp $(Build.SourcesDirectory)/secure/simul_efun.c $(Build.SourcesDirectory)/secure/simul_efun.orig; 
-        cp $(Build.SourcesDirectory)/secure/master/preload.c $(Build.SourcesDirectory)/secure/master/preload.orig; 
-        cp $(Build.SourcesDirectory)/init/init_file $(Build.SourcesDirectory)/init/init_file.orig; 
-        /prepSimulEfun; 
-        /configureBuild
-  displayName: 'Build pre-processing'
+  - bash: service mysql start; /create_db.pl
+    displayName: 'Setting up the database'
 
-- bash: service mysql start; /create_db.pl
-  displayName: 'Setting up the database'
+  - bash: /compiler/src/ldmud; 
+          mkdir $(Build.ArtifactStagingDirectory)/reports;
+          mv $(Build.SourcesDirectory)/*.log $(Build.ArtifactStagingDirectory)/reports
+    displayName: 'Building Library'
 
-- bash: /compiler/src/ldmud; 
-        mkdir $(Build.ArtifactStagingDirectory)/reports;
-        mv $(Build.SourcesDirectory)/*.log $(Build.ArtifactStagingDirectory)/reports
-  displayName: 'Building Library'
+  - bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
+    displayName: 'Executing Tests'
+    timeoutInMinutes: 0
 
-- bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
-  displayName: 'Executing Tests'
-  timeoutInMinutes: 0
+  - bash: rm -rf $(Build.SourcesDirectory)/players/* 
+                $(Build.SourcesDirectory)/brokenFile.c 
+                $(Build.SourcesDirectory)/include 
+                $(Build.SourcesDirectory)/README.md 
+                $(Build.SourcesDirectory)/.git*
+                $(Build.SourcesDirectory)/*.log 
+                $(Build.SourcesDirectory)/demo-videos;
+          mv $(Build.SourcesDirectory)/secure/simul_efun.orig $(Build.SourcesDirectory)/secure/simul_efun.c;
+          mv $(Build.SourcesDirectory)/secure/master/preload.orig $(Build.SourcesDirectory)/secure/master/preload.c; 
+          mv $(Build.SourcesDirectory)/init/init_file.orig $(Build.SourcesDirectory)/init/init_file;
+          mkdir $(Build.ArtifactStagingDirectory)/mudlib;
+          cp -a $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/mudlib
+    displayName: 'Packaging Library'
 
-- bash: rm -rf $(Build.SourcesDirectory)/players/* 
-               $(Build.SourcesDirectory)/brokenFile.c 
-               $(Build.SourcesDirectory)/include 
-               $(Build.SourcesDirectory)/README.md 
-               $(Build.SourcesDirectory)/.git*
-               $(Build.SourcesDirectory)/*.log 
-               $(Build.SourcesDirectory)/demo-videos;
-        mv $(Build.SourcesDirectory)/secure/simul_efun.orig $(Build.SourcesDirectory)/secure/simul_efun.c;
-        mv $(Build.SourcesDirectory)/secure/master/preload.orig $(Build.SourcesDirectory)/secure/master/preload.c; 
-        mv $(Build.SourcesDirectory)/init/init_file.orig $(Build.SourcesDirectory)/init/init_file;
-        mkdir $(Build.ArtifactStagingDirectory)/mudlib;
-        cp -a $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/mudlib
-  displayName: 'Packaging Library'
-
-- task: PublishBuildArtifacts@1
-  displayName: Publishing Test Reports
+  - task: PublishBuildArtifacts@1
+    displayName: Publishing Test Reports
