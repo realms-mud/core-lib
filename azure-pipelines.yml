@@ -32,9 +32,9 @@ jobs:
   - bash: service mysql start; /create_db.pl
     displayName: 'Setting up the database'
 
-  - bash: /compiler/src/ldmud > /dev/null; 
+  - bash: /compiler/src/ldmud;
           mkdir $(Build.ArtifactStagingDirectory)/reports;
-          mv $(Build.SourcesDirectory)/*.log $(Build.ArtifactStagingDirectory)/reports
+          mv $(Build.SourcesDirectory)/*.log $(Build.ArtifactStagingDirectory)/reports/compilation.log
     displayName: 'Building Library'
 
   - bash: /executeTests $(Build.SourcesDirectory) $(Build.ArtifactStagingDirectory)/reports
