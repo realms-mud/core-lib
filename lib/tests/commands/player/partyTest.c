@@ -322,9 +322,9 @@ void PartyShowsNPCsAndHenchmen()
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Bob                | fakeEnvironment    | Nobody             |           1  |\n"
         "| Frank              | No longer in party | Nobody             |           0  |\n"
-        "| Ralph              | Nowhere            | Bob                |         N/A  |\n"
         "| Earl               | Nowhere            | Bob                |         N/A  |\n"
         "| Galadhel           | Nowhere            | Bob                |         N/A  |\n"
+        "| Ralph              | Nowhere            | Bob                |         N/A  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n",
         Player.caughtMessage());
 }

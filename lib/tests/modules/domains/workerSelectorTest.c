@@ -263,7 +263,7 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "From this menu, you can select the carpenters who will be executing your\n"
         "project in your holdings at Argalach Castle.\n"
         "\nCarpenters selected: 1 of 3.\n"
-        "    Marik Argalen            M: +17%, D: +17%, C: +10%, U: +10%, S: +15%\n\n"
+        "    Marik Argalen            S: +15%, D: +17%, C: +10%, M: +17%, U: +10%\n\n"
         "[1] - Arnalt Arator                   [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh                  \n"
         "[5] - Hire Apprentice ($12500) low $  [6] - Hire Journeyman ($112500)low $  \n"
@@ -280,8 +280,8 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "From this menu, you can select the carpenters who will be executing your\n"
         "project in your holdings at Argalach Castle.\n"
         "\nCarpenters selected: 2 of 3.\n"
-        "    Arnalt Arator            M: -5%, D: -5%, C: -5%, U: -5%, S: -5%\n"
-        "    Marik Argalen            M: +17%, D: +17%, C: +10%, U: +10%, S: +15%\n\n"
+        "    Arnalt Arator            S: -5%, D: -5%, C: -5%, M: -5%, U: -5%\n"
+        "    Marik Argalen            S: +15%, D: +17%, C: +10%, M: +17%, U: +10%\n\n"
         "[1] - Arnalt Arator               (*) [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh                  \n"
         "[5] - Hire Apprentice ($12500) low $  [6] - Hire Journeyman ($112500)low $  \n"
@@ -299,8 +299,8 @@ void CorrectDetailsDisplayedForSelectedWorkers()
         "project in your holdings at Argalach Castle.\n"
         "\nAll required carpenters have been assigned.\n"
         "Select 'Confirm Selections' to continue.\n"
-        "    Arnalt Arator            M: -5%, D: -5%, C: -5%, U: -5%, S: -5%\n"
-        "    Marik Argalen            M: +17%, D: +17%, C: +10%, U: +10%, S: +15%\n"
+        "    Arnalt Arator            S: -5%, D: -5%, C: -5%, M: -5%, U: -5%\n"
+        "    Marik Argalen            S: +15%, D: +17%, C: +10%, M: +17%, U: +10%\n"
         "    Royce Eralkidh           No bonuses or penalties\n\n"
         "[1] - Arnalt Arator               (*) [2] - Derek Evendim            busy   \n"
         "[3] - Marik Argalen               (*) [4] - Royce Eralkidh              (*) \n"
@@ -347,7 +347,7 @@ void CanHireAWorker()
         ".*([0-9]+). - " + addedCharacter + ".*", "\\1", 1);
 
     ExpectSubStringMatch(sprintf("Carpenters selected: 1 of 3.*"
-        "%s.*M: -5%%, D: -5%%, C: -5%%, U: -5%%, S: -5%%.*%s. - %s.*"
+        "%s.*S: -5%%, D: -5%%, C: -5%%, M: -5%%, U: -5%%.*%s. - %s.*"
         "Hire Apprentice ..12500. low.*2 workers", 
         addedCharacter, newEntry, addedCharacter), 
         Player.caughtMessage());
