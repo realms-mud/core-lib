@@ -715,9 +715,9 @@ void DisplayDetailsShowCorrectInformation()
         "This is only applied when you're using: hand and a half sword, long sword, or\n"
         "two-handed sword.\n"
         "Prerequisites:\n"
+        "          Level: Level of 33 in Scion of Dhuras\n"
         "       Research: The Way Of The Sword\n"
-        "       Research: Shocking Barrier\n"
-        "          Level: Level of 33 in Scion of Dhuras\n", 
+        "       Research: Shocking Barrier\n", 
             research.researchDetails());
     destruct(research);
 }

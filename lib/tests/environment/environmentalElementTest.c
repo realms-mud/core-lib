@@ -260,14 +260,14 @@ void HarvestableResourcesCorrectlySetUp()
     move_object(player, environment);
 
     Element.create();
-    ExpectEq("Name: Oak\n"
+    ExpectEq("Name: Acorn\n"
+        "This can only be harvested when the season is summer.\n"
+        "\n"
+        "Name: Oak\n"
         "Alias(es): deciduous tree, oak tree, tree\n"
         "This can only be harvested when the environment state is default.\n"
         "This can only be harvested when you're using: axe.\n"
         "This can only be harvested when your forestry skill is at least 5.\n"
-        "\n"
-        "Name: Acorn\n"
-        "This can only be harvested when the season is summer.\n"
         "\n"
         "Name: Mana\n"
         "This can only be harvested when the environment state is deadified.\n"
