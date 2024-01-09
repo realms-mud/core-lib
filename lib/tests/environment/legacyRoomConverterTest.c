@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -30,7 +30,7 @@ void CanTranslateSimpleLegacyRoomThatUsesSetupFunctions()
 {
     object oldRoom = load_object("/lib/tests/support/environment/legacy/simpleLegacyUsingFunctions.c");
     ExpectEq("//*****************************************************************************\n"
-        "// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
+        "// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
         "//                      the accompanying LICENSE file for details.\n"
         "//*****************************************************************************\n"
         "inherit \"/lib/environment/environment.c\";\n"
@@ -63,7 +63,7 @@ void CanTranslateSimpleLegacyRoomThatUsesVariables()
 {
     object oldRoom = load_object("/lib/tests/support/environment/legacy/simpleLegacyUsingVariables.c");
     ExpectEq("//*****************************************************************************\n"
-        "// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
+        "// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
         "//                      the accompanying LICENSE file for details.\n"
         "//*****************************************************************************\n"
         "inherit \"/lib/environment/environment.c\";\n"
@@ -103,7 +103,7 @@ void CanTranslateExtraMethods()
 {
     object oldRoom = load_object("/lib/tests/support/environment/legacy/complexWithIncludesAndOldPlayerMethods.c");
     ExpectEq("//*****************************************************************************\n"
-        "// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
+        "// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
         "//                      the accompanying LICENSE file for details.\n"
         "//*****************************************************************************\n"
         "inherit \"/lib/environment/environment.c\";\n"
@@ -193,7 +193,7 @@ void CanTranslateIncludedFiles()
 {
     object oldRoom = load_object("/lib/tests/support/environment/legacy/complexWithIncludeContainingMethods.c");
     ExpectEq("//*****************************************************************************\n"
-        "// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
+        "// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See\n"
         "//                      the accompanying LICENSE file for details.\n"
         "//*****************************************************************************\n"
         "inherit \"/lib/environment/environment.c\";\n"

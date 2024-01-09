@@ -2,7 +2,7 @@
 // Class: events
 // File Name: events.c
 //
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //
 // Description: This is an admittedly rudimentary event handling system (for
