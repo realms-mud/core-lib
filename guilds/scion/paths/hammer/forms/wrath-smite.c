@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Wrath Smite");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of a master smite - the wrath smite. This is a powerful "
         "diagonal smiteing stroke dealt from the wrath guard and ending "

@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Sweeping Torment");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of the sweeping torment technique. This form enhances "
         "the scion's soul strike.");

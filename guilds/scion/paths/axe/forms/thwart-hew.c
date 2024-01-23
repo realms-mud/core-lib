@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Thwart Hew");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of a master hew - the thwart hew. This is a high "
         "horizontal hew with the backhand edge from the right and then the "

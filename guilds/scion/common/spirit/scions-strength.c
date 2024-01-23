@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Scion's Strength");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the Scion's Strength technique. This form reduces "
         "the time it takes to recover from using this spell.");

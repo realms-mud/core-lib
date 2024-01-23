@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Brand of Laiwyth");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the Brand of Laiwyth technique. By means of this, the "
         "Scion is able to emit a strong, constant frigid energy from their "

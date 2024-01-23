@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Advanced Changing Through");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of various advanced techniques of escaping a bind by "
         "sliding the staff's head out from underneath the foe's weapon and "

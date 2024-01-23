@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Under Strike");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of how to more effectively strike with the edge of a dagger "
         "from below the foe.");

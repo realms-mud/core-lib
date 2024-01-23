@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Scion's Call");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the Scion's Call technique. This form reduces "
         "the cost to cast this spell.");

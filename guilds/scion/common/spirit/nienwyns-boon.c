@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Nienwyn's Boon");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of the Nienwyn's Boon technique. This form enhances "
         "the scion's Soul Brand and Brand of Laiwyth abilities.");

@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Energized Strike");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the energized strike technique. This form enhances "
         "the scion's Shock Strike and Lightning Strike abilities.");

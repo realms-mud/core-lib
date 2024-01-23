@@ -15,7 +15,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Spectral Brand");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the spectral brand technique. This form enhances "
         "the scion's Soul Brand and Brand of Laiwyth abilities.");

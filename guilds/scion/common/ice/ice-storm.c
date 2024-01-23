@@ -16,7 +16,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Ice Storm");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the ice storm technique. By means of this, the "
         "Scion is able to use their weapon as a conduit for emitting a "

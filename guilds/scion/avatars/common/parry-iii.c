@@ -8,7 +8,7 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Parry III");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research attunes the "
         "scion's avatar to be more adept at parrying attacks.");
 

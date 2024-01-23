@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Part Strike");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge of a master stab maneuver - the part stab maneuver. This is a vertical "
         "descending stab maneuver that ends in the fool's guard. This stab maneuver is dealt "

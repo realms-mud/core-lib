@@ -17,7 +17,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Maelstrom");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the maelstrom technique. By means of this, the "
         "Scion is able to use their weapon as a conduit for sending balls "

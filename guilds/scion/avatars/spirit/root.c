@@ -8,7 +8,7 @@ inherit "/lib/modules/research/summoningResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Spirit Avatar");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
 
     addSpecification("description", "This skill provides the user with the "
         "knowledge of how to summon a spirit avatar.");

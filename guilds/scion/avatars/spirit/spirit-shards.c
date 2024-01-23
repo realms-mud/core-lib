@@ -8,7 +8,7 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Spirit Shards");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research gives your "
         "avatar the `Spirit Shards' spell.");
 

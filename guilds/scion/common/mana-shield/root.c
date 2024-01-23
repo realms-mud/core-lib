@@ -8,7 +8,7 @@ inherit "/lib/modules/research/sustainedResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Mana Shield");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This skill provides the user with the "
         "knowledge to express their raw magical energy as a magical shield.");
 
