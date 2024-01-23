@@ -1127,3 +1127,20 @@ public nomask object *getResearchItemsBySectionType(object user,
         (: ($3->isResearched(program_name($1)) &&
             (member($2, $1->query("composite type")) > -1)) :), types, user);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchItemsBySource(object user, string source)
+{
+    string *research = user->completedResearch() +
+        user->researchInProgress();
+
+    return filter(research,
+        (: researchItemCache[$1]->query("source") == $2 :), source);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchTreesBySource(object user, string source)
+{
+    return filter(user->availableResearchTrees(),
+        (: researchTree($1)->Source() == $2 :), source);
+}

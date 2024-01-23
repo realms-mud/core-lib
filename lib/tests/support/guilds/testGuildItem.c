@@ -8,6 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Guild research item");
+    addSpecification("source", "test");
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

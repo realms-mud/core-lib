@@ -8,7 +8,7 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 protected void Setup()
 {
     addSpecification("name", "Granted research");
-    addSpecification("source", "quests");
+    addSpecification("source", "test");
     addSpecification("description", "This is granted research");
     addSpecification("scope", "self");
     addSpecification("research type", "granted");

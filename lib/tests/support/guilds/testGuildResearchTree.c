@@ -8,6 +8,7 @@ inherit "/lib/modules/research/researchTree.c";
 protected void Setup()
 {
     Name("tree of guild researchiness");
+    Source("test");
     Description("this is the land-loving mother pigeon of all research trees");
     addPrerequisite("long sword", (["type":"skill", "value" : 10]));
     addPrerequisite("test guild", (["type":"guild", "value" : ({ "test", "fake mage" })]));

@@ -999,3 +999,42 @@ void DeactivateCompositeResearchDoesNotAffectInactiveResearch()
         "/lib/tests/support/research/compositeRoot.c",
         "Flight of the Weasels"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void RemoveResearchBySourceCorrectlyRemovesResearch()
+{
+    Research.advanceSkill("long sword", 10);
+
+    Research.addResearchPoints(100);
+    Research.addResearchTree("/lib/tests/support/research/testBlargTree.c");
+    Research.addResearchTree("/lib/tests/support/research/testDeepResearchTree.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemA.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemB.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemC.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemD.c");
+    Research.initiateResearch("/lib/tests/support/research/compositeResearchItemE.c");
+    Research.initiateResearch("/lib/tests/support/research/testResearchA.c");
+    Research.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c");
+
+    ExpectEq(({ "/lib/tests/support/research/compositeRoot.c",
+        "/lib/tests/support/research/compositeResearchItemA.c",
+        "/lib/tests/support/research/compositeResearchItemB.c",
+        "/lib/tests/support/research/compositeResearchItemC.c",
+        "/lib/tests/support/research/compositeResearchItemD.c",
+        "/lib/tests/support/research/compositeResearchItemE.c",
+        "/lib/tests/support/research/testResearchA.c",
+        "/lib/tests/support/research/testGrantedResearchItem.c",
+        "/lib/tests/support/research/testTreeRoot.c" }), Research->completedResearch());
+
+    ExpectEq(({ "/lib/tests/support/research/testDeepResearchTree.c",
+        "/lib/tests/support/research/testBlargTree.c" }), Research->availableResearchTrees());
+
+    Research.removeResearchBySource("blarg");
+
+    ExpectEq(({ "/lib/tests/support/research/compositeResearchItemE.c",
+        "/lib/tests/support/research/testResearchA.c",
+        "/lib/tests/support/research/testGrantedResearchItem.c",
+        "/lib/tests/support/research/testTreeRoot.c" }), Research->completedResearch());
+
+    ExpectEq(({ "/lib/tests/support/research/testDeepResearchTree.c" }), Research->availableResearchTrees());
+}
