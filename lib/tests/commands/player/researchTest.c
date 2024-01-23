@@ -41,7 +41,7 @@ void TopLevelResearchMenuDisplaysCorrectly()
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mFighter guild       \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMage guild          \x1b[0m\n"
-        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mQuests              \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mTest                \x1b[0m\n"
         "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mExit Research Menu  \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
