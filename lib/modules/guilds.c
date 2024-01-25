@@ -575,14 +575,18 @@ public nomask int leaveGuild(string guild)
 public nomask int removeGuild(string guild)
 {
     int ret = 0;
+
     if (memberOfGuild(guild) && guildsDictionary()->canLeaveGuild(this_object(), guild))
     {
         ret = 1;
+
         object research = getService("research");
         if (objectp(research))
         {
             research->removeResearchBySource(guild);
         }
+
+        removeGuildData(guild);
         m_delete(guilds, guild);
     }
 

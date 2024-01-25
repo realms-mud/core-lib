@@ -208,3 +208,19 @@ public void removeCompositeResearch(string player, string name,
     removeCompositeResearchData(dbHandle, player, name, constraint);
     disconnect(dbHandle);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeSavedResearch(string player, string *research, string *trees)
+{
+    int dbHandle = connect();
+    removeSavedResearchData(dbHandle, player, research, trees);
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeSavedGuild(string player, string guild)
+{
+    int dbHandle = connect();
+    removeSavedGuildData(dbHandle, player, guild);
+    disconnect(dbHandle);
+}

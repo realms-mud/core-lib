@@ -95,4 +95,11 @@ private nomask void removeCompositeResearch(string player, string name,
         player, name, constraint);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeSavedResearch(string *research, string *trees)
+{
+    load_object("/lib/modules/secure/dataAccess.c")->removeSavedResearch(
+        this_object()->RealName(), research, trees);
+}
+
 #endif

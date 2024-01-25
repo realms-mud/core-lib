@@ -424,32 +424,6 @@ public nomask varargs int initiateResearch(string researchItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void removeResearchBySource(string source)
-{
-    string *itemsToRemove =
-        researchDictionary()->getResearchItemsBySource(this_object(), source);
-
-    if (sizeof(itemsToRemove))
-    {
-        foreach(string item in itemsToRemove)
-        {
-            m_delete(research, item);
-        }
-    }
-
-    string *treesToRemove =
-        researchDictionary()->getResearchTreesBySource(this_object(), source);
-
-    if (sizeof(treesToRemove))
-    {
-        foreach(string item in treesToRemove)
-        {
-            openResearchTrees -= ({ item });
-        }
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getResearchChoices()
 {
     return researchChoices + ([]);
@@ -1134,4 +1108,38 @@ public nomask mapping categorizedResearch()
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void removeResearchBySource(string source)
+{
+    string* itemsToRemove =
+        researchDictionary()->getResearchItemsBySource(this_object(), source);
+
+    if (sizeof(itemsToRemove))
+    {
+        foreach(string item in itemsToRemove)
+        {
+            mapping compositeItems = filter(compositeResearch, 
+                (: $2["constraint"] == $3 :), item);
+            foreach(string compositeItem in m_indices(compositeItems))
+            {
+                deleteCompositeResearch(compositeItem);
+            }
+            m_delete(research, item);
+        }
+    }
+
+    string* treesToRemove =
+        researchDictionary()->getResearchTreesBySource(this_object(), source);
+
+    if (sizeof(treesToRemove))
+    {
+        foreach(string item in treesToRemove)
+        {
+            openResearchTrees -= ({ item });
+        }
+    }
+
+    removeSavedResearch(itemsToRemove, treesToRemove);
 }

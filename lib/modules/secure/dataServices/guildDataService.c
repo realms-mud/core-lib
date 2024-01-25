@@ -62,3 +62,16 @@ protected nomask void saveGuildData(int dbHandle, int playerId, mapping playerDa
         }
     }
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected void removeSavedGuildData(int dbHandle, string player, string guild)
+{
+    string query =
+        sprintf("delete from guilds where playerId in "
+            "(select id from players where name = '%s') and name = '%s';",
+            sanitizeString(player),
+            sanitizeString(guild));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}

@@ -374,3 +374,33 @@ protected nomask void removeCompositeResearchData(int dbHandle, string playerNam
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected void removeSavedResearchData(int dbHandle, 
+    string playerName, 
+    string *research, 
+    string *trees)
+{
+    string query;
+
+    foreach(string constraint in research)
+    {
+        query = sprintf("call deleteCompositeResearchByConstraint('%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(constraint));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+    }
+
+    string researchList = "'" + implode(research, "','") + "'";
+    string treeList = "'" + implode(trees, "','") + "'";
+    query =
+        sprintf("call deleteResearchAndTreesFromLists('%s','%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(researchList),
+            sanitizeString(treeList));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}

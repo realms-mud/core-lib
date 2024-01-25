@@ -57,4 +57,11 @@ static nomask mapping sendGuilds()
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeGuildData(string guild)
+{
+    load_object("/lib/modules/secure/dataAccess.c")->removeSavedGuild(
+        this_object()->RealName(), guild);
+}
+
 #endif
