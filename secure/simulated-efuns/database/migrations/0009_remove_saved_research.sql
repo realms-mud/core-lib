@@ -8,14 +8,14 @@ BEGIN
 
     select id into localPlayerId from players where name = p_playername;
 
-	set @deleteResearch = concat('delete from research where playerid = ',
-		localPlayerId, ' and path in (', p_researchItems, ');');
+    set @deleteResearch = concat('delete from research where playerid = ',
+        localPlayerId, ' and path in (', p_researchItems, ');');
     prepare stmt from @deleteResearch;
     execute stmt;
     deallocate PREPARE stmt;
     
-	set @deleteTrees = concat('delete from openResearchTrees where playerid = ',
-		localPlayerId, ' and researchTree in (', p_trees, ');');
+    set @deleteTrees = concat('delete from openResearchTrees where playerid = ',
+        localPlayerId, ' and researchTree in (', p_trees, ');');
     prepare stmt from @deleteTrees;
     execute stmt;
     deallocate PREPARE stmt;
