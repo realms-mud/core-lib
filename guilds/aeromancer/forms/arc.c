@@ -8,7 +8,8 @@ inherit "/lib/modules/research/constructedResearchComponent.c";
 protected void Setup()
 {
     addSpecification("name", "Arc Form");
-    addSpecification("source", "aeromancer");
+    addSpecification("source", "aeromancer"); 
+
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that send an arc of "
         "energy toward a foe.");

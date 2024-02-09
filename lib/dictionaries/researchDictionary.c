@@ -1079,7 +1079,8 @@ public nomask varargs string getCompositeItemDetails(mapping element,
                 configuration->decorate(sprintf(secondaryPadding +
                     "%-15s : ",
                     capitalize(element["type"]) + " " +
-                    researchItem->query("composite type")),
+                    (researchItem->query("composite type") ?
+                    researchItem->query("composite type") : "")),
                     "field header", "research", colorConfiguration) +
                 configuration->decorate(description + "\n",
                     "field data", "research", colorConfiguration) +
