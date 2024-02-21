@@ -119,7 +119,7 @@ protected void Setup()
             "name" : "staff",
             "types" : ({ "staff" }),
             "formula" : "additive",
-            "rate" : 1.0
+            "rate" : 1.05
         ]),
         ([
             "type": "weapon damage",

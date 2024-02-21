@@ -84,7 +84,7 @@ protected void Setup()
     addSpecification("bonus heal spell points rate", 10);
     addSpecification("bonus heal stamina rate", 10);
 
-    addSpecification("duration", 20);
+    addSpecification("duration", 120);
 
     addSpecification("event handler", "inspiringLyricEvent");
     addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");

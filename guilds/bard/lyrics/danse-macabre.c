@@ -67,7 +67,7 @@ protected void Setup()
                "value": 10 ]),
             (["modifier": "bonus resist water",
                "value": 10 ]),
-            (["modifier":"bonus hit points",
+            (["modifier": "bonus hit points",
                "value" : 150]),
         }),
     ]));
