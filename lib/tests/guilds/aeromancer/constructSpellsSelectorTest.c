@@ -177,7 +177,7 @@ void DescribeASpellShowsCorrectDetails()
         "                        Modified -> +25% if Corona Discharge is researched\n"
         "                        Modified -> +25% if Plasma Eruption is researched\n"
         "                        Modified -> +25% if Flux Condenser is researched\n"
-        "                        Modified -> by your staff weapon damage (additive)\n"
+        "                        Modified -> 1.05 * your staff weapon damage (additive)\n"
         "                        Modified -> 1.25 * your not a staff weapon damage\n"
         "                                    (subtractive)\n"
         "                        Modified -> 0.10 * your elemental air skill (additive)\n"
