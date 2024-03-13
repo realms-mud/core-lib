@@ -16,6 +16,7 @@
 //              player/NPC will broadcast to the registered objects.
 //              
 // *****************************************************************************
+#include <functionlist.h>
 
 // I suspect there will be more. This, however, is a decent starting point.
 private nosave string *validEventHandlers = ({ "onDeath", "onHeartBeat", 
@@ -60,7 +61,9 @@ public nomask int registerEvent(object subscriber)
     if(subscriber && objectp(subscriber) && !member(eventList, subscriber))
     {
         string *eventsToAdd = ({ });
-        foreach(string method in functionlist(subscriber, 0x01))
+        string *functions = functionlist(subscriber, RETURN_FUNCTION_NAME);
+
+        foreach(string method in functions)
         {
             if(method && stringp(method) && 
               (member(validEventHandlers, method) > -1))

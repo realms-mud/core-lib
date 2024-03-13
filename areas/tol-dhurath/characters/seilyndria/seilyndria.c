@@ -45,9 +45,9 @@ protected void Setup()
 
     addConversation("/areas/tol-dhurath/characters/seilyndria/startingConversation.c");
 
-    registerEvent(this_object());
     registerEventHandler("revealName");
     registerEventHandler("playerGaveName");
+    registerEvent(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
