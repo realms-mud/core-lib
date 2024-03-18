@@ -1,10 +1,10 @@
 CREATE TABLE `versionInfo` (    
   `id` int(11) NOT NULL,
   `versionType` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ##
-insert into versionInfo (versionType) values ('1', 'database');
+insert into versionInfo (id, versionType) values ('1', 'database');
 ##
 CREATE TABLE `temporaryBans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
