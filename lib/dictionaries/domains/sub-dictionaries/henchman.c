@@ -473,7 +473,8 @@ public nomask string getHenchmanDetails(object user, object henchman,
         ret += configuration->decorate(sprintf("    %-6s:\n", "Skills"),
             "heading", "player domains", colorConfiguration);
 
-        foreach(string skill in m_indices(benefits["skills"]))
+        string *skillList = sort_array(m_indices(benefits["skills"]), (: $1 > $2 :));
+        foreach(string skill in skillList)
         {
             int value = benefits["skills"][skill];
             string description = skill;
