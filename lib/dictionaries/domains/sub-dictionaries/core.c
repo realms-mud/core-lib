@@ -79,3 +79,9 @@ protected nomask string generateBuildInfo(string *leftColumn, string *rightColum
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *getIndices(mapping data)
+{
+    return sort_array(m_indices(data), (: $1 > $2 :));
+}
