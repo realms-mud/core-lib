@@ -371,7 +371,9 @@ private nomask string displayDescription(object user, mapping data)
     string charset = user->charsetConfiguration();
 
     string *descriptions = ({});
-    foreach(string key in m_indices(data))
+
+    string *descriptorList = sort_array(m_indices(data), (: $1 > $2 :));
+    foreach(string key in descriptorList)
     {
         descriptions += ({
             displayField(key, data[key], colorConfiguration, charset)
