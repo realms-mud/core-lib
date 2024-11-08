@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/domain-layout.c";
@@ -42,7 +42,7 @@ private nomask mapping getConstructionOptions(mapping componentData)
     mapping construction = 
         CastleComponents[componentData["name"]]["construction"]["materials"] + ([]);
 
-    string *sections = sort_array(m_indices(construction), (: $1 > $2 :));
+    string* sections = getIndices(construction);
 
     int menuItem = 1;
     if (sizeof(sections))
@@ -153,7 +153,7 @@ public nomask mapping getBuildComponentMenu(object user, string location,
         firstSection = extraData;
 
         ret = getConstructionOptions(componentData);
-        string *entries = sort_array(m_indices(ret), (: $1 > $2 :));
+        string *entries = getIndices(ret);
         foreach(string key in entries)
         {
             if (mappingp(ret[key]))

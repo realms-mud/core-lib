@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/constructedResearchComponent.c";
@@ -8,7 +8,8 @@ inherit "/lib/modules/research/constructedResearchComponent.c";
 protected void Setup()
 {
     addSpecification("name", "Arc Form");
-    addSpecification("source", "aeromancer");
+    addSpecification("source", "aeromancer"); 
+
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that send an arc of "
         "energy toward a foe.");

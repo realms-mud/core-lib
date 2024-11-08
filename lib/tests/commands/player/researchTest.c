@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -41,7 +41,7 @@ void TopLevelResearchMenuDisplaysCorrectly()
     ExpectEq("\x1b[0;36mResearch - \x1b[0m\x1b[0;37;1mFrom this menu, you can view your character's known research\nas well as initiate new research\x1b[0m:\n"
         "    [\x1b[0;31;1m1\x1b[0m] - \x1b[0;32mFighter guild       \x1b[0m\n"
         "    [\x1b[0;31;1m2\x1b[0m] - \x1b[0;32mMage guild          \x1b[0m\n"
-        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mQuests              \x1b[0m\n"
+        "    [\x1b[0;31;1m3\x1b[0m] - \x1b[0;32mTest                \x1b[0m\n"
         "    [\x1b[0;31;1m4\x1b[0m] - \x1b[0;32mExit Research Menu  \x1b[0m\n"
         "\x1b[0;32;1mYou must select a number from 1 to 4.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m\x1b[0;32;1m\x1b[0m",
@@ -108,8 +108,9 @@ void ResearchDetailsAreShownWhenResearchItemWithModifierIsSelected()
         "\x1b[0m\x1b[0;36mUsage effect    : \x1b[0m\x1b[0;33m80% chance to increase hit points 25 - 50\n"
         "\x1b[0m\x1b[0;36mUsage effect    : \x1b[0m\x1b[0;33m20% chance to increase hit points 35 - 60\n"
         "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m1.25 * your long sword skill \x1b[0m\x1b[0;31;1m(additive)\n"
-        "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute \x1b[0m\x1b[0;31;1m(subtractive)\n"
-        "\x1b[0m\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
+        "\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute\n"
+        "                              \x1b[0m\x1b[0;31;1m(subtractive)\n"
+        "\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
         "\x1b[0;36mPrerequisites:\n\x1b[0m"
         "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
         "\x1b[0;36mResearch Prereqs : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"
@@ -160,8 +161,9 @@ void DescribeAsQuestionMarkShowsResearchDetails()
         "\x1b[0m\x1b[0;36mUsage effect    : \x1b[0m\x1b[0;33m80% chance to increase hit points 25 - 50\n"
         "\x1b[0m\x1b[0;36mUsage effect    : \x1b[0m\x1b[0;33m20% chance to increase hit points 35 - 60\n"
         "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m1.25 * your long sword skill \x1b[0m\x1b[0;31;1m(additive)\n"
-        "\x1b[0m\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute \x1b[0m\x1b[0;31;1m(subtractive)\n"
-        "\x1b[0m\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
+        "\x1b[0;33m                  Modified -> \x1b[0m\x1b[0;34;1m0.25 * your strength attribute\n"
+        "                              \x1b[0m\x1b[0;31;1m(subtractive)\n"
+        "\x1b[0;36mThis is only applied when you're using: long sword.\n\x1b[0m"
         "\x1b[0;36mPrerequisites:\n\x1b[0m"
         "\x1b[0;33m          Skill: \x1b[0m\x1b[0;35mLong sword of 10\n\x1b[0m"
         "\x1b[0;36mResearch Prereqs : \x1b[0;34;1mSpiffy tree root\x1b[0m\n"

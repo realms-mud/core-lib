@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -444,6 +444,31 @@ void LeavingGuildDoesNotRemoveLearnedGuildSkills()
     ExpectEq(160, User.maxHitPoints(), "maxHitPoints is unchanged after leaving");
     ExpectTrue(User.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is still researched");
     ExpectEq(1, User.getSkill("long sword"), "long sword skill is still 6");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RemovingGuildRemovesLearnedGuildSkills()
+{
+    User.addSkillPoints(100);
+    User.advanceSkill("long sword", 10);
+
+    ExpectEq(150, User.maxHitPoints(), "maxHitPoints is 150 when not a member of the guild");
+    User.joinGuild("test");
+    AdvanceToLevel(5, "test");
+
+    ExpectEq(175, User.maxHitPoints(), "maxHitPoints is 175 after advancing");
+    ExpectTrue(User.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is researched");
+    ExpectTrue(User.isResearched("/lib/tests/support/guilds/testGuildTreeRoot.c"), "test research is researched");
+    ExpectEq(({ "/lib/tests/support/guilds/testGuildResearchTree.c" }), User.availableResearchTrees(), "test tree is researched");
+    ExpectEq(19, User.getSkill("long sword"), "long sword skill after advancing");
+
+    ExpectTrue(User.removeGuild("test"), "user leaves the guild");
+    ExpectEq(0, User.guildLevel("test"), "guild level is now 0");
+    ExpectEq(150, User.maxHitPoints(), "maxHitPoints is reverted after leaving");
+    ExpectFalse(User.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "test research is not researched");
+    ExpectFalse(User.isResearched("/lib/tests/support/research/testGuildTreeRoot.c"), "test research is not researched");
+    ExpectEq(({ }), User.availableResearchTrees(), "test tree is not researched");
+    ExpectEq(10, User.getSkill("long sword"), "long sword skill is reverted");
 }
 
 /////////////////////////////////////////////////////////////////////////////

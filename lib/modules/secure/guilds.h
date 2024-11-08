@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #ifndef guildsModule_h
@@ -55,6 +55,13 @@ static nomask mapping sendGuilds()
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeGuildData(string guild)
+{
+    load_object("/lib/modules/secure/dataAccess.c")->removeSavedGuild(
+        this_object()->RealName(), guild);
 }
 
 #endif

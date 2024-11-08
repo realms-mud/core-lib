@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -118,9 +118,9 @@ void PlayerCombatAttributesRestored()
 void PlayerGuildsRestored()
 {
     Player.restore("gorthaur");
-    ExpectEq(({ "fake mage" }), Player.memberOfGuilds());
-    ExpectEq(21, Player.effectiveLevel());
-    ExpectEq(120454, Player.effectiveExperience());
+    ExpectEq(({ "fake mage", "blarg" }), Player.memberOfGuilds());
+    ExpectEq(22, Player.effectiveLevel());
+    ExpectEq(120587, Player.effectiveExperience());
     ExpectEq(16, Player.guildLevel("fake mage"));
     ExpectEq(133, Player.guildExperience("fake mage"));
     ExpectEq("acolyte", Player.guildRank("fake mage"));
@@ -160,7 +160,7 @@ void PlayerResearchRestored()
     ExpectEq(3, Player.researchPoints());
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
-    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }), Player.availableResearchTrees());
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c"}), Player.availableResearchTrees());
     ExpectTrue(Player.selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
 }
@@ -312,6 +312,7 @@ void PlayerGuildsSaved()
 {
     object dict = load_object("/lib/dictionaries/guildsDictionary.c");
     object mage = load_object("/lib/tests/support/guilds/mageGuild.c");
+    object blarg = load_object("/lib/tests/support/guilds/blargGuild.c");
 
     object guild = load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -325,11 +326,11 @@ void PlayerGuildsSaved()
     Player = clone_object("/lib/realizations/player.c");
     Player.restore("gorthaur");
 
-    ExpectEq(121927, Player.effectiveExperience());
+    ExpectEq(122082, Player.effectiveExperience());
     ExpectTrue(Player.memberOfGuild("test"));
     ExpectEq(1,Player.guildLevel("test"));
     ExpectEq("neophyte", Player.guildRank("test"));
-    ExpectEq(106, Player.guildExperience("test"));
+    ExpectEq(101, Player.guildExperience("test"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -375,7 +376,8 @@ void PlayerResearchSaved()
     ExpectEq(4, Player.researchPoints());
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
-    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }), Player.availableResearchTrees());
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c"}), 
+        Player.availableResearchTrees());
     ExpectTrue(Player.selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
     Player.initiateResearch("/lib/tests/support/research/testPointsResearchItem.c");
@@ -720,4 +722,50 @@ void PlayerBlockSettingsSaved()
     Player = clone_object("/lib/realizations/player.c");
     Player.restore("gorthaur");
     ExpectFalse(Player.blocked(Player));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PlayerRemoveGuildRemovesPersistedData()
+{
+    object blarg = load_object("/lib/tests/support/guilds/blargGuild.c");
+
+    Player.restore("gorthaur");
+    ExpectTrue(Player.memberOfGuild("blarg"), "Is member of blarg");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "granted research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeResearchItemA.c"), "A research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeResearchItemB.c"), "B research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeResearchItemC.c"), "C research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeRoot.c"), "compositeRoot research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"), "sustained research is researched");
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c" }),
+        Player.availableResearchTrees());
+    ExpectTrue(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"), "Composite present");
+
+    Player.removeGuild("blarg");
+
+    ExpectFalse(Player.memberOfGuild("blarg"), "Is not member of blarg");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "granted research is researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemA.c"), "A research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemB.c"), "B research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemC.c"), "C research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeRoot.c"), "compositeRoot research is not researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"), "sustained research is researched");
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        Player.availableResearchTrees());
+    ExpectFalse(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"), "Composite present");
+
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player.restore("gorthaur");
+    ExpectFalse(Player.memberOfGuild("blarg"), "Is not member of blarg");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"), "granted research is researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemA.c"), "A research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemB.c"), "B research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeResearchItemC.c"), "C research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/compositeRoot.c"), "compositeRoot research is not researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"), "sustained research is researched");
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        Player.availableResearchTrees());
+
+    ExpectFalse(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"));
 }

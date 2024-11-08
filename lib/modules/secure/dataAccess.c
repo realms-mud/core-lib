@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
@@ -206,5 +206,21 @@ public void removeCompositeResearch(string player, string name,
 {
     int dbHandle = connect();
     removeCompositeResearchData(dbHandle, player, name, constraint);
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeSavedResearch(string player, string *research, string *trees)
+{
+    int dbHandle = connect();
+    removeSavedResearchData(dbHandle, player, research, trees);
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeSavedGuild(string player, string guild)
+{
+    int dbHandle = connect();
+    removeSavedGuildData(dbHandle, player, guild);
     disconnect(dbHandle);
 }

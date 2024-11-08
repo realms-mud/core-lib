@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -705,11 +705,13 @@ void DisplayDetailsShowCorrectInformation()
         "                  Modified -> 0.10 * your elemental air skill (additive)\n"
         "                  Modified -> 1.05 * your level (logarithmic)\n"
         "                  Modified -> 1.25 * your spellcraft skill (logarithmic)\n"
-        "                  Modified -> 1.25 * your magical essence skill (logarithmic)\n"
+        "                  Modified -> 1.25 * your magical essence skill\n"
+        "                              (logarithmic)\n"
         "                  Modified -> 0.10 * your physics skill (additive)\n"
         "                  Modified -> 0.05 * your mathematics skill (additive)\n"
         "                  Modified -> 0.05 * your chemistry skill (additive)\n"
-        "                  Modified -> 0.05 * your intelligence attribute (additive)\n"
+        "                  Modified -> 0.05 * your intelligence attribute\n"
+        "                              (additive)\n"
         "                  Modified -> 0.03 * your dexterity attribute (additive)\n"
         "                  Modified -> 0.03 * your wisdom attribute (additive)\n"
         "This is only applied when you're using: hand and a half sword, long sword, or\n"

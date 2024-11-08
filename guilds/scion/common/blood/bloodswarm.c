@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
@@ -16,7 +16,7 @@ protected void SetupResearch()
 protected void Setup()
 {
     addSpecification("name", "Bloodswarm");
-    addSpecification("source", "Scion of Dhuras Guild");
+    addSpecification("source", "Scion of Dhuras");
     addSpecification("description", "This research provides the user with the "
         "knowledge of the bloodswarm technique. By means of this, the "
         "Scion is able to use their weapon as a conduit for emitting a "

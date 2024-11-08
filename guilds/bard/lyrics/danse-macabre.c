@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/summoningResearchItem.c";
@@ -67,7 +67,7 @@ protected void Setup()
                "value": 10 ]),
             (["modifier": "bonus resist water",
                "value": 10 ]),
-            (["modifier":"bonus hit points",
+            (["modifier": "bonus hit points",
                "value" : 150]),
         }),
     ]));

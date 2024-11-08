@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/secure/simulated-efuns/database.c";
@@ -20,12 +20,6 @@ public nomask int testingInteractive()
 public nomask void ToggleInteractive()
 {
     isInteractive = !isInteractive;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask void setUpForTesting()
-{
-
 }
 
 /////////////////////////////////////////////////////////////////////////////

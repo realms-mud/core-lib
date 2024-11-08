@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/dictionaries/domains/sub-dictionaries/core.c";
@@ -9,10 +9,11 @@ private nomask void transformLayout(mapping building)
 {
     string layout = implode(building["layout"], "\n");
 
-    foreach(string key in m_indices(building["components"]))
+    string *buildingList = getIndices(building["components"]);
+    foreach(string key in buildingList)
     {
-        foreach(string section in 
-            m_indices(building["components"][key]["sections"]))
+        string *sectionList = getIndices(building["components"][key]["sections"]);
+        foreach(string section in sectionList)
         {
             layout = regreplace(layout, section,
                 building["components"][key]["sections"][section], 1);
@@ -56,7 +57,7 @@ private nomask string applyColorToBuilding(mapping component, string key,
     string colorConfiguration, string charset)
 {
     string ret = 0;
-    string *colors = m_indices(CastleComponents[key]["colors"]);
+    string *colors = getIndices(CastleComponents[key]["colors"]);
        
     ret = component[charset];
     if (sizeof(colors))
@@ -116,7 +117,7 @@ private nomask mapping getUnbuiltDomain(string type, string highlightComponent,
     {
         ret = CastleBlueprints[type] + ([]);
 
-        string *components = m_indices(ret["components"]);
+        string *components = getIndices(ret["components"]);
         foreach(string component in components)
         {
             ret["components"][component]["sections"] = ([]);
@@ -141,7 +142,8 @@ private nomask void applyDomainUpgrades(mapping domains, object player,
 
     if (sizeof(upgrades))
     {
-        foreach(string upgrade in m_indices(upgrades))
+        string *upgradeList = getIndices(upgrades);
+        foreach(string upgrade in upgradeList)
         {
             string upgradeName = upgrades[upgrade]["name"];
 
@@ -246,7 +248,8 @@ private nomask int getSectionDurations(mapping sections)
 {
     int ret = 0;
 
-    foreach(string section in m_indices(sections))
+    string *sectionList = getIndices(sections);
+    foreach(string section in sectionList)
     {
         if (member(sections[section], "selection") &&
             member(BuildingComponents, sections[section]["selection"]) &&
@@ -270,9 +273,11 @@ private nomask int getWorkerDurations(int initialValue, mapping workers)
 
     if (sizeof(workers))
     {
-        foreach(string workerType in m_indices(workers))
+        string *workerTypes = getIndices(workers);
+        foreach(string workerType in workerTypes)
         {
-            foreach(string worker in m_indices(workers[workerType]))
+            string *workerList = getIndices(workers[workerType]);
+            foreach(string worker in workerList)
             {
                 if (member(workers[workerType][worker], "benefits") &&
                     member(workers[workerType][worker]["benefits"], "duration"))
@@ -322,7 +327,8 @@ protected nomask string *displayMaterialsData(object user, mapping componentData
 {
     string *ret = ({});
 
-    foreach(string material in m_indices(constructionData["materials"]))
+    string *materials = getIndices(constructionData["materials"]);
+    foreach(string material in materials)
     {
         string selection = configuration->decorate(sprintf("    %-25s", "<select>"),
             "selection needed", "player domains", colorConfiguration);
@@ -361,9 +367,7 @@ protected nomask string *displayWorkerData(object user, mapping workerData,
             "heading", "player domains", colorConfiguration),
     });
 
-    string *workers = sort_array(m_indices(constructionData["workers"]),
-        (: $1 > $2 :));
-
+    string *workers = getIndices(constructionData["workers"]);
     foreach(string worker in workers)
     {
         int currentNumber = (mappingp(workerData) &&
@@ -407,8 +411,8 @@ private nomask mapping aggregateUnitList(mapping constructionData,
 
             if (member(BuildingComponents[key], "default units"))
             {
-                foreach(string unit in
-                    m_indices(BuildingComponents[key]["default units"]))
+                string *unitList = getIndices(BuildingComponents[key]["default units"]);
+                foreach(string unit in unitList)
                 {
                     if (!member(units, unit))
                     {
@@ -420,8 +424,8 @@ private nomask mapping aggregateUnitList(mapping constructionData,
             }
             if (member(BuildingComponents[key], "henchmen"))
             {
-                foreach(string unit in
-                    m_indices(BuildingComponents[key]["henchmen"]))
+                string *unitList = getIndices(BuildingComponents[key]["henchmen"]);
+                foreach(string unit in unitList)
                 {
                     if (!member(units, "henchman"))
                     {
@@ -442,7 +446,8 @@ private nomask mapping aggregateBonuses(mapping constructionData,
 {
     mapping bonuses = ([]);
 
-    foreach(string material in m_indices(constructionData["materials"]))
+    string *materialList = getIndices(constructionData["materials"]);
+    foreach(string material in materialList)
     {
         if (member(componentData, "selected sections") &&
             member(componentData["selected sections"], material) &&
@@ -487,7 +492,8 @@ private nomask string *formatUnits(string *layout, mapping componentData,
                 "heading", "player domains", colorConfiguration)
         });
 
-        foreach(string unit in m_indices(units))
+        string *unitList = getIndices(units);
+        foreach(string unit in unitList)
         {
             string unitName = pluralizeValue(unit);
             if (sizeof(unitName) > (15 + componentSize))
@@ -537,7 +543,8 @@ private nomask string *formatBonuses(mapping componentData,
             "heading", "player domains", colorConfiguration)
         });
 
-        foreach(string bonus in m_indices(bonuses))
+        string *bonusList = getIndices(bonuses);
+        foreach(string bonus in bonusList)
         {
             ret += ({ 
                 configuration->decorate(sprintf("+%-3d", bonuses[bonus]),

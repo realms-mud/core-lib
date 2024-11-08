@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #include "/lib/dictionaries/domains/building-components.h"
@@ -78,4 +78,10 @@ protected nomask string generateBuildInfo(string *leftColumn, string *rightColum
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string *getIndices(mapping data)
+{
+    return sort_array(m_indices(data), (: $1 > $2 :));
 }

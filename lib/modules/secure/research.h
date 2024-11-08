@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 #ifndef researchModule_h
@@ -93,6 +93,13 @@ private nomask void removeCompositeResearch(string player, string name,
 {
     load_object("/lib/modules/secure/dataAccess.c")->removeCompositeResearch(
         player, name, constraint);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void removeSavedResearch(string *research, string *trees)
+{
+    load_object("/lib/modules/secure/dataAccess.c")->removeSavedResearch(
+        this_object()->RealName(), research, trees);
 }
 
 #endif

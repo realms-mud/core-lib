@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
@@ -119,7 +119,7 @@ protected void Setup()
             "name" : "staff",
             "types" : ({ "staff" }),
             "formula" : "additive",
-            "rate" : 1.0
+            "rate" : 1.05
         ]),
         ([
             "type": "weapon damage",

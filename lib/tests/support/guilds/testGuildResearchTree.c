@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/researchTree.c";
@@ -8,6 +8,7 @@ inherit "/lib/modules/research/researchTree.c";
 protected void Setup()
 {
     Name("tree of guild researchiness");
+    Source("test");
     Description("this is the land-loving mother pigeon of all research trees");
     addPrerequisite("long sword", (["type":"skill", "value" : 10]));
     addPrerequisite("test guild", (["type":"guild", "value" : ({ "test", "fake mage" })]));

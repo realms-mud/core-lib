@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/persistedActiveResearchItem.c";
@@ -84,7 +84,7 @@ protected void Setup()
     addSpecification("bonus heal spell points rate", 10);
     addSpecification("bonus heal stamina rate", 10);
 
-    addSpecification("duration", 20);
+    addSpecification("duration", 120);
 
     addSpecification("event handler", "inspiringLyricEvent");
     addSpecification("use composite message", "##InitiatorName## ##Infinitive::sing##, '##CompositeSegment##'");

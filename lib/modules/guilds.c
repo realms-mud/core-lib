@@ -2,7 +2,7 @@
 // Class: guilds
 // File Name: guilds.c
 //
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/organizations.c";
@@ -387,6 +387,22 @@ public nomask int ageWhenRankAdvanced(string guild)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void persistChanges()
+{
+    object persistence = getService("/secure/persistence");
+    if (persistence)
+    {
+        persistence->save();
+    }
+
+    object state = getService("state");
+    if (state)
+    {
+        state->resetCaches();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int advanceRank(string guild)
 {
     int ret = 0;
@@ -412,17 +428,7 @@ public nomask int advanceRank(string guild)
             events->notify("onAdvancedRank");
         }
 
-        object persistence = getService("/secure/persistence");
-        if (persistence)
-        {
-            persistence->save();
-        }
-
-        object state = getService("state");
-        if (state)
-        {
-            state->resetCaches();
-        }
+        persistChanges();
         ret = 1;
     }
     return ret;
@@ -454,17 +460,7 @@ public nomask int demoteRank(string guild)
             events->notify("onDemotedRank");
         }
 
-        object persistence = getService("/secure/persistence");
-        if (persistence)
-        {
-            persistence->save();
-        }
-
-        object state = getService("state");
-        if (state)
-        {
-            state->resetCaches();
-        }
+        persistChanges();
         ret = 1;
     }
     return ret;
@@ -530,17 +526,8 @@ public nomask int joinGuild(string guild)
         // Trigger distribution of unassigned experience points
         addExperience(0);
 
-        object persistence = getService("/secure/persistence");
-        if (persistence)
-        {
-            persistence->save();
-        }
+        persistChanges();
 
-        object state = getService("state");
-        if (state)
-        {
-            state->resetCaches();
-        }
         refreshCachedPartyDetails();
 
         object selector =
@@ -579,19 +566,41 @@ public nomask int leaveGuild(string guild)
             events->notify("onLeaveGuild");
         }
 
-        object persistence = getService("/secure/persistence");
-        if (persistence)
-        {
-            persistence->save();
-        }
-
-        object state = getService("state");
-        if (state)
-        {
-            state->resetCaches();
-        }
+        persistChanges();
     }
     return ret;    
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int removeGuild(string guild)
+{
+    int ret = 0;
+
+    if (memberOfGuild(guild) && guildsDictionary()->canLeaveGuild(this_object(), guild))
+    {
+        ret = 1;
+
+        object research = getService("research");
+        if (objectp(research))
+        {
+            research->removeResearchBySource(guild);
+        }
+
+        removeGuildData(guild);
+        m_delete(guilds, guild);
+    }
+
+    if (ret)
+    {
+        object events = getService("events");
+        if (events && objectp(events))
+        {
+            events->notify("onLeaveGuild");
+        }
+
+        persistChanges();
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

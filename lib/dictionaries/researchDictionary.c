@@ -2,7 +2,7 @@
 // Class: researchDictionary
 // File Name: researchDictionary.c
 //
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
@@ -1079,7 +1079,8 @@ public nomask varargs string getCompositeItemDetails(mapping element,
                 configuration->decorate(sprintf(secondaryPadding +
                     "%-15s : ",
                     capitalize(element["type"]) + " " +
-                    researchItem->query("composite type")),
+                    (researchItem->query("composite type") ?
+                    researchItem->query("composite type") : "")),
                     "field header", "research", colorConfiguration) +
                 configuration->decorate(description + "\n",
                     "field data", "research", colorConfiguration) +
@@ -1126,4 +1127,21 @@ public nomask object *getResearchItemsBySectionType(object user,
     return filter(m_values(researchItemCache),
         (: ($3->isResearched(program_name($1)) &&
             (member($2, $1->query("composite type")) > -1)) :), types, user);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchItemsBySource(object user, string source)
+{
+    string *research = user->completedResearch() +
+        user->researchInProgress();
+
+    return filter(research,
+        (: researchItemCache[$1]->query("source") == $2 :), source);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchTreesBySource(object user, string source)
+{
+    return filter(user->availableResearchTrees(),
+        (: researchTree($1)->Source() == $2 :), source);
 }

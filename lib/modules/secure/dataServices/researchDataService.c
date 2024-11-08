@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
@@ -370,6 +370,36 @@ protected nomask void removeCompositeResearchData(int dbHandle, string playerNam
             sanitizeString(playerName),
             sanitizeString(name),
             sanitizeString(constraint));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void removeSavedResearchData(int dbHandle, 
+    string playerName, 
+    string *research, 
+    string *trees)
+{
+    string query;
+
+    foreach(string constraint in research)
+    {
+        query = sprintf("call deleteCompositeResearchByConstraint('%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(constraint));
+
+        db_exec(dbHandle, query);
+        mixed result = db_fetch(dbHandle);
+    }
+
+    string researchList = "'" + implode(research, "','") + "'";
+    string treeList = "'" + implode(trees, "','") + "'";
+    query =
+        sprintf("call deleteResearchAndTreesFromLists('%s','%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(researchList),
+            sanitizeString(treeList));
 
     db_exec(dbHandle, query);
     mixed result = db_fetch(dbHandle);

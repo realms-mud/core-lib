@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private int hasBeenValidated = 0;
@@ -7,7 +7,7 @@ private int hasBeenValidated = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask int DatabaseVersion()
 {
-    return 8;
+    return 9;
 }
 
 /////////////////////////////////////////////////////////////////////////////

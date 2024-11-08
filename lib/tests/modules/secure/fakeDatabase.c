@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
@@ -20,23 +20,23 @@ public nomask mapping Gorthaur()
         "compositeResearch": ([
             "Song of the Weasels": ([
                 "alias": "weasels",
-                "constraint": "bard song",
+                "constraint": "/lib/tests/support/research/compositeRoot.c",
                 "type": "/guilds/bard/compositions/verse-chorus.c",
                 "elements": ({
-                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                        "type": "lyrics",
                        "description": "Sing to me, oh Weasel Lord. You truly make us bored. Yeah, yeah, yeah.",
                        "order in sequence": 1
                     ]),
-                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                        "type": "lyrics",
                        "description": "Sing to me, oh Weasel Lord. You smell quite untoward. Yeah, yeah, yeah.",
                        "order in sequence": 2
                     ]),
-                    ([ "research": "/lib/tests/support/research/testSustainedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                        "type": "riff",
                        "description": "Lute shredding at its finest",
-                       "order in sequence": 2
+                       "order in sequence": 3
                     ]),
                 })
             ])
@@ -76,6 +76,16 @@ public nomask mapping Gorthaur()
                 "rank advanced at": 0,
                 "title": "",
             ]),
+            "blarg": ([ 
+                "anathema": 0,
+                "experience": 133,
+                "left guild": 0,
+                "level": 1,
+                "pretitle": "",
+                "rank": "",
+                "rank advanced at": 0,
+                "title": "",
+            ]),
             "fake mage": ([ 
                 "anathema": 0,
                 "experience": 133,
@@ -110,7 +120,7 @@ public nomask mapping Gorthaur()
         "name": "gorthaur",
         "userName": "gorthaur",
         "onKillList": 1,
-        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c" }),
         "page size": 20,
         "playerId": 2,
         "pretitle": "Weasel Lord",
@@ -126,6 +136,38 @@ public nomask mapping Gorthaur()
         "race": "elf",
         "research": ([ 
             "/lib/tests/support/research/testGrantedResearchItem.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemB.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemC.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeRoot.c": ([ 
                 "cooldown": 0,
                 "research complete": 1,
                 "time spent learning": 1,
@@ -222,20 +264,20 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "compositeResearch": ([
             "Song of the Weasels": ([
                 "alias": "weasels",
-                "constraint": "bard song",
+                "constraint": "/lib/tests/support/research/compositeRoot.c",
                 "type": "/guilds/bard/compositions/verse-chorus.c",
                 "elements": ({
-                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemA.c",
                        "type": "lyrics",
                        "description": "Sing to me, oh Weasel Lord. You truly make us bored. Yeah, yeah, yeah.",
                        "order in sequence": 1
                     ]),
-                    ([ "research": "/lib/tests/support/research/testGrantedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemB.c",
                        "type": "lyrics",
                        "description": "Sing to me, oh Weasel Lord. You smell quite untoward. Yeah, yeah, yeah.",
                        "order in sequence": 2
                     ]),
-                    ([ "research": "/lib/tests/support/research/testSustainedResearchItem.c",
+                    ([ "research": "/lib/tests/support/research/compositeResearchItemC.c",
                        "type": "riff",
                        "description": "Lute shredding at its finest",
                        "order in sequence": 2
@@ -272,6 +314,16 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
                 "experience": 0,
                 "left guild": 1111,
                 "level": 5,
+                "pretitle": "",
+                "rank": "",
+                "rank advanced at": 0,
+                "title": "",
+            ]),
+            "blarg": ([ 
+                "anathema": 0,
+                "experience": 133,
+                "left guild": 0,
+                "level": 1,
                 "pretitle": "",
                 "rank": "",
                 "rank advanced at": 0,
@@ -327,6 +379,38 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "race": "elf",
         "research": ([ 
             "/lib/tests/support/research/testGrantedResearchItem.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemB.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeResearchItemC.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/compositeRoot.c": ([ 
                 "cooldown": 0,
                 "research complete": 1,
                 "time spent learning": 1,

@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -61,6 +61,7 @@ void CanStatPlayers()
         "|    Dexterity: 13    (+1) Constitution: 15    (+1)     Charisma: 16    (+1)  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Guilds +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Guild: Fake mage                   Level: 16         Experience:  Level up  |\n"
+        "| Guild: Blarg                       Level: 1          Experience:  Level up  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Combat Information +-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Primary Weapon: No Weapon       Attack: -25 to 75        Damage:   0 to 1   |\n"
         "|  Defend Attack:   1 to 1          Soak:   1 to 2   Encumberance:   0        |\n"

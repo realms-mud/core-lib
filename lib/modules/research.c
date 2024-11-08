@@ -2,7 +2,7 @@
 // Class: research
 // File Name: research.c
 //
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
@@ -1108,4 +1108,38 @@ public nomask mapping categorizedResearch()
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void removeResearchBySource(string source)
+{
+    string* itemsToRemove =
+        researchDictionary()->getResearchItemsBySource(this_object(), source);
+
+    if (sizeof(itemsToRemove))
+    {
+        foreach(string item in itemsToRemove)
+        {
+            mapping compositeItems = filter(compositeResearch, 
+                (: $2["constraint"] == $3 :), item);
+            foreach(string compositeItem in m_indices(compositeItems))
+            {
+                deleteCompositeResearch(compositeItem);
+            }
+            m_delete(research, item);
+        }
+    }
+
+    string* treesToRemove =
+        researchDictionary()->getResearchTreesBySource(this_object(), source);
+
+    if (sizeof(treesToRemove))
+    {
+        foreach(string item in treesToRemove)
+        {
+            openResearchTrees -= ({ item });
+        }
+    }
+
+    removeSavedResearch(itemsToRemove, treesToRemove);
 }

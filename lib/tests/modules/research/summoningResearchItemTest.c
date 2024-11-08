@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2023 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -200,7 +200,8 @@ void CanDisplayResearchInfoForApplyResearch()
         "                  Modified -> 1.10 * its mind skill (additive)\n"
         "                  Modified -> 1.10 * its senses skill (additive)\n"
         "                  Modified -> 1.10 * its spirit skill (additive)\n"
-        "                  Modified -> 1.20 * its intelligence attribute (logarithmic)\n",
+        "                  Modified -> 1.20 * its intelligence attribute\n"
+        "                              (logarithmic)\n",
         effect.researchDetails());
 }
 
