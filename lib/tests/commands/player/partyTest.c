@@ -110,8 +110,8 @@ void PartyInfoDoesNotSendMessageToWholeParty()
     ExpectEq("+-=-=-=-=-=-=-=-=-=-=-=-=+ Members of 'Weasels' Party +-=-=-=-=-=-=-=-=-=-=-=-+\n"
         "| Name               | Location           | Following          | Exp Earned   |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n"
-        "| Frank              | Unknown            | Nobody             |           0  |\n"
         "| Bob                | fakeEnvironment    | Nobody             |           0  |\n"
+        "| Frank              | Unknown            | Nobody             |           0  |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n", 
         Player.caughtMessage());
     ExpectEq(0, Bystander.caughtMessage());

@@ -265,7 +265,10 @@ private nomask string getMemberInformation(string colorConfiguration,
     string ret = memberBanner(colorConfiguration, charset);
 
     object *currentMembers = members(1);
-    string *memberList = m_indices(information["experience earned"]);
+
+    string *memberList = sort_array(m_indices(information["experience earned"]),
+        (: capitalize($1) > capitalize($2) :));
+
     if (sizeof(memberList))
     {
         memberList = sort_array(memberList,
