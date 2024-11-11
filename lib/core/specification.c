@@ -296,8 +296,12 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 case "attribute":
                 case "skill":
                 {
-                    foreach(string item in 
-                        m_indices(specificationData["limited by"][key]))
+                    string *items = 
+                        sort_array(m_indices(specificationData["limited by"][key]), 
+                            (: $1 > $2 :));
+
+                    printf("%O\n", items);
+                    foreach(string item in items)
                     {
                         ret += sprintf(limiter, "your", item,
                             sprintf("%s is at least %d", key,

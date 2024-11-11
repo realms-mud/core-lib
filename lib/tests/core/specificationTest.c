@@ -975,8 +975,8 @@ void DisplayLimitersStringCorrectWithLimitorForListOfSkills()
     mapping limitor = (["skill":(["dodge":3, "parry" : 5])]);
 
     ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
-    ExpectEq("\x1b[0;36mThis is only applied when your parry skill is at least 5.\n"
-        "This is only applied when your dodge skill is at least 3.\n\x1b[0m",
+    ExpectEq("\x1b[0;36mThis is only applied when your dodge skill is at least 3.\n"
+        "This is only applied when your parry skill is at least 5.\n\x1b[0m",
         Specification.displayLimiters(colorConfiguration, Configuration));
 }
 
