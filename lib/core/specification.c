@@ -300,7 +300,6 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                         sort_array(m_indices(specificationData["limited by"][key]), 
                             (: $1 > $2 :));
 
-                    printf("%O\n", items);
                     foreach(string item in items)
                     {
                         ret += sprintf(limiter, "your", item,
