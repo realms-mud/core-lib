@@ -193,7 +193,9 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     if (mappingp(rules) && sizeof(rules))
     {
         object dictionary = getDictionary("research");
-        foreach(string ruleType in m_indices(rules))
+
+        string *ruleList = sort_array(m_indices(rules), (: $1 > $2 :));
+        foreach(string ruleType in ruleList)
         {
             ret += configuration->decorate(sprintf("%-15s : ", "Combination Rule"),
                 "field header", "research", colorConfiguration) +

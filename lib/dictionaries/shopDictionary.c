@@ -514,7 +514,11 @@ private string generateItemSummary(mapping summary, string colorConfiguration)
     else if (sizeof(summary))
     {
         string *output = ({});
-        foreach(string key in (m_indices(summary) - ({"identified", "No data"})))
+
+        string *keys = sort_array(m_indices(summary), (: $1 > $2 :)) -
+            ({ "identified", "No data" });
+
+        foreach(string key in keys)
         {
             output += ({
                 configuration->decorate(sprintf("%s: ", key), 

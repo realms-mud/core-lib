@@ -228,7 +228,7 @@ public nomask varargs string getHarvestStatistics(object user,
 
         if (sizeof(harvestItems))
         {
-            foreach(object harvestItem in harvestItems)
+            foreach(object harvestItem in sort_array(harvestItems, (: $1->name() > $2->name() :)))
             {
                 ret += harvestItem->getHarvestStatistics(environment, user) + 
                     "\n";
