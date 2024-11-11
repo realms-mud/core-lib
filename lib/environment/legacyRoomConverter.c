@@ -219,7 +219,8 @@ private string generateObjects(string inputFile)
     string objectList = "";
     if (sizeof(clone_list))
     {
-        foreach(string element in clone_list)
+        string *elements = sort_array(m_indices(clone_list), (: $1 > $2 :));
+        foreach(string element in elements)
         {
             int numCopies = clone_list[element];
             for (int i = 0; i < numCopies; i++)
