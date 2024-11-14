@@ -52,5 +52,8 @@ jobs:
           cp -a $(Build.SourcesDirectory)/* $(Build.ArtifactStagingDirectory)/mudlib
     displayName: 'Packaging Library'
 
+  - bash: /report-status.pl
+    displayName: 'Reporting Status'
+
   - task: PublishBuildArtifacts@1
     displayName: Publishing Test Reports
