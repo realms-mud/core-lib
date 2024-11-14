@@ -43,7 +43,8 @@ jobs:
                 $(Build.SourcesDirectory)/include 
                 $(Build.SourcesDirectory)/README.md 
                 $(Build.SourcesDirectory)/.git*
-                $(Build.SourcesDirectory)/*.log 
+                $(Build.SourcesDirectory)/*.log
+                $(Build.SourcesDirectory)/azure-pipelines.yml 
                 $(Build.SourcesDirectory)/demo-videos;
           mv $(Build.SourcesDirectory)/secure/simul_efun.orig $(Build.SourcesDirectory)/secure/simul_efun.c;
           mv $(Build.SourcesDirectory)/secure/master/preload.orig $(Build.SourcesDirectory)/secure/master/preload.c; 
