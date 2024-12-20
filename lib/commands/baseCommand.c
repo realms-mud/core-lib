@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 private string MaterialAttributes = "/lib/modules/materialAttributes.c";
@@ -395,7 +395,7 @@ protected string copyright(string colorConfiguration)
 {
     return configuration->decorate("\n\nCopyright\n", "heading", "help",
             colorConfiguration) +
-        configuration->decorate("\tCopyright (C) 1991-2024 Allen "
+        configuration->decorate("\tCopyright (C) 1991-2025 Allen "
             "Cummings. For additional licensing\n\tinformation, see ",
             "text", "help", colorConfiguration) +
         configuration->decorate("http://realmsmud.org/license/\n",

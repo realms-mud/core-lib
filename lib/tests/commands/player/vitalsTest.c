@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2024 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
@@ -122,7 +122,7 @@ void HelpForVitalsDisplaysProperInfo()
         "\x1b[0;36;1mNotes\n"
         "\t\x1b[0m\x1b[0;36mSee also: score\x1b[0m"
         "\x1b[0;36;1m\n\nCopyright\n"
-        "\x1b[0m\x1b[0;36m\tCopyright (C) 1991-2024 Allen Cummings. For additional licensing\n"
+        "\x1b[0m\x1b[0;36m\tCopyright (C) 1991-2025 Allen Cummings. For additional licensing\n"
         "\tinformation, see \x1b[0m\x1b[0;36mhttp://realmsmud.org/license/\n\x1b[0m",
         Player.caughtMessage());
 }
