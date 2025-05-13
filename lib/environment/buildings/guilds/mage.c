@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Mage Guild Hall");
     InteriorType("arcane library and mystic sanctum");
-    setFloorPlanType("scholarly tower of magic");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn illuminates the tower's grand archways, casting a warm glow on the enchanted bookshelves that line the walls, their contents alive with arcane energy"

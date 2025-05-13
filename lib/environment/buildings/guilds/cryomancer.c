@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("cryomancer guild");
     InteriorType("frostbound keep");
-    setFloorPlanType("elemental guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The outer walls glisten with a thin sheen of hoarfrost, catching the pale morning light in shimmering silence"

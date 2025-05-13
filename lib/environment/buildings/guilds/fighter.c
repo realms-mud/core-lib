@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("fighter guild hall");
     InteriorType("training fortress");
-    setFloorPlanType("combat guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light casts long shadows across the courtyard, where the sound of swords clashing begins to echo from the training grounds"

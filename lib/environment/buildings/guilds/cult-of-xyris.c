@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Cult of Xyris Hall");
     InteriorType("obsidian sanctuary");
-    setFloorPlanType("religious guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The hall lies in shadow even as morning breaks, its dark spire catching only the faintest light"

@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("aquamancer guild");
     InteriorType("coral-domed sanctuary");
-    setFloorPlanType("elemental guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The surface of the reflecting pool glows with soft hues of rose and blue, and a light mist drifts from the dome"
@@ -30,7 +30,7 @@ public void Setup()
         ". Pools of water reflect the twilight sky, while faint magical auras ripple across their surface"
         }));
     addTimeOfDayDescription("night", ({
-        " surrounded by glowing aquatic runes that pulse gently beneath the water’s surface and illuminate the entrance with shifting blue light"
+        " surrounded by glowing aquatic runes that pulse gently beneath the water's surface and illuminate the entrance with shifting blue light"
         }));
     addTimeOfDayDescription("late night", ({
         " with the only illumination coming from glowing lily pads and soft pulses of arcane energy rising from the reflecting pools"

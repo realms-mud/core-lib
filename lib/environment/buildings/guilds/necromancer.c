@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Necromancer Guild Hall");
     InteriorType("shadowy crypts and forbidden chambers");
-    setFloorPlanType("dark sanctum of death magic");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn barely touches the guild hall, as mist clings to the stone walls and the eerie silence is broken only by the soft rustle of ancient scrolls"
@@ -36,7 +36,7 @@ public void Setup()
         " when the moonlight casts an ethereal glow over the cryptic architecture, and necromancers commune with spirits, their dark incantations reverberating through the halls"
         }));
     addTimeOfDayDescription("midnight", ({
-        " when the guild hall is cloaked in deep shadows, and the necromancers’ work becomes truly dangerous, their dark magic rising to its fullest power, raising the dead from their graves"
+        " when the guild hall is cloaked in deep shadows, and the necromancers' work becomes truly dangerous, their dark magic rising to its fullest power, raising the dead from their graves"
         }));
 
     addSeasonDescription("winter", ({
@@ -56,7 +56,7 @@ public void Setup()
 
     addDescriptionTemplate("a dark, foreboding guild hall dedicated to the study and mastery of necromancy, where death itself is revered");
     addNearDarkDescriptionTemplate("a looming, oppressive structure, its silhouette barely visible through the thick fog and shadow, with faint flickers of magical light seeping from the windows");
-    addLowLightDescriptionTemplate("a dimly lit hall, filled with ancient books, ritualistic symbols, and the faint whispers of spirits that haunt the guild’s chambers");
+    addLowLightDescriptionTemplate("a dimly lit hall, filled with ancient books, ritualistic symbols, and the faint whispers of spirits that haunt the guild's chambers");
     addDimLightDescriptionTemplate("a guild hall steeped in shadow, where necromancers commune with the dead and practice forbidden rites, casting eerie shadows across the halls");
     addSomeLightDescriptionTemplate("an imposing, death-infused tower, where the secrets of necromancy are studied and death itself is manipulated by those who dare to tread its halls");
 }

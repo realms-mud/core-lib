@@ -8,11 +8,11 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Rogue Hall");
-    InteriorType("a dimly lit, labyrinthine hideout beneath a tavern or hidden in the city's underbelly, with secret rooms, trapdoors, and concealed passageways");
-    setFloorPlanType("underground lair of thieves, assassins, and spies");
+    InteriorType("rogue hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
-        ". The guild hall is quiet at this hour, the flickering light from hidden lanterns casting long shadows. A few members linger in the shadows, awaiting the night’s heist"
+        ". The guild hall is quiet at this hour, the flickering light from hidden lanterns casting long shadows. A few members linger in the shadows, awaiting the night's heist"
         }));
     addTimeOfDayDescription("morning", ({
         ". The shadows remain long in the early morning, the guild members sleeping off their late-night work. The only sounds are the quiet footfalls of those who remain alert"
@@ -27,7 +27,7 @@ public void Setup()
         ". As the sun sets, the guild hall begins to stir with activity. Rogues and spies gather to discuss plans, exchange information, or prepare for their clandestine missions"
         }));
     addTimeOfDayDescription("dusk", ({
-        ". The hall is lit by flickering lanterns and hidden torches, the shadows growing deeper. It’s time for the guild members to head out on their assignments, either on foot or in disguise"
+        ". The hall is lit by flickering lanterns and hidden torches, the shadows growing deeper. It's time for the guild members to head out on their assignments, either on foot or in disguise"
         }));
     addTimeOfDayDescription("night", ({
         " when the hall is alive with low murmurs and quiet footsteps. Members prepare to slip through the city unseen, execute heists, or assassinate targets under the cover of darkness"

@@ -8,8 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Order of Ilyrth Guild Hall");
-    InteriorType("sanctuary of healing, divine light, and tranquil gardens");
-    setFloorPlanType("temple of restoration and divine grace");
+    InteriorType("stone temple and meditation halls");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first rays of sunlight bathe the guild hall in warm, golden light, and the soft scent of healing herbs fills the air as members of the Order begin their daily prayers and meditations"
@@ -21,7 +21,7 @@ public void Setup()
         ". The guild hall is peaceful, filled with light as healers gather to share knowledge, and the healing gardens outside bloom with vibrant flowers and restorative plants"
         }));
     addTimeOfDayDescription("afternoon", ({
-        ". Soft laughter and murmurs of conversation can be heard as the guild’s members share in the work of healing, both physical and emotional, offering their gifts to those in need"
+        ". Soft laughter and murmurs of conversation can be heard as the guild's members share in the work of healing, both physical and emotional, offering their gifts to those in need"
         }));
     addTimeOfDayDescription("evening", ({
         ". As the sun sets, the guild hall glows with a soft, warm light. The hall is quieter now, and healers and clerics alike meditate on their sacred mission to heal the world"
@@ -43,10 +43,10 @@ public void Setup()
         " when the guild hall is a warm haven against the cold, filled with the fragrance of healing herbs and soft light that radiates comfort and hope, even as the world outside lies frozen"
         }));
     addSeasonDescription("spring", ({
-        " when the guild hall blooms with life, both inside and outside in the sacred gardens, as new growth takes root, and members of the Order are energized by the goddess’s restorative influence"
+        " when the guild hall blooms with life, both inside and outside in the sacred gardens, as new growth takes root, and members of the Order are energized by the goddess's restorative influence"
         }));
     addSeasonDescription("summer", ({
-        " when the sun’s warmth fills the hall with radiant light, and the gardens overflow with vibrant blossoms. The air is alive with the sounds of laughter and the joy of healing"
+        " when the sun's warmth fills the hall with radiant light, and the gardens overflow with vibrant blossoms. The air is alive with the sounds of laughter and the joy of healing"
         }));
     addSeasonDescription("autumn", ({
         " when the trees around the guild hall glow with the colors of the harvest, and the air is filled with the scent of dried herbs and restorative teas, providing comfort and care"

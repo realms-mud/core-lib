@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Keepers of the Night Guild Hall");
     InteriorType("gloomy temple and shadowed chambers");
-    setFloorPlanType("necromantic sanctum");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The pale light of dawn barely pierces the thick mists around the guild hall, casting a muted glow on the stone walls, while the shadows retreat into the corners"
@@ -27,7 +27,7 @@ public void Setup()
         ". The hall comes alive as the sun begins to set, with flickering torches casting dancing shadows over the dark, ornate walls"
         }));
     addTimeOfDayDescription("dusk", ({
-        ". As the world outside darkens, the guild hall’s atmosphere thickens with power—arcane energies seem to pulse in the air as the rituals of the dead begin"
+        ". As the world outside darkens, the guild hall's atmosphere thickens with power-arcane energies seem to pulse in the air as the rituals of the dead begin"
         }));
     addTimeOfDayDescription("night", ({
         " when the dead of night truly settles in, the guild hall is alive with the soft hum of necromantic magic, and the faint glow of candles illuminates the long corridors"
@@ -49,7 +49,7 @@ public void Setup()
         " the warmth of the outside world does little to temper the chill within the Keepers' halls, where the dead are summoned and bound to the will of the necromancers"
         }));
     addSeasonDescription("autumn", ({
-        " with the season of decay in full force, the guild hall’s atmosphere becomes even more oppressive, with the scent of death and decay hanging thick in the air"
+        " with the season of decay in full force, the guild hall's atmosphere becomes even more oppressive, with the scent of death and decay hanging thick in the air"
         }));
 
     addSourceOfLight(4, "candles, shadowed lamps, and glowing necromantic sigils", "night");

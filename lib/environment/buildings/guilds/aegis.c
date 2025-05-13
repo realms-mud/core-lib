@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Aegis Guard Hall");
     InteriorType("stone fortress hall");
-    setFloorPlanType("martial guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The hall stands resolute in the morning haze, its banners still and the torches at the gate smoldering quietly"

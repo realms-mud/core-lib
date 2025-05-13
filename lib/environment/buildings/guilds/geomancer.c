@@ -8,8 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Geomancer Guild Hall");
-    InteriorType("stone temple and cavernous halls");
-    setFloorPlanType("earth magic sanctuary");
+    InteriorType("geomancer hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The rising sun casts a soft glow on the stonework of the guild hall, and the air is thick with the scent of moss and earth"

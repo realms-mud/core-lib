@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("bard hall");
     InteriorType("colorful hall");
-    setFloorPlanType("artistic guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The sound of a lone flute rises with the morning mist, and the windows glow with a faint amber hue"

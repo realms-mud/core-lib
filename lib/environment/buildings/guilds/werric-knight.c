@@ -8,17 +8,18 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Werric Knight Guild");
-    InteriorType("a large, imposing hall with high stone walls adorned with divine symbols of Werra, banners of the guild, and shrines dedicated to the god of war");
-    setFloorPlanType("fortress-temple with training halls, barracks, war rooms, and a sacred altar to Werra");
+    InteriorType("arcane war college");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
-        ". The rising sun casts its first light upon the guild’s high walls. Devoted knights gather in the sacred hall, kneeling before the altar of Werra to offer prayers for strength in the coming day's battles"
+        ". The rising sun casts its first light upon the guild's high walls. Devoted knights gather in the sacred hall, kneeling "
+        "before the altar of Werra to offer prayers for strength in the coming day's battles"
         }));
     addTimeOfDayDescription("morning", ({
         ". The guild hall is alive with the sound of armor being donned and weapons being sharpened. The knights prepare for their daily training, invoking the name of Werra as they ready themselves for combat"
         }));
     addTimeOfDayDescription("noon", ({
-        ". The sound of swords clashing echoes through the hall as the knights spar in the training grounds. Some meditate in the temple area, seeking Werra’s guidance for their next campaign"
+        ". The sound of swords clashing echoes through the hall as the knights spar in the training grounds. Some meditate in the temple area, seeking Werra's guidance for their next campaign"
         }));
     addTimeOfDayDescription("afternoon", ({
         ". The air is thick with the scent of steel and leather as the knights perfect their combat techniques. Some gather in the war room to study maps, others chant prayers to Werra, seeking divine favor"
@@ -40,13 +41,13 @@ public void Setup()
         }));
 
     addSeasonDescription("winter", ({
-        " when the chill outside strengthens the resolve of the knights within. The warmth of the hearth and the sacred fires of Werra’s altar keep the guild hall vibrant with energy. The knights train harder, preparing for the long winter battles"
+        " when the chill outside strengthens the resolve of the knights within. The warmth of the hearth and the sacred fires of Werra's altar keep the guild hall vibrant with energy. The knights train harder, preparing for the long winter battles"
         }));
     addSeasonDescription("spring", ({
         " when the guild hall bustles with energy as knights prepare for the seasonal campaigns. They gather in the war room to plan their next moves, with divine guidance from Werra's influence"
         }));
     addSeasonDescription("summer", ({
-        " when the guild hall is filled with the heat of battle preparations. The knights train in the scorching sun, invoking Werra’s strength to withstand the elements and grow stronger in combat"
+        " when the guild hall is filled with the heat of battle preparations. The knights train in the scorching sun, invoking Werra's strength to withstand the elements and grow stronger in combat"
         }));
     addSeasonDescription("autumn", ({
         " when the guild hall echoes with the anticipation of future wars. The knights are seen at their most disciplined, as they perform rituals and preparations for the coming conflicts that the new season will bring"

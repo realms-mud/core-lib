@@ -31,7 +31,14 @@ public nomask string InteriorType(string interior)
     if (interior)
     {
         if (member(({ "wood building", "limestone building", "granite building",
-            "brick building", "opulent building" }), interior) > -1)
+            "brick building", "opulent building", "stone fortress hall", "marble spire",
+            "coral-domed sanctuary", "colorful hall", "arcane war college", "frostbound keep",
+            "obsidian sanctuary", "sacred forest glade", "training fortress",
+            "stone temple and meditation halls", "geomancer hall",
+            "gloomy temple and shadowed chambers", "thunderous keep and arcane chambers",
+            "arcane library and mystic sanctum", "shadowy crypts and forbidden chambers",
+            "dreamweaver's sanctum and ethereal chambers", "towering citadel of flames",
+            "wooden hall", "rogue hall"  }), interior) > -1)
         {
             interiorType = interior;
         }

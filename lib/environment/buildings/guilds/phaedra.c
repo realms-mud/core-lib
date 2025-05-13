@@ -8,14 +8,14 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Phaedra Hall");
-    InteriorType("grand hall of knights, with banners of honor and the scent of polished steel");
-    setFloorPlanType("fortified citadel of valor and strength");
+    InteriorType("training fortress");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn casts long shadows across the training grounds, where knights begin their daily drills, the clang of steel echoing through the air as the sun rises over the horizon"
         }));
     addTimeOfDayDescription("morning", ({
-        ". The hall is bustling with activity, knights donning their armor and preparing for the day’s training, their faces determined and focused on their sacred duties"
+        ". The hall is bustling with activity, knights donning their armor and preparing for the day's training, their faces determined and focused on their sacred duties"
         }));
     addTimeOfDayDescription("noon", ({
         ". The midday sun illuminates the towering banners of Phaedra, flanking the courtyard where knights spar and practice their combat techniques, the sounds of their swords ringing through the air"
@@ -27,13 +27,13 @@ public void Setup()
         ". As the sun sets, the hall quiets. The knights gather in the grand hall for a meal, the soft glow of candlelight flickering off their polished armor as they share stories of valor"
         }));
     addTimeOfDayDescription("dusk", ({
-        ". The hall is bathed in the golden glow of twilight, as knights gather to reflect on the day’s training and plan for upcoming missions, their eyes ever vigilant for the call to defend the realm"
+        ". The hall is bathed in the golden glow of twilight, as knights gather to reflect on the day's training and plan for upcoming missions, their eyes ever vigilant for the call to defend the realm"
         }));
     addTimeOfDayDescription("night", ({
         " when the guild hall is calm, the sounds of the day having faded. Torches line the walls, casting flickering shadows, as knights rest, preparing for the challenges that lie ahead"
         }));
     addTimeOfDayDescription("late night", ({
-        " when only the distant sound of a knight’s armor can be heard, echoing through the silent halls as members of the Order meditate and reflect on their vows of service"
+        " when only the distant sound of a knight's armor can be heard, echoing through the silent halls as members of the Order meditate and reflect on their vows of service"
         }));
     addTimeOfDayDescription("midnight", ({
         " when the hall is still, save for the occasional soft whisper of knights in prayer, reaffirming their commitment to honor, duty, and the protection of the innocent"

@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Knights of the Storm Guild Hall");
     InteriorType("thunderous keep and arcane chambers");
-    setFloorPlanType("storm-forged stronghold");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The sky above the guild hall crackles with distant thunder, and the first rays of light are drowned by the ominous storm clouds gathering overhead"
@@ -33,7 +33,7 @@ public void Setup()
         " when the storm finally breaks, thunder rolls through the air, and lightning strikes the towers of the guild hall with immense power, casting jagged shadows of armored figures"
         }));
     addTimeOfDayDescription("late night", ({
-        " under the relentless storm, the guild hall pulses with dangerous energy, and the knights’ chants echo across the grounds as they invoke the might of the storm"
+        " under the relentless storm, the guild hall pulses with dangerous energy, and the knights' chants echo across the grounds as they invoke the might of the storm"
         }));
     addTimeOfDayDescription("midnight", ({
         " when the guild hall is at its most terrifying, lightning crackling through the halls as if the very walls are alive with arcane power, and the knights prepare for their next blood-soaked mission"

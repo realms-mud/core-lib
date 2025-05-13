@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("druid grove");
     InteriorType("sacred forest glade");
-    setFloorPlanType("natural sanctuary");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn bathes the grove in soft golden hues, and the sound of birdsong fills the air"
@@ -43,7 +43,7 @@ public void Setup()
         " with snow lightly dusting the ground and frost creeping along the branches of trees, the grove remains peaceful, untouched by the cold"
         }));
     addSeasonDescription("spring", ({
-        " bursting with new life—flowers bloom, buds sprout, and the air is fragrant with the scent of fresh growth"
+        " bursting with new life-flowers bloom, buds sprout, and the air is fragrant with the scent of fresh growth"
         }));
     addSeasonDescription("summer", ({
         " lush and full of life, with thick, green foliage, buzzing bees, and the warm hum of nature in full bloom"

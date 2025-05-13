@@ -4,11 +4,12 @@
 //*****************************************************************************
 inherit "/lib/environment/buildings/baseBuilding.c";
 
+/////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     Name("aeromancer guild");
     InteriorType("marble spire");
-    setFloorPlanType("elemental guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The spire is wreathed in mist, and faint currents of wind spiral gently around its peak"

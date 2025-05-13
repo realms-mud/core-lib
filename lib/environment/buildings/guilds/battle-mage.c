@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("battle mage guild");
     InteriorType("arcane war college");
-    setFloorPlanType("military guild hall");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". Faint magical sparks dance above the training yard as runes glow dimly in the early light"
@@ -27,10 +27,10 @@ public void Setup()
         ". Arcane sigils etched into the walls begin to glow brighter, and magical lights flicker above the gates"
         }));
     addTimeOfDayDescription("dusk", ({
-        ". The fading light reveals the shimmer of protective wards around the guild’s perimeter"
+        ". The fading light reveals the shimmer of protective wards around the guild's perimeter"
         }));
     addTimeOfDayDescription("night", ({
-        " illuminated by enchanted braziers and rune-beacons, with instructors leading quiet magical meditations"
+        " illuminated by enchanted braziers and rune beacons, with instructors leading quiet magical meditations"
         }));
     addTimeOfDayDescription("late night", ({
         " cloaked in stillness, though magical glyphs continue to pulse faintly along its walls"

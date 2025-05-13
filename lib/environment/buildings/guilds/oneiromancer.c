@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Oneiromancer Guild Hall");
     InteriorType("dreamweaver's sanctum and ethereal chambers");
-    setFloorPlanType("labyrinth of slumber and subconscious");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The soft glow of early morning light pierces the veil of dreams, casting long shadows through the hall as if the very walls are drifting in and out of reality"
@@ -30,7 +30,7 @@ public void Setup()
         ". The guild hall takes on an ethereal glow, where the lines between reality and dream blur, and the faint whisper of dreamers' voices echo through the chambers"
         }));
     addTimeOfDayDescription("night", ({
-        " when the hall is enveloped in darkness, yet flickers of dream-like lights pulse through the space, as Oneiromancers commune with the dream realm and manipulate the sleep of the guild’s members"
+        " when the hall is enveloped in darkness, yet flickers of dream-like lights pulse through the space, as Oneiromancers commune with the dream realm and manipulate the sleep of the guild's members"
         }));
     addTimeOfDayDescription("late night", ({
         " when the boundaries between reality and dreams fade completely, and the guild hall shimmers with dream energy, creating strange, shifting visions and echoes of long-forgotten dreams"

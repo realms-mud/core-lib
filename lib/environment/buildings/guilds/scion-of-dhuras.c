@@ -8,8 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Scions of Dhurath Guild Hall");
-    InteriorType("a sturdy stone hall with magical sigils carved into its walls, designed for combat training and magical experimentation");
-    setFloorPlanType("fortified guild hall, a place where martial warriors and spellcasters train side by side");
+    InteriorType("stone temple and meditation halls");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The guild hall is silent, save for the occasional clang of a distant weapon being tested. The early morning light casts long shadows over the walls inscribed with magical runes"
@@ -36,14 +36,14 @@ public void Setup()
         " when the hall is quiet, save for the faint crackle of arcane energy in the air as the Scions perfect their magical weapons. The distant hum of enchanted steel resonates in the silence"
         }));
     addTimeOfDayDescription("midnight", ({
-        " when the guild hall is still. Only a few members remain in the forge, their weapons glowing faintly with the residual magical energy they’ve infused"
+        " when the guild hall is still. Only a few members remain in the forge, their weapons glowing faintly with the residual magical energy they've infused"
         }));
 
     addSeasonDescription("winter", ({
         " when the cold outside is matched only by the heated forges inside the hall. The warriors gather around roaring fires to practice their magic and train their muscles, preparing for the harsh season ahead"
         }));
     addSeasonDescription("spring", ({
-        " when the guild hall’s training grounds are filled with the energy of warriors preparing for new battles. The air is thick with the sound of weapons and the hum of magic as the warriors refine their skills"
+        " when the guild hall's training grounds are filled with the energy of warriors preparing for new battles. The air is thick with the sound of weapons and the hum of magic as the warriors refine their skills"
         }));
     addSeasonDescription("summer", ({
         " when the heat from the forge is matched by the intensity of combat training. The air crackles with magic, and the sound of enchanted blades cutting through the air fills the guild hall"

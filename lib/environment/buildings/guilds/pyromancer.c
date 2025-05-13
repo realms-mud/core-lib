@@ -8,14 +8,14 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Pyromancer's Guild Hall");
-    InteriorType("towering citadel of flames, heated by magical fire and radiant energy");
-    setFloorPlanType("fiery temple of magic and flame");
+    InteriorType("towering citadel of flames");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". As the sun rises, the guild hall glows faintly, lit by the embers of smoldering fires from the night before. The air crackles with the residual heat of the pyromancers' late-night experiments"
         }));
     addTimeOfDayDescription("morning", ({
-        ". The rising light mingles with the vibrant flames in the central atrium, casting long shadows and warming the air as mages conduct their studies and prepare for the day’s work"
+        ". The rising light mingles with the vibrant flames in the central atrium, casting long shadows and warming the air as mages conduct their studies and prepare for the day's work"
         }));
     addTimeOfDayDescription("noon", ({
         ". The sun is high, and the central chamber of the guild hall pulses with intense heat and light. Pyromancers can be seen conjuring flames for various magical tests and practical applications"

@@ -8,8 +8,8 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 public void Setup()
 {
     Name("Soldier Guild");
-    InteriorType("a large fortress-like building with strong stone walls, training areas, barracks, and a command center");
-    setFloorPlanType("military-style guild hall, with dedicated spaces for training, strategy, and rest");
+    InteriorType("training fortress");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of day shines over the guild's barracks. Soldiers begin their morning drills, their disciplined movements echoing through the courtyard. The air is filled with the sound of swords striking shields"

@@ -9,7 +9,7 @@ public void Setup()
 {
     Name("Fist of Aranac Monastery");
     InteriorType("stone temple and meditation halls");
-    setFloorPlanType("monastic sanctuary");
+    setFloorPlanType("guild");
 
     addTimeOfDayDescription("dawn", ({
         ". The first rays of light gently touch the stone walls, casting long shadows across the courtyard where the monks begin their morning rituals"
@@ -18,10 +18,10 @@ public void Setup()
         ". The sound of monks chanting echoes from within the temple, as the scent of incense fills the air and the soft tap of bare feet on stone rings through the halls"
         }));
     addTimeOfDayDescription("noon", ({
-        ". The temple’s courtyard is bathed in sunlight, where the monks practice their martial forms in perfect unison, their movements graceful and precise"
+        ". The temple's courtyard is bathed in sunlight, where the monks practice their martial forms in perfect unison, their movements graceful and precise"
         }));
     addTimeOfDayDescription("afternoon", ({
-        ". The courtyard becomes quieter as the monks retreat into meditation chambers, and the faint sound of bells rings from the temple’s tower"
+        ". The courtyard becomes quieter as the monks retreat into meditation chambers, and the faint sound of bells rings from the temple's tower"
         }));
     addTimeOfDayDescription("evening", ({
         ". The golden glow of the setting sun filters through the open windows, casting a peaceful light across the meditation gardens and the monastic halls"
