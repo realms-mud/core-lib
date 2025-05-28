@@ -8,7 +8,6 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("alp");
-    setFloorPlanType("rugged mountain or steep hill");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn paints the snowy peaks of the alp in soft pinks and purples, casting long shadows over the rocky terrain below."

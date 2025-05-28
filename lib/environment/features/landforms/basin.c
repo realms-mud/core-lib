@@ -8,7 +8,6 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("basin");
-    setFloorPlanType("natural water basin or small valley");
 
     addTimeOfDayDescription("dawn", ({
         ". The first light of dawn gently reflects off the still waters of the basin, casting a soft glow across the surface. Mist rises from the water, creating a serene, peaceful scene."
