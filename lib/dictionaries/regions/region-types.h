@@ -326,7 +326,7 @@ protected mapping RegionTypes = ([
     ]),
 
     "granite building":([
-        "interior": "/lib/environment/interiors/grainte-interior-shop.c",
+        "interior": "/lib/environment/interiors/granite-interior-shop.c",
         "potential features": ([ ]),
         "potential items": ([ "lighting": ([ "window": 10, ]) ]),
         "potential objects": ({ }),
