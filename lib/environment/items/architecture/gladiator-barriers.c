@@ -2,12 +2,12 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("barriers");
+    Name("gladiator barriers");
     addAlias("fence");
     addAlias("wooden barriers");
     addAlias("arena barrier");
@@ -15,7 +15,7 @@ public void Setup()
 
     addAdjectives(({ "protective", "spiked", "sturdy", "blood-marked" }));
 
-    setDescriptionTemplate("##Adjective## wooden barriers separating the "
+    addDescriptionTemplate("##Adjective## wooden barriers separating the "
         "combat arena from the spectator stands");
 
     addItemTemplate("The barriers are topped with metal spikes to prevent "

@@ -7,7 +7,7 @@ inherit "/lib/environment/interiors/baseInterior.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name(bath");
+    Name("bath");
 
     addAdjectives(({
         "spacious bathhouse with steaming pools and marble benches arranged throughout",
@@ -35,27 +35,4 @@ public void Setup()
     addSomeLightDescriptionTemplate("a well-lit ##Adjective##, sunlight "
         "streaming through high windows to dance across the water's surface "
         "and illuminate the detailed mosaics on the walls and floors");
-
-    // Add sounds unique to a bathhouse setting
-    addSoundTemplate("the gentle splashing of water echoes softly throughout "
-        "the space");
-    addSoundTemplate("hushed conversations blend with the occasional sound of "
-        "water being poured");
-    addSoundTemplate("the soft dripping of water from fountain fixtures creates "
-        "a soothing backdrop");
-
-    // Add smells unique to a bathhouse setting
-    addSmellTemplate("the air is heavy with humidity and scented with mineral "
-        "salts");
-    addSmellTemplate("herbal essences mingle with the clean scent of heated "
-        "water");
-    addSmellTemplate("the distinctive mineral smell of the hot springs "
-        "permeates the atmosphere");
-
-    // Add thermal sensations appropriate for a bathhouse
-    addTouchTemplate("waves of humid warmth emanate from the heated pools");
-    addTouchTemplate("the contrast between cool marble and warm, moist air is "
-        "immediately noticeable");
-    addTouchTemplate("the stone floor is pleasantly warm underfoot, heated by "
-        "the hypocaust system below");
 }

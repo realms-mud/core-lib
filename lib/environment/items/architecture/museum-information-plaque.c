@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -16,7 +16,7 @@ public void Setup()
     addAdjectives(({ "engraved", "detailed", "explanatory", "instructive",
         "historical" }));
 
-    setDescriptionTemplate("##Adjective## plaque providing context for the "
+    addDescriptionTemplate("##Adjective## plaque providing context for the "
         "nearby exhibit");
 
     addItemTemplate("The carefully crafted plaque offers details about the "

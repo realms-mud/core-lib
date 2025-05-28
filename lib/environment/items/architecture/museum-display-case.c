@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
     addAdjectives(({ "wooden", "glass-topped", "carefully arranged",
         "protective", "antique" }));
 
-    setDescriptionTemplate("##Adjective## display case containing historical "
+    addDescriptionTemplate("##Adjective## display case containing historical "
         "artifacts and curiosities");
 
     addItemTemplate("The wooden cabinet features a glass top to protect the "

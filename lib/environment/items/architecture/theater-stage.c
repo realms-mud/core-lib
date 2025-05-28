@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -14,7 +14,7 @@ public void Setup()
 
     addAdjectives(({ "elevated", "marble", "ancient", "stone", "central" }));
 
-    setDescriptionTemplate("##Adjective## stone stage forming the focal point of the amphitheater");
+    addDescriptionTemplate("##Adjective## stone stage forming the focal point of the amphitheater");
     addItemTemplate("The stage floor is made of polished marble slabs, some cracked with age but still impressive");
     addItemTemplate("A decorative frieze runs along the front edge of the stage, depicting scenes from famous performances");
 

@@ -29,7 +29,7 @@ public void Setup()
 
     addTimeOfDayDescription("morning", ({
         ". Sunlight bathes the limestone structure in a warm glow, highlighting "
-            "the intricate carvings on the stage façade",
+            "the intricate carvings on the stage facade",
         ". Morning light streams across the amphitheater, bringing to life the "
             "fine details of the stone masonry",
         ". The eastern sun illuminates the western tiers of seating, making the "

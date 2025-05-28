@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
     addAdjectives(({ "heavy", "iron-reinforced", "ominous", "blood-stained",
         "creaking" }));
 
-    setDescriptionTemplate("##Adjective## wooden gate through which gladiators "
+    addDescriptionTemplate("##Adjective## wooden gate through which gladiators "
         "enter the arena");
 
     addItemTemplate("The gate bears countless scratches and marks, some likely "

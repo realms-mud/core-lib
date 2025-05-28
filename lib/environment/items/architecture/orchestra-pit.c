@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -14,7 +14,7 @@ public void Setup()
 
     addAdjectives(({ "semicircular", "ancient", "paved", "stone" }));
 
-    setDescriptionTemplate("##Adjective## area between the lowest tier of seating and the stage");
+    addDescriptionTemplate("##Adjective## area between the lowest tier of seating and the stage");
     addItemTemplate("The floor has a mosaic pattern of alternating light and dark stones, though many have been displaced over time");
     addItemTemplate("This area was once reserved for musicians and chorus performers essential to ancient theatrical productions");
 

@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
 
     addAdjectives(({ "carved", "stone", "weathered", "ancient", "theatrical" }));
 
-    setDescriptionTemplate("##Adjective## masks of comedy and tragedy adorning the wall behind the stage");
+    addDescriptionTemplate("##Adjective## masks of comedy and tragedy adorning the wall behind the stage");
     addItemTemplate("Despite centuries of weathering, their exaggerated expressions remain clearly visible - one with an exaggerated grin, the other with a dramatic frown");
     addItemTemplate("These iconic symbols of theater have watched over countless performances through the ages");
 

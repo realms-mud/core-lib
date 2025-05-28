@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
     addAdjectives(({ "elevated", "ornate", "prestigious", "canopied",
         "decorated" }));
 
-    setDescriptionTemplate("##Adjective## viewing box elevated above the common "
+    addDescriptionTemplate("##Adjective## viewing box elevated above the common "
         "stands for important officials and sponsors");
 
     addItemTemplate("The box is draped with colorful fabrics and features "

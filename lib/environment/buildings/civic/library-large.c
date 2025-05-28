@@ -134,6 +134,5 @@ public void Setup()
     // Single item template
     addItemTemplate("The building features rows of tall, arched windows that "
         "allow natural light to reach the bookshelves within, while carved "
-        "stone figures representing knowledge and wisdom adorn the façade");
+        "stone figures representing knowledge and wisdom adorn the facade");
 }
-

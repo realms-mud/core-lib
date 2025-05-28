@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
 
     addAdjectives(({ "broad", "imposing", "grand", "marble", "sweeping" }));
 
-    setDescriptionTemplate("##Adjective## staircase leading to the museum's "
+    addDescriptionTemplate("##Adjective## staircase leading to the museum's "
         "impressive entrance");
 
     addItemTemplate("The wide marble steps ascend majestically to the columned "

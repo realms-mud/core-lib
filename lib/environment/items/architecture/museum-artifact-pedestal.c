@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -15,7 +15,7 @@ public void Setup()
     addAdjectives(({ "wooden", "polished", "sturdy", "prominent",
         "centerpiece" }));
 
-    setDescriptionTemplate("##Adjective## pedestal displaying a significant "
+    addDescriptionTemplate("##Adjective## pedestal displaying a significant "
         "historical artifact");
 
     addItemTemplate("The wooden stand is positioned to draw attention to the "

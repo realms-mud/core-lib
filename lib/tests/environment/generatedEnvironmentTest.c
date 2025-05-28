@@ -250,7 +250,7 @@ void GenerateEnvironmentCorrectlyCreatesRoom()
     ]);
 
     Environment.generateEnvironment(data, Region);
-    ExpectSubStringMatch("(grove|tree|forest).*one obvious exit: north", 
+    ExpectSubStringMatch("(grove|tree|forest|woodland).*one obvious exit: north", 
         Environment.long());
 }
 

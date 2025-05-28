@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environmentalElement.c";
+inherit "/lib/environment/items/baseItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -14,7 +14,7 @@ public void Setup()
 
     addAdjectives(({ "tiered", "wooden", "crowded", "raucous", "circular" }));
 
-    setDescriptionTemplate("##Adjective## wooden stands surrounding the arena "
+    addDescriptionTemplate("##Adjective## wooden stands surrounding the arena "
         "where spectators gather to watch the combats");
 
     addItemTemplate("The lower rows are reserved for wealthy patrons and "
