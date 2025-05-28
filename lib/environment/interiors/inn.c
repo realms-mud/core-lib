@@ -7,7 +7,7 @@ inherit "/lib/environment/interiors/baseInterior.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("inn");
+    Name("inn interior");
 
     addAdjectives(({
         "bustling common room filled with laughter, clinking tankards, and the "

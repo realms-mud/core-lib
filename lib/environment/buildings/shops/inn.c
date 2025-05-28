@@ -7,7 +7,7 @@ inherit "/lib/environment/buildings/baseBuilding.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("inn");
+    Name("inn exterior");
     setFloorPlanType("inn");
 
     addTimeOfDayDescription("dawn", ({
