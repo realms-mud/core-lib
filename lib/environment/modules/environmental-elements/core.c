@@ -103,6 +103,8 @@ private nomask string parseAdjectives(string message, mapping data,
         ret = regreplace(ret, "##Adjective##( *)", 
             (illuminationLevel > 5) ?
             data["adjectives"][random(sizeof(data["adjectives"]))] + "\\1" : "", 1);
+
+        ret = regreplace(ret, "(^| +)(a|A) +([aeiouAEIOU][a-zA-Z]*)", "\\1\\2n \\3", 1);
     }
     return ret;
 }

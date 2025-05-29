@@ -16,8 +16,10 @@ public void Setup()
     addAdjectives(({ "tiered", "stone", "semicircular", "ancient", "limestone" }));
 
     addDescriptionTemplate("##Adjective## rows of limestone benches arranged in a semicircular pattern");
-    addItemTemplate("The lower rows, reserved for dignitaries, have carved backs and armrests, while the upper tiers are simpler in design");
-    addItemTemplate("The stone has been worn smooth by centuries of use, showing subtle depressions where countless spectators once sat");
+    addItemTemplate("The lower rows, reserved for dignitaries, have carved "
+        "backs and armrests, while the upper tiers are simpler in design. "
+        "The stone has been worn smooth by centuries of use, showing subtle "
+        "depressions where countless spectators once sat");
 
     addSomeLightDescriptionTemplate("tiers of stone benches rising in a semicircular pattern");
     addDimLightDescriptionTemplate("rows of seating, barely visible in the dim light");

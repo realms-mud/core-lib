@@ -78,6 +78,24 @@ private mapping defaultLocations = ([
         "y-rotation": 0,
         "z-rotation": 0
     ]),
+    "up":([
+        "description": "up",
+        "x": 0,
+        "y": 0,
+        "z": 100,
+        "x-rotation": 0,
+        "y-rotation": 0,
+        "z-rotation": 0
+    ]),
+    "down":([
+        "description": "down",
+        "x": 0,
+        "y": 0,
+        "z": -100,
+        "x-rotation": 0,
+        "y-rotation": 0,
+        "z-rotation": 0
+    ]),
     "none":([
         "description": "",
         "x": 0,

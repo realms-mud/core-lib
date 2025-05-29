@@ -33,6 +33,15 @@ void DefaultDescriptionDisplaysCorrectly()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AdjectivesPrecededByAAreProperlyExpandedToAn()
+{
+    object adjectiveTest = clone_object("/lib/tests/support/environment/adjectiveTest.c");
+
+    ExpectEq("an old oak tree",
+        adjectiveTest.description("default", Dictionary.ambientLight()));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void DawnDescriptionShowsCorrectTimeOfDay()
 {
     Dictionary.timeOfDay("dawn");
