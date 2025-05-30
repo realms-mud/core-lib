@@ -14,7 +14,7 @@ public void Setup()
         "quaint" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## wooden library with a pitched roof "
+    addDescriptionTemplate("a ##Adjective## wooden library with a pitched roof "
         "and small reading garden");
 
     // Add time of day variations

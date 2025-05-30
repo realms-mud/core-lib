@@ -14,7 +14,7 @@ public void Setup()
         "magnificent" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## amphitheater built of limestone with "
+    addDescriptionTemplate("a ##Adjective## amphitheater built of limestone with "
         "tiered seating");
 
     // Add time of day variations with multiple options

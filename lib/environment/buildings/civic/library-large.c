@@ -14,7 +14,7 @@ public void Setup()
         "imposing" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## stone library with tall windows and "
+    addDescriptionTemplate("a ##Adjective## stone library with tall windows and "
         "ornate entrance");
 
     // Add time of day variations

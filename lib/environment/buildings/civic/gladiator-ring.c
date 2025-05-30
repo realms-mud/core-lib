@@ -14,7 +14,7 @@ public void Setup()
         "savage" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## wooden arena surrounded by tiered "
+    addDescriptionTemplate("a ##Adjective## wooden arena surrounded by tiered "
         "seating for spectators of gladiatorial combat");
 
     // Add time of day variations

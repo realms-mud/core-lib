@@ -15,7 +15,7 @@ public void Setup()
         "prestigious" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## marble museum with imposing columns "
+    addDescriptionTemplate("a ##Adjective## marble museum with imposing columns "
         "and a broad staircase leading to the entrance");
 
     // Add time of day variations

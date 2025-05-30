@@ -14,7 +14,7 @@ public void Setup()
         "well-maintained" }));
 
     // Basic description template
-    addDescriptionTemplate("##Adjective## wooden building housing a museum "
+    addDescriptionTemplate("a ##Adjective## wooden building housing a museum "
         "dedicated to local history and artifacts");
 
     // Add time of day variations
