@@ -24,7 +24,7 @@ public void Setup()
         " where birdsong carries differently along this corridor, the sound "
         "reflecting from the hard stone surface unlike softer surroundings",
         " where early morning moisture reveals the subtle color variations in the "
-        "gravel mixture—grays, tans, and occasionally flecks of quartz",
+        "gravel mixture-grays, tans, and occasionally flecks of quartz",
         " where the first light catches on any metallic or crystalline inclusions "
         "in the stone, creating momentary sparkles along the roadway",
         " where the distinctive surface remains relatively dry compared to "
@@ -39,10 +39,10 @@ public void Setup()
         " where the drying surface releases the distinctive mineral scent of stone, "
         "a clean, dry aroma quite different from earthen pathways",
         " where the increasingly bright light reveals the careful engineering of "
-        "the road—its subtle crown for drainage, packed foundation, and graded edges",
+        "the road-its subtle crown for drainage, packed foundation, and graded edges",
         " where well-constructed sections show minimal washboarding or rutting, "
         "testament to proper installation and regular maintenance",
-        " where the stones' varied composition becomes increasingly visible—granite, "
+        " where the stones' varied composition becomes increasingly visible-granite, "
         "limestone, quartz, and local rock types mingled in practical harmony",
         " where the texture transitions from damp compaction to drier looseness "
         "as the day progresses, altering both appearance and sound underfoot",
@@ -73,7 +73,7 @@ public void Setup()
         "distinctive sound marking areas needing maintenance or recompaction",
         " where heat shimmer sometimes forms just above the surface on especially "
         "warm days, the stone radiating accumulated thermal energy",
-        " where the careful sorting of different stone sizes becomes apparent—"
+        " where the careful sorting of different stone sizes becomes apparent-"
         "larger base materials topped with progressively smaller grades",
         " where the quality of construction reveals itself in how the surface "
         "handles midday heat expansion, well-built sections remaining stable",
@@ -146,8 +146,8 @@ public void Setup()
         "their movement occasionally detectable by subtle shifts in the gravel",
         " where any remaining warmth in the stones creates a subtle but "
         "detectible microclimate just above the road's surface",
-        " where the engineering that makes the road valuable in daylight—"
-        "durability, drainage, stability—continues providing benefits at dusk"
+        " where the engineering that makes the road valuable in daylight-"
+        "durability, drainage, stability-continues providing benefits at dusk"
         }));
 
     addTimeOfDayDescription("night", ({
@@ -163,7 +163,7 @@ public void Setup()
         "color variation, the regular pattern distinct from natural ground",
         " where temperature differences from surrounding terrain diminish as the "
         "night progresses, though stone cools more completely than soil",
-        " where the careful engineering maintains its value in darkness—stable "
+        " where the careful engineering maintains its value in darkness-stable "
         "footing, predictable surface, minimal hazards, reliable drainage",
         " where the open corridor above the road creates a visible channel "
         "through which stars and moon remain visible despite adjacent growth",
@@ -198,7 +198,7 @@ public void Setup()
 
     addTimeOfDayDescription("midnight", ({
         " where the deepest darkness reduces the road to its fundamental "
-        "characteristics—texture, sound, structure, and relative openness",
+        "characteristics-texture, sound, structure, and relative openness",
         " where the stones have completely surrendered the day's heat, the "
         "surface now cooler than surrounding vegetation-insulated earth",
         " where midnight dew reaches its peak formation, dampening the upper "
@@ -309,7 +309,7 @@ public void Setup()
         " where wildlife migrations might follow these reliable corridors, the "
         "maintained surface providing efficient passage through changing terrain",
         " where the road's continued function through autumn's challenging weather "
-        "variations—from warm dry spells to freezing rain—demonstrates its versatility"
+        "variations-from warm dry spells to freezing rain-demonstrates its versatility"
         }));
 
     // Base Description Template
@@ -319,7 +319,7 @@ public void Setup()
         "regular grading and periodic additions of fresh material");
 
     addItemTemplate("the gravel road demonstrates practical engineering with minimal "
-        "materials—crushed stone of various sizes layered to create superior drainage "
+        "materials-crushed stone of various sizes layered to create superior drainage "
         "and stability. The surface reveals its construction history through subtle "
         "variations in stone color and size, while the carefully maintained crown "
         "prevents water accumulation. Loose material at the edges transitions to a "

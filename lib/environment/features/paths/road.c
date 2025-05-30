@@ -19,7 +19,7 @@ public void Setup()
         "the texture of packed earth, stone, or other materials used in construction",
         " where morning mist often lingers in the drainage ditches that flank the "
         "roadway, emphasizing its raised profile above the surrounding terrain",
-        " where the first light clearly reveals the road's intentional engineering—"
+        " where the first light clearly reveals the road's intentional engineering - "
         "from crowned center to sloped sides and protective drainage features",
         " where distant features come into view along the road's relatively straight "
         "course, its deliberate routing revealing faraway destinations"
@@ -32,9 +32,9 @@ public void Setup()
         "revealing the careful engineering that keeps the crown well-drained",
         " where the substantial width becomes most apparent, the road designed "
         "specifically to accommodate multiple lanes of simultaneous traffic",
-        " where the road's deliberate course across the landscape becomes evident—"
+        " where the road's deliberate course across the landscape becomes evident - "
         "cutting through hills, bridging low areas, avoiding natural hazards",
-        " where maintenance features become visible—culverts channeling water "
+        " where maintenance features become visible-culverts channeling water "
         "beneath the roadbed, ditches directing runoff, reinforced edges"
         }));
 
@@ -45,7 +45,7 @@ public void Setup()
         "adjacent natural ground, creating detectable thermal boundaries",
         " where the careful grading ensures proper drainage even during heavy "
         "rainfall, the crowned center shedding water toward protective ditches",
-        " where strategic features become clearly visible—fords at water crossings, "
+        " where strategic features become clearly visible-fords at water crossings, "
         "reinforced sections over wet ground, cuttings through higher terrain",
         " where the multiple use patterns show most distinctly, with different "
         "lanes forming for various types of traffic across the ample width"
@@ -60,7 +60,7 @@ public void Setup()
         "with established patterns worn into the surface by regular use",
         " where afternoon light emphasizes the boundaries between different "
         "construction materials and repair sections accumulated over years",
-        " where strategic features become more apparent in angled light—"
+        " where strategic features become more apparent in angled light - "
         "reinforced edges, drainage channels, subtle grading for water control"
         }));
 
@@ -118,7 +118,7 @@ public void Setup()
 
     addTimeOfDayDescription("midnight", ({
         " where the deepest darkness reduces the road to its essential "
-        "characteristics—width, texture, structure, and relative openness",
+        "characteristics-width, texture, structure, and relative openness",
         " where the subtle crown of the road's center can be detected through "
         "careful attention to slope changes even without visual cues",
         " where the significant engineering that created this thoroughfare continues "

@@ -21,12 +21,12 @@ public void Setup()
         "it like a channel through the ethereal morning vapor",
         " where birdsong seems to follow the path's course, the open corridor "
         "creating an acoustic channel through denser vegetation",
-        " where emerging light gradually reveals previously hidden details—worn "
+        " where emerging light gradually reveals previously hidden details-worn "
         "stones, exposed roots, subtle drainage channels along the sides",
         " where early moisture darkens the exposed earth differently from "
         "surrounding ground, making the path's course distinctly visible",
         " where soft dawn light illuminates the diverse textures that compose the "
-        "surface—packed soil, scattered gravel, occasional flat stepping stones",
+        "surface-packed soil, scattered gravel, occasional flat stepping stones",
         " where the gentle depression of years of use catches long shadows, "
         "outlining the path's meandering course through the landscape",
         " where nocturnal animal tracks remain preserved in the damp earth, "
@@ -38,7 +38,7 @@ public void Setup()
     addTimeOfDayDescription("morning", ({
         " where gradually drying earth releases rich organic scents, the "
         "distinctive aroma of the path different from surrounding ground",
-        " where diverse textures become increasingly apparent—patches of pebbles, "
+        " where diverse textures become increasingly apparent-patches of pebbles, "
         "sections of bare earth, occasional rough stone surfaces",
         " where the boundary between path and surroundings gains definition as "
         "light strengthens, revealing the extent of human intervention",
@@ -50,9 +50,9 @@ public void Setup()
         "navigates the terrain's challenges with minimal modification",
         " where wildflowers and herbs often grow densely along the edges, "
         "thriving in the disturbed soil where competition is reduced",
-        " where the path reveals its history through visible layers—newer "
+        " where the path reveals its history through visible layers-newer "
         "surface material overlaying older, more compacted substrates",
-        " where subtle engineering becomes apparent—slight banking on curves, "
+        " where subtle engineering becomes apparent-slight banking on curves, "
         "minimal grading to prevent erosion, strategic placement of stones",
         " where the incomplete transformation from natural ground to constructed "
         "way gives the path its distinctive character, neither wild nor formal"
@@ -76,7 +76,7 @@ public void Setup()
         " where shadows retreat to their minimum extent, briefly removing the "
         "visual cues that emphasize the path's edges and texture",
         " where the midday sun reveals the full spectrum of colors in the "
-        "path's composition—ochres, umbers, subtle grays of stone",
+        "path's composition-ochres, umbers, subtle grays of stone",
         " where the distinction between deliberately placed materials and "
         "naturally occurring features blurs in the revealing light"
         }));
@@ -87,7 +87,7 @@ public void Setup()
         " where the western-facing slopes and edges catch warm light, "
         "creating a subtly illuminated boundary along one side",
         " where the path's variable surface absorbs the day's heat "
-        "differently—stones warming thoroughly while earth remains cooler",
+        "differently-stones warming thoroughly while earth remains cooler",
         " where the course appears particularly well-defined, the lower "
         "sun angle increasing the visibility of its subtle engineering",
         " where dust might hang briefly in the air above drier sections, "
@@ -98,7 +98,7 @@ public void Setup()
         "light, revealing how it accommodates both terrain and convenience",
         " where the varied materials show different thermal properties, some "
         "sections radiating stored heat while others cool more rapidly",
-        " where the warmed surface releases the day's accumulated scents—"
+        " where the warmed surface releases the day's accumulated scents-"
         "earth, crushed vegetation, mineral notes from stone elements",
         " where the relative elevation of the path compared to surroundings "
         "becomes more apparent, centuries of use creating a subtle berm"
@@ -155,7 +155,7 @@ public void Setup()
         "ribbon winding through darker surroundings",
         " where the textural differences between path and adjacent ground "
         "provide guidance even with minimal illumination",
-        " where starlight reflects differently from various surface materials—"
+        " where starlight reflects differently from various surface materials-"
         "glinting occasionally from mica-flecked stones or damp patches",
         " where nocturnal creatures use the convenient corridor for efficient "
         "movement, their passage continuing to maintain the clear route",
@@ -167,7 +167,7 @@ public void Setup()
         "the thermal signature detectable hours after sunset",
         " where the openness above creates a corridor of visible sky for "
         "celestial navigation when other landmarks disappear in darkness",
-        " where the path's course is sometimes revealed by what it lacks—the "
+        " where the path's course is sometimes revealed by what it lacks-the "
         "absence of taller vegetation creating negative space in starlight",
         " where night dew forms patterns that highlight the path's edges, "
         "moisture collecting differently on compressed versus natural ground"
@@ -202,7 +202,7 @@ public void Setup()
         " where the silence accentuates the different sounds made when moving "
         "along the path versus through adjacent untrampled areas",
         " where the completeness of night reduces the path to its essential "
-        "qualities—direction, texture, and relative openness",
+        "qualities-direction, texture, and relative openness",
         " where dew formation reaches its peak, sometimes creating enough "
         "moisture difference to affect reflected starlight",
         " where nocturnal life continues its activities regardless of hour, the "
@@ -237,7 +237,7 @@ public void Setup()
         "remaining passable when poor drainage would create ice sheets elsewhere",
         " where the winter sun sometimes briefly warms the darker elements of "
         "the path's surface, creating micro-thaw patterns not seen in surroundings",
-        " where resilient markers—a notched tree, a distinctive stone—take on "
+        " where resilient markers-a notched tree, a distinctive stone-take on "
         "greater importance when snow transforms the familiar landscape",
         " where the path's vulnerability to ice formation reveals much about its "
         "construction, from carefully placed stones to intentional grading"
@@ -258,7 +258,7 @@ public void Setup()
         "advantage of increased sunlight where taller vegetation is absent",
         " where the scent of warming earth rises distinctively from the path, "
         "different from the aromas of the surrounding awakening landscape",
-        " where seasonal maintenance may be visible—new stones placed in "
+        " where seasonal maintenance may be visible-new stones placed in "
         "muddy sections, drainage channels cleared, major obstacles removed",
         " where temporary streams sometimes form along or across the path during "
         "thaw, creating ephemeral water features that reshape sections",
@@ -282,7 +282,7 @@ public void Setup()
         " where berries and edible plants sometimes grow more abundantly along "
         "the edges, benefiting from the distinct boundary ecology",
         " where the path's surface reveals its composition most clearly in "
-        "the dry season—packed earth, occasional stone, exposed roots",
+        "the dry season-packed earth, occasional stone, exposed roots",
         " where careful observation might reveal the path's history of "
         "modifications, from seasonal maintenance to gradual rerouting",
         " where cooling shade becomes a precious resource along certain "

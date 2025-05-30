@@ -17,7 +17,7 @@ public void Setup()
         "the wheel ruts and hoof impressions from previous days",
         " where wisps of ground-hugging mist often follow the depression of the "
         "roadway, creating an ethereal path through the landscape",
-        " where the first light reveals the complex textures of the surface—packed "
+        " where the first light reveals the complex textures of the surface-packed "
         "central sections, softer margins, and transitional borders",
         " where birdsong carries differently along this open corridor, creating "
         "a distinct acoustic channel through otherwise dense terrain",
@@ -53,7 +53,7 @@ public void Setup()
         " where the subtle crown of the road's center becomes apparent, centuries "
         "of careful grading creating efficient drainage to the sides",
         " where the morning light reveals different soil textures used in "
-        "construction—clay for binding, gravel for drainage, sand for stability",
+        "construction-clay for binding, gravel for drainage, sand for stability",
         " where the wider berth of the dirt road compared to simple paths allows "
         "observation of how traffic naturally separates into lanes"
         }));
@@ -73,7 +73,7 @@ public void Setup()
         "through the landscape speaking to its commercial importance",
         " where midday traffic has created the day's first fresh tracks, overlaying "
         "the preserved impressions from previous passages",
-        " where the deliberate engineering becomes most evident—carefully placed "
+        " where the deliberate engineering becomes most evident-carefully placed "
         "culverts, strategic grading, reinforced edges in vulnerable sections",
         " where the contrast between sunny exposed stretches and shaded sections "
         "creates dramatic transitions in surface temperature and moisture",
@@ -97,7 +97,7 @@ public void Setup()
         " where comparative coolness begins to return to shadier sections while "
         "exposed stretches continue radiating accumulated heat",
         " where the different soil components respond distinctively to extended "
-        "heat—clay cracking slightly, sandy sections shifting, gravel stable",
+        "heat-clay cracking slightly, sandy sections shifting, gravel stable",
         " where the distinct engineering of drainage features becomes apparent, "
         "ditches and culverts keeping the mainline dry despite surrounding terrain",
         " where the warm colors of the dirt reach their richest hues, the road "
@@ -137,7 +137,7 @@ public void Setup()
         " where navigation increasingly relies on the feel of the compacted surface "
         "underfoot as visual cues diminish with failing light",
         " where the distinct sounds of movement along the road provide additional "
-        "guidance—the crunch of the harder surface different from softer margins",
+        "guidance-the crunch of the harder surface different from softer margins",
         " where evening dew forms differential patterns, the road's varied "
         "composition accepting moisture differently across its width",
         " where the road's careful grading remains perceptible through subtle slope "
@@ -158,7 +158,7 @@ public void Setup()
         " where the thermal properties of the compacted earth create subtle "
         "temperature boundaries detectable even in darkness",
         " where the distinctive sound of movement along the road provides "
-        "navigational cues—the packed surface creating different acoustics than "
+        "navigational cues-the packed surface creating different acoustics than "
         "surrounding terrain",
         " where night dew forms more slowly on the road than on surrounding "
         "vegetation, the retained warmth temporarily resisting moisture",
@@ -184,7 +184,7 @@ public void Setup()
         " where nocturnal creatures continue to utilize the convenient corridor, "
         "their movements occasionally visible as subtle disturbances",
         " where the quieter hours reveal the distinctive sounds of the road "
-        "itself—minor settling, the soft crunch of frost formation in cold seasons",
+        "itself-minor settling, the soft crunch of frost formation in cold seasons",
         " where occasional clearings or wider sections create pools of relatively "
         "greater visibility under starlight or moonlight",
         " where the road's course through the landscape may be perceived through "
@@ -193,13 +193,13 @@ public void Setup()
         "during the deepest hours, its purposeful existence a comfort",
         " where the night's progression can be marked by changes in dew formation "
         "and wildlife activity along the road's course",
-        " where the complete engineered system—drainage ditches, culverts, graded "
-        "surface—continues functioning regardless of illumination or hour"
+        " where the complete engineered system-drainage ditches, culverts, graded "
+        "surface-continues functioning regardless of illumination or hour"
         }));
 
     addTimeOfDayDescription("midnight", ({
         " where the deepest darkness reduces the road to its essential "
-        "characteristics—texture, direction, and relative openness",
+        "characteristics-texture, direction, and relative openness",
         " where complete night often brings the stillest air, allowing dust to "
         "fully settle and scents to stratify in complex layers",
         " where temperature differences between road and surroundings reach their "
@@ -270,7 +270,7 @@ public void Setup()
     addSeasonDescription("summer", ({
         " where dust becomes the defining characteristic, fine particles rising "
         "with every disturbance and settling on adjacent vegetation",
-        " where the fully dry surface reveals its complete composition—clay for "
+        " where the fully dry surface reveals its complete composition-clay for "
         "binding, gravel for structure, sand for drainage, earth for mass",
         " where heat creates visible distortion above the darkest sections, the "
         "road absorbing and radiating summer sun with particular efficiency",
@@ -323,7 +323,7 @@ public void Setup()
     addItemTemplate("the dirt road reveals thoughtful engineering despite its "
         "simple materials, with a subtle crown for drainage and parallel ditches "
         "along the sides. Years of traffic have created distinctive patterns "
-        "across its width—twin ruts from wheeled vehicles, smoother central "
+        "across its width-twin ruts from wheeled vehicles, smoother central "
         "ridges from hoof traffic, and softer margins where passage is less "
         "frequent. The packed earth surface shows varying textures and colors "
         "where different materials have been added for stability. ##UseDescriptionSet##");

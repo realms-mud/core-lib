@@ -25,7 +25,7 @@ public void Setup()
         "reappear where direct sunlight touches the disturbed vegetation",
         " where birdsong seems particularly concentrated along the route, the "
         "edge habitat created by the trail attracting diverse species",
-        " where the dampness of morning reveals subtle differences in vegetation—"
+        " where the dampness of morning reveals subtle differences in vegetation-"
         "species that thrive in the disturbed soil of the trail's margins",
         " where the low angle of dawn light emphasizes even the slightest "
         "depression in the earth, making the trail more visible than at midday",
@@ -44,7 +44,7 @@ public void Setup()
         "vegetation rather than clear soil exposure in many sections",
         " where dew burns off in patterns determined by the morning sun's path "
         "and the varying height of grasses along the route",
-        " where transition zones become apparent along the trail's edge—different "
+        " where transition zones become apparent along the trail's edge-different "
         "plant communities meeting where disturbance creates opportunity",
         " where the gentle depression of the trail's center occasionally catches "
         "morning shadows, creating a subtle line across open terrain",
@@ -169,8 +169,8 @@ public void Setup()
         "often remaining marginally warmer than surrounding areas",
         " where occasional eye-shine might reveal wildlife using or crossing "
         "the trail, momentarily catching any available light",
-        " where the distinctive sounds of movement along the trail—different "
-        "from progress through undisturbed vegetation—provide audio cues"
+        " where the distinctive sounds of movement along the trail-different "
+        "from progress through undisturbed vegetation-provide audio cues"
         }));
 
     addTimeOfDayDescription("late night", ({
@@ -203,7 +203,7 @@ public void Setup()
         "vegetation reaches its maximum, the bare earth cooling more completely",
         " where nocturnal creatures continue their activities regardless of "
         "the hour, the trail serving wildlife needs around the clock",
-        " where the trail exists primarily through negative space—the absence "
+        " where the trail exists primarily through negative space-the absence "
         "of certain obstacles rather than the presence of clear markers",
         " where the quietest hours allow the subtlest sounds of movement to "
         "carry further, revealing activity along the route by ear rather than eye",
@@ -237,7 +237,7 @@ public void Setup()
         "trail, sometimes creating a hazardous but visually striking feature",
         " where melting occurs at different rates along the trail than in "
         "surrounding areas, the compressed soil conducting heat differently",
-        " where the simplest markers—a bent twig, a discolored stone—take on "
+        " where the simplest markers-a bent twig, a discolored stone-take on "
         "crucial importance when snow transforms the familiar landscape",
         " where the trail's subtle channel sometimes serves as a natural drainage "
         "course during thaws, creating a momentary streambed through the terrain"
