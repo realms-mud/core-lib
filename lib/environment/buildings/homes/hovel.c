@@ -29,7 +29,7 @@ public void Setup()
 
     addTimeOfDayDescription("morning", ({
         ". Morning reveals the resourcefulness behind the hovel's "
-        "construction – wattle and daub, salvaged wood, and stones all combined",
+        "construction - wattle and daub, salvaged wood, and stones all combined",
         ". A threadbare cloth hangs across the single window, attempting to "
         "block the harsh morning light from the interior"
         }));
@@ -38,7 +38,7 @@ public void Setup()
         ". At midday, the hovel's shadow offers meager relief from the sun, "
         "falling over a small patch of hard-packed earth",
         ". A thin trickle of water collects from a makeshift gutter into a "
-        "barrel – evidence of careful conservation of resources"
+        "barrel - evidence of careful conservation of resources"
         }));
 
     addTimeOfDayDescription("afternoon", ({

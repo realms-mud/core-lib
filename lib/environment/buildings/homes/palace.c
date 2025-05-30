@@ -125,7 +125,7 @@ public void Setup()
         "enormous scale defying ordinary architecture. Built of the finest "
         "white stone, the structure features a central block topped by a massive "
         "dome, with symmetrical wings extending outward and towers rising at "
-        "strategic points. Every surface is enhanced with ornamental details – "
+        "strategic points. Every surface is enhanced with ornamental details - "
         "carved stone, gilded accents, statuary, and decorative ironwork. Huge "
         "windows, many with ornate balconies, punctuate the facades, while "
         "grand staircases lead to imposing entrance portals. The surrounding "

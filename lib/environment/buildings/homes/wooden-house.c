@@ -120,8 +120,8 @@ public void Setup()
         "and rain. A covered porch stretches across the front, supported by "
         "carved wooden posts, while a stone chimney rises from one side. The "
         "shingled roof has a pleasing slope, designed to shed rain and snow "
-        "efficiently. Small details – carved window frames, a decorative lintel "
-        "above the door – elevate the structure from merely functional to "
+        "efficiently. Small details - carved window frames, a decorative lintel "
+        "above the door - elevate the structure from merely functional to "
         "genuinely handsome."
     );
 
