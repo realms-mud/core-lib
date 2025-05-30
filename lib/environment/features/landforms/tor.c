@@ -97,5 +97,8 @@ public void Setup()
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## tor rising from the landscape, its distinctive profile created by a crown of exposed, weathered rock formations atop a hill, the stones sculpted by countless years of wind, rain and frost into a natural monument");
+    addDescriptionTemplate("a ##Adjective## tor rising from the landscape, its "
+        "distinctive profile created by a crown of exposed, weathered rock "
+        "formations atop a hill, the stones sculpted by countless years of wind, "
+        "rain and frost into a natural monument");
 }

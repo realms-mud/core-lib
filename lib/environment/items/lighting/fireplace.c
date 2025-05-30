@@ -12,7 +12,8 @@ public void Setup()
     addAlias("hearth");
     suppressEntryMessage();
 
-    addDescriptionTemplate("a large, stone fireplace with cold ashes in its hearth");
+    addDescriptionTemplate("a large, stone fireplace lies dormant with cold "
+        "ashes in its hearth");
     addActiveSourceOfLight(8, "a roaring fire burns brightly in the large stone "
         "fireplace, casting warm light");
 

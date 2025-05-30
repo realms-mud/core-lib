@@ -227,7 +227,7 @@ protected string getElementDescriptions(string type, int illuminationLevel)
             m_indices(environmentalElements[type]), (: $1 > $2 :));
         foreach(string element in elements)
         {
-            string directions = " there";
+            string directions = "";
 
             if (sizeof(environmentalElements[type][element]))
             {
