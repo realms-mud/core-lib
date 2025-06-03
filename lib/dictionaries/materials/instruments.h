@@ -27,7 +27,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This wind instrument has multiple reed pipes attached to an air bag that produces sound when squeezed.",
         "base experience": 10,
     ]),
     "uilleann pipes": ([
@@ -53,7 +53,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This sophisticated bellows-blown bagpipe features drones, regulators, and a chanter for melodic control.",
         "base experience": 15,
     ]),
     "warpipes": ([
@@ -77,7 +77,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This loud bagpipe with a powerful drone was designed to be heard across battlefields and strike fear into enemies.",
         "base experience": 10,
     ]),
     "fierabras": ([
@@ -101,7 +101,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This bagpipe variant features decorative tassels and produces a distinctive buzzing tone through its multiple reed pipes.",
         "base experience": 10,
     ]),
     "zampogna": ([
@@ -126,7 +126,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This traditional bagpipe has two parallel chanters with unequal lengths and produces melodic folk tunes.",
         "base experience": 10,
     ]),
     "surdullina": ([
@@ -151,7 +151,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This small bagpipe has a distinctive nasal tone and uses a simple leather bag with two or three drone pipes.",
         "base experience": 10,
     ]),
     "hummelchen": ([
@@ -175,7 +175,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "yew",
         "default value": 200,
-        "default description": "",
+        "default description": "This small, quieter bellows-blown bagpipe is designed for indoor performances and chamber music.",
         "base experience": 10,
     ]),
     "piffero": ([
@@ -198,7 +198,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This double-reed folk woodwind instrument has a conical bore and bright, penetrating sound.",
         "base experience": 10,
     ]),
     "ciaramella": ([
@@ -221,7 +221,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This traditional wooden shawm has a flared bell and produces a loud, reedy tone ideal for outdoor celebrations.",
         "base experience": 10,
     ]),
     "blaterpfeife": ([
@@ -244,7 +244,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This bladder pipe has a wooden pipe attached to an inflated animal bladder that produces a nasal drone.",
         "base experience": 10,
     ]),
     "cornamuse": ([
@@ -267,7 +267,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 4,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This capped double-reed instrument has a cylindrical bore and a soft, mellow tone suitable for ensembles.",
         "base experience": 10,
     ]),
     "crumhorn": ([
@@ -290,7 +290,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This J-shaped double-reed instrument has a capped reed and produces a distinctive buzzing tone.",
         "base experience": 10,
     ]),
     "kortholt": ([
@@ -311,7 +311,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This short, cylindrical double-reed instrument has a folded bore and produces a soft, muted tone.",
         "base experience": 10,
     ]),
     "recorder": ([
@@ -332,7 +332,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This end-blown fipple flute has a tapered bore and produces a clear, sweet tone across its range.",
         "base experience": 10,
     ]),
     "hirtenschalmei": ([
@@ -353,7 +353,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This shepherd's shawm has a capped double-reed and produces a bright, rustic tone ideal for folk music.",
         "base experience": 10,
     ]),
     "shawm": ([
@@ -376,7 +376,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This double-reed instrument has a conical bore and flaring bell that produces a powerful, penetrating sound.",
         "base experience": 10,
     ]),
     "dulcian": ([
@@ -399,7 +399,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This early bassoon has a U-shaped bore and double reed, producing a warm, resonant bass tone.",
         "base experience": 10,
     ]),
     "shagbut": ([
@@ -422,7 +422,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This early slide trumpet has a telescoping mechanism and produces a mellow, noble brass tone.",
         "base experience": 10,
     ]),
     "cornett": ([
@@ -445,7 +445,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This curved wooden instrument has a cup mouthpiece and finger holes, with a sound between brass and woodwind.",
         "base experience": 10,
     ]),
     "horn": ([
@@ -468,7 +468,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This simple brass instrument has a conical bore and cup mouthpiece, producing a clear, projecting tone.",
         "base experience": 10,
     ]),
     "oboe": ([
@@ -491,7 +491,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This double-reed woodwind has a conical bore and produces a clear, somewhat nasal tone quality.",
         "base experience": 10,
     ]),
     "lyserden": ([
@@ -514,7 +514,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This reed pipe has a narrow cylindrical bore and produces a clear, sweet tone suitable for folk melodies.",
         "base experience": 10,
     ]),
     "gemshorn": ([
@@ -537,7 +537,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This flute-like instrument is made from an animal horn with finger holes and produces a soft, haunting tone.",
         "base experience": 10,
     ]),
     "flute": ([
@@ -563,7 +563,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 200,
-        "default description": "",
+        "default description": "This transverse wind instrument has a row of tone holes and produces a bright, agile sound.",
         "base experience": 10,
     ]),
     "ocarina": ([
@@ -585,7 +585,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "yew",
         "default value": 100,
-        "default description": "",
+        "default description": "This hollow, vessel flute is usually made of ceramic and produces a warm, whistling tone.",
         "base experience": 10,
     ]),
     "trumpet": ([
@@ -611,7 +611,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 300,
-        "default description": "",
+        "default description": "This brass instrument has a cup-shaped mouthpiece and flared bell, producing a brilliant, powerful tone.",
         "base experience": 10,
     ]),
     "bugle": ([
@@ -635,7 +635,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 250,
-        "default description": "",
+        "default description": "This coiled brass horn has no valves and relies on the player's embouchure to produce different notes.",
         "base experience": 10,
     ]),
     "sackbut": ([
@@ -660,7 +660,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 200,
-        "default description": "",
+        "default description": "This early trombone has a telescoping slide and produces a mellow, dignified tone.",
         "base experience": 10,
     ]),
     "trombone": ([
@@ -686,7 +686,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 300,
-        "default description": "",
+        "default description": "This brass instrument has a telescoping slide and produces a rich, powerful tone across a wide range.",
         "base experience": 10,
     ]),
     "tuba": ([
@@ -712,7 +712,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 300,
-        "default description": "",
+        "default description": "This large brass instrument has a conical bore, valves, and produces a deep, rich bass tone.",
         "base experience": 10,
     ]),
     "french horn": ([
@@ -738,7 +738,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "brass",
         "default value": 300,
-        "default description": "",
+        "default description": "This coiled brass horn has valves and produces a warm, mellow tone prized for its expressiveness.",
         "base experience": 10,
     ]),
     "dulcimer": ([
@@ -762,7 +762,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This trapezoid-shaped string instrument is played by striking the strings with small hammers.",
         "base experience": 10,
     ]),
     "rebec": ([
@@ -786,7 +786,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 150,
-        "default description": "",
+        "default description": "This bowed string instrument has a pear-shaped body and produces a bright, nasal tone.",
         "base experience": 10,
     ]),
     "harp": ([
@@ -811,7 +811,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "alder",
         "default value": 200,
-        "default description": "",
+        "default description": "This triangular string instrument has strings of varying length played by plucking with the fingers.",
         "base experience": 10,
     ]),
     "zither": ([
@@ -836,7 +836,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "alder",
         "default value": 150,
-        "default description": "",
+        "default description": "This flat string instrument has many strings stretched over a resonating box and is played by plucking.",
         "base experience": 10,
     ]),
     "gamba": ([
@@ -861,7 +861,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This six-stringed bowed instrument is held between the legs and produces a warm, resonant tone.",
         "base experience": 10,
     ]),
     "bass viol": ([
@@ -886,7 +886,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This large bowed string instrument produces deep bass tones and stands on the floor when played.",
         "base experience": 10,
     ]),
     "violin": ([
@@ -911,7 +911,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This four-string bowed instrument is held under the chin and produces a bright, singing tone.",
         "base experience": 10,
     ]),
     "viol": ([
@@ -936,7 +936,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This fretted bowed string instrument has a flat back and produces a soft, sweet tone.",
         "base experience": 10,
     ]),
     "hurdy-gurdy": ([
@@ -963,7 +963,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 2,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This mechanical string instrument produces sound when a crank turns a wheel against strings.",
         "base experience": 10,
     ]),
     "lute": ([
@@ -988,7 +988,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This plucked string instrument has a pear-shaped body, bent neck, and produces a warm, delicate tone.",
         "base experience": 10,
     ]),
     "chittarone": ([
@@ -1013,7 +1013,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 300,
-        "default description": "",
+        "default description": "This bass lute has an extended neck almost as tall as a person and produces resonant bass notes.",
         "base experience": 10,
     ]),
     "archlute": ([
@@ -1038,7 +1038,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 350,
-        "default description": "",
+        "default description": "This lute variant has an elongated neck with a second pegbox for bass strings that run alongside the fingerboard.",
         "base experience": 10,
     ]),
     "gittern": ([
@@ -1063,7 +1063,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 300,
-        "default description": "",
+        "default description": "This small, round-backed string instrument is an ancestor of the guitar with a bright, lively tone.",
         "base experience": 10,
     ]),
     "vihuella": ([
@@ -1088,7 +1088,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 350,
-        "default description": "",
+        "default description": "This guitar-like instrument has six double courses of strings and a figure-eight shaped body.",
         "base experience": 10,
     ]),
     "baroque guitar": ([
@@ -1113,7 +1113,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 350,
-        "default description": "",
+        "default description": "This five-course guitar has a body smaller than modern guitars and produces a delicate, bright tone.",
         "base experience": 10,
     ]),
     "citole": ([
@@ -1138,7 +1138,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 400,
-        "default description": "",
+        "default description": "This carved wooden string instrument has an asymmetrical shape and produces a bright, clear tone.",
         "base experience": 10,
     ]),
     "guitar": ([
@@ -1163,7 +1163,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 400,
-        "default description": "",
+        "default description": "This six-stringed instrument has a figure-eight wooden body and produces a versatile, resonant tone.",
         "base experience": 10,
     ]),
     "bass guitar": ([
@@ -1188,7 +1188,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 400,
-        "default description": "",
+        "default description": "This larger guitar has four thick strings and produces deep bass tones with a rich resonance.",
         "base experience": 10,
     ]),
     "12-string guitar": ([
@@ -1213,7 +1213,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 400,
-        "default description": "",
+        "default description": "This guitar has six courses of doubled strings that create a rich, chorus-like effect when strummed.",
         "base experience": 10,
     ]),
     "resonating guitar": ([
@@ -1238,7 +1238,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "iron",
         "default value": 450,
-        "default description": "",
+        "default description": "This guitar has a metal resonator built into its body that amplifies the sound with distinctive clarity.",
         "base experience": 10,
     ]),
     "banjo": ([
@@ -1263,7 +1263,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "iron",
         "default value": 400,
-        "default description": "",
+        "default description": "This instrument has strings stretched over a circular frame with a drum-like membrane that produces a bright, twangy sound.",
         "base experience": 10,
     ]),
     "mandolin": ([
@@ -1288,7 +1288,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 200,
-        "default description": "",
+        "default description": "This small, pear-shaped string instrument has four pairs of strings and produces a bright, trembling tone.",
         "base experience": 10,
     ]),
     "cittern": ([
@@ -1313,7 +1313,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This flat-backed string instrument has metal strings and produces a bright, ringing tone.",
         "base experience": 10,
     ]),
     "bandurria": ([
@@ -1338,7 +1338,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This pear-shaped string instrument has six double courses of strings and produces a bright, percussive tone.",
         "base experience": 10,
     ]),
     "mandore": ([
@@ -1363,7 +1363,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This small lute-like instrument has four to six courses of strings and produces a delicate, sweet tone.",
         "base experience": 10,
     ]),
     "gallichon": ([
@@ -1388,7 +1388,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This bass lute has a long neck, six single strings, and produces deep, resonant bass tones.",
         "base experience": 10,
     ]),
     "12-string mandolin": ([
@@ -1413,7 +1413,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 450,
-        "default description": "",
+        "default description": "This mandolin has six courses of doubled strings that create a rich, complex sound with enhanced resonance.",
         "base experience": 10,
     ]),
     "mandocello": ([
@@ -1438,7 +1438,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This large bass member of the mandolin family has four paired strings and produces deep, resonant tones.",
         "base experience": 10,
     ]),
     "bozuk": ([
@@ -1463,7 +1463,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 250,
-        "default description": "",
+        "default description": "This long-necked string instrument has movable frets and produces melodic tones popular in folk music.",
         "base experience": 10,
     ]),
     "adufe": ([
@@ -1488,7 +1488,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This square frame drum has small objects inside that rattle when the drum is shaken or struck.",
         "base experience": 10,
     ]),
     "bodhran": ([
@@ -1513,7 +1513,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This frame drum with a goatskin head is played with a double-ended wooden stick called a tipper.",
         "base experience": 10,
     ]),
     "tabor": ([
@@ -1538,7 +1538,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This small cylindrical drum hangs from the player's wrist and is struck with a single stick.",
         "base experience": 10,
     ]),
     "timbrel": ([
@@ -1563,7 +1563,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "This tambourine-like instrument has jingles mounted in the frame and produces a bright, rhythmic sound.",
         "base experience": 10,
     ]),
     "cymbals": ([
@@ -1584,7 +1584,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 100,
-        "default description": "",
+        "default description": "These paired metal plates produce a bright, ringing clash when struck together.",
         "base experience": 10,
     ]),
     "snare drum": ([
@@ -1609,7 +1609,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 300,
-        "default description": "",
+        "default description": "This double-headed drum has snares stretched across the bottom head that rattle when the top is struck.",
         "base experience": 10,
     ]),
     "bass drum": ([
@@ -1634,7 +1634,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 350,
-        "default description": "",
+        "default description": "This large cylindrical drum produces deep, powerful tones when struck with a padded mallet.",
         "base experience": 10,
     ]),
     "nakers": ([
@@ -1659,7 +1659,7 @@ protected mapping instrumentBlueprints = ([
         "default encumberance": 5,
         "default material": "ash",
         "default value": 350,
-        "default description": "",
+        "default description": "These small kettle drums are played in pairs and produce sharp, crisp tones for military and ceremonial use.",
         "base experience": 10,
     ]),
 ]);
