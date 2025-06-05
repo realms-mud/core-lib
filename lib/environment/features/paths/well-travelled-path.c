@@ -29,7 +29,7 @@ public void Setup()
         "abandoned, though fresh tracks attest to nighttime crossings",
         " where dew collects differently on the compacted surface than on "
         "surrounding vegetation, creating a visible line through meadows",
-        " where the moist earth carries a rich tapestry of scents – leather, "
+        " where the moist earth carries a rich tapestry of scents - leather, "
         "animals, herbs, and countless other traces of past traffic",
         " where the golden light catches on worn sections, highlighting areas "
         "where countless footsteps have polished stones smooth"

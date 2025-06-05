@@ -1438,7 +1438,7 @@ protected mapping food =
             "artichoke seed": 1
         ]),
         "default description": "Armored buds with overlapping scales protecting a tender heart. "
-            "Their complex nature represents life's challenges – requiring effort "
+            "Their complex nature represents life's challenges - requiring effort "
             "to reach the sweetness hidden within.",
         "base experience": 1,
     ]),
@@ -1591,7 +1591,7 @@ protected mapping food =
         "crafting materials": ([
             "autumn cup squash seed": 1
         ]),
-        "default description": "Deeply ribbed squash with colors that mimic falling leaves – russet, "
+        "default description": "Deeply ribbed squash with colors that mimic falling leaves - russet, "
             "gold, and green. Eating its sweet flesh is said to prepare the body "
             "for winter's challenges and prevent seasonal melancholy.",
         "base experience": 1,
@@ -2272,7 +2272,7 @@ protected mapping food =
         ]),
         "default description": "Juicy berries growing in clusters, ranging from pale green to "
             "deep purple. Beyond their sweet flavor, they transform through "
-            "fermentation into wine – liquid poetry in a glass.",
+            "fermentation into wine - liquid poetry in a glass.",
         "base experience": 1,
     ]),
     "plum": ([
