@@ -5,7 +5,9 @@
 #ifndef enchantments_h
 #define enchantments_h
 
-protected string *enchantmentClasses = ({ "offensive", "defensive", "vitals", "attributes", "skills", "abilities", "attack mutations" });
+protected string *enchantmentClasses = ({ "offensive", "defensive", "vitals", 
+    "attributes", "skills", "abilities", "attack mutations" });
+
 protected mapping equipmentEnchantments =
 ([
     "fire enchantment":([
@@ -21,7 +23,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "kenaz",
-        "description": "",
+        "description": "Imbues the item with fiery energy, enhancing damage with searing heat.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -41,7 +43,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "kenaz",
-        "description": "",
+        "description": "Protects the wearer against heat and fire damage through magical warding.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -56,7 +58,7 @@ protected mapping equipmentEnchantments =
             "damage type": "fire",
         ]),
         "rune": "kenaz",
-        "description": "",
+        "description": "Converts the weapon's attacks to channel burning fire element energy.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -73,7 +75,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "hagalaz",
-        "description": "",
+        "description": "Enhances the item with corrosive energy that eats through defenses.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -90,7 +92,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "hagalaz",
-        "description": "",
+        "description": "Provides magical protection against corrosive substances and acid damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -105,7 +107,7 @@ protected mapping equipmentEnchantments =
             "damage type": "acid",
         ]),
         "rune": "hagalaz",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver devastating acid damage on contact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -122,7 +124,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "tiwaz",
-        "description": "",
+        "description": "Infuses the item with swift air energy, increasing its effectiveness.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -139,7 +141,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "tiwaz",
-        "description": "",
+        "description": "Creates a magical barrier that deflects air-based attacks and damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -154,7 +156,7 @@ protected mapping equipmentEnchantments =
             "damage type": "air",
         ]),
         "rune": "tiwaz",
-        "description": "",
+        "description": "Imbues weapon strikes with cutting air currents for enhanced damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -171,7 +173,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "perthro",
-        "description": "",
+        "description": "Empowers the item with unpredictable chaos magic that warps reality.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -188,7 +190,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "perthro",
-        "description": "",
+        "description": "Stabilizes reality around the wearer, protecting against chaotic energies.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -203,7 +205,7 @@ protected mapping equipmentEnchantments =
             "damage type": "chaos",
         ]),
         "rune": "perthro",
-        "description": "",
+        "description": "Converts weapon damage to unpredictable chaos energy that distorts matter.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -220,7 +222,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "isa",
-        "description": "",
+        "description": "Imbues the item with freezing energy that chills opponents to the bone.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -237,7 +239,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "isa",
-        "description": "",
+        "description": "Creates an insulating magical field that protects against cold damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -252,7 +254,7 @@ protected mapping equipmentEnchantments =
             "damage type": "cold",
         ]),
         "rune": "isa",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver biting cold damage that slows targets.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -269,7 +271,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "kenaz merkstave",
-        "description": "",
+        "description": "Curses the item to spread virulent disease and decay to enemies.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -286,7 +288,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "kenaz merkstave",
-        "description": "",
+        "description": "Strengthens the wearer's vitality against disease and illness.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -303,7 +305,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "ingwaz",
-        "description": "",
+        "description": "Empowers the item with crushing earth energy for enhanced impact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -320,7 +322,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "ingwaz",
-        "description": "",
+        "description": "Creates a barrier of magical earth energy that absorbs physical blows.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -335,7 +337,7 @@ protected mapping equipmentEnchantments =
             "damage type": "fire",
         ]),
         "rune": "ingwaz",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver crushing earth energy on impact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -352,7 +354,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "ansuz",
-        "description": "",
+        "description": "Charges the item with crackling lightning energy that shocks opponents.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -369,7 +371,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "ansuz",
-        "description": "",
+        "description": "Grounds electrical energy, protecting the wearer from lightning damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -384,7 +386,7 @@ protected mapping equipmentEnchantments =
             "damage type": "electricity",
         ]),
         "rune": "ansuz",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver shocking electrical damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -401,7 +403,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "fehu",
-        "description": "",
+        "description": "Infuses the item with pure magical energy that enhances its power.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -418,7 +420,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "fehu",
-        "description": "",
+        "description": "Creates a barrier that dissipates energy attacks before they reach the wearer.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -433,7 +435,7 @@ protected mapping equipmentEnchantments =
             "damage type": "energy",
         ]),
         "rune": "fehu",
-        "description": "",
+        "description": "Transforms weapon strikes to release pure magical energy on impact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -450,7 +452,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "thurisaz merkstave",
-        "description": "",
+        "description": "Fills the item with dark, corrupting energy that saps life and will.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -467,7 +469,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "uruz",
-        "description": "",
+        "description": "Shields the wearer's spirit from corruption and dark energies.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -482,7 +484,7 @@ protected mapping equipmentEnchantments =
             "damage type": "evil",
         ]),
         "rune": "thurisaz merkstave",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver soul-corrupting dark energy.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -499,7 +501,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "uruz",
-        "description": "",
+        "description": "Blesses the item with radiant energy that smites evil and darkness.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -516,7 +518,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "thurisaz merkstave",
-        "description": "",
+        "description": "Cloaks the wearer in shadows that deflect holy and radiant energies.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -531,7 +533,7 @@ protected mapping equipmentEnchantments =
             "damage type": "good",
         ]),
         "rune": "uruz",
-        "description": "",
+        "description": "Transforms weapon strikes to channel purifying holy energy.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -548,7 +550,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "gebo",
-        "description": "",
+        "description": "Enhances the item with arcane power that bypasses mundane defenses.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -565,7 +567,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "gebo",
-        "description": "",
+        "description": "Weaves a counter-spell barrier that neutralizes harmful magic.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -580,7 +582,7 @@ protected mapping equipmentEnchantments =
             "damage type": "magical",
         ]),
         "rune": "gebo",
-        "description": "",
+        "description": "Transforms weapon strikes to unleash pure arcane energy that penetrates defenses.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -597,7 +599,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "raidho",
-        "description": "",
+        "description": "Balances the item with neutral energy that bypasses alignment defenses.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -614,7 +616,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "raidho",
-        "description": "",
+        "description": "Creates a barrier of balanced energy that protects against neutral forces.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -629,7 +631,7 @@ protected mapping equipmentEnchantments =
             "damage type": "neutral",
         ]),
         "rune": "raidho",
-        "description": "",
+        "description": "Transforms weapon strikes to balanced neutral energy that affects all beings equally.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -646,7 +648,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "nauthiz",
-        "description": "",
+        "description": "Enchants the item to emit energy that restricts movement and mobility.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -663,7 +665,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "nauthiz",
-        "description": "",
+        "description": "Reinforces the wearer's nervous system against paralytic effects.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -680,7 +682,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "algiz merkstave",
-        "description": "",
+        "description": "Imbues the item with toxic energies that sicken and weaken foes over time.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -697,7 +699,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "algiz",
-        "description": "",
+        "description": "Neutralizes poisons and venoms before they can harm the wearer.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -714,7 +716,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "wunjo",
-        "description": "",
+        "description": "Attunes the item to mental energies that disrupt thought and concentration.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -731,7 +733,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "wunjo",
-        "description": "",
+        "description": "Shields the wearer's mind against psychic attacks and mental intrusion.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -746,7 +748,7 @@ protected mapping equipmentEnchantments =
             "damage type": "psionic",
         ]),
         "rune": "wunjo",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver mind-searing psychic energy.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -763,7 +765,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "sowilo",
-        "description": "",
+        "description": "Charges the item with vibration energy that creates damaging sound waves.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -780,7 +782,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "sowilo",
-        "description": "",
+        "description": "Dampens harmful sound waves before they can damage the wearer.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -795,7 +797,7 @@ protected mapping equipmentEnchantments =
             "damage type": "sonic",
         ]),
         "rune": "sowilo",
-        "description": "",
+        "description": "Transforms weapon strikes to release devastating sonic vibrations on impact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -812,7 +814,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "berkano merkstave",
-        "description": "",
+        "description": "Infuses the item with negative energy that disrupts the essence of life.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -829,7 +831,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "berkano merkstave",
-        "description": "",
+        "description": "Reinforces life energy to protect against draining undead attacks.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -844,7 +846,7 @@ protected mapping equipmentEnchantments =
             "damage type": "undead",
         ]),
         "rune": "berkano merkstave",
-        "description": "",
+        "description": "Transforms weapon strikes to unleash life-draining negative energy.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -861,7 +863,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "laguz",
-        "description": "",
+        "description": "Imbues the item with flowing water energy that erodes defenses over time.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -878,7 +880,7 @@ protected mapping equipmentEnchantments =
             ]),
         ]),
         "rune": "laguz",
-        "description": "",
+        "description": "Creates a magical barrier that repels and diverts water damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -893,7 +895,7 @@ protected mapping equipmentEnchantments =
             "damage type": "water",
         ]),
         "rune": "laguz",
-        "description": "",
+        "description": "Transforms weapon strikes to deliver crushing water energy on impact.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -908,7 +910,7 @@ protected mapping equipmentEnchantments =
             "bonus damage": 2,
         ]),
         "rune": "eihwaz",
-        "description": "",
+        "description": "Sharpens and reinforces the weapon's edge, increasing its damage potential.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -923,7 +925,7 @@ protected mapping equipmentEnchantments =
             "bonus attack": 2,
         ]),
         "rune": "jera",
-        "description": "",
+        "description": "Guides the weapon toward vital targets, increasing accuracy and attack effectiveness.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -938,7 +940,7 @@ protected mapping equipmentEnchantments =
             "bonus weapon attack": 1,
         ]),
         "rune": "eihwaz",
-        "description": "",
+        "description": "Accelerates the wielder's movements, allowing an additional strike in combat.",
         "value multiplier": 10.0,
         "experience modifier": 1.6
     ]),
@@ -953,7 +955,7 @@ protected mapping equipmentEnchantments =
             "bonus defense class":2,
         ]),
         "rune": "algiz",
-        "description": "",
+        "description": "Enhances the weapon's ability to parry and deflect incoming attacks.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -968,7 +970,7 @@ protected mapping equipmentEnchantments =
             "bonus soak": 2,
         ]),
         "rune": "algiz",
-        "description": "",
+        "description": "Creates a magical barrier that absorbs and dissipates incoming damage.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -983,7 +985,7 @@ protected mapping equipmentEnchantments =
             "bonus damage reflection":1,
         ]),
         "rune": "othala",
-        "description": "",
+        "description": "Rebounds a portion of received damage back to the attacker.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -998,7 +1000,7 @@ protected mapping equipmentEnchantments =
             "bonus hit points":5,
         ]),
         "rune": "berkano",
-        "description": "",
+        "description": "Bolsters the wearer's life force, increasing maximum health.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1013,7 +1015,7 @@ protected mapping equipmentEnchantments =
             "bonus heal hit points":1,
         ]),
         "rune": "berkano",
-        "description": "",
+        "description": "Enhances the wearer's natural healing, restoring more health when recovering.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1028,7 +1030,7 @@ protected mapping equipmentEnchantments =
             "bonus heal hit points rate":1,
         ]),
         "rune": "berkano",
-        "description": "",
+        "description": "Accelerates the body's natural healing process, recovering health more quickly.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1043,7 +1045,7 @@ protected mapping equipmentEnchantments =
             "bonus hit points":5,
         ]),
         "rune": "ehwaz",
-        "description": "",
+        "description": "Enhances the wearer's endurance, increasing maximum stamina reserves.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1058,7 +1060,7 @@ protected mapping equipmentEnchantments =
             "bonus heal stamina points":1,
         ]),
         "rune": "ehwaz",
-        "description": "",
+        "description": "Enhances the body's recovery, restoring more stamina when resting.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1073,7 +1075,7 @@ protected mapping equipmentEnchantments =
             "bonus heal stamina points rate":1,
         ]),
         "rune": "ehwaz",
-        "description": "",
+        "description": "Accelerates stamina recovery, allowing the wearer to regain energy more quickly.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1088,7 +1090,7 @@ protected mapping equipmentEnchantments =
             "bonus spell points":5,
         ]),
         "rune": "dagaz",
-        "description": "",
+        "description": "Expands the wearer's magical capacity, increasing maximum spell points.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1103,7 +1105,7 @@ protected mapping equipmentEnchantments =
             "bonus heal spell points":1,
         ]),
         "rune": "dagaz",
-        "description": "",
+        "description": "Enhances magical recovery, restoring more spell points when meditating.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1118,7 +1120,7 @@ protected mapping equipmentEnchantments =
             "bonus heal spell points rate":1,
         ]),
         "rune": "dagaz",
-        "description": "",
+        "description": "Accelerates magical energy recovery, regaining spell points more quickly.",
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
@@ -1133,7 +1135,7 @@ protected mapping equipmentEnchantments =
             "bonus strength":1,
         ]),
         "rune": "stregaz",
-        "description": "",
+        "description": "Magically enhances the wearer's physical strength beyond natural limits.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -1148,7 +1150,7 @@ protected mapping equipmentEnchantments =
             "bonus intelligence":1,
         ]),
         "rune": "inigaz",
-        "description": "",
+        "description": "Magically sharpens the wearer's intellect and reasoning abilities.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -1163,7 +1165,7 @@ protected mapping equipmentEnchantments =
             "bonus wisdom":1,
         ]),
         "rune": "wesgaz",
-        "description": "",
+        "description": "Magically enhances the wearer's insight, intuition and perception.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -1178,7 +1180,7 @@ protected mapping equipmentEnchantments =
             "bonus dexterity":1,
         ]),
         "rune": "dezgano",
-        "description": "",
+        "description": "Magically enhances the wearer's agility, reflexes and coordination.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -1193,7 +1195,7 @@ protected mapping equipmentEnchantments =
             "bonus constitution": 1,
         ]),
         "rune": "corgaz",
-        "description": "",
+        "description": "Magically enhances the wearer's physical resilience and fortitude.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
@@ -1208,7 +1210,7 @@ protected mapping equipmentEnchantments =
             "bonus charisma": 1,
         ]),
         "rune": "sylgaz",
-        "description": "",
+        "description": "Magically enhances the wearer's presence, charm and social influence.",
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),

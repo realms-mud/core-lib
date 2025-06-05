@@ -60,7 +60,9 @@ protected mapping materials =
         "defense": ([
             "cold": 3,
         ]),
-        "default description": "This is a textile made from the tightly-woven wool of cashmere goats that is finer, stronger, lighter, softer, and about three times more insulating than sheep wool.",
+        "default description": "This is a textile made from the tightly-woven "
+            "wool of cashmere goats that is finer, stronger, lighter, softer, "
+            "and about three times more insulating than sheep wool.",
         "value multiplier": 2.5,
         "scarcity": "uncommon",
         "experience modifier": 1.1,
