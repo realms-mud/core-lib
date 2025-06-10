@@ -7,86 +7,77 @@ inherit "/lib/environment/terrain/baseTerrain.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("desert");
+    Name("rocky desert");
+
     addAdjectives(({
-        "vast desert of rolling dunes",
-        "arid expanse of sun-baked sand",
-        "windswept desert where the horizon shimmers with heat",
-        "barren wasteland of cracked earth and scattered stones",
-        "endless sea of sand stretching beneath a cloudless sky",
-        "desolate desert where only the hardiest life survives",
-        "scorched landscape marked by the tracks of elusive creatures",
-        "sun-bleached desert with sparse, thorny vegetation",
-        "harsh desert where the wind carves ripples in the sand",
-        "lonely desert where silence reigns under the blazing sun"
+        "arid rocky desert with scattered boulders and hardy shrubs",
+        "expanse of sun-bleached rocks and coarse sand",
+        "desolate landscape of jagged stones and sparse vegetation",
+        "windswept desert where rocky outcrops break the horizon",
+        "barren terrain dotted with spiny bushes and cacti",
+        "sun-baked ground littered with pebbles and ancient stones",
+        "harsh desert where the wind whistles between rugged rocks",
+        "vast plain of gravel, sand, and scattered Joshua trees",
+        "rock-strewn desert where lizards dart between the stones",
+        "open desert with distant mountains shimmering in the heat"
         }));
 
     addTimeOfDayDescription("dawn", ({
-        " bathed in the cool, pale light of early morning",
-        " where long shadows stretch across the dunes",
-        " as the first rays of sun begin to warm the sand",
-        " with a gentle breeze stirring the surface",
-        " where the desert awakens from the chill of night"
+        " bathed in the cool, pink light of early morning",
+        " where long shadows stretch across the rocks",
+        " as the first rays of sun glint off the stony ground"
         }));
 
     addTimeOfDayDescription("morning", ({
-        " growing brighter as the sun climbs higher",
-        " with the sand beginning to radiate heat",
-        " where mirages shimmer in the distance",
-        " as the desert comes alive with the movement of early creatures"
+        " growing brighter as the sun rises over the desert",
+        " with the rocks warming quickly under the clear sky",
+        " as small animals emerge to bask in the gentle heat"
         }));
 
     addTimeOfDayDescription("noon", ({
         " under the relentless glare of the midday sun",
-        " where the heat is nearly unbearable",
-        " with the sand too hot to touch",
-        " as the air shimmers with rising waves of heat"
+        " where the heat is intense and the air shimmers",
+        " as the ground radiates waves of heat"
         }));
 
     addTimeOfDayDescription("afternoon", ({
-        " as the sun continues its scorching journey",
+        " as the sun beats down on the parched earth",
         " with the landscape wavering in the heat",
-        " where the wind picks up, sending sand swirling",
-        " as shadows begin to lengthen across the dunes"
+        " where the wind picks up, sending sand and dust swirling"
         }));
 
     addTimeOfDayDescription("evening", ({
         " cooling as the sun sinks toward the horizon",
         " with the sky ablaze in hues of orange and red",
-        " as the desert prepares for the chill of night",
-        " where the wind calms and silence deepens"
+        " as the desert prepares for the chill of night"
         }));
 
     addTimeOfDayDescription("dusk", ({
         " as the last light fades from the sky",
-        " with the sand cooling rapidly",
-        " where the desert takes on a mysterious, muted beauty",
+        " with the rocks casting long, deep shadows",
         " as nocturnal creatures begin to stir"
         }));
 
     addTimeOfDayDescription("night", ({
         " under a canopy of countless stars",
         " where the temperature drops sharply",
-        " with the sand cold and the air still",
         " as the desert becomes a realm of shadows and silence"
         }));
 
     addTimeOfDayDescription("late night", ({
         " shrouded in deep silence",
         " where the moon casts long, eerie shadows",
-        " as the desert seems endless and empty",
-        " with only the faintest sounds of life"
+        " as the desert seems endless and empty"
         }));
 
     addTimeOfDayDescription("midnight", ({
         " in utter darkness save for the stars",
-        " where the desert is at its coldest and most silent",
-        " as the world seems paused beneath the night sky"
+        " where the desert is at its coldest and most silent"
         }));
 
     addSeasonDescription("winter", ({
         " with cold nights and mild days",
-        " where frost sometimes forms on the sand",
+        " where frost sometimes forms on the rocks",
         " as the desert endures the harshest season"
         }));
 
@@ -109,8 +100,8 @@ public void Setup()
         }));
 
     addDescriptionTemplate("a ##Adjective##");
-    addNearDarkDescriptionTemplate("a pitch-black desert where only the stars and moon offer guidance");
-    addLowLightDescriptionTemplate("a barely-lit desert where dunes are little more than shadows");
-    addDimLightDescriptionTemplate("a dimly-lit desert where the sand glows faintly in the gloom");
-    addSomeLightDescriptionTemplate("a sunlit desert where every grain of sand is illuminated");
+    addNearDarkDescriptionTemplate("a pitch-black rocky desert where only the stars and moon offer guidance");
+    addLowLightDescriptionTemplate("a barely-lit rocky desert where boulders are little more than shadows");
+    addDimLightDescriptionTemplate("a dimly-lit rocky desert where the stones glow faintly in the gloom");
+    addSomeLightDescriptionTemplate("a sunlit rocky desert where every rock and shrub is illuminated");
 }
