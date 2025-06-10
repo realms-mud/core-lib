@@ -24,7 +24,8 @@ protected int addSpecification(string type, mixed value)
         {
             specificationData[type] = value;
 
-            if (sizeof(regexp(({ type }), "penalty to")))
+            if (sizeof(regexp(({ type }), "penalty to")) || 
+                isNegativeAppliedEffect(bonusToCheck))
             {
                 specificationData["is negative effect"] = 1;
             }

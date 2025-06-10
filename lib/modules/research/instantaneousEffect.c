@@ -132,7 +132,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         case "decrease stuffed":
         {
             specificationData["is beneficial"] = 1;
-            // This should fall through to the next session.
+            // This should fall through to the next section.
         }
         case "damage hit points":
         case "damage spell points":
@@ -277,6 +277,11 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
 
     object *environmentObjects = filter(all_inventory(environment(owner)),
         (: $1 != $2 :), owner);
+
+    if (member(specificationData, "is beneficial"))
+    {
+        environmentObjects += ({ owner });
+    }
 
     foreach(object target in environmentObjects)
     {

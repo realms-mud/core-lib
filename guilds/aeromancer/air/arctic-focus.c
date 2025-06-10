@@ -16,7 +16,7 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild" : "aeromancer",
-            "value" : 15
+            "value" : 7
         ]));
     addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
         (["type":"research"]));

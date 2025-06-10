@@ -14,7 +14,14 @@ private string *modifierTypes = ({ "skill", "attribute", "skill bonus",
                                    "offhand damage", "deferred attack" });
 private string *modifierFormulas = ({ "additive", "subtractive", "logarithmic",
                                       "multiplicative" });
-                                      
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int isNegativeAppliedEffect(string effect)
+{
+    return (member(({ "slow", "enfeebled", "poison", 
+        "paralysis", "disease" }), effect) > -1);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int isValidModifier(mapping modifier)
 {

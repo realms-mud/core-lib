@@ -7,28 +7,28 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Blast of Wind");
+    addSpecification("name", "Frostweaving");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the aeromancer's air-based abilities.");
+        "knowledge that enhances the aeromancer's cold-based air abilities.");
 
     addPrerequisite("level",
         (["type":"level",
-            "guild": "aeromancer",
-            "value": 3
+            "guild" : "aeromancer",
+            "value" : 9
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/gust.c",
+    addPrerequisite("/guilds/aeromancer/air/arctic-focus.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Gust": 15,
-        "Talons of Wind": 15,
-        "Stolen Breath": 15,
-        "Noxious Breath": 15,
-        "Blinding Mist": 15
+        "Arctic Blast":25,
+        "Glacial Winds" : 25,
+        "Icy Convergence" : 25,
+        "Freezing Tide" : 25,
+        "Frost Veil" : 25
     ]));
     addSpecification("affected research type", "percentage");
 }

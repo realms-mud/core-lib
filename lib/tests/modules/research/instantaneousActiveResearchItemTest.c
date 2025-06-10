@@ -107,6 +107,22 @@ void IncreaseHitPointsWillNotExecuteAttack()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ExecuteOnSelfAppliesEffect()
+{
+    mapping* heal = ({
+        (["probability":100, "base damage" : 10, "range" : 0])
+        });
+    Effect.testAddSpecification("increase hit points", heal);
+
+    int before = User.hitPoints();
+    ExpectEq(150, User.hitPoints(), "user healed");
+
+    ExpectTrue(Effect.execute("throw turnip at bob", User));
+
+    ExpectEq(before + 10, User.hitPoints(), "user healed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CannotDamageIfTargetNotOnKillList()
 {
     mapping formula = ([
@@ -634,4 +650,113 @@ void SiphonStaminaPointsWillExecuteAttack()
 
     // Proof that Bob and Frank are now fighting
     ExpectTrue(Target.unregisterAttacker(User));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NegativeExecuteInAreaAppliedOnCorrectTargets()
+{
+    Effect.testAddSpecification("command template", "throw turnip");
+    Effect.testAddSpecification("damage type", "magical");
+    Effect.testAddSpecification("scope", "area");
+
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander.Name("Earl");
+    bystander.addAlias("earl");
+    bystander.Str(20);
+    bystander.Int(20);
+    bystander.Dex(20);
+    bystander.Con(20);
+    bystander.Wis(20);
+    bystander.Chr(20);
+    bystander.addSkillPoints(200);
+    bystander.advanceSkill("long sword", 10);
+    bystander.hitPoints(100);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy.Name("Fred");
+    badguy.addAlias("fred");
+    badguy.Str(20);
+    badguy.Int(20);
+    badguy.Dex(20);
+    badguy.Con(20);
+    badguy.Wis(20);
+    badguy.Chr(20);
+    badguy.addSkillPoints(200);
+    badguy.advanceSkill("long sword", 10);
+    badguy.hitPoints(100);
+    move_object(badguy, Room);
+
+    ExpectTrue(Effect.testAddSpecification("damage hit points", ({ ([
+        "probability":100,
+        "base damage" : 10,
+        "range" : 0
+    ]) })));
+
+    ExpectEq(150, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(50, Target.hitPoints(), "Frank's initial HP");
+    ExpectEq(100, bystander.hitPoints(), "Earl's initial HP");
+    ExpectEq(100, badguy.hitPoints(), "Fred's initial HP");
+
+    ExpectTrue(Effect.execute("throw turnip", User), "can execute command");
+
+    ExpectEq(150, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(44, Target.hitPoints(), "Frank's initial HP");
+    ExpectEq(100, bystander.hitPoints(), "Earl's initial HP");
+    ExpectEq(94, badguy.hitPoints(), "Fred's initial HP");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteInAreaAppliedOnCorrectTargets()
+{
+    Effect.testAddSpecification("command template", "throw turnip");
+    Effect.testAddSpecification("damage type", "magical");
+    Effect.testAddSpecification("scope", "area");
+
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander.Name("Earl");
+    bystander.addAlias("earl");
+    bystander.Str(20);
+    bystander.Int(20);
+    bystander.Dex(20);
+    bystander.Con(20);
+    bystander.Wis(20);
+    bystander.Chr(20);
+    bystander.addSkillPoints(200);
+    bystander.advanceSkill("long sword", 10);
+    bystander.hitPoints(50);
+    move_object(bystander, Room);
+
+    object badguy = clone_object("/lib/realizations/monster");
+    badguy.Name("Fred");
+    badguy.addAlias("fred");
+    badguy.Str(20);
+    badguy.Int(20);
+    badguy.Dex(20);
+    badguy.Con(20);
+    badguy.Wis(20);
+    badguy.Chr(20);
+    badguy.addSkillPoints(200);
+    badguy.advanceSkill("long sword", 10);
+    badguy.hitPoints(50);
+    move_object(badguy, Room);
+
+    ExpectTrue(Effect.testAddSpecification("increase hit points", ({ ([
+        "probability":100,
+        "base damage" : 25,
+        "range" : 0
+    ]) })));
+
+    User.hit(59, "lightning");
+    ExpectEq(100, User.hitPoints(), "Bob's initial HP");
+    ExpectEq(50, Target.hitPoints(), "Frank's initial HP");
+    ExpectEq(50, bystander.hitPoints(), "Earl's initial HP");
+    ExpectEq(50, badguy.hitPoints(), "Fred's initial HP");
+
+    ExpectTrue(Effect.execute("throw turnip", User), "can execute command");
+
+    ExpectEq(125, User.hitPoints(), "Bob's final HP");
+    ExpectEq(75, Target.hitPoints(), "Frank's final HP");
+    ExpectEq(75, bystander.hitPoints(), "Earl's final HP");
+    ExpectEq(75, badguy.hitPoints(), "Fred's final HP");
 }

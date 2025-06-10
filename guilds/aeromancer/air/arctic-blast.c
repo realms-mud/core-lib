@@ -19,7 +19,7 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild" : "aeromancer",
-            "value" : 15]));
+            "value" : 5]));
 
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
@@ -49,7 +49,7 @@ protected void Setup()
             "base value" : 1,
             "rate" : 1.25
         ]),
-/*        ([
+        ([
             "type":"research",
             "research item" : "/guilds/aeromancer/air/frostweaving.c",
             "name" : "Frostweaving",
@@ -89,7 +89,6 @@ protected void Setup()
             "base value" : 1,
             "rate" : 1.25
         ]),
-        */
         ([
             "type":"weapon damage",
             "name" : "staff",
