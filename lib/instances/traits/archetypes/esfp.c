@@ -8,7 +8,9 @@ inherit "/lib/modules/traits/baseTrait.c";
 protected void Setup()
 {
     addSpecification("type", "personality");
-    addSpecification("name", "thespian");
-    addSpecification("description", "");
+    addSpecification("name", "the Entertainer");
+    addSpecification("description", "Spontaneous, lively, and warm-hearted, the Entertainer delights in bringing joy to others. "
+        "They are highly observant and attuned to their surroundings, often thriving in social settings. "
+        "Their enthusiasm and charm make them the life of any gathering, eager to experience all that life has to offer.");
     addSpecification("root", "archetype");
 }

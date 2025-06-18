@@ -249,7 +249,7 @@ private nomask void setPersonalityArchetype(object user, string *results)
     string trait = "";
     foreach(string result in results)
     {
-        trait += result[0..0];
+        trait += (result == "intuition") ? "n" : result[0..0];
     }
     
     user->addTrait(sprintf("/lib/instances/traits/archetypes/%s.c", trait));

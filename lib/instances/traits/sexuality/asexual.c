@@ -9,6 +9,7 @@ protected void Setup()
 {
     addSpecification("type", "genetic");
     addSpecification("name", "asexual");
-    addSpecification("description", "You lack sexual attraction to others and have no desire for such activities.");
+    addSpecification("description", "You lack sexual attraction to others "
+        "and have no desire for such activities.");
     addSpecification("root", "sexual identity");
 }

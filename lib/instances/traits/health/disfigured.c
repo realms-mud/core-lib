@@ -9,7 +9,10 @@ protected void Setup()
 {
     addSpecification("type", "health");
     addSpecification("name", "disfigured");
-    addSpecification("description", "You have been horribly disfigured. Imagine, if you will, the offspring of an unholy marriage between a goblin and a dorian. Now, imagine if that thing was shoved in a blender and allowed to rot for a week. You look worse than that.");
+    addSpecification("description", "You have been horribly disfigured. "
+        "Imagine, if you will, the offspring of an unholy marriage between "
+        "a goblin and an avocado. Now, imagine if that thing was shoved in "
+        "a blender and allowed to rot for a week. You look worse than that.");
     addSpecification("root", "sickly");
     addSpecification("opposing root", "hale");
     addSpecification("opinion", -25);

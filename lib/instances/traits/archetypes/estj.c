@@ -8,7 +8,9 @@ inherit "/lib/modules/traits/baseTrait.c";
 protected void Setup()
 {
     addSpecification("type", "personality");
-    addSpecification("name", "thespian");
-    addSpecification("description", "");
+    addSpecification("name", "the Overseer");
+    addSpecification("description", "Decisive, organized, and dependable, the Overseer values order and tradition. "
+        "They are skilled at managing people and resources, ensuring that tasks are completed efficiently. "
+        "Their strong sense of duty and leadership inspires confidence and stability in those around them.");
     addSpecification("root", "archetype");
 }

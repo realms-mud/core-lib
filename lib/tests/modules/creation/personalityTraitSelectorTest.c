@@ -272,7 +272,7 @@ void CanSelectENTJ()
     Selector.applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/eitj.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/entj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -285,7 +285,7 @@ void CanSelectENTP()
     Selector.applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/eitp.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/entp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ void CanSelectENFJ()
     Selector.applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/eifj.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/enfj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -311,7 +311,7 @@ void CanSelectENFP()
     Selector.applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/eifp.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/enfp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -376,7 +376,7 @@ void CanSelectINTJ()
     Selector.applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/iitj.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/intj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -389,7 +389,7 @@ void CanSelectINTP()
     Selector.applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/iitp.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/intp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -402,7 +402,7 @@ void CanSelectINFJ()
     Selector.applySelection("1");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/iifj.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/infj.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -415,7 +415,7 @@ void CanSelectINFP()
     Selector.applySelection("2");
     AnswerQuestionsTakeFirstChoice();
 
-    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/iifp.c"));
+    ExpectTrue(User.isTraitOf("/lib/instances/traits/archetypes/infp.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
