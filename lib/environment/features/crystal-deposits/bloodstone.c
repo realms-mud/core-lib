@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("bloodstone", 10, "/lib/instances/items/materials/crystal/bloodstone.c",
         "A deposit of bloodstone runs through the rock here. Some bloodstone remains.",
-        ({ "crystal", "bloodstone", "bloodstone crystal", "vein", "deposit" }));
-    harvestRequiresTool("bloodstone", "pickaxe");
+        ({ "crystal", "bloodstone crystal", "vein", "deposit" }));
+    harvestRequiresTool("bloodstone", "pick axe");
 }

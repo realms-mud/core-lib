@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("florite", 10, "/lib/instances/items/materials/crystal/florite.c",
         "A vein of florite runs through the rock here. Some florite remains.",
-        ({ "florite", "stone", "deposit", "gem" }));
-    harvestRequiresTool("florite", "pickaxe");
+        ({ "crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("florite", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("nurilium ore", 2, "/lib/instances/items/materials/metal-ores/nurilium.c",
         "A vein of nurilium ore runs through the rock here. Some nurilium remains.",
-        ({ "ore", "nurilium", "nurilium ore", "vein", "deposit" }));
-    harvestRequiresTool("nurilium ore", "pickaxe");
+        ({ "ore", "nurilium", "vein", "deposit" }));
+    harvestRequiresTool("nurilium ore", "pick axe");
 }

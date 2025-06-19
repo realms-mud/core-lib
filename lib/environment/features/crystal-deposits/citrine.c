@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("citrine", 10, "/lib/instances/items/materials/crystal/citrine.c",
         "A deposit of citrine runs through the rock here. Some citrine remains.",
-        ({ "crystal", "citrine", "citrine crystal", "vein", "deposit" }));
-    harvestRequiresTool("citrine", "pickaxe");
+        ({ "crystal", "citrine crystal", "vein", "deposit" }));
+    harvestRequiresTool("citrine", "pick axe");
 }

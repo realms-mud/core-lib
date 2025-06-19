@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("mithril ore", 4, "/lib/instances/items/materials/metal-ores/mithril.c",
         "A vein of mithril ore runs through the rock here. Some mithril remains.",
-        ({ "ore", "mithril", "mithril ore", "vein", "deposit" }));
-    harvestRequiresTool("mithril ore", "pickaxe");
+        ({ "ore", "mithril", "vein", "deposit" }));
+    harvestRequiresTool("mithril ore", "pick axe");
 }

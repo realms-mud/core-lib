@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("agate", 10, "/lib/instances/items/materials/crystal/agate.c",
         "A vein of agate runs through the rock here. Some agate remains.",
-        ({ "crystal", "agate", "agate crystal", "vein", "deposit" }));
-    harvestRequiresTool("agate", "pickaxe");
+        ({ "crystal", "agate crystal", "vein", "deposit" }));
+    harvestRequiresTool("agate", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("onyx", 8, "/lib/instances/items/materials/crystal/onyx.c",
         "A vein of onyx runs through the rock here. Some onyx remains.",
-        ({ "onyx", "stone", "deposit", "gem" }));
-    harvestRequiresTool("onyx", "pickaxe");
+        ({ "stone", "deposit", "gem" }));
+    harvestRequiresTool("onyx", "pick axe");
 }

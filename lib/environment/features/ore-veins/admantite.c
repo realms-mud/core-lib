@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("admantite ore", 6, "/lib/instances/items/materials/metal-ores/admantite.c",
         "A vein of admantite ore runs through the rock here. Some admantite remains.",
-        ({ "ore", "admantite", "admantite ore", "vein", "deposit" }));
-    harvestRequiresTool("admantite ore", "pickaxe");
+        ({ "ore", "vein", "deposit", "admantite", "admantite vein", "admantite deposit" }));
+    harvestRequiresTool("admantite ore", "pick axe");
 }

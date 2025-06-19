@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("zinc ore", 15, "/lib/instances/items/materials/metal-ores/zinc.c",
         "A vein of zinc ore runs through the rock here. Some zinc remains.",
-        ({ "ore", "zinc", "zinc ore", "vein", "deposit" }));
-    harvestRequiresTool("zinc ore", "pickaxe");
+        ({ "ore", "zinc", "vein", "deposit" }));
+    harvestRequiresTool("zinc ore", "pick axe");
 }

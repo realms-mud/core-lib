@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("amethyst", 10, "/lib/instances/items/materials/crystal/amethyst.c",
         "A deposit of amethyst runs through the rock here. Some amethyst remains.",
-        ({ "crystal", "amethyst", "amethyst crystal", "vein", "deposit" }));
-    harvestRequiresTool("amethyst", "pickaxe");
+        ({ "crystal", "amethyst crystal", "vein", "deposit" }));
+    harvestRequiresTool("amethyst", "pick axe");
 }

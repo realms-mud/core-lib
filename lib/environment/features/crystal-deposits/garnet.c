@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("garnet", 10, "/lib/instances/items/materials/crystal/garnet.c",
         "A vein of garnet runs through the rock here. Some garnet remains.",
-        ({ "garnet", "stone", "deposit", "gem" }));
-    harvestRequiresTool("garnet", "pickaxe");
+        ({ "crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("garnet", "pick axe");
 }

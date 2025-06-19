@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("turquoise", 10, "/lib/instances/items/materials/crystal/turquoise.c",
         "A vein of turquoise runs through the rock here. Some turquoise remains.",
-        ({ "turquoise", "stone", "deposit", "gem" }));
-    harvestRequiresTool("turquoise", "pickaxe");
+        ({ "turquoise crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("turquoise", "pick axe");
 }

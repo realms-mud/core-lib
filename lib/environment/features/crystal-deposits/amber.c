@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("amber", 10, "/lib/instances/items/materials/crystal/amber.c",
         "A deposit of amber runs through the rock here. Some amber remains.",
-        ({ "crystal", "amber", "amber crystal", "vein", "deposit" }));
-    harvestRequiresTool("amber", "pickaxe");
+        ({ "crystal", "amber crystal", "vein", "deposit" }));
+    harvestRequiresTool("amber", "pick axe");
 }

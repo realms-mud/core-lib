@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("iridium ore", 5, "/lib/instances/items/materials/metal-ores/iridium.c",
         "A vein of iridium ore runs through the rock here. Some iridium remains.",
-        ({ "ore", "iridium", "iridium ore", "vein", "deposit" }));
-    harvestRequiresTool("iridium ore", "pickaxe");
+        ({ "ore", "iridium", "vein", "deposit" }));
+    harvestRequiresTool("iridium ore", "pick axe");
 }

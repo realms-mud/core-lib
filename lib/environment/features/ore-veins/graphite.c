@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("graphite ore", 10, "/lib/instances/items/materials/metal-ores/graphite.c",
         "A vein of graphite runs through the rock here. Some graphite remains.",
-        ({ "ore", "graphite", "graphite ore", "vein", "deposit" }));
-    harvestRequiresTool("graphite ore", "pickaxe");
+        ({ "ore", "graphite", "vein", "deposit" }));
+    harvestRequiresTool("graphite ore", "pick axe");
 }

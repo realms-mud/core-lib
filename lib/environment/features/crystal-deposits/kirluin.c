@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("kirluin", 4, "/lib/instances/items/materials/crystal/kirluin.c",
         "A vein of kirluin runs through the rock here. Some kirluin remains.",
-        ({ "kirluin", "crystal", "deposit", "gem" }));
-    harvestRequiresTool("kirluin", "pickaxe");
+        ({ "crystal", "deposit", "gem" }));
+    harvestRequiresTool("kirluin", "pick axe");
 }

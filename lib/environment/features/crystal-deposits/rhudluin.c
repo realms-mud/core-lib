@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("rhudluin", 6, "/lib/instances/items/materials/crystal/rhudluin.c",
         "A vein of rhudluin runs through the rock here. Some rhudluin remains.",
-        ({ "rhudluin", "crystal", "deposit", "gem" }));
-    harvestRequiresTool("rhudluin", "pickaxe");
+        ({ "rhudluin deposit", "crystal", "deposit", "gem" }));
+    harvestRequiresTool("rhudluin", "pick axe");
 }

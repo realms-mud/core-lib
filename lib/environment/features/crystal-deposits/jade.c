@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("jade", 10, "/lib/instances/items/materials/crystal/jade.c",
         "A vein of jade runs through the rock here. Some jade remains.",
-        ({ "jade", "stone", "deposit", "gem" }));
-    harvestRequiresTool("jade", "pickaxe");
+        ({ "stone", "deposit", "gem" }));
+    harvestRequiresTool("jade", "pick axe");
 }

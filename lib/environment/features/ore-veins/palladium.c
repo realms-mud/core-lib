@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("palladium ore", 4, "/lib/instances/items/materials/metal-ores/palladium.c",
         "A vein of palladium ore runs through the rock here. Some palladium remains.",
-        ({ "ore", "palladium", "palladium ore", "vein", "deposit" }));
-    harvestRequiresTool("palladium ore", "pickaxe");
+        ({ "ore", "palladium", "vein", "deposit" }));
+    harvestRequiresTool("palladium ore", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("antimony ore", 8, "/lib/instances/items/materials/metal-ores/antimony.c",
         "A vein of antimony ore runs through the rock here. Some antimony remains.",
-        ({ "ore", "antimony", "antimony ore", "vein", "deposit" }));
-    harvestRequiresTool("antimony ore", "pickaxe");
+        ({ "ore", "antimony", "vein", "deposit" }));
+    harvestRequiresTool("antimony ore", "pick axe");
 }

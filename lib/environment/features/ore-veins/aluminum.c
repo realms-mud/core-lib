@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("aluminum ore", 12, "/lib/instances/items/materials/metal-ores/aluminum.c",
         "A vein of aluminum ore runs through the rock here. Some aluminum remains.",
-        ({ "ore", "aluminum", "aluminum ore", "bauxite", "vein", "deposit" }));
-    harvestRequiresTool("aluminum ore", "pickaxe");
+        ({ "ore", "aluminum", "bauxite", "vein", "deposit" }));
+    harvestRequiresTool("aluminum ore", "pick axe");
 }

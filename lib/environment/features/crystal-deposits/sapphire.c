@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("sapphire", 8, "/lib/instances/items/materials/crystal/sapphire.c",
         "A vein of sapphire runs through the rock here. Some sapphire remains.",
-        ({ "sapphire", "stone", "deposit", "gem" }));
-    harvestRequiresTool("sapphire", "pickaxe");
+        ({ "sapphire crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("sapphire", "pick axe");
 }

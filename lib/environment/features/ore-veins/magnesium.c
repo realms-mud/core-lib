@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("magnesium ore", 10, "/lib/instances/items/materials/metal-ores/magnesium.c",
         "A vein of magnesium ore runs through the rock here. Some magnesium remains.",
-        ({ "ore", "magnesium", "magnesium ore", "vein", "deposit" }));
-    harvestRequiresTool("magnesium ore", "pickaxe");
+        ({ "ore", "magnesium", "vein", "deposit" }));
+    harvestRequiresTool("magnesium ore", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("opal", 8, "/lib/instances/items/materials/crystal/opal.c",
         "A vein of opal runs through the rock here. Some opal remains.",
-        ({ "opal", "stone", "deposit", "gem" }));
-    harvestRequiresTool("opal", "pickaxe");
+        ({ "stone", "deposit", "gem" }));
+    harvestRequiresTool("opal", "pick axe");
 }

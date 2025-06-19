@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("galvorn ore", 6, "/lib/instances/items/materials/metal-ores/galvorn.c",
         "A vein of galvorn ore runs through the rock here. Some galvorn remains.",
-        ({ "ore", "galvorn", "galvorn ore", "vein", "deposit" }));
-    harvestRequiresTool("galvorn ore", "pickaxe");
+        ({ "ore", "galvorn", "vein", "deposit" }));
+    harvestRequiresTool("galvorn ore", "pick axe");
 }

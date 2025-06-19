@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("lead ore", 10, "/lib/instances/items/materials/metal-ores/lead.c",
         "A vein of lead ore runs through the rock here. Some lead remains.",
-        ({ "ore", "lead", "lead ore", "vein", "deposit" }));
-    harvestRequiresTool("lead ore", "pickaxe");
+        ({ "ore", "lead", "vein", "deposit" }));
+    harvestRequiresTool("lead ore", "pick axe");
 }

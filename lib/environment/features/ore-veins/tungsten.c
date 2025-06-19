@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("tungsten ore", 5, "/lib/instances/items/materials/metal-ores/tungsten.c",
         "A vein of tungsten ore runs through the rock here. Some tungsten remains.",
-        ({ "ore", "tungsten", "tungsten ore", "vein", "deposit" }));
-    harvestRequiresTool("tungsten ore", "pickaxe");
+        ({ "ore", "tungsten", "vein", "deposit" }));
+    harvestRequiresTool("tungsten ore", "pick axe");
 }

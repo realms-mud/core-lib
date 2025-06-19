@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("emerald", 8, "/lib/instances/items/materials/crystal/emerald.c",
         "A vein of emerald runs through the rock here. Some emerald remains.",
-        ({ "emerald", "stone", "deposit", "gem" }));
-    harvestRequiresTool("emerald", "pickaxe");
+        ({ "crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("emerald", "pick axe");
 }

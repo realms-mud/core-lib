@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("osmium ore", 3, "/lib/instances/items/materials/metal-ores/osmium.c",
         "A vein of osmium ore runs through the rock here. Some osmium remains.",
-        ({ "ore", "osmium", "osmium ore", "vein", "deposit" }));
-    harvestRequiresTool("osmium ore", "pickaxe");
+        ({ "ore", "osmium", "vein", "deposit" }));
+    harvestRequiresTool("osmium ore", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("tantalum ore", 4, "/lib/instances/items/materials/metal-ores/tantalum.c",
         "A vein of tantalum ore runs through the rock here. Some tantalum remains.",
-        ({ "ore", "tantalum", "tantalum ore", "vein", "deposit" }));
-    harvestRequiresTool("tantalum ore", "pickaxe");
+        ({ "ore", "tantalum", "vein", "deposit" }));
+    harvestRequiresTool("tantalum ore", "pick axe");
 }

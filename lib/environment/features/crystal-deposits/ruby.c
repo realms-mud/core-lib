@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("ruby", 8, "/lib/instances/items/materials/crystal/ruby.c",
         "A vein of ruby runs through the rock here. Some ruby remains.",
-        ({ "ruby", "stone", "deposit", "gem" }));
-    harvestRequiresTool("ruby", "pickaxe");
+        ({ "ruby crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("ruby", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("topaz", 10, "/lib/instances/items/materials/crystal/topaz.c",
         "A vein of topaz runs through the rock here. Some topaz remains.",
-        ({ "topaz", "stone", "deposit", "gem" }));
-    harvestRequiresTool("topaz", "pickaxe");
+        ({ "topaz crystal", "stone", "deposit", "gem" }));
+    harvestRequiresTool("topaz", "pick axe");
 }

@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("magical crystal", 6, "/lib/instances/items/materials/crystal/magical-crystal.c",
         "A deposit of magical crystal runs through the rock here. Some remains.",
-        ({ "crystal", "magical crystal", "vein", "deposit" }));
-    harvestRequiresTool("magical crystal", "pickaxe");
+        ({ "crystal", "vein", "deposit" }));
+    harvestRequiresTool("magical crystal", "pick axe");
 }

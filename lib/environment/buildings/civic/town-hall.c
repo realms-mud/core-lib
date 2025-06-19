@@ -38,7 +38,7 @@ public void Setup()
     addTimeOfDayDescription("noon", ({
         ". At midday, the building bustles with activity as citizens come to "
         "address concerns or witness council proceedings",
-        ". The noon sun illuminates the building's façade, highlighting the "
+        ". The noon sun illuminates the building's facade, highlighting the "
         "intricate carvings that celebrate the town's history"
         }));
 

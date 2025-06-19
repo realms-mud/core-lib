@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("aquamarine", 10, "/lib/instances/items/materials/crystal/aquamarine.c",
         "A deposit of aquamarine runs through the rock here. Some aquamarine remains.",
-        ({ "crystal", "aquamarine", "aquamarine crystal", "vein", "deposit" }));
-    harvestRequiresTool("aquamarine", "pickaxe");
+        ({ "crystal", "aquamarine crystal", "vein", "deposit" }));
+    harvestRequiresTool("aquamarine", "pick axe");
 }

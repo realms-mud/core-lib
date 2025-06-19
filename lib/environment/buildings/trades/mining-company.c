@@ -20,7 +20,7 @@ public void Setup()
 
     addTimeOfDayDescription("dawn", ({
         ". At dawn, miners gather outside, ready for the day's work",
-        ". The first light glints off pickaxes and carts lined up by the door"
+        ". The first light glints off pick axes and carts lined up by the door"
         }));
 
     addTimeOfDayDescription("morning", ({

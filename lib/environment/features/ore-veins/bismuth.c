@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("bismuth ore", 8, "/lib/instances/items/materials/metal-ores/bismuth.c",
         "A vein of bismuth ore runs through the rock here. Some bismuth remains.",
-        ({ "ore", "bismuth", "bismuth ore", "vein", "deposit" }));
-    harvestRequiresTool("bismuth ore", "pickaxe");
+        ({ "ore", "bismuth", "vein", "deposit" }));
+    harvestRequiresTool("bismuth ore", "pick axe");
 }

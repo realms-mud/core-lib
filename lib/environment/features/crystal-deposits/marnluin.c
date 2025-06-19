@@ -43,6 +43,6 @@ public void Setup()
 
     harvestableResource("marnluin", 6, "/lib/instances/items/materials/crystal/marnluin.c",
         "A vein of marnluin runs through the rock here. Some marnluin remains.",
-        ({ "marnluin", "crystal", "deposit", "gem" }));
-    harvestRequiresTool("marnluin", "pickaxe");
+        ({ "crystal", "deposit", "gem" }));
+    harvestRequiresTool("marnluin", "pick axe");
 }

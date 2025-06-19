@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("kirdarium ore", 3, "/lib/instances/items/materials/metal-ores/kirdarium.c",
         "A vein of kirdarium ore runs through the rock here. Some kirdarium remains.",
-        ({ "ore", "kirdarium", "kirdarium ore", "vein", "deposit" }));
-    harvestRequiresTool("kirdarium ore", "pickaxe");
+        ({ "ore", "kirdarium", "vein", "deposit" }));
+    harvestRequiresTool("kirdarium ore", "pick axe");
 }

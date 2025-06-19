@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("asurluin", 8, "/lib/instances/items/materials/crystal/asurluin.c",
         "A deposit of asurluin runs through the rock here. Some asurluin remains.",
-        ({ "crystal", "asurluin", "asurluin crystal", "vein", "deposit" }));
-    harvestRequiresTool("asurluin", "pickaxe");
+        ({ "crystal", "asurluin crystal", "vein", "deposit" }));
+    harvestRequiresTool("asurluin", "pick axe");
 }

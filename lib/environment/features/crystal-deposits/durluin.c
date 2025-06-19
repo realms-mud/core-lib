@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("durluin", 6, "/lib/instances/items/materials/crystal/durluin.c",
         "A deposit of durluin runs through the rock here. Some durluin remains.",
-        ({ "crystal", "durluin", "durluin crystal", "vein", "deposit" }));
-    harvestRequiresTool("durluin", "pickaxe");
+        ({ "crystal", "durluin crystal", "vein", "deposit" }));
+    harvestRequiresTool("durluin", "pick axe");
 }

@@ -44,6 +44,6 @@ public void Setup()
 
     harvestableResource("iron ore", 20, "/lib/instances/items/materials/metal-ores/iron.c",
         "A vein of iron ore runs through the rock here. Some iron remains.",
-        ({ "ore", "iron", "iron ore", "vein", "deposit" }));
-    harvestRequiresTool("iron ore", "pickaxe");
+        ({ "ore", "iron", "vein", "deposit" }));
+    harvestRequiresTool("iron ore", "pick axe");
 }
