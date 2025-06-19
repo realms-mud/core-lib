@@ -184,6 +184,11 @@ public nomask int canCraftBlueprintWithMaterial(object initiator,
                 skillLevel = initiator->getSkill("gem crafting");
                 break;
             }
+            case "ore":
+            {
+                skillLevel = initiator->getSkill("metal crafting");
+                break;
+            }
             case "metal":
             {
                 skillLevel = initiator->getSkill("metal crafting");

@@ -6,7 +6,7 @@
 #define materials_h
 
 protected string *materialClasses = ({ "textile", "crystal", "clay",
-    "skeletal", "leather", "metal", "stone", "wood", "plumage" });
+    "skeletal", "leather", "metal", "ore", "stone", "wood", "plumage" });
 
 protected mapping materials =
 ([
@@ -1662,6 +1662,370 @@ protected mapping materials =
         "experience modifier": 2.75,
         "default value": 3000,
     ]),
+    "copper ore": ([
+        "class": "ore",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 2]),
+        ]),
+        "default description": "This is a chunk of copper ore, a common raw material for "
+            "smelting into copper ingots.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "default value": 1,
+    ]),
+    "tin ore": ([
+        "class": "ore",
+        "crafting skill required": 3,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 3]),
+        ]),
+        "default description": "This is a chunk of tin ore, an uncommon raw material for "
+            "smelting into tin ingots.",
+        "scarcity": "uncommon",
+        "experience modifier": 1.1,
+        "default value": 2,
+    ]),
+    "zinc ore": ([
+        "class": "ore",
+        "crafting skill required": 3,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 3]),
+        ]),
+        "default description": "This is a chunk of zinc ore, an uncommon raw material for "
+            "smelting into zinc ingots.",
+        "scarcity": "uncommon",
+        "experience modifier": 1.1,
+        "default value": 2,
+    ]),
+    "gold ore": ([
+        "class": "ore",
+        "crafting skill required": 8,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 8]),
+        ]),
+        "default description": "This is a chunk of gold ore, a rare raw material for "
+            "smelting into gold ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 1.2,
+        "default value": 10,
+    ]),
+    "lead ore": ([
+        "class": "ore",
+        "crafting skill required": 6,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 6]),
+        ]),
+        "default description": "This is a chunk of lead ore, a rare raw material for "
+            "smelting into lead ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 1,
+        "default value": 3,
+    ]),
+    "antimony ore": ([
+        "class": "ore",
+        "crafting skill required": 8,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 8]),
+        ]),
+        "default description": "This is a chunk of antimony ore, a rare raw material for "
+            "smelting into antimony ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 1.1,
+        "default value": 5,
+    ]),
+    "iron ore": ([
+        "class": "ore",
+        "crafting skill required": 2,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 2]),
+        ]),
+        "default description": "This is a chunk of iron ore, a common raw material for smelting "
+            "into iron ingots.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "default value": 1,
+    ]),
+    "tungsten ore": ([
+        "class": "ore",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 15]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "default description": "This is a chunk of tungsten ore, a very rare and dense raw "
+            "material for smelting into tungsten ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2,
+        "default value": 25,
+    ]),
+    "titanium ore": ([
+        "class": "ore",
+        "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 2]),
+            "physics": (["type":"skill", "value": 3])
+        ]),
+        "default description": "This is a chunk of titanium ore, a very rare raw material for "
+            "smelting into titanium ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2,
+        "default value": 20,
+    ]),
+    "tantalum ore": ([
+        "class": "ore",
+        "crafting skill required": 15,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "default description": "This is a chunk of tantalum ore, a very rare raw material for "
+            "smelting into tantalum ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 1.5,
+        "default value": 20,
+    ]),
+    "silver ore": ([
+        "class": "ore",
+        "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 8]),
+            "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "default description": "This is a chunk of silver ore, an uncommon raw material for "
+            "smelting into silver ingots.",
+        "scarcity": "uncommon",
+        "experience modifier": 1,
+        "default value": 8,
+    ]),
+    "platinum ore": ([
+        "class": "ore",
+        "crafting skill required": 15,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "default description": "This is a chunk of platinum ore, a very rare raw material for "
+            "smelting into platinum ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 1.2,
+        "default value": 30,
+    ]),
+    "palladium ore": ([
+        "class": "ore",
+        "crafting skill required": 10,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 5]),
+            "metal crafting": (["type":"skill", "value": 3])
+        ]),
+        "default description": "This is a chunk of palladium ore, a rare raw material for "
+            "smelting into palladium ingots.",
+        "scarcity": "rare",
+        "experience modifier": 1.2,
+        "default value": 12,
+    ]),
+    "osmium ore": ([
+        "class": "ore",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 5])
+        ]),
+        "default description": "This is a chunk of osmium ore, a very rare and heavy raw "
+            "material for smelting into osmium ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2,
+        "default value": 25,
+    ]),
+    "nurilium ore": ([
+        "class": "ore",
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 15])
+        ]),
+        "default description": "This is a chunk of nurilium ore, a crimson, mythic raw material "
+            "for smelting into nurilium ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 3,
+        "default value": 200,
+    ]),
+    "nickel ore": ([
+        "class": "ore",
+        "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "default description": "This is a chunk of nickel ore, a rare raw material for "
+            "smelting into nickel ingots.",
+        "scarcity": "rare",
+        "experience modifier": 1.75,
+        "default value": 4,
+    ]),
+    "mithril ore": ([
+        "class": "ore",
+        "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 10])
+        ]),
+        "default description": "This is a chunk of mithril ore, a silvery, mythic raw material "
+            "for smelting into mithril ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2.5,
+        "default value": 250,
+    ]),
+    "magnesium ore": ([
+        "class": "ore",
+        "crafting skill required": 15,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "default description": "This is a chunk of magnesium ore, a common raw material for "
+            "smelting into magnesium ingots.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "default value": 5,
+    ]),
+    "kirdarium ore": ([
+        "class": "ore",
+        "crafting skill required": 50,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 20])
+        ]),
+        "default description": "This is a chunk of kirdarium ore, a bluish, mythic raw material "
+            "for smelting into kirdarium ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 3,
+        "default value": 500,
+    ]),
+    "iridium ore": ([
+        "class": "ore",
+        "crafting skill required": 25,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 3]),
+            "physics": (["type":"skill", "value": 2])
+        ]),
+        "default description": "This is a chunk of iridium ore, a very rare raw material for "
+            "smelting into iridium ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2,
+        "default value": 50,
+    ]),
+    "graphite ore": ([
+        "class": "ore",
+        "crafting skill required": 30,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 10])
+        ]),
+        "default description": "This is a chunk of graphite ore, a rare raw material for "
+            "smelting into graphite crystals.",
+        "scarcity": "rare",
+        "experience modifier": 1.1,
+        "default value": 2,
+    ]),
+    "galvorn ore": ([
+        "class": "ore",
+        "crafting skill required": 40,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 20]),
+            "metal crafting": (["type":"skill", "value": 10])
+        ]),
+        "default description": "This is a chunk of galvorn ore, a black, mythic raw material "
+            "for smelting into galvorn ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2.75,
+        "default value": 300,
+    ]),
+    "cobalt ore": ([
+        "class": "ore",
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 10]),
+            "physics": (["type":"skill", "value": 15])
+        ]),
+        "default description": "This is a chunk of cobalt ore, a rare raw material for "
+            "smelting into cobalt ingots.",
+        "scarcity": "rare",
+        "experience modifier": 1.2,
+        "default value": 3,
+    ]),
+    "bismuth ore": ([
+        "class": "ore",
+        "crafting skill required": 12,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftRareMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "chemistry": (["type":"skill", "value": 2])
+        ]),
+        "default description": "This is a chunk of bismuth ore, a rare raw material for "
+            "smelting into bismuth ingots.",
+        "scarcity": "rare",
+        "experience modifier": 1,
+        "default value": 2,
+    ]),
+    "aluminum ore": ([
+        "class": "ore",
+        "crafting skill required": 35,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftReconditeMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 5]),
+            "chemistry": (["type":"skill", "value": 5]),
+            "physics": (["type":"skill", "value": 20])
+        ]),
+        "default description": "This is a chunk of bauxite, the primary ore of aluminum.",
+        "scarcity": "rare",
+        "experience modifier": 1.2,
+        "default value": 4,
+    ]),
+    "admantite ore": ([
+        "class": "ore",
+        "crafting skill required": 20,
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/materials/craftMythicMetal.c":(["type":"research"]),
+            "mining": (["type":"skill", "value": 10]),
+            "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "default description": "This is a chunk of admantite ore, a mythic raw material for "
+            "smelting into admantite ingots.",
+        "scarcity": "very rare",
+        "experience modifier": 2.5,
+        "default value": 300,
+    ]),
     "bronze": ([
         "class": "metal",
         "crafting skill required": 4,
@@ -1695,6 +2059,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 4])
         ]),
+        "crafting materials": ([
+            "copper ore": 3,
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -1716,6 +2083,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
         ]),
+        "crafting materials": ([
+            "tin ore": 3,
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -1732,6 +2102,9 @@ protected mapping materials =
         "crafting prerequisites": ([
             "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "zinc ore": 3,
         ]),
         "attack": ([
             "physical": -1
@@ -1777,6 +2150,9 @@ protected mapping materials =
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
+        "crafting materials": ([
+            "gold ore": 3,
+        ]),
         "attack": ([
             "physical": -2
         ]),
@@ -1800,6 +2176,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftUncommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "crafting materials": ([
+            "lead ore": 3,
         ]),
         "attack": ([
             "physical": -2
@@ -1826,6 +2205,9 @@ protected mapping materials =
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
+        "crafting materials": ([
+            "antimony ore": 3,
+        ]),
         "attack": ([
             "physical": -2
         ]),
@@ -1850,6 +2232,9 @@ protected mapping materials =
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 2])
         ]),
+        "crafting materials": ([
+            "bismuth ore": 3,
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -1872,6 +2257,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "magnesium ore": 3,
         ]),
         "attack": ([
             "physical": -2
@@ -1896,6 +2284,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 10]),
             "physics": (["type":"skill", "value": 10])
+        ]),
+        "crafting materials": ([
+            "graphite ore": 3,
         ]),
         "attack rating": 1,
         "attack": ([
@@ -1949,6 +2340,9 @@ protected mapping materials =
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
         ]),
+        "crafting materials": ([
+            "platinum ore": 3,
+        ]),
         "attack": ([
             "physical": -1
         ]),
@@ -1971,6 +2365,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 10]),
             "metal crafting": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "tantalum ore": 3,
         ]),
         "attack": ([
             "physical": 1
@@ -1995,6 +2392,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 3]),
             "physics": (["type":"skill", "value": 2])
+        ]),
+        "crafting materials": ([
+            "iridium ore": 3,
         ]),
         "attack": ([
             "physical": 1,
@@ -2023,6 +2423,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
         ]),
+        "crafting materials": ([
+            "osmium ore": 3,
+        ]),
         "attack": ([
             "physical": 2,
             "fire" : 5
@@ -2050,6 +2453,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 1]),
             "physics": (["type":"skill", "value": 1])
         ]),
+        "crafting materials": ([
+            "palladium ore": 3,
+        ]),
         "attack": ([
             "physical":-1
         ]),
@@ -2071,6 +2477,9 @@ protected mapping materials =
             "/lib/instances/research/crafting/materials/craftPreciousMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 8]),
             "metal crafting": (["type":"skill", "value": 2])
+        ]),
+        "crafting materials": ([
+            "silver ore": 3,
         ]),
         "attack": ([
             "good": 5
@@ -2129,6 +2538,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 20])
         ]),
+        "crafting materials": ([
+            "aluminum ore": 3,
+        ]),
         "value multiplier": 1.1,
         "default description": "This is a refined aluminum ingot.",
         "scarcity": "rare",
@@ -2148,6 +2560,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 10])
+        ]),
+        "crafting materials": ([
+            "nickel ore": 3,
         ]),
         "value multiplier": 1.3,
         "default description": "This is a refined nickel ingot.",
@@ -2256,6 +2671,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 10]),
             "physics": (["type":"skill", "value": 15])
         ]),
+        "crafting materials": ([
+            "cobalt ore": 3,
+        ]),
         "value multiplier": 1.6,
         "default description": "This is a refined cobalt ingot.",
         "scarcity": "rare",
@@ -2271,6 +2689,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 5]),
             "chemistry": (["type":"skill", "value": 2]),
             "physics": (["type":"skill", "value": 3])
+        ]),
+        "crafting materials": ([
+            "titanium ore": 3,
         ]),
         "attack": ([
             "physical": 5
@@ -2295,6 +2716,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 10])
         ]),
+        "crafting materials": ([
+            "tungsten ore": 3,
+        ]),
         "attack": ([
             "physical": 3
         ]),
@@ -2315,6 +2739,9 @@ protected mapping materials =
          "crafting prerequisites": ([
             "/lib/instances/research/crafting/materials/craftCommonMetal.c":(["type":"research"]),
             "blacksmithing": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "iron ore": 3,
         ]),
         "default description": "This is a refined iron ingot.",
         "scarcity": "common",
@@ -2384,6 +2811,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 2]),
             "physics": (["type":"skill", "value": 3])
         ]),
+        "crafting materials": ([
+            "mithril ore": 3,
+        ]),
         "attack": ([
             "physical": 3,
             "magical": 5
@@ -2409,6 +2839,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 15]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "nurilium ore": 3,
         ]),
         "attack": ([
             "physical": 5,
@@ -2438,6 +2871,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 20]),
             "chemistry": (["type":"skill", "value": 10]),
             "physics": (["type":"skill", "value": 10])
+        ]),
+        "crafting materials": ([
+            "kirdarium ore": 3,
         ]),
         "attack": ([
             "physical": 10,
@@ -2469,6 +2905,9 @@ protected mapping materials =
             "chemistry": (["type":"skill", "value": 2]),
             "physics": (["type":"skill", "value": 3])
         ]),
+        "crafting materials": ([
+            "admantite ore": 3,
+        ]),
         "attack": ([
             "physical": 5,
             "magical": 2
@@ -2494,6 +2933,9 @@ protected mapping materials =
             "metal crafting": (["type":"skill", "value": 10]),
             "chemistry": (["type":"skill", "value": 5]),
             "physics": (["type":"skill", "value": 5])
+        ]),
+        "crafting materials": ([
+            "galvorn ore": 3,
         ]),
         "attack": ([
             "physical": 8,
