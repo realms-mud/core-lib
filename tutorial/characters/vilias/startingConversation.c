@@ -13,12 +13,12 @@ private void ViliasAppearsTopic()
         "both sweet and chilling:@S@\"Nay, I am no foe. In fact, you should "
         "thank me. For you were about to get yourselves killed.\"");
 
-    addTopicInterjection("vilias-appears",
-        "/tutorial/characters/galadhel/galadhel.c", "vilias-appears");
-    addTopicInterjection("vilias-appears",
-        "/tutorial/characters/alberich/alberich.c", "vilias-appears");
-    addTopicInterjection("vilias-appears",
-        "/tutorial/characters/halgaladh/halgaladh.c", "vilias-appears");
+    //addTopicInterjection("vilias-appears",
+    //    "/tutorial/characters/galadhel/galadhel.c", "vilias-appears");
+    //addTopicInterjection("vilias-appears",
+    //    "/tutorial/characters/alberich/alberich.c", "vilias-appears");
+    //addTopicInterjection("vilias-appears",
+    //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-appears");
 
     addResponse("vilias-appears",
         "If you are, in fact, a benefactor, explain your purpose.",
@@ -208,8 +208,8 @@ private void ViliasPurposeFourTopic()
         "quest will fail... you will also condemn something wonderful to "
         "unlife.\"");
 
-    addTopicInterjection("vilias-purpose-4",
-        "/tutorial/characters/thomas/thomas.c", "vilias-purpose-4");
+    //addTopicInterjection("vilias-purpose-4",
+    //    "/tutorial/characters/thomas/thomas.c", "vilias-purpose-4");
 
     addResponse("vilias-purpose-4",
         "Why should we believe you? This could very well be a trap.",
@@ -244,8 +244,8 @@ private void ViliasTrapTopic()
         "enemy of your enemies. Perhaps you wish me to reveal his identity? "
         "Alas, it is not my place to do so.\"");
 
-    addTopicInterjection("vilias-trap",
-        "/tutorial/characters/halgaladh/halgaladh.c", "vilias-trap");
+    //addTopicInterjection("vilias-trap",
+    //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-trap");
 
     addResponse("vilias-trap",
         "Will you suffer some questions - to show your goodwill?",
@@ -338,8 +338,8 @@ private void ViliasOrbTopic()
         "not know. Today, that is not your purpose. You have not the strength "
         "to wrest it from your enemies.\"");
 
-    addTopicInterjection("vilias-orb",
-        "/tutorial/characters/thomas/thomas.c", "vilias-orb");
+    //addTopicInterjection("vilias-orb",
+    //    "/tutorial/characters/thomas/thomas.c", "vilias-orb");
 
     addResponse("vilias-orb",
         "If you are as powerful as you say and can lay this unit to waste, "
@@ -376,8 +376,8 @@ private void ViliasNoninterventionTopic()
         "area and have, perhaps, taken one or two too many liberties "
         "interpreting my orders.\"");
 
-    addTopicInterjection("vilias-nonintervention",
-        "/tutorial/characters/donald/donald.c", "vilias-nonintervention");
+    //addTopicInterjection("vilias-nonintervention",
+    //    "/tutorial/characters/donald/donald.c", "vilias-nonintervention");
 
     addResponse("vilias-nonintervention", "What do you say to that?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
@@ -410,8 +410,8 @@ private void ViliasTrussTopic()
         "trust. Alas, I must ask you to take my advice on faith. Already, I do "
         "more than I am allowed.\"");
 
-    addTopicInterjection("vilias-truss",
-        "/tutorial/characters/halgaladh/halgaladh.c", "vilias-truss");
+    //addTopicInterjection("vilias-truss",
+    //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-truss");
 
     addResponse("vilias-truss",
         "What can you tell us of the Nightmaster? And your name?",
@@ -442,10 +442,10 @@ private void ViliasNameTopic()
         "that shall become known to you soon enough. (pause as if considering) "
         "As for me, you may call me Hope.\"");
 
-    addTopicInterjection("vilias-name",
-        "/tutorial/characters/halgaladh/halgaladh.c", "vilias-name");
-    addTopicInterjection("vilias-name",
-        "/tutorial/characters/donald/donald.c", "vilias-name");
+    //addTopicInterjection("vilias-name",
+    //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-name");
+    //addTopicInterjection("vilias-name",
+    //    "/tutorial/characters/donald/donald.c", "vilias-name");
 
     addResponse("vilias-name",
         "Why do you trust this wraith? What has it done to earn even the "

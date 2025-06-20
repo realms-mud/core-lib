@@ -7,7 +7,7 @@ inherit "/lib/environment/terrain/baseTerrain.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("pier");
+    Name("pier terrain");
 
     addAdjectives(({
         "wooden pier stretching out over the water",
