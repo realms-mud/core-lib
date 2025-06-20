@@ -85,7 +85,7 @@ public void Setup()
     );
     addItemTemplate(
         "The basket is woven from sturdy reeds, its sides damp with seawater. "
-        "Inside, freshly gathered shellfish—clams, mussels, crabs, and shrimp—"
+        "Inside, freshly gathered shellfish-clams, mussels, crabs, and shrimp-"
         "are packed under wet seaweed. The scent of salt and shellfish is strong, "
         "and the basket is marked with the name of the local fishmonger."
     );

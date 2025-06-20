@@ -11,8 +11,8 @@ public void Setup()
 
     addItemTemplate(
         "The grocery shop is lined with sturdy wooden shelves, each crowded "
-        "with an assortment of goods. Baskets of fresh produce—apples, onions, "
-        "and root vegetables—sit near the entrance. Sacks of grain and flour "
+        "with an assortment of goods. Baskets of fresh produce - apples, onions, "
+        "and root vegetables - sit near the entrance. Sacks of grain and flour "
         "are stacked neatly along one wall, while jars of preserves, dried "
         "herbs, and wheels of cheese fill the air with a mingled aroma. "
         "A counter at the back displays loaves of bread and a small set of "

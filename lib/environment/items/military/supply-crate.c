@@ -16,7 +16,7 @@ public void Setup()
 
     addItemTemplate(
         "The supply crate is a heavy wooden box, reinforced with iron bands. "
-        "Stenciled markings indicate its contents—arrows, rations, or other "
+        "Stenciled markings indicate its contents-arrows, rations, or other "
         "military necessities. The lid is secured with a stout rope."
     );
 

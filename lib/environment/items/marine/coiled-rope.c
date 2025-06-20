@@ -85,7 +85,7 @@ public void Setup()
     );
     addItemTemplate(
         "The rope is thick and strong, coiled neatly on the dock. Its fibers "
-        "are tarred for durability, and the coil is ready for any task—securing "
+        "are tarred for durability, and the coil is ready for any task-securing "
         "boats, lifting cargo, or rigging sails. The scent of tar and hemp is "
         "strong, and the rope is marked with the insignia of the local merchant."
     );

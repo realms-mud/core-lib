@@ -12,8 +12,8 @@ public void Setup()
     addAlias("agility course");
 
     addItemTemplate(
-        "The agility training course is a series of obstacles—low hurdles, "
-        "weaving posts, and balance beams—arranged to test speed and "
+        "The agility training course is a series of obstacles-low hurdles, "
+        "weaving posts, and balance beams-arranged to test speed and "
         "coordination. The ground is packed hard by the passage of many "
         "trainees. "
     );
