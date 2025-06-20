@@ -323,5 +323,5 @@ public void Setup()
         "than by clear boundaries. Animal tracks frequently follow or cross this "
         "route, suggesting it serves wildlife as much as any purposeful travelers. "
         "In places, the trail nearly disappears before becoming evident again a "
-        "few paces ahead. ##UseDescriptionSet##");
+        "few paces ahead.");
 }

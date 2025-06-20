@@ -324,5 +324,5 @@ public void Setup()
         "variations in stone color and size, while the carefully maintained crown "
         "prevents water accumulation. Loose material at the edges transitions to a "
         "more compacted center where regular traffic has pressed the fragments into "
-        "a surprisingly solid surface. ##UseDescriptionSet##");
+        "a surprisingly solid surface.");
 }

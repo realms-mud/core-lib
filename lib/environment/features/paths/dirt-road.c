@@ -326,5 +326,5 @@ public void Setup()
         "across its width-twin ruts from wheeled vehicles, smoother central "
         "ridges from hoof traffic, and softer margins where passage is less "
         "frequent. The packed earth surface shows varying textures and colors "
-        "where different materials have been added for stability. ##UseDescriptionSet##");
+        "where different materials have been added for stability.");
 }

@@ -15,5 +15,6 @@ public void Setup()
     addDescriptionTemplate("an ornate metal candelabra with several unlit candles");
 
     // Candelabras provide more light than single candles or torches
-    addActiveSourceOfLight(10, "an ornate metal candelabra with several lit candles casting a warm, flickering light", 1);
+    addActiveSourceOfLight(10, "an ornate metal candelabra with several "
+        "lit candles casting a warm, flickering light", 1);
 }

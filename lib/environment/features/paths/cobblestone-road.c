@@ -323,5 +323,5 @@ public void Setup()
         "The stones show evidence of deliberate placement, with larger blocks along "
         "the edges and a subtle crown in the center for drainage. Years of use "
         "have polished many of the stones smooth, while others have shifted slightly "
-        "with time and weather. ##UseDescriptionSet##");
+        "with time and weather.");
 }

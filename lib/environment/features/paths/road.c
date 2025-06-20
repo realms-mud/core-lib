@@ -193,5 +193,5 @@ public void Setup()
         "The surface shows evidence of maintenance, with drainage ditches along "
         "portions and remnants of gravel or stone reinforcement in areas prone to "
         "erosion. Years of traffic have left parallel ruts that guide wheeled "
-        "vehicles along its course. ##UseDescriptionSet##");
+        "vehicles along its course.");
 }

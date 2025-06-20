@@ -323,5 +323,5 @@ public void Setup()
         "passage has prevented growth. Its course follows the path of least "
         "resistance through the landscape, winding around obstacles rather than "
         "through them. The surface shows intermittent signs of use without the "
-        "heavy wear of more frequented routes. ##UseDescriptionSet##");
+        "heavy wear of more frequented routes.");
 }

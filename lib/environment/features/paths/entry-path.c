@@ -322,5 +322,5 @@ public void Setup()
         "wear. The edges are often more clearly defined than longer routes, with "
         "evidence of intentional borders in some sections. The surface may be "
         "reinforced with gravel, stone, or packed earth depending on local materials "
-        "and importance. ##UseDescriptionSet##");
+        "and importance.");
 }
