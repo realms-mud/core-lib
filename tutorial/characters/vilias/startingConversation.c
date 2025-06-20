@@ -24,19 +24,14 @@ private void ViliasAppearsTopic()
         "If you are, in fact, a benefactor, explain your purpose.",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"If you are, in fact, a benefactor, explain your purpose.\"");
-    addResponseTopic("vilias-appears",
-        "If you are, in fact, a benefactor, explain your purpose.",
-        "vilias-purpose-1");
 
     addResponse("vilias-appears", "Who are you?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Who are you?\"");
-    addResponseTopic("vilias-appears", "Who are you?", "vilias-identity");
 
     addResponse("vilias-appears", "What are you?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What are you?\"");
-    addResponseTopic("vilias-appears", "What are you?", "vilias-nature");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,11 +40,11 @@ private void ViliasIdentityTopic()
 {
     addTopic("vilias-identity",
         "@S@\"Who I am is not important. What matters is what you do next.\"");
+    addResponseTopic("vilias-appears", "Who are you?", "vilias-identity");
 
     addResponse("vilias-identity", "Then explain your purpose.",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Then explain your purpose.\"");
-    addResponseTopic("vilias-identity", "Then explain your purpose.", "vilias-purpose-1");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,11 +53,11 @@ private void ViliasNatureTopic()
 {
     addTopic("vilias-nature",
         "@S@\"A messenger. A watcher. A hand that cannot touch.\"");
+    addResponseTopic("vilias-appears", "What are you?", "vilias-nature");
 
     addResponse("vilias-nature", "Then explain your purpose.",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Then explain your purpose.\"");
-    addResponseTopic("vilias-nature", "Then explain your purpose.", "vilias-purpose-1");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -73,19 +68,25 @@ private void ViliasPurposeOneTopic()
         "@S@\"Make no mistake, fair sir. Were I an enemy, you would be lying "
         "slain before my feet. Nay, that is not bluster, but simple truth.\"");
 
+    addResponseTopic("vilias-appears",
+        "If you are, in fact, a benefactor, explain your purpose.",
+        "vilias-purpose-1");
+    addResponseTopic("vilias-identity", "Then explain your purpose.",
+        "vilias-purpose-1");
+    addResponseTopic("vilias-nature", "Then explain your purpose.",
+        "vilias-purpose-1");
+
     addResponse("vilias-purpose-1", "Go on.",
-        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, @S@\"Go on.\"");
-    addResponseTopic("vilias-purpose-1", "Go on.", "vilias-purpose-2");
+        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, "
+        "@S@\"Go on.\"");
 
     addResponse("vilias-purpose-1", "Why warn us at all?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why warn us at all?\"");
-    addResponseTopic("vilias-purpose-1", "Why warn us at all?", "vilias-why-warn");
 
     addResponse("vilias-purpose-1", "If you could kill us, why not do so?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"If you could kill us, why not do so?\"");
-    addResponseTopic("vilias-purpose-1", "If you could kill us, why not do so?", "vilias-why-not-kill");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,12 +94,15 @@ private void ViliasPurposeOneTopic()
 private void ViliasWhyWarnTopic()
 {
     addTopic("vilias-why-warn",
-        "@S@\"Because your deaths would serve no purpose, and I have no wish to "
-        "see hope extinguished.\"");
+        "@S@\"Because your deaths would serve no purpose, and I have no wish "
+        "to see hope extinguished.\"");
+
+    addResponseTopic("vilias-purpose-1", "Why warn us at all?",
+        "vilias-why-warn");
 
     addResponse("vilias-why-warn", "Go on.",
-        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, @S@\"Go on.\"");
-    addResponseTopic("vilias-why-warn", "Go on.", "vilias-purpose-2");
+        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, "
+        "@S@\"Go on.\"");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -108,9 +112,12 @@ private void ViliasWhyNotKillTopic()
     addTopic("vilias-why-not-kill",
         "@S@\"Because I am not your enemy. I am here to offer a choice.\"");
 
+    addResponseTopic("vilias-purpose-1",
+        "If you could kill us, why not do so?", "vilias-why-not-kill");
+
     addResponse("vilias-why-not-kill", "Go on.",
-        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, @S@\"Go on.\"");
-    addResponseTopic("vilias-why-not-kill", "Go on.", "vilias-purpose-2");
+        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, "
+        "@S@\"Go on.\"");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -125,20 +132,21 @@ private void ViliasPurposeTwoTopic()
         "that, for the soul of those they take is corrupted and that beautiful "
         "thing that they were to become is no more.\"");
 
+    addResponseTopic("vilias-purpose-1", "Go on.", "vilias-purpose-2");
+    addResponseTopic("vilias-why-warn", "Go on.", "vilias-purpose-2");
+    addResponseTopic("vilias-why-not-kill", "Go on.", "vilias-purpose-2");
+
     addResponse("vilias-purpose-2", "What do you mean?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What do you mean?\"");
-    addResponseTopic("vilias-purpose-2", "What do you mean?", "vilias-purpose-3");
 
     addResponse("vilias-purpose-2", "Why does that matter to you?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why does that matter to you?\"");
-    addResponseTopic("vilias-purpose-2", "Why does that matter to you?", "vilias-matter");
 
     addResponse("vilias-purpose-2", "What are they creating?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What are they creating?\"");
-    addResponseTopic("vilias-purpose-2", "What are they creating?", "vilias-creating");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -148,10 +156,12 @@ private void ViliasMatterTopic()
     addTopic("vilias-matter",
         "@S@\"Because the balance is threatened. The dead deserve their rest, "
         "and the living their hope.\"");
+    addResponseTopic("vilias-purpose-2", "Why does that matter to you?",
+        "vilias-matter");
 
     addResponse("vilias-matter", "Go on.",
-        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, @S@\"Go on.\"");
-    addResponseTopic("vilias-matter", "Go on.", "vilias-purpose-3");
+        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, "
+        "@S@\"Go on.\"");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -160,10 +170,12 @@ private void ViliasCreatingTopic()
 {
     addTopic("vilias-creating",
         "@S@\"Abominations. Corpses bound to will, souls twisted to serve.\"");
+    addResponseTopic("vilias-purpose-2", "What are they creating?",
+        "vilias-creating");
 
     addResponse("vilias-creating", "Go on.",
-        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, @S@\"Go on.\"");
-    addResponseTopic("vilias-creating", "Go on.", "vilias-purpose-3");
+        "@C@##InitiatorName## ##ResponseInfinitive::prompt##, "
+        "@S@\"Go on.\"");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -177,20 +189,22 @@ private void ViliasPurposeThreeTopic()
         "door, you will fall and, in falling, you will join the ranks of the "
         "accursed.\"");
 
+    addResponseTopic("vilias-purpose-2", "What do you mean?",
+        "vilias-purpose-3");
+    addResponseTopic("vilias-matter", "Go on.", "vilias-purpose-3");
+    addResponseTopic("vilias-creating", "Go on.", "vilias-purpose-3");
+
     addResponse("vilias-purpose-3", "Is there another way?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Is there another way?\"");
-    addResponseTopic("vilias-purpose-3", "Is there another way?", "vilias-purpose-4");
 
     addResponse("vilias-purpose-3", "What do you want from us?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What do you want from us?\"");
-    addResponseTopic("vilias-purpose-3", "What do you want from us?", "vilias-purpose-4");
 
     addResponse("vilias-purpose-3", "Why warn us if we are doomed?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why warn us if we are doomed?\"");
-    addResponseTopic("vilias-purpose-3", "Why warn us if we are doomed?", "vilias-purpose-4");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -211,23 +225,25 @@ private void ViliasPurposeFourTopic()
     //addTopicInterjection("vilias-purpose-4",
     //    "/tutorial/characters/thomas/thomas.c", "vilias-purpose-4");
 
+    addResponseTopic("vilias-purpose-3", "Is there another way?",
+        "vilias-purpose-4");
+    addResponseTopic("vilias-purpose-3", "What do you want from us?",
+        "vilias-purpose-4");
+    addResponseTopic("vilias-purpose-3", "Why warn us if we are doomed?",
+        "vilias-purpose-4");
+
     addResponse("vilias-purpose-4",
         "Why should we believe you? This could very well be a trap.",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why should we believe you? This could very well be a trap.\"");
-    addResponseTopic("vilias-purpose-4",
-        "Why should we believe you? This could very well be a trap.",
-        "vilias-trap");
 
     addResponse("vilias-purpose-4", "What if we ignore your advice?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What if we ignore your advice?\"");
-    addResponseTopic("vilias-purpose-4", "What if we ignore your advice?", "vilias-trap");
 
     addResponse("vilias-purpose-4", "Who are these allies you mention?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Who are these allies you mention?\"");
-    addResponseTopic("vilias-purpose-4", "Who are these allies you mention?", "vilias-trap");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,23 +263,26 @@ private void ViliasTrapTopic()
     //addTopicInterjection("vilias-trap",
     //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-trap");
 
+    addResponseTopic("vilias-purpose-4",
+        "Why should we believe you? This could very well be a trap.",
+        "vilias-trap");
+    addResponseTopic("vilias-purpose-4", "What if we ignore your advice?",
+        "vilias-trap");
+    addResponseTopic("vilias-purpose-4", "Who are these allies you mention?",
+        "vilias-trap");
+
     addResponse("vilias-trap",
         "Will you suffer some questions - to show your goodwill?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Will you suffer some questions - to show your goodwill?\"");
-    addResponseTopic("vilias-trap",
-        "Will you suffer some questions - to show your goodwill?",
-        "vilias-questions");
 
     addResponse("vilias-trap", "Tell us something only a true ally would know.",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Tell us something only a true ally would know.\"");
-    addResponseTopic("vilias-trap", "Tell us something only a true ally would know.", "vilias-questions");
 
     addResponse("vilias-trap", "What is your stake in this?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What is your stake in this?\"");
-    addResponseTopic("vilias-trap", "What is your stake in this?", "vilias-questions");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -273,25 +292,29 @@ private void ViliasQuestionsTopic()
     addTopic("vilias-questions",
         "@S@\"(sultry laugh) As you wish. Ask, and I will answer as I am able.\"");
 
+    addResponseTopic("vilias-trap",
+        "Will you suffer some questions - to show your goodwill?",
+        "vilias-questions");
+    addResponseTopic("vilias-trap",
+        "Tell us something only a true ally would know.",
+        "vilias-questions");
+    addResponseTopic("vilias-trap",
+        "What is your stake in this?",
+        "vilias-questions");
+
     addResponse("vilias-questions",
-        "The leader of these... creatures is said to be within. What do you "
-        "know of him?",
+        "The leader of these creatures...",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"The leader of these... creatures is said to be within. What do you "
         "know of him?\"");
-    addResponseTopic("vilias-questions",
-        "The leader of these... creatures is said to be within. What do you "
-        "know of him?", "vilias-leader");
 
     addResponse("vilias-questions", "What is this place?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What is this place?\"");
-    addResponseTopic("vilias-questions", "What is this place?", "vilias-leader");
 
     addResponse("vilias-questions", "What are the black-robed ones?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What are the black-robed ones?\"");
-    addResponseTopic("vilias-questions", "What are the black-robed ones?", "vilias-leader");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -303,25 +326,27 @@ private void ViliasLeaderTopic()
         "is unwise and his time on this world is not long. He will find the "
         "deep embrace of death if not today, perhaps tomorrow.\"");
 
+    addResponseTopic("vilias-questions",
+        "The leader of these creatures...", 
+        "vilias-leader");
+    addResponseTopic("vilias-questions", "What is this place?",
+        "vilias-leader");
+    addResponseTopic("vilias-questions", "What are the black-robed ones?",
+        "vilias-leader");
+
     addResponse("vilias-leader",
-        "There is supposed to be a device of great power within here. What do "
-        "you know of it?",
+        "There is supposed to be a device of great power...",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"There is supposed to be a device of great power within here. "
         "What do you know of it?\"");
-    addResponseTopic("vilias-leader",
-        "There is supposed to be a device of great power within here. What do "
-        "you know of it?", "vilias-orb");
 
     addResponse("vilias-leader", "Who is his master?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Who is his master?\"");
-    addResponseTopic("vilias-leader", "Who is his master?", "vilias-orb");
 
     addResponse("vilias-leader", "Why is he here?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why is he here?\"");
-    addResponseTopic("vilias-leader", "Why is he here?", "vilias-orb");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -341,28 +366,28 @@ private void ViliasOrbTopic()
     //addTopicInterjection("vilias-orb",
     //    "/tutorial/characters/thomas/thomas.c", "vilias-orb");
 
+    addResponseTopic("vilias-leader",
+        "There is supposed to be a device of great power...", 
+        "vilias-orb");
+    addResponseTopic("vilias-leader", "Who is his master?",
+        "vilias-orb");
+    addResponseTopic("vilias-leader", "Why is he here?",
+        "vilias-orb");
+
     addResponse("vilias-orb",
-        "If you are as powerful as you say and can lay this unit to waste, "
-        "why do you not enter now and crush this evil before it gains more "
-        "strength?",
+        "If you are as powerful...",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"If you are as powerful as you say and can lay this unit to waste, "
         "why do you not enter now and crush this evil before it gains more "
         "strength?\"");
-    addResponseTopic("vilias-orb",
-        "If you are as powerful as you say and can lay this unit to waste, "
-        "why do you not enter now and crush this evil before it gains more "
-        "strength?", "vilias-nonintervention");
 
     addResponse("vilias-orb", "How can we destroy it?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"How can we destroy it?\"");
-    addResponseTopic("vilias-orb", "How can we destroy it?", "vilias-nonintervention");
 
     addResponse("vilias-orb", "What happens if it is used?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What happens if it is used?\"");
-    addResponseTopic("vilias-orb", "What happens if it is used?", "vilias-nonintervention");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -379,20 +404,25 @@ private void ViliasNoninterventionTopic()
     //addTopicInterjection("vilias-nonintervention",
     //    "/tutorial/characters/donald/donald.c", "vilias-nonintervention");
 
+    addResponseTopic("vilias-orb",
+        "If you are as powerful...", 
+        "vilias-nonintervention");
+    addResponseTopic("vilias-orb", "How can we destroy it?",
+        "vilias-nonintervention");
+    addResponseTopic("vilias-orb", "What happens if it is used?",
+        "vilias-nonintervention");
+
     addResponse("vilias-nonintervention", "What do you say to that?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What do you say to that?\"");
-    addResponseTopic("vilias-nonintervention", "What do you say to that?", "vilias-truss");
 
     addResponse("vilias-nonintervention", "Who forbids you?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Who forbids you?\"");
-    addResponseTopic("vilias-nonintervention", "Who forbids you?", "vilias-truss");
 
     addResponse("vilias-nonintervention", "Why risk yourself to warn us?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why risk yourself to warn us?\"");
-    addResponseTopic("vilias-nonintervention", "Why risk yourself to warn us?", "vilias-truss");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -413,22 +443,25 @@ private void ViliasTrussTopic()
     //addTopicInterjection("vilias-truss",
     //    "/tutorial/characters/halgaladh/halgaladh.c", "vilias-truss");
 
+    addResponseTopic("vilias-nonintervention", "What do you say to that?",
+        "vilias-truss");
+    addResponseTopic("vilias-nonintervention", "Who forbids you?",
+        "vilias-truss");
+    addResponseTopic("vilias-nonintervention", "Why risk yourself to warn us?",
+        "vilias-truss");
+
     addResponse("vilias-truss",
         "What can you tell us of the Nightmaster? And your name?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What can you tell us of the Nightmaster? And your name?\"");
-    addResponseTopic("vilias-truss",
-        "What can you tell us of the Nightmaster? And your name?", "vilias-name");
 
     addResponse("vilias-truss", "You seem to enjoy this.",
         "@C@##InitiatorName## ##ResponseInfinitive::say##, "
         "@S@\"You seem to enjoy this.\"");
-    addResponseTopic("vilias-truss", "You seem to enjoy this.", "vilias-name");
 
     addResponse("vilias-truss", "If you are not our enemy, what are you?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"If you are not our enemy, what are you?\"");
-    addResponseTopic("vilias-truss", "If you are not our enemy, what are you?", "vilias-name");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -447,25 +480,30 @@ private void ViliasNameTopic()
     //addTopicInterjection("vilias-name",
     //    "/tutorial/characters/donald/donald.c", "vilias-name");
 
+    addResponseTopic("vilias-truss",
+        "What can you tell us of the Nightmaster? And your name?",
+        "vilias-name");
+
+    addResponseTopic("vilias-truss", "You seem to enjoy this.",
+        "vilias-name");
+
+    addResponseTopic("vilias-truss", "If you are not our enemy, what are you?",
+        "vilias-name");
+
     addResponse("vilias-name",
         "Why do you trust this wraith? What has it done to earn even the "
         "slightest trust?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why do you trust this wraith? What has it done to earn even the "
         "slightest trust?\"");
-    addResponseTopic("vilias-name",
-        "Why do you trust this wraith? What has it done to earn even the "
-        "slightest trust?", "vilias-harlot");
 
     addResponse("vilias-name", "Why 'Hope'?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why 'Hope'?\"");
-    addResponseTopic("vilias-name", "Why 'Hope'?", "vilias-harlot");
 
     addResponse("vilias-name", "What are you really?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"What are you really?\"");
-    addResponseTopic("vilias-name", "What are you really?", "vilias-harlot");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -480,23 +518,24 @@ private void ViliasHarlotTopic()
         "can give any words of comfort, I can say only this: not from this "
         "quarter does the doom of Eledhel lie.\"");
 
+    addResponseTopic("vilias-name",
+        "Why do you trust this wraith? What has it done to earn even the "
+        "slightest trust?", "vilias-harlot");
+    addResponseTopic("vilias-name", "Why 'Hope'?", "vilias-harlot");
+    addResponseTopic("vilias-name", "What are you really?", "vilias-harlot");
+
     addResponse("vilias-harlot",
         "Thank you, m'lady, for the information. We shall take your advice.",
         "@C@##InitiatorName## ##ResponseInfinitive::say##, "
         "@S@\"Thank you, m'lady, for the information. We shall take your advice.\"");
-    addResponseTopic("vilias-harlot",
-        "Thank you, m'lady, for the information. We shall take your advice.",
-        "vilias-exit");
 
     addResponse("vilias-harlot", "Is there anything else you can tell us?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Is there anything else you can tell us?\"");
-    addResponseTopic("vilias-harlot", "Is there anything else you can tell us?", "vilias-exit");
 
     addResponse("vilias-harlot", "Why warn us about Eledhel?",
         "@C@##InitiatorName## ##ResponseInfinitive::ask##, "
         "@S@\"Why warn us about Eledhel?\"");
-    addResponseTopic("vilias-harlot", "Why warn us about Eledhel?", "vilias-exit");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -506,6 +545,14 @@ private void ViliasExitTopic()
     addTopic("vilias-exit",
         "@S@Vilias fades away, leaving only a lingering sense of unease and "
         "hope.");
+
+    addResponseTopic("vilias-harlot",
+        "Thank you, m'lady, for the information. We shall take your advice.",
+        "vilias-exit");
+    addResponseTopic("vilias-harlot",
+        "Is there anything else you can tell us?", "vilias-exit");
+    addResponseTopic("vilias-harlot",
+        "Why warn us about Eledhel?", "vilias-exit");
 }
 
 /////////////////////////////////////////////////////////////////////////////
