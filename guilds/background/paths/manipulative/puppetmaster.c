@@ -14,7 +14,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("bonus bluff", 1);
-    addSpecification("bonus deception", 1);
+    addSpecification("bonus persuasion", 1);
     addSpecification("bonus charisma", 1);
 
     addPrerequisite("/guilds/background/paths/manipulative/insightful.c",

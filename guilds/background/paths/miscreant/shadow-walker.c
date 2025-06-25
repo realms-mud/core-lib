@@ -13,7 +13,7 @@ protected void Setup()
         "You move quietly and blend into the shadows with ease.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus stealth", 1);
+    addSpecification("bonus move silently", 2);
     addSpecification("bonus perception", 1);
     addSpecification("bonus heal stamina rate", 1);
 }

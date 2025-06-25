@@ -13,6 +13,6 @@ protected void Setup()
         "You have an excellent memory for facts and details.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus memory", 1);
+    addSpecification("bonus spellcraft", 2);
     addSpecification("bonus intelligence", 1);
 }

@@ -13,7 +13,7 @@ protected void Setup()
         "You have a knack for subtle misdirection and clever ruses.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus deception", 1);
+    addSpecification("bonus bluff", 1);
     addSpecification("bonus persuasion", 1);
     addSpecification("bonus intelligence", 1);
 }

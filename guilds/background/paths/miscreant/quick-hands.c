@@ -13,7 +13,7 @@ protected void Setup()
         "Your nimble fingers make you adept at sleight of hand and picking pockets.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus sleight of hand", 1);
+    addSpecification("bonus bluff", 1);
     addSpecification("bonus lock picking", 1);
     addSpecification("bonus dexterity", 1);
 }

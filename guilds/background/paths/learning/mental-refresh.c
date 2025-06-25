@@ -36,34 +36,34 @@ protected void Setup()
 
     addSpecification("modifiers", ({
         ([
-            "type":"research",
-            "research item" : "/guilds/background/paths/learning/clarifying-thought.c",
-            "name" : "Clarifying Thought",
-            "formula" : "additive",
-            "rate" : 5
+            "type": "research",
+            "research item": "/guilds/background/paths/learning/clarifying-thought.c",
+            "name": "Clarifying Thought",
+            "formula": "additive",
+            "rate": 5
         ]),
         ([
-            "type":"research",
-            "research item" : "/guilds/background/paths/learning/mental-vigor.c",
-            "name" : "Mental Vigor",
-            "formula" : "additive",
-            "rate" : 5
+            "type": "research",
+            "research item": "/guilds/background/paths/learning/mental-vigor.c",
+            "name": "Mental Vigor",
+            "formula": "additive",
+            "rate": 5
         ]),
         ([
-            "type":"research",
-            "research item" : "/guilds/background/paths/learning/total-recall.c",
-            "name" : "Total Recall",
-            "formula" : "additive",
-            "rate" : 5
+            "type": "research",
+            "research item": "/guilds/background/paths/learning/total-recall.c",
+            "name": "Total Recall",
+            "formula": "additive",
+            "rate": 5
         ]),
         ([
-            "type":"research",
-            "research item" : "/guilds/background/paths/learning/genius.c",
-            "name" : "Genius",
-            "formula" : "additive",
-            "rate" : 5
+            "type": "research",
+            "research item": "/guilds/background/paths/learning/genius.c",
+            "name": "Genius",
+            "formula": "additive",
+            "rate": 5
         ])
-        }));
+     }));
 
     addSpecification("cooldown", 120);
     addSpecification("event handler", "mentalRefreshEvent");

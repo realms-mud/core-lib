@@ -13,7 +13,6 @@ protected void Setup()
         "You can fabricate believable lies at a moment's notice.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus bluff", 1);
-    addSpecification("bonus deception", 1);
+    addSpecification("bonus bluff", 3);
     addSpecification("bonus charisma", 1);
 }
