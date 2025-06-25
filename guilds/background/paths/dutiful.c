@@ -88,7 +88,7 @@ protected void Setup()
 {
     Name("A Dutiful Child");
     Description("Responsibility and service defined your early years. You learned the "
-        "value of discipline, loyalty, and fulfilling obligations-whether to family, "
+        "value of discipline, loyalty, and fulfilling obligations - whether to family, "
         "community, or a higher calling. The dutiful path is for those who find "
         "purpose in structure, order, and the satisfaction of a job well done.");
     Source("background");

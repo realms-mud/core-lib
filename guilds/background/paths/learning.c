@@ -88,8 +88,8 @@ protected void Setup()
 {
     Name("A Studious Childhood");
     Description("Curiosity and a thirst for knowledge shaped your upbringing. You spent "
-        "your time reading, studying, and seeking out new ideas-whether in a formal "
-        "school, a mentor’s tutelage, or self-driven exploration. The learning path "
+        "your time reading, studying, and seeking out new ideas - whether in a formal "
+        "school, a mentor's tutelage, or self-driven exploration. The learning path "
         "is for those who value intellect, wisdom, and the pursuit of understanding.");
     Source("background");
     addResearchElement("/guilds/background/paths/learning/root.c");

@@ -87,7 +87,7 @@ private void FifthLevel()
 protected void Setup()
 {
     Name("An Athlete");
-    Description("You spent your formative years in constant motion-running, climbing, "
+    Description("You spent your formative years in constant motion - running, climbing, "
         "and testing the limits of your body. Whether through sport, labor, or "
         "adventure, you honed your physical prowess and developed a keen sense "
         "of coordination, endurance, and strength. The athletic path is for those "
