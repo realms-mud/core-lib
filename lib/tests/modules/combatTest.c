@@ -1148,3 +1148,105 @@ void SupercedeAttackersPlacesNewFoeAtTopOfList()
     Target.supercedeAttackers(newAttacker);
     ExpectEq(newAttacker, Target.getTargetToAttack());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CombatDelayAndSpellActionWork()
+{
+    ExpectEq(0, Attacker.combatDelay(), "Initial combatDelay is 0");
+    ExpectEq(0, Attacker.spellAction(), "Initial spellAction is 0");
+
+    Attacker.combatDelay(3);
+    ExpectEq(3, Attacker.combatDelay(), "combatDelay increments");
+
+    Attacker.combatDelay(2);
+    ExpectEq(5, Attacker.combatDelay(), "combatDelay increments again");
+
+    Attacker.spellAction(4);
+    ExpectEq(4, Attacker.spellAction(), "spellAction increments");
+
+    Attacker.spellAction(1);
+    ExpectEq(5, Attacker.spellAction(), "spellAction increments again");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetHostileListReturnsCorrectString()
+{
+    // No attackers
+    ExpectEq("Nothing at all, aren't you lucky?", Attacker.getHostileList());
+
+    // Add one attacker
+    Attacker.registerAttacker(Target);
+    string list = Attacker.getHostileList();
+    ExpectTrue(sizeof(list) > 0, "Hostile list is not empty");
+    ExpectTrue(sizeof(regexp(({ list }), "Nukulevee")) > 0, "Contains target's name");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterAttackerAndStopFightWork()
+{
+    Attacker.registerAttacker(Target);
+    ExpectTrue(Attacker.isInCombatWith(Target), "Attacker is in combat with Target");
+
+    Attacker.unregisterAttacker(Target);
+    ExpectFalse(Attacker.isInCombatWith(Target), "Attacker is not in combat with Target");
+
+    Attacker.registerAttacker(Target);
+    Attacker.stopFight(Target);
+    ExpectFalse(Attacker.isInCombatWith(Target), "stopFight removes attacker");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ConfigurePVPSettingWorks()
+{
+    destruct(Attacker);
+    Attacker = clone_object("/lib/realizations/player");
+    move_object(Attacker, Room);
+
+    // Should enable PVP
+    Attacker.configurePVPSetting();
+    ExpectTrue(Attacker.onKillList(), "PVP enabled");
+
+    // Should not disable PVP
+    Attacker.configurePVPSetting();
+    ExpectTrue(Attacker.onKillList(), "PVP still enabled");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MaxHitPointsRecalculatesWhenAttributeChanges()
+{
+    int original = Attacker.maxHitPoints();
+
+    // Change a stat that affects maxHitPoints
+    Attacker.Con(Attacker.Con() + 10);
+
+    // Should immediately reflect the new value (cache was reset)
+    int recalculated = Attacker.maxHitPoints();
+    ExpectTrue(recalculated > original, "maxHitPoints recalculates after Con changes");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResetCombatCacheActuallyClearsCache()
+{
+    ToggleCallOutBypass();
+    object subscriber = clone_object("/lib/tests/support/events/resetCacheSubscriber.c");
+    Attacker.registerEvent(subscriber);
+
+    ExpectEq(0, subscriber.TimesResetCacheEventReceived(),
+        "No reset cache event received before reset");
+
+    // Change a stat that triggers a recalculation
+    Attacker.Con(Attacker.Con() + 10);
+
+    ExpectEq(1, subscriber.TimesResetCacheEventReceived(),
+        "Reset cache event received after reset");
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void VitalsAndSingleLineVitalsReturnStrings()
+{
+    string vitals = Attacker.vitals();
+    string singleLine = Attacker.singleLineVitals();
+    ExpectTrue(stringp(vitals) && sizeof(vitals) > 0, "vitals returns a string");
+    ExpectTrue(stringp(singleLine) && sizeof(singleLine) > 0, "singleLineVitals returns a string");
+}

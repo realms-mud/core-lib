@@ -139,6 +139,12 @@ private nomask int calculateUpdatedStat(int stat, int newVal, int flags)
         {
             value = newVal;
         }
+
+        object state = getService("state");
+        if (state)
+        {
+            state->resetCaches();
+        }
     }
     return value;
 }

@@ -2288,6 +2288,8 @@ public nomask varargs string singleLineVitals(string colorConfiguration,
 static nomask void resetCombatCache()
 {
     combatCache = ([]);
+    combatNotification("onRecalculating");
+
     call_out("maxHitPoints", 0);
     call_out("maxSpellPoints", 0);
     call_out("maxStaminaPoints", 0);
