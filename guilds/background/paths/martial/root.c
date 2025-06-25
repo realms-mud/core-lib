@@ -7,10 +7,10 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "A Background in Learning");
+    addSpecification("name", "A Background in Martial Learning");
     addSpecification("source", "background");
     addSpecification("description", "This skill provides the user with the "
-        "basic knowledge learned from a classical education.");
+        "basic knowledge learned from a classical military education.");
 
     addSpecification("scope", "self");
     addSpecification("research type", "tree root");
