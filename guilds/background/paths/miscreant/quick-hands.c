@@ -14,6 +14,6 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("bonus bluff", 1);
-    addSpecification("bonus lock picking", 1);
+    addSpecification("bonus open lock", 1);
     addSpecification("bonus dexterity", 1);
 }
