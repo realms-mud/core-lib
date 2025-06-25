@@ -21,5 +21,5 @@ protected void Setup()
     addSpecification("affected research", ([
         "Mental Refresh":5
     ]));
-    addSpecification("affected research type", "increase spell points");
+    addSpecification("affected research type", "bonus");
 }
