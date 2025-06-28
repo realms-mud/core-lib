@@ -303,13 +303,15 @@ public nomask void addEntryExit(string direction, string location)
 /////////////////////////////////////////////////////////////////////////////
 protected void setUpEncounter(object player)
 {
-    if (objectp(player) && (time() > timeUntilNextEncounter) && 
-        sizeof(possibleEncounters) &&
-        !sizeof(filter(currentEncounters, (: (objectp($1) && present($1)) :))))
+    // Remove any non-present objects from currentEncounters
+    currentEncounters = filter(currentEncounters, (: objectp($1) && present($1) :));
+
+    if (objectp(player) && (time() > timeUntilNextEncounter) &&
+        sizeof(possibleEncounters) && !sizeof(currentEncounters))
     {
         timeUntilNextEncounter = time() + 300;
 
-        object personaDictionary = 
+        object personaDictionary =
             load_object("/lib/dictionaries/personaDictionary.c");
 
         int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
@@ -328,6 +330,7 @@ protected void setUpEncounter(object player)
                 count = 1 + random(3);
             }
 
+            currentEncounters = ({ });
             for (int i = 0; i < count; i++)
             {
                 int level = (objectp(getRegion()) && getRegion()->regionLevel()) ?
@@ -357,10 +360,12 @@ protected void setUpEncounter(object player)
                 encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
 
                 move_object(encounter, this_object());
+                currentEncounters += ({ encounter });
             }
         }
     }
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
@@ -394,6 +399,7 @@ public void init()
         deferredRegion = 0;
     }
 
+    printf("player = %O\n", this_player());
     environment::init();
 }
 

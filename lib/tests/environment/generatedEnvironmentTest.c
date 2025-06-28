@@ -320,6 +320,39 @@ void EncountersGeneratedWhenUserEntersEnvironment()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EncountersNotDuplicatedIfCreaturesAlreadyPresent()
+{
+    Region.setRegionName("a temple");
+    Region.setRegionType("keeper's temple");
+    Region.setDimensions(5, 5);
+
+    mapping data = ([
+        "x":1,
+        "y":2,
+        "room type": "room",
+        "is placed": 1,
+        "exits": ([ "north": "1x3" ])
+    ]);
+    Region.addTestRoom(1, 2, data);
+
+    object env = data["environment"];
+    move_object(Player, env);
+
+    // Initial encounter spawn
+    int creatures = sizeof(all_inventory(env));
+
+    // Simulate player leaving and re-entering to trigger init() again
+    move_object(Player, Region); // Move player out
+    move_object(Player, env);    // Move player back in
+
+    // Check that no new creatures were spawned
+    int creaturesAfter = sizeof(all_inventory(env));
+
+    ExpectEq(creatures, creaturesAfter,
+        "No new creatures should be spawned if one already exists.");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ExitPointsConnectedToNewRegion()
 {
     Region.setRegionName("a temple");

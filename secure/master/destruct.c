@@ -66,6 +66,11 @@ public nomask mixed prepare_destruct(object actor)
     object actorEnvironment = environment(actor);
     object *actorInventory = all_inventory(actor);
 
+    if (actor->has("pathfinding"))
+    {
+        catch (actor->cleanupPathfinding());
+    }
+
     // A destruct here can cause extra junk to get placed in the environment.
     // Keep going until there isn't any more stuff
     while (sizeof(actorInventory))
@@ -87,5 +92,6 @@ public nomask mixed prepare_destruct(object actor)
 
         actorInventory = all_inventory(actor);
     }
+
     return 0;
 }

@@ -89,18 +89,28 @@ public nomask void setRegionLevel(int level)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 public nomask object getEnvironment(string location)
 {
     int x = to_int(regreplace(location, "([0-9]+)x[0-9]+,*.*", "\\1", 1));
     int y = to_int(regreplace(location, "[0-9]+x([0-9]+),*.*", "\\1", 1));
+    object ret = 0;
 
-    if (!objectp(grid[x][y]["environment"]))
+    // Check bounds, grid validity, and room existence
+    if ((x >= 0 && y >= 0 && x < MaxX && y < MaxY) &&
+        (sizeof(grid) > x && sizeof(grid[x]) > y) &&
+        mappingp(grid[x][y]))
     {
-        generateRoomDetails(grid[x][y]);
+        if (!objectp(grid[x][y]["environment"]))
+        {
+            generateRoomDetails(grid[x][y]);
+        }
+        ret = grid[x][y]["environment"];
     }
 
-    return grid[x][y]["environment"];
+    return ret;
 }
+
 
 /////////////////////////////////////////////////////////////////////////////
 public int xDimension()
