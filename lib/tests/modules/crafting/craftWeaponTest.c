@@ -12,7 +12,7 @@ void Init()
 {
     ignoreList += ({ "SetUpSkills", "SetUpInventory", "SetUpResearch",
         "CraftSword", "PopulateSwordData", "getMaterialsOnHand", 
-        "__inline_lib_tests_modules_crafting_craftWeaponTest_c_188_#0000" });
+        "__inline_lib_tests_modules_crafting_craftWeaponTest_c_196_#0000" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -111,10 +111,14 @@ void CraftSword()
     // This method navigates through the crafting menus to generate an
     // appropriate sword for this test.
     command("1", Player);
+    
+    // Craft Blade
     command("1", Player);
     command("1", Player);
     command("6", Player);
     command("25", Player);
+    
+    // Craft Crossguard
     command("2", Player);
     command("11", Player);
     command("1", Player);
@@ -122,6 +126,8 @@ void CraftSword()
     command("2", Player);
     command("15", Player);
     command("25", Player);
+
+    // Craft Hilt
     command("3", Player);
     command("9", Player);
     command("1", Player);
@@ -129,8 +135,10 @@ void CraftSword()
     command("2", Player);
     command("16", Player);
     command("3", Player);
-    command("29", Player);
+    command("38", Player);   
     command("11", Player);
+
+    // Craft Pommel
     command("4", Player);
     command("13", Player);
     command("2", Player);
