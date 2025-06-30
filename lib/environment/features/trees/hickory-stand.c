@@ -80,8 +80,8 @@ public void Setup()
         "remain", ({ "deciduous tree", "hickory tree", "tree" }));
     harvestRequiresTool("hickory", "axe");
 
-    harvestableResource("hickory nut", 25,
-        "/lib/instances/items/food/plants/nuts/hickory-nut.c", 0,
-        ({ "nut" }));
-    limitHarvestBySeason("hickory nut", "summer");
+    harvestableResource("hickory globose", 25,
+        "/lib/instances/items/food/plants/nuts/hickory-globose.c", 0,
+        ({ "globose" }));
+    limitHarvestBySeason("hickory globose", "summer");
 }

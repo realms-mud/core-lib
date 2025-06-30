@@ -79,7 +79,7 @@ public void Setup()
         "/lib/instances/items/materials/wood/poplar.c",
         "a heavily-forested stand of poplar trees. Several trees remain",
         ({ "deciduous tree", "poplar tree", "tree" }));
-    harvestRequiresToool("poplar", "axe");
+    harvestRequiresTool("poplar", "axe");
 
     harvestableResource("poplar catkin", 25,
         "/lib/instances/items/food/plants/seeds/poplar-catkin.c", 0,

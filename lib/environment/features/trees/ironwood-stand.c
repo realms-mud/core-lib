@@ -81,8 +81,8 @@ public void Setup()
         "remain", ({ "deciduous tree", "ironwood tree", "tree" }));
     harvestRequiresTool("ironwood", "axe");
 
-    harvestableResource("ironwood seed pod", 25,
-        "/lib/instances/items/food/plants/seeds/ironwood-seed-pod.c", 0,
-        ({ "seed pod", "pod", "seed" }));
-    limitHarvestBySeason("ironwood seed pod", "summer");
+    harvestableResource("ironwood catkin", 25,
+        "/lib/instances/items/food/plants/seeds/ironwood-catkin.c", 0,
+        ({ "seed pod", "pod", "seed", "catkin"}));
+    limitHarvestBySeason("ironwood catkin", "summer");
 }
