@@ -81,7 +81,7 @@ public void Setup()
     harvestRequiresTool("hickory", "axe");
 
     harvestableResource("hickory globose", 25,
-        "/lib/instances/items/food/plants/nuts/hickory-globose.c", 0,
+        "/lib/instances/items/food/plants/seeds/hickory-globose.c", 0,
         ({ "globose" }));
     limitHarvestBySeason("hickory globose", "summer");
 }
