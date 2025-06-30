@@ -2966,7 +2966,281 @@ protected mapping food =
             "seers who seek prophetic dreams and spiritual visions.",
         "base experience": 1,
     ]),
-
+    "chestnut nut": ([
+        "type": "nut",
+        "subtype": "chestnut",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Glossy brown nuts encased in spiny burrs with sweet, starchy "
+            "flesh. These nutritious kernels were staples for ancient peoples "
+            "and remain prized for their rich, nutty flavor when roasted.",
+        "base experience": 1,
+    ]),
+    "hazelnut": ([
+        "type": "nut",
+        "subtype": "hazel",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, round nuts with hard shells and sweet, oil-rich kernels. "
+            "Squirrels and humans alike treasure these autumn gifts that can "
+            "be eaten fresh or stored for winter sustenance.",
+        "base experience": 1,
+    ]),
+    "rowan berry": ([
+        "type": "fruit",
+        "subtype": "rowan",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Bright orange-red berries growing in clusters on mountain ash "
+            "trees. Though too bitter to eat fresh, they make excellent preserves "
+            "and are believed to ward off evil influences.",
+        "base experience": 1,
+    ]),
+    "linden flower": ([
+        "type": "flower",
+        "subtype": "linden",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, fragrant yellow flowers that bloom in drooping clusters. "
+            "Their honey-sweet scent attracts bees while healers brew them into "
+            "calming teas that soothe nerves and promote restful sleep.",
+        "base experience": 1,
+    ]),
+    "larch cone": ([
+        "type": "seed",
+        "subtype": "larch",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, egg-shaped cones from deciduous conifers that turn golden "
+            "before dropping their needles. Their unique nature among evergreens "
+            "makes them symbols of change and adaptation.",
+        "base experience": 1,
+    ]),
+    "juniper berry": ([
+        "type": "fruit",
+        "subtype": "juniper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small blue berries with waxy coating and sharp, gin-like flavor. "
+            "Used to flavor spirits and preserve meats, they're also burned as "
+            "incense to purify spaces of negative energies.",
+        "base experience": 1,
+    ]),
+    "serviceberry fruit": ([
+        "type": "fruit",
+        "subtype": "serviceberry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, dark purple berries with sweet flavor reminiscent of "
+            "blueberries and almonds. These nutritious fruits were traditionally "
+            "dried for winter storage by forest-dwelling peoples.",
+        "base experience": 1,
+    ]),
+    "elderberry": ([
+        "type": "fruit",
+        "subtype": "elderberry",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Tiny dark purple berries growing in flat-topped clusters. Rich "
+            "in healing properties, they're made into syrups and wines that "
+            "strengthen the body against winter ailments.",
+        "base experience": 1,
+    ]),
+    "elderflower": ([
+        "type": "flower",
+        "subtype": "elderflower",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Creamy white flowers in large, flat clusters with sweet, musty "
+            "fragrance. These delicate blossoms are prized for making cordials, "
+            "fritters, and traditional healing preparations.",
+        "base experience": 1,
+    ]),
+    "hornbeam nutlet": ([
+        "type": "nut",
+        "subtype": "hornbeam",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Tiny, ribbed nuts attached to three-lobed bracts from trees with "
+            "exceptionally hard wood. Though small, they provide valuable "
+            "nutrition for woodland creatures during harsh winters.",
+        "base experience": 1,
+    ]),
+    "fig": ([
+        "type": "fruit",
+        "subtype": "fig",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Soft, sweet fruits with thin skin and seed-filled interior. "
+            "These ancient delicacies dry beautifully and have been treasured "
+            "across civilizations for their concentrated sweetness.",
+        "base experience": 1,
+    ]),
+    "olive": ([
+        "type": "fruit",
+        "subtype": "olive",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, oval fruits that must be cured to remove bitterness before "
+            "eating. Their oil has been precious as gold throughout history, "
+            "used for cooking, lighting, and sacred ceremonies.",
+        "base experience": 1,
+    ]),
+    "pawpaw": ([
+        "type": "fruit",
+        "subtype": "pawpaw",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Large, tropical-tasting fruits with custard-like texture and "
+            "banana-mango flavor. These unusual native treasures ripen briefly "
+            "in autumn, offering exotic taste in temperate forests.",
+        "base experience": 1,
+    ]),
+    "sassafras berry": ([
+        "type": "fruit",
+        "subtype": "sassafras",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small blue berries on bright red stems with subtle spicy flavor. "
+            "Birds treasure these autumn fruits while humans prefer the aromatic "
+            "roots and leaves for teas and seasonings.",
+        "base experience": 1,
+    ]),
+    "sassafras root": ([
+        "type": "root",
+        "subtype": "sassafras",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Aromatic roots with distinctive root beer fragrance and spicy "
+            "flavor. Long used by indigenous peoples for medicine and seasoning, "
+            "these roots are carefully harvested to preserve the tree.",
+        "base experience": 1,
+    ]),
+    "redbud pod": ([
+        "type": "seed",
+        "subtype": "redbud",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Flat, brown seed pods that persist through winter after the tree's "
+            "spectacular spring flower display fades. These pods rattle in winter "
+            "winds, creating nature's own percussion section.",
+        "base experience": 1,
+    ]),
+    "tulip tree seed": ([
+        "type": "seed",
+        "subtype": "tulip tree",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Winged seeds from magnificent forest giants that form cone-like "
+            "clusters. These seeds spiral down from great heights like tiny "
+            "helicopters seeking suitable soil for new giants.",
+        "base experience": 1,
+    ]),
+    "white pine cone": ([
+        "type": "seed",
+        "subtype": "white pine",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Long, cylindrical cones with thin scales from towering evergreens. "
+            "These cones release seeds on papery wings that can travel great "
+            "distances on mountain winds.",
+        "base experience": 1,
+    ]),
+    "black walnut": ([
+        "type": "nut",
+        "subtype": "black walnut",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Rich, flavorful nuts encased in extremely hard shells and staining "
+            "green husks. These prized kernels have more intense flavor than "
+            "common walnuts but require significant effort to extract.",
+        "base experience": 1,
+    ]),
+    "scots pine cone": ([
+        "type": "seed",
+        "subtype": "scots pine",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, egg-shaped cones from hardy northern pines with distinctive "
+            "orange bark. These cones mature over two years before releasing "
+            "their winged seeds to establish new forests.",
+        "base experience": 1,
+    ]),
+    "douglas fir cone": ([
+        "type": "seed",
+        "subtype": "douglas fir",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Distinctive hanging cones with three-pronged bracts protruding "
+            "between scales. Legend says these bracts are the hind feet and "
+            "tails of mice hiding within the cone.",
+        "base experience": 1,
+    ]),
+    "fir seed": ([
+        "type": "seed",
+        "subtype": "fir",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, winged seeds released from upright fir cones. Unlike other "
+            "conifers, fir cones disintegrate on the tree, releasing these "
+            "seeds to spiral down like tiny maple samaras.",
+        "base experience": 1,
+    ]),
+    "balsam fir cone": ([
+        "type": "seed",
+        "subtype": "balsam fir",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Purple, candle-like cones that stand upright on branches before "
+            "disintegrating to release seeds. Their resinous fragrance makes "
+            "them prized for holiday decorations and aromatherapy.",
+        "base experience": 1,
+    ]),
+    "balsam resin": ([
+        "type": "resin",
+        "subtype": "balsam",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Clear, aromatic resin that oozes from balsam fir bark blisters. "
+            "This natural balm has been used for centuries to heal wounds, "
+            "seal canoes, and create waterproof coatings.",
+        "base experience": 1,
+    ]),
+    "tamarack cone": ([
+        "type": "seed",
+        "subtype": "tamarack",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "default description": "Small, upright cones from the unique deciduous conifer that turns "
+            "golden before dropping its needles. These cones persist through "
+            "winter on bare branches like tiny wooden roses.",
+        "base experience": 1,
+    ]),
 ]);
 
 #endif

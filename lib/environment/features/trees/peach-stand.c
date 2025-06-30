@@ -9,21 +9,73 @@ public void Setup()
 {
     Name("peach stand");
     addAdjectives(({ "majestic", "towering", "tall", "slender" }));
-    addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
-    addTimeOfDayDescription("dusk", ({ ", the details of which the last failing light of the day barely show" }));
-    addTimeOfDayDescription("night", ({ " outlined in the dark", " discernable only as a darker shade of black" }));
+
+    // Time of Day Descriptions
+    addTimeOfDayDescription("dawn", ({
+        "with branches just catching the faint dawn light",
+        "outlined softly as the day begins"
+        }));
+    addTimeOfDayDescription("morning", ({
+        "bathed in gentle morning light",
+        "with sunlight filtering through the leaves"
+        }));
+    addTimeOfDayDescription("noon", ({
+        "clearly visible in the full light of day",
+        "casting dappled shade at midday"
+        }));
+    addTimeOfDayDescription("afternoon", ({
+        "with shadows stretching beneath the branches",
+        "standing quietly in the afternoon warmth"
+        }));
+    addTimeOfDayDescription("evening", ({
+        "with leaves glowing in the golden evening light",
+        "as the sun sets behind the broad canopy"
+        }));
+    addTimeOfDayDescription("dusk", ({
+        "with details fading in the last light of day",
+        "becoming silhouettes as dusk settles"
+        }));
+    addTimeOfDayDescription("night", ({
+        "outlined in the darkness",
+        "discernable only as a darker shape against the night"
+        }));
+    addTimeOfDayDescription("midnight", ({
+        "barely visible under the midnight sky",
+        "lost in the deep shadows of night"
+        }));
+
+    // Season Descriptions
     addSeasonDescription("winter", ({ " covered with a thick layer of snow",
         " layered with a dusting of snow", " encased in a film of ice" }));
     addSeasonDescription("spring", ({ " with leaves just beginning to bud",
-        " sprouting new growth", " with branches laden with white flowers" }));
+        " sprouting new growth", " with branches laden with white "
+        "flowers" }));
     addSeasonDescription("summer", ({ " with branches laden with fruit",
         " covered with a thick blanket of leaves" }));
-    addSeasonDescription("autumn", ({ " carpeting the ground in fruit and fallen leaves of red, yellow, and orange",
-        " with leaves in a vivid array of yellow, red, and orange colors" }));
+    addSeasonDescription("autumn", ({ " carpeting the ground in fruit and "
+        "fallen leaves of red, yellow, and orange", " with leaves in a "
+        "vivid array of yellow, red, and orange colors" }));
+
+    addAlias("peach");
+    addAlias("peaches");
+    addAlias("stand of peaches");
+    addAlias("trees");
+    addAlias("tree");
+    addAlias("peach tree");
+    addAlias("peach trees");
 
     addDescriptionTemplate("a stand of ##Adjective## peach trees");
+    addItemTemplate("The stand of peaches is composed of several "
+        "medium-sized, productive trees with smooth bark. Their "
+        "branches spread gracefully, forming a pleasant canopy "
+        "overhead. In season, fuzzy peaches hang from the branches, "
+        "and the air is filled with the sweet scent of ripening fruit. "
+        "Moss and lichen cling to the roots, and the filtered light "
+        "creates shifting patterns on the orchard floor. Occasionally, "
+        "you spot a bird or bee visiting among the branches.");
 
-    harvestableResource("peach tree", 25, "/lib/instances/items/materials/wood/peach.c",
+    harvestableResource("peach tree", 25, 
+        "/lib/instances/items/materials/wood/peach.c",
         "a heavily-forested stand of peach trees. Several trees remain",
         ({ "deciduous tree", "tree" }));
     harvestRequiresTool("peach tree", "axe");

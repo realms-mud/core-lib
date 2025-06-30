@@ -71,6 +71,8 @@ public void Setup()
     addAlias("stand of oaks");
     addAlias("trees");
     addAlias("tree");
+    addAlias("oak trees");
+    addAlias("oak tree");
 
     addDescriptionTemplate("a stand of ##Adjective## oak trees");
     addItemTemplate("The stand of oaks is composed of several thick-trunked, ancient trees. "

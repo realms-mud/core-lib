@@ -8,24 +8,78 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("lacewood stand");
-    addAdjectives(({ "majestic", "towering", "tall", "massive" }));
-    addTimeOfDayDescription("dawn", ({ " that the faint dawn light is just beginning to illuminate" }));
-    addTimeOfDayDescription("dusk", ({ ", the details of which the last failing light of the day barely show" }));
-    addTimeOfDayDescription("night", ({ " outlined in the dark", " discernable only as a darker shade of black" }));
+    addAdjectives(({ "majestic", "towering", "tall", "slender" }));
+
+    // Time of Day Descriptions
+    addTimeOfDayDescription("dawn", ({
+        "with branches just catching the faint dawn light",
+        "outlined softly as the day begins"
+        }));
+    addTimeOfDayDescription("morning", ({
+        "bathed in gentle morning light",
+        "with sunlight filtering through the leaves"
+        }));
+    addTimeOfDayDescription("noon", ({
+        "clearly visible in the full light of day",
+        "casting dappled shade at midday"
+        }));
+    addTimeOfDayDescription("afternoon", ({
+        "with shadows stretching beneath the branches",
+        "standing quietly in the afternoon warmth"
+        }));
+    addTimeOfDayDescription("evening", ({
+        "with leaves glowing in the golden evening light",
+        "as the sun sets behind the broad canopy"
+        }));
+    addTimeOfDayDescription("dusk", ({
+        "with details fading in the last light of day",
+        "becoming silhouettes as dusk settles"
+        }));
+    addTimeOfDayDescription("night", ({
+        "outlined in the darkness",
+        "discernable only as a darker shape against the night"
+        }));
+    addTimeOfDayDescription("midnight", ({
+        "barely visible under the midnight sky",
+        "lost in the deep shadows of night"
+        }));
+
+    // Season Descriptions
     addSeasonDescription("winter", ({ " covered with a thick layer of snow",
         " layered with a dusting of snow", " encased in a film of ice" }));
     addSeasonDescription("spring", ({ " with leaves just beginning to bud",
         " sprouting new growth" }));
     addSeasonDescription("summer", ({ " with branches laden with seed pods",
         " covered with a thick blanket of leaves" }));
-    addSeasonDescription("autumn", ({ " carpeting the ground in fallen leaves of yellow",
-        " with leaves in a vivid array of yellow and brown colors" }));
+    addSeasonDescription("autumn", ({ " carpeting the ground in fallen "
+        "leaves of yellow", " with leaves in a vivid array of yellow "
+        "and brown colors" }));
+
+    addAlias("lacewood");
+    addAlias("lacewoods");
+    addAlias("stand of lacewoods");
+    addAlias("trees");
+    addAlias("tree");
+    addAlias("lacewood tree");
+    addAlias("lacewood trees");
 
     addDescriptionTemplate("a stand of ##Adjective## lacewood trees");
+    addItemTemplate("The stand of lacewoods is composed of several "
+        "tall, distinctive trees with unique lace-like grain patterns "
+        "in their wood. Their bark is smooth and light-colored with "
+        "intricate markings, and their branches spread gracefully, "
+        "forming an elegant canopy overhead. In season, small seed "
+        "pods hang from the branches, and the air is filled with the "
+        "subtle scent of fine wood. Moss and lichen cling to the "
+        "roots, and the filtered light creates delicate lace-like "
+        "patterns on the forest floor. Occasionally, you spot a bird "
+        "or small creature moving among the beautifully patterned "
+        "branches.");
 
-    harvestableResource("lacewood", 25, "/lib/instances/items/materials/wood/lacewood.c",
-        "a heavily-forested stand of lacewood trees. Several trees remain",
-        ({ "deciduous tree", "lacewood tree", "tree" }));
+    harvestableResource("lacewood", 25, 
+        "/lib/instances/items/materials/wood/lacewood.c",
+        "a heavily-forested stand of lacewood trees. Several trees "
+        "remain", ({ "deciduous tree", "lacewood tree", "tree" }));
     harvestRequiresTool("lacewood", "axe");
 
     harvestableResource("lacewood seed pod", 25,
