@@ -10,7 +10,7 @@ public void Setup()
     setRegionName("test");
     setRegionType("forest");
     setDimensions(25, 10);
-    // EntryCoordinate
+
     setSettlementChance(-1);
 
     setCoordinate(0, 0,
@@ -337,7 +337,4 @@ public void Setup()
         "/lib/tests/support/pathfinding/9x8.c", "path");
     setCoordinate(9, 9,
         "/lib/tests/support/pathfinding/9x9.c", "path");
-
-    // MapIcons
 }
-

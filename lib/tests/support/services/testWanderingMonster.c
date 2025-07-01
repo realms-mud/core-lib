@@ -2,11 +2,19 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/realizations/wanderingMonster.c";
+
+private int pathCompletedCalled = 0;
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void onPathCompleted()
 {
-    setTerrain("/lib/environment/terrain/forest.c");
-    addExit("south", "/lib/tests/support/pathfinding/3x3.c");
+    pathCompletedCalled = 1;
+    wanderingMonster::onPathCompleted();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int wasPathCompleted()
+{
+    return pathCompletedCalled;
 }

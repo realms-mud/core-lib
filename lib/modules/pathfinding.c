@@ -359,8 +359,7 @@ private string *findPath(object startEnv, object targetEnv, int maxDepth)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Movement delay configuration
-public void setMovementDelay(int delay)
+public nomask void setMovementDelay(int delay)
 {
     if (delay > 0)
     {
@@ -369,7 +368,7 @@ public void setMovementDelay(int delay)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getMovementDelay()
+public nomask int getMovementDelay()
 {
     return movementDelay;
 }
@@ -418,7 +417,7 @@ private int calculateMovementDelay()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void stopPathing()
+public nomask void stopPathing()
 {
     remove_call_out("executeNextMove");
     remove_call_out("resumePathing");
@@ -476,7 +475,7 @@ private void recalculatePath()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void executeNextMove()
+public nomask void executeNextMove()
 {
     if (!sizeof(currentPath))
     {
@@ -525,7 +524,7 @@ public void executeNextMove()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int startPathingTo(object targetEnvironment, int maxSteps)
+public nomask int startPathingTo(object targetEnvironment, int maxSteps)
 {
     int ret = 0;
     
@@ -555,7 +554,7 @@ public int startPathingTo(object targetEnvironment, int maxSteps)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int startHuntingTarget(object target, int maxSteps)
+public nomask int startHuntingTarget(object target, int maxSteps)
 {
     int ret = 0;
     
@@ -572,7 +571,7 @@ public int startHuntingTarget(object target, int maxSteps)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int startPathingToCoordinates(object region, int targetX, int targetY, int maxSteps)
+public nomask int startPathingToCoordinates(object region, int targetX, int targetY, int maxSteps)
 {
     int ret = 0;
     
@@ -591,7 +590,7 @@ public int startPathingToCoordinates(object region, int targetX, int targetY, in
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void interruptPathing(string reason)
+public nomask void interruptPathing(string reason)
 {
     if (isPathing)
     {
@@ -611,32 +610,32 @@ private void resumePathing()
 
 /////////////////////////////////////////////////////////////////////////////
 // Status methods
-public int isCurrentlyPathing()
+public nomask int isCurrentlyPathing()
 {
     return isPathing;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *getCurrentPath()
+public nomask string *getCurrentPath()
 {
     return currentPath + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public object getCurrentTarget()
+public nomask object getCurrentTarget()
 {
     return currentTarget;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getPathLength()
+public nomask int getPathLength()
 {
     return sizeof(currentPath);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 // Legacy/immediate pathfinding methods
-public string *pathTo(object targetEnvironment, int maxSteps)
+public nomask string *pathTo(object targetEnvironment, int maxSteps)
 {
     string *ret = ({});
     
@@ -655,7 +654,7 @@ public string *pathTo(object targetEnvironment, int maxSteps)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *pathToCoordinates(object region, int targetX, int targetY, int maxSteps)
+public nomask string *pathToCoordinates(object region, int targetX, int targetY, int maxSteps)
 {
     string *ret = ({});
     
@@ -674,14 +673,13 @@ public string *pathToCoordinates(object region, int targetX, int targetY, int ma
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int moveTowards(object targetEnvironment, int maxSteps)
+public nomask int moveTowards(object targetEnvironment, int maxSteps)
 {
     return startPathingTo(targetEnvironment, maxSteps);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-// Environment discovery methods
-public string *findNearbyEnvironments(int radius)
+public nomask string *findNearbyEnvironments(int radius)
 {
     string *nearbyRooms = ({});
     object currentEnv = environment(this_object());
@@ -721,7 +719,7 @@ public string *findNearbyEnvironments(int radius)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public object findNearestEnvironmentWithCreature(string creatureType, int maxDistance)
+public nomask object findNearestEnvironmentWithCreature(string creatureType, int maxDistance)
 {
     object ret = 0;
     string *nearby = findNearbyEnvironments(maxDistance);
@@ -754,13 +752,13 @@ public object findNearestEnvironmentWithCreature(string creatureType, int maxDis
 
 /////////////////////////////////////////////////////////////////////////////
 // Cache and cleanup methods
-public void clearPathfindingCache()
+public nomask void clearPathfindingCache()
 {
     pathfindingCache = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void cleanupPathfinding()
+public nomask void cleanupPathfinding()
 {
     stopPathing();
     clearPathfindingCache();

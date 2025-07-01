@@ -29,7 +29,7 @@ void SetUpMonster()
     Monster.Wis(20);
     Monster.setMaxHitPoints(100);
     Monster.hitPoints(100);
-    Monster.setMaxSpellPoints(50);
+    Monster.setMaxHitPoints(50);
     Monster.spellPoints(50);
     Monster.setMaxStaminaPoints(50);
     Monster.staminaPoints(50);
@@ -62,11 +62,12 @@ void SetUpRegion()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    ToggleCallOutBypass();
     SetUpMonster();
     SetUpTargetMonster();
     SetUpRegion();
-    
+ 
+    ToggleCallOutBypass();
+
     if (objectp(StartRoom) && objectp(Monster))
     {
         move_object(Monster, StartRoom);

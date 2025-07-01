@@ -13,7 +13,7 @@ public nomask int isRealizationOfMonsterWithAI()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int moveInDirection(string direction)
+public nomask int moveInDirection(string direction)
 {
     int ret = 0;
     object currentEnv = environment(this_object());

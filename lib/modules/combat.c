@@ -836,6 +836,20 @@ public nomask varargs int calculateDamage(object weapon, string damageType,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isParalyzed()
+{
+    int ret = 0;
+    
+    object inventory = getService("inventory");
+
+    if(inventory)
+    {
+        ret = inventory->inventoryGetModifier("combatModifiers", "paralysis");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int magicalDefendAttackBonus()
 {
     return 0;
@@ -1247,6 +1261,18 @@ private nomask varargs int hitIsAllowed(object foe)
         {
             ret &&= checkKillList(foe);
         }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int inCombat()
+{
+    int ret = 0;
+
+    if (sizeof(hostileList) && getTargetToAttack())
+    {
+        ret = 1;
     }
     return ret;
 }
