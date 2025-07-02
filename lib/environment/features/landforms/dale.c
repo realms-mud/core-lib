@@ -8,67 +8,192 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("dale");
-    addAdjectives(({ "gentle", "lush", "peaceful", "rolling", "green", "breezy" }));
+    addAdjectives(({ "broad", "fertile", "pastoral", "peaceful", "rolling",
+        "gentle", "verdant", "open" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where the first rays of light filter through the trees, casting a soft glow over the dew-covered grasses and rolling hills",
-        " where the valley begins to awaken with a gentle light creeping across the hills, the air crisp and fresh"
+        " misty with morning fog",
+        " peaceful in dawn quiet",
+        " fertile in morning dew",
+        " broad in gentle illumination",
+        " pastoral in dawn beauty",
+        " rolling with morning mist",
+        " gentle in early light",
+        " verdant in morning freshness",
+        " open to dawn sky",
+        " serene in morning calm"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the morning sun spreads warmth over the valley, lighting up the rich green of the grass and the colors of the wildflowers",
-        " where a gentle breeze stirs the soft grass, and the sky above is clear, bringing a feeling of calm and serenity"
+        " bright with morning sun",
+        " peaceful in morning calm",
+        " fertile in warming light",
+        " broad in clear visibility",
+        " pastoral in morning beauty",
+        " rolling in morning breezes",
+        " gentle in strengthening light",
+        " verdant in morning growth",
+        " open to morning sky",
+        " fresh in morning air"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the sun sits high, casting even light over the dale, making the grasses shimmer and the air feel warm and still",
-        " where the midday sun bakes the earth, but the shade of the trees offers respite from the heat, and the air is filled with the sounds of birds"
+        " warm in midday sun",
+        " peaceful in noon stillness",
+        " fertile in bright light",
+        " broad in full visibility",
+        " pastoral in midday beauty",
+        " rolling in warm air",
+        " gentle in bright illumination",
+        " verdant in noon abundance",
+        " open to blazing sky",
+        " abundant in midday warmth"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the sunlight softens and the shadows grow longer, lending the dale a peaceful, almost sleepy atmosphere",
-        " where the breeze picks up a little, rustling the leaves in the trees and causing the grass to sway gently"
+        " golden in afternoon light",
+        " peaceful in afternoon calm",
+        " fertile in warm illumination",
+        " broad in textured light",
+        " pastoral in afternoon beauty",
+        " rolling in warm breezes",
+        " gentle in declining sun",
+        " verdant in afternoon richness",
+        " open to afternoon sky",
+        " comfortable in warm air"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where the sky is painted in hues of orange and pink, and the cool air of evening begins to settle over the rolling hills",
-        " where the light fades and the dale becomes a quiet, serene place, the chirping of crickets filling the air as the sun sets"
+        " beautiful in evening glow",
+        " peaceful in twilight calm",
+        " fertile in cooling air",
+        " broad in soft illumination",
+        " pastoral in evening beauty",
+        " rolling in evening breezes",
+        " gentle in sunset light",
+        " verdant in evening moisture",
+        " open to colored sky",
+        " serene in evening peace"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the valley grows darker, and the last light of day casts long shadows over the gentle slopes, giving the landscape an ethereal quality",
-        " where the hills are bathed in soft twilight, and the sounds of the day give way to the soft rustling of nightfall"
+        " serene in gathering twilight",
+        " peaceful in dusk stillness",
+        " fertile in evening damp",
+        " broad in fading light",
+        " pastoral in twilight beauty",
+        " rolling in evening air",
+        " gentle in gathering shadow",
+        " verdant in evening moisture",
+        " open to darkening sky",
+        " tranquil in dusk peace"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the dale is quiet, the stars above twinkling in the clear night sky, and the air cool and still",
-        " where the world is at peace, the soft night winds gently moving the grasses as the moonlight spills over the hills"
+        " peaceful in moonlight",
+        " broad under starry sky",
+        " fertile in night dew",
+        " pastoral in night beauty",
+        " rolling in night air",
+        " gentle in lunar glow",
+        " verdant in night moisture",
+        " open to night sky",
+        " serene in night stillness",
+        " quiet in night peace"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the dale is deep in slumber, the quiet of the night broken only by the occasional rustling of the wind through the trees",
-        " where the air is cool and still, the dale bathed in soft moonlight, offering a serene, almost mystical atmosphere"
+        " tranquil in deep night",
+        " peaceful in night silence",
+        " fertile in night damp",
+        " broad in night expanse",
+        " pastoral in night beauty",
+        " rolling in night calm",
+        " gentle in night quiet",
+        " verdant in night humidity",
+        " open to starfield",
+        " serene in deep stillness"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the dale lies in complete silence, the stars above glowing brightly, and the landscape shrouded in the softest darkness",
-        " where the hills are dark silhouettes against the night sky, and the only sound is the distant rustling of leaves"
+        " serene under starfield",
+        " peaceful in cosmic quiet",
+        " fertile in midnight dew",
+        " broad in stellar expanse",
+        " pastoral in midnight beauty",
+        " rolling in cosmic air",
+        " gentle in stellar glow",
+        " verdant in midnight moisture",
+        " open to cosmos",
+        " tranquil in cosmic peace"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where the dale lies beneath a blanket of snow, the soft white covering the rolling hills and making the landscape feel peaceful and still",
-        " where the trees are bare and frost coats the grass, the air cold and crisp, but the valley feels sheltered and protected"
+        " peaceful under snow",
+        " broad in winter expanse",
+        " fertile beneath frost",
+        " pastoral in winter beauty",
+        " rolling in winter landscape",
+        " gentle in winter quiet",
+        " verdant with winter life",
+        " open to winter sky",
+        " serene in winter stillness",
+        " tranquil in winter peace"
         }));
 
     addSeasonDescription("spring", ({
-        " where new growth begins to sprout, the valley turning a vibrant green, and wildflowers bloom in colorful patches across the dale",
-        " where the air is filled with the scent of fresh blossoms, and the gentle breeze carries the sounds of birds and rustling leaves"
+        " fresh with new growth",
+        " peaceful in spring awakening",
+        " fertile in spring abundance",
+        " broad in spring clarity",
+        " pastoral in spring beauty",
+        " rolling in spring breezes",
+        " gentle in spring warmth",
+        " verdant with spring life",
+        " open to spring sky",
+        " renewed in spring growth"
         }));
 
     addSeasonDescription("summer", ({
-        " where the dale is lush and full of life, the grass tall and swaying in the warm breeze, and the air thick with the scent of blooming flowers",
-        " where the sun beats down on the valley, making the green grasses appear almost to glow with life, and the trees provide welcome shade"
+        " lush in summer abundance",
+        " peaceful in summer warmth",
+        " fertile in peak season",
+        " broad in summer expanse",
+        " pastoral in summer beauty",
+        " rolling in summer breezes",
+        " gentle in summer comfort",
+        " verdant in full growth",
+        " open to summer sky",
+        " abundant in summer richness"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the grasses turn golden and brown, and the trees on the hillsides display a fiery array of red, orange, and yellow leaves",
-        " where the air is crisp and fresh, and the gentle rustling of fallen leaves echoes through the valley, signaling the end of the growing season"
+        " colorful in autumn beauty",
+        " peaceful in autumn calm",
+        " fertile in autumn harvest",
+        " broad in autumn clarity",
+        " pastoral in autumn colors",
+        " rolling in autumn breezes",
+        " gentle in autumn peace",
+        " verdant despite season change",
+        " open to autumn sky",
+        " serene in autumn tranquility"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## dale, nestled between rolling hills and covered with soft grasses, where wildflowers bloom in vibrant colors and the air is always fresh and breezy");
+    addDescriptionTemplate("a ##Adjective## dale forming a broad, "
+        "fertile valley");
+
+    addItemTemplate("The dale spreads as a broad, gently rolling valley "
+        "that opens between surrounding hills or uplands. This fertile "
+        "depression typically supports rich agriculture or lush natural "
+        "vegetation, with streams meandering through its lowest areas. "
+        "The dale's open character and gentle slopes create an inviting, "
+        "pastoral landscape that has often attracted settlement and farming. "
+        "Unlike narrower valleys, the dale provides space for extensive "
+        "activities while still offering some shelter from the surrounding "
+        "higher ground. Its peaceful character makes it ideal for both "
+        "human habitation and wildlife.");
 }

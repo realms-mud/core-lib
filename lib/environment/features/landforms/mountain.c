@@ -13,89 +13,185 @@ public void Setup()
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where first light touches the peak long before the lands below, painting "
-        "the summit in gold and rose while valleys remain shrouded in shadow",
-        " where morning mist clings to forested lower slopes while the upper reaches "
-        "stand clear and sharp against the brightening sky"
+        " golden on distant peak",
+        " bright above shadowed valleys",
+        " painted in rose and gold",
+        " misty on lower slopes",
+        " clear against brightening sky",
+        " illuminated before the lands below",
+        " sharp in morning clarity",
+        " beautiful in first light",
+        " majestic in dawn's glow",
+        " towering in early illumination"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where sunlight gradually descends the eastern face, revealing rocky outcrops, "
-        "hidden valleys, and the texture of forests clinging to its flanks",
-        " where eagles soar on morning thermals rising along its massive slopes, "
-        "their calls echoing against stone faces and distant ridges"
+        " revealed in gradual sunlight",
+        " echoing with eagle calls",
+        " bright on eastern faces",
+        " textured in morning light",
+        " clear in full detail",
+        " imposing in morning clarity",
+        " massive in revealed scale",
+        " beautiful in climbing sun",
+        " sharp against morning sky",
+        " majestic in full illumination"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the full light of day reveals its true scale, from the broad base to "
-        "the distant summit that seems to touch the clouds themselves",
-        " where shadows retreat to crevices and northern slopes, leaving most of the "
-        "mountain exposed to the harsh clarity of midday sun"
+        " massive in full light",
+        " harsh in midday clarity",
+        " exposed in complete detail",
+        " imposing in true scale",
+        " clear to distant summit",
+        " bright in shadowless light",
+        " overwhelming in revealed majesty",
+        " stark in brilliant illumination",
+        " towering in overhead sun",
+        " magnificent in full exposure"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the western slopes begin to glow with warming light while eastern "
-        "faces fall into deepening shadow, accentuating every ridge and valley",
-        " where clouds sometimes gather around the peak, drawn to its height "
-        "and building toward evening storms that may never reach lower ground"
+        " contrasted in light and shadow",
+        " gathering afternoon clouds",
+        " textured by declining sun",
+        " beautiful in western glow",
+        " dramatic in angled light",
+        " impressive in afternoon clarity",
+        " majestic in golden light",
+        " striking in shadow contrast",
+        " magnificent in afternoon sun",
+        " imposing in declining day"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where the setting sun transforms the mountain into a silhouette of deep "
-        "blue against a flaming sky, with the peak catching final golden rays",
-        " where alpenglow paints the highest reaches in surreal pink and orange "
-        "long after the surrounding lands have fallen into shadow"
+        " silhouetted against flaming sky",
+        " glowing with alpenglow",
+        " beautiful in sunset colors",
+        " dramatic against evening sky",
+        " magnificent in golden rays",
+        " inspiring in sunset light",
+        " majestic in evening glow",
+        " imposing against colored sky",
+        " stunning in final light",
+        " beautiful in dying day"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where darkness climbs the slopes as day retreats, stars appearing first "
-        "above the summit while the foot of the mountain still holds fading light",
-        " where the mountain's massive presence remains imposing even as details "
-        "dissolve into the growing night, its outline stark against the darkening sky"
+        " dark against star-filled sky",
+        " mysterious in gathering night",
+        " imposing in twilight shadow",
+        " stark against evening sky",
+        " magnificent in silhouette",
+        " dramatic in fading light",
+        " majestic in growing darkness",
+        " impressive against night sky",
+        " beautiful in twilight mystery",
+        " towering into starlight"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where moonlight transforms rocky slopes into a silver landscape of light and "
-        "shadow, revealing the mountain's form in stark contrast",
-        " where the mountain stands as a dark sentinel against the star-filled sky, "
-        "its immensity somehow more palpable in the quiet of night"
+        " silvered in moonlight",
+        " imposing against night sky",
+        " mysterious in lunar light",
+        " stark in silver illumination",
+        " majestic under stars",
+        " dramatic in night shadow",
+        " impressive in moonlit grandeur",
+        " beautiful in nocturnal majesty",
+        " towering into starlight",
+        " magnificent in night silence"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the mountain's presence is felt more than seen, a vast interruption "
-        "in the star field that speaks of permanent defiance against time itself",
-        " where occasional snow fields or glaciers catch moonlight and gleam faintly, "
-        "suggesting the mountain's form in the deepest hours of night"
+        " felt more than seen",
+        " mysterious in star-outlined void",
+        " imposing in unseen presence",
+        " timeless against star field",
+        " massive in felt presence",
+        " eternal in night mystery",
+        " overwhelming in unseen majesty",
+        " permanent in night darkness",
+        " constant in starlit silence",
+        " magnificent in hidden grandeur"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the mountain stands timeless under the midnight sky, its slopes and "
-        "summit a dark void against the stars, patient and eternal",
-        " where not even darkness can diminish its majesty, the mountain's presence "
-        "remaining a constant anchor in the landscape even when unseen"
+        " timeless under midnight sky",
+        " eternal against stars",
+        " permanent in deepest night",
+        " majestic in unseen presence",
+        " constant in midnight silence",
+        " overwhelming in hidden majesty",
+        " imposing in felt grandeur",
+        " magnificent in night mystery",
+        " enduring in starlit darkness",
+        " patient in midnight stillness"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where snow blankets all but the steepest faces, transforming the rugged "
-        "terrain into smooth white curves broken by dark stone outcroppings",
-        " where ice gleams on exposed rock, storms shroud the peak for days, and "
-        "avalanches occasionally thunder down remote slopes"
+        " blanketed with snow",
+        " gleaming with ice",
+        " shrouded in winter storms",
+        " white with accumulated snow",
+        " stark in winter beauty",
+        " dangerous with avalanche potential",
+        " pristine in winter purity",
+        " harsh in winter conditions",
+        " beautiful in snow cover",
+        " treacherous in winter weather"
         }));
 
     addSeasonDescription("spring", ({
-        " where snowmelt creates countless streams and waterfalls that cascade down "
-        "its flanks, and new green appears first in the lowest meadows",
-        " where life returns gradually up the slopes, a tide of renewal climbing "
-        "toward the peak while snow still grips the highest reaches"
+        " cascading with snowmelt",
+        " green in lower meadows",
+        " renewed with climbing life",
+        " fresh with seasonal awakening",
+        " alive with returning growth",
+        " beautiful with early blooms",
+        " vibrant in gradual renewal",
+        " peaceful with spring warmth",
+        " renewed with melting snow",
+        " fresh with spring energy"
         }));
 
     addSeasonDescription("summer", ({
-        " where alpine meadows burst with wildflowers, high pastures support grazing "
-        "animals, and even the upper slopes enjoy brief weeks without snow",
-        " where clear days reveal every detail from base to summit, though "
-        "afternoon often brings swift-building clouds around the peak"
+        " blooming in alpine meadows",
+        " clear in peak season",
+        " accessible in brief warmth",
+        " beautiful in wildflower season",
+        " alive with summer activity",
+        " peaceful in clear weather",
+        " magnificent in full detail",
+        " welcoming in moderate weather",
+        " vibrant in peak growing season",
+        " spectacular in summer clarity"
         }));
 
     addSeasonDescription("autumn", ({
-        " where forested slopes display a tapestry of reds and golds that climb until "
-        "trees give way to stone and the first new snow on the highest reaches",
-        " where early morning frost in high meadows presages the coming winter, "
-        "even as the lower slopes still bask in golden autumn light"
+        " tapestried with seasonal colors",
+        " beautiful with climbing autumn",
+        " frosted in high meadows",
+        " colorful in changing season",
+        " peaceful in autumn light",
+        " magnificent in fall beauty",
+        " transitioning to winter conditions",
+        " beautiful with golden foliage",
+        " serene in autumn clarity",
+        " impressive in seasonal change"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## mountain rising dramatically from the surrounding terrain, its immense form dominating the landscape with rocky slopes that climb through distinct zones of vegetation before reaching the barren upper reaches and summit");
+    addDescriptionTemplate("a ##Adjective## mountain rising dramatically "
+        "from the surrounding terrain");
+
+    addItemTemplate("The mountain dominates the landscape with its immense "
+        "scale and dramatic elevation changes. Rocky slopes climb through "
+        "distinct vegetation zones, from forested lower elevations through "
+        "alpine meadows to barren upper reaches and summit. The massive form "
+        "creates its own weather patterns and microclimates, while its "
+        "presence serves as a landmark visible from great distances. Ridges, "
+        "valleys, and peaks create a complex topography that challenges "
+        "travelers and provides habitat for specialized mountain wildlife.");
 }

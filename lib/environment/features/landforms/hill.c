@@ -8,67 +8,189 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("hill");
-    addAdjectives(({ "grassy", "rolling", "windswept", "gently sloping", "sunlit", "open", "broad", "lonely" }));
+    addAdjectives(({ "grassy", "rolling", "windswept", "gently sloping",
+        "sunlit", "open", "broad", "lonely" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where the first light creeps over the crest, casting a soft glow on the dewy grass and painting the sky in gentle pastels",
-        " where the hill stands quiet in the hush before sunrise, the horizon tinged with gold and the world slowly coming awake"
+        " soft with first light",
+        " dewy in morning quiet",
+        " golden on the crest",
+        " peaceful before sunrise",
+        " gentle in pastel hues",
+        " quiet with morning stillness",
+        " bright with creeping light",
+        " fresh with morning dew",
+        " calm in early light",
+        " serene at daybreak"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the sun lights the hilltop in gold, and the breeze stirs the wildflowers and tall grass that blanket the slopes",
-        " where shadows retreat across the land, and birdsong echoes through the clear, open air"
+        " golden in morning sun",
+        " bright with stirring breezes",
+        " alive with birdsong",
+        " clear in open air",
+        " fresh with morning warmth",
+        " peaceful in morning light",
+        " vibrant with awakening life",
+        " gentle in morning breezes",
+        " open to morning sky",
+        " bright with wildflower color"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the hill basks under the full brightness of the sun, the grasses swaying in the warm wind and the air filled with the hum of insects",
-        " where the sky stretches wide and clear above, and heat shimmers in the distance across the open slopes"
+        " bright under full sun",
+        " warm with swaying grasses",
+        " humming with insect life",
+        " clear under wide sky",
+        " open to brilliant light",
+        " shimmering in heat",
+        " vibrant in full illumination",
+        " alive with midday activity",
+        " bright in complete exposure",
+        " warm in peak sunlight"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the sun casts longer shadows and the light softens, giving the hill a golden hue",
-        " where a warm breeze rustles through the grasses and the land seems quiet and content beneath the blue sky"
+        " golden in softening light",
+        " peaceful in warm breezes",
+        " content under blue sky",
+        " gentle in declining sun",
+        " warm with afternoon glow",
+        " calm in moderate warmth",
+        " beautiful in golden hues",
+        " peaceful in warm air",
+        " serene in afternoon light",
+        " comfortable in gentle warmth"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where the last light of the day lingers on the crest, turning the hill into a silhouette against a flaming sky",
-        " where the air cools and the slopes glow in amber and rose, the wind whispering across the grass"
+        " silhouetted against flaming sky",
+        " glowing in amber light",
+        " peaceful in cooling air",
+        " beautiful against sunset",
+        " calm in evening breezes",
+        " romantic in golden hour",
+        " serene in declining light",
+        " peaceful in evening glow",
+        " gentle in cooling warmth",
+        " beautiful in sunset colors"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the colors of the sky fade into dusk and the hill darkens slowly under the rising stars",
-        " where the horizon softens and night begins to fall gently across the landscape"
+        " darkening under rising stars",
+        " peaceful in gathering night",
+        " soft in fading colors",
+        " quiet in evening stillness",
+        " gentle in twilight peace",
+        " calm in deepening dusk",
+        " serene in gathering darkness",
+        " peaceful in evening quiet",
+        " soft in dimming light",
+        " tranquil in twilight calm"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the hill lies beneath the stars, quiet and windswept, with only the faint sound of wind brushing through the grass",
-        " where moonlight silvers the hilltop, and the open land feels vast and peaceful beneath the night sky"
+        " quiet under starlight",
+        " peaceful in moonlight",
+        " silvered under night sky",
+        " serene in nighttime stillness",
+        " calm under stars",
+        " peaceful in night breezes",
+        " gentle in lunar light",
+        " quiet in nocturnal peace",
+        " tranquil under night sky",
+        " still in midnight calm"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the hill is still and open to the sky, the grass dark and swaying gently in the night breeze",
-        " where the crest is just a shadow beneath the stars, and the land feels timeless and vast"
+        " still under starlight",
+        " peaceful in night quiet",
+        " calm in gentle breezes",
+        " serene under dark sky",
+        " quiet in deep night",
+        " tranquil in nighttime peace",
+        " gentle in late hour stillness",
+        " peaceful in nocturnal calm",
+        " still in deep nighttime",
+        " silent in late night peace"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the hill lies in deep shadow, the sky ablaze with stars above, and the land is silent save for the whispering wind",
-        " where the midnight moon casts faint silver light across the slopes, giving the hill an ethereal glow"
+        " silent under blazing stars",
+        " ethereal in moonlight",
+        " peaceful in midnight stillness",
+        " quiet in deep night",
+        " serene under star-filled sky",
+        " tranquil in midnight calm",
+        " still in deepest night",
+        " peaceful in absolute quiet",
+        " gentle in lunar glow",
+        " mystical in midnight peace"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where frost clings to the blades of grass and the hill is dusted with snow, the wind sharp and clear",
-        " where the slopes lie bare and white under a pale sky, and the chill air carries the scent of ice and stillness"
+        " frosted with morning ice",
+        " dusted with snow",
+        " sharp with clear air",
+        " white under pale sky",
+        " crisp with winter wind",
+        " bare in winter stillness",
+        " cold with icy clarity",
+        " stark in winter beauty",
+        " peaceful in winter quiet",
+        " clean with winter purity"
         }));
 
     addSeasonDescription("spring", ({
-        " where fresh green grass returns to the hill, dotted with wildflowers, and the wind carries the scent of new growth",
-        " where the land feels alive again, with buzzing insects and the songs of returning birds filling the air"
+        " green with fresh growth",
+        " dotted with wildflowers",
+        " alive with new life",
+        " fresh with spring scents",
+        " vibrant with returning life",
+        " colorful with spring blooms",
+        " renewed with seasonal growth",
+        " bright with spring energy",
+        " peaceful with spring warmth",
+        " beautiful with spring renewal"
         }));
 
     addSeasonDescription("summer", ({
-        " where the hill is vibrant and warm, the grass long and golden in the sun, and butterflies dance over the flowers",
-        " where the air is hot and full of sound; the whir of wings, the hum of bees, and the rustling of the tall, dry grass"
+        " vibrant with golden grass",
+        " alive with summer activity",
+        " warm with butterflies",
+        " hot with full sun",
+        " rich with summer growth",
+        " abundant with wildflowers",
+        " lush in peak season",
+        " bright with summer color",
+        " peaceful in summer warmth",
+        " beautiful in full bloom"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the hill is painted in russet and gold, the grass fading to amber and the wind cooler with each passing day",
-        " where leaves from scattered trees tumble across the slopes and the sky carries the scent of distant rain"
+        " painted in russet and gold",
+        " beautiful with autumn colors",
+        " cool with changing season",
+        " peaceful in autumn light",
+        " rich with seasonal hues",
+        " gentle with autumn breezes",
+        " colorful in seasonal change",
+        " serene in autumn peace",
+        " beautiful with fall foliage",
+        " calm in seasonal transition"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## hill rising gently above the surrounding land, its slopes covered in grasses and wildflowers, offering a wide view of the sky and distant horizon");
+    addDescriptionTemplate("a ##Adjective## hill rising gently above the "
+        "surrounding land");
+
+    addItemTemplate("The hill rises in a gentle slope above the surrounding "
+        "terrain, its rounded form covered with grasses and wildflowers that "
+        "sway in the frequent breezes. The elevation provides expansive views "
+        "of the surrounding landscape, while the exposed position means weather "
+        "and seasonal changes are particularly noticeable. Paths often wind "
+        "around or over hills, taking advantage of the natural high ground "
+        "for navigation and visibility.");
 }

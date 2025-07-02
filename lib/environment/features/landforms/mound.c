@@ -8,67 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("mound");
-    addAdjectives(({ "distinctive", "artificial-looking", "symmetrical", "ancient", "mysterious", "weathered", "prominent", "earthen" }));
+    addAdjectives(({ "grassy", "artificial", "ancient", "burial", "earthen",
+        "rounded", "mysterious", "low", "ceremonial", "overgrown" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where early light emphasizes its artificial symmetry, casting long shadows that hint at its purpose",
-        " where morning mist clings to its base while the top emerges clear and distinct"
+        " peaceful in morning light",
+        " ancient in dawn's glow",
+        " mysterious in early mist",
+        " grassy with morning dew",
+        " rounded in gentle illumination",
+        " ceremonial in dawn quiet",
+        " artificial in revealing light",
+        " burial-quiet in morning peace",
+        " earthen in morning warmth",
+        " overgrown in dawn beauty"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where sun climbing the eastern sky illuminates one side of the mound while leaving the other in shadow",
-        " where dew quickly evaporates from its exposed surface, rising as light vapor in the morning light"
+        " clearly artificial in daylight",
+        " ancient in morning clarity",
+        " mysterious despite bright light",
+        " grassy in morning sunshine",
+        " rounded in full visibility",
+        " ceremonial in morning peace",
+        " burial-significant in light",
+        " earthen in morning warmth",
+        " overgrown with morning life",
+        " peaceful in morning calm"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where midday sun reveals the mound's full form, any patterns or constructions on its surface clearly visible",
-        " where its shadow shrinks to a small pool at its base while the summit basks in full light"
+        " obviously artificial in harsh light",
+        " ancient in blazing clarity",
+        " mysterious in full exposure",
+        " grassy in bright sunshine",
+        " rounded in complete visibility",
+        " ceremonial in noon stillness",
+        " burial-sacred in bright light",
+        " earthen in peak warmth",
+        " overgrown in summer abundance",
+        " peaceful in midday quiet"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the western face catches golden afternoon light while eastern shadows lengthen",
-        " where birds of prey sometimes circle above, using thermal currents created by its sun-warmed mass"
+        " clearly defined in angled light",
+        " ancient in afternoon glow",
+        " mysterious in golden light",
+        " grassy in warm sunshine",
+        " rounded in textured light",
+        " ceremonial in afternoon peace",
+        " burial-reverent in golden hour",
+        " earthen in afternoon warmth",
+        " overgrown in abundant life",
+        " peaceful in declining day"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset casts the mound in dramatic relief, accentuating its deliberate shape against the landscape",
-        " where the last light creates long shadows that stretch from its base across the surrounding terrain"
+        " mysterious in evening shadows",
+        " ancient in alpenglow",
+        " ceremonial in evening peace",
+        " grassy in cooling air",
+        " rounded in gentle light",
+        " burial-solemn in sunset",
+        " artificial in evening clarity",
+        " earthen in evening coolness",
+        " overgrown in evening beauty",
+        " peaceful in twilight calm"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the mound's silhouette stands stark against the fading light, an unmistakable presence",
-        " where darkness claims it from the ground up, the summit last to surrender to the advancing night"
+        " mysterious in gathering darkness",
+        " ancient in twilight mystery",
+        " ceremonial in dusk solemnity",
+        " grassy in evening shadow",
+        " rounded in vague outline",
+        " burial-sacred in twilight",
+        " artificial in fading light",
+        " earthen in cooling air",
+        " overgrown in gathering gloom",
+        " peaceful in evening quiet"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where moonlight transforms the mound into something otherworldly, its purpose seeming more mysterious",
-        " where its dark mass interrupts the star-filled horizon, a sentinel from forgotten times"
+        " mysterious in moonlight",
+        " ancient under stars",
+        " ceremonial in night solemnity",
+        " grassy in lunar glow",
+        " rounded in night outline",
+        " burial-sacred under night sky",
+        " artificial in night clarity",
+        " earthen in night coolness",
+        " overgrown in night mystery",
+        " peaceful in night stillness"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the mound looms in darkness, somehow more imposing when details are obscured by night",
-        " where its presence seems to intensify in the deep quiet, a connection to those who raised it long ago"
+        " mysterious in deep night",
+        " ancient in night eternity",
+        " ceremonial in late night solemnity",
+        " grassy in night dew",
+        " rounded in felt presence",
+        " burial-sacred in deep night",
+        " artificial in night reality",
+        " earthen in night coolness",
+        " overgrown in night growth",
+        " peaceful in deep stillness"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the mound stands silent under the stars, keeper of secrets accumulated over centuries",
-        " where its form creates a distinct void in the star-field, a piece of earth reaching toward sky"
+        " mysterious in cosmic presence",
+        " ancient under starfield",
+        " ceremonial in midnight solemnity",
+        " grassy in night moisture",
+        " rounded in stellar outline",
+        " burial-sacred under cosmos",
+        " artificial in midnight reality",
+        " earthen in cosmic coolness",
+        " overgrown in midnight mystery",
+        " peaceful in absolute stillness"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where snow smooths its contours without concealing its distinctive shape, emphasizing its permanence",
-        " where frost or ice sometimes reveals hidden patterns in its construction not visible in other seasons"
+        " stark under snow cover",
+        " ancient in winter endurance",
+        " mysterious in winter quiet",
+        " grassy beneath snow",
+        " rounded in winter outline",
+        " ceremonial in winter solemnity",
+        " burial-preserved in winter",
+        " artificial in winter clarity",
+        " earthen in frozen ground",
+        " overgrown despite winter"
         }));
 
     addSeasonDescription("spring", ({
-        " where new growth clothes the ancient form in fresh green, often with wildflowers in abundance",
-        " where birds may nest in its protective sides, adding their songs to its ancient presence"
+        " renewed with spring growth",
+        " ancient in spring awakening",
+        " mysterious in spring renewal",
+        " grassy with new green",
+        " rounded in spring clarity",
+        " ceremonial in spring peace",
+        " burial-honored in spring",
+        " artificial in spring revelation",
+        " earthen in spring warmth",
+        " overgrown with spring life"
         }));
 
     addSeasonDescription("summer", ({
-        " where the grass-covered slopes appear most verdant, though patterns of growth often reveal underlying structures",
-        " where the heat of day is absorbed by its mass, radiating back well into evening hours"
+        " lush with summer growth",
+        " ancient in summer abundance",
+        " mysterious despite bright season",
+        " grassy in full growth",
+        " rounded in summer clarity",
+        " ceremonial in summer peace",
+        " burial-hidden in growth",
+        " artificial in summer exposure",
+        " earthen in summer warmth",
+        " overgrown in peak season"
         }));
 
     addSeasonDescription("autumn", ({
-        " where changing colors highlight its form against the autumnal landscape, a constant amid seasonal change",
-        " where fallen leaves sometimes reveal depressions or features hidden by summer's growth"
+        " colorful with autumn grass",
+        " ancient in autumn beauty",
+        " mysterious in autumn peace",
+        " grassy in seasonal change",
+        " rounded in autumn clarity",
+        " ceremonial in autumn solemnity",
+        " burial-reverent in autumn",
+        " artificial in autumn exposure",
+        " earthen in autumn coolness",
+        " overgrown with autumn color"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## mound rising deliberately from the surrounding terrain, its shape suggesting human construction rather than natural formation, covered now in grass and small plants that do not conceal its distinctive profile");
+    addDescriptionTemplate("a ##Adjective## mound rising "
+         "from the surrounding terrain");
+
+    addItemTemplate("The mound appears as a deliberately constructed hill, "
+        "clearly artificial in its regular shape and placement. Built from "
+        "earth and stone piled and shaped by human hands, it likely serves "
+        "or served a ceremonial, burial, or defensive purpose. The rounded "
+        "profile has been softened by time and weather, while grasses and "
+        "other vegetation have colonized its surface. Its strategic placement "
+        "and construction suggest significant cultural importance to those "
+        "who built it, whether as a burial site, ceremonial center, or "
+        "marker of territorial significance.");
 }

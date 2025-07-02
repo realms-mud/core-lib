@@ -8,94 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("sinkhole");
-    addAdjectives(({ "ominous", "unexpected", "yawning", "circular", "sudden",
-        "mysterious", "deep", "collapsed", "treacherous", "dark" }));
+    addAdjectives(({ "circular", "steep-sided", "mysterious", "deep", "shadowed",
+        "collapsed", "water-filled", "limestone", "treacherous", "hidden" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where early light barely penetrates the depths, revealing only the upper "
-        "portion while the bottom remains shrouded in profound shadow",
-        " where mist often rises from the depression, creating an eerie atmosphere "
-        "as first light catches the vapor without illuminating its source"
+        " mysterious in gathering mist",
+        " shadowed while surroundings brighten",
+        " deep in morning vapor",
+        " dark in first light",
+        " hidden in lingering shadows",
+        " circular in dawn outline",
+        " steep-sided in early clarity",
+        " treacherous in dim light",
+        " collapsed in morning revelation",
+        " water-gleaming in depths"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the sun gradually illuminates one side of the circular depression "
-        "while the other remains in shadow, emphasizing its unsettling depth",
-        " where birds circle above the opening, their calls echoing strangely "
-        "from the stone walls of this unexpected interruption in the landscape"
+        " clearly revealed in daylight",
+        " steep-sided in full visibility",
+        " deep in morning illumination",
+        " circular in bright outline",
+        " treacherous in clear view",
+        " mysterious despite visibility",
+        " shadowed in inner depths",
+        " collapsed in obvious danger",
+        " hidden features now revealed",
+        " water-bright in morning sun"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where even direct overhead sunlight fails to fully illuminate the deepest "
-        "recesses, creating an impression of unknowable depth",
-        " where the temperature drops noticeably at the edge, cool air rising "
-        "from the shadowed interior even on the warmest days"
+        " harsh in direct overhead light",
+        " steep-sided in stark clarity",
+        " deep in shadowless exposure",
+        " circular in perfect definition",
+        " treacherous in full revelation",
+        " mysterious in bright daylight",
+        " collapsed in obvious peril",
+        " hidden depths now visible",
+        " water-brilliant in sun",
+        " dangerous in clear visibility"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the angle of light creates dramatic shadows within the depression, "
-        "revealing textures and features invisible at other times",
-        " where the sinkhole's presence becomes a stark reminder of the hidden "
-        "hollow spaces beneath the apparently solid ground"
+        " textured by angled sunlight",
+        " steep-sided in shadow patterns",
+        " deep in afternoon clarity",
+        " circular in declining light",
+        " treacherous in revealed detail",
+        " mysterious in lengthening shadows",
+        " collapsed in afternoon exposure",
+        " hidden features emphasized",
+        " water-dark in angled light",
+        " dangerous in clear definition"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where fading light retreats up the walls of the depression, leaving "
-        "the interior in darkness long before sunset claims the surrounding land",
-        " where the temperature differential becomes most pronounced, cool air "
-        "flowing outward from the darkened void like a silent waterfall"
+        " mysterious in gathering shadows",
+        " steep-sided in evening darkness",
+        " deep in shadowed mystery",
+        " circular in twilight outline",
+        " treacherous in fading light",
+        " hidden in evening gloom",
+        " collapsed in growing darkness",
+        " water-black in depths",
+        " dangerous in dimming visibility",
+        " ominous in sunset shadows"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the circular opening becomes a pool of absolute darkness, its "
-        "edges still faintly visible while its depth is lost to night",
-        " where the transition between day and night seems accelerated within "
-        "the depression, darkness rising from below like a tide"
+        " hidden in gathering darkness",
+        " treacherous in failing light",
+        " deep in twilight mystery",
+        " circular in vague outline",
+        " steep-sided in shadow",
+        " mysterious in growing gloom",
+        " collapsed in dangerous darkness",
+        " water-invisible in depths",
+        " perilous in dim visibility",
+        " threatening in dusk shadows"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the sinkhole becomes a void darker than the night sky, stars "
-        "reflected in no pool at its base, light simply swallowed",
-        " where the opening seems most ominous, a perfect circle of deeper "
-        "blackness that suggests connection to places without light"
+        " invisible in complete darkness",
+        " treacherous without illumination",
+        " deep in night mystery",
+        " circular in felt presence",
+        " steep-sided in hidden danger",
+        " mysterious in night concealment",
+        " collapsed in unseen peril",
+        " water-hidden in black depths",
+        " deadly in night darkness",
+        " dangerous in unseen presence"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the difference between the night sky above and the absolute darkness "
-        "of the depression creates a disorienting sense of infinite depth",
-        " where strange echoes sometimes emerge from the depths, distorted sounds "
-        "that might be water, wind, or something moving in darkness"
+        " perilous in deep darkness",
+        " treacherous in night concealment",
+        " deep in midnight mystery",
+        " circular in unseen threat",
+        " steep-sided in hidden danger",
+        " mysterious in night secrecy",
+        " collapsed in invisible peril",
+        " water-black in unseen depths",
+        " deadly in complete darkness",
+        " threatening in night concealment"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the deepest night cannot compete with the more profound darkness "
-        "of the sinkhole, a void that seems to draw in light and sound",
-        " where standing at the edge creates a primal sense of boundary between "
-        "known world and subterranean mystery at its most potent"
+        " deadly in absolute darkness",
+        " treacherous in midnight concealment",
+        " deep in cosmic mystery",
+        " circular in felt menace",
+        " steep-sided in midnight danger",
+        " mysterious in deepest night",
+        " collapsed in unseen threat",
+        " water-void in black depths",
+        " perilous in complete concealment",
+        " ominous in midnight presence"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where snow creates a deceptive rim around the opening, sometimes bridging "
-        "small sections with dangerous cornices that conceal the edge",
-        " where ice forms fantastic structures around seeps and drips within the "
-        "walls, creating a frozen wonderland rarely seen by living eyes"
+        " ice-rimmed in freezing weather",
+        " treacherous with winter hazards",
+        " deep with accumulated snow",
+        " circular in white outline",
+        " steep-sided with icy walls",
+        " mysterious in winter concealment",
+        " collapsed in frozen peril",
+        " water-frozen in depths",
+        " dangerous with ice formation",
+        " hidden by snow accumulation"
         }));
 
     addSeasonDescription("spring", ({
-        " where snowmelt and rain increase any water flow within the depression, "
-        "sometimes creating audible streams or falls deeper within",
-        " where hardy plants cling to the upper edges and rare species adapted to "
-        "low light may flower unseen on ledges within the sheltered interior"
+        " filling with spring runoff",
+        " treacherous with muddy edges",
+        " deep with seasonal water",
+        " circular in clear spring outline",
+        " steep-sided with erosion",
+        " mysterious in spring revelation",
+        " collapsed with spring damage",
+        " water-rising in depths",
+        " dangerous with unstable edges",
+        " hidden by spring vegetation"
         }));
 
     addSeasonDescription("summer", ({
-        " where the cool air emanating from the depression provides natural "
-        "relief from summer heat, though few dare venture too near the edge",
-        " where the temperature differential between surface and depths is most "
-        "pronounced, sometimes creating visible condensation or mist"
+        " stark in summer exposure",
+        " treacherous in heat shimmer",
+        " deep in blazing clarity",
+        " circular in harsh definition",
+        " steep-sided in bright light",
+        " mysterious despite full exposure",
+        " collapsed in summer revelation",
+        " water-low in summer depths",
+        " dangerous in clear visibility",
+        " obvious in summer heat"
         }));
 
     addSeasonDescription("autumn", ({
-        " where fallen leaves collect around the rim and occasionally spiral down "
-        "into the darkness, never making an audible sound of landing",
-        " where early morning often finds the opening filled with mist that spills "
-        "over the edges, marking the sinkhole's presence from a distance"
+        " filled with fallen leaves",
+        " treacherous with slippery debris",
+        " deep in autumn mystery",
+        " circular in leaf-outlined form",
+        " steep-sided with autumn erosion",
+        " mysterious in seasonal change",
+        " collapsed with autumn damage",
+        " water-dark with leaf matter",
+        " dangerous with hidden edges",
+        " concealed by autumn foliage"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## sinkhole where the ground has collapsed to reveal a roughly circular opening of uncertain depth, its walls showing layers of earth and stone where the surface has given way to some hidden cavity below");
+    addDescriptionTemplate("a ##Adjective## sinkhole forming a dangerous "
+        "depression in the ground");
+
+    addItemTemplate("The sinkhole forms a circular or oval depression where "
+        "the ground has collapsed, typically due to underground water erosion "
+        "of limestone or similar soluble rock. The steep-sided pit presents "
+        "a significant hazard, with walls that may be unstable and prone to "
+        "further collapse. Water often collects in the bottom, creating a "
+        "deep pool that may connect to underground water systems. Vegetation "
+        "around the edges may be disturbed or absent, and the sinkhole serves "
+        "as a stark reminder of the hidden geological processes constantly "
+        "reshaping the landscape.");
 }

@@ -8,40 +8,193 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("butte");
-    addAdjectives(({ "isolated", "towering", "flat-topped", "rugged", "barren" }));
+    addAdjectives(({ "isolated", "flat-topped", "steep-sided", "towering",
+        "erosion-carved", "mesa-like", "weathered", "commanding" }));
 
     // Time of Day Descriptions
-    addTimeOfDayDescription("dawn", ({ " where the first light of day slowly spills over the flat top, casting long shadows across the steep sides of the butte" }));
-    addTimeOfDayDescription("morning", ({ " where the sun rises higher, casting a warm glow on the jagged edges and making the flat top appear as if it were glowing" }));
-    addTimeOfDayDescription("noon", ({ " where the harsh midday sun beats down on the exposed surface, creating stark shadows along the cliffs of the butte" }));
-    addTimeOfDayDescription("afternoon", ({ " where the sun begins to dip, casting a softer golden light on the sides of the butte, making it seem almost otherworldly" }));
-    addTimeOfDayDescription("evening", ({ " where the sinking sun bathes the butte in shades of orange and red, turning the rocky surface into an inferno of color" }));
-    addTimeOfDayDescription("dusk", ({ " where the last rays of light fade from the sky, leaving the butte in silhouette, its sharp edges cutting against the darkening sky" }));
-    addTimeOfDayDescription("night", ({ " where the butte looms dark and silent under the cold moonlight, its flat top stark against the endless sky of stars" }));
-    addTimeOfDayDescription("late night", ({ " where the butte stands as a shadow in the darkness, its form barely discernible under the pale light of distant stars" }));
-    addTimeOfDayDescription("midnight", ({ " where the moon casts eerie light on the butte's flat top, giving it an almost spectral glow against the black sky" }));
+    addTimeOfDayDescription("dawn", ({
+        " isolated in morning mist",
+        " flat-topped in dawn clarity",
+        " steep-sided in early light",
+        " towering above dawn fog",
+        " erosion-carved in first light",
+        " mesa-like in morning glow",
+        " weathered in dawn illumination",
+        " commanding in sunrise",
+        " dramatic against dawn sky",
+        " imposing in early light"
+        }));
+
+    addTimeOfDayDescription("morning", ({
+        " isolated in clear visibility",
+        " flat-topped in bright clarity",
+        " steep-sided in morning sun",
+        " towering in full illumination",
+        " erosion-carved in detailed light",
+        " mesa-like in morning beauty",
+        " weathered in clear exposure",
+        " commanding in morning views",
+        " impressive in daylight",
+        " striking in morning clarity"
+        }));
+
+    addTimeOfDayDescription("noon", ({
+        " isolated in harsh exposure",
+        " flat-topped in blazing clarity",
+        " steep-sided in intense light",
+        " towering in overwhelming scale",
+        " erosion-carved in stark detail",
+        " mesa-like in noon grandeur",
+        " weathered in harsh illumination",
+        " commanding in peak visibility",
+        " imposing in noon intensity",
+        " dramatic in blazing sun"
+        }));
+
+    addTimeOfDayDescription("afternoon", ({
+        " isolated in golden light",
+        " flat-topped in warm illumination",
+        " steep-sided with shadow patterns",
+        " towering in afternoon glow",
+        " erosion-carved in textured light",
+        " mesa-like in afternoon beauty",
+        " weathered in golden hour",
+        " commanding in declining day",
+        " beautiful in angled light",
+        " striking in afternoon sun"
+        }));
+
+    addTimeOfDayDescription("evening", ({
+        " isolated in sunset glory",
+        " flat-topped in alpenglow",
+        " steep-sided in evening drama",
+        " towering in sunset beauty",
+        " erosion-carved in golden light",
+        " mesa-like in evening grandeur",
+        " weathered in sunset colors",
+        " commanding in evening views",
+        " spectacular in sunset",
+        " magnificent in evening light"
+        }));
+
+    addTimeOfDayDescription("dusk", ({
+        " isolated in gathering twilight",
+        " flat-topped in dusk outline",
+        " steep-sided in fading light",
+        " towering in twilight mystery",
+        " erosion-carved in dusk shadow",
+        " mesa-like in twilight beauty",
+        " weathered in gathering gloom",
+        " commanding in dusk presence",
+        " mysterious in twilight",
+        " impressive in fading light"
+        }));
+
+    addTimeOfDayDescription("night", ({
+        " isolated under starry sky",
+        " flat-topped in lunar outline",
+        " steep-sided in night shadow",
+        " towering in night grandeur",
+        " erosion-carved in moonlight",
+        " mesa-like in stellar glow",
+        " weathered in night mystery",
+        " commanding in night presence",
+        " imposing under stars",
+        " dramatic in night beauty"
+        }));
+
+    addTimeOfDayDescription("late night", ({
+        " isolated in deep night",
+        " flat-topped in night outline",
+        " steep-sided in night mystery",
+        " towering in felt presence",
+        " erosion-carved in time",
+        " mesa-like in night majesty",
+        " weathered in night endurance",
+        " commanding in deep darkness",
+        " impressive in night presence",
+        " mysterious in deep night"
+        }));
+
+    addTimeOfDayDescription("midnight", ({
+        " isolated under starfield",
+        " flat-topped in cosmic outline",
+        " steep-sided in stellar shadow",
+        " towering in cosmic presence",
+        " erosion-carved in geological time",
+        " mesa-like in stellar majesty",
+        " weathered in cosmic endurance",
+        " commanding in midnight presence",
+        " eternal under cosmos",
+        " timeless in stellar glow"
+        }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where the butte's flat top is covered with a thin layer of snow, and a bitter wind sweeps across its bare rock surface",
-        " where the chill of winter has hardened the rocky surface, and frost clings to its steep sides"
+        " isolated in winter landscape",
+        " flat-topped with snow cover",
+        " steep-sided with ice formation",
+        " towering in winter storms",
+        " erosion-carved in harsh weather",
+        " mesa-like in winter beauty",
+        " weathered in winter conditions",
+        " commanding in winter clarity",
+        " stark in winter exposure",
+        " impressive in winter grandeur"
         }));
 
     addSeasonDescription("spring", ({
-        " where the first signs of life begin to appear around the base, with sparse grasses poking through the soil and small flowers growing along cracks",
-        " where the air feels fresher, though the flat top remains bare and exposed to the elements"
+        " isolated in spring clarity",
+        " flat-topped in mild weather",
+        " steep-sided with spring runoff",
+        " towering in spring beauty",
+        " erosion-carved in spring rains",
+        " mesa-like in spring renewal",
+        " weathered in spring conditions",
+        " commanding in spring views",
+        " dramatic in spring weather",
+        " impressive in spring clarity"
         }));
 
     addSeasonDescription("summer", ({
-        " where the butte stands heat-baked and dry, with cracked rock surfaces and no shade to be found anywhere on its flat top",
-        " where the heat of the summer sun makes the rocky surface shimmer with heat waves"
+        " isolated in blazing heat",
+        " flat-topped in summer haze",
+        " steep-sided in scorching sun",
+        " towering in heat shimmer",
+        " erosion-carved in harsh conditions",
+        " mesa-like in summer intensity",
+        " weathered in summer storms",
+        " commanding in summer visibility",
+        " imposing in summer heat",
+        " dramatic in blazing exposure"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the winds of autumn blow dust and fallen leaves across the flat top, and the surrounding terrain takes on a muted brown and gold hue",
-        " where the leaves from distant trees far below flutter in the breeze, yet the butte's rocky surface remains impervious to the season\'s change"
+        " isolated in autumn clarity",
+        " flat-topped in crisp air",
+        " steep-sided in clear weather",
+        " towering in autumn beauty",
+        " erosion-carved in seasonal light",
+        " mesa-like in autumn grandeur",
+        " weathered in autumn conditions",
+        " commanding in autumn views",
+        " striking in autumn clarity",
+        " impressive in seasonal beauty"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## butte rising sharply from the flat plains with a flat, expansive top and steep cliffs around it");
+    addDescriptionTemplate("a ##Adjective## butte rising as an isolated, "
+        "flat-topped hill with steep sides");
+
+    addItemTemplate("The butte stands as an isolated, flat-topped hill that "
+        "rises dramatically from the surrounding plains or lowlands. Its "
+        "distinctive shape results from erosion that has carved away softer "
+        "surrounding rock while leaving the more resistant caprock intact. "
+        "The steep sides make access to the flat summit challenging, while "
+        "the elevated position provides commanding views of the surrounding "
+        "landscape. The butte serves as a prominent landmark visible from "
+        "great distances, its distinctive silhouette marking its location "
+        "across vast stretches of terrain. Hardy vegetation may cling to "
+        "cracks in the rock face, while the summit often supports different "
+        "plant communities than the surrounding lowlands.");
 }

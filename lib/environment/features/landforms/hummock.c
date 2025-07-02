@@ -8,67 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("hummock");
-    addAdjectives(({ "mossy", "irregular", "lumpy", "damp", "low", "tussocky", "raised", "earthy" }));
+    addAdjectives(({ "small", "grass-covered", "rounded", "marshy", "boggy",
+        "isolated", "moss-covered", "wet", "spongy", "mounded" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where early mist clings to its irregular surface, droplets of dew hanging heavily from every stem",
-        " where the first light reveals the intricate textures of moss and grass forming its small rise"
+        " wet with morning dew",
+        " small in misty dawn light",
+        " spongy with overnight moisture",
+        " rounded in gentle illumination",
+        " grass-covered in dewy freshness",
+        " marshy in morning dampness",
+        " boggy with accumulated moisture",
+        " isolated in morning mist",
+        " moss-covered in dawn beauty",
+        " mounded in morning peace"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the morning sun begins to dry the dew-drenched vegetation covering its uneven surface",
-        " where small insects stir to life across its miniature ecosystem as warmth returns"
+        " bright with morning moisture",
+        " small in clear daylight",
+        " spongy underfoot in warmth",
+        " rounded in morning clarity",
+        " grass-covered in fresh growth",
+        " marshy with morning life",
+        " boggy with rich moisture",
+        " isolated in morning peace",
+        " moss-covered in morning green",
+        " mounded in modest beauty"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where sunlight penetrates the dense vegetation, warming the damp earth beneath its tangled growth",
-        " where shadows are minimal, revealing every bump and depression across its lumpy profile"
+        " warm despite moisture content",
+        " small in bright visibility",
+        " spongy in midday heat",
+        " rounded in clear definition",
+        " grass-covered in noon abundance",
+        " marshy with midday life",
+        " boggy with rich ecosystem",
+        " isolated in noon solitude",
+        " moss-covered in bright green",
+        " mounded in perfect clarity"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the low mound absorbs the day's accumulated warmth, creating its own microclimate",
-        " where small creatures find shelter among its twisted roots and dense vegetation"
+        " golden in angled sunlight",
+        " small in afternoon warmth",
+        " spongy in warming conditions",
+        " rounded in textured light",
+        " grass-covered in afternoon glow",
+        " marshy with active life",
+        " boggy with afternoon richness",
+        " isolated in afternoon peace",
+        " moss-covered in golden green",
+        " mounded in afternoon beauty"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where cooling air causes moisture to condense once more across its moss-covered surface",
-        " where the hummock's shadow stretches disproportionately long compared to its modest height"
+        " peaceful in evening moisture",
+        " small in gentle evening light",
+        " spongy in cooling air",
+        " rounded in soft illumination",
+        " grass-covered in evening beauty",
+        " marshy with evening activity",
+        " boggy with evening richness",
+        " isolated in evening quiet",
+        " moss-covered in evening green",
+        " mounded in twilight peace"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the failing light blends its irregular outline into the gathering darkness",
-        " where night-active insects begin to emerge from the protection of its dense growth"
+        " mysterious in gathering moisture",
+        " small in fading light",
+        " spongy in evening dampness",
+        " rounded in vague outline",
+        " grass-covered in twilight shadow",
+        " marshy with dusk activity",
+        " boggy with evening life",
+        " isolated in gathering gloom",
+        " moss-covered in twilight mystery",
+        " mounded in evening quiet"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the small rise remains as a barely perceptible mound in the darkness",
-        " where dew forms heavily on its surface, preparing to make it glisten at dawn"
+        " wet with night moisture",
+        " small in moonlit beauty",
+        " spongy with accumulated dew",
+        " rounded in lunar outline",
+        " grass-covered in night damp",
+        " marshy with nocturnal life",
+        " boggy with night richness",
+        " isolated in night solitude",
+        " moss-covered in night mystery",
+        " mounded in night peace"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the hummock becomes nearly invisible, betrayed only by the different texture underfoot",
-        " where the dense vegetation holds warmth longer than the surrounding ground in the cool night"
+        " soaked with late night dew",
+        " small in deep night mystery",
+        " spongy with maximum moisture",
+        " rounded in felt presence",
+        " grass-covered in night wetness",
+        " marshy with deep night life",
+        " boggy with accumulated moisture",
+        " isolated in deep solitude",
+        " moss-covered in night richness",
+        " mounded in deep night peace"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where nocturnal life moves secretly through its protective cover, unseen in the darkness",
-        " where the raised earth stands as a subtle guardian of moisture and life in the midnight hours"
+        " saturated with midnight moisture",
+        " small in cosmic solitude",
+        " spongy with peak wetness",
+        " rounded in stellar outline",
+        " grass-covered in midnight damp",
+        " marshy with midnight life",
+        " boggy with cosmic moisture",
+        " isolated in absolute solitude",
+        " moss-covered in midnight mystery",
+        " mounded in cosmic peace"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where frost forms intricate patterns across its mossy surface, or snow caps its irregular top",
-        " where the hummock provides rare shelter when other vegetation has died back for the season"
+        " frozen but still spongy",
+        " small in winter solitude",
+        " grass-covered despite cold",
+        " rounded in snow outline",
+        " marshy even in winter",
+        " boggy with winter moisture",
+        " isolated in winter peace",
+        " moss-covered beneath snow",
+        " mounded in winter beauty",
+        " wet despite freezing conditions"
         }));
 
     addSeasonDescription("spring", ({
-        " where new growth erupts with particular vigor, fed by the nutrients and moisture it has preserved",
-        " where tiny flowers appear amid the moss and grass, transforming the small rise with color"
+        " saturated with spring runoff",
+        " small in spring abundance",
+        " spongy with seasonal moisture",
+        " rounded in spring clarity",
+        " grass-covered with new growth",
+        " marshy with spring life",
+        " boggy with seasonal richness",
+        " isolated in spring peace",
+        " moss-covered in spring green",
+        " mounded in spring beauty"
         }));
 
     addSeasonDescription("summer", ({
-        " where the dense vegetation becomes a haven for countless tiny creatures escaping the summer heat",
-        " where the contrast deepens between its perpetual dampness and the drier surrounding land"
+        " lush despite summer heat",
+        " small in summer abundance",
+        " spongy with retained moisture",
+        " rounded in summer clarity",
+        " grass-covered in peak growth",
+        " marshy with summer life",
+        " boggy with rich ecosystem",
+        " isolated in summer peace",
+        " moss-covered in vibrant green",
+        " mounded in summer perfection"
         }));
 
     addSeasonDescription("autumn", ({
-        " where fallen leaves collect against its sides, beginning their transformation into future soil",
-        " where fungi often appear, their caps and stems rising from its nutrient-rich earth"
+        " colorful with autumn grasses",
+        " small in autumn beauty",
+        " spongy with autumn moisture",
+        " rounded in autumn clarity",
+        " grass-covered in seasonal change",
+        " marshy with autumn activity",
+        " boggy with autumn richness",
+        " isolated in autumn peace",
+        " moss-covered in autumn color",
+        " mounded in autumn tranquility"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## hummock, a small raised mound of earth and vegetation, often damper than surrounding terrain and covered in dense growth of moss, grass, and small plants forming a miniature ecosystem");
+    addDescriptionTemplate("a ##Adjective## hummock forming a small "
+        "mounded elevation in wet ground");
+
+    addItemTemplate("The hummock appears as a small, rounded mound rising "
+        "from marshy or boggy terrain, typically formed by the accumulation "
+        "of organic matter and sediment over time. Its spongy surface yields "
+        "underfoot, saturated with moisture that creates ideal conditions for "
+        "specialized wetland vegetation. Grasses, sedges, and mosses cover "
+        "its surface, while the surrounding wet ground often supports a rich "
+        "ecosystem of amphibians, insects, and water-loving plants. The "
+        "hummock provides a slightly drier foothold in otherwise waterlogged "
+        "terrain, though it remains perpetually moist and soft.");
 }

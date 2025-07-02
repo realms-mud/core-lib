@@ -7,68 +7,192 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("distant mountain peak");
-    addAdjectives(({ "towering", "rugged", "snow-capped", "majestic", "remote", "isolated", "formidable", "imposing" }));
+    Name("distant peak");
+    addAdjectives(({ "snow-capped", "hazy", "remote", "towering", "majestic",
+        "blue-tinged", "ethereal", "far-off" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where the first light of day touches the peak's snowy summit, casting long shadows and illuminating the jagged ridges with a soft, golden glow",
-        " where the mountain stands silent and distant, bathed in the faintest light of dawn, the peak barely visible against the pale sky"
+        " glowing with first alpenglow",
+        " bright while valleys sleep",
+        " ethereal in morning mist",
+        " remote in dawn clarity",
+        " towering above morning fog",
+        " majestic in sunrise colors",
+        " hazy in morning atmosphere",
+        " snow-capped in golden light",
+        " blue-tinged in distance",
+        " far-off in dawn beauty"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the sun rises higher, spilling warm light across the sharp cliffs and icy ridgelines, making the distant peak appear even more formidable",
-        " where the mountain looms, its sharp silhouette framed by a clear blue sky, the light of morning bringing out the snow-covered slopes and rocky ledges"
+        " clear in morning air",
+        " towering in bright visibility",
+        " remote in morning clarity",
+        " majestic in full sunlight",
+        " ethereal in mountain air",
+        " hazy with atmospheric layers",
+        " snow-capped in bright white",
+        " blue-tinged with distance",
+        " far-off but clearly visible",
+        " inspiring in morning light"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the mountain peak stands clear and bright under the full light of the midday sun, its snow-covered summit gleaming in the harsh light, surrounded by clear skies",
-        " where the peak's jagged outline cuts sharply against the cloudless sky, a silhouette of unyielding strength under the intense midday sun"
+        " stark in harsh clarity",
+        " towering in overwhelming scale",
+        " remote in blazing distance",
+        " majestic in noon grandeur",
+        " ethereal in heat shimmer",
+        " hazy in midday atmosphere",
+        " snow-capped in brilliant white",
+        " blue-tinged in noon haze",
+        " far-off in crystal clarity",
+        " imposing in peak visibility"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the afternoon sun casts a golden hue over the distant mountain, softening the shadows on its rocky surface and making the snow shimmer",
-        " where the mountain's towering peaks seem to change in the fading afternoon light, casting long, dramatic shadows over the ridges and valleys below"
+        " dramatic in angled light",
+        " towering in afternoon haze",
+        " remote in golden distance",
+        " majestic in afternoon glow",
+        " ethereal in mountain air",
+        " hazy in warming atmosphere",
+        " snow-capped in afternoon sun",
+        " blue-tinged in distance",
+        " far-off in golden light",
+        " beautiful in declining day"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where the mountain peak is bathed in the soft, warm hues of the setting sun, turning the snow-covered slopes into a shimmering display of gold and rose",
-        " where the fading light of evening casts the peak in deep shadow, giving the rugged slopes a mysterious, almost otherworldly appearance"
+        " glowing with alpenglow",
+        " towering in sunset beauty",
+        " remote in evening distance",
+        " majestic in sunset colors",
+        " ethereal in evening light",
+        " hazy in evening atmosphere",
+        " snow-capped in pink alpenglow",
+        " blue-tinged in twilight",
+        " far-off in evening glory",
+        " inspiring in sunset grandeur"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the last rays of light fade, and the mountain stands in stark silhouette against the darkening sky, its peak barely discernible in the twilight",
-        " where the mountain is shrouded in the deepening darkness, its jagged features softened by the twilight, but still imposing and unreachable"
+        " silhouetted against twilight",
+        " towering in dusk mystery",
+        " remote in gathering darkness",
+        " majestic in twilight grandeur",
+        " ethereal in fading light",
+        " hazy in evening mist",
+        " snow-capped in twilight glow",
+        " blue-tinged in dusk shadow",
+        " far-off in gathering gloom",
+        " mysterious in twilight beauty"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the mountain peak is cloaked in darkness, its sharp ridgelines lost in the black void of night, the stars above twinkling faintly in the cold air",
-        " where the moonlight spills over the snow-covered summit, casting a pale, ghostly light on the towering peaks, making the mountain appear even more remote"
+        " dark against starry sky",
+        " towering in night mystery",
+        " remote in stellar distance",
+        " majestic under stars",
+        " ethereal in moonlight",
+        " hazy in night atmosphere",
+        " snow-capped in lunar glow",
+        " blue-tinged in night shadow",
+        " far-off in night darkness",
+        " impressive in night presence"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the mountain stands silent in the dark, the only movement the occasional gust of wind that stirs the snow, its towering presence silent and eternal",
-        " where the cold night air wraps around the distant peak, and the mountain lies still, bathed in the faintest moonlight, a sentinel in the night"
+        " felt more than seen",
+        " towering in night presence",
+        " remote in cosmic distance",
+        " majestic in felt grandeur",
+        " ethereal in night mystery",
+        " hazy in deep night",
+        " snow-capped in starlight",
+        " blue-tinged in darkness",
+        " far-off in night void",
+        " mysterious in night presence"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the peak is hidden in the blackness of midnight, its outline lost against the starry sky, an immovable and isolated presence in the vast landscape",
-        " where the snow on the summit reflects the moonlight faintly, but the mountain remains distant and implacable, its towering height lost in the shadows of the night"
+        " eternal under starfield",
+        " towering in cosmic presence",
+        " remote in stellar space",
+        " majestic in midnight grandeur",
+        " ethereal in cosmic light",
+        " hazy in midnight atmosphere",
+        " snow-capped under cosmos",
+        " blue-tinged in starlight",
+        " far-off in cosmic distance",
+        " timeless in midnight sky"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where the mountain is a silent, frozen sentinel, its snow-covered slopes gleaming in the sunlight and its jagged ridges cutting sharply into the sky",
-        " where the bitter cold grips the mountain, its summit permanently capped with snow, and the air is thin and crisp, leaving the peak seemingly untouched by time"
+        " bright with snow cover",
+        " towering in winter clarity",
+        " remote in crisp air",
+        " majestic in winter grandeur",
+        " ethereal in winter light",
+        " hazy despite clear air",
+        " snow-capped in winter white",
+        " blue-tinged in cold distance",
+        " far-off in winter beauty",
+        " stark in winter exposure"
         }));
 
     addSeasonDescription("spring", ({
-        " where the lower slopes of the mountain begin to show signs of life, with patches of green creeping up the rocky terrain, while the peak remains crowned with snow",
-        " where the mountain stands stark and unchanging, the snow lingering at the summit while the valleys below slowly begin to thaw and bloom with new life"
+        " clear in spring air",
+        " towering in mild weather",
+        " remote in spring distance",
+        " majestic in spring clarity",
+        " ethereal in spring light",
+        " hazy in spring atmosphere",
+        " snow-capped despite season",
+        " blue-tinged in spring sky",
+        " far-off in spring beauty",
+        " inspiring in spring clarity"
         }));
 
     addSeasonDescription("summer", ({
-        " where the mountain's peak still wears its crown of snow, but the lower slopes are bathed in sunlight, their rocky faces growing warmer under the summer sun",
-        " where the air around the peak is still and cool, the summer heat not reaching the heights, leaving the mountain isolated from the warmth of the valleys below"
+        " hazy in summer heat",
+        " towering through heat shimmer",
+        " remote in summer distance",
+        " majestic despite heat haze",
+        " ethereal in summer air",
+        " blue-tinged in summer haze",
+        " snow-capped even in summer",
+        " far-off in summer atmosphere",
+        " impressive in summer visibility",
+        " beautiful in summer light"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the lower valleys are painted with the warm hues of autumn, but the peak remains frosted with snow, an eternal winter amidst the changing seasons",
-        " where the mountain's rugged ridges stand out against the colorful backdrop of autumn, with the snow at the summit contrasting with the fiery colors below"
+        " clear in autumn air",
+        " towering in crisp weather",
+        " remote in autumn distance",
+        " majestic in autumn clarity",
+        " ethereal in autumn light",
+        " hazy in autumn atmosphere",
+        " snow-capped in autumn white",
+        " blue-tinged in clear air",
+        " far-off in autumn beauty",
+        " inspiring in autumn clarity"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## mountain peak, towering above the landscape with snow-capped ridges and jagged cliffs that stretch toward the sky, isolated and distant from the world below");
+    addDescriptionTemplate("a ##Adjective## distant peak visible on the "
+        "far horizon");
+
+    addItemTemplate("The distant peak rises far beyond the immediate landscape, "
+        "visible as a remote landmark that dominates the horizon. Its great "
+        "distance renders details indistinct, creating an ethereal quality "
+        "enhanced by atmospheric haze and the blue tinge of intervening air. "
+        "The peak serves as a constant reference point, its snow-capped summit "
+        "catching light differently than the surrounding terrain. Weather "
+        "patterns around the distant mountain create changing moods, from "
+        "crystal clarity to mysterious obscurity, while its immense scale "
+        "provides perspective on the vastness of the landscape.");
 }

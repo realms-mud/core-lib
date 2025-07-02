@@ -13,89 +13,185 @@ public void Setup()
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where morning mist often lingers, creating a dreamy quality as sunlight "
-        "gradually filters through the vaporous cover",
-        " where birdsong seems especially clear in the still air, echoing gently "
-        "between the sheltering slopes as day begins"
+        " misty with lingering vapors",
+        " clear with echoing birdsong",
+        " dreamy in filtered sunlight",
+        " peaceful in still morning air",
+        " gentle in gradual awakening",
+        " serene with morning vapors",
+        " quiet in sheltered dawn",
+        " fresh with protected dew",
+        " tranquil in early light",
+        " idyllic in morning mist"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where dew remains longer than in more exposed areas, creating a sparkling "
-        "display across grass and foliage as light strengthens",
-        " where the protected nature of the setting creates a gentle awakening, warmth "
-        "arriving gradually rather than with the sudden intensity of open lands"
+        " sparkling with lingering dew",
+        " gentle in gradual warming",
+        " protected from harsh exposure",
+        " fresh in moderated light",
+        " peaceful in sheltered awakening",
+        " lush in morning moisture",
+        " serene in gentle illumination",
+        " quiet in protected morning",
+        " beautiful in soft light",
+        " tranquil in morning peace"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where even midday heat is moderated by the sheltering terrain, creating "
-        "a pleasant environment when more exposed areas might feel oppressive",
-        " where the full light reveals the rich variety of plant life that thrives "
-        "in this protected pocket, often more lush than surrounding regions"
+        " pleasant in moderated heat",
+        " lush with thriving plant life",
+        " comfortable in sheltered exposure",
+        " rich in protected growth",
+        " peaceful in gentle warmth",
+        " verdant in ideal conditions",
+        " serene in moderate light",
+        " beautiful in full bloom",
+        " tranquil in perfect conditions",
+        " idyllic in sheltered sunshine"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where golden light spills across the gentle slopes, creating an inviting "
-        "warmth that seems to gather in this natural cradle",
-        " where the lengthening shadows enhance the sense of enclosure and protection, "
-        "the surrounding higher ground embracing the lowland between"
+        " golden in spilling light",
+        " warm in natural cradle",
+        " embraced by lengthening shadows",
+        " protected by surrounding slopes",
+        " beautiful in gathering warmth",
+        " peaceful in afternoon glow",
+        " serene in golden illumination",
+        " tranquil in sheltered warmth",
+        " idyllic in perfect light",
+        " gentle in afternoon peace"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset light often creates a particularly magical quality, the vale "
-        "holding a golden glow while shadows deepen around its edges",
-        " where cooling air sometimes creates tendrils of mist that begin to form "
-        "along streams or in the lowest hollows as evening advances"
+        " magical in golden glow",
+        " misty along forming streams",
+        " peaceful in gathered light",
+        " beautiful in sunset colors",
+        " serene in evening warmth",
+        " tranquil in gathering dusk",
+        " idyllic in golden hour",
+        " gentle in cooling air",
+        " romantic in evening glow",
+        " dreamy in fading light"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where twilight seems to linger, the sheltered environment holding the day's "
-        "last light while surrounding areas have already surrendered to darkness",
-        " where evening birdsong creates a peaceful chorus, the acoustics of the vale "
-        "gathering and enhancing these natural vespers"
+        " lingering with last light",
+        " peaceful in evening chorus",
+        " protective in gathering darkness",
+        " serene in twilight embrace",
+        " tranquil in evening acoustics",
+        " gentle in fading illumination",
+        " beautiful in twilight peace",
+        " idyllic in evening calm",
+        " dreamy in gathering shadows",
+        " peaceful in natural vespers"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the darkness feels protective rather than threatening, the embracing "
-        "land creating a natural sanctuary under the stars",
-        " where night sounds are softened and contained by the surrounding terrain, "
-        "creating an intimate soundscape different from more open areas"
+        " protective under starlight",
+        " intimate in night sounds",
+        " peaceful in embracing darkness",
+        " serene under star sanctuary",
+        " tranquil in night embrace",
+        " gentle in protective darkness",
+        " beautiful in starlit peace",
+        " idyllic in night security",
+        " dreamy in contained darkness",
+        " quiet in natural boundaries"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the sheltered environment often develops its own patterns of air "
-        "movement, sometimes holding still while breezes pass overhead",
-        " where nocturnal creatures move with a sense of security, the natural "
-        "boundaries providing orientation even in the deepest darkness"
+        " still in sheltered air",
+        " secure in natural boundaries",
+        " peaceful in protected darkness",
+        " tranquil in oriented night",
+        " serene in contained stillness",
+        " gentle in night security",
+        " beautiful in deep peace",
+        " idyllic in night protection",
+        " dreamy in sheltered quiet",
+        " quiet in embracing darkness"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the vale becomes a vessel of deepest night, holding darkness like "
-        "precious liquid in the cradle of surrounding land",
-        " where the sense of enclosure reaches its peak, creating a place apart "
-        "from the wider world, a secret garden beneath the midnight stars"
+        " holding precious darkness",
+        " secret under midnight stars",
+        " peaceful in deepest enclosure",
+        " tranquil in midnight cradle",
+        " serene in contained darkness",
+        " gentle in midnight embrace",
+        " beautiful in star-filled peace",
+        " idyllic in deepest night",
+        " dreamy in midnight sanctuary",
+        " mystical in perfect enclosure"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where frost often forms in beautiful patterns, lingering in shadowed "
-        "areas while surroundings might have already thawed in morning sun",
-        " where snow creates a pristine blanket that transforms the vale into a "
-        "scene of quiet winter beauty protected from harsh winds"
+        " frosted in beautiful patterns",
+        " pristine with protected snow",
+        " peaceful in winter beauty",
+        " gentle in sheltered cold",
+        " serene in winter protection",
+        " tranquil in snow blanket",
+        " beautiful in winter peace",
+        " idyllic in pristine white",
+        " dreamy in winter quiet",
+        " magical in frost patterns"
         }));
 
     addSeasonDescription("spring", ({
-        " where wildflowers appear in spectacular profusion, the sheltered "
-        "environment encouraging bold displays of color among fresh greenery",
-        " where the protected setting often hosts the first butterfly sightings "
-        "and earliest birdsong, spring arriving here before surrounding terrain"
+        " spectacular with wildflowers",
+        " early with butterfly sightings",
+        " vibrant in color displays",
+        " fresh with spring arrival",
+        " peaceful in early warmth",
+        " beautiful in spring profusion",
+        " serene in seasonal awakening",
+        " tranquil in spring peace",
+        " idyllic in perfect spring",
+        " dreamy in flower paradise"
         }));
 
     addSeasonDescription("summer", ({
-        " where the height of growing season transforms the vale into a lush "
-        "paradise, plants thriving in the protected microclimate",
-        " where the natural enclosure creates perfect conditions for a rich "
-        "ecosystem of flora and fauna, often more diverse than nearby areas"
+        " lush in protected paradise",
+        " rich with diverse ecosystem",
+        " peaceful in perfect conditions",
+        " verdant in sheltered growth",
+        " beautiful in summer abundance",
+        " serene in peak season",
+        " tranquil in lush peace",
+        " idyllic in summer perfection",
+        " dreamy in green abundance",
+        " magical in summer richness"
         }));
 
     addSeasonDescription("autumn", ({
-        " where fall colors create a particularly striking display, the vale "
-        "appearing like a cup filled with flaming hues of red and gold",
-        " where the first frosts arrive later than in exposed areas, the sheltered "
-        "setting extending the final warm days before winter's approach"
+        " striking with flaming colors",
+        " late with extended warmth",
+        " beautiful in autumn cup",
+        " peaceful in fall protection",
+        " serene in golden display",
+        " tranquil in autumn peace",
+        " idyllic in fall beauty",
+        " dreamy in seasonal colors",
+        " magical in autumn light",
+        " gentle in extended season"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## vale nestled between gentle slopes, creating a naturally sheltered environment that feels set apart from the surrounding terrain, typically featuring lusher vegetation and a sense of peaceful seclusion");
+    addDescriptionTemplate("a ##Adjective## vale nestled between gentle "
+        "slopes, creating natural shelter and peaceful seclusion");
+
+    addItemTemplate("The vale forms a natural depression between gentle "
+        "slopes, creating a sheltered environment that feels removed from "
+        "the surrounding terrain. The protected location typically supports "
+        "lusher vegetation than nearby areas, with streams often flowing "
+        "through the lowest points. The enclosing slopes provide shelter "
+        "from wind and harsh weather, creating ideal conditions for both "
+        "plant and animal life. This natural sanctuary offers a sense of "
+        "peace and seclusion rare in more exposed landscapes.");
 }

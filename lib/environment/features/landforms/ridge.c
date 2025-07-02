@@ -8,94 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("ridge");
-    addAdjectives(({ "narrow", "serrated", "winding", "exposed", "knife-edge",
-        "undulating", "precipitous", "windy", "hazardous", "elevated" }));
+    addAdjectives(({ "exposed", "windswept", "narrow", "elevated", "rocky",
+        "spine-like", "continuous", "sharp-crested", "barren", "commanding" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where early light creates a dramatic interplay of illumination and shadow "
-        "along both sides of the linear elevation, emphasizing its knife-edge quality",
-        " where morning mist often clings to the slopes below while the ridge itself "
-        "stands clear, appearing to float above a clouded sea"
+        " bright with first light",
+        " windswept in morning air",
+        " exposed to dawn's glow",
+        " elevated above shadowed valleys",
+        " commanding in morning clarity",
+        " narrow against brightening sky",
+        " rocky in early illumination",
+        " spine-like in dawn outline",
+        " sharp-crested in first rays",
+        " continuous in morning light"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the rising sun casts the ridge's shadow far to the west, creating "
-        "a moving line that traces the formation's distinctive profile",
-        " where birds ride thermals rising along its flanks, their flight paths "
-        "following the natural highway created by this elevated spine"
+        " clear in strengthening light",
+        " windswept in morning breezes",
+        " exposed in full morning sun",
+        " elevated in bright visibility",
+        " commanding in morning views",
+        " narrow in detailed clarity",
+        " rocky in morning illumination",
+        " spine-like in clear outline",
+        " sharp-crested in bright light",
+        " continuous in morning exposure"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where midday light eliminates most shadows, transforming the ridge into "
-        "a clearly defined line against the landscape, every detail exposed",
-        " where the elevated path offers little shelter from sun or elements, the "
-        "full heat of day tempered only by the constant wind"
+        " harsh in direct sunlight",
+        " windswept in peak exposure",
+        " exposed in blazing clarity",
+        " elevated in noon brightness",
+        " commanding in full illumination",
+        " narrow in stark definition",
+        " rocky in shadowless light",
+        " spine-like in harsh clarity",
+        " sharp-crested in blazing sun",
+        " continuous in peak visibility"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the western slope catches rich afternoon light while the eastern "
-        "face falls into shadow, emphasizing the ridge's dividing nature",
-        " where travelers moving along its length cast long shadows that sometimes "
-        "fall away into space on either side of the narrow path"
+        " textured in angled light",
+        " windswept in afternoon air",
+        " exposed in declining sun",
+        " elevated in golden illumination",
+        " commanding in afternoon views",
+        " narrow in shadow patterns",
+        " rocky in afternoon glow",
+        " spine-like in golden light",
+        " sharp-crested in warm sun",
+        " continuous in afternoon clarity"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset transforms the ridge into a glowing line of fire as the "
-        "last light catches its highest points while valleys darken",
-        " where the elevated spine stands silhouetted against the evening sky, "
-        "its jagged profile creating a distinctive horizon line"
+        " dramatic against sunset sky",
+        " windswept in evening air",
+        " exposed in golden light",
+        " elevated in evening grandeur",
+        " commanding in sunset views",
+        " narrow in silhouette",
+        " rocky in evening glow",
+        " spine-like against colored sky",
+        " sharp-crested in alpenglow",
+        " continuous in evening beauty"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the failing light reduces the ridge to its essential form, a dark "
-        "line against the deepening blue, its details lost to shadow",
-        " where navigation becomes treacherous as visibility diminishes, the drop "
-        "on either side an increasing presence felt more than seen"
+        " silhouetted against twilight",
+        " windswept in cooling air",
+        " exposed in fading light",
+        " elevated in twilight grandeur",
+        " commanding in dusk mystery",
+        " narrow in darkening outline",
+        " rocky in twilight shadow",
+        " spine-like in gathering gloom",
+        " sharp-crested in dusk silhouette",
+        " continuous in evening shadow"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where moonlight creates a silvery path along the ridge's spine, with "
-        "darkness pooling in the depths on either side",
-        " where the ridge becomes a narrow bridge between stars above and void "
-        "below, a precarious path suspended in night"
+        " stark against starry sky",
+        " windswept in night air",
+        " exposed under stars",
+        " elevated in nocturnal grandeur",
+        " commanding in night views",
+        " narrow in moonlit outline",
+        " rocky in lunar light",
+        " spine-like in night silhouette",
+        " sharp-crested under stars",
+        " continuous in night clarity"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the narrow path seems most isolated, a tenuous line traced between "
-        "two darker voids, requiring careful movement in limited visibility",
-        " where the wind's voice changes as it encounters this obstacle, creating "
-        "moaning sounds that add to the sense of exposure and isolation"
+        " mysterious in deep darkness",
+        " windswept in night breezes",
+        " exposed to night elements",
+        " elevated in night mystery",
+        " commanding in felt presence",
+        " narrow in unseen outline",
+        " rocky in night solidity",
+        " spine-like in night form",
+        " sharp-crested in darkness",
+        " continuous in night presence"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the deepest night conceals the drops on either side without "
-        "diminishing awareness of their presence, a balance felt in every step",
-        " where stars wheel overhead while the ridge itself becomes a pathway of "
-        "deeper darkness, a line drawn through the night landscape"
+        " eternal under midnight stars",
+        " windswept in cosmic air",
+        " exposed to stellar influence",
+        " elevated in midnight majesty",
+        " commanding in night dominion",
+        " narrow in stellar outline",
+        " rocky in midnight solidity",
+        " spine-like in cosmic form",
+        " sharp-crested under cosmos",
+        " continuous in stellar permanence"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where snow cornices form along the edge, deceptively extending the "
-        "apparent width while actually creating treacherous false footing",
-        " where ice coats exposed rock and wind-sculpted snow forms elegant curves "
-        "and dangerous slick surfaces along the narrow path"
+        " stark in winter exposure",
+        " windswept in harsh conditions",
+        " exposed to winter storms",
+        " elevated in winter grandeur",
+        " commanding in snow clarity",
+        " narrow in winter definition",
+        " rocky in frozen conditions",
+        " spine-like in winter outline",
+        " sharp-crested in cold air",
+        " continuous in winter endurance"
         }));
 
     addSeasonDescription("spring", ({
-        " where snowmelt reveals the true path again and first wildflowers emerge "
-        "in protected pockets, adding unexpected color to the stark elevation",
-        " where new growth on the slopes below creates a vivid contrast with the "
-        "weathered stone of the ridge itself, still bearing winter's marks"
+        " fresh in spring breezes",
+        " windswept in mild air",
+        " exposed to spring weather",
+        " elevated in spring clarity",
+        " commanding in spring views",
+        " narrow in spring definition",
+        " rocky with spring runoff",
+        " spine-like in spring outline",
+        " sharp-crested in clear air",
+        " continuous in spring renewal"
         }));
 
     addSeasonDescription("summer", ({
-        " where the ridge offers a cooler route through the landscape, catching "
-        "breezes that don't reach the valleys on either side",
-        " where the exposed stone radiates accumulated heat and shimmers in the "
-        "clear air, creating mirages that distort distant views"
+        " blazing in summer heat",
+        " windswept in hot air",
+        " exposed to summer sun",
+        " elevated in summer haze",
+        " commanding in clear weather",
+        " narrow in heat shimmer",
+        " rocky in blazing light",
+        " spine-like in summer outline",
+        " sharp-crested in hot sun",
+        " continuous in summer exposure"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the first frosts touch the ridge before the lands below, and wind "
-        "whips fallen leaves along its length in spiraling patterns",
-        " where the changing colors spread across the slopes on either side, viewed "
-        "as if from a natural balcony suspended above the seasonal transformation"
+        " clear in autumn air",
+        " windswept in cool breezes",
+        " exposed to autumn weather",
+        " elevated in crisp clarity",
+        " commanding in autumn views",
+        " narrow in clear definition",
+        " rocky in autumn light",
+        " spine-like in autumn outline",
+        " sharp-crested in cool air",
+        " continuous in autumn beauty"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## ridge extending like a spine across the landscape, its narrow top creating a natural but often precarious pathway with slopes falling away on both sides, offering expansive views and a keen sense of exposure");
+    addDescriptionTemplate("a ##Adjective## ridge forming an elevated "
+        "linear feature across the landscape");
+
+    addItemTemplate("The ridge extends as a narrow, elevated landform that "
+        "rises above the surrounding terrain like the spine of some geological "
+        "beast. Formed by resistant rock layers or tectonic forces, it creates "
+        "a continuous barrier that often defines watersheds and travel routes. "
+        "The exposed position makes it subject to constant wind and weather, "
+        "resulting in sparse vegetation and dramatic views. The ridge crest "
+        "may be sharp and knife-like or more rounded depending on the rock "
+        "type and weathering, while its slopes often drop steeply into valleys "
+        "on either side.");
 }

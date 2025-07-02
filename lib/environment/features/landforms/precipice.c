@@ -8,94 +8,192 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("precipice");
-    addAdjectives(({ "sheer", "vertigo-inducing", "dizzying", "dramatic", "stark",
-        "plummeting", "breathtaking", "forbidding", "treacherous", "abrupt" }));
+    addAdjectives(({ "sheer", "terrifying", "vertical", "dizzying", "dangerous",
+        "vertiginous", "stark", "imposing", "deadly", "breathtaking" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where first light touches the edge while the depths below remain hidden "
-        "in shadow, creating an unsettling sense of a drop into nothingness",
-        " where rising mist from below catches the early rays, creating an ethereal "
-        "veil that softens but does not hide the terrifying drop"
+        " terrifying in morning clarity",
+        " sheer in dawn's revealing light",
+        " vertical in early illumination",
+        " dizzying in morning exposure",
+        " dangerous in dawn visibility",
+        " vertiginous in first light",
+        " stark in morning definition",
+        " imposing in dawn grandeur",
+        " deadly in clear revelation",
+        " breathtaking in sunrise beauty"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where growing light slowly reveals the full depth of the precipice, birds "
-        "soaring beneath you riding updrafts created by the sheer face",
-        " where morning sun casts stark shadows across the face, highlighting every "
-        "jutting rock and crevice in the nearly vertical terrain"
+        " sheer in full morning light",
+        " terrifying in bright clarity",
+        " vertical in stark exposure",
+        " dizzying in clear visibility",
+        " dangerous in full revelation",
+        " vertiginous in morning detail",
+        " stark in bright definition",
+        " imposing in morning grandeur",
+        " deadly in obvious peril",
+        " breathtaking in morning majesty"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the harsh midday light shows the precipice in all its terrifying "
-        "glory, no detail hidden, the distant bottom clearly visible",
-        " where the vertical drop creates its own microclimate, sun-baked at the rim "
-        "while cool shadows persist below even at brightest noon"
+        " sheer in harsh illumination",
+        " terrifying in shadowless clarity",
+        " vertical in stark exposure",
+        " dizzying in full revelation",
+        " dangerous in blazing visibility",
+        " vertiginous in noon definition",
+        " stark in harsh light",
+        " imposing in noon grandeur",
+        " deadly in obvious threat",
+        " breathtaking in intense beauty"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the angle of light accentuates the texture of the face, creating a "
-        "complex pattern of light and shadow down the dizzying drop",
-        " where birds circle in the thermals rising along the heated cliff face, "
-        "their cries echoing against the stone as the day wanes"
+        " sheer in angled sunlight",
+        " terrifying in textured light",
+        " vertical in afternoon clarity",
+        " dizzying in golden exposure",
+        " dangerous in warm visibility",
+        " vertiginous in afternoon detail",
+        " stark in golden definition",
+        " imposing in afternoon grandeur",
+        " deadly in clear peril",
+        " breathtaking in golden beauty"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset light strikes the face at an angle, turning the stone gold "
-        "and red while the depths fall into deepening shadow",
-        " where the precipice's edge catches the last fiery light, creating a "
-        "glowing line between the world above and the darkness below"
+        " sheer in evening drama",
+        " terrifying in sunset glow",
+        " vertical in golden light",
+        " dizzying in evening beauty",
+        " dangerous in alpenglow",
+        " vertiginous in evening grandeur",
+        " stark in sunset definition",
+        " imposing in evening majesty",
+        " deadly in beautiful peril",
+        " breathtaking in sunset glory"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where failing light erases the bottom from view first, creating an "
-        "increasingly unsettling sense of a drop into infinite darkness",
-        " where the vertical face becomes a wall of deepening shadow, details "
-        "fading while the sheer scale remains an imposing presence"
+        " sheer in gathering darkness",
+        " terrifying in twilight mystery",
+        " vertical in dusk shadow",
+        " dizzying in fading light",
+        " dangerous in dim visibility",
+        " vertiginous in twilight fear",
+        " stark in darkening outline",
+        " imposing in dusk mystery",
+        " deadly in hidden threat",
+        " breathtaking in twilight beauty"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where moonlight transforms the precipice into a study in silver and "
-        "absolute black, the depth more sensed than seen",
-        " where stars seem to begin just beyond the edge, creating a disorienting "
-        "blend of sky and void beneath your feet"
+        " sheer in moonlit terror",
+        " terrifying in night mystery",
+        " vertical in lunar light",
+        " dizzying in night exposure",
+        " dangerous in night concealment",
+        " vertiginous in stellar fear",
+        " stark in night definition",
+        " imposing in nocturnal grandeur",
+        " deadly in night threat",
+        " breathtaking in night beauty"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the darkness conceals the depth but not the knowledge of the "
-        "plummeting emptiness beyond the edge, a tension felt in the body",
-        " where night creatures cry from the depths, their voices rising up the "
-        "face to create an eerie soundscape in the darkness"
+        " sheer in felt terror",
+        " terrifying in night presence",
+        " vertical in unseen threat",
+        " dizzying in night mystery",
+        " dangerous in concealed peril",
+        " vertiginous in deep fear",
+        " stark in night reality",
+        " imposing in felt presence",
+        " deadly in hidden danger",
+        " breathtaking in night mystery"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the division between solid ground and empty air remains a palpable "
-        "line even in the deepest darkness, a boundary that demands respect",
-        " where the void beyond the edge seems most profound, a piece of night "
-        "somehow deeper than the darkness of the midnight sky"
+        " sheer in cosmic terror",
+        " terrifying in stellar presence",
+        " vertical in midnight threat",
+        " dizzying in cosmic fear",
+        " dangerous in absolute peril",
+        " vertiginous in stellar dread",
+        " stark in midnight reality",
+        " imposing in cosmic presence",
+        " deadly in ultimate danger",
+        " breathtaking in stellar beauty"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where ice forms along the edge and in crevices of the face, creating "
-        "treacherous beauty and the occasional sound of breaking icicles falling",
-        " where winter winds whip more fiercely along the rim, sometimes carrying "
-        "snow horizontally past the edge to vanish into the void"
+        " sheer with icy coating",
+        " terrifying in winter conditions",
+        " vertical with frozen dangers",
+        " dizzying in snow and ice",
+        " dangerous with winter hazards",
+        " vertiginous in icy terror",
+        " stark in winter exposure",
+        " imposing in frozen grandeur",
+        " deadly with ice formation",
+        " breathtaking in winter beauty"
         }));
 
     addSeasonDescription("spring", ({
-        " where snowmelt creates ephemeral waterfalls that cascade down the face, "
-        "catching light and adding their music to the precipice's presence",
-        " where hardy plants begin to green in cracks and ledges, demonstrating "
-        "life's persistence even in this vertical world"
+        " sheer with spring runoff",
+        " terrifying despite mild weather",
+        " vertical with water dangers",
+        " dizzying in spring clarity",
+        " dangerous with unstable edges",
+        " vertiginous in spring fear",
+        " stark in spring exposure",
+        " imposing in spring grandeur",
+        " deadly with erosion risks",
+        " breathtaking in spring beauty"
         }));
 
     addSeasonDescription("summer", ({
-        " where the stone face radiates accumulated heat and the clear air allows "
-        "views to the utmost depths and across impossible distances",
-        " where raptors nest on inaccessible ledges, their young safe from "
-        "predators in this vertical realm between earth and sky"
+        " sheer in blazing heat",
+        " terrifying in summer exposure",
+        " vertical in harsh conditions",
+        " dizzying in heat shimmer",
+        " dangerous in summer clarity",
+        " vertiginous in blazing fear",
+        " stark in summer harshness",
+        " imposing in summer grandeur",
+        " deadly in heat exposure",
+        " breathtaking in summer majesty"
         }));
 
     addSeasonDescription("autumn", ({
-        " where wind-borne leaves occasionally drift over the edge, spiraling "
-        "down into the depths in a demonstration of the sheer drop",
-        " where morning fog often fills the space below, creating the illusion "
-        "of standing at the edge of a clouded sea rather than a precipice"
+        " sheer in autumn clarity",
+        " terrifying in crisp visibility",
+        " vertical in clear conditions",
+        " dizzying in autumn exposure",
+        " dangerous with falling debris",
+        " vertiginous in autumn fear",
+        " stark in autumn definition",
+        " imposing in autumn grandeur",
+        " deadly with seasonal hazards",
+        " breathtaking in autumn beauty"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## precipice where the ground ends with alarming suddenness, dropping away in a nearly vertical face that creates an immediate sense of exposure and vulnerability, the sheer fall inspiring both fear and fascination");
+    addDescriptionTemplate("a ##Adjective## precipice dropping away "
+        "in a terrifying vertical plunge");
+
+    addItemTemplate("The precipice forms a sheer, nearly vertical drop that "
+        "plunges dramatically downward from the edge of higher ground. This "
+        "terrifying geological feature represents the ultimate expression of "
+        "gravity's power, where weathering and erosion have created a cliff "
+        "face so steep that safe passage is impossible without specialized "
+        "equipment. The exposed rock face may show layers of geological "
+        "history, while loose stones and debris at the top edge serve as "
+        "constant reminders of the precipice's deadly nature. The mere "
+        "proximity to such a drop can induce vertigo and fear in even "
+        "experienced climbers.");
 }

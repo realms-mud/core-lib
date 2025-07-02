@@ -67,6 +67,7 @@ public void Setup()
     addAlias("track");
 
     addDescriptionTemplate("a ##Adjective## path winding through the area");
+
     addItemTemplate("The path forms a narrow corridor, its surface worn by many travelers. "
         "It winds through the landscape, following the path of least resistance. "
         "The ground is compacted and clear of obstacles, showing the marks of countless journeys.");

@@ -8,94 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("promontory");
-    addAdjectives(({ "jutting", "windswept", "elevated", "panoramic", "dramatic",
-        "protruding", "exposed", "commanding", "rocky", "isolated" }));
+    addAdjectives(({ "jutting", "prominent", "elevated", "strategic", "commanding",
+        "windswept", "exposed", "rocky", "isolated", "dramatic" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where the rising sun bathes the outstretched formation in first light, "
-        "creating a golden island above a sea of shadow below",
-        " where morning mist often surrounds the base, enhancing the sense of "
-        "a projection into space, disconnected from the world below"
+        " prominent in first light",
+        " commanding in dawn glow",
+        " jutting into morning sky",
+        " elevated in early brightness",
+        " strategic in dawn clarity",
+        " windswept in morning air",
+        " exposed to first rays",
+        " rocky in morning illumination",
+        " isolated in dawn grandeur",
+        " dramatic in sunrise beauty"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the promontory stands fully revealed in morning light, its "
-        "distinctive shape casting a moving shadow across the lands beneath",
-        " where birds ride air currents around its edges and the warming stone "
-        "releases the scents of herbs and lichens into the clear air"
+        " commanding in morning views",
+        " prominent in clear light",
+        " jutting in bright visibility",
+        " elevated in morning clarity",
+        " strategic in daylight advantage",
+        " windswept in morning breezes",
+        " exposed in full illumination",
+        " rocky in morning detail",
+        " isolated in bright exposure",
+        " dramatic in morning grandeur"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the exposed position offers no shelter from the sun's full "
-        "strength, the rock hot underfoot and the air shimmering with heat",
-        " where the shadow shrinks to little more than an outline directly beneath "
-        "the outcropping, seemingly drawing the formation closer to the sky"
+        " commanding in peak visibility",
+        " prominent in harsh clarity",
+        " jutting in shadowless light",
+        " elevated in noon brightness",
+        " strategic in full advantage",
+        " windswept in peak exposure",
+        " exposed in blazing sun",
+        " rocky in stark detail",
+        " isolated in noon solitude",
+        " dramatic in intense light"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the westward face begins to glow with golden light while eastern "
-        "aspects fall into shadow, enhancing the three-dimensional drama",
-        " where the extended position captures cooling breezes, offering relief "
-        "from the day's heat while providing unparalleled vistas"
+        " commanding in golden views",
+        " prominent in angled light",
+        " jutting in afternoon glow",
+        " elevated in warm illumination",
+        " strategic in afternoon advantage",
+        " windswept in warm air",
+        " exposed in declining sun",
+        " rocky in textured light",
+        " isolated in afternoon peace",
+        " dramatic in golden beauty"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset transforms the promontory into a platform of fire and gold, "
-        "the last place to surrender the light as evening advances",
-        " where the extended position creates a perfect viewpoint for watching "
-        "the sun's descent, the world spread out below in all directions"
+        " commanding in sunset views",
+        " prominent against colored sky",
+        " jutting in evening grandeur",
+        " elevated in alpenglow",
+        " strategic in evening position",
+        " windswept in cooling air",
+        " exposed in golden light",
+        " rocky in evening glow",
+        " isolated in sunset beauty",
+        " dramatic in evening majesty"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where the failing light outlines the jutting formation against the "
-        "darkening sky, emphasizing its isolated projection from the main mass",
-        " where the promontory seems to float as darkness claims the land below "
-        "while the outcrop itself remains defined against the twilight sky"
+        " commanding in twilight views",
+        " prominent in silhouette",
+        " jutting into darkening sky",
+        " elevated in dusk mystery",
+        " strategic in twilight position",
+        " windswept in evening air",
+        " exposed in fading light",
+        " rocky in twilight shadow",
+        " isolated in gathering gloom",
+        " dramatic in dusk silhouette"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where the promontory becomes a platform suspended between earth and sky, "
-        "offering unobstructed views of stars in all directions",
-        " where moonlight transforms the jutting formation into a silver island, "
-        "the surrounding depths lost in shadow and mystery"
+        " commanding in night views",
+        " prominent under stars",
+        " jutting into starry sky",
+        " elevated in nocturnal grandeur",
+        " strategic in night position",
+        " windswept in night air",
+        " exposed under moonlight",
+        " rocky in lunar glow",
+        " isolated in night solitude",
+        " dramatic in stellar beauty"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the extended position creates a profound sense of isolation, "
-        "surrounded by darkness yet intimately connected to the night sky",
-        " where the wind's voice changes as it encounters this interruption "
-        "in its path, creating a unique song in the darkness"
+        " commanding in felt presence",
+        " prominent in night mystery",
+        " jutting into deep darkness",
+        " elevated in night majesty",
+        " strategic in unseen advantage",
+        " windswept in night breezes",
+        " exposed to night elements",
+        " rocky in night solidity",
+        " isolated in deep solitude",
+        " dramatic in night mystery"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the deepest night emphasizes the vulnerability of this exposed "
-        "position while also offering unparalleled communion with the stars",
-        " where the division between earth and sky seems most tenuous, as if "
-        "the promontory floats unconnected to either realm"
+        " commanding in cosmic views",
+        " prominent under starfield",
+        " jutting into cosmic space",
+        " elevated in stellar majesty",
+        " strategic in midnight position",
+        " windswept in cosmic air",
+        " exposed to stellar influence",
+        " rocky in midnight solidity",
+        " isolated in cosmic solitude",
+        " dramatic in stellar grandeur"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where winter winds assail the exposed formation from all sides, sometimes "
-        "creating snowdrifts in strange patterns unlike those on level ground",
-        " where ice forms on windward surfaces and snow collects in depressions, "
-        "transforming the rugged outcrop into a sculpture of white and stone"
+        " commanding in winter grandeur",
+        " prominent in snow clarity",
+        " jutting through winter storms",
+        " elevated in cold majesty",
+        " strategic in winter advantage",
+        " windswept in harsh conditions",
+        " exposed to winter elements",
+        " rocky in frozen conditions",
+        " isolated in winter solitude",
+        " dramatic in winter beauty"
         }));
 
     addSeasonDescription("spring", ({
-        " where hardy plants emerge from cracks and crevices, creating surprising "
-        "pockets of color against the weathered stone surface",
-        " where migrating birds often rest on this landmark feature, using its "
-        "elevation to survey the terrain before continuing their journey"
+        " commanding in spring clarity",
+        " prominent in mild weather",
+        " jutting into spring sky",
+        " elevated in spring freshness",
+        " strategic in spring advantage",
+        " windswept in gentle breezes",
+        " exposed to spring elements",
+        " rocky with spring runoff",
+        " isolated in spring peace",
+        " dramatic in spring renewal"
         }));
 
     addSeasonDescription("summer", ({
-        " where the stone absorbs the sun's heat, creating a warm platform from "
-        "which to view the world below through clear summer air",
-        " where lizards bask on sun-warmed rocks and thermal updrafts create "
-        "perfect conditions for soaring birds that nest in its crevices"
+        " commanding in summer heat",
+        " prominent in blazing clarity",
+        " jutting into summer sky",
+        " elevated in heat shimmer",
+        " strategic in summer advantage",
+        " windswept in hot air",
+        " exposed to blazing sun",
+        " rocky in intense heat",
+        " isolated in summer solitude",
+        " dramatic in summer grandeur"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the promontory stands above a landscape transformed by autumn "
-        "colors, offering views of the seasonal change spreading below",
-        " where early morning frost forms delicate patterns across stone surfaces, "
-        "melting quickly as the sun finds this elevated, exposed position"
+        " commanding in autumn clarity",
+        " prominent in crisp air",
+        " jutting into autumn sky",
+        " elevated in clear weather",
+        " strategic in autumn advantage",
+        " windswept in cool breezes",
+        " exposed to autumn elements",
+        " rocky in autumn light",
+        " isolated in autumn peace",
+        " dramatic in autumn beauty"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## promontory extending boldly outward from the main terrain, creating a natural observation point that commands views in multiple directions and instills a profound sense of elevation and exposure");
+    addDescriptionTemplate("a ##Adjective## promontory jutting out from "
+        "the surrounding landscape");
+
+    addItemTemplate("The promontory extends outward from the main body of "
+        "land, creating a prominent elevated feature that commands excellent "
+        "views of the surrounding area. This natural observation point rises "
+        "significantly above adjacent terrain, often formed by resistant rock "
+        "that has weathered more slowly than surrounding materials. The exposed "
+        "position subjects it to constant wind and weather, while its strategic "
+        "location has likely made it significant for navigation, defense, or "
+        "observation throughout history. The steep sides and elevated position "
+        "create a natural fortress-like quality that dominates the landscape.");
 }

@@ -14,30 +14,30 @@ public void Setup()
     addAlias("stair");
     addAlias("steps");
 
-    addAdjectives(({ "that runs in a direct line between levels",
+    addAdjectives(({ "that ascends in a direct line",
         "with evenly spaced wooden steps",
         "that has been worn smooth by countless footfalls",
         "with a simple wooden handrail along one side",
         "that creaks softly under weight",
         "made of sturdy oak planks",
         "with steps that sag slightly in the middle",
-        "that connects the floors directly" }));
+        "that leads directly to the upper floor" }));
 
     addDescriptionTemplate("a straight staircase ##Adjective## "
-        "provides access between levels");
+        "provides access to other level");
     addSomeLightDescriptionTemplate("a straight staircase ##Adjective## "
-        "connects the floors in clear view");
+        "leads upward in clear view");
     addNearDarkDescriptionTemplate("a staircase can be dimly perceived "
-        "running in a straight line");
+        "leading upward in a straight line");
     addLowLightDescriptionTemplate("a straight staircase "
-        "with simple construction connects the levels");
+        "with simple construction leads upward");
     addDimLightDescriptionTemplate("a straight staircase ##Adjective## "
-        "links the different floors");
+        "ascends to the floor above");
 
     addItemTemplate("The straight staircase consists of evenly spaced "
-        "steps that connect floors directly without turns or curves. "
+        "steps that climb directly upward without turns or curves. "
         "A simple handrail provides support along one side, while the "
         "steps themselves show the wear of regular use. The construction "
         "is practical and efficient, designed for easy daily access "
-        "between different levels.");
+        "between floors.");
 }

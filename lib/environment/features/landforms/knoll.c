@@ -8,67 +8,191 @@ inherit "/lib/environment/features/baseFeature.c";
 public void Setup()
 {
     Name("knoll");
-    addAdjectives(({ "grassy", "rounded", "prominent", "smooth", "distinct", "verdant", "elevated", "scenic" }));
+    addAdjectives(({ "small", "rounded", "grassy", "gentle", "tree-crowned",
+        "peaceful", "modest", "quiet", "pastoral", "secluded" }));
 
     // Time of Day Descriptions
     addTimeOfDayDescription("dawn", ({
-        " where early light strikes its crown first, leaving its base in lingering shadow as day begins",
-        " where morning dew creates a glistening mantle across its smooth, rounded top"
+        " peaceful in morning light",
+        " gentle in dawn's glow",
+        " rounded in early illumination",
+        " grassy with morning dew",
+        " small in modest beauty",
+        " tree-crowned in dawn quiet",
+        " quiet in morning stillness",
+        " pastoral in dawn peace",
+        " modest in gentle light",
+        " secluded in morning calm"
         }));
+
     addTimeOfDayDescription("morning", ({
-        " where the knoll stands distinct against the morning sky, its grassy slopes catching the strengthening light",
-        " where birdsong rises from the thickets at its base as the sun climbs higher over its curved profile"
+        " bright in morning sunshine",
+        " gentle in warming light",
+        " rounded in clear visibility",
+        " grassy in morning freshness",
+        " small in perfect proportion",
+        " tree-crowned in morning glory",
+        " quiet in morning peace",
+        " pastoral in morning beauty",
+        " modest in daylight charm",
+        " secluded in morning tranquility"
         }));
+
     addTimeOfDayDescription("noon", ({
-        " where the midday sun illuminates every feature of the knoll, leaving no shadow on its exposed summit",
-        " where insects buzz among the sun-warmed grasses that carpet its distinctive rise"
+        " warm in midday sunshine",
+        " gentle in bright light",
+        " rounded in full visibility",
+        " grassy in noon abundance",
+        " small in perfect clarity",
+        " tree-crowned in full glory",
+        " quiet in midday stillness",
+        " pastoral in noon beauty",
+        " modest in bright charm",
+        " secluded in midday peace"
         }));
+
     addTimeOfDayDescription("afternoon", ({
-        " where the rounded top catches afternoon light, glowing warmly against the lengthening shadows",
-        " where the breeze creates waves across the grasses covering its smooth contours"
+        " golden in afternoon light",
+        " gentle in warm illumination",
+        " rounded in textured light",
+        " grassy in afternoon warmth",
+        " small in perfect beauty",
+        " tree-crowned in golden glory",
+        " quiet in afternoon peace",
+        " pastoral in golden hour",
+        " modest in warm charm",
+        " secluded in afternoon calm"
         }));
+
     addTimeOfDayDescription("evening", ({
-        " where sunset light burnishes the knoll's western slope to gold while eastern shadows deepen",
-        " where the elevated mound stands silhouetted against an evening sky painted in fiery hues"
+        " beautiful in evening glow",
+        " gentle in alpenglow",
+        " rounded in soft light",
+        " grassy in cooling air",
+        " small in evening beauty",
+        " tree-crowned in sunset glory",
+        " quiet in evening peace",
+        " pastoral in twilight beauty",
+        " modest in evening charm",
+        " secluded in evening calm"
         }));
+
     addTimeOfDayDescription("dusk", ({
-        " where fading light softly outlines its distinctive shape as darkness gathers around its base",
-        " where a few last rays touch the summit while the surrounding land has already surrendered to night"
+        " peaceful in gathering twilight",
+        " gentle in fading light",
+        " rounded in soft outline",
+        " grassy in evening shadow",
+        " small in twilight beauty",
+        " tree-crowned in dusk silhouette",
+        " quiet in evening stillness",
+        " pastoral in twilight peace",
+        " modest in fading charm",
+        " secluded in gathering gloom"
         }));
+
     addTimeOfDayDescription("night", ({
-        " where moonlight reveals the knoll's smooth silhouette rising distinctly above the darkened landscape",
-        " where stars wheel above its silent form, the grasses silver-tinged in the gentle night light"
+        " serene in moonlight",
+        " gentle under stars",
+        " rounded in lunar glow",
+        " grassy in night dew",
+        " small in night beauty",
+        " tree-crowned in stellar glory",
+        " quiet in night stillness",
+        " pastoral in night peace",
+        " modest in lunar charm",
+        " secluded in night tranquility"
         }));
+
     addTimeOfDayDescription("late night", ({
-        " where the rounded prominence remains visible even in darkness, a deeper shadow against the night sky",
-        " where nocturnal creatures venture across its slopes, their movements barely perceptible in the darkness"
+        " peaceful in deep night",
+        " gentle in night silence",
+        " rounded in felt presence",
+        " grassy in night moisture",
+        " small in night serenity",
+        " tree-crowned in night mystery",
+        " quiet in deep stillness",
+        " pastoral in night beauty",
+        " modest in night charm",
+        " secluded in deep tranquility"
         }));
+
     addTimeOfDayDescription("midnight", ({
-        " where the knoll stands sentinel under the midnight sky, its outline softened by darkness",
-        " where dew forms on every blade of grass, invisible now but waiting to sparkle at dawn's return"
+        " serene under starfield",
+        " gentle in cosmic peace",
+        " rounded in stellar outline",
+        " grassy in midnight dew",
+        " small in cosmic beauty",
+        " tree-crowned under cosmos",
+        " quiet in absolute stillness",
+        " pastoral in midnight peace",
+        " modest in stellar charm",
+        " secluded in cosmic tranquility"
         }));
 
     // Seasonal Descriptions
     addSeasonDescription("winter", ({
-        " where snow smooths its already rounded form, creating an unblemished white dome",
-        " where winter winds sweep across its exposed crown, sometimes revealing frozen ground beneath"
+        " peaceful under snow",
+        " gentle in winter beauty",
+        " rounded in white outline",
+        " grassy beneath snow cover",
+        " small in winter charm",
+        " tree-crowned in winter glory",
+        " quiet in winter stillness",
+        " pastoral in winter peace",
+        " modest in winter beauty",
+        " secluded in winter tranquility"
         }));
 
     addSeasonDescription("spring", ({
-        " where wildflowers bloom in profusion across its slopes, creating patches of color among fresh grass",
-        " where spring rains have awakened the knoll to vibrant life, birds and insects returning to its shelter"
+        " fresh with new growth",
+        " gentle in spring awakening",
+        " rounded in spring clarity",
+        " grassy with spring green",
+        " small in spring beauty",
+        " tree-crowned in spring glory",
+        " quiet in spring peace",
+        " pastoral in spring renewal",
+        " modest in spring charm",
+        " secluded in spring tranquility"
         }));
 
     addSeasonDescription("summer", ({
-        " where the grasses grow tall and lush under the summer sun, creating a verdant crown",
-        " where butterflies and bees move from flower to flower across its sun-warmed slopes"
+        " lush in summer abundance",
+        " gentle in summer warmth",
+        " rounded in summer clarity",
+        " grassy in full growth",
+        " small in summer perfection",
+        " tree-crowned in summer glory",
+        " quiet in summer peace",
+        " pastoral in summer beauty",
+        " modest in summer charm",
+        " secluded in summer tranquility"
         }));
 
     addSeasonDescription("autumn", ({
-        " where the grasses have turned to gold and russet, moving in waves under the autumn winds",
-        " where morning mist often clings to its base while the summit stands clear in the crisp air"
+        " colorful in autumn beauty",
+        " gentle in autumn peace",
+        " rounded in autumn clarity",
+        " grassy in seasonal change",
+        " small in autumn perfection",
+        " tree-crowned in autumn glory",
+        " quiet in autumn stillness",
+        " pastoral in autumn beauty",
+        " modest in autumn charm",
+        " secluded in autumn tranquility"
         }));
 
     // Base Description Template
-    addDescriptionTemplate("a ##Adjective## knoll rising above the surrounding terrain, its distinctly rounded top creating a natural landmark visible from some distance, covered in grasses that respond to every passing breeze");
+    addDescriptionTemplate("a ##Adjective## knoll rising gently as a "
+        "small rounded hill");
+
+    addItemTemplate("The knoll forms a small, rounded elevation that rises "
+        "modestly from the surrounding landscape. Its gentle slopes and "
+        "manageable size create an inviting feature that often serves as "
+        "a natural gathering place or viewpoint. Grasses typically cover "
+        "its surface, while trees may crown its summit, providing shade "
+        "and visual interest. The knoll's modest scale makes it accessible "
+        "and non-threatening, often becoming a focal point for pastoral "
+        "activities or simply a peaceful spot to rest and enjoy views of "
+        "the surrounding countryside.");
 }
