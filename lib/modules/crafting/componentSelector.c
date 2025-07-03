@@ -37,7 +37,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     NumColumns = 2;
-    Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    Dictionary = getDictionary("crafting");
     Data = ([]);
 }
 

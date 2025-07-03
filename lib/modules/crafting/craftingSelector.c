@@ -19,7 +19,7 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    object dictionary = getDictionary("crafting");
     if (dictionary)
     {
         Data = dictionary->getTopLevelCraftingMenu(User);

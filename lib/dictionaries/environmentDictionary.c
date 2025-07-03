@@ -310,13 +310,28 @@ private nomask void calculateSeason()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string currentMonth()
+{
+    string ret = "January"; // Default fallback
+    int *monthDates = sort_array(filter(m_indices(Months), 
+        (: $1 <= $2 :), currentDayOfYear), (: $1 < $2 :));
+
+    if (sizeof(monthDates))
+    {
+        ret = Months[monthDates[sizeof(monthDates) - 1]];
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string currentDayAndYear()
 {
     int *monthDates = sort_array(filter(m_indices(Months), 
         (: $1 <= $2 :), currentDayOfYear), (: $1 < $2 :));
 
-    return sprintf("%s %d, %d", Months[monthDates[0]], 
-        (1 + currentDayOfYear - monthDates[0]), currentYear);
+    return sprintf("%s %d, %d", Months[monthDates[sizeof(monthDates) - 1]], 
+        (1 + currentDayOfYear - monthDates[sizeof(monthDates) - 1]), currentYear);
 }
 
 /////////////////////////////////////////////////////////////////////////////

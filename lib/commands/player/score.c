@@ -13,7 +13,7 @@ public nomask void SetupCommand()
     addCommandTemplate("score [-v]");
     addCommandTemplate("? [-v]"); 
 
-    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
+    Dictionary = getDictionary("commands");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ private nomask string overallLevel(object initiator,
 private nomask string raceDetails(object initiator,
     string colorConfiguration)
 {
-    object raceDictionary = load_object("/lib/dictionaries/racialDictionary.c");
+    object raceDictionary = getDictionary("racial");
     return configuration->decorate("Race: ", "content", "score",
             colorConfiguration) +
         configuration->decorate(sprintf("%-33s",
@@ -164,7 +164,7 @@ private nomask string getCombatData(object initiator,
     string ret = "";
 
     object materialsDictionary =
-        load_object("/lib/dictionaries/materialsDictionary.c");
+        getDictionary("materials");
 
     object nullEquipment =
         load_object("/lib/items/equipment.c");
