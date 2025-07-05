@@ -7,15 +7,12 @@ inherit "/lib/modules/domains/trading/tradingPort.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup() 
 {
-    SetShort("the trading district of Eledhel");
-    SetLong("This is the bustling trading district of Eledhel, the capital city. "
+    setShortDescription("the trading district of Eledhel");
+    setAdditionalLongDescription("This is the bustling trading district of Eledhel, the capital city. "
            "Magnificent stone buildings house trading companies, banks, and "
            "warehouses. The harbor extends to the east, while administrative "
            "buildings rise to the west. A large board displays current prices "
            "and trade opportunities.");
-    
-    SetClimate("temperate");
-    SetAmbientLight(30);
     
     // Port configuration
     setPortName("Eledhel");
@@ -36,13 +33,13 @@ public void Setup()
     addTradeRoute("overland", "hillgarath", 5);
     addTradeRoute("overland", "naecis", 7);
     
-    // Items and exits
-    addItem("/domains/trading/obj/priceBoard", "board");
-    addItem("/domains/trading/obj/warehouse", "warehouse");
+    // Items - these will be in the room for players to interact with
+    addItem("/lib/modules/domains/trading/priceBoard.c", "north");
     
-    addExit("east", "/domains/trading/rooms/ports/eledhel-harbor");
-    addExit("west", "/domains/trading/rooms/eledhel-government");
-    addExit("north", "/domains/trading/rooms/eledhel-merchant-quarter");
+    // Exits
+    addExit("east", "/lib/modules/domains/trading/ports/eledhel-harbor");
+    addExit("west", "/lib/modules/domains/trading/rooms/eledhel-government");
+    addExit("north", "/lib/modules/domains/trading/rooms/eledhel-merchant-quarter");
     
     ::Setup();
 }

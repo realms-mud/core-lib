@@ -12,29 +12,6 @@ public nomask void SetupCommand()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int execute(string command, object initiator)
-{
-    int ret = 0;
-
-    if (canExecuteCommand(command))
-    {
-        object trader = initiator->getService("trader");
-        if (!trader) {
-            tell_object(initiator, "You need to be a registered trader to use warehouses.");
-        } else {
-            object environment = environment(initiator);
-            if (!environment || !environment->isPort()) {
-                tell_object(initiator, "You must be at a trading port to access your warehouse.");
-            } else {
-                displayWarehouseStatus(initiator, trader, environment);
-            }
-        }
-        ret = 1;
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void displayWarehouseStatus(object player, object trader, object port) {
     string colorConfiguration = player->colorConfiguration();
     string charset = player->charsetConfiguration();
@@ -82,6 +59,29 @@ private void displayWarehouseStatus(object player, object trader, object port) {
     warehouseDisplay += commandsDict->buildBanner(colorConfiguration, charset, "bottom", "-");
     
     tell_object(player, warehouseDisplay);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int execute(string command, object initiator)
+{
+    int ret = 0;
+
+    if (canExecuteCommand(command))
+    {
+        object trader = initiator->getService("trader");
+        if (!trader) {
+            tell_object(initiator, "You need to be a registered trader to use warehouses.");
+        } else {
+            object environment = environment(initiator);
+            if (!environment || !environment->isPort()) {
+                tell_object(initiator, "You must be at a trading port to access your warehouse.");
+            } else {
+                displayWarehouseStatus(initiator, trader, environment);
+            }
+        }
+        ret = 1;
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

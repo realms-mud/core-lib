@@ -13,27 +13,6 @@ public nomask void SetupCommand()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int execute(string command, object initiator)
-{
-    int ret = 0;
-
-    if (canExecuteCommand(command))
-    {
-        object environment = environment(initiator);
-        if (!environment || !environment->isPort()) 
-        {
-            tell_object(initiator, "You must be at a trading port to view contracts.");
-        } 
-        else 
-        {
-            displayAvailableContracts(initiator, environment);
-        }
-        ret = 1;
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void displayAvailableContracts(object player, object port) 
 {
     string colorConfiguration = player->colorConfiguration();
@@ -82,6 +61,27 @@ private void displayAvailableContracts(object player, object port)
     contractDisplay += commandsDict->buildBanner(colorConfiguration, charset, "bottom", "-");
     
     tell_object(player, contractDisplay);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int execute(string command, object initiator)
+{
+    int ret = 0;
+
+    if (canExecuteCommand(command))
+    {
+        object environment = environment(initiator);
+        if (!environment || !environment->isPort()) 
+        {
+            tell_object(initiator, "You must be at a trading port to view contracts.");
+        } 
+        else 
+        {
+            displayAvailableContracts(initiator, environment);
+        }
+        ret = 1;
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

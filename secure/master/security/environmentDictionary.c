@@ -10,6 +10,7 @@ protected nomask void applyGroupDetails()
     setName("/lib/dictionaries/environmentDictionary");
     addPermission("/lib/dictionaries", Read);
     addPermission("/lib/environment", Read);
+    addPermission("/lib/modules/domains", Read);
     addPermission("/lib/items", Read);
     addPermission("/lib/tests", Read);
     addPermission("/areas", Read);

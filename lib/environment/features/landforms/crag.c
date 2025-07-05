@@ -196,4 +196,3 @@ public void Setup()
         "as a stark reminder of the geological forces that shape the land, "
         "standing as a monument to the enduring power of stone against time.");
 }
-}

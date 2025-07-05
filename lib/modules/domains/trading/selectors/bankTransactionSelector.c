@@ -1,4 +1,3 @@
-// /lib/modules/domains/trading/bankTransactionSelector.c
 //*****************************************************************************
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -18,6 +17,97 @@ public void setTransactionType(string type)
 public void setMaxAmount(int amount) 
 {
     maxAmount = amount;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeTransaction(int amount)
+{
+    object trader = User->getService("trader");
+    string colorConfiguration = User->colorConfiguration();
+    object configuration = getDictionary("configuration");
+    int success = 0;
+    
+    switch(transactionType)
+    {
+        case "deposit":
+            success = trader->depositMoney(amount);
+            if (success) 
+            {
+                tell_object(User, configuration->decorate(
+                    sprintf("You deposited %d gold into your bank account.", amount),
+                    "success", "quests", colorConfiguration));
+            }
+            break;
+            
+        case "withdraw":
+            success = trader->withdrawMoney(amount);
+            if (success) 
+            {
+                tell_object(User, configuration->decorate(
+                    sprintf("You withdrew %d gold from your bank account.", amount),
+                    "success", "quests", colorConfiguration));
+            }
+            break;
+            
+        case "borrow":
+            success = trader->borrowMoney(amount);
+            if (success) 
+            {
+                tell_object(User, configuration->decorate(
+                    sprintf("You borrowed %d gold from the bank. Remember, loans accrue 10%% interest monthly.",
+                           amount),
+                    "success", "quests", colorConfiguration));
+            }
+            break;
+            
+        case "repay":
+            success = trader->repayDebt(amount);
+            if (success) 
+            {
+                tell_object(User, configuration->decorate(
+                    sprintf("You repaid %d gold toward your debt.", amount),
+                    "success", "quests", colorConfiguration));
+            }
+            break;
+    }
+    
+    if (!success)
+    {
+        tell_object(User, configuration->decorate(
+            sprintf("Unable to complete the %s transaction.", transactionType),
+            "failure", "selector", colorConfiguration));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int handleCustomAmount() 
+{
+    object configuration = getDictionary("configuration");
+    tell_object(User, configuration->decorate(
+        sprintf("Enter amount (1-%d): ", maxAmount),
+        "instructions", "selector", User->colorConfiguration()));
+    
+    input_to("processCustomAmount", 0);
+    return -1; // Don't exit yet
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void processCustomAmount(string input) 
+{
+    int amount = to_int(input);
+    object configuration = getDictionary("configuration");
+    
+    if (amount < 1 || amount > maxAmount) 
+    {
+        tell_object(User, configuration->decorate(
+            sprintf("Invalid amount. Must be between 1 and %d.", maxAmount),
+            "failure", "selector", User->colorConfiguration()));
+        tell_object(User, displayMessage());
+        return;
+    }
+    
+    executeTransaction(amount);
+    notifySynchronous("onSelectorCompleted");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,92 +196,4 @@ protected nomask int processSelection(string selection)
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private int handleCustomAmount() 
-{
-    tell_object(User, configuration->decorate(
-        sprintf("Enter amount (1-%d): ", maxAmount),
-        "instructions", "selector", User->colorConfiguration()));
-    
-    input_to("processCustomAmount", 0);
-    return -1; // Don't exit yet
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void processCustomAmount(string input) 
-{
-    int amount = to_int(input);
-    
-    if (amount < 1 || amount > maxAmount) 
-    {
-        tell_object(User, configuration->decorate(
-            sprintf("Invalid amount. Must be between 1 and %d.", maxAmount),
-            "failure", "selector", User->colorConfiguration()));
-        tell_object(User, displayMessage());
-        return;
-    }
-    
-    executeTransaction(amount);
-    notifySynchronous("onSelectorCompleted");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void executeTransaction(int amount)
-{
-    object trader = User->getService("trader");
-    string colorConfiguration = User->colorConfiguration();
-    int success = 0;
-    
-    switch(transactionType)
-    {
-        case "deposit":
-            success = trader->depositMoney(amount);
-            if (success) 
-            {
-                tell_object(User, configuration->decorate(
-                    sprintf("You deposited %d gold into your bank account.", amount),
-                    "success", "quests", colorConfiguration));
-            }
-            break;
-            
-        case "withdraw":
-            success = trader->withdrawMoney(amount);
-            if (success) 
-            {
-                tell_object(User, configuration->decorate(
-                    sprintf("You withdrew %d gold from your bank account.", amount),
-                    "success", "quests", colorConfiguration));
-            }
-            break;
-            
-        case "borrow":
-            success = trader->borrowMoney(amount);
-            if (success) 
-            {
-                tell_object(User, configuration->decorate(
-                    sprintf("You borrowed %d gold from the bank. Remember, loans accrue 10%% interest monthly.",
-                           amount),
-                    "success", "quests", colorConfiguration));
-            }
-            break;
-            
-        case "repay":
-            success = trader->repayDebt(amount);
-            if (success) 
-            {
-                tell_object(User, configuration->decorate(
-                    sprintf("You repaid %d gold toward your debt.", amount),
-                    "success", "quests", colorConfiguration));
-            }
-            break;
-    }
-    
-    if (!success)
-    {
-        tell_object(User, configuration->decorate(
-            sprintf("Unable to complete the %s transaction.", transactionType),
-            "failure", "selector", colorConfiguration));
-    }
 }

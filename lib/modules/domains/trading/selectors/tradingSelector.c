@@ -6,8 +6,103 @@ inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
 private object TradingDictionary;
+private int justDisplayedStatus = 0;
 
 /////////////////////////////////////////////////////////////////////////////
+private void displayTradingStatus() 
+{
+    mapping data = User->getTradingData();
+    string colorConfig = User->colorConfiguration();
+    
+    object commandsDictionary = getDictionary("commands");
+    string charset = User->charsetConfiguration();
+    
+    string statusDisplay = 
+        commandsDictionary->buildBanner(colorConfig, charset, "top", 
+            sprintf("%s Trading Status", data["firm"]));
+    
+    // Company information
+    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate("Location: ", "field header", "research", colorConfig) +
+        configuration->decorate(data["location"], "field data", "research", colorConfig) +
+        configuration->decorate("        Date: ", "field header", "research", colorConfig) +
+        configuration->decorate(data["date"], "field data", "research", colorConfig));
+    
+    // Financial status
+    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate("Cash: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d gold", data["cash"]), "field data", "research", colorConfig) +
+        configuration->decorate("     Bank: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d gold", data["bank"]), "field data", "research", colorConfig) +
+        configuration->decorate("     Debt: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d gold", data["debt"]), 
+                               data["debt"] > 0 ? "penalty modifier" : "field data", "research", colorConfig));
+    
+    // Vehicle information
+    mapping vehicle = data["vehicle"];
+    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate(sprintf("Vehicle: %s", vehicle["type"]), "field header", "research", colorConfig));
+    
+    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate("Capacity: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d/%d units", User->getVehicleUsedSpace(), vehicle["capacity"]), 
+                               "field data", "research", colorConfig) +
+        configuration->decorate("     Protection: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d", vehicle["protection"]), "field data", "research", colorConfig));
+    
+    statusDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    
+    tell_object(User, statusDisplay);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void displayMarketPrices() 
+{
+    object environment = environment(User);
+
+    if (!environment || !environment->isPort()) 
+    {
+        tell_object(User, configuration->decorate("You must be at a trading port to view market prices.",
+                   "failure", "selector", colorConfiguration));
+        return;
+    }
+    
+    string colorConfig = User->colorConfiguration();
+    object commandsDictionary = getDictionary("commands");
+    string charset = User->charsetConfiguration();
+    
+    string priceDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
+                         sprintf("%s Market Prices", environment->getPortName()));
+    
+    string *commonItems = ({
+        "/lib/instances/items/materials/metal/iron",
+        "/lib/instances/items/materials/wood/oak", 
+        "/lib/instances/items/weapons/swords/long-sword",
+        "/lib/instances/items/food/bread",
+        "/lib/instances/items/materials/crystal/diamond"
+    });
+    
+    foreach(string item in commonItems) 
+    {
+        int price = environment->getItemPrice(item);
+        object itemObj = load_object(item);
+        
+        if (itemObj) 
+        {
+            string itemLine = configuration->decorate(sprintf("%-25s: ", itemObj->query("name")),
+                             "field header", "research", colorConfig) +
+                             configuration->decorate(sprintf("%d gold", price),
+                             "field data", "research", colorConfig);
+            
+            priceDisplay += commandsDictionary->banneredContent(colorConfig, charset, itemLine);
+        }
+    }
+    
+    priceDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    
+    tell_object(User, priceDisplay);
+}
+
 public nomask void InitializeSelector()
 {
     AllowUndo = 0;
@@ -16,13 +111,12 @@ public nomask void InitializeSelector()
     Type = "Trading";
     Data = ([]);
     
-    TradingDictionary = load_object("/lib/modules/domains/trading/tradingDictionary.c");
+    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object trader = User->getService("trader");
     object environment = environment(User);
     int isAtPort = (environment && environment->isPort());
     
@@ -38,17 +132,17 @@ protected nomask void setUpUserForSelection()
         "canShow": 1
     ]);
     
-    Data[to_string(counter++)] = ([
-        "name": "Manage Warehouse",
-        "type": "warehouse",
-        "description": "Transfer cargo between your vehicle and warehouse, "
-                      "view stored inventory.",
-        "canShow": isAtPort
-    ]);
-    
-    // Port-specific options
+    // Only add warehouse option when at a port
     if (isAtPort) 
     {
+        Data[to_string(counter++)] = ([
+            "name": "Manage Warehouse",
+            "type": "warehouse",
+            "description": "Transfer cargo between your vehicle and warehouse, "
+                          "view stored inventory.",
+            "canShow": 1
+        ]);
+        
         Data[to_string(counter++)] = ([
             "name": "Buy Goods",
             "type": "buy",
@@ -60,7 +154,7 @@ protected nomask void setUpUserForSelection()
             "name": "Sell Goods", 
             "type": "sell",
             "description": "Sell your cargo at the local market.",
-            "canShow": (sizeof(trader->getVehicle()["cargo"]) > 0)
+            "canShow": (sizeof(User->getVehicle()["cargo"]) > 0)
         ]);
         
         Data[to_string(counter++)] = ([
@@ -93,7 +187,7 @@ protected nomask void setUpUserForSelection()
     }
     
     // Vehicle options
-    if (trader->getVehicleUsedSpace() > trader->getVehicleCapacity()) 
+    if (User->getVehicleUsedSpace() > User->getVehicleCapacity()) 
     {
         Data[to_string(counter++)] = ([
             "name": "Resolve Overloading",
@@ -126,30 +220,41 @@ protected nomask int processSelection(string selection)
             {
                 case "status":
                     displayTradingStatus();
-                    break;
-                case "warehouse":
-                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/warehouseSelector.c");
-                    break;
-                case "buy":
-                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/buySelector.c");
-                    break;
-                case "sell":
-                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/sellSelector.c");
+                    justDisplayedStatus = 1; // Suppress menu redisplay once
+                    ret = -1;
                     break;
                 case "prices":
                     displayMarketPrices();
+                    justDisplayedStatus = 1; // Suppress menu redisplay once
+                    ret = -1;
+                    break;
+                case "warehouse":
+                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/warehouseSelector.c");
+                    ret = -1;
+                    break;
+                case "buy":
+                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/buySelector.c");
+                    ret = -1;
+                    break;
+                case "sell":
+                    SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/sellSelector.c");
+                    ret = -1;
                     break;
                 case "contracts":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/contractsSelector.c");
+                    ret = -1;
                     break;
                 case "travel":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/travelSelector.c");
+                    ret = -1;
                     break;
                 case "bank":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankSelector.c");
+                    ret = -1;
                     break;
                 case "overload":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/overloadSelector.c");
+                    ret = -1;
                     break;
             }
             
@@ -162,102 +267,6 @@ protected nomask int processSelection(string selection)
         }
     }
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void displayTradingStatus() 
-{
-    object trader = User->getService("trader");
-    mapping data = trader->getTradingData();
-    string colorConfiguration = User->colorConfiguration();
-    
-    object commandsDictionary = getDictionary("commands");
-    string charset = User->charsetConfiguration();
-    
-    string statusDisplay = 
-        commandsDictionary->buildBanner(colorConfiguration, charset, "top", 
-            sprintf("%s Trading Status", data["firm"]));
-    
-    // Company information
-    statusDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate("Location: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(data["location"], "field data", "research", colorConfiguration) +
-        configuration->decorate("        Date: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(data["date"], "field data", "research", colorConfiguration));
-    
-    // Financial status
-    statusDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate("Cash: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d gold", data["cash"]), "field data", "research", colorConfiguration) +
-        configuration->decorate("     Bank: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d gold", data["bank"]), "field data", "research", colorConfiguration) +
-        configuration->decorate("     Debt: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d gold", data["debt"]), 
-                               data["debt"] > 0 ? "penalty modifier" : "field data", "research", colorConfiguration));
-    
-    // Vehicle information
-    mapping vehicle = data["vehicle"];
-    statusDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate(sprintf("Vehicle: %s", vehicle["type"]), "field header", "research", colorConfiguration));
-    
-    statusDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate("Capacity: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d/%d units", trader->getVehicleUsedSpace(), vehicle["capacity"]), 
-                               "field data", "research", colorConfiguration) +
-        configuration->decorate("     Protection: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d", vehicle["protection"]), "field data", "research", colorConfiguration));
-    
-    statusDisplay += commandsDictionary->buildBanner(colorConfiguration, charset, "bottom", "-");
-    
-    tell_object(User, statusDisplay);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void displayMarketPrices() 
-{
-    object environment = environment(User);
-
-    if (!environment || !environment->isPort()) 
-    {
-        tell_object(User, configuration->decorate("You must be at a trading port to view market prices.",
-                   "failure", "selector", User->colorConfiguration()));
-        return;
-    }
-    
-    string colorConfiguration = User->colorConfiguration();
-    object commandsDictionary = getDictionary("commands");
-    string charset = User->charsetConfiguration();
-    
-    string priceDisplay = commandsDictionary->buildBanner(colorConfiguration, charset, "top", 
-                         sprintf("%s Market Prices", environment->getPortName()));
-    
-    string *commonItems = ({
-        "/lib/instances/items/materials/metal/iron",
-        "/lib/instances/items/materials/wood/oak", 
-        "/lib/instances/items/weapons/swords/long-sword",
-        "/lib/instances/items/food/bread",
-        "/lib/instances/items/materials/crystal/diamond"
-    });
-    
-    foreach(string item in commonItems) 
-    {
-        int price = environment->getItemPrice(item);
-        object itemObj = load_object(item + ".c");
-        
-        if (itemObj) 
-        {
-            string itemLine = configuration->decorate(sprintf("%-25s: ", itemObj->query("name")),
-                             "field header", "research", colorConfiguration) +
-                             configuration->decorate(sprintf("%d gold", price),
-                             "field data", "research", colorConfiguration);
-            
-            priceDisplay += commandsDictionary->banneredContent(colorConfiguration, charset, itemLine);
-        }
-    }
-    
-    priceDisplay += commandsDictionary->buildBanner(colorConfiguration, charset, "bottom", "-");
-    
-    tell_object(User, priceDisplay);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -274,7 +283,12 @@ public nomask void onSelectorCompleted(object caller)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int suppressMenuDisplay() 
 {
-    return objectp(SubselectorObj);
+    int ret = objectp(SubselectorObj) || justDisplayedStatus;
+    if (justDisplayedStatus) 
+    {
+        justDisplayedStatus = 0; // Reset after suppressing once
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

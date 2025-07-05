@@ -9,7 +9,7 @@ object Trader;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Trader = clone_object("/lib/modules/domains/trading/trader.c");
+    Trader = clone_object("/lib/modules/trader.c");
     Trader->initializeTrader();
 }
 

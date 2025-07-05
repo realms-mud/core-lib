@@ -7,6 +7,105 @@ inherit "/lib/core/baseSelector.c";
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
+private void displayWarehouseStatus()
+{
+    object trader = User->getService("trader");
+    mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
+    string colorConfig = User->colorConfiguration();
+    
+    object commandsDictionary = getDictionary("commands");
+    string charset = User->charsetConfiguration();
+    
+    string warehouseDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
+                             sprintf("%s Warehouse", trader->getCurrentLocation()));
+    
+    // Calculate warehouse used space
+    int used = 0;
+    if (sizeof(warehouse["inventory"]))
+    {
+        string *items = m_indices(warehouse["inventory"]);
+        foreach(string item in items)
+        {
+            used += warehouse["inventory"][item];
+        }
+    }
+    
+    // Capacity information
+    warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate("Capacity: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d/%d units used", used, warehouse["capacity"]),
+                               "field data", "research", colorConfig) +
+        configuration->decorate("     Space Available: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d units", warehouse["capacity"] - used),
+                               "field data", "research", colorConfig));
+    
+    // Rental information
+    int daysLeft = (warehouse["rent paid"] - time()) / 86400;
+    string rentColor = (daysLeft < 7) ? "penalty modifier" : "field data";
+    warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        configuration->decorate("Rent Status: ", "field header", "research", colorConfig) +
+        configuration->decorate(sprintf("%d days remaining", daysLeft),
+                               rentColor, "research", colorConfig));
+    
+    // Inventory listing
+    if (sizeof(warehouse["inventory"]))
+    {
+        warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+                           configuration->decorate("Stored Inventory:", "field header", "research", colorConfig));
+        
+        string *items = m_indices(warehouse["inventory"]);
+        foreach(string item in items)
+        {
+            object itemObj = load_object(item);
+            string itemName = itemObj ? itemObj->query("name") : item;
+            
+            string itemLine = configuration->decorate(sprintf("  %-30s: ", itemName),
+                             "choice enabled", "selector", colorConfig) +
+                             configuration->decorate(sprintf("%d units", warehouse["inventory"][item]),
+                             "data", "selector", colorConfig);
+            
+            warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset, itemLine);
+        }
+    }
+    else
+    {
+        warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+                           configuration->decorate("Warehouse is empty.", "note", "selector", colorConfig));
+    }
+    
+    warehouseDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    
+    tell_object(User, warehouseDisplay);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void handleRentPayment()
+{
+    object trader = User->getService("trader");
+    int rentCost = 1000; // Base monthly rent
+    string colorConfig = User->colorConfiguration();
+    
+    if (trader->getCash() >= rentCost)
+    {
+        trader->addCash(-rentCost);
+        
+        // Extend rent by 30 days
+        mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
+        warehouse["rent paid"] += (30 * 86400);
+        
+        tell_object(User, configuration->decorate(
+            sprintf("You paid %d gold for 30 days of warehouse rental.", rentCost),
+            "success", "quests", colorConfig));
+    }
+    else
+    {
+        tell_object(User, configuration->decorate(
+            sprintf("You need %d gold to pay the warehouse rent.", rentCost),
+            "failure", "selector", colorConfig));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
 {
     AllowUndo = 1;
@@ -61,7 +160,7 @@ protected nomask void setUpUserForSelection()
         }
         
         // Warehouse rental management
-        int daysLeft = (warehouse["rent_paid"] - time()) / 86400;
+        int daysLeft = (warehouse["rent paid"] - time()) / 86400;
         if (daysLeft < 7)
         {
             Data[to_string(counter++)] = ([
@@ -82,7 +181,7 @@ protected nomask void setUpUserForSelection()
     else
     {
         tell_object(User, configuration->decorate("You must be at a trading port to access your warehouse.",
-                   "failure", "selector", User->colorConfiguration()));
+                   "failure", "selector", colorConfiguration));
     }
 }
 
@@ -134,97 +233,6 @@ protected nomask int processSelection(string selection)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void displayWarehouseStatus()
-{
-    object trader = User->getService("trader");
-    mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
-    string colorConfiguration = User->colorConfiguration();
-    
-    object commandsDictionary = getDictionary("commands");
-    string charset = User->charsetConfiguration();
-    object tradingDict = getDictionary("trading");
-    
-    string warehouseDisplay = commandsDictionary->buildBanner(colorConfiguration, charset, "top", 
-                             sprintf("%s Warehouse", trader->getCurrentLocation()));
-    
-    // Capacity information
-    int used = tradingDict->calculateWarehouseUsed(warehouse);
-    warehouseDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate("Capacity: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d/%d units used", used, warehouse["capacity"]),
-                               "field data", "research", colorConfiguration) +
-        configuration->decorate("     Space Available: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d units", warehouse["capacity"] - used),
-                               "field data", "research", colorConfiguration));
-    
-    // Rental information
-    int daysLeft = (warehouse["rent_paid"] - time()) / 86400;
-    string rentColor = (daysLeft < 7) ? "penalty modifier" : "field data";
-    warehouseDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-        configuration->decorate("Rent Status: ", "field header", "research", colorConfiguration) +
-        configuration->decorate(sprintf("%d days remaining", daysLeft),
-                               rentColor, "research", colorConfiguration));
-    
-    // Inventory listing
-    if (sizeof(warehouse["inventory"]))
-    {
-        warehouseDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-                           configuration->decorate("Stored Inventory:", "field header", "research", colorConfiguration));
-        
-        string *items = m_indices(warehouse["inventory"]);
-        foreach(string item in items)
-        {
-            object itemObj = load_object(item + ".c");
-            string itemName = itemObj ? itemObj->query("name") : item;
-            
-            string itemLine = configuration->decorate(sprintf("  %-30s: ", itemName),
-                             "choice enabled", "selector", colorConfiguration) +
-                             configuration->decorate(sprintf("%d units", warehouse["inventory"][item]),
-                             "data", "selector", colorConfiguration);
-            
-            warehouseDisplay += commandsDictionary->banneredContent(colorConfiguration, charset, itemLine);
-        }
-    }
-    else
-    {
-        warehouseDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-                           configuration->decorate("Warehouse is empty.", "note", "selector", colorConfiguration));
-    }
-    
-    warehouseDisplay += commandsDictionary->buildBanner(colorConfiguration, charset, "bottom", "-");
-    
-    tell_object(User, warehouseDisplay);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void handleRentPayment()
-{
-    object trader = User->getService("trader");
-    int rentCost = 1000; // Base monthly rent
-    
-    string colorConfiguration = User->colorConfiguration();
-    
-    if (trader->getCash() >= rentCost)
-    {
-        trader->addCash(-rentCost);
-        
-        // Extend rent by 30 days
-        mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
-        warehouse["rent_paid"] += (30 * 86400);
-        
-        tell_object(User, configuration->decorate(
-            sprintf("You paid %d gold for 30 days of warehouse rental.", rentCost),
-            "success", "quests", colorConfiguration));
-    }
-    else
-    {
-        tell_object(User, configuration->decorate(
-            sprintf("You need %d gold to pay the warehouse rent.", rentCost),
-            "failure", "selector", colorConfiguration));
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
     if (User)
@@ -245,11 +253,12 @@ protected nomask int suppressMenuDisplay()
 protected string choiceFormatter(string choice)
 {
     string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
-    
+    string colorConfig = User->colorConfiguration();
+
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "",
-        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        configuration->decorate("%s", "number", "selector", colorConfig),
         padSelectionDisplay(choice),
-        configuration->decorate("%-30s", displayType, "selector", colorConfiguration),
+        configuration->decorate("%-30s", displayType, "selector", colorConfig),
         displayDetails(choice));
 }

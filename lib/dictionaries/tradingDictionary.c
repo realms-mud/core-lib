@@ -74,7 +74,7 @@ public string getMarketPricesDisplay(object player, object port)
     foreach(string item in commonTradingItems)
     {
         int price = port->getItemPrice(item);
-        object itemObj = load_object(item + ".c");
+        object itemObj = load_object(item);
         
         if (itemObj)
         {
@@ -106,7 +106,7 @@ public mapping getAvailableGoods(object port, object trader)
         int counter = 1;
         foreach(string item in commonTradingItems)
         {
-            object itemObj = load_object(item + ".c");
+            object itemObj = load_object(item);
             if (itemObj)
             {
                 int price = port->getItemPrice(item);
@@ -114,9 +114,9 @@ public mapping getAvailableGoods(object port, object trader)
                 
                 goods[to_string(counter++)] = ([
                     "name": sprintf("%s (%d gold)", itemObj->query("name"), price),
-                    "item_path": item,
+                    "item path": item,
                     "price": price,
-                    "can_afford": canAfford,
+                    "can afford": canAfford,
                     "canShow": (canAfford > 0)
                 ]);
             }
@@ -142,7 +142,7 @@ public mapping getCargoForSale(object trader, object port)
             string *items = m_indices(vehicleCargo);
             foreach(string item in items)
             {
-                object itemObj = load_object(item + ".c");
+                object itemObj = load_object(item);
                 if (itemObj)
                 {
                     int price = port->getItemPrice(item);
@@ -151,10 +151,10 @@ public mapping getCargoForSale(object trader, object port)
                     cargo[to_string(counter++)] = ([
                         "name": sprintf("%s x%d (%d gold each)", 
                                        itemObj->query("name"), quantity, price),
-                        "item_path": item,
+                        "item path": item,
                         "price": price,
                         "quantity": quantity,
-                        "total_value": price * quantity,
+                        "total value": price * quantity,
                         "canShow": 1
                     ]);
                 }
@@ -278,7 +278,7 @@ public int isValidTradeItem(string itemPath)
         
         if (!ret)
         {
-            object itemObj = load_object(itemPath + ".c");
+            object itemObj = load_object(itemPath);
             ret = (itemObj && itemObj->query("value") > 0);
         }
     }
@@ -292,21 +292,21 @@ public mapping getTradeRouteTypes()
     return ([
         "maritime": ([
             "description": "Travel by sea using ships",
-            "base_danger": 15,
-            "weather_factor": 1.2,
-            "capacity_bonus": 1.5
+            "base danger": 15,
+            "weather factor": 1.2,
+            "capacity bonus": 1.5
         ]),
         "overland": ([
             "description": "Travel by land using wagons", 
-            "base_danger": 25,
-            "weather_factor": 1.0,
-            "capacity_bonus": 1.0
+            "base danger": 25,
+            "weather factor": 1.0,
+            "capacity bonus": 1.0
         ]),
         "river": ([
             "description": "Travel by river using barges",
-            "base_danger": 10,
-            "weather_factor": 0.8,
-            "capacity_bonus": 1.3
+            "base danger": 10,
+            "weather factor": 0.8,
+            "capacity bonus": 1.3
         ])
     ]);
 }

@@ -26,43 +26,6 @@ public nomask void onSelectorAborted(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int execute(string command, object initiator)
-{
-    int ret = 0;
-
-    if (canExecuteCommand(command))
-    {
-        object environment = environment(initiator);
-        if (!environment || !environment->isPort()) 
-        {
-            tell_object(initiator, "You must be at a trading port to plan travel.");
-            ret = 1;
-        } 
-        else 
-        {
-            string destination = "";
-            if (sscanf(command, "travel %s", destination) == 1) 
-            {
-
-                object travelSelector = 
-                    clone_object("/lib/modules/domains/trading/selectors/travelSelector.c");
-                move_object(travelSelector, initiator);
-                travelSelector->setDestination(destination);
-                travelSelector->registerEvent(this_object());
-                travelSelector->initiateSelector(initiator);
-            } 
-            else 
-            {
-
-                displayTravelOptions(initiator, environment);
-            }
-            ret = 1;
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void displayTravelOptions(object player, object port) 
 {
     string colorConfiguration = player->colorConfiguration();
@@ -106,6 +69,43 @@ private void displayTravelOptions(object player, object port)
         commandsDict->buildBanner(colorConfiguration, charset, "bottom", "-");
     
     tell_object(player, travelDisplay);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int execute(string command, object initiator)
+{
+    int ret = 0;
+
+    if (canExecuteCommand(command))
+    {
+        object environment = environment(initiator);
+        if (!environment || !environment->isPort()) 
+        {
+            tell_object(initiator, "You must be at a trading port to plan travel.");
+            ret = 1;
+        } 
+        else 
+        {
+            string destination = "";
+            if (sscanf(command, "travel %s", destination) == 1) 
+            {
+
+                object travelSelector = 
+                    clone_object("/lib/modules/domains/trading/selectors/travelSelector.c");
+                move_object(travelSelector, initiator);
+                travelSelector->setDestination(destination);
+                travelSelector->registerEvent(this_object());
+                travelSelector->initiateSelector(initiator);
+            } 
+            else 
+            {
+
+                displayTravelOptions(initiator, environment);
+            }
+            ret = 1;
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

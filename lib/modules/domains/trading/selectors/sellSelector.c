@@ -34,7 +34,7 @@ protected nomask void setUpUserForSelection()
             string *items = m_indices(cargo);
             foreach(string item in items)
             {
-                object itemObj = load_object(item + ".c");
+                object itemObj = load_object(item);
                 if (itemObj)
                 {
                     int price = environment->getItemPrice(item);
@@ -45,10 +45,10 @@ protected nomask void setUpUserForSelection()
                         "name": sprintf("%s x%d (%d gold each)", 
                                        itemObj->query("name"), quantity, price),
                         "type": "item",
-                        "item_path": item,
+                        "item path": item,
                         "price": price,
                         "quantity": quantity,
-                        "total_value": totalValue,
+                        "total value": totalValue,
                         "description": sprintf("Sell %s. You have %d units worth %d gold each.",
                                              itemObj->query("name"), quantity, price),
                         "canShow": 1
@@ -76,7 +76,7 @@ protected nomask void setUpUserForSelection()
     else
     {
         tell_object(User, configuration->decorate("You must be at a trading port to sell goods.",
-                   "failure", "selector", User->colorConfiguration()));
+                   "failure", "selector", colorConfiguration));
     }
 }
 
@@ -93,7 +93,7 @@ protected nomask int processSelection(string selection)
         {
             // Create quantity selector for selling
             SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/quantitySelector.c");
-            SubselectorObj->setItem(Data[selection]["item_path"]);
+            SubselectorObj->setItem(Data[selection]["item path"]);
             SubselectorObj->setMaxQuantity(Data[selection]["quantity"]);
             SubselectorObj->setPrice(Data[selection]["price"]);
             SubselectorObj->setAction("sell");
@@ -127,11 +127,12 @@ protected nomask int suppressMenuDisplay()
 protected string choiceFormatter(string choice)
 {
     string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
-    
+    string colorConfig = User->colorConfiguration();
+
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "",
-        configuration->decorate("%s", "number", "selector", colorConfiguration),
+        configuration->decorate("%s", "number", "selector", colorConfig),
         padSelectionDisplay(choice),
-        configuration->decorate("%-35s", displayType, "selector", colorConfiguration),
+        configuration->decorate("%-35s", displayType, "selector", colorConfig),
         displayDetails(choice));
 }

@@ -1,4 +1,3 @@
-// /lib/commands/player/trading.c
 //*****************************************************************************
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -32,13 +31,10 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object trader = initiator->getService("trader");
-        if (!trader) 
+        // Initialize trader if not already done
+        if (!initiator->getFirmName())
         {
-            // Initialize trader service if it doesn't exist
-            trader = clone_object("/lib/modules/domains/trading/trader.c");
-            trader->initializeTrader();
-            initiator->setService("trader", trader);
+            initiator->initializeTrader();
         }
         
         object selector = 

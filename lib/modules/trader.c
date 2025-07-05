@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/core/thing.c";
+virtual inherit "/lib/core/thing.c";
 
 // Trading company data
 private mapping tradingCompany = ([]);
@@ -14,18 +14,24 @@ private int lastInterestCalculation = 0;
 /////////////////////////////////////////////////////////////////////////////
 private void initializeFactions()
 {
-    // Initialize trading-specific factions
-    string *factions = ({ 
-        "merchants guild", "port authorities", "caravan masters", 
-        "local nobility", "brigands", "pirates" 
-    });
-    
-    object factionService = getService("factions");
-    if (factionService)
+    object factionDict = getDictionary("factions");
+    if (!factionDict)
     {
-        foreach(string faction in factions)
+        return;
+    }
+    
+    string *factionPaths = factionDict->getTradingFactions();
+    object factionService = getService("factions");
+    
+    if (factionService && sizeof(factionPaths))
+    {
+        foreach(string factionPath in factionPaths)
         {
-            factionService->updateFactionDisposition(faction, 0); // Start neutral
+            // Only initialize if the faction file exists
+            if (file_size(factionPath) > 0)
+            {
+                factionService->updateFactionDisposition(factionPath, 0);
+            }
         }
     }
 }
@@ -532,15 +538,22 @@ public void modifyReputation(string faction, int amount, string reason)
 public mapping getAllReputations()
 {
     mapping reps = ([]);
-    string *factions = ({ "merchants guild", "port authorities", "caravan masters", 
-                         "local nobility", "brigands", "pirates" });
+    object factionDict = getDictionary("factions");
     
-    object factionService = getService("factions");
-    if (factionService)
+    if (factionDict)
     {
-        foreach(string faction in factions)
+        string *factionPaths = factionDict->getTradingFactions();
+        object factionService = getService("factions");
+        
+        if (factionService && sizeof(factionPaths))
         {
-            reps[faction] = factionService->factionReputationToward(faction);
+            foreach(string factionPath in factionPaths)
+            {
+                if (file_size(factionPath) > 0)
+                {
+                    reps[factionPath] = factionService->factionReputationToward(factionPath);
+                }
+            }
         }
     }
     

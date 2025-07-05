@@ -34,6 +34,92 @@ public void setAction(string act)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void executeTransaction(int quantity)
+{
+    object trader = User->getService("trader");
+    object itemObj = load_object(itemPath);
+    string colorConfig = User->colorConfiguration();
+    
+    if (action == "buy")
+    {
+        int totalCost = quantity * pricePerUnit;
+        if (trader->getCash() >= totalCost)
+        {
+            trader->addCash(-totalCost);
+            trader->addCargoToVehicle(itemPath, quantity);
+            
+            tell_object(User, configuration->decorate(
+                sprintf("You purchased %d %s for %d gold total.",
+                       quantity, itemObj->query("name"), totalCost),
+                "success", "quests", colorConfig));
+            
+            trader->addTradingExperience(quantity);
+        }
+        else
+        {
+            tell_object(User, configuration->decorate(
+                "You don't have enough gold for that purchase.",
+                "failure", "selector", colorConfig));
+        }
+    }
+    else if (action == "sell")
+    {
+        if (trader->getCargoQuantity(itemPath) >= quantity)
+        {
+            int totalValue = quantity * pricePerUnit;
+            trader->addCash(totalValue);
+            trader->removeCargoFromVehicle(itemPath, quantity);
+            
+            tell_object(User, configuration->decorate(
+                sprintf("You sold %d %s for %d gold total.",
+                       quantity, itemObj->query("name"), totalValue),
+                "success", "quests", colorConfig));
+            
+            trader->addTradingExperience(quantity);
+        }
+        else
+        {
+            tell_object(User, configuration->decorate(
+                "You don't have enough of that item to sell.",
+                "failure", "selector", colorConfig));
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int handleCustomQuantity()
+{
+    int ret = -1;
+    
+    tell_object(User, configuration->decorate(
+        sprintf("Enter quantity (1-%d): ", maxQuantity),
+        "instructions", "selector", User->colorConfiguration()));
+    
+    input_to("processCustomQuantity", 0);
+    
+    return ret; // Don't exit yet
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void processCustomQuantity(string input)
+{
+    int quantity = to_int(input);
+    
+    if (quantity >= 1 && quantity <= maxQuantity)
+    {
+        executeTransaction(quantity);
+        notifySynchronous("onSelectorCompleted");
+    }
+    else
+    {
+        tell_object(User, configuration->decorate(
+            sprintf("Invalid quantity. Must be between 1 and %d.", maxQuantity),
+            "failure", "selector", User->colorConfiguration()));
+        tell_object(User, displayMessage());
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
 {
     AllowUndo = 1;
@@ -46,7 +132,8 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object itemObj = load_object(itemPath + ".c");
+    object itemObj = load_object(itemPath);
+    
     if (itemObj)
     {
         Description = sprintf("How many %s would you like to %s?", 
@@ -67,7 +154,7 @@ protected nomask void setUpUserForSelection()
                     "name": sprintf("%d units (%d gold total)", qty, totalCost),
                     "type": "quantity",
                     "quantity": qty,
-                    "total_cost": totalCost,
+                    "total cost": totalCost,
                     "description": sprintf("%s %d units for %d gold total.",
                                          capitalize(action), qty, totalCost),
                     "canShow": 1
@@ -91,7 +178,7 @@ protected nomask void setUpUserForSelection()
                 "name": sprintf("Maximum (%d units for %d gold)", maxQuantity, totalCost),
                 "type": "quantity",
                 "quantity": maxQuantity,
-                "total_cost": totalCost,
+                "total cost": totalCost,
                 "description": sprintf("%s all available units (%d) for %d gold total.",
                                      capitalize(action), maxQuantity, totalCost),
                 "canShow": 1
@@ -136,112 +223,4 @@ protected nomask int processSelection(string selection)
     }
     
     return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private int handleCustomQuantity()
-{
-    int ret = -1;
-    
-    tell_object(User, configuration->decorate(
-        sprintf("Enter quantity (1-%d): ", maxQuantity),
-        "instructions", "selector", User->colorConfiguration()));
-    
-    input_to("processCustomQuantity", 0);
-    
-    return ret; // Don't exit yet
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void processCustomQuantity(string input)
-{
-    int quantity = to_int(input);
-    
-    if (quantity >= 1 && quantity <= maxQuantity)
-    {
-        executeTransaction(quantity);
-        notifySynchronous("onSelectorCompleted");
-    }
-    else
-    {
-        tell_object(User, configuration->decorate(
-            sprintf("Invalid quantity. Must be between 1 and %d.", maxQuantity),
-            "failure", "selector", User->colorConfiguration()));
-        tell_object(User, displayMessage());
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void executeTransaction(int quantity)
-{
-    object trader = User->getService("trader");
-    object environment = environment(User);
-    object itemObj = load_object(itemPath + ".c");
-    
-    string colorConfiguration = User->colorConfiguration();
-    
-    if (action == "buy")
-    {
-        int totalCost = quantity * pricePerUnit;
-        if (trader->getCash() >= totalCost)
-        {
-            trader->addCash(-totalCost);
-            
-            // Add to vehicle cargo
-            mapping vehicle = trader->getVehicle();
-            if (!member(vehicle["cargo"], itemPath))
-            {
-                vehicle["cargo"][itemPath] = 0;
-            }
-            vehicle["cargo"][itemPath] += quantity;
-            
-            tell_object(User, configuration->decorate(
-                sprintf("You purchased %d %s for %d gold total.",
-                       quantity, itemObj->query("name"), totalCost),
-                "success", "quests", colorConfiguration));
-            
-            trader->addTradingExperience(quantity);
-        }
-        else
-        {
-            tell_object(User, configuration->decorate(
-                "You don't have enough gold for that purchase.",
-                "failure", "selector", colorConfiguration));
-        }
-    }
-    else if (action == "sell")
-    {
-        mapping vehicle = trader->getVehicle();
-        if (member(vehicle["cargo"], itemPath) && 
-            vehicle["cargo"][itemPath] >= quantity)
-        {
-            int totalValue = quantity * pricePerUnit;
-            trader->addCash(totalValue);
-            
-            vehicle["cargo"][itemPath] -= quantity;
-            if (vehicle["cargo"][itemPath] <= 0)
-            {
-                m_delete(vehicle["cargo"], itemPath);
-            }
-            
-            tell_object(User, configuration->decorate(
-                sprintf("You sold %d %s for %d gold total.",
-                       quantity, itemObj->query("name"), totalValue),
-                "success", "quests", colorConfiguration));
-            
-            trader->addTradingExperience(quantity);
-        }
-        else
-        {
-            tell_object(User, configuration->decorate(
-                "You don't have enough of that item to sell.",
-                "failure", "selector", colorConfiguration));
-        }
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask int handleSpecialSelection()
-{
-    return 0;
 }

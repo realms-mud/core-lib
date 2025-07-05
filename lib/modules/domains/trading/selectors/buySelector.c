@@ -1,4 +1,3 @@
-// /lib/modules/domains/trading/selectors/buySelector.c
 //*****************************************************************************
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -23,6 +22,8 @@ public nomask void InitializeSelector()
 protected nomask void setUpUserForSelection()
 {
     object environment = environment(User);
+    object configuration = getDictionary("configuration");
+    
     if (environment && environment->isPort()) 
     {
         object trader = User->getService("trader");
@@ -42,7 +43,7 @@ protected nomask void setUpUserForSelection()
         
         foreach(string item in availableItems) 
         {
-            object itemObj = load_object(item + ".c");
+            object itemObj = load_object(item);
             if (itemObj) 
             {
                 int price = environment->getItemPrice(item);
@@ -123,8 +124,10 @@ protected nomask int suppressMenuDisplay()
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice) 
 {
+    object configuration = getDictionary("configuration");
     string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
-    
+    string colorConfiguration = User->colorConfiguration();
+
     return sprintf("%s[%s]%s - %s%s",
         (NumColumns < 3) ? "    " : "",
         configuration->decorate("%s", "number", "selector", colorConfiguration),

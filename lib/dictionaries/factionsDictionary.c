@@ -30,6 +30,19 @@ public nomask int isValidFaction(string faction)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string *getTradingFactions()
+{
+    return ({
+        "/lib/modules/factions/merchantsGuild.c",
+        "/lib/modules/factions/portAuthorities.c",
+        "/lib/modules/factions/caravanMasters.c",
+        "/lib/modules/factions/localNobility.c",
+        "/lib/modules/factions/brigands.c",
+        "/lib/modules/factions/pirates.c"
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int canJoinFaction(string faction, object initiator)
 {
     //TODO [72]: Finish this 
