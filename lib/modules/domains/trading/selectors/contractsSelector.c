@@ -23,11 +23,9 @@ private string getItemPathForType(string itemType)
 /////////////////////////////////////////////////////////////////////////////
 private int calculateContractProgress(mapping contract) 
 {
-    object trader = User->getService("trader");
-    
     // Check if player has the required items using proper accessor
     string requiredItem = getItemPathForType(contract["item type"]);
-    int has = trader->getCargoQuantity(requiredItem);
+    int has = User->getCargoQuantity(requiredItem);
     
     if (has > 0)
     {
@@ -41,8 +39,7 @@ private int calculateContractProgress(mapping contract)
 /////////////////////////////////////////////////////////////////////////////
 private void displayActiveContracts() 
 {
-    object trader = User->getService("trader");
-    mapping activeContracts = trader->getActiveContracts();
+    mapping activeContracts = User->getActiveContracts();
     string colorConfiguration = User->colorConfiguration();
     object configuration = getDictionary("configuration");
     
@@ -138,7 +135,7 @@ protected nomask void setUpUserForSelection()
     
     object trader = User->getService("trader");
     mapping contracts = environment->getContracts();
-    mapping activeContracts = trader->getActiveContracts();
+    mapping activeContracts = User->getActiveContracts();
     
     Data = ([]);
     int counter = 1;

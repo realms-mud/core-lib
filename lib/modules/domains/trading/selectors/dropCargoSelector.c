@@ -93,12 +93,11 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 private void dropCargo(int quantity) 
 {
-    object trader = User->getService("trader");
     object itemObj = load_object(itemPath);
     object configuration = getDictionary("configuration");
     string colorConfiguration = User->colorConfiguration();
     
-    if (trader->getCargoQuantity(itemPath) >= quantity) 
+    if (User->getCargoQuantity(itemPath) >= quantity)
     {
         // Calculate value lost
         int value = 0;
@@ -109,7 +108,7 @@ private void dropCargo(int quantity)
         }
         
         // Remove cargo using proper accessor
-        trader->removeCargoFromVehicle(itemPath, quantity);
+        User->removeCargoFromVehicle(itemPath, quantity);
         
         tell_object(User, configuration->decorate(
             sprintf("You dropped %d %s (estimated value: %d gold).",

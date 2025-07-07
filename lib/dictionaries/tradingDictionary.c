@@ -9,10 +9,10 @@ private string *commonTradingItems = ({
     "/lib/instances/items/materials/metal/iron",
     "/lib/instances/items/materials/wood/oak", 
     "/lib/instances/items/weapons/swords/long-sword",
-    "/lib/instances/items/food/bread",
+    "/lib/instances/items/food/bread/wheat-bread",
+    "/lib/instances/items/food/plants/fruit/black-peppercorn",
     "/lib/instances/items/materials/crystal/diamond",
     "/lib/instances/items/materials/textile/silk",
-    "/lib/instances/items/materials/spice/pepper"
 });
 
 /////////////////////////////////////////////////////////////////////////////
@@ -106,8 +106,10 @@ public mapping getAvailableGoods(object port, object trader)
         int counter = 1;
         foreach(string item in commonTradingItems)
         {
-            object itemObj = load_object(item);
-            if (itemObj)
+            object itemObj;
+            string err = catch (itemObj = load_object(item); nolog);
+
+            if (!err && itemObj)
             {
                 int price = port->getItemPrice(item);
                 int canAfford = trader->getCash() / price;

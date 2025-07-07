@@ -22,8 +22,7 @@ protected nomask void setUpUserForSelection()
     object environment = environment(User);
     if (environment && environment->isPort())
     {
-        object trader = User->getService("trader");
-        mapping vehicle = trader->getVehicle();
+        mapping vehicle = User->getVehicle();
         mapping cargo = vehicle["cargo"];
         
         Data = ([]);

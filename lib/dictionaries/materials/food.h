@@ -1512,6 +1512,20 @@ protected mapping food =
             "creating potions that must maintain specific viscosity.",
         "base experience": 1,
     ]),
+    "black peppercorn": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),        
+        "crafting materials": ([
+            "black peppercorn seed": 1
+        ]),
+        "default description": "Small, wrinkled dark spheres with fiery heat that awakens the "
+            "palate and clears the sinuses. Once worth their weight in gold, these "
+            "precious spice berries have launched expeditions and toppled empires.",
+        "base experience": 1,
+    ]),
     "buttercup squash": ([
         "type": "vegetable",
         "subtype": "squash",
@@ -1754,6 +1768,308 @@ protected mapping food =
             "herbs and spices. Its heavenly aroma can reportedly draw travelers "
             "home from miles away through some form of culinary magic.",
         "base experience": 5,
+    ]),
+    "roasted duck": ([
+        "type":"duck",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "duck":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Rich, flavorful bird with crispy skin and tender meat. Its "
+        "distinctive taste has made it a favorite among nobility and "
+        "adventurers alike, often served at feasts celebrating great deeds.",
+        "base experience" : 5,
+    ]),
+    "roasted turkey": ([
+        "type":"turkey",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "turkey":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Majestic bird with golden-brown skin and tender, juicy meat. "
+        "Its size and flavor make it the centerpiece of grand feasts, "
+        "symbolizing abundance and gratitude.",
+        "base experience" : 5,
+    ]),
+    "roasted goose": ([
+        "type":"goose",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "goose":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Large, succulent bird with rich, flavorful meat and crispy skin. "
+        "Its robust flavor has made it a favorite for festive occasions, "
+        "often served with sweet and savory accompaniments.",
+        "base experience" : 5,
+    ]),
+    "roasted quail": ([
+        "type":"quail",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "quail":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Delicate, tender bird with subtle flavor and crispy skin. Its "
+        "small size makes it a luxurious treat, often served at intimate "
+        "dinners or as part of elaborate feasts.",
+        "base experience" : 5,
+    ]),
+    "roasted pheasant": ([
+        "type":"pheasant",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "pheasant":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Elegant bird with tender, flavorful meat and crispy skin. Its "
+        "refined taste has made it a favorite among nobility, often served "
+        "with rich sauces and seasonal vegetables.",
+        "base experience" : 5,
+    ]),
+    "roasted rabbit": ([
+        "type":"rabbit",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "rabbit":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Tender, succulent meat with a delicate flavor and crispy skin. "
+        "Its lightness makes it a popular choice for spring feasts, often "
+        "served with fresh herbs and seasonal vegetables.",
+        "base experience" : 5,
+    ]),
+    "roasted lamb": ([
+        "type":"lamb",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "lamb":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Tender, flavorful meat with a rich aroma and crispy skin. Its "
+        "distinctive taste has made it a favorite for festive occasions, "
+        "often served with mint sauce or roasted vegetables.",
+        "base experience" : 5,
+    ]),
+    "roasted pork": ([
+        "type":"pork",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "pork":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Juicy, succulent meat with a crispy, caramelized exterior. Its "
+        "savory flavor has made it a staple at feasts and celebrations, often "
+        "served with applesauce or roasted root vegetables.",
+        "base experience" : 5,
+    ]),
+    "roasted beef": ([
+        "type":"beef",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "beef":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Rich, hearty meat with a deep, savory flavor and tender texture. "
+        "Its robust taste has made it a favorite for winter feasts, often "
+        "served with rich gravies and roasted vegetables.",
+        "base experience" : 5,
+    ]),
+    "roasted venison": ([
+        "type":"venison",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/roasting.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "venison":1,
+            "salt" : 1,
+            "garlic" : 1,
+            "pepper" : 1,
+            "paprika" : 1
+        ]),
+        "default description": "Lean, flavorful meat with a rich, gamey taste and tender texture. "
+        "Its distinctive flavor has made it a favorite among hunters, often "
+        "served with berry sauces or roasted root vegetables.",
+        "base experience" : 5,
+    ]),
+    "wheat bread": ([
+        "type": "bread",
+        "subtype": "wheat",
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking": (["type":"skill", "value": 3]),
+        ]),        
+        "crafting materials": ([
+            "wheat flour": 2,
+            "water": 1,
+            "salt": 1,
+            "yeast": 1
+        ]),
+        "default description": "Golden-crusted loaves with a hearty texture and the wholesome aroma "
+            "of baked grain. The soft, airy interior yields to gentle pressure, "
+            "releasing the comforting scent that transforms humble grain into sustenance.",
+        "base experience": 3,
+    ]),
+    "rye bread": ([
+        "type":"bread",
+        "subtype" : "rye",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "rye flour":2,
+            "water" : 1,
+            "salt" : 1,
+            "yeast" : 1
+        ]),
+        "default description": "Dense, dark loaves with a slightly sour aroma and chewy texture. "
+        "Their robust flavor pairs well with hearty stews and smoked meats, "
+        "making them staples in northern kitchens.",
+        "base experience" : 3,
+    ]),
+    "barley bread": ([
+        "type":"bread",
+        "subtype" : "barley",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "barley flour":2,
+            "water" : 1,
+            "salt" : 1,
+            "yeast" : 1
+        ]),
+        "default description": "Nutty, slightly sweet loaves with a coarse texture and hearty "
+        "flavor. Their rustic appearance and wholesome aroma evoke images of "
+        "ancient fields where barley was first cultivated by early farmers.",
+        "base experience" : 3,
+    ]),
+    "oat bread": ([
+        "type":"bread",
+        "subtype" : "oat",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "oat flour":2,
+            "water" : 1,
+            "salt" : 1,
+            "yeast" : 1
+        ]),
+        "default description": "Soft, golden loaves with a slightly sweet aroma and tender crumb. "
+        "Their wholesome flavor and light texture make them perfect for "
+        "breakfast spreads or as a base for hearty sandwiches.",
+        "base experience" : 3,
+    ]),
+    "cornbread": ([
+        "type":"bread",
+        "subtype" : "corn",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "cornmeal":2,
+            "water" : 1,
+            "salt" : 1,
+            "baking powder" : 1
+        ]),
+        "default description": "Golden, crumbly loaves with a sweet, buttery aroma. Their "
+        "moist texture and slightly gritty bite evoke memories of summer "
+        "picnics and family gatherings around the hearth.",
+        "base experience" : 3,
+    ]),
+    "sourdough bread": ([
+        "type":"bread",
+        "subtype" : "sourdough",
+        "crafting prerequisites" : ([
+            "/lib/instances/research/crafting/food/baking.c":(["type":"research"]),
+            "cooking" : (["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "sourdough starter":1,
+            "water" : 1,
+            "salt" : 1,
+            "flour" : 2
+        ]),
+        "default description": "Crusty, tangy loaves with a chewy crust and airy interior. Their "
+        "distinctive sour aroma and complex flavor profile make them a "
+        "favorite among artisan bakers and culinary enthusiasts.",
+        "base experience" : 3,
+    ]),
+    "sweet yellow pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials" : ([
+            "sweet yellow pepper seed":1
+        ]),
+        "default description": "Bright yellow peppers with a sweet, fruity flavor and crisp texture. "
+        "Their sunny hue is said to bring warmth and joy to any dish, "
+        "making them popular in both cooking and decoration.",
+        "base experience": 1,
     ]),
     "basil": ([
         "type": "herb",

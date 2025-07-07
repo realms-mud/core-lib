@@ -36,24 +36,23 @@ public void setAction(string act)
 /////////////////////////////////////////////////////////////////////////////
 private void executeTransaction(int quantity)
 {
-    object trader = User->getService("trader");
     object itemObj = load_object(itemPath);
     string colorConfig = User->colorConfiguration();
     
     if (action == "buy")
     {
         int totalCost = quantity * pricePerUnit;
-        if (trader->getCash() >= totalCost)
+        if (User->getCash() >= totalCost)
         {
-            trader->addCash(-totalCost);
-            trader->addCargoToVehicle(itemPath, quantity);
+            User->addCash(-totalCost);
+            User->addCargoToVehicle(itemPath, quantity);
             
             tell_object(User, configuration->decorate(
                 sprintf("You purchased %d %s for %d gold total.",
                        quantity, itemObj->query("name"), totalCost),
                 "success", "quests", colorConfig));
             
-            trader->addTradingExperience(quantity);
+            User->addTradingExperience(quantity);
         }
         else
         {
@@ -64,18 +63,18 @@ private void executeTransaction(int quantity)
     }
     else if (action == "sell")
     {
-        if (trader->getCargoQuantity(itemPath) >= quantity)
+        if (User->getCargoQuantity(itemPath) >= quantity)
         {
             int totalValue = quantity * pricePerUnit;
-            trader->addCash(totalValue);
-            trader->removeCargoFromVehicle(itemPath, quantity);
+            User->addCash(totalValue);
+            User->removeCargoFromVehicle(itemPath, quantity);
             
             tell_object(User, configuration->decorate(
                 sprintf("You sold %d %s for %d gold total.",
                        quantity, itemObj->query("name"), totalValue),
                 "success", "quests", colorConfig));
             
-            trader->addTradingExperience(quantity);
+            User->addTradingExperience(quantity);
         }
         else
         {

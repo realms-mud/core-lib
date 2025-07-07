@@ -30,7 +30,6 @@ protected nomask void setUpUserForSelection()
     }
     
     mapping routes = environment->getTradeRoutes();
-    object trader = User->getService("trader");
     
     Data = ([]);
     int counter = 1;
@@ -53,7 +52,7 @@ protected nomask void setUpUserForSelection()
             
             // Calculate travel cost based on distance and vehicle type
             int baseCost = route["days"] * 50; // 50 gold per day
-            mapping vehicle = trader->getVehicle();
+            mapping vehicle = User->getVehicle();
             
             // Modify cost based on vehicle type
             switch(vehicle["type"]) 
@@ -73,7 +72,7 @@ protected nomask void setUpUserForSelection()
                                      "Danger Level: %d%%, Cost: %d gold",
                                      capitalize(dest), route["type"], route["days"], 
                                      route["danger"], baseCost),
-                "canShow": (trader->getCash() >= baseCost)
+                "canShow": (User->getCash() >= baseCost)
             ]);
         }
     }

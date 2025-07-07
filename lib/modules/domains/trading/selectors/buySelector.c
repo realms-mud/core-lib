@@ -26,38 +26,22 @@ protected nomask void setUpUserForSelection()
     
     if (environment && environment->isPort()) 
     {
-        object trader = User->getService("trader");
         Data = ([]);
         int counter = 1;
         
-        // Common trade goods
-        string *availableItems = ({
-            "/lib/instances/items/materials/metal/iron",
-            "/lib/instances/items/materials/wood/oak", 
-            "/lib/instances/items/weapons/swords/long-sword",
-            "/lib/instances/items/food/bread",
-            "/lib/instances/items/materials/crystal/diamond",
-            "/lib/instances/items/materials/textile/silk",
-            "/lib/instances/items/materials/spice/pepper"
-        });
-        
-        foreach(string item in availableItems) 
+        object tradingDict = getDictionary("trading");
+        mapping availableGoods = tradingDict->getAvailableGoods(environment, User);
+
+        string *choices = m_indices(availableGoods);
+        foreach(string choice in choices)
         {
-            object itemObj = load_object(item);
-            if (itemObj) 
+            if (availableGoods[choice]["canShow"])
             {
-                int price = environment->getItemPrice(item);
-                int canAfford = trader->getCash() / price;
-                
-                Data[to_string(counter++)] = ([
-                    "name": sprintf("%s (%d gold each)", itemObj->query("name"), price),
+                Data[to_string(counter++)] = availableGoods[choice] + ([
                     "type": "item",
-                    "item_path": item,
-                    "price": price,
-                    "can_afford": canAfford,
-                    "description": sprintf("Purchase %s at %d gold per unit. You can afford %d units.",
-                                         itemObj->query("name"), price, canAfford),
-                    "canShow": (canAfford > 0)
+                    "description": sprintf("Purchase %s. You can afford %d units.",
+                                         availableGoods[choice]["name"], 
+                                         availableGoods[choice]["can afford"])
                 ]);
             }
         }

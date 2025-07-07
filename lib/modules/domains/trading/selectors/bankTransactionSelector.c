@@ -22,7 +22,6 @@ public void setMaxAmount(int amount)
 /////////////////////////////////////////////////////////////////////////////
 private void executeTransaction(int amount)
 {
-    object trader = User->getService("trader");
     string colorConfiguration = User->colorConfiguration();
     object configuration = getDictionary("configuration");
     int success = 0;
@@ -30,7 +29,7 @@ private void executeTransaction(int amount)
     switch(transactionType)
     {
         case "deposit":
-            success = trader->depositMoney(amount);
+            success = User->depositMoney(amount);
             if (success) 
             {
                 tell_object(User, configuration->decorate(
@@ -40,7 +39,7 @@ private void executeTransaction(int amount)
             break;
             
         case "withdraw":
-            success = trader->withdrawMoney(amount);
+            success = User->withdrawMoney(amount);
             if (success) 
             {
                 tell_object(User, configuration->decorate(
@@ -50,7 +49,7 @@ private void executeTransaction(int amount)
             break;
             
         case "borrow":
-            success = trader->borrowMoney(amount);
+            success = User->borrowMoney(amount);
             if (success) 
             {
                 tell_object(User, configuration->decorate(
@@ -61,7 +60,7 @@ private void executeTransaction(int amount)
             break;
             
         case "repay":
-            success = trader->repayDebt(amount);
+            success = User->repayDebt(amount);
             if (success) 
             {
                 tell_object(User, configuration->decorate(

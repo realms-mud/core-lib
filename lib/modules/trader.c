@@ -113,7 +113,7 @@ public void setFirmName(string name)
 {
     if (name && stringp(name) && sizeof(name) > 0)
     {
-        tradingCompany["firm name"] = name[0..22]; // Limit like Taipan
+        tradingCompany["firm name"] = name[0..22];
     }
 }
 
@@ -129,7 +129,7 @@ public void setupStartingChoice(int choice)
 {
     switch(choice)
     {
-        case 1: // Cash and debt (like Taipan option 1)
+        case 1: // Cash and debt
         {
             tradingCompany["cash"] = 400;
             tradingCompany["debt"] = 5000;
@@ -137,7 +137,7 @@ public void setupStartingChoice(int choice)
             currentVehicle["protection"] = 0;
             break;
         }
-        case 2: // Protection and no cash (like Taipan option 2)  
+        case 2: // Protection and no cash
         {
             tradingCompany["cash"] = 0;
             tradingCompany["debt"] = 0;

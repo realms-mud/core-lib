@@ -328,7 +328,10 @@ public nomask varargs void initiateSelector(object user, int alreadyInitialized)
     {
         AllowAbort = 1;
     }
-    tell_object(User, displayMessage());
+    if (sizeof(Data))
+    {
+        tell_object(User, displayMessage());
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

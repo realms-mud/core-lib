@@ -100,11 +100,15 @@ void LsDisplaysUnreadableFilesCorrectly()
 void WildcardsWork()
 {
     ExpectTrue(Wizard.executeCommand("ls -l /lib/modules/"));
-    ExpectEq(38, sizeof(explode(Wizard.caughtMessages(), "\n")));
+
+    // The + 1 in the calculation is for the listing of the directory itself
+    ExpectEq(sizeof(get_dir("/lib/modules/*")) + 1, sizeof(explode(Wizard.caughtMessages(), "\n")));
 
     Wizard.resetCatchList();
     ExpectTrue(Wizard.executeCommand("ls -l /lib/modules/b*"));
-    ExpectEq(5, sizeof(explode(Wizard.caughtMessages(), "\n")));
+
+    // The + 3 is for two empty rows (from . and ..) and the directory itself
+    ExpectEq(sizeof(get_dir("/lib/modules/b*")) + 3, sizeof(explode(Wizard.caughtMessages(), "\n")));
 }
 
 /////////////////////////////////////////////////////////////////////////////

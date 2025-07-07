@@ -16,15 +16,14 @@ private int calculateUpgradeCost(int currentCapacity)
 /////////////////////////////////////////////////////////////////////////////
 private void displayOverloadStatus() 
 {
-    object trader = User->getService("trader");
-    mapping vehicle = trader->getVehicle();
+    mapping vehicle = User->getVehicle();
     string colorConfig = User->colorConfiguration();
     
     object commandsDictionary = getDictionary("commands");
     string charset = User->charsetConfiguration();
     
-    int capacity = trader->getVehicleCapacity();
-    int used = trader->getVehicleUsedSpace();
+    int capacity = User->getVehicleCapacity();
+    int used = User->getVehicleUsedSpace();
     int excess = used - capacity;
     
     string statusDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
@@ -73,8 +72,7 @@ private void displayOverloadStatus()
 /////////////////////////////////////////////////////////////////////////////
 private void handleDropAllCargo() 
 {
-    object trader = User->getService("trader");
-    mapping vehicle = trader->getVehicle();
+    mapping vehicle = User->getVehicle();
     string colorConfig = User->colorConfiguration();
     
     // Calculate total value lost
@@ -95,7 +93,7 @@ private void handleDropAllCargo()
     // Clear all cargo using proper method
     foreach(string item in items)
     {
-        trader->removeCargoFromVehicle(item, cargo[item]);
+        User->removeCargoFromVehicle(item, cargo[item]);
     }
     
     tell_object(User, configuration->decorate(
@@ -107,15 +105,14 @@ private void handleDropAllCargo()
 /////////////////////////////////////////////////////////////////////////////
 private void handleVehicleUpgrade(int cost)
 {
-    object trader = User->getService("trader");
     string colorConfig = User->colorConfiguration();
     
-    if (trader->getCash() >= cost) 
+    if (User->getCash() >= cost) 
     {
-        trader->addCash(-cost);
+        User->addCash(-cost);
         
         // Increase vehicle capacity
-        mapping vehicle = trader->getVehicle();
+        mapping vehicle = User->getVehicle();
         vehicle["capacity"] += 50;
         
         tell_object(User, configuration->decorate(
@@ -144,12 +141,11 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object trader = User->getService("trader");
-    mapping vehicle = trader->getVehicle();
+    mapping vehicle = User->getVehicle();
     mapping cargo = vehicle["cargo"];
     
-    int capacity = trader->getVehicleCapacity();
-    int used = trader->getVehicleUsedSpace();
+    int capacity = User->getVehicleCapacity();
+    int used = User->getVehicleUsedSpace();
     int excess = used - capacity;
     
     Data = ([]);
@@ -220,7 +216,7 @@ protected nomask void setUpUserForSelection()
         "description": sprintf("Permanently increase your vehicle's capacity by 50 units "
                              "for %d gold. This will resolve the overload.",
                              upgradeCost),
-        "canShow": (trader->getCash() >= upgradeCost)
+        "canShow": (User->getCash() >= upgradeCost)
     ]);
 }
 
@@ -234,7 +230,7 @@ protected nomask int processSelection(string selection)
         
         // Check if overload is resolved after each action
         object trader = User->getService("trader");
-        ret = (trader->getVehicleUsedSpace() <= trader->getVehicleCapacity());
+        ret = (User->getVehicleUsedSpace() <= User->getVehicleCapacity());
         
         if (!ret && Data[selection]["canShow"]) 
         {
@@ -268,7 +264,7 @@ protected nomask int processSelection(string selection)
         }
         
         // Recheck if overload is resolved
-        ret = (trader->getVehicleUsedSpace() <= trader->getVehicleCapacity());
+        ret = (User->getVehicleUsedSpace() <= User->getVehicleCapacity());
     }
     return ret;
 }
@@ -281,7 +277,7 @@ public nomask void onSelectorCompleted(object caller)
         object trader = User->getService("trader");
         
         // Check if overload is resolved
-        if (trader->getVehicleUsedSpace() <= trader->getVehicleCapacity()) 
+        if (User->getVehicleUsedSpace() <= User->getVehicleCapacity()) 
         {
             tell_object(User, configuration->decorate(
                 "Overload situation resolved! You can now travel.",

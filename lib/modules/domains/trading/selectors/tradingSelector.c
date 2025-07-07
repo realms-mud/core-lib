@@ -150,12 +150,16 @@ protected nomask void setUpUserForSelection()
             "canShow": 1
         ]);
         
-        Data[to_string(counter++)] = ([
-            "name": "Sell Goods", 
-            "type": "sell",
-            "description": "Sell your cargo at the local market.",
-            "canShow": (sizeof(User->getVehicle()["cargo"]) > 0)
-        ]);
+        // Only add sell option when player has cargo
+        if (sizeof(User->getVehicle()["cargo"]) > 0)
+        {
+            Data[to_string(counter++)] = ([
+                "name": "Sell Goods", 
+                "type": "sell",
+                "description": "Sell your cargo at the local market.",
+                "canShow": 1
+            ]);
+        }
         
         Data[to_string(counter++)] = ([
             "name": "View Market Prices",

@@ -2,13 +2,13 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/secure/master/security/priviledgeGroup.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected nomask void applyGroupDetails()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    setShortDescription("a mock testing environment");
-    setAdditionalLongDescription("This is a mock environment for testing purposes. It is "
-        "specifically designed to NOT be a port.");
+    setName("/lib/tests/commands/wizard/lsTest");
+    addPermission("/lib/modules", Read);
+
+    addPriviledgedEfun("get_dir");
 }

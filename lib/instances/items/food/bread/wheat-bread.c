@@ -2,13 +2,13 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+virtual inherit "/lib/items/food.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
-    setTerrain("/lib/environment/terrain/city.c");
-    setShortDescription("a mock testing environment");
-    setAdditionalLongDescription("This is a mock environment for testing purposes. It is "
-        "specifically designed to NOT be a port.");
+    set("name", "Wheat Bread");
+    set("short", "Wheat Bread");
+    set("aliases", ({ "wheat bread", "bread", "loaf" }));
+    set("blueprint", "wheat bread");
 }

@@ -9,15 +9,14 @@ private object SubselectorObj;
 /////////////////////////////////////////////////////////////////////////////
 private void displayWarehouseStatus()
 {
-    object trader = User->getService("trader");
-    mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
+    mapping warehouse = User->getWarehouse(User->getCurrentLocation());
     string colorConfig = User->colorConfiguration();
     
     object commandsDictionary = getDictionary("commands");
     string charset = User->charsetConfiguration();
     
     string warehouseDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
-                             sprintf("%s Warehouse", trader->getCurrentLocation()));
+                             sprintf("%s Warehouse", User->getCurrentLocation()));
     
     // Calculate warehouse used space
     int used = 0;
@@ -85,12 +84,12 @@ private void handleRentPayment()
     int rentCost = 1000; // Base monthly rent
     string colorConfig = User->colorConfiguration();
     
-    if (trader->getCash() >= rentCost)
+    if (User->getCash() >= rentCost)
     {
-        trader->addCash(-rentCost);
+        User->addCash(-rentCost);
         
         // Extend rent by 30 days
-        mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
+        mapping warehouse = User->getWarehouse(User->getCurrentLocation());
         warehouse["rent paid"] += (30 * 86400);
         
         tell_object(User, configuration->decorate(
@@ -118,13 +117,12 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object trader = User->getService("trader");
     object environment = environment(User);
     
     if (environment && environment->isPort())
     {
-        mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
-        mapping vehicle = trader->getVehicle();
+        mapping warehouse = User->getWarehouse(User->getCurrentLocation());
+        mapping vehicle = User->getVehicle();
         
         Data = ([]);
         int counter = 1;
@@ -144,7 +142,7 @@ protected nomask void setUpUserForSelection()
                 "name": "Load Cargo from Warehouse",
                 "type": "load",
                 "description": "Transfer goods from warehouse to your vehicle.",
-                "canShow": (trader->getVehicleFreeSpace() > 0)
+                "canShow": (User->getVehicleFreeSpace() > 0)
             ]);
         }
         
