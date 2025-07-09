@@ -18,34 +18,42 @@ private void displayOverloadStatus()
 {
     mapping vehicle = User->getVehicle();
     string colorConfig = User->colorConfiguration();
-    
+    object configuration = getDictionary("configuration");
     object commandsDictionary = getDictionary("commands");
     string charset = User->charsetConfiguration();
-    
+
     int capacity = User->getVehicleCapacity();
     int used = User->getVehicleUsedSpace();
     int excess = used - capacity;
-    
+
+    if (excess <= 0)
+    {
+        tell_object(User, configuration->decorate(
+            "Your vehicle is not overloaded. No action is required.",
+            "success", "quests", colorConfig));
+        return;
+    }
+
     string statusDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
                           "Vehicle Overload Crisis");
-    
+
     // Capacity information
     statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
         configuration->decorate("Vehicle Capacity: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", capacity), "field data", "research", colorConfig) +
         configuration->decorate("     Current Load: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", used), "penalty modifier", "research", colorConfig));
-    
+
     statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
         configuration->decorate("Excess Cargo: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", excess), "penalty modifier", "research", colorConfig) +
         configuration->decorate(" - YOU CANNOT TRAVEL UNTIL THIS IS RESOLVED!", 
                                "failure", "selector", colorConfig));
-    
+
     // Current cargo breakdown
     statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
                      configuration->decorate("Current Cargo:", "field header", "research", colorConfig));
-    
+
     mapping cargo = vehicle["cargo"];
     if (sizeof(cargo)) 
     {
@@ -54,18 +62,18 @@ private void displayOverloadStatus()
         {
             object itemObj = load_object(item);
             string itemName = itemObj ? itemObj->query("name") : item;
-            
+
             string cargoLine = configuration->decorate(sprintf("  %-25s: ", itemName),
                               "choice enabled", "selector", colorConfig) +
                               configuration->decorate(sprintf("%d units", cargo[item]),
                               "data", "selector", colorConfig);
-            
+
             statusDisplay += commandsDictionary->banneredContent(colorConfig, charset, cargoLine);
         }
     }
-    
+
     statusDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
-    
+
     tell_object(User, statusDisplay);
 }
 
@@ -74,12 +82,12 @@ private void handleDropAllCargo()
 {
     mapping vehicle = User->getVehicle();
     string colorConfig = User->colorConfiguration();
-    
+
     // Calculate total value lost
     int totalValue = 0;
     mapping cargo = vehicle["cargo"];
     string *items = m_indices(cargo);
-    
+
     object environment = environment(User);
     foreach(string item in items) 
     {
@@ -89,13 +97,13 @@ private void handleDropAllCargo()
             totalValue += price * cargo[item];
         }
     }
-    
+
     // Clear all cargo using proper method
     foreach(string item in items)
     {
         User->removeCargoFromVehicle(item, cargo[item]);
     }
-    
+
     tell_object(User, configuration->decorate(
         sprintf("You dropped all cargo! Estimated value lost: %d gold. "
                "Your vehicle is no longer overloaded.", totalValue),
@@ -106,15 +114,15 @@ private void handleDropAllCargo()
 private void handleVehicleUpgrade(int cost)
 {
     string colorConfig = User->colorConfiguration();
-    
+
     if (User->getCash() >= cost) 
     {
         User->addCash(-cost);
-        
+
         // Increase vehicle capacity
         mapping vehicle = User->getVehicle();
         vehicle["capacity"] += 50;
-        
+
         tell_object(User, configuration->decorate(
             sprintf("You upgraded your vehicle capacity by 50 units for %d gold. "
                    "Your vehicle is no longer overloaded.", cost),
@@ -143,14 +151,25 @@ protected nomask void setUpUserForSelection()
 {
     mapping vehicle = User->getVehicle();
     mapping cargo = vehicle["cargo"];
-    
+
     int capacity = User->getVehicleCapacity();
     int used = User->getVehicleUsedSpace();
     int excess = used - capacity;
-    
+
+    // Only show overload menu if overloaded
+    if (excess <= 0)
+    {
+        object configuration = getDictionary("configuration");
+        tell_object(User, configuration->decorate(
+            "Your vehicle is not overloaded. No action is required.",
+            "success", "quests", User->colorConfiguration()));
+        notifySynchronous("onSelectorCompleted");
+        return;
+    }
+
     Data = ([]);
     int counter = 1;
-    
+
     // Show overload status
     Data[to_string(counter++)] = ([
         "name": sprintf("View Overload Status (%d units over capacity)", excess),
@@ -161,7 +180,7 @@ protected nomask void setUpUserForSelection()
                              used, capacity, excess),
         "canShow": 1
     ]);
-    
+
     // Options to reduce cargo
     if (sizeof(cargo)) 
     {
@@ -171,7 +190,7 @@ protected nomask void setUpUserForSelection()
             object itemObj = load_object(item);
             string itemName = itemObj ? itemObj->query("name") : item;
             int quantity = cargo[item];
-            
+
             Data[to_string(counter++)] = ([
                 "name": sprintf("Drop %s (have %d)", itemName, quantity),
                 "type": "drop",
@@ -184,7 +203,7 @@ protected nomask void setUpUserForSelection()
                 "canShow": 1
             ]);
         }
-        
+
         // Drop all cargo option
         Data[to_string(counter++)] = ([
             "name": "Drop All Cargo (Emergency)",
@@ -194,7 +213,7 @@ protected nomask void setUpUserForSelection()
             "canShow": 1
         ]);
     }
-    
+
     // Warehouse option (if at port)
     object environment = environment(User);
     if (environment && environment->isPort()) 
@@ -206,7 +225,7 @@ protected nomask void setUpUserForSelection()
             "canShow": 1
         ]);
     }
-    
+
     // Upgrade vehicle option (if enough money)
     int upgradeCost = calculateUpgradeCost(capacity);
     Data[to_string(counter++)] = ([
@@ -227,11 +246,11 @@ protected nomask int processSelection(string selection)
     if (User) 
     {
         string selectionType = Data[selection]["type"];
-        
+
         // Check if overload is resolved after each action
         object trader = User->getService("trader");
         ret = (User->getVehicleUsedSpace() <= User->getVehicleCapacity());
-        
+
         if (!ret && Data[selection]["canShow"]) 
         {
             switch(selectionType) 
@@ -254,7 +273,7 @@ protected nomask int processSelection(string selection)
                     handleVehicleUpgrade(Data[selection]["upgrade cost"]);
                     break;
             }
-            
+
             if (SubselectorObj) 
             {
                 move_object(SubselectorObj, User);
@@ -262,7 +281,7 @@ protected nomask int processSelection(string selection)
                 SubselectorObj->initiateSelector(User);
             }
         }
-        
+
         // Recheck if overload is resolved
         ret = (User->getVehicleUsedSpace() <= User->getVehicleCapacity());
     }
@@ -275,19 +294,19 @@ public nomask void onSelectorCompleted(object caller)
     if (User) 
     {
         object trader = User->getService("trader");
-        
+
         // Check if overload is resolved
         if (User->getVehicleUsedSpace() <= User->getVehicleCapacity()) 
         {
             tell_object(User, configuration->decorate(
                 "Overload situation resolved! You can now travel.",
                 "success", "quests", User->colorConfiguration()));
-            
+
             // Exit back to trading menu
             notifySynchronous("onSelectorCompleted");
             return;
         }
-        
+
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
@@ -313,7 +332,7 @@ protected string choiceFormatter(string choice)
         criticalIndicator = configuration->decorate(" [DANGER]", "penalty modifier", 
                            "research", colorConfig);
     }
-    
+
     return sprintf("%s[%s]%s - %s%s%s",
         (NumColumns < 3) ? "    " : "",
         configuration->decorate("%s", "number", "selector", colorConfig),
