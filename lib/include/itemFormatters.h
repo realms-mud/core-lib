@@ -1619,6 +1619,233 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;200;0;0;1m"
         ]),
     ]),
+    "vehicle": ([
+        // FRAME/CHASSIS/BODY
+        "frame": ([
+            "grayscale": "\x1b[0;38;5;246m",
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;137m",
+            "24-bit": "\x1b[0;38;2;170;120;60m"
+        ]),
+        "reinforced frame": ([
+            "grayscale": "\x1b[1;38;5;244m",
+            "3-bit": "\x1b[1;33m",
+            "8-bit": "\x1b[1;38;5;130m",
+            "24-bit": "\x1b[1;38;2;200;150;80m"
+        ]),
+        "magical frame": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt frame": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // HULLS
+        "hull": ([
+            "grayscale": "\x1b[0;38;5;244m",
+            "3-bit": "\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;130m",
+            "24-bit": "\x1b[0;38;2;160;110;60m"
+        ]),
+        "reinforced hull": ([
+            "grayscale": "\x1b[1;38;5;137m",
+            "3-bit": "\x1b[1;33m",
+            "8-bit": "\x1b[1;38;5;137m",
+            "24-bit": "\x1b[1;38;2;200;170;90m"
+        ]),
+        "ironclad hull": ([
+            "grayscale": "\x1b[1;38;5;240m",
+            "3-bit": "\x1b[1;37m",
+            "8-bit": "\x1b[1;38;5;250m",
+            "24-bit": "\x1b[1;38;2;180;180;180m"
+        ]),
+        "arcane hull": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt hull": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // CARGO
+        "cargo": ([
+            "grayscale": "\x1b[0;38;5;248m",
+            "3-bit": "\x1b[0;32m",
+            "8-bit": "\x1b[0;38;5;142m",
+            "24-bit": "\x1b[0;38;2;120;180;80m"
+        ]),
+        "arcane cargo": ([
+            "grayscale": "\x1b[1;38;5;117m",
+            "3-bit": "\x1b[1;36m",
+            "8-bit": "\x1b[1;38;5;117m",
+            "24-bit": "\x1b[1;38;2;120;220;220m"
+        ]),
+        "unbuilt cargo": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // DEFENSE
+        "defense": ([
+            "grayscale": "\x1b[0;38;5;245m",
+            "3-bit": "\x1b[0;35m",
+            "8-bit": "\x1b[0;38;5;133m",
+            "24-bit": "\x1b[0;38;2;120;60;160m"
+        ]),
+        "iron plating": ([
+            "grayscale": "\x1b[1;38;5;240m",
+            "3-bit": "\x1b[1;37m",
+            "8-bit": "\x1b[1;38;5;250m",
+            "24-bit": "\x1b[1;38;2;180;180;180m"
+        ]),
+        "arcane warding": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;120;120;255m"
+        ]),
+        "unbuilt defense": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // HENCHMAN/CREW
+        "henchman": ([
+            "grayscale": "\x1b[0;38;5;255m",
+            "3-bit": "\x1b[0;36;1m",
+            "8-bit": "\x1b[0;38;5;45m",
+            "24-bit": "\x1b[0;38;2;120;220;220m"
+        ]),
+        "arcane henchman": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt henchman": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // WEAPON
+        "weapon": ([
+            "grayscale": "\x1b[0;38;5;240m",
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;160m",
+            "24-bit": "\x1b[0;38;2;200;40;40m"
+        ]),
+        "arcane weapon": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;255;120;255m"
+        ]),
+        "unbuilt weapon": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // PROPULSION
+        "propulsion": ([
+            "grayscale": "\x1b[0;38;5;250m",
+            "3-bit": "\x1b[0;37m",
+            "8-bit": "\x1b[0;38;5;180m",
+            "24-bit": "\x1b[0;38;2;200;200;180m"
+        ]),
+        "arcane propulsion": ([
+            "grayscale": "\x1b[1;38;5;117m",
+            "3-bit": "\x1b[1;36m",
+            "8-bit": "\x1b[1;38;5;117m",
+            "24-bit": "\x1b[1;38;2;120;220;220m"
+        ]),
+        "unbuilt propulsion": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // SAIL
+        "sail": ([
+            "grayscale": "\x1b[0;38;5;255m",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;195m",
+            "24-bit": "\x1b[0;38;2;220;220;255m"
+        ]),
+        "arcane sail": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt sail": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // UTILITY
+        "utility": ([
+            "grayscale": "\x1b[0;38;5;244m",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;80m",
+            "24-bit": "\x1b[0;38;2;180;180;190m"
+        ]),
+        "arcane utility": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt utility": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // ARCANE (catch-all for magical/arcane components)
+        "arcane": ([
+            "grayscale": "\x1b[1;38;5;183m",
+            "3-bit": "\x1b[1;35m",
+            "8-bit": "\x1b[1;38;5;183m",
+            "24-bit": "\x1b[1;38;2;180;120;255m"
+        ]),
+        "unbuilt arcane": ([
+            "grayscale": "\x1b[0;38;5;240;1m",
+            "3-bit": "\x1b[0;31;1m",
+            "8-bit": "\x1b[0;38;5;244;1m",
+            "24-bit": "\x1b[0;38;2;120;120;120;1m"
+        ]),
+
+        // DEFAULT
+        "default": ([
+            "grayscale": "\x1b[0;38;5;250m",
+            "3-bit": "\x1b[0;37m",
+            "8-bit": "\x1b[0;38;5;250m",
+            "24-bit": "\x1b[0;38;2;200;200;200m"
+        ]),
+    ]),
 
 ]);
 
