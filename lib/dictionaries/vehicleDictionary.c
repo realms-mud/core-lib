@@ -6,7 +6,7 @@
 #include "/lib/dictionaries/vehicles/vehicle-components.h"
 
 /////////////////////////////////////////////////////////////////////////////
-public mapping queryVehicleBlueprint(string type)
+public nomask mapping queryVehicleBlueprint(string type)
 {
     mapping result = ([]);
     if (member(Vehicles, type))
@@ -17,7 +17,7 @@ public mapping queryVehicleBlueprint(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public mapping queryComponent(string name)
+public nomask mapping queryComponent(string name)
 {
     mapping result = ([]);
     if (member(VehicleComponents, name))
@@ -28,19 +28,19 @@ public mapping queryComponent(string name)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *queryAllVehicleTypes()
+public nomask string *queryAllVehicleTypes()
 {
     return m_indices(Vehicles);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *queryAllComponents()
+public nomask string *queryAllComponents()
 {
     return m_indices(VehicleComponents);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *queryComponentsByClass(string className)
+public nomask string *queryComponentsByClass(string className)
 {
     string *result = ({});
     foreach(string key in m_indices(VehicleComponents))
@@ -55,7 +55,7 @@ public string *queryComponentsByClass(string className)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string *queryValidComponentsForVehicle(string type)
+public nomask string *queryValidComponentsForVehicle(string type)
 {
     string *result = queryAllComponents();
     mapping blueprint = queryVehicleBlueprint(type);
@@ -67,7 +67,7 @@ public string *queryValidComponentsForVehicle(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int vehicleIsTradeCapable(object vehicle)
+public nomask int vehicleIsTradeCapable(object vehicle)
 {
     int result = 0;
     if (objectp(vehicle))
@@ -90,7 +90,7 @@ public int vehicleIsTradeCapable(object vehicle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getVehicleTradeBonus(object vehicle)
+public nomask int getVehicleTradeBonus(object vehicle)
 {
     int bonus = 0;
     if (objectp(vehicle))
@@ -198,7 +198,7 @@ private string replaceTagsWithComponents(string layout, mapping slots, object pl
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string visualizeVehicle(object player, object vehicle)
+public nomask string visualizeVehicle(object player, object vehicle)
 {
     string result = "";
     if (objectp(vehicle) && objectp(player) &&
