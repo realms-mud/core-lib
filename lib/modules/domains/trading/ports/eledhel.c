@@ -40,6 +40,6 @@ public void Setup()
     addExit("east", "/lib/modules/domains/trading/ports/eledhel-harbor");
     addExit("west", "/lib/modules/domains/trading/rooms/eledhel-government");
     addExit("north", "/lib/modules/domains/trading/rooms/eledhel-merchant-quarter");
-    
+
     ::Setup();
 }

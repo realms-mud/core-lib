@@ -1377,7 +1377,7 @@ protected mapping food =
         "base experience": 1,
     ]),
     "sweet yellow pepper": ([
-        "type": "vegetable",
+        "type": "pepper",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -1390,7 +1390,7 @@ protected mapping food =
         "base experience": 1,
     ]),
     "sweet orange pepper": ([
-        "type": "vegetable",
+        "type": "pepper",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -1403,7 +1403,7 @@ protected mapping food =
         "base experience": 1,
     ]),
     "sweet red pepper": ([
-        "type": "vegetable",
+        "type": "pepper",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -1416,7 +1416,7 @@ protected mapping food =
         "base experience": 1,
     ]),
     "green pepper": ([
-        "type": "vegetable",
+        "type": "pepper",
         "crafting prerequisites": ([
             "agriculture":(["type":"skill", "value" : 3]),
         ]),        
@@ -1426,6 +1426,139 @@ protected mapping food =
         "default description": "Unripened peppers with grassy flavor and satisfying crunch. Some "
             "kitchen witches believe their bitter notes can absorb negative "
             "energies when hung above cooking areas.",
+        "base experience": 1,
+    ]),
+    "long pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "long pepper seed": 1
+        ]),
+        "default description": "Catkin-like spikes of tiny fruits with a sharp, complex heat. "
+            "Long pepper was prized in kitchens before black pepper became dominant.",
+        "base experience": 1,
+    ]),
+    "cayenne pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "cayenne pepper seed": 1
+        ]),
+        "default description": "Slender, bright red peppers with intense heat and pungency. "
+            "Used to add fire to dishes and remedies.",
+        "base experience": 1,
+    ]),
+    "bird's eye chili": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "bird's eye chili seed": 1
+        ]),
+        "default description": "Tiny, potent peppers that pack a fiery punch. Their heat "
+            "is legendary among spice lovers.",
+        "base experience": 1,
+    ]),
+    "dragon pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "dragon pepper seed": 1
+        ]),
+        "default description": "A legendary pepper said to be so hot it can "
+            "make a grown warrior weep. Its fiery red color warns of its potency.",
+        "base experience": 1,
+    ]),
+    "jalapeno pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "jalapeno seed":1
+        ]),
+        "default description": "Medium-sized peppers with a smoky, spicy flavor. "
+            "Their heat level is perfect for adding warmth without overwhelming dishes.",
+        "base experience" : 1,
+    ]),
+    "habanero pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "habanero seed":1
+        ]),
+        "default description": "Small, lantern-shaped peppers with a fiery heat that lingers. "
+            "Their origins give them a fruity undertone that enhances "
+            "salsas and spicy dishes.",
+        "base experience" : 1,
+    ]),
+    "serrano pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "serrano seed": 1
+        ]),
+        "default description": "Thin-skinned peppers with a bright, crisp flavor and moderate heat. "
+        "Their vibrant green color adds freshness to dishes, making them a "
+        "favorite in salsas and sauces.",
+        "base experience" : 1,
+    ]),
+    "red chili pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "red chili seed":1
+        ]),
+        "default description": "Dried red peppers with a smoky, spicy flavor that adds depth to "
+            "soups and stews. Their intense heat is balanced by a subtle sweetness.",
+            "base experience" : 1,
+    ]),
+    "green chili pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "green chili seed":1
+        ]),
+        "default description": "Fresh green peppers with a crisp, grassy flavor and moderate heat. "
+            "Their vibrant color and bright taste make them perfect for salads and "
+            "salsas.",
+        "base experience": 1,
+    ]),
+    "tabasco pepper": ([
+        "type": "fruit",
+        "subtype": "pepper",
+        "crafting prerequisites": ([
+            "agriculture":(["type":"skill", "value" : 3]),
+        ]),
+        "crafting materials": ([
+            "tabasco seed": 1
+        ]),
+        "default description": "Fiery peppers known for their use in hot sauces. "
+            "Their intense heat and tangy flavor make them a staple in spicy cuisine.",
         "base experience": 1,
     ]),
     "artichoke": ([
@@ -1750,7 +1883,20 @@ protected mapping food =
             "malevolent spirits during the thin times between seasons.",
         "base experience": 1,
     ]),
-
+    "salt": ([
+        "type": "mineral",
+        "subtype": "salt",
+        "crafting prerequisites": ([
+            "mining":(["type":"skill", "value" : 2]),
+        ]),
+        "crafting materials": ([
+            "rock salt": 1
+        ]),
+        "default description": "Crystalline white grains prized for their ability to "
+            "preserve food and enhance flavor. Once so valuable it was used as "
+            "currency, salt is essential to both commoners and royalty alike.",
+        "base experience": 1,
+    ]),
     "roasted chicken": ([
         "type": "chicken",
         "crafting prerequisites": ([

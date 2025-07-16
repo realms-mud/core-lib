@@ -11,23 +11,11 @@ private mapping imports = ([]);
 private mapping currentPrices = ([]);
 private mapping marketModifiers = ([]);
 private int lastPriceUpdate = 0;
+private int SetupCompleted = 0;
 
 // Available trade routes
 private mapping tradeRoutes = ([]);
 private mapping contracts = ([]);
-
-/////////////////////////////////////////////////////////////////////////////
-private void setPortDefaults()
-{
-    // Override in specific port implementations
-    portName = "Generic Port";
-    portType = "coastal";
-    
-    // Default route (should be overridden)
-    tradeRoutes = ([
-        "eledhel": ([ "type": "overland", "days": 5, "danger": 10 ])
-    ]);
-}
 
 /////////////////////////////////////////////////////////////////////////////
 private int calculateRouteDanger(string routeType, int days)
@@ -430,9 +418,19 @@ public void adjustMarketPrices(string category, float modifier, int duration)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+public nomask void reset()
 {
-    setPortDefaults();
+    ::reset();
     generatePrices();
     generateContracts();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    object tradingDictionary = getDictionary("trading");
+    if (tradingDictionary && (portName != "Unknown Port"))
+    {
+        tradingDictionary->registerPort(this_object());
+    }
 }

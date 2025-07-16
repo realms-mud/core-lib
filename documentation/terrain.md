@@ -133,7 +133,8 @@ method, allowing players to reference the terrain by alternative names. For exam
 forest might have aliases like "trees", "woods", or "woodland".
 
 Example:
-```addItemTemplate("a dense forest with towering trees and thick undergrowth"); 
+```
+   addItemTemplate("a dense forest with towering trees and thick undergrowth"); 
    addAlias("trees"); 
    addAlias("woods"); 
    addAlias("woodland");
@@ -183,7 +184,8 @@ terrain class. This method is called when the light source is activated and
 should return the current light magnitude.
 
 Example implementation:
-```protected int processLightSourceActivation(string state, object environment) 
+```
+protected int processLightSourceActivation(string state, object environment) 
 { 
     // Custom logic to reduce light over time 
     int currentMagnitude = ::processLightSourceActivation(state, environment); 
@@ -204,7 +206,8 @@ The system supports five light levels:
 - `addDescriptionTemplate(string template, (optional) string state)`: For light levels 9-10 (full light)
 
 Example:
-```addNearDarkDescriptionTemplate("a barely visible forest shrouded in deep darkness"); 
+```
+addNearDarkDescriptionTemplate("a barely visible forest shrouded in deep darkness"); 
 addLowLightDescriptionTemplate("a dimly lit forest with shadowy forms"); 
 addDimLightDescriptionTemplate("a forest with limited visibility"); 
 addSomeLightDescriptionTemplate("a reasonably well-lit forest"); 
@@ -224,7 +227,8 @@ This is useful for quest-driven environments, seasonal changes, or dynamic terra
 that responds to player actions.
 
 Example:
-```addDescriptionTemplate("a peaceful ##Adjective##", "normal"); 
+```
+addDescriptionTemplate("a peaceful ##Adjective##", "normal"); 
 addDescriptionTemplate("a war-torn ##Adjective##", "battle"); 
 addBonus("stealth", 2, "normal"); addPenalty("stealth", 2, "battle");
 ```
@@ -243,7 +247,8 @@ Parameters:
 - `aliases`: Alternative names for the resource
 
 Example:
-```harvestableResource("berries", 
+```
+harvestableResource("berries", 
     5, 
     "/lib/domains/town/obj/berries", 
     "with several berry bushes that have been picked clean", 
@@ -263,7 +268,8 @@ You can restrict when and how resources can be harvested:
 - `harvestRequiresOneOfTool(string name, string *tools)`: Requires one of several tools
 
 Example:
-```harvestableResource("rare herbs", 
+```
+harvestableResource("rare herbs", 
     3, 
     "/lib/domains/town/obj/herbs", 
     "with disturbed soil where herbs once grew"); 
@@ -285,7 +291,8 @@ The bonus name must be valid according to the bonuses dictionary. Common bonuses
 - Skill bonuses: specific skill names
 
 Example:
-```addBonus("stealth", 3);  // +3 stealth bonus 
+```
+addBonus("stealth", 3);  // +3 stealth bonus 
 addPenalty("magic", 2);  // -2 magic penalty 
 addBonus("herbalism", 5); // +5 herbalism bonus
 ```
@@ -311,7 +318,8 @@ Additional limitations include:
 - `limitBonusByStaminaDrained(string name, int value)`
 
 Example:
-```addBonus("stealth", 5); 
+```
+addBonus("stealth", 5); 
 limitBonusByTimeOfDay("stealth", "night"); 
 limitBonusBySkill("stealth", "stealth", 25);
 ```
@@ -335,7 +343,8 @@ Common limitors include:
 - `limitDisplayByTrait(string trait)`
 
 Example:
-```// Hidden grove only visible to those with high perception 
+```
+// Hidden grove only visible to those with high perception 
 limitDisplayBySkill("perception", 75);
 
 // Magical glade only visible during full moon 
@@ -369,7 +378,8 @@ Methods for building enhancements
 - `addBuildingResourceCostBonus(string building, string resource, int bonus, (optional) string state);`
 
 Example terrain with building enhancements:
-```// Forest terrain that enhances wooden construction 
+```
+// Forest terrain that enhances wooden construction 
 addBuildingBonus("lumber mill", "production", (["quantity bonus": 25])); 
 addBuildingBonus("carpenter", "wood construction", (["duration bonus": 15])); 
 addBuildingDurationBonus("wooden church", -100); // Faster construction in forest 
@@ -386,7 +396,8 @@ Methods for troop enhancements
 - `addTroopEffect(string troopType, string effect, mapping data, (optional) string state);`
 
 Example terrain with troop effects:
-```// Mountain terrain favoring archers but hindering cavalry 
+```
+// Mountain terrain favoring archers but hindering cavalry 
 addTroopBonus("archer", "skill", 5); 
 addTroopBonus("crossbowman", "skill", 3); 
 addTroopPenalty("light cavalry", "movement", 2); 
@@ -403,7 +414,8 @@ Methods for henchman enhancements
 - `addHenchmanAvailability(string henchmanType, int availability, (optional) string state);`
 
 Example terrain with henchman effects:
-```// Forest terrain enhancing nature-based henchmen 
+```
+// Forest terrain enhancing nature-based henchmen 
 addHenchmanBonus("druid", "herbalism", 10); 
 addHenchmanBonus("druid", "nature lore", 15); 
 addHenchmanBonus("ranger", "tracking", 8); 
@@ -427,7 +439,8 @@ Methods for resource production
 
 
 Example terrain with resource production:
-```// Forest terrain producing wood resources 
+```
+// Forest terrain producing wood resources 
 addResourceProduction("wood", "common", 10); // Produces 10 common wood per cycle 
 addResourceProduction("rare wood", "uncommon", 2); // Produces 2 uncommon rare wood 
 addResourceBonus("wood", 25); // 25% bonus to wood production 
@@ -449,7 +462,8 @@ Methods for trade enhancements
 - `addTradeLimit(string good, int limit, (optional) string state);`
 
 Example terrain with trade effects:
-```// Coastal terrain enhancing maritime trade 
+```
+// Coastal terrain enhancing maritime trade 
 addTradeBonus("maritime", 20); // 20% bonus to sea trade 
 addTradeRoute("distant port", "fish", 150); // Profitable fish trade route 
 addTradeGood("pearls", 500, 25); // Valuable but rare pearls 
@@ -466,7 +480,8 @@ Custom domain enhancement methods
 - `public nomask int domainConstructionTimeModifier(string location, string building);`
 
 Example advanced integration:
-```// Terrain that provides complex domain bonuses 
+```
+// Terrain that provides complex domain bonuses 
 public nomask int domainDefenseBonus(string location, string attackType) 
 { 
     int ret = 0;

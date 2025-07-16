@@ -13,6 +13,7 @@ protected mapping Vehicles = ([
     "handcart": ([
         "type": "cart",
         "display name": "Handcart",
+        "route type": "overland",
         "default description": "A simple two-wheeled handcart for moving small loads.",
         "cost": 40,
         "crafting materials": ([ "wood": 3, "metal": 1 ]),
@@ -49,6 +50,7 @@ protected mapping Vehicles = ([
     "pushcart": ([
         "type": "cart",
         "display name": "Pushcart",
+        "route type": "overland",
         "default description": "A small pushcart, often used by vendors and peddlers.",
         "cost": 50,
         "crafting materials": ([ "wood": 4, "metal": 1 ]),
@@ -85,6 +87,7 @@ protected mapping Vehicles = ([
     "wagon": ([
         "type": "wagon",
         "display name": "Wagon",
+        "route type": "overland",
         "default description": "A four-wheeled vehicle for transporting goods over land.",
         "cost": 250,
         "crafting materials": ([ "wood": 12, "metal": 2, "leather": 1 ]),
@@ -127,6 +130,7 @@ protected mapping Vehicles = ([
     "covered wagon": ([
         "type": "wagon",
         "display name": "Covered Wagon",
+        "route type": "overland",
         "default description": "A four-wheeled wagon with a canvas cover, used for long journeys.",
         "cost": 400,
         "crafting materials": ([ "wood": 14, "metal": 2, "leather": 2, "textile": 4 ]),
@@ -173,6 +177,7 @@ protected mapping Vehicles = ([
     "war wagon": ([
         "type": "wagon",
         "display name": "War Wagon",
+        "route type": "overland",
         "default description": "A battlefield wagon with reinforced sides and weapon mounts.",
         "cost": 900,
         "crafting materials": ([ "wood": 18, "metal": 6, "leather": 2 ]),
@@ -224,6 +229,7 @@ protected mapping Vehicles = ([
     "stagecoach": ([
         "type": "wagon",
         "display name": "Stagecoach",
+        "route type": "overland",
         "default description": "A fast, enclosed coach for transporting passengers.",
         "cost": 600,
         "crafting materials": ([ "wood": 10, "metal": 2, "leather": 2, "textile": 2 ]),
@@ -266,6 +272,7 @@ protected mapping Vehicles = ([
     "siege wagon": ([
         "type": "wagon",
         "display name": "Siege Wagon",
+        "route type": "overland",
         "default description": "A massive, reinforced wagon used in sieges, often with mounted siege weapons.",
         "cost": 2000,
         "crafting materials": ([ "wood": 30, "metal": 10, "leather": 4 ]),
@@ -325,6 +332,7 @@ protected mapping Vehicles = ([
     "rowboat": ([
         "type": "boat",
         "display name": "Rowboat",
+        "route type": "river",
         "default description": "A small, oar-powered boat suitable for rivers and lakes.",
         "cost": 100,
         "crafting materials": ([
@@ -366,6 +374,7 @@ protected mapping Vehicles = ([
     "canoe": ([
         "type": "boat",
         "display name": "Canoe",
+        "route type": "river",
         "default description": "A narrow, lightweight boat for river or lake travel.",
         "cost": 80,
         "crafting materials": ([
@@ -406,6 +415,7 @@ protected mapping Vehicles = ([
     "skiff": ([
         "type": "boat",
         "display name": "Skiff",
+        "route type": "river",
         "default description": "A small, light boat for quick travel on rivers or lakes.",
         "cost": 120,
         "crafting materials": ([
@@ -447,6 +457,7 @@ protected mapping Vehicles = ([
     "barge": ([
         "type": "barge",
         "display name": "Barge",
+        "route type": "river",
         "default description": "A flat-bottomed boat for transporting goods on rivers.",
         "cost": 600,
         "crafting materials": ([
@@ -501,6 +512,7 @@ protected mapping Vehicles = ([
     "river catamaran": ([
         "type": "boat",
         "display name": "River Catamaran",
+        "route type": "river",
         "default description": "A lightweight, twin-hulled vessel ideal for fast river travel.",
         "cost": 600,
         "crafting materials": ([ "wood": 14, "metal": 2, "textile": 2 ]),
@@ -549,6 +561,7 @@ protected mapping Vehicles = ([
     "ferry": ([
         "type": "boat",
         "display name": "Ferry",
+        "route type": "river",
         "default description": "A flat-bottomed vessel for carrying people and goods across rivers.",
         "cost": 400,
         "crafting materials": ([
@@ -599,6 +612,7 @@ protected mapping Vehicles = ([
     "balinger": ([
         "type": "ship",
         "display name": "Balinger",
+        "route type": "maritime",
         "default description": "A small, sturdy, single-masted coastal ship.",
         "cost": 900,
         "crafting materials": ([ "wood": 40, "metal": 6, "textile": 8 ]),
@@ -652,6 +666,7 @@ protected mapping Vehicles = ([
     "birlinn": ([
         "type": "ship",
         "display name": "Birlinn",
+        "route type": "maritime",
         "default description": "A clinker-built, oared vessel used in the Hebrides and western Scotland.",
         "cost": 950,
         "crafting materials": ([ "wood": 42, "metal": 6, "textile": 8 ]),
@@ -697,6 +712,7 @@ protected mapping Vehicles = ([
     "caravel": ([
         "type": "ship",
         "display name": "Caravel",
+        "route type": "maritime",
         "default description": "A fast, maneuverable ship with two or more masts.",
         "cost": 1800,
         "crafting materials": ([ "wood": 60, "metal": 10, "textile": 16 ]),
@@ -758,6 +774,7 @@ protected mapping Vehicles = ([
     "carrack": ([
         "type": "ship",
         "display name": "Carrack",
+        "route type": "maritime",
         "default description": "A large, high-sided merchant ship with high fore and aft castles.",
         "cost": 3500,
         "crafting materials": ([ "wood": 120, "metal": 20, "textile": 30, "leather": 4 ]),
@@ -828,6 +845,7 @@ protected mapping Vehicles = ([
     "catamaran": ([
         "type": "ship",
         "display name": "Sea Catamaran",
+        "route type": "maritime",
         "default description": "A fast, twin-hulled sailing vessel designed for open sea travel.",
         "cost": 2200,
         "crafting materials": ([ "wood": 40, "metal": 6, "textile": 10 ]),
@@ -877,6 +895,7 @@ protected mapping Vehicles = ([
     "cog": ([
         "type": "ship",
         "display name": "Cog",
+        "route type": "maritime",
         "default description": "A broad, single-masted ship used for trade and transport.",
         "cost": 1400,
         "crafting materials": ([ "wood": 50, "metal": 8, "textile": 10 ]),
@@ -927,6 +946,7 @@ protected mapping Vehicles = ([
     "crayer": ([
         "type": "ship",
         "display name": "Crayer",
+        "route type": "maritime",
         "default description": "A small, swift coastal trading vessel.",
         "cost": 800,
         "crafting materials": ([ "wood": 30, "metal": 4, "textile": 6 ]),
@@ -969,6 +989,7 @@ protected mapping Vehicles = ([
     "dreadnought": ([
         "type": "ship",
         "display name": "Dreadnought",
+        "route type": "maritime",
         "default description": "A colossal warship bristling with weapons and "
             "protected by strong armor. The ultimate symbol of naval supremacy.",
         "cost": 25000,
@@ -1094,6 +1115,7 @@ protected mapping Vehicles = ([
     "galley": ([
         "type": "ship",
         "display name": "Galley",
+        "route type": "maritime",
         "default description": "A large, oared warship, often with a ram and multiple decks.",
         "cost": 4000,
         "crafting materials": ([ "wood": 100, "metal": 25, "textile": 20, "leather": 6 ]),
@@ -1161,6 +1183,7 @@ protected mapping Vehicles = ([
     "galleon": ([
         "type": "ship",
         "display name": "Galleon",
+        "route type": "maritime",
         "default description": "A large, multi-decked sailing ship with high sides and multiple masts, used for trade and war.",
         "cost": 4200,
         "crafting materials": ([ "wood": 140, "metal": 24, "textile": 32, "leather": 4 ]),
@@ -1236,6 +1259,7 @@ protected mapping Vehicles = ([
     "hoy": ([
         "type": "ship",
         "display name": "Hoy",
+        "route type": "maritime",
         "default description": "A small sloop-rigged coastal vessel.",
         "cost": 700,
         "crafting materials": ([ "wood": 20, "metal": 3, "textile": 4 ]),
@@ -1277,6 +1301,7 @@ protected mapping Vehicles = ([
     "hulk": ([
         "type": "ship",
         "display name": "Hulk",
+        "route type": "maritime",
         "default description": "A large, slow, high-capacity cargo ship.",
         "cost": 2200,
         "crafting materials": ([ "wood": 80, "metal": 12, "textile": 12 ]),
@@ -1331,6 +1356,7 @@ protected mapping Vehicles = ([
     "knarr": ([
         "type": "ship",
         "display name": "Knarr",
+        "route type": "maritime",
         "default description": "A Norse trading ship, broader and deeper than a longship.",
         "cost": 1100,
         "crafting materials": ([ "wood": 40, "metal": 6, "textile": 8 ]),
@@ -1374,6 +1400,7 @@ protected mapping Vehicles = ([
     "large frigate": ([
         "type": "ship",
         "display name": "Large Frigate",
+        "route type": "maritime",
         "default description": "A large, fast, multi-decked warship.",
         "cost": 5000,
         "crafting materials": ([ "wood": 120, "metal": 30, "textile": 30 ]),
@@ -1460,6 +1487,7 @@ protected mapping Vehicles = ([
     "longship": ([
         "type": "ship",
         "display name": "Longship",
+        "route type": "maritime",
         "default description": "A long, narrow ship powered by both oars and sail, ideal for coastal raids.",
         "cost": 1200,
         "crafting materials": ([ "wood": 60, "metal": 8, "textile": 10, "leather": 2 ]),
@@ -1511,6 +1539,7 @@ protected mapping Vehicles = ([
     "man-of-war": ([
         "type": "ship",
         "display name": "Man-of-War",
+        "route type": "maritime",
         "default description": "A huge, multi-masted warship for naval supremacy.",
         "cost": 8000,
         "crafting materials": ([ "wood": 200, "metal": 50, "textile": 50 ]),
@@ -1611,6 +1640,7 @@ protected mapping Vehicles = ([
     "picard": ([
         "type": "ship",
         "display name": "Picard",
+        "route type": "maritime",
         "default description": "A small, flat-bottomed coastal vessel.",
         "cost": 500,
         "crafting materials": ([ "wood": 15, "metal": 2, "textile": 2 ]),
@@ -1652,6 +1682,7 @@ protected mapping Vehicles = ([
     "small frigate": ([
         "type": "ship",
         "display name": "Small Frigate",
+        "route type": "maritime",
         "default description": "A smaller, fast warship with multiple decks.",
         "cost": 2500,
         "crafting materials": ([ "wood": 60, "metal": 15, "textile": 15 ]),
@@ -1710,6 +1741,7 @@ protected mapping Vehicles = ([
     "trireme": ([
         "type": "ship",
         "display name": "Trireme",
+        "route type": "maritime",
         "default description": "A classical war galley with three banks of oars.",
         "cost": 3500,
         "crafting materials": ([ "wood": 80, "metal": 20, "textile": 20 ]),
@@ -1773,6 +1805,7 @@ protected mapping Vehicles = ([
     "arcane skiff": ([
         "type": "boat",
         "display name": "Arcane Skiff",
+        "route type": "maritime",
         "default description": "A magically-propelled skiff, gliding above the water.",
         "cost": 5000,
         "crafting materials": ([ "wood": 10, "metal": 2, "crystal": 4, "textile": 2 ]),
@@ -1820,6 +1853,7 @@ protected mapping Vehicles = ([
     "flying barge": ([
         "type": "barge",
         "display name": "Flying Barge",
+        "route type": "river",
         "default description": "A barge that floats through the air, powered by arcane means.",
         "cost": 20000,
         "crafting materials": ([ "wood": 30, "metal": 8, "crystal": 10, "textile": 4 ]),
@@ -1874,6 +1908,7 @@ protected mapping Vehicles = ([
     "arcane dreadnought": ([
         "type": "ship",
         "display name": "Arcane Dreadnought",
+        "route type": "maritime",
         "default description": "A titanic warship powered by arcane engines, bristling with magical weaponry and protected by enchanted armor.",
         "cost": 40000,
         "crafting materials": ([ "wood": 320, "metal": 120, "crystal": 80, "textile": 80, "leather": 12 ]),
@@ -1994,6 +2029,7 @@ protected mapping Vehicles = ([
     "crystal skimmer": ([
         "type": "boat",
         "display name": "Crystal Skimmer",
+        "route type": "maritime",
         "default description": "A sleek, crystalline craft that glides just above the water, powered by arcane crystals.",
         "cost": 3500,
         "crafting materials": ([ "wood": 8, "metal": 2, "crystal": 8, "textile": 2 ]),
@@ -2041,6 +2077,7 @@ protected mapping Vehicles = ([
     "mystical man-of-war": ([
         "type": "ship",
         "display name": "Mystical Man-of-War",
+        "route type": "maritime",
         "default description": "A massive warship enhanced with mystical wards and arcane artillery, feared on all seas.",
         "cost": 12000,
         "crafting materials": ([ "wood": 220, "metal": 60, "crystal": 20, "textile": 60 ]),
@@ -2142,6 +2179,7 @@ protected mapping Vehicles = ([
     "arcane glider": ([
         "type": "boat",
         "display name": "Arcane Glider",
+        "route type": "maritime",
         "default description": "A small, magically-propelled craft that skims the water or air, perfect for swift travel.",
         "cost": 2200,
         "crafting materials": ([ "wood": 6, "metal": 1, "crystal": 4, "textile": 2 ]),

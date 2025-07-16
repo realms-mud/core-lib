@@ -5,20 +5,251 @@
 inherit "/lib/core/thing.c";
 
 // Common trading items available across all ports
-private string *commonTradingItems = ({
-    "/lib/instances/items/materials/metal/iron",
-    "/lib/instances/items/materials/wood/oak", 
-    "/lib/instances/items/weapons/swords/long-sword",
-    "/lib/instances/items/food/bread/wheat-bread",
-    "/lib/instances/items/food/plants/fruit/black-peppercorn",
-    "/lib/instances/items/materials/crystal/diamond",
-    "/lib/instances/items/materials/textile/silk",
-});
+private mapping tradingItems = ([
+    "metal": ({
+        "/lib/instances/items/materials/metal/",
+        "/lib/instances/items/materials/metal-ores/",
+    }),
+    "wood" : ({
+        "/lib/instances/items/materials/wood/",
+    }),
+    "clay": ({
+        "/lib/instances/items/materials/clay/",
+    }),
+    "stone": ({
+        "/lib/instances/items/materials/stone/",
+    }),
+    "leather": ({
+        "/lib/instances/items/materials/leather/",
+    }),
+    "textile": ({
+        "/lib/instances/items/materials/textile/",
+    }),
+    "trophy materials": ({
+        "/lib/instances/items/materials/plumage/",
+        "/lib/instances/items/materials/skeletal/",
+    }),
+    "food": ({
+        "/lib/instances/items/food/bread/",
+        "/lib/instances/items/food/plants/fruit/",
+        "/lib/instances/items/food/plants/grains/",
+        "/lib/instances/items/food/plants/greens/",
+        "/lib/instances/items/food/plants/legumes/",
+        "/lib/instances/items/food/plants/nuts/",
+        "/lib/instances/items/food/plants/roots/",
+        "/lib/instances/items/food/plants/stems/",
+    }),
+    "spices": ({
+        "/lib/instances/items/food/plants/herbs/",
+        "/lib/instances/items/food/plants/fruit/black-peppercorn.c",
+        "/lib/instances/items/food/plants/fruit/long-pepper.c",
+        "/lib/instances/items/food/plants/fruit/cayenne-pepper.c",
+        "/lib/instances/items/food/plants/fruit/dragon-pepper.c",
+        "/lib/instances/items/food/plants/fruit/serrano-pepper.c",
+        "/lib/instances/items/food/plants/fruit/red-chili-pepper.c",
+        "/lib/instances/items/food/plants/fruit/green-chili-pepper.c",
+        "/lib/instances/items/food/plants/fruit/tabasco-pepper.c",
+        "/lib/instances/items/food/plants/fruit/jalapeno-pepper.c",
+        "/lib/instances/items/food/plants/fruit/habanero-pepper.c",
+        "/lib/instances/items/food/plants/fruit/birds-eye-chili.c",
+        "/lib/instances/items/food/salt.c",
+        "/lib/instances/items/food/plants/roots/black-garlic.c",
+        "/lib/instances/items/food/plants/roots/ginger.c",
+        "/lib/instances/items/food/plants/roots/garlic.c",
+        "/lib/instances/items/food/plants/roots/red-garlic.c",
+        "/lib/instances/items/food/plants/roots/silverskin-garlic.c",
+        "/lib/instances/items/food/plants/roots/wild-garlic.c",
+    }),
+    "weapons": ({
+        "/lib/instances/items/weapons/swords/",
+        "/lib/instances/items/weapons/axes/",
+        "/lib/instances/items/weapons/bows/",
+        "/lib/instances/items/weapons/staffs/",
+        "/lib/instances/items/weapons/daggers/",
+        "/lib/instances/items/weapons/maces/",
+        "/lib/instances/items/weapons/pole-arms/",
+        "/lib/instances/items/weapons/thrown/",
+        "/lib/instances/items/weapons/slings/",
+        "/lib/instances/items/weapons/hammers/",
+        "/lib/instances/items/weapons/shields/",
+        "/lib/instances/items/weapons/crossbows/",
+        "/lib/instances/items/weapons/ammunition/",
+        "/lib/instances/items/weapons/flails/",
+    }),
+    "armor": ({
+        "/lib/instances/items/armor/light-armor/",
+        "/lib/instances/items/armor/medium-armor/",
+        "/lib/instances/items/armor/heavy-armor/",
+        "/lib/instances/items/armor/accessories/coif.c",
+        "/lib/instances/items/armor/accessories/helmet.c",
+        "/lib/instances/items/armor/accessories/gauntlets.c",
+        "/lib/instances/items/armor/accessories/sabaton.c",
+        "/lib/instances/items/armor/accessories/helm.c",
+    }),
+    "crystals": ({
+        "/lib/instances/items/materials/crystal/",
+    }),
+    "jewelry": ({
+        "/lib/instances/items/armor/accessories/amulet.c",
+        "/lib/instances/items/armor/accessories/ring.c",
+        "/lib/instances/items/armor/accessories/bracers.c",
+        "/lib/instances/items/armor/accessories/circlet.c",
+        "/lib/instances/items/armor/accessories/necklace.c",
+        "/lib/instances/items/armor/accessories/tiara.c",
+        "/lib/instances/items/armor/accessories/crown.c",
+        "/lib/instances/items/armor/accessories/diadem.c",
+    }),
+    "clothing": ({
+        "/lib/instances/items/armor/clothing/",
+        "/lib/instances/items/armor/accessories/belt.c",
+        "/lib/instances/items/armor/accessories/boots.c",
+        "/lib/instances/items/armor/accessories/gloves.c",
+        "/lib/instances/items/armor/accessories/hat.c",
+        "/lib/instances/items/armor/accessories/sandals.c",
+        "/lib/instances/items/armor/accessories/sash.c",
+        "/lib/instances/items/armor/accessories/shoes.c",
+    }),
+    "potions": ({
+        "/lib/instances/items/potions/",
+    }),
+    "musical instruments": ({
+        "/lib/instances/items/instruments/brass/",
+        "/lib/instances/items/instruments/woodwind/",
+        "/lib/instances/items/instruments/strings/",
+        "/lib/instances/items/instruments/percussion/",
+    }),
+    "beer": ({
+        "/lib/instances/items/drinks/beer/",
+    }),
+    "books": ({
+        "/lib/instances/items/books/",
+    }),
+]);
+
+private mapping ports = ([ ]);
 
 /////////////////////////////////////////////////////////////////////////////
-public string *getCommonTradingItems()
+public nomask void registerPort(object port)
 {
-    return commonTradingItems + ({});
+    if (port && objectp(port) && port->isPort())
+    {
+        if (!member(ports, port->getPortName()) && (port->getPortName() != "Unknown Port"))
+        {
+            ports[port->getPortName()] = port;
+        }
+    }
+    else
+    {
+        raise_error(sprintf("tradingDictionary.c: Invalid port object (%O).\n", 
+            port));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask object getPort(string portName)
+{
+    object ret = 0;
+    if (member(ports, portName) && objectp(ports[portName]))
+    {
+        ret = ports[portName];
+    }
+    else
+    {
+        m_delete(ports, portName);
+        raise_error(sprintf("tradingDictionary.c: Port '%s' is not registered.\n", portName));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public object *getAvailablePorts()
+{
+    object *result = ({});
+    string *portNames = m_indices(ports);
+
+    foreach (string portName in portNames)
+    {
+        object port = ports[portName];
+        if (objectp(port))
+        {
+            result += ({ port });
+        }
+        else
+        {
+            m_delete(ports, portName);
+            raise_error(sprintf("tradingDictionary.c: Port '%s' is not a valid object.\n", portName));
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void create()
+{
+    if (!sizeof(ports))
+    {
+        string *portFiles = 
+            get_dir("/lib/modules/domains/trading/ports/*.c", 0x10) -
+                ({ "/lib/modules/domains/trading/ports/.", 
+                    "/lib/modules/domains/trading/ports/.." });
+
+        if (sizeof(portFiles))
+        {
+            foreach(string portFile in portFiles)
+            {
+                object port = load_object(portFile);
+                if (port && objectp(port) && port->isPort())
+                {
+                    registerPort(port);
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getTradingTypes()
+{
+    return m_indices(tradingItems);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getItemListForType(string itemType)
+{
+    string *items = ({});
+    
+    if (member(tradingItems, itemType))
+    {
+        foreach(string itemPath in tradingItems[itemType])
+        {
+            if (sizeof(regexp(({ itemPath }), "^.*[.]c$")) &&
+                (file_size(itemPath) > 0))
+            {
+                items += ({ itemPath });
+            }
+            else
+            {
+                items += get_dir(itemPath + "*.c", 0x10);
+            }
+        }
+    }
+    else
+    {
+        raise_error(sprintf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType));
+    }
+    return items;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getAllTradingItems()
+{
+    string *allItems = ({});
+    string *types = getTradingTypes();
+    foreach(string type in types)
+    {
+        allItems += getItemListForType(type);
+    }
+    return allItems;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +302,7 @@ public string getMarketPricesDisplay(object player, object port)
     ret = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                          sprintf("%s Market Prices", port->getPortName()));
     
+    string *commonTradingItems = getAllTradingItems();
     foreach(string item in commonTradingItems)
     {
         int price = port->getItemPrice(item);
@@ -104,6 +336,7 @@ public mapping getAvailableGoods(object port, object trader)
     if (port && port->isPort())
     {
         int counter = 1;
+        string *commonTradingItems = getAllTradingItems();
         foreach(string item in commonTradingItems)
         {
             object itemObj;
@@ -132,78 +365,66 @@ public mapping getAvailableGoods(object port, object trader)
 public mapping getCargoForSale(object trader, object port)
 {
     mapping cargo = ([]);
-    
+
     if (trader && port && port->isPort())
     {
-        mapping vehicle = trader->getVehicle();
-        mapping vehicleCargo = vehicle["cargo"];
-        
-        if (sizeof(vehicleCargo))
+        int counter = 1;
+        object *vehicles = ({});
+        if (function_exists("getVehicles", trader))
         {
-            int counter = 1;
-            string *items = m_indices(vehicleCargo);
-            foreach(string item in items)
+            vehicles = trader->getVehicles();
+        }
+        foreach (object vehicle in vehicles)
+        {
+            if (objectp(vehicle) && function_exists("getCargo", vehicle))
             {
-                object itemObj = load_object(item);
-                if (itemObj)
+                mapping vehicleCargo = vehicle->getCargo();
+                if (mappingp(vehicleCargo) && sizeof(vehicleCargo))
                 {
-                    int price = port->getItemPrice(item);
-                    int quantity = vehicleCargo[item];
-                    
-                    cargo[to_string(counter++)] = ([
-                        "name": sprintf("%s x%d (%d gold each)", 
-                                       itemObj->query("name"), quantity, price),
-                        "item path": item,
-                        "price": price,
-                        "quantity": quantity,
-                        "total value": price * quantity,
-                        "canShow": 1
-                    ]);
+                    string *items = m_indices(vehicleCargo);
+                    foreach (string item in items)
+                    {
+                        object itemObj = load_object(item);
+                        if (itemObj)
+                        {
+                            int price = port->getItemPrice(item);
+                            int quantity = vehicleCargo[item];
+
+                            // Aggregate quantities if item is in multiple vehicles
+                            if (member(cargo, item))
+                            {
+                                cargo[item]["quantity"] += quantity;
+                                cargo[item]["total value"] += price * quantity;
+                            }
+                            else
+                            {
+                                cargo[item] = ([
+                                    "name": sprintf("%s x%d (%d gold each)",
+                                        itemObj->query("name"), quantity, price),
+                                    "item path": item,
+                                    "price": price,
+                                    "quantity": quantity,
+                                    "total value": price * quantity,
+                                    "canShow": 1
+                                ]);
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-    
-    return cargo;
+
+    mapping indexedCargo = ([]);
+    int idx = 1;
+    foreach (string item in m_indices(cargo))
+    {
+        indexedCargo[to_string(idx++)] = cargo[item];
+    }
+
+    return indexedCargo;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-public string getItemPathForType(string itemType)
-{
-    string ret = "/lib/instances/items/materials/metal/iron";
-    
-    // Map item types to actual item paths for contracts
-    switch(itemType)
-    {
-        case "materials": 
-        {
-            ret = "/lib/instances/items/materials/metal/iron";
-            break;
-        }
-        case "weapons": 
-        {
-            ret = "/lib/instances/items/weapons/swords/long-sword";
-            break;
-        }
-        case "food": 
-        {
-            ret = "/lib/instances/items/food/bread";
-            break;
-        }
-        case "textiles": 
-        {
-            ret = "/lib/instances/items/materials/textile/silk";
-            break;
-        }
-        case "spices": 
-        {
-            ret = "/lib/instances/items/materials/spice/pepper";
-            break;
-        }
-    }
-    
-    return ret;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 public int calculateWarehouseUsed(mapping warehouse)
@@ -220,19 +441,6 @@ public int calculateWarehouseUsed(mapping warehouse)
     }
     
     return used;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public mapping getItemCategories()
-{
-    return ([
-        "materials": "Raw materials and components",
-        "weapons": "Arms and armaments",
-        "food": "Consumable foodstuffs",
-        "textiles": "Cloth and fabric goods",
-        "spices": "Exotic spices and seasonings",
-        "tools": "Crafting and utility tools"
-    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -276,12 +484,16 @@ public int isValidTradeItem(string itemPath)
     
     if (itemPath && stringp(itemPath))
     {
+        string *commonTradingItems = getAllTradingItems();
         ret = (member(commonTradingItems, itemPath) > -1);
         
         if (!ret)
         {
-            object itemObj = load_object(itemPath);
-            ret = (itemObj && itemObj->query("value") > 0);
+            if (file_size(itemPath) > 0)
+            {
+                object itemObj = load_object(itemPath);
+                ret = (itemObj && itemObj->query("value") > 0);
+            }
         }
     }
     
