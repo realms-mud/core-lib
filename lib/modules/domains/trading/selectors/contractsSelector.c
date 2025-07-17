@@ -5,35 +5,33 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
+private object TradingDictionary;
 
-/////////////////////////////////////////////////////////////////////////////
-private string getItemPathForType(string itemType)
-{
-    switch(itemType)
-    {
-        case "materials": return "/lib/instances/items/materials/metal/iron";
-        case "weapons": return "/lib/instances/items/weapons/swords/long-sword";
-        case "food": return "/lib/instances/items/food/bread";
-        case "textiles": return "/lib/instances/items/materials/textile/silk";
-        default: return "/lib/instances/items/materials/metal/iron";
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 private int calculateContractProgress(mapping contract)
 {
-    string requiredItem = getItemPathForType(contract["item type"]);
-    int has = User->getCargoQuantity(requiredItem);
-
-    if (has > 0)
+    int total = 0;
+    if (objectp(User) && objectp(TradingDictionary))
     {
-        int needed = contract["quantity"];
-        return (has * 100) / needed;
+        string itemType = contract["item type"];
+        string itemPath = TradingDictionary->getItemPath(itemType);
+        if (stringp(itemPath))
+        {
+            object *vehicles = User->getVehicles();
+            foreach (object vehicle in vehicles)
+            {
+                if (objectp(vehicle))
+                {
+                    total += vehicle->getCargoQuantity(itemPath);
+                }
+            }
+        }
     }
-    return 0;
+    int needed = contract["quantity"];
+    return (needed > 0) ? (total * 100) / needed : 0;
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 private void displayActiveContracts()
 {
     mapping activeContracts = User->getActiveContracts();
@@ -99,7 +97,7 @@ private void displayActiveContracts()
     tell_object(User, contractDisplay);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
 {
     AllowUndo = 1;
@@ -107,22 +105,14 @@ public nomask void InitializeSelector()
     Description = "Trading Contracts";
     Type = "Contracts";
     Data = ([]);
+    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object environment = environment(User);
     object configuration = getDictionary("configuration");
-
-    if (!environment || !environment->isPort())
-    {
-        tell_object(User, configuration->decorate("You must be at a trading port to view contracts.",
-            "failure", "selector", User->colorConfiguration()));
-        return;
-    }
-
-    mapping contracts = environment->getContracts();
+    mapping contracts = TradingDictionary->queryAvailableContracts(User);
     mapping activeContracts = User->getActiveContracts();
 
     Data = ([]);
@@ -138,12 +128,12 @@ protected nomask void setUpUserForSelection()
         ]);
     }
 
-    if (!pointerp(contracts) || !sizeof(contracts))
+    if (!mappingp(contracts) || !sizeof(contracts))
     {
         Data[to_string(counter++)] = ([
             "name": "No Contracts Available",
             "type": "empty",
-            "description": "There are no contracts available at this port currently.",
+            "description": "There are no contracts available currently.",
             "canShow": 0
         ]);
     }
@@ -195,7 +185,7 @@ protected nomask void setUpUserForSelection()
     ]);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
     int result = -1;
@@ -226,19 +216,19 @@ protected nomask int processSelection(string selection)
     return result;
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 public nomask void onSelectorCompleted(object caller)
 {
     cleanUp();
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 protected nomask int suppressMenuDisplay()
 {
     return objectp(SubselectorObj);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
     object configuration = getDictionary("configuration");

@@ -11,6 +11,7 @@ void Setup()
 {
     Trader = clone_object("/lib/modules/trader.c");
     Trader->initializeTrader();
+    Trader->addVehicle("wagon", "eledhel");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -20,467 +21,207 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void InitializeTraderSetsUpDefaultValues()
+void DefaultValuesAreCorrect()
 {
     ExpectEq("Unnamed Trading Company", Trader->getFirmName());
     ExpectEq(0, Trader->getCash());
     ExpectEq(0, Trader->getBank());
     ExpectEq(0, Trader->getDebt());
-    ExpectEq("eledhel", Trader->getCurrentLocation());
-    
-    mapping vehicle = Trader->getVehicle();
-    ExpectEq("wagon", vehicle["type"]);
-    ExpectEq(60, vehicle["capacity"]);
-    ExpectEq(0, vehicle["damage"]);
-    ExpectEq(0, vehicle["protection"]);
+    ExpectEq("", Trader->getCurrentLocation());
+    object *vehicles = Trader->getVehicles();
+    ExpectEq(1, sizeof(vehicles));
+    ExpectEq("wagon", vehicles[0]->query("vehicle type"));
+    ExpectEq("eledhel", vehicles[0]->getLocation());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SetFirmNameSetsCorrectly()
+void SetFirmNameBehavesCorrectly()
 {
     Trader->setFirmName("Test Trading Co");
     ExpectEq("Test Trading Co", Trader->getFirmName());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void SetFirmNameTruncatesLongNames()
-{
     string longName = "This is a very long trading company name that should be truncated";
     Trader->setFirmName(longName);
     ExpectEq(23, sizeof(Trader->getFirmName()));
     ExpectEq("This is a very long tra", Trader->getFirmName());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void SetFirmNameIgnoresInvalidInput()
-{
-    Trader->setFirmName("Valid Name");
     Trader->setFirmName(0);
-    ExpectEq("Valid Name", Trader->getFirmName());
-    
+    ExpectEq("This is a very long tra", Trader->getFirmName());
     Trader->setFirmName("");
-    ExpectEq("Valid Name", Trader->getFirmName());
+    ExpectEq("This is a very long tra", Trader->getFirmName());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SetupStartingChoiceOneSetsCorrectValues()
+void SetupStartingChoiceSetsCorrectValues()
 {
     Trader->setupStartingChoice(1);
     ExpectEq(400, Trader->getCash());
     ExpectEq(5000, Trader->getDebt());
-    ExpectEq(60, Trader->getVehicleCapacity());
-    
-    mapping vehicle = Trader->getVehicle();
-    ExpectEq(0, vehicle["protection"]);
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void SetupStartingChoiceTwoSetsCorrectValues()
-{
     Trader->setupStartingChoice(2);
     ExpectEq(0, Trader->getCash());
     ExpectEq(0, Trader->getDebt());
-    ExpectEq(10, Trader->getVehicleCapacity());
-    
-    mapping vehicle = Trader->getVehicle();
-    ExpectEq(5, vehicle["protection"]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AddCashIncreasesCorrectly()
-{
-    int initialCash = Trader->getCash();
-    Trader->addCash(100);
-    ExpectEq(initialCash + 100, Trader->getCash());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddCashHandlesNegativeAmounts()
+void AddCashBehavesCorrectly()
 {
     Trader->setupStartingChoice(1);
-    Trader->addCash(-500);
+    int initial = Trader->getCash();
+    Trader->addCash(100);
+    ExpectEq(initial + 100, Trader->getCash());
+
+    Trader->addCash(-1000);
+    ExpectEq(0, Trader->getCash());
+
+    int result = Trader->addCash("invalid");
+    ExpectEq(0, result);
     ExpectEq(0, Trader->getCash());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AddCashReturnsNewTotal()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->addCash(100);
-    ExpectEq(500, result);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddCashIgnoresInvalidInput()
-{
-    Trader->setupStartingChoice(1);
-    int initialCash = Trader->getCash();
-    int result = Trader->addCash("invalid");
-    ExpectEq(0, result);
-    ExpectEq(initialCash, Trader->getCash());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void DepositMoneyWorksCorrectly()
+void DepositAndWithdrawMoneyBehaveCorrectly()
 {
     Trader->setupStartingChoice(1);
     int result = Trader->depositMoney(200);
-    
     ExpectEq(1, result);
     ExpectEq(200, Trader->getCash());
     ExpectEq(200, Trader->getBank());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void DepositMoneyFailsWithInsufficientFunds()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->depositMoney(500);
-    
+    result = Trader->depositMoney(500);
     ExpectEq(0, result);
-    ExpectEq(400, Trader->getCash());
-    ExpectEq(0, Trader->getBank());
-}
+    ExpectEq(200, Trader->getCash());
+    ExpectEq(200, Trader->getBank());
 
-/////////////////////////////////////////////////////////////////////////////
-void DepositMoneyFailsWithInvalidAmount()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->depositMoney(-100);
-    
+    result = Trader->depositMoney(-100);
     ExpectEq(0, result);
-    ExpectEq(400, Trader->getCash());
-    ExpectEq(0, Trader->getBank());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void WithdrawMoneyWorksCorrectly()
-{
-    Trader->setupStartingChoice(1);
-    Trader->depositMoney(200);
-    
-    int result = Trader->withdrawMoney(100);
-    
+    result = Trader->withdrawMoney(100);
     ExpectEq(1, result);
+    ExpectEq(300, Trader->getCash());
+    ExpectEq(100, Trader->getBank());
+
+    result = Trader->withdrawMoney(200);
+    ExpectEq(0, result);
     ExpectEq(300, Trader->getCash());
     ExpectEq(100, Trader->getBank());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void WithdrawMoneyFailsWithInsufficientFunds()
-{
-    Trader->setupStartingChoice(1);
-    Trader->depositMoney(200);
-    
-    int result = Trader->withdrawMoney(300);
-    
-    ExpectEq(0, result);
-    ExpectEq(200, Trader->getCash());
-    ExpectEq(200, Trader->getBank());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void BorrowMoneyWorksCorrectly()
+void BorrowAndRepayDebtBehaveCorrectly()
 {
     Trader->setupStartingChoice(1);
     int result = Trader->borrowMoney(500);
-    
     ExpectEq(1, result);
     ExpectEq(900, Trader->getCash());
     ExpectEq(5500, Trader->getDebt());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void BorrowMoneyFailsExceedingLimit()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->borrowMoney(1000);
-    
+    result = Trader->borrowMoney(2000);
     ExpectEq(0, result);
-    ExpectEq(400, Trader->getCash());
-    ExpectEq(5000, Trader->getDebt());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void RepayDebtWorksCorrectly()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->repayDebt(200);
-    
+    result = Trader->repayDebt(200);
     ExpectEq(1, result);
-    ExpectEq(200, Trader->getCash());
-    ExpectEq(4800, Trader->getDebt());
-}
+    ExpectEq(700, Trader->getCash());
+    ExpectEq(5300, Trader->getDebt());
 
-/////////////////////////////////////////////////////////////////////////////
-void RepayDebtFailsWithInsufficientCash()
-{
-    Trader->setupStartingChoice(1);
-    int result = Trader->repayDebt(500);
-    
+    result = Trader->repayDebt(10000);
     ExpectEq(0, result);
-    ExpectEq(400, Trader->getCash());
-    ExpectEq(5000, Trader->getDebt());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void RepayDebtFailsExceedingDebt()
-{
-    Trader->setupStartingChoice(2);
-    Trader->addCash(1000);
-    int result = Trader->repayDebt(100);
-    
+    result = Trader->repayDebt(-100);
     ExpectEq(0, result);
-    ExpectEq(1000, Trader->getCash());
-    ExpectEq(0, Trader->getDebt());
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void GetVehicleCapacityReturnsCorrectValue()
+void VehicleManagementWorks()
 {
-    ExpectEq(60, Trader->getVehicleCapacity());
-    
-    Trader->setupStartingChoice(2);
-    ExpectEq(10, Trader->getVehicleCapacity());
+    object v1 = Trader->addVehicle("cart", "eledhel");
+    object v2 = Trader->addVehicle("barge", "riverport");
+    object *vehicles = Trader->getVehicles();
+    ExpectTrue(sizeof(vehicles) >= 3);
+    ExpectTrue(vehicles[1] == v1);
+    ExpectTrue(vehicles[2] == v2);
+
+    // Assign and unassign to trade run
+    int assigned = Trader->assignVehicleToTradeRun("run1", v1);
+    ExpectEq(1, assigned);
+    object found = Trader->getVehicleForTradeRun("run1");
+    ExpectTrue(found == v1);
+
+    Trader->unassignVehicleFromTradeRun("run1");
+    found = Trader->getVehicleForTradeRun("run1");
+    ExpectFalse(objectp(found));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AddCargoToVehicleWorksCorrectly()
-{
-    int result = Trader->addCargoToVehicle("/test/item", 20);
-    
-    ExpectEq(1, result);
-    ExpectEq(20, Trader->getCargoQuantity("/test/item"));
-    ExpectEq(20, Trader->getVehicleUsedSpace());
-    ExpectEq(40, Trader->getVehicleFreeSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddCargoToVehicleFailsWhenExceedingCapacity()
-{
-    int result = Trader->addCargoToVehicle("/test/item", 70);
-    
-    ExpectEq(0, result);
-    ExpectEq(0, Trader->getCargoQuantity("/test/item"));
-    ExpectEq(0, Trader->getVehicleUsedSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AddCargoToVehicleAccumulatesQuantities()
-{
-    Trader->addCargoToVehicle("/test/item", 20);
-    Trader->addCargoToVehicle("/test/item", 15);
-    
-    ExpectEq(35, Trader->getCargoQuantity("/test/item"));
-    ExpectEq(35, Trader->getVehicleUsedSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void RemoveCargoFromVehicleWorksCorrectly()
-{
-    Trader->addCargoToVehicle("/test/item", 30);
-    int result = Trader->removeCargoFromVehicle("/test/item", 10);
-    
-    ExpectEq(1, result);
-    ExpectEq(20, Trader->getCargoQuantity("/test/item"));
-    ExpectEq(20, Trader->getVehicleUsedSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void RemoveCargoFromVehicleFailsWithInsufficientCargo()
-{
-    Trader->addCargoToVehicle("/test/item", 10);
-    int result = Trader->removeCargoFromVehicle("/test/item", 20);
-    
-    ExpectEq(0, result);
-    ExpectEq(10, Trader->getCargoQuantity("/test/item"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void RemoveCargoFromVehicleRemovesItemWhenEmpty()
-{
-    Trader->addCargoToVehicle("/test/item", 20);
-    Trader->removeCargoFromVehicle("/test/item", 20);
-    
-    ExpectEq(0, Trader->getCargoQuantity("/test/item"));
-    ExpectEq(0, Trader->getVehicleUsedSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void GetVehicleUsedSpaceCalculatesCorrectly()
-{
-    ExpectEq(0, Trader->getVehicleUsedSpace());
-    ExpectEq(60, Trader->getVehicleFreeSpace());
-    
-    // Use proper accessor methods instead of direct mapping manipulation
-    Trader->addCargoToVehicle("/test/item1", 20);
-    Trader->addCargoToVehicle("/test/item2", 15);
-    
-    ExpectEq(35, Trader->getVehicleUsedSpace());
-    ExpectEq(25, Trader->getVehicleFreeSpace());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SetCurrentLocationUpdatesCorrectly()
-{
-    Trader->setCurrentLocation("hillgarath");
-    ExpectEq("hillgarath", Trader->getCurrentLocation());
-    
-    mapping vehicle = Trader->getVehicle();
-    ExpectEq("hillgarath", vehicle["location"]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SetCurrentLocationIgnoresInvalidInput()
-{
-    string originalLocation = Trader->getCurrentLocation();
-    Trader->setCurrentLocation(0);
-    ExpectEq(originalLocation, Trader->getCurrentLocation());
-    
-    Trader->setCurrentLocation("");
-    ExpectEq(originalLocation, Trader->getCurrentLocation());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void GetWarehouseInitializesCorrectly()
+void WarehouseManagementWorks()
 {
     mapping warehouse = Trader->getWarehouse("testport");
-    
     ExpectEq(10000, warehouse["capacity"]);
     ExpectTrue(mappingp(warehouse["inventory"]));
     ExpectEq(0, sizeof(warehouse["inventory"]));
     ExpectTrue(warehouse["rent paid"] > time());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void GetWarehouseUsesCurrentLocationByDefault()
-{
-    Trader->setCurrentLocation("testport");
-    mapping warehouse1 = Trader->getWarehouse(0);
-    mapping warehouse2 = Trader->getWarehouse("testport");
-    
-    ExpectEq(warehouse1["capacity"], warehouse2["capacity"]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void StoreInWarehouseWorksCorrectly()
-{
     int result = Trader->storeInWarehouse("/test/item", 100, "testport");
-    
     ExpectEq(1, result);
-    
-    mapping warehouse = Trader->getWarehouse("testport");
+    warehouse = Trader->getWarehouse("testport");
     ExpectEq(100, warehouse["inventory"]["/test/item"]);
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void StoreInWarehouseFailsWhenExceedingCapacity()
-{
-    int result = Trader->storeInWarehouse("/test/item", 15000, "testport");
-    
+    result = Trader->storeInWarehouse("/test/item", 15000, "testport");
     ExpectEq(0, result);
-    
-    mapping warehouse = Trader->getWarehouse("testport");
-    ExpectFalse(member(warehouse["inventory"], "/test/item"));
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void StoreInWarehouseAccumulatesQuantities()
-{
-    Trader->storeInWarehouse("/test/item", 100, "testport");
     Trader->storeInWarehouse("/test/item", 50, "testport");
-    
-    mapping warehouse = Trader->getWarehouse("testport");
+    warehouse = Trader->getWarehouse("testport");
     ExpectEq(150, warehouse["inventory"]["/test/item"]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void LoadFromWarehouseWorksCorrectly()
+void LocationAndDateBehaveCorrectly()
 {
-    Trader->storeInWarehouse("/test/item", 100, "testport");
-    
-    int result = Trader->loadFromWarehouse("/test/item", 50, "testport");
-    
+    Trader->setCurrentLocation("hillgarath");
+    ExpectEq("hillgarath", Trader->getCurrentLocation());
+
+    string original = Trader->getCurrentLocation();
+    Trader->setCurrentLocation(0);
+    ExpectEq(original, Trader->getCurrentLocation());
+    Trader->setCurrentLocation("");
+    ExpectEq(original, Trader->getCurrentLocation());
+
+    string date = Trader->getDateString();
+    ExpectTrue(stringp(date));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TradingExperienceWorks()
+{
+    ExpectEq(0, Trader->getTradingExperience());
+    Trader->addTradingExperience(50);
+    ExpectEq(50, Trader->getTradingExperience());
+    Trader->addTradingExperience(60);
+    ExpectEq(10, Trader->getTradingExperience()); // Should reset after 100
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ContractsWork()
+{
+    mapping contractData = ([
+        "description": "Test contract",
+        "reward": 1000,
+        "deadline": time() + 86400
+    ]);
+    int result = Trader->acceptContract("contract_1", contractData);
     ExpectEq(1, result);
-    
-    mapping warehouse = Trader->getWarehouse("testport");
-    ExpectEq(50, warehouse["inventory"]["/test/item"]);
-    
-    ExpectEq(50, Trader->getCargoQuantity("/test/item"));
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void LoadFromWarehouseFailsWithInsufficientQuantity()
-{
-    Trader->storeInWarehouse("/test/item", 100, "testport");
-    
-    int result = Trader->loadFromWarehouse("/test/item", 150, "testport");
-    
-    ExpectEq(0, result);
-    
-    mapping warehouse = Trader->getWarehouse("testport");
-    ExpectEq(100, warehouse["inventory"]["/test/item"]);
-}
+    mapping contracts = Trader->getActiveContracts();
+    ExpectTrue(member(contracts, "contract_1"));
+    ExpectEq("Test contract", contracts["contract_1"]["description"]);
 
-/////////////////////////////////////////////////////////////////////////////
-void LoadFromWarehouseFailsWhenVehicleFull()
-{
-    // Use proper accessor instead of direct manipulation
-    Trader->addCargoToVehicle("/test/existing", 60);
-    
-    Trader->storeInWarehouse("/test/item", 100, "testport");
-    
-    int result = Trader->loadFromWarehouse("/test/item", 10, "testport");
-    
-    ExpectEq(0, result);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void LoadFromWarehouseRemovesItemWhenQuantityZero()
-{
-    Trader->storeInWarehouse("/test/item", 50, "testport");
-    Trader->loadFromWarehouse("/test/item", 50, "testport");
-    
-    mapping warehouse = Trader->getWarehouse("testport");
-    ExpectFalse(member(warehouse["inventory"], "/test/item"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void UnloadToWarehouseWorksCorrectly()
-{
-    // Use proper accessor instead of direct manipulation
-    Trader->addCargoToVehicle("/test/item", 30);
-    
-    int result = Trader->unloadToWarehouse("/test/item", 20, "testport");
-    
+    result = Trader->completeContract("contract_1");
     ExpectEq(1, result);
-    ExpectEq(10, Trader->getCargoQuantity("/test/item"));
-    
-    mapping warehouse = Trader->getWarehouse("testport");
-    ExpectEq(20, warehouse["inventory"]["/test/item"]);
-}
+    contracts = Trader->getActiveContracts();
+    ExpectFalse(member(contracts, "contract_1"));
 
-/////////////////////////////////////////////////////////////////////////////
-void UnloadToWarehouseRemovesCargoWhenEmpty()
-{
-    // Use proper accessor instead of direct manipulation
-    Trader->addCargoToVehicle("/test/item", 20);
-    
-    Trader->unloadToWarehouse("/test/item", 20, "testport");
-    
-    ExpectEq(0, Trader->getCargoQuantity("/test/item"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void UnloadToWarehouseFailsWithInsufficientCargo()
-{
-    // Use proper accessor instead of direct manipulation  
-    Trader->addCargoToVehicle("/test/item", 10);
-    
-    int result = Trader->unloadToWarehouse("/test/item", 20, "testport");
-    
+    result = Trader->completeContract("nonexistent");
     ExpectEq(0, result);
-    ExpectEq(10, Trader->getCargoQuantity("/test/item"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -488,34 +229,68 @@ void GetTradingDataReturnsCompleteMapping()
 {
     Trader->setFirmName("Test Company");
     Trader->setupStartingChoice(1);
-    
+
     mapping data = Trader->getTradingData();
-    
+
     ExpectEq("Test Company", data["firm"]);
     ExpectEq(400, data["cash"]);
     ExpectEq(5000, data["debt"]);
-    ExpectEq("eledhel", data["location"]);
-    ExpectTrue(mappingp(data["vehicle"]));
+    ExpectEq("", data["location"]);
+    ExpectTrue(pointerp(data["vehicles"]));
     ExpectTrue(mappingp(data["warehouse"]));
     ExpectTrue(stringp(data["date"]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AcceptContractWorksCorrectly()
+// Additional edge cases and negative tests
+void CannotAssignSameVehicleToMultipleTradeRuns()
 {
-    mapping contractData = ([
-        "description": "Test contract",
-        "reward": 1000,
-        "deadline": time() + 86400
-    ]);
-    
-    int result = Trader->acceptContract("contract_1", contractData);
-    
+    object v1 = Trader->addVehicle("cart", "eledhel");
+    int assigned1 = Trader->assignVehicleToTradeRun("run1", v1);
+    int assigned2 = Trader->assignVehicleToTradeRun("run2", v1);
+    ExpectEq(1, assigned1);
+    ExpectEq(0, assigned2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnassignNonexistentTradeRunDoesNothing()
+{
+    // Should not throw or error
+    Trader->unassignVehicleFromTradeRun("not-a-run");
+    // No assertion needed, just ensure no crash
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetVehicleForNonexistentTradeRunReturnsZero()
+{
+    object found = Trader->getVehicleForTradeRun("not-a-run");
+    ExpectFalse(objectp(found));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void StoreInWarehouseWithNoLocationUsesCurrent()
+{
+    Trader->setCurrentLocation("testport");
+    int result = Trader->storeInWarehouse("/test/item", 10, 0);
     ExpectEq(1, result);
-    
-    mapping contracts = Trader->getActiveContracts();
-    ExpectTrue(member(contracts, "contract_1"));
-    ExpectEq("Test contract", contracts["contract_1"]["description"]);
+    mapping warehouse = Trader->getWarehouse("testport");
+    ExpectEq(10, warehouse["inventory"]["/test/item"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetWarehouseWithNoLocationUsesCurrent()
+{
+    Trader->setCurrentLocation("testport");
+    mapping warehouse1 = Trader->getWarehouse(0);
+    mapping warehouse2 = Trader->getWarehouse("testport");
+    ExpectEq(warehouse1["capacity"], warehouse2["capacity"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void StoreInWarehouseFailsIfOverCapacity()
+{
+    int result = Trader->storeInWarehouse("/test/item", 20000, "testport");
+    ExpectEq(0, result);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -524,55 +299,15 @@ void AcceptContractFailsWithInvalidInput()
     mapping emptyMapping = ([]);
     int result1 = Trader->acceptContract(0, emptyMapping);
     int result2 = Trader->acceptContract("test", 0);
-    
     ExpectEq(0, result1);
     ExpectEq(0, result2);
-    
     mapping contracts = Trader->getActiveContracts();
     ExpectEq(0, sizeof(contracts));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CompleteContractWorksCorrectly()
-{
-    mapping contractData = ([ "description": "Test contract" ]);
-    Trader->acceptContract("contract_1", contractData);
-    
-    int result = Trader->completeContract("contract_1");
-    
-    ExpectEq(1, result);
-    
-    mapping contracts = Trader->getActiveContracts();
-    ExpectFalse(member(contracts, "contract_1"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CompleteContractFailsWithNonexistentContract()
 {
     int result = Trader->completeContract("nonexistent");
-    
     ExpectEq(0, result);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void GetCargoQuantityReturnsCorrectAmount()
-{
-    ExpectEq(0, Trader->getCargoQuantity("/test/item"));
-    
-    Trader->addCargoToVehicle("/test/item", 25);
-    ExpectEq(25, Trader->getCargoQuantity("/test/item"));
-    
-    ExpectEq(0, Trader->getCargoQuantity("/nonexistent/item"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void GetTradingExperienceReturnsCorrectValue()
-{
-    ExpectEq(0, Trader->getTradingExperience());
-    
-    Trader->addTradingExperience(50);
-    ExpectEq(50, Trader->getTradingExperience());
-    
-    Trader->addTradingExperience(60);
-    ExpectEq(10, Trader->getTradingExperience()); // Should reset after 100
 }

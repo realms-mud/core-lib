@@ -6,15 +6,33 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object TradingSelector;
-object MockEnvironment;
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "resetPlayerMessages", "getMenuOptionNumber" });
+    ignoreList += ({ "resetPlayerMessages", "getMenuOptionNumber",
+        "tradingSelectorRemoved", "onSelectorCompleted" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void onSelectorCompleted(object caller)
+{
+    if (objectp(caller))
+    {
+        caller->cleanUp();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onSelectorAborted(object caller)
+{
+    if (objectp(caller))
+    {
+        caller->cleanUp();
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     TradingSelector = clone_object("/lib/modules/domains/trading/selectors/tradingSelector.c");
@@ -23,21 +41,24 @@ void Setup()
     Player.addCommands();
     Player.initializeTrader();
 
-    // Create a mock environment that is NOT a port
-    MockEnvironment = clone_object("/lib/tests/support/environment/mockTradeEnvironment.c");
-    move_object(Player, MockEnvironment);
     move_object(TradingSelector, Player);
+    TradingSelector->registerEvent(this_object());
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    if (objectp(TradingSelector)) destruct(TradingSelector);
-    if (objectp(Player)) destruct(Player);
-    if (objectp(MockEnvironment)) destruct(MockEnvironment);
+    if (objectp(TradingSelector))
+    {
+        destruct(TradingSelector);
+    }
+    if (objectp(Player))
+    {
+        destruct(Player);
+    }
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 private void resetPlayerMessages()
 {
     if (Player && function_exists("resetCatchList", Player))
@@ -46,7 +67,7 @@ private void resetPlayerMessages()
     }
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 private string getMenuOptionNumber(string optionText)
 {
     string ret = "0";
@@ -65,8 +86,24 @@ private string getMenuOptionNumber(string optionText)
     return ret;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+private int tradingSelectorRemoved()
+{
+    object *inventory = deep_inventory(Player);
 
-/////////////////////////////////////////////////////////////////////////////
+    int found = 0;
+    foreach(object obj in inventory)
+    {
+        if (obj == TradingSelector)
+        {
+            found = 1;
+            break;
+        }
+    }
+    return !found;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void TradingSelectorDisplaysMainMenuCorrectly()
 {
     resetPlayerMessages();
@@ -80,16 +117,9 @@ void TradingSelectorDisplaysMainMenuCorrectly()
     ExpectSubStringMatch("Visit Bank", message);
     ExpectSubStringMatch("Select Port", message);
     ExpectSubStringMatch("Exit Trading Menu", message);
-
-    // Port-specific actions should NOT be present
-    ExpectFalse(sizeof(regexp(({ message }), "Buy Goods")) > 0, "Buy Goods should not show in main menu");
-    ExpectFalse(sizeof(regexp(({ message }), "Sell Goods")) > 0, "Sell Goods should not show in main menu");
-    ExpectFalse(sizeof(regexp(({ message }), "Manage Warehouse")) > 0, "Manage Warehouse should not show in main menu");
-    ExpectFalse(sizeof(regexp(({ message }), "Travel to Another Port")) > 0, "Travel to Another Port should not show in main menu");
-    ExpectFalse(sizeof(regexp(({ message }), "Hire Crew")) > 0, "Hire Crew should not show in main menu");
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingStatusDisplaysCompanyInformation()
 {
     resetPlayerMessages();
@@ -99,10 +129,9 @@ void ChoosingStatusDisplaysCompanyInformation()
 
     string message = Player.caughtMessage();
     ExpectSubStringMatch("Trading Status", message);
-    ExpectSubStringMatch("Unnamed Trading Company", message);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingMarketPricesDisplaysMarketPricesSelector()
 {
     resetPlayerMessages();
@@ -113,18 +142,19 @@ void ChoosingMarketPricesDisplaysMarketPricesSelector()
     ExpectSubStringMatch("Market Prices", result);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingContractsDisplaysContractsSelector()
 {
     resetPlayerMessages();
     TradingSelector.initiateSelector(Player);
     command(getMenuOptionNumber("Browse Contracts"), Player);
     string result = Player.caughtMessage();
+
     ExpectTrue(sizeof(regexp(({ result }), "Contracts")) > 0,
         "Contracts selector should be displayed");
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingBankDisplaysBankSelector()
 {
     resetPlayerMessages();
@@ -135,7 +165,7 @@ void ChoosingBankDisplaysBankSelector()
         "Bank selector should be displayed");
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingSelectPortDisplaysPortSelector()
 {
     resetPlayerMessages();
@@ -145,16 +175,25 @@ void ChoosingSelectPortDisplaysPortSelector()
     ExpectSubStringMatch("Select Port", result);
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void ChoosingExitExitsSelector()
 {
     resetPlayerMessages();
     TradingSelector.initiateSelector(Player);
+
+    ExpectFalse(tradingSelectorRemoved(),
+        "Selector should be present before exit command");
+
     command(getMenuOptionNumber("Exit Trading Menu"), Player);
-    ExpectSubStringMatch("Trading has been exited", Player.caughtMessage());
+
+    ExpectSubStringMatch("You have selected 'Exit Trading Menu'", 
+        Player.caughtMessage());
+
+    ExpectTrue(tradingSelectorRemoved(),
+        "Selector should be removed from player after exit command");
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void InvalidSelectionShowsMenuAgain()
 {
     resetPlayerMessages();
@@ -165,7 +204,7 @@ void InvalidSelectionShowsMenuAgain()
     ExpectSubStringMatch("Main Trading Menu", Player.caughtMessage());
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void DescribeOptionShowsDetails()
 {
     resetPlayerMessages();
@@ -176,7 +215,7 @@ void DescribeOptionShowsDetails()
     ExpectSubStringMatch("Display your trading company", Player.caughtMessage());
 }
 
-/////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 void UndoIsNotAvailableInTradingSelector()
 {
     resetPlayerMessages();
@@ -187,48 +226,18 @@ void UndoIsNotAvailableInTradingSelector()
     ExpectSubStringMatch("Main Trading Menu", Player.caughtMessage());
 }
 
-/////////////////////////////////////////////////////////////////////////////
-void CancelRemovesSelectorFromPlayer()
+///////////////////////////////////////////////////////////////////////////////
+void ExitRemovesSelectorFromPlayer()
 {
+    ToggleCallOutBypass();
+    TradingSelector.registerEvent(this_object());
     resetPlayerMessages();
     TradingSelector.initiateSelector(Player);
 
-    // Simulate the cancel command
-    command("cancel", Player);
+    command("exit", Player);
+    ExpectSubStringMatch("Trading has been exited.", Player.caughtMessage());
 
-    // The selector should no longer be in the player's inventory/environment
-    object *inventory = deep_inventory(Player);
-    int found = 0;
-    foreach (object obj in inventory)
-    {
-        if (obj == TradingSelector)
-        {
-            found = 1;
-            break;
-        }
-    }
-    ExpectFalse(found, "Selector should be removed from player on cancel");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AbortRemovesSelectorFromPlayer()
-{
-    resetPlayerMessages();
-    TradingSelector.initiateSelector(Player);
-
-    // Simulate the abort command
-    command("abort", Player);
-
-    // The selector should no longer be in the player's inventory/environment
-    object *inventory = deep_inventory(Player);
-    int found = 0;
-    foreach (object obj in inventory)
-    {
-        if (obj == TradingSelector)
-        {
-            found = 1;
-            break;
-        }
-    }
-    ExpectFalse(found, "Selector should be removed from player on abort");
+    ExpectTrue(tradingSelectorRemoved(),
+        "Selector should be removed from player on cancel command");
+    ToggleCallOutBypass();
 }

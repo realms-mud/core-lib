@@ -159,13 +159,10 @@ protected nomask int processSelection(string selection)
                 case "selectPort":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/selectPortSelector.c");
                     SubselectorObj->setParentSelector(this_object());
-                    move_object(SubselectorObj, User);
-                    SubselectorObj->initiateSelector(User);
-                    ret = -1;
                     break;
             }
 
-            if (SubselectorObj && selectionType != "selectPort")
+            if (SubselectorObj)
             {
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
