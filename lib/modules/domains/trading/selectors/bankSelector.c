@@ -107,9 +107,9 @@ protected nomask void setUpUserForSelection()
     if (User->getCash() > 0)
     {
         Data[to_string(counter++)] = ([
-            "name":sprintf("Deposit Money (You have %d gold)", User->getCash()),
-            "type" : "deposit",
-            "description" : "Transfer cash from your purse to your bank account for safekeeping.",
+            "name": sprintf("Deposit Money (You have %d gold)", User->getCash()),
+            "type": "deposit",
+            "description": "Transfer cash from your purse to your bank account for safekeeping.",
             "canShow" : 1
         ]);
     }
@@ -125,6 +125,10 @@ protected nomask void setUpUserForSelection()
     }
 
     int maxLoan = User->getCash() * 2;
+    if (maxLoan < 1000)
+    {
+        maxLoan = 1000; // Minimum loan amount
+    }
     if (maxLoan > 0)
     {
         Data[to_string(counter++)] = ([
@@ -182,22 +186,18 @@ protected nomask int processSelection(string selection)
                 case "deposit":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankTransactionSelector.c");
                     SubselectorObj->setTransactionType("deposit");
-                    SubselectorObj->setMaxAmount(User->getCash());
                     break;
                 case "withdraw":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankTransactionSelector.c");
                     SubselectorObj->setTransactionType("withdraw");
-                    SubselectorObj->setMaxAmount(User->getBank());
                     break;
                 case "borrow":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankTransactionSelector.c");
                     SubselectorObj->setTransactionType("borrow");
-                    SubselectorObj->setMaxAmount(Data[selection]["max loan"]);
                     break;
                 case "repay":
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankTransactionSelector.c");
                     SubselectorObj->setTransactionType("repay");
-                    SubselectorObj->setMaxAmount(Data[selection]["max repay"]);
                     break;
             }
 

@@ -11,7 +11,7 @@ object MockPort;
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "resetPlayerMessages" });
+    ignoreList += ({ "resetPlayerMessages", "getMenuOptionNumber" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -22,6 +22,8 @@ void Setup()
     Player.Name("testbanker");
     Player.addCommands();
     Player.initializeTrader();
+    Player.addCash(1000);
+    Player.colorConfiguration("none");
 
     // Create a mock port environment
     MockPort = clone_object("/lib/tests/support/environment/mockTradePort.c");
@@ -47,107 +49,176 @@ private void resetPlayerMessages()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DepositTransactionDisplaysCorrectMenu()
+private string getMenuOptionNumber(string optionText)
 {
+    string ret = "0";
+    string message = Player.caughtMessage();
+    string *lines = explode(message, "\n");
+    foreach (string line in lines)
+    {
+        line = regreplace(line, "\x1B\\[[0-9;]*[A-Za-z]", "", 1);
+
+        if (sizeof(regexp(({ line }), optionText)))
+        {
+            ret = regreplace(line, "^[^0-9]*([0-9]+).*", "\\1", 1);
+            break;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DepositTransactionDisplaysCorrectMenuWhenHavingFourHundredGold()
+{
+    Player.addCash(-1000);
+    Player.addCash(400);
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Deposit Money - How much would you like to deposit?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - Custom Amount       \n"
+        "    [3] - Maximum (400 gold)  \n"
+        "    [4] - Cancel              \n"
+        "You must select a number from 1 to 4. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("Deposit Money", message);
-    ExpectSubStringMatch("How much would you like to deposit", message);
-    ExpectSubStringMatch("100 gold", message);
-    ExpectSubStringMatch("500 gold", message);
-    ExpectSubStringMatch("1000 gold", message);
-    ExpectSubStringMatch("Custom Amount", message);
-    ExpectSubStringMatch("Maximum [(]1000 gold[)]", message);
-    ExpectSubStringMatch("Cancel", message);
+    ExpectEq(expected, message);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DepositTransactionDisplaysCorrectMenuWhenHavingOneThousandGold()
+{
+    Player.addCash(-1000);
+    Player.addCash(1000);
+    TransactionSelector.setTransactionType("deposit");
+
+    resetPlayerMessages();
+    TransactionSelector.initiateSelector(Player);
+
+    string expected = "Deposit Money - How much would you like to deposit?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - 500 gold            \n"
+        "    [3] - 1000 gold           \n"
+        "    [4] - Custom Amount       \n"
+        "    [5] - Maximum (1000 gold) \n"
+        "    [6] - Cancel              \n"
+        "You must select a number from 1 to 6. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
+    string message = Player.caughtMessage();
+    ExpectEq(expected, message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WithdrawTransactionDisplaysCorrectMenu()
 {
+    Player.depositMoney(500);
     TransactionSelector.setTransactionType("withdraw");
-    TransactionSelector.setMaxAmount(500);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Withdraw Money - How much would you like to withdraw?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - 500 gold            \n"
+        "    [3] - Custom Amount       \n"
+        "    [4] - Maximum (500 gold)  \n"
+        "    [5] - Cancel              \n"
+        "You must select a number from 1 to 5. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("Withdraw Money", message);
-    ExpectSubStringMatch("How much would you like to withdraw", message);
-    ExpectSubStringMatch("100 gold", message);
-    ExpectSubStringMatch("500 gold", message);
-    ExpectSubStringMatch("Maximum [(]500 gold[)]", message);
-    ExpectFalse(sizeof(regexp(({ message }), "1000 gold")) > 0,
-        "Should not show amounts greater than max");
+    ExpectEq(expected, message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void BorrowTransactionDisplaysCorrectMenu()
 {
+    Player.addCash(1000); // Set cash to 2000, so max loan is 4000
     TransactionSelector.setTransactionType("borrow");
-    TransactionSelector.setMaxAmount(2000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Borrow Money - How much would you like to borrow?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - 500 gold            \n"
+        "    [3] - 1000 gold           \n"
+        "    [4] - Custom Amount       \n"
+        "    [5] - Maximum (4000 gold) \n"
+        "    [6] - Cancel              \n"
+        "You must select a number from 1 to 6. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("Borrow Money", message);
-    ExpectSubStringMatch("How much would you like to borrow", message);
-    ExpectSubStringMatch("1000 gold", message);
-    ExpectSubStringMatch("Maximum [(]2000 gold[)]", message);
+    ExpectEq(expected, message);
 }
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 void RepayTransactionDisplaysCorrectMenu()
 {
+    Player.addCash(-1000);
+    Player.addCash(300);
+    Player.borrowMoney(400); // Use a setter in your mockPlayer
     TransactionSelector.setTransactionType("repay");
-    TransactionSelector.setMaxAmount(300);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Repay Money - How much would you like to repay?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - Custom Amount       \n"
+        "    [3] - Maximum (400 gold)  \n"
+        "    [4] - Cancel              \n"
+        "You must select a number from 1 to 4. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("Repay Money", message);
-    ExpectSubStringMatch("How much would you like to repay", message);
-    ExpectSubStringMatch("100 gold", message);
-    ExpectSubStringMatch("Maximum [(]300 gold[)]", message);
-    ExpectFalse(sizeof(regexp(({ message }), "500 gold")) > 0,
-        "Should not show amounts greater than max");
+    ExpectEq(expected, message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MenuShowsOnlyRelevantAmountOptions()
 {
+    Player.addCash(-1000);
+    Player.addCash(250);
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(250);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Deposit Money - How much would you like to deposit?\n"
+        "    [1] - 100 gold            \n"
+        "    [2] - Custom Amount       \n"
+        "    [3] - Maximum (250 gold)  \n"
+        "    [4] - Cancel              \n"
+        "You must select a number from 1 to 4. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("100 gold", message);
-    ExpectFalse(sizeof(regexp(({ message }), "500 gold")) > 0,
-        "Should not show 500 gold when max is 250");
-    ExpectFalse(sizeof(regexp(({ message }), "1000 gold")) > 0,
-        "Should not show 1000 gold when max is 250");
-    ExpectSubStringMatch("Maximum [(]250 gold[)]", message);
+    ExpectEq(expected, message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DepositTransactionExecutesSuccessfully()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
     Player.setupStartingChoice(1); // 400 cash
+
+    ExpectEq(400, Player.getCash());
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(400);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    resetPlayerMessages();
-    command("1", Player); // Select 100 gold option
+
+    command(getMenuOptionNumber("100 gold"), Player);
 
     string message = implode(Player.caughtMessages(), "\n");
     ExpectSubStringMatch("You deposited 100 gold into your bank account", message);
@@ -158,15 +229,16 @@ void DepositTransactionExecutesSuccessfully()
 /////////////////////////////////////////////////////////////////////////////
 void WithdrawTransactionExecutesSuccessfully()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
     Player.setupStartingChoice(1);
-    Player.depositMoney(200); // Put 200 in bank
+    Player.depositMoney(200);
     TransactionSelector.setTransactionType("withdraw");
-    TransactionSelector.setMaxAmount(200);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    resetPlayerMessages();
-    command("1", Player); // Select 100 gold option
+
+    command(getMenuOptionNumber("100 gold"), Player);
 
     string message = implode(Player.caughtMessages(), "\n");
     ExpectSubStringMatch("You withdrew 100 gold from your bank account", message);
@@ -177,14 +249,15 @@ void WithdrawTransactionExecutesSuccessfully()
 /////////////////////////////////////////////////////////////////////////////
 void BorrowTransactionExecutesSuccessfully()
 {
-    Player.setupStartingChoice(1); // 400 cash, eligible for 800 loan
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.setupStartingChoice(1); // 400 cash
     TransactionSelector.setTransactionType("borrow");
-    TransactionSelector.setMaxAmount(500);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    resetPlayerMessages();
-    command("1", Player); // Select 100 gold option
+
+    command(getMenuOptionNumber("100 gold"), Player);
 
     string message = implode(Player.caughtMessages(), "\n");
     ExpectSubStringMatch("You borrowed 100 gold from the bank", message);
@@ -196,14 +269,16 @@ void BorrowTransactionExecutesSuccessfully()
 /////////////////////////////////////////////////////////////////////////////
 void RepayTransactionExecutesSuccessfully()
 {
-    Player.setupStartingChoice(1); // 400 cash, 5000 debt
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.setupStartingChoice(1); // 400 cash
+
     TransactionSelector.setTransactionType("repay");
-    TransactionSelector.setMaxAmount(400);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    resetPlayerMessages();
-    command("1", Player); // Select 100 gold option
+
+    command(getMenuOptionNumber("100 gold"), Player);
 
     string message = implode(Player.caughtMessages(), "\n");
     ExpectSubStringMatch("You repaid 100 gold toward your debt", message);
@@ -214,96 +289,100 @@ void RepayTransactionExecutesSuccessfully()
 /////////////////////////////////////////////////////////////////////////////
 void MaximumAmountOptionWorks()
 {
-    Player.setupStartingChoice(1); // 400 cash
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.setupStartingChoice(1); // Guarantees 400 cash and 5000 debt
+
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(400);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    
-    // Find maximum option
-    string message = Player.caughtMessage();
-    int maxOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "Maximum \\(400 gold\\)")))
-        {
-            sscanf(line, "%d. %*s", maxOption);
-            break;
-        }
-    }
-    
-    if (maxOption > 0)
-    {
-        resetPlayerMessages();
-        command(to_string(maxOption), Player);
-        string transactionMessage = implode(Player.caughtMessages(), "\n");
-        
-        ExpectSubStringMatch("You deposited 400 gold into your bank account", transactionMessage);
-        ExpectEq(0, Player.getCash());
-        ExpectEq(400, Player.getBank());
-    }
+
+    // Confirm the menu contains the correct option
+    string menu = Player.caughtMessage();
+    ExpectSubStringMatch("Maximum .400 gold.", menu);
+
+    command(getMenuOptionNumber("Maximum .400 gold."), Player);
+
+    string transactionMessage = implode(Player.caughtMessages(), "\n");
+    ExpectSubStringMatch("You deposited 400 gold into your bank account", transactionMessage);
+    ExpectEq(0, Player.getCash());
+    ExpectEq(400, Player.getBank());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CustomAmountOptionDisplaysPrompt()
 {
+    Player.addCash(-1000);
+    Player.addCash(1000); // Ensure cash is 1000
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    
-    // Find custom amount option
-    string message = Player.caughtMessage();
-    int customOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "Custom Amount")))
-        {
-            sscanf(line, "%d. %*s", customOption);
-            break;
-        }
-    }
-    
-    if (customOption > 0)
-    {
-        resetPlayerMessages();
-        command(to_string(customOption), Player);
-        string promptMessage = Player.caughtMessage();
-        
-        ExpectSubStringMatch("Enter amount [(]1-1000[)]:", promptMessage);
-    }
+
+    command(getMenuOptionNumber("Custom Amount"), Player);
+    string promptMessage = implode(Player.caughtMessages(), "\n");
+
+    ExpectSubStringMatch("Enter amount [(]1-1000[)]:", promptMessage);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CustomAmountExecutesSuccessfully()
+{
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
+    TransactionSelector.setTransactionType("deposit");
+
+    resetPlayerMessages();
+    TransactionSelector.initiateSelector(Player);
+
+    command(getMenuOptionNumber("Custom Amount"), Player);
+    command("250", Player); // Simulate entering a custom amount
+
+    string transactionMessage = implode(Player.caughtMessages(), "\n");
+
+    ExpectSubStringMatch("You deposited 250 gold into your bank account", transactionMessage);
+    ExpectEq(150, Player.getCash());
+    ExpectEq(250, Player.getBank());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CustomAmountInvalidShowsError()
+{
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
+    TransactionSelector.setTransactionType("deposit");
+
+    resetPlayerMessages();
+    TransactionSelector.initiateSelector(Player);
+
+    command(getMenuOptionNumber("Custom Amount"), Player);
+    command("9999", Player); // Simulate entering a custom amount
+
+    string errorMessage = implode(Player.caughtMessages(), "\n");
+
+    ExpectSubStringMatch("Invalid amount. Must be between 1 and 400.", errorMessage);
+    ExpectSubStringMatch("Deposit Money", errorMessage);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CancelOptionExitsTransaction()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    
-    // Find cancel option
-    string message = Player.caughtMessage();
-    int cancelOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "Cancel")))
-        {
-            sscanf(line, "%d. %*s", cancelOption);
-            break;
-        }
-    }
-    
-    if (cancelOption > 0)
+
+    string cancelOption = getMenuOptionNumber("Cancel");
+    if (to_int(cancelOption) > 0)
     {
         resetPlayerMessages();
-        command(to_string(cancelOption), Player);
+        command(cancelOption, Player);
         // Should complete the selector and return to parent
     }
 }
@@ -311,33 +390,21 @@ void CancelOptionExitsTransaction()
 /////////////////////////////////////////////////////////////////////////////
 void FailedTransactionShowsErrorMessage()
 {
-    // Try to deposit more money than player has
-    Player.setupStartingChoice(1); // 400 cash
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
-    
-    // Find 500 gold option
-    string message = Player.caughtMessage();
-    int option500 = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "500 gold")))
-        {
-            sscanf(line, "%d. %*s", option500);
-            break;
-        }
-    }
-    
-    if (option500 > 0)
+
+    string option500 = getMenuOptionNumber("500 gold");
+    if (to_int(option500) > 0)
     {
         resetPlayerMessages();
-        command(to_string(option500), Player);
+        command(option500, Player);
         string errorMessage = implode(Player.caughtMessages(), "\n");
-        
+
         ExpectSubStringMatch("Unable to complete the deposit transaction", errorMessage);
     }
 }
@@ -345,9 +412,11 @@ void FailedTransactionShowsErrorMessage()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidSelectionShowsMenuAgain()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
     resetPlayerMessages();
@@ -359,9 +428,11 @@ void InvalidSelectionShowsMenuAgain()
 /////////////////////////////////////////////////////////////////////////////
 void DescribeOptionShowsTransactionDetails()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
     resetPlayerMessages();
@@ -373,9 +444,11 @@ void DescribeOptionShowsTransactionDetails()
 /////////////////////////////////////////////////////////////////////////////
 void UndoIsAvailableInTransactionSelector()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(400); // Ensure cash is 400
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(1000);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
     resetPlayerMessages();
@@ -388,19 +461,28 @@ void UndoIsAvailableInTransactionSelector()
 /////////////////////////////////////////////////////////////////////////////
 void TransactionTypeDeterminesMenuTitle()
 {
-    // Test each transaction type
     string *types = ({ "deposit", "withdraw", "borrow", "repay" });
     string *expectedTitles = ({ "Deposit Money", "Withdraw Money", "Borrow Money", "Repay Money" });
-    
+
     for (int i = 0; i < sizeof(types); i++)
     {
+        Player.addCash(-1000);
+        Player.addVehicle("wagon", "eledhel");
+        Player.addCash(400); // Ensure cash is 400
+        if (types[i] == "withdraw")
+        {
+            Player.depositMoney(200);
+        }
+        else if (types[i] == "repay")
+        {
+            Player.borrowMoney(5000);
+        }
+
         TransactionSelector.setTransactionType(types[i]);
-        TransactionSelector.setMaxAmount(1000);
-        
         resetPlayerMessages();
         TransactionSelector.initiateSelector(Player);
         string message = Player.caughtMessage();
-        
+
         ExpectSubStringMatch(expectedTitles[i], message);
     }
 }
@@ -408,35 +490,41 @@ void TransactionTypeDeterminesMenuTitle()
 /////////////////////////////////////////////////////////////////////////////
 void MaxAmountLimitsAvailableOptions()
 {
-    // Test with very low max amount
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
+    Player.addCash(50); // Ensure cash is 50
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(50);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Deposit Money - How much would you like to deposit?\n"
+        "    [1] - Custom Amount       \n"
+        "    [2] - Maximum (50 gold)   \n"
+        "    [3] - Cancel              \n"
+        "You must select a number from 1 to 3. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectFalse(sizeof(regexp(({ message }), "100 gold")) > 0,
-        "Should not show 100 gold when max is 50");
-    ExpectSubStringMatch("Custom Amount", message);
-    ExpectSubStringMatch("Maximum [(]50 gold[)]", message);
-    ExpectSubStringMatch("Cancel", message);
+    ExpectEq(expected, message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ZeroMaxAmountShowsOnlyCustomAndCancel()
 {
+    Player.addCash(-1000);
+    Player.addVehicle("wagon", "eledhel");
     TransactionSelector.setTransactionType("deposit");
-    TransactionSelector.setMaxAmount(0);
-    
+
     resetPlayerMessages();
     TransactionSelector.initiateSelector(Player);
 
+    string expected = "Deposit Money - How much would you like to deposit?\n"
+        "    [1] - Custom Amount       \n"
+        "    [2] - Cancel              \n"
+        "You must select a number from 1 to 2. You may also undo or reset.\n"
+        "Type 'exit' if you do not wish to make a selection at this time.\n";
+
     string message = Player.caughtMessage();
-    ExpectFalse(sizeof(regexp(({ message }), "100 gold")) > 0,
-        "Should not show any preset amounts when max is 0");
-    ExpectFalse(sizeof(regexp(({ message }), "Maximum \\(0 gold\\)")) > 0,
-        "Should not show maximum option when max is 0");
-    ExpectSubStringMatch("Custom Amount", message);
-    ExpectSubStringMatch("Cancel", message);
+    ExpectEq(expected, message);
 }

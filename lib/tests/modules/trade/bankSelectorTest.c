@@ -127,7 +127,7 @@ void ChoosingStatusDisplaysAccountInformation()
     command(getMenuOptionNumber("View Account Status"), Player);
 
     string message = implode(Player.caughtMessages(), "\n");
-    ExpectSubStringMatch("Bank Aclcount", message);
+    ExpectSubStringMatch("Bank Account", message);
     ExpectSubStringMatch("Cash on Hand", message);
     ExpectSubStringMatch("Bank Balance", message);
     ExpectSubStringMatch("Outstanding Debt", message);
@@ -152,11 +152,12 @@ void NoColorsWithASCIIDisplaysCorrectly()
     string message = Player.caughtMessages()[2];
     string expected = 
         "+-=-=-=-=-=-=-=-=-=-+ Unnamed Trading Company Bank Account +=-=-=-=-=-=-=-=-=-+\n"
-        "| Cash on Hand:     0 gold    Bank Balance:     0 gold                        |\n"
-        "| Outstanding Debt: 0 gold    Net Worth:        0 gold                        |\n"
-        "| Loan Capacity:    0 gold    (based on current cash holdings)                |\n"
+        "| Cash on Hand:     200 gold          Bank Balance:     200 gold              |\n"
+        "| Outstanding Debt: 5000 gold         Net Worth:        -4600 gold            |\n"
+        "| Loan Capacity:    400 gold  (based on current cash holdings)                |\n"
         "| Interest Rates:   Bank deposits +0.5% monthly, Loans +10% monthly           |\n"
         "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+ - +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n";
+
     ExpectEq(expected, message);
 }
 
@@ -175,14 +176,23 @@ void TwentyFourBitColorWithUnicodeDisplaysCorrectly()
 
     string message = Player.caughtMessages()[2];
     string expected =
-        "\x1b[0;38;2;180;180;190m\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 Unnamed Trading Company Bank Account \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\x1b[0m\n"
-        "\x1b[0;38;2;180;180;190m\u2551\x1b[0m \x1b[0;38;2;200;200;0mCash on Hand:    200 gold    \x1b[0m\x1b[0;38;2;180;180;190mBank Balance:    200 gold                        \u2551\x1b[0m\n"
-        "\x1b[0;38;2;180;180;190m\u2551\x1b[0m \x1b[0;38;2;200;0;0mOutstanding Debt: 5000 gold   \x1b[0m\x1b[0;38;2;180;180;190mNet Worth:       -4600 gold                       \u2551\x1b[0m\n"
-        "\x1b[0;38;2;180;180;190m\u2551\x1b[0m \x1b[0;38;2;200;200;0mLoan Capacity:    400 gold    \x1b[0m\x1b[0;38;2;180;180;190m(based on current cash holdings)                \u2551\x1b[0m\n"
-        "\x1b[0;38;2;180;180;190m\u2551\x1b[0m \x1b[0;38;2;0;180;200mInterest Rates:   Bank deposits +0.5% monthly, Loans +10% monthly           \u2551\x1b[0m\n"
-        "\x1b[0;38;2;180;180;190m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 \u2550 \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\x1b[0m\n";
+        "\x1b[0;38;2;160;10;0m\u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 Unnamed Trading Company Bank Account \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n"
+        "\x1b[0m\x1b[0;38;2;160;10;0m\u2551\x1b[0m \x1b[0;38;2;180;180;190mCash on Hand:     \x1b[0m\x1b[0;38;2;200;200;0m200 gold          \x1b[0m\x1b[0;38;2;180;180;190mBank Balance:     \x1b[0m\x1b[0;38;2;200;200;0m200 gold          \x1b[0m    \x1b[0;38;2;160;10;0m\u2551\x1b[0m\n"
+        "\x1b[0;38;2;160;10;0m\u2551\x1b[0m \x1b[0;38;2;180;180;190mOutstanding Debt: \x1b[0m\x1b[0;38;2;200;0;0m5000 gold         \x1b[0m\x1b[0;38;2;180;180;190mNet Worth:        \x1b[0m\x1b[0;38;2;200;0;0m-4600 gold        \x1b[0m    \x1b[0;38;2;160;10;0m\u2551\x1b[0m\n"
+        "\x1b[0;38;2;160;10;0m\u2551\x1b[0m \x1b[0;38;2;180;180;190mLoan Capacity:    \x1b[0m\x1b[0;38;2;200;200;0m400 gold  \x1b[0m\x1b[0;38;2;80;155;175m(based on current cash holdings)\x1b[0m                \x1b[0;38;2;160;10;0m\u2551\x1b[0m\n"
+        "\x1b[0;38;2;160;10;0m\u2551\x1b[0m \x1b[0;38;2;180;180;190mInterest Rates:   \x1b[0m\x1b[0;38;2;100;180;150mBank deposits +0.5% monthly, Loans +10% monthly\x1b[0m           \x1b[0;38;2;160;10;0m\u2551\x1b[0m\n"
+        "\x1b[0;38;2;160;10;0m\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2561 \u2550 \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d\n";
 
-    ExpectEq(expected, message);
+    string *expByLine = explode(expected, "\n");
+    string *msgByLine = explode(message, "\n");
+
+    // Check each line of the message
+    ExpectEq(expByLine[0], msgByLine[0]);
+    ExpectEq(expByLine[1], msgByLine[1]);
+    ExpectEq(expByLine[2], msgByLine[2]);
+    ExpectEq(expByLine[3], msgByLine[3]);
+    ExpectEq(expByLine[4], msgByLine[4]);
+    ExpectEq(expByLine[5], msgByLine[5]);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -442,7 +452,8 @@ void NetWorthCalculatedCorrectlyWithPositiveValue()
     BankSelector.initiateSelector(Player);
     command(getMenuOptionNumber("View Account Status"), Player);
 
-    string message = Player.caughtMessage();
+    string message = Player.caughtMessages()[2];
+
     ExpectSubStringMatch("Net Worth", message);
     ExpectTrue(sizeof(regexp(({ message }), "400 gold")) > 0,
         "Should display the correct net worth");
@@ -457,7 +468,8 @@ void NetWorthCalculatedCorrectlyWithNegativeValue()
     BankSelector.initiateSelector(Player);
     command(getMenuOptionNumber("View Account Status"), Player);
 
-    string message = Player.caughtMessage();
+    string message = Player.caughtMessages()[2];
+
     ExpectSubStringMatch("Net Worth", message);
     ExpectTrue(sizeof(regexp(({ message }), "-4600 gold")) > 0,
         "Should display the correct negative net worth");
@@ -473,7 +485,8 @@ void LoanCapacityBasedOnCurrentCash()
     BankSelector.initiateSelector(Player);
     command(getMenuOptionNumber("View Account Status"), Player);
 
-    string message = Player.caughtMessage();
+    string message = Player.caughtMessages()[2];
+
     ExpectSubStringMatch("Loan Capacity", message);
     ExpectTrue(sizeof(regexp(({ message }), "1000 gold")) > 0,
         "Should display correct loan capacity (2x cash)");
