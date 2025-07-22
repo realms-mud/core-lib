@@ -6,6 +6,7 @@
 #include "personas/dragons.h"
 #include "personas/fighters.h"
 #include "personas/magicUsers.h"
+#include "personas/clerics.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping personaBlueprints()
@@ -13,7 +14,8 @@ private nomask mapping personaBlueprints()
     return creatureBlueprints + 
         dragonBlueprints +
         magicUserBlueprints +
-        fighterBlueprints + ([]);
+        fighterBlueprints + 
+        divineUserBlueprints + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -32,6 +34,17 @@ private nomask void SetStats(object character)
     character->Wis(level);
     character->Con(level);
     character->Chr(level);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask varargs void SetDescription(object character,
+    string persona)
+{
+    if (sizeof(character->description() < 1) &&
+        member(personaBlueprints()[persona], "description"))
+    {
+        character->description(personaBlueprints()[persona]["description"]);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -235,6 +248,7 @@ public nomask void setupPersona(string persona, object character)
             if (minimumLevelMet(character, persona))
             {
                 SetRace(character, persona);
+                SetDescription(character, persona);
                 SetStats(character);
                 SetPrimarySkills(character, persona);
                 SetSecondarySkills(character, persona);

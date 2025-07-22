@@ -30,9 +30,9 @@ public void Setup()
     addImportNeed("weapons", 1.15);      // 15% markup - strategic location
 
     // Trade routes
-    addTradeRoute("maritime", "eledhel", 6);
-    addTradeRoute("maritime", "adurin", 2);
-    addTradeRoute("maritime", "minlach", 3);
+    addTradeRoute("maritime", "Eledhel", 6);
+    addTradeRoute("maritime", "Adurin", 2);
+    addTradeRoute("maritime", "Minlach", 3);
 
 
     ::Setup();

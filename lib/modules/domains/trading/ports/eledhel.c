@@ -29,9 +29,9 @@ public void Setup()
     addImportNeed("textiles", 1.2);      // 20% markup - luxury demand
     
     // Trade routes
-    addTradeRoute("maritime", "orothysse", 3);
-    addTradeRoute("overland", "hillgarath", 5);
-    addTradeRoute("overland", "naecis", 7);
+    addTradeRoute("maritime", "Orothysse", 3);
+    addTradeRoute("overland", "Hillgarath", 5);
+    addTradeRoute("overland", "Naecis", 7);
     
     // Items - these will be in the room for players to interact with
     addItem("/lib/modules/domains/trading/priceBoard.c", "north");

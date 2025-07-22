@@ -245,7 +245,7 @@ void WithdrawOptionDoesNotShowWhenPlayerHasNoBankBalance()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void LoanOptionShowsWhenPlayerIsEligible()
+void LoanOptionDoesNotShowIfPlayerNotEligible()
 {
     Player.setupStartingChoice(1); // 400 cash
 
@@ -253,19 +253,50 @@ void LoanOptionShowsWhenPlayerIsEligible()
     BankSelector.initiateSelector(Player);
 
     string message = Player.caughtMessage();
-    ExpectSubStringMatch("Apply for Loan", message);
-    ExpectSubStringMatch("(Eligible for 800 gold)", message);
+    ExpectFalse(sizeof(regexp(({ message }), "Apply for Loan")) > 0,
+        "Loan option should not show when player is not eligible");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void LoanOptionDoesNotShowWhenPlayerNotEligible()
+void LoanOptionShowsWhenPlayerIsEligible()
 {
+    Player.addCash(400);
     resetPlayerMessages();
     BankSelector.initiateSelector(Player);
 
     string message = Player.caughtMessage();
-    ExpectFalse(sizeof(regexp(({ message }), "Apply for Loan")) > 0,
-        "Loan option should not show when player has no cash");
+    ExpectSubStringMatch("Apply for Loan", message);
+
+    ExpectSubStringMatch("(Eligible for 1000 gold)", message);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void LoanOptionShowsTwoTimesCashOnHandMinusDebt()
+{
+    Player.setupStartingChoice(1); // 400 cash
+    Player.addCash(10000);
+
+    resetPlayerMessages();
+    BankSelector.initiateSelector(Player);
+
+    string message = Player.caughtMessage();
+    ExpectSubStringMatch("Apply for Loan", message);
+
+    ExpectSubStringMatch("(Eligible for 15800 gold)", message);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void LoanOptionCapsAtOneMillion()
+{
+    Player.addCash(5000000);
+
+    resetPlayerMessages();
+    BankSelector.initiateSelector(Player);
+
+    string message = Player.caughtMessage();
+    ExpectSubStringMatch("Apply for Loan", message);
+
+    ExpectSubStringMatch("(Eligible for 1000000 gold)", message);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -497,7 +528,7 @@ void AllBankingOptionsShowWhenPlayerHasFullFinancialProfile()
 {
     Player.setupStartingChoice(1); // 400 cash, 5000 debt
     Player.depositMoney(100);      // 300 cash, 100 bank, 5000 debt
-
+    Player.addCash(10000);
     resetPlayerMessages();
     BankSelector.initiateSelector(Player);
 
@@ -526,8 +557,6 @@ void BankSelectorHandlesEmptyFinancialState()
         "Deposit should not be available with no cash");
     ExpectFalse(sizeof(regexp(({ message }), "Withdraw Money")) > 0,
         "Withdraw should not be available with no bank balance");
-    ExpectFalse(sizeof(regexp(({ message }), "Apply for Loan")) > 0,
-        "Loan should not be available with no cash");
     ExpectFalse(sizeof(regexp(({ message }), "Repay Debt")) > 0,
         "Repay should not be available with no debt");
 }

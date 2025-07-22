@@ -28,9 +28,9 @@ public void Setup()
     addImportNeed("textiles", 1.15);      // 15% markup - small market
 
     // Trade routes
-    addTradeRoute("maritime", "eledhel", 3);
-    addTradeRoute("maritime", "ethyl-tirath", 3);
-    addTradeRoute("maritime", "adurin", 8);
+    addTradeRoute("maritime", "Eledhel", 3);
+    addTradeRoute("maritime", "Ethyl-Tirath", 3);
+    addTradeRoute("maritime", "Adurin", 8);
 
     ::Setup();
 }

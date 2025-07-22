@@ -124,11 +124,7 @@ protected nomask void setUpUserForSelection()
         ]);
     }
 
-    int maxLoan = User->getCash() * 2;
-    if (maxLoan < 1000)
-    {
-        maxLoan = 1000; // Minimum loan amount
-    }
+    int maxLoan = TradingDictionary->getMaximumLoan(User);
     if (maxLoan > 0)
     {
         Data[to_string(counter++)] = ([

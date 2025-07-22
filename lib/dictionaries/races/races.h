@@ -41,8 +41,13 @@ private mapping races = ([
         "description": "The dwarves are a short, stocky race of people. They generally "
             "live in hilly or mountainous areas, usually inside caves or "
             "similar dwellings. Dwarven craftsmanship is world renowned "
-            "for it's durability and functionality. Dwarven structures are "
-            "built to last through war and the elements.",
+            "for its durability and functionality. Dwarven structures are "
+            "built to last through war and the elements. Dwarves are known for "
+            "their long, braided beards, hearty appetites, and a fierce loyalty "
+            "to kin and clan. They are slow to trust outsiders, but once a friend "
+            "is made, that bond is unbreakable. Dwarves are also famed for their "
+            "love of precious metals and gems, and many spend their lives mining "
+            "the depths of the earth.",
         "strength": 1,
         "intelligence": -1,
         "wisdom": -1,
@@ -66,7 +71,15 @@ private mapping races = ([
     ]),
     "draconid": ([
         "playable": 1,
-        "description": "",
+        "description": "Draconids are a rare and ancient race, said to be descended from "
+            "the great dragons of old. Their appearance is striking: tall and imposing, "
+            "with scales that shimmer in hues of gold, bronze, or emerald. Their eyes "
+            "gleam with an inner fire, and some even bear vestigial horns or crests. "
+            "Draconids possess a natural affinity for magic, especially elemental forces, "
+            "and are often revered or feared for their wisdom and power. Their voices "
+            "carry a subtle resonance, and their presence commands respect. Legends tell "
+            "of draconids who can channel the breath of dragons, though such feats are "
+            "rare in the modern age.",
         "strength": 1,
         "charisma": 1,
         "intelligence": 1,
@@ -168,7 +181,14 @@ private mapping races = ([
     ]),
     "half elf": ([
         "playable": 1,
-        "description": "",
+        "description": "Half-elves are the rare offspring of unions between elves and humans. "
+            "They inherit the beauty, grace, and keen senses of their elven heritage, as well "
+            "as the adaptability and ambition of humankind. In appearance, half-elves are "
+            "often tall and fair, with features that blend the best of both lineages with eyes that seem to "
+            "hold both wisdom and longing. Caught between two worlds, half-elves are often marked by a sense of "
+            "melancholy and a longing for belonging, for they are not fully accepted by either elves or men. In legend, "
+            "some half-elves have been given the choice of mortality or immortality, a burden and a gift that shapes "
+            "their destinies.",
         "intelligence": 1,
         "hit points": 10,
         "spell points": 25,
@@ -227,7 +247,7 @@ private mapping races = ([
     ]),
     "human": ([
         "playable": 1,
-        "description": "Humans are the most common race on RealmsMUD. They don't have any "
+        "description": "Humans are the most common race. They don't have any "
             "real preferences on where they live, except that they prefer tropical "
             "or temperate regions. They live in above ground dwellings, and tend "
             "to admire the elaborate, elegant architecture of the elves and dwarves. "
@@ -319,7 +339,13 @@ private mapping races = ([
     ]),
     "catfolk": ([
         "playable": 0,
-        "description": "",
+        "description": "Catfolk are a lithe, agile race with feline features—slitted eyes, "
+            "tufted ears, and tails. Their bodies are covered in soft fur, patterned in "
+            "stripes or spots, and their movements are graceful and silent. Catfolk are "
+            "known for their keen senses, quick reflexes, and a natural curiosity that "
+            "sometimes gets them into trouble. They often live in close-knit tribes or "
+            "roam as solitary wanderers, preferring warm climates and dense forests. "
+            "Catfolk are playful and clever, but can be fiercely territorial when threatened.",
         "dexterity": 2,
         "stamina points": -25,
         "spell points": 25,
@@ -331,7 +357,13 @@ private mapping races = ([
     ]),
     "orc": ([
         "playable": 0,
-        "description": "",
+        "description": "Orcs are a brutish, warlike race, known for their great strength and "
+            "endurance. Their skin ranges from deep green to gray, and their faces are "
+            "marked by prominent tusks and heavy brows. Orcs live in tribal societies, "
+            "often in harsh, unforgiving lands. They value strength, courage, and loyalty "
+            "to their clan above all else. While often seen as savage by outsiders, orcs "
+            "have a rich oral tradition and a deep respect for their ancestors. Their "
+            "society is harsh, but not without honor.",
         "strength": 2,
         "constitution": 2,
         "intelligence": -2,
@@ -346,7 +378,13 @@ private mapping races = ([
     ]),
     "troll": ([
         "playable": 0,
-        "description": "",
+        "description": "Trolls are towering, monstrous humanoids, often standing over ten feet "
+            "tall. Their skin is thick and leathery, ranging from mossy green to stone gray, "
+            "and their bodies are powerfully built. Trolls are infamous for their regenerative "
+            "abilities, able to recover from wounds that would kill most creatures. They are "
+            "notoriously difficult to kill, and their tempers are as legendary as their "
+            "appetites. Trolls dwell in caves, swamps, or mountains, and are feared by most "
+            "other races for their strength and ferocity.",
         "strength": 8,
         "constitution": 4,
         "dexterity": -4,
@@ -372,7 +410,12 @@ private mapping races = ([
     ]),
     "gnoll": ([
         "playable": 0,
-        "description": "",
+        "description": "Gnolls are hyena-like humanoids, tall and lean with mottled fur and "
+            "a predatory grin. They are known for their savagery and pack mentality, "
+            "often raiding settlements and caravans. Gnolls are driven by hunger and "
+            "a desire for dominance, and their society is ruled by the strongest. "
+            "Despite their fearsome reputation, gnolls are cunning hunters and "
+            "skilled trackers, able to survive in the harshest environments.",
         "strength": 2,
         "intelligence": -2,
         "charisma": -4,
@@ -386,7 +429,13 @@ private mapping races = ([
     ]),
     "fuin-nedesar": ([
         "playable": 0,
-        "description": "",
+        "description": "The Fuin-nedesar are a mysterious race that have just recently appeared. "
+            "Standing nearly eight feet tall, their forms are imposing and reminiscent of living gargoyles, "
+            "with stony, angular features and powerful, talon-tipped limbs. Their skin seems to shimmer "
+            "with an inner light, often tinged with blue or silver, and their eyes glow with the power of "
+            "the storm. Fuin-nedesar are said to be descended from beings of pure magic. They are masters "
+            "of elemental air, able to call lightning and ride the winds. Rarely seen, they prefer to dwell "
+            "in hidden valleys or atop storm-lashed peaks.",
         "strength": 4,
         "constitution": 2,
         "intelligence": 2,
@@ -412,7 +461,12 @@ private mapping races = ([
     ]),
     "giant": ([
         "playable": 0,
-        "description": "",
+        "description": "Giants are massive humanoids, towering over all other races. Their "
+            "skin is as tough as stone, and their strength is legendary. Giants live in "
+            "remote mountains or highlands, often in great halls carved from the living "
+            "rock. They are slow to anger but unstoppable when roused. Giants have a "
+            "deep connection to the land, and their traditions are ancient, passed down "
+            "through epic tales and songs.",
         "strength": 10,
         "constitution": 6,
         "intelligence": -4,
@@ -430,7 +484,12 @@ private mapping races = ([
     ]),
     "goblin": ([
         "playable": 0,
-        "description": "",
+        "description": "Goblins are small, wiry humanoids with green or gray skin, sharp "
+            "features, and large, expressive eyes. They are known for their cunning, "
+            "resourcefulness, and love of mischief. Goblins live in sprawling underground "
+            "lairs or in the shadows of larger orcish tribes. Though physically weak, "
+            "they make up for it with numbers and clever traps. Goblins are quick to "
+            "flee when outmatched, but can be dangerous in large groups.",
         "strength": 2,
         "constitution": 1,
         "intelligence": -2,
@@ -445,7 +504,13 @@ private mapping races = ([
     ]),
     "ogre": ([
         "playable": 0,
-        "description": "",
+        "description": "Ogres are hulking brutes, larger than orcs but smaller than giants. "
+            "Their skin is thick and often covered in warts or scars, and their faces are "
+            "marked by heavy jaws and protruding tusks. Ogres are feared for their "
+            "strength and appetite for destruction. They live in crude camps or caves, "
+            "raiding nearby settlements for food and loot. Despite their fearsome "
+            "appearance, ogres are not without a crude sense of humor and a love of "
+            "simple pleasures.",
         "strength": 6,
         "constitution": 2,
         "dexterity": -1,
@@ -462,7 +527,11 @@ private mapping races = ([
     ]),
     "centaur": ([
         "playable": 0,
-        "description": "",
+        "description": "Centaurs are a noble race with the upper body of a human and the "
+            "lower body of a horse. They are swift and powerful, able to cover great "
+            "distances with ease. Centaurs dwell in forests and plains, living in "
+            "close-knit herds. They are known for their wisdom, love of music and poetry, "
+            "and skill with the bow. Centaurs value freedom and the open sky above all else.",
         "strength": 2,
         "constitution": 2,
         "dexterity": -2,
@@ -475,7 +544,12 @@ private mapping races = ([
     ]),
     "bugbear": ([
         "playable": 0,
-        "description": "",
+        "description": "Bugbears are large, hairy goblinoids, standing taller than most orcs. "
+            "Their fur is thick and matted, and their faces are twisted into perpetual "
+            "scowls. Bugbears are stealthy for their size, able to move quietly despite "
+            "their bulk. They are feared as ambushers and assassins, often serving as "
+            "enforcers in goblin or orcish tribes. Bugbears respect strength and cunning "
+            "above all else.",
         "strength": 2,
         "constitution": 1,
         "intelligence": -2,
@@ -490,7 +564,12 @@ private mapping races = ([
     ]),
     "dryad": ([
         "playable": 0,
-        "description": "",
+        "description": "Dryads are mystical tree spirits, appearing as beautiful humanoids "
+            "with bark-like skin and hair of leaves or blossoms. They are deeply connected "
+            "to the forests they inhabit, able to move through trees and command the "
+            "forces of nature. Dryads are gentle and elusive, rarely seen by mortals. "
+            "They are protectors of the wild, and their wrath is terrible when their "
+            "groves are threatened.",
         "strength": 2,
         "constitution": -1,
         "intelligence": 2,
@@ -506,7 +585,12 @@ private mapping races = ([
     ]),
     "vairaug": ([
         "playable": 0,
-        "description": "",
+        "description": "Vairaug are an ancient and enigmatic race, said to be the children "
+            "of fire and magic. Their forms are tall and regal, with skin that glows "
+            "like embers and eyes that burn with inner light. Vairaug are masters of "
+            "arcane arts, able to command elemental forces with ease. They are rarely "
+            "seen outside their hidden enclaves, and their motives are inscrutable to "
+            "other races. Legends speak of their role in shaping the world in ages past.",
         "strength": 6,
         "constitution": 6,
         "intelligence": 6,
@@ -527,7 +611,11 @@ private mapping races = ([
     ]),
     "changeling": ([
         "playable": 0,
-        "description": "",
+        "description": "Changelings are shapeshifters, able to alter their appearance at will. "
+            "Their true form is rarely seen, but is said to be androgynous and unremarkable. "
+            "Changelings are masters of disguise and deception, able to blend into any society. "
+            "They are often mistrusted by other races, but their talents make them invaluable "
+            "as spies and infiltrators. Changelings value adaptability and cunning above all else.",
         "intelligence": 2,
         "stamina points": 50,
         "spell points": -50,
@@ -542,7 +630,12 @@ private mapping races = ([
     ]),
     "hobgoblin": ([
         "playable": 0,
-        "description": "",
+        "description": "Hobgoblins are larger and more disciplined cousins of goblins. "
+            "They are known for their martial prowess, strict hierarchies, and "
+            "well-organized warbands. Hobgoblins have reddish or dark brown skin, "
+            "and their faces are marked by sharp features and fierce eyes. They "
+            "value order, strength, and loyalty to their leaders. Hobgoblins are "
+            "respected and feared by other goblinoids.",
         "strength": 3,
         "constitution": 2,
         "intelligence": -2,
@@ -557,7 +650,12 @@ private mapping races = ([
     ]),
     "kobold": ([
         "playable": 0,
-        "description": "",
+        "description": "Kobolds are small, reptilian humanoids with scaly skin and "
+            "dog-like faces. They are clever and resourceful, known for their "
+            "traps and ambushes. Kobolds live in underground warrens, rarely "
+            "venturing to the surface. They are fiercely territorial and "
+            "often serve as minions to dragons or other powerful creatures. "
+            "Despite their size, kobolds are brave in large numbers.",
         "strength": -1,
         "dexterity": 2,
         "constitution": 1,
@@ -573,7 +671,11 @@ private mapping races = ([
     ]),
     "minotaur": ([
         "playable": 0,
-        "description": "",
+        "description": "Minotaurs are powerful, bull-headed humanoids, known for their "
+            "strength and ferocity in battle. Their bodies are covered in short fur, "
+            "and their heads are crowned with great horns. Minotaurs are often found "
+            "in labyrinthine lairs, where their sense of direction is unmatched. "
+            "They are proud and stubborn, but value honor and personal strength.",
         "strength": 4,
         "constitution": 2,
         "intelligence": -2,
@@ -589,7 +691,11 @@ private mapping races = ([
     ]),
     "satyr": ([
         "playable": 0,
-        "description": "",
+        "description": "Satyrs are woodland spirits with the upper body of a human and the "
+            "lower body of a goat. They are known for their love of music, dance, and "
+            "revelry. Satyrs are mischievous and free-spirited, often leading travelers "
+            "astray for their own amusement. Despite their playful nature, satyrs are "
+            "wise in the ways of the wild and possess potent magical abilities.",
         "intelligence": 1,
         "charisma": 2,
         "spell points": 50,
@@ -601,7 +707,11 @@ private mapping races = ([
     ]),
     "deity": ([
         "playable": 0,
-        "description": "",
+        "description": "Deities are beings of immense power, worshipped by mortals as gods. "
+            "Their forms are as varied as their domains, but all radiate an aura of "
+            "majesty and authority. Deities command the forces of creation and destruction, "
+            "and their will shapes the fate of the world. Few mortals ever encounter a "
+            "deity, and those who do are forever changed by the experience.",
         "strength": 6,
         "constitution": 6,
         "intelligence": 6,
@@ -627,7 +737,12 @@ private mapping races = ([
     ]),
     "lizardfolk": ([
         "playable": 0,
-        "description": "",
+        "description": "Lizardfolk are reptilian humanoids, with scaly hides and long, "
+            "powerful tails. They are well adapted to swampy or marshy environments, "
+            "able to swim with ease and breathe underwater for short periods. "
+            "Lizardfolk are stoic and pragmatic, valuing survival and the strength "
+            "of the tribe above all else. Their society is organized around the "
+            "strongest and most cunning leaders.",
         "strength": 2,
         "constitution": 2,
         "intelligence": -2,

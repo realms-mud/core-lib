@@ -176,7 +176,6 @@ private mapping generateRandomContract()
     
     int quantity = 10 + random(50);
     int baseReward = quantity * 100;
-    int deadline = time() + (86400 * (7 + random(14))); // 1-3 weeks
     
     string *destinations = m_indices(tradeRoutes);
     string destination = sizeof(destinations) ? 
@@ -187,9 +186,10 @@ private mapping generateRandomContract()
         "quantity": quantity,
         "destination": destination,
         "reward": baseReward,
-        "deadline": deadline,
+        "deadline": getDictionary("trading")->generateDeadline(
+            (7 + random(14)) * 1440),
         "description": sprintf("Deliver %d units of %s to %s", 
-                              quantity, itemType, destination)
+                              quantity, itemType, capitalize(destination))
     ]);
 }
 
@@ -204,6 +204,27 @@ private void generateContracts()
         string contractId = sprintf("contract_%d", i);
         contracts[contractId] = generateRandomContract();
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void addContract(string id, mapping contract)
+{
+    if (stringp(id) && mappingp(contract))
+    {
+        contracts[id] = contract;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void clearContracts()
+{
+    contracts = ([]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping queryAvailableContracts(object user)
+{
+    return contracts + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

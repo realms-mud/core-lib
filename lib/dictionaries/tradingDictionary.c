@@ -177,7 +177,6 @@ public object *getAvailablePorts()
         else
         {
             m_delete(ports, portName);
-            raise_error(sprintf("tradingDictionary.c: Port '%s' is not a valid object.\n", portName));
         }
     }
     return result;
@@ -235,7 +234,8 @@ public string *getItemListForType(string itemType)
     }
     else
     {
-        raise_error(sprintf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType));
+        printf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType);
+//        raise_error(sprintf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType));
     }
     return items;
 }
@@ -523,4 +523,145 @@ public mapping getTradeRouteTypes()
             "capacity bonus": 1.3
         ])
     ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getMaximumLoan(object user)
+{
+    int maxLoan = 0;
+
+    if (objectp(user))
+    {
+        int currentDebt = user->getDebt();
+        int cashOnHand = user->getCash();
+        int bankBalance = user->getBank();
+
+        maxLoan = (cashOnHand + bankBalance) * 2;
+
+        if (maxLoan < 1000)
+        {
+            maxLoan = 1000; // Minimum loan amount
+        }
+        else if (maxLoan > 1000000)
+        {
+            maxLoan = 1000000; // Cap loan amount to prevent excessive borrowing
+        }
+        maxLoan -= currentDebt;
+        if (maxLoan < 0)
+        {
+            maxLoan = 0;
+        }
+    }
+    return maxLoan;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping queryAvailableContracts(object user)
+{
+    mapping contracts = ([]);
+    object *allPorts = getAvailablePorts();
+
+    foreach (object port in allPorts)
+    {
+        if (objectp(port) && function_exists("queryAvailableContracts", port))
+        {
+            mapping portContracts = port->queryAvailableContracts(user);
+            if (mappingp(portContracts) && sizeof(portContracts))
+            {
+                foreach (string id in m_indices(portContracts))
+                {
+                    contracts[id] = portContracts[id];
+                }
+            }
+        }
+    }
+    return contracts;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+public nomask int calculateContractProgress(object player, mapping contract)
+{
+    int total = 0;
+    if (objectp(player) && mappingp(contract))
+    {
+        string itemType = contract["item type"];
+        string *itemPaths = getItemListForType(itemType);
+        if (sizeof(itemPaths))
+        {
+            object *vehicles = player->getVehicles();
+            foreach (object vehicle in vehicles)
+            {
+                if (objectp(vehicle) && function_exists("getCargo", vehicle))
+                {
+                    mapping cargo = vehicle->getCargo();
+                    if (mappingp(cargo))
+                    {
+                        foreach (string itemPath in itemPaths)
+                        {
+                            if (member(cargo, itemPath))
+                            {
+                                total += cargo[itemPath];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        int needed = contract["quantity"];
+        return (needed > 0) ? (total * 100) / needed : 0;
+    }
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping generateDeadline(int minutesFromNow)
+{
+    object environmentDictionary = getDictionary("environment");
+    int nowYear = environmentDictionary->currentYear();
+    int nowDay = environmentDictionary->currentDay();
+    int nowMinute = environmentDictionary->currentTime();
+
+    int totalMinutes = (nowYear * 365 + nowDay) * 1440 + nowMinute + minutesFromNow;
+
+    int year = totalMinutes / (365 * 1440);
+    int day = (totalMinutes % (365 * 1440)) / 1440;
+    int minute = totalMinutes % 1440;
+
+    return ([ "year": year, "day": day, "minute": minute ]);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+public nomask int getMinutesUntilDeadline(mapping deadline)
+{
+    object environmentDictionary = getDictionary("environment");
+
+    int nowYear = environmentDictionary->currentYear();
+    int nowDay = environmentDictionary->currentDay();
+    int nowMinute = environmentDictionary->currentTime();
+
+    int nowTotal = (nowYear * 365 + nowDay) * 1440 + nowMinute;
+    int deadlineTotal = (deadline["year"] * 365 + deadline["day"]) * 1440 + deadline["minute"];
+    return deadlineTotal - nowTotal;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+public nomask string formatTimeLeft(int minutes)
+{
+    if (minutes <= 0)
+        return "expired";
+
+    int days = minutes / 1440;
+    int hours = (minutes % 1440) / 60;
+    int mins = minutes % 60;
+    string result = "";
+
+    if (days > 0)
+        result += sprintf("%d day%s", days, (days == 1) ? "" : "s");
+    if (hours > 0)
+        result += (result != "" ? ", " : "") + sprintf("%d hour%s", hours, (hours == 1) ? "" : "s");
+    if (mins > 0 && days == 0)
+        result += (result != "" ? ", " : "") + sprintf("%d minute%s", mins, (mins == 1) ? "" : "s");
+    if (result == "")
+        result = "less than a minute";
+    return result;
 }

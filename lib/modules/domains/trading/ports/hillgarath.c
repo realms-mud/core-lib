@@ -30,11 +30,11 @@ public void Setup()
     addImportNeed("seafood", 1.2);         // 20% markup - inland city
 
     // Trade routes
-    addTradeRoute("overland", "ethyl-tirath", 16);
-    addTradeRoute("overland", "eledhel", 18);
-    addTradeRoute("river", "tiraeth", 12);
-    addTradeRoute("river", "serach", 22);
-    addTradeRoute("maritime", "orothysse", 24);
+    addTradeRoute("overland", "Ethyl-Tirath", 16);
+    addTradeRoute("overland", "Eledhel", 18);
+    addTradeRoute("river", "Tiraeth", 12);
+    addTradeRoute("river", "Serach", 22);
+    addTradeRoute("maritime", "Orothysse", 24);
 
     ::Setup();
 }

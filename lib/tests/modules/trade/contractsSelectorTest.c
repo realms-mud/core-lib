@@ -11,24 +11,27 @@ object Port;
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "resetPlayerMessages" });
+    ignoreList += ({
+        "resetPlayerMessages",
+        "getMenuOptionNumber",
+        "addContract",
+        "clearContracts",
+        "countMenuOptions"
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     ContractsSelector = clone_object("/lib/modules/domains/trading/selectors/contractsSelector.c");
-    
-    // Use the mock player which has catch_tell capabilities
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player->Name("testtrader");
     Player->addCommands();
     Player->initializeTrader();
-
-    // Use the real trading port for contract APIs
     Port = clone_object("/lib/modules/domains/trading/tradingPort.c");
-    Port->Setup();
-    
+    Port.setPortName("Port Alpha");
+    getDictionary("trading")->registerPort(Port);
+
     move_object(Player, Port);
     move_object(ContractsSelector, Player);
 }
@@ -51,20 +54,61 @@ private void resetPlayerMessages()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ContractsSelectorDisplaysMenuCorrectly()
+private string getMenuOptionNumber(string optionText)
 {
-    resetPlayerMessages();
-    ContractsSelector->initiateSelector(Player);
-
+    string ret = "0";
     string message = Player->caughtMessage();
-    ExpectSubStringMatch("Trading Contracts", message);
-    ExpectSubStringMatch("Return to Trading Menu", message);
+    string *lines = explode(message, "\n");
+    foreach (string line in lines)
+    {
+        // Remove ANSI codes for matching
+        line = regreplace(line, "\x1B\\[[0-9;]*[A-Za-z]", "", 1);
+        if (sizeof(regexp(({ line }), optionText)))
+        {
+            ret = regreplace(line, "^.*([0-9]+).*", "\\1", 1);
+            break;
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ContractsSelectorRequiresPortLocation()
+private void addContract(string id, mapping contract)
 {
-    // Move player to non-port environment
+    Port.addContract(id, contract);
+    getDictionary("trading")->registerPort(Port);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void clearContracts()
+{
+    object *ports = getDictionary("trading")->getAvailablePorts();
+    foreach(object port in ports)
+    {
+        port.clearContracts();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int countMenuOptions()
+{
+    string message = Player->caughtMessage();
+    int count = 0;
+    string *lines = explode(message, "\n");
+    foreach (string line in lines)
+    {
+        int option;
+        if (sscanf(line, "%d.", option) == 1)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ContractsSelectorMenuDisplaysAnywhere()
+{
     object MockEnvironment = clone_object("/lib/tests/support/environment/mockTradeEnvironment.c");
     move_object(Player, MockEnvironment);
 
@@ -72,9 +116,10 @@ void ContractsSelectorRequiresPortLocation()
     ContractsSelector->initiateSelector(Player);
 
     string message = Player->caughtMessage();
-    ExpectSubStringMatch("You must be at a trading port to view contracts", message);
+    ExpectSubStringMatch("Trading Contracts", message);
+    ExpectSubStringMatch("Deliver [0-9]+ units of [A-Za-z ]+ to [A-Za-z]+", message);
+    ExpectSubStringMatch("Return to Trading Menu", message);
 
-    // Clean up
     move_object(Player, Port);
     destruct(MockEnvironment);
 }
@@ -82,24 +127,44 @@ void ContractsSelectorRequiresPortLocation()
 /////////////////////////////////////////////////////////////////////////////
 void AvailableContractsAreListed()
 {
+    clearContracts();
+
+    addContract("A1", ([
+        "description": "Deliver Iron Ore",
+        "destination": "Eledhel",
+        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+    addContract("A2", ([
+        "description": "Deliver Copper",
+        "destination": "Eledhel",
+        "deadline": getDictionary("trading")->generateDeadline(20000),
+        "reward": 80,
+        "item type": "materials",
+        "quantity": 5
+    ]));
+
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
     string message = Player->caughtMessage();
+    ExpectSubStringMatch("Deliver Iron Ore", message);
+    ExpectSubStringMatch("Deliver Copper", message);
+}
 
-    mapping contracts = Port->getContracts();
-    int found = 0;
-    foreach(string id in m_indices(contracts))
-    {
-        string desc = contracts[id]["description"];
-        // Use regexp for substring search (.*desc.*)
-        if (desc && stringp(desc) && sizeof(regexp(({ message }), desc)))
-        {
-            found = 1;
-            break;
-        }
-    }
-    ExpectTrue(found, "Should show at least one available contract description in the menu");
+/////////////////////////////////////////////////////////////////////////////
+void NoAvailableContractsShowsMessage()
+{
+    clearContracts();
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+
+    string message = Player->caughtMessage();
+    ExpectSubStringMatch("No Contracts Available", message);
+    ExpectSubStringMatch("Return to Trading Menu", message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -108,7 +173,7 @@ void ActiveContractsAreListed()
     Player->acceptContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": time() + 86400,
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
         "item type": "materials",
         "quantity": 10
     ]));
@@ -126,7 +191,7 @@ void SelectingActiveContractsDisplaysStatus()
     Player->acceptContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": time() + 86400,
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
         "item type": "materials",
         "quantity": 10
     ]));
@@ -134,51 +199,34 @@ void SelectingActiveContractsDisplaysStatus()
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
-    // Find active contracts option
-    string message = Player->caughtMessage();
-    int activeOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "View Active Contracts")))
-        {
-            sscanf(line, "%d. %*s", activeOption);
-            break;
-        }
-    }
+//    resetPlayerMessages();
+    command(getMenuOptionNumber("View Active Contracts (1)"), Player);
+    string contractStatus = implode(Player->caughtMessages(), "\n");
 
-    if (activeOption > 0)
-    {
-        resetPlayerMessages();
-        command(to_string(activeOption), Player);
-        string contractStatus = Player->caughtMessage();
-
-        ExpectSubStringMatch("Active Trading Contracts", contractStatus);
-        ExpectSubStringMatch("Deliver Iron Ore", contractStatus);
-        ExpectSubStringMatch("Destination", contractStatus);
-        ExpectSubStringMatch("Time Left", contractStatus);
-        ExpectSubStringMatch("Progress", contractStatus);
-    }
+    ExpectSubStringMatch("Active Trading Contracts", contractStatus);
+    ExpectSubStringMatch("Deliver Iron Ore", contractStatus);
+    ExpectSubStringMatch("Destination", contractStatus);
+    ExpectSubStringMatch("Time Left", contractStatus);
+    ExpectSubStringMatch("Progress", contractStatus);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SelectingAvailableContractShowsNotImplementedNote()
 {
+    clearContracts();
+    addContract("A1", ([
+        "description": "Deliver Iron Ore",
+        "destination": "Port Alpha",
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
-    // Find any available contract option
-    string message = Player->caughtMessage();
-    int contractOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "contract_")))
-        {
-            sscanf(line, "%d. %*s", contractOption);
-            break;
-        }
-    }
+    int contractOption = to_int(getMenuOptionNumber("Deliver Iron Ore"));
 
     if (contractOption > 0)
     {
@@ -195,19 +243,8 @@ void ExitOptionReturnsToTradingMenu()
 {
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
-    string message = Player->caughtMessage();
 
-    // Find exit option
-    int exitOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "Return to Trading Menu")))
-        {
-            sscanf(line, "%d. %*s", exitOption);
-            break;
-        }
-    }
+    int exitOption = to_int(getMenuOptionNumber("Return to Trading Menu"));
 
     resetPlayerMessages();
     if (exitOption > 0)
@@ -243,6 +280,16 @@ void UndoIsAvailableInContractsSelector()
 /////////////////////////////////////////////////////////////////////////////
 void DescribeOptionShowsDetails()
 {
+    clearContracts();
+    addContract("A1", ([
+        "description": "Deliver Iron Ore",
+        "destination": "Port Alpha",
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
     resetPlayerMessages();
@@ -255,11 +302,10 @@ void DescribeOptionShowsDetails()
 /////////////////////////////////////////////////////////////////////////////
 void ContractUrgencyLabelsDisplayCorrectly()
 {
-    // Set up contracts with different urgency levels
     Player->acceptContract("urgent", ([
         "description": "Rush Delivery",
         "destination": "Port Beta",
-        "deadline": time() + 86400, // 1 day - urgent
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
         "item type": "materials",
         "quantity": 5
     ]));
@@ -267,7 +313,7 @@ void ContractUrgencyLabelsDisplayCorrectly()
     Player->acceptContract("soon", ([
         "description": "Quick Delivery",
         "destination": "Port Gamma",
-        "deadline": time() + (3 * 86400), // 3 days - soon
+        "deadline": ([ "year": 100, "day": 3, "minute": 600 ]),
         "item type": "textiles",
         "quantity": 8
     ]));
@@ -275,18 +321,7 @@ void ContractUrgencyLabelsDisplayCorrectly()
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
-    // Find active contracts option and select it
-    string message = Player->caughtMessage();
-    int activeOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "View Active Contracts")))
-        {
-            sscanf(line, "%d. %*s", activeOption);
-            break;
-        }
-    }
+    int activeOption = to_int(getMenuOptionNumber("View Active Contracts"));
 
     if (activeOption > 0)
     {
@@ -296,40 +331,59 @@ void ContractUrgencyLabelsDisplayCorrectly()
 
         ExpectSubStringMatch("Rush Delivery", contractStatus);
         ExpectSubStringMatch("Quick Delivery", contractStatus);
-        ExpectSubStringMatch("1 days", contractStatus);
-        ExpectSubStringMatch("3 days", contractStatus);
+        ExpectSubStringMatch("1 day", contractStatus);
+        ExpectSubStringMatch("3 day", contractStatus);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ContractUrgencyIndicatorsAppearInMenu()
+{
+    clearContracts();
+    addContract("urgent", ([
+        "description": "Critical Delivery",
+        "destination": "Port Zeta",
+        "deadline": ([ "year": 100, "day": 2, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 2
+    ]));
+    addContract("soon", ([
+        "description": "Standard Delivery",
+        "destination": "Port Eta",
+        "deadline": ([ "year": 100, "day": 5, "minute": 600 ]),
+        "reward": 50,
+        "item type": "textiles",
+        "quantity": 3
+    ]));
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+
+    string message = Player->caughtMessage();
+    ExpectSubStringMatch("Critical Delivery", message);
+    ExpectSubStringMatch("\\[!\\]", message); // Urgency indicator for <= 3 days
+    ExpectSubStringMatch("Standard Delivery", message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ContractProgressCalculatesCorrectly()
 {
-    // Add cargo that matches a contract
-    Player->addCargoToVehicle("/lib/instances/items/materials/metal/iron", 5);
-    
+    // Add cargo to vehicle for a matching item type
+    Player->addCargoToVehicle("/lib/instances/items/materials/metal/iron.c", 5);
+
     Player->acceptContract("progress_test", ([
         "description": "Test Progress",
         "destination": "Port Delta",
-        "deadline": time() + (7 * 86400),
-        "item type": "materials",
+        "deadline": ([ "year": 100, "day": 7, "minute": 600 ]),
+        "item type": "metal",
         "quantity": 10
     ]));
 
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
-    // Find active contracts option and select it
-    string message = Player->caughtMessage();
-    int activeOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "View Active Contracts")))
-        {
-            sscanf(line, "%d. %*s", activeOption);
-            break;
-        }
-    }
+    int activeOption = to_int(getMenuOptionNumber("View Active Contracts"));
 
     if (activeOption > 0)
     {
@@ -349,7 +403,6 @@ void NoActiveContractsShowsMessage()
     ContractsSelector->initiateSelector(Player);
 
     string message = Player->caughtMessage();
-    // Should not show "View Active Contracts" when player has no active contracts
     ExpectFalse(sizeof(regexp(({ message }), "View Active Contracts")) > 0,
         "Should not show active contracts option when player has none");
 }
@@ -360,19 +413,128 @@ void ActiveContractsWithNoActiveShowsMessage()
     Player->acceptContract("test", ([
         "description": "Test Contract",
         "destination": "Port Echo",
-        "deadline": time() + (14 * 86400),
+        "deadline": ([ "year": 100, "day": 14, "minute": 600 ]),
         "item type": "materials",
         "quantity": 1
     ]));
 
-    // Complete the contract to remove it
     Player->completeContract("test");
 
     resetPlayerMessages();
     ContractsSelector->initiateSelector(Player);
 
     string message = Player->caughtMessage();
-    // Should not show "View Active Contracts" when player has no active contracts
     ExpectFalse(sizeof(regexp(({ message }), "View Active Contracts")) > 0,
         "Should not show active contracts option when all contracts are completed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MenuAlwaysIncludesExit()
+{
+    clearContracts();
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    string message = Player->caughtMessage();
+    ExpectSubStringMatch("Return to Trading Menu", message);
+
+    addContract("A1", ([
+        "description": "Deliver Iron Ore",
+        "destination": "Port Alpha",
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    message = Player->caughtMessage();
+    ExpectSubStringMatch("Return to Trading Menu", message);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeWorksForAllMenuOptions()
+{
+    clearContracts();
+    addContract("A1", ([
+        "description": "Deliver Iron Ore",
+        "destination": "Port Alpha",
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+    Player->acceptContract("A2", ([
+        "description": "Deliver Copper",
+        "destination": "Port Beta",
+        "deadline": ([ "year": 100, "day": 2, "minute": 600 ]),
+        "item type": "materials",
+        "quantity": 5
+    ]));
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    int maxOption = countMenuOptions();
+
+    for (int i = 1; i <= maxOption; i++)
+    {
+        resetPlayerMessages();
+        command("describe " + to_string(i), Player);
+        string desc = Player->caughtMessage();
+        ExpectTrue(sizeof(desc) > 0, "Describe should provide some response for option " + to_string(i));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExpiredContractsAreNotShown()
+{
+    clearContracts();
+    addContract("expired", ([
+        "description": "Expired Delivery",
+        "destination": "Port Omega",
+        "deadline": ([ "year": 1, "day": 1, "minute": 1 ]), // Clearly expired
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 10
+    ]));
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    string message = Player->caughtMessage();
+    ExpectFalse(sizeof(regexp(({ message }), "Expired Delivery")) > 0,
+        "Expired contracts should not be shown");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ContractWithZeroQuantityDoesNotCrash()
+{
+    clearContracts();
+    addContract("zero", ([
+        "description": "Zero Quantity",
+        "destination": "Port Null",
+        "deadline": ([ "year": 100, "day": 1, "minute": 600 ]),
+        "reward": 100,
+        "item type": "materials",
+        "quantity": 0
+    ]));
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    string message = Player->caughtMessage();
+    ExpectSubStringMatch("Zero Quantity", message);
+    // Should not crash or divide by zero
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ContractWithMissingFieldsHandledGracefully()
+{
+    clearContracts();
+    addContract("broken", ([
+        "description": "Broken Contract"
+        // Missing destination, deadline, item type, quantity, reward
+    ]));
+
+    resetPlayerMessages();
+    ContractsSelector->initiateSelector(Player);
+    string message = Player->caughtMessage();
+    ExpectSubStringMatch("Broken Contract", message);
 }

@@ -29,10 +29,10 @@ public void Setup()
     addImportNeed("weapons", 1.15);       // 15% markup - defensive demand
 
     // Trade routes
-    addTradeRoute("maritime", "eledhel", 6);
-    addTradeRoute("overland", "eledhel", 9);
-    addTradeRoute("overland", "dor-cathrim", 12);
-    addTradeRoute("maritime", "ethyl-tirath", 12);
+    addTradeRoute("maritime", "Eledhel", 6);
+    addTradeRoute("overland", "Eledhel", 9);
+    addTradeRoute("overland", "Dor Cathrim", 12);
+    addTradeRoute("maritime", "Ethyl-Tirath", 12);
 
     ::Setup();
 }

@@ -27,9 +27,9 @@ public void Setup()
     addImportNeed("weapons", 1.15);       // 15% markup - small city, imports arms
 
     // Trade routes
-    addTradeRoute("maritime", "eledhel", 8);
-    addTradeRoute("maritime", "minlach", 5);
-    addTradeRoute("maritime", "ethyl-tirath", 2);
+    addTradeRoute("maritime", "Eledhel", 8);
+    addTradeRoute("maritime", "Minlach", 5);
+    addTradeRoute("maritime", "Ethyl-Tirath", 2);
 
     ::Setup();
 }
