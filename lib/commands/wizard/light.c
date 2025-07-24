@@ -88,18 +88,17 @@ public nomask int execute(string command, object initiator)
     return ret;
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 protected string wildcardMeaning(string colorConfiguration)
 {
-    return configuration->decorate("<File to view>",
-        "wildcard", "help", colorConfiguration);
+    return configuration->decorate("", "wildcard", "help", colorConfiguration);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string synopsis(string displayCommand, string colorConfiguration)
 {
-    return format("Display the last N lines of a file.", 78);
+    return format("Creates a personal wizard light at the specified level. "
+        "Use 'light off' to extinguish it.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,10 +108,15 @@ protected string flagInformation(string flag, string colorConfiguration)
     string parsedFlag = regreplace(flag, "[^-]*(-[a-zA-Z]+).*", "\\1");
     switch (parsedFlag)
     {
-        case "-n":
+        case "-l":
         {
-            ret = "Specifies the number of lines to display from the end of the file. "
-                  "If omitted, the last 8 lines are shown by default.";
+            ret = "Sets the light level for your wizard light. "
+                  "If omitted, the default is 10.";
+            break;
+        }
+        case "off":
+        {
+            ret = "Extinguishes your wizard light.";
             break;
         }
     }
@@ -122,15 +126,15 @@ protected string flagInformation(string flag, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string description(string displayCommand, string colorConfiguration)
 {
-    return format("The 'tail' command displays the last 8 lines of the "
-        "specified file, provided the wizard has read permission. "
-        "If the optional -n flag is used, it displays the last N lines instead. "
-        "This is useful for quickly viewing recent log entries or file changes.",
-        78);
+    return format("The 'light' command creates a personal, invisible light "
+        "source for the wizard. By default, the light level is 10, but you "
+        "can specify a different level with the -l flag (e.g., 'light -l 4'). "
+        "Only one wizard light can exist at a time. Use 'light off' to remove "
+        "your wizard light.", 78);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return format("See also: more, cat, head", 78);
+    return format("See also: N/A", 78);
 }
