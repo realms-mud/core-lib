@@ -69,8 +69,8 @@ public nomask int execute(string command, object initiator)
                 light = clone_object(WIZARD_LIGHT_PATH);
                 light->set("name", WIZARD_LIGHT_NAME);
                 light->set("aliases", ({ WIZARD_LIGHT_NAME }));
-                light->set("short", "");
-                light->set("long", "");
+                light->set("short", WIZARD_LIGHT_NAME);
+                light->set("long", WIZARD_LIGHT_NAME);
                 light->set("light", level);
                 move_object(light, initiator);
                 tell_object(initiator, sprintf("A wizard light (level %d) now illuminates you.\n", level));

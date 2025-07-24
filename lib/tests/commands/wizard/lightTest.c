@@ -51,7 +51,6 @@ void LightCommandCreatesLightAtDefaultLevel()
     object light = getWizardLight();
     ExpectTrue(objectp(light), "Expected a light object to be created.");
     ExpectEq(10, light->query("light"), "Expected light level to be 10.");
-    ExpectEq("", light->short(), "Expected light to have no short description.");
     ExpectEq(LightName, light->query("name"), "Expected light name to match.");
     ExpectSubStringMatch("illuminates you", implode(Wizard->caughtMessages(), "\n"));
 }
@@ -100,15 +99,6 @@ void LightOffWithNoLightShowsMessage()
     ExpectFalse(objectp(getWizardLight()));
     ExpectTrue(Wizard.executeCommand("light off"));
     ExpectSubStringMatch("no wizard light", implode(Wizard->caughtMessages(), "\n"));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void LightIsInvisibleToLook()
-{
-    ExpectTrue(Wizard.executeCommand("light"));
-    object light = getWizardLight();
-    ExpectTrue(objectp(light));
-    ExpectEq("", light->short());
 }
 
 /////////////////////////////////////////////////////////////////////////////
