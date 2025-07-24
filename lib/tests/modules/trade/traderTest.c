@@ -215,12 +215,12 @@ void ContractsWork()
     ExpectTrue(member(contracts, "contract_1"));
     ExpectEq("Test contract", contracts["contract_1"]["description"]);
 
-    result = Trader->completeContract("contract_1");
+    result = Trader->removeActiveContract("contract_1");
     ExpectEq(1, result);
     contracts = Trader->getActiveContracts();
     ExpectFalse(member(contracts, "contract_1"));
 
-    result = Trader->completeContract("nonexistent");
+    result = Trader->removeActiveContract("nonexistent");
     ExpectEq(0, result);
 }
 
@@ -308,6 +308,6 @@ void AcceptContractFailsWithInvalidInput()
 /////////////////////////////////////////////////////////////////////////////
 void CompleteContractFailsWithNonexistentContract()
 {
-    int result = Trader->completeContract("nonexistent");
+    int result = Trader->removeActiveContract("nonexistent");
     ExpectEq(0, result);
 }

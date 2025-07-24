@@ -110,13 +110,13 @@ public object *getVehicles()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int assignVehicleToTradeRun(mixed tradeRunId, object vehicle)
+public int assignVehicleToTradeRun(string tradeRunId, object vehicle)
 {
     int ret = 0;
     if (objectp(vehicle))
     {
         int alreadyAssigned = 0;
-        foreach (mixed key in m_indices(tradeRunVehicles))
+        foreach (string key in m_indices(tradeRunVehicles))
         {
             if (tradeRunVehicles[key] == vehicle)
             {
@@ -135,7 +135,7 @@ public int assignVehicleToTradeRun(mixed tradeRunId, object vehicle)
 
 
 /////////////////////////////////////////////////////////////////////////////
-public void unassignVehicleFromTradeRun(mixed tradeRunId)
+public void unassignVehicleFromTradeRun(string tradeRunId)
 {
     if (member(tradeRunVehicles, tradeRunId))
     {
@@ -144,7 +144,7 @@ public void unassignVehicleFromTradeRun(mixed tradeRunId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public object getVehicleForTradeRun(mixed tradeRunId)
+public object getVehicleForTradeRun(string tradeRunId)
 {
     object result = 0;
     if (member(tradeRunVehicles, tradeRunId))
@@ -295,7 +295,7 @@ public int repayDebt(int amount)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getVehicleCapacityForTradeRun(mixed tradeRunId)
+public int getVehicleCapacityForTradeRun(string tradeRunId)
 {
     int result = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -307,7 +307,7 @@ public int getVehicleCapacityForTradeRun(mixed tradeRunId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getVehicleUsedSpaceForTradeRun(mixed tradeRunId)
+public int getVehicleUsedSpaceForTradeRun(string tradeRunId)
 {
     int result = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -319,7 +319,7 @@ public int getVehicleUsedSpaceForTradeRun(mixed tradeRunId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getVehicleFreeSpaceForTradeRun(mixed tradeRunId)
+public int getVehicleFreeSpaceForTradeRun(string tradeRunId)
 {
     int result = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -331,7 +331,7 @@ public int getVehicleFreeSpaceForTradeRun(mixed tradeRunId)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int addCargoToVehicleForTradeRun(mixed tradeRunId, string item, int quantity)
+public int addCargoToVehicleForTradeRun(string tradeRunId, string item, int quantity)
 {
     int ret = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -343,7 +343,7 @@ public int addCargoToVehicleForTradeRun(mixed tradeRunId, string item, int quant
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int removeCargoFromVehicleForTradeRun(mixed tradeRunId, string item, int quantity)
+public int removeCargoFromVehicleForTradeRun(string tradeRunId, string item, int quantity)
 {
     int ret = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -355,7 +355,7 @@ public int removeCargoFromVehicleForTradeRun(mixed tradeRunId, string item, int 
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int getCargoQuantityForTradeRun(mixed tradeRunId, string item)
+public int getCargoQuantityForTradeRun(string tradeRunId, string item)
 {
     int result = 0;
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -367,7 +367,7 @@ public int getCargoQuantityForTradeRun(mixed tradeRunId, string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public mapping getVehicleBlueprintForTradeRun(mixed tradeRunId)
+public mapping getVehicleBlueprintForTradeRun(string tradeRunId)
 {
     mapping result = ([]);
     object vehicle = getVehicleForTradeRun(tradeRunId);
@@ -424,7 +424,7 @@ public int storeInWarehouse(string item, int quantity, string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int loadFromWarehouseToVehicleForTradeRun(mixed tradeRunId, string item, int quantity, string location)
+public int loadFromWarehouseToVehicleForTradeRun(string tradeRunId, string item, int quantity, string location)
 {
     int ret = 0;
     string useLocation = location;
@@ -452,7 +452,7 @@ public int loadFromWarehouseToVehicleForTradeRun(mixed tradeRunId, string item, 
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int unloadFromVehicleToWarehouseForTradeRun(mixed tradeRunId, string item, int quantity, string location)
+public int unloadFromVehicleToWarehouseForTradeRun(string tradeRunId, string item, int quantity, string location)
 {
     int ret = 0;
     string useLocation = location;
@@ -592,7 +592,7 @@ public int acceptContract(string contractId, mapping contractData)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int completeContract(string contractId)
+public int removeActiveContract(string contractId)
 {
     int ret = 0;
     if (member(tradingCompany["active contracts"], contractId))

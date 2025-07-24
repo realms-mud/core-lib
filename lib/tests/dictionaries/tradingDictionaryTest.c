@@ -61,10 +61,17 @@ void GetPortRaisesErrorForUnknownPort()
 void GetAvailablePortsRemovesInvalidObjects()
 {
     Dictionary.registerPort(MockPort);
+
+    object *ports = Dictionary.getAvailablePorts();
+    int numberOfPorts = sizeof(ports);
+    ExpectTrue(numberOfPorts > 1, "getAvailablePorts returns valid ports");
+
     // Simulate port being destructed
     destruct(MockPort);
-    string error = catch(Dictionary.getAvailablePorts(); nolog);
-    ExpectTrue(stringp(error) && sizeof(error), "getAvailablePorts raises error for invalid port object");
+    
+    ports = Dictionary.getAvailablePorts();
+    ExpectEq(numberOfPorts - 1, sizeof(ports), 
+        "getAvailablePorts removes destructed ports");
 }
 
 /////////////////////////////////////////////////////////////////////////////

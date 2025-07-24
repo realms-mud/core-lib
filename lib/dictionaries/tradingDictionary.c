@@ -234,8 +234,7 @@ public string *getItemListForType(string itemType)
     }
     else
     {
-        printf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType);
-//        raise_error(sprintf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType));
+        raise_error(sprintf("tradingDictionary.c: Invalid trading type '%s'.\n", itemType));
     }
     return items;
 }
@@ -579,6 +578,38 @@ public mapping queryAvailableContracts(object user)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+public int acceptContract(object user, string portName, string contractId)
+{
+    int result = 0;
+    object port = getPort(portName);
+
+    if (objectp(user) && objectp(port) && function_exists("acceptContract", port))
+    {
+        mapping available = port->queryAvailableContracts(user);
+        if (member(available, contractId))
+        {
+            // Mark as accepted in the port
+            int portAccepted = port->acceptContract(user->RealName(), contractId);
+
+            // Add to user's active contracts
+            int userAccepted = user->acceptContract(contractId, available[contractId]);
+
+            // Only succeed if both succeed
+            if (portAccepted && userAccepted)
+            {
+                result = 1;
+            }
+            else
+            {
+                user->removeActiveContract(contractId);
+                port->revokeContract(user->RealName(), contractId);
+            }
+        }
+    }
+    return result;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 public nomask int calculateContractProgress(object player, mapping contract)
 {
     int total = 0;
@@ -633,15 +664,25 @@ public nomask mapping generateDeadline(int minutesFromNow)
 ///////////////////////////////////////////////////////////////////////////////
 public nomask int getMinutesUntilDeadline(mapping deadline)
 {
+    int ret = 0;
     object environmentDictionary = getDictionary("environment");
 
     int nowYear = environmentDictionary->currentYear();
     int nowDay = environmentDictionary->currentDay();
     int nowMinute = environmentDictionary->currentTime();
 
-    int nowTotal = (nowYear * 365 + nowDay) * 1440 + nowMinute;
-    int deadlineTotal = (deadline["year"] * 365 + deadline["day"]) * 1440 + deadline["minute"];
-    return deadlineTotal - nowTotal;
+    if (mappingp(deadline) &&
+        member(deadline, "year") && member(deadline, "day") && member(deadline, "minute"))
+    {
+        int nowTotal = (nowYear * 365 + nowDay) * 1440 + nowMinute;
+        int deadlineTotal = (deadline["year"] * 365 + deadline["day"]) * 1440 + deadline["minute"];
+        ret = deadlineTotal - nowTotal;
+    }
+    else
+    {
+        raise_error("tradingDictionary.c: Invalid deadline format.\n");
+    }
+    return ret;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

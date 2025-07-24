@@ -8,6 +8,23 @@ private object SubselectorObj;
 private object TradingDictionary;
 
 ///////////////////////////////////////////////////////////////////////////////
+private string padAndDecorate(string text, int width, string deco, string section, string color)
+{
+    // Pad the raw text to the desired width, then decorate
+    int pad = width - textWidth(text);
+    string padded = text + ((pad > 0) ? sprintf("%*s", pad, "") : "");
+    return configuration->decorate(padded, deco, section, color);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+private string padRowToBanner(string row, int bannerWidth)
+{
+    int pad = bannerWidth - textWidth(row);
+
+    return row + ((pad > 0) ? sprintf("%*s", pad, "") : "");
+}
+
+///////////////////////////////////////////////////////////////////////////////
 private void displayActiveContracts()
 {
     mapping activeContracts = User->getActiveContracts();
@@ -16,18 +33,20 @@ private void displayActiveContracts()
     object commandsDictionary = getDictionary("commands");
     string charset = User->charsetConfiguration();
 
+    int bannerWidth = 75;
     string contractDisplay = commandsDictionary->buildBanner(colorConfiguration, charset, "top",
         "Active Trading Contracts");
 
     if (!sizeof(activeContracts))
     {
-        contractDisplay += commandsDictionary->banneredContent(colorConfiguration, charset,
-            configuration->decorate("You have no active contracts.",
-                "note", "selector", colorConfiguration));
+        string line = configuration->decorate(
+            "You have no active contracts.", "note", "selector", colorConfiguration);
+        contractDisplay += commandsDictionary->banneredContent(
+            colorConfiguration, charset, padRowToBanner(line, bannerWidth));
     }
     else
     {
-        string* contractIds = m_indices(activeContracts);
+        string *contractIds = m_indices(activeContracts);
         foreach(string id in contractIds)
         {
             mapping contract = activeContracts[id];
@@ -35,43 +54,78 @@ private void displayActiveContracts()
             int minutesLeft = TradingDictionary->getMinutesUntilDeadline(contract["deadline"]);
             string timeLeftDisplay = TradingDictionary->formatTimeLeft(minutesLeft);
 
+            // Determine urgency color and label
             string urgencyColor = "field data";
-            if (minutesLeft <= 1440)
-                urgencyColor = "penalty modifier";
-            else if (minutesLeft <= 3 * 1440)
-                urgencyColor = "warning";
+            string urgencyLabel = "";
+            if (minutesLeft > 0)
+            {
+                if (minutesLeft <= 3 * 1440)
+                {
+                    urgencyColor = "failure";
+                    urgencyLabel = " [URGENT]";
+                }
+                else if (minutesLeft <= 7 * 1440)
+                {
+                    urgencyColor = "warning";
+                    urgencyLabel = " [Soon]";
+                }
+            }
+            else
+            {
+                timeLeftDisplay = "expired";
+            }
 
-            string contractLine = configuration->decorate(sprintf("%s: ", id),
-                "field header", "research", colorConfiguration) +
-                configuration->decorate(contract["description"],
-                    "field data", "research", colorConfiguration);
+            string contractLine = configuration->decorate(
+                sprintf("  %s: %s", id, contract["description"]),
+                "field header", "selector", colorConfiguration);
+            contractDisplay += commandsDictionary->banneredContent(
+                colorConfiguration, charset, padRowToBanner(contractLine, bannerWidth));
 
-            contractDisplay += commandsDictionary->banneredContent(colorConfiguration, charset, contractLine);
+            // Decorate only the time left with urgency color, and append urgency label
+            string statusLine = sprintf("    Destination: %s     Time Left: %s%s",
+                contract["destination"],
+                configuration->decorate(timeLeftDisplay, urgencyColor, "selector", colorConfiguration),
+                configuration->decorate(urgencyLabel, "selected", "selector", colorConfiguration));
+            statusLine = configuration->decorate(statusLine, "field data", "selector", colorConfiguration);
 
-            string statusLine = configuration->decorate("  Destination: ",
-                "field header", "research", colorConfiguration) +
-                configuration->decorate(contract["destination"],
-                    "field data", "research", colorConfiguration) +
-                configuration->decorate("  Time Left: ",
-                    "field header", "research", colorConfiguration) +
-                configuration->decorate(timeLeftDisplay,
-                    urgencyColor, "research", colorConfiguration);
-
-            contractDisplay += commandsDictionary->banneredContent(colorConfiguration, charset, statusLine);
+            contractDisplay += commandsDictionary->banneredContent(
+                colorConfiguration, charset, padRowToBanner(statusLine, bannerWidth));
 
             int progress = TradingDictionary->calculateContractProgress(User, contract);
-            string progressLine = configuration->decorate("  Progress: ",
-                "field header", "research", colorConfiguration) +
-                configuration->decorate(sprintf("%d%% complete", progress),
-                    progress >= 100 ? "bonus modifier" : "field data",
-                    "research", colorConfiguration);
-
-            contractDisplay += commandsDictionary->banneredContent(colorConfiguration, charset, progressLine);
+            string progressLine = configuration->decorate(
+                sprintf("    Progress: %d%% complete", progress),
+                progress >= 100 ? "bonus modifier" : "field data", "selector", colorConfiguration);
+            contractDisplay += commandsDictionary->banneredContent(
+                colorConfiguration, charset, padRowToBanner(progressLine, bannerWidth));
         }
     }
 
     contractDisplay += commandsDictionary->buildBanner(colorConfiguration, charset, "bottom", "-");
     tell_object(User, contractDisplay);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+private void acceptContract(mapping contractData)
+{
+    object configuration = getDictionary("configuration");
+    string contractId = contractData["contract id"];
+    string portName = contractData["destination"];
+
+    int accepted = TradingDictionary->acceptContract(User, portName, contractId);
+
+    if (accepted)
+    {
+        tell_object(User, configuration->decorate(
+            sprintf("You have accepted the contract '%s' to %s.", 
+                contractData["description"], 
+                portName),
+            "success", "selector", User->colorConfiguration()));
+    }
+    else
+    {
+        tell_object(User, configuration->decorate(
+            "Failed to accept the contract.", "failure", "selector", User->colorConfiguration()));
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -120,6 +174,7 @@ protected nomask void setUpUserForSelection()
         foreach(string id in contractIds)
         {
             mapping contract = contracts[id];
+
             int minutesLeft = TradingDictionary->getMinutesUntilDeadline(contract["deadline"]);
             string timeLeftDisplay = TradingDictionary->formatTimeLeft(minutesLeft);
 
@@ -136,6 +191,7 @@ protected nomask void setUpUserForSelection()
                     "type": "available",
                     "contract id" : id,
                     "contract data" : contract,
+                    "destination" : contract["destination"],
                     "minutes left" : minutesLeft,
                     "description" : sprintf("Contract: %s\n"
                         "Destination: %s\n"
@@ -177,10 +233,7 @@ protected nomask int processSelection(string selection)
             break;
         case "available":
         {
-            object configuration = getDictionary("configuration");
-            tell_object(User, configuration->decorate(
-                "Contract acceptance system not yet implemented.",
-                "note", "selector", User->colorConfiguration()));
+            acceptContract(Data[selection]);
             result = -1;
             break;
         }

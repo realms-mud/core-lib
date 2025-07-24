@@ -339,7 +339,7 @@ private mapping races = ([
     ]),
     "catfolk": ([
         "playable": 0,
-        "description": "Catfolk are a lithe, agile race with feline features—slitted eyes, "
+        "description": "Catfolk are a lithe, agile race with feline features - slitted eyes, "
             "tufted ears, and tails. Their bodies are covered in soft fur, patterned in "
             "stripes or spots, and their movements are graceful and silent. Catfolk are "
             "known for their keen senses, quick reflexes, and a natural curiosity that "

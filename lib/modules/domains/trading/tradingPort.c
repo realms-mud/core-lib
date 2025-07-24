@@ -16,6 +16,7 @@ private int SetupCompleted = 0;
 // Available trade routes
 private mapping tradeRoutes = ([]);
 private mapping contracts = ([]);
+private mapping acceptedContracts = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private int calculateRouteDanger(string routeType, int days)
@@ -222,9 +223,151 @@ public void clearContracts()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public int acceptContract(string userId, string contractId)
+{
+    int ret = 0;
+    if (!member(acceptedContracts, userId))
+    {
+        acceptedContracts[userId] = ({});
+    }
+
+    if (member(contracts, contractId) && 
+        (member(acceptedContracts[userId], contractId) == -1))
+    {
+        acceptedContracts[userId] += ({ contractId });
+        ret = 1;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int revokeContract(string userId, string contractId)
+{
+    int ret = 0;
+    if (member(acceptedContracts, userId))
+    {
+        if (member(acceptedContracts[userId], contractId) > -1)
+        {
+            acceptedContracts[userId] -= ({ contractId });
+            ret = 1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int hasAcceptedContract(string userId, string contractId)
+{
+    return member(acceptedContracts, userId) && (member(acceptedContracts[userId], contractId) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public mapping queryAvailableContracts(object user)
 {
-    return contracts + ([]);
+    string userId = user ? user->RealName() : 0;
+    mapping result = ([]);
+    foreach (string id in m_indices(contracts))
+    {
+        if (!userId || !hasAcceptedContract(userId, id))
+        {
+            result[id] = contracts[id] + ([]);
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int canDeliverContract(object user, string contractId)
+{
+    return objectp(user) && 
+        stringp(contractId) &&
+        hasAcceptedContract(user->RealName(), contractId) &&
+        member(contracts, contractId) &&
+        mappingp(contracts[contractId]) && 
+        user->has("trader");
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+public int deliverContract(object user, string contractId)
+{
+    int delivered = 0;
+
+    string userId = user->RealName();
+    object vehicle = user->getVehicleForTradeRun(contractId);
+
+    if (canDeliverContract(user, contractId) && stringp(userId) &&
+        objectp(vehicle))
+    {
+        mapping contract = contracts[contractId];
+
+        int requiredAmount = contract["quantity"];
+        int alreadyDelivered = member(contract, "delivered") ? contract["delivered"] : 0;
+        int remaining = requiredAmount - alreadyDelivered;
+
+        if (remaining > 0)
+        {
+            object tradingDict = getDictionary("trading");
+            string itemType = contract["item type"];
+            string *validBlueprints = user->getItemListForType(itemType);
+
+            int available = 0;
+            mapping blueprintQuantities = ([]);
+
+            foreach (string blueprint in validBlueprints)
+            {
+                int qty = vehicle->getCargoQuantity(blueprint);
+                if (qty > 0)
+                {
+                    blueprintQuantities[blueprint] = qty;
+                    available += qty;
+                }
+            }
+
+            if (available > 0)
+            {
+                int toDeliver = (available < remaining) ? available : remaining;
+                int leftToRemove = toDeliver;
+
+                foreach (string blueprint in m_indices(blueprintQuantities))
+                {
+                    int qty = blueprintQuantities[blueprint];
+                    int removeQty = (qty < leftToRemove) ? qty : leftToRemove;
+
+                    if (removeQty > 0 && function_exists("removeCargo", vehicle))
+                    {
+                        vehicle->removeCargo(blueprint, removeQty);
+                        leftToRemove -= removeQty;
+                    }
+                    if (leftToRemove <= 0)
+                    {
+                        break;
+                    }
+                }
+
+                delivered = toDeliver;
+                mapping userContracts = user->getActiveContracts();
+
+                if (member(userContracts, contractId))
+                {
+                    if (!member(userContracts[contractId], "delivered"))
+                    {
+                        userContracts[contractId]["delivered"] = 0;
+                    }
+                    userContracts[contractId]["delivered"] += delivered;
+                    user->setActiveContract(contractId, userContracts[contractId]);
+                }
+
+                if (!member(contract, "delivered"))
+                {
+                    contract["delivered"] = 0;
+                }
+                contract["delivered"] += delivered;
+                contracts[contractId] = contract;
+            }
+        }
+    }
+    return delivered;
 }
 
 /////////////////////////////////////////////////////////////////////////////
