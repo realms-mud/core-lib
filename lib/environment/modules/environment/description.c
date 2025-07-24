@@ -307,7 +307,7 @@ public varargs string long(string item, object viewer)
     }
 
     string ret = getBaseDescriptionForType("terrain", illuminationLevel);
-    int isOutside = 1;
+    int isOutside = member(environmentalElements["terrain"], "legacy") ? 0 : 1;
 
     if (!ret)
     {

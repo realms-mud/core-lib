@@ -2195,3 +2195,47 @@ void ElementIsManipulatableByLimitors()
     command("harvest mana", player);
     ExpectTrue(present("mana", player), "mana potion found");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void LegacyTerrainNotAffectedByTimeOfDay()
+{
+    object player = clone_object("/lib/tests/support/services/mockPlayer.c");
+    player.Name("bob");
+    player.addCommands();
+    player.colorConfiguration("none");
+    player.charsetConfiguration("ascii");
+
+    object environment =
+        load_object("/lib/tests/support/environment/legacy/lightLegacyEnvironment.c");
+
+    move_object(player, environment);
+
+    Dictionary.setYear(1);
+
+    Dictionary.timeOfDay("midnight");
+    ExpectEq(10, environment.isIlluminated());
+
+    Dictionary.timeOfDay("night");
+    ExpectEq(10, environment.isIlluminated());
+
+    Dictionary.season("spring");
+    ExpectEq(10, environment.isIlluminated());
+
+    command("l", player);
+    ExpectSubStringMatch("You have entered the throne room", player.caughtMessage());
+
+    environment = load_object("/lib/tests/support/environment/legacy/darkLegacyEnvironment.c");
+    move_object(player, environment);
+
+    Dictionary.timeOfDay("midnight");
+    ExpectEq(0, environment.isIlluminated());
+
+    Dictionary.timeOfDay("night");
+    ExpectEq(0, environment.isIlluminated());
+
+    Dictionary.season("spring");
+    ExpectEq(0, environment.isIlluminated());
+
+    command("look", player);
+    ExpectSubStringMatch("It is too dark", player.caughtMessage());
+}

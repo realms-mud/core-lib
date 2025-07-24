@@ -47,11 +47,16 @@ public nomask int minimumNeededLightLevel()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isIlluminated()
 {
-    int ret = alwaysLight();
+    int ret = alwaysLight() ? 10 : 0;
     if (!ret)
     {
         ret = sizeof(environmentalElements["terrain"]) ?
             getDictionary("environment")->ambientLight() : 0;
+
+        if (member(environmentalElements["terrain"], "legacy"))
+        {
+            ret = 0;
+        }
 
         int otherLight = getElementLighting();
         if (otherLight > ret)

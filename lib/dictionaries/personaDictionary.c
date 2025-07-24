@@ -40,7 +40,7 @@ private nomask void SetStats(object character)
 private nomask varargs void SetDescription(object character,
     string persona)
 {
-    if (sizeof(character->description() < 1) &&
+    if (objectp(character) && (sizeof(character->description()) < 1) &&
         member(personaBlueprints()[persona], "description"))
     {
         character->description(personaBlueprints()[persona]["description"]);
