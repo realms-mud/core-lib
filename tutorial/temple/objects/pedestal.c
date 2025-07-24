@@ -151,10 +151,11 @@ public string getOrb(string which)
 /////////////////////////////////////////////////////////////////////////////
 public varargs string displayOrbs(int alwaysDisplay)
 {
-    return (alwaysDisplay || 
-        (this_player() && !this_player()->displayMiniMap())) ?
-        sprintf("\n%33s%s\n%30s%s%5s%s\n%33s%s\n", "", getOrb("north"), "",
-        getOrb("west"), "", getOrb("east"), "", getOrb("south")) : "\n";
+    string newline = alwaysDisplay ? "\n" : "#NEWLINE#";
+
+    return sprintf("%s%33s%s%30s%6s%s%33s%s", newline, getOrb("north"), 
+            newline, getOrb("west"), getOrb("east"), 
+            newline, getOrb("south"), newline);
 }
 
 /////////////////////////////////////////////////////////////////////////////
