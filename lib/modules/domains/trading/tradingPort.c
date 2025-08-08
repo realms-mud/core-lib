@@ -16,7 +16,7 @@ private int SetupCompleted = 0;
 // Available trade routes
 private mapping tradeRoutes = ([]);
 private mapping contracts = ([]);
-private string* availableGoods = ({});
+private string *availableGoods = ({});
 private mapping acceptedContracts = ([]);
 
 /////////////////////////////////////////////////////////////////////////////

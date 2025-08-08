@@ -19,7 +19,7 @@ void Setup()
     move_object(clone_object("/lib/instances/items/weapons/swords/long-sword.c"), Victim);
     move_object(clone_object("/lib/instances/items/armor/medium-armor/chainmail.c"), Victim);
     move_object(clone_object("/lib/instances/items/armor/accessories/amulet.c"), Victim);
-    move_object(clone_object("/lib/instances/items/drinks/bock.c"), Victim);
+    move_object(clone_object("/lib/instances/items/drinks/beer/bock.c"), Victim);
 
     Environment = load_object("/lib/tests/support/environment/fakeEnvironment.c");
     move_object(Victim, Environment);

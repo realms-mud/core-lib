@@ -164,7 +164,15 @@ void DescribeDraconidDisplaysDraconidDescription()
 {
     Selector.initiateSelector(User);
     Selector.applySelection("describe 1");
-    ExpectEq("\x1b[0;36m\n\n"
+    ExpectEq("\x1b[0;36mDraconids are a rare and ancient race, said to be descended from the great\n"
+        "dragons of old. Their appearance is striking: tall and imposing, with scales\n"
+        "that shimmer in hues of gold, bronze, or emerald. Their eyes gleam with an\n"
+        "inner fire, and some even bear vestigial horns or crests. Draconids possess a\n"
+        "natural affinity for magic, especially elemental forces, and are often\n"
+        "revered or feared for their wisdom and power. Their voices carry a subtle\n"
+        "resonance, and their presence commands respect. Legends tell of draconids who\n"
+        "can channel the breath of dragons, though such feats are rare in the modern\n"
+        "age.\n\n"
         "The draconid race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m8\x1b[0m\n"
         "\x1b[0;32m    Bonus to trait selection: \x1b[0m\x1b[0;34;1m4\x1b[0m\n"
@@ -192,11 +200,14 @@ void DescribeDwarfDisplaysDwarfDescription()
 {
     Selector.initiateSelector(User);
     Selector.applySelection("describe 2");
-    ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally "
-        "live in hilly\nor mountainous areas, usually inside caves or "
-        "similar dwellings. Dwarven\ncraftsmanship is world renowned "
-        "for it's durability and functionality.\nDwarven structures are "
-        "built to last through war and the elements.\n\n"
+    ExpectEq("\x1b[0;36mThe dwarves are a short, stocky race of people. They generally live in hilly\n"
+        "or mountainous areas, usually inside caves or similar dwellings. Dwarven\n"
+        "craftsmanship is world renowned for its durability and functionality. Dwarven\n"
+        "structures are built to last through war and the elements. Dwarves are known\n"
+        "for their long, braided beards, hearty appetites, and a fierce loyalty to kin\n"
+        "and clan. They are slow to trust outsiders, but once a friend is made, that\n"
+        "bond is unbreakable. Dwarves are also famed for their love of precious metals\n"
+        "and gems, and many spend their lives mining the depths of the earth.\n\n"
         "The dwarf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m8\x1b[0m\n"
         "\x1b[0;32m    Bonus to trait selection: \x1b[0m\x1b[0;34;1m5\x1b[0m\n"
@@ -311,7 +322,15 @@ void DescribeHalfElfDisplaysHalfElfDescription()
 {
     Selector.initiateSelector(User);
     Selector.applySelection("describe 6");
-    ExpectEq("\x1b[0;36m\n\n"
+    ExpectEq("\x1b[0;36mHalf-elves are the rare offspring of unions between elves and humans. They\n"
+        "inherit the beauty, grace, and keen senses of their elven heritage, as well\n"
+        "as the adaptability and ambition of humankind. In appearance, half-elves are\n"
+        "often tall and fair, with features that blend the best of both lineages with\n"
+        "eyes that seem to hold both wisdom and longing. Caught between two worlds,\n"
+        "half-elves are often marked by a sense of melancholy and a longing for\n"
+        "belonging, for they are not fully accepted by either elves or men. In legend,\n"
+        "some half-elves have been given the choice of mortality or immortality, a\n"
+        "burden and a gift that shapes their destinies.\n\n"
         "The half elf race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m10\x1b[0m\n"
         "\x1b[0;32m    Bonus to trait selection: \x1b[0m\x1b[0;34;1m5\x1b[0m\n"
@@ -450,12 +469,12 @@ void DescribeHumanDisplaysHumanDescription()
 {
     Selector.initiateSelector(User);
     Selector.applySelection("describe 11");
-    ExpectEq("\x1b[0;36mHumans are the most common race on RealmsMUD. They don't have any "
-        "real\npreferences on where they live, except that they prefer tropical "
-        "or temperate\nregions. They live in above ground dwellings, and tend "
-        "to admire the\nelaborate, elegant architecture of the elves and dwarves. "
-        "Humans gain no\nadvantages or disadvantages on RealmsMUD, they are the "
-        "happy medium... and\nthey like it that way.\n\n"
+    ExpectEq("\x1b[0;36mHumans are the most common race. They don't have any real preferences on\n"
+        "where they live, except that they prefer tropical or temperate regions. They\n"
+        "live in above ground dwellings, and tend to admire the elaborate, elegant\n"
+        "architecture of the elves and dwarves. Humans gain no advantages or\n"
+        "disadvantages on RealmsMUD, they are the happy medium... and they like it\n"
+        "that way.\n\n"
         "The human race incurs the following in-game bonuses/penalties:\n"
         "\x1b[0;32m    Starting skill points: \x1b[0m\x1b[0;34;1m14\x1b[0m\n"
         "\x1b[0;32m    Bonus to trait selection: \x1b[0m\x1b[0;34;1m6\x1b[0m\n"
