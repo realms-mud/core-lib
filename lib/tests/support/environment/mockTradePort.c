@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+inherit "/lib/modules/domains/trading/tradingPort.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
@@ -27,6 +27,11 @@ public string getPortName()
 
 /////////////////////////////////////////////////////////////////////////////
 public int getItemPrice(string item)
-{
-    return 100; // Default price for testing
+{   
+    if(item == "/lib/instances/items/books/book.c")
+    {
+        return 1500;
+    }
+    item = regreplace(item, "^.*\/([^/]+)\.c$", "\\1", 1);
+    return (to_int(item[0]) - 96) * 100;
 }

@@ -10,6 +10,14 @@ object MockTrader;
 object MockPlayer;
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    ignoreList += ({
+        "__inline_lib_tests_dictionaries_tradingDictionaryTest_c_231_#0000"
+    });
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Dictionary = clone_object("/lib/dictionaries/tradingDictionary.c");
@@ -183,4 +191,51 @@ void GetTradeRouteTypesReturnsMapping()
     ExpectTrue(member(routes, "maritime") > -1, "maritime route exists");
     ExpectTrue(member(routes, "overland") > -1, "overland route exists");
     ExpectTrue(member(routes, "river") > -1, "river route exists");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ValidSingleItemReturnsTrue()
+{
+    string *allItems = Dictionary->getAllTradingItems();
+    string validItem = sizeof(allItems) ? allItems[0] : "/lib/instances/items/materials/metal/iron.c";
+    ExpectTrue(Dictionary->isValidTradingItem(validItem), "A valid single item string should return true");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidSingleItemReturnsFalse()
+{
+    string invalidItem = "/lib/instances/items/materials/metal/not-a-real-item.c";
+    ExpectFalse(Dictionary->isValidTradingItem(invalidItem), "An invalid single item string should return false");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ArrayOfThreeValidItemsReturnsTrue()
+{
+    string *allItems = Dictionary->getAllTradingItems();
+    string *validItems = allItems[0..2];
+    ExpectTrue(Dictionary->isValidTradingItem(validItems), "An array of three valid items should return true");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ArrayWithInvalidItemReturnsFalse()
+{
+    string *allItems = Dictionary->getAllTradingItems();
+    string *items = ({ allItems[0], allItems[1], "/lib/instances/items/materials/metal/not-a-real-item.c" });
+    ExpectFalse(Dictionary->isValidTradingItem(items), "An array with an invalid item should return false");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ArrayOfObjectsReturnsTrueIfAllValid()
+{
+    string *allItems = Dictionary->getAllTradingItems();
+    object *objects = map(allItems[0..2], (: load_object($1) :));
+    ExpectTrue(Dictionary->isValidTradingItem(objects), "An array of valid item objects should return true");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ArrayOfObjectsReturnsFalseIfAnyInvalid()
+{
+    string *allItems = Dictionary->getAllTradingItems();
+    object *objects = ({ load_object(allItems[0]), load_object(allItems[1]), clone_object("/lib/core/thing.c") });
+    ExpectFalse(Dictionary->isValidTradingItem(objects), "An array with an invalid object should return false");
 }

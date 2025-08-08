@@ -16,6 +16,7 @@ private int SetupCompleted = 0;
 // Available trade routes
 private mapping tradeRoutes = ([]);
 private mapping contracts = ([]);
+private string* availableGoods = ({});
 private mapping acceptedContracts = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -287,7 +288,6 @@ private int canDeliverContract(object user, string contractId)
         user->has("trader");
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
 public int deliverContract(object user, string contractId)
 {
@@ -416,9 +416,35 @@ public void addSpecialty(string itemType, float priceModifier)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public string *getSpecialties()
+{
+    return m_indices(specialties) + ({});
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void addImportNeed(string itemType, float priceModifier)
 {
     imports[itemType] = priceModifier;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getImportNeeds()
+{
+    return m_indices(imports) + ({});
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void setAvailableGoods(string *goods)
+{
+    if (pointerp(goods)) {
+        availableGoods = goods;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string *getAvailableGoods()
+{
+    return availableGoods + ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -442,30 +468,33 @@ public int getItemPrice(string itemBlueprint)
 {
     int ret = 0;
     
-    // Check if we need to update prices
-    if ((time() - lastPriceUpdate) > 3600)
+    if (!sizeof(availableGoods) || 
+        (member(availableGoods, itemBlueprint) > -1))
     {
-        generatePrices();
-    }
-    
-    if (member(currentPrices, itemBlueprint))
-    {
-        ret = currentPrices[itemBlueprint];
-    }
-    else
-    {
-        // Calculate price for new item
-        object item = load_object(itemBlueprint);
-        if (item)
+        // Check if we need to update prices
+        if ((time() - lastPriceUpdate) > 3600)
         {
-            int basePrice = item->query("value");
-            float modifier = calculatePriceModifier(item);
-            
-            currentPrices[itemBlueprint] = to_int(basePrice * modifier);
+            generatePrices();
+        }
+    
+        if (member(currentPrices, itemBlueprint))
+        {
             ret = currentPrices[itemBlueprint];
         }
+        else
+        {
+            // Calculate price for new item
+            object item = load_object(itemBlueprint);
+            if (item)
+            {
+                int basePrice = item->query("value");
+                float modifier = calculatePriceModifier(item);
+            
+                currentPrices[itemBlueprint] = to_int(basePrice * modifier);
+                ret = currentPrices[itemBlueprint];
+            }
+        }
     }
-    
     return ret;
 }
 

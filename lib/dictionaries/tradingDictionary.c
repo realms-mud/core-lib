@@ -252,6 +252,29 @@ public string *getAllTradingItems()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public int isValidTradingItem(mixed items)
+{
+    string *allItems = getAllTradingItems();
+    int ret = 0;
+
+    if (stringp(items))
+    {
+        ret = (member(allItems, items) != -1);
+    }
+    else if (pointerp(items) && sizeof(items) && stringp(items[0]))
+    {
+        ret = !sizeof(filter(items, (: member(allItems, $1) == -1 :)));
+    }
+    else if (pointerp(items) && sizeof(items) && objectp(items[0]))
+    {
+        items = map(items, (: object_name($1) :));
+        ret = !sizeof(filter(items, (: member(allItems, sprintf("%s.c", $1)) == -1 :)));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public string getTradingHelpDisplay(object player)
 {
     string ret = "";

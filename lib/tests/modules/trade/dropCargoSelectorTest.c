@@ -6,30 +6,35 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object DropCargoSelector;
-object Port;
+object Vehicle1;
+object Vehicle2;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "resetPlayerMessages" });
+    ignoreList += ({
+        "resetPlayerMessages",
+        "setupVehicleWithCargo",
+        "navigateToDropCargoSelector",
+        "findMenuOption",
+        "getVehicleCargoQuantity"
+    });
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    DropCargoSelector = clone_object("/lib/modules/domains/trading/selectors/dropCargoSelector.c");
-
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Player->Name("testtrader");
-    Player->addCommands();
-    Player->initializeTrader();
-    Player->colorConfiguration("none");
+    Player.Name("testtrader");
+    Player.colorConfiguration("none");
+    Player.addCommands();
+    Player.initializeTrader();
 
-    Port = clone_object("/lib/modules/domains/trading/tradingPort.c");
-    Port->Setup();
+    Vehicle1 = Player.addVehicle("wagon", "TestPort");
+    Vehicle1.set("name", "Wagon Alpha");
 
-    move_object(Player, Port);
-    move_object(DropCargoSelector, Player);
+    Vehicle2 = Player.addVehicle("wagon", "TestPort");
+    Vehicle2.set("name", "Wagon Beta");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,7 +42,8 @@ void CleanUp()
 {
     if (objectp(DropCargoSelector)) destruct(DropCargoSelector);
     if (objectp(Player)) destruct(Player);
-    if (objectp(Port)) destruct(Port);
+    if (objectp(Vehicle1)) destruct(Vehicle1);
+    if (objectp(Vehicle2)) destruct(Vehicle2);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,218 +51,175 @@ private void resetPlayerMessages()
 {
     if (Player && function_exists("resetCatchList", Player))
     {
-        Player->resetCatchList();
+        Player.resetCatchList();
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void setupVehicleWithCargo(object vehicle, string item, int quantity)
+{
+    vehicle.addCargo(item, quantity);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int getVehicleCargoQuantity(object vehicle, string item)
+{
+    return vehicle.getCargoQuantity(item);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void navigateToDropCargoSelector(string item)
+{
+    resetPlayerMessages();
+    if (objectp(DropCargoSelector)) destruct(DropCargoSelector);
+    DropCargoSelector = clone_object("/lib/modules/domains/trading/selectors/dropCargoSelector.c");
+    DropCargoSelector.setItem(item);
+    move_object(DropCargoSelector, Player);
+    DropCargoSelector.initiateSelector(Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string findMenuOption(string optionText)
+{
+    string ret = "0";
+    string message = Player.caughtMessage();
+    string *lines = explode(message, "\n");
+    foreach (string line in lines)
+    {
+        line = regreplace(line, "\x1B\\[[0-9;]*[A-Za-z]", "", 1);
+        if (sizeof(regexp(({ line }), optionText)))
+        {
+            ret = regreplace(line, "^[^0-9]*([0-9]+).*", "\\1", 1);
+            break;
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DropCargoSelectorDisplaysMenuCorrectly()
 {
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
+    string message = Player.caughtMessage();
 
-    DropCargoSelector->initiateSelector(Player);
-
-    string message = Player->caughtMessage();
     ExpectSubStringMatch("Drop Iron", message);
     ExpectSubStringMatch("Cancel", message);
-    ExpectSubStringMatch("Type 'exit' if you do not wish to make a selection", message);
+    ExpectSubStringMatch("Wagon Alpha", message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DropCargoSelectorRequiresPortLocation()
+void DropCargoSelectorShowsNoCargoMessage()
 {
-    object MockEnvironment = clone_object("/lib/tests/support/environment/mockTradeEnvironment.c");
-    move_object(Player, MockEnvironment);
+    Vehicle1.set("cargo", ([]));
+    Vehicle2.set("cargo", ([]));
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
+    string message = Player.caughtMessage();
 
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
-
-    DropCargoSelector->initiateSelector(Player);
-
-    string message = Player->caughtMessage();
-    // The selector still shows the drop menu for the item
-    ExpectSubStringMatch("Drop Iron", message);
-
-    move_object(Player, Port);
-    destruct(MockEnvironment);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void NoCargoShowsMessage()
-{
-    // Ensure player has no cargo
-    mapping vehicle = Player->getVehicle();
-    vehicle["cargo"] = ([]);
-
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(0);
-
-    DropCargoSelector->initiateSelector(Player);
-
-    string message = Player->caughtMessage();
-    // Only check for what is actually present
     ExpectSubStringMatch("Drop Iron", message);
     ExpectSubStringMatch("Drop All .0 units.", message);
-    ExpectSubStringMatch("Custom Quantity", message);
     ExpectSubStringMatch("Cancel", message);
 }
 
-
 /////////////////////////////////////////////////////////////////////////////
-void AvailableCargoIsListed()
+void DropCargoSelectorListsAllVehiclesWithCargo()
 {
-    Player->addCargoToVehicle("/lib/instances/items/materials/metal/iron", 5);
-    Player->addCargoToVehicle("/lib/instances/items/materials/wood/oak", 3);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    setupVehicleWithCargo(Vehicle2, "/lib/instances/items/materials/metal/iron", 3);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
+    string message = Player.caughtMessage();
 
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
-
-    DropCargoSelector->initiateSelector(Player);
-
-    string message = Player->caughtMessage();
-    ExpectSubStringMatch("Iron", message);
+    ExpectSubStringMatch("Iron x5", message);
+    ExpectSubStringMatch("Wagon Alpha", message);
+    ExpectSubStringMatch("Iron x3", message);
+    ExpectSubStringMatch("Wagon Beta", message);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SelectingCargoPromptsForQuantity()
+void SelectingVehiclePromptsForQuantity()
 {
-    Player->addCargoToVehicle("/lib/instances/items/materials/metal/iron", 5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
+    string message = Player.caughtMessage();
 
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    string option = findMenuOption("Wagon Alpha");
+    ExpectTrue(option != "0", "Vehicle option should be present");
+    command(option, Player);
 
-    DropCargoSelector->initiateSelector(Player);
-
-    // Find the iron cargo option
-    string message = Player->caughtMessage();
-    int cargoOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "iron")))
-        {
-            sscanf(line, "%d. %*s", cargoOption);
-            break;
-        }
-    }
-
-    if (cargoOption > 0)
-    {
-        resetPlayerMessages();
-        command(to_string(cargoOption), Player);
-        string prompt = Player->caughtMessage();
-        ExpectSubStringMatch("How much", prompt);
-    }
+    string prompt = Player.caughtMessage();
+    ExpectSubStringMatch("How much", prompt);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void DroppingCargoRemovesItFromVehicle()
+void DroppingCargoRemovesItFromCorrectVehicle()
 {
-    Player->addCargoToVehicle("/lib/instances/items/materials/metal/iron", 5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    setupVehicleWithCargo(Vehicle2, "/lib/instances/items/materials/metal/iron", 3);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
 
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    string v1Option = findMenuOption("Wagon Alpha");
+    command(v1Option, Player);
+    command("3", Player);
 
-    DropCargoSelector->initiateSelector(Player);
+    string result = Player.caughtMessage();
+    ExpectSubStringMatch("You dropped 3", result);
 
-    // Find the iron cargo option
-    string message = Player->caughtMessage();
-    int cargoOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "iron")))
-        {
-            sscanf(line, "%d. %*s", cargoOption);
-            break;
-        }
-    }
-
-    if (cargoOption > 0)
-    {
-        resetPlayerMessages();
-        command(to_string(cargoOption), Player);
-        // Drop 3 units
-        resetPlayerMessages();
-        command("3", Player);
-
-        string result = Player->caughtMessage();
-        ExpectSubStringMatch("You dropped 3", result);
-
-        // Check that cargo is reduced
-        mapping vehicle = Player->getVehicle();
-        int remaining = 0;
-        if (member(vehicle["cargo"], "/lib/instances/items/materials/metal/iron"))
-        {
-            remaining = vehicle["cargo"]["/lib/instances/items/materials/metal/iron"];
-        }
-        ExpectEq(2, remaining, "Should have 2 iron left after dropping 3 of 5");
-    }
+    int remaining1 = getVehicleCargoQuantity(Vehicle1, "/lib/instances/items/materials/metal/iron");
+    int remaining2 = getVehicleCargoQuantity(Vehicle2, "/lib/instances/items/materials/metal/iron");
+    ExpectEq(2, remaining1, "Should have 2 iron left in Wagon Alpha");
+    ExpectEq(3, remaining2, "Cart Beta should be unchanged");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ExitOptionReturnsToTradingMenu()
+void DropCargoSelectorPreventsOverspill()
 {
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 2);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
 
-    DropCargoSelector->initiateSelector(Player);
-    string message = Player->caughtMessage();
+    string v1Option = findMenuOption("Wagon Alpha");
+    command(v1Option, Player);
+    command("5", Player);
 
-    // Find exit option
-    int exitOption = 0;
-    string *lines = explode(message, "\n");
-    foreach (string line in lines)
-    {
-        if (sizeof(regexp(({ line }), "Cancel")))
-        {
-            sscanf(line, "%d. %*s", exitOption);
-            break;
-        }
-    }
+    string result = implode(Player.caughtMessages(), "\n");
+    ExpectSubStringMatch("Invalid quantity", result);
 
-    resetPlayerMessages();
-    if (exitOption > 0)
-    {
-        command(to_string(exitOption), Player);
-        ExpectSubStringMatch("Drop Cargo has been exited", Player->caughtMessage());
-    }
+    int remaining = getVehicleCargoQuantity(Vehicle1, "/lib/instances/items/materials/metal/iron");
+    ExpectEq(2, remaining, "Should still have 2 iron after failed drop");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void InvalidSelectionShowsMenuAgain()
+void DropCargoSelectorAllowsCancel()
 {
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
 
-    DropCargoSelector->initiateSelector(Player);
-    resetPlayerMessages();
+    string cancelOption = findMenuOption("Cancel");
+    command(cancelOption, Player);
+
+    string result = Player.caughtMessage();
+    ExpectSubStringMatch("Drop Cargo has been exited", result);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DropCargoSelectorHandlesInvalidInput()
+{
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
+
     command("999", Player);
-
-    // The menu is always the drop menu for the item
-    ExpectSubStringMatch("Drop Iron", Player->caughtMessage());
+    string result = Player.caughtMessage();
+    ExpectSubStringMatch("Drop Iron", result);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void UndoIsAvailableInDropCargoSelector()
 {
-    resetPlayerMessages();
-    DropCargoSelector->setItem("/lib/instances/items/materials/metal/iron");
-    DropCargoSelector->setMaxQuantity(5);
+    setupVehicleWithCargo(Vehicle1, "/lib/instances/items/materials/metal/iron", 5);
+    navigateToDropCargoSelector("/lib/instances/items/materials/metal/iron");
 
-    DropCargoSelector->initiateSelector(Player);
     resetPlayerMessages();
     command("undo", Player);
 
-    string message = Player->caughtMessage();
+    string message = Player.caughtMessage();
     ExpectTrue(sizeof(message) > 0, "Undo should provide some response");
 }
