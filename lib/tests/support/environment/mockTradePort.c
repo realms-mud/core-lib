@@ -20,18 +20,12 @@ public int isPort()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string getPortName()
-{
-    return "Mock Trading Port";
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public int getItemPrice(string item)
+public float getItemPrice(string item)
 {   
     if(item == "/lib/instances/items/books/book.c")
     {
-        return 1500;
+        return 1500.0;
     }
     item = regreplace(item, "^.*\/([^/]+)\.c$", "\\1", 1);
-    return (to_int(item[0]) - 96) * 100;
+    return (to_int(item[0]) - 96) * 100.0;
 }

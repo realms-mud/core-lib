@@ -135,9 +135,9 @@ private void setUpItemSelection()
         string err = catch (itemObj = load_object(item); nolog);
         if (!err && itemObj)
         {
-            int price = Port->getItemPrice(item);
-            int canAfford = User->getCash() / price;
-            int canAffordAny = (User->getCash() >= price) ? 1 : 0;
+            float price = Port->getItemPrice(item);
+            int canAfford = User->getCash() / to_int(price);
+            int canAffordAny = (User->getCash() >= to_int(price)) ? 1 : 0;
             int hasCapacity = checkItemCapacity(item, capacityCache);
             
             // Calculate max quantity based on capacity
@@ -158,24 +158,24 @@ private void setUpItemSelection()
 
             // Format price for display
             string priceDisplay;
-            if (price >= 1000000)
+            if (price >= 1000000.0)
             {
                 priceDisplay = sprintf("%.1fM", price / 1000000.0);
             }
-            else if (price >= 1000)
+            else if (price >= 1000.0)
             {
                 priceDisplay = sprintf("%.1fK", price / 1000.0);
             }
             else
             {
-                priceDisplay = to_string(price);
+                priceDisplay = sprintf("%d", to_int(price));
             }
 
             Data[to_string(counter++)] = ([
                 "type": "item",
                 "name": name,
                 "item path": item,
-                "price": price,
+                "price": to_int(price),
                 "price display": priceDisplay,
                 "can afford": canAfford,
                 "max quantity": maxQuantity,
@@ -184,7 +184,7 @@ private void setUpItemSelection()
                 "description": sprintf("Purchase %s at %s. Price: %d gold each. You can afford %d units (capacity allows %d).",
                                      itemObj->query("name"),
                                      Port->getPortName(),
-                                     price,
+                                     to_int(price),
                                      canAfford,
                                      maxQuantity)
             ]);

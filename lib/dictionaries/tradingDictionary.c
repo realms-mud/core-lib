@@ -133,7 +133,9 @@ public nomask void registerPort(object port)
 {
     if (port && objectp(port) && port->isPort())
     {
-        if (!member(ports, port->getPortName()) && (port->getPortName() != "Unknown Port"))
+        if ((!member(ports, port->getPortName()) || 
+            !objectp(ports[port->getPortName()])) && 
+            (port->getPortName() != "Unknown Port"))
         {
             ports[port->getPortName()] = port;
         }
@@ -366,7 +368,7 @@ public mapping getAvailableGoods(object port, object trader)
 
             if (!err && itemObj)
             {
-                int price = port->getItemPrice(item);
+                int price = to_int(port->getItemPrice(item));
                 int canAfford = trader->getCash() / price;
                 
                 goods[to_string(counter++)] = ([
@@ -446,7 +448,6 @@ public mapping getCargoForSale(object trader, object port)
 
     return indexedCargo;
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 public int calculateWarehouseUsed(mapping warehouse)

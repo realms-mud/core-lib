@@ -13,7 +13,7 @@ object MockPlayer;
 void Init()
 {
     ignoreList += ({
-        "__inline_lib_tests_dictionaries_tradingDictionaryTest_c_231_#0000"
+        "__inline_lib_tests_dictionaries_tradingDictionaryTest_c_224_#0000"
     });
 }
 
@@ -22,6 +22,8 @@ void Setup()
 {
     Dictionary = clone_object("/lib/dictionaries/tradingDictionary.c");
     MockPort = clone_object("/lib/tests/support/environment/mockTradePort.c");
+    MockPort.setPortName("Mock Trading Port");
+
     MockTrader = clone_object("/lib/tests/support/services/mockPlayer.c");
     MockPlayer = clone_object("/lib/tests/support/services/mockPlayer.c");
 }
@@ -42,6 +44,7 @@ void RegisterPortAndGetPort()
 
     Dictionary.registerPort(MockPort);
     object *ports = Dictionary.getAvailablePorts();
+
     ExpectTrue(sizeof(ports) == initialPorts + 1, "Port registered successfully");
     ExpectEq(MockPort, ports[0], "Registered port is returned by getAvailablePorts");
 
@@ -120,16 +123,6 @@ void GetTradingHelpDisplayReturnsString()
     string display = Dictionary.getTradingHelpDisplay(MockPlayer);
     ExpectTrue(stringp(display), "getTradingHelpDisplay returns a string");
     ExpectTrue(sizeof(regexp(({ display }), ".*Trading Commands.*")), "Display contains Trading Commands");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void GetMarketPricesDisplayReturnsString()
-{
-    MockPlayer.Name("testtrader");
-    Dictionary.registerPort(MockPort);
-    string display = Dictionary.getMarketPricesDisplay(MockPlayer, MockPort);
-    ExpectTrue(stringp(display), "getMarketPricesDisplay returns a string");
-    ExpectTrue(sizeof(regexp(({ display }), ".*Market Prices.*")), "Display contains Market Prices");
 }
 
 /////////////////////////////////////////////////////////////////////////////

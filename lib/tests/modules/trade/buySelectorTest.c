@@ -36,7 +36,8 @@ void Setup()
 
     // Create a mock port environment
     MockPort = clone_object("/lib/tests/support/environment/mockTradePort.c");
-    
+    MockPort->setPortName("Mock Trading Port");
+
     // Add a vehicle so the player can actually buy things
     Player.addVehicle("wagon", MockPort->getPortName());
     

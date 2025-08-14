@@ -5,18 +5,25 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
+private object Port;
+
+/////////////////////////////////////////////////////////////////////////////
+public void setPort(object port)
+{
+    Port = port;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 private void displayWarehouseStatus()
 {
-    mapping warehouse = User->getWarehouse(User->getCurrentLocation());
+    mapping warehouse = User->getWarehouse(Port);
     string colorConfig = User->colorConfiguration();
     
     object commandsDictionary = getDictionary("commands");
     string charset = User->charsetConfiguration();
     
     string warehouseDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
-                             sprintf("%s Warehouse", User->getCurrentLocation()));
+                             sprintf("%s Warehouse", Port));
     
     // Calculate warehouse used space
     int used = 0;
@@ -89,7 +96,7 @@ private void handleRentPayment()
         User->addCash(-rentCost);
         
         // Extend rent by 30 days
-        mapping warehouse = User->getWarehouse(User->getCurrentLocation());
+        mapping warehouse = User->getWarehouse(Port);
         warehouse["rent paid"] += (30 * 86400);
         
         tell_object(User, configuration->decorate(
@@ -119,68 +126,60 @@ protected nomask void setUpUserForSelection()
 {
     object environment = environment(User);
     
-    if (environment && environment->isPort())
+    mapping warehouse = User->getWarehouse(Port);
+    mapping vehicle = User->getVehiclesAtLocation(Port->getPortName());
+ 
+    Data = ([]);
+    int counter = 1;
+        
+    // Show warehouse status
+    Data[to_string(counter++)] = ([
+        "name": "View Warehouse Status",
+        "type": "status",
+        "description": "Display detailed warehouse inventory and capacity information.",
+        "canShow": 1
+    ]);
+        
+    // Load cargo from warehouse to vehicle
+    if (sizeof(warehouse["inventory"]))
     {
-        mapping warehouse = User->getWarehouse(User->getCurrentLocation());
-        mapping vehicle = User->getVehicle();
-        
-        Data = ([]);
-        int counter = 1;
-        
-        // Show warehouse status
         Data[to_string(counter++)] = ([
-            "name": "View Warehouse Status",
-            "type": "status",
-            "description": "Display detailed warehouse inventory and capacity information.",
-            "canShow": 1
+            "name": "Load Cargo from Warehouse",
+            "type": "load",
+            "description": "Transfer goods from warehouse to your vehicle.",
+            "canShow": (User->getVehicleFreeSpace() > 0)
         ]);
+    }
         
-        // Load cargo from warehouse to vehicle
-        if (sizeof(warehouse["inventory"]))
-        {
-            Data[to_string(counter++)] = ([
-                "name": "Load Cargo from Warehouse",
-                "type": "load",
-                "description": "Transfer goods from warehouse to your vehicle.",
-                "canShow": (User->getVehicleFreeSpace() > 0)
-            ]);
-        }
-        
-        // Unload cargo from vehicle to warehouse
-        if (sizeof(vehicle["cargo"]))
-        {
-            Data[to_string(counter++)] = ([
-                "name": "Unload Cargo to Warehouse",
-                "type": "unload", 
-                "description": "Transfer goods from your vehicle to warehouse storage.",
-                "canShow": 1
-            ]);
-        }
-        
-        // Warehouse rental management
-        int daysLeft = (warehouse["rent paid"] - time()) / 86400;
-        if (daysLeft < 7)
-        {
-            Data[to_string(counter++)] = ([
-                "name": sprintf("Pay Warehouse Rent (%d days left)", daysLeft),
-                "type": "rent",
-                "description": sprintf("Extend warehouse rental. Current rent expires in %d days.", daysLeft),
-                "canShow": 1
-            ]);
-        }
-        
+    // Unload cargo from vehicle to warehouse
+    if (mappingp(vehicle) && member(vehicle, "cargo") && sizeof(vehicle["cargo"]))
+    {
         Data[to_string(counter++)] = ([
-            "name": "Return to Trading Menu", 
-            "type": "exit",
-            "description": "Return to the main trading menu.",
+            "name": "Unload Cargo to Warehouse",
+            "type": "unload", 
+            "description": "Transfer goods from your vehicle to warehouse storage.",
             "canShow": 1
         ]);
     }
-    else
+        
+    // Warehouse rental management
+    int daysLeft = (warehouse["rent paid"] - time()) / 86400;
+    if (daysLeft < 7)
     {
-        tell_object(User, configuration->decorate("You must be at a trading port to access your warehouse.",
-                   "failure", "selector", colorConfiguration));
+        Data[to_string(counter++)] = ([
+            "name": sprintf("Pay Warehouse Rent (%d days left)", daysLeft),
+            "type": "rent",
+            "description": sprintf("Extend warehouse rental. Current rent expires in %d days.", daysLeft),
+            "canShow": 1
+        ]);
     }
+        
+    Data[to_string(counter++)] = ([
+        "name": "Return to Trading Menu", 
+        "type": "exit",
+        "description": "Return to the main trading menu.",
+        "canShow": 1
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

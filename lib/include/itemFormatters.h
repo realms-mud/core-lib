@@ -419,6 +419,44 @@ private nosave mapping decorators = ([
             "24-bit": "\x1b[0;38;2;0;5;170m"
         ]),
     ]),
+    "trade": ([
+        "port name": ([
+            "grayscale": "\x1b[0;38;5;253m",
+            "3-bit": "\x1b[0;36m",
+            "8-bit": "\x1b[0;38;5;116m",
+            "24-bit": "\x1b[0;38;2;140;180;190m"
+        ]),
+        "positive trend": ([
+            "grayscale": "\x1b[0;38;5;248m",
+            "3-bit": "\x1b[0;34;1m",
+            "8-bit": "\x1b[0;38;5;20;1m",
+            "24-bit": "\x1b[0;38;2;0;0;220;1m"
+        ]),
+        "negative trend": ([
+            "grayscale": "\x1b[0;38;5;236m",
+            "3-bit": "\x1b[0;31m",
+            "8-bit": "\x1b[0;38;5;124m",
+            "24-bit": "\x1b[0;38;2;140;0;0m"
+        ]),
+        "value": ([
+            "grayscale": "\x1b[0;38;5;249m",
+            "3-bit":"\x1b[0;33m",
+            "8-bit": "\x1b[0;38;5;144m",
+            "24-bit": "\x1b[0;38;2;180;180;100m"
+        ]),
+        "import": ([
+            "grayscale": "\x1b[0;38;5;250;1m",
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;2;1m",
+            "24-bit": "\x1b[0;38;2;160;220;60;1m"
+        ]),
+        "specialty": ([
+            "grayscale": "\x1b[0;38;5;248m",
+            "3-bit": "\x1b[0;32;1m",
+            "8-bit": "\x1b[0;38;5;149;1m",
+            "24-bit": "\x1b[0;38;2;210;220;40;1m"  
+        ]),   
+    ]),
     "selector":([
         "number":([
             "grayscale": "\x1b[0;38;5;237;1m",
@@ -468,7 +506,7 @@ private nosave mapping decorators = ([
             "8-bit": "\x1b[0;38;5;144m",
             "24-bit": "\x1b[0;38;2;100;180;150m"  
         ]),
-        "data" : ([
+        "data": ([
             "grayscale": "\x1b[0;38;5;249m",
             "3-bit":"\x1b[0;33m",
             "8-bit": "\x1b[0;38;5;144m",

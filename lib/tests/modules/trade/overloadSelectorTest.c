@@ -63,8 +63,6 @@ private void forceOverload()
 //{
 //    forceOverload();
 //
-//    printf("%O\n", Player->getVehicle());
-//
 //    resetPlayerMessages();
 //    OverloadSelector->initiateSelector(Player);
 //

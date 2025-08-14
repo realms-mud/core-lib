@@ -143,23 +143,32 @@ protected nomask int processSelection(string selection)
             switch(selectionType)
             {
                 case "status":
+                {
                     displayTradingStatus();
                     justDisplayedStatus = 1;
                     ret = -1;
                     break;
+                }
                 case "prices":
+                {
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/marketPricesSelector.c");
                     break;
+                }
                 case "contracts":
+                {
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/contractsSelector.c");
                     break;
+                }
                 case "bank":
+                {
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/bankSelector.c");
                     break;
+                }
                 case "selectPort":
+                {
                     SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/selectPortSelector.c");
-                    SubselectorObj->setParentSelector(this_object());
                     break;
+                }
             }
 
             if (SubselectorObj)

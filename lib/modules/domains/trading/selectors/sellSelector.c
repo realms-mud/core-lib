@@ -53,7 +53,7 @@ protected nomask void setUpUserForSelection()
                         if (objectp(itemObj))
                         {
                             int price = environment && function_exists("getItemPrice", environment)
-                                ? environment->getItemPrice(item)
+                                ? to_int(environment->getItemPrice(item))
                                 : itemObj->query("value");
                             int quantity = cargo[item];
                             int totalValue = price * quantity;

@@ -5,7 +5,6 @@
 inherit "/lib/core/baseSelector.c";
 
 private object Port;
-private object ParentSelector;
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -15,18 +14,12 @@ public void setPort(object port)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void setParentSelector(object parent)
-{
-    ParentSelector = parent;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
 {
     AllowUndo = 0;
     AllowAbort = 1;
-    Description = "Port Menu";
-    Type = "PortMenu";
+    Description = "Select a task";
+    Type = "Port Menu";
     Data = ([]);
 }
 
@@ -69,8 +62,8 @@ protected nomask void setUpUserForSelection()
         "canShow": 1
     ]);
     Data[to_string(counter++)] = ([
-        "name": "Return to Main Menu",
-        "type": "return",
+        "name": "Return to Previous Menu",
+        "type": "exit",
         "description": "Return to the main trading menu.",
         "canShow": 1
     ]);
@@ -79,40 +72,45 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
+    int ret = -1;
     if (User && Data[selection]["canShow"])
     {
         string type = Data[selection]["type"];
+        ret = (type == "exit");
+
         switch(type)
         {
             case "buy":
+            {
                 SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/buySelector.c");
                 SubselectorObj->setPort(Port);
                 break;
+            }
             case "sell":
+            {
                 SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/sellSelector.c");
                 SubselectorObj->setPort(Port);
                 break;
+            }
             case "warehouse":
+            {
                 SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/warehouseSelector.c");
                 SubselectorObj->setPort(Port);
                 break;
+            }
             case "travel":
+            {
                 SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/travelSelector.c");
                 SubselectorObj->setPort(Port);
                 break;
+            }
             case "hireCrew":
-                // Use workerSelector for hiring crew, passing the port context
+            {
                 SubselectorObj = clone_object("/lib/modules/domains/workerSelector.c");
                 SubselectorObj->setDomain("trading");
                 SubselectorObj->setLocation(Port);
-                SubselectorObj->setParentSelector(this_object());
                 break;
-            case "return":
-                if (ParentSelector)
-                {
-                    ParentSelector->onSelectorCompleted(this_object());
-                }
-                return 1;
+            }
         }
 
         if (SubselectorObj)
@@ -120,18 +118,26 @@ protected nomask int processSelection(string selection)
             move_object(SubselectorObj, User);
             SubselectorObj->registerEvent(this_object());
             SubselectorObj->initiateSelector(User);
-            return 1;
         }
     }
-    return -1;
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorCompleted(object caller)
+public nomask void onSelectorCompleted(object caller) 
 {
-    setUpUserForSelection();
-    tell_object(User, displayMessage());
+    if (User) 
+    {
+        setUpUserForSelection();
+        tell_object(User, displayMessage());
+    }
     caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int suppressMenuDisplay()
+{
+    return objectp(SubselectorObj);
 }
 
 /////////////////////////////////////////////////////////////////////////////

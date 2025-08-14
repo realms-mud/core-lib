@@ -7,6 +7,13 @@ inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
 private string selectedDestination;
+private object Port;
+
+/////////////////////////////////////////////////////////////////////////////
+public void setPort(object port)
+{
+    Port = port;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
@@ -22,14 +29,8 @@ public nomask void InitializeSelector()
 protected nomask void setUpUserForSelection()
 {
     object environment = environment(User);
-    if (!environment || !environment->isPort()) 
-    {
-        tell_object(User, configuration->decorate("You must be at a trading port to plan travel.",
-                   "failure", "selector", User->colorConfiguration()));
-        return;
-    }
     
-    mapping routes = environment->getTradeRoutes();
+    mapping routes = Port->getTradeRoutes();
     
     Data = ([]);
     int counter = 1;
@@ -78,7 +79,7 @@ protected nomask void setUpUserForSelection()
     }
     
     Data[to_string(counter++)] = ([
-        "name": "Return to Trading Menu",
+        "name": "Return to Previous Menu",
         "type": "exit", 
         "description": "Return to the main trading menu.",
         "canShow": 1

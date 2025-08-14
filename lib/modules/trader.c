@@ -110,6 +110,12 @@ public object *getVehicles()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public object *getVehiclesAtLocation(string location)
+{
+    return filter(vehicles, (: $1->getLocation() == $2:), location);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int assignVehicleToTradeRun(string tradeRunId, object vehicle)
 {
     int ret = 0;

@@ -5,13 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private object TradingDictionary;
-private object ParentSelector;
-
-/////////////////////////////////////////////////////////////////////////////
-public void setParentSelector(object parent)
-{
-    ParentSelector = parent;
-}
+private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
@@ -48,8 +42,8 @@ protected nomask void setUpUserForSelection()
     }
 
     Data[to_string(counter++)] = ([
-        "name": "Cancel",
-        "type": "cancel",
+        "name": "Return to Previous Menu",
+        "type": "exit",
         "description": "Return to the main trading menu.",
         "canShow": 1
     ]);
@@ -58,42 +52,42 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
+    int ret = -1;
     if (User && Data[selection]["canShow"])
     {
-        string type = Data[selection]["type"];
-        if (type == "cancel")
-        {
-            if (ParentSelector)
-            {
-                ParentSelector->onSelectorCompleted(this_object());
-            }
-            return 1;
-        }
-        if (type == "port")
+        ret = (Data[selection]["type"] == "exit");
+
+        if (Data[selection]["type"] == "port")
         {
             object port = Data[selection]["port"];
             if (objectp(port))
             {
-                object portMenu = clone_object("/lib/modules/domains/trading/selectors/portMenuSelector.c");
-                portMenu->setPort(port);
-                portMenu->setParentSelector(ParentSelector);
-                move_object(portMenu, User);
-                portMenu->initiateSelector(User);
-                return 1;
+                SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/portMenuSelector.c");
+                SubselectorObj->setPort(port);
+                move_object(SubselectorObj, User);
+                SubselectorObj->registerEvent(this_object());
+                SubselectorObj->initiateSelector(User);
             }
         }
     }
-    return -1;
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void onSelectorCompleted(object caller)
+public nomask void onSelectorCompleted(object caller) 
 {
-    if (ParentSelector)
+    if (User) 
     {
-        ParentSelector->onSelectorCompleted(this_object());
+        setUpUserForSelection();
+        tell_object(User, displayMessage());
     }
     caller->cleanUp();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask int suppressMenuDisplay()
+{
+    return objectp(SubselectorObj);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -3,15 +3,8 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object ParentSelector;
 private object Port;
 private object *Vehicles = ({});
-
-/////////////////////////////////////////////////////////////////////////////
-public void setParentSelector(object parent)
-{
-    ParentSelector = parent;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 public void setPort(object port)
@@ -84,7 +77,7 @@ protected nomask void setUpUserForSelection()
 
     Data[to_string(counter++)] = ([
         "name": "Cancel",
-        "type": "cancel",
+        "type": "exit",
         "description": "Return to previous menu.",
         "canShow": 1
     ]);
@@ -93,25 +86,16 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
-    if (User && Data[selection])
+    int ret = -1;
+
+    if (User && Data[selection]["canShow"])
     {
         string type = Data[selection]["type"];
-        if (type == "cancel")
-        {
-            if (ParentSelector)
-            {
-                ParentSelector->onVehicleSelected(0);
-            }
-            return 1;
-        }
-        if (type == "vehicle" && Data[selection]["canShow"])
+        ret = type == "exit";
+
+        if (type == "vehicle")
         {
             object vehicle = Data[selection]["vehicle"];
-            if (ParentSelector)
-            {
-                ParentSelector->onVehicleSelected(vehicle);
-            }
-            return 1;
         }
     }
     return -1;
