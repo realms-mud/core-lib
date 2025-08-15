@@ -4,7 +4,7 @@
 //*****************************************************************************
 
 private string *hitService = 0;
-private string *simileService = 0;
+private string *simileDictionary = 0;
 private mapping damageMessages = ([ ]);
 
 private string damageType = "generic";
@@ -141,7 +141,7 @@ protected nomask int addHitDictionary(string *dictionary)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int addSimileDictionary(string *dictionary)
 {
-    simileService = dictionary + ({ });
+    simileDictionary = dictionary + ({ });
     return 1;
 }
 
