@@ -284,7 +284,7 @@ void DrinkAlcoholIncreasesIntoxication()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Intoxicated());
 }
 
@@ -292,7 +292,7 @@ void DrinkAlcoholIncreasesIntoxication()
 void DrinkAlcoholAddsDrunkTrait()
 {
     ExpectFalse(Character.isTraitOf("/lib/instances/traits/biological/drunk.c"));
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectTrue(Character.isTraitOf("/lib/instances/traits/biological/drunk.c"));
 }
 
@@ -301,10 +301,10 @@ void CanDrinkAlcoholToDunkedness()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Intoxicated());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 17);
     ExpectTrue(Character.drinkAlcohol(drink));
 
@@ -320,7 +320,7 @@ void DrinkAlcoholFiresOnDrunkWhenInebriated()
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character.registerEvent(subscriber);
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 20);
 
     string expected = "*event handler: onDrunk called, caller: /lib/tests/support/services/mockPlayer.c";
@@ -336,10 +336,10 @@ void DrinkAlcoholAfterDrunkFails()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Intoxicated());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 17);
     ExpectTrue(Character.drinkAlcohol(drink));
 
@@ -355,10 +355,10 @@ void SobrietyReturnsWhenIntoxIsZero()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Intoxicated());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", -5);
     ExpectTrue(Character.drinkAlcohol(drink));
 
@@ -374,7 +374,7 @@ void DrinkAlcoholFiresOnSoberWhenNoLongerInebriated()
     Character.registerEvent(subscriber);
 
     string expected = "*event handler: onSober called, caller: /lib/tests/support/services/mockPlayer.c";
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", -5);
 
     string err = catch (Character.drinkAlcohol(drink); nolog);
@@ -605,7 +605,7 @@ void DrinkIncreasesSoaked()
 {
     ExpectEq(0, Character.Soaked());
 
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Soaked());
 }
 
@@ -614,10 +614,10 @@ void CanDrinkToSoaked()
 {
     ExpectEq(0, Character.Soaked());
 
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Soaked());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 17);
     ExpectTrue(Character.drink(drink));
 
@@ -634,7 +634,7 @@ void DrinkFiresOnSoakedWhenTooMuchHasBeenDrunk()
 
     string expected = "*event handler: onSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 17);
 
     string err = catch (Character.drink(drink); nolog);
@@ -647,10 +647,10 @@ void DrinkAfterSoakedFails()
 {
     ExpectEq(0, Character.Soaked());
 
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Soaked());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", 17);
 
     ExpectTrue(Character.drink(drink));
@@ -667,10 +667,10 @@ void ThirstReturnsWhenSoakedIsZero()
 {
     ExpectEq(0, Character.Soaked());
 
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/trippel.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/trippel.c")));
     ExpectEq(3, Character.Soaked());
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", -10);
 
     ExpectTrue(Character.drink(drink));
@@ -687,7 +687,7 @@ void DrinkFiresOnNoLongerSoakedWhenNoLongerSoaked()
 
     string expected = "*event handler: onNoLongerSoaked called, caller: /lib/tests/support/services/mockPlayer.c";
 
-    object drink = clone_object("/lib/instances/items/drinks/trippel.c");
+    object drink = clone_object("/lib/instances/items/drinks/beer/trippel.c");
     drink.set("biological strength", -10);
 
     string err = catch (Character.drink(drink); nolog);
