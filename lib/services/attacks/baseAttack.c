@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 
-private string *hitService = 0;
+private string *hitDictionary = 0;
 private string *simileDictionary = 0;
 private mapping damageMessages = ([ ]);
 
@@ -134,7 +134,7 @@ public nomask string getMessage(int damageInflicted)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int addHitDictionary(string *dictionary)
 {
-    hitService = dictionary + ({ });
+    hitDictionary = dictionary + ({ });
     return 1;
 }
 
