@@ -2,7 +2,6 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/core/thing.c";
 
 // Common trading items available across all ports
 private mapping tradingItems = ([
@@ -729,4 +728,123 @@ public nomask string formatTimeLeft(int minutes)
     if (result == "")
         result = "less than a minute";
     return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getCombinedCapacityCache(object user, object port)
+{
+    mapping cache = ([ 
+        "has capacity": 0, 
+        "max capacity": 0,
+        "vehicle capacity": 0,
+        "warehouse capacity": 0
+    ]);
+
+    // Vehicle capacity
+    int vehicleCapacity = 0;
+    object *vehicles = user->getVehicles();
+    if (sizeof(vehicles))
+    {
+        foreach(object vehicle in vehicles)
+        {
+            if (objectp(vehicle))
+            {
+                vehicleCapacity += vehicle->getFreeSpace();
+            }
+        }
+    }
+
+    // Warehouse capacity
+    int warehouseCapacity = 0;
+    object warehouse = user->getWarehouseAtPort(port);
+    if (objectp(warehouse))
+    {
+        warehouseCapacity = warehouse->getFreeSpace();
+    }
+
+    int totalCapacity = vehicleCapacity + warehouseCapacity;
+    cache["has capacity"] = (totalCapacity > 0);
+    cache["max capacity"] = totalCapacity;
+    cache["vehicle capacity"] = vehicleCapacity;
+    cache["warehouse capacity"] = warehouseCapacity;
+
+    return cache;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canBuy(object user, object port, string item)
+{
+    mapping cache = getCombinedCapacityCache(user, port);
+    float price = port->getItemPrice(item);
+    return (user->getCash() >= to_int(price)) && (cache["has capacity"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getMaxBuyQuantity(object user, object port, string item)
+{
+    mapping cache = getCombinedCapacityCache(user, port);
+    float price = port->getItemPrice(item);
+    int canAfford = user->getCash() / to_int(price);
+    int maxCapacity = cache["max capacity"];
+    if (maxCapacity > 0 && maxCapacity < canAfford)
+    {
+        return maxCapacity;
+    }
+    return canAfford;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int canSell(object user, object port, string item)
+{
+    int vehicleStock = 0;
+    int warehouseStock = 0;
+
+    // Vehicle stock
+    object *vehicles = user->getVehicles();
+    if (sizeof(vehicles))
+    {
+        foreach(object vehicle in vehicles)
+        {
+            if (objectp(vehicle))
+            {
+                vehicleStock += vehicle->getCargoQuantity(item);
+            }
+        }
+    }
+
+    // Warehouse stock
+    object warehouse = user->getWarehouseAtPort(port);
+    if (objectp(warehouse))
+    {
+        warehouseStock = warehouse->getCargoQuantity(item);
+    }
+
+    return (vehicleStock + warehouseStock) > 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getMaxSellQuantity(object user, object port, string item)
+{
+    int vehicleStock = 0;
+    int warehouseStock = 0;
+
+    object *vehicles = user->getVehicles();
+    if (sizeof(vehicles))
+    {
+        foreach(object vehicle in vehicles)
+        {
+            if (objectp(vehicle))
+            {
+                vehicleStock += vehicle->getCargoQuantity(item);
+            }
+        }
+    }
+
+    object warehouse = user->getWarehouseAtPort(port);
+    if (objectp(warehouse))
+    {
+        warehouseStock = warehouse->getCargoQuantity(item);
+    }
+
+    return vehicleStock + warehouseStock;
 }
