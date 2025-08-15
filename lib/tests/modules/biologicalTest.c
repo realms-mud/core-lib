@@ -387,7 +387,7 @@ void DetoxBeginsAfterIntox()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
     Character.heart_beat();
     ExpectEq("You suddenly without reason get a bad headache.\n", Character.caughtMessage());
 }
@@ -395,7 +395,7 @@ void DetoxBeginsAfterIntox()
 /////////////////////////////////////////////////////////////////////////////
 void DetoxFromAlcoholFiresOnBeginDetox()
 {
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character.registerEvent(subscriber);
@@ -411,7 +411,7 @@ void HeadacheEndsAfterDetox()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
     Character.heart_beat();
     Character.catch_tell("");
     for(int i = 0; i < 29; i++)
@@ -429,7 +429,7 @@ void OnDetoxifiedFiresAfterDetox()
 {
     ExpectEq(0, Character.Intoxicated());
 
-    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drinkAlcohol(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
     Character.heart_beat();
     for (int i = 0; i < 29; i++)
     {
@@ -700,7 +700,7 @@ void ThirstBeginsAfterSoaked()
 {
     ExpectEq(0, Character.Soaked());
 
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
     Character.heart_beat();
     ExpectEq("You feel a bit dry in the mouth.\n", Character.caughtMessage());
 }
@@ -708,7 +708,7 @@ void ThirstBeginsAfterSoaked()
 /////////////////////////////////////////////////////////////////////////////
 void NoLongerSoakedFiresOnNoLongerSoaked()
 {
-    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/kolsche.c")));
+    ExpectTrue(Character.drink(load_object("/lib/instances/items/drinks/beer/kolsche.c")));
 
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");
     Character.registerEvent(subscriber);
