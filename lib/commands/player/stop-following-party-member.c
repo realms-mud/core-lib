@@ -18,7 +18,7 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object partyService = getService("party");
         object party = initiator->getParty();
 
         if (party)
@@ -31,7 +31,7 @@ public nomask int execute(string command, object initiator)
                 tell_object(initiator, sprintf("You are no longer following : %s\n",
                     wasFollowing));
 
-                object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                object channels = getService("channel");
                 channels->broadcastMessage(party->partyName(),
                     sprintf("%s is no longer following %s.",
                         capitalize(initiator->RealName()),

@@ -35,18 +35,18 @@ protected int addSpecification(string type, mixed value)
 
     if(sscanf(type, "bonus %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
-        if(objectp(bonusDictionary) &&
-            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
+        object bonusService = getService("bonuses");
+        if(objectp(bonusService) &&
+            bonusService->isValidBonusModifier(bonusToCheck, value))
         {
             specificationData[type] = value * applyModifier;
             ret = 1;
         }
-        else if(bonusDictionary)
+        else if(bonusService)
         {
             raise_error(sprintf("ERROR - passiveResearchItem: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
-                type, program_name(getDictionary("bonuses"))));
+                type, program_name(getService("bonuses"))));
         }
     }
     else
@@ -62,13 +62,13 @@ private nomask int isBonusAttack(string bonusItem)
     int ret = 0;
     string attackType = 0;
 
-    object attacksDictionary = getDictionary("attacks");
+    object attacksService = getService("attacks");
 
     if(bonusItem && stringp(bonusItem) && member(specificationData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
-        attacksDictionary)
+        attacksService)
     {
-        ret = (attacksDictionary->getAttack(attackType) != 0) ||
+        ret = (attacksService->getAttack(attackType) != 0) ||
               (attackType == "weapon");
     }
     return ret;
@@ -83,7 +83,7 @@ public nomask mapping *getExtraAttacks()
     {
         foreach(string key in keys)
         {
-            // attacksDictionary is verfied to exist via call to
+            // attacksService is verfied to exist via call to
             // isBonusAttack
             string attack = 0;
             if (key == "bonus weapon attack")
@@ -98,7 +98,7 @@ public nomask mapping *getExtraAttacks()
                intp(specificationData[key]))
             {
                 mapping attackMap =
-                    getDictionary("attacks")->getAttackMapping(attack, 
+                    getService("attacks")->getAttackMapping(attack, 
                     specificationData[key]);
                 attackMap["to hit"] = 60;
                 if(attackMap)
@@ -118,10 +118,10 @@ public nomask int queryBonus(string bonus)
     string bonusToCheck;
     if(sscanf(bonus, "bonus %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
+        object bonusService = getService("bonuses");
 
-        if(bonusDictionary && objectp(bonusDictionary) &&
-            bonusDictionary->isValidBonus(bonusToCheck) &&
+        if(bonusService && objectp(bonusService) &&
+            bonusService->isValidBonus(bonusToCheck) &&
            member(specificationData, bonus))
         {
             ret = specificationData[bonus];

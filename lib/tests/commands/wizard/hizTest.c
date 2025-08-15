@@ -42,7 +42,7 @@ void Setup()
     setUsers(({ Wizard, Wizard2 }));
 
     Wizard2.resetCatchList();
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Wizard);
     channels.registerUser(Wizard2);
 }

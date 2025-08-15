@@ -93,10 +93,10 @@ public nomask void create()
         Setup();
     }
 
-    if (getDictionary("environment") && stringp(elementName) &&
-        !getDictionary("environment")->isValidEnvironmentItem(elementName))
+    if (getService("environment") && stringp(elementName) &&
+        !getService("environment")->isValidEnvironmentItem(elementName))
     {
-        getDictionary("environment")->registerElement(program_name(this_object()));
+        getService("environment")->registerElement(program_name(this_object()));
     }
     reset();
 }
@@ -105,7 +105,7 @@ public nomask void create()
 private nomask string translateStringToLanguage(string text, string language)
 {
     return this_player() ? 
-        getDictionary("environment")->applyLanguageSkillToMessage(
+        getService("environment")->applyLanguageSkillToMessage(
             language, text, this_player()->getSkill(language)) : text;
 }
 
@@ -286,7 +286,7 @@ protected nomask varargs void addAlias(string alias, string state)
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addSeasonDescription(string season, string *list, string state)
 {
-    if (getDictionary("environment")->isValidSeason(season))
+    if (getService("environment")->isValidSeason(season))
     {
         state = setupDescriptionForState(state);
         descriptionData[state][season] = list;
@@ -296,20 +296,20 @@ protected nomask varargs void addSeasonDescription(string season, string *list, 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs void addTimeOfDayDescription(string period, string *list, string state, string season)
 {
-    if (getDictionary("environment")->isValidTimeOfDay(period))
+    if (getService("environment")->isValidTimeOfDay(period))
     {
         state = setupDescriptionForState(state);
         if (!member(descriptionData[state], period))
         {
             descriptionData[state][period] = ([]);
         }
-        if (getDictionary("environment")->isValidSeason(season))
+        if (getService("environment")->isValidSeason(season))
         {
             descriptionData[state][period][season] = list;
         }
         else
         {
-            foreach(string item in getDictionary("environment")->seasons())
+            foreach(string item in getService("environment")->seasons())
             {
                 descriptionData[state][period][item] = list;
             }

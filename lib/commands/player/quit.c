@@ -38,7 +38,7 @@ public nomask int execute(string command, object initiator)
             say(sprintf("%s left the game.\n", capitalize(initiator->RealName())));
         }
 
-        object channels = load_object("/lib/dictionaries/channelDictionary.c");
+        object channels = getService("channel");
         if (channels)
         {
             channels->broadcastMessage("status", sprintf("%s (%s) has left"

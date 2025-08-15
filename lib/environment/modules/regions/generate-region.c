@@ -84,7 +84,7 @@ private nomask void generateRegion(string enterFrom, string location,
     EnterFrom = enterFrom;
 
     if ((MaxX > 9) && (MaxY > 9) && 
-        Dictionary->canConstructSettlement(this_object()))
+        RegionService->canConstructSettlement(this_object()))
     {
         generateSettlement();
     }

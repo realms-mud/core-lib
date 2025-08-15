@@ -25,10 +25,10 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
-    if (dictionary)
+    object Service = getService("domain");
+    if (Service)
     {
-        Data = dictionary->getTaskMenu(User);
+        Data = Service->getTaskMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": "Exit Task Management Menu",

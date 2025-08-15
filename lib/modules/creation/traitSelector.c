@@ -18,9 +18,9 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object racialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
+    object RaceService = getService("racial");
 
-    TotalPoints = racialDictionary->backgroundTraitPoints(User->Race());
+    TotalPoints = RaceService->backgroundTraitPoints(User->Race());
 
     Data = ([
         "1":([
@@ -128,7 +128,7 @@ public nomask void onSelectorCompleted(object caller)
         if (stringp(caller->selection()))
         {
             UndoDetails += ({ caller->selection() });
-            TotalPoints -= load_object("/lib/dictionaries/traitsDictionary.c")->
+            TotalPoints -= getService("traits")->
                 traitObject(caller->selection())->query("cost");
         }
 
@@ -171,7 +171,7 @@ protected nomask void undoSelection(string selection)
             UndoDetails = ({});
         }
         User->removeTrait(traitToRemove);
-        TotalPoints += load_object("/lib/dictionaries/traitsDictionary.c")->
+        TotalPoints += getService("traits")->
             traitObject(traitToRemove)->query("cost");
     }
 }

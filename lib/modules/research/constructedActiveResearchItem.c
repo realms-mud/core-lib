@@ -24,7 +24,7 @@ private nomask int validateConstructedSet(mapping constructedList)
     if (mappingp(constructedList) && sizeof(constructedList))
     {
         ret = 1;
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(string key in m_indices(constructedList))
         {
             ret &&= (member(validConstructedTypes, key) > -1) &&
@@ -36,7 +36,7 @@ private nomask int validateConstructedSet(mapping constructedList)
                 foreach(string researchItem in constructedList[key])
                 {
                     object researchObj =
-                        dictionary->researchObject(researchItem);
+                        Service->researchObject(researchItem);
 
                     ret &&= objectp(researchObj);
                     if (ret)
@@ -485,7 +485,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     mapping rules = query("constructed rules");
     if (mappingp(rules) && sizeof(rules))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(string ruleType in m_indices(rules))
         {
             ret += configuration->decorate(sprintf("%-15s : ", "Creation Rules"),
@@ -497,7 +497,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
             {
                 foreach(string item in rules[ruleType])
                 {
-                    object researchObj = dictionary->researchObject(item);
+                    object researchObj = Service->researchObject(item);
                     if (researchObj)
                     {
                         ret += sprintf("%-18s", "") +

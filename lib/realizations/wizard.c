@@ -23,7 +23,7 @@ public nomask string wizardInformation()
     string ret = "";
 
     string colorConfiguration = colorConfiguration();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
 
     if (wizardLevel)
     {
@@ -63,7 +63,7 @@ public nomask int setWizardLevel(string level, object granter)
         int canGrantLevel = (member(granterGroups, level) > -1) &&
             interactive(granter);
 
-        object logs = getDictionary("log");
+        object logs = getService("log");
         if (canGrantLevel)
         {
             ret = 1;

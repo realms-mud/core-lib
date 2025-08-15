@@ -18,7 +18,7 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object partyService = getService("party");
         string targetName =
             regreplace(command, "follow party member (.*)", "\\1", 1);
 
@@ -54,7 +54,7 @@ public nomask int execute(string command, object initiator)
 
                     party->follow(members[0], initiator);
 
-                    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                    object channels = getService("channel");
                     channels->broadcastMessage(party->partyName(),
                         sprintf("%s is now following %s.",
                             capitalize(initiator->RealName()),

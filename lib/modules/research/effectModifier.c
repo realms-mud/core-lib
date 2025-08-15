@@ -190,7 +190,7 @@ private nomask int modifierValueByType(object initiator, mapping modifier)
                     (member(modifier["types"], weapon->query("weapon type")) > -1))
                 {
                     string *damageTypes = 
-                        getDictionary("materials")->getMaterialDamageType(
+                        getService("materials")->getMaterialDamageType(
                             weapon) +
                         m_indices(weapon->query("enchantments"));
 
@@ -300,21 +300,21 @@ protected nomask object getModifierObject(object owner, mapping specificationDat
 
         ret->set("fully qualified name", fullyQualifiedName);
         string *listOfSpecifications = m_indices(specificationData);
-        object bonusDictionary = getDictionary("bonuses");
-        if (bonusDictionary && listOfSpecifications)
+        object bonusService = getService("bonuses");
+        if (bonusService && listOfSpecifications)
         {
             string bonusToCheck;
             foreach(string specification in listOfSpecifications)
             {
                 if (sscanf(specification, "bonus %s", bonusToCheck) &&
-                    bonusDictionary->isValidBonus(bonusToCheck))
+                    bonusService->isValidBonus(bonusToCheck))
                 {
                     ret->set(specification,
                         applyModifiers(ritualMultiplier(specification,
                             specificationData[specification]), owner, specificationData["modifiers"]));
                 }
                 else if (sscanf(specification, "apply %s", bonusToCheck) &&
-                    bonusDictionary->isValidBonus(bonusToCheck))
+                    bonusService->isValidBonus(bonusToCheck))
                 {
                     ret->set(bonusToCheck,
                         applyModifiers(ritualMultiplier(bonusToCheck,
@@ -325,7 +325,7 @@ protected nomask object getModifierObject(object owner, mapping specificationDat
                     }
                 }
                 else if (sscanf(specification, "penalty to %s", bonusToCheck) &&
-                    bonusDictionary->isValidBonus(bonusToCheck))
+                    bonusService->isValidBonus(bonusToCheck))
                 {
                     ret->set(specification,
                         applyModifiers(ritualMultiplier(specification,

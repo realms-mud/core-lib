@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
-private object Dictionary;
+private object commandsService;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void SetupCommand()
@@ -11,7 +11,7 @@ public nomask void SetupCommand()
     CommandType = "General";
     addCommandTemplate("help [##Item##]");
 
-    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
+    commandsService = getService("commands");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -45,7 +45,7 @@ private nomask string categoriesHelpList(string *commandCategories,
             "Player Information", "Interactions", "General", "Emote / Soul" }),
             commandCategory) > -1) ? 15 : 25;
 
-        message += Dictionary->buildBanner(colorConfiguration, charset,
+        message += commandsService->buildBanner(colorConfiguration, charset,
             "top", capitalize(commandCategory), "Help");
 
         string *commandEntries = sort_array(m_indices(
@@ -59,7 +59,7 @@ private nomask string categoriesHelpList(string *commandCategories,
             {
                 if (count)
                 {
-                    message += Dictionary->banneredContent(
+                    message += commandsService->banneredContent(
                         colorConfiguration, charset, helpRow);
                     helpRow = "";
                 }
@@ -75,9 +75,9 @@ private nomask string categoriesHelpList(string *commandCategories,
             count++;
         }
 
-        message += Dictionary->banneredContent(colorConfiguration, charset, helpRow);
+        message += commandsService->banneredContent(colorConfiguration, charset, helpRow);
     }
-    message += Dictionary->buildBanner(colorConfiguration, charset, "center", "", "");
+    message += commandsService->buildBanner(colorConfiguration, charset, "center", "", "");
 
     return message;
 }
@@ -162,7 +162,7 @@ private nomask string displayHelpDetails(string commandFile, string command,
     }
     else if (commandObj)
     {
-        ret += Dictionary->buildBanner(colorConfiguration, charset, "top", "Help for", command) +
+        ret += commandsService->buildBanner(colorConfiguration, charset, "top", "Help for", command) +
             commandObj->displaySynopsis(command, colorConfiguration, charset);
 
         ret += commandObj->displayUsageDetails(command, colorConfiguration, charset) +

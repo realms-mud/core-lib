@@ -28,8 +28,8 @@ private nomask int dispositionTime()
 /////////////////////////////////////////////////////////////////////////////
 private nomask int isValidFaction(string faction)
 {
-    object dictionary = getDictionary("factions");
-    return dictionary && dictionary->isValidFaction(faction);
+    object Service = getService("factions");
+    return Service && Service->isValidFaction(faction);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,11 @@ public nomask int factionReputationToward(string faction)
 public nomask int joinFaction(string faction)
 {
     int ret = 0;
-    object dictionary = getDictionary("factions");
+    object Service = getService("factions");
 
-    if (dictionary && isValidFaction(faction) &&
+    if (Service && isValidFaction(faction) &&
         (member(memberOfFactions, faction) < 0) &&
-        dictionary->canJoinFaction(faction, this_object()))
+        Service->canJoinFaction(faction, this_object()))
     {
         ret = 1;
         int reputation = 0;
@@ -120,10 +120,10 @@ public nomask int joinFaction(string faction)
 public nomask int leaveFaction(string faction)
 {
     int ret = 0;
-    object dictionary = getDictionary("factions");
+    object Service = getService("factions");
 
-    if (dictionary && isValidFaction(faction) &&
-        dictionary->canLeaveFaction(faction, this_object()) &&
+    if (Service && isValidFaction(faction) &&
+        Service->canLeaveFaction(faction, this_object()) &&
         memberOfFaction(faction))
     {
         ret = 1;
@@ -158,7 +158,7 @@ private nomask varargs void checkForDispositionChange(string faction, int killed
         (factions[faction]["disposition time"] + 28800)) &&
         (abs(reputationTrend) > 1.25)) || (abs(reputationTrend) > 25.25))
     {
-        string newDisposition = getDictionary("factions")->getDisposition(
+        string newDisposition = getService("factions")->getDisposition(
                 factions[faction]["disposition"], reputationTrend);
 
         factions[faction] = ([
@@ -172,7 +172,7 @@ private nomask varargs void checkForDispositionChange(string faction, int killed
     else if (killedMember)
     {
         factions[faction] = ([
-            "disposition":getDictionary("factions")->dispositionFromMurder(faction,
+            "disposition":getService("factions")->dispositionFromMurder(faction,
                 factions[faction]["disposition"]),
             "reputation": factions[faction]["reputation"],
             "number of interactions": 1,

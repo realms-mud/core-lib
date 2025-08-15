@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-protected object SkillDictionary;
+protected object SkillService;
 private string *ChosenSkills = ({});
 private int isLevelAdvance = 0;
 private int PossibleSkills = 0;
@@ -29,10 +29,10 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     NumColumns = 2;
 
-    SkillDictionary = load_object("/lib/dictionaries/skillsDictionary.c");
-    if (!SkillDictionary)
+    SkillService = getService("skills");
+    if (!SkillService)
     {
-        raise_error("skillSelectorSubmenu: ERROR - The skills dictionary "
+        raise_error("skillSelectorSubmenu: ERROR - The skills service "
             "is not present!\n");
     }
 }

@@ -23,7 +23,7 @@ void CleanUp()
 void SettingInvalidBonusThrowsError()
 {
     string err = catch (Trait.addSpecification("bonus llama", 2); nolog);
-    string expectedError = "*ERROR - trait: the 'bonus llama' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - trait: the 'bonus llama' specification must be a valid modifier as defined in /lib/services/bonusesService.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }

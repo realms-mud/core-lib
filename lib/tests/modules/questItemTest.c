@@ -61,7 +61,7 @@ void Init()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Quester = clone_object("/lib/tests/support/services/combatWithMockServices.c");

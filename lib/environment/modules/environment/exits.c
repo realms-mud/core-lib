@@ -59,7 +59,7 @@ protected nomask void addDoor(string direction, string path, string door,
         door = "/lib/environment/doors/door.c";
     }
 
-    object doorObj = getDictionary("environment")->getDoor(door);
+    object doorObj = getService("environment")->getDoor(door);
     if (doorObj)
     {
         if (!member(environmentalElements["doors"], state))
@@ -67,7 +67,7 @@ protected nomask void addDoor(string direction, string path, string door,
             environmentalElements["doors"][state] = ([]);
         }
         environmentalElements["doors"][state][path] = doorObj;
-        if (getDictionary("environment")->isValidKey(key))
+        if (getService("environment")->isValidKey(key))
         {
             doorObj->setKey(key);
         }

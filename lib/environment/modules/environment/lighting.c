@@ -19,7 +19,7 @@ private nomask int getElementLighting()
             foreach(string element in elements)
             {
                 object elementObj =
-                    getDictionary("environment")->environmentalObject(element);
+                    getService("environment")->environmentalObject(element);
                 if (elementObj && 
                     (!this_player() || elementObj->elementIsAvailable(this_player())))
                 {
@@ -51,7 +51,7 @@ public nomask int isIlluminated()
     if (!ret)
     {
         ret = sizeof(environmentalElements["terrain"]) ?
-            getDictionary("environment")->ambientLight() : 0;
+            getService("environment")->ambientLight() : 0;
 
         if (member(environmentalElements["terrain"], "legacy"))
         {
@@ -79,7 +79,7 @@ protected nomask void setUpActiveLighting()
                 m_indices(environmentalElements[elementType]),
                 (: $3->environmentalObject($1) &&
                     $3->environmentalObject($1)->canActivateLightSource($2) :),
-                currentState(), getDictionary("environment"));
+                currentState(), getService("environment"));
 
             haveActiveLights ||= sizeof(elements);
         }
@@ -108,7 +108,7 @@ private nomask string *getActiveLightElements(string filter)
                     $4->environmentalObject($1)->canActivateLightSource($2) &&
                     (!$3 || (member($4->environmentalObject($1)->aliases($2), 
                         $3) > -1))) :),
-                currentState(), filter, getDictionary("environment"));
+                currentState(), filter, getService("environment"));
             if (sizeof(elements))
             {
                 ret += elements;
@@ -159,7 +159,7 @@ private nomask int manipulateLights(string whichLights, string action,
         foreach(string element in elements)
         {
             object elementObj =
-                getDictionary("environment")->environmentalObject(element);
+                getService("environment")->environmentalObject(element);
 
             if (elementObj &&
                 (!this_player() || elementObj->elementIsAvailable(this_player())))

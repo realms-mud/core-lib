@@ -18,11 +18,11 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object partyService = getService("party");
 
-        if (dictionary->hasPendingPartyRequest(initiator))
+        if (partyService->hasPendingPartyRequest(initiator))
         {
-            dictionary->acceptPartyRequest(initiator);
+            partyService->acceptPartyRequest(initiator);
 
             object party = initiator->getParty();
             if (party)

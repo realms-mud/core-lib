@@ -76,7 +76,7 @@ public nomask int load(string enterFrom, string location)
 
     if (PersistRegion && stringp(enterFrom) && stringp(location))
     {
-        mapping data = Dictionary->loadRegion(enterFrom, location);
+        mapping data = RegionService->loadRegion(enterFrom, location);
 
         if (mappingp(data) && sizeof(data))
         {
@@ -104,7 +104,7 @@ public nomask void save()
 {
     if (PersistRegion)
     {
-        Dictionary->saveRegion(this_object());
+        RegionService->saveRegion(this_object());
     }
 }
 
@@ -250,7 +250,7 @@ private nomask string *generateStaticRoomFiles(string roomPath)
 
     foreach(mapping room in rooms)
     {
-        mapping roomData = Dictionary->generateRoomData(this_object(), room);
+        mapping roomData = RegionService->generateRoomData(this_object(), room);
 
         string file = generateStaticTerrain(roomData, fileTemplate);
         file = generateStaticElements(roomData, file);

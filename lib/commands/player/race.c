@@ -26,7 +26,7 @@ public nomask int execute(string command, object initiator)
                 ret = 1;
                 message = regreplace(command, "^race (.+)", "\\1");
 
-                object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                object channels = getService("channel");
                 if (channels && sizeof(message))
                 {
                     channels->broadcastMessage(initiator->Race(), message, initiator);

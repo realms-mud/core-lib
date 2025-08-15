@@ -7,7 +7,7 @@
 //
 // Description: Thing is the base object for all basic lib objects contained
 //              within the base Realms object library. It provides access to
-//              dictionaries and the message parser as well as integration
+//              services and the message parser as well as integration
 //              with the various lib modules.
 //
 //*****************************************************************************

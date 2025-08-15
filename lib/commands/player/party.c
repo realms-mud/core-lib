@@ -39,7 +39,7 @@ public nomask int execute(string command, object initiator)
                 ret = 1;
                 message = regreplace(command, "^party (.+)", "\\1");
 
-                object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                object channels = getService("channel");
                 if (channels && sizeof(message))
                 {
                     channels->broadcastMessage(party->partyName(), message, initiator);

@@ -13,7 +13,7 @@ void Setup()
 {
     Equipment = clone_object("/lib/items/equipment"); 
    
-    object dictionary = load_object("/lib/dictionaries/guildsDictionary.c");
+    object Service = getService("guilds");
     object mageGuild = load_object("/lib/tests/support/guilds/mageGuild.c");
 
     object fighterGuild = load_object("/lib/tests/support/guilds/fighterGuild.c");
@@ -218,7 +218,7 @@ void CanSetSkillsPrerequisite()
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidSkillsPrerequisite()
 {
-    string expected = "*Equipment: The 'skills' element must be a string as defined in the keys of the skills mapping in /lib/dictionaries/skillsDictionary.c.\n";
+    string expected = "*Equipment: The 'skills' element must be a string as defined in the keys of the skills mapping in /lib/services/skillsService.c.\n";
 
     string err = catch (Equipment.set("prerequisites", (["skills":(["basket weaving":5]) ]) ); nolog);
     ExpectEq(expected, err, "skills prerequisites must be valid");

@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object Service;
 private string Source;
 private object SubselectorObj;
 private int TotalPoints;
@@ -26,13 +26,13 @@ public nomask void showTreeElements()
 protected mapping researchMenuSetup(string type)
 {
     mapping menu = ([]);
-    object researchObj = Dictionary->researchObject(type);
+    object researchObj = Service->researchObject(type);
     if (researchObj)
     {
         SuppressColon = 1;
         Description = "Details:\n" + 
-            Dictionary->getResearchDetails(type) +
-            Dictionary->displayTreePrerequisites(type, User);
+            Service->getResearchDetails(type) +
+            Service->displayTreePrerequisites(type, User);
 
         if (User->isResearching(type))
         {
@@ -60,19 +60,19 @@ protected mapping researchMenuSetup(string type)
         }
     }
 
-    researchObj = Dictionary->researchTree(type);
+    researchObj = Service->researchTree(type);
     if (!sizeof(menu) && researchObj)
     {
         SuppressColon = 1;
         NumColumns = 2;
         Description = "Details:\n" +
-            Dictionary->getResearchTreeDetails(type, User);
-        menu = Dictionary->getResearchTreeChoices(type, User);
+            Service->getResearchTreeDetails(type, User);
+        menu = Service->getResearchTreeChoices(type, User);
     }
     else if (!sizeof(menu))
     {
         NumColumns = 2;
-        menu = Dictionary->getResearchOfType(type, User, ShowTreeElements);
+        menu = Service->getResearchOfType(type, User, ShowTreeElements);
     }
     return menu + ([]);
 }
@@ -84,7 +84,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     Type = "Research";
-    Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
+    Service = getService("research");
 
     Data = ([]);
 }

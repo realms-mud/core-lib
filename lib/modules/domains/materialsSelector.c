@@ -8,12 +8,12 @@ private string Location;
 private string MaterialType;
 private string Selection;
 private mapping MaterialData = 0;
-private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object Service = getService("domain");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    mapping info = dictionary->getPlayerHolding(User, location);
+    mapping info = Service->getPlayerHolding(User, location);
     if (mappingp(info))
     {
         Location = location;
@@ -42,19 +42,19 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
-    if (dictionary && MaterialData)
+    if (Service && MaterialData)
     {
         Description = "Select Material:\n" +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "select the type of %s to construct with for your %s "
                 "of your %s project at %s.", MaterialType,
                 MaterialData["selected section"], MaterialData["name"],
-                dictionary->getLocationDisplayName(Location)), 78),
+                Service->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration);
 
-        Data = dictionary->getMaterialsOfType(MaterialType, User,
+        Data = Service->getMaterialsOfType(MaterialType, User,
             MaterialData);
     }
 }

@@ -38,7 +38,7 @@ varargs object PrepActor(int useMock, string characterName)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ignoreList += ({ "PrepActor" });
     setRestoreCaller(this_object());

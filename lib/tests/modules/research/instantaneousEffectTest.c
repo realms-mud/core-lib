@@ -303,7 +303,7 @@ void CanAddDamageTypeSpecification()
 void CannotAddInvalidDamageTypeSpecification()
 {
     string err = catch (Effect.testAddInstantaneousSpecification("damage type", "turnip"); nolog);
-    string expectedError = "*ERROR - instantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksDictionary.\n";
+    string expectedError = "*ERROR - instantaneousEffect: the 'damage type' specification must be a valid attack type as defined in attacksService.\n";
     ExpectEq(expectedError, err);
 }
 

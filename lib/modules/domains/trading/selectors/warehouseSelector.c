@@ -19,10 +19,10 @@ private void displayWarehouseStatus()
     mapping warehouse = User->getWarehouse(Port);
     string colorConfig = User->colorConfiguration();
     
-    object commandsDictionary = getDictionary("commands");
+    object commandsService = getService("commands");
     string charset = User->charsetConfiguration();
     
-    string warehouseDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
+    string warehouseDisplay = commandsService->buildBanner(colorConfig, charset, "top", 
                              sprintf("%s Warehouse", Port));
     
     // Calculate warehouse used space
@@ -37,7 +37,7 @@ private void displayWarehouseStatus()
     }
     
     // Capacity information
-    warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    warehouseDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Capacity: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d/%d units used", used, warehouse["capacity"]),
                                "field data", "research", colorConfig) +
@@ -48,7 +48,7 @@ private void displayWarehouseStatus()
     // Rental information
     int daysLeft = (warehouse["rent paid"] - time()) / 86400;
     string rentColor = (daysLeft < 7) ? "penalty modifier" : "field data";
-    warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    warehouseDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Rent Status: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d days remaining", daysLeft),
                                rentColor, "research", colorConfig));
@@ -56,7 +56,7 @@ private void displayWarehouseStatus()
     // Inventory listing
     if (sizeof(warehouse["inventory"]))
     {
-        warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        warehouseDisplay += commandsService->banneredContent(colorConfig, charset,
                            configuration->decorate("Stored Inventory:", "field header", "research", colorConfig));
         
         string *items = m_indices(warehouse["inventory"]);
@@ -70,16 +70,16 @@ private void displayWarehouseStatus()
                              configuration->decorate(sprintf("%d units", warehouse["inventory"][item]),
                              "data", "selector", colorConfig);
             
-            warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset, itemLine);
+            warehouseDisplay += commandsService->banneredContent(colorConfig, charset, itemLine);
         }
     }
     else
     {
-        warehouseDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        warehouseDisplay += commandsService->banneredContent(colorConfig, charset,
                            configuration->decorate("Warehouse is empty.", "note", "selector", colorConfig));
     }
     
-    warehouseDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    warehouseDisplay += commandsService->buildBanner(colorConfig, charset, "bottom", "-");
     
     tell_object(User, warehouseDisplay);
 }

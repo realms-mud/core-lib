@@ -192,7 +192,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     mapping rules = query("combination rules");
     if (mappingp(rules) && sizeof(rules))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
 
         string *ruleList = sort_array(m_indices(rules), (: $1 > $2 :));
         foreach(string ruleType in ruleList)
@@ -206,7 +206,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
             {
                 foreach(string item in rules[ruleType])
                 {
-                    object researchObj = dictionary->researchObject(item);
+                    object researchObj = Service->researchObject(item);
                     if (researchObj && researchObj->query("usage summary"))
                     {
                         ret += sprintf("%-18s", "") +

@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object ShopService;
 private object SubselectorObj;
 private object Store;
 
@@ -22,7 +22,7 @@ public nomask void InitializeSelector()
     Description = "From this menu, you can view and purchase items";
     Type = "Purchase Items";
 
-    Dictionary = getDictionary("shop");
+    ShopService = getService("shop");
     Data = ([]);
 }
 
@@ -35,7 +35,7 @@ protected nomask void setUpUserForSelection()
             "set.\n");
     }
 
-    string *itemTypes = Dictionary->getBuyItemTypes(Store);
+    string *itemTypes = ShopService->getBuyItemTypes(Store);
     int menuItem = 1;
 
     if (sizeof(itemTypes))

@@ -47,7 +47,7 @@ void CorpseProperlySetUp()
 /////////////////////////////////////////////////////////////////////////////
 void CorpseDecays()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
 

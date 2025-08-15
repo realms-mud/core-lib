@@ -551,7 +551,7 @@ private string inventoryLongDescription(int brief, object configuration,
 public varargs string long(int brief)
 {
     string colorConfiguration = this_object()->colorConfiguration();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
 
     string ret = basicLongDescription(configuration, colorConfiguration);
 

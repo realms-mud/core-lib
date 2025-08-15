@@ -147,8 +147,8 @@ private void generateMarketEvent()
     
     marketModifiers[affectedCategory] = modifier;
     
-    // Notify players in the area using configuration dictionary
-    object configDict = getDictionary("configuration");
+    // Notify players in the area using configuration service
+    object configDict = getService("configuration");
     string marketNews = configDict->decorate("Market News: ", "success", "quests", "3-bit") +
                        configDict->decorate(eventDesc, "description", "selector", "3-bit");
     
@@ -188,7 +188,7 @@ private mapping generateRandomContract()
         "quantity": quantity,
         "destination": destination,
         "reward": baseReward,
-        "deadline": getDictionary("trading")->generateDeadline(
+        "deadline": getService("trading")->generateDeadline(
             (7 + random(14)) * 1440),
         "description": sprintf("Deliver %d units of %s to %s", 
                               quantity, itemType, capitalize(destination))
@@ -307,7 +307,7 @@ public int deliverContract(object user, string contractId)
 
         if (remaining > 0)
         {
-            object tradingDict = getDictionary("trading");
+            object tradingDict = getService("trading");
             string itemType = contract["item type"];
             string *validBlueprints = user->getItemListForType(itemType);
 
@@ -515,7 +515,7 @@ public int buyFromPlayer(object player, string itemBlueprint, int quantity)
             // Add to player's vehicle using proper accessor
             trader->addCargoToVehicle(itemBlueprint, quantity);
             
-            object configDict = getDictionary("configuration");
+            object configDict = getService("configuration");
             string colorConfig = player->colorConfiguration();
             
             tell_object(player, configDict->decorate(
@@ -530,7 +530,7 @@ public int buyFromPlayer(object player, string itemBlueprint, int quantity)
         }
         else
         {
-            object configDict = getDictionary("configuration");
+            object configDict = getService("configuration");
             string colorConfig = player->colorConfiguration();
             
             tell_object(player, configDict->decorate(
@@ -559,7 +559,7 @@ public int sellToPlayer(object player, string itemBlueprint, int quantity)
             trader->removeCargoFromVehicle(itemBlueprint, quantity);
             trader->addCash(totalValue);
             
-            object configDict = getDictionary("configuration");
+            object configDict = getService("configuration");
             string colorConfig = player->colorConfiguration();
             
             tell_object(player, configDict->decorate(
@@ -574,7 +574,7 @@ public int sellToPlayer(object player, string itemBlueprint, int quantity)
         }
         else
         {
-            object configDict = getDictionary("configuration");
+            object configDict = getService("configuration");
             string colorConfig = player->colorConfiguration();
             
             tell_object(player, configDict->decorate(
@@ -621,9 +621,9 @@ public nomask void reset()
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    object tradingDictionary = getDictionary("trading");
-    if (tradingDictionary && (portName != "Unknown Port"))
+    object TradingService = getService("trading");
+    if (TradingService && (portName != "Unknown Port"))
     {
-        tradingDictionary->registerPort(this_object());
+        TradingService->registerPort(this_object());
     }
 }

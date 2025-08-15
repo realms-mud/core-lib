@@ -39,45 +39,45 @@ The equipment system is defined across multiple files and directories:
 - **lib/items/weapon.c** - Weapon-specific properties
 - **lib/items/armor.c** - Armor-specific properties
 
-###### Dictionary Files
-- **lib/dictionaries/materialsDictionary.c** - Main materials system
-- **lib/dictionaries/craftingDictionary.c** - Crafting system integration
+###### Service Files
+- **lib/services/materialsService.c** - Main materials system
+- **lib/services/craftingService.c** - Crafting system integration
 
 ###### Blueprint Definitions
-- **lib/dictionaries/materials/weapons.h** - All weapon blueprints
-- **lib/dictionaries/materials/armor.h** - All armor blueprints
-- **lib/dictionaries/materials/instruments.h** - Musical instrument blueprints
-- **lib/dictionaries/materials/potions.h** - Potion and consumable blueprints
-- **lib/dictionaries/materials/food.h** - Food item blueprints
-- **lib/dictionaries/materials/drinks.h** - Drink item blueprints
+- **lib/services/materials/weapons.h** - All weapon blueprints
+- **lib/services/materials/armor.h** - All armor blueprints
+- **lib/services/materials/instruments.h** - Musical instrument blueprints
+- **lib/services/materials/potions.h** - Potion and consumable blueprints
+- **lib/services/materials/food.h** - Food item blueprints
+- **lib/services/materials/drinks.h** - Drink item blueprints
 
 ###### Component System
-- **lib/dictionaries/materials/components.h** - Component definitions and types
-- **lib/dictionaries/materials/components/blueprints.c** - Blueprint processing
-- **lib/dictionaries/materials/components/core.c** - Core component functionality
-- **lib/dictionaries/materials/components/generate-component.c** - Component generation
-- **lib/dictionaries/materials/components/generate-random-item.c** - Random item creation
+- **lib/services/materials/components.h** - Component definitions and types
+- **lib/services/materials/components/blueprints.c** - Blueprint processing
+- **lib/services/materials/components/core.c** - Core component functionality
+- **lib/services/materials/components/generate-component.c** - Component generation
+- **lib/services/materials/components/generate-random-item.c** - Random item creation
 
 ###### Material Properties
-- **lib/dictionaries/materials/materials.h** - All material definitions
-- **lib/dictionaries/materials/components/general-properties.c** - General material properties
-- **lib/dictionaries/materials/components/combat-properties.c** - Combat-related properties
-- **lib/dictionaries/materials/components/item-statistics.c** - Item stat calculations
-- **lib/dictionaries/materials/components/weapon-statistics.c** - Weapon stat calculations  
-- **lib/dictionaries/materials/components/armor-statistics.c** - Armor stat calculations
+- **lib/services/materials/materials.h** - All material definitions
+- **lib/services/materials/components/general-properties.c** - General material properties
+- **lib/services/materials/components/combat-properties.c** - Combat-related properties
+- **lib/services/materials/components/item-statistics.c** - Item stat calculations
+- **lib/services/materials/components/weapon-statistics.c** - Weapon stat calculations  
+- **lib/services/materials/components/armor-statistics.c** - Armor stat calculations
 
 ###### Enchantment System
-- **lib/dictionaries/materials/enchantments.h** - Enchantment definitions
-- **lib/dictionaries/materials/components/enchantments.c** - Enchantment processing
+- **lib/services/materials/enchantments.h** - Enchantment definitions
+- **lib/services/materials/components/enchantments.c** - Enchantment processing
 
 ###### Crafting System
-- **lib/dictionaries/crafting/core.c** - Core crafting functionality
-- **lib/dictionaries/crafting/blueprints.c** - Blueprint integration
-- **lib/dictionaries/crafting/materials.c** - Material handling
-- **lib/dictionaries/crafting/equipment-materials.c** - Equipment material assignment
-- **lib/dictionaries/crafting/craft-item.c** - Item crafting logic
-- **lib/dictionaries/crafting/enchantments.c** - Enchantment crafting
-- **lib/dictionaries/crafting/generate-item.c** - Item generation
+- **lib/services/crafting/core.c** - Core crafting functionality
+- **lib/services/crafting/blueprints.c** - Blueprint integration
+- **lib/services/crafting/materials.c** - Material handling
+- **lib/services/crafting/equipment-materials.c** - Equipment material assignment
+- **lib/services/crafting/craft-item.c** - Item crafting logic
+- **lib/services/crafting/enchantments.c** - Enchantment crafting
+- **lib/services/crafting/generate-item.c** - Item generation
 
 ###### Crafting Interface
 - **lib/modules/crafting/selectMaterialsSelector.c** - Main crafting interface
@@ -90,8 +90,8 @@ The equipment system is defined across multiple files and directories:
 ##### The Blueprint System
 
 Every piece of equipment starts with a blueprint that defines its fundamental 
-characteristics. Blueprints are stored in **lib/dictionaries/materials/weapons.h** 
-(for weapons) and **lib/dictionaries/materials/armor.h** (for armor).
+characteristics. Blueprints are stored in **lib/services/materials/weapons.h** 
+(for weapons) and **lib/services/materials/armor.h** (for armor).
 
 ~~~c
 set("blueprint", "long sword");
@@ -139,7 +139,7 @@ The blueprint system provides:
 
 ##### Component System
 
-Components are defined in **lib/dictionaries/materials/components.h** 
+Components are defined in **lib/services/materials/components.h** 
 and define the parts that make up complex items:
 
 ~~~c
@@ -184,7 +184,7 @@ Each component defines:
 
 ##### Material System
 
-Materials are defined in **lib/dictionaries/materials/materials.h**
+Materials are defined in **lib/services/materials/materials.h**
 and determine how different substances affect item properties:
 
 ~~~c
@@ -232,7 +232,7 @@ Material properties include:
 
 ##### Enchantment System
 
-Enchantments are defined in **lib/dictionaries/materials/enchantments.h**:
+Enchantments are defined in **lib/services/materials/enchantments.h**:
 
 ~~~c
 protected mapping equipmentEnchantments = ([
@@ -289,7 +289,7 @@ This creates a weapon using all blueprint defaults:
 - Material defaults to "iron" (from blueprint)
 - Weapon class, defense class, and attack values come from blueprint
 - Weight, encumbrance, and value are blueprint-derived
-- The materials dictionary automatically applies iron's properties
+- The materials service automatically applies iron's properties
 
 ##### Advanced Equipment with Crafting Materials Structure
 
@@ -396,7 +396,7 @@ protected void Setup()
 ##### The Crafting Materials System
 
 The `crafting materials` mapping allows detailed component specification. 
-The structure is processed by **lib/dictionaries/crafting/equipment-materials.c**:
+The structure is processed by **lib/services/crafting/equipment-materials.c**:
 
 ###### Component Structure
 Each component (blade, crossguard, hilt, pommel, etc.) contains:
@@ -411,7 +411,7 @@ Each component (blade, crossguard, hilt, pommel, etc.) contains:
 ~~~
 
 ###### Material Types
-Components can use various material types as defined in **lib/dictionaries/materials/materials.h**:
+Components can use various material types as defined in **lib/services/materials/materials.h**:
 - **metal**: steel, iron, admantite, mithril, galvorn, gold, platinum
 - **wood**: oak, koa, ironwood, maple
 - **leather**: leather, pegasus leather, dragon leather
@@ -420,7 +420,7 @@ Components can use various material types as defined in **lib/dictionaries/mater
 - **stone**: granite, marble, obsidian
 
 ###### Component Types
-Each component can have different styles/forms as defined in **lib/dictionaries/materials/components.h**:
+Each component can have different styles/forms as defined in **lib/services/materials/components.h**:
 - **Blade types**: Type X, Type XIII, Curved, Serrated
 - **Crossguard types**: Simple, Ornate, Dracolich Form, Eagle Wing
 - **Hilt types**: Spiral Hilt, Wrapped Grip, Carved Handle
@@ -582,7 +582,7 @@ Equipment locations use bitfield constants from **lib/include/inventory.h**:
 ##### Material-Driven Descriptions
 
 Equipment descriptions can incorporate the actual materials used. 
-This is processed by **lib/dictionaries/crafting/equipment-materials.c**:
+This is processed by **lib/services/crafting/equipment-materials.c**:
 
 ~~~c
 set("long", "This masterwork blade features a metal blade with an ornate "
@@ -656,17 +656,17 @@ Equipment integrates with:
 - **lib/items/armor.c** - Armor-specific properties
 
 ###### Definition Files
-- **lib/dictionaries/materials/weapons.h** - Weapon blueprints
-- **lib/dictionaries/materials/armor.h** - Armor blueprints
-- **lib/dictionaries/materials/components.h** - Component definitions
-- **lib/dictionaries/materials/materials.h** - Material properties
-- **lib/dictionaries/materials/enchantments.h** - Enchantment definitions
+- **lib/services/materials/weapons.h** - Weapon blueprints
+- **lib/services/materials/armor.h** - Armor blueprints
+- **lib/services/materials/components.h** - Component definitions
+- **lib/services/materials/materials.h** - Material properties
+- **lib/services/materials/enchantments.h** - Enchantment definitions
 
 ###### Processing Files
-- **lib/dictionaries/materialsDictionary.c** - Material system
-- **lib/dictionaries/craftingDictionary.c** - Crafting system
-- **lib/dictionaries/crafting/equipment-materials.c** - Material assignment
-- **lib/dictionaries/crafting/enchantments.c** - Enchantment processing
+- **lib/services/materialsService.c** - Material system
+- **lib/services/craftingService.c** - Crafting system
+- **lib/services/crafting/equipment-materials.c** - Material assignment
+- **lib/services/crafting/enchantments.c** - Enchantment processing
 
 ###### Interface Files
 - **lib/modules/crafting/selectMaterialsSelector.c** - Main crafting interface

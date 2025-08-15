@@ -8,7 +8,7 @@ object Player;
 object SelectPortSelector;
 object MockPort1;
 object MockPort2;
-object TradingDictionary;
+object TradingService;
 object ParentSelector;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,9 +39,9 @@ void Setup()
     MockPort2->setPortName("Port Beta");
     MockPort2->setShortDescription("A quiet river port.");
 
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
-    TradingDictionary->registerPort(MockPort1);
-    TradingDictionary->registerPort(MockPort2);
+    TradingService = getService("trading");
+    TradingService->registerPort(MockPort1);
+    TradingService->registerPort(MockPort2);
 
     if (objectp(SelectPortSelector)) destruct(SelectPortSelector);
     SelectPortSelector = clone_object("/lib/modules/domains/trading/selectors/selectPortSelector.c");

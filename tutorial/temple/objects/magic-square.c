@@ -325,7 +325,7 @@ public string displayMagicSquare()
 {
     object user = this_player();
 
-    object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+    object configuration = getService("configuration");
     string colorConfig = (objectp(user) && user->colorConfiguration()) ?
         user->colorConfiguration() : "none";
 
@@ -376,13 +376,12 @@ public void finishPress()
                 clone_object("/tutorial/temple/objects/rune-negation.c");
             move_object(rune, environment(this_object()));
 
-            object stateMachineDictionary =
-                load_object("/lib/dictionaries/stateMachineDictionary.c");
+            object stateMachineService = getService("stateMachine");
 
             object party = this_player()->getParty();
             string owner = party ? party->partyName() : this_player()->RealName();
 
-            object stateMachine = stateMachineDictionary->getStateMachine(
+            object stateMachine = stateMachineService->getStateMachine(
                 "/tutorial/temple/stateMachine/obedienceStateMachine.c",
                 owner);
 

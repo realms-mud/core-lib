@@ -70,7 +70,7 @@ private int checkItemCapacity(string item, mapping capacityCache)
 /////////////////////////////////////////////////////////////////////////////
 private void setUpCategorySelection()
 {
-    object tradingDict = getDictionary("trading");
+    object tradingDict = getService("trading");
     string *categories = tradingDict->getTradingTypes();
     int counter = 1;
     
@@ -122,7 +122,7 @@ private void setUpCategorySelection()
 /////////////////////////////////////////////////////////////////////////////
 private void setUpItemSelection()
 {
-    object tradingDict = getDictionary("trading");
+    object tradingDict = getService("trading");
     string *items = tradingDict->getItemListForType(selectedCategory);
     int counter = 1;
     
@@ -195,7 +195,7 @@ private void setUpItemSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     
     if (objectp(Port) && Port->isPort()) 
     {
@@ -251,7 +251,7 @@ protected nomask int processSelection(string selection)
         // Check if the selection is disabled
         if (member(Data[selection], "is disabled") && Data[selection]["is disabled"])
         {
-            object configuration = getDictionary("configuration");
+            object configuration = getService("configuration");
             string message;
             
             if (Data[selection]["type"] == "category")
@@ -330,7 +330,7 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User) 
     {
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
         if (caller == SubselectorObj)
         {
             // Transaction completed, show confirmation
@@ -355,7 +355,7 @@ public nomask void onSelectorAborted(object caller)
 {
     if (User) 
     {
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
         if (caller == SubselectorObj)
         {
             tell_object(User, configuration->decorate(
@@ -397,7 +397,7 @@ protected nomask string displayDetails(string choice)
 /////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice) 
 {
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     string displayType = (member(Data[choice], "is disabled") &&
         Data[choice]["is disabled"]) ? "choice disabled" : "choice enabled";
     string colorConfiguration = User->colorConfiguration();
@@ -449,7 +449,7 @@ protected string choiceFormatter(string choice)
 protected string descriptionFormatter(string choice)
 {
     string ret = "";
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     string colorConfiguration = User->colorConfiguration();
     
     if (member(Data[choice], "description"))

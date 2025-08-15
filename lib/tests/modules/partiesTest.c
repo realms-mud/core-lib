@@ -6,7 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Creator;
 object Member;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 int AdvanceToLevel(object user, int level, string guild)
@@ -25,7 +25,7 @@ int AdvanceToLevel(object user, int level, string guild)
 void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
 
     load_object("/lib/tests/support/guilds/testGuild.c");
@@ -46,7 +46,7 @@ void Setup()
     Member.joinGuild("test");
     AdvanceToLevel(Member, 2, "test");
 
-    Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+    Service = getService("party");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,13 +54,13 @@ void CleanUp()
 {
     destruct(Creator);
     destruct(Member);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanGetParty()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     ExpectEq(({ "/lib/modules/party/party.c" }), inherit_list(party));
@@ -69,6 +69,6 @@ void CanGetParty()
 /////////////////////////////////////////////////////////////////////////////
 void CanGetPartyName()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     ExpectEq("Test party", Creator.partyName());
 }

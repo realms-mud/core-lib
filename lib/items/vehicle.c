@@ -4,16 +4,16 @@
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
 
-private object vehicleDictionary;
+private object vehicleService;
 private int currentStructure = -1;
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    vehicleDictionary = getDictionary("vehicle");
-    if (!objectp(vehicleDictionary))
+    vehicleService = getService("vehicle");
+    if (!objectp(vehicleService))
     {
-        raise_error("vehicle.c: Could not load vehicleDictionary.\n");
+        raise_error("vehicle.c: Could not load vehicleService.\n");
     }
 }
 
@@ -22,9 +22,9 @@ public nomask mapping getBlueprint()
 {
     mapping result = ([]);
     string type = query("vehicle type");
-    if (stringp(type) && objectp(vehicleDictionary))
+    if (stringp(type) && objectp(vehicleService))
     {
-        result = vehicleDictionary->queryVehicleBlueprint(type);
+        result = vehicleService->queryVehicleBlueprint(type);
     }
     return result;
 }
@@ -37,9 +37,9 @@ public nomask mapping getComponent(string slot)
     if (mappingp(components) && member(components, slot))
     {
         string name = components[slot];
-        if (stringp(name) && objectp(vehicleDictionary))
+        if (stringp(name) && objectp(vehicleService))
         {
-            result = vehicleDictionary->queryComponent(name);
+            result = vehicleService->queryComponent(name);
         }
     }
     return result;
@@ -50,7 +50,7 @@ public nomask mapping getAllComponentsWithDetails()
 {
     mapping result = ([]);
     mapping components = query("components");
-    if (mappingp(components) && objectp(vehicleDictionary))
+    if (mappingp(components) && objectp(vehicleService))
     {
         string *slots = m_indices(components);
         foreach(string slot in slots)
@@ -58,7 +58,7 @@ public nomask mapping getAllComponentsWithDetails()
             string name = components[slot];
             if (stringp(name))
             {
-                result[slot] = vehicleDictionary->queryComponent(name);
+                result[slot] = vehicleService->queryComponent(name);
             }
             else
             {
@@ -301,7 +301,7 @@ public nomask int installComponent(string slot, string componentName)
 {
     int result = 0;
     mapping components = query("components") || ([]);
-    if (objectp(vehicleDictionary) && vehicleDictionary->queryComponent(componentName))
+    if (objectp(vehicleService) && vehicleService->queryComponent(componentName))
     {
         components[slot] = componentName;
         set("components", components);
@@ -448,7 +448,7 @@ public nomask varargs int set(string element, mixed data)
     {
         case "vehicle type":
         {
-            if (!data || !stringp(data) || !vehicleDictionary->queryVehicleBlueprint(data))
+            if (!data || !stringp(data) || !vehicleService->queryVehicleBlueprint(data))
             {
                 raise_error("vehicle.c: Invalid or missing vehicle type.\n");
             }

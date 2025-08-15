@@ -21,7 +21,7 @@ public string Type()
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setKey(string key, int startUnlocked)
 {
-    if (getDictionary("environment")->isValidKey(key))
+    if (getService("environment")->isValidKey(key))
     {
         Key = key;
         isCurrentlyLocked = !startUnlocked;
@@ -38,13 +38,13 @@ public nomask void setPickLockLevel(int level)
 private nomask varargs mapping setLockedBySeason(string season)
 {
     mapping data = ([]);
-    if (getDictionary("environment")->isValidSeason(season))
+    if (getService("environment")->isValidSeason(season))
     {
         data[season] = 1;
     }
     else
     {
-        foreach(string item in getDictionary("environment")->seasons())
+        foreach(string item in getService("environment")->seasons())
         {
             data[item] = 1;
         }
@@ -56,13 +56,13 @@ private nomask varargs mapping setLockedBySeason(string season)
 private nomask varargs mapping setLockedTime(string period, string season)
 {
     mapping data = ([]);
-    if (getDictionary("environment")->isValidTimeOfDay(period))
+    if (getService("environment")->isValidTimeOfDay(period))
     {
         data[period] = setLockedBySeason(season);
     }
     else
     {
-        foreach(string timeOfDay in getDictionary("environment")->timesOfDay())
+        foreach(string timeOfDay in getService("environment")->timesOfDay())
         {
             data[timeOfDay] = setLockedBySeason(season);
         }
@@ -103,8 +103,8 @@ public int isLocked()
 {
     int ret = isCurrentlyLocked;
 
-    string timeOfDay = getDictionary("environment")->timeOfDay();
-    string season = getDictionary("environment")->season();
+    string timeOfDay = getService("environment")->timeOfDay();
+    string season = getService("environment")->season();
 
     if (!wasManipulated && member(whenLocked, State) &&
         member(whenLocked[State], timeOfDay) &&

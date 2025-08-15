@@ -18,9 +18,9 @@ protected int addSpecification(string type, mixed value)
        sscanf(type, "penalty to %s", bonusToCheck) ||
        sscanf(type, "apply %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
-        if(bonusDictionary &&
-            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
+        object bonusService = getService("bonuses");
+        if(bonusService &&
+            bonusService->isValidBonusModifier(bonusToCheck, value))
         {
             specificationData[type] = value;
 
@@ -31,19 +31,19 @@ protected int addSpecification(string type, mixed value)
             }
             ret = 1;
         }
-        else if(bonusDictionary)
+        else if(bonusService)
         {
             raise_error(sprintf("ERROR - persistedActiveResearchItem: the '%s'"
                 " specification must be a valid modifier as defined in %s\n",
-                type, program_name(getDictionary("bonuses"))));
+                type, program_name(getService("bonuses"))));
         }
     }
     else if (member(({"trait", "negative trait"}), type) > -1)
     {
-        object traitsDictionary = getDictionary("traits");
+        object traitsService = getService("traits");
 
-        if (stringp(value) && traitsDictionary &&
-            traitsDictionary->isValidPersistedTrait(value))
+        if (stringp(value) && traitsService &&
+            traitsService->isValidPersistedTrait(value))
         {
             specificationData[type] = value;
             ret = 1;

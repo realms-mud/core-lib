@@ -37,7 +37,7 @@ void SettingInvalidBonusThrowsError()
     string error = catch (Bonus.setup("blarg", 5); nolog);
 
     ExpectEq("*EnvironmentalElement: The bonus \"blarg\" must be valid as "
-        "specified in bonusesDictionary.\n", error);
+        "specified in bonusesService.\n", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -246,12 +246,12 @@ void CanApplyBonusToEnvironmentReturnsCorrectlyWhenMoonPhaseSet()
 
     ExpectFalse(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(2);
+    object Service = getService("environment");
+    Service.setDay(2);
 
     ExpectTrue(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -261,15 +261,15 @@ void CanApplyBonusToEnvironmentReturnsCorrectlyWhenTimeOfDaySet()
     Bonus.setupBonus(Environment);
     Bonus.limitBonusByTimeOfDay("noon");
 
-    object dictionary = getDictionary("environment");
-    dictionary.timeOfDay("morning");
+    object Service = getService("environment");
+    Service.timeOfDay("morning");
 
     ExpectFalse(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     ExpectTrue(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -279,15 +279,15 @@ void CanApplyBonusToEnvironmentReturnsCorrectlyWhenSeasonSet()
     Bonus.setupBonus(Environment);
     Bonus.limitBonusBySeason("autumn");
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(20);
+    object Service = getService("environment");
+    Service.setDay(20);
 
     ExpectFalse(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    dictionary.setDay(260);
+    Service.setDay(260);
     ExpectTrue(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -309,8 +309,8 @@ void CorrectlyDisplaysAndResolvesMultipleLimitors()
 
     ExpectFalse(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(260);
+    object Service = getService("environment");
+    Service.setDay(260);
     ExpectFalse(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
     Player.addSkillPoints(20);
@@ -323,5 +323,5 @@ void CorrectlyDisplaysAndResolvesMultipleLimitors()
 
     ExpectTrue(Bonus.canApplyBonusToEnvironment(Environment, Player));
 
-    destruct(dictionary);
+    destruct(Service);
 }

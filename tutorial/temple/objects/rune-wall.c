@@ -237,7 +237,7 @@ public int placeRune(string rune)
                 "fits and ##Infinitive::place## the rune of %s on the wall.\n";
 
             object configuration =
-                load_object("/lib/dictionaries/configurationDictionary.c");
+                getService("configuration");
 
             object messageParser = load_object("/lib/core/messageParser.c");
             messageParser->displayMessage(sprintf(msg, whichRune), this_player(), 0,
@@ -245,13 +245,12 @@ public int placeRune(string rune)
 
             if (whichRune == "resistance")
             {
-                object stateMachineDictionary =
-                    load_object("/lib/dictionaries/stateMachineDictionary.c");
+                object stateMachineService = getService("stateMachine");
 
                 object party = this_player()->getParty();
                 string owner = party ? party->partyName() : this_player()->RealName();
 
-                object stateMachine = stateMachineDictionary->getStateMachine(
+                object stateMachine = stateMachineService->getStateMachine(
                     "/tutorial/temple/stateMachine/obedienceStateMachine.c",
                     owner);
 

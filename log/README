@@ -1,4 +1,4 @@
-Error logs and other items saved via the log dictionary will be placed in 
+Error logs and other items saved via the log service will be placed in 
 this directory.
 
 To create your own custom log files, you can do so in code like this:
@@ -6,7 +6,7 @@ To create your own custom log files, you can do so in code like this:
 void someFunc()
 {
     ...
-    getDictionary("log")->log("MyLogName", "Some message");
+    getService("log")->log("MyLogName", "Some message");
     ...
 }
 

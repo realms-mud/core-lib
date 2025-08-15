@@ -13,9 +13,9 @@ public nomask void SetupCommand()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object languageDictionary()
+private nomask object languageService()
 {
-    return load_object("/lib/dictionaries/languageDictionary.c");
+    return getService("language");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ private nomask void shoutMessage(string message, string messageTemplate,
         string newMessage = message;
         if (language)
         {
-            newMessage = languageDictionary()->applyLanguageSkillToReceivedMessage(language, message,
+            newMessage = languageService()->applyLanguageSkillToReceivedMessage(language, message,
                 target, initiator);
         }
         string parsedMessage = regreplace(messageTemplate, "##Message##", newMessage);
@@ -102,7 +102,7 @@ public nomask int execute(string command, object initiator)
             language = regreplace(command, ".*-l(anguage)* (high elven|[A-Za-z]+) .*", "\\2", 1);
             command = regreplace(command, "-l(anguage)* (high elven|[A-Za-z]+)", "", 1);
             messageTemplate = regreplace(messageTemplate, "##Language##", 
-                languageDictionary()->getSpokenLanguage(language, initiator));
+                languageService()->getSpokenLanguage(language, initiator));
             messageTemplate = regreplace(messageTemplate, "##LanguagePreposition##", " in ");
         }
         else

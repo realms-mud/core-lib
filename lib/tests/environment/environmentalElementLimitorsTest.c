@@ -6,15 +6,15 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Element;
 object Player;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 
     Element = clone_object("/lib/tests/support/environment/testElement.c");
 
@@ -28,7 +28,7 @@ void CleanUp()
 {
     destruct(Player);
     destruct(Element);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,7 +38,7 @@ void CanLimitDisplayBySeason()
     Element.testLimitDisplayBySeason(season);
 
     ExpectFalse(Element.elementIsAvailable(Player), "value is not set");
-    Dictionary.setDay(260);
+    Service.setDay(260);
     ExpectTrue(Element.elementIsAvailable(Player), "value is set");
  }
 
@@ -49,7 +49,7 @@ void CanLimitDisplayByTimeOfDay()
     Element.testLimitDisplayByTimeOfDay(timeOfDay);
 
     ExpectFalse(Element.elementIsAvailable(Player), "value is not set");
-    Dictionary.timeOfDay("evening");
+    Service.timeOfDay("evening");
     ExpectTrue(Element.elementIsAvailable(Player), "value is set");
 }
 
@@ -60,7 +60,7 @@ void CanLimitDisplayByMoonPhase()
     Element.testLimitDisplayByMoonPhase(moonPhase);
 
     ExpectFalse(Element.elementIsAvailable(Player), "value is not set");
-    Dictionary.setDay(18);
+    Service.setDay(18);
     ExpectTrue(Element.elementIsAvailable(Player), "value is set");
 }
 

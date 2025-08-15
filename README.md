@@ -138,7 +138,7 @@ who can use them, there is a role-based access control system integrated.
 - /lib/core contains the base generic mudlib components that are used in multiple mudlib areas such as the event handling 
 system, a message parser, the state machine framework, the user object modularization components, and the prerequisites 
 and specification systems.
-- /lib/dictionaries contains the implementation of service-like components that environments, domains, guilds, users, and 
+- /lib/services contains the implementation of service-like components that environments, domains, guilds, users, and 
 equipment use - methods that shouldn't reside in instantiated objects.
 - /documentation contains the documentation for creators desiring to add content using this mudlib (sorry all - it's 
 incomplete and very much a work in progress!)
@@ -180,7 +180,9 @@ For example, suppose you want to create a guild:
 - /lib/tests/modules/baseGuildTest.c and /tests/modules/guildTest.c show everything guilds can do.
 - /lib/tests/support/guilds/testGuild.c (at least the SetupGuild method) shows an example guild.
 - You would also want to look at the research module, skills module, and potentially the traits module to create abilities.
-- In addition, /lib/dictionaries contains many "services" (ie: in software terms - I renamed them "dictionaries" because they're not true services). For example, the shopDictionary provides somewhat static methods/data for randomly generating "normal" and "well-crafted", and "magical" items of a given type for shops. materialsDictionary supplies all the content surrounding armor/weapon material and blueprint content, and so on.
+- In addition, /lib/services contains many "services" (ie: in software terms - they're not true services). For example, the shopService provides 
+somewhat static methods/data for randomly generating "normal" and "well-crafted", and "magical" items of a given type for shops. 
+materialsService supplies all the content surrounding armor/weapon material and blueprint content, and so on.
 
 # Contribute
 If you'd like to contribute to this project, contact Allen. Adding component to the library is a pretty straigthforward process, but the steps must be followed:

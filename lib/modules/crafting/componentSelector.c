@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object CraftingService;
 private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
@@ -37,7 +37,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     NumColumns = 2;
-    Dictionary = getDictionary("crafting");
+    CraftingService = getService("crafting");
     Data = ([]);
 }
 
@@ -59,14 +59,14 @@ protected nomask void setUpUserForSelection()
         CraftingComponent);
     Type = "Craft " + capitalize(CraftingComponent);
 
-    Data = Dictionary->getMaterialsDataForItem(CraftingComponent,
+    Data = CraftingService->getMaterialsDataForItem(CraftingComponent,
         User, Materials);
 
     ConfirmChoice = to_string(sizeof(Data) + 1);
     Data[ConfirmChoice] = ([
         "name": "Confirm Selection",
         "type": "confirm",
-        "is disabled": !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials),
+        "is disabled": !CraftingService->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials),
         "description": "This option confirms the item to craft and returns to the previous menu.\n"
     ]);
     Data[to_string(sizeof(Data) + 1)] = ([
@@ -115,10 +115,10 @@ protected nomask int processSelection(string selection)
         else if (!Data[selection]["is disabled"])
         {
             AdditionalMaterials = Data[selection]["materials"];
-            Dictionary->selectComponent(CraftingItem, CraftingComponent,
+            CraftingService->selectComponent(CraftingItem, CraftingComponent,
                 Data[selection]["type"]);
             Data[ConfirmChoice]["is disabled"] = 
-                !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
+                !CraftingService->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
             ret = 0;
         }
     }
@@ -134,12 +134,12 @@ protected nomask string displayDetails(string choice)
         ret = configuration->decorate(sprintf("%-9s",
             (!Data[choice]["is disabled"] || (AdditionalMaterials &&
                 member(AdditionalMaterials, Data[choice]["type"]))) ?
-            Dictionary->getCraftingMaterial(CraftingItem, Data[choice]["type"],
+            CraftingService->getCraftingMaterial(CraftingItem, Data[choice]["type"],
                 CraftingComponent) : (Data[choice]["is disabled"] ? "N/A" : "none")),
             "selected", "selector", colorConfiguration);
     }
     else if (Data[choice]["type"] ==
-        Dictionary->selectionForComponent(CraftingItem, CraftingComponent))
+        CraftingService->selectionForComponent(CraftingItem, CraftingComponent))
     {
         ret = configuration->decorate(sprintf("%-9s",
             (User->charsetConfiguration() == "unicode") ? "   (\u2020)" :
@@ -154,13 +154,13 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (caller->selection())
     {
-        Dictionary->setCraftingMaterial(CraftingItem, caller->materialClass(),
+        CraftingService->setCraftingMaterial(CraftingItem, caller->materialClass(),
             caller->selection(), CraftingComponent);
     }
     if (User)
     {
         Data[ConfirmChoice]["is disabled"] =
-            !Dictionary->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
+            !CraftingService->hasMaterialsSelected(CraftingItem, CraftingComponent, Materials);
         tell_object(User, displayMessage());
     }
     caller->cleanUp();

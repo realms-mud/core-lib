@@ -44,7 +44,7 @@ private nomask string parseSeasonDescription(string message, mapping data,
     int illuminationLevel)
 {
     string ret = message;
-    string season = getDictionary("environment")->season();
+    string season = getService("environment")->season();
     if (member(data, season) && (illuminationLevel >= 7))
     {
         ret += data[season][random(sizeof(data[season]))];
@@ -56,8 +56,8 @@ private nomask string parseSeasonDescription(string message, mapping data,
 private nomask string parseTimeOfDayDetails(string message, mapping data)
 {
     string ret = message;
-    string season = getDictionary("environment")->season();
-    string timeOfDay = getDictionary("environment")->timeOfDay();
+    string season = getService("environment")->season();
+    string timeOfDay = getService("environment")->timeOfDay();
     if (member(data, timeOfDay) && member(data[timeOfDay], season))
     {
         ret += data[timeOfDay][season][random(sizeof(data[timeOfDay][season]))];
@@ -87,7 +87,7 @@ public nomask int displayActionText()
 /////////////////////////////////////////////////////////////////////////////
 private nomask string parseEntryAction(string message, mapping data)
 {
-    return !displayActionText() ? message : getDictionary("environment")->getEntryMessage() + " " +
+    return !displayActionText() ? message : getService("environment")->getEntryMessage() + " " +
         message + ".";
 }
 

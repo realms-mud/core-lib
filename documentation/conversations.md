@@ -78,7 +78,7 @@ interprets during parsing:
 - `##InitiatorObjective##`: This is replaced with the objective pronoun for the initiator. `##TargetObjective##` does the same, but for the target of the conversation instead.
 - `##InitiatorSubjective##`: This is replaced with the subjective pronoun for the initiator. `##TargetSubjective##` does the same, but for the target of the conversation instead.
 - `##InitiatorPossessive::Name##`: This is replaced with the possessive noun for the initiator. `##TargetPossessive::Name##` does the same, but for the target of the conversation instead.
-- `##SimileDictionary##`: This is replaced by an entry from a supplied similie dictionary. See /lib/core/messageParser.c for details.
+- `##SimileDictionary##`: This is replaced by an entry from a supplied similie Service. See /lib/core/messageParser.c for details.
 - `##Infinitive::<some verb>##`: This is replaced by the supplied verb in the proper form (second person, third person, etc).
 
  

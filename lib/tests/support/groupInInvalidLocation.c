@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/dictionaries/groups/baseGroup.c";
+inherit "/lib/services/groups/baseGroup.c";
 
 int applyWasCalled = 0;
 

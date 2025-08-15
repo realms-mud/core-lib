@@ -281,7 +281,7 @@ void AddSpecificationThrowsForInvalidInstantaneous()
 void AddSpecificationThrowsForInvalidPersisted()
 {
     string err = catch (ResearchItem.testAddSpecification("apply blarg", 10); nolog);
-    string expectedError = "*ERROR - instantaneousPersistedActiveResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - instantaneousPersistedActiveResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/services/bonusesService.c\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
 

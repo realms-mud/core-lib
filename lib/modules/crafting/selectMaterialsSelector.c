@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object CraftingService;
 private object SubselectorObj;
 private string CraftingItem;
 private string CraftingType;
@@ -39,7 +39,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     SuppressColon = 1;
-    Dictionary = getDictionary("crafting");
+    CraftingService = getService("crafting");
     Data = ([]);
 }
 
@@ -57,14 +57,14 @@ private nomask void getItemToCraft()
         Item->unset("material");
         Item->unset("crafting materials");
         User->itemBeingCrafted(Item);
-        Dictionary->applyCraftingBonuses(Item, User);
+        CraftingService->applyCraftingBonuses(Item, User);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask string getDescription()
 {
-    string ret = load_object("/lib/dictionaries/materialsDictionary.c")->
+    string ret = getService("materials")->
         getEquipmentStatistics(Item, User);
 
     ret = regreplace(ret, "[^\n]*(.*Mater.*)", "\\1", 1);
@@ -111,12 +111,12 @@ protected nomask void setUpUserForSelection()
     Type = "Craft " + capitalize(CraftingItem);
     Description = getDescription();
 
-    Data = Dictionary->getCraftingDataForItem(CraftingType, CraftingItem, User);
+    Data = CraftingService->getCraftingDataForItem(CraftingType, CraftingItem, User);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":sprintf("Enchant %s", capitalize(CraftingItem)),
         "type" : "enchantments",
-        "is disabled" : !Dictionary->canEnchantItem(Item, User),
+        "is disabled" : !CraftingService->canEnchantItem(Item, User),
         "description" : "This option lets you enchant the item being crafted.\n"
     ]);
 
@@ -135,7 +135,7 @@ protected nomask void setUpUserForSelection()
     Data[to_string(sizeof(Data) + 1)] = ([
         "name": sprintf("Craft Selected %s", capitalize(CraftingItem)),
         "type": "craft",
-        "is disabled": !Dictionary->allComponentsHaveBeenChosen(Item),
+        "is disabled": !CraftingService->allComponentsHaveBeenChosen(Item),
         "description": "This option lets you craft the chosen item.\n"
     ]);
 
@@ -206,9 +206,9 @@ protected nomask int processSelection(string selection)
             {
                 if (!Data[selection]["is disabled"])
                 {
-                    if (Dictionary->craftItem(Item, User))
+                    if (CraftingService->craftItem(Item, User))
                     {
-                        Dictionary->setCraftingSkill(CraftingType, CraftingItem,
+                        CraftingService->setCraftingSkill(CraftingType, CraftingItem,
                             Item, User);
                         User->completeCrafting();
                         tell_object(User, configuration->decorate(sprintf(
@@ -307,7 +307,7 @@ public nomask void onSelectorCompleted(object caller)
     {
         if (caller->materialClass() && caller->selection())
         {
-            Dictionary->setCraftingMaterial(Item, caller->materialClass(),
+            CraftingService->setCraftingMaterial(Item, caller->materialClass(),
                 caller->selection());
         }
         setUpUserForSelection();

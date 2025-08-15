@@ -7,14 +7,14 @@ virtual inherit "/lib/environment/modules/environment/core.c";
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addShop(string shop)
 {
-    object dictionary = getDictionary("shop");
-    object shopObj = dictionary->getShopObject(shop);
+    object shopService = getService("shop");
+    object shopObj = shopService->getShopObject(shop);
     if (shopObj)
     {
         if (!environmentalElements["shop"])
         {
             shopObj->Setup();
-            dictionary->generateInventory(shopObj);
+            shopService->generateInventory(shopObj);
             environmentalElements["shop"] = shopObj;
         }
         else

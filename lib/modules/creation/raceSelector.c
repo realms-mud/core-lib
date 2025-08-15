@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object RacialDictionary;
+private object RaceService;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
@@ -16,13 +16,13 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    RacialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
-    if (!RacialDictionary)
+    RaceService = getService("racial");
+    if (!RaceService)
     {
-        raise_error("raceSelector: ERROR - The racial dictionary is not present!\n");
+        raise_error("raceSelector: ERROR - The race service is not present!\n");
     }
 
-    Data = RacialDictionary->characterCreationRaces(User);
+    Data = RaceService->characterCreationRaces(User);
 }
 
 /////////////////////////////////////////////////////////////////////////////

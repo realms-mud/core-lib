@@ -33,13 +33,13 @@ public nomask int buildDomainUpgrade(string location, string element,
     string upgrade)
 {
     int ret = 0;
-    object dictionary = getDictionary("domain");
+    object Service = getService("domain");
 
     if (member(holdings, location))
     {
         string type = getDomainType(location);
 
-        mapping builtElement = dictionary->build(
+        mapping builtElement = Service->build(
             this_object(), location, type, element, upgrade);
 
         if (mappingp(builtElement))
@@ -55,11 +55,11 @@ public nomask int buildDomainUpgrade(string location, string element,
 public nomask int addPlayerHolding(string location)
 {
     int ret = 0;
-    object dictionary = getDictionary("domain");
+    object Service = getService("domain");
 
     if (!member(holdings, location))
     {
-        mapping playerHolding = dictionary->getPlayerHolding(
+        mapping playerHolding = Service->getPlayerHolding(
             this_object(), location);
 
         if (mappingp(playerHolding))
@@ -109,9 +109,9 @@ public nomask string *getTitles()
 public nomask object addHenchman(string location, mapping data)
 {
     object ret = 0;
-    object dictionary = getDictionary("domain");
+    object Service = getService("domain");
 
-    if (dictionary->isValidHenchman(data) && member(holdings, location))
+    if (Service->isValidHenchman(data) && member(holdings, location))
     {
         if (!member(henchmen, location))
         {
@@ -124,7 +124,7 @@ public nomask object addHenchman(string location, mapping data)
         }
 
         data["location"] = location;
-        ret = dictionary->getHenchmanFromData(data, this_object());
+        ret = Service->getHenchmanFromData(data, this_object());
 
         henchmen[location][key] = ret;
     }

@@ -191,7 +191,7 @@ public nomask varargs int isHarvestableResource(string resource, object user,
         (harvestData["available quantity"][environment] > 0);
     if (displayMessage && !quantityExists)
     {
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
 
         write(configuration->decorate(
             sprintf("There is currently no %O available to harvest.\n",
@@ -261,7 +261,7 @@ public nomask string getHarvestStatistics(object environment, object user)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
 
     string ret = configuration->decorate("Name: ", "field header",
             "harvestable resources", colorConfiguration) +

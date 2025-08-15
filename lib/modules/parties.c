@@ -9,10 +9,10 @@ public nomask object getParty()
 {
     object ret = 0;
 
-    object dictionary = getDictionary("party");
-    if (dictionary)
+    object partyService = getService("party");
+    if (partyService)
     {
-        ret = dictionary->getParty(this_object());
+        ret = partyService->getParty(this_object());
     }
     return ret;
 }

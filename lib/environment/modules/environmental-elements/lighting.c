@@ -48,7 +48,7 @@ protected nomask string getTemplateKey(int illuminationLevel)
 public nomask int lightSourceIsActive(string state, object environment)
 {
     int ret = MimicExteriorLighting ? 
-        getDictionary("environment")->ambientLight() : 0;
+        getService("environment")->ambientLight() : 0;
 
     if (objectp(environment) &&
         member(descriptionData, "active light sources") &&
@@ -70,8 +70,8 @@ public nomask varargs int isSourceOfLight(string state, object environment)
 
     int ret = lightSourceIsActive(state, environment);
 
-    string timeOfDay = getDictionary("environment")->timeOfDay();
-    string season = getDictionary("environment")->season();
+    string timeOfDay = getService("environment")->timeOfDay();
+    string season = getService("environment")->season();
 
     if (member(descriptionData, "light") &&
         member(descriptionData["light"], state) &&
@@ -155,13 +155,13 @@ public nomask void deactivateLightSource(string state, object environment)
 private nomask varargs mapping setSourceOfLightBySeason(int magnitude, string season)
 {
     mapping data = ([]);
-    if (getDictionary("environment")->isValidSeason(season))
+    if (getService("environment")->isValidSeason(season))
     {
         data[season] = magnitude;
     }
     else
     {
-        foreach(string item in getDictionary("environment")->seasons())
+        foreach(string item in getService("environment")->seasons())
         {
             data[item] = magnitude;
         }
@@ -173,13 +173,13 @@ private nomask varargs mapping setSourceOfLightBySeason(int magnitude, string se
 private nomask varargs mapping setSourceOfLightByTime(int magnitude, string period, string season)
 {
     mapping data = ([]);
-    if (getDictionary("environment")->isValidTimeOfDay(period))
+    if (getService("environment")->isValidTimeOfDay(period))
     {
         data[period] = setSourceOfLightBySeason(magnitude, season);
     }
     else
     {
-        foreach(string timeOfDay in getDictionary("environment")->timesOfDay())
+        foreach(string timeOfDay in getService("environment")->timesOfDay())
         {
             data[timeOfDay] = setSourceOfLightBySeason(magnitude, season);
         }

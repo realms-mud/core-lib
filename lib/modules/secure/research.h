@@ -37,12 +37,12 @@ static nomask void loadResearch(mapping data, object persistence)
         string *researchItems = m_indices(research);
         if (sizeof(researchItems))
         {
-            object dictionary = load_object("/lib/dictionaries/researchDictionary");
+            object researchService = getService("research");
             foreach(string researchItem in researchItems)
             {
-                string *bonuses = dictionary->getResearchBonuses(researchItem);
+                string *bonuses = researchService->getResearchBonuses(researchItem);
                 if (bonuses && sizeof(bonuses) &&
-                    !dictionary->isActiveOrSustainedAbility(researchItem))
+                    !researchService->isActiveOrSustainedAbility(researchItem))
                 {
                     research[researchItem]["bonuses"] = bonuses;
                 }

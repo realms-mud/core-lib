@@ -40,7 +40,7 @@ The traits system is extensively organized across multiple directories and files
 - **lib/modules/traits/baseTrait.c** - Base trait functionality and validation
 - **lib/modules/traits.c** - Character trait management, addition, removal, and queries
 - **lib/modules/secure/traits.h** - Trait data structures and persistence
-- **lib/dictionaries/traitsDictionary.c** - Trait dictionary, lookup, and caching system
+- **lib/services/traitsService.c** - Trait service, lookup, and caching system
 
 ###### Trait Categories and Instances
 - **lib/instances/traits/health/** - Physical health conditions, wellness, and medical states
@@ -60,12 +60,12 @@ The traits system is extensively organized across multiple directories and files
 ###### Integration Points
 - **lib/modules/combat.c** - Combat system integration for bonuses and special abilities
 - **lib/modules/research.c** - Research system integration for unlocking and sustaining traits
-- **lib/dictionaries/bonusesDictionary.c** - Validation of all bonus types and modifiers
+- **lib/services/bonusesService.c** - Validation of all bonus types and modifiers
 - **lib/core/prerequisites.c** - Prerequisite system for trait acquisition requirements
 
 ##### Trait Types and Classifications
 
-The system supports multiple trait types as defined in **lib/dictionaries/traitsDictionary.c**:
+The system supports multiple trait types as defined in **lib/services/traitsService.c**:
 
 ~~~c
 private string *validTraitTypes = ({ "health", "educational", "personality", 
@@ -757,7 +757,7 @@ Players select traits during character creation based on balanced point costs:
 
 ~~~c
 // Character creation interface
-mapping traitOptions = getDictionary("traits")->creationListForTraitType("personality");
+mapping traitOptions = getService("traits")->creationListForTraitType("personality");
 ~~~
 
 ###### Trait Validation and Conflicts
@@ -788,7 +788,7 @@ Some character backgrounds provide trait packages:
 The system provides comprehensive trait information:
 
 ~~~c
-string details = getDictionary("traits")->traitDetails("hale");
+string details = getService("traits")->traitDetails("hale");
 ~~~
 
 This displays:
@@ -921,7 +921,7 @@ Sustained traits are linked to research:
 ###### Core Files
 - **lib/modules/traits/baseTrait.c** - Base trait functionality and validation
 - **lib/modules/traits.c** - Character trait management and queries
-- **lib/dictionaries/traitsDictionary.c** - Trait dictionary and caching
+- **lib/services/traitsService.c** - Trait service and caching
 
 ###### Trait Instance Directories
 - **lib/instances/traits/health/** - Health and wellness traits
@@ -937,7 +937,7 @@ Sustained traits are linked to research:
 ###### Integration Files
 - **lib/modules/combat.c** - Combat system integration
 - **lib/modules/research.c** - Research system integration
-- **lib/dictionaries/bonusesDictionary.c** - Bonus validation
+- **lib/services/bonusesService.c** - Bonus validation
 - **lib/core/prerequisites.c** - Prerequisite system
 
 ##### Trait System Validation
@@ -948,7 +948,7 @@ The system validates traits through multiple comprehensive mechanisms:
 All traits must have essential properties:
 - name, description, type, root properties must be present
 - Valid trait type from validTraitTypes array
-- Proper bonus/penalty specifications validated against bonuses dictionary
+- Proper bonus/penalty specifications validated against bonuses service
 
 ###### Effect Trait Validation
 Effect traits require additional properties:
@@ -959,8 +959,8 @@ Effect traits require additional properties:
 All bonuses must be validated:
 
 ~~~c
-object bonusDictionary = getDictionary("bonuses");
-bonusDictionary->isValidBonusModifier(bonusToCheck, value);
+object bonusService = getService("bonuses");
+bonusService->isValidBonusModifier(bonusToCheck, value);
 ~~~
 
 ###### Conflict Detection

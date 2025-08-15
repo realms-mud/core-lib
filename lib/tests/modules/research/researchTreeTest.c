@@ -268,7 +268,7 @@ void GetFlattenedResearchTreeForOwnerReturnsFlatListWithDetails()
     ExpectTrue(owner.initiateResearch("/lib/tests/support/research/testLimitedByIntoxResearchItem.c"));
     ExpectTrue(owner.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"));
 
-    object tree = load_object("/lib/dictionaries/researchDictionary.c").
+    object tree = getService("research").
         researchTree("/lib/tests/support/research/testDeepResearchTree.c");
 
     ExpectEq(expected, tree.getFlattenedResearchTree(owner), "tree with data");

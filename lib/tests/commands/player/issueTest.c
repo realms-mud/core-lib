@@ -44,7 +44,7 @@ void Setup()
 
     setUsers(({ Wizard, Player }));
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Wizard);
     channels.registerUser(Player);
 }

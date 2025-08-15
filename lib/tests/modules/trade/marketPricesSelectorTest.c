@@ -8,7 +8,7 @@ object Player;
 object MarketPricesSelector;
 object MockPort1;
 object MockPort2;
-object TradingDictionary;
+object TradingService;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -47,10 +47,10 @@ void Setup()
     }) );
     MockPort2.addImportNeed("metal", 1.2);
 
-    // Register ports in the trading dictionary
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
-    TradingDictionary->registerPort(MockPort1);
-    TradingDictionary->registerPort(MockPort2);
+    // Register ports in the trading service
+    TradingService = getService("trading");
+    TradingService->registerPort(MockPort1);
+    TradingService->registerPort(MockPort2);
 
     if (objectp(MarketPricesSelector)) destruct(MarketPricesSelector);
     MarketPricesSelector = clone_object("/lib/modules/domains/trading/selectors/marketPricesSelector.c");
@@ -238,8 +238,8 @@ void MarketPricesSelectorHandlesPortsWithNoSpecialtyOrImport()
         "/lib/instances/items/materials/metal/iron.c"
     }) );
 
-    TradingDictionary->registerPort(MockPort1);
-    TradingDictionary->registerPort(MockPort2);
+    TradingService->registerPort(MockPort1);
+    TradingService->registerPort(MockPort2);
 
     navigateToMarketPricesSelector();
     string metalOption = findMenuOption("Metal");

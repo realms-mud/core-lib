@@ -6,7 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Creator;
 object Member;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 int AdvanceToLevel(object user, int level, string guild)
@@ -24,7 +24,7 @@ int AdvanceToLevel(object user, int level, string guild)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    destruct(getDictionary("party"));
+    destruct(getService("party"));
 
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
@@ -39,7 +39,7 @@ void Init()
     destruct(database);
 
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
 
     load_object("/lib/tests/support/guilds/testGuild.c");
@@ -61,7 +61,7 @@ void Setup()
     Member.joinGuild("test");
     AdvanceToLevel(Member, 2, "test");
 
-    Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+    Service = getService("party");
 
     setUsers(({ Creator, Member }));
 }
@@ -71,13 +71,13 @@ void CleanUp()
 {
     destruct(Creator);
     destruct(Member);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanCreateParty()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     ExpectTrue(objectp(party));
@@ -90,7 +90,7 @@ void CanCreateParty()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddMember()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -102,7 +102,7 @@ void CanAddMember()
 /////////////////////////////////////////////////////////////////////////////
 void CanLeaveParty()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -117,7 +117,7 @@ void CanLeaveParty()
 /////////////////////////////////////////////////////////////////////////////
 void CreatorLeavingPartySetsNewCreator()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -130,7 +130,7 @@ void CreatorLeavingPartySetsNewCreator()
 /////////////////////////////////////////////////////////////////////////////
 void DissolvePartyDestroysParty()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
     party.joinParty(Member);
 
@@ -142,7 +142,7 @@ void DissolvePartyDestroysParty()
 /////////////////////////////////////////////////////////////////////////////
 void PartyDissolvesAfterLastMemberLeaves()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -159,7 +159,7 @@ void PartyDissolvesAfterLastMemberLeaves()
 /////////////////////////////////////////////////////////////////////////////
 void ReallocateExperienceCorrectlyDividesExperience()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     ExpectEq(6000, Creator.effectiveExperience());
@@ -181,7 +181,7 @@ void ReallocateExperienceCorrectlyDividesExperience()
 /////////////////////////////////////////////////////////////////////////////
 void AdvancingALevelModifiesExperienceAllocation()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     ExpectEq(6000, Creator.effectiveExperience());
@@ -205,7 +205,7 @@ void AdvancingALevelModifiesExperienceAllocation()
 /////////////////////////////////////////////////////////////////////////////
 void PlayersUnexpectedlyLeavingAreAutomaticallyPrunedDuringAllocation()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -221,7 +221,7 @@ void PlayersUnexpectedlyLeavingAreAutomaticallyPrunedDuringAllocation()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddHenchman()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -238,7 +238,7 @@ void CanAddHenchman()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddCompanion()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -255,7 +255,7 @@ void CanAddCompanion()
 /////////////////////////////////////////////////////////////////////////////
 void CanAddNPC()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     party.joinParty(Member);
@@ -272,7 +272,7 @@ void CanAddNPC()
 /////////////////////////////////////////////////////////////////////////////
 void AdvancingALevelIgnoresHenchmenAndNPCs()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     object npc =
@@ -300,7 +300,7 @@ void AdvancingALevelIgnoresHenchmenAndNPCs()
 /////////////////////////////////////////////////////////////////////////////
 void FollowingShowsCorrectList()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     object npc =
@@ -327,7 +327,7 @@ void FollowingShowsCorrectList()
 /////////////////////////////////////////////////////////////////////////////
 void MoveFollowersMovesAllFollowers()
 {
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
 
     object npc =
@@ -367,11 +367,11 @@ void MoveFollowersMovesAllFollowers()
 void PartyDetailsArePersisted()
 {
     // Need to first make sure the database is cleaned out
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     object party = Creator.getParty();
     party.dissolveParty();
 
-    Dictionary.createParty("Test party", Creator);
+    Service.createParty("Test party", Creator);
     party = Creator.getParty();
 
     object npc =
@@ -394,6 +394,6 @@ void PartyDetailsArePersisted()
     // This ensures that the party is re-loaded from the DB
     destruct(party);
 
-    party = Dictionary.getParty(Creator);
+    party = Service.getParty(Creator);
     ExpectEq(5, sizeof(party.members(1)));
 }

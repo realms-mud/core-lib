@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-protected object TraitDictionary;
+protected object TraitService;
 private string ChosenTrait = 0;
 private int PointsRemaining = 0;
 
@@ -27,10 +27,10 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     NumColumns = 2;
 
-    TraitDictionary = load_object("/lib/dictionaries/traitsDictionary.c");
-    if (!TraitDictionary)
+    TraitService = getService("traits");
+    if (!TraitService)
     {
-        raise_error("skillSelectorSubmenu: ERROR - The skills dictionary "
+        raise_error("skillSelectorSubmenu: ERROR - The skills service "
             "is not present!\n");
     }
     Data = traitMenuSetup();
@@ -51,7 +51,7 @@ protected nomask int processSelection(string selection)
         if (!User->isTraitOf(ChosenTrait))
         {
             if (PointsRemaining >=
-                TraitDictionary->traitObject(ChosenTrait)->query("cost"))
+                TraitService->traitObject(ChosenTrait)->query("cost"))
             {
                 ret = User->addTrait(ChosenTrait) ? 1 : -1;
             }

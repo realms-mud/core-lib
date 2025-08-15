@@ -5,15 +5,15 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Element;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 
     Element = clone_object("/lib/tests/support/environment/testLightSource.c");
 }
@@ -22,7 +22,7 @@ void Setup()
 void CleanUp()
 {
     destruct(Element);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,8 +37,8 @@ void AddSourceWithOnlyMagnitudeSetsLightForAllStates()
     Element.testAddSourceOfLight(1);
     ExpectTrue(Element.isSourceOfLight());
 
-    Dictionary.timeOfDay("dawn");
-    Dictionary.season("winter");
+    Service.timeOfDay("dawn");
+    Service.season("winter");
     ExpectTrue(Element.isSourceOfLight());
     ExpectTrue(Element.isSourceOfLight("some state"));
 }
@@ -50,8 +50,8 @@ void AddSourceForSpecificStateDoesNotLightOtherStates()
     ExpectFalse(Element.isSourceOfLight());
     ExpectTrue(Element.isSourceOfLight("some state"));
 
-    Dictionary.timeOfDay("dawn");
-    Dictionary.season("winter");
+    Service.timeOfDay("dawn");
+    Service.season("winter");
     ExpectFalse(Element.isSourceOfLight());
     ExpectTrue(Element.isSourceOfLight("some state"));
 }
@@ -62,7 +62,7 @@ void AddSourceForSpecificTimeDoesNotLightOtherTimes()
     Element.testAddSourceOfLight(1, 0, "midnight");
     ExpectFalse(Element.isSourceOfLight());
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectTrue(Element.isSourceOfLight());
 }
 
@@ -72,7 +72,7 @@ void AddSourceForSpecificSeasonDoesNotLightOtherSeasons()
     Element.testAddSourceOfLight(1, 0, 0, "winter");
     ExpectFalse(Element.isSourceOfLight());
 
-    Dictionary.season("winter");
+    Service.season("winter");
     ExpectTrue(Element.isSourceOfLight());
 }
 
@@ -82,13 +82,13 @@ void AddSourceForSpecificTimeAndSeasonDoesNotLightOthers()
     Element.testAddSourceOfLight(1, 0, "midnight", "winter");
     ExpectFalse(Element.isSourceOfLight());
 
-    Dictionary.season("winter");
+    Service.season("winter");
     ExpectFalse(Element.isSourceOfLight());
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectTrue(Element.isSourceOfLight());
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectFalse(Element.isSourceOfLight());
 }
 
@@ -99,15 +99,15 @@ void AddSourceForSpecificTimeAndSeasonAndStateDoesNotLightOthers()
     ExpectFalse(Element.isSourceOfLight());
     ExpectFalse(Element.isSourceOfLight("some state"));
 
-    Dictionary.season("winter");
+    Service.season("winter");
     ExpectFalse(Element.isSourceOfLight());
     ExpectFalse(Element.isSourceOfLight("some state"));
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectFalse(Element.isSourceOfLight());
     ExpectTrue(Element.isSourceOfLight("some state"));
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectFalse(Element.isSourceOfLight());
     ExpectFalse(Element.isSourceOfLight("some state"));
 }

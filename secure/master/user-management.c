@@ -94,7 +94,7 @@ public nomask varargs int createWizard(string wizardName, string level)
                 mkdir(homeDir);
             }
 
-            object logs = getDictionary("log");
+            object logs = getService("log");
             if (ret && logs)
             {
                 logs->log("Promotions",
@@ -146,7 +146,7 @@ public nomask varargs int demoteWizardToPlayer(string wizardName)
 
         if (ret)
         {
-            object logs = getDictionary("log");
+            object logs = getService("log");
             if (ret && logs)
             {
                 logs->log("Promotions",

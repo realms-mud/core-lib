@@ -5,10 +5,10 @@
 #include "/sys/object_info.h"
 
 virtual inherit "/secure/simulated-efuns/database.c";
-virtual inherit "/secure/simulated-efuns/dictionaries.c";
 virtual inherit "/secure/simulated-efuns/group-management.c";
 virtual inherit "/secure/simulated-efuns/interactive-info.c";
 virtual inherit "/secure/simulated-efuns/object-info.c";
+virtual inherit "/secure/simulated-efuns/services.c";
 virtual inherit "/secure/simulated-efuns/strings.c";
 virtual inherit "/secure/simulated-efuns/users.c";
 //virtual inherit "/secure/simulated-efuns/testing.c";

@@ -29,14 +29,14 @@ public nomask varargs int combatDelay(int delay)
 
 //-----------------------------------------------------------------------------
 // Method: attackObject
-// Description: This method returns the attacks dictionary - used for
+// Description: This method returns the attacks service - used for
 //              determining damage attack types, messages, and so on.
 //
-// Returns: the attacks dictionary
+// Returns: the attacks service
 //-----------------------------------------------------------------------------
 private nomask object attackObject()
 {
-    return getDictionary("attacks");
+    return getService("attacks");
 }
 
 //-----------------------------------------------------------------------------
@@ -1069,11 +1069,11 @@ public nomask mapping *getAttacks()
 
         if (modifiers && pointerp(modifiers) && sizeof(modifiers))
         {
-            object attacksDictionary = getDictionary("attacks");
-            if (attacksDictionary && function_exists("validAttackTypes",
-                attacksDictionary))
+            object attacksService = getService("attacks");
+            if (attacksService && function_exists("validAttackTypes",
+                attacksService))
             {
-                string *attackList = attacksDictionary->validAttackTypes();
+                string *attackList = attacksService->validAttackTypes();
 
                 foreach(object modifier in modifiers)
                 {
@@ -1408,7 +1408,7 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
         {
             persistence->save();
         }
-        object logger = getDictionary("log");
+        object logger = getService("log");
         if(logger)
         {
             logger->logDeath(player, murderer);
@@ -1446,7 +1446,7 @@ private nomask int determineFateFromDeath(object murderer)
         object wizard = getModule("wizard");
         if(wizard)
         {
-            tell_object(wizard, getDictionary("configuration")->decorate(
+            tell_object(wizard, getService("configuration")->decorate(
                 "Your wizardhood protects you from death.\n",
                 "death", "combat", colorConfiguration)); 
         }
@@ -1464,7 +1464,7 @@ private nomask int determineFateFromDeath(object murderer)
                 }
 
                 tell_object(this_object(), 
-                    getDictionary("configuration")->decorate(
+                    getService("configuration")->decorate(
                     notDeadMessage, "death", "combat", colorConfiguration));
             }
             else
@@ -1492,7 +1492,7 @@ private nomask int determineFateFromDeath(object murderer)
             }
 
             tell_object(this_object(),
-                getDictionary("configuration")->decorate("\nYou die.\nYou "
+                getService("configuration")->decorate("\nYou die.\nYou "
                     "have a strange feeling.\nYou can see your own dead "
                     "body from above.\n\n",
                     "death", "combat", colorConfiguration));
@@ -1675,7 +1675,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
                 ret);
         }
         say(sprintf("%s died.\n", capitalize(this_object()->RealName())));
-        getDictionary("combatChatter")->displayCombatChatter(ret,
+        getService("combatChatter")->displayCombatChatter(ret,
             foe, this_object());
 
         if (!getModule("player"))
@@ -1758,7 +1758,7 @@ protected nomask void doOneAttack(object foe, object weapon)
 
         if(foe && objectp(foe))
         {
-            getDictionary("combatChatter")->displayCombatChatter(damageInflicted, 
+            getService("combatChatter")->displayCombatChatter(damageInflicted, 
                 this_object(), foe);
 
             updateCombatSummary(foe, damageInflicted, 
@@ -1892,7 +1892,7 @@ static void handleMoveFromCombat()
             this_object()->colorConfiguration() : "none";
 
         tell_object(this_object(),
-            getDictionary("configuration")->decorate("You have fled the scene "
+            getService("configuration")->decorate("You have fled the scene "
                 "of battle! Your enemies shan't forget you.\n",
                 "flee", "combat", colorConfiguration));
     }
@@ -2272,14 +2272,14 @@ public nomask varargs string vitals(string colorConfiguration, string charset)
         charset = settings->charsetConfiguration() || "ascii";
     }
 
-    object configuration = getDictionary("configuration");
-    object commandDictionary = getDictionary("commands");
+    object configuration = getService("configuration");
+    object commandService = getService("commands");
 
-    return commandDictionary->banneredContent(colorConfiguration, charset,
+    return commandService->banneredContent(colorConfiguration, charset,
             vitalsDetails("Hit", configuration, colorConfiguration, charset) + 
             vitalsDetails("Spell", configuration, colorConfiguration, charset) +
             vitalsDetails("Stamina", configuration, colorConfiguration, charset)) +
-        commandDictionary->banneredContent(colorConfiguration, charset,
+        commandService->banneredContent(colorConfiguration, charset,
             configuration->decorate(sprintf("%16d/%-5d", hitPoints(), 
                 maxHitPoints()), "information", "score", colorConfiguration) +
             configuration->decorate(sprintf("%20d/%-5d", spellPoints(), 
@@ -2302,8 +2302,8 @@ public nomask varargs string singleLineVitals(string colorConfiguration,
         charset = settings->charsetConfiguration() || "ascii";
     }
 
-    object configuration = getDictionary("configuration");
-    object commandDictionary = getDictionary("commands");
+    object configuration = getService("configuration");
+    object commandService = getService("commands");
 
     return vitalsDetails("Hit", configuration, colorConfiguration, charset, 1) + 
            vitalsDetails("Spell", configuration, colorConfiguration, charset, 1) +

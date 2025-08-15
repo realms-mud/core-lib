@@ -270,7 +270,7 @@ public nomask string displayRoles()
 
     if (sizeof(roles))
     {
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
         string colorConfiguration = this_player() ?
             this_player()->colorConfiguration() :
             this_object()->colorConfiguration();

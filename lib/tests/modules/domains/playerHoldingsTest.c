@@ -29,7 +29,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void DisplaysPlayerHoldingInRegionMap()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Player.addPlayerHolding("argalach castle");

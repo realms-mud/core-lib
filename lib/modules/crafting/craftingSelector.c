@@ -19,10 +19,10 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = getDictionary("crafting");
-    if (dictionary)
+    object craftingService = getService("crafting");
+    if (craftingService)
     {
-        Data = dictionary->getTopLevelCraftingMenu(User);
+        Data = craftingService->getTopLevelCraftingMenu(User);
     }
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Exit Crafting Menu",

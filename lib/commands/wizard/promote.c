@@ -16,7 +16,7 @@ public nomask void SetupCommand()
 public nomask void reportUserPromotion(object initiator, object target,
     string action, string level)
 {
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     if (channels)
     {
         channels->registerUser(target);
@@ -116,7 +116,7 @@ public nomask int execute(string command, object initiator)
                         isDemotion ? "demote" : "promote",
                         level);
 
-                    object logs = getDictionary("log");
+                    object logs = getService("log");
                     if (logs)
                     {
                         logs->log("Promotions",

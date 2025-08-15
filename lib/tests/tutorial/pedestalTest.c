@@ -10,7 +10,7 @@ object Pedestal;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");

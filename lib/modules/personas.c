@@ -47,15 +47,15 @@ public nomask varargs void SetUpPersonaOfLevel(string persona, int level,
     object livingObj = getModule("living");
     if (livingObj)
     {
-        object personaDictionary = getDictionary("persona");
+        object personaService = getService("persona");
         
         int levelToSet = setMinimumLevelAutomatically ?
-            personaDictionary->getValidLevel(persona, level, this_object()) :
+            personaService->getValidLevel(persona, level, this_object()) :
             level;
 
         setPersonaLevel(levelToSet);
 
-        personaDictionary->setupPersona(persona, this_object());
+        personaService->setupPersona(persona, this_object());
         Persona = persona;
     }
     else
@@ -70,7 +70,7 @@ public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
     object livingObj = getModule("living");
     if (livingObj)
     {
-        object *equipment = getDictionary("persona")->getRandomEquipment(this_object(),
+        object *equipment = getService("persona")->getRandomEquipment(this_object(),
             chanceForMagicalItems);
 
         foreach(object item in equipment)
@@ -88,7 +88,7 @@ public nomask varargs void executePersonaResearch(string target, string specific
     if (objectp(research) && (random(100) < researchFrequency))
     {
         string *potentialResearchItems = filter(research->completedResearch(),
-            (: getDictionary("research")->isActiveOrSustainedAbility($1) :));
+            (: getService("research")->isActiveOrSustainedAbility($1) :));
 
         if (sizeof(potentialResearchItems))
         {
@@ -96,7 +96,7 @@ public nomask varargs void executePersonaResearch(string target, string specific
                 potentialResearchItems[random(sizeof(potentialResearchItems))];
 
             object researchItem =
-                getDictionary("research")->researchObject(researchItemString);
+                getService("research")->researchObject(researchItemString);
 
             if (researchItem)
             {
@@ -145,18 +145,18 @@ private nomask float calculateStrengthOfAttack(object attacker, object defender)
     foreach(mapping attack in attacker->getAttacks())
     {
         object weapon;
-        if (getDictionary("attacks")->isWeaponAttack(attack))
+        if (getService("attacks")->isWeaponAttack(attack))
         {
             weapon = attacker->equipmentInSlot(attack["attack type"]);
             if (!weapon)
             {
-                weapon = getDictionary("attacks")->getAttack("unarmed");
+                weapon = getService("attacks")->getAttack("unarmed");
             }
         }
-        else if (getDictionary("attacks")->isValidAttack(attack))
+        else if (getService("attacks")->isValidAttack(attack))
         {
             weapon = 
-                getDictionary("attacks")->getAttack(attack["attack type"]);
+                getService("attacks")->getAttack(attack["attack type"]);
 
             weapon->setAttackValues(attack["damage"], attack["to hit"]);
         }
@@ -202,7 +202,7 @@ public nomask varargs string getCombatComparison(object persona, object player)
         float comparison = (personaPoints - playerPoints) / 
             (playerPoints + personaPoints);
 
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
 
         if (persona->overrideCombatAssessment())
         {

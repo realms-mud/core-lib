@@ -11,7 +11,7 @@ public nomask void SetupCommand()
 {
     CommandType = "Wizard";
     addCommandTemplate("people [-w] [-p]");
-    Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+    Configuration = getService("configuration");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -74,11 +74,11 @@ private object *getListOfUsers(string command)
     object *playerList = sort_array(users(),
         (: $1->effectiveLevel() < $2->effectiveLevel() :));
 
-    object wizardDictionary = load_object("/lib/dictionaries/wizardDictionary.c");
+    object wizardService = getService("wizard");
 
     object *wizardList = sort_array(filter(playerList,
         (: (member(inherit_list($1), "/lib/realizations/wizard.c") > -1) :)),
-        (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardDictionary);
+        (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardService);
 
     if (sizeof(regexp(({ command }), "-w")))
     {

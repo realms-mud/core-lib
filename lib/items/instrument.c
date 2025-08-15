@@ -44,7 +44,7 @@ public nomask mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            object guilds = getService("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("crafting");
@@ -65,7 +65,7 @@ public nomask void generateRandomCraftingMaterials()
 {
     if (!query("crafting materials"))
     {
-        getDictionary("crafting")->getRandomCraftingMaterial(
+        getService("crafting")->getRandomCraftingMaterial(
             this_object(), 1);
     }
 }

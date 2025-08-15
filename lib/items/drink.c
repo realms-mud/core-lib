@@ -39,7 +39,7 @@ public nomask mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            object guilds = getService("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("brewing");

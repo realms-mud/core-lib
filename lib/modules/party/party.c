@@ -93,7 +93,7 @@ public nomask void createParty(string name, object creator)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void joinParty(object newMember)
 {
-    if (Dictionary->joinParty(this_object(), newMember))
+    if (Service->joinParty(this_object(), newMember))
     {
         addMember(newMember);
         channels->registerUser(newMember);
@@ -109,13 +109,13 @@ public nomask void dissolveParty()
 {
     channels->unregisterChannel(Name);
     deleteParty();
-    Dictionary->dissolveParty(this_object());
+    Service->dissolveParty(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void leaveParty(object member)
 {
-    if (Dictionary->leaveParty(this_object(), member))
+    if (Service->leaveParty(this_object(), member))
     {
         removePartyMember(member->RealName());
         m_delete(Members, member);
@@ -160,7 +160,7 @@ private nomask int experienceEarned(int amount, object person)
 private nomask void pruneMissingPlayers()
 {
     object *memberList = members();
-    string *cachedMembers = Dictionary->getPartyMembers(this_object());
+    string *cachedMembers = Service->getPartyMembers(this_object());
 
     if (sizeof(memberList))
     {
@@ -174,7 +174,7 @@ private nomask void pruneMissingPlayers()
     {
         foreach(string person in cachedMembers)
         {
-            Dictionary->leavePartyByName(this_object(), person);
+            Service->leavePartyByName(this_object(), person);
         }
 
         if (!objectp(Creator) && sizeof(Members))

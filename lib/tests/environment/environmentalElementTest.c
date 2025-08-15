@@ -5,15 +5,15 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Element;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 
     Element = clone_object("/lib/tests/support/environment/fakeFeature.c");
 }
@@ -22,14 +22,14 @@ void Setup()
 void CleanUp()
 {
     destruct(Element);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionDisplaysCorrectly()
 {
     ExpectEq("a stand of majestic oak trees with branches laden with acorns, noonishly glowing",
-        Element.description("default", Dictionary.ambientLight()));
+        Element.description("default", Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -38,128 +38,128 @@ void AdjectivesPrecededByAAreProperlyExpandedToAn()
     object adjectiveTest = clone_object("/lib/tests/support/environment/adjectiveTest.c");
 
     ExpectEq("an old oak tree",
-        adjectiveTest.description("default", Dictionary.ambientLight()));
+        adjectiveTest.description("default", Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DawnDescriptionShowsCorrectTimeOfDay()
 {
-    Dictionary.timeOfDay("dawn");
+    Service.timeOfDay("dawn");
     ExpectEq("a stand of oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MorningDescriptionShowsCorrectTimeOfDayAndSeason()
 {
-    Dictionary.timeOfDay("morning");
+    Service.timeOfDay("morning");
     ExpectEq("a stand of majestic oak trees with branches laden with acorns",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 
-    Dictionary.season("autumn");
+    Service.season("autumn");
     ExpectEq("a stand of majestic oak trees carpeting the ground in fallen leaves of red, yellow, and orange lit from a ray of sunshine piercing through the canopy",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NoonDescriptionShowsCorrectTimeOfDay()
 {
-    Dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     ExpectEq("a stand of majestic oak trees with branches laden with acorns, noonishly glowing",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void WinterAfternoonDescriptionShowsCorrectTimeOfDayAndSeason()
 {
-    Dictionary.timeOfDay("afternoon");
-    Dictionary.season("winter");
+    Service.timeOfDay("afternoon");
+    Service.season("winter");
     ExpectEq("a stand of majestic oak trees covered with a thick layer of snow, afternooningly dreary",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SpringEveningDescriptionShowsCorrectTimeOfDayAndSeason()
 {
-    Dictionary.timeOfDay("evening");
-    Dictionary.season("spring");
+    Service.timeOfDay("evening");
+    Service.season("spring");
     ExpectEq("a stand of majestic oak trees with leaves just beginning to bud, oppressive in its late-day glory",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DuskDescriptionShowsCorrectTimeOfDay()
 {
-    Dictionary.timeOfDay("dusk");
+    Service.timeOfDay("dusk");
     ExpectEq("a stand of oak trees with branches laden with acorns, the details of which the last failing light of the day barely show",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void NightDescriptionShowsCorrectTimeOfDay()
 {
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq("the silhouette of deciduous trees outlined in the dark",
-        Element.description(0, Dictionary.ambientLight()));
+        Element.description(0, Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MidnightDescriptionShowsCorrectTimeOfDayAndChangesForSeason()
 {
-    Dictionary.timeOfDay("midnight");
-    Dictionary.setYear(1);
-    Dictionary.season("spring");
+    Service.timeOfDay("midnight");
+    Service.setYear(1);
+    Service.season("spring");
 
     ExpectEq("a massive silhouette of trees outlined in eery black", 
-        Element.description("default", Dictionary.ambientLight()), "spring");
+        Element.description("default", Service.ambientLight()), "spring");
 
-    Dictionary.season("summer");
+    Service.season("summer");
     ExpectEq("the silhouette of deciduous trees outlined in eery black", 
-        Element.description("default", Dictionary.ambientLight()), "summer");
+        Element.description("default", Service.ambientLight()), "summer");
 
-    Dictionary.season("autumn");
+    Service.season("autumn");
     ExpectEq("the silhouette of oak trees outlined in eery black. There is a creepy wisp of black energy here",
-        Element.description("default", Dictionary.ambientLight()), "autumn");
+        Element.description("default", Service.ambientLight()), "autumn");
 
-    Dictionary.season("winter");
+    Service.season("winter");
     ExpectEq("the silhouette of deciduous trees outlined in eery black", 
-        Element.description("default", Dictionary.ambientLight()), "winter");
+        Element.description("default", Service.ambientLight()), "winter");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MidnightDescriptionShowsCorrectTimeOfDayAndChangesForMoonPhases()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
 
-    Dictionary.setDay(0);
+    Service.setDay(0);
     ExpectEq("a massive silhouette of trees outlined in eery black",
-        Element.description("default", Dictionary.ambientLight()), "new moon");
+        Element.description("default", Service.ambientLight()), "new moon");
 
-    Dictionary.setDay(6);
+    Service.setDay(6);
     ExpectEq("the silhouette of deciduous trees outlined in eery black",
-        Element.description("default", Dictionary.ambientLight()), "crescent");
+        Element.description("default", Service.ambientLight()), "crescent");
 
-    Dictionary.setDay(13);
+    Service.setDay(13);
     ExpectEq("the silhouette of oak trees outlined in eery black",
-        Element.description("default", Dictionary.ambientLight()), "full");
+        Element.description("default", Service.ambientLight()), "full");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void StateChangesUpdateDescription()
 {
-    Dictionary.timeOfDay("dawn");
-    Dictionary.season("winter");
+    Service.timeOfDay("dawn");
+    Service.season("winter");
     ExpectEq("a stand of charred tree stumps covered with a murky mist that the sickly first rays barely illuminate",
-        Element.description("deadified", Dictionary.ambientLight()));
+        Element.description("deadified", Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void DefaultDescriptionUsedWhenStateDoesNotHaveDescription()
 {
-    Dictionary.timeOfDay("dawn");
-    Dictionary.season("summer");
+    Service.timeOfDay("dawn");
+    Service.season("summer");
     ExpectEq("a stand of oak trees with branches laden with acorns that the faint dawn light is just beginning to illuminate",
-        Element.description("blarg", Dictionary.ambientLight()));
+        Element.description("blarg", Service.ambientLight()));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -172,8 +172,8 @@ void DefaultLongDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void LongForStateDisplaysCorrectly()
 {
-    Dictionary.timeOfDay("night");
-    Dictionary.season("winter");
+    Service.timeOfDay("night");
+    Service.season("winter");
 
     Element.currentState("deadified");
     ExpectEq("You see many charred tree stumps covered with a murky mist "
@@ -320,13 +320,13 @@ void HarvestingUpdatesDescription()
 
     ExpectEq("a stand of majestic oak trees with branches laden with "
         "acorns, noonishly glowing",
-        element.description(0, Dictionary.ambientLight(), environment));
+        element.description(0, Service.ambientLight(), environment));
 
     element.harvestResource("oak", player, environment);
 
     ExpectEq("a heavily-forested stand of oak trees. Several trees "
         "remain with branches laden with acorns, noonishly glowing",
-        element.description(0, Dictionary.ambientLight(), environment));
+        element.description(0, Service.ambientLight(), environment));
 }
 
 /////////////////////////////////////////////////////////////////////////////

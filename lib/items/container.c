@@ -95,7 +95,7 @@ private nomask string inventoryText(object *allItems)
         this_player()->colorConfiguration() : "none";
     string charset = this_player() ?
         this_player()->charsetConfiguration() : "ascii";
-    object banner = load_object("/lib/dictionaries/commandsDictionary.c");
+    object banner = getService("commands");
 
     if (sizeof(allItems))
     {

@@ -16,8 +16,8 @@ void Setup()
     Attributes.colorConfiguration("none");
     setUsers(({ Attributes }));
 
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
 
     move_object(Attributes, "/lib/tests/support/environment/externalLightEnvironment.c");
 }
@@ -494,47 +494,47 @@ void GetReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeReturnsEnvironmentIlluminationByDefault()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("midnight");
+    object Service = getService("environment");
+    Service.timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes.canSee(5));
 
-    dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     ExpectTrue(Attributes.canSee(5));
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeReturnsTrueWhenDarkvisionPresent()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("midnight");
+    object Service = getService("environment");
+    Service.timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes.canSee(5));
 
     Attributes.addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
     ExpectTrue(Attributes.canSee(5));
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeReturnsFalseWhenBlindTraitPresent()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
     move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectTrue(Attributes.canSee(5));
 
     Attributes.addTrait("/lib/instances/traits/diseases/cataracts.c");
     ExpectFalse(Attributes.canSee(5));
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanSeeReturnsTrueWhenItemWithLightPresent()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("midnight");
+    object Service = getService("environment");
+    Service.timeOfDay("midnight");
     move_object(Attributes, clone_object("/lib/tests/support/environment/externalLightEnvironment.c"));
     ExpectFalse(Attributes.canSee(5));
 
@@ -546,7 +546,7 @@ void CanSeeReturnsTrueWhenItemWithLightPresent()
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attributes);
     ExpectTrue(Attributes.canSee(5));
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -643,73 +643,73 @@ void LongDescriptionCorrectlyDisplaysTwentyFourBitColor()
 /////////////////////////////////////////////////////////////////////////////
 void ShortReturnsCorrectMessageInNearDarkness()
 {
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     Attributes.Name("Bob");
     Attributes.Race("high elf");
     Attributes.Gender("male");
 
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(363);
+    Service.timeOfDay("midnight");
+    Service.setDay(363);
 
     ExpectEq("A silhouette of something unidentifiable", Attributes.short());
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ShortReturnsCorrectMessageInLowLight()
 {
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     Attributes.Name("Bob");
     Attributes.Race("high elf");
     Attributes.Gender("male");
 
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(6);
+    Service.timeOfDay("midnight");
+    Service.setDay(6);
 
     ExpectEq("The silhouette of a humanoid", Attributes.short());
 
     Attributes.addTrait("/lib/instances/traits/personas/animal/beaver.c");
     ExpectEq("The silhouette of a small animal", Attributes.short());
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ShortReturnsCorrectMessageInDimLight()
 {
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     Attributes.Name("Bob");
     Attributes.Race("high elf");
     Attributes.Gender("male");
 
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(13);
+    Service.timeOfDay("midnight");
+    Service.setDay(13);
 
     ExpectEq("The silhouette of a male high elf", Attributes.short());
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void ShortReturnsCorrectMessageInSomeLight()
 {
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     Attributes.Name("Bob");
     Attributes.Race("high elf");
     Attributes.Gender("male");
 
-    dictionary.timeOfDay("dawn");
+    Service.timeOfDay("dawn");
 
     ExpectEq("A male high elf", Attributes.short());
 
-    destruct(dictionary);
+    destruct(Service);
 }

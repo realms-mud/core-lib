@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object Service;
 private string Source;
 private object SubselectorObj;
 private int TotalPoints;
@@ -19,7 +19,7 @@ public nomask void setSource(string source)
 protected mapping questMenuSetup(string type)
 {
     mapping menu = ([]);
-    object questObj = Dictionary->questObject(type);
+    object questObj = Service->questObject(type);
     if (questObj)
     {
         SuppressColon = 1;
@@ -34,7 +34,7 @@ protected mapping questMenuSetup(string type)
     else
     {
         NumColumns = 2;
-        menu = Dictionary->questsOfType(User, type);
+        menu = Service->questsOfType(User, type);
     }
     return menu + ([]);
 }
@@ -46,7 +46,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     Type = "Quest";
-    Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    Service = getService("quests");
 
     Data = ([]);
 }
@@ -110,7 +110,7 @@ protected nomask string displayDetails(string choice)
     }
     else if (User->questIsCompleted(Data[choice]["type"]))
     {
-        object questObj = Dictionary->questObject(Data[choice]["type"]);
+        object questObj = Service->questObject(Data[choice]["type"]);
 
         if (questObj && questObj->questSucceeded(User))
         {

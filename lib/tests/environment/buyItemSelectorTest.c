@@ -17,7 +17,7 @@ void Setup()
     Store.shopType("weapons");
     Store.shopSubType("swords");
     Store.setRandomItemsToGenerate(2);
-    getDictionary("shop").generateInventory(Store);
+    getService("shop").generateInventory(Store);
 
     Selector = clone_object("/lib/environment/shopInventories/buyItemSelector.c");
     Selector.setStore(Store);
@@ -108,7 +108,7 @@ void DescribeShowsItemDetails()
     Store.shopType("weapons");
     Store.shopSubType("swords");
     Store.setRandomItemsToGenerate(0);
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Store);
+    getService("shop").generateInventory(Store);
     Selector.setStore(Store);
 
     Selector.initiateSelector(Player);
@@ -167,7 +167,7 @@ void PurchaseOfPermanentItemDoesNotRemoveFromStore()
     Store.shopType("weapons");
     Store.shopSubType("swords");
     Store.setRandomItemsToGenerate(0);
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Store);
+    getService("shop").generateInventory(Store);
     Selector.setStore(Store);
 
     Selector.initiateSelector(Player);
@@ -187,7 +187,7 @@ void PurchaseOfPermanentItemDoesNotRemoveFromStore()
 void PurchaseOfNonPermanentItemRemovesItFromStore()
 {
     Store.setRandomItemsToGenerate(10);
-    getDictionary("shop").generateInventory(Store);
+    getService("shop").generateInventory(Store);
 
     Selector.initiateSelector(Player);
     move_object(Selector, Player);
@@ -222,7 +222,7 @@ void DisplayIsCorrectForConsumables()
     Store.name("Bob's Stuff");
     Store.welcomeMessage("Remember: Nobody outsells Bob");
     Store.shopType("potions");
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Store);
+    getService("shop").generateInventory(Store);
     Selector.setStore(Store);
 
     Selector.initiateSelector(Player);
@@ -247,7 +247,7 @@ void CanSpecifyExactInventoryItems()
     Store.addInventoryItem("armor", "accessories", ({ "bracers", "amulet", "hat", "ring", "circlet" }));
     Store.addInventoryItem("armor", "clothing", ({ "robes", "ornate robes" }));
 
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Store);
+    getService("shop").generateInventory(Store);
     Selector.setStore(Store);
 
     Selector.initiateSelector(Player);

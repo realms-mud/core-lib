@@ -19,11 +19,11 @@ public void create()
 {
     Setup();
 
-    object traitsDictionary = getDictionary("traits");
-    if (traitsDictionary &&
-        !traitsDictionary->traitIsRegistered(program_name(this_object())))
+    object traitsService = getService("traits");
+    if (traitsService &&
+        !traitsService->traitIsRegistered(program_name(this_object())))
     {
-        traitsDictionary->registerTrait(this_object());
+        traitsService->registerTrait(this_object());
     }
 }
 
@@ -65,20 +65,20 @@ protected int addSpecification(string type, mixed value)
 
     if (sscanf(type, "bonus %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
+        object bonusService = getService("bonuses");
 
-        if (bonusDictionary &&
-            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
+        if (bonusService &&
+            bonusService->isValidBonusModifier(bonusToCheck, value))
         {
             specificationData["enhanced"] = 1;
             specificationData[type] = value * applyModifier;
             ret = 1;
         }
-        else if (bonusDictionary)
+        else if (bonusService)
         {
             raise_error(sprintf("ERROR - trait: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
-                type, program_name(getDictionary("bonuses"))));
+                type, program_name(getService("bonuses"))));
         }
     }
     else if(type && stringp(type))
@@ -87,10 +87,10 @@ protected int addSpecification(string type, mixed value)
         {
             case "type":
             {
-                object traitsDictionary = getDictionary("traits");
+                object traitsService = getService("traits");
 
-                if (value && stringp(value) && traitsDictionary &&
-                    traitsDictionary->isValidTraitType(value))
+                if (value && stringp(value) && traitsService &&
+                    traitsService->isValidTraitType(value))
                 {
                     ret = 1;
                     specificationData[type] = value;
@@ -157,10 +157,10 @@ protected int addSpecification(string type, mixed value)
             }
             case "research tree":
             {
-                object researchDictionary = getDictionary("research");
+                object researchService = getService("research");
 
-                if(researchDictionary &&
-                    researchDictionary->researchTree(value))
+                if(researchService &&
+                    researchService->researchTree(value))
                 {
                     ret = 1;
                     specificationData[type] = value;
@@ -174,10 +174,10 @@ protected int addSpecification(string type, mixed value)
             }
             case "triggering research":
             {
-                object researchDictionary = getDictionary("research");
+                object researchService = getService("research");
 
-                if(researchDictionary &&
-                    researchDictionary->isSustainedResearchItem(value))
+                if(researchService &&
+                    researchService->isSustainedResearchItem(value))
                 {
                     ret = 1;
                     specificationData[type] = value;
@@ -204,12 +204,12 @@ private nomask int isBonusAttack(string bonusItem)
     int ret = 0;
     string attackType = 0;
 
-    object attacksDictionary = getDictionary("attacks");
+    object attacksService = getService("attacks");
     if(bonusItem && stringp(bonusItem) && member(specificationData, bonusItem) &&
        sscanf(bonusItem, "bonus %s attack", attackType) && 
-        attacksDictionary)
+        attacksService)
     {
-        ret = (attacksDictionary->getAttack(attackType) != 0) ||
+        ret = (attacksService->getAttack(attackType) != 0) ||
               (attackType == "weapon");
     }
     return ret;
@@ -224,7 +224,7 @@ public nomask mapping *getExtraAttacks()
     {
         foreach(string key in keys)
         {
-            // attacksDictionary is verfied to exist via call to
+            // attacksService is verfied to exist via call to
             // isBonusAttack
             string attack = 0;
             if (key == "bonus weapon attack")
@@ -239,7 +239,7 @@ public nomask mapping *getExtraAttacks()
                intp(specificationData[key]))
             {
                 mapping attackMap =
-                    getDictionary("attacks")->getAttackMapping(attack, 
+                    getService("attacks")->getAttackMapping(attack, 
                     specificationData[key]);
                 attackMap["to hit"] = 60;
                 if(attackMap)
@@ -259,10 +259,10 @@ public nomask int queryBonus(string bonus)
     string bonusToCheck;
     if(sscanf(bonus, "bonus %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
+        object bonusService = getService("bonuses");
 
-        if(bonusDictionary && objectp(bonusDictionary) &&
-            bonusDictionary->isValidBonus(bonusToCheck) &&
+        if(bonusService && objectp(bonusService) &&
+            bonusService->isValidBonus(bonusToCheck) &&
            member(specificationData, bonus))
         {
             ret = specificationData[bonus];

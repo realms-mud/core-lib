@@ -28,7 +28,7 @@ protected nomask int addSpecification(string type, mixed value)
         }    
         case "damage type":
         {
-            object attacks = getDictionary("attacks");
+            object attacks = getService("attacks");
             if(stringp(value) && attacks && attacks->isValidDamageType(value))
             {
                 specificationData[type] = value;
@@ -38,7 +38,7 @@ protected nomask int addSpecification(string type, mixed value)
             {
                 raise_error("ERROR - constructedResearchComponent: the "
                     "'damage type' specification must be a valid attack type "
-                    "as defined in attacksDictionary.\n");
+                    "as defined in attacksService.\n");
             }
             break;
         }
@@ -105,11 +105,11 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     string ret = "";
     if (member(specificationData, "related research"))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
 
         foreach(string researchItem in specificationData["related research"])
         {
-            object research = dictionary->researchObject(researchItem);
+            object research = Service->researchObject(researchItem);
             if (research)
             {
                 ret += research->getRelatedResearchEffects(this_object(),

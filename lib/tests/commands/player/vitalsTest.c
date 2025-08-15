@@ -27,7 +27,7 @@ void Setup()
     Player.spellPoints(Player.maxSpellPoints());
     Player.staminaPoints(Player.maxStaminaPoints());
 
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     object guild = load_object("/lib/tests/support/guilds/mageGuild.c");
     guild.create();
     Player.joinGuild("fake mage");

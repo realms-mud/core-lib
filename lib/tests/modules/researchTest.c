@@ -85,7 +85,7 @@ void InitiatePointBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiatePointBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Research.addResearchPoints(1);
@@ -109,7 +109,7 @@ void InitiateGrantBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventOnSucceess()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
@@ -142,7 +142,7 @@ void InitiateTimedBasedResearchSucceedsWhenAllConditionsMet()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
@@ -156,7 +156,7 @@ void InitiateGrantBasedResearchFiresOnResearchStartedEventOnSucceess()
 /////////////////////////////////////////////////////////////////////////////
 void InitiateGrantBasedResearchFiresOnResearchCompletedEventWhenTimeExceeded()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Research.initiateResearch("/lib/tests/support/research/testTimedResearchItem.c");
@@ -369,7 +369,7 @@ void TargetedResearchWithoutAtRunsOnResearcher()
 /////////////////////////////////////////////////////////////////////////////
 void CustomEventFiredWhenResearchUsed()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     // This is a laziness thing - I don't want to create a granted research 
@@ -401,7 +401,7 @@ void CannotAddNegativeResearchPoints()
 /////////////////////////////////////////////////////////////////////////////
 void AddingResearchPointsFiresOnResearchPointsAdded()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Research.registerEvent(clone_object("/lib/tests/support/events/mockEventSubscriber"));
@@ -609,7 +609,7 @@ void ResearchInProgressTransitionsToCompletedWhenCompleted()
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceBroadcastsCorrectEventWithData()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     mapping researchChoice = ([
@@ -649,7 +649,7 @@ void AddResearchChoiceBroadcastsCorrectEventWithData()
 /////////////////////////////////////////////////////////////////////////////
 void AddResearchChoiceHandlesResearchPath()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     mapping researchChoice = ([
@@ -698,7 +698,7 @@ void SelectResearchChoiceDoesNotAddResearchWhithoutChoiceSetUp()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchChoiceFiresCorrectEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     mapping researchChoice = ([
@@ -744,7 +744,7 @@ void SelectResearchPathSelectsCorrectResearchTree()
 /////////////////////////////////////////////////////////////////////////////
 void SelectResearchPathFiresCorrectEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     mapping researchChoice = ([
@@ -825,7 +825,7 @@ void CorrectEnchantmentsReturned()
 void EquivalenceCorrectlyApplied()
 {
     Research.addResearchPoints(2);
-    object researchItem = getDictionary("research").researchObject(
+    object researchItem = getService("research").researchObject(
         "/lib/tests/support/research/testResearchA.c");
 
     ExpectFalse(Research.equivalentIsResearched(

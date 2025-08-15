@@ -6,7 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Attacker;
 object Target;
-object Dictionary;
+object Service;
 object Room;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,7 @@ void Setup()
     move_object(Attacker, Room);
     move_object(Target, Room);
 
-    Dictionary = load_object("/lib/dictionaries/combatChatterDictionary.c");
+    Service = getService("combatChatter");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ void CleanUp()
     destruct(Room);
     destruct(Target);
     destruct(Attacker);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ void CanSeeKillMessage()
 void CanSeeDefensiveMissMessage()
 {
     SetUpMessages();
-    Dictionary.displayCombatChatter(0, Attacker, Target, 1);
+    Service.displayCombatChatter(0, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee snarls at you, `You're bad at this!'",
         Attacker.caughtMessage());
 }
@@ -133,7 +133,7 @@ void CanSeeDefensiveMissMessage()
 void CanSeeDefensiveNotReallyWoundedMessage()
 {
     SetUpMessages();
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee laughs, `I am immense and immortal.'",
         Attacker.caughtMessage());
 }
@@ -143,7 +143,7 @@ void CanSeeDefensiveBarelyWoundedMessage()
 {
     SetUpMessages();
     Target.hit(3 * Target.maxHitPoints() / 16, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee taunts, `Come on, you pansy!",
         Attacker.caughtMessage());
 }
@@ -153,7 +153,7 @@ void CanSeeDefensiveLightlyWoundedMessage()
 {
     SetUpMessages();
     Target.hit(3 * Target.maxHitPoints() / 8, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee taunts, `Ouch, you mean dickweed.'",
         Attacker.caughtMessage());
 }
@@ -163,7 +163,7 @@ void CanSeeDefensiveWoundedMessage()
 {
     SetUpMessages();
     Target.hit(5 * Target.maxHitPoints() / 8, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee shrugs, `'Tis but a scratch'",
         Attacker.caughtMessage());
 }
@@ -173,7 +173,7 @@ void CanSeeDefensiveBeatenUpMessage()
 {
     SetUpMessages();
     Target.hit(13 * Target.maxHitPoints() / 16, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee snorts, `'Tis only a flesh wound'",
         Attacker.caughtMessage());
 }
@@ -183,7 +183,7 @@ void CanSeeDefensiveSeverelyWoundedMessage()
 {
     SetUpMessages();
     Target.hit((15 * Target.maxHitPoints() / 16) - 1, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee growls, `Yer starting to piss me off now.'",
         Attacker.caughtMessage());
 }
@@ -193,7 +193,7 @@ void CanSeeDefensiveNearDeathMessage()
 {
     SetUpMessages();
     Target.hit(31 * Target.maxHitPoints() / 32, "fire");
-    Dictionary.displayCombatChatter(1, Attacker, Target, 1);
+    Service.displayCombatChatter(1, Attacker, Target, 1);
     ExpectSubStringMatch("Nukulevee screams, `Come here and take what's coming to ya!'",
         Attacker.caughtMessage());
 }
@@ -202,7 +202,7 @@ void CanSeeDefensiveNearDeathMessage()
 void CanSeeOffensiveMissMessage()
 {
     SetUpMessages();
-    Dictionary.displayCombatChatter(0, Target, Attacker, 1);
+    Service.displayCombatChatter(0, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee whines, `Stand still!'",
         Attacker.caughtMessage());
 }
@@ -211,7 +211,7 @@ void CanSeeOffensiveMissMessage()
 void CanSeeOffensiveNotReallyWoundedMessage()
 {
     SetUpMessages();
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee laughs, `Take that, dipshit!'",
         Attacker.caughtMessage());
 }
@@ -221,7 +221,7 @@ void CanSeeOffensiveBarelyWoundedMessage()
 {
     SetUpMessages();
     Attacker.hit(3 * Attacker.maxHitPoints() / 16, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee taunts, `What's that you got on your face?'",
         Attacker.caughtMessage());
 }
@@ -231,7 +231,7 @@ void CanSeeOffensiveLightlyWoundedMessage()
 {
     SetUpMessages();
     Attacker.hit(3 * Attacker.maxHitPoints() / 8, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee taunts, `Quit hitting yourself!'",
         Attacker.caughtMessage());
 }
@@ -241,7 +241,7 @@ void CanSeeOffensiveWoundedMessage()
 {
     SetUpMessages();
     Attacker.hit(5 * Attacker.maxHitPoints() / 8, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee shrugs, `You suck at this.'",
         Attacker.caughtMessage());
 }
@@ -251,7 +251,7 @@ void CanSeeOffensiveBeatenUpMessage()
 {
     SetUpMessages();
     Attacker.hit(13 * Attacker.maxHitPoints() / 16, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee snorts, `Quit bleeding on my weapon, you dolt!'",
         Attacker.caughtMessage());
 }
@@ -261,7 +261,7 @@ void CanSeeOffensiveSeverelyWoundedMessage()
 {
     SetUpMessages();
     Attacker.hit(15 * Attacker.maxHitPoints() / 16, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee growls, `Now yer gonna die wearing that stupid outfit. How does it\nfeel?'",
         Attacker.caughtMessage());
 }
@@ -271,7 +271,7 @@ void CanSeeOffensiveNearDeathMessage()
 {
     SetUpMessages();
     Attacker.hit(Attacker.maxHitPoints() - 1, "fire");
-    Dictionary.displayCombatChatter(1, Target, Attacker, 1);
+    Service.displayCombatChatter(1, Target, Attacker, 1);
     ExpectSubStringMatch("Nukulevee sighs, `Poor soon-to-be dead bastard...'",
         Attacker.caughtMessage());
 }

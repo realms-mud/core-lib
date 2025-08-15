@@ -22,7 +22,7 @@ void Setup()
     Bystander.addCommands();
     move_object(Bystander, this_object());
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Player);
     channels.registerUser(Bystander);
 }
@@ -75,7 +75,7 @@ void CanNotSeeOtherRaceMessages()
     lowlyElf.Name("dwight");
     lowlyElf.Race("elf");
     lowlyElf.addCommands();
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(lowlyElf);
 
     ExpectTrue(Player.executeCommand("race Dwight is an idiot!"));

@@ -85,7 +85,7 @@ private nomask void checkForLinkDeath(object player)
                 "%s into nothingness!\n", player->Name()));
         }
 
-        object channels = load_object("/lib/dictionaries/channelDictionary.c");
+        object channels = getService("channel");
         if (channels && (this_object()->RealName() != ""))
         {
             channels->broadcastMessage("status", sprintf("%s (%s) has gone"

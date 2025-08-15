@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object TradingDictionary;
+private object TradingService;
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ public nomask void InitializeSelector()
     Type = "Port";
     Data = ([]);
 
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
+    TradingService = getService("trading");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ protected nomask void setUpUserForSelection()
     Data = ([]);
     int counter = 1;
 
-    object *ports = TradingDictionary->getAvailablePorts();
+    object *ports = TradingService->getAvailablePorts();
     foreach(object port in ports)
     {
         if (objectp(port))

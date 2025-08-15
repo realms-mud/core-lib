@@ -17,10 +17,10 @@ static nomask void loadTraits(mapping data, object persistence)
         string *traitList = m_indices(traits);
         if (sizeof(traitList))
         {
-            object dictionary = load_object("/lib/dictionaries/traitsDictionary");
+            object traitsService = getService("traits");
             foreach(string trait in traitList)
             {
-                string *bonuses = dictionary->getTraitBonuses(trait);
+                string *bonuses = traitsService->getTraitBonuses(trait);
                 if (bonuses && sizeof(bonuses))
                 {
                     traits[trait]["bonuses"] = bonuses;

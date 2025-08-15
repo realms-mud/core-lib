@@ -82,12 +82,12 @@ private nomask int executeTraitDetails(string command, object initiator)
         string trait = regreplace(command, "traits -d(etails)* ([A-Za-z ]+)",
             "\\2");
 
-        object dictionary = 
-            load_object("/lib/dictionaries/traitsDictionary.c");
+        object traitsService =
+            getService("traits");
 
-        if (dictionary)
+        if (traitsService)
         {
-            string message = dictionary->traitDetails(trait);
+            string message = traitsService->traitDetails(trait);
 
             if (message)
             {

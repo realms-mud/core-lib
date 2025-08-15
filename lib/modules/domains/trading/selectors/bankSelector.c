@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
-private object TradingDictionary;
+private object TradingService;
 
 ///////////////////////////////////////////////////////////////////////////////
 private string padAndDecorate(string text, int width, string deco, string section, string color)
@@ -28,10 +28,10 @@ private string padRowToBanner(string row, int bannerWidth)
 private void displayAccountStatus()
 {
     string colorConfig = User->colorConfiguration();
-    object commandsDictionary = getDictionary("commands");
+    object commandsService = getService("commands");
     string charset = User->charsetConfiguration();
 
-    string accountDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top",
+    string accountDisplay = commandsService->buildBanner(colorConfig, charset, "top",
         sprintf("%s Bank Account", User->getFirmName()));
     int bannerWidth = textWidth(accountDisplay) - 4;
 
@@ -49,7 +49,7 @@ private void displayAccountStatus()
         padAndDecorate(sprintf("%d gold", cash), 18, "field data", "research", colorConfig) +
         padAndDecorate("Bank Balance:", 18, "field header", "research", colorConfig) +
         padAndDecorate(sprintf("%d gold", bank), 18, "field data", "research", colorConfig);
-    accountDisplay += commandsDictionary->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
+    accountDisplay += commandsService->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
 
     // Second row
     row =
@@ -59,23 +59,23 @@ private void displayAccountStatus()
         padAndDecorate("Net Worth:", 18, "field header", "research", colorConfig) +
         padAndDecorate(sprintf("%d gold", netWorth), 18,
             netWorth >= 0 ? "bonus modifier" : "penalty modifier", "research", colorConfig);
-    accountDisplay += commandsDictionary->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
+    accountDisplay += commandsService->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
 
     // Third row
     row =
         padAndDecorate("Loan Capacity:", 18, "field header", "research", colorConfig) +
         padAndDecorate(sprintf("%d gold", loanCapacity), 10, "field data", "research", colorConfig) +
         configuration->decorate("(based on current cash holdings)", "note", "selector", colorConfig);
-    accountDisplay += commandsDictionary->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
+    accountDisplay += commandsService->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
 
     // Fourth row
     row =
         padAndDecorate("Interest Rates:", 18, "field header", "research", colorConfig) +
         configuration->decorate("Bank deposits +0.5% monthly, Loans +10% monthly",
             "details", "selector", colorConfig);
-    accountDisplay += commandsDictionary->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
+    accountDisplay += commandsService->banneredContent(colorConfig, charset, padRowToBanner(row, bannerWidth));
 
-    accountDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    accountDisplay += commandsService->buildBanner(colorConfig, charset, "bottom", "-");
 
     tell_object(User, accountDisplay);
 }
@@ -88,7 +88,7 @@ public nomask void InitializeSelector()
     Description = "Banking Services";
     Type = "Bank";
     Data = ([]);
-    TradingDictionary = getDictionary("trading");
+    TradingService = getService("trading");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -124,7 +124,7 @@ protected nomask void setUpUserForSelection()
         ]);
     }
 
-    int maxLoan = TradingDictionary->getMaximumLoan(User);
+    int maxLoan = TradingService->getMaximumLoan(User);
     if (maxLoan > 0)
     {
         Data[to_string(counter++)] = ([

@@ -23,7 +23,7 @@ object Statistics;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Statistics = clone_object("/lib/dictionaries/materialsDictionary.c");
+    Statistics = clone_object("/lib/services/materialsService.c");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("bob");
     Player.addCommands();

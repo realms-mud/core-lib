@@ -30,18 +30,18 @@ protected nomask int addSpecification(string type, mixed value)
         sscanf(type, "penalty to %s", bonusToCheck) ||
         sscanf(type, "apply %s", bonusToCheck))
     {
-        object bonusDictionary = getDictionary("bonuses");
-        if(bonusDictionary &&
-            bonusDictionary->isValidBonusModifier(bonusToCheck, value))
+        object bonusService = getService("bonuses");
+        if(bonusService &&
+            bonusService->isValidBonusModifier(bonusToCheck, value))
         {
             specificationData[type] = value;
             ret = 1;
         }
-        else if(bonusDictionary)
+        else if(bonusService)
         {
             raise_error(sprintf("ERROR - sustainedResearchItem: the '%s' "
                 "specification must be a valid modifier as defined in %s\n",
-                type, program_name(getDictionary("bonuses"))));
+                type, program_name(getService("bonuses"))));
         }
     }
     else
@@ -69,7 +69,7 @@ protected nomask int addSpecification(string type, mixed value)
             case "cooldown modifiers":
             {
                 if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
-                    (: (getDictionary("research")->researchObject($1) &&
+                    (: (getService("research")->researchObject($1) &&
                        intp($2) && ($2 < query("cooldown"))) :)))))
                 {
                     specificationData[type] = value;
@@ -149,10 +149,10 @@ protected nomask int addSpecification(string type, mixed value)
             case "negative trait":
             case "trait":
             {
-                object traitsDictionary = getDictionary("traits");
+                object traitsService = getService("traits");
 
-                if (stringp(value) && traitsDictionary &&
-                    traitsDictionary->isValidSustainedTrait(value))
+                if (stringp(value) && traitsService &&
+                    traitsService->isValidSustainedTrait(value))
                 {
                     specificationData[type] = value;
                     ret = 1;

@@ -4,8 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
-private object regionDictionary =
-    load_object("/lib/dictionaries/regionDictionary.c");
+private object regionService = getService("region");
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping loadEnvironmentObjects(int dbHandle, int environmentId)
@@ -148,7 +147,7 @@ private nomask mapping loadRegionMapDecorator(int dbHandle, int regionId,
     mixed result = db_fetch(dbHandle);
     if (result)
     {   
-        ret = regionDictionary->getMapDecorator(
+        ret = regionService->getMapDecorator(
             convertString(result[0]),
             convertString(result[1]),
             convertString(result[2]),

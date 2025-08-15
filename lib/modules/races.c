@@ -6,21 +6,21 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/races.h"
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object racialDictionary()
+private nomask object RaceService()
 {
-    return getDictionary("racial");
+    return getService("racial");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask string *validRace()
 {
-    return racialDictionary()->validRaces();
+    return RaceService()->validRaces();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidRace(string race)
 {
-    return racialDictionary()->isValidRace(race);
+    return RaceService()->isValidRace(race);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -37,7 +37,7 @@ public nomask varargs string apparentRace(string newRace)
 public nomask varargs string Race(string newRace)
 {
     if(newRace && !getModule("player") || (getModule("player") && 
-        isValidRace(newRace) && !racialDictionary()->isCreatureRace(newRace)))
+        isValidRace(newRace) && !RaceService()->isCreatureRace(newRace)))
     {
         race = newRace;
     }
@@ -47,19 +47,19 @@ public nomask varargs string Race(string newRace)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string racialType()
 {
-    return racialDictionary()->racialType(this_object());
+    return RaceService()->racialType(this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping *racesExtraAttacks()
 {
-    return racialDictionary()->extraAttacks(Race());
+    return RaceService()->extraAttacks(Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *racesResearchTrees()
 {
-    return racialDictionary()->researchTrees(Race());
+    return RaceService()->researchTrees(Race());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -70,9 +70,9 @@ public nomask int racesAttributeBonus(string attribute)
     if(attribute && stringp(attribute))
     {
         string method = sprintf("%sBonus", capitalize(attribute));
-        if(function_exists(method, racialDictionary()))
+        if(function_exists(method, RaceService()))
         {
-            ret = call_other(racialDictionary(), method, Race());
+            ret = call_other(RaceService(), method, Race());
         }
     }
     return ret;
@@ -83,13 +83,13 @@ public nomask int racesBonusTo(string bonus)
 {
     int ret = 0;
     
-    if(function_exists(bonus, racialDictionary()))
+    if(function_exists(bonus, RaceService()))
     {
-        ret = call_other(racialDictionary(), bonus, Race());
+        ret = call_other(RaceService(), bonus, Race());
     }
-    else if(function_exists("BonusSkillModifier", racialDictionary()))
+    else if(function_exists("BonusSkillModifier", RaceService()))
     {
-        ret = call_other(racialDictionary(), 
+        ret = call_other(RaceService(), 
             "BonusSkillModifier", Race(), bonus);
     }
     return ret;

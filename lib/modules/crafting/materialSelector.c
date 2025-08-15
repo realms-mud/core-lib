@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object CraftingService;
 private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
@@ -41,7 +41,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     NumColumns = 2;
-    Dictionary = getDictionary("crafting");
+    CraftingService = getService("crafting");
     Data = ([]);
 }
 
@@ -57,7 +57,7 @@ protected nomask void setUpUserForSelection()
     Description = "choose a " + CraftingComponent + " with which to craft";
     Type = "Select " + capitalize(CraftingComponent);
 
-    Data = Dictionary->getMaterialsOfType(CraftingComponent, User, Quantity,
+    Data = CraftingService->getMaterialsOfType(CraftingComponent, User, Quantity,
         CraftingItem);
 
     Data[to_string(sizeof(Data) + 1)] = ([

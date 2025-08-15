@@ -7,8 +7,8 @@ inherit "/lib/commands/baseCommand.c";
 private int Invalid = -2;
 private int NotSet = -1;
 
-private object regionDictionary =
-    load_object("/lib/dictionaries/regionDictionary.c");
+private object regionService =
+    getService("region");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void SetupCommand()
@@ -93,12 +93,12 @@ private string getType(string command, object initiator)
         type = regreplace(command, ".*-t(ype)* (\"[^\"]+\"|[^ ]+).*", "\\2", 1);
         type -= "\"";
 
-        if (!regionDictionary->isValidRegionType(type))
+        if (!regionService->isValidRegionType(type))
         {
             type = 0;
             tell_object(initiator, configuration->decorate(
                 format("The region type must be a valid region type as defined "
-                "in /lib/dictionaries/regions/region-types.h\n", 78), 
+                "in /lib/services/regions/region-types.h\n", 78), 
                 "error message", "wizard commands", initiator->colorConfiguration()));
         }
     }
@@ -303,7 +303,7 @@ public nomask int execute(string command, object initiator)
             int x = getDimension("x", command);
             int y = getDimension("y", command);
 
-            if (!regionDictionary->validDimensions(x, y))
+            if (!regionService->validDimensions(x, y))
             {
                 x = 0;
                 y = 0;
@@ -404,7 +404,7 @@ protected string flagInformation(string flag, string colorConfiguration)
         case "-t":
         {
             ret = "This option will set the type of the region. Valid values are "
-                "specified in /lib/dictionaries/regions/region-types.h. If "
+                "specified in /lib/services/regions/region-types.h. If "
                 "no value is set, this will default to 'forest'.";
             break;
         }
@@ -444,5 +444,5 @@ protected string flagInformation(string flag, string colorConfiguration)
 /////////////////////////////////////////////////////////////////////////////
 protected string notes(string displayCommand, string colorConfiguration)
 {
-    return "See also: /lib/dictionaries/regions/region-types.h";
+    return "See also: /lib/services/regions/region-types.h";
 }

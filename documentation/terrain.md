@@ -63,7 +63,7 @@ is strongly encouraged as they add a great deal of flavor to the description, bu
 optional - you do not need to add any. You can also add time of day descriptions ONLY
 where you want to add special text instead of for all timeframes. 
 
-The possible timeframes are specified in /lib/dictionaries/environmentDictionary.c in the `validTimesOfDay` variable.
+The possible timeframes are specified in /lib/services/environmentService.c in the `validTimesOfDay` variable.
 ```
     addSeasonDescription("winter", ({ " covered with a thick layer of snow" }));
 ```
@@ -71,7 +71,7 @@ The `addSeasonDescription(string season, string *descriptions, (optional) string
 descriptions for a given season to the environment's description. As with time of day
 descriptions, they are optional, but strongly encouraged. 
 
-The possible seasons are specified in /lib/dictionaries/environmentDictionary.c in the `validSeasons` variable.
+The possible seasons are specified in /lib/services/environmentService.c in the `validSeasons` variable.
 
 ##### How does it look?
 Putting all of this together, a terrain might look like this:
@@ -284,7 +284,7 @@ Terrain can provide bonuses or penalties to player actions and attributes. These
 are added using `addBonus(string bonusName, int value, (optional) string state)` 
 and `addPenalty(string bonusName, int value, (optional) string state)`.
 
-The bonus name must be valid according to the bonuses dictionary. Common bonuses include:
+The bonus name must be valid according to the bonuses service. Common bonuses include:
 - Combat bonuses: "melee", "dodge", "parry"
 - Stealth bonuses: "stealth", "hiding"
 - Magic bonuses: "magic", "spellcraft"

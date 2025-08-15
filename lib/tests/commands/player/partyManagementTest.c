@@ -6,7 +6,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Member;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -31,7 +31,7 @@ void Setup()
     Member.Name("Fred");
 
     setUsers(({ Player, Member }));
-    Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+    Service = getService("party");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ void CleanUp()
 {
     destruct(Player);
     destruct(Member);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ void CanAddPartyMember()
     
     command("add party member fred", Player);
 
-    ExpectTrue(Dictionary.hasPendingPartyRequest(Member));
+    ExpectTrue(Service.hasPendingPartyRequest(Member));
 
     ExpectEq("You have added Fred to your party: Weasels\n",
         Player.caughtMessage());
@@ -147,7 +147,7 @@ void CannotAddPartyMemberWhenNotInParty()
 {
     command("add party member fred", Player);
 
-    ExpectFalse(Dictionary.hasPendingPartyRequest(Member));
+    ExpectFalse(Service.hasPendingPartyRequest(Member));
 
     ExpectEq("You must first create a party.\n",
         Player.caughtMessage());
@@ -183,7 +183,7 @@ void CanAcceptPartyInvitation()
 
     command("add party member fred", Player);
     ExpectFalse(objectp(Member.getParty()));
-    ExpectTrue(Dictionary.hasPendingPartyRequest(Member));
+    ExpectTrue(Service.hasPendingPartyRequest(Member));
 
     command("accept party invite", Member);
     ExpectTrue(objectp(Member.getParty()));

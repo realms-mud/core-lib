@@ -47,7 +47,7 @@ private int checkForImpairedVision(object player)
 {
     int ret = 0;
 
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     string colorConfiguration = this_object()->colorConfiguration() || "none";
 
     if (player->hasTraitOfRoot("blind"))
@@ -100,13 +100,13 @@ public varargs nomask int move(string location, string direction,
     int silently, object region)
 {
     int ret = 0;
-    object environmentDictionary = getDictionary("environment");
-    if (environmentDictionary)
+    object environmentService = getService("environment");
+    if (environmentService)
     {
         object newLocation = region ? region->getEnvironment(location) :
-            environmentDictionary->getEnvironment(location);
+            environmentService->getEnvironment(location);
 
-        if (environmentDictionary->canMakeMove(this_object(), environment(),
+        if (environmentService->canMakeMove(this_object(), environment(),
             newLocation))
         {
             ret = 1;
@@ -159,7 +159,7 @@ public varargs nomask int move(string location, string direction,
     }
     else
     {
-        raise_error("ERROR: The environment dictionary could not be loaded!\n");
+        raise_error("ERROR: The environment service could not be loaded!\n");
     }
     return ret;
 }

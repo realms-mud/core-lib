@@ -587,11 +587,11 @@ private nomask string displayUsageCost(string colorConfiguration,
 
         if (sizeof(query("cost modifiers")))
         {
-            object dictionary = getDictionary("research");
+            object Service = getService("research");
             mapping modifiers = query("cost modifiers");
             foreach(string researchItem in m_indices(modifiers))
             {
-                object researchObj = dictionary->researchObject(researchItem);
+                object researchObj = Service->researchObject(researchItem);
                 if (researchObj)
                 {
                     ret += sprintf("%-18s", "") +
@@ -629,11 +629,11 @@ private nomask string displayUsageCost(string colorConfiguration,
 
         if (sizeof(query("cooldown modifiers")))
         {
-            object dictionary = getDictionary("research");
+            object Service = getService("research");
             mapping modifiers = query("cooldown modifiers");
             foreach(string researchItem in m_indices(modifiers))
             {
-                object researchObj = dictionary->researchObject(researchItem);
+                object researchObj = Service->researchObject(researchItem);
                 if (researchObj)
                 {
                     ret += sprintf("%-18s", "") +

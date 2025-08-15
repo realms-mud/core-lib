@@ -8,7 +8,7 @@ private string MessageParser = "/lib/core/messageParser.c";
 protected string *commands = ({});
 protected int SplitCommands;
 protected string CommandType = "General";
-protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+protected object configuration = getService("configuration");
 
 protected int TargetEnvironment = 2;
 protected int TargetInventory = 1;

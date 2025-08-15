@@ -6,14 +6,14 @@ inherit "/lib/core/baseSelector.c";
 
 private string Location;
 private mapping SectionData = 0;
-private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object Service = getService("domain");
 private object SubselectorObj;
 private string ConfirmChoice;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    mapping info = dictionary->getPlayerHolding(User, location);
+    mapping info = Service->getPlayerHolding(User, location);
     if (mappingp(info))
     {
         Location = location;
@@ -46,22 +46,22 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
-    if (dictionary && SectionData)
+    if (Service && SectionData)
     {
         Description = (member(SectionData, "name") ?
-            (dictionary->generateTitle(SectionData["name"]) + ":\n") :
+            (Service->generateTitle(SectionData["name"]) + ":\n") :
             "Building Sections:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "select the materials to construct with and style of %s "
                 "to build for your %s project at %s.",
                 SectionData["selected section"], SectionData["name"],
-                dictionary->getLocationDisplayName(Location)), 78),
+                Service->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) + "\n" +
-            dictionary->getBuildSectionInfo(User, SectionData) + "\n";
+            Service->getBuildSectionInfo(User, SectionData) + "\n";
 
-        Data = dictionary->getBuildSectionMenu(User, Location,
+        Data = Service->getBuildSectionMenu(User, Location,
             SectionData);
 
         ConfirmChoice = to_string(sizeof(Data) + 1);
@@ -71,7 +71,7 @@ protected nomask void setUpUserForSelection()
             "type": "construct",
             "description": "This option lets you begin construction on "
                 "the building component.\n",
-            "is disabled": !dictionary->beginConstructionIsEnabled(SectionData),
+            "is disabled": !Service->beginConstructionIsEnabled(SectionData),
             "canShow": 1
         ]);
 

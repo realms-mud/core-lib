@@ -28,7 +28,7 @@ protected nomask int addSpecification(string type, mixed value)
         }      
         case "affected buildings":
         {
-            object domains = getDictionary("domain");
+            object domains = getService("domain");
 
             if (pointerp(value) && sizeof(value) && domains &&
                 domains->validBuildings(value))
@@ -46,7 +46,7 @@ protected nomask int addSpecification(string type, mixed value)
         }   
         case "building effects":
         {
-            object domains = getDictionary("domain");
+            object domains = getService("domain");
 
             if (mappingp(value) && sizeof(value) && domains &&
                 domains->validBuildingEffects(value))
@@ -64,7 +64,7 @@ protected nomask int addSpecification(string type, mixed value)
         }   
         case "troop effects":
         {
-            object domains = getDictionary("domain");
+            object domains = getService("domain");
 
             if (mappingp(value) && sizeof(value) && domains &&
                 domains->validTroopEffects(value))

@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
-private object TradingDictionary;
+private object TradingService;
 private object SelectedPort;
 private int justDisplayedStatus = 0;
 
@@ -14,22 +14,22 @@ private void displayTradingStatus()
 {
     mapping data = User->getTradingData();
     string colorConfig = User->colorConfiguration();
-    object commandsDictionary = getDictionary("commands");
+    object commandsService = getService("commands");
     string charset = User->charsetConfiguration();
 
     string statusDisplay =
-        commandsDictionary->buildBanner(colorConfig, charset, "top",
+        commandsService->buildBanner(colorConfig, charset, "top",
             sprintf("%s Trading Status", data["firm"]));
 
     // Company information
-    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    statusDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Location: ", "field header", "research", colorConfig) +
         configuration->decorate(data["location"], "field data", "research", colorConfig) +
         configuration->decorate("        Date: ", "field header", "research", colorConfig) +
         configuration->decorate(data["date"], "field data", "research", colorConfig));
 
     // Financial status
-    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    statusDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Cash: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d gold", data["cash"]), "field data", "research", colorConfig) +
         configuration->decorate("     Bank: ", "field header", "research", colorConfig) +
@@ -47,11 +47,11 @@ private void displayTradingStatus()
             if (objectp(vehicle))
             {
                 mapping blueprint = vehicle->getBlueprint();
-                statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+                statusDisplay += commandsService->banneredContent(colorConfig, charset,
                     configuration->decorate(sprintf("Vehicle: %s", blueprint["type"]), "field header", "research", colorConfig) +
                     configuration->decorate(sprintf("  Location: %s", blueprint["location"]), "field data", "research", colorConfig)
                 );
-                statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+                statusDisplay += commandsService->banneredContent(colorConfig, charset,
                     configuration->decorate("Capacity: ", "field header", "research", colorConfig) +
                     configuration->decorate(sprintf("%d/%d units", vehicle->getUsedSpace(), blueprint["capacity"]),
                         "field data", "research", colorConfig) +
@@ -63,11 +63,11 @@ private void displayTradingStatus()
     }
     else
     {
-        statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+        statusDisplay += commandsService->banneredContent(colorConfig, charset,
             configuration->decorate("No vehicles owned.", "penalty modifier", "research", colorConfig));
     }
 
-    statusDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    statusDisplay += commandsService->buildBanner(colorConfig, charset, "bottom", "-");
 
     tell_object(User, statusDisplay);
 }
@@ -81,7 +81,7 @@ public nomask void InitializeSelector()
     Type = "Trading";
     Data = ([]);
 
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
+    TradingService = getService("trading");
     SelectedPort = 0;
 }
 

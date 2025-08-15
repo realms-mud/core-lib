@@ -17,9 +17,9 @@ private void displayWarehouseStatus(object player, object trader, object port) {
     string charset = player->charsetConfiguration();
     mapping warehouse = trader->getWarehouse(trader->getCurrentLocation());
     
-    object commandsDict = getDictionary("commands");
-    object configDict = getDictionary("configuration");
-    object tradingDict = getDictionary("trading");
+    object commandsDict = getService("commands");
+    object configDict = getService("configuration");
+    object tradingDict = getService("trading");
     
     string warehouseDisplay = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                              sprintf("%s Warehouse", trader->getCurrentLocation()));

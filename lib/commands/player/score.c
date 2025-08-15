@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
 
-private object Dictionary;
+private object commandsService;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void SetupCommand()
@@ -13,7 +13,7 @@ public nomask void SetupCommand()
     addCommandTemplate("score [-v]");
     addCommandTemplate("? [-v]"); 
 
-    Dictionary = getDictionary("commands");
+    commandsService = getService("commands");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,11 +34,11 @@ private nomask string overallLevel(object initiator,
 private nomask string raceDetails(object initiator,
     string colorConfiguration)
 {
-    object raceDictionary = getDictionary("racial");
+    object raceService = getService("racial");
     return configuration->decorate("Race: ", "content", "score",
             colorConfiguration) +
         configuration->decorate(sprintf("%-33s",
-            raceDictionary->raceDetails(initiator)), "value", "score",
+            raceService->raceDetails(initiator)), "value", "score",
             colorConfiguration);
 }
 
@@ -90,10 +90,10 @@ private nomask string combatStatistics(object initiator,
                 colorConfiguration);
     }
 
-    return Dictionary->buildBanner(colorConfiguration, charset, "center",
-        "Combat Statistics") +
-        Dictionary->banneredContent(colorConfiguration, charset, bestKillLine) +
-        Dictionary->banneredContent(colorConfiguration, charset, nemesisLine);
+    return commandsService->buildBanner(colorConfiguration, charset, "center",
+            "Combat Statistics") +
+        commandsService->banneredContent(colorConfiguration, charset, bestKillLine) +
+        commandsService->banneredContent(colorConfiguration, charset, nemesisLine);
 }
 
 
@@ -115,7 +115,7 @@ private nomask string getWeaponData(object initiator, object weapon,
         damage = 1;
     }
 
-    return Dictionary->banneredContent(colorConfiguration, charset,
+    return commandsService->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%s Weapon: ", location),
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%-15s",
@@ -139,7 +139,7 @@ private nomask string getDefensiveStats(object initiator,
     int defend = initiator->calculateDefendAttack();
     int soak = initiator->calculateSoakDamage("physical");
 
-    return Dictionary->banneredContent(colorConfiguration, charset,
+    return commandsService->banneredContent(colorConfiguration, charset,
         configuration->decorate(" Defend Attack: ",
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%3d to %-4d",
@@ -163,8 +163,8 @@ private nomask string getCombatData(object initiator,
 {
     string ret = "";
 
-    object materialsDictionary =
-        getDictionary("materials");
+    object materialsService =
+        getService("materials");
 
     object nullEquipment =
         load_object("/lib/items/equipment.c");
@@ -192,7 +192,7 @@ private nomask string getCombatData(object initiator,
     {
         hostiles = hostiles[0..31] + "...";
     }
-    ret += Dictionary->banneredContent(colorConfiguration, charset,
+    ret += commandsService->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%14s: ", "Wimpy"),
             "content", "score", colorConfiguration) +
         configuration->decorate(sprintf("%3d%%",
@@ -254,28 +254,28 @@ public nomask int execute(string command, object initiator)
             capitalize(initiator->RealName()),
             initiator->Title()), "character", "score", colorConfiguration);
 
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "top", "General") + 
-            Dictionary->banneredContent(colorConfiguration, charset,
+            commandsService->banneredContent(colorConfiguration, charset,
             raceDetails(initiator, colorConfiguration) +
             overallLevel(initiator, colorConfiguration));
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "center", "Vitals") + initiator->vitals();
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "center", "Attributes") +
             initiator->attributes();
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "center", "Guilds") +
             initiator->guildsDetails();
 
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "center", "Combat Information") +
             getCombatData(initiator, colorConfiguration, charset);
-        score += Dictionary->buildBanner(colorConfiguration, charset,
+        score += commandsService->buildBanner(colorConfiguration, charset,
             "center", "Details") +
-            Dictionary->banneredContent(colorConfiguration, charset,
+            commandsService->banneredContent(colorConfiguration, charset,
                 getBiologicalDetails(initiator, colorConfiguration)) +
-            Dictionary->banneredContent(colorConfiguration, charset,
+            commandsService->banneredContent(colorConfiguration, charset,
                 configuration->decorate(sprintf("%-75s", "You can find out "
                     "more via the 'skills', 'traits', and 'research' "
                     "commands."), "content", "score", colorConfiguration));
@@ -284,7 +284,7 @@ public nomask int execute(string command, object initiator)
         {
             score += combatStatistics(initiator, colorConfiguration, charset);
         }
-        score += Dictionary->buildBanner(colorConfiguration, charset, "bottom", 
+        score += commandsService->buildBanner(colorConfiguration, charset, "bottom",
             (charset != "screen reader" ? "-" : ""));
         tell_object(initiator, score);
     }

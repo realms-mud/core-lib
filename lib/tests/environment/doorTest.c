@@ -7,15 +7,15 @@ inherit "/lib/tests/framework/testFixture.c";
 object Door;
 object User;
 object Observer;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 
     Door = clone_object("/lib/environment/doors/door.c");
 
@@ -42,7 +42,7 @@ void CleanUp()
     destruct(User);
     destruct(Observer);
     destruct(Door);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -177,13 +177,13 @@ void DoorLocksAtProperTime()
     Door.currentState("stuff");
     ExpectTrue(Door.isLocked());
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectFalse(Door.isLocked());
 
     Door.currentState("default");
     ExpectTrue(Door.isLocked());
 
-    Dictionary.timeOfDay("morning");
+    Service.timeOfDay("morning");
     ExpectFalse(Door.isLocked());
 }
 
@@ -198,7 +198,7 @@ void DoorDoesNotLockOnTimeIfManipulated()
     ExpectTrue(Door.isLocked());
     Door.unlock(User);
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectFalse(Door.isLocked());
 }
 
@@ -214,10 +214,10 @@ void DoorDoesNotUnlockOnTimeIfManipulated()
     Door.lock(User);
     ExpectTrue(Door.isLocked());
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectTrue(Door.isLocked());
 
-    Dictionary.timeOfDay("morning");
+    Service.timeOfDay("morning");
     ExpectTrue(Door.isLocked());
 }
 

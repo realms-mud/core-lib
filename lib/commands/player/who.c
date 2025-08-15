@@ -42,12 +42,12 @@ public nomask int execute(string command, object initiator)
         object *playerList = sort_array(users(),
             (: $1->effectiveLevel() < $2->effectiveLevel() :));
 
-        object wizardDictionary = load_object("/lib/dictionaries/wizardDictionary.c");
-        object configDictionary = load_object("/lib/dictionaries/configurationDictionary.c");
+        object wizardService = getService("wizard");
+        object configurationService = getService("configuration");
 
         object *wizardList = sort_array(filter(playerList,
             (: (member(inherit_list($1), "/lib/realizations/wizard.c") > -1) :)),
-            (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardDictionary);
+            (: $3->getSortOrder($1) < $3->getSortOrder($2) :), wizardService);
 
         if (sizeof(regexp(({ command }), "-w")))
         {
@@ -85,22 +85,22 @@ public nomask int execute(string command, object initiator)
             string wizardName = getPlayerInfo(wizard);
 
             whoList += sprintf("%-55s (%s)\n", wizardName, 
-                configDictionary->decorate(
-                    wizardDictionary->getWizardTitle(wizard),
+                configurationService->decorate(
+                    wizardService->getWizardTitle(wizard),
                     wizard->wizardLevel(), "wizard levels", 
                     initiator->colorConfiguration()));
         }
 
         if (sizeof(whoList) && sizeof(playerList) && sizeof(wizardList))
         {
-            whoList += configDictionary->divider(initiator->colorConfiguration(),
+            whoList += configurationService->divider(initiator->colorConfiguration(),
                 initiator->charsetConfiguration());
         }
 
         foreach(object player in playerList)
         {
             string playerName = getPlayerInfo(player);
-            whoList += configDictionary->decorate(
+            whoList += configurationService->decorate(
                 sprintf("%-55s (Level %d)\n", playerName,
                 player->effectiveLevel()), "any", "player guilds",
                 initiator->colorConfiguration());

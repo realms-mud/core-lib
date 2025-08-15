@@ -642,7 +642,7 @@ void CalculateAttackCorrectlyAppliesMagicalAttackBonus()
 /////////////////////////////////////////////////////////////////////////////
 void CalculateAttackCorrectlyAppliesAttackTypes()
 {
-    object weapon = clone_object("/lib/dictionaries/attacks/clawAttack.c");
+    object weapon = clone_object("/lib/services/attacks/clawAttack.c");
     weapon.setAttackValues(10, 10);
     ExpectTrue(10 <= Attacker.calculateAttack(Target, weapon, 1));
 }
@@ -781,7 +781,7 @@ void ParalysisAffectsSoakDamage()
 /////////////////////////////////////////////////////////////////////////////
 void CalculateDamageCorrectlyAppliesAttackTypes()
 {
-    object weapon = clone_object("/lib/dictionaries/attacks/clawAttack.c");
+    object weapon = clone_object("/lib/services/attacks/clawAttack.c");
     weapon.setAttackValues(10, 10);
     ExpectTrue(14 <= Attacker.calculateDamage(weapon, weapon.getDamageType(), 1));
 }

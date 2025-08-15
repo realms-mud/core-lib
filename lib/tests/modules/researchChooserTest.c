@@ -15,7 +15,7 @@ mapping Data;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ResearchChooser = clone_object("/lib/modules/guilds/researchChooser.c");

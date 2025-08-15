@@ -11,12 +11,12 @@ private int Duration;
 private int CurrentCost = 0;
 private mapping Selections = ([]);
 
-private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object Service = getService("domain");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    mapping info = dictionary->getPlayerHolding(User, location);
+    mapping info = Service->getPlayerHolding(User, location);
     if (mappingp(info))
     {
         Location = location;
@@ -68,19 +68,19 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    if (dictionary && WorkerType)
+    if (Service && WorkerType)
     {
         Description = "Assign Workers:\n" +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "select the %s who will be executing your project "
                 "in your holdings at %s.", 
-                dictionary->pluralizeValue(WorkerType, 1),
-                dictionary->getLocationDisplayName(Location)), 78),
+                Service->pluralizeValue(WorkerType, 1),
+                Service->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) +
-            dictionary->getWorkersOfType(User, WorkerType, Location,
+            Service->getWorkersOfType(User, WorkerType, Location,
                 QuantityNeeded, Selections);
 
-        Data = dictionary->getWorkersByTypeMenu(User, Location, WorkerType,
+        Data = Service->getWorkersByTypeMenu(User, Location, WorkerType,
             (QuantityNeeded - sizeof(Selections)) != 0, Duration, CurrentCost);
     }
 }
@@ -150,7 +150,7 @@ protected string choiceFormatter(string choice)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void setupHireling(string type, string selection)
 {
-    mapping workerData = dictionary->getRandomHenchman(
+    mapping workerData = Service->getRandomHenchman(
         WorkerType, type, Data[selection]["cost"],
         Data[selection]["duration"]);
     CurrentCost += Data[selection]["cost"];
@@ -159,9 +159,9 @@ private nomask void setupHireling(string type, string selection)
 
     Selections[worker->Name() + " " + worker->Title()] = ([
         "object": worker,
-        "benefits" : dictionary->getBenefits(User, worker,
+        "benefits" : Service->getBenefits(User, worker,
             WorkerType, Location),
-        "level" : dictionary->getBenefitLevel(worker, WorkerType)
+        "level" : Service->getBenefitLevel(worker, WorkerType)
     ]);
 }
 
@@ -202,9 +202,9 @@ protected nomask int processSelection(string selection)
                     object worker = Data[selection]["data"];
                     Selections[Data[selection]["type"]] = ([
                         "object": worker,
-                        "benefits": dictionary->getBenefits(User, worker, 
+                        "benefits": Service->getBenefits(User, worker, 
                             WorkerType, Location),
-                        "level": dictionary->getBenefitLevel(worker, WorkerType)
+                        "level": Service->getBenefitLevel(worker, WorkerType)
                     ]);
                 }
                 else

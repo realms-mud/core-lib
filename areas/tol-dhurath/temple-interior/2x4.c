@@ -33,7 +33,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
             "24-bit": "\x1b[0;38;2;180;180;60m",
         ])
     ]);
-    string baseColor = getDictionary("region")->iconColor(
+    string baseColor = getService("region")->iconColor(
         decoratorType(), color);
 
     baseIcon[0][0] = sprintf("%s%s%s", baseColor,

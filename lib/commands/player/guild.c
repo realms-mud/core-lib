@@ -40,7 +40,7 @@ public nomask int execute(string command, object initiator)
             ret = 1;
             message = regreplace(command, "^guild (-g " + implode(guilds, "|") + ")* *(.*)", "\\2");
 
-            object channels = load_object("/lib/dictionaries/channelDictionary.c");
+            object channels = getService("channel");
             if (channels && sizeof(message))
             {
                 channels->broadcastMessage(guild, message, initiator);

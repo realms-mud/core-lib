@@ -10,7 +10,7 @@ object Character;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Character = clone_object("/lib/tests/support/services/mockPlayer");

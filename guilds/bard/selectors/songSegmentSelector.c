@@ -51,7 +51,7 @@ private nomask string getSegmentDetails()
     string colorConfiguration = User->colorConfiguration();
 
     string info = regreplace(
-        getDictionary("research")->getCompositeItemDetails(
+        getService("research")->getCompositeItemDetails(
             SongData, colorConfiguration, configuration),
         "       ", "", 1);
 
@@ -225,7 +225,7 @@ public nomask void onSelectorCompleted(object caller)
 
         if (!SongData["description"])
         {
-            object researchItem = getDictionary("research")->researchObject(
+            object researchItem = getService("research")->researchObject(
                 SongData["research"]);
             if (researchItem)
             {

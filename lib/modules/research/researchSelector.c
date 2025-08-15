@@ -6,7 +6,7 @@ inherit "/lib/core/baseSelector.c";
 
 private int TotalPoints;
 private object SubselectorObj;
-private object Dictionary;
+private object Service;
 private int ShowTreeElements;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,14 +23,14 @@ public nomask void InitializeSelector()
         "research\nas well as initiate new research";
     Type = "Research";
 
-    Dictionary = load_object("/lib/dictionaries/researchDictionary.c");
+    Service = getService("research");
     Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    string *sources = Dictionary->getResearchSourcesForUser(User);
+    string *sources = Service->getResearchSourcesForUser(User);
     int menuItem = 1;
 
     if (sizeof(sources))

@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
-private object TradingDictionary;
+private object TradingService;
 
 ///////////////////////////////////////////////////////////////////////////////
 private string padAndDecorate(string text, int width, string deco, string section, string color)
@@ -29,19 +29,19 @@ private void displayActiveContracts()
 {
     mapping activeContracts = User->getActiveContracts();
     string colorConfiguration = User->colorConfiguration();
-    object configuration = getDictionary("configuration");
-    object commandsDictionary = getDictionary("commands");
+    object configuration = getService("configuration");
+    object commandsService = getService("commands");
     string charset = User->charsetConfiguration();
 
     int bannerWidth = 75;
-    string contractDisplay = commandsDictionary->buildBanner(colorConfiguration, charset, "top",
+    string contractDisplay = commandsService->buildBanner(colorConfiguration, charset, "top",
         "Active Trading Contracts");
 
     if (!sizeof(activeContracts))
     {
         string line = configuration->decorate(
             "You have no active contracts.", "note", "selector", colorConfiguration);
-        contractDisplay += commandsDictionary->banneredContent(
+        contractDisplay += commandsService->banneredContent(
             colorConfiguration, charset, padRowToBanner(line, bannerWidth));
     }
     else
@@ -51,8 +51,8 @@ private void displayActiveContracts()
         {
             mapping contract = activeContracts[id];
 
-            int minutesLeft = TradingDictionary->getMinutesUntilDeadline(contract["deadline"]);
-            string timeLeftDisplay = TradingDictionary->formatTimeLeft(minutesLeft);
+            int minutesLeft = TradingService->getMinutesUntilDeadline(contract["deadline"]);
+            string timeLeftDisplay = TradingService->formatTimeLeft(minutesLeft);
 
             // Determine urgency color and label
             string urgencyColor = "field data";
@@ -78,7 +78,7 @@ private void displayActiveContracts()
             string contractLine = configuration->decorate(
                 sprintf("  %s: %s", id, contract["description"]),
                 "field header", "selector", colorConfiguration);
-            contractDisplay += commandsDictionary->banneredContent(
+            contractDisplay += commandsService->banneredContent(
                 colorConfiguration, charset, padRowToBanner(contractLine, bannerWidth));
 
             // Decorate only the time left with urgency color, and append urgency label
@@ -88,30 +88,30 @@ private void displayActiveContracts()
                 configuration->decorate(urgencyLabel, "selected", "selector", colorConfiguration));
             statusLine = configuration->decorate(statusLine, "field data", "selector", colorConfiguration);
 
-            contractDisplay += commandsDictionary->banneredContent(
+            contractDisplay += commandsService->banneredContent(
                 colorConfiguration, charset, padRowToBanner(statusLine, bannerWidth));
 
-            int progress = TradingDictionary->calculateContractProgress(User, contract);
+            int progress = TradingService->calculateContractProgress(User, contract);
             string progressLine = configuration->decorate(
                 sprintf("    Progress: %d%% complete", progress),
                 progress >= 100 ? "bonus modifier" : "field data", "selector", colorConfiguration);
-            contractDisplay += commandsDictionary->banneredContent(
+            contractDisplay += commandsService->banneredContent(
                 colorConfiguration, charset, padRowToBanner(progressLine, bannerWidth));
         }
     }
 
-    contractDisplay += commandsDictionary->buildBanner(colorConfiguration, charset, "bottom", "-");
+    contractDisplay += commandsService->buildBanner(colorConfiguration, charset, "bottom", "-");
     tell_object(User, contractDisplay);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 private void acceptContract(mapping contractData)
 {
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     string contractId = contractData["contract id"];
     string portName = contractData["destination"];
 
-    int accepted = TradingDictionary->acceptContract(User, portName, contractId);
+    int accepted = TradingService->acceptContract(User, portName, contractId);
 
     if (accepted)
     {
@@ -136,14 +136,14 @@ public nomask void InitializeSelector()
     Description = "Trading Contracts";
     Type = "Contracts";
     Data = ([]);
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
+    TradingService = getService("trading");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object configuration = getDictionary("configuration");
-    mapping contracts = TradingDictionary->queryAvailableContracts(User);
+    object configuration = getService("configuration");
+    mapping contracts = TradingService->queryAvailableContracts(User);
     mapping activeContracts = User->getActiveContracts();
 
     Data = ([]);
@@ -175,8 +175,8 @@ protected nomask void setUpUserForSelection()
         {
             mapping contract = contracts[id];
 
-            int minutesLeft = TradingDictionary->getMinutesUntilDeadline(contract["deadline"]);
-            string timeLeftDisplay = TradingDictionary->formatTimeLeft(minutesLeft);
+            int minutesLeft = TradingService->getMinutesUntilDeadline(contract["deadline"]);
+            string timeLeftDisplay = TradingService->formatTimeLeft(minutesLeft);
 
             if (minutesLeft > 0)
             {
@@ -261,7 +261,7 @@ protected nomask int suppressMenuDisplay()
 ///////////////////////////////////////////////////////////////////////////////
 protected string choiceFormatter(string choice)
 {
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     string displayType = Data[choice]["canShow"] ? "choice enabled" : "choice disabled";
     string colorConfiguration = User->colorConfiguration();
 

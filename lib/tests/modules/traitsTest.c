@@ -134,7 +134,7 @@ void TraitNamesReturnsListOfTraits()
 /////////////////////////////////////////////////////////////////////////////
 void AddTraitFiresOnTraitAddedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Traits.registerEvent(clone_object("/lib/tests/support/events/traitEventSubscriber.c"));
@@ -165,7 +165,7 @@ void RemoveTraitRemovesSpecifiedTrait()
 /////////////////////////////////////////////////////////////////////////////
 void RemoveTraitFiresOnTraitRemovedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectTrue(Traits.addTrait("/lib/tests/support/traits/testTrait.c"));

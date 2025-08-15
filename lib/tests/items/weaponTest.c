@@ -139,7 +139,7 @@ void OffhandCannotBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void WeaponTypeCanBeSet()
 {
-    // A comprehensive test of the valid Weapon types is in the materialsDictionary test
+    // A comprehensive test of the valid Weapon types is in the materialsService test
     ExpectTrue(Weapon.set("weapon type", "long sword"), "weapon type can be set");
     ExpectEq("long sword", Weapon.query("weapon type"), "'long sword' weapon type was returned");
 
@@ -150,7 +150,7 @@ void WeaponTypeCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidWeaponTypeCannotBeSet()
 {
-    string expected = "*Weapon: The 'weapon type' element must be a string as defined in the keys of the itemTypes mapping in /lib/dictionaries/materialsDictionary.c.\n";
+    string expected = "*Weapon: The 'weapon type' element must be a string as defined in the keys of the itemTypes mapping in /lib/services/materialsService.c.\n";
 
     string err = catch (Weapon.set("weapon type", "blah"); nolog);
     ExpectEq(expected, err, "weapon type cannot be set");
@@ -275,7 +275,7 @@ void BlueprintCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidBlueprintCannotBeSet()
 {
-    string expected = "*Weapon: The 'blueprint' element must be a string as defined in the keys of the weaponBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
+    string expected = "*Weapon: The 'blueprint' element must be a string as defined in the keys of the weaponBlueprints mapping in /lib/services/materialsService.c.\n";
 
     string err = catch (Weapon.set("blueprint", "blah"); nolog);
     ExpectEq(expected, err, "blueprint cannot be set");

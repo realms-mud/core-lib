@@ -122,19 +122,19 @@ void CanNotSetRaceToAnInvalidRace()
 /////////////////////////////////////////////////////////////////////////////
 void RacesExtraAttackReturnsCorrectValue()
 {
-    object racialDictionary = clone_object("/lib/dictionaries/racialDictionary");
+    object RaceService = clone_object("/lib/services/RaceService");
 
     Races.Race("high elf");
-    ExpectEq(racialDictionary.extraAttacks("high elf"), Races.racesExtraAttacks());
+    ExpectEq(RaceService.extraAttacks("high elf"), Races.racesExtraAttacks());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void RacesResearchTreesReturnsCorrectValue()
 {
-    object racialDictionary = clone_object("/lib/dictionaries/racialDictionary");
+    object RaceService = clone_object("/lib/services/RaceService");
 
     Races.Race("high elf");
-    ExpectEq(racialDictionary.researchTrees("high elf"), Races.racesResearchTrees());
+    ExpectEq(RaceService.researchTrees("high elf"), Races.racesResearchTrees());
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -34,7 +34,7 @@ void Init()
     ignoreList += ({ "PopulatePrerequisites" });
 
     colorConfiguration = "3-bit";
-    Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+    Configuration = getService("configuration");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -524,9 +524,9 @@ void DisplayPrerequisitesCorrectlyDisplaysPresenceWithPresencePrerequisites()
 /////////////////////////////////////////////////////////////////////////////
 void DisplayPrerequisitesCorrectlyDisplaysEquivalence()
 {
-    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");    
-    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
-    object researchItem = getDictionary("research").researchObject(
+    getService("research").researchObject("/lib/tests/support/research/testResearchA.c");    
+    getService("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    object researchItem = getService("research").researchObject(
         "/lib/tests/support/research/testResearchPrereq.c");
 
     ExpectEq("\x1b[0;36mPrerequisites:\n\x1b[0m\x1b[0;33m       Research: "

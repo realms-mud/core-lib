@@ -47,7 +47,7 @@ protected nomask void setUpUserForSelection()
     Description = "Select Song Segment Menu" + "\n";
 
     object *potentialElements = SongTemplate->query("segments") ?
-        getDictionary("research")->getResearchItemsBySectionType(User,
+        getService("research")->getResearchItemsBySectionType(User,
             filter(SongTemplate->query("segments"),
                 (: member(m_indices($1), $2) > -1 :), Section)[0][Section]
         ) : ({ });
@@ -63,7 +63,7 @@ protected nomask void setUpUserForSelection()
             Data[to_string(optionCount)] = ([
                 "name": convertToTextOfLength(element->query("name"), 25),
                 "description": regreplace(
-                    getDictionary("research")->getCompositeItemDetails(
+                    getService("research")->getCompositeItemDetails(
                         ([ "research": program_name(element),
                            "type": Section
                         ]), colorConfiguration, configuration),

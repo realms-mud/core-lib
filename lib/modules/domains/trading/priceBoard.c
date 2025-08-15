@@ -10,8 +10,8 @@ private void displayBoardContent(object player, object port)
     string colorConfiguration = player->colorConfiguration();
     string charset = player->charsetConfiguration();
     
-    object commandsDict = getDictionary("commands");
-    object configDict = getDictionary("configuration");
+    object commandsDict = getService("commands");
+    object configDict = getService("configuration");
     
     string boardDisplay = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                          sprintf("%s Trading Board", port->getPortName()));
@@ -56,8 +56,8 @@ private void displayAvailableContracts(object player, object port)
     string charset = player->charsetConfiguration();
     mapping contracts = port->getContracts();
     
-    object commandsDict = getDictionary("commands");
-    object configDict = getDictionary("configuration");
+    object commandsDict = getService("commands");
+    object configDict = getService("configuration");
     
     string contractDisplay = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                             sprintf("%s Trading Contracts", port->getPortName()));
@@ -250,7 +250,7 @@ public int checkPrices(string str)
     object port = environment();
     if (port && port->isPort())
     {
-        object tradingDict = getDictionary("trading");
+        object tradingDict = getService("trading");
         tell_object(this_player(), tradingDict->getMarketPricesDisplay(this_player(), port));
     }
     else

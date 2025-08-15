@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object ShopService;
 private string SellType;
 private object SubselectorObj;
 private object Store;
@@ -29,7 +29,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     NumColumns = 2;
     Type = "Sell Items";
-    Dictionary = getDictionary("shop");
+    ShopService = getService("shop");
 
     Data = ([]);
 }
@@ -47,7 +47,7 @@ protected nomask void setUpUserForSelection()
         raise_error("ERROR: sellItemSubselector.c - The store has not been "
             "set.\n");
     }
-    Data = Dictionary->getSellItemDetailsForType(User, SellType, Store);
+    Data = ShopService->getSellItemDetailsForType(User, SellType, Store);
 
     Data[to_string(sizeof(Data) + 1)] = ([
         "name":"Return to previous menu",
@@ -70,7 +70,7 @@ protected nomask int processSelection(string selection)
         }
         else if (!ret)
         {
-            Dictionary->sellItems(User, Store, 
+            ShopService->sellItems(User, Store,
                 Data[selection]["object list"]);
             setUpUserForSelection();
         }

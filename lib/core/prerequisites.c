@@ -653,10 +653,10 @@ private nomask string displayResearchPrerequsite(string item)
 {
     string ret = "";
 
-    object dictionary = load_object("/lib/dictionaries/researchDictionary.c");
-    if (dictionary)
+    object researchService = getService("research");
+    if (researchService)
     {
-        object research = dictionary->researchObject(item);
+        object research = researchService->researchObject(item);
         if (research)
         {
             ret = capitalizeAllWords(research->query("name"));
@@ -670,10 +670,10 @@ private nomask string displayQuestPrerequsite(string item)
 {
     string ret = "";
 
-    object dictionary = load_object("/lib/dictionaries/questsDictionary.c");
-    if (dictionary)
+    object questService = getService("quests");
+    if (questService)
     {
-        ret = dictionary->questSummary(item);
+        ret = questService->questSummary(item);
     }
     return ret;
 }
@@ -683,12 +683,12 @@ private nomask string displayTraitPrerequsite(string *traits)
 {
     string ret = "";
 
-    object dictionary = load_object("/lib/dictionaries/traitsDictionary.c");
-    if (dictionary && sizeof(traits))
+    object traitService = getService("traits");
+    if (traitService && sizeof(traits))
     {
         foreach(string trait in traits)
         {
-            object traitObj = dictionary->traitObject(trait);
+            object traitObj = traitService->traitObject(trait);
             if (traitObj)
             {
                 ret += capitalize(traitObj->query("name")) + " or ";
@@ -730,7 +730,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
                     prereq = displayResearchPrerequsite(key);
                     
                     string *equivalent = 
-                        getDictionary("research")->equivalentItems(key);
+                        getService("research")->equivalentItems(key);
                     if (sizeof(equivalent))
                     {
                         supplementalInfo = "";

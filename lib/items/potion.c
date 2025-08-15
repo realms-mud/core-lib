@@ -31,10 +31,9 @@ public nomask mixed query(string element)
         {
             if (!member(itemData, "biological effect"))
             {
-                object dictionary =
-                    load_object("/lib/dictionaries/biologicalDictionary.c");
+                object biologicalService = getService("biological");
                 itemData["biological effect"] =
-                    dictionary->getBiologicalEffect(this_object());
+                    biologicalService->getBiologicalEffect(this_object());
             }
             ret = itemData["biological effect"];
             break;
@@ -51,7 +50,7 @@ public nomask mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            object guilds = getService("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("brewing");
@@ -120,10 +119,9 @@ public int consume(string name)
 
     if (id(name) && present(name, this_player()))
     {
-        object dictionary = 
-            load_object("/lib/dictionaries/biologicalDictionary.c");
+        object biologicalService = getService("biological");
 
-        ret = dictionary->consumeItem(this_player(), this_object());
+        ret = biologicalService->consumeItem(this_player(), this_object());
         if (ret)
         {
             outputMessageFromTemplate(

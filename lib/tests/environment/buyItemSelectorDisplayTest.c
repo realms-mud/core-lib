@@ -17,7 +17,7 @@ void Init()
     Store.shopType("weapons");
     Store.shopSubType("swords");
     Store.setRandomItemsToGenerate(0);
-    getDictionary("shop").generateInventory(Store);
+    getService("shop").generateInventory(Store);
 
     Store = clone_object("/lib/environment/shopInventories/baseShop.c");
     Store.name("Bob's Swords");

@@ -6,13 +6,13 @@ inherit "/lib/core/baseSelector.c";
 
 private string Location;
 private mapping ConstructionData = 0;
-private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object Service = getService("domain");
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    mapping info = dictionary->getPlayerHolding(User, location);
+    mapping info = Service->getPlayerHolding(User, location);
     if (mappingp(info))
     {
         Location = location;
@@ -39,19 +39,19 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
-    if (dictionary && ConstructionData)
+    if (Service && ConstructionData)
     {
         Description = (member(ConstructionData, "name") ? 
-            (dictionary->generateTitle(ConstructionData["name"]) + ":\n") : 
+            (Service->generateTitle(ConstructionData["name"]) + ":\n") : 
             "Buildings:\n") +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "initiate, modify, or abort projects in your holdings at %s.",
-                dictionary->getLocationDisplayName(Location)), 78),
+                Service->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration);
 
-        Data = dictionary->getBuildComponentMenu(User, Location, 
+        Data = Service->getBuildComponentMenu(User, Location, 
             ConstructionData);
     }
 }

@@ -20,7 +20,7 @@ void Setup()
     Bystander.addCommands();
     move_object(Bystander, this_object());
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Player);
     channels.registerUser(Bystander);
 }
@@ -69,7 +69,7 @@ void CanNotSeeOtherGuildMessages()
     lowlyMage.joinGuild("fake mage");
     lowlyMage.resetCatchList();
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(lowlyMage);
 
     ExpectTrue(Player.executeCommand("guild Dwight is an idiot!"));
@@ -97,7 +97,7 @@ void CanSpecifyGuildToSendMessageTo()
     guild.create();
     lowlyMage.joinGuild("fake mage");
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(lowlyMage);
 
     Player.joinGuild("fake mage");
@@ -125,7 +125,7 @@ void CanSpecifyLongGuildNameToSendMessageTo()
     guild.create();
     lowlyMage.joinGuild("fake mage");
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(lowlyMage);
 
     Player.joinGuild("weaselhookens of yor");

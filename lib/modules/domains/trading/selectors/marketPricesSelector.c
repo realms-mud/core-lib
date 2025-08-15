@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object TradingDictionary;
+private object TradingService;
 private string SelectedCategory = 0;
 private string SelectedItem = 0;
 
@@ -18,7 +18,7 @@ public nomask void InitializeSelector()
     Type = "Market Prices";
     Data = ([]);
 
-    TradingDictionary = load_object("/lib/dictionaries/tradingDictionary.c");
+    TradingService = getService("trading");
     SelectedCategory = 0;
     SelectedItem = 0;
 }
@@ -34,12 +34,12 @@ private string displayPriceBoard(string itemPath)
         string colorConfig = User->colorConfiguration();
         int basePrice = itemObj->query("value");
 
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
         ret += configuration->decorate(
             sprintf("One trade unit of %s:\n", itemObj->query("name")),
             "title", "selector", colorConfig);
 
-        object *ports = TradingDictionary->getAvailablePorts();
+        object *ports = TradingService->getAvailablePorts();
         string *specialtyPorts = ({});
         string *importPorts = ({});
 
@@ -125,7 +125,7 @@ protected nomask void setUpUserForSelection()
     {
         SuppressColon = 0;
         Description = "Select type of trade item";
-        string *categories = TradingDictionary->getTradingTypes();
+        string *categories = TradingService->getTradingTypes();
         foreach (string category in categories)
         {
             if (sizeof(category) > 18)
@@ -152,7 +152,7 @@ protected nomask void setUpUserForSelection()
     {
         SuppressColon = 0;
         Description = "Select a trade item";
-        string *items = TradingDictionary->getItemListForType(SelectedCategory);
+        string *items = TradingService->getItemListForType(SelectedCategory);
         foreach (string itemPath in items)
         {
             object itemObj = load_object(itemPath);

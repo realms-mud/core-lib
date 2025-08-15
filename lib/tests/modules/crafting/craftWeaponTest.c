@@ -181,7 +181,7 @@ void PopulateSwordData(object sword)
         ])
     ]));
 
-    load_object("/lib/dictionaries/craftingDictionary.c").setCraftingMaterial(
+    getService("crafting").setCraftingMaterial(
         sword, "metal", "admantite", "blade");
 
     command("1", Player);
@@ -324,7 +324,7 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
         ]),
         "wood": (["koa":4])]), getMaterialsOnHand());
     ExpectEq(40, sword.query("craftsmanship"));
-    ExpectEq(2, load_object("/lib/dictionaries/materialsDictionary.c").getMaterialCraftsmanshipBonus(sword));
+    ExpectEq(2, getService("materials").getMaterialCraftsmanshipBonus(sword));
 }
 
 /////////////////////////////////////////////////////////////////////////////

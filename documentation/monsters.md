@@ -37,7 +37,7 @@ have several pieces of equipment - all of them magical and it will have a 50% ch
 attempting to use a spell on its opponents each combat round.
 
 First, a discussion on personas: There are several different sets of personas defined in 
-`/lib/dictionaries/personas/`:
+`/lib/services/personas/`:
 
 - creatures.h contains many animals and traditional non-humanoid 'monsters' in them. If one of these 
 personas is used, the race option may be omitted (as it will not do anything useful). Most
@@ -51,7 +51,7 @@ special stats based on its race (and, there's a huge difference between an ogre 
 - Other header files contain similar details for other persona types.
 
 To find out more about what setting a humanoid to be of a particular race will change about the
-character, look at `/lib/dictionaries/races/races.h`
+character, look at `/lib/services/races/races.h`
 
 The method `setUpRandomEquipment(int percentChanceOfAnItemBeingMagical)` will randomly generate
 equipment for a persona as specified if it has potential equipment available. It takes an integer 
@@ -62,7 +62,7 @@ The method `setResearchFrequency(int percentChanceOfUsingResearchEachRound)` set
 chance that the persona will use its known research for a given round.
 
 The method `setPersonality(string personality)` sets the personality traits, combat chatter, and
-generic conversation trees that a humanoid or dragon will have. See `/lib/dictionaries/personalities/`
+generic conversation trees that a humanoid or dragon will have. See `/lib/services/personalities/`
 for details. 
 
 [Adding conversations to the creatures you make is discussed here.](conversations.md)

@@ -5,9 +5,9 @@
 virtual inherit "/lib/items/item.c";
 
 private object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+    getService("configuration");
 private object display =
-    load_object("/lib/dictionaries/commandsDictionary.c");
+    getService("commands");
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int get()
@@ -172,7 +172,7 @@ public nomask int getAttack(object attacker)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getDefense(object opponent)
 {
-    float bonuses = getDictionary("domain")->getDefenseBonus(this_object(),
+    float bonuses = getService("domain")->getDefenseBonus(this_object(),
         opponent);
 
     return to_int(query("defense") * bonuses *

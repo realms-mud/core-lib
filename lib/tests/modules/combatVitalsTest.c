@@ -231,7 +231,7 @@ void HitPointsDoesNotDecreaseValue()
 /////////////////////////////////////////////////////////////////////////////
 void HitPointsFiresOnHitPointsChangedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectEq(100, Attacker.hitPoints(100));
@@ -423,7 +423,7 @@ void SpellPointsDecreaseIncludesBonusReduceSpellPoints()
 /////////////////////////////////////////////////////////////////////////////
 void SpellPointsFiresOnSpellPointsChangedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectEq(100, Attacker.spellPoints(100));
@@ -512,7 +512,7 @@ void StaminaPointsDecreaseIncludesBonusReduceStaminaPoints()
 /////////////////////////////////////////////////////////////////////////////
 void StaminaPointsFiresOnStaminaPointsChangedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectEq(100, Attacker.staminaPoints(100));

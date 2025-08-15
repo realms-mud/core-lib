@@ -75,7 +75,7 @@ void AddSpecificationAllowsValidBonusesToBeApplied()
 void AddSpecificationThrowsForInvalidBonuses()
 {
     string err = catch (ResearchItem.testAddSpecification("bonus blarg", 10); nolog);
-    string expectedError = "*ERROR - persistedRitualResearchItem: the 'bonus blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedRitualResearchItem: the 'bonus blarg' specification must be a valid modifier as defined in /lib/services/bonusesService.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -92,7 +92,7 @@ void AddSpecificationAllowsValidPenaltiesToBeApplied()
 void AddSpecificationThrowsForInvalidPenalties()
 {
     string err = catch (ResearchItem.testAddSpecification("penalty to blarg", 10); nolog);
-    string expectedError = "*ERROR - persistedRitualResearchItem: the 'penalty to blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedRitualResearchItem: the 'penalty to blarg' specification must be a valid modifier as defined in /lib/services/bonusesService.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
@@ -114,7 +114,7 @@ void AddSpecificationAllowsValidCombatModifiersToBeApplied()
 void AddSpecificationThrowsForInvalidCombatModifiers()
 {
     string err = catch (ResearchItem.testAddSpecification("apply blarg", 10); nolog);
-    string expectedError = "*ERROR - persistedRitualResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/dictionaries/bonusesDictionary.c\n";
+    string expectedError = "*ERROR - persistedRitualResearchItem: the 'apply blarg' specification must be a valid modifier as defined in /lib/services/bonusesService.c\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }

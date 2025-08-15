@@ -63,7 +63,7 @@ void ArmorClassIsAffectedByCraftingArmorClass()
 /////////////////////////////////////////////////////////////////////////////
 void ArmorTypeCanBeSet()
 {
-    // A comprehensive test of the valid armor types is in the materialsDictionary test
+    // A comprehensive test of the valid armor types is in the materialsService test
     ExpectTrue(Armor.set("armor type", "chainmail"), "armor type can be set");
     ExpectEq("chainmail", Armor.query("armor type"), "'chainmail' armor type was returned");
 
@@ -74,7 +74,7 @@ void ArmorTypeCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidArmorTypeCannotBeSet()
 {
-    string expected = "*Armor: The 'armor type' element must be a string as defined in the keys of the itemTypes mapping in /lib/dictionaries/materialsDictionary.c.\n";
+    string expected = "*Armor: The 'armor type' element must be a string as defined in the keys of the itemTypes mapping in /lib/services/materialsService.c.\n";
 
     string err = catch (Armor.set("armor type", "blah"); nolog);
     ExpectEq(expected, err, "armor type cannot be set");
@@ -90,7 +90,7 @@ void BlueprintCanBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void InvalidBlueprintCannotBeSet()
 {
-    string expected = "*Armor: The 'blueprint' element must be a string as defined in the keys of the armorBlueprints mapping in /lib/dictionaries/materialsDictionary.c.\n";
+    string expected = "*Armor: The 'blueprint' element must be a string as defined in the keys of the armorBlueprints mapping in /lib/services/materialsService.c.\n";
 
     string err = catch (Armor.set("blueprint", "blah"); nolog);
     ExpectEq(expected, err, "blueprint cannot be set");

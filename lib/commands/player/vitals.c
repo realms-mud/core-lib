@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/commands/baseCommand.c";
 
-private object Dictionary;
+private object CommandsService;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void SetupCommand()
@@ -12,7 +12,7 @@ public nomask void SetupCommand()
     CommandType = "Player Information";
     addCommandTemplate("vitals");
 
-    Dictionary = load_object("/lib/dictionaries/commandsDictionary.c");
+    CommandsService = getService("commands");
 }
 
 /////////////////////////////////////////////////////////////////////////////

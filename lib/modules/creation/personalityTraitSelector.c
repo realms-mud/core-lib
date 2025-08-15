@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object Service;
 private mapping Questionnaire = ([]);
 private string *QuestionList = ({});
 private string CurrentQuestion;
@@ -14,11 +14,11 @@ private int TestTaken = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
 {
-    Dictionary = load_object("/lib/dictionaries/backgroundDictionary.c");
-    if (!Dictionary)
+    Service = getService("background");
+    if (!Service)
     {
         raise_error("personalityTraitQuestionnaire: ERROR - The background "
-            "dictionary is not present!\n");
+            "service is not present!\n");
     }
 
     AllowUndo = 0;
@@ -29,7 +29,7 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    Questionnaire = Dictionary->personalityQuestionnaire();
+    Questionnaire = Service->personalityQuestionnaire();
     if (sizeof(Questionnaire))
     {
         QuestionList = sort_array(m_indices(Questionnaire), (: $1 > $2 :));
@@ -60,7 +60,7 @@ protected nomask int processSelection(string selection)
     else
     {
         TestTaken = 1;
-        Dictionary->updateUserPersonality(User, Results);
+        Service->updateUserPersonality(User, Results);
     }
     return ret;
 }

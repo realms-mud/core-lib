@@ -23,10 +23,10 @@ public nomask varargs void setLeader(object player, int doNotJoinParty)
 
         if (!doNotJoinParty)
         {
-            object partyDictionary = getDictionary("party");
+            object partyService = getService("party");
             if (!leader->getParty())
             {
-                partyDictionary->createParty(
+                partyService->createParty(
                     sprintf("%s's Party", capitalize(leader->RealName())), leader);
             }
 

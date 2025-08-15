@@ -7,7 +7,7 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Environment;
-object Dictionary;
+object Service;
 
 string *Slots = ({ "Primary Weapon", "Equipped Offhand", "Worn Armor", "Worn Helmet",
     "Worn Gloves", "Worn Boots", "Worn Cloak", "Worn Amulet", "Worn Belt",
@@ -84,10 +84,10 @@ void Setup()
     Player.hitPoints(30);
     Player.colorConfiguration("none");
 
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
@@ -100,7 +100,7 @@ void CleanUp()
 {
     destruct(Player);
     destruct(Environment);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -373,8 +373,8 @@ void LookWhenDarkSucceedsWhenUserHasDarkvision()
     elf.Race("elf");
     move_object(elf, environment(Player));
 
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("midnight");
+    object Service = getService("environment");
+    Service.timeOfDay("midnight");
     Player.addTrait("/lib/tests/support/traits/testDarkvisionTrait.c");
     command("look", Player);
 
@@ -382,7 +382,7 @@ void LookWhenDarkSucceedsWhenUserHasDarkvision()
         Player.caughtMessage());
 
     destruct(elf);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -394,8 +394,8 @@ void LookWhenDarkShowsLifeSignaturesWithInfravision()
     elf.Race("elf");
     move_object(elf, environment(Player));
 
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("midnight");
+    object Service = getService("environment");
+    Service.timeOfDay("midnight");
     Player.addTrait("/lib/tests/support/traits/testInfravisionTrait.c");
     command("look", Player);
 
@@ -403,7 +403,7 @@ void LookWhenDarkShowsLifeSignaturesWithInfravision()
         "female elf", Player.caughtMessage());
 
     destruct(elf);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////

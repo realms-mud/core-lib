@@ -12,7 +12,7 @@ private string Description = 0;
 private string Type = "secondary";
 
 private object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+    getService("configuration");
 
     // "<state>" : ([
     //     "description": <some text>
@@ -151,8 +151,8 @@ public nomask string type()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
 {
-    object dictionary = load_object("/lib/dictionaries/questsDictionary.c");
-    if (type && stringp(type) && (member(dictionary->questTypes(), type) > -1))
+    object Service = getService("quests");
+    if (type && stringp(type) && (member(Service->questTypes(), type) > -1))
     {
         Type = type;
     }

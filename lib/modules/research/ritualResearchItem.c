@@ -44,7 +44,7 @@ protected int addSpecification(string type, mixed value)
         case "cooldown modifiers":
         {
             if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
-                (: (getDictionary("research")->researchObject($1) &&
+                (: (getService("research")->researchObject($1) &&
                    intp($2) && ($2 < query("cooldown"))) :)))))
             {
                 specificationData[type] = value;

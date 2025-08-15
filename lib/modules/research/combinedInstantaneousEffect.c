@@ -93,7 +93,7 @@ private nomask int validateCombinationSet(mapping combinations)
     if (mappingp(combinations) && sizeof(combinations))
     {
         ret = 1;
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(string key in m_indices(combinations))
         {
             ret &&= (member(validCombinationTypes, key) > -1) &&
@@ -105,7 +105,7 @@ private nomask int validateCombinationSet(mapping combinations)
                 foreach(string researchItem in combinations[key])
                 {
                     object researchObj =
-                        dictionary->researchObject(researchItem);
+                        Service->researchObject(researchItem);
 
                     ret &&= objectp(researchObj);
                     if (ret)
@@ -352,7 +352,7 @@ private nomask object *getResearchObjectsFromComboList(string *comboItems,
     object owner, mapping validComboItems)
 {
     object *ret = ({});
-    object dictionary = getDictionary("research");
+    object Service = getService("research");
 
     foreach(string item in m_values(validComboItems))
     {
@@ -361,7 +361,7 @@ private nomask object *getResearchObjectsFromComboList(string *comboItems,
             foreach(string element in filter(comboItems,
                 (: $3[$1] == $2 :), item, validComboItems))
             {
-                ret += ({ dictionary->researchObject(item) });
+                ret += ({ Service->researchObject(item) });
             }
         }
     }
@@ -453,7 +453,7 @@ protected nomask int applyAllFormulas(object *combo, object owner,
 
     if (combo && sizeof(combo))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(object research in combo)
         {
             if (research && research->query(type))
@@ -483,7 +483,7 @@ private nomask string getComboMessage(string initialMessage, object *combo)
     string *messages = ({});
     if (sizeof(combo))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
 
         foreach(object item in combo)
         {

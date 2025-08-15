@@ -6,7 +6,7 @@ inherit "/lib/core/baseSelector.c";
 
 private int TotalPoints;
 private object SubselectorObj;
-private object Dictionary;
+private object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void InitializeSelector()
@@ -16,14 +16,14 @@ public nomask void InitializeSelector()
         "available quests";
     Type = "Quest";
 
-    Dictionary = load_object("/lib/dictionaries/questsDictionary.c");
+    Service = getService("quests");
     Data = ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    string *sources = Dictionary->questTypes();
+    string *sources = Service->questTypes();
     int menuItem = 1;
 
     if (sizeof(sources))
@@ -34,7 +34,7 @@ protected nomask void setUpUserForSelection()
             Data[to_string(menuItem)] = ([
                 "name":capitalize(source),
                 "type": source,
-                "can display": sizeof(Dictionary->questsOfType(User, source)),
+                "can display": sizeof(Service->questsOfType(User, source)),
                 "description": "This option will allow you to view the details of\n" +
                     source + ".\n"
             ]);
@@ -44,7 +44,7 @@ protected nomask void setUpUserForSelection()
     Data[to_string(menuItem)] = ([
         "name":"Completed",
         "type": "completed",
-        "can display": sizeof(Dictionary->questsOfType(User, "completed")),
+        "can display": sizeof(Service->questsOfType(User, "completed")),
         "description": "This option lets you view completed quests.\n"
     ]);
     Data[to_string(menuItem + 1)] = ([

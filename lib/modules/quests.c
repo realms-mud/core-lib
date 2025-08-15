@@ -8,8 +8,7 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/quests.h"
 
-private object questsDictionary =
-    load_object("/lib/dictionaries/questsDictionary.c");
+private object questsService = getService("quests");
 
 //-----------------------------------------------------------------------------
 // Method: questNotification
@@ -46,7 +45,7 @@ private nomask int isValidQuest(string questItem)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object getQuestObject(string questItem)
 {
-    return questsDictionary->questObject(questItem);
+    return questsService->questObject(questItem);
 }
 
 /////////////////////////////////////////////////////////////////////////////

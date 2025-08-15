@@ -10,7 +10,7 @@ object Inventory;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     Inventory = clone_object("/lib/tests/support/services/mockPlayer.c");
     Inventory.Name("Bob");

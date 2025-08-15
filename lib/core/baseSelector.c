@@ -17,7 +17,7 @@ protected int NumColumns = 1;
 protected int HasDescription = 1;
 protected int SuppressColon = 0;
 protected string Type = "Character creation";
-protected object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+protected object configuration = getService("configuration");
 protected string colorConfiguration = "none";
 protected object CompletionHandler;
 protected string CompletionEvent;

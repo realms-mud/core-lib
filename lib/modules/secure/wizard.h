@@ -5,7 +5,7 @@
 #ifndef wizardModule_h
 #define wizardModule_h
 
-private nosave string GroupObj = "/lib/dictionaries/groups/%s.c";
+private nosave string GroupObj = "/lib/services/groups/%s.c";
 private nosave string PathToCheck;
 
 private nosave mapping validWizardLevels = ([ 

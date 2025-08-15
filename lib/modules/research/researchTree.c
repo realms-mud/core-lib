@@ -6,7 +6,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/core/prerequisites.c";
-private object ResearchDictionary;
+private object ResearchService;
 
 private string name;
 private string description;
@@ -33,15 +33,14 @@ public void create()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object researchDictionary()
+private nomask object researchService()
 {
-    if (!ResearchDictionary)
+    if (!ResearchService)
     {
-        ResearchDictionary = 
-            load_object("/lib/dictionaries/researchDictionary.c");
+        ResearchService = getService("research");
     }
 
-    return ResearchDictionary;
+    return ResearchService;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -55,10 +54,10 @@ public nomask object getResearchItem(string element)
 {
     object ret = 0;
 
-    object dictionary = researchDictionary();
-    if (dictionary)
+    object service = researchService();
+    if (service)
     {
-        ret = dictionary->researchObject(element);
+        ret = service->researchObject(element);
     }
     return ret;
 }
@@ -142,7 +141,7 @@ private nomask varargs mapping getTreeNode(string element, object owner,
     mapping ret = ([ ]);
 
     if(element && stringp(element) && member(tree, element) && 
-        researchDictionary()->researchObject(element))
+        researchService()->researchObject(element))
     {
         object researchItem = getResearchItem(element);
         if(!tree[element]["children"])
@@ -317,7 +316,7 @@ private nomask string getNodeInfo(string element, object owner,
     string ret = "";
 
     if (element && stringp(element) && member(tree, element) &&
-        researchDictionary()->researchObject(element))
+        researchService()->researchObject(element))
     {
         object researchItem = getResearchItem(element);
         string displayColor = "missing prerequisites";
@@ -363,7 +362,7 @@ public nomask string researchTreeDetails(object user)
 {
     string colorConfiguration = user->colorConfiguration();
     object configuration = 
-        load_object("/lib/dictionaries/configurationDictionary.c");
+        getService("configuration");
 
     string ret = configuration->decorate(sprintf("%-15s : ", "Research Tree"),
         "field header", "research", colorConfiguration) +

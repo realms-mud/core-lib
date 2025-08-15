@@ -19,9 +19,9 @@ private nomask mapping getLocation(mixed location)
     mapping elementLocation = 0;
     if (stringp(location))
     {
-        elementLocation = getDictionary("environment")->getLocation(location);
+        elementLocation = getService("environment")->getLocation(location);
     }
-    else if (getDictionary("environment")->isValidLocation(location))
+    else if (getService("environment")->isValidLocation(location))
     {
         elementLocation = location;
     }
@@ -38,7 +38,7 @@ private nomask mapping getLocation(mixed location)
 private nomask void setUpAliases(string element)
 {
     object environmentalObj =
-        getDictionary("environment")->environmentalObject(element);
+        getService("environment")->environmentalObject(element);
 
     foreach(string state in environmentalObj->states())
     {
@@ -57,9 +57,9 @@ private nomask void setUpAliases(string element)
 protected nomask varargs int addEnvironmentalElement(string element, string type, mixed location)
 {
     int ret = 1;
-    if (!getDictionary("environment")->isValidEnvironmentItem(element))
+    if (!getService("environment")->isValidEnvironmentItem(element))
     {
-        ret = getDictionary("environment")->registerElement(element, type);
+        ret = getService("environment")->registerElement(element, type);
         if (ret)
         {
             object elementObj = load_object(element);
@@ -75,7 +75,7 @@ protected nomask varargs int addEnvironmentalElement(string element, string type
             }
         }
         else if(element && (file_size(element) > 0) &&
-            getDictionary("environment")->isValidEnvironmentItem(load_object(element)->Name(), type))
+            getService("environment")->isValidEnvironmentItem(load_object(element)->Name(), type))
         {
             raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
                 "A conflicting item with that name already exists.\n", element));
@@ -88,7 +88,7 @@ protected nomask varargs int addEnvironmentalElement(string element, string type
         }
     }
 
-    ret &&= getDictionary("environment")->isValidEnvironmentItem(element, type);
+    ret &&= getService("environment")->isValidEnvironmentItem(element, type);
     if (ret)
     {
         if (!member(environmentalElements[type], element))
@@ -243,7 +243,7 @@ protected string getElementDescriptions(string type, int illuminationLevel)
             }
 
             object elementObj = 
-                getDictionary("environment")->environmentalObject(element);
+                getService("environment")->environmentalObject(element);
             if (elementObj && 
                 (!this_player() || elementObj->elementIsAvailable(this_player())))
             {
@@ -280,7 +280,7 @@ protected varargs string getBaseDescriptionForType(string type,
     if (member(environmentalElements, type) && sizeof(environmentalElements[type]))
     {
         string element = m_indices(environmentalElements[type])[0];
-        object base = getDictionary("environment")->environmentalObject(element);
+        object base = getService("environment")->environmentalObject(element);
         if (base)
         {
             ret = base->description(currentState(), illuminationLevel,
@@ -289,7 +289,7 @@ protected varargs string getBaseDescriptionForType(string type,
         else if (!doNotRecurse)
         {
             // This will re-load the environment's data in the event that
-            // the dictionary has been reset.
+            // the service has been reset.
             resetData();
             ret = getBaseDescriptionForType(type, illuminationLevel, 1);
         }

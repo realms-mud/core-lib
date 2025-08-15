@@ -63,8 +63,7 @@ private nomask void initiateSelector()
     }
     else if (Player)
     {
-        object backgroundDictionary = 
-            load_object("/lib/dictionaries/backgroundDictionary.c");
+        object backgroundService = getService("background");
 
         Player->hitPoints(Player->maxHitPoints());
         Player->spellPoints(Player->maxSpellPoints());
@@ -72,8 +71,7 @@ private nomask void initiateSelector()
         Player->save();
 
         string colorConfiguration = Player->colorConfiguration();
-        object configuration = 
-            load_object("/lib/dictionaries/configurationDictionary.c");
+        object configuration = getService("configuration");
 
         tell_object(Player, configuration->decorate(format("Character "
                 "creation is now complete and you have been moved to your "
@@ -86,7 +84,7 @@ private nomask void initiateSelector()
                 "with your questions or comments.\n", 78),
                 "details", "selector", colorConfiguration));
 
-        //backgroundDictionary->initiateBackground(Player);
+        //backgroundService->initiateBackground(Player);
         StartLocation()->enterEnvironment(Player, Player->getParty());
         destruct(this_object());
     }

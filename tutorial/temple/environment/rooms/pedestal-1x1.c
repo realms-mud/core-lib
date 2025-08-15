@@ -170,7 +170,7 @@ public int resetEverything(string command)
 /////////////////////////////////////////////////////////////////////////////
 public string **customIcon(string **baseIcon, string color, string charset)
 {
-    string baseColor = getDictionary("region")->iconColor(
+    string baseColor = getService("region")->iconColor(
         decoratorType(), color);
 
     baseIcon[0][1] = pedestal()->getOrb("north");

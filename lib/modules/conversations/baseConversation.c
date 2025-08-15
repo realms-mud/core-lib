@@ -5,7 +5,7 @@
 virtual inherit "/lib/core/prerequisites.c";
 
 protected object Configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+    getService("configuration");
 
 private string MaterialAttributes = "/lib/modules/materialAttributes.c";
 private int ignoreTalk = 0;

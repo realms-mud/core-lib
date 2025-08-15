@@ -59,11 +59,11 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     string ret = "";
     if (member(specificationData, "related research"))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
 
         foreach(string researchItem in specificationData["related research"])
         {
-            object research = dictionary->researchObject(researchItem);
+            object research = Service->researchObject(researchItem);
             if (research)
             {
                 ret += research->getRelatedResearchEffects(this_object(),

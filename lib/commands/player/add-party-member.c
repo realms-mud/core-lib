@@ -18,7 +18,7 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object partyService = getService("party");
         string targetName = 
             regreplace(command, "add party member (.*)", "\\1", 1);
 
@@ -48,7 +48,7 @@ public nomask int execute(string command, object initiator)
                     "to join this party.\n", initiator->partyName(), 
                     capitalize(initiator->RealName())));
 
-                Dictionary->createPartyRequest(target, party);
+                partyService->createPartyRequest(target, party);
             }
             else
             {

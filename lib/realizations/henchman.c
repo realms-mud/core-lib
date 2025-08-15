@@ -114,10 +114,10 @@ public nomask varargs void setLeader(object player, int doNotJoinParty)
 
         if (!doNotJoinParty)
         {
-            object partyDictionary = getDictionary("party");
+            object partyService = getService("party");
             if (!Leader->getParty())
             {
-                partyDictionary->createParty(
+                partyService->createParty(
                     sprintf("%s's Party", capitalize(Leader->RealName())), Leader);
             }
 
@@ -154,10 +154,10 @@ public nomask string location()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setActivity(string activity)
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
     if (Leader && Leader->getDomainType(Location) &&
-        dictionary->isValidActivity(Location, activity))
+        Service->isValidActivity(Location, activity))
     {
         Activity = activity;
     }
@@ -172,9 +172,9 @@ public nomask string activity()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
-    if (dictionary->isValidHenchmanType(type))
+    if (Service->isValidHenchmanType(type))
     {
         Type = type;
     }

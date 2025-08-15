@@ -66,7 +66,7 @@ private int getMaxAmount()
 private void executeTransaction(int amount)
 {
     string colorConfiguration = User->colorConfiguration();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     int success = 0;
 
     switch (transactionType)
@@ -124,7 +124,7 @@ private void executeTransaction(int amount)
 /////////////////////////////////////////////////////////////////////////////
 private int handleCustomAmount()
 {
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
     int maxAmount = getMaxAmount();
     tell_object(User, configuration->decorate(
         sprintf("Enter amount (1-%d): ", maxAmount),
@@ -138,7 +138,7 @@ private void processCustomAmount(string input)
 {
     int amount = to_int(input);
     int maxAmount = getMaxAmount();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
 
     int valid = 1;
     if (amount < 1 || amount > maxAmount)

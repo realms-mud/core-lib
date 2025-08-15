@@ -36,7 +36,7 @@ public nomask varargs int environmentalBonusTo(string bonus, object actor,
                     foreach(string element in elements)
                     {
                         object elementObj =
-                            getDictionary("environment")->environmentalObject(element);
+                            getService("environment")->environmentalObject(element);
                         if (elementObj &&
                             (member(elementObj->bonuses(), bonus) > -1))
                         {
@@ -77,7 +77,7 @@ public nomask varargs string bonusStatistics(object user, string item)
             foreach(string element in elements)
             {
                 object elementObj =
-                    getDictionary("environment")->environmentalObject(element);
+                    getService("environment")->environmentalObject(element);
                 if (elementObj && elementObj->elementIsAvailable(user))
                 {
                     ret += elementObj->getBonusDescriptions(

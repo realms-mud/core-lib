@@ -15,7 +15,7 @@ public nomask void setup(string name, int value, object owner)
 {
     if (!isSetUp)
     {
-        if(getDictionary("bonuses")->isValidBonus(name))
+        if(getService("bonuses")->isValidBonus(name))
         {
             owningElement = owner;
             bonusName = name;
@@ -25,7 +25,7 @@ public nomask void setup(string name, int value, object owner)
         else
         {
             raise_error(sprintf("EnvironmentalElement: The bonus %O must "
-                "be valid as specified in bonusesDictionary.\n", name));
+                "be valid as specified in bonusesService.\n", name));
         }
     }
 }
@@ -260,7 +260,7 @@ public nomask string getBonusStatistics(object environment, object user)
 {
     string colorConfiguration = user->colorConfiguration();
     string charset = user->charsetConfiguration();
-    object configuration = getDictionary("configuration");
+    object configuration = getService("configuration");
 
     string ret = configuration->decorate("Name: ", "field header",
             "element bonuses", colorConfiguration) +

@@ -4,8 +4,7 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
-private object regionDictionary = 
-    load_object("/lib/dictionaries/regionDictionary.c");
+private object regionService = getService("region");
 
 private string *possibleEncounters = ({});
 private object *currentEncounters = ({});
@@ -227,7 +226,7 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
 
     if (mappingp(data))
     {
-        mapping roomData = regionDictionary->generateRoomData(region, data);
+        mapping roomData = regionService->generateRoomData(region, data);
 
         if (roomData)
         {
@@ -311,13 +310,12 @@ protected void setUpEncounter(object player)
     {
         timeUntilNextEncounter = time() + 300;
 
-        object personaDictionary =
-            load_object("/lib/dictionaries/personaDictionary.c");
+        object personaService = getService("persona");
 
         int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
             getRegion()->regionLevel() : player->effectiveLevel();
 
-        string *encounterList = personaDictionary->filterEncountersForLevel(
+        string *encounterList = personaService->filterEncountersForLevel(
             possibleEncounters, baseLevel);
         if (sizeof(encounterList))
         {
@@ -339,7 +337,7 @@ protected void setUpEncounter(object player)
 
                 object encounter = clone_object("/lib/realizations/monster.c");
                 encounter->SetUpPersonaOfLevel(
-                    personaDictionary->getRandomPersona(name, level), level, 1);
+                    personaService->getRandomPersona(name, level), level, 1);
 
                 encounter->Gender(random(2) ? "female" : "male");
                 encounter->addAlias(name);

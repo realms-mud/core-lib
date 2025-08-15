@@ -235,7 +235,7 @@ void CanUpdateNonEquipmentShops()
 
     ExpectEq(0, sizeof(Shop.storeInventory()));
     ExpectTrue(Shop.shopSellsConsumables());
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Shop);
+    getService("shop").generateInventory(Shop);
 
     string currentInventory = sprintf("%O\n", Shop.storeInventory());
     ExpectTrue(2 < sizeof(Shop.storeInventory()), "initial size");
@@ -254,7 +254,7 @@ void CanGenerateEquipmentForCustomShops()
         "/lib/tests/support/items/testSword.c", }));
 
     ExpectEq(0, sizeof(Shop.storeInventory()));
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Shop);
+    getService("shop").generateInventory(Shop);
 
     ExpectEq(15, sizeof(Shop.storeInventory()), "initial size");
 }
@@ -267,7 +267,7 @@ void CanAddCustomItemsToShops()
     Shop.addItem("/lib/tests/support/items/testSword.c");
 
     ExpectEq(0, sizeof(Shop.storeInventory()));
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Shop);
+    getService("shop").generateInventory(Shop);
 
     ExpectEq(1, sizeof(Shop.storeInventory()), "initial size");
 }
@@ -281,7 +281,7 @@ void CustomItemsUpdateCorrectly()
 
     ExpectEq(0, sizeof(Shop.storeInventory()));
 
-    load_object("/lib/dictionaries/shopDictionary.c").generateInventory(Shop);
+    getService("shop").generateInventory(Shop);
     Shop.updateCustomItems();
     ExpectEq(1, sizeof(Shop.storeInventory()), "initial size");
 

@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object CraftingService;
 private object SubselectorObj;
 private string CraftingComponent;
 private object CraftingItem;
@@ -28,7 +28,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
     NumColumns = 2;
-    Dictionary = getDictionary("crafting");
+    CraftingService = getService("crafting");
     Data = ([]);
 }
 
@@ -53,14 +53,14 @@ protected nomask void setUpUserForSelection()
         enchantmentType = sprintf("enchant %s", CraftingComponent);
         NumColumns = 2;
         AllowUndo = 1;
-        Data = Dictionary->getEnchantmentsOfType(CraftingComponent, User,
+        Data = CraftingService->getEnchantmentsOfType(CraftingComponent, User,
             CraftingItem);
     }
     else
     {
         AllowUndo = 0;
         NumColumns = 1;
-        Data = Dictionary->getEnchantmentTypes();
+        Data = CraftingService->getEnchantmentTypes();
     }
     Description = "choose the " + enchantmentType + " with which to craft";
     Type = "Select " + capitalize(enchantmentType);
@@ -97,7 +97,7 @@ protected nomask int processSelection(string selection)
             (CraftingItem->query("total enchantments") < 
                 CraftingItem->query("possible enchantments")))
         {
-            if (Dictionary->addEnchantment(CraftingItem,
+            if (CraftingService->addEnchantment(CraftingItem,
                 Data[selection]["type"]))
             {
                 CraftingItem->set("total enchantments",
@@ -232,7 +232,7 @@ protected nomask void undoSelection(string selection)
 {
     if (User)
     {
-        Dictionary->addEnchantment(CraftingItem, Data[selection]["type"], 1);
+        CraftingService->addEnchantment(CraftingItem, Data[selection]["type"], 1);
         if (CraftingItem->query("total enchantments") == 1)
         {
             CraftingItem->unset("total enchantments");

@@ -19,7 +19,7 @@ private nomask int validateCompositeSet(mapping compositeList)
     if (mappingp(compositeList) && sizeof(compositeList))
     {
         ret = 1;
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(string key in m_indices(compositeList))
         {
             ret &&= (member(validCompositeTypes, key) > -1) &&
@@ -31,7 +31,7 @@ private nomask int validateCompositeSet(mapping compositeList)
                 foreach(string researchItem in compositeList[key])
                 {
                     object researchObj =
-                        dictionary->researchObject(researchItem);
+                        Service->researchObject(researchItem);
 
                     ret &&= objectp(researchObj);
                     if (ret)
@@ -396,7 +396,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
     mapping rules = query("composite rules");
     if (mappingp(rules) && sizeof(rules))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         foreach(string ruleType in m_indices(rules))
         {
             ret += configuration->decorate(sprintf("%-15s : ", "Creation Rules"),
@@ -408,7 +408,7 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
             {
                 foreach(string item in rules[ruleType])
                 {
-                    object researchObj = dictionary->researchObject(item);
+                    object researchObj = Service->researchObject(item);
                     if (researchObj)
                     {
                         ret += sprintf("%-18s", "") +

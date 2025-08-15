@@ -31,7 +31,7 @@ void SettingInvalidRegionTypeThrowsError()
 {
     string err = catch (Region.setRegionType("bad region name"); nolog);
     string expectedError = "*ERROR - region: The region must be a valid type "
-        "as defined in /lib/dictionaries/regions/region-types.h\n";
+        "as defined in /lib/services/regions/region-types.h\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid names");
 }
@@ -256,7 +256,7 @@ void MapsChangeWithStateTransitions()
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateSettlement()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
     ToggleCallOutBypass();
     Player.colorConfiguration("none");
     Player.charsetConfiguration("unicode");
@@ -336,7 +336,7 @@ void CanGenerateFiles()
 /////////////////////////////////////////////////////////////////////////////
 void CanEnterTemplatedRegion()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Player.colorConfiguration("none");
@@ -369,13 +369,13 @@ void GetMapIconReturnsWithNoColorWithASCII()
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
-    object dictionary =
-        load_object("/lib/dictionaries/regionDictionary.c");
+    object Service =
+        getService("region");
 
     ExpectEq(({ ({ "+", " ", "+" }),
             ({ "+", "-", "+" }),
             ({ "+", "-", "+" }) }),
-        dictionary.getMapIcon(region,
+        Service.getMapIcon(region,
             "ruined interior south gatehouse", "none", "ascii"));
 }
 
@@ -386,13 +386,13 @@ void GetMapIconReturnsWithCustomThreeBitColors()
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
-    object dictionary = 
-        load_object("/lib/dictionaries/regionDictionary.c");
+    object Service = 
+        getService("region");
 
     ExpectEq(({ ({ "\x1b[0;36;1m\u25ce\x1b[0m", " ", "\x1b[0;36;1m\u25ce\x1b[0m" }),
             ({ "\x1b[0;36m\u2554\x1b[0m", "\x1b[0;31;1m\u254c\x1b[0m", "\x1b[0;36m\u2557\x1b[0m" }),
             ({ "\x1b[0;36m\u256c\x1b[0m", "\x1b[0;33m\u2581\x1b[0m", "\x1b[0;36m\u256c\x1b[0m" }) }), 
-        dictionary.getMapIcon(region,
+        Service.getMapIcon(region,
         "ruined interior south gatehouse", "3-bit", "unicode"));
 }
 
@@ -403,13 +403,13 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
-    object dictionary =
-        load_object("/lib/dictionaries/regionDictionary.c");
+    object Service =
+        getService("region");
 
     ExpectEq(({ ({ "\x1b[0;38;2;118;118;128;1m\u25ce\x1b[0m", " ", "\x1b[0;38;2;118;118;128;1m\u25ce\x1b[0m" }),
             ({ "\x1b[0;38;2;56;62;56m\u2554\x1b[0m", "\x1b[0;38;2;72;38;38m\u254c\x1b[0m", "\x1b[0;38;2;56;62;56m\u2557\x1b[0m" }),
             ({ "\x1b[0;38;2;56;62;56m\u256c\x1b[0m", "\x1b[0;38;2;102;102;38m\u2581\x1b[0m", "\x1b[0;38;2;56;62;56m\u256c\x1b[0m" }) }),
-        dictionary.getMapIcon(region,
+        Service.getMapIcon(region,
             "ruined interior south gatehouse", "24-bit", "unicode"));
 }
 
@@ -447,7 +447,7 @@ void MapsDisplayCustomIcons()
 /////////////////////////////////////////////////////////////////////////////
 void RegionDisplaysCurrentUserLocationWithCorrectBackground()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
 
@@ -500,7 +500,7 @@ void RegionDisplaysCurrentUserLocationWithCorrectBackground()
 //{
 //    Player.colorConfiguration("24-bit");
 //    Player.charsetConfiguration("unicode");
-//    load_object("/lib/dictionaries/environmentDictionary.c");
+//    getService("environment");
 //
 //    ToggleCallOutBypass();
 //

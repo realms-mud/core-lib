@@ -126,7 +126,7 @@ addBuilding("/lib/environment/shops/wainwright.c");
 
 These two calls are functionally-equivalent. It is important to note that for custom-generated
 buildings, that if you wish to use the name, the building must be registered with the
-environment dictionary at mud start-up time. You can alternatively use the fully-qualified path
+environment service at mud start-up time. You can alternatively use the fully-qualified path
 and that option is always available to you.
 
 The second parameter specifies where within the environment that the building you're adding is:
@@ -328,7 +328,7 @@ addDecorator("keep interior courtyard with pillar", "ceremony");
 
 ###### Decorator Definition Files
 
-Map decorators are defined in header files located in `/lib/dictionaries/regions/icons/`:
+Map decorators are defined in header files located in `/lib/services/regions/icons/`:
 
 - **keep-interior-icons.h** - Keep and castle interior representations
 - **ruined-interior-icons.h** - Ruined building and dungeon interiors

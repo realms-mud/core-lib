@@ -14,11 +14,11 @@ string colorConfiguration;
 void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    load_object("/lib/dictionaries/guildsDictionary.c");
+    getService("guilds");
     load_object("/lib/tests/support/guilds/testGuild.c");
 
     colorConfiguration = "3-bit";
-    Configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+    Configuration = getService("configuration");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -866,13 +866,13 @@ void CanApplySpecificationReturnsTrueWithLimitorForTimeOfDay()
     mapping limitor = (["time of day": "dusk"]);
     ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
 
-    object environmentDictionary = 
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object environmentService = 
+        getService("environment");
 
-    environmentDictionary.timeOfDay("dusk");
+    environmentService.timeOfDay("dusk");
     ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
-    environmentDictionary.timeOfDay("noon");
+    environmentService.timeOfDay("noon");
     ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
@@ -882,13 +882,13 @@ void CanApplySpecificationReturnsTrueWithLimitorForSeason()
     mapping limitor = (["season": "autumn"]);
     ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
 
-    object environmentDictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object environmentService =
+        getService("environment");
 
-    environmentDictionary.season("autumn");
+    environmentService.season("autumn");
     ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
-    environmentDictionary.season("spring");
+    environmentService.season("spring");
     ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 
@@ -898,13 +898,13 @@ void CanApplySpecificationReturnsTrueWithLimitorForMoonPhase()
     mapping limitor = (["moon phase": "waning gibbous"]);
     ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
 
-    object environmentDictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object environmentService =
+        getService("environment");
 
-    environmentDictionary.setDay(17);
+    environmentService.setDay(17);
     ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met");
 
-    environmentDictionary.setDay(24);
+    environmentService.setDay(24);
     ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors not met");
 }
 

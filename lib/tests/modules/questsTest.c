@@ -11,7 +11,7 @@ object QuestItem;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     Quests = clone_object("/lib/realizations/player");
     Quests.Name("Bob");

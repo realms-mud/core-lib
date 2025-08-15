@@ -21,17 +21,17 @@ private mapping information = ([
 private object service =
     load_object("/lib/modules/secure/dataServices/partyDataService.c");
 
-private object Dictionary = 
-    load_object("/lib/dictionaries/partyDictionary.c");
+private object Service = 
+    getService("party");
 
 private object channels = 
-    load_object("/lib/dictionaries/channelDictionary.c");
+    getService("channel");
 
 private object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+    getService("configuration");
 
 private object commands =
-    load_object("/lib/dictionaries/commandsDictionary.c");
+    getService("commands");
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void deleteParty()

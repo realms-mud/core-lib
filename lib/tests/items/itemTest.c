@@ -21,7 +21,7 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetBonusesOnItems()
 {
-    // Only test a few of these - the full set is tested in dictionaries/bonusesDictionaryTest
+    // Only test a few of these - the full set is tested in services/bonusesServiceTest
     ExpectFalse(Item.query("enchanted"), "item is enchanted");
     ExpectTrue(Item.set("bonus armor class", 5), "bonus armor class can be set");
     ExpectTrue(Item.set("bonus fire attack", 1), "bonus fire attack can be set");
@@ -64,7 +64,7 @@ void QueryingUnsetValueCorrectlyReturns()
 void SettingInvalidBonusesThrowError()
 {
     string err = catch (Item.set("bonus blarg", 5); nolog);
-    string expectedError = "*Item: The 'bonus <thing>' element must be a string as defined in the keys of the bonusList mapping in /lib/dictionaries/bonusesDictionary.c and it must be set to an appropriate value.\n";
+    string expectedError = "*Item: The 'bonus <thing>' element must be a string as defined in the keys of the bonusList mapping in /lib/services/bonusesService.c and it must be set to an appropriate value.\n";
 
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid bonuses");
 }
@@ -420,7 +420,7 @@ void CanSetMaterialOnItems()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidMaterialThrowsError()
 {
-    string expected = "*Item: The 'material' element must be a string as defined in the keys of the materials mapping in /lib/dictionaries/materialsDictionary.c.\n";
+    string expected = "*Item: The 'material' element must be a string as defined in the keys of the materials mapping in /lib/services/materialsService.c.\n";
 
     string err = catch (Item.set("material", "blah"); nolog);
     ExpectEq(expected, err, "material must be a valid material");
@@ -459,7 +459,7 @@ void SettingMalformedEnchantmentReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidEnchantmentsThrowsError()
 {
-    string expected = "*Item: The enchantments element must be a mapping containing a valid damage type with a valid range as defined in /lib/dictionaries/attacksDictionary.c";
+    string expected = "*Item: The enchantments element must be a mapping containing a valid damage type with a valid range as defined in /lib/services/attacksService.c";
 
     string err = catch (Item.set("enchantments", (["gelatin":10])); nolog);
     ExpectEq(expected, err, "enchantments must be a valid enchantment");
@@ -500,7 +500,7 @@ void SettingMalformedResistancesReturnsFalse()
 /////////////////////////////////////////////////////////////////////////////
 void SettingInvalidResistancesThrowsError()
 {
-    string expected = "*Item: The resistances element must be a mapping containing a valid damage type with a valid range as defined in /lib/dictionaries/attacksDictionary.c";
+    string expected = "*Item: The resistances element must be a mapping containing a valid damage type with a valid range as defined in /lib/services/attacksService.c";
 
     string err = catch (Item.set("resistances", ([ "gelatin":10 ])); nolog);
     ExpectEq(expected, err, "resistances must be a valid resistance");
@@ -662,8 +662,8 @@ void ShortReturnsCorrectMessageInNearDarkness()
 {
     object environment = 
         load_object("/lib/tests/support/environment/externalLightEnvironment.c");
-    object dictionary = 
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service = 
+        getService("environment");
 
     Item.set("short", "a Statue of a Weasel");
 
@@ -672,14 +672,14 @@ void ShortReturnsCorrectMessageInNearDarkness()
     owner.Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(0);
+    Service.timeOfDay("midnight");
+    Service.setDay(0);
 
     ExpectEq("The silhouette of an item, but it is too dark to identify it", 
         Item.short());
 
     destruct(environment);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -687,8 +687,8 @@ void ShortReturnsCorrectMessageInLowLight()
 {
     object environment =
         load_object("/lib/tests/support/environment/externalLightEnvironment.c");
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     Item.set("short", "a Statue of a Weasel");
 
@@ -697,14 +697,14 @@ void ShortReturnsCorrectMessageInLowLight()
     owner.Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(6);
+    Service.timeOfDay("midnight");
+    Service.setDay(6);
 
     ExpectEq("An item whose details cannot be seen in the low light",
         Item.short());
 
     destruct(environment);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -712,8 +712,8 @@ void ShortReturnsCorrectMessageInDimLight()
 {
     object environment =
         load_object("/lib/tests/support/environment/externalLightEnvironment.c");
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     destruct(Item);
     Item = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
@@ -724,13 +724,13 @@ void ShortReturnsCorrectMessageInDimLight()
     owner.Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
-    dictionary.timeOfDay("midnight");
-    dictionary.setDay(13);
+    Service.timeOfDay("midnight");
+    Service.setDay(13);
 
     ExpectEq("An apparent long sword", Item.short());
 
     destruct(environment);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -738,8 +738,8 @@ void ShortReturnsCorrectMessageInSomeLight()
 {
     object environment =
         load_object("/lib/tests/support/environment/externalLightEnvironment.c");
-    object dictionary =
-        load_object("/lib/dictionaries/environmentDictionary.c");
+    object Service =
+        getService("environment");
 
     destruct(Item);
     Item = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
@@ -750,12 +750,12 @@ void ShortReturnsCorrectMessageInSomeLight()
     owner.Gender("male");
     move_object(Item, owner);
     move_object(owner, environment);
-    dictionary.timeOfDay("dawn");
+    Service.timeOfDay("dawn");
 
     ExpectEq("Chainmail", Item.short());
 
     destruct(environment);
-    destruct(dictionary);
+    destruct(Service);
 }
 
 ////////////////////////////////////////////////////////////////////////////

@@ -32,8 +32,8 @@ private void displayTravelOptions(object player, object port)
     string charset = player->charsetConfiguration();
     mapping routes = port->getTradeRoutes();
     
-    object commandsDict = getDictionary("commands");
-    object configDict = getDictionary("configuration");
+    object commandsDict = getService("commands");
+    object configDict = getService("configuration");
     
     string travelDisplay = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                           "Available Destinations");

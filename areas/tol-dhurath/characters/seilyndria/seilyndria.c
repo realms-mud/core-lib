@@ -73,5 +73,5 @@ public string speakPlayerName(object actor)
 /////////////////////////////////////////////////////////////////////////////
 public string getDateAndTime(object actor)
 {
-    return getDictionary("environment")->currentDayAndYear();
+    return getService("environment")->currentDayAndYear();
 }

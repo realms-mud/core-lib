@@ -9,21 +9,21 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/research.h"
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object researchDictionary()
+private nomask object researchService()
 {
-    return getDictionary("research");
+    return getService("research");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int equivalentIsResearched(string researchItem)
 {
-    return researchDictionary()->equivalentIsResearched(research, researchItem);
+    return researchService()->equivalentIsResearched(research, researchItem);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isResearched(string researchItem)
 {
-    return (researchDictionary()->validResearch(researchItem) &&
+    return (researchService()->validResearch(researchItem) &&
             member(research, researchItem) && mappingp(research[researchItem])       
             && member(research[researchItem], "research complete") &&
             research[researchItem]["research complete"]);
@@ -45,7 +45,7 @@ private nomask int isActiveOrSustainedResearchAbility(string researchItem)
     int ret = 0;
     if(researchItem && stringp(researchItem) && isResearched(researchItem))
     {
-        ret = researchDictionary()->isActiveOrSustainedAbility(researchItem);
+        ret = researchService()->isActiveOrSustainedAbility(researchItem);
     }
     return ret;
 }
@@ -53,14 +53,14 @@ private nomask int isActiveOrSustainedResearchAbility(string researchItem)
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int canApplyLimitedEffect(string researchItem, string bonus)
 {
-    object researchObj = researchDictionary()->researchObject(researchItem);
+    object researchObj = researchService()->researchObject(researchItem);
 
     object target = this_object()->itemBeingCrafted() ?
         this_object()->itemBeingCrafted() :
         this_object()->getTargetToAttack();
 
     return isResearched(researchItem) && 
-        (researchDictionary()->researchEffectIsLimited(researchItem) ?
+        (researchService()->researchEffectIsLimited(researchItem) ?
         (researchObj->canApplySpecification(bonus, this_object(), target,
         isActiveOrSustainedResearchAbility(researchItem))) : 1);
 }
@@ -83,7 +83,7 @@ public nomask varargs int canApplyResearchBonus(string researchItem, string bonu
 /////////////////////////////////////////////////////////////////////////////
 public nomask int sustainedResearchIsActive(string researchItem)
 {
-    return (researchDictionary()->isSustainedAbility(researchItem) &&
+    return (researchService()->isSustainedAbility(researchItem) &&
         member(research, researchItem) &&
         member(research[researchItem], "sustained active") &&
         research[researchItem]["sustained active"]);
@@ -107,7 +107,7 @@ public nomask varargs int activateSustainedResearch(object researchObj,
 
     if(inventory && !blockedByCooldown(researchItem) &&
        (!modifierObject || inventory->isModifierItem(modifierObject)) &&
-       researchDictionary()->isSustainedAbility(researchItem) &&
+        researchService()->isSustainedAbility(researchItem) &&
        (!member(research[researchItem], "sustained active") ||
        (research[researchItem]["sustained active"] == 0))
        && canApplyLimitedEffect(researchItem) &&
@@ -148,7 +148,7 @@ public nomask varargs int activateSustainedResearch(object researchObj,
 public nomask int deactivateSustainedResearch(string researchItem)
 {
     int ret = 0;
-    if(researchDictionary()->isSustainedAbility(researchItem) &&
+    if(researchService()->isSustainedAbility(researchItem) &&
        member(research[researchItem], "sustained active") &&
        research[researchItem]["sustained active"])
     {
@@ -170,7 +170,7 @@ public nomask int deactivateSustainedResearch(string researchItem)
             destruct(modifierToDestroy);        
         }
 
-        object researchObj = researchDictionary()->researchObject(researchItem);
+        object researchObj = researchService()->researchObject(researchItem);
         if(researchObj)
         {
             int cooldown = researchObj->cooldown(this_object());
@@ -271,7 +271,7 @@ private nomask int checkTreeDependenciesMet(string tree, string researchItem)
     int ret = 0;
     if(tree && stringp(tree) && researchItem && stringp(researchItem))
     {
-        object treeObj = researchDictionary()->researchTree(tree);
+        object treeObj = researchService()->researchTree(tree);
         if(treeObj)
         {
             if(treeObj->isMemberOfResearchTree(researchItem) &&
@@ -293,7 +293,7 @@ private nomask int checkTreeDependenciesMet(string tree, string researchItem)
 public nomask int canResearch(string researchItem)
 {
     int ret = 0;
-    if(researchDictionary()->validResearch(researchItem) && 
+    if(researchService()->validResearch(researchItem) &&
        !isResearched(researchItem) && !equivalentIsResearched(researchItem))
     {        
         ret = 1;
@@ -302,7 +302,7 @@ public nomask int canResearch(string researchItem)
         {
             ret &&= checkTreeDependenciesMet(tree, researchItem);
         }
-        ret &&= researchDictionary()->checkResearchPrerequisites(researchItem,
+        ret &&= researchService()->checkResearchPrerequisites(researchItem,
             this_object());
     }
     return ret;
@@ -319,7 +319,7 @@ public nomask void registerResearchEvents()
         foreach(string researchItem in researchAbilities)
         {
             object researchObj =
-                researchDictionary()->researchObject(researchItem);
+                researchService()->researchObject(researchItem);
 
             if (researchObj && researchObj->query("event handler"))
             {
@@ -336,15 +336,15 @@ public nomask varargs int initiateResearch(string researchItem)
     if(researchItem && stringp(researchItem) && 
        !member(research, researchItem) && canResearch(researchItem))
     {
-        switch(researchDictionary()->getResearchType(researchItem))
+        switch(researchService()->getResearchType(researchItem))
         {
             case "points":
             {
                 if (researchPoints >=
-                    researchDictionary()->getResearchCost(researchItem))
+                    researchService()->getResearchCost(researchItem))
                 {
                     researchPoints -=
-                        researchDictionary()->getResearchCost(researchItem);
+                        researchService()->getResearchCost(researchItem);
                     research[researchItem] = ([
                         "when research began":time(),
                         "when research complete": time(),
@@ -367,7 +367,7 @@ public nomask varargs int initiateResearch(string researchItem)
                 research[researchItem] = ([
                     "when research began": time(),
                     "time to complete learning": 
-                        researchDictionary()->getResearchCost(researchItem),
+                        researchService()->getResearchCost(researchItem),
                     "time spent learning": 0,
                     "research complete": 0
                 ]);
@@ -406,9 +406,9 @@ public nomask varargs int initiateResearch(string researchItem)
     }
     if (ret)
     {
-        string *bonuses = researchDictionary()->getResearchBonuses(researchItem);
+        string *bonuses = researchService()->getResearchBonuses(researchItem);
         if (bonuses && sizeof(bonuses) &&
-            !researchDictionary()->isActiveOrSustainedAbility(researchItem))
+            !researchService()->isActiveOrSustainedAbility(researchItem))
         {
             research[researchItem]["bonuses"] = bonuses;
         }
@@ -451,7 +451,7 @@ public nomask int addResearchChoice(mapping researchChoice)
         {
             if(canResearch(researchItem))
             {
-                object researchObj = researchDictionary()->researchObject(researchItem);
+                object researchObj = researchService()->researchObject(researchItem);
                 if(researchObj)
                 {
                     choices[to_string(selection)] = ([
@@ -470,9 +470,9 @@ public nomask int addResearchChoice(mapping researchChoice)
                     selection++;
                 }
             }
-            else if(researchDictionary()->researchTree(researchItem))
+            else if(researchService()->researchTree(researchItem))
             {
-                object researchTree = researchDictionary()->researchTree(researchItem);
+                object researchTree = researchService()->researchTree(researchItem);
                 choices[to_string(selection)] = ([
                     "choice": researchChoice["name"],
                     "type": "research tree",
@@ -561,11 +561,11 @@ public nomask int addResearchTree(string researchTree)
 {
     int ret = 0;
 
-    object treeObj = researchDictionary()->researchTree(researchTree);
+    object treeObj = researchService()->researchTree(researchTree);
     if(treeObj && (member(openResearchTrees, researchTree) < 0))
     {
         ret = treeObj->checkPrerequisites(this_object()) && treeObj->TreeRoot()
-            && researchDictionary()->checkResearchPrerequisites(treeObj->TreeRoot(),
+            && researchService()->checkResearchPrerequisites(treeObj->TreeRoot(),
             this_object()) && initiateResearch(treeObj->TreeRoot());
             
         if(ret)
@@ -609,7 +609,7 @@ public nomask mapping *researchExtraAttacks()
     {
         if(canApplyResearchBonus(researchItem))
         {
-            extraAttacks += researchDictionary()->extraAttacks(researchItem,
+            extraAttacks += researchService()->extraAttacks(researchItem,
                 this_object());
         }
     }
@@ -635,7 +635,7 @@ public nomask mapping researchEnchantments()
         if (canApplyResearchBonus(researchItem))
         {
             mapping itemEnchantment = 
-                researchDictionary()->enchantments(researchItem);
+                researchService()->enchantments(researchItem);
 
             string *keys = m_indices(itemEnchantment);
             if (sizeof(keys))
@@ -674,9 +674,9 @@ public nomask int researchAttributeBonus(string attribute)
             if(canApplyResearchBonus(researchItem, attribute))
             {
                 string method = sprintf("%sBonus", capitalize(attribute));
-                if(function_exists(method, researchDictionary()))
+                if(function_exists(method, researchService()))
                 {
-                    ret += call_other(researchDictionary(), method, 
+                    ret += call_other(researchService(), method,
                         researchItem);
                 }
             }
@@ -699,15 +699,15 @@ public nomask int researchBonusTo(string bonus)
 
         foreach(string researchItem in sustainedResearchActive)
         {
-            ret -= call_other(researchDictionary(),
+            ret -= call_other(researchService(),
                 "applySustainedCostTo", researchItem, bonus);
         }
     }
 
-    if(function_exists(bonus, researchDictionary()))
+    if(function_exists(bonus, researchService()))
     {
         string bonusString = 
-            getDictionary("bonuses")->getBonusFromFunction(bonus);
+            getService("bonuses")->getBonusFromFunction(bonus);
 
         string *researchItems = filter(m_indices(research),
             (: (member(research[$1], "bonuses") &&
@@ -717,11 +717,11 @@ public nomask int researchBonusTo(string bonus)
         {
             if(canApplyResearchBonus(researchItem, bonus))
             {
-                ret += call_other(researchDictionary(), bonus, researchItem);              
+                ret += call_other(researchService(), bonus, researchItem);
             }
         }
     }
-    else if(function_exists("BonusSkillModifier", researchDictionary()))
+    else if(function_exists("BonusSkillModifier", researchService()))
     {
         string *researchItems = filter(m_indices(research),
             (: (member(research[$1], "bonuses") &&
@@ -730,19 +730,19 @@ public nomask int researchBonusTo(string bonus)
 
         foreach(string researchItem in researchItems)
         {
-            if(researchDictionary()->researchEffectIsLimited(researchItem) &&
+            if(researchService()->researchEffectIsLimited(researchItem) &&
                canApplyResearchBonus(researchItem, bonus))
             {
                 object target = this_object()->itemBeingCrafted() ?
                     this_object()->itemBeingCrafted() :
                     this_object()->getTargetToAttack();
 
-                ret += call_other(researchDictionary(), "LimitedSkillModifier",
+                ret += call_other(researchService(), "LimitedSkillModifier",
                     researchItem, bonus, this_object(), target);
             }        
             else if(canApplyResearchBonus(researchItem, bonus))
             {
-                ret += call_other(researchDictionary(), "BonusSkillModifier", 
+                ret += call_other(researchService(), "BonusSkillModifier",
                     researchItem, bonus);
             }           
         }
@@ -761,7 +761,7 @@ private nomask void applyCooldown(string researchItem, object researchObj)
         if (researchObj->query("cooldown group"))
         {
             string *otherItems =
-                getDictionary("research")->cooldownGroup(researchItem);
+                getService("research")->cooldownGroup(researchItem);
 
             if (sizeof(otherItems))
             {
@@ -789,7 +789,7 @@ public nomask int researchCommand(string command)
 
     foreach(string researchItem in researchAbilities)
     {
-        researchObj = researchDictionary()->researchObject(researchItem);
+        researchObj = researchService()->researchObject(researchItem);
         string tempCommand = command;
 
         if(researchObj)
@@ -820,7 +820,7 @@ public nomask int researchCommand(string command)
     }
     if(commandToExecute && canApplyLimitedEffect(commandToExecute, command))
     {
-        ret = researchDictionary()->researchCommand(commandToExecute,
+        ret = researchService()->researchCommand(commandToExecute,
             command, this_object());
 
         if (ret && researchObj && (researchObj->query("type") != "sustained"))
@@ -938,7 +938,7 @@ public nomask mapping getNextCompositeResearchElement()
         activeCompositeResearch["name"]) : 0;
 
     object researchObj = activeCompositeResearch ?
-        getDictionary("research")->researchObject(
+        getService("research")->researchObject(
             activeCompositeResearch["constraint"]) : 0;
 
     if (sizeof(selectedItem) && member(selectedItem, "elements") &&
@@ -1016,7 +1016,7 @@ public nomask object activeCompositeResearch()
     object ret = 0;
     if (activeCompositeResearch)
     {
-        ret = getDictionary("research")->researchObject(
+        ret = getService("research")->researchObject(
             activeCompositeResearch["constraint"]);
     }
     return ret;
@@ -1049,7 +1049,7 @@ public nomask int setCompositeResearch(string itemName, mapping data)
 {
     int ret = 0;
 
-    if (researchDictionary()->isValidCompositeResearch(itemName, data))
+    if (researchService()->isValidCompositeResearch(itemName, data))
     {
         ret = 1;
         compositeResearch[itemName] = data + ([]);
@@ -1082,16 +1082,16 @@ public nomask mapping categorizedResearch()
         filter(m_indices(research), #'isResearched) + 
             availableResearchTrees() + ({});
 
-    object dictionary = researchDictionary();
+    object service = researchService();
     foreach(string element in knownResearch)
     {
-        object researchObj = dictionary->researchObject(element);
+        object researchObj = service->researchObject(element);
         string source = "";
         string name = "";
 
         if (!researchObj)
         {
-            researchObj = dictionary->researchTree(element);
+            researchObj = service->researchTree(element);
             name = lower_case(researchObj->Name());
             source = researchObj->Source();
         }
@@ -1114,7 +1114,7 @@ public nomask mapping categorizedResearch()
 public nomask void removeResearchBySource(string source)
 {
     string* itemsToRemove =
-        researchDictionary()->getResearchItemsBySource(this_object(), source);
+        researchService()->getResearchItemsBySource(this_object(), source);
 
     if (sizeof(itemsToRemove))
     {
@@ -1131,7 +1131,7 @@ public nomask void removeResearchBySource(string source)
     }
 
     string* treesToRemove =
-        researchDictionary()->getResearchTreesBySource(this_object(), source);
+        researchService()->getResearchTreesBySource(this_object(), source);
 
     if (sizeof(treesToRemove))
     {

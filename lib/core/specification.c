@@ -31,7 +31,7 @@ protected mapping specificationData = ([
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int validLimitor(mapping limitor)
 {
-    return getDictionary("limitor")->validLimitor(limitor);
+    return getService("limitor")->validLimitor(limitor);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ protected int blockSpecificationApplication(string skill, object owner,
 /////////////////////////////////////////////////////////////////////////////
 protected varargs int environmentalFactorsMet(object owner, int verbose)
 {
-    return getDictionary("limitor")->environmentalFactorsMet(
+    return getService("limitor")->environmentalFactorsMet(
         specificationData, owner, verbose);
 }
 
@@ -111,7 +111,7 @@ protected varargs int environmentalFactorsMet(object owner, int verbose)
 protected varargs int userFactorsMet(object owner, 
     object target, int verbose)
 {
-    return getDictionary("limitor")->userFactorsMet(
+    return getService("limitor")->userFactorsMet(
         specificationData, owner, target, verbose);
 }
 
@@ -260,7 +260,7 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 case "faction":
                 case "opponent faction":
                 {
-                    object faction = getDictionary("factions")->factionObject(
+                    object faction = getService("factions")->factionObject(
                         specificationData["limited by"][key]);
                     if (faction)
                     {
@@ -312,10 +312,10 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 {
                     string *quests = ({});
 
-                    object questDictionary = getDictionary("quests");
+                    object questService = getService("quests");
                     foreach(string quest in specificationData["limited by"]["quests"])
                     {
-                        quests += ({ "\"" + questDictionary->questSummary(quest) +
+                        quests += ({ "\"" + questService->questSummary(quest) +
                             "\"" });
                     }
 
@@ -328,12 +328,12 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 {
                     string *research = ({});
 
-                    object researchDictionary = getDictionary("research");
+                    object researchService = getService("research");
                     foreach(string researchItem in 
                         specificationData["limited by"][key])
                     {
                         object researchObj =
-                            researchDictionary->researchObject(researchItem);
+                            researchService->researchObject(researchItem);
                         if (researchObj)
                         {
                             research += ({ capitalize(researchObj->query("name")) });
@@ -349,12 +349,12 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 {
                     string *traits = ({});
 
-                    object traitDictionary = getDictionary("traits");
+                    object traitService = getService("traits");
                     foreach(string trait in 
                         specificationData["limited by"]["traits"])
                     {
                         object traitObj =
-                            traitDictionary->traitObject(trait);
+                            traitService->traitObject(trait);
                         if (traitObj)
                         {
                             traits += ({ capitalize(traitObj->query("name")) });

@@ -14,7 +14,7 @@ public nomask void SetupCommand()
 /////////////////////////////////////////////////////////////////////////////
 private string decorateObject(object targetObject, object initiator)
 {
-    object dictionary = load_object("/lib/dictionaries/configurationDictionary.c");
+    object configService = getService("configuration");
     string objectName = object_name(targetObject);
     string configuration = initiator->colorConfiguration();
     string displayType = "other objects";
@@ -34,33 +34,33 @@ private string decorateObject(object targetObject, object initiator)
 
     if (shortDesc)
     {
-        itemDetails = dictionary->decorate(sprintf(" (%s)\n", shortDesc),
+        itemDetails = configService->decorate(sprintf(" (%s)\n", shortDesc),
             "environment", "show", configuration);
     }
-    return dictionary->decorate("Item: ", "text", "show", configuration) +
-        dictionary->decorate(objectName, displayType, "show", configuration) +
+    return configService->decorate("Item: ", "text", "show", configuration) +
+        configService->decorate(objectName, displayType, "show", configuration) +
         itemDetails;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private string objectDetails(object target, object initiator)
 {
-    object dictionary = load_object("/lib/dictionaries/configurationDictionary.c");
+    object configService = getService("configuration");
     string configuration = initiator->colorConfiguration();
     string charset = initiator->charsetConfiguration();
 
-    string ret = dictionary->divider(configuration, charset);
+    string ret = configService->divider(configuration, charset);
 
     ret += decorateObject(target, initiator);
 
     object targetEnvironment = environment(target);
     if (targetEnvironment)
     {
-        ret += dictionary->decorate("Environment: ", "text", "show", configuration) +
-            dictionary->decorate(object_name(targetEnvironment) + "\n", "environment", "show", configuration);
+        ret += configService->decorate("Environment: ", "text", "show", configuration) +
+            configService->decorate(object_name(targetEnvironment) + "\n", "environment", "show", configuration);
     }
 
-    ret += dictionary->divider(configuration, charset);
+    ret += configService->divider(configuration, charset);
 
     object *targetInventory = all_inventory(target);
     foreach(object item in targetInventory)

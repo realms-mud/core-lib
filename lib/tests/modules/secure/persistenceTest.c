@@ -310,7 +310,7 @@ void PlayerCombatAttributesSaved()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerGuildsSaved()
 {
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     object mage = load_object("/lib/tests/support/guilds/mageGuild.c");
     object blarg = load_object("/lib/tests/support/guilds/blargGuild.c");
 
@@ -494,7 +494,7 @@ void ModifierObjectsAreSavedAndRestored()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerInventoryMaintainsWieldedAndWornStateWhenEquippedAtSave()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Player.restore("gorthaur");

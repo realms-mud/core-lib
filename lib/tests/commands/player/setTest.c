@@ -293,12 +293,12 @@ void PlayerCannotSendTellWhenBlocked()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCannotSeeGuildMessageOfBlockedPlayer()
 {
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player.joinGuild("fake mage");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Player);
     channels.registerUser(Wizard);
 
@@ -412,13 +412,13 @@ void PlayerCanSeeGuildMessageOfUnblockedPlayer()
 {
     Player.executeCommand("set -p block player -v earl");
     Player.resetCatchList();
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player.joinGuild("fake mage");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.resetCatchList();
 
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Player);
     channels.registerUser(Wizard);
 
@@ -978,7 +978,7 @@ void WizardHelpDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void PlayerCanSetPrimaryGuild()
 {
-    load_object("/lib/dictionaries/guildsDictionary.c");
+    getService("guilds");
     load_object("/lib/tests/support/guilds/fighterGuild.c");
     load_object("/lib/tests/support/guilds/mageGuild.c");
     Player.joinGuild("fake fighter");

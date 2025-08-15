@@ -54,7 +54,7 @@ static nomask void loadInventory(mapping data, object persistence)
                 int haveLoadErrors = 0;
                 string errors = 0;
                 string failedLoad = "";
-                object configuration = getDictionary("configuration");
+                object configuration = getService("configuration");
                 string colorConfig = this_player() ?
                     this_player()->colorConfiguration() : "none";
 

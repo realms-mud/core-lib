@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object CraftingService;
 private object SubselectorObj;
 private string CraftingType;
 private string CraftingSubType = 0;
@@ -27,7 +27,7 @@ public nomask void InitializeSelector()
     AllowUndo = 0;
     AllowAbort = 1;
 
-    Dictionary = getDictionary("crafting");
+    CraftingService = getService("crafting");
     Data = ([]);
 }
 
@@ -47,11 +47,11 @@ protected nomask void setUpUserForSelection()
 
     if (CraftingSubType)
     {
-        Data = Dictionary->getCraftingListBySubType(CraftingType, CraftingSubType, User);
+        Data = CraftingService->getCraftingListBySubType(CraftingType, CraftingSubType, User);
     }
     else
     {
-        Data = Dictionary->getCraftingList(CraftingType, User);
+        Data = CraftingService->getCraftingList(CraftingType, User);
     }
 
     NumColumns = (sizeof(Data) && (member(Data["1"], "show materials") && 

@@ -30,7 +30,7 @@ void Setup()
     MockPort = clone_object("/lib/tests/support/environment/mockTradePort.c");
     MockPort->setPortName("Port Alpha");
     MockPort->setShortDescription("A bustling port city.");
-    getDictionary("trading")->registerPort(MockPort);
+    getService("trading")->registerPort(MockPort);
     Player->addVehicle("wagon", "Port Alpha");
 
     if (objectp(PortMenuSelector)) destruct(PortMenuSelector);

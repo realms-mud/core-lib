@@ -231,12 +231,12 @@ void IsHarvestableResourceReturnsCorrectlyWhenMoonPhaseSet()
 
     ExpectFalse(Resource.isHarvestableResource("yew", Player, Environment));
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(2);
+    object Service = getService("environment");
+    Service.setDay(2);
 
     ExpectTrue(Resource.isHarvestableResource("yew", Player, Environment));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -249,15 +249,15 @@ void IsHarvestableResourceReturnsCorrectlyWhenTimeOfDaySet()
     Resource.resetQuantity(Environment);
     Resource.limitHarvestByTimeOfDay("noon");
 
-    object dictionary = getDictionary("environment");
-    dictionary.timeOfDay("morning");
+    object Service = getService("environment");
+    Service.timeOfDay("morning");
 
     ExpectFalse(Resource.isHarvestableResource("yew", Player, Environment));
 
-    dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     ExpectTrue(Resource.isHarvestableResource("yew", Player, Environment));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -270,15 +270,15 @@ void IsHarvestableResourceReturnsCorrectlyWhenSeasonSet()
     Resource.resetQuantity(Environment);
     Resource.limitHarvestBySeason("autumn");
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(20);
+    object Service = getService("environment");
+    Service.setDay(20);
 
     ExpectFalse(Resource.isHarvestableResource("yew", Player, Environment));
 
-    dictionary.setDay(260);
+    Service.setDay(260);
     ExpectTrue(Resource.isHarvestableResource("yew", Player, Environment));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,12 +293,12 @@ void IsHarvestableResourceNotAffectedByNonEnvironmentalLimitors()
     Resource.limitHarvestByOneOfTools(({ "axe", "sword", "pole-arm" }));
     Resource.limitHarvestBySkill("forestry", 5);
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(260);
+    object Service = getService("environment");
+    Service.setDay(260);
 
     ExpectTrue(Resource.isHarvestableResource("yew", Player, Environment));
 
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -323,8 +323,8 @@ void HarvestResourceCorrectlyHarvestsResources()
 
     ExpectFalse(Resource.harvestResource("yew", Player, Environment));
 
-    object dictionary = getDictionary("environment");
-    dictionary.setDay(260);
+    object Service = getService("environment");
+    Service.setDay(260);
     ExpectFalse(Resource.harvestResource("yew", Player, Environment));
 
     Player.addSkillPoints(20);
@@ -345,7 +345,7 @@ void HarvestResourceCorrectlyHarvestsResources()
         "This can only be harvested when the season is autumn.\n"
         "This can only be harvested when your forestry skill is at least 5.\n",
         Resource.getHarvestStatistics(Environment, Player));
-    destruct(dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////

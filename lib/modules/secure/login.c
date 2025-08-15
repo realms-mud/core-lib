@@ -92,7 +92,7 @@ private nomask object loadNewPlayerObject(string name)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reportUserLogin(object user)
 {
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     if (channels)
     {
         string address = query_ip_number(user) || "???";

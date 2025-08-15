@@ -430,7 +430,7 @@ public nomask varargs void displayMessage(string message, object initiator,
                 }
 
                 object configuration =
-                    load_object("/lib/dictionaries/configurationDictionary.c");
+                    getService("configuration");
 
                 if (!checkVisibility ||
                     (checkVisibility && person->canSee()))

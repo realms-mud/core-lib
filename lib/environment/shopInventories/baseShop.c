@@ -127,7 +127,7 @@ public nomask varargs int storeItem(object item, int isPermanent)
         !item->query("no sell"))
     {
         ret = 1;
-        object dictionary = load_object("/lib/dictionaries/materialsDictionary.c");
+        object materialsService = getService("materials");
 
         string key = item->query("quantity") ?
             program_name(item) : object_name(item);
@@ -144,10 +144,10 @@ public nomask varargs int storeItem(object item, int isPermanent)
                 "value": item->query("value"),
                 "type": item->query("type"),
                 "quantity": item->query("quantity"),
-                "subType": dictionary->getBlueprintDetails(item, "subtype") ?
-                    dictionary->getBlueprintDetails(item, "subtype") : "all",
-                "quality": dictionary->getMaterialQualityFormatter(item),
-                "summary": dictionary->getItemSummary(item),
+                "subType": materialsService->getBlueprintDetails(item, "subtype") ?
+                    materialsService->getBlueprintDetails(item, "subtype") : "all",
+                "quality": materialsService->getMaterialQualityFormatter(item),
+                "summary": materialsService->getItemSummary(item),
                 "data": item->query("all")
             ]);
         }
@@ -276,15 +276,15 @@ public void updateShopInventory()
     if (inventorySize < 15)
     {
         ItemsToGenerate = 16 - inventorySize + random(6);
-        object dictionary = load_object("/lib/dictionaries/shopDictionary.c");
+        object shopService = getService("shop");
 
         if (shopSellsConsumables())
         {
-            dictionary->generateConsumableItems(this_object(), 1);
+            shopService->generateConsumableItems(this_object(), 1);
         }
         else
         {
-            dictionary->generateRandomItems(this_object());
+            shopService->generateRandomItems(this_object());
         }
     }
 

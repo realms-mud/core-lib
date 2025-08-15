@@ -71,7 +71,7 @@ public nomask void generateRandomCraftingMaterials()
 {
     if (!query("crafting materials"))
     {
-        getDictionary("crafting")->getRandomCraftingMaterial(
+        getService("crafting")->getRandomCraftingMaterial(
             this_object(), 1);
     }
 }

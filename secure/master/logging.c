@@ -2,7 +2,7 @@
 // Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-private nomask object logDictionary = 0;
+private nomask object logService = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string get_wiz_name(string file)
@@ -26,11 +26,10 @@ public nomask void log_error(string file, string message)
         logName = "log";
     }
 
-    if (!logDictionary)
+    if (!logService)
     {
-        logDictionary =
-            load_object("/secure/simul_efun.c")->getDictionary("log");
+        logService = load_object("/secure/simul_efun.c")->getService("log");
     }
 
-    logDictionary->log(logName, message);
+    logService->log(logName, message);
 }

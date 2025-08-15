@@ -63,14 +63,14 @@ public nomask void setRegionName(string name)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setRegionType(string type)
 {
-    if (Dictionary->isValidRegionType(type))
+    if (RegionService->isValidRegionType(type))
     {
         RegionType = type;
     }
     else
     {
         raise_error("ERROR - region: The region must be a valid type as defined in "
-            "/lib/dictionaries/regions/region-types.h\n");
+            "/lib/services/regions/region-types.h\n");
     }
 }
 
@@ -204,7 +204,7 @@ public nomask varargs void setCoordinate(int x, int y, string path,
 
     if (decoratorType)
     {
-        grid[x][y]["icon"] = Dictionary->getMapDecorator(decoratorType);
+        grid[x][y]["icon"] = RegionService->getMapDecorator(decoratorType);
     }
 
     environment->setCoordinates(this_object(), x, y);

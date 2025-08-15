@@ -7,6 +7,6 @@ inherit "/lib/modules/creation/traitSelectorSubmenu.c";
 /////////////////////////////////////////////////////////////////////////////
 protected mapping traitMenuSetup()
 {
-    return TraitDictionary ? 
-        TraitDictionary->creationListForTraitType("genetic") : ([]);
+    return TraitService ? 
+        TraitService->creationListForTraitType("genetic") : ([]);
 }

@@ -4,11 +4,11 @@
 //*****************************************************************************
 virtual inherit "/lib/core/thing.c";
 
-private nosave string AttacksBlueprint = "/lib/dictionaries/attacksDictionary.c";
-private nosave string BonusesBlueprint = "/lib/dictionaries/bonusesDictionary.c";
-protected nosave string MaterialsBlueprint = "/lib/dictionaries/materialsDictionary.c";
+private nosave string AttacksBlueprint = "/lib/services/attacksService.c";
+private nosave string BonusesBlueprint = "/lib/services/bonusesService.c";
+protected nosave string MaterialsBlueprint = "/lib/services/materialsService.c";
 protected nosave object MessageParser = load_object("/lib/core/messageParser.c");
-private nosave object MaterialsObject = getDictionary("materials");
+private nosave object MaterialsObject = getService("materials");
 
 protected mapping itemData = ([ 
 //  "aliases": ({ }),  // string array of alternate names for item
@@ -78,10 +78,10 @@ protected nomask object materialsObject()
 protected nomask int isValidBonus(string bonus, int amount)
 {
     int ret = 0;
-    object bonusesDictionary = getDictionary("bonuses");
-    if(bonus && stringp(bonus) && amount && intp(amount) && bonusesDictionary)
+    object bonusesService = getService("bonuses");
+    if(bonus && stringp(bonus) && amount && intp(amount) && bonusesService)
     {
-        ret = bonusesDictionary->isValidBonusModifier(bonus, amount);
+        ret = bonusesService->isValidBonusModifier(bonus, amount);
     }
     
     if(!ret)
@@ -228,7 +228,7 @@ public mixed query(string element)
                     materialsObject()->getBlueprintDetails(
                         this_object(), "subtype");
 
-               if (!getDictionary("crafting")->isValidType(ret))
+               if (!getService("crafting")->isValidType(ret))
                 {
                     ret = materialsObject()->getBlueprintDetails(
                         this_object(), "skill to use");
@@ -238,7 +238,7 @@ public mixed query(string element)
             }
             case "crafting guilds":
             {
-                object guilds = getDictionary("guilds");
+                object guilds = getService("guilds");
                 if (guilds)
                 {
                     ret = guilds->guildsInClass("crafting");
@@ -332,7 +332,7 @@ private nomask int checkDamageType(string element, mapping data)
     if(data && mappingp(data))
     {
         ret = 1;
-        object damageType = getDictionary("attacks");
+        object damageType = getService("attacks");
         if(damageType)
         {
             foreach(string dmgType in m_indices(data))
@@ -365,7 +365,7 @@ private nomask int checkDamageType(string element, mapping data)
 private nomask int checkMaterial(string data)
 {
     int ret = 0;
-    object materials = getDictionary("materials");
+    object materials = getService("materials");
     if(data && stringp(data) && materials && objectp(materials))
     {
         ret = materials->isValidMaterial(data);
@@ -721,7 +721,7 @@ protected string describeCraftingMaterials()
 {
     string ret = "";
 
-    object itemTypes = getDictionary("crafting");
+    object itemTypes = getService("crafting");
     if (itemTypes && objectp(itemTypes))
     {
         ret = itemTypes->getEquipmentMaterials(this_object());
@@ -735,7 +735,7 @@ public varargs string long(int doNotApplyUserStatistics)
     string description = "";
     if (query("long") && (query("long") != ""))
     {
-        object itemTypes = getDictionary("crafting");
+        object itemTypes = getService("crafting");
         if (itemTypes && objectp(itemTypes))
         {
             description += itemTypes->addMaterialsToDescription(this_object());

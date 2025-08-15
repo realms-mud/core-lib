@@ -8,13 +8,13 @@ private string Location;
 
 private mapping WorkerData = 0;
 private mapping ConstructionData = 0;
-private object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+private object Service = getService("domain");
 private object SubselectorObj;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setLocation(string location)
 {
-    mapping info = dictionary->getPlayerHolding(User, location);
+    mapping info = Service->getPlayerHolding(User, location);
     if (mappingp(info))
     {
         Location = location;
@@ -53,19 +53,19 @@ public nomask void InitializeSelector()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void setUpUserForSelection()
 {
-    object dictionary = load_object("/lib/dictionaries/domainDictionary.c");
+    object Service = getService("domain");
 
-    if (dictionary && WorkerData)
+    if (Service && WorkerData)
     {
         Description = "Assign Workers:\n" +
             configuration->decorate(format(sprintf("From this menu, you can "
                 "select the workers who will be executing your %s project "
                 "in your holdings at %s.", WorkerData["display name"],
-                dictionary->getLocationDisplayName(Location)), 78),
+                Service->getLocationDisplayName(Location)), 78),
                 "description", "selector", colorConfiguration) + "\n" +
-            dictionary->getComponentWorkerInfo(User, ConstructionData);
+            Service->getComponentWorkerInfo(User, ConstructionData);
 
-        Data = dictionary->getWorkersMenu(User, Location,
+        Data = Service->getWorkersMenu(User, Location,
             WorkerData);
     }
 }
@@ -127,7 +127,7 @@ protected nomask int processSelection(string selection)
             }
             else if (Data[selection]["type"] == "auto-select")
             {
-                dictionary->autoSelectWorkers(Location, User, WorkerData,
+                Service->autoSelectWorkers(Location, User, WorkerData,
                     ConstructionData);
             }
             else

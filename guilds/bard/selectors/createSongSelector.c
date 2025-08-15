@@ -39,7 +39,7 @@ private nomask int GetExistingElementsForSongSection(string section,
 
     foreach(mapping element in elements)
     {
-        string info = regreplace(getDictionary("research")->getCompositeItemDetails(
+        string info = regreplace(getService("research")->getCompositeItemDetails(
             element, colorConfiguration, configuration), "^       ", "", 1);
         info = regreplace(info, "\n *$", "", 1);
 
@@ -64,7 +64,7 @@ protected nomask void setUpUserForSelection()
 
     if (mappingp(SongData))
     {
-        object songOptions = getDictionary("research")->researchObject(
+        object songOptions = getService("research")->researchObject(
             "/guilds/bard/compositions/root.c");
 
         mapping templates = songOptions->getPossibleTemplates();

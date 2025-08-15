@@ -26,7 +26,7 @@ public nomask int execute(string command, object initiator)
 
         if (environment(initiator))
         {
-            object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+            object configuration = getService("configuration");
 
             object *characters = filter(all_inventory(environment(initiator)),
                 (: $1->isRealizationOfLiving() :));

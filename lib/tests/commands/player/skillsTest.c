@@ -14,8 +14,8 @@ string SkillPoints = "You have %d skill points available to spend.\n";
 /////////////////////////////////////////////////////////////////////////////
 void PrepSkillsOfType(string type)
 {
-    object dictionary = load_object("/lib/dictionaries/skillsDictionary.c");
-    string *skills = dictionary.validSkillsOfType(type);
+    object Service = getService("skills");
+    string *skills = Service.validSkillsOfType(type);
 
     int i = 0;
     foreach(string skill in skills)

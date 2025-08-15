@@ -4,100 +4,100 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CurrentTimeDayAndYearCorrectlyDisplayed()
 {
-    ExpectEq(660, Dictionary.currentTime());
-    ExpectEq(92, Dictionary.currentDay());
-    ExpectEq(1, Dictionary.currentYear());
+    ExpectEq(660, Service.currentTime());
+    ExpectEq(92, Service.currentDay());
+    ExpectEq(1, Service.currentYear());
 
-    Dictionary.advanceTime(345);
-    ExpectEq(1005, Dictionary.currentTime());
-    ExpectEq(92, Dictionary.currentDay());
-    ExpectEq(1, Dictionary.currentYear());
+    Service.advanceTime(345);
+    ExpectEq(1005, Service.currentTime());
+    ExpectEq(92, Service.currentDay());
+    ExpectEq(1, Service.currentYear());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SettingTimeOfDayAltersCurrentTime()
 {
-    ExpectEq(660, Dictionary.currentTime());
-    ExpectEq("noon", Dictionary.timeOfDay());
+    ExpectEq(660, Service.currentTime());
+    ExpectEq("noon", Service.timeOfDay());
 
-    Dictionary.timeOfDay("afternoon");
-    ExpectEq(990, Dictionary.currentTime());
-    ExpectEq("afternoon", Dictionary.timeOfDay());
+    Service.timeOfDay("afternoon");
+    ExpectEq(990, Service.currentTime());
+    ExpectEq("afternoon", Service.timeOfDay());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvancingTimePastEndOfDayIncrementsDayAndRollsTime()
 {
-    Dictionary.timeOfDay("night");
-    ExpectEq(92, Dictionary.currentDay());
+    Service.timeOfDay("night");
+    ExpectEq(92, Service.currentDay());
 
-    Dictionary.advanceTime(60);
-    ExpectEq(0, Dictionary.currentTime());
-    ExpectEq("midnight", Dictionary.timeOfDay());
-    ExpectEq(93, Dictionary.currentDay());
+    Service.advanceTime(60);
+    ExpectEq(0, Service.currentTime());
+    ExpectEq("midnight", Service.timeOfDay());
+    ExpectEq(93, Service.currentDay());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvancingTimePastSeasonIncrementsSeason()
 {
-    Dictionary.setDay(91);
-    ExpectEq(91, Dictionary.currentDay());
-    ExpectEq("spring", Dictionary.season());
+    Service.setDay(91);
+    ExpectEq(91, Service.currentDay());
+    ExpectEq("spring", Service.season());
 
-    Dictionary.advanceTime(1440);
-    ExpectEq(92, Dictionary.currentDay());
-    ExpectEq("summer", Dictionary.season());
+    Service.advanceTime(1440);
+    ExpectEq(92, Service.currentDay());
+    ExpectEq("summer", Service.season());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void AdvancingTimePastYearIncrementsYearAndResetsSeason()
 {
-    Dictionary.setDay(364);
-    ExpectEq(364, Dictionary.currentDay());
-    ExpectEq("winter", Dictionary.season());
-    ExpectEq(1, Dictionary.currentYear());
+    Service.setDay(364);
+    ExpectEq(364, Service.currentDay());
+    ExpectEq("winter", Service.season());
+    ExpectEq(1, Service.currentYear());
 
-    Dictionary.advanceTime(1440);
-    ExpectEq(0, Dictionary.currentDay());
-    ExpectEq("spring", Dictionary.season());
-    ExpectEq(2, Dictionary.currentYear());
+    Service.advanceTime(1440);
+    ExpectEq(0, Service.currentDay());
+    ExpectEq("spring", Service.season());
+    ExpectEq(2, Service.currentYear());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MoonPhasesAreDisplayedCorrectly()
 {
-    ExpectEq("first quarter", Dictionary.moonPhase());
+    ExpectEq("first quarter", Service.moonPhase());
 
-    Dictionary.setDay(2);
-    ExpectEq("waxing crescent", Dictionary.moonPhase());
+    Service.setDay(2);
+    ExpectEq("waxing crescent", Service.moonPhase());
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void MoonPhasesRollOverToNewMoon()
 {
-    Dictionary.setDay(362);
-    ExpectEq("waning crescent", Dictionary.moonPhase());
+    Service.setDay(362);
+    ExpectEq("waning crescent", Service.moonPhase());
 
-    Dictionary.setDay(363);
-    ExpectEq("new moon", Dictionary.moonPhase());
+    Service.setDay(363);
+    ExpectEq("new moon", Service.moonPhase());
 }

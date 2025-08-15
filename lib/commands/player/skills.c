@@ -28,7 +28,7 @@ private nomask int executeAdvanceSkill(string command, object initiator)
         }
 
         string skill = regreplace(command, ".*-advance ([A-Za-z ]+)", "\\1", 1);
-        object skills = load_object("/lib/dictionaries/skillsDictionary.c");
+        object skills = getService("skills");
         if (skills)
         {
             if (skills->isValidSkill(skill))

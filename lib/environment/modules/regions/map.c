@@ -5,7 +5,7 @@
 virtual inherit "/lib/environment/modules/regions/core.c";
 #include "/lib/environment/modules/regions/display-characters.h"
 
-private object configuration = getDictionary("configuration");
+private object configuration = getService("configuration");
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int hasExit(mapping location, string direction)
@@ -140,7 +140,7 @@ private nomask varargs string displayMapSection(object user, int startX,
                         location["environment"]->decoratorType(state) : 
                         location["room type"];
 
-                    string **icon = Dictionary->getMapIcon(this_object(), 
+                    string **icon = RegionService->getMapIcon(this_object(),
                         decoratorType, colorConfiguration, charset);
                     if (objectp(location["environment"]))
                     {
@@ -179,7 +179,7 @@ private nomask varargs string displayMapSection(object user, int startX,
                             (useRoom ? 
                                 displayCharacter[roomType][charset] : 
                                 sprintf("%s%s%s",
-                                    Dictionary->iconColor(decoratorType, colorConfiguration),
+                                    RegionService->iconColor(decoratorType, colorConfiguration),
                                     icon[1][1],
                                     (colorConfiguration != "none") ? "\x1b[0m" : ""))),
                             (userHere ? "user location" : roomType),

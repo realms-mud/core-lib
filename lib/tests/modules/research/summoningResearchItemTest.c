@@ -12,7 +12,7 @@ object Room;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    destruct(getDictionary("party"));
+    destruct(getService("party"));
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User.Name("Bob");

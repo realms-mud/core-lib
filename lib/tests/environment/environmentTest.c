@@ -5,15 +5,15 @@
 inherit "/lib/tests/framework/testFixture.c";
 
 object Environment;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    Dictionary.setYear(1);
-    Dictionary.setDay(92);
-    Dictionary.timeOfDay("noon");
+    Service = getService("environment");
+    Service.setYear(1);
+    Service.setDay(92);
+    Service.timeOfDay("noon");
     Environment = clone_object("/lib/tests/support/environment/testEnvironment.c");
 }
 
@@ -21,7 +21,7 @@ void Setup()
 void CleanUp()
 {
     destruct(Environment);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -353,8 +353,8 @@ void MoveToLocationShowsCorrectMessageForTimeAndSeason()
     command("south", player);
     ExpectSubStringMatch("It is too dark", player.caughtMessage());
 
-    Dictionary.timeOfDay("night");
-    Dictionary.season("spring");
+    Service.timeOfDay("night");
+    Service.season("spring");
     move_object(player, "/lib/tests/support/environment/startingRoom.c");
 
     command("south", player);
@@ -476,7 +476,7 @@ void SetTerrainRaisesErrorWhenUnableToRegiterObject()
 void SetTerrainRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeTerrainDuplicate.c'. A conflicting item with that name already exists.\n";
-    Dictionary.registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
+    Service.registerElement("/lib/tests/support/environment/fakeTerrain.c", "terrain");
     string err = catch (Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrainDuplicate.c"); nolog);
     ExpectEq(expected, err);
 }
@@ -529,7 +529,7 @@ void SetInteriorRaisesErrorWhenUnableToRegiterObject()
 void SetInteriorRaisesErrorOnNamingConflict()
 {
     string expected = "*ERROR in environment.c: Unable to register '/lib/tests/support/environment/fakeInteriorDuplicate.c'. A conflicting item with that name already exists.\n";
-    Dictionary.registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
+    Service.registerElement("/lib/tests/support/environment/fakeInterior.c", "interior");
     string err = catch (Environment.testSetInterior("/lib/tests/support/environment/fakeInteriorDuplicate.c"); nolog);
     ExpectEq(expected, err);
 }
@@ -610,7 +610,7 @@ void OnlyObjectsForProperStateArePresent()
 {
     ToggleCallOutBypass();
     object stateMachine = 
-        load_object("/lib/dictionaries/stateMachineDictionary.c").getStateMachine(
+        getService("stateMachine").getStateMachine(
             "/lib/tests/support/core/simpleStateMachine.c");
 
     Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
@@ -641,7 +641,7 @@ void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 {
     ToggleCallOutBypass();
     object stateMachine =
-        load_object("/lib/dictionaries/stateMachineDictionary.c").getStateMachine(
+        getService("stateMachine").getStateMachine(
             "/lib/tests/support/core/simpleStateMachine.c");
 
     Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
@@ -717,18 +717,18 @@ void InteriorsReturnFalseForIsIlluminatedByDefault()
 void TerrainReturnValueForTimeOfDayForIsIlluminatedByDefault()
 {
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Dictionary.timeOfDay("midnight");
-    Dictionary.setYear(1); 
+    Service.timeOfDay("midnight");
+    Service.setYear(1); 
 
     ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("dawn");
+    Service.timeOfDay("dawn");
     ExpectEq(7, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("afternoon");
+    Service.timeOfDay("afternoon");
     ExpectEq(10, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq(3, Environment.isIlluminated());
 }
 
@@ -737,15 +737,15 @@ void TerrainAffectedByLightSources()
 {
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/tests/support/environment/fakeLightSource.c", "north");
-    Dictionary.setYear(1);
+    Service.setYear(1);
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectEq(8, Environment.isIlluminated());
 }
 
@@ -753,30 +753,30 @@ void TerrainAffectedByLightSources()
 void TerrainLightAffectedByMoonPhase()
 {
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
 
-    Dictionary.setDay(0);
+    Service.setDay(0);
     ExpectEq(1, Environment.isIlluminated());
 
-    Dictionary.setDay(3);
+    Service.setDay(3);
     ExpectEq(2, Environment.isIlluminated());
 
-    Dictionary.setDay(7);
+    Service.setDay(7);
     ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary.setDay(10);
+    Service.setDay(10);
     ExpectEq(4, Environment.isIlluminated());
 
-    Dictionary.setDay(14);
+    Service.setDay(14);
     ExpectEq(5, Environment.isIlluminated());
 
-    Dictionary.setDay(17);
+    Service.setDay(17);
     ExpectEq(4, Environment.isIlluminated());
 
-    Dictionary.setDay(21);
+    Service.setDay(21);
     ExpectEq(3, Environment.isIlluminated());
 
-    Dictionary.setDay(24);
+    Service.setDay(24);
     ExpectEq(2, Environment.isIlluminated());
 }
 
@@ -785,33 +785,33 @@ void InteriorLightNotAffectedByOutdoorLight()
 {
     Environment.testSetInterior("/lib/tests/support/environment/fakeInterior.c");
 
-    Dictionary.timeOfDay("afternoon");
+    Service.timeOfDay("afternoon");
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
 
-    Dictionary.setDay(0);
+    Service.setDay(0);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(3);
+    Service.setDay(3);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(7);
+    Service.setDay(7);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(10);
+    Service.setDay(10);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(14);
+    Service.setDay(14);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(17);
+    Service.setDay(17);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(21);
+    Service.setDay(21);
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.setDay(24);
+    Service.setDay(24);
     ExpectEq(0, Environment.isIlluminated());
 
 }
@@ -824,13 +824,13 @@ void InteriorsAffectedByLightSources()
 
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq(0, Environment.isIlluminated());
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectEq(8, Environment.isIlluminated());
 }
 
@@ -1142,15 +1142,15 @@ void HenchmenMoveToSameClonedEnvironment()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void LongRecoversWhenDictionaryReset()
+void LongRecoversWhenServiceReset()
 {
     destruct(Environment);
     Environment = load_object("/lib/tests/support/environment/darkRoom.c");
     ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
         Environment.long());
 
-    destruct(Dictionary);
-    Dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
+    destruct(Service);
+    Service = getService("environment");
     ExpectSubStringMatch("stone hallway.*trees.*light.*long.*description",
         Environment.long());
 }
@@ -1158,7 +1158,7 @@ void LongRecoversWhenDictionaryReset()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDawn()
 {
-    Dictionary.timeOfDay("dawn");
+    Service.timeOfDay("dawn");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1184,7 +1184,7 @@ void CorrectlyDisplaysDawn()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMorning()
 {
-    Dictionary.timeOfDay("morning");
+    Service.timeOfDay("morning");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1210,7 +1210,7 @@ void CorrectlyDisplaysMorning()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNoon()
 {
-    Dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1236,8 +1236,8 @@ void CorrectlyDisplaysNoon()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysAfternoon()
 {
-    Dictionary.timeOfDay("afternoon");
-    Dictionary.setDay(0);
+    Service.timeOfDay("afternoon");
+    Service.setDay(0);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1263,7 +1263,7 @@ void CorrectlyDisplaysAfternoon()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysEvening()
 {
-    Dictionary.timeOfDay("evening");
+    Service.timeOfDay("evening");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1289,7 +1289,7 @@ void CorrectlyDisplaysEvening()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDusk()
 {
-    Dictionary.timeOfDay("dusk");
+    Service.timeOfDay("dusk");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1315,8 +1315,8 @@ void CorrectlyDisplaysDusk()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithNewMoon()
 {
-    Dictionary.timeOfDay("night");
-    Dictionary.setDay(0);
+    Service.timeOfDay("night");
+    Service.setDay(0);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1343,8 +1343,8 @@ void CorrectlyDisplaysNightWithNewMoon()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithWaxingCrescent()
 {
-    Dictionary.timeOfDay("night");
-    Dictionary.setDay(4);
+    Service.timeOfDay("night");
+    Service.setDay(4);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1372,8 +1372,8 @@ void CorrectlyDisplaysNightWithWaxingCrescent()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysNightWithFirstQuarter()
 {
-    Dictionary.timeOfDay("night");
-    Dictionary.setDay(6);
+    Service.timeOfDay("night");
+    Service.setDay(6);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1400,8 +1400,8 @@ void CorrectlyDisplaysNightWithFirstQuarter()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithWaxingGibbous()
 {
-    Dictionary.timeOfDay("midnight");
-    Dictionary.setDay(10);
+    Service.timeOfDay("midnight");
+    Service.setDay(10);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1428,8 +1428,8 @@ void CorrectlyDisplaysMidnightWithWaxingGibbous()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithFullMoon()
 {
-    Dictionary.timeOfDay("midnight");
-    Dictionary.setDay(13);
+    Service.timeOfDay("midnight");
+    Service.setDay(13);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1456,8 +1456,8 @@ void CorrectlyDisplaysMidnightWithFullMoon()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMidnightWithWaningGibbous()
 {
-    Dictionary.timeOfDay("midnight");
-    Dictionary.setDay(16);
+    Service.timeOfDay("midnight");
+    Service.setDay(16);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1484,8 +1484,8 @@ void CorrectlyDisplaysMidnightWithWaningGibbous()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysLateNightWithLastQuarter()
 {
-    Dictionary.timeOfDay("late night");
-    Dictionary.setDay(20);
+    Service.timeOfDay("late night");
+    Service.setDay(20);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1512,8 +1512,8 @@ void CorrectlyDisplaysLateNightWithLastQuarter()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysLateNightWithWaningCrescent()
 {
-    Dictionary.timeOfDay("late night");
-    Dictionary.setDay(24);
+    Service.timeOfDay("late night");
+    Service.setDay(24);
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
     Environment.testAddExit("north", "/lib/tests/support/environment/toLocation.c");
@@ -1687,7 +1687,7 @@ void CannotGoIntoLockedBuilding()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysActiveLight()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
 
@@ -1715,7 +1715,7 @@ void CorrectlyDisplaysActiveLight()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysDefaultActiveLight()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
 
@@ -1743,7 +1743,7 @@ void CorrectlyDisplaysDefaultActiveLight()
 /////////////////////////////////////////////////////////////////////////////
 void CanRegisterItemsWithSameDisplayName()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "south");
     Environment.testAddItem("/lib/environment/items/lighting/lit-candle.c", "north");
@@ -1772,7 +1772,7 @@ void CanRegisterItemsWithSameDisplayName()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyDisplaysMultipleActiveLight()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
@@ -1805,7 +1805,7 @@ void CorrectlyDisplaysMultipleActiveLight()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyLightOneActiveLightSource()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
@@ -1836,7 +1836,7 @@ void CorrectlyLightOneActiveLightSource()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyExtinguishActiveLightSource()
 {
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment.testAddItem("/lib/environment/items/lighting/torch.c", "west");
@@ -1879,7 +1879,7 @@ void DecayingLightsCorrectlyDisplayed()
 {
     object campfire = load_object("/lib/environment/items/camp-fire.c");
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
@@ -1945,7 +1945,7 @@ void EnvironmentsIndependentlyHandleTheSameLightSource()
 {
     object campfire = load_object("/lib/environment/items/camp-fire.c");
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
     Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
@@ -2110,12 +2110,12 @@ void BonusIsApplied()
     move_object(player, environment);
     ExpectEq(0, environment.environmentalBonusTo("strength", player));
 
-    object dictionary = getDictionary("environment");
-    dictionary.timeOfDay("morning");
-    dictionary.setDay(260);
+    object Service = getService("environment");
+    Service.timeOfDay("morning");
+    Service.setDay(260);
     ExpectEq(0, environment.environmentalBonusTo("strength", player));
 
-    dictionary.timeOfDay("noon");
+    Service.timeOfDay("noon");
     ExpectEq(4, environment.environmentalBonusTo("strength", player));
 
     destruct(environment);
@@ -2136,7 +2136,7 @@ void DisplayOfElementIsShownByLimitors()
     command("l", player);
     ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
-    getDictionary("environment").setDay(260);
+    getService("environment").setDay(260);
     command("l", player);
     ExpectSubStringMatch("forest.\nThe sun", player.caughtMessage());
 
@@ -2179,7 +2179,7 @@ void ElementIsManipulatableByLimitors()
     command("harvest mana", player);
     ExpectFalse(present("mana", player));
 
-    getDictionary("environment").setDay(260);
+    getService("environment").setDay(260);
 
     player.addSkillPoints(20);
     player.advanceSkill("spot", 5);
@@ -2213,15 +2213,15 @@ void LegacyTerrainNotAffectedByTimeOfDay()
 
     move_object(player, environment);
 
-    Dictionary.setYear(1);
+    Service.setYear(1);
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectEq(10, environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq(10, environment.isIlluminated());
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectEq(10, environment.isIlluminated());
 
     command("l", player);
@@ -2230,13 +2230,13 @@ void LegacyTerrainNotAffectedByTimeOfDay()
     environment = load_object("/lib/tests/support/environment/legacy/darkLegacyEnvironment.c");
     move_object(player, environment);
 
-    Dictionary.timeOfDay("midnight");
+    Service.timeOfDay("midnight");
     ExpectEq(0, environment.isIlluminated());
 
-    Dictionary.timeOfDay("night");
+    Service.timeOfDay("night");
     ExpectEq(0, environment.isIlluminated());
 
-    Dictionary.season("spring");
+    Service.season("spring");
     ExpectEq(0, environment.isIlluminated());
 
     command("look", player);

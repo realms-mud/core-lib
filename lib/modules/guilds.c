@@ -26,15 +26,15 @@ static nomask string *validGuildModifiers()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object guildsDictionary()
+private nomask object guildsService()
 {
-    return getDictionary("guilds");
+    return getService("guilds");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask string *validGuild()
 {
-    return guildsDictionary()->validGuilds() + ({ });
+    return guildsService()->validGuilds() + ({ });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ public nomask varargs int effectiveLevel(int onlyShowCombatGuilds)
         foreach(string guild in m_indices(guilds))
         {
             if (!onlyShowCombatGuilds || (onlyShowCombatGuilds &&
-                !guildsDictionary()->isNonCombatGuild(guild)))
+                !guildsService()->isNonCombatGuild(guild)))
             {
                 ret += guilds[guild]["level"];
             }
@@ -69,7 +69,7 @@ public nomask varargs int memberOfGuild(string guild, int onlyListCombatGuilds)
            member(guilds[guild], "rank") &&
            !member(guilds[guild], "left guild") &&
            (!onlyListCombatGuilds || (onlyListCombatGuilds &&
-           !guildsDictionary()->isNonCombatGuild(guild))));
+           !guildsService()->isNonCombatGuild(guild))));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ public nomask int experienceToNextLevel(string guild)
     int ret = 1;
     if (memberOfGuild(guild) && intp(guilds[guild]["experience"]))
     {
-        ret = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild)) -
+        ret = guildsService()->experienceToNextLevel(guild, guildLevel(guild)) -
         ((guilds[guild]["experience"] > 0) ? guilds[guild]["experience"] : 0);
     }
 
@@ -155,7 +155,7 @@ public nomask int guildExperience(string guild)
 private nomask void addExperienceToGuild(int amount, string guild)
 {
     int newExperienceAmount = guilds[guild]["experience"] + amount;
-    int maxExp = 2 * guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
+    int maxExp = 2 * guildsService()->experienceToNextLevel(guild, guildLevel(guild));
     if (newExperienceAmount > maxExp)
     {
         guilds[guild]["experience"] = maxExp;
@@ -230,7 +230,7 @@ public nomask varargs int addExperience(int amount, string selectedGuild,
             colorConfiguration = settings->colorConfiguration();
         }
 
-        tell_object(this_object(), getDictionary("configuration")->decorate(
+        tell_object(this_object(), getService("configuration")->decorate(
             "You have enough experience to level up.\n",
             "level up", "score", colorConfiguration));
         SuppressLevelUpMessage = 1;
@@ -279,7 +279,7 @@ public nomask string guildRankName(string guild)
     string ret = 0;
     if(memberOfGuild(guild) && stringp(guilds[guild]["rank"]))
     {
-        ret = guildsDictionary()->rankName(guild,
+        ret = guildsService()->rankName(guild,
             guildRank(guild));
     }
     return ret;
@@ -325,21 +325,21 @@ private nomask void refreshCachedPartyDetails()
 public nomask int advanceLevel(string guild)
 {
     int ret = 0;
-    if(memberOfGuild(guild) && guildsDictionary()->canAdvanceLevel(
+    if(memberOfGuild(guild) && guildsService()->canAdvanceLevel(
        this_object(), guild))
     {
         // We can't just increment - this does processing for adding any
         // granted research, traits, skills, etc.
-        guilds[guild]["level"] = guildsDictionary()->advanceLevel(
+        guilds[guild]["level"] = guildsService()->advanceLevel(
             this_object(), guild);
 
         // canAdvanceLevel will ensure that experience >= experienceToNextLevel
         guilds[guild]["experience"] = guilds[guild]["experience"] -
-            guildsDictionary()->experienceToNextLevel(guild, guilds[guild]["level"] - 1);
+            guildsService()->experienceToNextLevel(guild, guilds[guild]["level"] - 1);
 
-        guilds[guild]["title"] = guildsDictionary()->title(guild, 
+        guilds[guild]["title"] = guildsService()->title(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
-        guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
+        guilds[guild]["pretitle"] = guildsService()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
         object state = getModule("state");
@@ -406,14 +406,14 @@ private nomask void persistChanges()
 public nomask int advanceRank(string guild)
 {
     int ret = 0;
-    if(memberOfGuild(guild) && guildsDictionary()->canAdvanceRank(
+    if(memberOfGuild(guild) && guildsService()->canAdvanceRank(
        this_object(), guild, guilds[guild]["rank"]) && !isAnathema(guild))
     {
-        guilds[guild]["rank"] = guildsDictionary()->advanceRank(this_object(),
+        guilds[guild]["rank"] = guildsService()->advanceRank(this_object(),
             guild, guilds[guild]["rank"]);
-        guilds[guild]["title"] = guildsDictionary()->title(guild, 
+        guilds[guild]["title"] = guildsService()->title(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
-        guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
+        guilds[guild]["pretitle"] = guildsService()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
         object materialAttributes = getModule("materialAttributes");
@@ -440,12 +440,12 @@ public nomask int demoteRank(string guild)
     int ret = 0;
     if(memberOfGuild(guild))
     {
-        guilds[guild]["rank"] = guildsDictionary()->demoteRank(
+        guilds[guild]["rank"] = guildsService()->demoteRank(
             this_object(), guild, guilds[guild]["rank"]);
 
-        guilds[guild]["title"] = guildsDictionary()->title(guild, 
+        guilds[guild]["title"] = guildsService()->title(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
-        guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
+        guilds[guild]["pretitle"] = guildsService()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
         object materialAttributes = getModule("materialAttributes");
@@ -475,12 +475,12 @@ public nomask int joinGuild(string guild)
     {
         // Former member wishing to re-join the guild. Some guilds may 
         // permanently ban old members, others have time limits, etc.
-        ret = guildsDictionary()->canReJoinGuild(this_object(), guild, 
+        ret = guildsService()->canReJoinGuild(this_object(), guild, 
             guilds[guild]["left guild"]);
         if(ret)
         {
             m_delete(guilds[guild], "left guild");
-            guilds[guild]["rank"] = guildsDictionary()->startingRank(guild);
+            guilds[guild]["rank"] = guildsService()->startingRank(guild);
             
             // During this "probationary period", you cannot advance in rank.
             object materialAttributes = getModule("materialAttributes");
@@ -491,24 +491,24 @@ public nomask int joinGuild(string guild)
             }            
 
             guilds[guild]["experience"] = 0;
-            guilds[guild]["title"] = guildsDictionary()->title(guild, 
+            guilds[guild]["title"] = guildsService()->title(guild, 
                 guilds[guild]["level"], guilds[guild]["rank"]);
-            guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
+            guilds[guild]["pretitle"] = guildsService()->pretitle(guild, 
                 guilds[guild]["level"], guilds[guild]["rank"]);            
         }
     }    
     else if(!memberOfGuild(guild) && 
-            guildsDictionary()->canJoinGuild(this_object(), guild))
+            guildsService()->canJoinGuild(this_object(), guild))
     {
         ret = 1;
         guilds[guild] = ([
             "level": 0, // Yes, zero
             "experience": 0,
-            "rank": guildsDictionary()->startingRank(guild),
-            "title": guildsDictionary()->title(guild, 1, 
-                guildsDictionary()->startingRank(guild)),
-            "pretitle": guildsDictionary()->pretitle(guild, 1, 
-                guildsDictionary()->startingRank(guild)),
+            "rank": guildsService()->startingRank(guild),
+            "title": guildsService()->title(guild, 1, 
+                guildsService()->startingRank(guild)),
+            "pretitle": guildsService()->pretitle(guild, 1, 
+                guildsService()->startingRank(guild)),
         ]);
 
         object materialAttributes = getModule("materialAttributes");
@@ -519,7 +519,7 @@ public nomask int joinGuild(string guild)
 
         // This is done to set up all research / skill / ability points
         guilds[guild]["level"] = 
-            guildsDictionary()->advanceLevel(this_object(), guild);  
+            guildsService()->advanceLevel(this_object(), guild);  
     }
     if(ret)
     {
@@ -546,7 +546,7 @@ public nomask int joinGuild(string guild)
 public nomask int leaveGuild(string guild)
 {
     int ret = 0;
-    if(memberOfGuild(guild) && guildsDictionary()->canLeaveGuild(this_object(), guild))
+    if(memberOfGuild(guild) && guildsService()->canLeaveGuild(this_object(), guild))
     {
         ret = 1;
         object materialAttributes = getModule("materialAttributes");
@@ -554,7 +554,7 @@ public nomask int leaveGuild(string guild)
         {
             guilds[guild]["left guild"] = materialAttributes->Age();
             guilds[guild]["anathema"] = materialAttributes->Age() +
-                guildsDictionary()->outcastUntilDelay(guild);
+                guildsService()->outcastUntilDelay(guild);
         }
     }
 
@@ -576,7 +576,7 @@ public nomask int removeGuild(string guild)
 {
     int ret = 0;
 
-    if (memberOfGuild(guild) && guildsDictionary()->canLeaveGuild(this_object(), guild))
+    if (memberOfGuild(guild) && guildsService()->canLeaveGuild(this_object(), guild))
     {
         ret = 1;
 
@@ -612,7 +612,7 @@ public nomask mapping *guildsExtraAttacks()
         if (memberOfGuild(guild) || (member(guilds, guild) &&
             member(guilds[guild], "left guild")))
         {
-            extraAttacks += guildsDictionary()->extraAttacks(guild, 
+            extraAttacks += guildsService()->extraAttacks(guild, 
                 guilds[guild]["level"], guilds[guild]["rank"]);
         }
     }
@@ -624,26 +624,26 @@ public nomask int guildsBonusTo(string bonus)
 {
     int ret = 0;
     
-    if(function_exists(bonus, guildsDictionary()))
+    if(function_exists(bonus, guildsService()))
     {
         foreach(string guild in m_indices(guilds))
         {
             if(memberOfGuild(guild) || (member(guilds, guild) &&
                 member(guilds[guild], "left guild")))
             {
-                ret += call_other(guildsDictionary(), bonus, guild,
+                ret += call_other(guildsService(), bonus, guild,
                     guilds[guild]["level"], guilds[guild]["rank"]);
             }
         }
     }
-    else if(function_exists("BonusSkillModifier", guildsDictionary()))
+    else if(function_exists("BonusSkillModifier", guildsService()))
     {
         foreach(string guild in m_indices(guilds))
         {
             if (memberOfGuild(guild) || (member(guilds, guild) &&
                 member(guilds[guild], "left guild")))
             {
-                ret += call_other(guildsDictionary(), "BonusSkillModifier", 
+                ret += call_other(guildsService(), "BonusSkillModifier", 
                     guild, bonus, guilds[guild]["level"], 
                     guilds[guild]["rank"]);
             }
@@ -663,7 +663,7 @@ public nomask int costToAdvanceSkill(string skillType)
         if(memberOfGuild(guild))
         {
             int costToAdvanceForGuild = 
-                guildsDictionary()->costToAdvanceSkillOfType(guild, skillType);
+                guildsService()->costToAdvanceSkillOfType(guild, skillType);
             
             ret = (ret > costToAdvanceForGuild) ? costToAdvanceForGuild : ret;
         }
@@ -677,7 +677,7 @@ private nomask string experienceBar(string guild, string charset,
 {
     string ret = "";
     int current = guildExperience(guild);
-    int needed = guildsDictionary()->experienceToNextLevel(guild, guildLevel(guild));
+    int needed = guildsService()->experienceToNextLevel(guild, guildLevel(guild));
 
     if (current >= needed)
     {
@@ -728,10 +728,10 @@ public nomask string guildsDetails()
         charset = settings->charsetConfiguration();
     }
 
-    object configuration = getDictionary("configuration");
-    object commandDictionary = getDictionary("commands");
+    object configuration = getService("configuration");
+    object commandService = getService("commands");
 
-    string ret = commandDictionary->banneredContent(colorConfiguration, charset,
+    string ret = commandService->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%-75s",
             "Currently not a member of any guilds."), "information", "score",
             colorConfiguration));
@@ -761,7 +761,7 @@ public nomask string guildsDetails()
                         "information", "score", colorConfiguration);
             }
 
-            ret += commandDictionary->banneredContent(colorConfiguration, 
+            ret += commandService->banneredContent(colorConfiguration, 
                 charset, guildInfo +
                 configuration->decorate("Level: ", "content", "score",
                     colorConfiguration) +

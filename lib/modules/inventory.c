@@ -34,22 +34,22 @@ static nomask int isEquipment(object itemToCheck)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object materialsObject()
 {
-    return getDictionary("materials");
+    return getService("materials");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int canEquip(object item)
 {
     int ret = 1;
-    string *dictionaries = ({ "guilds", "racial", "traits", "background" });
+    string *services = ({ "guilds", "racial", "traits", "background" });
     
-    foreach(string dictionary in dictionaries)
+    foreach(string service in services)
     {
-        object dictionaryObject = getDictionary(dictionary);
+        object serviceObject = getService(service);
 
-        if(dictionaryObject && objectp(dictionaryObject) && isEquipment(item) &&
-           function_exists("canUseEquipmentOfType", dictionaryObject) &&
-           !dictionaryObject->canUseEquipmentOfType(this_object(), item))
+        if(serviceObject && objectp(serviceObject) && isEquipment(item) &&
+           function_exists("canUseEquipmentOfType", serviceObject) &&
+           !serviceObject->canUseEquipmentOfType(this_object(), item))
         {
             ret = 0;
         }
@@ -275,7 +275,7 @@ private nomask varargs void addItemToCache(object item)
     {
         string *defenseTypes = filter(m_indices(inventoryCache["totals"]),
             (: sizeof(regexp(({ $1 }), "material defense bonus")) :));
-        getDictionary("attacks")->validAttackTypes();
+        getService("attacks")->validAttackTypes();
         foreach(string defenseType in defenseTypes)
         {
             addValueToCache(item, defenseType,
@@ -1076,7 +1076,7 @@ private nomask string equipmentText(string item, int verbose,
     string ret = colorizeText(equipmentInSlot(item), verbose);
     if (ret == "")
     {
-        ret = getDictionary("configuration")->decorate(
+        ret = getService("configuration")->decorate(
             sprintf("%-21s", "nothing"), "nothing", "equipment",
                 colorConfiguration);
     }
@@ -1177,8 +1177,8 @@ public nomask varargs string inventoryText(int verbose, int showMoney)
 
     object *equippedItems = equippedByMask(AllWielded | AllWorn);
 
-    object configuration = getDictionary("configuration");
-    object banner = getDictionary("commands");
+    object configuration = getService("configuration");
+    object banner = getService("commands");
 
     string colorConfiguration = "none";
     string charset = "ascii";

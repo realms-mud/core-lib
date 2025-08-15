@@ -30,7 +30,7 @@ public int settlementChance()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void generateSettlement()
 {
-    mapping settlement = Dictionary->constructSettlement(RegionType);
+    mapping settlement = RegionService->constructSettlement(RegionType);
     if (mappingp(settlement))
     {
         settlementPath = ({ });
@@ -73,7 +73,7 @@ protected nomask void generateSettlement()
 
                 if (grid[x][y]["room type"] == "building")
                 {
-                    grid[x][y]["icon"] = Dictionary->getBuildingLayout("1x1");
+                    grid[x][y]["icon"] = RegionService->getBuildingLayout("1x1");
                     decorators += ({ grid[x][y] });
                 }
                 else if(grid[x][y]["room type"] == "path")

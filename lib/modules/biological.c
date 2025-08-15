@@ -302,7 +302,7 @@ public nomask int drinkAlcohol(object drink)
             tell_object(this_object(), "You are completely sober.\n");
             biologicalNotification("onSober");
         }
-        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+        getService("biological")->applyBiologicalEffect(this_object(), 
             drink);
    }    
     return ret;
@@ -344,7 +344,7 @@ public nomask int consumeDrug(object drug)
             tell_object(this_object(), "You are completely free of drugs.\n");
             biologicalNotification("onNoLongerDrugged");
         }
-        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+        getService("biological")->applyBiologicalEffect(this_object(), 
             drug);
     }    
     return ret;
@@ -386,7 +386,7 @@ public nomask int drink(object drink)
             tell_object(this_object(), "You feel a bit dry in the mouth.\n");
             biologicalNotification("onNoLongerSoaked");
         }
-        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+        getService("biological")->applyBiologicalEffect(this_object(), 
             drink);
     }
     return ret;
@@ -428,7 +428,7 @@ public nomask int eat(object food)
             tell_object(this_object(), "Your stomach makes a rumbling sound.\n");
             biologicalNotification("onHungry");
         }
-        getDictionary("biological")->applyBiologicalEffect(this_object(), 
+        getService("biological")->applyBiologicalEffect(this_object(), 
             food);
     }    
     return ret;

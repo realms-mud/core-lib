@@ -174,8 +174,8 @@ void MoveIsPreventedWhenAllowToIsProhibited()
 /////////////////////////////////////////////////////////////////////////////
 void MovingIntoClonedEnvironmentCreatesClone()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
 
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
@@ -193,8 +193,8 @@ void MovingIntoClonedEnvironmentCreatesClone()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromCloneToClone()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
 
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
@@ -213,8 +213,8 @@ void CorrectlyMovesFromCloneToClone()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromCloneToNotClonedRoom()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
 
     object initialRoom = load_object("/lib/tests/support/environment/clonedRoom.c");
 
@@ -233,8 +233,8 @@ void CorrectlyMovesFromCloneToNotClonedRoom()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectlyMovesFromNotClonedToCloneRoom()
 {
-    object dictionary = load_object("/lib/dictionaries/environmentDictionary.c");
-    dictionary.timeOfDay("noon");
+    object Service = getService("environment");
+    Service.timeOfDay("noon");
 
     object initialRoom = load_object("/lib/tests/support/environment/notClonedRoom.c");
 

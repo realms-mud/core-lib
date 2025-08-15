@@ -56,7 +56,7 @@ public nomask string getBonusDescriptions(object environment,
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs void addBonusValue(string bonusName, int value)
 {
-    if (getDictionary("bonuses")->isValidBonus(bonusName))
+    if (getService("bonuses")->isValidBonus(bonusName))
     {
         if (!member(bonusData, bonusName))
         {
@@ -69,7 +69,7 @@ private nomask varargs void addBonusValue(string bonusName, int value)
     else
     {
         raise_error(sprintf("EnvironmentalElement: The bonus %O must "
-            "be valid as specified in bonusesDictionary.\n", bonusName));
+            "be valid as specified in bonusesService.\n", bonusName));
     }
 }
 

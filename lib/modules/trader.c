@@ -15,7 +15,7 @@ private mapping tradeRunVehicles = ([]);
 /////////////////////////////////////////////////////////////////////////////
 private void initializeFactions()
 {
-    object factionDict = getDictionary("factions");
+    object factionDict = getService("factions");
     if (factionDict)
     {
         string *factionPaths = factionDict->getTradingFactions();
@@ -49,7 +49,7 @@ private void initializeWarehouse(string location)
 /////////////////////////////////////////////////////////////////////////////
 private void calculateInterest()
 {
-    object envDict = getDictionary("environment");
+    object envDict = getService("environment");
     int currentDay = envDict->currentDay();
     int daysPassed = currentDay - lastInterestCalculation;
     if (daysPassed >= 30)
@@ -82,7 +82,7 @@ public void initializeTrader()
         vehicles = ({});
         tradeRunVehicles = ([]);
         currentLocation = "";
-        object envDict = getDictionary("environment");
+        object envDict = getService("environment");
         lastInterestCalculation = envDict->currentDay();
         initializeFactions();
     }
@@ -496,7 +496,7 @@ public void setCurrentLocation(string location)
 /////////////////////////////////////////////////////////////////////////////
 public string getDateString()
 {
-    object envDict = getDictionary("environment");
+    object envDict = getService("environment");
     string result = sprintf("%s, %d", envDict->currentMonth(), envDict->currentYear());
     return result;
 }
@@ -559,7 +559,7 @@ public void modifyReputation(string faction, int amount, string reason)
 public mapping getAllReputations()
 {
     mapping reps = ([]);
-    object factionDict = getDictionary("factions");
+    object factionDict = getService("factions");
     if (factionDict)
     {
         string *factionPaths = factionDict->getTradingFactions();

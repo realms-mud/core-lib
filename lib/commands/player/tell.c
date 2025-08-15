@@ -57,7 +57,7 @@ public nomask int execute(string command, object initiator)
             "(tell [^ ]+|reply) (.*)", "\\2", 1) + "'\n", verb,
                 (verb == "reply") ? "## to" : "##");
 
-        object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+        object configuration = getService("configuration");
 
         string targetMessage = configuration->decorate(
             format(parseTemplate(message, "target", initiator, target), 78),

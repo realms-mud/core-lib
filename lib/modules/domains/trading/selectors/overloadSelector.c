@@ -18,8 +18,8 @@ private void displayOverloadStatus()
 {
     mapping vehicle = User->getVehicle();
     string colorConfig = User->colorConfiguration();
-    object configuration = getDictionary("configuration");
-    object commandsDictionary = getDictionary("commands");
+    object configuration = getService("configuration");
+    object commandsService = getService("commands");
     string charset = User->charsetConfiguration();
 
     int capacity = User->getVehicleCapacity();
@@ -34,24 +34,24 @@ private void displayOverloadStatus()
         return;
     }
 
-    string statusDisplay = commandsDictionary->buildBanner(colorConfig, charset, "top", 
+    string statusDisplay = commandsService->buildBanner(colorConfig, charset, "top", 
                           "Vehicle Overload Crisis");
 
     // Capacity information
-    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    statusDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Vehicle Capacity: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", capacity), "field data", "research", colorConfig) +
         configuration->decorate("     Current Load: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", used), "penalty modifier", "research", colorConfig));
 
-    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    statusDisplay += commandsService->banneredContent(colorConfig, charset,
         configuration->decorate("Excess Cargo: ", "field header", "research", colorConfig) +
         configuration->decorate(sprintf("%d units", excess), "penalty modifier", "research", colorConfig) +
         configuration->decorate(" - YOU CANNOT TRAVEL UNTIL THIS IS RESOLVED!", 
                                "failure", "selector", colorConfig));
 
     // Current cargo breakdown
-    statusDisplay += commandsDictionary->banneredContent(colorConfig, charset,
+    statusDisplay += commandsService->banneredContent(colorConfig, charset,
                      configuration->decorate("Current Cargo:", "field header", "research", colorConfig));
 
     mapping cargo = vehicle["cargo"];
@@ -68,11 +68,11 @@ private void displayOverloadStatus()
                               configuration->decorate(sprintf("%d units", cargo[item]),
                               "data", "selector", colorConfig);
 
-            statusDisplay += commandsDictionary->banneredContent(colorConfig, charset, cargoLine);
+            statusDisplay += commandsService->banneredContent(colorConfig, charset, cargoLine);
         }
     }
 
-    statusDisplay += commandsDictionary->buildBanner(colorConfig, charset, "bottom", "-");
+    statusDisplay += commandsService->buildBanner(colorConfig, charset, "bottom", "-");
 
     tell_object(User, statusDisplay);
 }
@@ -159,7 +159,7 @@ protected nomask void setUpUserForSelection()
     // Only show overload menu if overloaded
     if (excess <= 0)
     {
-        object configuration = getDictionary("configuration");
+        object configuration = getService("configuration");
         tell_object(User, configuration->decorate(
             "Your vehicle is not overloaded. No action is required.",
             "success", "quests", User->colorConfiguration()));

@@ -9,7 +9,7 @@ virtual inherit "/lib/environment/modules/environment/region.c";
 virtual inherit "/lib/environment/modules/environment/state.c";
 
 protected object configuration = 
-    load_object("/lib/dictionaries/configurationDictionary.c");
+    getService("configuration");
 
 private nosave string ShortDescription = "";
 
@@ -272,7 +272,7 @@ private string getExitDescription(object viewer)
     ret = configuration->decorate(sprintf(" %s There %s %s obvious exit%s%s %s\n",
         (showUnicode ? "\u2558\u2550\u2550\u2550\u255b" : 
             "-=-=-"), numExits == 1 ? "is" : "are",
-        getDictionary("environment")->convertNumberToString(numExits),
+        getService("environment")->convertNumberToString(numExits),
         (numExits == 1 ? "" : "s"), (numExits ? ":" : "."),
         implode(exitList, ", ")),
         "exits", "environment", colorConfiguration);
@@ -330,7 +330,7 @@ public varargs string long(string item, object viewer)
     }
 
     return ret + (isOutside ? 
-            getDictionary("environment")->timeOfDayMessage(colorConfiguration) :
+            getService("environment")->timeOfDayMessage(colorConfiguration) :
             "") +
         getExitDescription(viewer) +
         getInventoryDescription(illuminationLevel, viewer) + "\n";

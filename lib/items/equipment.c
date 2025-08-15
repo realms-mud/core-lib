@@ -13,9 +13,9 @@ virtual inherit "/lib/items/item.c";
 
 #include "/lib/include/inventory.h"
 
-private nosave string GuildsBlueprint = "/lib/dictionaries/guildsDictionary.c";
-private nosave string RacesBlueprint = "/lib/dictionaries/racialDictionary.c";
-private nosave string SkillsBlueprint = "/lib/dictionaries/skillsDictionary.c";
+private nosave string GuildsBlueprint = "/lib/services/guildsService.c";
+private nosave string RacesBlueprint = "/lib/services/racialService.c";
+private nosave string SkillsBlueprint = "/lib/services/skillsService.c";
 
 // This mapping shows all potential modifiers for a specified equipment piece.
 // It is IMPORTANT to note that not all modifiers are available for all items
@@ -134,7 +134,7 @@ public mixed query(string element)
         {
             ret = member(itemData, "material") ? itemData["material"] :
                 materialsObject()->getBlueprintDetails(this_object(), "default material");
-            getDictionary("crafting")->updateMaterial(this_object());
+            getService("crafting")->updateMaterial(this_object());
             break;
         }
         case "equipment locations":
@@ -145,7 +145,7 @@ public mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = getDictionary("guilds");
+            object guilds = getService("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("smithing");
@@ -176,11 +176,11 @@ private nomask int checkSetGuilds(mapping guilds)
     }
     else
     {
-        object guildDictionary = getDictionary("guilds");
-        if(!guildDictionary || (member(guilds, "prohibited") &&
-           !guildDictionary->isValidGuildSet(guilds["prohibited"])) ||
+        object guildService = getService("guilds");
+        if(!guildService || (member(guilds, "prohibited") &&
+           !guildService->isValidGuildSet(guilds["prohibited"])) ||
            (member(guilds, "allowed") &&
-           !guildDictionary->isValidGuildSet(guilds["allowed"])))
+           !guildService->isValidGuildSet(guilds["allowed"])))
         {
             raise_error("Equipment: The passed 'guilds' mapping contains "
                 "an invalid guild.\n");
@@ -197,7 +197,7 @@ private nomask int checkSetGuilds(mapping guilds)
 private nomask int checkSkills(mapping data)
 {
     int ret = 0;
-    object skills = getDictionary("skills");
+    object skills = getService("skills");
     if(data && mappingp(data) && skills && objectp(skills))
     {
         ret = 1;
@@ -231,7 +231,7 @@ private nomask int checkValidPrerequisites(mapping data)
     }
     if(member(data, "race"))
     {
-        object races = getDictionary("racial");
+        object races = getService("racial");
         if(races)
         {
             ret &&= races->isValidRace(data["race"]);

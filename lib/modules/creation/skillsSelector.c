@@ -76,10 +76,10 @@ protected nomask void setUpUserForSelection()
     }
     else
     {
-        object racialDictionary = load_object("/lib/dictionaries/racialDictionary.c");
+        object RaceService = getService("racial");
 
         TotalSkills = (User->Int() / 2) +
-            racialDictionary->startingSkillPoints(User->Race());
+            RaceService->startingSkillPoints(User->Race());
 
         User->addSkillPoints(TotalSkills * 2);
     }

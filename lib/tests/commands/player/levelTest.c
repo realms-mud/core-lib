@@ -9,7 +9,7 @@ object Player;
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    load_object("/lib/dictionaries/guildsDictionary.c");
+    getService("guilds");
     load_object("/guilds/scion/scionOfDhuras.c");
     load_object("/lib/tests/support/guilds/fighterGuild.c");
 }

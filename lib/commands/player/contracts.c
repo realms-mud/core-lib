@@ -18,8 +18,8 @@ private void displayAvailableContracts(object player, object port)
     string charset = player->charsetConfiguration();
     mapping contracts = port->getContracts();
     
-    object commandsDict = getDictionary("commands");
-    object configDict = getDictionary("configuration");
+    object commandsDict = getService("commands");
+    object configDict = getService("configuration");
     
     string contractDisplay = commandsDict->buildBanner(colorConfiguration, charset, "top", 
                             sprintf("%s Trading Contracts", port->getPortName()));

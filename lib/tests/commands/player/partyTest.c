@@ -6,12 +6,12 @@ inherit "/lib/tests/framework/testFixture.c";
 
 object Player;
 object Bystander;
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+    Service = getService("party");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("bob");
@@ -38,7 +38,7 @@ void CleanUp()
 {
     destruct(Player);
     destruct(Bystander);
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,7 @@ void PartyInfoDoesNotSendMessageToWholeParty()
 void PartyInfoSortsByExperienceDistribution()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
     load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -145,7 +145,7 @@ void PartyInfoSortsByExperienceDistribution()
 void PartyShowsDefunctMembers()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
     load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -213,7 +213,7 @@ void PartyShowsEightBitColorsCorrectly()
     Player.colorConfiguration("8-bit");
 
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
     load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -243,7 +243,7 @@ void PartyShowsTwentyFourBitColorsCorrectly()
     Player.colorConfiguration("24-bit");
 
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
     load_object("/lib/tests/support/guilds/testGuild.c");
 
@@ -273,7 +273,7 @@ void PartyShowsUnicodeCorrectly()
     Player.charsetConfiguration("unicode");
 
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
     load_object("/lib/tests/support/guilds/testGuild.c");
 

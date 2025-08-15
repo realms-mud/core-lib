@@ -97,7 +97,7 @@ public nomask void generateRandomCraftingMaterials()
 {
     if (!query("crafting materials"))
     {
-        getDictionary("crafting")->getRandomCraftingMaterial(
+        getService("crafting")->getRandomCraftingMaterial(
             this_object(), 1);
     }
 }
@@ -137,7 +137,7 @@ public nomask varargs int set(string element, mixed data)
         {
             case "primary damage type":
             {
-                object attacks = getDictionary("attacks");
+                object attacks = getService("attacks");
                 if(attacks && member(attacks->validAttackTypes(),
                     data) > -1)
                 {

@@ -54,8 +54,8 @@ public nomask string InteriorType(string interior)
 public nomask object generateInterior(string exitTo, int x, int y,
     object connectedRegion)
 {
-    object dictionary = load_object("/lib/dictionaries/regionDictionary.c");
-    mapping regionData = dictionary->getFloorPlan(FloorPlanType);
+    object regionService = getService("region");
+    mapping regionData = regionService->getFloorPlan(FloorPlanType);
 
     object region = clone_object("/lib/environment/region.c");
 

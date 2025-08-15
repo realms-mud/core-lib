@@ -30,7 +30,7 @@ protected nomask int addSpecification(string type, mixed value)
         }
         case "persona":
         {
-            if(stringp(value) && getDictionary("persona")->isValidPersona(value))
+            if(stringp(value) && getService("persona")->isValidPersona(value))
             {
                 specificationData[type] = value;
                 ret = 1;
@@ -46,7 +46,7 @@ protected nomask int addSpecification(string type, mixed value)
         {
             if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
                 (: { 
-                       int isOk = (getDictionary("research")->researchObject($1) &&
+                       int isOk = (getService("research")->researchObject($1) &&
                            pointerp($2));
 
                        if (sizeof($2))
@@ -55,11 +55,11 @@ protected nomask int addSpecification(string type, mixed value)
                            {
                                isOk &&= member(entry, "modifier") &&
                                    member(entry, "value") &&
-                                   (getDictionary("bonuses")->isValidBonus(
+                                   (getService("bonuses")->isValidBonus(
                                        regreplace(entry["modifier"], 
                                            "(bonus|penalty to|apply) ", "", 1)) ||
                                    ((entry["modifier"] == "apply research") &&
-                                       getDictionary("research")->researchObject(
+                                       getService("research")->researchObject(
                                            entry["value"])));
                            }
                        }
@@ -121,7 +121,7 @@ private nomask void setSummoningModifiers(object summoning, object owner)
 {
     if (member(specificationData, "modifiers"))
     {
-        object dictionary = getDictionary("research");
+        object Service = getService("research");
         object modifierObj = 0;
         foreach(string research in specificationData["modifiers"])
         {
@@ -322,7 +322,7 @@ private nomask string getRelatedApplies(mapping modifiers,
         {
             if (apply["modifier"] == "apply research")
             {
-                object researchObj = getDictionary("research")->researchObject(
+                object researchObj = getService("research")->researchObject(
                     apply["value"]);
                 if (researchObj)
                 {

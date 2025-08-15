@@ -7,6 +7,6 @@ inherit "/lib/modules/creation/traitSelectorSubmenu.c";
 /////////////////////////////////////////////////////////////////////////////
 protected mapping traitMenuSetup()
 {
-    return TraitDictionary ? 
-        TraitDictionary->creationListForTraitType("sexuality") : ([]);
+    return TraitService ? 
+        TraitService->creationListForTraitType("sexuality") : ([]);
 }

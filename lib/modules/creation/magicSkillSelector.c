@@ -7,6 +7,6 @@ inherit "/lib/modules/creation/skillSelectorSubmenu.c";
 /////////////////////////////////////////////////////////////////////////////
 protected mapping skillMenuSetup()
 {
-    return SkillDictionary ? 
-        SkillDictionary->creationListForSkillType("magic", User) : ([]);
+    return SkillService ? 
+        SkillService->creationListForSkillType("magic", User) : ([]);
 }

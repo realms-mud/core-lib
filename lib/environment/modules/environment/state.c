@@ -4,8 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/environment/modules/environment/core.c";
 
-protected object StateMachineDictionary =
-    load_object("/lib/dictionaries/stateMachineDictionary.c");
+protected object StateMachineService = getService("stateMachine");
 
 private string State = "default";
 protected nosave object StateMachine = 0;
@@ -125,7 +124,7 @@ public nomask object stateMachine()
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setupStateMachine(string owner)
 {
-    object newSM = StateMachineDictionary->getStateMachine(
+    object newSM = StateMachineService->getStateMachine(
         StateMachinePath, owner);
 
     if (objectp(newSM) && (newSM != StateMachine))

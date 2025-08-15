@@ -70,5 +70,5 @@ public void onLeavingGame(object caller)
 public void onAdvancedLevel(object caller)
 {
     effectiveLevel(effectiveLevel() + 1);
-    getDictionary("persona")->advanceLevel(this_object());
+    getService("persona")->advanceLevel(this_object());
 }

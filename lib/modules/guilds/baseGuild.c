@@ -141,11 +141,11 @@ public nomask void create()
         SetupGuild();
     }
 
-    object guildDictionary = getDictionary("guilds");
-    if (guildDictionary && (guildName != "BaseGuild") &&
-        (member(guildDictionary->validGuilds(), guildName) == -1))
+    object guildService = getService("guilds");
+    if (guildService && (guildName != "BaseGuild") &&
+        (member(guildService->validGuilds(), guildName) == -1))
     {
-        guildDictionary->registerGuild(program_name(this_object()));
+        guildService->registerGuild(program_name(this_object()));
     }
 }
 
@@ -184,12 +184,12 @@ private nomask int isValidCriteria(mapping criteria)
     // The other things will simply be ignored if invalid
     return (member(criteria, "type") && isValidCriteriaType(criteria["type"]) &&
         member(criteria, "apply") && isValidCriteriaApply(criteria["apply"]) &&
-        ((member(criteria, "research object") && getDictionary("research")) ? 
-             getDictionary("research")->validResearch(criteria["research object"]) : 1) &&
-        ((member(criteria, "research tree") && getDictionary("research")) ? 
-             getDictionary("research")->researchTree(criteria["research tree"]) : 1) &&
-        ((member(criteria, "trait object") && getDictionary("traits")) ? 
-             getDictionary("traits")->validTrait(criteria["trait object"]) : 1));
+        ((member(criteria, "research object") && getService("research")) ? 
+             getService("research")->validResearch(criteria["research object"]) : 1) &&
+        ((member(criteria, "research tree") && getService("research")) ? 
+             getService("research")->researchTree(criteria["research tree"]) : 1) &&
+        ((member(criteria, "trait object") && getService("traits")) ? 
+             getService("traits")->validTrait(criteria["trait object"]) : 1));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -262,8 +262,8 @@ public nomask varargs string guildClass(string newClass)
 {
     if (newClass && stringp(newClass))
     {
-        object guildDictionary = getDictionary("guilds");
-        if (guildDictionary && guildDictionary->isValidGuildClass(newClass))
+        object guildService = getService("guilds");
+        if (guildService && guildService->isValidGuildClass(newClass))
         {
             guildClass = newClass;
         }
@@ -600,8 +600,8 @@ public nomask int queryBonus(string bonus, int level, string rank)
             rank = "default";
         }
 
-        if(getDictionary("bonuses") && objectp(getDictionary("bonuses")) &&
-           getDictionary("bonuses")->isValidBonus(bonusToCheck) &&
+        if(getService("bonuses") && objectp(getService("bonuses")) &&
+           getService("bonuses")->isValidBonus(bonusToCheck) &&
            member(bonusGrid, bonusToCheck))
         {
             if (rank != "default" &&
@@ -658,8 +658,8 @@ private nomask int applyTraitCriterion(mapping criterion, object guildMember)
 
     if (guildMember->has("traits") &&
         member(criterion, "trait object") &&
-        getDictionary("traits") &&
-        getDictionary("traits")->validTrait(criterion["trait object"]))
+        getService("traits") &&
+        getService("traits")->validTrait(criterion["trait object"]))
     {
         ret = guildMember->addTrait(criterion["trait object"]);
     }
@@ -704,9 +704,9 @@ private nomask int isValidResearchCriterion(mapping criterion, string type,
     object guildMember)
 {
     return guildMember->has("research") && member(criterion, type) &&
-        stringp(criterion[type]) && getDictionary("research") &&
-        (getDictionary("research")->validResearch(criterion[type]) ||
-            getDictionary("research")->researchTree(criterion[type]));
+        stringp(criterion[type]) && getService("research") &&
+        (getService("research")->validResearch(criterion[type]) ||
+            getService("research")->researchTree(criterion[type]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -786,7 +786,7 @@ private nomask int applyResearchChoiceCriterion(mapping criterion, object guildM
 {
     int ret = 0;
     if(guildMember->has("research") && member(criterion, "research objects") &&
-        pointerp(criterion["research objects"]) && getDictionary("research"))
+        pointerp(criterion["research objects"]) && getService("research"))
     {
         ret = 1;
         guildMember->addResearchChoice(criterion);
@@ -924,9 +924,9 @@ private nomask int isBonusAttack(string bonusItem)
     string attackType = 0;
     if(bonusItem && stringp(bonusItem) && member(bonusGrid, bonusItem) &&
        sscanf(bonusItem, "%s attack", attackType) && 
-       getDictionary("attacks"))
+       getService("attacks"))
     {
-        ret = (getDictionary("attacks")->getAttack(attackType) != 0) || 
+        ret = (getService("attacks")->getAttack(attackType) != 0) || 
               (attackType == "weapon");
     }
     return ret;
@@ -943,14 +943,14 @@ public nomask mapping *getExtraAttacks(int level, string rank)
     {
         foreach(string key in keys)
         {
-            // attacksDictionary is verfied to exist via call to
+            // attacksService is verfied to exist via call to
             // isBonusAttack
             string attack = 0;
 
             if(sscanf(key, "%s attack", attack))
             {
                 mapping attackMap =
-                    getDictionary("attacks")->getAttackMapping(attack,
+                    getService("attacks")->getAttackMapping(attack,
                     (member(criteriaMap[key], "base damage") ? 
                     criteriaMap[key]["base damage"] : 1), 35);
 
@@ -1033,11 +1033,11 @@ protected nomask int prohibitedGuildCombinations(string *guilds)
         ret = 1;
         ProhibitedGuilds = guilds;
 
-        object guildDictionary = getDictionary("guilds");
+        object guildService = getService("guilds");
         // Prune invalid guilds
         foreach(string guild in ProhibitedGuilds)
         {
-            if(!guildDictionary->guildObject(guild))
+            if(!guildService->guildObject(guild))
             {
                 ProhibitedGuilds -= ({ guild });
             }
@@ -1067,7 +1067,7 @@ protected nomask int addEquipmentProhibition(string type, string *data)
 
     int ret = 1;
 
-    object materialsDictionary = getDictionary("materials");
+    object materialsService = getService("materials");
 
     if(data && sizeof(data))
     {
@@ -1077,32 +1077,32 @@ protected nomask int addEquipmentProhibition(string type, string *data)
             {
                 case "material":
                 {
-                    ret &&= materialsDictionary->isValidMaterial(material);
+                    ret &&= materialsService->isValidMaterial(material);
                     break;
                 }
                 case "material type":
                 {
-                    ret &&= materialsDictionary->isValidMaterialType(material);
+                    ret &&= materialsService->isValidMaterialType(material);
                     break;
                 }
                 case "armor type":
                 {
-                    ret &&= materialsDictionary->isValidArmorType(material);
+                    ret &&= materialsService->isValidArmorType(material);
                     break;
                 }
                 case "armor location":
                 {
-                    ret &&= materialsDictionary->isValidArmorLocation(material);
+                    ret &&= materialsService->isValidArmorLocation(material);
                     break;
                 }
                 case "weapon type":
                 {
-                    ret &&= materialsDictionary->isValidWeaponType(material);
+                    ret &&= materialsService->isValidWeaponType(material);
                     break;
                 }
                 case "damage type":
                 {
-                    ret &&= materialsDictionary->isValidDamageType(material);
+                    ret &&= materialsService->isValidDamageType(material);
                     break;
                 }
                 default:
@@ -1137,7 +1137,7 @@ private nomask int materialInProhibitedList(string material)
 private nomask int materialTypeInProhibitedList(string material)
 {
     string materialType = 
-        getDictionary("materials")->getMaterialTypeForMaterial(material);
+        getService("materials")->getMaterialTypeForMaterial(material);
 
     return materialType && stringp(materialType) &&
         member(prohibitedEquipment, "material type") &&
@@ -1162,7 +1162,7 @@ private nomask int armorLocationInProhibitedList(object equipment)
     {
         int itemMask = equipment->query("equipment locations");
         string *armorLocations = 
-            getDictionary("materials")->slotsUsedByItemMask(itemMask);
+            getService("materials")->slotsUsedByItemMask(itemMask);
 
         if(armorLocations && sizeof(armorLocations))
         {
@@ -1194,7 +1194,7 @@ private nomask int damageTypeInProhibitedList(object equipment)
         member(prohibitedEquipment, "damage type"))
     {
         string *damageTypes =
-            getDictionary("materials")->getMaterialDamageType(equipment);
+            getService("materials")->getMaterialDamageType(equipment);
 
         if (damageTypes && sizeof(damageTypes))
         {

@@ -6,7 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 public void slipIntoUnconsciousnessPartThree(object player)
 {
-    load_object("/lib/dictionaries/guildsDictionary.c");
+    getService("guilds");
     load_object("/guilds/background/background.c");
 
     if (!player->memberOfGuild("background"))

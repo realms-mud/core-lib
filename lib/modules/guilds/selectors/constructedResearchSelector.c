@@ -45,7 +45,7 @@ protected nomask void setUpUserForSelection()
             Data[to_string(optionCount)] = ([
                 "name": sprintf("Modify '%s'", convertToTextOfLength(item, 20)),
                 "description": 
-                    getDictionary("research")->getCompositeDescription(
+                    getService("research")->getCompositeDescription(
                         Type, item, currentItems[item]),
                 "type": "modify",
                 "value": currentItems[item] + ([ "name": item ])

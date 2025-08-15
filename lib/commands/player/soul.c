@@ -1081,7 +1081,7 @@ private nomask void speakMessage(string messageTemplate,
 {
     if (environment(initiator))
     {
-        object configuration = load_object("/lib/dictionaries/configurationDictionary.c");
+        object configuration = getService("configuration");
         if (objectp(target) && target->blocked(initiator))
         {
             tell_object(initiator, configuration->decorate(

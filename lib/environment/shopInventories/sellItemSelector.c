@@ -4,7 +4,7 @@
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 
-private object Dictionary;
+private object ShopService;
 private object SubselectorObj;
 private string *ProhibitedTypes = ({});
 private object Store;
@@ -30,7 +30,7 @@ public nomask void InitializeSelector()
         "items";
     Type = "Sell Items";
 
-    Dictionary = getDictionary("shop");
+    ShopService = getService("shop");
     Data = ([]);
 }
 
@@ -43,7 +43,7 @@ protected nomask void setUpUserForSelection()
             "set.\n");
     }
 
-    string *itemTypes = Dictionary->getSellItemTypes(User);
+    string *itemTypes = ShopService->getSellItemTypes(User);
     int menuItem = 1;
 
     itemTypes -= ProhibitedTypes;

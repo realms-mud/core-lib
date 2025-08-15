@@ -270,13 +270,12 @@ public void finishPress()
                 "\x1b[0;34mThe liquid surrounding the passage way "
                 "widens, allowing safe passage\x1b[0m", 78));
 
-            object stateMachineDictionary =
-                load_object("/lib/dictionaries/stateMachineDictionary.c");
+            object stateMachineService = getService("stateMachine");
 
             object party = this_player()->getParty();
             string owner = party ? party->partyName() : this_player()->RealName();
 
-            object stateMachine = stateMachineDictionary->getStateMachine(
+            object stateMachine = stateMachineService->getStateMachine(
                 "/tutorial/temple/stateMachine/obedienceStateMachine.c",
                 owner);
 

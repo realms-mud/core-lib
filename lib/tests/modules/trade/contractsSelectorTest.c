@@ -29,7 +29,7 @@ void Setup()
     Player->initializeTrader();
     Port = clone_object("/lib/modules/domains/trading/tradingPort.c");
     Port.setPortName("Port Alpha");
-    getDictionary("trading")->registerPort(Port);
+    getService("trading")->registerPort(Port);
 
     move_object(Player, Port);
     move_object(ContractsSelector, Player);
@@ -75,13 +75,13 @@ private string getMenuOptionNumber(string optionText)
 private void addContract(string id, mapping contract)
 {
     Port.addContract(id, contract);
-    getDictionary("trading")->registerPort(Port);
+    getService("trading")->registerPort(Port);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void clearContracts()
 {
-    object *ports = getDictionary("trading")->getAvailablePorts();
+    object *ports = getService("trading")->getAvailablePorts();
     foreach(object port in ports)
     {
         port.clearContracts();
@@ -114,7 +114,7 @@ void AvailableContractsAreListed()
     addContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Eledhel",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 10
@@ -122,7 +122,7 @@ void AvailableContractsAreListed()
     addContract("A2", ([
         "description": "Deliver Copper",
         "destination": "Eledhel",
-        "deadline": getDictionary("trading")->generateDeadline(20000),
+        "deadline": getService("trading")->generateDeadline(20000),
         "reward": 80,
         "item type": "metal",
         "quantity": 5
@@ -155,7 +155,7 @@ void ActiveContractsAreListed()
     Player->acceptContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "item type": "metal",
         "quantity": 10
     ]));
@@ -204,7 +204,7 @@ void SelectingAvailableContractAcceptsIt()
     addContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 10
@@ -266,7 +266,7 @@ void DescribeOptionShowsDetails()
     addContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 10
@@ -287,7 +287,7 @@ void ContractUrgencyLabelsDisplayCorrectly()
     Player->acceptContract("urgent", ([
         "description": "Rush Delivery",
         "destination": "Port Beta",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "item type": "metal",
         "quantity": 5
     ]));
@@ -295,7 +295,7 @@ void ContractUrgencyLabelsDisplayCorrectly()
     Player->acceptContract("soon", ([
         "description": "Quick Delivery",
         "destination": "Port Gamma",
-        "deadline": getDictionary("trading")->generateDeadline(5000),
+        "deadline": getService("trading")->generateDeadline(5000),
         "item type": "textile",
         "quantity": 8
     ]));
@@ -320,7 +320,7 @@ void ContractUrgencyIndicatorsAppearInMenu()
     addContract("urgent", ([
         "description": "Critical Delivery",
         "destination": "Port Zeta",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 2
@@ -328,7 +328,7 @@ void ContractUrgencyIndicatorsAppearInMenu()
     addContract("soon", ([
         "description": "Standard Delivery",
         "destination": "Port Eta",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 50,
         "item type": "textile",
         "quantity": 3
@@ -352,13 +352,13 @@ void ContractProgressCalculatesCorrectly()
     addContract("progress_test", ([
         "description": "Test Progress",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "item type": "metal",
         "quantity": 10
     ]));
 
     // Accept the contract
-    getDictionary("trading")->acceptContract(Player, "Port Alpha", "progress_test");
+    getService("trading")->acceptContract(Player, "Port Alpha", "progress_test");
     Player->assignVehicleToTradeRun("progress_test", Player.getVehicles()[0]);
 
     // Add partial cargo to the vehicle
@@ -395,7 +395,7 @@ void ActiveContractsWithNoActiveShowsMessage()
     Player->acceptContract("test", ([
         "description": "Test Contract",
         "destination": "Port Echo",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "item type": "metal",
         "quantity": 1
     ]));
@@ -422,7 +422,7 @@ void MenuAlwaysIncludesExit()
     addContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 10
@@ -440,7 +440,7 @@ void DescribeWorksForAllMenuOptions()
     addContract("A1", ([
         "description": "Deliver Iron Ore",
         "destination": "Port Alpha",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 10
@@ -448,7 +448,7 @@ void DescribeWorksForAllMenuOptions()
     Player->acceptContract("A2", ([
         "description": "Deliver Copper",
         "destination": "Port Beta",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "item type": "metal",
         "quantity": 5
     ]));
@@ -493,7 +493,7 @@ void ContractWithZeroQuantityDoesNotCrash()
     addContract("zero", ([
         "description": "Zero Quantity",
         "destination": "Port Null",
-        "deadline": getDictionary("trading")->generateDeadline(1000),
+        "deadline": getService("trading")->generateDeadline(1000),
         "reward": 100,
         "item type": "metal",
         "quantity": 0
@@ -517,5 +517,5 @@ void ContractWithMissingFieldsHandledGracefully()
 
     resetPlayerMessages();
     string error = catch(ContractsSelector->initiateSelector(Player));
-    ExpectSubStringMatch("tradingDictionary.c: Invalid deadline format", error);
+    ExpectSubStringMatch("tradingService.c: Invalid deadline format", error);
 }

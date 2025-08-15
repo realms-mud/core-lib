@@ -18,7 +18,7 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object Dictionary = load_object("/lib/dictionaries/partyDictionary.c");
+        object partyService = getService("party");
         string targetName = 
             regreplace(command, "remove party member (.*)", "\\1", 1);
 
@@ -51,7 +51,7 @@ public nomask int execute(string command, object initiator)
 
                     party->leaveParty(members[0]);
 
-                    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+                    object channels = getService("channel");
                     channels->broadcastMessage(party->partyName(), 
                         sprintf("%s has been removed from the party.",
                             capitalize(members[0]->RealName())), party);

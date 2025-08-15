@@ -12,7 +12,7 @@ private nomask void addToLimitors(string key, mixed value)
         value = ({ value });
     }
 
-    if (getDictionary("limitor")->validLimitor(([key:value])))
+    if (getService("limitor")->validLimitor(([key:value])))
     {
         if (!member(limitors["limited by"], key))
         {
@@ -36,7 +36,7 @@ private nomask void addToLimitors(string key, mixed value)
 private nomask void addToLimitorsWithSubMapping(string topLevelKey,
     string subKey, int value)
 {
-    if (getDictionary("limitor")->validLimitor(
+    if (getService("limitor")->validLimitor(
         ([topLevelKey:([subKey:value])])))
     {
         if (!member(limitors["limited by"], topLevelKey))
@@ -58,7 +58,7 @@ private nomask void addToLimitorsWithSubMapping(string topLevelKey,
 /////////////////////////////////////////////////////////////////////////////
 private nomask void addIntValueToLimitors(string key, int value)
 {
-    if (getDictionary("limitor")->validLimitor(([key:value])))
+    if (getService("limitor")->validLimitor(([key:value])))
     {
         limitors["limited by"][key] = value;
     }
@@ -178,9 +178,9 @@ public nomask int elementIsAvailable(object user)
 
     if (objectp(user) && sizeof(limitors))
     {
-        object dictionary = getDictionary("limitor");
-        ret &&= dictionary->environmentalFactorsMet(limitors, user) &&
-            dictionary->userFactorsMet(limitors, user);
+        object limitorService = getService("limitor");
+        ret &&= limitorService->environmentalFactorsMet(limitors, user) &&
+            limitorService->userFactorsMet(limitors, user);
     }
     return ret;
 }

@@ -4,7 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/items/item.c";
 
-protected nosave string ItemTypesBlueprint = "/lib/dictionaries/materialsDictionary.c";
+protected nosave string ItemTypesBlueprint = "/lib/services/materialsService.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask mixed query(string element)
@@ -52,7 +52,7 @@ public nomask mixed query(string element)
         }
         case "crafting guilds":
         {
-            object guilds = load_object("/lib/dictionaries/guildsDictionary.c");
+            object guilds = getService("guilds");
             if (guilds)
             {
                 ret = guilds->guildsInClass("smithing");

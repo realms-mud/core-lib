@@ -1,0 +1,38 @@
+//*****************************************************************************
+// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/services/groups/baseGroup.c";
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void applyGroupDetails()
+{
+    setName("Apprentice Wizard");
+    addPermission("/", Read);
+    addPermission("/players", None);
+    addPermission("/log", None);
+    addPermission("/players/$USER", Read | Write | Owner);
+    addPermission("/secure", None);
+    addPermission("/mail", None);
+    addPermission("/banish", None);
+    addPermission("/godstf", None);
+    addPermission("/guilds", None);
+    addPermission("/lib/modules/secure", None);
+    addPermission("/lib/tests/modules/secure", None);
+    addPermission("/lib/services/groups", None);
+    addPermission("/lib/tests/services/groups", None);
+    addCommand("cat");
+    addCommand("cd");
+    addCommand("emote");
+    addCommand("goto");
+    addCommand("head");
+    addCommand("light");
+    addCommand("ls");
+    addCommand("more");
+    addCommand("people");
+    addCommand("pwd");
+    addCommand("set");
+    addCommand("tail");
+    addCommand("transport");
+    addCommand("wiz");
+}

@@ -189,7 +189,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
         }      
         case "damage type":
         {
-            object attacks = getDictionary("attacks");
+            object attacks = getService("attacks");
             if(stringp(value) && attacks && attacks->isValidDamageType(value))
             {
                 specificationData[type] = value;
@@ -199,7 +199,7 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
             {
                 raise_error("ERROR - instantaneousEffect: the "
                     "'damage type' specification must be a valid attack type "
-                    "as defined in attacksDictionary.\n");
+                    "as defined in attacksService.\n");
             }
             break;
         }

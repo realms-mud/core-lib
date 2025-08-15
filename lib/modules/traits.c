@@ -6,15 +6,15 @@ virtual inherit "/lib/core/thing";
 #include "/lib/modules/secure/traits.h"
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask object traitDictionary()
+private nomask object TraitService()
 {
-    return getDictionary("traits");
+    return getService("traits");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isTraitOf(string trait)
 {
-    return (traitDictionary()->validTrait(trait) &&
+    return (TraitService()->validTrait(trait) &&
             member(traits, trait) && mappingp(traits[trait]));
 }
 
@@ -22,26 +22,26 @@ public nomask int isTraitOf(string trait)
 public nomask int hasTraitOfRoot(string root)
 {
     return (sizeof(filter(m_indices(traits),
-        (: traitDictionary()->traitIsOfRoot($1, $2) :), root)));
+        (: TraitService()->traitIsOfRoot($1, $2) :), root)));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isValidTrait(string trait)
 {
-    return traitDictionary()->validTrait(trait);
+    return TraitService()->validTrait(trait);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int traitHasResearchTree(string trait)
 {
     int ret = 0;
-    object traitObj = traitDictionary()->traitObject(trait);
+    object traitObj = TraitService()->traitObject(trait);
 
-    if(isTraitOf(trait) && traitObj && getDictionary("research") &&
+    if(isTraitOf(trait) && traitObj && getService("research") &&
         traitObj->query("research tree"))
     {
         object treeObj = 
-            getDictionary("research")->researchTree(traitObj->query("research tree"));
+            getService("research")->researchTree(traitObj->query("research tree"));
 
         ret = treeObj->checkPrerequisites(this_object());
     }
@@ -52,9 +52,9 @@ private nomask int traitHasResearchTree(string trait)
 /////////////////////////////////////////////////////////////////////////////
 private nomask int traitAffectedByType(string trait, string rootType)
 {
-    object traitObj = traitDictionary()->traitObject(trait);
+    object traitObj = TraitService()->traitObject(trait);
 
-    return isTraitOf(trait) && traitObj && getDictionary("research") &&
+    return isTraitOf(trait) && traitObj && getService("research") &&
         traitObj->query("root") && traitObj->query("opposing root") &&
         (member(({ traitObj->query("root"), traitObj->query("opposing root") }),
             rootType) > -1);
@@ -67,7 +67,7 @@ public nomask varargs string *Traits(string type)
     if (type)
     {
         traitList = filter(traitList,
-            (: traitDictionary()->traitIsOfType($1, $2) :), type);
+            (: TraitService()->traitIsOfType($1, $2) :), type);
     }
     return m_indices(traits);
 }
@@ -99,7 +99,7 @@ public nomask int addTrait(string trait)
         {
             traits[trait]["added"] = materialAttributes->Age();
         }
-        object addedTrait = traitDictionary()->traitObject(trait);
+        object addedTrait = TraitService()->traitObject(trait);
         if(addedTrait && objectp(addedTrait))
         {
             traits[trait]["name"] = addedTrait->query("name");
@@ -119,7 +119,7 @@ public nomask int addTrait(string trait)
             }
         }
 
-        string *bonuses = traitDictionary()->getTraitBonuses(trait);
+        string *bonuses = TraitService()->getTraitBonuses(trait);
         if (bonuses && sizeof(bonuses))
         {
             traits[trait]["bonuses"] = bonuses;
@@ -141,7 +141,7 @@ public nomask int addTrait(string trait)
     else if (isTraitOf(trait) && isValidTrait(trait))
     {
         object materialAttributes = getModule("materialAttributes");
-        object addedTrait = traitDictionary()->traitObject(trait);
+        object addedTrait = TraitService()->traitObject(trait);
         if (addedTrait && objectp(addedTrait))
         {
             if (materialAttributes && addedTrait->query("duration"))
@@ -186,9 +186,9 @@ public nomask int removeTrait(string trait)
 /////////////////////////////////////////////////////////////////////////////
 private nomask varargs int canApplyLimitedTrait(string trait, string bonus)
 {
-    object traitObj = traitDictionary()->traitObject(trait);
+    object traitObj = TraitService()->traitObject(trait);
 
-    return isTraitOf(trait) && traitDictionary()->traitEffectIsLimited(trait) ?
+    return isTraitOf(trait) && TraitService()->traitEffectIsLimited(trait) ?
         (traitObj->canApplySpecification(bonus, this_object(),
             function_exists("getTargetToAttack", this_object()) ?
             this_object()->getTargetToAttack() : 0)) : 1;
@@ -206,7 +206,7 @@ public nomask mapping *traitsExtraAttacks()
     {
         if(canApplyLimitedTrait(trait))
         {
-            extraAttacks += traitDictionary()->extraAttacks(trait,
+            extraAttacks += TraitService()->extraAttacks(trait,
                 this_object());
         }
     }
@@ -232,7 +232,7 @@ public nomask mapping traitsEnchantments()
         if (canApplyLimitedTrait(trait))
         {
             mapping itemEnchantment = 
-                traitDictionary()->enchantments(trait);
+                TraitService()->enchantments(trait);
 
             string *keys = m_indices(itemEnchantment);
             if (sizeof(keys))
@@ -270,9 +270,9 @@ public nomask int traitsAttributeBonus(string attribute)
             if(canApplyLimitedTrait(trait, attribute))
             {
                 string method = sprintf("%sBonus", capitalize(attribute));
-                if(function_exists(method, traitDictionary()))
+                if(function_exists(method, TraitService()))
                 {
-                    ret += call_other(traitDictionary(), method, trait);
+                    ret += call_other(TraitService(), method, trait);
                 }
             }
         }    
@@ -285,10 +285,10 @@ public nomask int traitsBonusTo(string bonus)
 {
     int ret = 0;
     
-    if(function_exists(bonus, traitDictionary()))
+    if(function_exists(bonus, TraitService()))
     {
         string bonusString =
-            getDictionary("bonuses")->getBonusFromFunction(bonus);
+            getService("bonuses")->getBonusFromFunction(bonus);
 
         string *traitItems = filter(m_indices(traits),
             (: (member(traits[$1], "bonuses") &&
@@ -298,11 +298,11 @@ public nomask int traitsBonusTo(string bonus)
         {
             if (canApplyLimitedTrait(trait, bonus))
             {
-                ret += call_other(traitDictionary(), bonus, trait);            
+                ret += call_other(TraitService(), bonus, trait);            
             }
         }
     }
-    else if(function_exists("BonusSkillModifier", traitDictionary()))
+    else if(function_exists("BonusSkillModifier", TraitService()))
     {
         string *traitItems = filter(m_indices(traits),
             (: (member(traits[$1], "bonuses") &&
@@ -313,7 +313,7 @@ public nomask int traitsBonusTo(string bonus)
         {
             if(canApplyLimitedTrait(trait, bonus))
             {
-                ret += call_other(traitDictionary(), "BonusSkillModifier", 
+                ret += call_other(TraitService(), "BonusSkillModifier", 
                     trait, bonus);
             }
         }
@@ -329,7 +329,7 @@ public nomask string *traitsResearchTrees()
     
     foreach(string trait in traitsWithResearch)
     {
-        object traitObj = traitDictionary()->traitObject(trait);
+        object traitObj = TraitService()->traitObject(trait);
 
         if(traitObj)
         {
@@ -353,7 +353,7 @@ public nomask int opinionModifier(object target)
         {
             foreach(string targetTrait in targetTraits)
             {
-                object targetTraitObj = traitDictionary()->traitObject(targetTrait);
+                object targetTraitObj = TraitService()->traitObject(targetTrait);
                 string targetRoot = targetTraitObj->query("root");
                 string *affectingTraits = filter(m_indices(traits), 
                     #'traitAffectedByType, 
@@ -363,7 +363,7 @@ public nomask int opinionModifier(object target)
                 {
                     foreach(string affectingTrait in affectingTraits)
                     {
-                        object affectingObj = traitDictionary()->traitObject(affectingTrait);
+                        object affectingObj = TraitService()->traitObject(affectingTrait);
                         
                         if(member(appliedModifiers, affectingTrait) == -1)
                         {
@@ -440,27 +440,27 @@ private nomask string getTraitColor(string trait)
 {
     string ret = "field header";
 
-    if (traitDictionary()->traitIsNegative(trait))
+    if (TraitService()->traitIsNegative(trait))
     {
         ret = "negative trait";
     }
-    else if (traitDictionary()->traitIsOfType(trait, "personality"))
+    else if (TraitService()->traitIsOfType(trait, "personality"))
     {
         ret = "personality trait";
     }
-    else if (traitDictionary()->isValidPersistedTrait(trait))
+    else if (TraitService()->isValidPersistedTrait(trait))
     {
         ret = "persisted trait";
     }
-    else if(traitDictionary()->isValidSustainedTrait(trait))
+    else if(TraitService()->isValidSustainedTrait(trait))
     {
         ret = "sustained trait";
     }
-    else if (traitDictionary()->traitHasResearchPath(trait))
+    else if (TraitService()->traitHasResearchPath(trait))
     {
         ret = "has research";
     }
-    else if (traitDictionary()->traitIsEnhancement(trait))
+    else if (TraitService()->traitIsEnhancement(trait))
     {
         ret = "enhancement";
     }
@@ -476,11 +476,11 @@ private nomask string traitListForType(string type, string colorConfiguration,
 
     int columns = 0;
     string *traitList = filter(m_indices(traits),
-        (: traitDictionary()->traitIsOfType($1, $2) :), type);
+        (: TraitService()->traitIsOfType($1, $2) :), type);
     if (type == "effect")
     {
         traitList += filter(m_indices(traits),
-            (: traitDictionary()->traitIsOfType($1, "sustained effect") :));
+            (: TraitService()->traitIsOfType($1, "sustained effect") :));
     }
 
     if (sizeof(traitList))
@@ -543,8 +543,8 @@ public nomask string traitsList(string *types)
         charset = settings->charsetConfiguration();
     }
 
-    object banner = getDictionary("commands");
-    object configuration = getDictionary("configuration");
+    object banner = getService("commands");
+    object configuration = getService("configuration");
 
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)

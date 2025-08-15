@@ -331,8 +331,8 @@ void ResearchDisplaysNoColorCorrectly()
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    getService("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getService("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player.addResearchPoints(1);
     Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector.showTreeElements();
@@ -374,8 +374,8 @@ void ResearchDisplaysThreeBitColorCorrectly()
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    getService("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getService("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player.addResearchPoints(1);
     Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector.showTreeElements();
@@ -418,8 +418,8 @@ void ResearchDisplaysEightBitColorCorrectly()
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    getService("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getService("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player.addResearchPoints(1);
     Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector.showTreeElements();
@@ -464,8 +464,8 @@ void ResearchDisplaysTwentyFourBitColorCorrectly()
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearch.c"), "c");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/mockResearchTimed.c"), "d");
     ExpectTrue(Player.initiateResearch("/lib/tests/support/research/testGrantedResearchItem.c"));
-    getDictionary("research").researchObject("/lib/tests/support/research/testResearchA.c");
-    getDictionary("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
+    getService("research").researchObject("/lib/tests/support/research/testResearchA.c");
+    getService("research").researchObject("/lib/tests/support/research/equivalenceItem.c");
     Player.addResearchPoints(1);
     Player.initiateResearch("/lib/tests/support/research/equivalenceItem.c");
     Selector.showTreeElements();

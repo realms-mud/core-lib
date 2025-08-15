@@ -26,11 +26,11 @@ void Init()
 {
     destruct(load_object("/lib/tests/support/guilds/testGuild.c"));
     destruct(load_object("/lib/tests/support/guilds/nonCombatGuild.c"));
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
     dict.resetCache();
 
     Guild = load_object("/lib/tests/support/guilds/testGuild.c");
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ignoreList += ({ "AdvanceToLevel" });
 }
@@ -922,7 +922,7 @@ void DistributeExperienceCorrectlyHandlesExperienceInCorrectGuildClasses()
     ExpectEq(100, User.guildExperience("fake mage"), "new mage guild experience");
     ExpectEq(0, User.guildExperience("fake smith"), "new smith guild experience");
 
-    object dict = load_object("/lib/dictionaries/guildsDictionary.c");
+    object dict = getService("guilds");
 
     ExpectTrue(User.distributeExperience(500, dict.guildsInClass("smithing")), 
         "experience added");

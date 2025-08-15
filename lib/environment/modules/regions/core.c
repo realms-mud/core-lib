@@ -29,7 +29,7 @@ protected mapping oppositeDirection = ([
     "southwest": "northeast"
 ]);
 
-protected object Dictionary = getDictionary("region");
+protected object RegionService = getService("region");
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask varargs string getDirectionOfEntry(string enterFrom)

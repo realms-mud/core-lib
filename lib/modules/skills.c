@@ -22,7 +22,7 @@ private varargs nomask void skillsNotification(string event, string message)
 /////////////////////////////////////////////////////////////////////////////
 private nomask object skillsObject()
 {
-    return getDictionary("skills");
+    return getService("skills");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -262,8 +262,8 @@ public nomask string skillsList(string *types)
         charset = settings->charsetConfiguration();
     }
 
-    object banner = getDictionary("commands");
-    object configuration = getDictionary("configuration");
+    object banner = getService("commands");
+    object configuration = getService("configuration");
 
     types = sort_array(types, (: $1 > $2 :));
     foreach(string type in types)

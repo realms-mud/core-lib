@@ -42,7 +42,7 @@ void Setup()
     setUsers(({ Wizard, Wizard2 }));
 
     Wizard2.resetCatchList();
-    object channels = load_object("/lib/dictionaries/channelDictionary.c");
+    object channels = getService("channel");
     channels.registerUser(Wizard);
     channels.registerUser(Wizard2);
 }
@@ -75,7 +75,7 @@ void QuittingSendsStatusMessage()
 /////////////////////////////////////////////////////////////////////////////
 void LoginSendsStatusMessage()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
     ToggleCallOutBypass();
     object login = load_object("/lib/modules/secure/login.c");
     object player = login.getPlayerObject("earl");

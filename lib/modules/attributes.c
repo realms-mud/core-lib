@@ -25,7 +25,7 @@ virtual inherit "/lib/core/thing.c";
 //-----------------------------------------------------------------------------
 static nomask string *validAttributes()
 {
-    return getDictionary("attribute")->bonusAttributes();
+    return getService("attribute")->bonusAttributes();
 }
 
 //-----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ public varargs nomask int attributeValue(string attribute, int useRaw)
     int value = 0;
     
     if(attribute && stringp(attribute) &&
-       (member(getDictionary("attribute")->attributes(), attribute) > -1))
+       (member(getService("attribute")->attributes(), attribute) > -1))
     {
         switch(attribute)
         {
@@ -277,7 +277,7 @@ private nomask int bonusForAttribute(string attribute)
     int bonus = 0;
     
     if(attribute && stringp(attribute) &&
-       (member(getDictionary("attribute")->attributes(), attribute) > -1))
+       (member(getService("attribute")->attributes(), attribute) > -1))
     {
         // TODO [98]: Revise this formula that was pulled out of... a dark place.
         bonus = (attributeValue(attribute) - 10) / 2;
@@ -480,10 +480,10 @@ public nomask varargs string attributes(string colorConfiguration,
         charset = settings->charsetConfiguration() || "ascii";
     }
 
-    object commandDictionary = getDictionary("commands");
-    object configuration = getDictionary("configuration");
+    object commandService = getService("commands");
+    object configuration = getService("configuration");
 
-    return commandDictionary->banneredContent(colorConfiguration, charset,
+    return commandService->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%12s: ", "Strength"), "content",
             "score", colorConfiguration) + 
             attributeDetails("strength", colorConfiguration, configuration) +
@@ -493,7 +493,7 @@ public nomask varargs string attributes(string colorConfiguration,
         configuration->decorate(sprintf("%12s: ", "Wisdom"), "content",
             "score", colorConfiguration) + 
             attributeDetails("wisdom", colorConfiguration, configuration)) +
-        commandDictionary->banneredContent(colorConfiguration, charset,
+        commandService->banneredContent(colorConfiguration, charset,
         configuration->decorate(sprintf("%12s: ", "Dexterity"), "content",
             "score", colorConfiguration) + 
             attributeDetails("dexterity", colorConfiguration, configuration) +

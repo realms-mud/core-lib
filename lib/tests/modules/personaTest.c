@@ -72,15 +72,15 @@ void SetUpPersonaOfLevelWorksForMonsters()
 void SetUpPersonaOfLevelCanOnlyBeCalledOnce()
 {
     Persona.SetUpPersonaOfLevel("swordsman", 1);
-    string error = catch (load_object("/lib/dictionaries/personaDictionary.c").setupPersona("axeman", Persona); nolog);
-    ExpectSubStringMatch("personaDictionary: A character may only have one persona", error);
+    string error = catch (getService("persona").setupPersona("axeman", Persona); nolog);
+    ExpectSubStringMatch("personaService: A character may only have one persona", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CannotSetInvalidPersona()
 {
     string error = catch (Persona.SetUpPersonaOfLevel("blargman", 10); nolog);
-    ExpectSubStringMatch("personaDictionary: An invalid persona was selected", error);
+    ExpectSubStringMatch("personaService: An invalid persona was selected", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -173,15 +173,15 @@ void SetUpPersonaOfLevelFailsOnNonMonsterOrHenchman()
     destruct(Persona);
     Persona = clone_object("/lib/realizations/player.c");
 
-    string error = catch (load_object("/lib/dictionaries/personaDictionary.c").setupPersona("swordsman", Persona); nolog);
-    ExpectSubStringMatch("personaDictionary: Personas can only be set for NPCs", error);
+    string error = catch (getService("persona").setupPersona("swordsman", Persona); nolog);
+    ExpectSubStringMatch("personaService: Personas can only be set for NPCs", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void SetUpRandomEquipmentFailsWhenPersonaNotSet()
 {
     string error = catch (Persona.setUpRandomEquipment(); nolog);
-    ExpectSubStringMatch("personaDictionary: A character must have a persona before creating equipment.", error);
+    ExpectSubStringMatch("personaService: A character must have a persona before creating equipment.", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -221,7 +221,7 @@ void MinimumLevelNotMetReturnsError()
 {
     string error = catch (Persona.SetUpPersonaOfLevel("chimera", 10); nolog);
 
-    ExpectSubStringMatch("personaDictionary: The character's level is lower than that required for this persona", error);
+    ExpectSubStringMatch("personaService: The character's level is lower than that required for this persona", error);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -428,8 +428,8 @@ void WillExecuteResearchBasedOnFrequency()
 /////////////////////////////////////////////////////////////////////////////
 void filterEncountersForLevelReturnsCorrectList()
 {
-    object dictionary =
-        load_object("/lib/dictionaries/personaDictionary.c");
+    object Service =
+        getService("persona");
 
     string *potentialList = ({ "outlaw", "ruffian", "white-tail deer", "bat", 
         "undead", "basilisk", "skeleton", "vampire", "zombie", "wraith", 
@@ -437,24 +437,24 @@ void filterEncountersForLevelReturnsCorrectList()
 
     ExpectEq(({ "outlaw", "ruffian", "white-tail deer", "bat", "undead",
         "swordsman", "keeper of the night" }), 
-        dictionary.filterEncountersForLevel(potentialList, 1));
+        Service.filterEncountersForLevel(potentialList, 1));
 
     ExpectEq(({ "outlaw", "ruffian", "white-tail deer", "bat", "undead",
         "skeleton", "zombie", "swordsman", "keeper of the night" }), 
-        dictionary.filterEncountersForLevel(potentialList, 3));
+        Service.filterEncountersForLevel(potentialList, 3));
 
     ExpectEq(({ "outlaw", "ruffian", "undead", "skeleton", "zombie", 
         "swordsman", "keeper of the night" }), 
-        dictionary.filterEncountersForLevel(potentialList, 6));
+        Service.filterEncountersForLevel(potentialList, 6));
 
     ExpectEq(({ "outlaw", "ruffian", "undead", "basilisk", "skeleton", 
         "vampire", "zombie", "wraith", "swordsman", "keeper of the night" }), 
-        dictionary.filterEncountersForLevel(potentialList, 20));
+        Service.filterEncountersForLevel(potentialList, 20));
 
     ExpectEq(({ "outlaw", "ruffian", "undead", "basilisk", "skeleton",
         "vampire", "zombie", "wraith", "swordsman", "keeper of the night",
         "dracolich", "gold dragon" }), 
-        dictionary.filterEncountersForLevel(potentialList, 40));
+        Service.filterEncountersForLevel(potentialList, 40));
 }
 
 /////////////////////////////////////////////////////////////////////////////

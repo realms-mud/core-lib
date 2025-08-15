@@ -286,7 +286,7 @@ void PlayersCanToggleKillList()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -300,7 +300,7 @@ void AttackFiresOnAttackEvent()
 /////////////////////////////////////////////////////////////////////////////
 void AttackFiresOnAttackedEvent()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -366,7 +366,7 @@ void AttackInvolvingDeathOfPlayerCreatesCorpseButDoesNotDestroyPlayer()
 /////////////////////////////////////////////////////////////////////////////
 void OnHitFiresWhenLegalHitIsDone()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/mockEventSubscriber");
@@ -389,7 +389,7 @@ void HitAddsCorrectExperience()
 /////////////////////////////////////////////////////////////////////////////
 void OnDeathFiresWhenKillingBlowLands()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     object handler = clone_object("/lib/tests/support/events/onDeathSubscriber");
@@ -416,7 +416,7 @@ void SettingWimpyWorksCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
@@ -437,7 +437,7 @@ void WimpyIsNotTriggeredWhenHitPointsAboveThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     ExpectEq(50, Attacker.Wimpy("50"), "A wimpy of 50 can be set");
@@ -466,7 +466,7 @@ void WimpyIsTriggeredWhenHitPointsBelowThreshhold()
 /////////////////////////////////////////////////////////////////////////////
 void AttackerAttacksDuringHeartBeat()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());
@@ -486,7 +486,7 @@ void AttackerAttacksDuringHeartBeat()
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttackedDuringHeartBeat()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());
@@ -672,7 +672,7 @@ void HeartBeatHealsStaminaAtDifferentRatesWhenBonusApplied()
 /////////////////////////////////////////////////////////////////////////////
 void DamageReflectionIsTriggered()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());
@@ -700,7 +700,7 @@ void DamageReflectionIsTriggered()
 /////////////////////////////////////////////////////////////////////////////
 void SlowDoesNotAttackEveryRound()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());
@@ -732,7 +732,7 @@ void SlowDoesNotAttackEveryRound()
 /////////////////////////////////////////////////////////////////////////////
 void HasteAddsAnExtraAttack()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.Con(30);
@@ -836,7 +836,7 @@ void AttackSucceedsWhenTargetEtherealAndHasNonWeaponAttackThatCanDamageEthereal(
 /////////////////////////////////////////////////////////////////////////////
 void TargetAttacksWhenAttackerReturnsToArea()
 {
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     Target.setMaxHitPoints(1000);
     ToggleCallOutBypass();
@@ -1042,7 +1042,7 @@ void AttackerDoesNotAttackWhenDoNotAttackTraitIsActive()
     Attacker.Wis(20);
     move_object(Attacker, Room);
 
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());
@@ -1090,7 +1090,7 @@ void AttackOccursAfterTenRoundsWhileDoNotAttackIsActive()
     Attacker.Wis(20);
     move_object(Attacker, Room);
 
-    load_object("/lib/dictionaries/environmentDictionary.c");
+    getService("environment");
 
     ToggleCallOutBypass();
     Attacker.hitPoints(Attacker.maxHitPoints());

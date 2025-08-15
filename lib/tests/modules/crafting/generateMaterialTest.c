@@ -4,25 +4,25 @@
 //*****************************************************************************
 inherit "/lib/tests/framework/testFixture.c";
 
-object Dictionary;
+object Service;
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Dictionary = load_object("/lib/dictionaries/craftingDictionary.c");
+    Service = getService("crafting");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    destruct(Dictionary);
+    destruct(Service);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CanGenerateItemsWithOnlyComponent()
 {
     object sword = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    Dictionary.getRandomCraftingMaterial(sword);
+    Service.getRandomCraftingMaterial(sword);
 
     ExpectTrue(mappingp(sword.query("crafting materials")));
 
@@ -38,7 +38,7 @@ void CanGenerateItemsWithOnlyComponent()
 void CanGenerateItemsWithoutSubcomponents()
 {
     object armor = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
-    Dictionary.getRandomCraftingMaterial(armor);
+    Service.getRandomCraftingMaterial(armor);
     ExpectTrue(mappingp(armor.query("crafting materials")));
 
     mapping components = armor.query("crafting materials");
@@ -55,7 +55,7 @@ void CanGenerateItemsWithBothSubcomponentsAndMaterials()
     ring.unset("material");
     ring.unset("crafting materials");
 
-    Dictionary.getRandomCraftingMaterial(ring);
+    Service.getRandomCraftingMaterial(ring);
     ExpectTrue(mappingp(ring.query("crafting materials")));
 
     mapping components = ring.query("crafting materials");
@@ -73,7 +73,7 @@ void HonorsGenerationWithDefaultMaterial()
     ring.unset("material");
     ring.unset("crafting materials");
 
-    Dictionary.getRandomCraftingMaterial(ring, 1);
+    Service.getRandomCraftingMaterial(ring, 1);
     ExpectTrue(mappingp(ring.query("crafting materials")));
 
     mapping components = ring.query("crafting materials");
