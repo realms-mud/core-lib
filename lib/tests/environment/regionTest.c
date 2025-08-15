@@ -365,12 +365,12 @@ void CanEnterTemplatedRegion()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithNoColorWithASCII()
 {
-    set_this_player(Player);
-    object region =
-        load_object("/areas/tol-dhurath/temple-interior/region.c");
+    string error = catch(set_this_player(Player));
+    ExpectEq(0, error, "Was able to call set_this_player");
 
-    object Service =
-        getService("region");
+    object region = load_object("/areas/tol-dhurath/temple-interior/region.c");
+
+    object Service = getService("region");
 
     ExpectEq(({ ({ "+", " ", "+" }),
             ({ "+", "-", "+" }),
@@ -382,7 +382,9 @@ void GetMapIconReturnsWithNoColorWithASCII()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithCustomThreeBitColors()
 {
-    set_this_player(Player);
+    string error = catch (set_this_player(Player));
+    ExpectEq(0, error, "Was able to call set_this_player");
+
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
@@ -399,7 +401,9 @@ void GetMapIconReturnsWithCustomThreeBitColors()
 /////////////////////////////////////////////////////////////////////////////
 void GetMapIconReturnsWithCustomTwentyFourBitColors()
 {
-    set_this_player(Player);
+    string error = catch (set_this_player(Player));
+    ExpectEq(0, error, "Was able to call set_this_player");
+
     object region =
         load_object("/areas/tol-dhurath/temple-interior/region.c");
 
@@ -416,7 +420,9 @@ void GetMapIconReturnsWithCustomTwentyFourBitColors()
 /////////////////////////////////////////////////////////////////////////////
 void MapsDisplayCustomIcons()
 {
-    set_this_player(Player);
+    string error = catch (set_this_player(Player));
+    ExpectEq(0, error, "Was able to call set_this_player");
+
     Player.colorConfiguration("none");
     Player.charsetConfiguration("ascii");
 
