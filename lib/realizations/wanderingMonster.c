@@ -90,7 +90,7 @@ private int canWander()
     int canWanderResult = 1;
     
     // Don't wander if in combat
-    object combat = getService("combat");
+    object combat = getModule("combat");
     if (combat && combat->inCombat())
     {
         canWanderResult = 0;

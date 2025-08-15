@@ -93,7 +93,7 @@ public nomask int addTrait(string trait)
     if(!isTraitOf(trait) && isValidTrait(trait))
     {
         traits[trait] = ([ ]);
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
 
         if(materialAttributes && objectp(materialAttributes))
         {
@@ -125,13 +125,13 @@ public nomask int addTrait(string trait)
             traits[trait]["bonuses"] = bonuses;
         }
 
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onTraitAdded", trait);
         }
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -140,7 +140,7 @@ public nomask int addTrait(string trait)
     }
     else if (isTraitOf(trait) && isValidTrait(trait))
     {
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         object addedTrait = traitDictionary()->traitObject(trait);
         if (addedTrait && objectp(addedTrait))
         {
@@ -167,13 +167,13 @@ public nomask int removeTrait(string trait)
             temporaryTraits -= ({ trait });
         }
 
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onTraitRemoved", trait);
         }
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -410,7 +410,7 @@ static nomask void traitsHeartBeat()
     {
         foreach(string trait in temporaryTraits)
         {
-            object materialAttributes = getService("materialAttributes");
+            object materialAttributes = getModule("materialAttributes");
             if(materialAttributes && member(traits, trait) &&
                 member(traits[trait], "end time") &&
                 (traits[trait]["end time"] <= materialAttributes->Age()))
@@ -420,7 +420,7 @@ static nomask void traitsHeartBeat()
             else if(member(traits, trait) &&
                 member(traits[trait], "triggering research"))
             {
-                object research = getService("research");
+                object research = getModule("research");
                 if(research && !research->sustainedResearchIsActive(
                     traits[trait]["triggering research"]))
                 {
@@ -534,7 +534,7 @@ public nomask string traitsList(string *types)
             "sustained effect", "persona" });
     }
 
-    object settings = getService("settings");
+    object settings = getModule("settings");
     string colorConfiguration = "none";
     string charset = "ascii";
     if (objectp(settings))

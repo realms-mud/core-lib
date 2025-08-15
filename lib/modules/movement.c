@@ -14,7 +14,7 @@ public nomask void runAway()
     if(originalLocation && function_exists("exits", originalLocation))
     {
         string *possibleDestinations = originalLocation->exits();
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
 
         if(possibleDestinations && materialAttributes &&
             !materialAttributes->queryProperty("no fear"))
@@ -110,13 +110,13 @@ public varargs nomask int move(string location, string direction,
             newLocation))
         {
             ret = 1;
-            object combat = getService("combat");
+            object combat = getModule("combat");
             if (combat)
             {
                 combat->handleMoveFromCombat();
             }
 
-            object materialAttributes = getService("materialAttributes");
+            object materialAttributes = getModule("materialAttributes");
             if (materialAttributes->canSee() &&
                 !materialAttributes->Invisibility() && !silently)
             {
@@ -140,14 +140,14 @@ public varargs nomask int move(string location, string direction,
                             materialAttributes->MagicalMessageIn()))));
             }
 
-            object eventObj = getService("events");
+            object eventObj = getModule("events");
             if (objectp(eventObj))
             {
                 eventObj->notify("onMove", ([ "from": environment(),
                                                "to": newLocation ]));
             }
 
-            object player = getService("player");
+            object player = getModule("player");
             if (player && environment())
             {
                 if(!checkForImpairedVision(player))

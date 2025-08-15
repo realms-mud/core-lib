@@ -11,7 +11,7 @@ virtual inherit "/lib/core/thing.c";
 /////////////////////////////////////////////////////////////////////////////
 private varargs nomask void skillsNotification(string event, string message)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
 
     if (event && stringp(event) && eventObj && objectp(eventObj))
     {
@@ -71,7 +71,7 @@ public nomask varargs int getSkill(string skill, int raw)
 
             if (!raw)
             {
-                object inventory = getService("inventory");
+                object inventory = getModule("inventory");
                 if (inventory && objectp(inventory))
                 {
                     ret += inventory->inventoryGetModifier("bonusSkills",
@@ -90,7 +90,7 @@ public nomask varargs int getSkill(string skill, int raw)
         {
             foreach(string serviceToCheck in servicesToCheck)
             {
-                object service = getService(serviceToCheck);
+                object service = getModule(serviceToCheck);
                 if (service)
                 {
                     ret += call_other(service,
@@ -110,7 +110,7 @@ public nomask int getSkillModifier(string skill)
     {        
         ret = skillsObject()->skillBonus(skill, getSkill(skill));
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes && (ret >= 0))
         {
             int attributeBonus = (attributes->attributeValue(skillsObject()->attributeForSkill(skill)) - 16) / 4;
@@ -129,7 +129,7 @@ public nomask int advanceSkillCost(string skill, int amount)
     {
         ret = amount;
 
-        object guild = getService("guilds");
+        object guild = getModule("guilds");
         if (guild)
         {
             ret = guild->costToAdvanceSkill(
@@ -162,7 +162,7 @@ public nomask int advanceSkill(string skill, int amount)
             skillsNotification("onSkillAdvanced", skill);
             skillsNotification("onSkillPointsUsed", to_string(costToAdvance));
 
-            object state = getService("state");
+            object state = getModule("state");
             if (state)
             {
                 state->resetCaches();
@@ -188,7 +188,7 @@ public nomask int decrementSkill(string skill, int amount)
         skillsNotification("onSkillDecreased", skill);
         skillsNotification("onSkillPointsIncreased", to_string(costToAdvance));
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -253,7 +253,7 @@ public nomask string skillsList(string *types)
             "magic", "language" });
     }
 
-    object settings = getService("settings");
+    object settings = getModule("settings");
     string colorConfiguration = "none";
     string charset = "ascii";
     if (objectp(settings))

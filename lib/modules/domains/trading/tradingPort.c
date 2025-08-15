@@ -505,7 +505,7 @@ public int buyFromPlayer(object player, string itemBlueprint, int quantity)
     float price = getItemPrice(itemBlueprint);
     int totalCost = to_int(price * quantity);
     
-    object trader = player->getService("trader");
+    object trader = player->getModule("trader");
     if (trader)
     {
         if (trader->getCash() >= totalCost)
@@ -546,7 +546,7 @@ public int buyFromPlayer(object player, string itemBlueprint, int quantity)
 public int sellToPlayer(object player, string itemBlueprint, int quantity)
 {
     int ret = 0;
-    object trader = player->getService("trader");
+    object trader = player->getModule("trader");
     
     if (trader)
     {

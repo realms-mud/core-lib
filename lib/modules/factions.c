@@ -21,8 +21,8 @@ public nomask string *Factions()
 /////////////////////////////////////////////////////////////////////////////
 private nomask int dispositionTime()
 {
-    return getService("materialAttributes") ?
-        getService("materialAttributes")->Age() : time();
+    return getModule("materialAttributes") ?
+        getModule("materialAttributes")->Age() : time();
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -246,9 +246,6 @@ protected nomask int processSelection(string selection)
     if (User) 
     {
         string selectionType = Data[selection]["type"];
-
-        // Check if overload is resolved after each action
-        object trader = User->getService("trader");
         ret = (User->getVehicleUsedSpace() <= User->getVehicleCapacity());
 
         if (!ret && Data[selection]["canShow"]) 
@@ -293,8 +290,6 @@ public nomask void onSelectorCompleted(object caller)
 {
     if (User) 
     {
-        object trader = User->getService("trader");
-
         // Check if overload is resolved
         if (User->getVehicleUsedSpace() <= User->getVehicleCapacity()) 
         {

@@ -93,7 +93,7 @@ public varargs nomask int attributeValue(string attribute, int useRaw)
 
             foreach(string serviceToCheck : servicesToCheck)
             {
-                object service = getService(serviceToCheck);
+                object service = getModule(serviceToCheck);
                 if (service)
                 {
                     value += call_other(service,
@@ -140,7 +140,7 @@ private nomask int calculateUpdatedStat(int stat, int newVal, int flags)
             value = newVal;
         }
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -470,7 +470,7 @@ private nomask string attributeDetails(string attribute,
 public nomask varargs string attributes(string colorConfiguration, 
     string charset)
 {
-    object settings = getService("settings");
+    object settings = getModule("settings");
     if (objectp(settings) && !colorConfiguration)
     {
         colorConfiguration = settings->colorConfiguration() || "none";

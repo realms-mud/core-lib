@@ -9,7 +9,7 @@ private nosave object CraftingItem;
 /////////////////////////////////////////////////////////////////////////////
 private nomask void craftingEvent(string event)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
     if (eventObj && objectp(eventObj))
     {
         eventObj->notifySynchronous(event, CraftingItem);
@@ -32,7 +32,7 @@ public nomask void completeCrafting()
 {
     if (CraftingItem)
     {
-        object guilds = getService("guilds");
+        object guilds = getModule("guilds");
         int experience = to_int(CraftingItem->query("crafting experience"));
 
         if (guilds && experience)

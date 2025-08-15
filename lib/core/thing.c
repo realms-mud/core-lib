@@ -43,7 +43,7 @@ public int has(string service)
 }
 
 //-----------------------------------------------------------------------------
-// Method: getService
+// Method: getModule
 // Description: This method returns the module object for the queried service
 //              if it has been integrated with this instance of Thing.
 //
@@ -51,7 +51,7 @@ public int has(string service)
 //
 // Returns: the module object if this 'thing' uses the queried module
 //-----------------------------------------------------------------------------
-protected object getService(string service)
+protected object getModule(string service)
 {
     object ret = 0;
     if(has(service))

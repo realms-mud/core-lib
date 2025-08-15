@@ -592,7 +592,7 @@ Traits are added through the character's trait service:
 
 ~~~c
 // In character code
-object traits = getService("traits");
+object traits = getModule("traits");
 traits->addTrait("/lib/instances/traits/health/hale.c");
 ~~~
 

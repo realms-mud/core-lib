@@ -30,11 +30,11 @@ private void setHenchmanLevel(int level)
 /////////////////////////////////////////////////////////////////////////////
 private void setPersonaLevel(int level)
 {
-    if (getService("monster"))
+    if (getModule("monster"))
     {
         setMonsterLevel(level);
     }
-    else if (getService("henchman"))
+    else if (getModule("henchman"))
     {
         setHenchmanLevel(level);
     }
@@ -44,7 +44,7 @@ private void setPersonaLevel(int level)
 public nomask varargs void SetUpPersonaOfLevel(string persona, int level,
     int setMinimumLevelAutomatically)
 {
-    object livingObj = getService("living");
+    object livingObj = getModule("living");
     if (livingObj)
     {
         object personaDictionary = getDictionary("persona");
@@ -67,7 +67,7 @@ public nomask varargs void SetUpPersonaOfLevel(string persona, int level,
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
 {
-    object livingObj = getService("living");
+    object livingObj = getModule("living");
     if (livingObj)
     {
         object *equipment = getDictionary("persona")->getRandomEquipment(this_object(),
@@ -84,7 +84,7 @@ public nomask varargs void setUpRandomEquipment(int chanceForMagicalItems)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void executePersonaResearch(string target, string specificResearch)
 {
-    object research = getService("research");
+    object research = getModule("research");
     if (objectp(research) && (random(100) < researchFrequency))
     {
         string *potentialResearchItems = filter(research->completedResearch(),

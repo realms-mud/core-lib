@@ -12,7 +12,7 @@ public nomask int opinionOf(object target)
     
     if (objectp(target))
     {
-        object traits = getService("traits");
+        object traits = getModule("traits");
         if (objectp(traits))
         {
             ret += traits->opinionModifier(target);

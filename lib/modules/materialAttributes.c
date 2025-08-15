@@ -230,7 +230,7 @@ public varargs string Title(string msg)
     {
         title = msg;
     }
-    else if ((!title || (title == "")) && getService("player"))
+    else if ((!title || (title == "")) && getModule("player"))
     {
         title = "the title-less";
     }
@@ -312,7 +312,7 @@ public varargs string short(string newShort)
         }
         case 2..3:
         {
-            object race = getService("races");
+            object race = getModule("races");
             ret = "The silhouette of a " +
                 (objectp(race) ? race->racialType() : "creature");
             break;
@@ -321,7 +321,7 @@ public varargs string short(string newShort)
         {
             ret = "The silhouette of a";
 
-            object race = getService("races");
+            object race = getModule("races");
             if (race && race->Race())
             {
                 string raceName = to_string(race->apparentRace());
@@ -336,7 +336,7 @@ public varargs string short(string newShort)
         }
         case 5..6:
         {
-            object race = getService("races");
+            object race = getModule("races");
             string raceName = "creature";
             if (race && race->Race())
             {
@@ -348,7 +348,7 @@ public varargs string short(string newShort)
         }
         case 7..8:
         {
-            object race = getService("races");
+            object race = getModule("races");
             string raceName = "creature";
             if (race && race->Race())
             {
@@ -373,7 +373,7 @@ public varargs string short(string newShort)
         ret = sprintf("ghost of %s", shortDescription);
     }
 
-    object combatObj = getService("personas");
+    object combatObj = getModule("personas");
     if (combatObj && this_player())
     {
         ret += combatObj->getCombatComparison(combatObj, this_player());
@@ -505,7 +505,7 @@ private string basicLongDescription(object configuration,
     ret += configuration->decorate(sprintf(" (%s)", Gender()),
         "gender", "long description", colorConfiguration);
 
-    object race = getService("races");
+    object race = getModule("races");
     if (race && race->Race())
     {
         ret += configuration->decorate(sprintf(" (%s)",
@@ -527,7 +527,7 @@ private string inventoryLongDescription(int brief, object configuration,
     string colorConfiguration)
 {
     string ret = "";
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     if(inventory)
     {
         ret += inventory->inventoryDescription();
@@ -560,13 +560,13 @@ public varargs string long(int brief)
     {
         ret += wizard->wizardInformation();
     }
-    object settings = getService("settings");
+    object settings = getModule("settings");
     if (settings)
     {
         ret += settings->displayRoles();
     }
 
-    object combat = getService("combat");
+    object combat = getModule("combat");
     if(combat)
     {
         ret += configuration->decorate(sprintf("%s %s\n", capitalize(Pronoun()),
@@ -624,7 +624,7 @@ public nomask varargs int canSee(int neededLevel)
         }
     }
 
-    object traits = getService("traits");
+    object traits = getModule("traits");
     if (traits && traits->hasTraitOfRoot("darkvision"))
     {
         lightLevel = 10;

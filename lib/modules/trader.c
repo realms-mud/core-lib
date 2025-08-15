@@ -19,7 +19,7 @@ private void initializeFactions()
     if (factionDict)
     {
         string *factionPaths = factionDict->getTradingFactions();
-        object factionService = getService("factions");
+        object factionService = getModule("factions");
         if (factionService && sizeof(factionPaths))
         {
             foreach (string factionPath in factionPaths)
@@ -538,7 +538,7 @@ public int getTradingExperience()
 /////////////////////////////////////////////////////////////////////////////
 public void modifyReputation(string faction, int amount, string reason)
 {
-    object factionService = getService("factions");
+    object factionService = getModule("factions");
     if (factionService)
     {
         factionService->updateFactionDisposition(faction, amount);
@@ -563,7 +563,7 @@ public mapping getAllReputations()
     if (factionDict)
     {
         string *factionPaths = factionDict->getTradingFactions();
-        object factionService = getService("factions");
+        object factionService = getModule("factions");
         if (factionService && sizeof(factionPaths))
         {
             foreach (string factionPath in factionPaths)

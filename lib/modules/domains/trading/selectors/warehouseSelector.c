@@ -87,7 +87,6 @@ private void displayWarehouseStatus()
 /////////////////////////////////////////////////////////////////////////////
 private void handleRentPayment()
 {
-    object trader = User->getService("trader");
     int rentCost = 1000; // Base monthly rent
     string colorConfig = User->colorConfiguration();
     

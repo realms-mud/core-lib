@@ -68,7 +68,7 @@ public nomask int execute(string command, object initiator)
 
     if (canExecuteCommand(command))
     {
-        object trader = initiator->getService("trader");
+        object trader = initiator->getModule("trader");
         if (!trader) {
             tell_object(initiator, "You need to be a registered trader to use warehouses.");
         } else {

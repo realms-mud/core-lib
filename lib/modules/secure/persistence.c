@@ -32,7 +32,7 @@ private nomask mapping getPlayerInfo()
 
     foreach(string service in services)
     {
-        object serviceObject = getService(service);
+        object serviceObject = getModule(service);
         if (serviceObject)
         {
             ret += call_other(serviceObject,
@@ -112,7 +112,7 @@ private nomask void setPlayerInfo(mapping playerData)
 
     foreach(string service in services)
     {
-        object serviceObject = getService(service);
+        object serviceObject = getModule(service);
         if (serviceObject)
         {
             call_other(serviceObject, 

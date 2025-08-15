@@ -179,8 +179,8 @@ public nomask varargs int addExperience(int amount, string selectedGuild,
     int ret = 0;
     int displayMessage = 0;
 
-    object party = getService("parties") ? 
-        getService("parties")->getParty() : 0;
+    object party = getModule("parties") ? 
+        getModule("parties")->getParty() : 0;
     if (party && !ignorePartyCalculation)
     {
         amount = party->reallocateExperience(amount, selectedGuild, 
@@ -224,7 +224,7 @@ public nomask varargs int addExperience(int amount, string selectedGuild,
     if (displayMessage && !SuppressLevelUpMessage)
     {
         string colorConfiguration = "none";
-        object settings = getService("settings");
+        object settings = getModule("settings");
         if (objectp(settings))
         {
             colorConfiguration = settings->colorConfiguration();
@@ -310,7 +310,7 @@ public nomask string guildPretitle(string guild)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void refreshCachedPartyDetails()
 {
-    object parties = getService("parties");
+    object parties = getModule("parties");
     if (parties)
     {
         object party = parties->getParty();
@@ -342,7 +342,7 @@ public nomask int advanceLevel(string guild)
         guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -362,7 +362,7 @@ public nomask int isAnathema(string guild)
        member(guilds[guild], "anathema") &&
        intp(guilds[guild]["anathema"]))
     {
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if(materialAttributes && objectp(materialAttributes))
         {
             ret = materialAttributes->Age() < guilds[guild]["anathema"];
@@ -389,13 +389,13 @@ public nomask int ageWhenRankAdvanced(string guild)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void persistChanges()
 {
-    object persistence = getService("/secure/persistence");
+    object persistence = getModule("/secure/persistence");
     if (persistence)
     {
         persistence->save();
     }
 
-    object state = getService("state");
+    object state = getModule("state");
     if (state)
     {
         state->resetCaches();
@@ -416,13 +416,13 @@ public nomask int advanceRank(string guild)
         guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if(materialAttributes && objectp(materialAttributes))
         {
             guilds[guild]["rank advanced at"] = materialAttributes->Age();
         }
         
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onAdvancedRank");
@@ -448,13 +448,13 @@ public nomask int demoteRank(string guild)
         guilds[guild]["pretitle"] = guildsDictionary()->pretitle(guild, 
             guilds[guild]["level"], guilds[guild]["rank"]);
 
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if(materialAttributes && objectp(materialAttributes))
         {
             guilds[guild]["rank advanced at"] = materialAttributes->Age();
         }
 
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onDemotedRank");
@@ -483,7 +483,7 @@ public nomask int joinGuild(string guild)
             guilds[guild]["rank"] = guildsDictionary()->startingRank(guild);
             
             // During this "probationary period", you cannot advance in rank.
-            object materialAttributes = getService("materialAttributes");
+            object materialAttributes = getModule("materialAttributes");
             if(materialAttributes && objectp(materialAttributes))
             {
                 guilds[guild]["anathema"] = materialAttributes->Age() + 86400;
@@ -511,7 +511,7 @@ public nomask int joinGuild(string guild)
                 guildsDictionary()->startingRank(guild)),
         ]);
 
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if(materialAttributes && objectp(materialAttributes))
         {
             guilds[guild]["rank advanced at"] = materialAttributes->Age();
@@ -549,7 +549,7 @@ public nomask int leaveGuild(string guild)
     if(memberOfGuild(guild) && guildsDictionary()->canLeaveGuild(this_object(), guild))
     {
         ret = 1;
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if(materialAttributes && objectp(materialAttributes))
         {
             guilds[guild]["left guild"] = materialAttributes->Age();
@@ -560,7 +560,7 @@ public nomask int leaveGuild(string guild)
 
     if(ret)
     {
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onLeaveGuild");
@@ -580,7 +580,7 @@ public nomask int removeGuild(string guild)
     {
         ret = 1;
 
-        object research = getService("research");
+        object research = getModule("research");
         if (objectp(research))
         {
             research->removeResearchBySource(guild);
@@ -592,7 +592,7 @@ public nomask int removeGuild(string guild)
 
     if (ret)
     {
-        object events = getService("events");
+        object events = getModule("events");
         if (events && objectp(events))
         {
             events->notify("onLeaveGuild");
@@ -721,7 +721,7 @@ public nomask string guildsDetails()
 {
     string colorConfiguration = "none";
     string charset = "ascii";
-    object settings = getService("settings");
+    object settings = getModule("settings");
     if (objectp(settings))
     {
         colorConfiguration = settings->colorConfiguration();

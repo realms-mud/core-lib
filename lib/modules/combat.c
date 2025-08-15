@@ -111,7 +111,7 @@ public nomask int isNegativeCombatModifier(string modifier)
 //-----------------------------------------------------------------------------
 private nomask varargs void combatNotification(string event, mixed message, int synchronous)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
     
     if(event && stringp(event) && eventObj && objectp(eventObj))
     {
@@ -148,7 +148,7 @@ private nomask int calculateServiceBonuses(string methodToCheck)
     
     foreach(string serviceToCheck in servicesToCheck)
     {
-        object service = getService(serviceToCheck);
+        object service = getModule(serviceToCheck);
         if(service)
         {
             ret += call_other(service, 
@@ -193,7 +193,7 @@ public nomask int maxHitPoints()
         }
         ret = maxHitPoints;
 
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if (inventory)
         {
             ret += inventory->inventoryGetModifier("combatModifiers",
@@ -202,7 +202,7 @@ public nomask int maxHitPoints()
 
         ret += calculateServiceBonuses("MaxHitPoints");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             ret += attributes->Con() * 6;
@@ -316,7 +316,7 @@ public nomask int maxSpellPoints()
         }
         ret = maxSpellPoints;
 
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if (inventory)
         {
             ret += inventory->inventoryGetModifier("combatModifiers",
@@ -325,7 +325,7 @@ public nomask int maxSpellPoints()
 
         ret += calculateServiceBonuses("MaxSpellPoints");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             ret += (attributes->Int() * 3) + (attributes->Wis() * 3);
@@ -354,7 +354,7 @@ public nomask varargs int spellPoints(int increase)
 {
     if(intp(increase) && (increase != 0))
     {
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if(increase > 0)
         {
             if(inventory)
@@ -422,7 +422,7 @@ public nomask int maxStaminaPoints()
         }
         ret = maxStaminaPoints;
 
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if (inventory)
         {
             ret += inventory->inventoryGetModifier("combatModifiers",
@@ -431,7 +431,7 @@ public nomask int maxStaminaPoints()
 
         ret += calculateServiceBonuses("MaxStaminaPoints");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             ret += (attributes->Str() * 3) + (attributes->Con() * 3);
@@ -461,7 +461,7 @@ public nomask varargs int staminaPoints(int increase)
 {
     if(intp(increase) && (increase != 0))
     {
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if(increase > 0)
         {
             if(inventory)
@@ -525,7 +525,7 @@ public nomask varargs int staminaPoints(int increase)
 public nomask int calculateDefendAttack()
 {
     int ret = 0;
-    object skills = getService("skills");
+    object skills = getModule("skills");
 
     if (member(combatCache, "defend attack"))
     {
@@ -533,7 +533,7 @@ public nomask int calculateDefendAttack()
     }
     else
     {
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
 
         if (inventory)
         {
@@ -586,7 +586,7 @@ public nomask int calculateDefendAttack()
 
         ret += calculateServiceBonuses("DefendAttackBonus");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             ret += (attributes->dexterityBonus() / 2) +
@@ -597,7 +597,7 @@ public nomask int calculateDefendAttack()
     }
     ret += this_object()->magicalDefendAttackBonus();
 
-    object traits = getService("traits");
+    object traits = getModule("traits");
 
     if (traits && traits->hasTraitOfRoot("offensive stance"))
     {
@@ -608,7 +608,7 @@ public nomask int calculateDefendAttack()
         ret = to_int(ret * 1.5);
     }
 
-    object materialAttributes = getService("materialAttributes");
+    object materialAttributes = getModule("materialAttributes");
     if (materialAttributes && skills && !materialAttributes->canSee())
     {
         if (!member(combatCache, "defend attack blind"))
@@ -658,7 +658,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
         toHit -= attacker->calculateDefendAttack();
     }
 
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     string attackKey = sprintf("attack %s", object_name(weapon));
     if (member(combatCache, attackKey))
     {
@@ -666,7 +666,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
     }
     else
     {
-        object skills = getService("skills");
+        object skills = getModule("skills");
         toHit -= inventory->inventoryGetEncumberance();
 
         if(inventory->isEquipped(weapon))
@@ -699,13 +699,13 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
 
         toHit += calculateServiceBonuses("AttackBonus");
 
-        object materialAttributes = getService("materialAttributes");
+        object materialAttributes = getModule("materialAttributes");
         if (materialAttributes && skills && !materialAttributes->canSee())
         {
             toHit += skills->getSkillModifier("blind fighting") - 10;
         }
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if(attributes)
         {
             toHit += (attributes->dexterityBonus() / 2) +
@@ -714,7 +714,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
         combatCache[attackKey] = toHit;
     }
 
-    object traits = getService("traits");
+    object traits = getModule("traits");
     if (traits && traits->hasTraitOfRoot("offensive stance"))
     {
         toHit = to_int(toHit * 1.5);
@@ -736,7 +736,7 @@ public nomask varargs int calculateAttack(object attacker, object weapon, int do
 public nomask int calculateSoakDamage(string damageType)
 {
    int ret = 0;
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
        
     string soakKey = sprintf("soak %s", damageType);
     if (member(combatCache, soakKey))
@@ -748,7 +748,7 @@ public nomask int calculateSoakDamage(string damageType)
         ret += inventory->inventoryGetDefenseBonus(damageType);
         ret += calculateServiceBonuses("DefenseBonus");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             ret += (attributes->constitutionBonus() / 2) +
@@ -776,7 +776,7 @@ public nomask varargs int calculateDamage(object weapon, string damageType,
 {
     int ret = 0;
     
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     string damageKey = sprintf("damage %s for %s", damageType, 
         object_name(weapon));
 
@@ -795,7 +795,7 @@ public nomask varargs int calculateDamage(object weapon, string damageType,
 
         ret += calculateServiceBonuses("DamageBonus");
 
-        object attributes = getService("attributes");
+        object attributes = getModule("attributes");
         if (attributes)
         {
             if ((damageType == "physical") || attackObject()->isAttack(weapon))
@@ -840,7 +840,7 @@ public nomask int isParalyzed()
 {
     int ret = 0;
     
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
 
     if(inventory)
     {
@@ -971,7 +971,7 @@ private nomask varargs mapping *getWeaponAttacksFromBonus(int numAttacks, int ad
 {
     mapping *attacksToReturn = ({});
 
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     if (inventory)
     {
         int hasOffhandWeapon = objectp(inventory->equipmentInSlot("wielded offhand")) &&
@@ -1004,7 +1004,7 @@ public nomask mapping *getAttacks()
     {
         int allowOnlyOneAttack = 0;
         attacksToReturn = attacks;
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
 
         object weapon = inventory->equipmentInSlot("wielded primary");
         if (weapon)
@@ -1040,7 +1040,7 @@ public nomask mapping *getAttacks()
 
             foreach(string serviceToCheck in servicesToCheck)
             {
-                object service = getService(serviceToCheck);
+                object service = getModule(serviceToCheck);
                 if (service)
                 {
                     mapping *extraAttacks =
@@ -1177,9 +1177,9 @@ public nomask int onKillList()
 {
     int ret = 1;
 
-    object player = getService("player");
-    object npc = getService("npc");
-    object henchman = getService("henchman");
+    object player = getModule("player");
+    object npc = getModule("npc");
+    object henchman = getModule("henchman");
 
     if (player)
     {
@@ -1199,7 +1199,7 @@ public nomask int onKillList()
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void toggleKillList()
 {
-    object player = getService("player");
+    object player = getModule("player");
     if (player)
     {
         onKillList = !onKillList;
@@ -1209,7 +1209,7 @@ public nomask varargs void toggleKillList()
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs void configurePVPSetting()
 {
-    object player = getService("player");
+    object player = getModule("player");
     if (player &&!onKillList)
     {
         tell_object(player, sprintf("You can now engage in player vs. player "
@@ -1245,7 +1245,7 @@ private nomask varargs int hitIsAllowed(object foe)
         !environment()->violenceIsProhibited() && 
         (!foe || present(foe, environment()));
 
-    object player = getService("player");
+    object player = getModule("player");
     if (player)
     {
         //        ret &&= query_ip_number(this_object());
@@ -1325,7 +1325,7 @@ public int isDead()
 {
     int ret = 0;
 
-    object materialAttributes = getService("materialAttributes");
+    object materialAttributes = getModule("materialAttributes");
     if (materialAttributes)
     {
         ret = materialAttributes->Ghost();
@@ -1337,17 +1337,17 @@ public int isDead()
 public nomask void generateCombatStatistics(object foe)
 {
     if(foe && function_exists("has", foe) &&
-        foe->has("materialAttributes") && getService("player") &&
+        foe->has("materialAttributes") && getModule("player") &&
         function_exists("saveCombatStatistics", this_object()))
     {
-        getService("player")->saveCombatStatistics(this_object(), foe);
+        getModule("player")->saveCombatStatistics(this_object(), foe);
     }            
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void generateCorpse(object murderer)
 {
-    object materialAttributes = getService("materialAttributes");
+    object materialAttributes = getModule("materialAttributes");
     if(materialAttributes)
     {
         materialAttributes->Ghost(1);
@@ -1370,7 +1370,7 @@ private nomask void generateCorpse(object murderer)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void updateFactionDispositionsFromCombat(object murderer)
 {
-    object factionService = getService("factions");
+    object factionService = getModule("factions");
     if (factionService && murderer && objectp(murderer))
     {
         int reputationPenalty;
@@ -1400,10 +1400,10 @@ private nomask int finishOffThisPoorDeadBastard(object murderer)
 {
     int ret = 1;
 
-    object player = getService("player");
+    object player = getModule("player");
     if(player)
     {
-        object persistence = getService("/secure/persistence");
+        object persistence = getModule("/secure/persistence");
         if (persistence)
         {
             persistence->save();
@@ -1443,7 +1443,7 @@ private nomask int determineFateFromDeath(object murderer)
     if(!isDead())
     {
 
-        object wizard = getService("wizard");
+        object wizard = getModule("wizard");
         if(wizard)
         {
             tell_object(wizard, getDictionary("configuration")->decorate(
@@ -1482,7 +1482,7 @@ private nomask int determineFateFromDeath(object murderer)
     
     if(killMe)
     {
-        object player = getService("player");
+        object player = getModule("player");
         if (player)
         {
             object attacker;
@@ -1509,7 +1509,7 @@ private nomask int canBeHitIfEthereal(string damageType)
 {
     int ret = 1;
 
-    object traits = getService("traits");
+    object traits = getModule("traits");
     if (traits && traits->hasTraitOfRoot("ethereal") &&
         (member(({ "electricity", "energy", "evil", "good", "fire",
             "magical" }), damageType) < 0))
@@ -1602,7 +1602,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             ret = 0;
         }
         
-        object traits = getService("traits");
+        object traits = getModule("traits");
         if (traits && traits->hasTraitOfRoot("mana shield"))
         {
             int remainingDamage = ret - spellPoints;
@@ -1640,7 +1640,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
             determineFateFromDeath(foe);
         }
         
-        object inventory = getService("inventory");        
+        object inventory = getModule("inventory");        
         if(foe && inventory)
         {
             int reflection = inventory->inventoryGetModifier("combatModifiers", 
@@ -1678,7 +1678,7 @@ public nomask varargs int hit(int damage, string damageType, object foe)
         getDictionary("combatChatter")->displayCombatChatter(ret,
             foe, this_object());
 
-        if (!getService("player"))
+        if (!getModule("player"))
         {
             destruct(this_object());
         }
@@ -1710,7 +1710,7 @@ protected nomask void doOneAttack(object foe, object weapon)
 
         if((hitSucceeded > 0.0) && foe && objectp(foe))
         {
-            object inventory = getService("inventory");
+            object inventory = getModule("inventory");
             if(inventory && weapon && objectp(weapon) &&
                 (inventory->isEquipped(weapon) || weapon->getDamageType()))
             {
@@ -1804,7 +1804,7 @@ public nomask void resetRoundsSinceLastAttack()
 public nomask int attack(object foe)
 {
     int ret = 0;
-    object traits = getService("traits");
+    object traits = getModule("traits");
 
     if(abortCombat(foe))
     {
@@ -1833,7 +1833,7 @@ public nomask int attack(object foe)
         {
             if(attackObject()->isWeaponAttack(attack))
             {
-                object inventory = getService("inventory");
+                object inventory = getModule("inventory");
                 if(inventory)
                 {
                     object weapon = 
@@ -1872,7 +1872,7 @@ public nomask int attack(object foe)
             attackObject()->displayVitals(this_object(), foe);
         }
 
-        object persona = getService("personas");
+        object persona = getModule("personas");
         if (objectp(persona) && objectp(foe))
         {
             persona->executePersonaResearch(foe->RealName());
@@ -1941,8 +1941,8 @@ static nomask int triggerWimpy()
 private nomask int calculateVitalsHealRate(string vital)
 {
     int ret = 0;
-    object attributes = getService("attributes");
-    object inventory = getService("inventory");
+    object attributes = getModule("attributes");
+    object inventory = getModule("inventory");
 
     if(vital && attributes)
     {
@@ -2005,8 +2005,8 @@ private nomask int calculateVitalsHealRate(string vital)
 private nomask int calculateTimeToNextVitalsHeal(string vital)
 {
     int ret = IntervalBetweenHealing;
-    object attributes = getService("attributes");
-    object inventory = getService("inventory");
+    object attributes = getModule("attributes");
+    object inventory = getModule("inventory");
 
     if(vital && stringp(vital) && attributes)
     {
@@ -2066,7 +2066,7 @@ static nomask void combatHeartBeat()
         spellAction--;
     }
 
-    object factions = getService("factions");
+    object factions = getModule("factions");
     if(factions)
     {
         object *foes = factions->getAggressive(environment());
@@ -2082,7 +2082,7 @@ static nomask void combatHeartBeat()
         }
     }
     
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     object attacker = getTargetToAttack();
 
     if (this_object()->hasActiveCompositeResearch())
@@ -2108,13 +2108,13 @@ static nomask void combatHeartBeat()
 
     else if(attacker)
     {
-        object chat = getService("combatChatter");
+        object chat = getModule("combatChatter");
         if(chat)
         {
             chat->combatChatterDisplayMessage();
         }
       
-        object artificialIntelligence = getService("artificialIntelligence");
+        object artificialIntelligence = getModule("artificialIntelligence");
         if(artificialIntelligence)
         {
             artificialIntelligence->aiCombatAction(getTargetToAttack());
@@ -2151,7 +2151,7 @@ static nomask void combatHeartBeat()
             numberAttackRounds--;
         }
 
-        object movement = getService("movement");
+        object movement = getModule("movement");
         if(attacker && present(attacker) && triggerWimpy() && movement)
         {
             movement->runAway();
@@ -2262,7 +2262,7 @@ private nomask varargs string vitalsDetails(string vital, object configuration,
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string vitals(string colorConfiguration, string charset)
 {
-    object settings = getService("settings");
+    object settings = getModule("settings");
     if (objectp(settings) && !colorConfiguration)
     {
         colorConfiguration = settings->colorConfiguration() || "none";
@@ -2292,7 +2292,7 @@ public nomask varargs string vitals(string colorConfiguration, string charset)
 public nomask varargs string singleLineVitals(string colorConfiguration, 
     string charset)
 {
-    object settings = getService("settings");
+    object settings = getModule("settings");
     if (objectp(settings) && !colorConfiguration)
     {
         colorConfiguration = settings->colorConfiguration() || "none";

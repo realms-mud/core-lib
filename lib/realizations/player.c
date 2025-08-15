@@ -42,7 +42,7 @@ public nomask int executeCommand(string command)
         ret = commandRegistry->executeCommand(command, this_object());
         if (!ret)
         {
-            object researchService = getService("research");
+            object researchService = getModule("research");
             ret = researchService->researchCommand(command);
         }
     }

@@ -102,7 +102,7 @@ public nomask varargs int activateSustainedResearch(object researchObj,
     object modifierObject)
 {
     int ret = 0;
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     string researchItem = objectp(researchObj) ? program_name(researchObj) : "???";
 
     if(inventory && !blockedByCooldown(researchItem) &&
@@ -111,9 +111,9 @@ public nomask varargs int activateSustainedResearch(object researchObj,
        (!member(research[researchItem], "sustained active") ||
        (research[researchItem]["sustained active"] == 0))
        && canApplyLimitedEffect(researchItem) &&
-       !getService("combat")->spellAction())
+       !getModule("combat")->spellAction())
     {
-        getService("combat")->spellAction(1);
+        getModule("combat")->spellAction(1);
         research[researchItem]["sustained active"] = 1;
         ret = 1;
         
@@ -135,7 +135,7 @@ public nomask varargs int activateSustainedResearch(object researchObj,
                 modifierObject->query("fully qualified name");
         }
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -155,7 +155,7 @@ public nomask int deactivateSustainedResearch(string researchItem)
         m_delete(research[researchItem], "sustained active");
         ret = 1;
         
-        object inventory = getService("inventory");
+        object inventory = getModule("inventory");
         if(member(research[researchItem], "active modifier object") &&
            research[researchItem]["active modifier object"] &&
             inventory && objectp(inventory->registeredInventoryObject(
@@ -180,7 +180,7 @@ public nomask int deactivateSustainedResearch(string researchItem)
             }
         }
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -205,7 +205,7 @@ public nomask int addResearchPoints(int amount)
         researchPoints += amount;
         ret = researchPoints;
         
-        object events = getService("events");
+        object events = getModule("events");
         if(events && objectp(events))
         {
             events->notify("onResearchPointsAdded");
@@ -231,7 +231,7 @@ public nomask string *availableResearchTrees()
     {
         string methodToExecute = sprintf("%sResearchTrees", serviceToCheck);
 
-        object service = getService(serviceToCheck);
+        object service = getModule(serviceToCheck);
         if(service && function_exists(methodToExecute, service))
         {
             string *trees = call_other(service, methodToExecute);
@@ -311,7 +311,7 @@ public nomask int canResearch(string researchItem)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void registerResearchEvents()
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
 
     if (eventObj && objectp(eventObj))
     {
@@ -354,7 +354,7 @@ public nomask varargs int initiateResearch(string researchItem)
 
                     ret = 1;
 
-                    object events = getService("events");
+                    object events = getModule("events");
                     if (events && objectp(events))
                     {
                         events->notify("onResearchCompleted", researchItem);
@@ -373,7 +373,7 @@ public nomask varargs int initiateResearch(string researchItem)
                 ]);
                 ret = 1;
                 
-                object events = getService("events");
+                object events = getModule("events");
                 if(events && objectp(events))
                 {
                     events->notify("onResearchStarted", researchItem);
@@ -391,7 +391,7 @@ public nomask varargs int initiateResearch(string researchItem)
                 ]);
                 ret = 1;
                 
-                object events = getService("events");
+                object events = getModule("events");
                 if(events && objectp(events))
                 {
                     events->notify("onResearchCompleted", researchItem);
@@ -414,7 +414,7 @@ public nomask varargs int initiateResearch(string researchItem)
         }
         registerResearchEvents();
 
-        object state = getService("state");
+        object state = getModule("state");
         if (state)
         {
             state->resetCaches();
@@ -499,7 +499,7 @@ public nomask int addResearchChoice(mapping researchChoice)
         {
             researchChoices[researchChoice["name"]] = choices;
 
-            object events = getService("events");
+            object events = getModule("events");
             if (events && objectp(events))
             {
                 events->notify("onResearchChoiceAvailable", choices);
@@ -533,7 +533,7 @@ private void processResearchChoice(string researchItem, string choice,
 
     m_delete(researchChoices, choice);
 
-    object events = getService("events");
+    object events = getModule("events");
     if (events && objectp(events))
     {
         events->notify(event, researchItem);
@@ -572,7 +572,7 @@ public nomask int addResearchTree(string researchTree)
         {
             openResearchTrees += ({ researchTree });
             
-            object events = getService("events");
+            object events = getModule("events");
             if(events && objectp(events))
             {
                 events->notify("onResearchTreeOpen");
@@ -828,7 +828,7 @@ public nomask int researchCommand(string command)
             applyCooldown(commandToExecute, researchObj);
         }
 
-        object eventObj = getService("events");
+        object eventObj = getModule("events");
         if (ret && customEvent && eventObj && objectp(eventObj))
         {
             eventObj->notify(customEvent);
@@ -862,7 +862,7 @@ static nomask void researchHeartBeat()
                     research[researchItem]["when research complete"] = time();
                     research[researchItem]["research complete"] = 1;
 
-                    object events = getService("events");
+                    object events = getModule("events");
                     if (events && objectp(events))
                     {
                         registerResearchEvents();

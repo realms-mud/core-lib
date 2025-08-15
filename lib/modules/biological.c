@@ -38,7 +38,7 @@ static nomask string *validBiological()
 //-----------------------------------------------------------------------------
 private nomask void biologicalNotification(string event)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
     
     if(event && stringp(event) && eventObj && objectp(eventObj))
     {
@@ -243,20 +243,20 @@ private nomask int getMaximumBiologicalLevel(string type)
     int ret = 0;
     foreach(string service in({ "guilds", "races", "traits" }))
     {
-        object serviceObject = getService(service);
+        object serviceObject = getModule(service);
         if (serviceObject && function_exists("biologicalModifier"))
         {
             ret += serviceObject->biologicalModifier(type);
         }
     }
 
-    object attributes = getService("attributes");
+    object attributes = getModule("attributes");
     if (attributes)
     {
         ret += attributes->Con() * 2;
     }
 
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     if (inventory)
     {
         ret += inventory->inventoryGetModifier("biological",

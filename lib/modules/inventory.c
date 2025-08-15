@@ -186,7 +186,7 @@ private nomask int equipItemInSlot(string slot, object item)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void inventoryEvent(string event)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
     if(eventObj && objectp(eventObj))
     {
         eventObj->notify(event);
@@ -214,7 +214,7 @@ private nomask void removeItemFromCache(object item)
         }
         m_delete(inventoryCache, key);
         
-        getService("combat")->resetCombatCache();
+        getModule("combat")->resetCombatCache();
     }
 }
 
@@ -290,7 +290,7 @@ private nomask varargs void addItemToCache(object item)
         addValueToCache(item, "material encumberance",
             materialsObject()->getMaterialEncumberance(item));
     }
-    getService("combat")->resetCombatCache();
+    getModule("combat")->resetCombatCache();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -336,7 +336,7 @@ public nomask varargs int unequip(object itemToUnequip, int silently)
         inventoryEvent("onUnequip");
         if(itemToUnequip->query("register event handler"))
         {
-            object events = getService("events");
+            object events = getModule("events");
             if(events)
             {
                 events->unregisterEvent(itemToUnequip);
@@ -394,7 +394,7 @@ public nomask int equip(object itemToEquip)
 
         if(itemToEquip->query("register event handler"))
         {
-            object events = getService("events");
+            object events = getModule("events");
             if(events)
             {
                 events->registerEvent(itemToEquip);
@@ -490,7 +490,7 @@ public nomask int registerObjectAsInventory(object item)
 
         if(item->query("register event handler"))
         {
-            object events = getService("events");
+            object events = getModule("events");
             if(events)
             {
                 events->registerEvent(item);
@@ -518,7 +518,7 @@ public nomask int unregisterObjectAsInventory(object item)
         inventoryEvent("onUnregisterItem");
         if(item->query("register event handler"))
         {
-            object events = getService("events");
+            object events = getModule("events");
             if(events)
             {
                 events->unregisterEvent(item);
@@ -1008,7 +1008,7 @@ public nomask int canCarry(object item)
             attemptedLoad += itemInInventory->query("weight");
         }
     }
-    object attributes = getService("attributes");
+    object attributes = getModule("attributes");
     if (attributes)
     {
         maxWeight = 2 * attributes->Str() + 20;

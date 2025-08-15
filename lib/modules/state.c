@@ -23,7 +23,7 @@ public nomask void onStateChanged(object caller, string newState)
 {
     if (objectp(caller))
     {
-        object persistence = getService("secure/persistence");
+        object persistence = getModule("secure/persistence");
         if (objectp(persistence))
         {
             persistence->characterState(caller, newState);
@@ -34,7 +34,7 @@ public nomask void onStateChanged(object caller, string newState)
         }
         executeStateChange(caller, newState);
 
-        object conversations = getService("conversations");
+        object conversations = getModule("conversations");
         if (conversations)
         {
             conversations->updateConversationState(caller, newState);
@@ -47,7 +47,7 @@ public nomask string stateFor(object caller)
 {
     string ret = 0;
 
-    object persistence = getService("secure/persistence");
+    object persistence = getModule("secure/persistence");
     if (objectp(persistence))
     {
         ret = persistence->characterState(caller);
@@ -66,13 +66,13 @@ public nomask string stateFor(object caller)
 /////////////////////////////////////////////////////////////////////////////
 public nomask void resetCaches()
 {
-    object inventory = getService("inventory");
+    object inventory = getModule("inventory");
     if (inventory)
     {
         inventory->resetInventoryCache();
     }
 
-    object combat = getService("combat");
+    object combat = getModule("combat");
     if (combat)
     {
         combat->resetCombatCache();

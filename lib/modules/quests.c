@@ -20,7 +20,7 @@ private object questsDictionary =
 //-----------------------------------------------------------------------------
 private nomask void questNotification(string event, string questItem)
 {
-    object eventObj = getService("events");
+    object eventObj = getModule("events");
     
     if(event && stringp(event) && eventObj && objectp(eventObj))
     {

@@ -26,7 +26,7 @@ public nomask int isValidRace(string race)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string apparentRace(string newRace)
 {
-    if (newRace && !getService("player"))
+    if (newRace && !getModule("player"))
     {
         apparentRace = newRace;
     }
@@ -36,7 +36,7 @@ public nomask varargs string apparentRace(string newRace)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string Race(string newRace)
 {
-    if(newRace && !getService("player") || (getService("player") && 
+    if(newRace && !getModule("player") || (getModule("player") && 
         isValidRace(newRace) && !racialDictionary()->isCreatureRace(newRace)))
     {
         race = newRace;
