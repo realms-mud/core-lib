@@ -36,10 +36,15 @@ public nomask varargs string apparentRace(string newRace)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs string Race(string newRace)
 {
-    if(newRace && !getModule("player") || (getModule("player") && 
-        isValidRace(newRace) && !RaceService()->isCreatureRace(newRace)))
+    if (newRace)
     {
-        race = newRace;
+        newRace = lower_case(newRace);
+
+        if (!getModule("player") || (getModule("player") &&
+            isValidRace(newRace) && !RaceService()->isCreatureRace(newRace)))
+        {
+            race = newRace;
+        }
     }
     return race;
 }

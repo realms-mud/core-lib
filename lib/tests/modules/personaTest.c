@@ -521,3 +521,42 @@ void ShowPersonaComparerWhenEnabled()
     Persona.testCustomCombatAssessment("henchman");
     ExpectEq(" [Henchman]", Persona.getCombatComparison(Persona, player));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpPersonaOfLevelSetsDescriptionCorrectly()
+{
+    destruct(Persona);
+    Persona = clone_object("/lib/realizations/monster");
+    Persona.Name("Frank");
+    Persona.Race("troll");
+    Persona.SetUpPersonaOfLevel("swordsman", 1);
+
+    ExpectSubStringMatch("A swordsman.*Trolls are towering", Persona.long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpPersonaOfLevelIsCaseInsensitive()
+{
+    destruct(Persona);
+    Persona = clone_object("/lib/realizations/monster");
+    Persona.Name("Frank");
+    Persona.Race("TroLL");
+    Persona.SetUpPersonaOfLevel("swordsman", 1);
+
+    ExpectSubStringMatch("A swordsman.*Trolls are towering", Persona.long());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetUpPersonaOfLevelDoesNotOverwriteCustomDescription()
+{
+    destruct(Persona);
+    Persona = clone_object("/lib/realizations/monster");
+    Persona.Name("Frank");
+    Persona.Race("troll");
+    Persona.description("A custom description");
+    Persona.SetUpPersonaOfLevel("swordsman", 1);
+
+    ExpectEq("Frank  (neuter) (troll)\n"
+        "A custom description\n"
+        "It is in good shape.\n", Persona.long());
+}

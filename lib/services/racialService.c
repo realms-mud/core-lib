@@ -364,7 +364,7 @@ private nomask string otherBonusesDescription(string race, string colorConfigura
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string racialDescription(string race, string colorConfiguration)
+private nomask string racialInformation(string race, string colorConfiguration)
 {
     string ret = races[race]["description"] + "\n" +
         sprintf("\nThe %s race incurs the following in-game bonuses/penalties:\n",
@@ -398,7 +398,7 @@ public nomask mapping characterCreationRaces(object user)
     {
         selection[to_string(i)] = ([
             "name": capitalize(race),
-            "description": racialDescription(race, colorConfiguration)
+            "description": racialInformation(race, colorConfiguration)
         ]);
         i++;
     }
@@ -547,4 +547,17 @@ public nomask string raceDetails(object person)
 public nomask string getRandomRace()
 {
     return m_indices(races)[random(sizeof(races))];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string racialDescription(object target)
+{
+    string ret = "";
+
+    if (target && (target->description() == "") &&
+        member(races, target->Race()))
+    {
+        ret = races[target->Race()]["description"];
+    }
+    return ret;
 }
