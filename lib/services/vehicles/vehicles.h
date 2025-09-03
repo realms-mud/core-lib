@@ -20,7 +20,6 @@ protected mapping Vehicles = ([
         "capacity": 1,
         "crew required": 1,
         "base speed": 4,
-        "base cargo": 100,
         "structure": 8,
         "protection": 0,
         "slots": ([
@@ -57,7 +56,6 @@ protected mapping Vehicles = ([
         "capacity": 1,
         "crew required": 1,
         "base speed": 4,
-        "base cargo": 120,
         "structure": 10,
         "protection": 0,
         "slots": ([
@@ -94,7 +92,6 @@ protected mapping Vehicles = ([
         "capacity": 8,
         "crew required": 2,
         "base speed": 2,
-        "base cargo": 1000,
         "structure": 20,
         "protection": 1,
         "slots": ([
@@ -137,7 +134,6 @@ protected mapping Vehicles = ([
         "capacity": 10,
         "crew required": 2,
         "base speed": 2,
-        "base cargo": 1200,
         "structure": 25,
         "protection": 2,
         "slots": ([
@@ -184,7 +180,6 @@ protected mapping Vehicles = ([
         "capacity": 6,
         "crew required": 2,
         "base speed": 2,
-        "base cargo": 800,
         "structure": 40,
         "protection": 6,
         "slots": ([
@@ -236,7 +231,6 @@ protected mapping Vehicles = ([
         "capacity": 6,
         "crew required": 1,
         "base speed": 3,
-        "base cargo": 400,
         "structure": 18,
         "protection": 2,
         "slots": ([
@@ -279,7 +273,6 @@ protected mapping Vehicles = ([
         "capacity": 12,
         "crew required": 4,
         "base speed": 1,
-        "base cargo": 2000,
         "structure": 60,
         "protection": 10,
         "slots": ([
@@ -343,7 +336,6 @@ protected mapping Vehicles = ([
         "capacity": 4,
         "crew required": 1,
         "base speed": 4,
-        "base cargo": 200,
         "structure": 20,
         "protection": 0,
         "slots": ([
@@ -384,7 +376,6 @@ protected mapping Vehicles = ([
         "capacity": 3,
         "crew required": 1,
         "base speed": 5,
-        "base cargo": 120,
         "structure": 12,
         "protection": 0,
         "slots": ([
@@ -426,7 +417,6 @@ protected mapping Vehicles = ([
         "capacity": 4,
         "crew required": 1,
         "base speed": 6,
-        "base cargo": 180,
         "structure": 16,
         "protection": 0,
         "slots": ([
@@ -468,7 +458,6 @@ protected mapping Vehicles = ([
         "capacity": 20,
         "crew required": 2,
         "base speed": 3,
-        "base cargo": 2000,
         "structure": 40,
         "protection": 1,
         "slots": ([
@@ -519,7 +508,6 @@ protected mapping Vehicles = ([
         "capacity": 4,
         "crew required": 2,
         "base speed": 8,
-        "base cargo": 300,
         "structure": 12,
         "protection": 1,
         "slots": ([
@@ -572,7 +560,6 @@ protected mapping Vehicles = ([
         "capacity": 15,
         "crew required": 2,
         "base speed": 3,
-        "base cargo": 1200,
         "structure": 30,
         "protection": 1,
         "slots": ([
@@ -619,7 +606,6 @@ protected mapping Vehicles = ([
         "capacity": 20,
         "crew required": 8,
         "base speed": 7,
-        "base cargo": 1200,
         "structure": 60,
         "protection": 2,
         "slots": ([
@@ -673,7 +659,6 @@ protected mapping Vehicles = ([
         "capacity": 18,
         "crew required": 8,
         "base speed": 7,
-        "base cargo": 1000,
         "structure": 55,
         "protection": 2,
         "slots": ([
@@ -719,7 +704,6 @@ protected mapping Vehicles = ([
         "capacity": 30,
         "crew required": 12,
         "base speed": 8,
-        "base cargo": 2000,
         "structure": 80,
         "protection": 3,
         "slots": ([
@@ -781,7 +765,6 @@ protected mapping Vehicles = ([
         "capacity": 80,
         "crew required": 20,
         "base speed": 6,
-        "base cargo": 8000,
         "structure": 140,
         "protection": 6,
         "slots": ([
@@ -852,7 +835,6 @@ protected mapping Vehicles = ([
         "capacity": 12,
         "crew required": 6,
         "base speed": 10,
-        "base cargo": 1200,
         "structure": 35,
         "protection": 2,
         "slots": ([
@@ -902,7 +884,6 @@ protected mapping Vehicles = ([
         "capacity": 25,
         "crew required": 10,
         "base speed": 6,
-        "base cargo": 1500,
         "structure": 60,
         "protection": 2,
         "slots": ([
@@ -953,7 +934,6 @@ protected mapping Vehicles = ([
         "capacity": 10,
         "crew required": 6,
         "base speed": 7,
-        "base cargo": 800,
         "structure": 30,
         "protection": 1,
         "slots": ([
@@ -1003,7 +983,6 @@ protected mapping Vehicles = ([
         "capacity": 200,
         "crew required": 120,
         "base speed": 8,
-        "base cargo": 20000,
         "structure": 400,
         "protection": 20,
         "slots": ([
@@ -1122,7 +1101,6 @@ protected mapping Vehicles = ([
         "capacity": 100,
         "crew required": 30,
         "base speed": 9,
-        "base cargo": 9000,
         "structure": 160,
         "protection": 8,
         "slots": ([
@@ -1190,7 +1168,6 @@ protected mapping Vehicles = ([
         "capacity": 60,
         "crew required": 24,
         "base speed": 7,
-        "base cargo": 6000,
         "structure": 120,
         "protection": 5,
         "slots": ([
@@ -1266,7 +1243,6 @@ protected mapping Vehicles = ([
         "capacity": 8,
         "crew required": 4,
         "base speed": 6,
-        "base cargo": 600,
         "structure": 20,
         "protection": 1,
         "slots": ([
@@ -1308,7 +1284,6 @@ protected mapping Vehicles = ([
         "capacity": 40,
         "crew required": 18,
         "base speed": 5,
-        "base cargo": 4000,
         "structure": 80,
         "protection": 3,
         "slots": ([
@@ -1363,7 +1338,6 @@ protected mapping Vehicles = ([
         "capacity": 12,
         "crew required": 8,
         "base speed": 7,
-        "base cargo": 1000,
         "structure": 40,
         "protection": 1,
         "slots": ([
@@ -1407,7 +1381,6 @@ protected mapping Vehicles = ([
         "capacity": 60,
         "crew required": 30,
         "base speed": 8,
-        "base cargo": 6000,
         "structure": 120,
         "protection": 6,
         "slots": ([
@@ -1494,7 +1467,6 @@ protected mapping Vehicles = ([
         "capacity": 40,
         "crew required": 10,
         "base speed": 8,
-        "base cargo": 2000,
         "structure": 50,
         "protection": 2,
         "slots": ([
@@ -1546,7 +1518,6 @@ protected mapping Vehicles = ([
         "capacity": 100,
         "crew required": 60,
         "base speed": 7,
-        "base cargo": 12000,
         "structure": 200,
         "protection": 10,
         "slots": ([
@@ -1647,7 +1618,6 @@ protected mapping Vehicles = ([
         "capacity": 6,
         "crew required": 4,
         "base speed": 6,
-        "base cargo": 400,
         "structure": 15,
         "protection": 1,
         "slots": ([
@@ -1689,7 +1659,6 @@ protected mapping Vehicles = ([
         "capacity": 30,
         "crew required": 15,
         "base speed": 8,
-        "base cargo": 3000,
         "structure": 60,
         "protection": 4,
         "slots": ([
@@ -1748,7 +1717,6 @@ protected mapping Vehicles = ([
         "capacity": 60,
         "crew required": 40,
         "base speed": 9,
-        "base cargo": 4000,
         "structure": 100,
         "protection": 5,
         "slots": ([
@@ -1812,7 +1780,6 @@ protected mapping Vehicles = ([
         "capacity": 2,
         "crew required": 1,
         "base speed": 12,
-        "base cargo": 200,
         "structure": 30,
         "protection": 6,
         "slots": ([
@@ -1860,7 +1827,6 @@ protected mapping Vehicles = ([
         "capacity": 10,
         "crew required": 4,
         "base speed": 15,
-        "base cargo": 1000,
         "structure": 80,
         "protection": 8,
         "slots": ([
@@ -1915,7 +1881,6 @@ protected mapping Vehicles = ([
         "capacity": 220,
         "crew required": 140,
         "base speed": 10,
-        "base cargo": 25000,
         "structure": 500,
         "protection": 25,
         "slots": ([
@@ -2036,7 +2001,6 @@ protected mapping Vehicles = ([
         "capacity": 3,
         "crew required": 1,
         "base speed": 14,
-        "base cargo": 180,
         "structure": 22,
         "protection": 4,
         "slots": ([
@@ -2084,7 +2048,6 @@ protected mapping Vehicles = ([
         "capacity": 110,
         "crew required": 70,
         "base speed": 8,
-        "base cargo": 13000,
         "structure": 220,
         "protection": 14,
         "slots": ([
@@ -2186,7 +2149,6 @@ protected mapping Vehicles = ([
         "capacity": 2,
         "crew required": 1,
         "base speed": 16,
-        "base cargo": 100,
         "structure": 14,
         "protection": 3,
         "slots": ([

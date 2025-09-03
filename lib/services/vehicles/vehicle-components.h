@@ -93,7 +93,10 @@ private mapping VehicleComponents =
         "protection": 0,
         "weight": 4,
         "crafting materials": ([ "wood": 4 ]),
-        "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 1 ]) ]),
+        "prerequisites": ([ 
+            "carpentry": ([ "type": "skill", "value": 1 ]),
+            "/lib/instances/research/vehicles/components/basic-wagon-frame.c" : (["type":"research"]),
+        ]),
     ]),
     "wagon platform with railings": ([
         "class": "frame",
@@ -102,7 +105,10 @@ private mapping VehicleComponents =
         "protection": 0,
         "weight": 5,
         "crafting materials": ([ "wood": 5 ]),
-        "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 2 ]) ]),
+        "prerequisites": ([ 
+            "carpentry": ([ "type": "skill", "value": 2 ]),
+            "/lib/instances/research/vehicles/components/basic-wagon-frame.c" : (["type":"research"]), 
+        ]),
     ]),
     "wagon platform with storage": ([
         "class": "frame",
@@ -112,7 +118,10 @@ private mapping VehicleComponents =
         "weight": 6,
         "capacity bonus": 100,
         "crafting materials": ([ "wood": 6 ]),
-        "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 3 ]) ]),
+        "prerequisites": ([ 
+            "carpentry": ([ "type": "skill", "value": 3 ]),
+            "/lib/instances/research/vehicles/components/basic-wagon-frame.c" : (["type":"research"]), 
+        ]),
     ]),
     "wagon platform with tent": ([
         "class": "frame",
@@ -121,7 +130,10 @@ private mapping VehicleComponents =
         "protection": 1,
         "weight": 7,
         "crafting materials": ([ "wood": 5, "textile": 3 ]),
-        "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 4 ]) ]),
+        "prerequisites": ([ 
+            "carpentry": ([ "type": "skill", "value": 4 ]),
+            "/lib/instances/research/vehicles/components/luxury-wagon-body.c" : (["type":"research"]), 
+        ]),
     ]),
     "wagon platform with magical enhancements": ([
         "class": "frame",
@@ -133,6 +145,7 @@ private mapping VehicleComponents =
         "prerequisites": ([
             "carpentry": ([ "type": "skill", "value": 5 ]),
             "arcane crafting": ([ "type": "skill", "value": 3 ]),
+            "/lib/instances/research/vehicles/components/arcane-wagon-frame.c" : (["type":"research"]),
         ]),
     ]),
 
@@ -176,7 +189,10 @@ private mapping VehicleComponents =
         "protection": 2,
         "weight": 3,
         "crafting materials": ([ "wood": 2, "metal": 2 ]),
-        "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 2 ]) ]),
+        "prerequisites": ([ 
+            "carpentry": ([ "type": "skill", "value": 2 ]),
+            "/lib/instances/research/vehicles/components/armored-wagon-body.c" : (["type":"research"]), 
+        ]),
     ]),
     "wagon spiked armor": ([
         "class": "defense",
@@ -186,7 +202,7 @@ private mapping VehicleComponents =
         "crafting materials": ([ "metal": 5 ]),
         "prerequisites": ([ 
             "metal crafting": ([ "type": "skill", "value": 3 ]),
-            "/lib/instances/research/vehicles/components/arcane-crafting.c" : (["type":"research"]),
+            "/lib/instances/research/vehicles/components/armored-wagon-body.c" : (["type":"research"]),
         ]),
     ]),
 

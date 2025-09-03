@@ -848,3 +848,113 @@ public nomask int getMaxSellQuantity(object user, object port, string item)
 
     return vehicleStock + warehouseStock;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void processBuy(object user, 
+                              object port, 
+                              string item, 
+                              mapping allocationMap, 
+                              int pricePerUnit)
+{
+    object configDict = getService("configuration");
+    string colorConfig = user->colorConfiguration();
+    int totalCost = 0;
+    int totalUnits = 0;
+    string resultMsg = "";
+
+    foreach(string targetName in m_indices(allocationMap))
+    {
+        mapping entry = allocationMap[targetName];
+        object targetObj = entry["object"];
+        int quantity = entry["quantity"];
+
+        if (!objectp(targetObj) || quantity <= 0)
+            continue;
+
+        int cost = quantity * pricePerUnit;
+        totalCost += cost;
+        totalUnits += quantity;
+
+        if (user->getCash() < cost)
+        {
+            resultMsg += configDict->decorate(
+                sprintf("Not enough gold to buy %d units for %s.", quantity, targetName),
+                "failure", "selector", colorConfig) + "\n";
+            continue;
+        }
+        if (targetObj->getFreeSpace() < quantity)
+        {
+            resultMsg += configDict->decorate(
+                sprintf("%s does not have enough space for %d units.", targetName, quantity),
+                "failure", "selector", colorConfig) + "\n";
+            continue;
+        }
+
+        user->addCash(-cost);
+        targetObj->addCargo(item, quantity);
+        user->addTradingExperience(quantity);
+
+        resultMsg += configDict->decorate(
+            sprintf("Bought %d units for %s (%d gold).", quantity, targetName, cost),
+            "success", "quests", colorConfig) + "\n";
+    }
+
+    if (resultMsg == "")
+    {
+        resultMsg = configDict->decorate(
+            "No purchases were made. Check your gold and available space.",
+            "failure", "selector", colorConfig);
+    }
+    tell_object(user, resultMsg);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void processSell(object user,
+                               object port,  
+                               string item, 
+                               mapping allocationMap,  
+                               int pricePerUnit)
+{
+    object configDict = getService("configuration");
+    string colorConfig = user->colorConfiguration();
+    int totalValue = 0;
+    int totalUnits = 0;
+    string resultMsg = "";
+
+    foreach(string targetName in m_indices(allocationMap))
+    {
+        mapping entry = allocationMap[targetName];
+        object targetObj = entry["object"];
+        int quantity = entry["quantity"];
+
+        if (!objectp(targetObj) || quantity <= 0)
+            continue;
+
+        int available = targetObj->getCargoQuantity(item);
+        int value = quantity * pricePerUnit;
+
+        if (available < quantity)
+        {
+            resultMsg += configDict->decorate(
+                sprintf("%s does not have %d units to sell.", targetName, quantity),
+                "failure", "selector", colorConfig) + "\n";
+            continue;
+        }
+
+        user->addCash(value);
+        targetObj->removeCargo(item, quantity);
+        user->addTradingExperience(quantity);
+
+        resultMsg += configDict->decorate(
+            sprintf("Sold %d units from %s (%d gold).", quantity, targetName, value),
+            "success", "quests", colorConfig) + "\n";
+    }
+
+    if (resultMsg == "")
+    {
+        resultMsg = configDict->decorate(
+            "No sales were made. Check your available stock.",
+            "failure", "selector", colorConfig);
+    }
+    tell_object(user, resultMsg);
+}

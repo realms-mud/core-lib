@@ -298,11 +298,34 @@ protected nomask int processSelection(string selection)
         else if (Data[selection]["type"] == "item") 
         {
             selectedItem = Data[selection]["item path"];
-            
-            // Create quantity selector
-            SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/quantitySelector.c");
+            object tradingDict = getService("trading");
+            mapping warehouse = User->getWarehouse(Port->getPortName());
+            object *vehicles = User->getVehicles();
+
+            mapping targets = ([]);
+            foreach(object vehicle in vehicles)
+            {
+                if (objectp(vehicle))
+                {
+                    targets[vehicle->query("name")] = ([
+                        "object": vehicle,
+                        "maxQuantity": vehicle->getFreeSpace()
+                    ]);
+                }
+            }
+
+            if (objectp(warehouse))
+            {
+                targets["Warehouse"] = ([
+                    "object": warehouse,
+                    "maxQuantity": 0//warehouse->getFreeSpace()
+                ]);
+            }
+
+            SubselectorObj = 
+                clone_object("/lib/modules/domains/trading/selectors/quantitySelector.c");
             SubselectorObj->setItem(selectedItem);
-            SubselectorObj->setMaxQuantity(Data[selection]["max quantity"]);
+            SubselectorObj->setTargets(targets);
             SubselectorObj->setPrice(Data[selection]["price"]);
             SubselectorObj->setAction("buy");
             SubselectorObj->setPort(Port);

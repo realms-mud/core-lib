@@ -97,6 +97,11 @@ public object addVehicle(string type, string location)
         vehicle = clone_object("/lib/items/vehicle.c");
         vehicle->set("vehicle type", type);
         vehicle->setLocation(location);
+
+        vehicle->set("name", sprintf("%s #%d", capitalize(type), 
+            sizeof(filter(vehicles, 
+            (: objectp($1) && $1->query("vehicle type") == $2 :), type)) + 1));
+
         vehicles += ({ vehicle });
     }
     return vehicle;
