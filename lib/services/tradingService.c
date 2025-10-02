@@ -391,12 +391,18 @@ public mapping getCargoForSale(object trader, object port)
 
     if (trader && port && port->isPort())
     {
-        int counter = 1;
+        string portName = port->getPortName();
+        
+        // Get vehicles at this port using filter
         object *vehicles = ({});
         if (function_exists("getVehicles", trader))
         {
-            vehicles = trader->getVehicles();
+            object *allVehicles = trader->getVehicles();
+            vehicles = filter(allVehicles, 
+                (: objectp($1) && $1->getLocation() == $2 :), portName);
         }
+        
+        // Process vehicle cargo
         foreach (object vehicle in vehicles)
         {
             if (objectp(vehicle) && function_exists("getCargo", vehicle))
@@ -404,33 +410,93 @@ public mapping getCargoForSale(object trader, object port)
                 mapping vehicleCargo = vehicle->getCargo();
                 if (mappingp(vehicleCargo) && sizeof(vehicleCargo))
                 {
+                    string vehicleName = vehicle->query("name") ? 
+                        vehicle->query("name") : vehicle->query("vehicle type");
+                    
                     string *items = m_indices(vehicleCargo);
                     foreach (string item in items)
+                    {
+                        int quantity = vehicleCargo[item];
+                        if (quantity > 0)
+                        {
+                            object itemObj = load_object(item);
+                            if (itemObj)
+                            {
+                                int price = port->getItemPrice(item);
+                                
+                                // Initialize item entry if it doesn't exist
+                                if (!member(cargo, item))
+                                {
+                                    cargo[item] = ([
+                                        "item name": itemObj->query("name"),
+                                        "item path": item,
+                                        "price": price,
+                                        "total quantity": 0,
+                                        "total value": 0,
+                                        "sources": ([])
+                                    ]);
+                                }
+                                
+                                // Add this vehicle's contribution
+                                cargo[item]["sources"][vehicleName] = ([
+                                    "object": vehicle,
+                                    "quantity": quantity,
+                                    "value": price * quantity,
+                                    "type": "vehicle"
+                                ]);
+                                
+                                // Update totals
+                                cargo[item]["total quantity"] += quantity;
+                                cargo[item]["total value"] += price * quantity;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Process warehouse cargo at this port
+        object warehouse = trader->getWarehouseAtPort(port);
+        if (objectp(warehouse) && function_exists("getCargo", warehouse))
+        {
+            mapping warehouseCargo = warehouse->getCargo();
+            if (mappingp(warehouseCargo) && sizeof(warehouseCargo))
+            {
+                string *items = m_indices(warehouseCargo);
+                foreach (string item in items)
+                {
+                    int quantity = warehouseCargo[item];
+                    if (quantity > 0)
                     {
                         object itemObj = load_object(item);
                         if (itemObj)
                         {
                             int price = port->getItemPrice(item);
-                            int quantity = vehicleCargo[item];
-
-                            // Aggregate quantities if item is in multiple vehicles
-                            if (member(cargo, item))
-                            {
-                                cargo[item]["quantity"] += quantity;
-                                cargo[item]["total value"] += price * quantity;
-                            }
-                            else
+                            
+                            // Initialize item entry if it doesn't exist
+                            if (!member(cargo, item))
                             {
                                 cargo[item] = ([
-                                    "name": sprintf("%s x%d (%d gold each)",
-                                        itemObj->query("name"), quantity, price),
+                                    "item name": itemObj->query("name"),
                                     "item path": item,
                                     "price": price,
-                                    "quantity": quantity,
-                                    "total value": price * quantity,
-                                    "canShow": 1
+                                    "total quantity": 0,
+                                    "total value": 0,
+                                    "sources": ([])
                                 ]);
                             }
+                            
+                            // Add warehouse contribution
+                            cargo[item]["sources"]["Warehouse"] = ([
+                                "object": warehouse,
+                                "quantity": quantity,
+                                "value": price * quantity,
+                                "type": "warehouse"
+                            ]);
+                            
+                            // Update totals
+                            cargo[item]["total quantity"] += quantity;
+                            cargo[item]["total value"] += price * quantity;
                         }
                     }
                 }
@@ -438,14 +504,7 @@ public mapping getCargoForSale(object trader, object port)
         }
     }
 
-    mapping indexedCargo = ([]);
-    int idx = 1;
-    foreach (string item in m_indices(cargo))
-    {
-        indexedCargo[to_string(idx++)] = cargo[item];
-    }
-
-    return indexedCargo;
+    return cargo;
 }
 
 /////////////////////////////////////////////////////////////////////////////

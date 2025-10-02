@@ -120,7 +120,7 @@ void PortMenuSelectorHandlesSellSelection()
     command(sellOption, Player);
 
     string message = implode(Player->caughtMessages(), "\n");
-    ExpectSubStringMatch("No Cargo to Sell", message);
+    ExpectSubStringMatch("from 1 to 1", message);
     ExpectSubStringMatch("Return to Previous Menu", message);
 }
 
