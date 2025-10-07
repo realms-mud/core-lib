@@ -15,7 +15,7 @@ private int selectingTarget = 1;
 private string currentTarget = 0;
 private int awaitingQuantity = 0;
 private int awaitingCustomQuantity = 0;
-private int awaitingConfirmation = 0;
+private int singleSource = 0;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setItem(string item)
@@ -48,11 +48,15 @@ public nomask void setTargets(mapping t)
     targetOrder = m_indices(targets);
     allocations = ([]);
     selectingTarget = 1;
-    Type = "Select Quantity";
     currentTarget = 0;
     awaitingQuantity = 0;
     awaitingCustomQuantity = 0;
-    awaitingConfirmation = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void setSingleSource(int value)
+{
+    singleSource = value;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -76,6 +80,7 @@ public nomask void InitializeSelector()
     AllowAbort = 1;
     HasDescription = 0;
     SuppressColon = 1;
+    Type = "Select Quantity";
     Data = ([]);
 }
 
@@ -86,51 +91,31 @@ protected nomask void setUpUserForSelection()
     Data = ([]);
     int counter = 1;
 
-    if (awaitingConfirmation)
+    // If single source, skip target selection and go straight to quantity
+    if (singleSource && sizeof(targetOrder) == 1 && !awaitingQuantity)
     {
-        int totalUnits = 0;
-        int totalCost = 0;
-        string summary = "You have selected:\n";
-        foreach(string name in m_indices(allocations))
-        {
-            int qty = allocations[name];
-            if (qty > 0)
-            {
-                summary += sprintf("  %s: %d units\n", name, qty);
-                totalUnits += qty;
-                totalCost += qty * pricePerUnit;
-            }
-        }
-        summary += sprintf("\nTotal: %d units for %d gold.\n", totalUnits, totalCost);
-        Description = summary;
-
-        Data[to_string(counter++)] = ([
-            "name": "Confirm Transaction",
-            "type": "confirm",
-            "description": "Confirm and execute this transaction.",
-            "canShow": 1
-        ]);
-        Data[to_string(counter++)] = ([
-            "name": "Cancel",
-            "type": "exit",
-            "description": "Cancel this transaction.",
-            "canShow": 1
-        ]);
+        currentTarget = targetOrder[0];
+        awaitingQuantity = 1;
+        selectingTarget = 0;
     }
-    else if (awaitingQuantity && currentTarget)
+
+    if (awaitingQuantity && currentTarget)
     {
-        int maxQty = targets[currentTarget]["maxQuantity"];
-        Description = sprintf("How many %s would you like to %s for %s? (0-%d)",
+        int maxQty = to_int(targets[currentTarget]["maxQuantity"]);
+        Description = sprintf("How many %s would you like to %s for %s? (1-%d)",
             itemObj ? itemObj->query("name") : itemPath, action, currentTarget, maxQty);
 
-        int *quantities = ({ 0, 1, 5, 10, 25, 50, 100, maxQty });
+        int *quantities = ({ 1, 5, 10, 25, 50, 100, maxQty });
+        // Remove duplicates and sort ascending
+        quantities = sort_array(m_indices(mkmapping(quantities)), (: $1 > $2 :));
         foreach(int qty in quantities)
         {
-            if (qty <= maxQty && qty >= 0)
+            if (qty <= maxQty && qty >= 1)
             {
                 int totalCost = qty * pricePerUnit;
                 Data[to_string(counter++)] = ([
-                    "name": sprintf("%d unit%s (%d gold)", qty, (qty == 1) ? "" : "s", totalCost),
+                    "name": (qty == maxQty) ? "All units" :
+                        sprintf("%d unit%s (%d gold)", qty, (qty == 1) ? "" : "s", totalCost),
                     "type": "quantity",
                     "quantity": qty,
                     "description": sprintf("Select %d units for %s.", qty, currentTarget),
@@ -138,6 +123,7 @@ protected nomask void setUpUserForSelection()
                 ]);
             }
         }
+
         Data[to_string(counter++)] = ([
             "name": "Custom Quantity",
             "type": "custom",
@@ -151,9 +137,10 @@ protected nomask void setUpUserForSelection()
             "canShow": 1
         ]);
     }
-    else if (selectingTarget)
+    else if (!singleSource && selectingTarget)
     {
-        Description = "Select which vehicle/warehouse to allocate units to. You may select multiple, then choose 'Done'.";
+        Description = sprintf("Select which vehicle/warehouse to %s units %s.",
+            action, (action == "buy" ? "for" : "from"));
         foreach(string name in targetOrder)
         {
             Data[to_string(counter++)] = ([
@@ -164,12 +151,6 @@ protected nomask void setUpUserForSelection()
             ]);
         }
         Data[to_string(counter++)] = ([
-            "name": "Done",
-            "type": "done",
-            "description": "Finish selecting targets and review allocations.",
-            "canShow": 1
-        ]);
-        Data[to_string(counter++)] = ([
             "name": "Cancel",
             "type": "exit",
             "description": "Cancel this transaction.",
@@ -178,7 +159,7 @@ protected nomask void setUpUserForSelection()
     }
     else
     {
-        Description = "No available vehicles or warehouse space for this purchase. The AI was too stupid to make this correctly.";
+        Description = "No available vehicles or warehouse space for this transaction.";
         Data["1"] = ([
             "name":"Cancel",
             "type" : "exit",
@@ -197,43 +178,52 @@ protected nomask int processSelection(string selection)
 
     if (User)
     {
-        if (awaitingConfirmation)
+        // Handle custom quantity input first, regardless of menu options
+        if (awaitingCustomQuantity)
         {
-            if (member(Data, selection) && Data[selection]["type"] == "confirm")
+            awaitingCustomQuantity = 0;
+            int qty = to_int(selection);
+            int maxQty = 0;
+            if (currentTarget && member(targets, currentTarget))
             {
-                mapping allocationMap = ([]);
-                foreach(string name in m_indices(targets))
+                maxQty = targets[currentTarget]["maxQuantity"];
+            }
+            if (qty >= 1 && qty <= maxQty)
+            {
+                allocations[currentTarget] = qty;
+                awaitingQuantity = 0;
+                string prevTarget = currentTarget;
+                currentTarget = 0;
+                if (singleSource)
                 {
-                    allocationMap[name] = ([
-                        "object": targets[name]["object"],
-                        "quantity": allocations[name] || 0
+                    mapping allocationMap = ([]);
+                    allocationMap[prevTarget] = ([
+                        "object": targets[prevTarget]["object"],
+                        "quantity": qty
                     ]);
-                }
-                int totalCost = 0;
-                foreach(string name in m_indices(allocationMap))
-                {
-                    totalCost += allocationMap[name]["quantity"] * pricePerUnit;
-                }
-                if (action == "buy" && User->getCash() < totalCost)
-                {
-                    tell_object(User, configuration->decorate(
-                        "You do not have enough gold for that purchase.",
-                        "failure", "selector", User->colorConfiguration()));
-                    tell_object(User, displayMessage());
-                }
-                else
-                {
                     executeTransaction(allocationMap);
                     notifySynchronous("onSelectorCompleted");
                     ret = 1;
                 }
+                else
+                {
+                    selectingTarget = 1;
+                    setUpUserForSelection();
+                    tell_object(User, displayMessage());
+                    ret = -1;
+                }
             }
             else
             {
-                ret = 1; // Cancel
+                tell_object(User, configuration->decorate(
+                    sprintf("Invalid quantity. Must be between 1 and %d.", maxQty),
+                    "failure", "selector", User->colorConfiguration()));
+                tell_object(User, displayMessage());
             }
+            return ret;
         }
-        else if (awaitingQuantity && currentTarget)
+
+        if (awaitingQuantity && currentTarget)
         {
             int maxQty = targets[currentTarget]["maxQuantity"];
             if (member(Data, selection))
@@ -247,43 +237,40 @@ protected nomask int processSelection(string selection)
                     int qty = Data[selection]["quantity"];
                     allocations[currentTarget] = qty;
                     awaitingQuantity = 0;
+                    string prevTarget = currentTarget;
                     currentTarget = 0;
-                    setUpUserForSelection();
-                    tell_object(User, displayMessage());
-                    ret = -1;
+
+                    // Immediately execute transaction for single source
+                    if (singleSource)
+                    {
+                        mapping allocationMap = ([]);
+                        allocationMap[prevTarget] = ([
+                            "object": targets[prevTarget]["object"],
+                            "quantity": qty
+                        ]);
+                        executeTransaction(allocationMap);
+                        notifySynchronous("onSelectorCompleted");
+                        ret = 1;
+                    }
+                    else
+                    {
+                        selectingTarget = 1;
+                        setUpUserForSelection();
+                        tell_object(User, displayMessage());
+                        ret = -1;
+                    }
                 }
                 else if (Data[selection]["type"] == "custom")
                 {
                     tell_object(User, configuration->decorate(
-                        sprintf("Enter quantity for %s (0-%d): ", currentTarget, maxQty),
+                        sprintf("Enter quantity for %s (1-%d): ", currentTarget, maxQty),
                         "instructions", "selector", User->colorConfiguration()));
                     awaitingCustomQuantity = 1;
                     ret = -1;
                 }
             }
-            else if (awaitingCustomQuantity)
-            {
-                awaitingCustomQuantity = 0;
-                int qty = to_int(selection);
-                if (qty >= 0 && qty <= maxQty)
-                {
-                    allocations[currentTarget] = qty;
-                    awaitingQuantity = 0;
-                    currentTarget = 0;
-                    setUpUserForSelection();
-                    tell_object(User, displayMessage());
-                    ret = -1;
-                }
-                else
-                {
-                    tell_object(User, configuration->decorate(
-                        sprintf("Invalid quantity. Must be between 0 and %d.", maxQty),
-                        "failure", "selector", User->colorConfiguration()));
-                    tell_object(User, displayMessage());
-                }
-            }
         }
-        else if (selectingTarget)
+        else if (!singleSource && selectingTarget)
         {
             if (member(Data, selection))
             {
@@ -291,18 +278,11 @@ protected nomask int processSelection(string selection)
                 {
                     ret = 1;
                 }
-                else if (Data[selection]["type"] == "done")
-                {
-                    selectingTarget = 0;
-                    awaitingConfirmation = 1;
-                    setUpUserForSelection();
-                    tell_object(User, displayMessage());
-                    ret = -1;
-                }
                 else if (Data[selection]["type"] == "target")
                 {
                     currentTarget = Data[selection]["name"];
                     awaitingQuantity = 1;
+                    selectingTarget = 0;
                     setUpUserForSelection();
                     tell_object(User, displayMessage());
                     ret = -1;

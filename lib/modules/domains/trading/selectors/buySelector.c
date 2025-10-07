@@ -135,9 +135,9 @@ private void setUpItemSelection()
         string err = catch (itemObj = load_object(item); nolog);
         if (!err && itemObj)
         {
-            float price = Port->getItemPrice(item);
-            int canAfford = User->getCash() / to_int(price);
-            int canAffordAny = (User->getCash() >= to_int(price)) ? 1 : 0;
+            int price = Port->getItemPrice(item);
+            int canAfford = User->getCash() / price;
+            int canAffordAny = (User->getCash() >= price) ? 1 : 0;
             int hasCapacity = checkItemCapacity(item, capacityCache);
             
             // Calculate max quantity based on capacity

@@ -13,7 +13,7 @@ public nomask void InitializeSelector()
 {
     AllowUndo = 1;
     AllowAbort = 1;
-    NumColumns = 2;
+    NumColumns = 1;
     Description = "Sell Goods";
     Type = "Sell Cargo";
     Data = ([]);
@@ -97,12 +97,11 @@ protected nomask int processSelection(string selection)
         {
             selectedItem = Data[selection]["item path"];
             mapping itemData = Data[selection]["item data"];
-            
-            // Build targets mapping from sources
-            mapping targets = ([]);
             mapping sources = itemData["sources"];
-            
-            foreach(string sourceName in m_indices(sources))
+            string *sourceNames = m_indices(sources);
+
+            mapping targets = ([]);
+            foreach (string sourceName in sourceNames)
             {
                 mapping sourceData = sources[sourceName];
                 targets[sourceName] = ([
@@ -110,8 +109,8 @@ protected nomask int processSelection(string selection)
                     "maxQuantity": sourceData["quantity"]
                 ]);
             }
-            
-            if (sizeof(targets))
+
+            if (sizeof(sourceNames))
             {
                 SubselectorObj = clone_object("/lib/modules/domains/trading/selectors/quantitySelector.c");
                 SubselectorObj->setItem(selectedItem);
@@ -119,6 +118,7 @@ protected nomask int processSelection(string selection)
                 SubselectorObj->setPrice(itemData["price"]);
                 SubselectorObj->setAction("sell");
                 SubselectorObj->setPort(Port);
+                SubselectorObj->setSingleSource(sizeof(sourceNames) == 1);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
                 SubselectorObj->initiateSelector(User);
@@ -163,11 +163,12 @@ public nomask void onSelectorCompleted(object caller)
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
+    SubselectorObj = 0;
+
     if (objectp(caller))
     {
         caller->cleanUp();
     }
-    SubselectorObj = 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -186,11 +187,12 @@ public nomask void onSelectorAborted(object caller)
         setUpUserForSelection();
         tell_object(User, displayMessage());
     }
+    SubselectorObj = 0;
+
     if (objectp(caller))
     {
         caller->cleanUp();
     }
-    SubselectorObj = 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////

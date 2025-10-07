@@ -20,12 +20,12 @@ public int isPort()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public float getItemPrice(string item)
+public int getItemPrice(string item)
 {   
     if(item == "/lib/instances/items/books/book.c")
     {
-        return 1500.0;
+        return 1500;
     }
     item = regreplace(item, "^.*\/([^/]+)\.c$", "\\1", 1);
-    return (to_int(item[0]) - 96) * 100.0;
+    return (to_int(item[0]) - 96) * 100;
 }

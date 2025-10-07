@@ -73,7 +73,7 @@ private string displayPriceBoard(string itemPath)
                     sprintf("%-16s ", port->getPortName()),
                         "port name", "trade", colorConfig);
 
-                float price = port->getItemPrice(itemPath);
+                int price = port->getItemPrice(itemPath);
                 float diff = (basePrice > 0) ? (price / basePrice - 100.0) : 0.0;
                 string trend = "";
                 if (diff > 0.01)

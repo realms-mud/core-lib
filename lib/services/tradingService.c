@@ -834,7 +834,7 @@ public nomask mapping getCombinedCapacityCache(object user, object port)
 public nomask int canBuy(object user, object port, string item)
 {
     mapping cache = getCombinedCapacityCache(user, port);
-    float price = port->getItemPrice(item);
+    int price = port->getItemPrice(item);
     return (user->getCash() >= to_int(price)) && (cache["has capacity"]);
 }
 
@@ -842,7 +842,7 @@ public nomask int canBuy(object user, object port, string item)
 public nomask int getMaxBuyQuantity(object user, object port, string item)
 {
     mapping cache = getCombinedCapacityCache(user, port);
-    float price = port->getItemPrice(item);
+    int price = port->getItemPrice(item);
     int canAfford = user->getCash() / to_int(price);
     int maxCapacity = cache["max capacity"];
     if (maxCapacity > 0 && maxCapacity < canAfford)
@@ -1004,8 +1004,12 @@ public nomask void processSell(object user,
         targetObj->removeCargo(item, quantity);
         user->addTradingExperience(quantity);
 
+        object itemObj = load_object(item);
+        string itemName = itemObj ? itemObj->query("name") : "ERROR";
+
         resultMsg += configDict->decorate(
-            sprintf("Sold %d units from %s (%d gold).", quantity, targetName, value),
+            sprintf("Sold %d units of %s from %s (%d gold).", 
+                quantity, itemName, targetName, value),
             "success", "quests", colorConfig) + "\n";
     }
 

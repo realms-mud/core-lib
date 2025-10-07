@@ -464,9 +464,9 @@ public mapping getTradeRoutes()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public float getItemPrice(string itemBlueprint)
+public int getItemPrice(string itemBlueprint)
 {
-    float ret = 0;
+    int ret = 0;
     
     if (!sizeof(availableGoods) || 
         (member(availableGoods, itemBlueprint) > -1))
@@ -487,7 +487,7 @@ public float getItemPrice(string itemBlueprint)
             object item = load_object(itemBlueprint);
             if (item)
             {
-                float basePrice = item->query("value") * 100;
+                int basePrice = item->query("value") * 100;
                 float modifier = calculatePriceModifier(item);
             
                 currentPrices[itemBlueprint] = to_int(basePrice * modifier);
@@ -502,7 +502,7 @@ public float getItemPrice(string itemBlueprint)
 public int buyFromPlayer(object player, string itemBlueprint, int quantity)
 {
     int ret = 0;
-    float price = getItemPrice(itemBlueprint);
+    int price = getItemPrice(itemBlueprint);
     int totalCost = to_int(price * quantity);
     
     object trader = player->getModule("trader");
@@ -552,8 +552,8 @@ public int sellToPlayer(object player, string itemBlueprint, int quantity)
     {
         if (trader->getCargoQuantity(itemBlueprint) >= quantity)
         {
-            float price = getItemPrice(itemBlueprint);
-            int totalValue = to_int(price * quantity);
+            int price = getItemPrice(itemBlueprint);
+            int totalValue = price * quantity;
             
             // Remove from vehicle using proper accessor
             trader->removeCargoFromVehicle(itemBlueprint, quantity);

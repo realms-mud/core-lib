@@ -158,7 +158,10 @@ public varargs nomask int notify(string event, mixed message)
 {
     int ret = 0;
     
-    if(event && stringp(event) && (member(validEventHandlers, event) > -1))
+    // It may seem weird to check this_object() here, but this can get called
+    // from a call_out while the object is getting destructed.
+    if(event && stringp(event) && (member(validEventHandlers, event) > -1) &&
+        this_object())
     {
         // delete all null handlers
         m_delete(eventList, 0);
@@ -192,7 +195,10 @@ public varargs nomask int notifySynchronous(string event, mixed message)
 {
     int ret = 0;
 
-    if (event && stringp(event) && (member(validEventHandlers, event) > -1))
+	// It may seem weird to check this_object() here, but this can get called
+	// from a call_out while the object is getting destructed.
+    if (event && stringp(event) && (member(validEventHandlers, event) > -1) &&
+        this_object())
     {
         // delete all null handlers
         m_delete(eventList, 0);
@@ -204,7 +210,7 @@ public varargs nomask int notifySynchronous(string event, mixed message)
         call_direct(filteredEvents, "receiveEvent", this_object(), event, message);
 
         filteredEvents = filter(m_indices(eventList),
-            (: (objectp($1) &&
+            (: (objectp($1) && function_exists(event, $1) &&
             (member(eventList[$1], $2) > -1) &&
                 function_exists($2, $1)) :), event);
 
