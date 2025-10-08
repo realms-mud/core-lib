@@ -30,8 +30,6 @@ protected nomask void setUpUserForSelection()
     string portRouteType = (Port && function_exists("getRouteType", Port)) ? Port->getRouteType() : 0;
     int counter = 1;
 
-    string portRouteType = (Port && function_exists("getRouteType", Port)) ? Port->getRouteType() : 0;
-
     foreach(object vehicle in Vehicles)
     {
         mapping blueprint = vehicle->getBlueprint();

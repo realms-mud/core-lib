@@ -6,6 +6,7 @@ virtual inherit "/lib/items/item.c";
 
 private object vehicleService;
 private int currentStructure = -1;
+object display = getService("configuration");
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -139,6 +140,79 @@ public nomask mapping getCrew()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getCrewAssignments()
+{
+    mapping result = ([]);
+    mapping crew = getCrew();
+    mapping blueprint = getBlueprint();
+    
+    if (mappingp(blueprint) && member(blueprint, "slots"))
+    {
+        mapping slots = blueprint["slots"];
+        foreach (string slot in m_indices(slots))
+        {
+            if (slots[slot] == "henchman")
+            {
+                string assignment = member(crew, slot) ? crew[slot] : "unassigned";
+                result[slot] = assignment;
+            }
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getAvailableCrewSlots()
+{
+    string *result = ({});
+    mapping blueprint = getBlueprint();
+    
+    if (mappingp(blueprint) && member(blueprint, "slots"))
+    {
+        mapping slots = blueprint["slots"];
+        foreach (string slot in m_indices(slots))
+        {
+            if (slots[slot] == "henchman")
+            {
+                result += ({ slot });
+            }
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getCrewEfficiency()
+{
+    int efficiency = 50; // Base efficiency without crew
+    mapping crew = getCrew();
+    string *crewSlots = getAvailableCrewSlots();
+    
+    if (sizeof(crewSlots))
+    {
+        int filledSlots = 0;
+        foreach (string slot in crewSlots)
+        {
+            if (member(crew, slot) && stringp(crew[slot]))
+            {
+                filledSlots++;
+                // Add henchman skill bonuses here if available
+                efficiency += 10; // Base bonus per crew member
+            }
+        }
+        
+        // Bonus for full crew
+        if (filledSlots == sizeof(crewSlots))
+        {
+            efficiency += 15;
+        }
+    }
+    
+    int result = efficiency > 100 ? 100 : efficiency;
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int getMaxStructure()
 {
     int structure = 0;
@@ -193,7 +267,11 @@ public nomask int getCapacity()
             }
         }
     }
-    return base;
+    
+    // Apply crew efficiency to cargo capacity
+    int efficiency = getCrewEfficiency();
+    int result = (base * efficiency) / 100;
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -214,8 +292,8 @@ public nomask int getUsedSpace()
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getFreeSpace()
 {
-    int freeSpace = getCapacity() - getUsedSpace();
-    return freeSpace;
+    int result = getCapacity() - getUsedSpace();
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -239,8 +317,11 @@ public nomask int getTradeProtection()
             }
         }
     }
-    // Optionally add crew/research bonuses here
-    return prot;
+    
+    // Apply crew efficiency to protection
+    int efficiency = getCrewEfficiency();
+    int result = (prot * efficiency) / 100;
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -255,19 +336,35 @@ public nomask int getWeaponPower()
             mapping comp = getComponent(slot);
             if (mappingp(comp) && member(comp, "class") && comp["class"] == "weapon")
             {
-                power += comp["weight"]; // Or use a more specific stat if available
+                int weaponPower = comp["attack power"] || comp["weight"] || 0;
+                power += weaponPower;
             }
         }
     }
-    // Optionally add crew/research bonuses here
-    return power;
+    
+    // Apply crew efficiency to weapon power
+    int efficiency = getCrewEfficiency();
+    int result = (power * efficiency) / 100;
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int getDefense()
 {
     int defense = getTradeProtection();
-    // Optionally add crew/research bonuses here
+    mapping components = query("components");
+    if (mappingp(components))
+    {
+        foreach(string slot in m_indices(components))
+        {
+            mapping comp = getComponent(slot);
+            if (mappingp(comp) && member(comp, "class") && comp["class"] == "defense")
+            {
+                int defenseBonus = comp["defense bonus"] || comp["protection"] || 0;
+                defense += defenseBonus;
+            }
+        }
+    }
     return defense;
 }
 
@@ -276,9 +373,9 @@ public nomask int getSpeed()
 {
     int speed = 0;
     mapping blueprint = getBlueprint();
-    if (mappingp(blueprint) && member(blueprint, "speed"))
+    if (mappingp(blueprint) && member(blueprint, "base speed"))
     {
-        speed = blueprint["speed"];
+        speed = blueprint["base speed"];
     }
     mapping components = query("components");
     if (mappingp(components))
@@ -292,8 +389,23 @@ public nomask int getSpeed()
             }
         }
     }
-    // Optionally add crew/research bonuses here
-    return speed;
+    
+    // Apply crew efficiency to speed
+    int efficiency = getCrewEfficiency();
+    int result = (speed * efficiency) / 100;
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int getCrewRequirement()
+{
+    int required = 0;
+    mapping blueprint = getBlueprint();
+    if (mappingp(blueprint) && member(blueprint, "crew required"))
+    {
+        required = blueprint["crew required"];
+    }
+    return required;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -301,11 +413,25 @@ public nomask int installComponent(string slot, string componentName)
 {
     int result = 0;
     mapping components = query("components") || ([]);
+    mapping blueprint = getBlueprint();
+    
     if (objectp(vehicleService) && vehicleService->queryComponent(componentName))
     {
-        components[slot] = componentName;
-        set("components", components);
-        result = 1;
+        // Check if slot exists and is valid for this vehicle
+        if (mappingp(blueprint) && member(blueprint, "slots") && 
+            member(blueprint["slots"], slot))
+        {
+            mapping component = vehicleService->queryComponent(componentName);
+            string slotType = blueprint["slots"][slot];
+            
+            // Verify component matches slot type
+            if (member(component, "class") && component["class"] == slotType)
+            {
+                components[slot] = componentName;
+                set("components", components);
+                result = 1;
+            }
+        }
     }
     return result;
 }
@@ -315,11 +441,19 @@ public nomask int removeComponent(string slot)
 {
     int result = 0;
     mapping components = query("components") || ([]);
+    mapping blueprint = getBlueprint();
+    
     if (member(components, slot))
     {
-        m_delete(components, slot);
-        set("components", components);
-        result = 1;
+        // Reset to unbuilt version
+        if (mappingp(blueprint) && member(blueprint, "slots") && 
+            member(blueprint["slots"], slot))
+        {
+            string slotType = blueprint["slots"][slot];
+            components[slot] = sprintf("unbuilt %s", slotType);
+            set("components", components);
+            result = 1;
+        }
     }
     return result;
 }
@@ -361,25 +495,52 @@ public nomask int removeCargo(string item, int quantity)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void assignCrew(string role, object person)
+public nomask void assignCrew(string slot, string henchmanId)
 {
     mapping crew = query("crew") || ([]);
-    if (role && objectp(person))
+    string *availableSlots = getAvailableCrewSlots();
+    
+    if (slot && stringp(henchmanId) && member(availableSlots, slot))
     {
-        crew[role] = person;
+        crew[slot] = henchmanId;
         set("crew", crew);
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void removeCrew(string role)
+public nomask void assignCrewObject(string slot, object person)
+{
+    // Legacy method - convert to henchman ID system
+    if (slot && objectp(person) && function_exists("query", person))
+    {
+        string henchmanId = person->query("henchman id") || 
+                           person->query("name") || 
+                           sprintf("crew_%d", time());
+        assignCrew(slot, henchmanId);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void removeCrew(string slot)
 {
     mapping crew = query("crew") || ([]);
-    if (role && member(crew, role))
+    if (slot && member(crew, slot))
     {
-        m_delete(crew, role);
+        m_delete(crew, slot);
         set("crew", crew);
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void unassignHenchman(string slot)
+{
+    removeCrew(slot);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void assignHenchman(string slot, string henchmanId)
+{
+    assignCrew(slot, henchmanId);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -419,7 +580,8 @@ public nomask int repair(int amount)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isDestroyed()
 {
-    return getCurrentStructure() <= 0;
+    int result = getCurrentStructure() <= 0;
+    return result;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -441,8 +603,196 @@ public nomask int attackVehicle(object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string displayVehicle(object player)
+{
+    string result = "Vehicle display not available.";
+    if (objectp(vehicleService))
+    {
+        result = vehicleService->visualizeVehicle(player, this_object());
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getStructureDetails(string colorConfig)
+{
+    int currentStr = getCurrentStructure();
+    int maxStr = getMaxStructure();
+    string structureColor = "data";
+    if (currentStr < (maxStr / 4))
+    {
+        structureColor = "failure";
+    }
+    else if (currentStr < (maxStr / 2))
+    {
+        structureColor = "warning";
+    }
+
+    return display->decorate("Structure: ", "field header", "vehicle", colorConfig) +
+        display->decorate(sprintf("%d", currentStr), structureColor, "vehicle", colorConfig) +
+        display->decorate("/", "data", "vehicle", colorConfig) +
+        display->decorate(sprintf("%d", maxStr), "data", "vehicle", colorConfig) + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getCapacityDetails(string colorConfig)
+{
+    int usedSpace = getUsedSpace();
+    int totalCapacity = getCapacity();
+    string capacityColor = "data";
+    if (usedSpace >= totalCapacity)
+    {
+        capacityColor = "warning";
+    }
+    else if (usedSpace >= (totalCapacity * 3 / 4))
+    {
+        capacityColor = "note";
+    }
+    return display->decorate("Capacity: ", "field header", "vehicle", colorConfig) +
+        display->decorate(sprintf("%d", usedSpace), capacityColor, "vehicle", colorConfig) +
+        display->decorate("/", "data", "vehicle", colorConfig) +
+        display->decorate(sprintf("%d units used", totalCapacity), "data", "vehicle", colorConfig) + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getCrewDetails(string colorConfig)
+{
+    string result = "";
+    mapping crewAssignments = getCrewAssignments();
+    if (sizeof(crewAssignments))
+    {
+        result += "\n" + display->decorate("Crew Assignments:", "section header", "vehicle", colorConfig) + "\n";
+        foreach (string slot in m_indices(crewAssignments))
+        {
+            string assignment = crewAssignments[slot];
+            string assignmentColor = (assignment == "unassigned") ? "failure" : "success";
+            string displayName = (assignment == "unassigned") ? "Empty" : assignment;
+            
+            result += display->decorate("  ", "data", "vehicle", colorConfig) +
+                      display->decorate(sprintf("%s: ", capitalize(slot)), "field header", "vehicle", colorConfig) +
+                      display->decorate(displayName, assignmentColor, "vehicle", colorConfig) + "\n";
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getCrewEfficiencyDetails(string colorConfig)
+{
+    int efficiency = getCrewEfficiency();
+    string efficiencyColor = "data";
+    if (efficiency < 60)
+    {
+        efficiencyColor = "failure";
+    }
+    else if (efficiency < 80)
+    {
+        efficiencyColor = "warning";
+    }
+    else if (efficiency >= 95)
+    {
+        efficiencyColor = "success";
+    }
+    
+    return display->decorate("Crew Efficiency: ", "field header", "vehicle", colorConfig) +
+           display->decorate(sprintf("%d%%", efficiency), efficiencyColor, "vehicle", colorConfig) + "\n";
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private string getCargoDetails(string colorConfig)
+{
+    string result = "";
+    mapping cargo = getCargo();
+
+    if (sizeof(cargo))
+    {
+        result += "\n" + display->decorate("Cargo:", "section header", "vehicle", colorConfig) + "\n";
+        foreach (string item in m_indices(cargo))
+        {
+            result += display->decorate("  ", "data", "vehicle", colorConfig) +
+                      display->decorate(sprintf("%s: ", item), "field header", "vehicle", colorConfig) +
+                      display->decorate(sprintf("%d units", cargo[item]), "data", "vehicle", colorConfig) + "\n";
+        }
+    }
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getVehicleStatus(object player)
+{
+    string result = "Configuration service not available.";
+    string colorConfig = player ? player->colorConfiguration() : "none";
+    
+    if (display)
+    {
+        mapping blueprint = getBlueprint();
+        string vehicleName = blueprint["display name"] || query("vehicle type") || "Unknown Vehicle";
+        
+        result = display->decorate(sprintf("=== %s Status ===", vehicleName), 
+                                      "header", "vehicle", colorConfig) + "\n";
+        
+        result += display->decorate("Location: ", "field header", "vehicle", colorConfig) +
+                  display->decorate(getLocation(), "data", "vehicle", colorConfig) + "\n";
+        
+        result += getStructureDetails(colorConfig);
+		result += getCapacityDetails(colorConfig);
+        
+        // Speed
+        result += display->decorate("Speed: ", "field header", "vehicle", colorConfig) +
+                  display->decorate(sprintf("%d", getSpeed()), "data", "vehicle", colorConfig) + "\n";
+        
+        // Protection
+        result += display->decorate("Protection: ", "field header", "vehicle", colorConfig) +
+                  display->decorate(sprintf("%d", getTradeProtection()), "data", "vehicle", colorConfig) + "\n";
+        
+		result += getCrewEfficiencyDetails(colorConfig);
+		result += getCrewDetails(colorConfig);
+        result += getCargoDetails(colorConfig);
+        
+        // Vehicle layout display
+        result += "\n" + displayVehicle(player);
+    }
+    
+    return result;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void initializeVehicle(mapping blueprint)
+{
+    if (mappingp(blueprint))
+    {
+        // Set basic properties
+        set("vehicle type", blueprint["type"] || "unknown");
+        set("name", blueprint["display name"] || blueprint["type"]);
+        set("short", blueprint["display name"] || blueprint["type"]);
+        set("long", blueprint["default description"] || "A vehicle.");
+        
+        // Initialize components with unbuilt versions
+        mapping components = ([]);
+        if (member(blueprint, "slots"))
+        {
+            foreach (string slot in m_indices(blueprint["slots"]))
+            {
+                string slotType = blueprint["slots"][slot];
+                components[slot] = sprintf("unbuilt %s", slotType);
+            }
+        }
+        set("components", components);
+        
+        // Initialize empty cargo and crew
+        set("cargo", ([]));
+        set("crew", ([]));
+        
+        // Set structure to max
+        currentStructure = getMaxStructure();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int set(string element, mixed data)
 {
+    int result = 0;
+    
     // Enforce required elements for vehicles
     switch (element)
     {
@@ -489,5 +839,6 @@ public nomask varargs int set(string element, mixed data)
             break;
         }
     }
-    return item::set(element, data);
+    result = item::set(element, data);
+    return result;
 }

@@ -1,5 +1,3 @@
-// File: lib/modules/domains/trading/taipanStateMachine.c
-
 inherit "/lib/core/stateMachine.c";
 
 /////////////////////////////////////////////////////////////////////////////
