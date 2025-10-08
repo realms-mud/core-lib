@@ -80,7 +80,7 @@ private void setupPlayerHenchmen()
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Selector = clone_object("/lib/modules/domains/vehicleSelector.c");
+    Selector = clone_object("/lib/modules/domains/trading/selectors/vehicleSelector.c");
     Selector->setLocation("eledhel");
 
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
