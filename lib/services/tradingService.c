@@ -694,11 +694,21 @@ public int acceptContract(object user, string portName, string contractId)
 ///////////////////////////////////////////////////////////////////////////////
 public nomask int calculateContractProgress(object player, mapping contract)
 {
+    int ret = 0;
     int total = 0;
+    int delivered = 0;
+    
     if (objectp(player) && mappingp(contract))
     {
         string itemType = contract["item type"];
         string *itemPaths = getItemListForType(itemType);
+        
+        // Get delivered amount from contract
+        if (member(contract, "delivered"))
+        {
+            delivered = contract["delivered"];
+        }
+        
         if (sizeof(itemPaths))
         {
             object *vehicles = player->getVehicles();
@@ -719,11 +729,14 @@ public nomask int calculateContractProgress(object player, mapping contract)
                     }
                 }
             }
+            // Remove the duplicate trade run checking that causes double-counting
         }
+        
         int needed = contract["quantity"];
-        return (needed > 0) ? (total * 100) / needed : 0;
+        // Include both current cargo and already delivered items
+        ret = (needed > 0) ? ((total + delivered) * 100) / needed : 0;
     }
-    return 0;
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

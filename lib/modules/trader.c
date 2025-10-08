@@ -613,3 +613,16 @@ public int removeActiveContract(string contractId)
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public int setActiveContract(string contractId, mapping contractData)
+{
+    int ret = 0;
+    if (contractId && mappingp(contractData) && 
+        member(tradingCompany["active contracts"], contractId))
+    {
+        tradingCompany["active contracts"][contractId] = contractData;
+        ret = 1;
+    }
+    return ret;
+}

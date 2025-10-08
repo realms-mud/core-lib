@@ -11,7 +11,7 @@ object Selector;
 void Init()
 {
     ignoreList += ({
-        "__inline_lib_tests_modules_trade_vehicleSelectorTest_c_163_#0000",
+        "__inline_lib_tests_modules_trade_vehicleSelectorTest_c_162_#0000",
         "resetPlayerMessages",
         "getMenuOptionNumber", 
         "setupPlayerVehicles",
@@ -42,7 +42,6 @@ private void setupPlayerVehicles()
         mapping blueprint = vehicleService->queryVehicleBlueprint("wagon");
         wagon->initializeVehicle(blueprint);
         wagon->addCargo("grain", 5);
-        wagon->assignHenchman("henchman", "Gareth");
     }
 }
 
