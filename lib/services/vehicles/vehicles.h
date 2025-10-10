@@ -5,6 +5,9 @@
 #ifndef vehicles_h
 #define vehicles_h
 
+protected string *vehicleTypes = ({ "wagon", "cart", "boat", "ship", 
+    "barge" });
+
 protected mapping Vehicles = ([
 
     //=======================================================================

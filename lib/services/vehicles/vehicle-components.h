@@ -324,6 +324,38 @@ private mapping VehicleComponents =
         "crafting materials": ([ "wood": 1, "metal": 1 ]),
         "prerequisites": ([ "carpentry": ([ "type": "skill", "value": 2 ]) ]),
     ]),
+    "caltrop dispenser": ([
+        "class": "weapon",
+        "description": "A device that scatters spiked caltrops to impede pursuit.",
+        "weight": 3,
+        "crafting materials": ([ "metal": 4 ]),
+        "prerequisites": ([
+            "metal crafting": ([ "type": "skill", "value": 3 ]),
+            "/lib/instances/research/vehicles/components/caltrop-dispenser.c" : (["type":"research"]),
+        ]),
+    ]),
+    "net launcher": ([
+        "class": "weapon",
+        "description": "A device that launches weighted nets to entangle enemies.",
+        "weight": 5,
+        "crafting materials": ([ "wood": 3, "textile": 3, "metal": 1 ]),
+        "prerequisites": ([
+            "carpentry": ([ "type": "skill", "value": 3 ]),
+            "engineering": ([ "type": "skill", "value": 2 ]),
+            "/lib/instances/research/vehicles/components/net-launcher.c" : (["type":"research"]),
+        ]),
+    ]),
+    "wagon oil dispenser": ([
+        "class": "weapon",
+        "description": "A system for dispensing flammable oil, often used with fire.",
+        "weight": 4,
+        "crafting materials": ([ "wood": 2, "metal": 3 ]),
+        "prerequisites": ([
+            "carpentry": ([ "type": "skill", "value": 2 ]),
+            "alchemy": ([ "type": "skill", "value": 2 ]),
+            "/lib/instances/research/vehicles/components/oil-dispenser.c" : (["type":"research"]),
+        ]),
+    ]),
 
     //=========================================================================
     // WAGON UTILITY COMPONENTS
@@ -619,6 +651,121 @@ private mapping VehicleComponents =
             "engineering": ([ "type": "skill", "value": 2 ]),
         ]),
     ]),
+    "greek fire projector": ([
+        "class": "weapon",
+        "description": "A system for projecting burning liquid fire at enemy vessels.",
+        "weight": 6,
+        "crafting materials": ([ "metal": 4, "wood": 2 ]),
+        "prerequisites": ([
+            "engineering": ([ "type": "skill", "value": 5 ]),
+            "alchemy": ([ "type": "skill", "value": 4 ]),
+            "/lib/instances/research/vehicles/components/greek-fire-projector.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "corvus boarding bridge": ([
+        "class": "weapon", 
+        "description": "A pivoting bridge with a spike for boarding enemy ships.",
+        "weight": 12,
+        "crafting materials": ([ "wood": 8, "metal": 6 ]),
+        "prerequisites": ([
+            "carpentry": ([ "type": "skill", "value": 4 ]),
+            "engineering": ([ "type": "skill", "value": 3 ]),
+            "/lib/instances/research/vehicles/components/corvus-boarding-bridge.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "springald mount": ([
+        "class": "weapon",
+        "description": "A mount for a torsion-powered bolt thrower.",
+        "weight": 9,
+        "crafting materials": ([ "wood": 5, "metal": 3 ]),
+        "prerequisites": ([
+            "carpentry": ([ "type": "skill", "value": 4 ]),
+            "engineering": ([ "type": "skill", "value": 4 ]),
+            "/lib/instances/research/vehicles/components/springald-mount.c" : (["type":"research"]),
+        ]),
+    ]),
+    "onager mount": ([
+        "class": "weapon",
+        "description": "A mount for a one-armed stone-throwing catapult.",
+        "weight": 18,
+        "crafting materials": ([ "wood": 12, "metal": 5 ]),
+        "prerequisites": ([
+            "carpentry": ([ "type": "skill", "value": 5 ]),
+            "engineering": ([ "type": "skill", "value": 4 ]),
+            "/lib/instances/research/vehicles/components/onager-mount.c" : (["type":"research"]),
+        ]),
+    ]),
+    "lightning cannon": ([
+        "class": "weapon",
+        "description": "A magical device that hurls bolts of lightning at enemies.",
+        "weight": 10,
+        "crafting materials": ([ "metal": 5, "crystal": 4 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 14 ]),
+            "/lib/instances/research/vehicles/components/lightning-cannon.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "frost projector": ([
+        "class": "weapon", 
+        "description": "A magical device that projects freezing cold and ice shards.",
+        "weight": 8,
+        "crafting materials": ([ "crystal": 5, "metal": 3 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 10 ]),
+            "/lib/instances/research/vehicles/components/frost-projector.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "acid sprayer": ([
+        "class": "weapon",
+        "description": "A magical device that sprays corrosive acid at targets.",
+        "weight": 7,
+        "crafting materials": ([ "crystal": 4, "metal": 3 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 11 ]),
+            "alchemy": ([ "type": "skill", "value": 3 ]),
+            "/lib/instances/research/vehicles/components/acid-sprayer.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "soul reaper": ([
+        "class": "weapon",
+        "description": "A dark magical device that drains life force from enemies.",
+        "weight": 6,
+        "crafting materials": ([ "crystal": 6, "metal": 2 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 16 ]),
+            "/lib/instances/research/vehicles/components/soul-reaper.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "sonic disruptor": ([
+        "class": "weapon",
+        "description": "A magical device that produces devastating sound waves.",
+        "weight": 5,
+        "crafting materials": ([ "crystal": 5, "metal": 2 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 13 ]),
+            "/lib/instances/research/vehicles/components/sonic-disruptor.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "confusion projector": ([
+        "class": "weapon",
+        "description": "A magical device that causes confusion and fear in enemies.",
+        "weight": 4,
+        "crafting materials": ([ "crystal": 4, "textile": 2 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 12 ]),
+            "/lib/instances/research/vehicles/components/confusion-projector.c": ([ "type": "research" ]),
+        ]),
+    ]),
+    "mind spike launcher": ([
+        "class": "weapon",
+        "description": "A magical device that launches spikes that disrupt mental focus.",
+        "weight": 6,
+        "crafting materials": ([ "crystal": 5, "metal": 3 ]),
+        "prerequisites": ([
+            "spellcraft": ([ "type": "skill", "value": 14 ]),
+            "/lib/instances/research/vehicles/components/mind-spike-launcher.c": ([ "type": "research" ]),
+        ]),
+	]),
 
     //=========================================================================
     // PROPULSION COMPONENTS

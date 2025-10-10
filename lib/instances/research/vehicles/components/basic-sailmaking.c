@@ -1,0 +1,24 @@
+//*****************************************************************************
+// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/modules/research/passiveResearchItem.c";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+    addSpecification("name", "Basic Sailmaking");
+    addSpecification("source", "vehicles");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge required to craft basic sails from textile materials, "
+        "enabling wind-powered propulsion for vessels.");
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addPrerequisite("sewing", (["type":"skill", "value" : 2]));
+    addPrerequisite("nautical skills", (["type":"skill", "value" : 1]));
+    addPrerequisite("/lib/instances/research/vehicles/craftComponents.c", 
+        (["type":"research"]));
+
+    addSpecification("limited by", (["crafting type":({ "boat", "ship", "barge" })]));
+    addSpecification("bonus crafting speed", 1);
+}

@@ -6,6 +6,26 @@
 #include "/lib/services/vehicles/vehicle-components.h"
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int isValidType(mixed type)
+{
+    int ret = 0;
+
+    if (stringp(type))
+    {
+        ret = member(vehicleTypes, type) > -1;
+    }
+    else if (pointerp(type) && sizeof(type))
+    {
+        ret = 1;
+        foreach(string key in type)
+        {
+            ret &&= member(vehicleTypes, key) > -1;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping queryVehicleBlueprint(string type)
 {
     mapping result = ([]);

@@ -25,7 +25,9 @@ public nomask string *validCraftingBonuses()
     return enchantments + ({ "crafting value multiplier", "crafting encumberance reduction",
         "crafting weapon class", "crafting defense class", "crafting attack",
         "crafting weight reduction", "crafting armor class", "crafting duration",
-        "crafting enchantment power", "crafting potency", "crafting enchantments"
+        "crafting enchantment power", "crafting potency", "crafting enchantments",
+		"crafting structure", "crafting protection", "crafting speed", "crafting capacity",
+        "crafting henchman bonus"
     });
 }
 
