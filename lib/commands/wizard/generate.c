@@ -18,7 +18,8 @@ public nomask void SetupCommand()
         "[-p(ath|) ##Value##] [-t(ype|) \"##Value##\"] [-x ##Value##] "
         "[-y ##Value##] [-dir(ection|) ##Value##] "
         "[-de(stination|) ##Value##] [-s(ettlement chance|) ##Value##] "
-        "[-l(evel|) ##Value##] [-r(ooms|) ##Value##] [.*]");
+        "[-l(evel|) ##Value##] [-r(ooms|) ##Value##] "
+        "[-b(uilding|)] [.*]");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -216,6 +217,19 @@ private string getDestination(string command)
             ".*-de(stination)* ([0-9A-Za-z_\./\-]+).*", "\\2", 1);
     }
     return destination;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int getBuildingMode(string command)
+{
+    int ret = 0;
+    
+    if (sizeof(regexp(({ command }), "-b(uilding)*")))
+    {
+        ret = 1;
+    }
+    
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -435,6 +449,13 @@ protected string flagInformation(string flag, string colorConfiguration)
                 "of the area of the region as a maximum. The reason for this is because "
                 "the pathing algorithm can become unperformant in scenarios outside of "
                 "those bounds.";
+            break;
+        }
+        case "-b":
+        {
+            ret = "This option enables building mode for structured layouts of "
+                "temples, keeps, and crypts with individual room files and "
+                "proper interior decorations.";
             break;
         }
     }

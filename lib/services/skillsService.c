@@ -674,6 +674,52 @@ private mapping skills = ([
             "phenomina (location of sun or stars in the sky, behaviour of "
             "magnets, growth of plants, etc)\n"
     ]),
+    "nautical warfare": ([
+        "type": "erudite",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -10,
+        "description": "This skill provides proficiency in the command, "
+            "tactics, and execution of naval and ship-based combat, "
+            "including boarding actions, ship maneuvers, and use of "
+            "shipboard weapons.\n"
+    ]),
+    "overland warfare": ([
+        "type": "erudite",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": -10,
+        "description": "This skill provides proficiency in the tactics and "
+            "execution of land-based vehicle and troop combat, including "
+            "formations, ambushes, and battlefield maneuvers.\n"
+    ]),
+    "strategy": ([
+        "type": "erudite",
+        "attribute": "intelligence",
+        "bonus calculator": "one for two",
+        "untrained penalty": 0,
+        "description": "This skill provides knowledge of large-scale planning "
+            "and coordination of military operations, including campaign "
+            "planning and resource allocation.\n"
+    ]),
+    "tactics": ([
+        "type": "erudite",
+        "attribute": "wisdom",
+        "bonus calculator": "one for two",
+        "untrained penalty": 0,
+        "description": "This skill provides knowledge of battlefield "
+            "maneuvers, unit positioning, and the effective use of forces "
+            "in combat situations.\n"
+    ]),
+    "logistics": ([
+        "type": "erudite",
+        "attribute": "intelligence",
+        "bonus calculator": "one for two",
+        "untrained penalty": 0,
+        "description": "This skill provides knowledge of organizing, "
+            "supplying, and maintaining armies and fleets, including supply "
+            "lines, transportation, and resource management.\n"
+    ]),
     "philosophy": ([
         "type": "erudite",
         "attribute": "intelligence",

@@ -401,6 +401,50 @@ protected mapping RegionTypes = ([
 
     ]),
 
+    "temple": ([
+        "interior": "/lib/environment/interiors/ruin.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "keeper of the night": 25,
+            "skeleton": 40,
+            "zombie": 30,
+            "spectre": 15,
+        ])
+    ]),
+
+    "keep": ([
+        "interior": "/lib/environment/interiors/ruin.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "ruffian": 50,
+            "outlaw": 40,
+            "knight of the storm": 25,
+            "skeleton": 30,
+        ])
+    ]),
+
+    "ruins": ([
+        "interior": "/lib/environment/interiors/ruin.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "skeleton": 60,
+            "zombie": 40,
+            "rat": 20,
+            "giant spider": 15,
+        ])
+    ]),
 ]);
 
 #endif

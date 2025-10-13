@@ -29,11 +29,9 @@ private mapping functionsToBonuses = ([
 ]);
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string *bonusList()
+private nomask string *livingBonuses()
 {
-    if(!bonuses)
-    {
-        bonuses = ({ "strength", "intelligence", "dexterity", "wisdom",
+    return ({ "strength", "intelligence", "dexterity", "wisdom",
         "constitution", "charisma", "to intoxicated", "to stuffed",
         "to drugged", "to soaked", "headache", "armor class", "defense class",
         "attack", "soak", "hit points", "spell points", "stamina points",
@@ -43,6 +41,23 @@ private nomask string *bonusList()
         "recover stamina points", "weapon attack", "defense", "damage",
         "haste", "slow", "enfeebled", "fortified", "poison", "paralysis",
         "disease", "damage reflection", "encumberance" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *vehicleBonuses()
+{
+    return ({ "vehicle structure", "vehicle protection", "vehicle air protection",
+        "vehicle speed", "vehicle capacity", "vehicle attack", 
+        "vehicle air attack", "vehicle damage", "vehicle handling", 
+        "henchman bonus" });
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string *bonusList()
+{
+    if(!bonuses)
+    {
+		bonuses = livingBonuses() + vehicleBonuses();
     
         object attacksService = getService("attacks");
         if(attacksService && 

@@ -21,6 +21,6 @@ protected void Setup()
         (["type":"research"]));
 
     addSpecification("limited by", (["crafting type":({ "wagon", "cart", "boat", "ship" })]));
-    addSpecification("bonus crafting speed", 12);
-    addSpecification("bonus crafting structure", 8);
+    addSpecification("bonus crafting vehicle speed", 12);
+    addSpecification("bonus crafting vehicle structure", 8);
 }

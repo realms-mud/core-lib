@@ -7,6 +7,7 @@ virtual inherit "/lib/environment/modules/regions/entries-and-exits.c";
 virtual inherit "/lib/environment/modules/regions/generate-path.c";
 virtual inherit "/lib/environment/modules/regions/generate-room.c";
 virtual inherit "/lib/environment/modules/regions/generate-settlement.c";
+virtual inherit "/lib/environment/modules/regions/generate-building.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected int getRoomCount()
@@ -77,7 +78,93 @@ private nomask int canGenerateRegion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void generateRegion(string enterFrom, string location,
+private nomask void populateBuildingGrid(string enterFrom, string location,
+    int *coordinates)
+{
+    EntryPoint = location;
+    EnterFrom = enterFrom;
+    
+    // Get building template and populate grid for map display
+    mapping template = getBuildingTemplate(RegionType);
+    if (template)
+    {
+        mixed *layout = template["layout"];
+        int maxY = sizeof(layout);
+        int maxX = sizeof(layout[0]);
+        
+        // Override dimensions with template dimensions
+        MaxX = template["dimensions"]["x"];
+        MaxY = template["dimensions"]["y"];
+        
+        createEmptyGrid(MaxX, MaxY);
+        
+        // Populate grid with building layout for map display
+        for (int y = 0; y < maxY; y++)
+        {
+            for (int x = 0; x < maxX; x++)
+            {
+                int *row = layout[y];
+                int roomType = row[x];
+                
+                if (roomType > 0)
+                {
+                    string iconKey = "none";
+                    string roomTypeStr = "room";
+                    
+                    if (roomType == 1)
+                    {
+                        iconKey = "wall";
+                        roomTypeStr = "wall";
+                    }
+                    else if (roomType == 2)
+                    {
+                        iconKey = "floor";
+                        roomTypeStr = "room";
+                    }
+                    else if (roomType == 3)
+                    {
+                        iconKey = "special room";
+                        roomTypeStr = "special";
+                    }
+                    else if (roomType == 4)
+                    {
+                        iconKey = "entry";
+                        roomTypeStr = "entry";
+                        entry = ({ x, y });
+                    }
+                    else if (roomType == 5)
+                    {
+                        iconKey = "courtyard";
+                        roomTypeStr = "courtyard";
+                    }
+                    else if (roomType == 6)
+                    {
+                        iconKey = "throne room";
+                        roomTypeStr = "throne";
+                    }
+                    else if (roomType == 7)
+                    {
+                        iconKey = "garden";
+                        roomTypeStr = "garden";
+                    }
+                    
+                    grid[x][y] = ([
+                        "x": x,
+                        "y": y,
+                        "room type": roomTypeStr,
+                        "is placed": (roomType > 1) ? 1 : 0,
+                        "exits": ([]),
+                        "environment": 0,
+                        "icon": RegionService->getMapDecorator(iconKey)
+                    ]);
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void generateStandardRegion(string enterFrom, string location,
     int *coordinates)
 {
     EntryPoint = location;
@@ -126,6 +213,20 @@ private nomask void generateRegion(string enterFrom, string location,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void generateRegion(string enterFrom, string location,
+    int *coordinates)
+{
+    if (isBuildingRegionType())
+    {
+        populateBuildingGrid(enterFrom, location, coordinates);
+    }
+    else
+    {
+        generateStandardRegion(enterFrom, location, coordinates);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs string createRegion(string enterFrom, string location,
     int *coordinates)
 {
@@ -134,7 +235,10 @@ public nomask varargs string createRegion(string enterFrom, string location,
     int loaded = call_direct(this_object(), "load", enterFrom, location);
     if (!loaded && canGenerateRegion())
     {
-        createEmptyGrid(MaxX, MaxY);
+        if (!isBuildingRegionType())
+        {
+            createEmptyGrid(MaxX, MaxY);
+        }
         generateRegion(enterFrom, location, coordinates);
 
         ret = getDirectionOfEntry(enterFrom);

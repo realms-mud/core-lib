@@ -19,5 +19,5 @@ protected void Setup()
         (["type":"research"]));
 
     addSpecification("limited by", (["crafting type":({ "wagon", "cart" })]));
-    addSpecification("bonus crafting weapon class", 1);
+    addSpecification("bonus crafting vehicle attack", 1);
 }

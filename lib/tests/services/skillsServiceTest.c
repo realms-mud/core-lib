@@ -1386,3 +1386,53 @@ void CanAdvanceSkillReturnsCorrectly()
     ExpectTrue(Service.canAdvanceSkill(skillOwner, "dodge", 10), "can advance when skill lower than attribute");
     ExpectFalse(Service.canAdvanceSkill(skillOwner, "dodge", 31), "cannot advance when skill higher than attribute+10");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void NauticalWarfareIsAValidSkill()
+{
+    ExpectTrue(Service.isValidSkill("nautical warfare"), "nautical warfare is a valid skill");
+    ExpectEq("erudite", Service.skillType("nautical warfare"), "returns proper skill type");
+    ExpectEq("wisdom", Service.attributeForSkill("nautical warfare"), "returns proper attribute");
+    ExpectEq(5, Service.skillBonus("nautical warfare", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-10, Service.skillBonus("nautical warfare", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void OverlandWarfareIsAValidSkill()
+{
+    ExpectTrue(Service.isValidSkill("overland warfare"), "overland warfare is a valid skill");
+    ExpectEq("erudite", Service.skillType("overland warfare"), "returns proper skill type");
+    ExpectEq("wisdom", Service.attributeForSkill("overland warfare"), "returns proper attribute");
+    ExpectEq(5, Service.skillBonus("overland warfare", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(-10, Service.skillBonus("overland warfare", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void StrategyIsAValidSkill()
+{
+    ExpectTrue(Service.isValidSkill("strategy"), "strategy is a valid skill");
+    ExpectEq("erudite", Service.skillType("strategy"), "returns proper skill type");
+    ExpectEq("intelligence", Service.attributeForSkill("strategy"), "returns proper attribute");
+    ExpectEq(5, Service.skillBonus("strategy", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Service.skillBonus("strategy", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TacticsIsAValidSkill()
+{
+    ExpectTrue(Service.isValidSkill("tactics"), "tactics is a valid skill");
+    ExpectEq("erudite", Service.skillType("tactics"), "returns proper skill type");
+    ExpectEq("wisdom", Service.attributeForSkill("tactics"), "returns proper attribute");
+    ExpectEq(5, Service.skillBonus("tactics", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Service.skillBonus("tactics", 0), "returns correct value when untrained");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LogisticsIsAValidSkill()
+{
+    ExpectTrue(Service.isValidSkill("logistics"), "logistics is a valid skill");
+    ExpectEq("erudite", Service.skillType("logistics"), "returns proper skill type");
+    ExpectEq("intelligence", Service.attributeForSkill("logistics"), "returns proper attribute");
+    ExpectEq(5, Service.skillBonus("logistics", 10), "skill of 10 returns a 5 bonus");
+    ExpectEq(0, Service.skillBonus("logistics", 0), "returns correct value when untrained");
+}

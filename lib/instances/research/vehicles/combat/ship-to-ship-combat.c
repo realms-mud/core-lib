@@ -7,19 +7,20 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Square Sailmaking");
+    addSpecification("name", "Ship-to-Ship Combat");
     addSpecification("source", "vehicles");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge required to craft large square sails for maximum speed "
-        "with favorable winds on ocean voyages.");
+        "knowledge required for advanced naval combat between vessels, "
+        "including artillery coordination and battle line tactics.");
     addSpecification("research type", "points");
-    addSpecification("research cost", 3);
-    addPrerequisite("sewing", (["type":"skill", "value" : 4]));
-    addPrerequisite("nautical skills", (["type":"skill", "value" : 3]));
-    addPrerequisite("carpentry", (["type":"skill", "value" : 2]));
-    addPrerequisite("/lib/instances/research/vehicles/components/lateen-sailmaking.c", 
+    addSpecification("research cost", 6);
+    addPrerequisite("tactics", (["type":"skill", "value" : 8]));
+    addPrerequisite("engineering", (["type":"skill", "value" : 6]));
+    addPrerequisite("nautical skills", (["type":"skill", "value" : 7]));
+    addPrerequisite("/lib/instances/research/vehicles/combat/boarding-actions.c", 
         (["type":"research"]));
 
-    addSpecification("limited by", (["crafting type":({ "boat", "ship", "barge" })]));
-    addSpecification("bonus crafting vehicle speed", 3);
+    addSpecification("bonus attack", 3);
+    addSpecification("bonus damage", 2);
+    addSpecification("bonus fire enchantment", 2);
 }

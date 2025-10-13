@@ -7,19 +7,19 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Square Sailmaking");
+    addSpecification("name", "Ramming Techniques");
     addSpecification("source", "vehicles");
     addSpecification("description", "This skill provides the user with the "
-        "knowledge required to craft large square sails for maximum speed "
-        "with favorable winds on ocean voyages.");
+        "knowledge required to effectively use vehicles as battering rams, "
+        "including optimal angles of attack and structural reinforcement.");
     addSpecification("research type", "points");
     addSpecification("research cost", 3);
-    addPrerequisite("sewing", (["type":"skill", "value" : 4]));
-    addPrerequisite("nautical skills", (["type":"skill", "value" : 3]));
-    addPrerequisite("carpentry", (["type":"skill", "value" : 2]));
-    addPrerequisite("/lib/instances/research/vehicles/components/lateen-sailmaking.c", 
+    addPrerequisite("weapon smithing", (["type":"skill", "value" : 5]));
+    addPrerequisite("engineering", (["type":"skill", "value" : 4]));
+    addPrerequisite("/lib/instances/research/vehicles/combat/basic-vehicle-tactics.c", 
         (["type":"research"]));
 
-    addSpecification("limited by", (["crafting type":({ "boat", "ship", "barge" })]));
-    addSpecification("bonus crafting vehicle speed", 3);
+    addSpecification("bonus damage", 2);
+    addSpecification("bonus attack", 1);
+    addSpecification("bonus resist physical", 2);
 }
