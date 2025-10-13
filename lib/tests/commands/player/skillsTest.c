@@ -184,7 +184,7 @@ void CrFlagOnlyDisplaysCraftingSkills()
 /////////////////////////////////////////////////////////////////////////////
 void EruditeFlagOnlyDisplaysEruditeSkills()
 {
-    Player.addSkillPoints(175);
+    Player.addSkillPoints(199);
     PrepSkillsOfType("erudite");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -192,13 +192,15 @@ void EruditeFlagOnlyDisplaysEruditeSkills()
         sprintf(SkillsRow, "Astronomy", 2, "", "Chemistry", 3, "") +
         sprintf(SkillsRow, "Engineering", 4, "", "Geology", 5, "") +
         sprintf(SkillsRow, "Herbalism", 6, "", "Linguistics", 7, "") +
-        sprintf(SkillsRow, "Local history", 8, "", "Mathematics", 9, "") +
-        sprintf(SkillsRow, "Navigation", 0, "", "Perception", 1, "") +
-        sprintf(SkillsRow, "Philosophy", 2, "", "Physics", 3, "") +
-        sprintf(SkillsRow, "Reading", 4, "", "Spellcraft", 5, "") +
-        sprintf(SkillsRow, "Theology", 6, "", "Writing", 7, "") +
-        sprintf(HalfRow, "Zoology", 8, "", "") +
-        EndBar + sprintf(SkillPoints, 13);
+        sprintf(SkillsRow, "Local history", 8, "", "Logistics", 9, "") +
+        sprintf(SkillsRow, "Mathematics", 0, "", "Nautical warfare", 1, "") +
+        sprintf(SkillsRow, "Navigation", 2, "", "Overland warfare", 3, "") +
+        sprintf(SkillsRow, "Perception", 4, "", "Philosophy", 5, "") +
+        sprintf(SkillsRow, "Physics", 6, "", "Reading", 7, "") +
+        sprintf(SkillsRow, "Spellcraft", 8, "", "Strategy", 9, "") +
+        sprintf(SkillsRow, "Tactics", 0, "", "Theology", 1, "") +
+        sprintf(SkillsRow, "Writing", 2, "", "Zoology", 3, "") +
+        EndBar + sprintf(SkillPoints, 7);
 
     ExpectTrue(Player.executeCommand("skills -erudite"));
     ExpectEq(message, Player.caughtMessage());
@@ -207,7 +209,7 @@ void EruditeFlagOnlyDisplaysEruditeSkills()
 /////////////////////////////////////////////////////////////////////////////
 void EFlagOnlyDisplaysEruditeSkills()
 {
-    Player.addSkillPoints(175);
+    Player.addSkillPoints(200);
     PrepSkillsOfType("erudite");
 
     string message = "\n+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ Erudite Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
@@ -215,13 +217,15 @@ void EFlagOnlyDisplaysEruditeSkills()
         sprintf(SkillsRow, "Astronomy", 2, "", "Chemistry", 3, "") +
         sprintf(SkillsRow, "Engineering", 4, "", "Geology", 5, "") +
         sprintf(SkillsRow, "Herbalism", 6, "", "Linguistics", 7, "") +
-        sprintf(SkillsRow, "Local history", 8, "", "Mathematics", 9, "") +
-        sprintf(SkillsRow, "Navigation", 0, "", "Perception", 1, "") +
-        sprintf(SkillsRow, "Philosophy", 2, "", "Physics", 3, "") +
-        sprintf(SkillsRow, "Reading", 4, "", "Spellcraft", 5, "") +
-        sprintf(SkillsRow, "Theology", 6, "", "Writing", 7, "") +
-        sprintf(HalfRow, "Zoology", 8, "", "") +
-        EndBar + sprintf(SkillPoints, 13);
+        sprintf(SkillsRow, "Local history", 8, "", "Logistics", 9, "") +
+        sprintf(SkillsRow, "Mathematics", 0, "", "Nautical warfare", 1, "") +
+        sprintf(SkillsRow, "Navigation", 2, "", "Overland warfare", 3, "") +
+        sprintf(SkillsRow, "Perception", 4, "", "Philosophy", 5, "") +
+        sprintf(SkillsRow, "Physics", 6, "", "Reading", 7, "") +
+        sprintf(SkillsRow, "Spellcraft", 8, "", "Strategy", 9, "") +
+        sprintf(SkillsRow, "Tactics", 0, "", "Theology", 1, "") +
+        sprintf(SkillsRow, "Writing", 2, "", "Zoology", 3, "") +
+        EndBar + sprintf(SkillPoints, 8);
 
     ExpectTrue(Player.executeCommand("skills -e"));
     ExpectEq(message, Player.caughtMessage());
@@ -396,7 +400,7 @@ void LFlagOnlyDisplaysLanguageSkills()
 /////////////////////////////////////////////////////////////////////////////
 void AllFlagDisplaysAllSkills()
 {
-    Player.addSkillPoints(1068);
+    Player.addSkillPoints(1090);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -442,12 +446,14 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Astronomy", 2, "", "Chemistry", 3, "") +
         sprintf(SkillsRow, "Engineering", 4, "", "Geology", 5, "") +
         sprintf(SkillsRow, "Herbalism", 6, "", "Linguistics", 7, "") +
-        sprintf(SkillsRow, "Local history", 8, "", "Mathematics", 9, "") +
-        sprintf(SkillsRow, "Navigation", 0, "", "Perception", 1, "") +
-        sprintf(SkillsRow, "Philosophy", 2, "", "Physics", 3, "") +
-        sprintf(SkillsRow, "Reading", 4, "", "Spellcraft", 5, "") +
-        sprintf(SkillsRow, "Theology", 6, "", "Writing", 7, "") +
-        sprintf(HalfRow, "Zoology", 8, "", "");
+        sprintf(SkillsRow, "Local history", 8, "", "Logistics", 9, "") +
+        sprintf(SkillsRow, "Mathematics", 0, "", "Nautical warfare", 1, "") +
+        sprintf(SkillsRow, "Navigation", 2, "", "Overland warfare", 3, "") +
+        sprintf(SkillsRow, "Perception", 4, "", "Philosophy", 5, "") +
+        sprintf(SkillsRow, "Physics", 6, "", "Reading", 7, "") +
+        sprintf(SkillsRow, "Spellcraft", 8, "", "Strategy", 9, "") +
+        sprintf(SkillsRow, "Tactics", 0, "", "Theology", 1, "") +
+        sprintf(SkillsRow, "Writing", 2, "", "Zoology", 3, "");
 
     message += "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
@@ -487,7 +493,7 @@ void AllFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
         sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
-        EndBar + sprintf(SkillPoints, 8);
+        EndBar + sprintf(SkillPoints, 0);
 
     ExpectTrue(Player.executeCommand("skills -all"));
     ExpectEq(message, Player.caughtMessage());
@@ -496,7 +502,7 @@ void AllFlagDisplaysAllSkills()
 /////////////////////////////////////////////////////////////////////////////
 void NoFlagDisplaysAllSkills()
 {
-    Player.addSkillPoints(1068);
+    Player.addSkillPoints(1100);
     PrepSkillsOfType("combat");
     PrepSkillsOfType("crafting");
     PrepSkillsOfType("erudite");
@@ -542,12 +548,14 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Astronomy", 2, "", "Chemistry", 3, "") +
         sprintf(SkillsRow, "Engineering", 4, "", "Geology", 5, "") +
         sprintf(SkillsRow, "Herbalism", 6, "", "Linguistics", 7, "") +
-        sprintf(SkillsRow, "Local history", 8, "", "Mathematics", 9, "") +
-        sprintf(SkillsRow, "Navigation", 0, "", "Perception", 1, "") +
-        sprintf(SkillsRow, "Philosophy", 2, "", "Physics", 3, "") +
-        sprintf(SkillsRow, "Reading", 4, "", "Spellcraft", 5, "") +
-        sprintf(SkillsRow, "Theology", 6, "", "Writing", 7, "") +
-        sprintf(HalfRow, "Zoology", 8, "", "");
+        sprintf(SkillsRow, "Local history", 8, "", "Logistics", 9, "") +
+        sprintf(SkillsRow, "Mathematics", 0, "", "Nautical warfare", 1, "") +
+        sprintf(SkillsRow, "Navigation", 2, "", "Overland warfare", 3, "") +
+        sprintf(SkillsRow, "Perception", 4, "", "Philosophy", 5, "") +
+        sprintf(SkillsRow, "Physics", 6, "", "Reading", 7, "") +
+        sprintf(SkillsRow, "Spellcraft", 8, "", "Strategy", 9, "") +
+        sprintf(SkillsRow, "Tactics", 0, "", "Theology", 1, "") +
+        sprintf(SkillsRow, "Writing", 2, "", "Zoology", 3, "");
 
     message += "+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=+ General Skills +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+\n" +
         sprintf(SkillsRow, "Agriculture", 0, "", "Animal handling", 1, "") +
@@ -587,7 +595,7 @@ void NoFlagDisplaysAllSkills()
         sprintf(SkillsRow, "Move silently", 8, "", "Open lock", 9, "") +
         sprintf(SkillsRow, "Search", 0, "", "Set traps and snares", 1, "") +
         sprintf(SkillsRow, "Spot", 2, "", "Tracking", 3, "") +
-        EndBar + sprintf(SkillPoints, 8);
+        EndBar + sprintf(SkillPoints, 10);
 
     ExpectTrue(Player.executeCommand("skills"));
     ExpectEq(message, Player.caughtMessage());
