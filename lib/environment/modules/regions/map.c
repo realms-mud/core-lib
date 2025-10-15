@@ -138,7 +138,7 @@ private nomask varargs string displayMapSection(object user, int startX,
 
                     string decoratorType = objectp(location["environment"]) ?
                         location["environment"]->decoratorType(state) : 
-                        location["room type"];
+                        (member(location, "decorator type") ? location["decorator type"] : location["room type"]);
 
                     string **icon = RegionService->getMapIcon(this_object(),
                         decoratorType, colorConfiguration, charset);

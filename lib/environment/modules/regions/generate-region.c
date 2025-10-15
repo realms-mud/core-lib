@@ -84,78 +84,73 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
     EntryPoint = location;
     EnterFrom = enterFrom;
     
-    // Get building template and populate grid for map display
-    mapping template = getBuildingTemplate(RegionType);
+    // Generate a procedural building template
+    mapping template = generateBuildingTemplate(enterFrom);
     if (template)
     {
         mixed *layout = template["layout"];
         int maxY = sizeof(layout);
         int maxX = sizeof(layout[0]);
         
-        // Override dimensions with template dimensions
         MaxX = template["dimensions"]["x"];
         MaxY = template["dimensions"]["y"];
         
         createEmptyGrid(MaxX, MaxY);
         
-        // Populate grid with building layout for map display
-        for (int y = 0; y < maxY; y++)
+        string baseType = member(template, "base type") ? 
+            template["base type"] : 
+            (RegionType + " interior");
+        
+        mapping roomTypeDefs = template["room types"];
+        
+        // Process layout directly - no flipping
+        // We'll map layout coordinates to grid coordinates during storage
+        for (int layoutY = 0; layoutY < maxY; layoutY++)
         {
-            for (int x = 0; x < maxX; x++)
+            for (int layoutX = 0; layoutX < maxX; layoutX++)
             {
-                int *row = layout[y];
-                int roomType = row[x];
+                int *row = layout[layoutY];
+                int roomType = row[layoutX];
                 
-                if (roomType > 0)
+                if (roomType > 0 && member(roomTypeDefs, roomType))
                 {
+                    mapping typeInfo = roomTypeDefs[roomType];
+                    string roomTypeStr = typeInfo["name"];
+                    string iconStrategy = typeInfo["icon"];
                     string iconKey = "none";
-                    string roomTypeStr = "room";
                     
-                    if (roomType == 1)
+                    // Generate icon key using layout coordinates
+                    if (iconStrategy == "wall")
                     {
                         iconKey = "wall";
-                        roomTypeStr = "wall";
                     }
-                    else if (roomType == 2)
+                    else if (iconStrategy == "base+name")
                     {
-                        iconKey = "floor";
-                        roomTypeStr = "room";
+                        iconKey = baseType + " " + roomTypeStr;
                     }
-                    else if (roomType == 3)
+                    else if (iconStrategy == "generated")
                     {
-                        iconKey = "special room";
-                        roomTypeStr = "special";
-                    }
-                    else if (roomType == 4)
-                    {
-                        iconKey = "entry";
-                        roomTypeStr = "entry";
-                        entry = ({ x, y });
-                    }
-                    else if (roomType == 5)
-                    {
-                        iconKey = "courtyard";
-                        roomTypeStr = "courtyard";
-                    }
-                    else if (roomType == 6)
-                    {
-                        iconKey = "throne room";
-                        roomTypeStr = "throne";
-                    }
-                    else if (roomType == 7)
-                    {
-                        iconKey = "garden";
-                        roomTypeStr = "garden";
+                        // Use layout coordinates for adjacency checks
+                        iconKey = generateRoomIconKey(layoutX, layoutY, layout, 
+                            RegionType);
                     }
                     
-                    grid[x][y] = ([
-                        "x": x,
-                        "y": y,
+                    // Map to grid coordinates: layout[0] -> grid[x][maxY-1]
+                    int gridY = maxY - 1 - layoutY;
+                    
+                    if (roomType == 4)
+                    {
+                        entry = ({ layoutX, gridY });
+                    }
+                    
+                    grid[layoutX][gridY] = ([
+                        "x": layoutX,
+                        "y": gridY,
                         "room type": roomTypeStr,
                         "is placed": (roomType > 1) ? 1 : 0,
                         "exits": ([]),
                         "environment": 0,
-                        "icon": RegionService->getMapDecorator(iconKey)
+                        "decorator type": iconKey
                     ]);
                 }
             }
