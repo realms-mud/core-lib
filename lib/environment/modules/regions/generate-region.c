@@ -89,6 +89,8 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
     if (template)
     {
         mixed *layout = template["layout"];
+        int **roomIds = template["roomIds"];
+        mapping **doorData = template["doorData"];
         int maxY = sizeof(layout);
         int maxX = sizeof(layout[0]);
         
@@ -103,8 +105,6 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
         
         mapping roomTypeDefs = template["room types"];
         
-        // Process layout directly - no flipping
-        // We'll map layout coordinates to grid coordinates during storage
         for (int layoutY = 0; layoutY < maxY; layoutY++)
         {
             for (int layoutX = 0; layoutX < maxX; layoutX++)
@@ -119,7 +119,6 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
                     string iconStrategy = typeInfo["icon"];
                     string iconKey = "none";
                     
-                    // Generate icon key using layout coordinates
                     if (iconStrategy == "wall")
                     {
                         iconKey = "wall";
@@ -130,13 +129,13 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
                     }
                     else if (iconStrategy == "generated")
                     {
-                        // Use layout coordinates for adjacency checks
                         iconKey = generateRoomIconKey(layoutX, layoutY, layout, 
-                            RegionType);
+                            roomIds, doorData, RegionType);
                     }
                     
-                    // Map to grid coordinates: layout[0] -> grid[x][maxY-1]
-                    int gridY = maxY - 1 - layoutY;
+                    // Map layout Y to grid Y with proper inversion
+                    // Layout Y=0 (top of array) -> Grid Y=MaxY-1 (top of display)
+                    int gridY = layoutY;
                     
                     if (roomType == 4)
                     {

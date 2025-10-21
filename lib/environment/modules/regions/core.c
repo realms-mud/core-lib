@@ -96,3 +96,23 @@ public string regionIdentifier()
         EntryPoint ? EntryPoint : getEntryCoordinates()), 
         "[^A-Za-z0-9-_]", "-", 1);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping coordinateToMapping(int x, int y)
+{
+    mapping ret = 0;
+    
+    if ((x >= 0) && (y >= 0) && (x < MaxX) && (y < MaxY) &&
+        (sizeof(grid) > x) && (sizeof(grid[x]) > y))
+    {
+        ret = grid[x][y];
+    }
+    
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int *getEntry()
+{
+    return entry + ({});
+}
