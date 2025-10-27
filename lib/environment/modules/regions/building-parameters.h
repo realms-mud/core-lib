@@ -62,6 +62,50 @@ protected mapping buildingParameters = ([
         "secondary special": 6,
         "has courtyard": 1,
         "ruined": 1
+    ]),
+    "cave": ([
+        "min width": 20,
+        "max width": 25,
+        "min height": 15,
+        "max height": 18,
+        "base type": "cave interior",
+        "room types": ([
+            0: ([ "name": "wall", "icon": "wall" ]),
+            1: ([ "name": "corridor", "icon": "base+name" ]),
+            2: ([ "name": "chamber", "icon": "base+name" ]),
+            3: ([ "name": "crystal chamber", "icon": "base+name" ]),
+            4: ([ "name": "entry", "icon": "base+name" ]),
+        ])
+    ]),
+    
+    "mine": ([
+        "min width": 18,
+        "max width": 22,
+        "min height": 12,
+        "max height": 14,
+        "base type": "mine interior",
+        "room types": ([
+            0: ([ "name": "wall", "icon": "wall" ]),
+            1: ([ "name": "shaft", "icon": "base+name" ]),
+            2: ([ "name": "mining chamber", "icon": "base+name" ]),
+            3: ([ "name": "ore deposit", "icon": "base+name" ]),
+            4: ([ "name": "entry", "icon": "base+name" ]),
+        ])
+    ]),
+    
+    "dungeon": ([
+        "min width": 18,
+        "max width": 20,
+        "min height": 13,
+        "max height": 15,
+        "base type": "dungeon interior",
+        "room types": ([
+            0: ([ "name": "wall", "icon": "wall" ]),
+            1: ([ "name": "corridor", "icon": "base+name" ]),
+            2: ([ "name": "cell", "icon": "base+name" ]),
+            3: ([ "name": "torture chamber", "icon": "base+name" ]),
+            4: ([ "name": "entry", "icon": "base+name" ]),
+        ])
     ])
 ]);
 

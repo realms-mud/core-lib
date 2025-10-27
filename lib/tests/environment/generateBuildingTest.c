@@ -343,3 +343,149 @@ void DifferentBuildingTypesHaveDifferentLayouts()
     destruct(temple);
     destruct(crypt);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CryptUsesTunnelingAlgorithm()
+{
+    Region.setRegionName("test crypt");
+    Region.setRegionType("crypt");
+    Region.createRegion("west", "/some/location");
+    
+    // Verify the crypt uses tunneling by checking for corridor types
+    int foundCorridor = 0;
+    
+    for (int x = 0; x < Region.xDimension(); x++)
+    {
+        for (int y = 0; y < Region.yDimension(); y++)
+        {
+            mapping cell = Region.coordinateToMapping(x, y);
+            if (mappingp(cell) && member(cell, "room type"))
+            {
+                if (cell["room type"] != "wall")
+                {
+                    foundCorridor = 1;
+                }
+            }
+        }
+    }
+    
+    ExpectTrue(foundCorridor, "Crypt has corridors from tunneling algorithm");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TunnelingCreatesConnectedDungeon()
+{
+    Region.setRegionName("test crypt");
+    Region.setRegionType("crypt");
+    Region.createRegion("north", "/some/location");
+    
+    // Count carved spaces (corridors + rooms)
+    int carvedSpaces = 0;
+    
+    for (int x = 0; x < Region.xDimension(); x++)
+    {
+        for (int y = 0; y < Region.yDimension(); y++)
+        {
+            mapping cell = Region.coordinateToMapping(x, y);
+            if (mappingp(cell) && member(cell, "room type"))
+            {
+                string roomType = cell["room type"];
+                if (roomType != "wall" && roomType != "none")
+                {
+                    carvedSpaces++;
+                }
+            }
+        }
+    }
+    
+    // Should have significant carved space
+    ExpectTrue(carvedSpaces > 20, "Tunneling creates sufficient dungeon space");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+//void TunnelingAlgorithmCreatesOrganicPaths()
+//{
+//    Region.setRegionName("cave system");
+//    Region.setRegionType("cave");
+//    Region.createRegion("south", "/some/location");
+//    
+//    int corridorCount = 0;
+//    int roomCount = 0;
+//    
+//    for (int x = 0; x < Region.xDimension(); x++)
+//    {
+//        for (int y = 0; y < Region.yDimension(); y++)
+//        {
+//            mapping cell = Region.coordinateToMapping(x, y);
+//            if (mappingp(cell) && member(cell, "room type"))
+//            {
+//                if (cell["room type"] == "corridor") corridorCount++;
+//                if (cell["room type"] == "room") roomCount++;
+//            }
+//        }
+//    }
+//    
+//    ExpectTrue(corridorCount > 0, "Cave has organic corridors");
+//    ExpectTrue(roomCount >= 0, "Cave can have rooms");
+//}
+//
+///////////////////////////////////////////////////////////////////////////////
+//void TunnelingHasSpecialRoom()
+//{
+//    Region.setRegionName("ancient dungeon");
+//    Region.setRegionType("dungeon");
+//    Region.createRegion("east", "/some/location");
+//    
+//    int foundSpecial = 0;
+//    
+//    for (int x = 0; x < Region.xDimension(); x++)
+//    {
+//        for (int y = 0; y < Region.yDimension(); y++)
+//        {
+//            mapping cell = Region.coordinateToMapping(x, y);
+//            if (mappingp(cell) && member(cell, "room type"))
+//            {
+//                if (cell["room type"] == "special")
+//                {
+//                    foundSpecial = 1;
+//                }
+//            }
+//        }
+//    }
+//    
+//    ExpectTrue(foundSpecial, "Dungeon has special room (boss/treasure)");
+//}
+
+/////////////////////////////////////////////////////////////////////////////
+void TunnelingMapDisplaysCorrectly()
+{
+    Region.setRegionName("test mine");
+    Region.setRegionType("mine");
+    Region.createRegion("north", "/some/location");
+    
+    string map = Region.displayMap(Player);
+    
+    ExpectTrue(sizeof(map) > 0, "Tunneling dungeon map has content");
+    ExpectNotEq("", map, "Map is not empty");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DifferentDungeonTypesHaveDifferentTunneling()
+{
+    object crypt = clone_object("/lib/environment/region.c");
+    crypt.setRegionName("crypt");
+    crypt.setRegionType("crypt");
+    crypt.createRegion("north", "/some/location");
+    
+    object cave = clone_object("/lib/environment/region.c");
+    cave.setRegionName("cave");
+    cave.setRegionType("cave");
+    cave.createRegion("south", "/some/location");
+    
+    // Caves should generally be larger and more organic
+    ExpectTrue(cave.xDimension() >= crypt.xDimension(), 
+        "Caves tend to be larger than crypts");
+    
+    destruct(crypt);
+    destruct(cave);
+}

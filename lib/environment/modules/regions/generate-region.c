@@ -84,15 +84,14 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
     EntryPoint = location;
     EnterFrom = enterFrom;
     
-    // Generate a procedural building template
     mapping template = generateBuildingTemplate(enterFrom);
     if (template)
     {
         mixed *layout = template["layout"];
-        int **roomIds = template["roomIds"];
-        mapping **doorData = template["doorData"];
+        mixed *roomIds = template["roomIds"];
+        mixed *doorData = template["doorData"];
         int maxY = sizeof(layout);
-        int maxX = sizeof(layout[0]);
+        int maxX = maxY > 0 ? sizeof(layout[0]) : 0;
         
         MaxX = template["dimensions"]["x"];
         MaxY = template["dimensions"]["y"];
@@ -105,14 +104,14 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
         
         mapping roomTypeDefs = template["room types"];
         
-        for (int layoutY = 0; layoutY < maxY; layoutY++)
+        for (int y = 0; y < maxY; y++)
         {
-            for (int layoutX = 0; layoutX < maxX; layoutX++)
+            mixed *layoutRow = layout[y];
+            for (int x = 0; x < maxX; x++)
             {
-                int *row = layout[layoutY];
-                int roomType = row[layoutX];
+                int roomType = layoutRow[x];
                 
-                if (roomType > 0 && member(roomTypeDefs, roomType))
+                if (roomType != 0 && member(roomTypeDefs, roomType))
                 {
                     mapping typeInfo = roomTypeDefs[roomType];
                     string roomTypeStr = typeInfo["name"];
@@ -129,24 +128,20 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
                     }
                     else if (iconStrategy == "generated")
                     {
-                        iconKey = generateRoomIconKey(layoutX, layoutY, layout, 
+                        iconKey = generateRoomIconKey(x, y, layout, 
                             roomIds, doorData, RegionType);
                     }
                     
-                    // Map layout Y to grid Y with proper inversion
-                    // Layout Y=0 (top of array) -> Grid Y=MaxY-1 (top of display)
-                    int gridY = layoutY;
-                    
                     if (roomType == 4)
                     {
-                        entry = ({ layoutX, gridY });
+                        entry = ({ x, y });
                     }
                     
-                    grid[layoutX][gridY] = ([
-                        "x": layoutX,
-                        "y": gridY,
+                    grid[x][y] = ([
+                        "x": x,
+                        "y": y,
                         "room type": roomTypeStr,
-                        "is placed": (roomType > 1) ? 1 : 0,
+                        "is placed": 1,
                         "exits": ([]),
                         "environment": 0,
                         "decorator type": iconKey

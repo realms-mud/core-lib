@@ -445,6 +445,57 @@ protected mapping RegionTypes = ([
             "giant spider": 15,
         ])
     ]),
+    "cave": ([
+        "interior": "/lib/environment/interiors/cave.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "bat": 100,
+            "giant spider": 50,
+            "rat": 75,
+            "bear": 25,
+            "troll": 15,
+            "goblin": 40,
+            "orc": 30,
+        ])
+    ]),
+
+    "dungeon": ([
+        "interior": "/lib/environment/interiors/dungeon.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "skeleton": 80,
+            "zombie": 60,
+            "rat": 40,
+            "giant spider": 30,
+            "orc": 50,
+            "goblin": 50,
+            "keeper of the night": 10,
+        ])
+    ]),
+
+    "mine": ([
+        "interior": "/lib/environment/interiors/mine.c",
+        "potential features": ([ ]),
+        "potential items": ([ ]),
+        "potential objects": ({ }),
+        "settlement chance": 0,
+        "settlement size": 0,
+        "potential encounters": ([
+            "rat": 60,
+            "giant spider": 40,
+            "goblin": 50,
+            "orc": 30,
+            "kobold": 40,
+        ])
+    ]),
 ]);
 
 #endif

@@ -58,9 +58,13 @@ protected nomask int isAgainstWall(int x, int y, mixed *layout,
     int maxY = sizeof(layout);
     int maxX = sizeof(layout[0]);
     int *target = getTargetCoordinates(x, y, direction);
-    int isWall = 1;
+    int isWall = 0;
     
-    if (isValidCoordinate(target[0], target[1], maxX, maxY))
+    if (!isValidCoordinate(target[0], target[1], maxX, maxY))
+    {
+        isWall = 1;
+    }
+    else
     {
         isWall = (layout[target[1]][target[0]] <= 1);
     }

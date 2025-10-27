@@ -4,6 +4,7 @@
 //*****************************************************************************
 virtual inherit "/lib/environment/modules/regions/core.c";
 virtual inherit "/lib/environment/modules/regions/building-files.c";
+virtual inherit "/lib/environment/modules/regions/generate-tunneling.c";
 
 #include "/lib/services/regions/region-types.h"
 #include "/lib/environment/modules/regions/building-parameters.h"
@@ -23,6 +24,17 @@ public nomask mapping getBuildingTemplate(string regionType)
     {
         ret = buildingParameters[regionType];
     }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int shouldUseTunnelingAlgorithm(string regionType)
+{
+    int ret = 0;
+    
+    ret = (member(({ "crypt", "cave", "mine", "catacomb", "dungeon" }), 
+        regionType) > -1);
+    
     return ret;
 }
 
@@ -179,6 +191,13 @@ public nomask string generateRoomIconKey(int x, int y, mixed *layout,
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping generateBuildingTemplate(string enterFrom)
 {
+    // Check if we should use tunneling algorithm
+    if (shouldUseTunnelingAlgorithm(RegionType))
+    {
+        return generateTunnelingDungeon(enterFrom, RegionType);
+    }
+    
+    // Otherwise use BSP algorithm (existing code)
     mapping params = buildingParameters[RegionType];
     mixed *layoutData = generateBuildingLayout(enterFrom);
     

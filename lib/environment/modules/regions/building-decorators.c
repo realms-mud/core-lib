@@ -424,36 +424,36 @@ private nomask string determineTIntersection(int north, int south, int east,
 {
     string ret = "floor";
     
-    if (!north)
+    if (!south)
     {
         ret = "north T-intersection";
-        if (northDoor)
-        {
-            ret += " north entry";
-        }
-    }
-    else if (!south)
-    {
-        ret = "south T-intersection";
         if (southDoor)
         {
             ret += " south entry";
         }
     }
-    else if (!east)
+    else if (!north)
     {
-        ret = "east T-intersection";
-        if (eastDoor)
+        ret = "south T-intersection";
+        if (northDoor)
         {
-            ret += " east entry";
+            ret += " north entry";
         }
     }
     else if (!west)
     {
-        ret = "west T-intersection";
+        ret = "east T-intersection";
         if (westDoor)
         {
             ret += " west entry";
+        }
+    }
+    else if (!east)
+    {
+        ret = "west T-intersection";
+        if (eastDoor)
+        {
+            ret += " east entry";
         }
     }
     return ret;

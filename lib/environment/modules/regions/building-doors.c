@@ -269,36 +269,42 @@ private nomask int placeVerticalDoor(mixed *layout, int **roomIds,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void createHorizontalCorridor(mixed *layout, int **roomIds,
+private nomask void createHorizontalCorridor(mixed* layout, int** roomIds,
     int x1, int x2, int y, int roomId)
 {
     int maxX = sizeof(layout[0]);
     int startX = (x1 < x2) ? x1 : x2;
     int endX = (x1 > x2) ? x1 : x2;
-    
+
     for (int x = startX; x <= endX; x++)
     {
-        if (x >= 0 && x < maxX && layout[y][x] < 2)  // ONLY walls (1) and empty (0)
+        if (x >= 0 && x < maxX)
         {
-            layout[y][x] = 2;
+            if (layout[y][x] < 2)
+            {
+                layout[y][x] = 2;
+            }
             roomIds[y][x] = roomId;
         }
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void createVerticalCorridor(mixed *layout, int **roomIds,
+private nomask void createVerticalCorridor(mixed* layout, int** roomIds,
     int y1, int y2, int x, int roomId)
 {
     int maxY = sizeof(layout);
     int startY = (y1 < y2) ? y1 : y2;
     int endY = (y1 > y2) ? y1 : y2;
-    
+
     for (int y = startY; y <= endY; y++)
     {
-        if (y >= 0 && y < maxY && layout[y][x] < 2)  // ONLY walls (1) and empty (0)
+        if (y >= 0 && y < maxY)
         {
-            layout[y][x] = 2;
+            if (layout[y][x] < 2)
+            {
+                layout[y][x] = 2;
+            }
             roomIds[y][x] = roomId;
         }
     }
@@ -308,7 +314,6 @@ private nomask void createVerticalCorridor(mixed *layout, int **roomIds,
 protected nomask void addDoorBetweenRooms(mixed *layout, int **roomIds, 
     mapping **doorData, mapping room1, mapping room2)
 {
-    // Find room edges, not centers
     int r1_left = room1["x"];
     int r1_right = room1["x"] + room1["width"] - 1;
     int r1_top = room1["y"];
@@ -319,11 +324,6 @@ protected nomask void addDoorBetweenRooms(mixed *layout, int **roomIds,
     int r2_top = room2["y"];
     int r2_bottom = room2["y"] + room2["height"] - 1;
     
-    // Choose closest edges
-    int start_x, end_x, corridor_y;
-    int start_y, end_y, corridor_x;
-    
-    // Determine if primarily horizontal or vertical connection
     int center_x1 = room1["x"] + room1["width"] / 2;
     int center_y1 = room1["y"] + room1["height"] / 2;
     int center_x2 = room2["x"] + room2["width"] / 2;
@@ -334,40 +334,32 @@ protected nomask void addDoorBetweenRooms(mixed *layout, int **roomIds,
     
     if (abs(dx) > abs(dy))
     {
-        // Horizontal connection - use center Y of room1
-        corridor_y = center_y1;
+        int corridor_y = center_y1;
+        int start_x = (dx > 0) ? r1_right : r1_left;
+        int end_x = (dx > 0) ? r2_left : r2_right;
         
-        // Start at edge of room1, end at edge of room2
-        start_x = (dx > 0) ? r1_right + 1 : r1_left - 1;
-        end_x = (dx > 0) ? r2_left - 1 : r2_right + 1;
+        createHorizontalCorridor(layout, roomIds, start_x, center_x2, corridor_y, room1["id"]);
         
-        createHorizontalCorridor(layout, roomIds, start_x, end_x, corridor_y, room2["id"]);
-        
-        // Then vertical to room2's Y
         if (dy != 0)
         {
-            corridor_x = end_x;
-            start_y = corridor_y;
-            end_y = (dy > 0) ? r2_top - 1 : r2_bottom + 1;
-            createVerticalCorridor(layout, roomIds, start_y, end_y, corridor_x, room2["id"]);
+            int start_y = corridor_y;
+            int end_y = (dy > 0) ? r2_top : r2_bottom;
+            createVerticalCorridor(layout, roomIds, start_y, end_y, center_x2, room2["id"]);
         }
     }
     else
     {
-        // Vertical connection
-        corridor_x = center_x1;
+        int corridor_x = center_x1;
+        int start_y = (dy > 0) ? r1_bottom : r1_top;
+        int end_y = (dy > 0) ? r2_top : r2_bottom;
         
-        start_y = (dy > 0) ? r1_bottom + 1 : r1_top - 1;
-        end_y = (dy > 0) ? r2_top - 1 : r2_bottom + 1;
-        
-        createVerticalCorridor(layout, roomIds, start_y, end_y, corridor_x, room2["id"]);
+        createVerticalCorridor(layout, roomIds, start_y, center_y2, corridor_x, room1["id"]);
         
         if (dx != 0)
         {
-            corridor_y = end_y;
-            start_x = corridor_x;
-            end_x = (dx > 0) ? r2_left - 1 : r2_right + 1;
-            createHorizontalCorridor(layout, roomIds, start_x, end_x, corridor_y, room2["id"]);
+            int start_x = corridor_x;
+            int end_x = (dx > 0) ? r2_left : r2_right;
+            createHorizontalCorridor(layout, roomIds, start_x, end_x, center_y2, room2["id"]);
         }
     }
 }
