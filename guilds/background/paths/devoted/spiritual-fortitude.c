@@ -21,7 +21,8 @@ protected void Setup()
     addSpecification("cooldown", 90);
     addSpecification("stamina point cost", 15);
 
-    addSpecification("bonus resist magic", 5);
+    addSpecification("bonus resist energy", 5);
+    addSpecification("bonus resist magical", 5);
     addSpecification("bonus resist disease", 5);
     addSpecification("bonus resist poison", 5);
     addSpecification("duration", 20);
