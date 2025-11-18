@@ -7,14 +7,15 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Understanding Heart");
     addSpecification("source", "background");
-    addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+    addSpecification("description", "Your deep empathy allows you to sense "
+        "the emotional wounds others carry.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus persuasion", 1);
+    addSpecification("bonus diplomacy", 1);
+
+    addPrerequisite("/guilds/background/paths/compassionate/empathic-sense.c",
+        (["type":"research"]));
 }

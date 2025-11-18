@@ -7,14 +7,16 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Martyr's Resolve");
     addSpecification("source", "background");
-    addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+    addSpecification("description", "You are willing to endure any hardship "
+        "to protect and heal others.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus constitution", 1);
+    addSpecification("bonus stamina points", 5);
+    addSpecification("bonus hit points", 5);
+
+    addPrerequisite("/guilds/background/paths/compassionate/root.c",
+        (["type":"research"]));
 }

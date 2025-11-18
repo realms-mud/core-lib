@@ -7,14 +7,15 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Calming Presence");
     addSpecification("source", "background");
     addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+        "There's something about you that puts others at ease. In your presence, "
+        "fear subsides and hope kindles. Animals sense your gentle nature and "
+        "the wounded find comfort in your care.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus charisma", 1);
+    addSpecification("bonus animal handling", 2);
+    addSpecification("bonus etiquette", 1);
 }

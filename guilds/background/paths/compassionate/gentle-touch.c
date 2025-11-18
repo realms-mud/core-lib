@@ -7,14 +7,14 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Gentle Touch");
     addSpecification("source", "background");
     addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+        "Your hands know how to comfort and heal. Through countless hours "
+        "tending wounds and soothing pain, you've developed an intuitive "
+        "understanding of the body's needs.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus anatomy and physiology", 2);
+    addSpecification("bonus herbalism", 1);
 }

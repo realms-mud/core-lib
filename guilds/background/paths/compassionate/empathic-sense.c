@@ -7,14 +7,15 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Empathic Sense");
     addSpecification("source", "background");
     addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+        "You can read the pain and emotions of others with uncanny accuracy. "
+        "This deep empathy allows you to understand what people truly need, "
+        "often before they say a word.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus wisdom", 1);
+    addSpecification("bonus persuasion", 2);
+    addSpecification("bonus diplomacy", 1);
 }

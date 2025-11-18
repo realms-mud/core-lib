@@ -15,5 +15,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("bonus attack", 1);
     addSpecification("bonus damage", 1);
-    addSpecification("bonus stamina points", 2);
+    addSpecification("bonus stamina points", 5);
 }

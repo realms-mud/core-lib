@@ -32,7 +32,7 @@ protected void Setup()
             "base damage" : 20,
             "range" : 10
         ])
-        }));
+    }));
 
     addSpecification("modifiers", ({
         ([

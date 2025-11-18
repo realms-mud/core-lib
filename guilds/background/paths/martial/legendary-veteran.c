@@ -14,7 +14,7 @@ protected void Setup()
         "who fight beside you.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus attack", 1);
+    addSpecification("bonus attack", 2);
     addSpecification("bonus defense class", 1);
     addSpecification("bonus hit points", 5);
 

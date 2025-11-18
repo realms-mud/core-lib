@@ -7,14 +7,15 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Unshakeable Faith");
     addSpecification("source", "background");
-    addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+    addSpecification("description", "Your faith is an unbreakable shield "
+        "against doubt and fear.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("bonus constitution", 1);
     addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+
+    addPrerequisite("/guilds/background/paths/devoted/spiritual-fortitude.c",
+        (["type":"research"]));
 }

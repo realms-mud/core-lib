@@ -13,7 +13,7 @@ protected void Setup()
         "You are a master of battlefield leadership and martial prowess.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus attack", 1);
+    addSpecification("bonus attack", 2);
     addSpecification("bonus defense class", 1);
     addSpecification("bonus persuasion", 1);
 

@@ -7,14 +7,16 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Divine Vessel");
     addSpecification("source", "background");
-    addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+    addSpecification("description", "You have become a vessel for higher power, "
+        "allowing divine energy to flow through you.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus wisdom", 2);
+    addSpecification("bonus charisma", 2);
+    addSpecification("bonus theology", 2);
+
+    addPrerequisite("/guilds/background/paths/devoted/root.c",
+        (["type":"research"]));
 }

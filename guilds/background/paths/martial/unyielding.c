@@ -13,7 +13,7 @@ protected void Setup()
         "You refuse to back down, even in the face of overwhelming odds.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 3);
+    addSpecification("bonus hit points", 5);
     addSpecification("bonus defense class", 1);
     addSpecification("bonus constitution", 1);
 

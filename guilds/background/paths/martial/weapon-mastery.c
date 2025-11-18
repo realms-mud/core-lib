@@ -13,7 +13,7 @@ protected void Setup()
         "You have achieved mastery with your chosen weapons.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus attack", 1);
+    addSpecification("bonus attack", 2);
     addSpecification("bonus damage", 1);
     addSpecification("bonus weapon attack", 1);
 

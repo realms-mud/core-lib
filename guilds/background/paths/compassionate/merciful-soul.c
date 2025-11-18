@@ -7,14 +7,15 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Unbreakable");
+    addSpecification("name", "Merciful Soul");
     addSpecification("source", "background");
     addSpecification("description",
-        "You are nearly impossible to defeat, enduring even the harshest "
-        "punishment.");
+        "You cannot turn away from suffering, even that of your enemies. "
+        "Your compassion extends to all living things, and your presence "
+        "offers comfort even in the darkest moments.");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 10);
-    addSpecification("bonus resist paralysis", 2);
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus charisma", 2);
+    addSpecification("bonus persuasion", 1);
+    addSpecification("bonus animal handling", 1);
 }
