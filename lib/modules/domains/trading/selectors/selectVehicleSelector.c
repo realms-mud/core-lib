@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved.
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved.
 //*****************************************************************************
 inherit "/lib/core/baseSelector.c";
 

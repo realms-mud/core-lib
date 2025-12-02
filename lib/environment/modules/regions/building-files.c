@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/environment/modules/regions/building-decorators.c";
@@ -114,7 +114,7 @@ private nomask string generateFileHeader()
     string ret = "";
     
     ret += "//*****************************************************************************\n";
-    ret += "// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See\n";
+    ret += "// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See\n";
     ret += "//                      the accompanying LICENSE file for details.\n";
     ret += "//*****************************************************************************\n";
     ret += "inherit \"/lib/environment/environment.c\";\n\n";
@@ -148,7 +148,7 @@ protected nomask string generateRegionFileHeader()
     string ret = "";
     
     ret += "//*****************************************************************************\n";
-    ret += "// Copyright (c) 2025 - Allen Cummings, RealmsMUD, All rights reserved. See\n";
+    ret += "// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See\n";
     ret += "//                      the accompanying LICENSE file for details.\n";
     ret += "//*****************************************************************************\n";
     ret += "inherit \"/lib/environment/region.c\";\n\n";
