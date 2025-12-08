@@ -1,7 +1,4 @@
 //*****************************************************************************
-// Class: researchService
-// File Name: researchService.c
-//
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
@@ -1035,6 +1032,27 @@ public nomask int isValidCompositeResearch(string itemName, mapping data)
                 stringp(element["description"]) &&
                 ((member(element, "order in sequence") && 
                 intp(element["order in sequence"])) || member(element, "unordered"));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int isValidConstructedResearch(string itemName, mapping data)
+{
+    int ret = stringp(itemName) &&
+        member(data, "constraint") && stringp(data["constraint"]) &&
+        member(data, "type") && stringp(data["type"]) &&
+        validResearch(data["type"]) &&
+        member(data, "elements") && pointerp(data["elements"]);
+
+    if (ret && sizeof(data["elements"]))
+    {
+        foreach(mapping element in data["elements"])
+        {
+            ret &&= member(element, "research") && 
+                stringp(element["research"]) &&
+                validResearch(element["research"]);
         }
     }
     return ret;

@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional cooldown", 8);
     addSpecification("additional spell point cost", 14);
 
-    addSpecification("use combination message", "##Infinitive::create## a vacuum");
+    addSpecification("combination descriptor", "vacuum");
 }

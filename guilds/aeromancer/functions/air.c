@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional cooldown", 3);
     addSpecification("additional spell point cost", 6);
 
-    addSpecification("use combination message", "##Infinitive::blast## air");
+    addSpecification("combination descriptor", "air");
 }

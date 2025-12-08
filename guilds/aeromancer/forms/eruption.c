@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 18);
     addSpecification("additional spell point cost", 28);
 
-    addSpecification("use combination message", "##Infinitive::cause## an eruption of "
-        "energy beneath ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::cause## an eruption of ##Function## beneath ##TargetName##");
 }

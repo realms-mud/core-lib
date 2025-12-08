@@ -32,6 +32,12 @@ protected string *validEffects = ({
 });
 
 /////////////////////////////////////////////////////////////////////////////
+protected mapping getEffectSpecificationData(string command, object owner)
+{
+    return specificationData;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidFormula(mapping *formulas)
 {
     int ret = 0;
@@ -68,24 +74,22 @@ private nomask int isValidFormula(mapping *formulas)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyFormula(object initiator, string type)
+protected nomask int applyFormula(object initiator, string type, 
+    mapping effectData)
 {
     int ret = 0;
     
-    if(member(specificationData, type) && isValidFormula(specificationData[type]))
+    if(member(effectData, type) && isValidFormula(effectData[type]))
     {
-        // First, build the probability dictionary
         mapping formulaDictionary = ([ ]);
         
         int currentProbability = 0;
-        foreach(mapping formula in specificationData[type])
+        foreach(mapping formula in effectData[type])
         {      
             int bottomOfRange = currentProbability;
             int topOfRange = bottomOfRange + formula["probability"];
             
             int tmpFormula = 0;
-            // If this exists, we already know that we have this method 
-            // available since we passed the call to isValidFormula.
             if(member(formula, "custom method"))
             {
                 tmpFormula = 
@@ -108,9 +112,9 @@ protected nomask int applyFormula(object initiator, string type)
         
         ret = formulaDictionary[random(100)];
         
-        if(member(specificationData, "modifiers"))
+        if(member(effectData, "modifiers"))
         {
-            ret = applyModifiers(ret, initiator, specificationData["modifiers"]);
+            ret = applyModifiers(ret, initiator, effectData["modifiers"]);
         }
     }    
     return ret;    
@@ -214,13 +218,14 @@ protected nomask int addInstantaneousSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyBeneficialEffect(object initiator, object target)
+protected int applyBeneficialEffect(object initiator, object target,
+    mapping effectData)
 {
     return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyEffect(object initiator, object target)
+protected int applyEffect(object initiator, object target, mapping effectData)
 {
     return 0;
 }
@@ -230,16 +235,14 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 0;
+    mapping effectData = getEffectSpecificationData(unparsedCommand, owner);
 
-    // checks for this item being researched are already done in execute()
-    // as are checks to verify that owner is a living object. We don't
-    // allow the caster to do negative things to themselves here...    
-    ret = applyBeneficialEffect(owner, owner);
+    ret = applyBeneficialEffect(owner, owner, effectData);
     
-    if(ret && member(specificationData, "use ability message") &&
-       stringp(specificationData["use ability message"]))
+    if(ret && member(effectData, "use ability message") &&
+       stringp(effectData["use ability message"]))
     {
-        displayMessage(specificationData["use ability message"],
+        displayMessage(effectData["use ability message"],
             owner, owner);
     }   
     return ret;
@@ -250,17 +253,18 @@ protected nomask int executeOnTarget(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 0;
+    mapping effectData = getEffectSpecificationData(unparsedCommand, owner);
     object target = getTarget(owner, unparsedCommand);
 
     if(target)
     {
-        if(member(specificationData, "use ability message") &&
-           stringp(specificationData["use ability message"]))
+        if(member(effectData, "use ability message") &&
+           stringp(effectData["use ability message"]))
         {
-            displayMessage(specificationData["use ability message"],
+            displayMessage(effectData["use ability message"],
                 owner, target);
         }
-        ret = applyEffect(owner, target);
+        ret = applyEffect(owner, target, effectData);
     }
     else
     {
@@ -274,11 +278,12 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
     string researchName)
 {
     int ret = 1;
+    mapping effectData = getEffectSpecificationData(unparsedCommand, owner);
 
     object *environmentObjects = filter(all_inventory(environment(owner)),
         (: $1 != $2 :), owner);
 
-    if (member(specificationData, "is beneficial"))
+    if (member(effectData, "is beneficial"))
     {
         environmentObjects += ({ owner });
     }
@@ -287,14 +292,14 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
     {
         if(function_exists("has", target) && target->has("combat"))
         {
-            ret += applyEffect(owner, target);
+            ret += applyEffect(owner, target, effectData);
         }
     }
           
-    if(member(specificationData, "use ability message") 
-       && stringp(specificationData["use ability message"]))
+    if(member(effectData, "use ability message") 
+       && stringp(effectData["use ability message"]))
     {
-        displayMessage(specificationData["use ability message"],
+        displayMessage(effectData["use ability message"],
             owner, owner);
     }
     return ret;
@@ -303,22 +308,24 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
 /////////////////////////////////////////////////////////////////////////////
 public nomask mapping getEffectsToApply(object initiator)
 {
+    mapping effectData = getEffectSpecificationData("", initiator);
+
     mapping ret = ([
-        "damage type": specificationData["damage type"],
+        "damage type": effectData["damage type"],
         "use combination message": 
-            member(specificationData, "use combination message") ?
-            specificationData["use combination message"] : "",
+            member(effectData, "use combination message") ?
+            effectData["use combination message"] : "",
         "effects": ([])
     ]);
 
     string *effectList = filter(validEffects,
-        (: member(specificationData, $1) :));
+        (: member($2, $1) :), effectData);
 
     foreach(string type in effectList)
     {
-        if (member(specificationData, type))
+        if (member(effectData, type))
         {
-            ret["effects"][type] = applyFormula(initiator, type);
+            ret["effects"][type] = applyFormula(initiator, type, effectData);
         }
     }
     return ret;

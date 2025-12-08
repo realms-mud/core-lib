@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional cooldown", 4);
     addSpecification("additional spell point cost", 8);
 
-    addSpecification("use combination message", "##Infinitive::gust## wind");
+    addSpecification("combination descriptor", "wind");
 }

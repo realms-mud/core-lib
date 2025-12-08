@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 10);
     addSpecification("additional spell point cost", 16);
 
-    addSpecification("use combination message", "##Infinitive::thrust## a spear of "
-        "energy at ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::thrust## a spear of ##Function## at ##TargetName##");
 }

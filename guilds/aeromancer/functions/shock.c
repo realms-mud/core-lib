@@ -28,6 +28,5 @@ protected void Setup()
     addSpecification("additional cooldown", 2);
     addSpecification("additional spell point cost", 5);
 
-    addSpecification("use combination message", "##Infinitive::discharge## "
-        "static electricity");
+    addSpecification("combination descriptor", "shocking electricity");
 }

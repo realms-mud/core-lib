@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 20);
     addSpecification("additional spell point cost", 30);
 
-    addSpecification("use combination message", "##Infinitive::conjure## a wall of "
-        "energy before ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::conjure## a wall of ##Function## before ##TargetName##");
 }

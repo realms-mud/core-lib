@@ -11,8 +11,7 @@ protected void Setup()
     addSpecification("source", "aeromancer");
 
     addSpecification("description", "This research provides the user with the "
-        "knowledge of creating spells that form a ball of energy and hurl it "
-        "at a foe.");
+        "knowledge of creating spells that hurl a ball of energy at a foe.");
 
     addPrerequisite("/guilds/aeromancer/forms/root.c",
         (["type":"research"]));
@@ -24,9 +23,9 @@ protected void Setup()
     ]));
     addSpecification("affected research type", "percentage");
 
-    addSpecification("additional cooldown", 12);
-    addSpecification("additional spell point cost", 20);
+    addSpecification("additional cooldown", 8);
+    addSpecification("additional spell point cost", 14);
 
-    addSpecification("use combination message", "##Infinitive::hurl## a ball of "
-        "energy at ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::hurl## a ball of ##Function## at ##TargetName##");
 }

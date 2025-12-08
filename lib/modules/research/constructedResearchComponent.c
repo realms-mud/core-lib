@@ -46,6 +46,7 @@ protected nomask int addSpecification(string type, mixed value)
         case "additional spell point cost":
         case "additional stamina point cost":
         case "additional cooldown":
+        case "additional repeat effect":
         {
             if(intp(value) && (value > 0))
             {
@@ -60,7 +61,7 @@ protected nomask int addSpecification(string type, mixed value)
             }
             break;
         }
-        case "use combination message":
+        case "combination descriptor":
         {
             if (value && stringp(value))
             {
@@ -82,6 +83,16 @@ protected nomask int addSpecification(string type, mixed value)
         ret = researchItem::addSpecification(type, value);
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping getUsageCosts(string command, object initiator)
+{
+    return ([
+        "hit point cost": query("additional hit point cost"),
+        "spell point cost": query("additional spell point cost"),
+        "stamina point cost": query("additional stamina point cost")
+    ]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,41 +131,50 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
 
     if (member(specificationData, "damage type"))
     {
-        ret = configuration->decorate(
-            sprintf("Constructed items cause %s damage,\n",
+        ret += configuration->decorate(
+            sprintf("Constructed items cause %s damage.\n",
                 specificationData["damage type"]),
             "bonus text", "research", colorConfiguration);
     }
 
     if (member(specificationData, "additional hit point cost"))
     {
-        ret = configuration->decorate(
-            sprintf("Hit point cost of constructed items increased by %d%%\n",
+        ret += configuration->decorate(
+            sprintf("Hit point cost of constructed items increased by %d.\n",
                 specificationData["additional hit point cost"]),
             "bonus text", "research", colorConfiguration);
     }
 
     if (member(specificationData, "additional spell point cost"))
     {
-        ret = configuration->decorate(
-            sprintf("Spell point cost of constructed items increased by %d%%\n",
+        ret += configuration->decorate(
+            sprintf("Spell point cost of constructed items increased by %d.\n",
                 specificationData["additional spell point cost"]),
             "bonus text", "research", colorConfiguration);
     }
 
     if (member(specificationData, "additional stamina point cost"))
     {
-        ret = configuration->decorate(
-            sprintf("Stamina cost of constructed items increased by %d%%\n",
+        ret += configuration->decorate(
+            sprintf("Stamina cost of constructed items increased by %d.\n",
                 specificationData["additional stamina point cost"]),
             "bonus text", "research", colorConfiguration);
     }
 
     if (member(specificationData, "additional cooldown"))
     {
-        ret = configuration->decorate(
+        ret += configuration->decorate(
             sprintf("Cooldown of constructed items increased by %ds.\n",
                 specificationData["additional cooldown"]),
+            "bonus text", "research", colorConfiguration);
+    }
+
+    if (member(specificationData, "additional repeat effect"))
+    {
+        ret += configuration->decorate(
+            sprintf("Effect repeats %d additional time%s.\n",
+                specificationData["additional repeat effect"],
+                specificationData["additional repeat effect"] == 1 ? "" : "s"),
             "bonus text", "research", colorConfiguration);
     }
 

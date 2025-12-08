@@ -8,11 +8,10 @@ inherit "/lib/modules/research/constructedResearchComponent.c";
 protected void Setup()
 {
     addSpecification("name", "Arc Form");
-    addSpecification("source", "aeromancer"); 
+    addSpecification("source", "aeromancer");
 
     addSpecification("description", "This research provides the user with the "
-        "knowledge of creating spells that send an arc of "
-        "energy toward a foe.");
+        "knowledge of creating spells that arc energy toward a foe.");
 
     addPrerequisite("/guilds/aeromancer/forms/root.c",
         (["type":"research"]));
@@ -20,14 +19,13 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Constructed Spell Multiplier": 15,
+        "Constructed Spell Multiplier":12,
     ]));
     addSpecification("affected research type", "percentage");
 
-    addSpecification("additional cooldown", 10);
-    addSpecification("additional spell point cost", 15);
+    addSpecification("additional cooldown", 4);
+    addSpecification("additional spell point cost", 8);
 
-    addSpecification("use combination message", "##Infinitive::wave## "
-        "##InitiatorPossessive## ##InitiatorWeapon## and magical energy arcs "
-        "toward ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::arc## ##Function## at ##TargetName##");
 }

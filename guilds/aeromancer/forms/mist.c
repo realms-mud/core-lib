@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 5);
     addSpecification("additional spell point cost", 8);
 
-    addSpecification("use combination message", "##Infinitive::envelop## "
-        "##TargetName## in a swirling mist");
+    addSpecification("use combination message", 
+        "##Infinitive::envelop## ##TargetName## in a swirling mist of ##Function##");
 }

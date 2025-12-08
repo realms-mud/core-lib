@@ -28,6 +28,5 @@ protected void Setup()
     addSpecification("additional cooldown", 30);
     addSpecification("additional spell point cost", 75);
 
-    addSpecification("use combination message", "##Infinitive::release## "
-        "lightning");
+    addSpecification("combination descriptor", "lightning");
 }

@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 14);
     addSpecification("additional spell point cost", 18);
 
-    addSpecification("use combination message", "##Infinitive::unleash## a blast of "
-        "energy at ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::unleash## a blast of ##Function## at ##TargetName##");
 }

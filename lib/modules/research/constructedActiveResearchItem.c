@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-virtual inherit "/lib/modules/research/activeResearchItem.c";
-virtual inherit "/lib/modules/research/effectModifier.c";
+virtual inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 private string *validConstructedTypes = ({
     "form must include only one of",
@@ -145,7 +144,7 @@ protected nomask int addSpecification(string type, mixed value)
     }
     if(!ret)
     {
-        ret = activeResearchItem::addSpecification(type, value);
+        ret = instantaneousActiveResearchItem::addSpecification(type, value);
     }
     return ret;
 }
@@ -190,8 +189,7 @@ private nomask mapping getComboRulesFor(string *constructedItems, string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string checkIncludeOnlyOneRule(mapping list,
-    string type)
+private nomask string checkIncludeOnlyOneRule(mapping list, string type)
 {
     string ret = 0;
 
@@ -224,7 +222,7 @@ private nomask string checkFormMustIncludeOnlyOneOfRules(mapping list)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string checkFunctionMustIncludeOnlyOneOfRules(mapping list)
+private nominal string checkFunctionMustIncludeOnlyOneOfRules(mapping list)
 {
     return checkIncludeOnlyOneRule(list, "function must include only one of");
 }
@@ -302,7 +300,7 @@ protected mapping getUsageCosts(string command, object initiator)
 {
     object *combo = getConstructedDetails(command, initiator);
 
-    mapping costs = activeResearchItem::getUsageCosts(command, initiator);
+    mapping costs = instantaneousActiveResearchItem::getUsageCosts(command, initiator);
 
     if (sizeof(combo))
     {
@@ -326,130 +324,9 @@ public nomask mapping getPossibleTemplates()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private mapping determineConstructedResearch(string unparsedCommand,
-    object owner)
-{
-    mapping ret = 0;
-    string constructedItem = getTargetString(owner, unparsedCommand);
-
-    if (constructedItem)
-    {
-        ret = owner->getConstructedResearch(
-            program_name(this_object()), constructedItem, 1);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private nomask int activateConstructedResearch(object owner, 
-    mapping researchToUse)
-{
-    int ret = owner->activateConstructedResearch(program_name(this_object()),
-        m_indices(researchToUse)[0]);
-
-    if (ret && member(specificationData, "use ability message") &&
-        stringp(specificationData["use ability message"]))
-    {
-        displayMessage(specificationData["use ability message"],
-            owner, owner);
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int executeConstructedResearch(object owner)
-{
-    int ret = 0;
-    mapping nextItem = owner->getNextConstructedResearchElement();
-
-    if (nextItem)
-    {
-        object researchItem = load_object(nextItem["research"]);
-        if (researchItem)
-        {
-            ret = researchItem->execute(program_name(this_object()), owner);
-            if (ret)
-            {
-                string message = 
-                    researchItem->query("use constructed message") ||
-                    nextItem["description"];
-
-                message = regreplace(message, "##ConstructedSegment##",
-                    nextItem["description"], 1);
-
-                displayMessage(message, owner, owner);
-            }
-        }
-    }
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int executeOnSelf(string unparsedCommand, object owner, 
-    string researchName)
-{
-    int ret = 0;
-    mapping researchToUse =
-        determineConstructedResearch(unparsedCommand, owner);
-
-    if (sizeof(researchToUse))
-    {
-        if (member(specificationData, "is single shot"))
-        {
-
-        }
-        else
-        {
-            ret = 1;
-            activateConstructedResearch(owner, researchToUse);
-        }
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int executeOnTarget(string unparsedCommand, object owner,
-    string researchName)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int executeInArea(string unparsedCommand, object owner,
-    string researchName)
-{
-    int ret = 0;
-    mapping researchToUse =
-        determineConstructedResearch(unparsedCommand, owner);
-
-    if (sizeof(researchToUse))
-    {
-        if (member(specificationData, "is single shot"))
-        {
-
-        }
-        else
-        {
-            ret = 1;
-            activateConstructedResearch(owner, researchToUse);
-        }
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected int executeOnEnvironment(string unparsedCommand, object owner,
-    string researchName)
-{
-    return 0;
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected string usagePrompt()
 {
-    return "name or alias of song";
+    return "name or alias of spell";
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -514,22 +391,22 @@ protected string displayRelatedResearchEffects(string colorConfiguration,
         }
     }
 
-    mapping songs = this_player() ?
+    mapping spells = this_player() ?
         this_player()->getOptionsForConstructedResearch(
             program_name(this_object())) : ([]);
 
-    if (sizeof(songs))
+    if (sizeof(spells))
     {
-        ret += configuration->decorate(sprintf("%-15s : ", "Available Songs"),
+        ret += configuration->decorate(sprintf("%-15s : ", "Available Spells"),
             "field header", "research", colorConfiguration) + "\n";
 
-        foreach(string song in m_indices(songs))
+        foreach(string spell in m_indices(spells))
         {
             ret += sprintf("%-18s", "") +
-                configuration->decorate(song,
+                configuration->decorate(spell,
                     "field data", "research", colorConfiguration) +
-                configuration->decorate((member(songs[song], "alias") ?
-                    (" - alias: " + songs[song]["alias"]) : ""),
+                configuration->decorate((member(spells[spell], "alias") ?
+                    (" - alias: " + spells[spell]["alias"]) : ""),
                     "formula", "research", colorConfiguration) + "\n";
         }
     }
@@ -553,4 +430,139 @@ protected int blockSpecificationApplication(string command, object owner,
         }
     }
     return !ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public varargs int cooldown(object initiator, string command)
+{
+    int ret = instantaneousActiveResearchItem::cooldown(initiator);
+
+    string commandToUse = command ? command : query("command template");
+    object *combo = getConstructedDetails(commandToUse, initiator);
+
+    if (sizeof(combo))
+    {
+        foreach(object item in combo)
+        {
+            int additionalCooldown = item->query("additional cooldown");
+            if (additionalCooldown)
+            {
+                ret += additionalCooldown;
+            }
+        }
+    }
+
+    if (ret < 2)
+    {
+        ret = 2;
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected int getRepeatEffectCount(string command, object initiator)
+{
+    int ret = instantaneousActiveResearchItem::getRepeatEffectCount(command, initiator);
+
+    object *combo = getConstructedDetails(command, initiator);
+
+    if (sizeof(combo))
+    {
+        foreach(object item in combo)
+        {
+            int additionalRepeat = item->query("additional repeat effect");
+            if (additionalRepeat)
+            {
+                ret += additionalRepeat;
+            }
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected mapping getEffectSpecificationData(string command, object owner)
+{
+    mapping ret = specificationData + ([]);
+    
+    object *components = getConstructedDetails(command, owner);
+    
+    if (sizeof(components))
+    {
+        string message = "";
+        string descriptor = "";
+        
+        foreach(object item in components)
+        {
+            // Get damage type from function components
+            string damageType = item->query("damage type");
+            if (damageType)
+            {
+                ret["damage type"] = damageType;
+            }
+
+            // Get message template from form components
+            string templateMessage = item->query("use combination message");
+            if (templateMessage)
+            {
+                message = templateMessage;
+            }
+
+            // Get descriptor from function components
+            string itemDescriptor = item->query("combination descriptor");
+            if (itemDescriptor)
+            {
+                descriptor = itemDescriptor;
+            }
+
+            // Aggregate effects and modifiers from components
+            if (function_exists("getEffectsToApply", item))
+            {
+                mapping itemEffects = item->getEffectsToApply(owner);
+                
+                if (mappingp(itemEffects) && member(itemEffects, "effects"))
+                {
+                    foreach(string effectType in m_indices(itemEffects["effects"]))
+                    {
+                        if (!member(ret, effectType))
+                        {
+                            ret[effectType] = ({});
+                        }
+                        // Aggregate the calculated effect values
+                        if (!member(ret, effectType + " value"))
+                        {
+                            ret[effectType + " value"] = 0;
+                        }
+                        ret[effectType + " value"] += itemEffects["effects"][effectType];
+                    }
+                }
+            }
+
+            // Merge modifiers from components
+            mixed *itemModifiers = item->query("modifiers");
+            if (pointerp(itemModifiers) && sizeof(itemModifiers))
+            {
+                if (!member(ret, "modifiers"))
+                {
+                    ret["modifiers"] = ({});
+                }
+                ret["modifiers"] += itemModifiers;
+            }
+        }
+        
+        // Replace ##Function## with the descriptor
+        if (message != "" && descriptor != "")
+        {
+            message = regreplace(message, "##Function##", descriptor, 1);
+        }
+        
+        if (message != "")
+        {
+            ret["use ability message"] = message;
+        }
+    }
+    
+    return ret;
 }

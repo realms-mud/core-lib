@@ -327,6 +327,13 @@ private nomask int useConsumables(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int getRepeatEffectCount(string command, object initiator)
+{
+    return member(specificationData, "repeat effect") ? 
+        specificationData["repeat effect"] : 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int execute(string command, object initiator)
 {
     int ret = 0;
@@ -374,14 +381,15 @@ public nomask int execute(string command, object initiator)
             ret = useConsumables(initiator) && 
                 applyToScope(command, initiator, researchName);
 
-            if (member(specificationData, "repeat effect"))
-            {
-                call_out("repeatEffect", 2, specificationData["repeat effect"],
-                    command, initiator, researchName);
-            }
-
             if(ret)
             {
+                int repeatCount = getRepeatEffectCount(command, initiator);
+                if (repeatCount)
+                {
+                    call_out("repeatEffect", 2, repeatCount,
+                        command, initiator, researchName);
+                }
+
                 if(costs["hit point cost"])
                 {
                     initiator->hitPoints(-costs["hit point cost"]);

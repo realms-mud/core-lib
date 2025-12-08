@@ -17,6 +17,7 @@ private string *openResearchTrees = ({});
 private mapping researchChoices = ([]);
 private mapping compositeResearch = ([]);
 private mapping activeCompositeResearch = 0;
+private mapping constructedResearch = ([]);
 
 private int researchPoints = 0;
 

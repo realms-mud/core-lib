@@ -26,6 +26,6 @@ protected void Setup()
     addSpecification("additional cooldown", 16);
     addSpecification("additional spell point cost", 22);
 
-    addSpecification("use combination message", "##Infinitive::hurl## an orb of "
-        "energy at ##TargetName##");
+    addSpecification("use combination message", 
+        "##Infinitive::hurl## an orb of ##Function## at ##TargetName##");
 }

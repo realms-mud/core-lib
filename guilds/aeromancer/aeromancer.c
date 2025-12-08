@@ -49,4 +49,22 @@ public void SetupGuild()
         "apply": "at level 1",
         "research tree": "/guilds/aeromancer/air.c"
     ]));
+
+    addCriteria("forms", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/forms.c"
+    ]));
+
+    addCriteria("functions", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/functions.c"
+    ]));
+
+    addCriteria("effects", ([
+        "type":"research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/effects.c"
+    ]));
 }

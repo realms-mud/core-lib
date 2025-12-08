@@ -751,9 +751,10 @@ public nomask int researchBonusTo(string bonus)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void applyCooldown(string researchItem, object researchObj)
+private nomask void applyCooldown(string researchItem, object researchObj,
+    string command)
 {
-    int cooldown = researchObj->cooldown(this_object());
+    int cooldown = researchObj->cooldown(this_object(), command);
     if (cooldown)
     {
         research[researchItem]["cooldown"] = cooldown;
@@ -825,7 +826,7 @@ public nomask int researchCommand(string command)
 
         if (ret && researchObj && (researchObj->query("type") != "sustained"))
         {
-            applyCooldown(commandToExecute, researchObj);
+            applyCooldown(commandToExecute, researchObj, command);
         }
 
         object eventObj = getModule("events");
@@ -1142,4 +1143,50 @@ public nomask void removeResearchBySource(string source)
     }
 
     removeSavedResearch(itemsToRemove, treesToRemove);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getConstructedResearch(string constraint,
+    string itemName, int addParent)
+{
+    mapping filteredList = filter(constructedResearch,
+        (: (($2["constraint"] == $3) && (!$4 || ($1 == $4) ||
+           ($2["alias"] == $4))) :), constraint, itemName);
+
+    return (!itemName || addParent || !sizeof(filteredList)) ? 
+        filteredList : filteredList[m_indices(filteredList)[0]];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getOptionsForConstructedResearch(string constraint)
+{
+    return getConstructedResearch(constraint);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int setConstructedResearch(string itemName, mapping data)
+{
+    int ret = 0;
+
+    if (researchService()->isValidConstructedResearch(itemName, data))
+    {
+        ret = 1;
+        constructedResearch[itemName] = data + ([]);
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int deleteConstructedResearch(string itemName)
+{
+    int ret = 0;
+
+    if (member(constructedResearch, itemName))
+    {
+        ret = 1;
+        m_delete(constructedResearch, itemName);
+    }
+
+    return ret;
 }
