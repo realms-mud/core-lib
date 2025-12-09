@@ -248,6 +248,15 @@ private void SixtyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void SixtySeventhLevel()
+{
+    addResearchElement("/guilds/aeromancer/lightning/thundering-swarm.c");
+
+    addChild("/guilds/aeromancer/lightning/thundering-swarm.c",
+        "/guilds/aeromancer/lightning/raging-tempest.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("Path of Lightning");
@@ -276,8 +285,11 @@ protected void Setup()
     ThirtyFifthLevel();
     ThirtySeventhLevel();
     ThirtyNinthLevel();
+    FortyFirstLevel();
+    FortyThirdLevel();
     FortyFifthLevel();
     FiftyFirstLevel();
     FiftySeventhLevel();
     SixtyThirdLevel();
+    SixtySeventhLevel();
 }
