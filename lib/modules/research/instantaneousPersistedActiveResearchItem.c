@@ -169,50 +169,52 @@ protected int applyPersistedEffects(object initiator, object target)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyBeneficialEffect(object initiator, object target)
+protected int applyBeneficialEffect(object initiator, object target,
+    mapping effectData)
 {
     int ret = 0;
 
-    if (member(specificationData, "increase hit points"))
+    if (member(effectData, "increase hit points"))
     {
         ret = 1;
-        target->hitPoints(applyFormula(initiator, "increase hit points"));
+        target->hitPoints(applyFormula(initiator, "increase hit points", effectData));
     }
-    if (member(specificationData, "increase spell points"))
+    if (member(effectData, "increase spell points"))
     {
         ret = 1;
-        target->spellPoints(applyFormula(initiator, "increase spell points"));
+        target->spellPoints(applyFormula(initiator, "increase spell points", effectData));
     }
-    if (member(specificationData, "increase stamina points"))
+    if (member(effectData, "increase stamina points"))
     {
         ret = 1;
-        target->staminaPoints(applyFormula(initiator, "increase stamina points"));
+        target->staminaPoints(applyFormula(initiator, "increase stamina points", effectData));
     }
-    if (member(specificationData, "decrease intoxication"))
+    if (member(effectData, "decrease intoxication"))
     {
         ret = 1;
-        target->addIntoxication(-applyFormula(initiator, "decrease intoxication"));
+        target->addIntoxication(-applyFormula(initiator, "decrease intoxication", effectData));
     }
-    if (member(specificationData, "decrease druggedness"))
+    if (member(effectData, "decrease druggedness"))
     {
         ret = 1;
-        target->addDrugged(-applyFormula(initiator, "decrease druggedness"));
+        target->addDrugged(-applyFormula(initiator, "decrease druggedness", effectData));
     }
-    if (member(specificationData, "decrease soaked"))
+    if (member(effectData, "decrease soaked"))
     {
         ret = 1;
-        target->addSoaked(-applyFormula(initiator, "decrease soaked"));
+        target->addSoaked(-applyFormula(initiator, "decrease soaked", effectData));
     }
-    if (member(specificationData, "decrease stuffed"))
+    if (member(effectData, "decrease stuffed"))
     {
         ret = 1;
-        target->addStuffed(-applyFormula(initiator, "decrease stuffed"));
+        target->addStuffed(-applyFormula(initiator, "decrease stuffed", effectData));
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected int applyEffect(object initiator, object target)
+protected int applyEffect(object initiator, object target,
+    mapping effectData)
 {
     int ret = 0;
 
@@ -222,39 +224,39 @@ protected int applyEffect(object initiator, object target)
     // Hostile effects (never to self)
     if (!isSelf && isHostile)
     {
-        if(member(specificationData, "damage spell points"))
+        if(member(effectData, "damage spell points"))
         {
-            target->spellPoints(-applyFormula(initiator, "damage spell points"));
+            target->spellPoints(-applyFormula(initiator, "damage spell points", effectData));
             ret = 1;
         }
-        if(member(specificationData, "damage stamina points"))
+        if(member(effectData, "damage stamina points"))
         {
-            target->staminaPoints(-applyFormula(initiator, "damage stamina points"));
+            target->staminaPoints(-applyFormula(initiator, "damage stamina points", effectData));
             ret = 1;
         }
-        if(member(specificationData, "increase intoxication"))
+        if(member(effectData, "increase intoxication"))
         {
-            target->addIntoxication(applyFormula(initiator, "increase intoxication"));
+            target->addIntoxication(applyFormula(initiator, "increase intoxication", effectData));
             ret = 1;
         }
-        if(member(specificationData, "increase druggedness"))
+        if(member(effectData, "increase druggedness"))
         {
-            target->addDrugged(applyFormula(initiator, "increase druggedness"));
+            target->addDrugged(applyFormula(initiator, "increase druggedness", effectData));
             ret = 1;
         }
-        if(member(specificationData, "increase soaked"))
+        if(member(effectData, "increase soaked"))
         {
-            target->addSoaked(applyFormula(initiator, "increase soaked"));
+            target->addSoaked(applyFormula(initiator, "increase soaked", effectData));
             ret = 1;
         }
-        if(member(specificationData, "increase stuffed"))
+        if(member(effectData, "increase stuffed"))
         {
-            target->addStuffed(applyFormula(initiator, "increase stuffed"));
+            target->addStuffed(applyFormula(initiator, "increase stuffed", effectData));
             ret = 1;
         }  
-        if (member(specificationData, "siphon spell points"))
+        if (member(effectData, "siphon spell points"))
         {
-            int amount = applyFormula(initiator, "siphon spell points");
+            int amount = applyFormula(initiator, "siphon spell points", effectData);
             int addBack = amount / 4;
 
             target->spellPoints(-amount);
@@ -263,9 +265,9 @@ protected int applyEffect(object initiator, object target)
             initiator->staminaPoints(addBack);
             ret = 1;
         }
-        if (member(specificationData, "siphon stamina points"))
+        if (member(effectData, "siphon stamina points"))
         {
-            int amount = applyFormula(initiator, "siphon stamina points");
+            int amount = applyFormula(initiator, "siphon stamina points", effectData);
             int addBack = amount / 4;
 
             target->staminaPoints(-amount);
@@ -274,18 +276,18 @@ protected int applyEffect(object initiator, object target)
             initiator->staminaPoints(addBack);
             ret = 1;
         }
-        if(member(specificationData, "damage hit points"))
+        if(member(effectData, "damage hit points"))
         {
-            target->hit(applyFormula(initiator, "damage hit points"), 
-                specificationData["damage type"], initiator);
+            target->hit(applyFormula(initiator, "damage hit points", effectData), 
+                effectData["damage type"], initiator);
             ret = 1;
         }
-        if (target && member(specificationData, "siphon hit points"))
+        if (target && member(effectData, "siphon hit points"))
         {
-            int amount = applyFormula(initiator, "siphon hit points");
+            int amount = applyFormula(initiator, "siphon hit points", effectData);
             int addBack = amount / 4;
 
-            target->hit(amount, specificationData["damage type"], initiator);
+            target->hit(amount, effectData["damage type"], initiator);
             initiator->hitPoints(addBack);
             initiator->spellPoints(addBack);
             initiator->staminaPoints(addBack);
@@ -293,12 +295,11 @@ protected int applyEffect(object initiator, object target)
         }
         if(ret && target)
         {
-            // Trigger combat
             target->registerAttacker(initiator);
             initiator->registerAttacker(target);
         }
         else if (target &&
-            member(specificationData, "supercede targets"))
+            member(effectData, "supercede targets"))
         {
             ret = 1;
             initiator->registerAttacker(target);
@@ -306,7 +307,7 @@ protected int applyEffect(object initiator, object target)
         }
     }
 
-    ret = applyBeneficialEffect(initiator, target) || ret;
+    ret = applyBeneficialEffect(initiator, target, effectData) || ret;
     ret = applyPersistedEffects(initiator, target) || ret;
 
     return ret;

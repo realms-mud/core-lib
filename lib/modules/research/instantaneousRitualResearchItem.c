@@ -26,111 +26,112 @@ protected int ritualMultiplier(string type, int value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyBeneficialEffect(object initiator, object target)
+protected nomask int applyBeneficialEffect(object initiator, object target,
+    mapping effectData)
 {
     int ret = 0;
-    if(member(specificationData, "increase hit points"))
+    if(member(effectData, "increase hit points"))
     {
         ret ||= target->hitPoints(ritualMultiplier("increase hit points",
-            applyFormula(initiator, "increase hit points")));
+            applyFormula(initiator, "increase hit points", effectData)));
     }
-    if(member(specificationData, "increase spell points"))
+    if(member(effectData, "increase spell points"))
     {
         ret ||= target->spellPoints(ritualMultiplier("increase spell points",
-            applyFormula(initiator, "increase spell points")));
+            applyFormula(initiator, "increase spell points", effectData)));
     }
-    if(member(specificationData, "increase stamina points"))
+    if(member(effectData, "increase stamina points"))
     {
         ret ||= 
             target->staminaPoints(ritualMultiplier("increase stamina points",
-            applyFormula(initiator, "increase stamina points")));
+            applyFormula(initiator, "increase stamina points", effectData)));
     }
-    if(member(specificationData, "decrease intoxication"))
+    if(member(effectData, "decrease intoxication"))
     {
         ret ||= target->addIntoxication(
             -ritualMultiplier("decrease intoxication",
-            applyFormula(initiator, "decrease intoxication")));
+            applyFormula(initiator, "decrease intoxication", effectData)));
     }
-    if(member(specificationData, "decrease druggedness"))
+    if(member(effectData, "decrease druggedness"))
     {
         ret ||= target->addDrugged(-ritualMultiplier("decrease druggedness",
-            applyFormula(initiator, "decrease druggedness")));
+            applyFormula(initiator, "decrease druggedness", effectData)));
     }
-    if(member(specificationData, "decrease soaked"))
+    if(member(effectData, "decrease soaked"))
     {
         ret ||= target->addSoaked(-ritualMultiplier("decrease soaked",
-            applyFormula(initiator, "decrease soaked")));
+            applyFormula(initiator, "decrease soaked", effectData)));
     }
-    if(member(specificationData, "decrease stuffed"))
+    if(member(effectData, "decrease stuffed"))
     {
         ret ||= target->addStuffed(-ritualMultiplier("decrease stuffed",
-            applyFormula(initiator, "decrease stuffed")));
+            applyFormula(initiator, "decrease stuffed", effectData)));
     }
     return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int applyEffect(object initiator, object target)
+protected nomask int applyEffect(object initiator, object target,
+    mapping effectData)
 {
     int ret = 0;
-    if(target && objectp(target) && member(specificationData, "damage type") && 
+    if(target && objectp(target) && member(effectData, "damage type") && 
         ((target->onKillList() && !target->isRealizationOf("player")) ||
         (target->isRealizationOf("player") && initiator->isRealizationOf("player") &&
         target->onKillList() && initiator->onKillList())))
     {
-        if(member(specificationData, "damage spell points"))
+        if(member(effectData, "damage spell points"))
         {
             target->spellPoints(-ritualMultiplier("damage spell points",
-                applyFormula(initiator, "damage spell points")));
+                applyFormula(initiator, "damage spell points", effectData)));
             ret = 1;
         }
-        if(member(specificationData, "damage stamina points"))
+        if(member(effectData, "damage stamina points"))
         {
             target->staminaPoints(-ritualMultiplier("damage stamina points",
-                applyFormula(initiator, "damage stamina points")));
+                applyFormula(initiator, "damage stamina points", effectData)));
             ret = 1;
         }
-        if(member(specificationData, "increase intoxication"))
+        if(member(effectData, "increase intoxication"))
         {
             target->addIntoxication(ritualMultiplier("increase intoxication",
-                applyFormula(initiator, "increase intoxication")));
+                applyFormula(initiator, "increase intoxication", effectData)));
             ret = 1;
         }
-        if(member(specificationData, "increase druggedness"))
+        if(member(effectData, "increase druggedness"))
         {
             target->addDrugged(ritualMultiplier("increase druggedness",
-                applyFormula(initiator, "increase druggedness")));
+                applyFormula(initiator, "increase druggedness", effectData)));
             ret = 1;
         }
-        if(member(specificationData, "increase soaked"))
+        if(member(effectData, "increase soaked"))
         {
             target->addSoaked(ritualMultiplier("increase soaked",
-                applyFormula(initiator, "increase soaked")));
+                applyFormula(initiator, "increase soaked", effectData)));
             ret = 1;
         }
-        if(member(specificationData, "increase stuffed"))
+        if(member(effectData, "increase stuffed"))
         {
             target->addStuffed(ritualMultiplier("increase stuffed",
-                applyFormula(initiator, "increase stuffed")));
+                applyFormula(initiator, "increase stuffed", effectData)));
             ret = 1;
         }
         
-        if(member(specificationData, "damage hit points"))
+        if(member(effectData, "damage hit points"))
         {
             target->hit(ritualMultiplier("damage hit points",
-                applyFormula(initiator, "damage hit points")), 
-                specificationData["damage type"], initiator);
+                applyFormula(initiator, "damage hit points", effectData)), 
+                effectData["damage type"], initiator);
             ret = 1;
         }
 
         if (ret)
         {
-            // Trigger combat
             target->registerAttacker(initiator);
             initiator->registerAttacker(target);
         }
     }
     
-    ret ||= applyBeneficialEffect(initiator, target);
+    ret ||= applyBeneficialEffect(initiator, target, effectData);
     return ret;
 }
