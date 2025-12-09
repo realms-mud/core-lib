@@ -100,13 +100,67 @@ private void ThirteenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FifteenthLevel()
 {
-    addResearchElement("/guilds/aeromancer/effects/reduce-sp-cost.c");
-    addResearchElement("/guilds/aeromancer/effects/reduce-stamina-cost.c");
+    addResearchElement("/guilds/aeromancer/effects/enhance-dodge.c");
+    addResearchElement("/guilds/aeromancer/effects/reduce-dodge.c");
+    addResearchElement("/guilds/aeromancer/effects/apply-slow.c");
 
-    addChild("/guilds/aeromancer/effects/reduce-sp-cost.c",
+    addChild("/guilds/aeromancer/effects/enhance-dodge.c",
         "/guilds/aeromancer/effects/enhance-soak.c");
-    addChild("/guilds/aeromancer/effects/reduce-stamina-cost.c",
-        "/guilds/aeromancer/effects/enhance-soak.c");
+    addChild("/guilds/aeromancer/effects/reduce-dodge.c",
+        "/guilds/aeromancer/effects/reduce-soak.c");
+    addChild("/guilds/aeromancer/effects/apply-slow.c",
+        "/guilds/aeromancer/effects/reduce-soak.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SeventeenthLevel()
+{
+    addResearchElement("/guilds/aeromancer/effects/enhance-parry.c");
+    addResearchElement("/guilds/aeromancer/effects/reduce-parry.c");
+    addResearchElement("/guilds/aeromancer/effects/enhance-speed.c");
+    addResearchElement("/guilds/aeromancer/effects/apply-enfeebled.c");
+
+    addChild("/guilds/aeromancer/effects/enhance-parry.c",
+        "/guilds/aeromancer/effects/enhance-dodge.c");
+    addChild("/guilds/aeromancer/effects/reduce-parry.c",
+        "/guilds/aeromancer/effects/reduce-dodge.c");
+    addChild("/guilds/aeromancer/effects/enhance-speed.c",
+        "/guilds/aeromancer/effects/enhance-dodge.c");
+    addChild("/guilds/aeromancer/effects/apply-enfeebled.c",
+        "/guilds/aeromancer/effects/apply-slow.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void NineteenthLevel()
+{
+    addResearchElement("/guilds/aeromancer/effects/staggering-damage.c");
+    addResearchElement("/guilds/aeromancer/effects/debilitating-damage.c");
+    addResearchElement("/guilds/aeromancer/effects/disorienting-damage.c");
+    addResearchElement("/guilds/aeromancer/effects/invigorating-siphon.c");
+
+    addChild("/guilds/aeromancer/effects/staggering-damage.c",
+        "/guilds/aeromancer/effects/reduce-parry.c");
+    addChild("/guilds/aeromancer/effects/debilitating-damage.c",
+        "/guilds/aeromancer/effects/reduce-parry.c");
+    addChild("/guilds/aeromancer/effects/disorienting-damage.c",
+        "/guilds/aeromancer/effects/reduce-parry.c");
+    addChild("/guilds/aeromancer/effects/invigorating-siphon.c",
+        "/guilds/aeromancer/effects/enhance-speed.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyFirstLevel()
+{
+    addResearchElement("/guilds/aeromancer/effects/hampering-damage.c");
+    addResearchElement("/guilds/aeromancer/effects/exhausting-damage.c");
+    addResearchElement("/guilds/aeromancer/effects/fortifying-siphon.c");
+
+    addChild("/guilds/aeromancer/effects/hampering-damage.c",
+        "/guilds/aeromancer/effects/apply-slow.c");
+    addChild("/guilds/aeromancer/effects/exhausting-damage.c",
+        "/guilds/aeromancer/effects/apply-enfeebled.c");
+    addChild("/guilds/aeromancer/effects/fortifying-siphon.c",
+        "/guilds/aeromancer/effects/invigorating-siphon.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -127,4 +181,7 @@ protected void Setup()
     EleventhLevel();
     ThirteenthLevel();
     FifteenthLevel();
+    SeventeenthLevel();
+    NineteenthLevel();
+    TwentyFirstLevel();
 }
