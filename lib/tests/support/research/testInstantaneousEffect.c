@@ -26,13 +26,13 @@ public int customFormula(object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyBeneficialEffect(object initiator, object target)
+public int applyBeneficialEffect(object initiator, object target, mapping effectData)
 {
     return useBeneficialEffect;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public int applyEffect(object initiator, object target)
+public int applyEffect(object initiator, object target, mapping effectData)
 {
     return useApplyEffect;
 }
