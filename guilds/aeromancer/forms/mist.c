@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 8);
 
     addSpecification("use combination message", 
-        "##Infinitive::envelop## ##TargetName## in a swirling mist of ##Function##");
+        "##InitiatorName## ##Infinitive::envelop## ##TargetName## in a swirling mist of ##Function##.");
 }

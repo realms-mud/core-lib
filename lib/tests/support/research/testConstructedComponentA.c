@@ -9,7 +9,7 @@ protected void Setup()
 {
     addSpecification("name", "Test Component A");
     addSpecification("source", "test");
-    addSpecification("description", "Test component A for constructed research.");
+    addSpecification("description", "Test component A for constructed research - a form.");
     addSpecification("research type", "granted");
     addSpecification("research cost", 1);
 
@@ -19,5 +19,6 @@ protected void Setup()
     addSpecification("additional cooldown", 3);
     addSpecification("additional repeat effect", 2);
 
-    addSpecification("use combination message", "##Infinitive::blast## a bolt");
+    addSpecification("use combination message", 
+        "##InitiatorName## ##Infinitive::blast## a bolt of ##Function## at ##TargetName##.");
 }

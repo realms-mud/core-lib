@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 12);
 
     addSpecification("use combination message", 
-        "##Infinitive::slash## ##TargetName## with a blade of ##Function##");
+        "##InitiatorName## ##Infinitive::slash## ##TargetName## with a blade of ##Function##.");
 }

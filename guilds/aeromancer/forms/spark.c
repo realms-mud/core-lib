@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 6);
 
     addSpecification("use combination message", 
-        "##Infinitive::shower## ##TargetName## with sparks of ##Function##");
+        "##InitiatorName## ##Infinitive::shower## ##TargetName## with sparks of ##Function##.");
 }

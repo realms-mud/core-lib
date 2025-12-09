@@ -27,6 +27,10 @@ protected void Setup()
     addSpecification("additional cooldown", 18);
     addSpecification("additional spell point cost", 30);
 
+    addSpecification("additional repeat effect", 2);
+
     addSpecification("use combination message", 
-        "##Infinitive::ensnare## ##TargetName## in coiling tendrils of ##Function##");
+        "##InitiatorName## ##Infinitive::ensnare## ##TargetName## in coiling tendrils of ##Function##.");
+    addSpecification("repeated combination message",
+        "The coils of ##Function## tighten around ##TargetName##.");
 }

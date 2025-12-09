@@ -61,6 +61,8 @@ protected nomask int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "use combination message":
+        case "repeated combination message":
         case "combination descriptor":
         {
             if (value && stringp(value))

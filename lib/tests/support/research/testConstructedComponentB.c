@@ -9,7 +9,7 @@ protected void Setup()
 {
     addSpecification("name", "Test Component B");
     addSpecification("source", "test");
-    addSpecification("description", "Test component B for constructed research.");
+    addSpecification("description", "Test component B for constructed research - a function.");
     addSpecification("research type", "granted");
     addSpecification("research cost", 1);
 
@@ -19,5 +19,5 @@ protected void Setup()
     addSpecification("additional cooldown", 5);
     addSpecification("additional repeat effect", 1);
 
-    addSpecification("use combination message", "of ##Infinitive::shock## lightning");
+    addSpecification("combination descriptor", "lightning");
 }

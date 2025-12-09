@@ -28,5 +28,6 @@ protected void Setup()
     addSpecification("additional spell point cost", 26);
 
     addSpecification("use combination message", 
-        "##Infinitive::call## down a devastating strike of ##Function## upon ##TargetName##");
+        "##InitiatorName## ##Infinitive::call## down a devastating strike "
+        "of ##Function## upon ##TargetName##.");
 }

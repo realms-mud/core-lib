@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 22);
 
     addSpecification("use combination message", 
-        "##Infinitive::hurl## an orb of ##Function## at ##TargetName##");
+        "##InitiatorName## ##Infinitive::hurl## an orb of ##Function## at ##TargetName##.");
 }

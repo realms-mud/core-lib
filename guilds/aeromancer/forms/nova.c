@@ -28,5 +28,6 @@ protected void Setup()
     addSpecification("additional spell point cost", 45);
 
     addSpecification("use combination message", 
-        "##Infinitive::explode## with a nova of ##Function## that engulfs ##TargetName##");
+        "##InitiatorName## ##Infinitive::explode## with a nova of "
+        "##Function## that engulfs ##TargetName##.");
 }

@@ -292,16 +292,16 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
     {
         if(function_exists("has", target) && target->has("combat"))
         {
+            if(member(effectData, "use ability message") 
+               && stringp(effectData["use ability message"]))
+            {
+                displayMessage(effectData["use ability message"],
+                    owner, target);
+            }
             ret += applyEffect(owner, target, effectData);
         }
     }
-          
-    if(member(effectData, "use ability message") 
-       && stringp(effectData["use ability message"]))
-    {
-        displayMessage(effectData["use ability message"],
-            owner, owner);
-    }
+
     return ret;
 }
 

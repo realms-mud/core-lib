@@ -26,7 +26,10 @@ protected void Setup()
 
     addSpecification("additional cooldown", 22);
     addSpecification("additional spell point cost", 38);
+    addSpecification("additional repeat effect", 3);
 
     addSpecification("use combination message", 
-        "##Infinitive::emit## pulsing waves of ##Function## that hammer ##TargetName##");
+        "##InitiatorName## ##Infinitive::emit## pulsing waves of ##Function## that hammer ##TargetName##.");
+    addSpecification("repeated combination message",
+        "Another pulse of ##Function## slams into ##TargetName##.");
 }

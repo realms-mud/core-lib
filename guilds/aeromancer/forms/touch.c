@@ -26,5 +26,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 5);
 
     addSpecification("use combination message", 
-        "##Infinitive::touch## ##TargetName## with ##Function##");
+        "##InitiatorName## ##Infinitive::touch## ##TargetName## with ##Function##.");
 }

@@ -9,9 +9,17 @@ virtual inherit "/lib/modules/research/activeResearchItem.c";
 virtual inherit "/lib/modules/research/instantaneousEffect.c";
 
 /////////////////////////////////////////////////////////////////////////////
+protected int addAdditionalSpecification(string type, mixed value)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int addSpecification(string type, mixed value)
 {
-    int ret = addInstantaneousSpecification(type, value);
+    int ret = addInstantaneousSpecification(type, value) ||
+        addAdditionalSpecification(type, value);
+
     if(!ret)
     {
         ret = activeResearchItem::addSpecification(type, value);

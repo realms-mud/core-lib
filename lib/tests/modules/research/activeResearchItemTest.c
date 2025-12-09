@@ -438,3 +438,94 @@ void ResearchCorrectlyConsumesOverMultipleComponents()
     ExpectEq("A quiver containing 18 arrows (24 max)", quiver2.short());
     ExpectFalse(mana);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetValidRepeatedAbilityMessage()
+{
+    ExpectTrue(ResearchItem.addSpecification("repeated ability message", 
+        "Lightning arcs out and strikes foes."), 
+        "add repeated ability message specification");
+    ExpectEq("Lightning arcs out and strikes foes.", 
+        ResearchItem.query("repeated ability message"), 
+        "can query the repeated ability message");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingInvalidRepeatedAbilityMessageThrowsError()
+{
+    string err = catch (ResearchItem.addSpecification("repeated ability message", 1); nolog);
+    string expectedError = "*ERROR - activeResearchItem: the 'repeated ability message' specification must be a string.\n";
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatEffectDisplaysRepeatedAbilityMessage()
+{
+    object Room = clone_object("/lib/environment/environment");
+    move_object(User, Room);
+    User.colorConfiguration("none");
+
+    ResearchItem.addSpecification("scope", "area");
+    ResearchItem.addSpecification("repeated ability message", 
+        "##InitiatorName## ##Infinitive::blast## foes with lightning.");
+
+    User.ToggleMockResearch();
+
+    // Call repeatEffect directly
+    ResearchItem.testRepeatEffect(1, "the command", User, 
+        "/lib/tests/support/research/testActiveResearchItem.c");
+
+    ExpectSubStringMatch("Bob blasts foes with lightning", User.caughtMessage(),
+        "repeated ability message is displayed");
+
+    destruct(Room);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatEffectDisplaysRepeatedAbilityMessageWithTargetForTargetedScope()
+{
+    object Room = clone_object("/lib/environment/environment");
+    move_object(User, Room);
+    User.colorConfiguration("none");
+
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    Target.setUpRandomEquipment("low");
+    move_object(Target, Room);
+
+    ResearchItem.addSpecification("scope", "targeted");
+    ResearchItem.addSpecification("command template", "zap ##Target##");
+    ResearchItem.addSpecification("repeated ability message", 
+        "##InitiatorName## ##Infinitive::zap## ##TargetName## again.");
+
+    User.ToggleMockResearch();
+
+    ResearchItem.testRepeatEffect(1, "zap orc", User, 
+        "/lib/tests/support/research/testActiveResearchItem.c");
+
+    ExpectSubStringMatch("Bob zaps Orc again", User.caughtMessage(),
+        "repeated ability message with target is displayed");
+
+    destruct(Target);
+    destruct(Room);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatEffectDoesNotDisplayMessageWhenNotSet()
+{
+    object Room = clone_object("/lib/environment/environment");
+    move_object(User, Room);
+    User.colorConfiguration("none");
+
+    ResearchItem.addSpecification("scope", "area");
+
+    User.ToggleMockResearch();
+
+    ResearchItem.testRepeatEffect(1, "the command", User, 
+        "/lib/tests/support/research/testActiveResearchItem.c");
+
+    ExpectFalse(User.caughtMessage(),
+        "no message is displayed when repeated ability message not set");
+
+    destruct(Room);
+}

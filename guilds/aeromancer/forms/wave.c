@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 20);
 
     addSpecification("use combination message", 
-        "##Infinitive::send## a wave of ##Function## crashing into ##TargetName##");
+        "##InitiatorName## ##Infinitive::send## a wave of ##Function## crashing into ##TargetName##.");
 }

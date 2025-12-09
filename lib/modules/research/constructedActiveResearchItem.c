@@ -60,7 +60,7 @@ private nomask int validateConstructedSet(mapping constructedList)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask int addSpecification(string type, mixed value)
+protected nomask int addAdditionalSpecification(string type, mixed value)
 {
     int ret = 0;
 
@@ -142,10 +142,6 @@ protected nomask int addSpecification(string type, mixed value)
             break;
         }
     }
-    if(!ret)
-    {
-        ret = instantaneousActiveResearchItem::addSpecification(type, value);
-    }
     return ret;
 }
 
@@ -222,7 +218,7 @@ private nomask string checkFormMustIncludeOnlyOneOfRules(mapping list)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nominal string checkFunctionMustIncludeOnlyOneOfRules(mapping list)
+private nomask string checkFunctionMustIncludeOnlyOneOfRules(mapping list)
 {
     return checkIncludeOnlyOneRule(list, "function must include only one of");
 }

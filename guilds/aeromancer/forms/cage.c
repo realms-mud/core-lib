@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 20);
 
     addSpecification("use combination message", 
-        "##Infinitive::trap## ##TargetName## within a cage of ##Function##");
+        "##InitiatorName## ##Infinitive::trap## ##TargetName## within a cage of ##Function##.");
 }

@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 22);
 
     addSpecification("use combination message", 
-        "##Infinitive::drive## a lance of ##Function## through ##TargetName##");
+        "##InitiatorName## ##Infinitive::drive## a lance of ##Function## through ##TargetName##.");
 }

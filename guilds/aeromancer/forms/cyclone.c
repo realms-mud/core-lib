@@ -26,7 +26,10 @@ protected void Setup()
 
     addSpecification("additional cooldown", 24);
     addSpecification("additional spell point cost", 40);
+    addSpecification("additional repeat effect", 4);
 
     addSpecification("use combination message", 
-        "##Infinitive::conjure## a rotating cyclone of ##Function## that batters ##TargetName##");
+        "##InitiatorName## ##Infinitive::conjure## a rotating cyclone of ##Function## that batters ##TargetName##.");
+    addSpecification("repeated combination message",
+        "The cyclone of ##Function## continues to batter ##TargetName##.");
 }

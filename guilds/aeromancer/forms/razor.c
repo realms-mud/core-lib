@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 14);
 
     addSpecification("use combination message", 
-        "##Infinitive::slash## razor-thin blades of ##Function## through ##TargetName##");
+        "##InitiatorName## ##Infinitive::slash## razor-thin blades of ##Function## through ##TargetName##.");
 }

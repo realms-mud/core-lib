@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 16);
 
     addSpecification("use combination message", 
-        "##Infinitive::thrust## a spear of ##Function## at ##TargetName##");
+        "##InitiatorName## ##Infinitive::thrust## a spear of ##Function## at ##TargetName##.");
 }

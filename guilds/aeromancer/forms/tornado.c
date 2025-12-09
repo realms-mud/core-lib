@@ -28,5 +28,6 @@ protected void Setup()
     addSpecification("additional spell point cost", 50);
 
     addSpecification("use combination message", 
-        "##Infinitive::unleash## a devastating tornado of ##Function## upon ##TargetName##");
+        "##InitiatorName## ##Infinitive::unleash## a devastating tornado "
+        "of ##Function## upon ##TargetName##.");
 }

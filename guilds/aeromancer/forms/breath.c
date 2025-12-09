@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 12);
 
     addSpecification("use combination message", 
-        "##Infinitive::exhale## a cone of ##Function## at ##TargetName##");
+        "##InitiatorName## ##Infinitive::exhale## a cone of ##Function## at ##TargetName##.");
 }

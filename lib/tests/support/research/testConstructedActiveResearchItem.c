@@ -32,7 +32,7 @@ protected void Setup()
     addSpecification("research type", "granted");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 10);
-    addSpecification("command template", "test spell ##Target##");
+    addSpecification("command template", "test spell ##Value##");
     addSpecification("command name", "test spell");
     addSpecification("cooldown", 10);
     addSpecification("maximum constructed size", 3);

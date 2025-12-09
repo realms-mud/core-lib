@@ -28,5 +28,6 @@ protected void Setup()
     addSpecification("additional spell point cost", 35);
 
     addSpecification("use combination message", 
-        "##Infinitive::conjure## a swirling vortex of ##Function## that engulfs ##TargetName##");
+        "##InitiatorName## ##Infinitive::conjure## a swirling vortex "
+        "of ##Function## that engulfs ##TargetName##.");
 }

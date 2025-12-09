@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 18);
 
     addSpecification("use combination message", 
-        "##Infinitive::release## a ring of ##Function##");
+        "##InitiatorName## ##Infinitive::release## a ring of ##Function##.");
 }

@@ -28,5 +28,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 5);
 
     addSpecification("use combination message", 
-        "##Infinitive::release## a sudden gust of ##Function## at ##TargetName##");
+        "##InitiatorName## ##Infinitive::release## a sudden gust of ##Function## at ##TargetName##.");
 }

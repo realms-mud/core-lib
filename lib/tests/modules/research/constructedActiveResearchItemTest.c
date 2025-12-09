@@ -14,7 +14,7 @@ void Setup()
 {
     ResearchItem = clone_object("/lib/tests/support/research/testConstructedActiveResearchItem");
 
-    User = clone_object("/lib/realizations/player.c");
+    User = clone_object("/lib/tests/support/services/mockPlayer.c");
     User.Name("Bob");
     User.Str(20);
     User.Int(20);
@@ -573,7 +573,18 @@ void ExecuteDisplaysCombinationMessage()
     User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
     User.colorConfiguration("none");
 
-    User.setConstructedResearch("test combo", ( [
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    object shadow = clone_object("/lib/tests/support/services/catchShadow.c");
+    shadow.beginShadow(Target);
+    move_object(Target, Room);
+
+    object Bystander = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Bystander.Name("Frank");
+    Bystander.colorConfiguration("none");
+    move_object(Bystander, Room);
+
+    User.setConstructedResearch("test combo", ([
         "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
         "type": "/lib/tests/support/research/testConstructedComponentA.c",
         "elements": ({
@@ -583,9 +594,23 @@ void ExecuteDisplaysCombinationMessage()
 
     User.researchCommand("test spell test combo");
 
-    // The message should contain parts from the combination messages
-    string message = User.caughtMessage();
-    ExpectSubStringMatch("blast", message, "message contains form action");
+    // Initiator (Bob) sees "You blast..."
+    string initiatorMessage = User.caughtMessage();
+    ExpectEq("You blast a bolt of lightning at Orc.\n", initiatorMessage, 
+        "initiator sees message from their perspective");
+
+    // Target (Orc) sees "Bob blasts..."
+    string targetMessage = Target.caughtMessage();
+    ExpectEq("Bob blasts a bolt of lightning at you.\n", targetMessage,
+        "target sees message with initiator's name");
+
+    // Bystander (Frank) sees "Bob blasts..."
+    string bystanderMessage = Bystander.caughtMessage();
+    ExpectEq("Bob blasts a bolt of lightning at Orc.\n", bystanderMessage,
+        "bystander sees message with initiator's name");
+
+    destruct(Target);
+    destruct(Bystander);
 }
 
 /////////////////////////////////////////////////////////////////////////////

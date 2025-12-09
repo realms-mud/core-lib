@@ -99,3 +99,10 @@ public int executeGlobally(string unparsedCommand, object owner,
     }
     return ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public void testRepeatEffect(int timesRemaining, string command, 
+    object owner, string researchName)
+{
+    repeatEffect(timesRemaining, command, owner, researchName);
+}

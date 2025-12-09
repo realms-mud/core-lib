@@ -27,5 +27,5 @@ protected void Setup()
     addSpecification("additional spell point cost", 30);
 
     addSpecification("use combination message", 
-        "##Infinitive::conjure## a wall of ##Function## before ##TargetName##");
+        "##InitiatorName## ##Infinitive::conjure## a wall of ##Function## before ##TargetName##.");
 }
