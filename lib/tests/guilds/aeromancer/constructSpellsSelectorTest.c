@@ -263,3 +263,312 @@ void DescribeSpellWithMultipleEffectsShowsCorrectDetails()
     ExpectSubStringMatch("Modified -> \\+20% if Spell Perfection is researched", 
         User.caughtMessage());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingExitClosesSelector()
+{
+    Selector.initiateSelector(User);
+    command("2", User);
+
+    ExpectSubStringMatch("You have selected", User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TypingExitClosesSelector()
+{
+    Selector.initiateSelector(User);
+    command("exit", User);
+
+    ExpectSubStringMatch("has been exited", User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingModifyOpensEditSelector()
+{
+    mapping constructedElement = ([
+        "alias": "zap",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function"
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect"
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Zap Spell",
+        constructedElement));
+
+    Selector.initiateSelector(User);
+    command("1", User);
+
+    // Should show the edit menu with spell details
+    ExpectSubStringMatch("Modify Spell Menu", User.caughtMessage());
+    ExpectSubStringMatch("Spell Name: Zap Spell", User.caughtMessage());
+    ExpectSubStringMatch("Spell Alias: zap", User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SelectingCreateOpensCreateSelector()
+{
+    Selector.initiateSelector(User);
+    command("1", User);
+
+    // Should show the create menu
+    ExpectSubStringMatch("Create New Constructed Spell", User.caughtMessage());
+    ExpectSubStringMatch("Create Constructed Aeromancer Spells", 
+        User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DeleteSpellRemovesItFromList()
+{
+    mapping constructedElement = ([
+        "alias": "delete-me",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function"
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect"
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Delete Me Spell",
+        constructedElement));
+
+    // Verify spell exists
+    mapping spells = User.getOptionsForConstructedResearch(
+        "/guilds/aeromancer/construct/root.c");
+    ExpectTrue(member(spells, "Delete Me Spell"));
+
+    // Delete it
+    ExpectTrue(User.deleteConstructedResearch("Delete Me Spell"));
+
+    // Verify spell is gone
+    spells = User.getOptionsForConstructedResearch(
+        "/guilds/aeromancer/construct/root.c");
+    ExpectFalse(member(spells, "Delete Me Spell"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SetConstructedResearchValidatesData()
+{
+    // Missing constraint
+    mapping invalidElement = ([
+        "alias": "test",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({})
+    ]);
+    ExpectFalse(User.setConstructedResearch("Invalid Spell", invalidElement));
+
+    // Missing type
+    invalidElement = ([
+        "alias": "test",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "elements": ({})
+    ]);
+    ExpectFalse(User.setConstructedResearch("Invalid Spell", invalidElement));
+
+    // Valid with empty elements
+    mapping validElement = ([
+        "alias": "test",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({})
+    ]);
+    ExpectTrue(User.setConstructedResearch("Valid Spell", validElement));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetOptionsForConstructedResearchFiltersbyConstraint()
+{
+    // Create two spells with the same valid type but pretend they have 
+    // different constraints by creating them directly in the mapping.
+    // The selector filters based on the constraint field.
+    
+    mapping spell1 = ([
+        "alias": "spell1",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({})
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Aeromancer Spell", spell1));
+
+    // Only aeromancer spells should appear when filtering by aeromancer constraint
+    mapping spells = User.getOptionsForConstructedResearch(
+        "/guilds/aeromancer/construct/root.c");
+    ExpectEq(1, member(spells, "Aeromancer Spell"), 
+        "Aeromancer Spell exists in aeromancer constraint");
+
+    // No spells should appear with a different constraint
+    spells = User.getOptionsForConstructedResearch(
+        "/guilds/scion/construct/root.c");
+    ExpectEq(0, sizeof(spells),
+        "No spells returned for different constraint");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GetConstructedResearchByAliasWorks()
+{
+    mapping spell = ([
+        "alias": "zappy",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Zappy Spell", spell));
+
+    // Retrieve by name
+    mapping result = User.getConstructedResearch(
+        "/guilds/aeromancer/construct/root.c", "Zappy Spell");
+    ExpectEq("zappy", result["alias"]);
+
+    // Retrieve by alias
+    result = User.getConstructedResearch(
+        "/guilds/aeromancer/construct/root.c", "zappy");
+    ExpectEq("zappy", result["alias"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpellMissingComponentsCannotBeSaved()
+{
+    // Create a spell with only a form - missing function and effect
+    mapping spell = ([
+        "name": "Incomplete Spell",
+        "alias": "incomplete",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Incomplete Spell", spell));
+
+    Selector.initiateSelector(User);
+    command("1", User);  // Modify the spell
+
+    // The save option should be disabled because function and effect are missing
+    ExpectSubStringMatch("Save the spell.*\\(X\\)", User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpellWithAllRequiredComponentsCanBeSaved()
+{
+    mapping spell = ([
+        "name": "Complete Spell",
+        "alias": "complete",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function"
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect"
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Complete Spell", spell));
+
+    Selector.initiateSelector(User);
+    command("1", User);  // Modify the spell
+
+    // The save option should NOT be disabled (no (X) marker)
+    ExpectSubStringMatch("Save the spell", User.caughtMessage());
+    // Make sure it's not disabled
+    string message = User.caughtMessage();
+    int savePos = strstr(message, "Save the spell");
+    int disabledPos = strstr(message, "(X)", savePos);
+    int nextOptionPos = strstr(message, "Delete the spell", savePos);
+    
+    // (X) should either not appear or appear after the next option
+    ExpectTrue(disabledPos == -1 || disabledPos > nextOptionPos);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeCreateNewShowsCorrectDetails()
+{
+    Selector.initiateSelector(User);
+    command("? 1", User);
+
+    ExpectSubStringMatch("This option allows you to create a custom Aeromancer Spell",
+        User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeExitShowsCorrectDetails()
+{
+    Selector.initiateSelector(User);
+    command("? 2", User);
+
+    ExpectSubStringMatch("This option leaves the construct Aeromancer Spell menu",
+        User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SpellsAreSortedAlphabetically()
+{
+    mapping baseSpell = ([
+        "alias": "test",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/arc.c",
+                "type": "form"
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/lightning.c",
+                "type": "function"
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect"
+            ]),
+        })
+    ]);
+
+    // Create spells in non-alphabetical order
+    ExpectTrue(User.setConstructedResearch("Zebra Spell", baseSpell));
+    ExpectTrue(User.setConstructedResearch("Alpha Spell", baseSpell));
+    ExpectTrue(User.setConstructedResearch("Middle Spell", baseSpell));
+
+    Selector.initiateSelector(User);
+    
+    string message = User.caughtMessage();
+    
+    int zebraPos = strstr(message, "Zebra");
+    int middlePos = strstr(message, "Middle");
+    int alphaPos = strstr(message, "Alpha");
+    
+    // Make sure all spells were found
+    ExpectTrue(zebraPos >= 0, "Zebra Spell found in message");
+    ExpectTrue(middlePos >= 0, "Middle Spell found in message");
+    ExpectTrue(alphaPos >= 0, "Alpha Spell found in message");
+    
+    ExpectTrue(zebraPos > middlePos, "Zebra appears after Middle");
+    ExpectTrue(middlePos > alphaPos, "Middle appears after Alpha");
+}
