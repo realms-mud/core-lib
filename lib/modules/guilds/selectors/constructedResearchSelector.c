@@ -5,7 +5,7 @@
 inherit "/lib/core/baseSelector.c";
 
 private object SubselectorObj;
-private string CompositeGrouping;
+private string ConstructedGrouping;
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void setType(string type)
@@ -14,9 +14,9 @@ public nomask void setType(string type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void setCompositeGrouping(string grouping)
+public nomask void setConstructedGrouping(string grouping)
 {
-    CompositeGrouping = grouping;
+    ConstructedGrouping = grouping;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ public nomask void InitializeSelector()
 protected nomask void setUpUserForSelection()
 {
     Data = ([]);
-    mapping currentItems = User->getOptionsForCompositeResearch(
-        CompositeGrouping);
+    mapping currentItems = User->getOptionsForConstructedResearch(
+        ConstructedGrouping);
 
     int optionCount = 1;
 
@@ -45,7 +45,7 @@ protected nomask void setUpUserForSelection()
             Data[to_string(optionCount)] = ([
                 "name": sprintf("Modify '%s'", convertToTextOfLength(item, 20)),
                 "description": 
-                    getService("research")->getCompositeDescription(
+                    getService("research")->getConstructedDescription(
                         Type, item, currentItems[item]),
                 "type": "modify",
                 "value": currentItems[item] + ([ "name": item ])
@@ -79,8 +79,9 @@ protected nomask int processSelection(string selection)
             if (Data[selection]["type"] == "create")
             {
                 SubselectorObj =
-                    clone_object("/lib/modules/guilds/selectors/createResearchSelector.c");
+                    clone_object("/lib/modules/guilds/selectors/createConstructedResearchSelector.c");
                 SubselectorObj->setType(Data[selection]["type"]);
+                SubselectorObj->setConstraint(ConstructedGrouping);
                 SubselectorObj->setData(Data[selection]["value"]);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());
@@ -89,8 +90,9 @@ protected nomask int processSelection(string selection)
             else
             {
                 SubselectorObj =
-                    clone_object("/lib/modules/guilds/selectors/editResearchSelector.c");
+                    clone_object("/lib/modules/guilds/selectors/editConstructedResearchSelector.c");
                 SubselectorObj->setType(Data[selection]["type"]);
+                SubselectorObj->setConstraint(ConstructedGrouping);
                 SubselectorObj->setData(Data[selection]["value"]);
                 move_object(SubselectorObj, User);
                 SubselectorObj->registerEvent(this_object());

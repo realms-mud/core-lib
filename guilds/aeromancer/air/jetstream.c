@@ -30,16 +30,16 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 100);
 
-    addSpecification("damage hit points", ({ ({
+    addSpecification("damage hit points", ({ ([
             "probability": 80,
             "base damage": 40,
             "range": 65
-        }),
-        ({
+        ]),
+        ([
             "probability": 20,
             "base damage": 65,
             "range": 100
-        })
+        ])
     }));
     addSpecification("damage type", "air");
 

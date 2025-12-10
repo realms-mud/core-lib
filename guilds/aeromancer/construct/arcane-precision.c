@@ -7,24 +7,24 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Master Efficiency");
+    addSpecification("name", "Arcane Precision");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research provides the user with "
-        "masterful techniques for streamlining the casting process of their "
-        "constructed spells, significantly reducing the time between castings.");
+    addSpecification("description", "This research grants the aeromancer "
+        "extraordinary precision in channeling magical energy, ensuring that "
+        "every aspect of their constructed spells achieves maximum impact.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 29
+            "value": 41
         ]));
-    addPrerequisite("/guilds/aeromancer/construct/expert-efficiency.c",
+    addPrerequisite("/guilds/aeromancer/construct/spell-mastery.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Constructed Aeromancer Spells": 10,
+        "Constructed Aeromancer Spells": 15,
     ]));
-    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research type", "percentage");
 }

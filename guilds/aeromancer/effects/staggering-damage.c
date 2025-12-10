@@ -17,6 +17,12 @@ protected void Setup()
     addPrerequisite("/guilds/aeromancer/effects/reduce-parry.c",
         (["type":"research"]));
 
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "aeromancer",
+            "value": 19
+        ]));
+
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
@@ -33,17 +39,64 @@ protected void Setup()
             "range": 25
         ])
     }));
-    addSpecification("damage type", "electricity");
 
     addSpecification("penalty to attack", 5);
     addSpecification("duration", 30);
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-focus.c",
+            "name": "Spell Focus",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/enhanced-focus.c",
+            "name": "Enhanced Focus",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-amplification.c",
+            "name": "Spell Amplification",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-mastery.c",
+            "name": "Spell Mastery",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/arcane-precision.c",
+            "name": "Arcane Precision",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-perfection.c",
+            "name": "Spell Perfection",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -58,7 +111,7 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25

@@ -50,6 +50,10 @@ protected void Setup()
             "/guilds/aeromancer/functions/storm.c",
             "/guilds/aeromancer/functions/vacuum.c",
             "/guilds/aeromancer/functions/wind.c",
+            "/guilds/aeromancer/functions/thunder.c",
+            "/guilds/aeromancer/functions/chill.c",
+            "/guilds/aeromancer/functions/pressure.c",
+            "/guilds/aeromancer/functions/plasma.c",
         }),
         "effect must include any of": ({
             "/guilds/aeromancer/effects/damage-hp.c",
@@ -92,6 +96,8 @@ protected void Setup()
         "/guilds/aeromancer/construct/improved-efficiency.c": 10,
         "/guilds/aeromancer/construct/expert-efficiency.c": 10,
         "/guilds/aeromancer/construct/master-efficiency.c": 10,
+        "/guilds/aeromancer/construct/grandmaster-efficiency.c": 5,
+        "/guilds/aeromancer/construct/legendary-efficiency.c": 5,
     ]));
 
     addSpecification("scope", "area");

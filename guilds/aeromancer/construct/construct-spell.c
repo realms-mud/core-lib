@@ -26,7 +26,7 @@ protected nomask int executeOnSelf(string unparsedCommand, object owner,
         "/lib/modules/guilds/selectors/constructedResearchSelector.c");
 
     selectorObj.setType("Aeromancer Spell");
-    selectorObj.setCompositeGrouping("/guilds/aeromancer/construct/root.c");
+    selectorObj.setConstructedGrouping("/guilds/aeromancer/construct/root.c");
 
     move_object(selectorObj, owner);
     selectorObj.registerEvent(this_object());

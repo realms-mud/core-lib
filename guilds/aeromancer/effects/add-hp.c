@@ -10,7 +10,7 @@ protected void Setup()
     addSpecification("name", "Add Hit Points");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the aeromancer spell construction component for 'healing' "
+        "knowledge of the aeromancer spell construction component for healing "
         "hit points.");
 
     addPrerequisite("/guilds/aeromancer/effects/root.c",
@@ -36,105 +36,64 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/aeromancer/lightning/discharge.c",
-            "name" : "Discharge",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/electrostatics.c",
-            "name": "Electrostatics",
+            "research item": "/guilds/aeromancer/construct/spell-focus.c",
+            "name": "Spell Focus",
             "formula": "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
+            "base value": 1,
+            "rate": 1.15
         ]),
         ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/ionization.c",
-            "name" : "Ionization",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/enhanced-discharge.c",
-            "name": "Enhanced Discharge",
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/enhanced-focus.c",
+            "name": "Enhanced Focus",
             "formula": "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
+            "base value": 1,
+            "rate": 1.15
         ]),
         ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/electrostatic-induction.c",
-            "name" : "Electrostatic Induction",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/enhanced-conductivity.c",
-            "name": "Enhanced Conductivity",
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-amplification.c",
+            "name": "Spell Amplification",
             "formula": "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
+            "base value": 1,
+            "rate": 1.15
         ]),
         ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/electrostatic-condenser.c",
-            "name" : "Electrostatic Condenser",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/corona-discharge.c",
-            "name": "Corona Discharge",
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-mastery.c",
+            "name": "Spell Mastery",
             "formula": "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
+            "base value": 1,
+            "rate": 1.15
         ]),
         ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/plasma-eruption.c",
-            "name" : "Plasma Eruption",
-            "formula" : "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type":"research",
-            "research item": "/guilds/aeromancer/lightning/flux-condenser.c",
-            "name": "Flux Condenser",
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/arcane-precision.c",
+            "name": "Arcane Precision",
             "formula": "multiplicative",
-            "base value" : 1,
-            "rate": 1.25
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/construct/spell-perfection.c",
+            "name": "Spell Perfection",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.20
         ]),
         ([
             "type": "weapon damage",
-            "name" : "staff",
-            "types" : ({ "staff" }),
-            "formula" : "additive",
-            "rate" : 1.05
+            "name": "staff",
+            "types": ({ "staff" }),
+            "formula": "additive",
+            "rate": 1.05
         ]),
         ([
-            "type": "weapon damage",
-            "name": "not a staff",
-            "types": ({ "dagger", "short sword", "long sword", "bow", "axe",
-                "hand and a half sword", "two-handed sword", "crossbow", 
-                "sling", "thrown", "pole arm", "mace", "hammer", "flail" }),
-            "formula": "subtractive",
-            "rate": 1.25
-        ]),
-        ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -149,28 +108,10 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25
-        ]),
-        ([
-            "type":"skill",
-            "name" : "physics",
-            "formula" : "additive",
-            "rate" : 0.10
-        ]),
-        ([
-            "type": "skill",
-            "name": "mathematics",
-            "formula": "additive",
-            "rate": 0.05
-        ]),
-        ([
-            "type": "skill",
-            "name": "chemistry",
-            "formula": "additive",
-            "rate": 0.05
         ]),
         ([
             "type": "attribute",
@@ -180,18 +121,12 @@ protected void Setup()
         ]), 
         ([
             "type": "attribute",
-            "name": "dexterity",
-            "formula": "additive",
-            "rate": 0.025
-        ]), 
-        ([
-            "type": "attribute",
             "name": "wisdom",
             "formula": "additive",
-            "rate": 0.025
+            "rate": 0.05
         ]), 
     }));
 
     addSpecification("cooldown", 6);
-    addSpecification("event handler", "aeromancerDamageHitPointsEvent");
+    addSpecification("event handler", "aeromancerAddHitPointsEvent");
 }

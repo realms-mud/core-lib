@@ -1163,3 +1163,70 @@ public nomask string *getResearchTreesBySource(object user, string source)
     return filter(user->availableResearchTrees(),
         (: researchTree($1)->Source() == $2 :), source);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getConstructedItemDetails(mapping element,
+    string colorConfiguration, object configuration, int padding, 
+    int showDecorator)
+{
+    string ret = "";
+    padding = padding ? padding : 5;
+    string firstPadding = sprintf("%" + padding + "s%s ", " ",
+        (showDecorator ? "*" : " "));
+    string secondaryPadding = sprintf("%" + padding + "s  ", " ");
+
+    if (mappingp(element) && member(element, "research"))
+    {
+        object researchItem = researchObject(element["research"]);
+        if (researchItem)
+        {
+            string description = (member(element, "description") &&
+                element["description"]) ? element["description"] :
+                researchItem->query("description");
+
+            ret += configuration->decorate(firstPadding,
+                    "field header", "research", colorConfiguration) +
+                configuration->decorate(
+                    capitalize(researchItem->query("name")) + "\n",
+                    "field data", "research", colorConfiguration) +
+
+                configuration->decorate(sprintf(secondaryPadding +
+                    "%-15s : ", capitalize(element["type"])),
+                    "field header", "research", colorConfiguration) +
+                configuration->decorate(description + "\n",
+                    "field data", "research", colorConfiguration) +
+
+                secondaryPadding + implode(explode(
+                    researchItem->conciseResearchDetails(), "\n"), "\n" + 
+                    secondaryPadding);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string getConstructedDescription(string type, string itemName, 
+    mapping itemData)
+{
+    string colorConfiguration = this_player() ?
+        this_player()->colorConfiguration() : "none";
+
+    object configuration = getService("configuration");
+
+    string ret = researchRow(sprintf("%s Name", type), capitalize(itemName),
+            colorConfiguration, configuration) +
+        (member(itemData, "alias") ? researchRow("Alias", itemData["alias"],
+            colorConfiguration, configuration) : "") +
+        researchRow("Composition Elements", to_string(sizeof(itemData["elements"])), 
+            colorConfiguration, configuration);
+
+    if (member(itemData, "elements") && sizeof(itemData["elements"]))
+    {
+        foreach(mapping element in itemData["elements"])
+        {
+            ret += getConstructedItemDetails(element, colorConfiguration,
+                configuration, 4, 1) + "\n";
+        }
+    }
+    return ret;
+}

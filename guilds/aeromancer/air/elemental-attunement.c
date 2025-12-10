@@ -26,27 +26,27 @@ protected void Setup()
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("affected research", ({
-        "Gust", 25,
-        "Zephyr", 25,
-        "Cyclone", 25,
-        "Tornado", 25,
-        "Vortex", 25,
-        "Storm Call", 25,
-        "Maelstrom", 25,
-        "Jetstream", 25,
-        "Updraft", 25,
-        "Stolen Breath", 25,
-        "Noxious Breath", 25,
-        "Talons of Wind", 25,
-        "Buffeting Wind", 25,
-        "Daggers of the Wind", 25,
-        "Choking Wind", 25,
-        "Disrupt Storm", 25,
-        "Whirling Wind", 25,
-        "Void Orb", 25,
-        "Withering Air", 25,
-        "Cataclysmic Tempest", 25,
-    }));
+    addSpecification("affected research", ([
+        "Gust": 25,
+        "Zephyr": 25,
+        "Cyclone": 25,
+        "Tornado": 25,
+        "Vortex": 25,
+        "Storm Call": 25,
+        "Maelstrom": 25,
+        "Jetstream": 25,
+        "Updraft": 25,
+        "Stolen Breath": 25,
+        "Noxious Breath": 25,
+        "Talons of Wind": 25,
+        "Buffeting Wind": 25,
+        "Daggers of the Wind": 25,
+        "Choking Wind": 25,
+        "Disrupt Storm": 25,
+        "Whirling Wind": 25,
+        "Void Orb": 25,
+        "Withering Air": 25,
+        "Cataclysmic Tempest": 25,
+    ]));
     addSpecification("affected research type", "percentage");
 }

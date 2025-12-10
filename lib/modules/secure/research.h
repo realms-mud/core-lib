@@ -51,6 +51,7 @@ static nomask void loadResearch(mapping data, object persistence)
         }
         researchChoices = persistence->extractSavedMapping("researchChoices", data);
         compositeResearch = persistence->extractSavedMapping("compositeResearch", data);
+        constructedResearch = persistence->extractSavedMapping("constructedResearch", data);
     }
 }
 
@@ -84,7 +85,8 @@ static nomask mapping sendResearch()
         "researchChoices": sendResearchMapping(researchChoices),
         "openResearchTrees": openResearchTrees,
         "availableResearchPoints": researchPoints,
-        "compositeResearch": compositeResearch
+        "compositeResearch": compositeResearch,
+        "constructedResearch": constructedResearch
     ]);
 }
 

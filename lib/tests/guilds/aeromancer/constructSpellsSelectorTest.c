@@ -33,7 +33,7 @@ void Setup()
     Selector = clone_object(
         "/lib/modules/guilds/selectors/constructedResearchSelector.c");
     Selector.setType("Aeromancer Spell");
-    Selector.setCompositeGrouping("/guilds/aeromancer/construct/root.c");
+    Selector.setConstructedGrouping("/guilds/aeromancer/construct/root.c");
     Selector.InitializeSelector();
 
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
@@ -67,7 +67,7 @@ void InitialCreationDisplayIsCorrect()
 ///////////////////////////////////////////////////////////////////////////////
 void ConstructionDisplayWithCreatedSpellsIsCorrect()
 {
-    mapping compositeElement = ([
+    mapping constructedElement = ([
         "alias": "weasel",
         "constraint": "/guilds/aeromancer/construct/root.c",
         "type": "/guilds/aeromancer/construct/root.c",
@@ -90,18 +90,18 @@ void ConstructionDisplayWithCreatedSpellsIsCorrect()
         })
     ]);
 
-    ExpectTrue(User.setCompositeResearch("Zappy Thing",
-        compositeElement));
-    ExpectTrue(User.setCompositeResearch("Weaselstrike",
-        compositeElement));
-    ExpectTrue(User.setCompositeResearch("Weasel Blast",
-        compositeElement));
-    ExpectTrue(User.setCompositeResearch("Weasels are the land-loving mother pigeon of creatures",
-        compositeElement));
+    ExpectTrue(User.setConstructedResearch("Zappy Thing",
+        constructedElement));
+    ExpectTrue(User.setConstructedResearch("Weaselstrike",
+        constructedElement));
+    ExpectTrue(User.setConstructedResearch("Weasel Blast",
+        constructedElement));
+    ExpectTrue(User.setConstructedResearch("Weasels are the land-loving mother pigeon of creatures",
+        constructedElement));
 
-    compositeElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
-    ExpectTrue(User.setCompositeResearch("This shouldn't appear in list",
-        compositeElement));
+    constructedElement["constraint"] = "/lib/tests/support/research/flightOfWeasels.c";
+    ExpectTrue(User.setConstructedResearch("This shouldn't appear in list",
+        constructedElement));
 
     Selector.initiateSelector(User);
     ExpectEq("Aeromancer Spell - Construct Spell Main Menu:\n"
@@ -118,31 +118,28 @@ void ConstructionDisplayWithCreatedSpellsIsCorrect()
 /////////////////////////////////////////////////////////////////////////////
 void DescribeASpellShowsCorrectDetails()
 {
-    mapping compositeElement = ([
+    mapping constructedElement = ([
         "alias": "weasel",
         "constraint": "/guilds/aeromancer/construct/root.c",
         "type": "/guilds/aeromancer/construct/root.c",
         "elements": ({
             ([ "research": "/guilds/aeromancer/forms/arc.c",
                 "type": "form",
-                "description": "This is the form.",
-                "unordered": 1
+                "description": "This is the form."
             ]),
             ([ "research": "/guilds/aeromancer/functions/lightning.c",
                 "type": "function",
-                "description": "This is the function.",
-                "unordered": 1
+                "description": "This is the function."
             ]),
             ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
                 "type": "effect",
-                "description": "This is the effect.",
-                "unordered": 1
+                "description": "This is the effect."
             ]),
         })
     ]);
 
-    ExpectTrue(User.setCompositeResearch("Flight of the Weasels",
-        compositeElement));
+    ExpectTrue(User.setConstructedResearch("Flight of the Weasels",
+        constructedElement));
 
     Selector.initiateSelector(User);
     command("? 1", User);
@@ -167,19 +164,12 @@ void DescribeASpellShowsCorrectDetails()
         "      Effect          : This is the effect.\n"
         "      Usage effect    : 80% chance to damage hit points 5 - 15\n"
         "      Usage effect    : 20% chance to damage hit points 10 - 30\n"
-        "                        Modified -> +25% if Discharge is researched\n"
-        "                        Modified -> +25% if Electrostatics is researched\n"
-        "                        Modified -> +25% if Ionization is researched\n"
-        "                        Modified -> +25% if Enhanced Discharge is researched\n"
-        "                        Modified -> +25% if Electrostatic Induction is\n"
-        "                                    researched\n"
-        "                        Modified -> +25% if Enhanced Conductivity is\n"
-        "                                    researched\n"
-        "                        Modified -> +25% if Electrostatic Condenser is\n"
-        "                                    researched\n"
-        "                        Modified -> +25% if Corona Discharge is researched\n"
-        "                        Modified -> +25% if Plasma Eruption is researched\n"
-        "                        Modified -> +25% if Flux Condenser is researched\n"
+        "                        Modified -> +14% if Spell Focus is researched\n"
+        "                        Modified -> +14% if Enhanced Focus is researched\n"
+        "                        Modified -> +14% if Spell Amplification is researched\n"
+        "                        Modified -> +14% if Spell Mastery is researched\n"
+        "                        Modified -> +14% if Arcane Precision is researched\n"
+        "                        Modified -> +20% if Spell Perfection is researched\n"
         "                        Modified -> 1.05 * your staff weapon damage (additive)\n"
         "                        Modified -> 1.25 * your not a staff weapon damage\n"
         "                                    (subtractive)\n"
@@ -194,6 +184,82 @@ void DescribeASpellShowsCorrectDetails()
         "                        Modified -> 0.05 * your intelligence attribute\n"
         "                                    (additive)\n"
         "                        Modified -> 0.03 * your dexterity attribute (additive)\n"
-        "                        Modified -> 0.03 * your wisdom attribute (additive)\n      \n",
+        "                        Modified -> 0.03 * your wisdom attribute (additive)\n"
+        "      \n",
+        User.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DescribeSpellWithMultipleEffectsShowsCorrectDetails()
+{
+    mapping constructedElement = ([
+        "alias": "tempest",
+        "constraint": "/guilds/aeromancer/construct/root.c",
+        "type": "/guilds/aeromancer/construct/root.c",
+        "elements": ({
+            ([ "research": "/guilds/aeromancer/forms/cyclone.c",
+                "type": "form",
+                "description": "A swirling cyclone of air."
+            ]),
+            ([ "research": "/guilds/aeromancer/functions/wind.c",
+                "type": "function",
+                "description": "Powered by fierce winds."
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/damage-hp.c",
+                "type": "effect",
+                "description": "Deals damage to targets."
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/reduce-attack.c",
+                "type": "effect",
+                "description": "Reduces enemy attack capability."
+            ]),
+            ([ "research": "/guilds/aeromancer/effects/apply-slow.c",
+                "type": "effect",
+                "description": "Slows enemy movement."
+            ]),
+        })
+    ]);
+
+    ExpectTrue(User.setConstructedResearch("Tempest Strike",
+        constructedElement));
+
+    Selector.initiateSelector(User);
+    command("? 1", User);
+
+    // Verify the spell was created with 5 elements
+    ExpectSubStringMatch("Aeromancer Spell Name : Tempest Strike", 
+        User.caughtMessage());
+    ExpectSubStringMatch("Alias           : tempest", 
+        User.caughtMessage());
+    ExpectSubStringMatch("Composition Elements : 5", 
+        User.caughtMessage());
+
+    // Verify form component
+    ExpectSubStringMatch("Cyclone Form", User.caughtMessage());
+    ExpectSubStringMatch("Form            : A swirling cyclone of air.", 
+        User.caughtMessage());
+
+    // Verify function component
+    ExpectSubStringMatch("Wind Damage", User.caughtMessage());
+    ExpectSubStringMatch("Function        : Powered by fierce winds.", 
+        User.caughtMessage());
+
+    // Verify all three effect components are present
+    ExpectSubStringMatch("Damage Hit Points", User.caughtMessage());
+    ExpectSubStringMatch("Effect          : Deals damage to targets.", 
+        User.caughtMessage());
+
+    ExpectSubStringMatch("Reduce Attack", User.caughtMessage());
+    ExpectSubStringMatch("Effect          : Reduces enemy attack capability.", 
+        User.caughtMessage());
+
+    ExpectSubStringMatch("Apply Slow", User.caughtMessage());
+    ExpectSubStringMatch("Effect          : Slows enemy movement.", 
+        User.caughtMessage());
+
+    // Verify modifiers are shown for effects
+    ExpectSubStringMatch("Modified -> \\+14% if Spell Focus is researched", 
+        User.caughtMessage());
+    ExpectSubStringMatch("Modified -> \\+20% if Spell Perfection is researched", 
         User.caughtMessage());
 }
