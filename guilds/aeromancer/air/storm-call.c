@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Storm Call");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the storm call spell. By means of this, the aeromancer "
-        "calls down a powerful storm that repeatedly strikes all foes in the area.");
+        "knowledge of the storm call spell. The aeromancer reaches out to the "
+        "sky itself, calling down a localized storm that batters the area with "
+        "repeated blasts of wind. The storm strikes multiple times before "
+        "dissipating, each gust carrying devastating force.");
 
     addPrerequisite("/guilds/aeromancer/air/gale-force.c",
         (["type":"research"]));
@@ -19,24 +21,24 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 21
+            "value": 19
         ]));
 
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 120);
+    addSpecification("spell point cost", 110);
     addSpecification("repeat effect", 3);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
-            "base damage": 40,
-            "range": 60
+            "base damage": 30,
+            "range": 50
         ]),
         ([
             "probability": 20,
-            "base damage": 60,
-            "range": 90
+            "base damage": 50,
+            "range": 80
         ])
     }));
     addSpecification("damage type", "air");
@@ -131,10 +133,10 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -149,16 +151,16 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "physics",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "physics",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "skill",
@@ -192,7 +194,7 @@ protected void Setup()
         ]), 
     }));
 
-    addSpecification("cooldown", 60);
+    addSpecification("cooldown", 55);
     addSpecification("event handler", "stormCallEvent");
     addSpecification("command template", "storm call");
     addSpecification("use ability message", "##InitiatorName## "

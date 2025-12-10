@@ -9,8 +9,11 @@ protected void Setup()
 {
     addSpecification("name", "Wind Mastery");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances all of the aeromancer's wind-based abilities.");
+    addSpecification("description", "This research represents a significant "
+        "milestone in the aeromancer's journey - true mastery over wind itself. "
+        "Through extensive practice and meditation, the aeromancer learns to "
+        "sense and manipulate air currents with unprecedented precision, "
+        "dramatically enhancing all wind-based abilities.");
 
     addPrerequisite("level",
         (["type":"level",
@@ -29,9 +32,20 @@ protected void Setup()
         "Cyclone": 25,
         "Tornado": 25,
         "Vortex": 25,
-        "Hurricane": 25,
+        "Storm Call": 25,
         "Maelstrom": 25,
         "Jetstream": 25,
+        "Updraft": 25,
+        "Stolen Breath": 25,
+        "Noxious Breath": 25,
+        "Talons of Wind": 25,
+        "Buffeting Wind": 25,
+        "Daggers of the Wind": 25,
+        "Choking Wind": 25,
+        "Disrupt Storm": 25,
+        "Whirling Wind": 25,
+        "Void Orb": 25,
+        "Withering Air": 25,
         "Cataclysmic Tempest": 25,
     ]));
     addSpecification("affected research type", "percentage");

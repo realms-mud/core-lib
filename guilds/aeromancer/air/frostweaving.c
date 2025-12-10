@@ -9,26 +9,26 @@ protected void Setup()
 {
     addSpecification("name", "Frostweaving");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the aeromancer's cold-based air abilities.");
+    addSpecification("description", "This research teaches the aeromancer "
+        "the art of weaving cold air currents together to create more "
+        "devastating frost effects. By layering frigid winds atop one "
+        "another, the aeromancer can achieve temperatures far below what "
+        "a single cold blast could produce.");
 
     addPrerequisite("level",
         (["type":"level",
-            "guild" : "aeromancer",
-            "value" : 9
+            "guild": "aeromancer",
+            "value": 9
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/arctic-focus.c",
+    addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Arctic Blast":25,
-        "Glacial Winds" : 25,
-        "Icy Convergence" : 25,
-        "Freezing Tide" : 25,
-        "Frost Veil" : 25
+        "Arctic Blast": 25,
+        "Hurricane": 25,
     ]));
     addSpecification("affected research type", "percentage");
 }

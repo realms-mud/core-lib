@@ -9,9 +9,11 @@ protected void Setup()
 {
     addSpecification("name", "Gale Force");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the power of the aeromancer's wind-based "
-        "area attacks.");
+    addSpecification("description", "This research provides the user with "
+        "knowledge of how to amplify the power of area-effect wind attacks. "
+        "By understanding how to sustain and feed a growing wind pattern, "
+        "the aeromancer can create storms that grow stronger as they expand "
+        "rather than dissipating.");
 
     addPrerequisite("level",
         (["type":"level",
@@ -28,7 +30,12 @@ protected void Setup()
         "Cyclone": 25,
         "Tornado": 25,
         "Hurricane": 25,
+        "Storm Call": 25,
+        "Updraft": 25,
         "Maelstrom": 25,
+        "Disrupt Storm": 25,
+        "Whirling Wind": 25,
+        "Withering Air": 25,
         "Cataclysmic Tempest": 25,
     ]));
     addSpecification("affected research type", "percentage");

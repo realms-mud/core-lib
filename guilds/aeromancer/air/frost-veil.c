@@ -7,21 +7,21 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Arctic Focus");
+    addSpecification("name", "Frost Veil");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research deepens the aeromancer's "
-        "connection to the frigid upper reaches of the atmosphere. Through "
-        "meditation and study, they learn to draw upon colder air currents "
-        "more efficiently, increasing the potency of all their cold-based "
-        "abilities.");
+    addSpecification("description", "This research teaches the aeromancer to "
+        "shroud their cold magic in a veil of supercooled air that preserves "
+        "and intensifies the freezing effect. Cold attacks wrapped in this veil "
+        "maintain their lethal temperatures longer and penetrate magical and "
+        "physical defenses more effectively.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 7
+            "value": 47
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
+    addPrerequisite("/guilds/aeromancer/air/freezing-tide.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

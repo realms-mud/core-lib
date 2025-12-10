@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Zephyr");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the zephyr spell. By means of this, the aeromancer "
-        "unleashes a swift, cutting wind that slices through enemies.");
+        "knowledge of the zephyr spell. The aeromancer shapes the wind into "
+        "a thin, incredibly fast blade of compressed air that streaks toward "
+        "the target. Unlike the blunt force of a gust, the zephyr cuts with "
+        "surgical precision, slicing through armor and flesh alike.");
 
     addPrerequisite("/guilds/aeromancer/air/gust.c",
         (["type":"research"]));
@@ -25,17 +27,17 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 35);
+    addSpecification("spell point cost", 25);
 
     addSpecification("damage hit points", ({ ([
-            "probability": 80,
-            "base damage": 15,
-            "range": 25
+            "probability": 90,
+            "base damage": 10,
+            "range": 20
         ]),
         ([
-            "probability": 20,
-            "base damage": 25,
-            "range": 40
+            "probability": 10,
+            "base damage": 20,
+            "range": 35
         ])
     }));
     addSpecification("damage type", "air");
@@ -45,14 +47,6 @@ protected void Setup()
             "type": "research",
             "research item": "/guilds/aeromancer/air/blast-of-wind.c",
             "name": "Blast of Wind",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type": "research",
-            "research item": "/guilds/aeromancer/air/arctic-focus.c",
-            "name": "Arctic Focus",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25

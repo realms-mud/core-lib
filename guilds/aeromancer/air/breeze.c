@@ -1,4 +1,3 @@
-
 //*****************************************************************************
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -11,9 +10,10 @@ protected void Setup()
     addSpecification("name", "Breeze");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the breeze spell. By means of this, the aeromancer "
-        "summons a gentle but persistent breeze that enhances the speed and "
-        "agility of allies.");
+        "knowledge of the breeze spell. The aeromancer summons a gentle but "
+        "persistent tailwind that surrounds an ally, quickening their movements "
+        "and enhancing their ability to evade attacks. The wind seems almost "
+        "alive, anticipating threats and guiding the target away from danger.");
 
     addPrerequisite("/guilds/aeromancer/air/root.c",
         (["type":"research"]));
@@ -35,10 +35,10 @@ protected void Setup()
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -53,7 +53,7 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25

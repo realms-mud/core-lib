@@ -7,21 +7,22 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Blast of Wind");
+    addSpecification("name", "Air Dominion");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research provides the user with "
-        "deeper understanding of how to focus and intensify wind-based attacks. "
-        "By studying the principles of air compression and release, the "
-        "aeromancer learns to deliver more powerful impacts with their "
-        "offensive air magic.");
+    addSpecification("description", "This research represents the absolute "
+        "pinnacle of aeromantic mastery - complete dominion over the element "
+        "of air. The aeromancer's will becomes indistinguishable from the wind "
+        "itself. Every breeze, every gust, every hurricane answers to their "
+        "command. This ultimate understanding maximizes the power of all "
+        "air-based abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 3
+            "value": 63
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/gust.c",
+    addPrerequisite("/guilds/aeromancer/air/aeromantic-insight.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
@@ -29,16 +30,24 @@ protected void Setup()
     addSpecification("affected research", ([
         "Gust": 25,
         "Zephyr": 25,
-        "Talons of Wind": 25,
+        "Cyclone": 25,
+        "Tornado": 25,
+        "Vortex": 25,
+        "Storm Call": 25,
+        "Maelstrom": 25,
+        "Jetstream": 25,
+        "Updraft": 25,
         "Stolen Breath": 25,
         "Noxious Breath": 25,
-        "Blinding Mist": 25,
+        "Talons of Wind": 25,
         "Buffeting Wind": 25,
-        "Jetstream": 25,
         "Daggers of the Wind": 25,
         "Choking Wind": 25,
-        "Foul Gasp": 25,
+        "Disrupt Storm": 25,
+        "Whirling Wind": 25,
         "Void Orb": 25,
+        "Withering Air": 25,
+        "Cataclysmic Tempest": 25,
     ]));
     addSpecification("affected research type", "percentage");
 }

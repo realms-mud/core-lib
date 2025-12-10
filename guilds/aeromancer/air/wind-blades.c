@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Wind Blades");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the wind blades spell. By means of this, the aeromancer "
-        "enshrouds their weapons in razor-sharp winds, enhancing their attacks.");
+        "knowledge of the wind blades spell. The aeromancer wraps their weapons "
+        "in a sheath of rapidly spinning air currents that extend the cutting "
+        "edge and add tremendous force to each strike. The howling winds around "
+        "the blade can be heard with each swing.");
 
     addPrerequisite("/guilds/aeromancer/air/root.c",
         (["type":"research"]));
@@ -27,16 +29,16 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 40);
 
-    addSpecification("bonus attack", 5);
-    addSpecification("bonus damage", 5);
+    addSpecification("bonus attack", 3);
+    addSpecification("bonus damage", 3);
     addSpecification("duration", 120);
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -51,7 +53,7 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25

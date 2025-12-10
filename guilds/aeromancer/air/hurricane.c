@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Hurricane");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the hurricane spell. By means of this, the aeromancer "
-        "unleashes a frigid hurricane that damages and slows all foes in the area.");
+        "knowledge of the hurricane spell. The aeromancer merges their mastery "
+        "of cold and wind to unleash a freezing hurricane upon the battlefield. "
+        "Ice-laden winds howl through the area, dealing cold damage to all "
+        "enemies while the bitter chill slows their movements.");
 
     addPrerequisite("/guilds/aeromancer/air/arctic-focus.c",
         (["type":"research"]));
@@ -19,26 +21,26 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 17
+            "value": 15
         ]));
 
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 100);
+    addSpecification("spell point cost", 90);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
-            "base damage": 40,
-            "range": 60
+            "base damage": 30,
+            "range": 50
         ]),
         ([
             "probability": 20,
-            "base damage": 60,
-            "range": 90
+            "base damage": 50,
+            "range": 80
         ])
     }));
-    addSpecification("damage type", "air");
+    addSpecification("damage type", "cold");
 
     addSpecification("apply slow", 1);
     addSpecification("duration", 30);
@@ -88,6 +90,14 @@ protected void Setup()
             "type": "research",
             "research item": "/guilds/aeromancer/air/frost-veil.c",
             "name": "Frost Veil",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/aeromancer/air/gale-force.c",
+            "name": "Gale Force",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -170,7 +180,7 @@ protected void Setup()
         ]), 
     }));
 
-    addSpecification("cooldown", 45);
+    addSpecification("cooldown", 40);
     addSpecification("event handler", "hurricaneEvent");
     addSpecification("command template", "hurricane");
     addSpecification("use ability message", "##InitiatorName## "

@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Vortex");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the vortex spell. By means of this, the aeromancer "
-        "creates a localized vortex that damages and disorients a target.");
+        "knowledge of the vortex spell. The aeromancer creates a tightly "
+        "focused spiral of air that envelops a single target, spinning them "
+        "violently while pelting them with debris caught in the winds. The "
+        "disorienting effect lingers even after the vortex dissipates.");
 
     addPrerequisite("/guilds/aeromancer/air/blast-of-wind.c",
         (["type":"research"]));
@@ -25,17 +27,17 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 60);
+    addSpecification("spell point cost", 55);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
-            "base damage": 25,
-            "range": 40
+            "base damage": 20,
+            "range": 35
         ]),
         ([
             "probability": 20,
-            "base damage": 40,
-            "range": 60
+            "base damage": 35,
+            "range": 55
         ])
     }));
     addSpecification("damage type", "air");

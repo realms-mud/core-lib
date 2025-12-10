@@ -10,9 +10,19 @@ protected void Setup()
     addSpecification("name", "Air Shield");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the air shield spell. By means of this, the aeromancer "
-        "surrounds themselves with a protective barrier of swirling winds that "
-        "deflects incoming attacks.");
+        "knowledge of the air shield spell. The aeromancer wraps themselves "
+        "in a cocoon of rapidly circulating air currents that deflect incoming "
+        "projectiles and cushion physical blows. The shield is nearly invisible, "
+        "betrayed only by the faint shimmer of dust motes caught in its currents.");
+
+    addPrerequisite("/guilds/aeromancer/air/cyclone.c",
+        (["type":"research"]));
+
+    addPrerequisite("level",
+        (["type":"level",
+            "guild": "aeromancer",
+            "value": 13
+        ]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
@@ -26,10 +36,10 @@ protected void Setup()
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -44,7 +54,7 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25

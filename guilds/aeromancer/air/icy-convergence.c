@@ -7,21 +7,21 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Arctic Focus");
+    addSpecification("name", "Icy Convergence");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research deepens the aeromancer's "
-        "connection to the frigid upper reaches of the atmosphere. Through "
-        "meditation and study, they learn to draw upon colder air currents "
-        "more efficiently, increasing the potency of all their cold-based "
-        "abilities.");
+    addSpecification("description", "This research teaches the aeromancer to "
+        "draw cold air currents from multiple directions simultaneously, "
+        "converging them upon a single point. This technique dramatically "
+        "amplifies the freezing power of their cold-based attacks by creating "
+        "zones of extreme temperature differential.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 7
+            "value": 17
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
+    addPrerequisite("/guilds/aeromancer/air/frostweaving.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

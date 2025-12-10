@@ -10,45 +10,39 @@ protected void Setup()
     addSpecification("name", "Tornado");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the tornado spell. By means of this, the aeromancer "
-        "summons a devastating tornado that tears through all enemies in the area.");
+        "knowledge of the tornado spell. The aeromancer draws upon tremendous "
+        "reserves of power to conjure a full-scale tornado that tears through "
+        "the area. The howling winds lift debris and enemies alike, slamming "
+        "them against surfaces and each other with devastating force.");
 
-    addPrerequisite("/guilds/aeromancer/air/zephyr.c",
+    addPrerequisite("/guilds/aeromancer/air/cyclone.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 15
+            "value": 13
         ]));
 
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 80);
+    addSpecification("spell point cost", 75);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
-            "base damage": 35,
-            "range": 55
+            "base damage": 25,
+            "range": 45
         ]),
         ([
             "probability": 20,
-            "base damage": 55,
-            "range": 80
+            "base damage": 45,
+            "range": 70
         ])
     }));
     addSpecification("damage type", "air");
 
     addSpecification("modifiers", ({ 
-        ([
-            "type": "research",
-            "research item": "/guilds/aeromancer/air/blast-of-wind.c",
-            "name": "Blast of Wind",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.25
-        ]),
         ([
             "type": "research",
             "research item": "/guilds/aeromancer/air/gale-force.c",
@@ -138,10 +132,10 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -156,16 +150,16 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "physics",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "physics",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "skill",

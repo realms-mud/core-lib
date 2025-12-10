@@ -7,21 +7,21 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Arctic Focus");
+    addSpecification("name", "Freezing Tide");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research deepens the aeromancer's "
-        "connection to the frigid upper reaches of the atmosphere. Through "
-        "meditation and study, they learn to draw upon colder air currents "
-        "more efficiently, increasing the potency of all their cold-based "
-        "abilities.");
+    addSpecification("description", "This research allows the aeromancer to "
+        "unleash cold not as a single blast but as a wave - a tide of freezing "
+        "air that rolls across the battlefield. This technique allows cold "
+        "attacks to penetrate deeper and linger longer, maximizing the damage "
+        "dealt to enemies.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 7
+            "value": 37
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
+    addPrerequisite("/guilds/aeromancer/air/glacial-winds.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

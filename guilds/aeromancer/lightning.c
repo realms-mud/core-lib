@@ -125,12 +125,6 @@ private void TwentyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void TwentyFifthLevel()
-{
-
-}
-
-/////////////////////////////////////////////////////////////////////////////
 private void TwentySeventhLevel()
 {
     addResearchElement("/guilds/aeromancer/lightning/enhanced-discharge.c");
@@ -167,12 +161,6 @@ private void ThirtyThirdLevel()
         "/guilds/aeromancer/lightning/enhanced-discharge.c");
     addChild("/guilds/aeromancer/lightning/boltmasters-endurance.c",
         "/guilds/aeromancer/lightning/boltmasters-finess.c");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-private void ThirtyFifthLevel()
-{
-
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -260,7 +248,8 @@ private void SixtySeventhLevel()
 protected void Setup()
 {
     Name("Path of Lightning");
-    Description("");
+    Description("This research tree provides knowledge of lightning-based "
+        "spells and abilities for the aeromancer.");
     Source("aeromancer");
     addResearchElement("/guilds/aeromancer/lightning/root.c");
     TreeRoot("/guilds/aeromancer/lightning/root.c");
@@ -277,12 +266,10 @@ protected void Setup()
     NineteenthLevel();
     TwentyFirstLevel();
     TwentyThirdLevel();
-    TwentyFifthLevel();
     TwentySeventhLevel();
     TwentyNinthLevel();
     ThirtyFirstLevel();
     ThirtyThirdLevel();
-    ThirtyFifthLevel();
     ThirtySeventhLevel();
     ThirtyNinthLevel();
     FortyFirstLevel();

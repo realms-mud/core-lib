@@ -10,8 +10,10 @@ protected void Setup()
     addSpecification("name", "Gust");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the gust spell. By means of this, the "
-        "aeromancer is able to unleash a powerful blast of wind at a foe.");
+        "knowledge of the gust spell. The aeromancer compresses air between "
+        "their palms and releases it as a forceful blast, striking a single "
+        "target with concussive wind. This is a fundamental technique that "
+        "forms the basis for more advanced air manipulation.");
 
     addPrerequisite("/guilds/aeromancer/air/root.c",
         (["type":"research"]));
@@ -22,14 +24,14 @@ protected void Setup()
     addSpecification("spell point cost", 10);
 
     addSpecification("damage hit points", ({ ([
-            "probability":80,
-            "base damage" : 5,
-            "range" : 10
+            "probability": 80,
+            "base damage": 5,
+            "range": 10
         ]),
         ([
-            "probability":20,
-            "base damage" : 10,
-            "range" : 20
+            "probability": 20,
+            "base damage": 10,
+            "range": 20
         ])
     }));
     addSpecification("damage type", "air");
@@ -39,14 +41,6 @@ protected void Setup()
             "type": "research",
             "research item": "/guilds/aeromancer/air/blast-of-wind.c",
             "name": "Blast of Wind",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type": "research",
-            "research item": "/guilds/aeromancer/air/arctic-focus.c",
-            "name": "Arctic Focus",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -116,86 +110,87 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"weapon damage",
-            "name" : "staff",
-            "types" : ({ "staff" }),
-            "formula" : "additive",
-            "rate" : 1.0
+            "type": "weapon damage",
+            "name": "staff",
+            "types": ({ "staff" }),
+            "formula": "additive",
+            "rate": 1.0
         ]),
         ([
-            "type":"weapon damage",
-            "name" : "not a staff",
-            "types" : ({ "dagger", "short sword", "long sword", "bow", "axe",
+            "type": "weapon damage",
+            "name": "not a staff",
+            "types": ({ "dagger", "short sword", "long sword", "bow", "axe",
                 "hand and a half sword", "two-handed sword", "crossbow",
                 "sling", "thrown", "pole arm", "mace", "hammer", "flail" }),
-            "formula" : "subtractive",
-            "rate" : 1.25
+            "formula": "subtractive",
+            "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
-            "type":"level",
-            "name" : "level",
-            "formula" : "logarithmic",
-            "rate" : 1.05
+            "type": "level",
+            "name": "level",
+            "formula": "logarithmic",
+            "rate": 1.05
         ]),
         ([
-            "type":"skill",
-            "name" : "spellcraft",
-            "formula" : "logarithmic",
-            "rate" : 1.25
+            "type": "skill",
+            "name": "spellcraft",
+            "formula": "logarithmic",
+            "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "magical essence",
-            "formula" : "logarithmic",
-            "rate" : 1.25
+            "type": "skill",
+            "name": "magical essence",
+            "formula": "logarithmic",
+            "rate": 1.25
         ]),
         ([
-            "type":"skill",
-            "name" : "physics",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "physics",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
-            "type":"skill",
-            "name" : "mathematics",
-            "formula" : "additive",
-            "rate" : 0.05
+            "type": "skill",
+            "name": "mathematics",
+            "formula": "additive",
+            "rate": 0.05
         ]),
         ([
-            "type":"skill",
-            "name" : "chemistry",
-            "formula" : "additive",
-            "rate" : 0.05
+            "type": "skill",
+            "name": "chemistry",
+            "formula": "additive",
+            "rate": 0.05
         ]),
         ([
-            "type":"attribute",
-            "name" : "intelligence",
-            "formula" : "additive",
-            "rate" : 0.05
+            "type": "attribute",
+            "name": "intelligence",
+            "formula": "additive",
+            "rate": 0.05
         ]),
         ([
-            "type":"attribute",
-            "name" : "dexterity",
-            "formula" : "additive",
-            "rate" : 0.025
+            "type": "attribute",
+            "name": "dexterity",
+            "formula": "additive",
+            "rate": 0.025
         ]),
         ([
-            "type":"attribute",
-            "name" : "wisdom",
-            "formula" : "additive",
-            "rate" : 0.025
+            "type": "attribute",
+            "name": "wisdom",
+            "formula": "additive",
+            "rate": 0.025
         ]),
-        }));
+    }));
 
     addSpecification("cooldown", 6);
     addSpecification("event handler", "gustEvent");
     addSpecification("command template", "gust [at ##Target##]");
-    addSpecification("use ability message", "A roaring blast of wind erupts from "
-        "##InitiatorPossessive::Name## outstretched hand, slamming into ##TargetName##.");
+    addSpecification("use ability message", "A roaring blast of wind erupts "
+        "from ##InitiatorPossessive::Name## outstretched hand, slamming into "
+        "##TargetName##.");
 }

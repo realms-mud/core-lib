@@ -10,9 +10,11 @@ protected void Setup()
     addSpecification("name", "Wind Walk");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the wind walk spell. By means of this, the aeromancer "
-        "becomes one with the wind, dramatically increasing their speed and "
-        "evasion capabilities.");
+        "knowledge of the wind walk spell. The aeromancer partially merges "
+        "their essence with the wind, becoming lighter than air and able to "
+        "move with supernatural grace. Their feet barely touch the ground as "
+        "air currents carry and guide their movements, making them incredibly "
+        "difficult to hit.");
 
     addPrerequisite("/guilds/aeromancer/air/air-shield.c",
         (["type":"research"]));
@@ -26,19 +28,19 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 75);
+    addSpecification("spell point cost", 70);
 
     addSpecification("apply haste", 1);
-    addSpecification("bonus dodge", 10);
+    addSpecification("bonus dodge", 8);
     addSpecification("bonus defense", 5);
     addSpecification("duration", 120);
 
     addSpecification("modifiers", ({ 
         ([
-            "type":"skill",
-            "name" : "elemental air",
-            "formula" : "additive",
-            "rate" : 0.10
+            "type": "skill",
+            "name": "elemental air",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
@@ -53,7 +55,7 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type":"skill",
+            "type": "skill",
             "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25

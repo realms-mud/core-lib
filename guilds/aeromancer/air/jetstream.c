@@ -2,57 +2,52 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/instantaneousPersistedActiveResearchItem.c";
+inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Maelstrom");
+    addSpecification("name", "Jetstream");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the maelstrom spell. The aeromancer conjures a massive, "
-        "swirling vortex of wind that dominates the battlefield. The maelstrom "
-        "strikes repeatedly, each rotation bringing fresh devastation while "
-        "the constant battering leaves victims disoriented and vulnerable.");
+        "knowledge of the jetstream spell. The aeromancer taps into the power "
+        "of high-altitude winds, channeling a concentrated stream of air moving "
+        "at incredible velocity. This focused blast delivers tremendous impact "
+        "to a single target, capable of punching through defenses that would "
+        "deflect lesser wind attacks.");
 
-    addPrerequisite("/guilds/aeromancer/air/storm-call.c",
+    addPrerequisite("/guilds/aeromancer/air/zephyr.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 27
+            "value": 21
         ]));
 
-    addSpecification("scope", "area");
+    addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 160);
-    addSpecification("repeat effect", 4);
+    addSpecification("spell point cost", 100);
 
-    addSpecification("damage hit points", ({ ([
+    addSpecification("damage hit points", ({ ({
             "probability": 80,
             "base damage": 40,
             "range": 65
-        ]),
-        ([
+        }),
+        ({
             "probability": 20,
             "base damage": 65,
             "range": 100
-        ])
+        })
     }));
     addSpecification("damage type", "air");
-
-    addSpecification("penalty to attack", 5);
-    addSpecification("penalty to defense", 5);
-    addSpecification("apply slow", 1);
-    addSpecification("duration", 30);
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/aeromancer/air/gale-force.c",
-            "name": "Gale Force",
+            "research item": "/guilds/aeromancer/air/blast-of-wind.c",
+            "name": "Blast of Wind",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -199,13 +194,10 @@ protected void Setup()
         ]), 
     }));
 
-    addSpecification("cooldown", 80);
-    addSpecification("event handler", "maelstromEvent");
-    addSpecification("command template", "maelstrom");
-    addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::conjure## a massive, swirling maelstrom of wind "
-        "that engulfs the area.");
-    addSpecification("repeated ability message", "The maelstrom continues "
-        "to rage, battering ##InitiatorPossessive::Name## foes with "
-        "relentless fury.");
+    addSpecification("cooldown", 25);
+    addSpecification("event handler", "jetstreamEvent");
+    addSpecification("command template", "jetstream [at ##Target##]");
+    addSpecification("use ability message", "A concentrated stream of "
+        "high-velocity wind screams from ##InitiatorPossessive::Name## "
+        "outstretched palm, tearing into ##TargetName##.");
 }

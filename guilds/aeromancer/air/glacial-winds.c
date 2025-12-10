@@ -7,21 +7,21 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Arctic Focus");
+    addSpecification("name", "Glacial Winds");
     addSpecification("source", "aeromancer");
-    addSpecification("description", "This research deepens the aeromancer's "
-        "connection to the frigid upper reaches of the atmosphere. Through "
-        "meditation and study, they learn to draw upon colder air currents "
-        "more efficiently, increasing the potency of all their cold-based "
-        "abilities.");
+    addSpecification("description", "This research allows the aeromancer to "
+        "tap into winds from the most frigid reaches of the world - the peaks "
+        "of frozen mountains and the hearts of glaciers. These glacial winds "
+        "carry cold so intense that it can freeze flesh solid, dramatically "
+        "enhancing cold-based attacks.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 7
+            "value": 27
         ]));
 
-    addPrerequisite("/guilds/aeromancer/air/arctic-blast.c",
+    addPrerequisite("/guilds/aeromancer/air/icy-convergence.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");

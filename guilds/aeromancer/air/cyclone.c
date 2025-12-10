@@ -10,8 +10,11 @@ protected void Setup()
     addSpecification("name", "Cyclone");
     addSpecification("source", "aeromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the cyclone spell. By means of this, the aeromancer "
-        "conjures a small but violent cyclone that batters all foes in the area.");
+        "knowledge of the cyclone spell. The aeromancer spins air currents "
+        "into a localized vortex of tearing winds that expands outward from "
+        "their position. All enemies caught within the area are battered by "
+        "the churning air. This is the aeromancer's first true area attack, "
+        "marking their growth in power.");
 
     addPrerequisite("/guilds/aeromancer/air/gust.c",
         (["type":"research"]));
@@ -19,7 +22,7 @@ protected void Setup()
     addPrerequisite("level",
         (["type":"level",
             "guild": "aeromancer",
-            "value": 9
+            "value": 7
         ]));
 
     addSpecification("scope", "area");
@@ -28,14 +31,14 @@ protected void Setup()
     addSpecification("spell point cost", 50);
 
     addSpecification("damage hit points", ({ ([
-            "probability": 80,
-            "base damage": 20,
-            "range": 35
+            "probability": 90,
+            "base damage": 10,
+            "range": 20
         ]),
         ([
-            "probability": 20,
-            "base damage": 35,
-            "range": 50
+            "probability": 10,
+            "base damage": 20,
+            "range": 30
         ])
     }));
     addSpecification("damage type", "air");
@@ -43,16 +46,8 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/aeromancer/air/blast-of-wind.c",
-            "name": "Blast of Wind",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.25
-        ]),
-        ([
-            "type": "research",
-            "research item": "/guilds/aeromancer/air/arctic-focus.c",
-            "name": "Arctic Focus",
+            "research item": "/guilds/aeromancer/air/gale-force.c",
+            "name": "Gale Force",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
