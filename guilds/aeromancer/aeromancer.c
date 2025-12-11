@@ -29,17 +29,17 @@ public void SetupGuild()
     ]));
 
     addCriteria("attribute points", ([
-        "type":"attribute points",
+        "type": "attribute points",
         "apply": "1 every 5 levels"
     ]));
 
     addCriteria("skill points", ([
-        "type":"skill points",
+        "type": "skill points",
         "apply": "5 every level"
     ]));
 
     addCriteria("lightning", ([
-        "type":"research tree",
+        "type": "research tree",
         "apply": "at level 1",
         "research tree": "/guilds/aeromancer/lightning.c"
     ]));
@@ -51,20 +51,26 @@ public void SetupGuild()
     ]));
 
     addCriteria("forms", ([
-        "type":"research tree",
+        "type": "research tree",
         "apply": "at level 1",
         "research tree": "/guilds/aeromancer/forms.c"
     ]));
 
     addCriteria("functions", ([
-        "type":"research tree",
+        "type": "research tree",
         "apply": "at level 1",
         "research tree": "/guilds/aeromancer/functions.c"
     ]));
 
     addCriteria("effects", ([
-        "type":"research tree",
+        "type": "research tree",
         "apply": "at level 1",
         "research tree": "/guilds/aeromancer/effects.c"
+    ]));
+
+    addCriteria("construct", ([
+        "type": "research tree",
+        "apply": "at level 1",
+        "research tree": "/guilds/aeromancer/construct.c"
     ]));
 }

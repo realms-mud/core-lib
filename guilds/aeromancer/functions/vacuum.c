@@ -12,8 +12,14 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that damage targets by creating a vacuum.");
 
-    addPrerequisite("/guilds/aeromancer/functions/root.c",
+    addPrerequisite("/guilds/aeromancer/functions/wind.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":13
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

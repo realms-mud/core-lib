@@ -13,8 +13,14 @@ protected void Setup()
         "knowledge of creating spells that damage targets with superheated "
         "plasma created by ionizing the air.");
 
-    addPrerequisite("/guilds/aeromancer/functions/root.c",
+    addPrerequisite("/guilds/aeromancer/functions/storm.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":21
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

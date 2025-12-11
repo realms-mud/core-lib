@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that form encircling bands of energy "
         "to entrap and harm a foe.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/ring.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type": "level",
+            "guild": "aeromancer",
+            "value": 13
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

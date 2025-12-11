@@ -13,8 +13,14 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that conjure a wall of energy to block or impede foes.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/wave.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":13
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

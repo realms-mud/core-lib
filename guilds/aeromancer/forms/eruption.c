@@ -13,8 +13,14 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that cause a violent eruption of energy beneath a foe.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/orb.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":15
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

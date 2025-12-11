@@ -13,8 +13,14 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that form a blade of energy to strike a foe.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/bolt.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":5
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

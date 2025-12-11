@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that form a lashing tendril of energy "
         "to strike foes at close range.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/spark.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":5
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

@@ -572,3 +572,89 @@ void SpellsAreSortedAlphabetically()
     ExpectTrue(zebraPos > middlePos, "Zebra appears after Middle");
     ExpectTrue(middlePos > alphaPos, "Middle appears after Alpha");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CreatedSpellIsStoredOnPlayerCorrectly()
+{
+    load_object("/guilds/aeromancer/aeromancer.c");
+
+    // Set up Bob as an aeromancer with sufficient level
+    User.joinGuild("aeromancer");
+    User.addResearchPoints(20);
+    AdvanceToLevel(10, "aeromancer");
+
+    ExpectTrue(User.initiateResearch("/guilds/aeromancer/forms/arc.c"),
+        "Should research arc form");
+    ExpectTrue(User.initiateResearch("/guilds/aeromancer/functions/shock.c"),
+        "Should research shock function");
+    ExpectTrue(User.initiateResearch("/guilds/aeromancer/functions/lightning.c"),
+        "Should research lightning function");
+    ExpectTrue(User.initiateResearch("/guilds/aeromancer/effects/damage-hp.c"),
+        "Should research damage-hp effect");
+
+    // Verify no spells exist initially
+    mapping spells = User.getOptionsForConstructedResearch(
+        "/guilds/aeromancer/construct/root.c");
+    ExpectEq(0, sizeof(spells), "No spells should exist initially");
+
+    // Start at main menu and select create
+    Selector.initiateSelector(User);
+    command("1", User);  // Create New Aeromancer Spell
+
+    // Select the create option in the create selector
+    command("1", User);  // Create Constructed Aeromancer Spells
+
+    // Set the name first
+    command("4", User);  // Set/change spell name
+    command("Test Created Spell", User);
+
+    // Set the alias
+    command("5", User);  // Set/change spell alias  
+    command("testspell", User);
+
+    // Add form component
+    command("2", User);  // Add Form component
+    command("1", User);  // Select Arc Form (first option)
+
+    // Add function component
+    command("3", User);  // Add Function component
+    command("3", User);  // Select first available (Lightning or Shock)
+
+    // Add effect component
+    command("1", User);  // Add Effect component
+    command("6", User);  // Select Damage Hit Points (option 6 in the effect list)
+
+    // Save the spell - need to find correct option number
+    // After adding all components, the menu will have the selected items
+    command("7", User);  // Save the spell
+
+    // Verify the spell was stored on the player
+    spells = User.getOptionsForConstructedResearch(
+        "/guilds/aeromancer/construct/root.c");
+    ExpectTrue(member(spells, "Test Created Spell"), 
+        "Created spell should be stored on player");
+
+    // Verify the spell data is correct
+    mapping spellData = User.getConstructedResearch(
+        "/guilds/aeromancer/construct/root.c", "Test Created Spell");
+    
+    ExpectEq("testspell", spellData["alias"], "Alias should be set");
+    ExpectEq("/guilds/aeromancer/construct/root.c", spellData["constraint"],
+        "Constraint should be set");
+    ExpectEq(3, sizeof(spellData["elements"]), 
+        "Should have 3 elements (form, function, effect)");
+
+    // Verify each component type is present
+    int hasForm = 0;
+    int hasFunction = 0;
+    int hasEffect = 0;
+    foreach(mapping element in spellData["elements"])
+    {
+        if (element["type"] == "form") hasForm = 1;
+        if (element["type"] == "function") hasFunction = 1;
+        if (element["type"] == "effect") hasEffect = 1;
+    }
+    ExpectTrue(hasForm, "Spell should have a form component");
+    ExpectTrue(hasFunction, "Spell should have a function component");
+    ExpectTrue(hasEffect, "Spell should have an effect component");
+}

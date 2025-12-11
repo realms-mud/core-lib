@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that form thin, cutting slices of "
         "compressed energy to strike a foe with precision.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/whip.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":9
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that emit radiating pulses of energy "
         "that strike foes in rapid succession.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/coil.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":19
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that unleash a massive, spiraling tornado "
         "of devastating energy.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/cyclone.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type": "level",
+            "guild": "aeromancer",
+            "value": 23
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

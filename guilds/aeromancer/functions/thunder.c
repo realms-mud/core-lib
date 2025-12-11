@@ -13,8 +13,14 @@ protected void Setup()
         "knowledge of creating spells that damage targets with concussive "
         "sonic blasts created by rapid air compression.");
 
-    addPrerequisite("/guilds/aeromancer/functions/root.c",
+    addPrerequisite("/guilds/aeromancer/functions/air.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":7
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

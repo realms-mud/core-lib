@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that conjure a rotating column of energy "
         "that strikes a foe multiple times.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/vortex.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":19
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

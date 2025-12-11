@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that form spiraling coils of energy "
         "that wrap around and repeatedly strike a foe.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/cage.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":17
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

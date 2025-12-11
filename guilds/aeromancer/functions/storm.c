@@ -4,6 +4,7 @@
 //*****************************************************************************
 inherit "/lib/modules/research/constructedResearchComponent.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addSpecification("name", "Storm Damage");
@@ -11,8 +12,14 @@ protected void Setup()
     addSpecification("description", "This research provides the user with the "
         "knowledge of creating spells that damage targets with the fury of a storm.");
 
-    addPrerequisite("/guilds/aeromancer/functions/root.c",
+    addPrerequisite("/guilds/aeromancer/functions/lightning.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":17
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

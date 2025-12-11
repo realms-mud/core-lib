@@ -38,7 +38,7 @@ public nomask void InitializeSelector()
 {
     AllowUndo = 0;
     AllowAbort = 1;
-    NumColumns = 1;
+    NumColumns = 2;
     Type = "Component";
     Data = ([]);
 }
@@ -120,8 +120,8 @@ protected string choiceFormatter(string choice)
     return sprintf("[%s]%s - %s%s",
         configuration->decorate("%s", "number", "selector", colorConfiguration),
         padSelectionDisplay(choice),
-        configuration->decorate("%-40s", displayType, "selector",
+        configuration->decorate("%-28s", displayType, "selector",
             colorConfiguration),
         ((colorConfiguration == "none") && 
-            (displayType == "choice disabled")) ? " (not researched)" : "");
+            (displayType == "choice disabled")) ? "(X)  " : "     ");
 }

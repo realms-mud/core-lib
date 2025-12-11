@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that exhale a cone-shaped burst of "
         "energy at nearby foes.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/mist.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type":"level",
+            "guild":"aeromancer",
+            "value":7
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);

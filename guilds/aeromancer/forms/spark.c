@@ -14,8 +14,14 @@ protected void Setup()
         "knowledge of creating spells that unleash a flurry of tiny, rapid "
         "discharges of energy at a foe.");
 
-    addPrerequisite("/guilds/aeromancer/forms/root.c",
+    addPrerequisite("/guilds/aeromancer/forms/gust.c",
         (["type":"research"]));
+    addPrerequisite("level",
+        ([
+            "type": "level",
+            "guild": "aeromancer",
+            "value": 3
+        ]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
