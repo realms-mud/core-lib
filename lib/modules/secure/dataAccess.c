@@ -44,6 +44,7 @@ public nomask mapping getPlayerData(string name)
                 data += getResearchChoices(data["playerId"], dbHandle);
                 data += getOpenResearchTrees(data["playerId"], dbHandle);
                 data += getCompositeResearch(data["playerId"], dbHandle);
+                data += getConstructedResearch(data["playerId"], dbHandle);
                 data += getSkills(data["playerId"], dbHandle);
                 data += getTraits(data["playerId"], dbHandle);
                 data += getTemporaryTraits(data["playerId"], dbHandle);
@@ -84,6 +85,7 @@ public nomask void savePlayerData(mapping playerData)
             saveResearchChoices(dbHandle, playerId, playerData);
             saveOpenResearchTrees(dbHandle, playerId, playerData);
             saveCompositeResearch(dbHandle, playerId, playerData);
+            saveConstructedResearch(dbHandle, playerId, playerData);
             saveSkills(dbHandle, playerId, playerData);
             saveTraits(dbHandle, playerId, playerData);
             saveFactions(dbHandle, playerId, playerData);
@@ -222,5 +224,14 @@ public void removeSavedGuild(string player, string guild)
 {
     int dbHandle = connect();
     removeSavedGuildData(dbHandle, player, guild);
+    disconnect(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void removeConstructedResearch(string player, string name,
+    string constraint)
+{
+    int dbHandle = connect();
+    removeConstructedResearchData(dbHandle, player, name, constraint);
     disconnect(dbHandle);
 }

@@ -160,7 +160,9 @@ void PlayerResearchRestored()
     ExpectEq(3, Player.researchPoints());
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
-    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c"}), Player.availableResearchTrees());
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", 
+        "/lib/tests/support/research/testBlargTree.c",
+        "/lib/tests/support/research/testConstructedTree.c"}), Player.availableResearchTrees());
     ExpectTrue(Player.selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
 }
@@ -376,7 +378,9 @@ void PlayerResearchSaved()
     ExpectEq(4, Player.researchPoints());
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testGrantedResearchItem.c"));
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"));
-    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c"}), 
+    ExpectEq (({ "/lib/tests/support/research/testSecondResearchTree.c", 
+        "/lib/tests/support/research/testBlargTree.c",
+        "/lib/tests/support/research/testConstructedTree.c" }),
         Player.availableResearchTrees());
     ExpectTrue(Player.selectResearchChoice("/lib/tests/support/research/testPersistedActiveTraitResearch.c",
         "Test", "1"));
@@ -737,9 +741,17 @@ void PlayerRemoveGuildRemovesPersistedData()
     ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeResearchItemC.c"), "C research is researched");
     ExpectTrue(Player.isResearched("/lib/tests/support/research/compositeRoot.c"), "compositeRoot research is researched");
     ExpectTrue(Player.isResearched("/lib/tests/support/research/testSustainedResearchItem.c"), "sustained research is researched");
-    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c" }),
+    ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c", 
+        "/lib/tests/support/research/testBlargTree.c",
+        "/lib/tests/support/research/testConstructedTree.c" }),
         Player.availableResearchTrees());
     ExpectTrue(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"), "Composite present");
+
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/constructedRoot.c"), "constructedRoot research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/constructedFormA.c"), "constructedFormA research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/constructedFunctionA.c"), "constructedFunctionA research is researched");
+    ExpectTrue(Player.isResearched("/lib/tests/support/research/constructedEffectA.c"), "constructedEffectA research is researched");
+    ExpectTrue(member(Player.getConstructedResearch("/lib/tests/support/research/constructedRoot.c"), "Bolt of Doom"), "Bolt of Doom present");
 
     Player.removeGuild("blarg");
 
@@ -753,6 +765,12 @@ void PlayerRemoveGuildRemovesPersistedData()
     ExpectEq(({ "/lib/tests/support/research/testSecondResearchTree.c" }),
         Player.availableResearchTrees());
     ExpectFalse(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"), "Composite present");
+
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedRoot.c"), "constructedRoot research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedFormA.c"), "constructedFormA research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedFunctionA.c"), "constructedFunctionA research is not researched");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedEffectA.c"), "constructedEffectA research is not researched");
+    ExpectFalse(member(Player.getConstructedResearch("/lib/tests/support/research/constructedRoot.c"), "Bolt of Doom"), "Bolt of Doom not present");
 
     destruct(Player);
     Player = clone_object("/lib/realizations/player.c");
@@ -768,4 +786,11 @@ void PlayerRemoveGuildRemovesPersistedData()
         Player.availableResearchTrees());
 
     ExpectFalse(member(Player.getCompositeResearch("/lib/tests/support/research/compositeRoot.c"), "Song of the Weasels"));
+
+    ExpectFalse(Player.memberOfGuild("blarg"), "Is not member of blarg after restore");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedRoot.c"), "constructedRoot research is not researched after restore");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedFormA.c"), "constructedFormA research is not researched after restore");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedFunctionA.c"), "constructedFunctionA research is not researched after restore");
+    ExpectFalse(Player.isResearched("/lib/tests/support/research/constructedEffectA.c"), "constructedEffectA research is not researched after restore");
+    ExpectFalse(member(Player.getConstructedResearch("/lib/tests/support/research/constructedRoot.c"), "Bolt of Doom"), "Bolt of Doom not present after restore");
 }

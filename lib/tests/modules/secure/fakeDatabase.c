@@ -41,6 +41,24 @@ public nomask mapping Gorthaur()
                 })
             ])
         ]),
+        "constructedResearch": ([
+            "Bolt of Doom": ([
+                "alias": "zap",
+                "constraint": "/lib/tests/support/research/constructedRoot.c",
+                "type": "/lib/tests/support/research/constructedRoot.c",
+                "elements": ({
+                    ([ "research": "/lib/tests/support/research/constructedFormA.c",
+                       "type": "form"
+                    ]),
+                    ([ "research": "/lib/tests/support/research/constructedFunctionA.c",
+                       "type": "function"
+                    ]),
+                    ([ "research": "/lib/tests/support/research/constructedEffectA.c",
+                       "type": "effect"
+                    ]),
+                })
+            ])
+        ]),
         "constitution": 14,
         "dexterity": 12,
         "drugged": 3,
@@ -120,7 +138,7 @@ public nomask mapping Gorthaur()
         "name": "gorthaur",
         "userName": "gorthaur",
         "onKillList": 1,
-        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c" }),
+        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c", "/lib/tests/support/research/testConstructedTree.c" }),
         "page size": 20,
         "playerId": 2,
         "pretitle": "Weasel Lord",
@@ -185,6 +203,38 @@ public nomask mapping Gorthaur()
                 "sustained active": 1,
                 "active count": 2,
                 "active modifier object": "/lib/items/modifierObject#blarf"
+            ]),
+            "/lib/tests/support/research/constructedRoot.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedFormA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedFunctionA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedEffectA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
             ]),
         ]),
         "researchChoices": ([ 
@@ -285,6 +335,24 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
                 })
             ])
         ]),
+        "constructedResearch": ([
+            "Bolt of Doom": ([
+                "alias": "zap",
+                "constraint": "/lib/tests/support/research/constructedRoot.c",
+                "type": "/lib/tests/support/research/constructedRoot.c",
+                "elements": ({
+                    ([ "research": "/lib/tests/support/research/constructedFormA.c",
+                       "type": "form"
+                    ]),
+                    ([ "research": "/lib/tests/support/research/constructedFunctionA.c",
+                       "type": "function"
+                    ]),
+                    ([ "research": "/lib/tests/support/research/constructedEffectA.c",
+                       "type": "effect"
+                    ]),
+                })
+            ])
+        ]),
         "dexterity": 12,
         "drugged": 3,
         "earmuffs": 0,
@@ -363,7 +431,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "name": (name ? name : "earl"),
         "userName": (name ? name : "earl"),
         "onKillList": 1,
-        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c" }),
+        "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c", "/lib/tests/support/research/testConstructedTree.c" }),
         "page size": 20,
         "playerId": 3,
         "pretitle": "Weasel Lord",
@@ -428,6 +496,38 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
                 "sustained active": 1,
                 "active count": 2,
                 "active modifier object": "/lib/items/modifierObject#blarf"
+            ]),
+            "/lib/tests/support/research/constructedRoot.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedFormA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedFunctionA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
+            ]),
+            "/lib/tests/support/research/constructedEffectA.c": ([ 
+                "cooldown": 0,
+                "research complete": 1,
+                "time spent learning": 1,
+                "time to complete learning": 0,
+                "when research began": 3,
+                "when research complete": 4,
             ]),
         ]),
         "researchChoices": ([ 

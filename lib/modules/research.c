@@ -1076,6 +1076,54 @@ public nomask int deleteCompositeResearch(string itemName)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs mapping getConstructedResearch(string constraint,
+    string itemName, int addParent)
+{
+    mapping filteredList = filter(constructedResearch,
+        (: (($2["constraint"] == $3) && (!$4 || ($1 == $4) ||
+           ($2["alias"] == $4))) :), constraint, itemName);
+
+    return (!itemName || addParent || !sizeof(filteredList)) ? 
+        filteredList : filteredList[m_indices(filteredList)[0]];
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getOptionsForConstructedResearch(string constraint)
+{
+    return getConstructedResearch(constraint);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int setConstructedResearch(string itemName, mapping data)
+{
+    int ret = 0;
+
+    if (researchService()->isValidConstructedResearch(itemName, data))
+    {
+        ret = 1;
+        constructedResearch[itemName] = data + ([]);
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int deleteConstructedResearch(string itemName)
+{
+    int ret = 0;
+
+    if (member(constructedResearch, itemName))
+    {
+        ret = 1;
+        removeConstructedResearch(this_object()->RealName(),
+            itemName, constructedResearch[itemName]["constraint"]);
+        m_delete(constructedResearch, itemName);
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping categorizedResearch()
 {
     mapping ret = ([]);
@@ -1127,6 +1175,14 @@ public nomask void removeResearchBySource(string source)
             {
                 deleteCompositeResearch(compositeItem);
             }
+
+            mapping constructedItems = filter(constructedResearch, 
+                (: $2["constraint"] == $3 :), item);
+            foreach(string constructedItem in m_indices(constructedItems))
+            {
+                deleteConstructedResearch(constructedItem);
+            }
+
             m_delete(research, item);
         }
     }
@@ -1143,50 +1199,4 @@ public nomask void removeResearchBySource(string source)
     }
 
     removeSavedResearch(itemsToRemove, treesToRemove);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask varargs mapping getConstructedResearch(string constraint,
-    string itemName, int addParent)
-{
-    mapping filteredList = filter(constructedResearch,
-        (: (($2["constraint"] == $3) && (!$4 || ($1 == $4) ||
-           ($2["alias"] == $4))) :), constraint, itemName);
-
-    return (!itemName || addParent || !sizeof(filteredList)) ? 
-        filteredList : filteredList[m_indices(filteredList)[0]];
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask mapping getOptionsForConstructedResearch(string constraint)
-{
-    return getConstructedResearch(constraint);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int setConstructedResearch(string itemName, mapping data)
-{
-    int ret = 0;
-
-    if (researchService()->isValidConstructedResearch(itemName, data))
-    {
-        ret = 1;
-        constructedResearch[itemName] = data + ([]);
-    }
-
-    return ret;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask int deleteConstructedResearch(string itemName)
-{
-    int ret = 0;
-
-    if (member(constructedResearch, itemName))
-    {
-        ret = 1;
-        m_delete(constructedResearch, itemName);
-    }
-
-    return ret;
 }

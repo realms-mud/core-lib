@@ -375,6 +375,151 @@ protected nomask void removeCompositeResearchData(int dbHandle, string playerNam
     mixed result = db_fetch(dbHandle);
 }
 
+// Add these methods to the existing file
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask mapping *getConstructedResearchElements(int constructedResearchId, 
+    int dbHandle)
+{
+    mapping *ret = ({ });
+
+    string query = sprintf("select research.path, "
+            "constructedResearchElements.type "
+        "from constructedResearchElements "
+        "inner join research on constructedResearchElements.researchid = research.id "
+        "where constructedresearchid = '%d' "
+        "order by constructedResearchElements.id;", 
+        constructedResearchId);
+    db_exec(dbHandle, query);
+
+    mixed result;
+    do
+    {
+        result = db_fetch(dbHandle);
+
+        if (result)
+        {
+            ret += ({ ([
+                "research": convertString(result[0]),
+                "type": convertString(result[1])
+            ]) });
+        }
+    } while (result);
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask mapping getConstructedResearch(int playerId, int dbHandle)
+{
+    mapping ret = (["constructedResearch":([]) ]);
+
+    string query = sprintf("select id, `name`, `alias`, `constraint`, `type` "
+        "from constructedResearch where playerid = '%d'", playerId);
+    db_exec(dbHandle, query);
+
+    mixed result;
+
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            ret["constructedResearch"][convertString(result[1])] = ([
+                "alias": convertString(result[2]),
+                "constraint": convertString(result[3]),
+                "type": convertString(result[4]),
+                "id": to_int(result[0])
+            ]);
+        }
+    } while (result);
+
+    if (sizeof(ret["constructedResearch"]))
+    {
+        foreach(string key in m_indices(ret["constructedResearch"]))
+        {
+            ret["constructedResearch"][key]["elements"] =
+                getConstructedResearchElements(
+                    ret["constructedResearch"][key]["id"], dbHandle);
+            m_delete(ret["constructedResearch"][key], "id");
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void saveConstructedResearchElements(int dbHandle, 
+    string playerName, string constructedResearch, mapping *researchData)
+{
+    string query = sprintf("delete from constructedResearchElements "
+        "where constructedresearchid = (select id from constructedResearch "
+        "where name = '%s' and playerid = (select id from players "
+        "where name = '%s'));", 
+        sanitizeString(constructedResearch), 
+        sanitizeString(playerName));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+
+    foreach(mapping element in researchData)
+    {
+        query = sprintf("call saveConstructedResearchElement('%s','%s',"
+            "'%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(constructedResearch),
+            sanitizeString(element["research"]),
+            sanitizeString(element["type"]));
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void saveConstructedResearch(int dbHandle, string playerName, 
+    mapping playerData)
+{
+    if (member(playerData, "constructedResearch") &&
+        sizeof(playerData["constructedResearch"]))
+    {
+        mapping data = playerData["constructedResearch"];
+        foreach(string constructedResearch in m_indices(data))
+        {
+            string query =
+                sprintf("call saveConstructedResearch('%s','%s','%s','%s','%s');",
+                    sanitizeString(playerData["name"]),
+                    sanitizeString(constructedResearch),
+                    sanitizeString(data[constructedResearch]["alias"]),
+                    sanitizeString(data[constructedResearch]["constraint"]),
+                    sanitizeString(data[constructedResearch]["type"]));
+            db_exec(dbHandle, query);
+            mixed result = db_fetch(dbHandle);
+
+            if (member(data[constructedResearch], "elements") &&
+                sizeof(data[constructedResearch]["elements"]))
+            {
+                saveConstructedResearchElements(dbHandle, playerData["name"],
+                    constructedResearch, data[constructedResearch]["elements"]);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void removeConstructedResearchData(int dbHandle, string playerName,
+    string name, string constraint)
+{
+    string query =
+        sprintf("call deleteConstructedResearch('%s','%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(name),
+            sanitizeString(constraint));
+
+    db_exec(dbHandle, query);
+    mixed result = db_fetch(dbHandle);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 protected void removeSavedResearchData(int dbHandle, 
     string playerName, 
@@ -391,6 +536,13 @@ protected void removeSavedResearchData(int dbHandle,
 
         db_exec(dbHandle, query);
         mixed result = db_fetch(dbHandle);
+
+        query = sprintf("call deleteConstructedResearchByConstraint('%s','%s');",
+            sanitizeString(playerName),
+            sanitizeString(constraint));
+
+        db_exec(dbHandle, query);
+        result = db_fetch(dbHandle);
     }
 
     string researchList = "'" + implode(research, "','") + "'";
