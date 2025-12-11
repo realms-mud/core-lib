@@ -547,7 +547,7 @@ void ExecuteWithElementsAppliesAggregatedCooldown()
     User.addResearchPoints(1);
     User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
 
-    User.setConstructedResearch("test combo", ( [
+    User.setConstructedResearch("test combo", ([
         "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
         "type": "/lib/tests/support/research/testConstructedComponentA.c",
         "elements": ({
@@ -661,4 +661,33 @@ void ExecuteBlockedWhenOnCooldown()
     // Second execution should fail due to cooldown
     ExpectFalse(User.researchCommand("test spell test combo"), 
         "second spell execution fails due to cooldown");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteWorksWithSpellAlias()
+{
+    load_object("/lib/tests/support/research/testConstructedComponentA.c");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.colorConfiguration("none");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+
+    User.setConstructedResearch("test combo", ([
+        "alias": "zap",
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedComponentA.c",
+        "elements": ({ })
+    ]));
+
+    int initialSP = User.spellPoints();
+
+    // Execute using alias instead of full name
+    ExpectTrue(User.researchCommand("test spell zap"), 
+        "spell execution succeeds using alias");
+
+    ExpectEq(initialSP - 20, User.spellPoints(), 
+        "spell points deducted correctly when using alias");
 }
