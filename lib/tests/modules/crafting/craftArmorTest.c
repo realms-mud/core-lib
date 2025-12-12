@@ -173,7 +173,7 @@ void CraftingArmorMovesArmorToUserAndConsumesMaterials()
     command("2", Player);
     command("4", Player);
     command("12", Player);
-    command("23", Player);
+    command("24", Player);
     command("8", Player);
 
     ExpectSubStringMatch("Fire resistance .x1", Player.caughtMessage());
@@ -212,7 +212,7 @@ void CanSetNameAndDescription()
     command("2", Player);
     command("4", Player);
     command("12", Player);
-    command("23", Player);
+    command("24", Player);
     command("8", Player);
     ExpectSubStringMatch("Give robes a name +..0m", Player.caughtMessage());
     ExpectSubStringMatch("Give robes a special description..0m", Player.caughtMessage());

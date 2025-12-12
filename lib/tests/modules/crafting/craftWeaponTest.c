@@ -399,7 +399,7 @@ void CraftingSetsEnchantments()
     command("5", Player);
     command("11", Player);
     command("11", Player);
-    command("23", Player);
+    command("24", Player);
     command("8", Player);
 
     ExpectSubStringMatch("Spell points .x1.*Fire enchantment .x2", 

@@ -959,7 +959,7 @@ protected mapping equipmentEnchantments =
         "value multiplier": 5.0,
         "experience modifier": 1.5
     ]),
-    "damage soak":([
+    "damage soak": ([
         "class": "defensive",
         "crafting prerequisites": ([
             "/lib/instances/research/crafting/enchantments/protection/craftSoakEnchantment.c":(["type":"research"]),

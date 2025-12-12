@@ -142,11 +142,12 @@ void SelectingDefensiveEnchantmentDisplaysDefensiveMenu()
         "    [\x1b[0;31;1m17\x1b[0m] - \x1b[0;31mPoison resistance   \x1b[0m\x1b[0;35m(P)\x1b[0m  "
         "    [\x1b[0;31;1m18\x1b[0m] - \x1b[0;31mPsionic resistance  \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
         "    [\x1b[0;31;1m19\x1b[0m] - \x1b[0;31mSonic resistance    \x1b[0m\x1b[0;35m(P)\x1b[0m  "
-        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mUndead resistance   \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
-        "    [\x1b[0;31;1m21\x1b[0m] - \x1b[0;31mWater resistance    \x1b[0m\x1b[0;35m(P)\x1b[0m  "
-        "    [\x1b[0;31;1m22\x1b[0m] - \x1b[0;31mWeapon defense      \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
-        "    [\x1b[0;31;1m23\x1b[0m] - \x1b[0;32mExit Select Enchant defensive Menu\x1b[0m     \n"
-        "\x1b[0;32;1mYou must select a number from 1 to 23. You may also undo or reset.\n\x1b[0m"
+        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mSteam resistance    \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m21\x1b[0m] - \x1b[0;31mUndead resistance   \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m22\x1b[0m] - \x1b[0;31mWater resistance    \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m23\x1b[0m] - \x1b[0;31mWeapon defense      \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m24\x1b[0m] - \x1b[0;32mExit Select Enchant defensive Menu\x1b[0m     \n"
+        "\x1b[0;32;1mYou must select a number from 1 to 24. You may also undo or reset.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
@@ -182,12 +183,13 @@ void SelectingOffensiveEnchantmentDisplaysOffensiveMenu()
         "    [\x1b[0;31;1m16\x1b[0m] - \x1b[0;31mPoison enchantment  \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
         "    [\x1b[0;31;1m17\x1b[0m] - \x1b[0;31mPsionic enchantment \x1b[0m\x1b[0;35m(P)\x1b[0m  "
         "    [\x1b[0;31;1m18\x1b[0m] - \x1b[0;31mSonic enchantment   \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
-        "    [\x1b[0;31;1m19\x1b[0m] - \x1b[0;31mUndead enchantment  \x1b[0m\x1b[0;35m(P)\x1b[0m  "
-        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mWater enchantment   \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
-        "    [\x1b[0;31;1m21\x1b[0m] - \x1b[0;31mWeapon attack       \x1b[0m\x1b[0;35m(P)\x1b[0m  "
-        "    [\x1b[0;31;1m22\x1b[0m] - \x1b[0;31mWeapon damage       \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
-        "    [\x1b[0;31;1m23\x1b[0m] - \x1b[0;32mExit Select Enchant offensive Menu\x1b[0m     \n"
-        "\x1b[0;32;1mYou must select a number from 1 to 23. You may also undo or reset.\n\x1b[0m"
+        "    [\x1b[0;31;1m19\x1b[0m] - \x1b[0;31mSteam enchantment   \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m20\x1b[0m] - \x1b[0;31mUndead enchantment  \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m21\x1b[0m] - \x1b[0;31mWater enchantment   \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m22\x1b[0m] - \x1b[0;31mWeapon attack       \x1b[0m\x1b[0;35m(P)\x1b[0m  \n"
+        "    [\x1b[0;31;1m23\x1b[0m] - \x1b[0;31mWeapon damage       \x1b[0m\x1b[0;35m(P)\x1b[0m  "
+        "    [\x1b[0;31;1m24\x1b[0m] - \x1b[0;32mExit Select Enchant offensive Menu\x1b[0m     \n"
+        "\x1b[0;32;1mYou must select a number from 1 to 24. You may also undo or reset.\n\x1b[0m"
         "\x1b[0;32mType 'exit' if you do not wish to make a selection at this time.\n\x1b[0m"
         "\x1b[0;32mFor details on a given choice, type 'describe X' (or '? X') where\nX is the option about which you would like further details.\n\x1b[0m"
         "\x1b[0;32;1mYou can imbue this item with 1 more (out of 1) enchantments.\n"
@@ -319,7 +321,7 @@ void ChangesToEnchantmentSelectionIsPropegatedToOtherMenus()
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*3 more.*out of 4", Player.caughtMessage());
     command("11", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*2 more.*out of 4", Player.caughtMessage());
-    command("23", Player);
+    command("24", Player);
     ExpectSubStringMatch("Select Enchantment type.*2 more.*out of 4", Player.caughtMessage());
 }
 
@@ -334,7 +336,7 @@ void CannotSelectEnchantmentWithMissingPrerequisites()
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player.caughtMessage());
     command("13", Player);
     ExpectSubStringMatch("32mFire enchantment[ ]+..0m.*4 more.*out of 4", Player.caughtMessage());
-    command("23", Player);
+    command("24", Player);
     ExpectSubStringMatch("Select Enchantment type.*4 more.*out of 4", Player.caughtMessage());
 }
 
