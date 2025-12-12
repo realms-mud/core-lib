@@ -85,7 +85,7 @@ static nomask string *validCombatModifiers()
         "bonus resist arrow", "bonus resist bolt", "bonus resist bullet",
         "bonus resist chaos", "bonus resist earth", "bonus resist paralysis", 
         "bonus resist psionic", "bonus resist poison", "bonus resist undead", 
-        "bonus resist water", "bonus resist cold" });
+        "bonus resist water", "bonus resist steam", "bonus resist cold" });
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1214,6 +1214,55 @@ protected mapping equipmentEnchantments =
         "value multiplier": 8.0,
         "experience modifier": 1.55
     ]),
+    "steam enchantment":([
+        "class": "offensive",
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/enchantments/steam/craftSteamEnchantment.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 5]),
+            "elemental water": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "enchantments": ([
+                "steam": 2,
+            ]),
+        ]),
+        "rune": "laguz kenaz",
+        "description": "Imbues the item with scalding steam energy, enhancing damage with searing heat and moisture.",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "steam resistance":([
+        "class": "defensive",
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/enchantments/steam/craftSteamEnchantment.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 5]),
+            "elemental water": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "resistances": ([
+                "steam": 2,
+            ]),
+        ]),
+        "rune": "laguz kenaz",
+        "description": "Protects the wearer against scalding steam and superheated vapor damage.",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
+    "steam attack":([
+        "class": "attack mutations",
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/enchantments/steam/craftSteamAttack.c":(["type":"research"]),
+            "spellcraft": (["type":"skill", "value": 10]),
+            "elemental water": (["type":"skill", "value": 5]),
+        ]),
+        "effects": ([
+            "damage type": "steam",
+        ]),
+        "rune": "laguz kenaz",
+        "description": "Converts the weapon's attacks to release scalding steam on impact.",
+        "value multiplier": 5.0,
+        "experience modifier": 1.5
+    ]),
 ]);
 
 #endif

@@ -38,6 +38,21 @@ public void SetupGuild()
         "apply": "5 every level"
     ]));
 
+    addCriteria("initial research points", ([
+        "type":"research points",
+        "apply": "5 at level 1"
+    ]));
+
+    addCriteria("research points", ([
+        "type": "research points",
+        "apply": "1 every level"
+    ]));
+
+    addCriteria("supplemental research points", ([
+        "type": "research points",
+        "apply": "2 every 5 levels"
+    ]));
+
     addCriteria("lightning", ([
         "type": "research tree",
         "apply": "at level 1",

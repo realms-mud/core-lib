@@ -125,7 +125,7 @@ private nomask int addEnchantment(object item)
     int ret = 0;
 
     string *enchantments = ({ "acid", "air", "chaos", "cold", "earth", "electricity",
-        "energy", "fire", "magical", "poison", "water", "undead", "good", "evil" });
+        "energy", "fire", "magical", "poison", "water", "undead", "good", "evil", "steam" });
 
     string enchantType = "enchantments";
     if (item->query("armor type") ||

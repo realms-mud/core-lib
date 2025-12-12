@@ -690,6 +690,25 @@ protected mapping potions =
         "base experience": 5,
         "default value": 500,
     ]),
+    "steam resistance potion":([
+        "type": "resistance",
+        "crafting prerequisites": ([
+            "/lib/instances/research/crafting/potions/brewAdvancedPotions.c":(["type":"research"]),
+            "brewing": (["type":"skill", "value": 8]),
+        ]),        
+        "crafting materials": ([
+        ]),
+        "effects": ([
+            "apply trait": "/lib/instances/items/potions/traits/steam-resistance.c",
+            "biological": "neuroleptic",
+        ]),
+        "default description": "A swirling silver-white potion that perpetually releases tiny "
+            "wisps of cool mist from its surface. It tastes of mountain springs "
+            "and morning dew, creating a protective barrier that shields skin "
+            "from scalding heat and superheated vapor.",
+        "base experience": 5,
+        "default value": 250,
+    ]),
 ]);
 
 #endif
