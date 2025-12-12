@@ -2,7 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/sustainedResearchItem.c";
+inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -27,10 +27,13 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 20);
+    addSpecification("spell point cost", 50);
 
     addSpecification("bonus water enchantment", 5);
     addSpecification("bonus damage", 2);
+    addSpecification("bonus attack", 10);
+    addSpecification("bonus water attack", 10);
+    addSpecification("duration", 2);
 
     addSpecification("modifiers", ({ 
         ([
@@ -51,12 +54,37 @@ protected void Setup()
             "formula": "logarithmic",
             "rate": 1.25
         ]),
+        ([
+            "type": "skill",
+            "name": "magical essence",
+            "formula": "logarithmic",
+            "rate": 1.25
+        ]),
+        ([
+            "type": "attribute",
+            "name": "intelligence",
+            "formula": "additive",
+            "rate": 0.05
+        ]), 
+        ([
+            "type": "attribute",
+            "name": "dexterity",
+            "formula": "additive",
+            "rate": 0.025
+        ]), 
+        ([
+            "type": "attribute",
+            "name": "wisdom",
+            "formula": "additive",
+            "rate": 0.025
+        ]), 
     }));
 
-    addSpecification("cooldown", 4);
+    addSpecification("cooldown", 30);
     addSpecification("event handler", "waterBladesEvent");
     addSpecification("command template", "water blades");
-    addSpecification("use ability message", "Razor-sharp edges of water "
-        "form along ##InitiatorPossessive::Name## weapons, gleaming with "
-        "deadly intent.");
+    addSpecification("use ability message", "##InitiatorName## "
+        "##Infinitive::raise## ##InitiatorPossessive## hand and "
+        "##Infinitive::say## a word of power. Razor-sharp edges of water "
+        "form along ##InitiatorPossessive## weapons.");
 }

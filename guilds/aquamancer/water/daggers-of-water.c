@@ -39,7 +39,7 @@ protected void Setup()
             "range": 100
         ])
     }));
-    addSpecification("damage type", "piercing");
+    addSpecification("damage type", "thrust");
 
     addSpecification("modifiers", ({
         ([

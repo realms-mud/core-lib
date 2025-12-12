@@ -31,7 +31,7 @@ protected void Setup()
     addSpecification("bonus defense", 8);
     addSpecification("bonus parry", 5);
     addSpecification("bonus soak", 5);
-    addSpecification("bonus damage reduction", 3);
+    addSpecification("bonus armor class", 5);
     addSpecification("duration", 150);
 
     addSpecification("modifiers", ({ 

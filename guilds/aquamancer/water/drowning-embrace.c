@@ -2,7 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/persistedActiveResearchItem.c";
+inherit "/lib/modules/research/instantaneousPersistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
@@ -41,7 +41,11 @@ protected void Setup()
         ])
     }));
     addSpecification("damage type", "poison");
-    addSpecification("duration", 60);
+    addSpecification("penalty to attack", 8);
+    addSpecification("penalty to damage", 8);
+    addSpecification("penalty to soak", 8);
+    addSpecification("apply slow", 1);
+    addSpecification("duration", 45);
 
     addSpecification("modifiers", ({
         ([
