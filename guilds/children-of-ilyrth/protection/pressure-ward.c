@@ -7,36 +7,29 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Avatar of Restoration");
+    addSpecification("name", "Pressure Ward");
     addSpecification("source", "Children of Ilyrth");
-    addSpecification("description", "This skill provides the user with "
-        "the exalted knowledge of becoming an avatar of restoration. The "
-        "caster embodies Ilyrth's healing aspect, channeling her divine "
-        "power with incredible potency.");
+    addSpecification("description", "This skill provides the user with the "
+        "knowledge to use the crushing pressure of the deep as protection. "
+        "Enemies who strike the caster feel the weight of the ocean depths.");
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Children of Ilyrth",
-          "value": 41 ]));
+          "value": 7 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/healing-maelstrom.c",
+    addPrerequisite("/guilds/children-of-ilyrth/protection/tidal-barrier.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 6);
-    addSpecification("bonus elemental water", 4);
-    addSpecification("bonus divine essence", 4);
-    addSpecification("bonus heal hit points", 4);
-    addSpecification("bonus spell points", 20);
+    addSpecification("bonus damage reflection", 1);
+    addSpecification("bonus elemental water", 2);
 
     addSpecification("affected research", ([
-        "Ilryth's Blessing":25,
-        "Deluge of Healing" : 25,
-        "Oceans Embrace" : 25,
-        "Tidal Salvation" : 25,
-        "Ilryth's Miracle" : 20
+        "Tidal Barrier": 15,
+        "Maelstrom Barrier": 10
     ]));
     addSpecification("affected research type", "percentage");
 }

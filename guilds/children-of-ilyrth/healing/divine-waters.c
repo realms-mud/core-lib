@@ -34,7 +34,7 @@ protected void Setup()
         "Healing Stream": 25,
         "Healing Rain": 25,
         "Wellspring of Life": 25,
-        "Ilyriths Blessing": 25,
+        "Ilryth's Blessing": 25,
         "Deluge of Healing": 20,
         "Oceans Embrace": 15
     ]));

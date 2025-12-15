@@ -7,7 +7,7 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Ilyriths Embrace");
+    addSpecification("name", "Ilryth's Embrace");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This research provides the user with the "
         "knowledge of Ilyrth's embrace - the ultimate healing spell. The "
@@ -103,8 +103,8 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 300);
-    addSpecification("event handler", "ilyrithsEmbraceEvent");
-    addSpecification("command template", "ilyriths embrace");
+    addSpecification("event handler", "Ilryth'sEmbraceEvent");
+    addSpecification("command template", "Ilryth's embrace");
     addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::call## upon the goddess Ilyrth herself as a "
         "shimmering manifestation of the sea goddess appears, her ethereal "

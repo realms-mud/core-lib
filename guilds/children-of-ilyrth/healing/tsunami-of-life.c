@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Children of Ilyrth",
           "value": 57 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/ilyriths-miracle.c",
+    addPrerequisite("/guilds/children-of-ilyrth/healing/ilryths-miracle.c",
         (["type":"research"]));
 
     addSpecification("scope", "area");
@@ -74,8 +74,8 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilyriths-embrace.c",
-            "name": "Ilyriths Embrace",
+            "research item": "/guilds/children-of-ilyrth/healing/ilryths-embrace.c",
+            "name": "Ilryth's Embrace",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.40

@@ -35,7 +35,7 @@ protected void Setup()
         "Healing Stream": 25,
         "Healing Rain": 25,
         "Wellspring of Life": 20,
-        "Ilyriths Blessing": 20,
+        "Ilryth's Blessing": 20,
         "Deluge of Healing": 15
     ]));
     addSpecification("affected research type", "percentage");

@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Children of Ilyrth",
           "value": 23 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/ilyriths-blessing.c",
+    addPrerequisite("/guilds/children-of-ilyrth/healing/ilryths-blessing.c",
         (["type":"research"]));
 
     addSpecification("scope", "area");

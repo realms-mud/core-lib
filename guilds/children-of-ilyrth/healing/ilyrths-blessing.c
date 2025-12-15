@@ -7,130 +7,138 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Ilyriths Miracle");
+    addSpecification("name", "Ilyrth's Blessing");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of Ilyrth's miracle spell. The goddess performs a true "
-        "miracle of healing, restoring the target from the brink of death "
-        "to full vitality.");
+        "knowledge of Ilyrth's blessing spell. The goddess herself bestows "
+        "her divine favor upon the target, granting a powerful surge of "
+        "healing and renewed vigor.");
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Children of Ilyrth",
-          "value": 45 ]));
+          "value": 19 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/tidal-salvation.c",
+    addPrerequisite("/guilds/children-of-ilyrth/healing/wellspring-of-life.c",
         (["type":"research"]));
 
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 250);
+    addSpecification("spell point cost", 100);
 
     addSpecification("increase hit points", ({ ([
             "probability": 80,
-            "base damage": 150,
-            "range": 100
+            "base damage": 65,
+            "range": 50
         ]),
         ([
             "probability": 20,
-            "base damage": 250,
-            "range": 100
+            "base damage": 115,
+            "range": 50
         ])
     }));
 
     addSpecification("increase spell points", ({ ([
             "probability": 80,
-            "base damage": 75,
-            "range": 50
+            "base damage": 25,
+            "range": 20
         ]),
         ([
             "probability": 20,
-            "base damage": 125,
-            "range": 50
+            "base damage": 45,
+            "range": 20
         ])
     }));
 
     addSpecification("increase stamina points", ({ ([
             "probability": 80,
-            "base damage": 60,
-            "range": 40
+            "base damage": 20,
+            "range": 15
         ]),
         ([
             "probability": 20,
-            "base damage": 100,
-            "range": 40
+            "base damage": 35,
+            "range": 15
         ])
     }));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/tsunami-of-life.c",
-            "name": "Tsunami of Life",
+            "research item": "/guilds/children-of-ilyrth/healing/deluge-of-healing.c",
+            "name": "Deluge of Healing",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.35
+            "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/divine-tides.c",
-            "name": "Divine Tides",
+            "research item": "/guilds/children-of-ilyrth/healing/oceans-embrace.c",
+            "name": "Oceans Embrace",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.35
+            "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilyriths-embrace.c",
-            "name": "Ilyriths Embrace",
+            "research item": "/guilds/children-of-ilyrth/healing/tidal-salvation.c",
+            "name": "Tidal Salvation",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.40
+            "rate": 1.30
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/children-of-ilyrth/healing/ilryths-miracle.c",
+            "name": "Ilryth's Miracle",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.35
         ]),
         ([
             "type": "skill",
             "name": "healing",
             "formula": "additive",
-            "rate": 0.30
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
             "name": "elemental water",
             "formula": "additive",
-            "rate": 0.20
+            "rate": 0.10
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "logarithmic",
-            "rate": 1.45
+            "rate": 1.30
         ]),
         ([
             "type": "skill",
             "name": "divine essence",
             "formula": "logarithmic",
-            "rate": 1.55
+            "rate": 1.40
         ]),
         ([
             "type": "attribute",
             "name": "wisdom",
             "formula": "additive",
-            "rate": 0.18
+            "rate": 0.10
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "logarithmic",
-            "rate": 1.20
+            "rate": 1.12
         ])
     }));
 
-    addSpecification("cooldown", 180);
-    addSpecification("event handler", "ilyrithsMiracleEvent");
-    addSpecification("command template", "ilyriths miracle [at ##Target##]");
+    addSpecification("cooldown", 45);
+    addSpecification("event handler", "Ilryth'sBlessingEvent");
+    addSpecification("command template", "Ilryth's blessing [at ##Target##]");
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::beseech## the goddess Ilyrth for a miracle as "
-        "radiant blue-white light erupts around ##TargetName##, completely "
-        "suffusing ##TargetObjective## with divine healing energy.");
+        "##Infinitive::invoke## the name of Ilyrth as a pillar of radiant "
+        "blue light descends upon ##TargetName##, suffusing "
+        "##TargetObjective## with the goddess's divine blessing.");
 }

@@ -36,7 +36,7 @@ protected void Setup()
         "Deluge of Healing": 25,
         "Oceans Embrace" : 25,
         "Tidal Salvation" : 25,
-        "Ilyriths Miracle" : 25,
+        "Ilryth's Miracle" : 25,
         "Tsunami of Life" : 20
     ]));
     addSpecification("affected research type", "percentage");

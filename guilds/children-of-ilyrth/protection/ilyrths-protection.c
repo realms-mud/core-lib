@@ -7,38 +7,29 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Divine Tides");
+    addSpecification("name", "Ilryth's Protection");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This skill provides the user with "
-        "the supreme knowledge of Ilyrth's divine tides. The caster has "
-        "become one with the goddess's eternal ocean, their healing magic "
-        "flowing with the power of the divine tides themselves.");
+        "Ilyrth's divine protection. The goddess watches over her faithful, "
+        "granting them enhanced resilience against harm.");
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Children of Ilyrth",
-          "value": 63 ]));
+          "value": 5 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/oceans-heart.c",
+    addPrerequisite("/guilds/children-of-ilyrth/protection/flowing-defense.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 8);
-    addSpecification("bonus elemental water", 6);
-    addSpecification("bonus divine essence", 6);
-    addSpecification("bonus heal hit points", 5);
-    addSpecification("bonus heal spell points", 4);
-    addSpecification("bonus heal hit points rate", 3);
-    addSpecification("bonus spell points", 30);
+    addSpecification("bonus hit points", 15);
+    addSpecification("bonus defense", 1);
 
     addSpecification("affected research", ([
-        "Oceans Embrace": 25,
-        "Tidal Salvation" : 25,
-        "Ilryth's Miracle" : 35,
-        "Tsunami of Life" : 25,
-        "Ilryth's Embrace" : 25
+        "Aquatic Shield": 15,
+        "Tidal Barrier": 10
     ]));
     addSpecification("affected research type", "percentage");
 }

@@ -32,7 +32,7 @@ protected void Setup()
 
     addSpecification("affected research", ([
         "Wellspring of Life": 25,
-        "Ilyriths Blessing" : 25,
+        "Ilryth's Blessing" : 25,
         "Deluge of Healing" : 25,
         "Oceans Embrace" : 25,
         "Tidal Salvation" : 20

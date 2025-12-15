@@ -7,38 +7,32 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Divine Tides");
+    addSpecification("name", "Divine Bulwark");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This skill provides the user with "
-        "the supreme knowledge of Ilyrth's divine tides. The caster has "
-        "become one with the goddess's eternal ocean, their healing magic "
-        "flowing with the power of the divine tides themselves.");
+        "Ilryth's divine bulwark. The goddess strengthens all of the "
+        "caster's protective barriers with her sacred power.");
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Children of Ilyrth",
-          "value": 63 ]));
+          "value": 29 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/oceans-heart.c",
+    addPrerequisite("/guilds/children-of-ilyrth/protection/sanctuary-of-waves.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 8);
-    addSpecification("bonus elemental water", 6);
-    addSpecification("bonus divine essence", 6);
-    addSpecification("bonus heal hit points", 5);
-    addSpecification("bonus heal spell points", 4);
-    addSpecification("bonus heal hit points rate", 3);
-    addSpecification("bonus spell points", 30);
+    addSpecification("bonus defense", 5);
+    addSpecification("bonus divine essence", 4);
+    addSpecification("bonus soak", 5);
 
     addSpecification("affected research", ([
-        "Oceans Embrace": 25,
-        "Tidal Salvation" : 25,
-        "Ilryth's Miracle" : 35,
-        "Tsunami of Life" : 25,
-        "Ilryth's Embrace" : 25
+        "Maelstrom Barrier": 25,
+        "Ilyryth's Aegis": 25,
+        "Sanctuary of Waves": 25,
+        "Tsunami Shield": 20
     ]));
     addSpecification("affected research type", "percentage");
 }

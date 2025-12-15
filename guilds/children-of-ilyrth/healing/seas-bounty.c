@@ -35,7 +35,7 @@ protected void Setup()
         "Ocean Balm": 25,
         "Lifegiving Waters": 25,
         "Wellspring of Life": 20,
-        "Ilyriths Blessing": 20,
+        "Ilryth's Blessing": 20,
         "Deluge of Healing": 15
     ]));
     addSpecification("affected research type", "percentage");

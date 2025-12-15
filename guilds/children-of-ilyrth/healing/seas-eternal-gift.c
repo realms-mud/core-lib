@@ -33,11 +33,11 @@ protected void Setup()
     addSpecification("bonus heal hit points rate", 2);
 
     addSpecification("affected research", ([
-        "Ilyriths Blessing": 25,
+        "Ilryth's Blessing": 25,
         "Deluge of Healing": 25,
         "Oceans Embrace": 25,
         "Tidal Salvation": 25,
-        "Ilyriths Miracle": 20
+        "Ilryth's Miracle": 20
     ]));
     addSpecification("affected research type", "percentage");
 }

@@ -74,8 +74,8 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilyriths-miracle.c",
-            "name": "Ilyriths Miracle",
+            "research item": "/guilds/children-of-ilyrth/healing/ilryths-miracle.c",
+            "name": "Ilryth's Miracle",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.35

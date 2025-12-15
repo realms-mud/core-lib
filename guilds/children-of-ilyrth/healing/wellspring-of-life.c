@@ -42,8 +42,8 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilyriths-blessing.c",
-            "name": "Ilyriths Blessing",
+            "research item": "/guilds/children-of-ilyrth/healing/ilryths-blessing.c",
+            "name": "Ilryth's Blessing",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -66,8 +66,8 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilyriths-miracle.c",
-            "name": "Ilyriths Miracle",
+            "research item": "/guilds/children-of-ilyrth/healing/ilryths-miracle.c",
+            "name": "Ilryth's Miracle",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.35
