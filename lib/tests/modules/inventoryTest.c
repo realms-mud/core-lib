@@ -1183,3 +1183,104 @@ void UnequippingSecondRingResetsTheMaskToRing()
     ExpectEq(0x00001000, ring.query("equipment locations"));
     ExpectFalse(Inventory.isEquipped(ring), "first ring is equipped");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeRemovesAllMatchingModifiers()
+{
+    object poison1 = clone_object("/lib/items/modifierObject");
+    poison1.set("fully qualified name", "poison effect 1");
+    poison1.set("penalty to strength", 2);
+    poison1.set("poison", 1);
+
+    object poison2 = clone_object("/lib/items/modifierObject");
+    poison2.set("fully qualified name", "poison effect 2");
+    poison2.set("penalty to constitution", 3);
+    poison2.set("poison", 1);
+
+    object disease = clone_object("/lib/items/modifierObject");
+    disease.set("fully qualified name", "disease effect");
+    disease.set("penalty to strength", 1);
+    disease.set("disease", 1);
+
+    ExpectEq(1, poison1.set("registration list", ({ Inventory })), "poison1 registered");
+    ExpectEq(1, poison2.set("registration list", ({ Inventory })), "poison2 registered");
+    ExpectEq(1, disease.set("registration list", ({ Inventory })), "disease registered");
+
+    ExpectTrue(Inventory.registeredInventoryObject("poison effect 1"), "poison1 is registered");
+    ExpectTrue(Inventory.registeredInventoryObject("poison effect 2"), "poison2 is registered");
+    ExpectTrue(Inventory.registeredInventoryObject("disease effect"), "disease is registered");
+
+    ExpectTrue(Inventory.inventoryGetModifier("combatModifiers", "poison"), "poison is registered");
+
+    ExpectTrue(Inventory.unregisterObjectsOfType("poison"), "unregisterObjectsOfType returns true");
+
+    ExpectFalse(Inventory.registeredInventoryObject("poison effect 1"), "poison1 is unregistered");
+    ExpectFalse(Inventory.registeredInventoryObject("poison effect 2"), "poison2 is unregistered");
+    ExpectTrue(Inventory.registeredInventoryObject("disease effect"), "disease is still registered");
+    ExpectFalse(Inventory.inventoryGetModifier("combatModifiers", "poison"), "poison is registered");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeReturnsFalseWhenNoMatchingModifiers()
+{
+    object disease = clone_object("/lib/items/modifierObject");
+    disease.set("fully qualified name", "disease effect");
+    disease.set("penalty to strength", 1);
+    disease.set("disease", 1);
+
+    ExpectEq(1, disease.set("registration list", ({ Inventory })), "disease registered");
+
+    ExpectFalse(Inventory.unregisterObjectsOfType("poison"), "unregisterObjectsOfType returns false");
+    ExpectTrue(Inventory.registeredInventoryObject("disease effect"), "disease is still registered");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeReturnsFalseWhenNoRegisteredObjects()
+{
+    ExpectFalse(Inventory.unregisterObjectsOfType("poison"), "unregisterObjectsOfType returns false with no objects");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeRemovesSlowModifier()
+{
+    object slow = clone_object("/lib/items/modifierObject");
+    slow.set("fully qualified name", "slow effect");
+    slow.set("penalty to dexterity", 3);
+    slow.set("slow", 1);
+
+    ExpectEq(1, slow.set("registration list", ({ Inventory })), "slow registered");
+    ExpectTrue(Inventory.registeredInventoryObject("slow effect"), "slow is registered");
+
+    ExpectTrue(Inventory.unregisterObjectsOfType("slow"), "unregisterObjectsOfType returns true");
+    ExpectFalse(Inventory.registeredInventoryObject("slow effect"), "slow is unregistered");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeRemovesEnfeebledModifier()
+{
+    object enfeebled = clone_object("/lib/items/modifierObject");
+    enfeebled.set("fully qualified name", "enfeebled effect");
+    enfeebled.set("penalty to strength", 5);
+    enfeebled.set("enfeebled", 1);
+
+    ExpectEq(1, enfeebled.set("registration list", ({ Inventory })), "enfeebled registered");
+    ExpectTrue(Inventory.registeredInventoryObject("enfeebled effect"), "enfeebled is registered");
+
+    ExpectTrue(Inventory.unregisterObjectsOfType("enfeebled"), "unregisterObjectsOfType returns true");
+    ExpectFalse(Inventory.registeredInventoryObject("enfeebled effect"), "enfeebled is unregistered");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnregisterObjectsOfTypeRemovesParalysisModifier()
+{
+    object paralysis = clone_object("/lib/items/modifierObject");
+    paralysis.set("fully qualified name", "paralysis effect");
+    paralysis.set("penalty to dexterity", 10);
+    paralysis.set("paralysis", 1);
+
+    ExpectEq(1, paralysis.set("registration list", ({ Inventory })), "paralysis registered");
+    ExpectTrue(Inventory.registeredInventoryObject("paralysis effect"), "paralysis is registered");
+
+    ExpectTrue(Inventory.unregisterObjectsOfType("paralysis"), "unregisterObjectsOfType returns true");
+    ExpectFalse(Inventory.registeredInventoryObject("paralysis effect"), "paralysis is unregistered");
+}

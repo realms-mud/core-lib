@@ -531,6 +531,29 @@ public nomask int unregisterObjectAsInventory(object item)
 }
        
 /////////////////////////////////////////////////////////////////////////////
+public nomask int unregisterObjectsOfType(string modifier)
+{
+    int ret = 0;
+    
+    object *registeredObjects = registeredInventoryObjects();
+    if (sizeof(registeredObjects))
+    {
+        foreach(object item in registeredObjects)
+        {
+            if (item && objectp(item) && item->query(modifier))
+            {
+                if (unregisterObjectAsInventory(item))
+                {
+                    destruct(item);
+                    ret = 1;
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int inventoryGetModifier(string type, string modifier)
 {
     int ret = 0;
