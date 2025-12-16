@@ -649,7 +649,7 @@ addBonus("research", 5);
 addBonus("magic theory", 3);
 
 // In a temple environment
-addBonus("healing", 8);
+addBonus("anatomy and physiology", 8);
 addBonus("resist evil", 20);
 
 // In a forge environment

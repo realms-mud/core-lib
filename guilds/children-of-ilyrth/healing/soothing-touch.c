@@ -109,9 +109,15 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "healing",
+            "name": "anatomy and physiology",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "body",
+            "formula": "additive",
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
@@ -127,7 +133,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.25
         ]),

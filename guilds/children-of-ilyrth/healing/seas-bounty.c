@@ -25,11 +25,12 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 4);
-    addSpecification("bonus divine essence", 3);
+    addSpecification("bonus body", 4);
+    addSpecification("bonus anatomy and physiology", 1);
+    addSpecification("bonus magical essence", 3);
     addSpecification("bonus heal hit points", 2);
     addSpecification("bonus heal spell points", 2);
-    addSpecification("bonus heal stamina points", 1);
+    addSpecification("bonus heal stamina", 1);
 
     addSpecification("affected research", ([
         "Ocean Balm": 25,

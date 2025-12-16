@@ -26,7 +26,7 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("bonus defense", 8);
     addSpecification("bonus soak", 8);
-    addSpecification("bonus divine essence", 6);
+    addSpecification("bonus magical essence", 6);
     addSpecification("bonus resist physical", 8);
     addSpecification("bonus resist magical", 8);
 

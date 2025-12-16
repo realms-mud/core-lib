@@ -24,7 +24,8 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 3);
+    addSpecification("bonus body", 3);
+    addSpecification("bonus anatomy and physiology", 1);
     addSpecification("bonus elemental water", 2);
     addSpecification("bonus heal hit points", 1);
 

@@ -66,9 +66,15 @@ protected void Setup()
     addSpecification("modifiers", ({ 
         ([
             "type": "skill",
-            "name": "healing",
+            "name": "anatomy and physiology",
             "formula": "additive",
-            "rate": 0.35
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "body",
+            "formula": "additive",
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
@@ -84,7 +90,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.60
         ]),
@@ -103,7 +109,7 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 300);
-    addSpecification("event handler", "Ilryth'sEmbraceEvent");
+    addSpecification("event handler", "ilrythsEmbraceEvent");
     addSpecification("command template", "Ilryth's embrace");
     addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::call## upon the goddess Ilyrth herself as a "

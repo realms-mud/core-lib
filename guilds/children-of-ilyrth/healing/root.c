@@ -16,6 +16,7 @@ protected void Setup()
 
     addSpecification("scope", "self");
     addSpecification("research type", "tree root");
-    addSpecification("bonus healing", 1);
+    addSpecification("bonus body", 1);
+    addSpecification("bonus anatomy and physiology", 1);
     addSpecification("bonus elemental water", 1);
 }

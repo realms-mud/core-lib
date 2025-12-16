@@ -24,7 +24,7 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus divine essence", 6);
+    addSpecification("bonus magical essence", 6);
     addSpecification("bonus resist poison", 8);
     addSpecification("bonus resist disease", 8);
     addSpecification("bonus resist paralysis", 8);

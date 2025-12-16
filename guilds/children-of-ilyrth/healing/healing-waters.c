@@ -109,9 +109,9 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
-    addResearchElement("/guilds/children-of-ilyrth/healing/ilryths-blessing.c");
+    addResearchElement("/guilds/children-of-ilyrth/healing/ilyrths-blessing.c");
 
-    addChild("/guilds/children-of-ilyrth/healing/ilryths-blessing.c",
+    addChild("/guilds/children-of-ilyrth/healing/ilyrths-blessing.c",
         "/guilds/children-of-ilyrth/healing/wellspring-of-life.c");
 }
 
@@ -133,7 +133,7 @@ private void TwentyThirdLevel()
     addResearchElement("/guilds/children-of-ilyrth/healing/deluge-of-healing.c");
 
     addChild("/guilds/children-of-ilyrth/healing/deluge-of-healing.c",
-        "/guilds/children-of-ilyrth/healing/ilryths-blessing.c");
+        "/guilds/children-of-ilyrth/healing/ilyrths-blessing.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,9 +193,9 @@ private void FortyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FortyFifthLevel()
 {
-    addResearchElement("/guilds/children-of-ilyrth/healing/ilryths-miracle.c");
+    addResearchElement("/guilds/children-of-ilyrth/healing/ilyrths-miracle.c");
 
-    addChild("/guilds/children-of-ilyrth/healing/ilryths-miracle.c",
+    addChild("/guilds/children-of-ilyrth/healing/ilyrths-miracle.c",
         "/guilds/children-of-ilyrth/healing/tidal-salvation.c");
 }
 
@@ -214,7 +214,7 @@ private void FiftySeventhLevel()
     addResearchElement("/guilds/children-of-ilyrth/healing/tsunami-of-life.c");
 
     addChild("/guilds/children-of-ilyrth/healing/tsunami-of-life.c",
-        "/guilds/children-of-ilyrth/healing/ilryths-miracle.c");
+        "/guilds/children-of-ilyrth/healing/ilyrths-miracle.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -229,9 +229,9 @@ private void SixtyThirdLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SixtySeventhLevel()
 {
-    addResearchElement("/guilds/children-of-ilyrth/healing/ilryths-embrace.c");
+    addResearchElement("/guilds/children-of-ilyrth/healing/ilyrths-embrace.c");
 
-    addChild("/guilds/children-of-ilyrth/healing/ilryths-embrace.c",
+    addChild("/guilds/children-of-ilyrth/healing/ilyrths-embrace.c",
         "/guilds/children-of-ilyrth/healing/divine-tides.c");
 }
 

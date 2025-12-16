@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Children of Ilyrth",
           "value": 23 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/healing/ilryths-blessing.c",
+    addPrerequisite("/guilds/children-of-ilyrth/healing/ilyrths-blessing.c",
         (["type":"research"]));
 
     addSpecification("scope", "area");
@@ -78,7 +78,13 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "healing",
+            "name": "anatomy and physiology",
+            "formula": "additive",
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "body",
             "formula": "additive",
             "rate": 0.20
         ]),
@@ -96,7 +102,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.35
         ]),

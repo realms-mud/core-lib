@@ -25,7 +25,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("bonus defense", 5);
-    addSpecification("bonus divine essence", 4);
+    addSpecification("bonus magical essence", 4);
     addSpecification("bonus soak", 5);
 
     addSpecification("affected research", ([

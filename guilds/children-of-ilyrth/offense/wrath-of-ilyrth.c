@@ -89,7 +89,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "additive",
             "rate": 0.10
         ]),

@@ -24,8 +24,9 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 2);
-    addSpecification("bonus divine essence", 2);
+    addSpecification("bonus body", 2);
+    addSpecification("bonus anatomy and physiology", 1);
+    addSpecification("bonus magical essence", 2);
 
     addSpecification("affected research", ([
         "Healing Stream": 15,

@@ -90,9 +90,15 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "healing",
+            "name": "anatomy and physiology",
             "formula": "additive",
-            "rate": 0.30
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "body",
+            "formula": "additive",
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
@@ -108,7 +114,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.55
         ]),
@@ -127,8 +133,8 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 180);
-    addSpecification("event handler", "Ilryth'sMiracleEvent");
-    addSpecification("command template", "Ilryth's miracle [at ##Target##]");
+    addSpecification("event handler", "ilrythsMiracleEvent");
+    addSpecification("command template", "ilryth's miracle [at ##Target##]");
     addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::beseech## the goddess Ilyrth for a miracle as "
         "radiant blue-white light erupts around ##TargetName##, completely "

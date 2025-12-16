@@ -29,11 +29,11 @@ private void ThirdLevel()
 private void FifthLevel()
 {
     addResearchElement("/guilds/children-of-ilyrth/protection/tidal-barrier.c");
-    addResearchElement("/guilds/children-of-ilyrth/protection/ilryths-protection.c");
+    addResearchElement("/guilds/children-of-ilyrth/protection/ilyrths-protection.c");
 
     addChild("/guilds/children-of-ilyrth/protection/tidal-barrier.c",
         "/guilds/children-of-ilyrth/protection/waters-ward.c");
-    addChild("/guilds/children-of-ilyrth/protection/ilryths-protection.c",
+    addChild("/guilds/children-of-ilyrth/protection/ilyrths-protection.c",
         "/guilds/children-of-ilyrth/protection/flowing-defense.c");
 }
 
@@ -58,7 +58,7 @@ private void NinthLevel()
     addChild("/guilds/children-of-ilyrth/protection/current-deflection.c",
         "/guilds/children-of-ilyrth/protection/reef-armor.c");
     addChild("/guilds/children-of-ilyrth/protection/shell-of-the-deep.c",
-        "/guilds/children-of-ilyrth/protection/ilryths-protection.c");
+        "/guilds/children-of-ilyrth/protection/ilyrths-protection.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -109,9 +109,9 @@ private void SeventeenthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void NineteenthLevel()
 {
-    addResearchElement("/guilds/children-of-ilyrth/protection/ilryths-aegis.c");
+    addResearchElement("/guilds/children-of-ilyrth/protection/ilyrths-aegis.c");
 
-    addChild("/guilds/children-of-ilyrth/protection/ilryths-aegis.c",
+    addChild("/guilds/children-of-ilyrth/protection/ilyrths-aegis.c",
         "/guilds/children-of-ilyrth/protection/maelstrom-barrier.c");
 }
 
@@ -133,7 +133,7 @@ private void TwentyThirdLevel()
     addResearchElement("/guilds/children-of-ilyrth/protection/sanctuary-of-waves.c");
 
     addChild("/guilds/children-of-ilyrth/protection/sanctuary-of-waves.c",
-        "/guilds/children-of-ilyrth/protection/ilryths-aegis.c");
+        "/guilds/children-of-ilyrth/protection/ilyrths-aegis.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -193,9 +193,9 @@ private void FortyFirstLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void FortyFifthLevel()
 {
-    addResearchElement("/guilds/children-of-ilyrth/protection/ilryths-sanctuary.c");
+    addResearchElement("/guilds/children-of-ilyrth/protection/ilyrths-sanctuary.c");
 
-    addChild("/guilds/children-of-ilyrth/protection/ilryths-sanctuary.c",
+    addChild("/guilds/children-of-ilyrth/protection/ilyrths-sanctuary.c",
         "/guilds/children-of-ilyrth/protection/tsunami-shield.c");
 }
 
@@ -214,7 +214,7 @@ private void FiftySeventhLevel()
     addResearchElement("/guilds/children-of-ilyrth/protection/avatar-of-protection.c");
 
     addChild("/guilds/children-of-ilyrth/protection/avatar-of-protection.c",
-        "/guilds/children-of-ilyrth/protection/ilryths-sanctuary.c");
+        "/guilds/children-of-ilyrth/protection/ilyrths-sanctuary.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

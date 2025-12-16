@@ -2,17 +2,17 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/sustainedResearchItem.c";
+inherit "/lib/modules/research/persistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Ilyryth's Sanctuary");
+    addSpecification("name", "Ilyrth's Sanctuary");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of Ilryth's sanctuary spell. The goddess creates a "
-        "divine sanctuary around the caster and all allies, providing "
-        "unparalleled protection.");
+        "knowledge of invoking Ilyrths sanctuary. The goddess creates a "
+        "divine refuge of sacred waters around the caster, providing "
+        "extraordinary protection against all forms of harm.");
 
     addPrerequisite("level", 
         (["type":"level", 
@@ -22,17 +22,16 @@ protected void Setup()
     addPrerequisite("/guilds/children-of-ilyrth/protection/tsunami-shield.c",
         (["type":"research"]));
 
-    addSpecification("scope", "area");
+    addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 250);
-    addSpecification("stamina point cost", 150);
+    addSpecification("spell point cost", 150);
 
-    addSpecification("bonus defense", 10);
-    addSpecification("bonus soak", 12);
-    addSpecification("bonus resist physical", 15);
-    addSpecification("bonus resist magical", 15);
-    addSpecification("bonus damage reflection", 5);
+    addSpecification("bonus defense", 50);
+    addSpecification("bonus soak", 25);
+    addSpecification("bonus defense class", 4);
+
+    addSpecification("duration", 120);
 
     addSpecification("modifiers", ({ 
         ([
@@ -41,7 +40,7 @@ protected void Setup()
             "name": "Avatar of Protection",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.35
+            "rate": 1.25
         ]),
         ([
             "type": "research",
@@ -49,17 +48,11 @@ protected void Setup()
             "name": "Mantle of Ilyrth",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.40
+            "rate": 1.35
         ]),
         ([
             "type": "skill",
             "name": "elemental water",
-            "formula": "additive",
-            "rate": 0.20
-        ]),
-        ([
-            "type": "skill",
-            "name": "magical essence",
             "formula": "additive",
             "rate": 0.15
         ]),
@@ -67,22 +60,33 @@ protected void Setup()
             "type": "skill",
             "name": "spellcraft",
             "formula": "logarithmic",
-            "rate": 1.40
+            "rate": 1.25
+        ]),
+        ([
+            "type": "skill",
+            "name": "magical essence",
+            "formula": "logarithmic",
+            "rate": 1.30
+        ]),
+        ([
+            "type": "attribute",
+            "name": "wisdom",
+            "formula": "additive",
+            "rate": 0.10
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "logarithmic",
-            "rate": 1.20
+            "rate": 1.10
         ])
     }));
 
-    addSpecification("cooldown", 300);
-    addSpecification("event handler", "ilrythsSanctuaryEvent");
-    addSpecification("command template", "ilryths sanctuary");
-    addSpecification("use ability activate message", "##InitiatorName## "
-        "##Infinitive::call## upon Ilryth to create a divine sanctuary as "
-        "radiant waters rise to shield all nearby allies.");
-    addSpecification("use ability deactivate message", "Ilryth's divine "
-        "sanctuary fades, leaving only a lingering sense of peace.");
+    addSpecification("cooldown", 180);
+    addSpecification("event handler", "ilyrthsSanctuaryEvent");
+    addSpecification("command template", "ilyrth's sanctuary");
+    addSpecification("use ability message", "##InitiatorName## "
+        "##Infinitive::call## upon Ilyrth as a shimmering dome of sacred "
+        "water rises around ##InitiatorObjective##, creating a divine "
+        "sanctuary of protection.");
 }

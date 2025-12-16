@@ -452,7 +452,7 @@ addSpecification("bonus block", 6);             // Shield use
 addSpecification("bonus magic", 8);             // General magical ability
 addSpecification("bonus spellcraft", 10);       // Spell creation and theory
 addSpecification("bonus elemental fire", 12);   // Fire magic
-addSpecification("bonus healing", 15);          // Healing magic
+addSpecification("bonus body", 15);          // Healing magic
 
 // Social Skills
 addSpecification("bonus persuasion", 8);        // Convincing others

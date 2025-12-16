@@ -25,6 +25,6 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("bonus divination", 5);
-    addSpecification("bonus divine essence", 3);
+    addSpecification("bonus magical essence", 3);
     addSpecification("bonus wisdom", 1);
 }

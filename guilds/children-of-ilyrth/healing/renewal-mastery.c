@@ -24,11 +24,12 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus healing", 5);
-    addSpecification("bonus divine essence", 4);
+    addSpecification("bonus body", 5);
+    addSpecification("bonus anatomy and physiology", 1);
+    addSpecification("bonus magical essence", 4);
     addSpecification("bonus heal hit points", 3);
     addSpecification("bonus heal spell points", 2);
-    addSpecification("bonus heal stamina points", 2);
+    addSpecification("bonus heal stamina", 2);
 
     addSpecification("affected research", ([
         "Wellspring of Life": 25,

@@ -25,7 +25,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("bonus elemental water", 3);
-    addSpecification("bonus divine essence", 2);
+    addSpecification("bonus magical essence", 2);
 
     addSpecification("affected research", ([
         "Cleansing Waters": 20,

@@ -7,26 +7,26 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Divine Perception");
+    addSpecification("name", "Primordial Purity");
     addSpecification("source", "Children of Ilyrth");
     addSpecification("description", "This skill provides the user with "
-        "perception enhanced by divine power. The caster's senses are "
-        "blessed by Ilyrth, allowing them to perceive the world with "
-        "supernatural clarity.");
+        "knowledge of the primordial purity of the first waters. The caster "
+        "gains a deep connection to the untainted essence of creation, "
+        "greatly enhancing all purification abilities.");
 
     addPrerequisite("level", 
         (["type":"level", 
           "guild": "Children of Ilyrth",
-          "value": 19 ]));
+          "value": 57 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/wisdom/ilryths-vision.c",
+    addPrerequisite("/guilds/children-of-ilyrth/purification/divine-purification.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus perception", 5);
-    addSpecification("bonus magical essence", 4);
-    addSpecification("bonus spot", 3);
-    addSpecification("bonus listen", 3);
+    addSpecification("bonus body", 5);
+    addSpecification("bonus elemental water", 4);
+    addSpecification("bonus spellcraft", 3);
+    addSpecification("bonus magical essence", 3);
 }

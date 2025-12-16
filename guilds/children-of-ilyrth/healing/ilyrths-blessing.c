@@ -98,7 +98,13 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "healing",
+            "name": "anatomy and physiology",
+            "formula": "additive",
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "body",
             "formula": "additive",
             "rate": 0.20
         ]),
@@ -116,7 +122,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "divine essence",
+            "name": "magical essence",
             "formula": "logarithmic",
             "rate": 1.40
         ]),
@@ -135,8 +141,8 @@ protected void Setup()
     }));
 
     addSpecification("cooldown", 45);
-    addSpecification("event handler", "Ilryth'sBlessingEvent");
-    addSpecification("command template", "Ilryth's blessing [at ##Target##]");
+    addSpecification("event handler", "ilrythsBlessingEvent");
+    addSpecification("command template", "ilryth's blessing [at ##Target##]");
     addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::invoke## the name of Ilyrth as a pillar of radiant "
         "blue light descends upon ##TargetName##, suffusing "
