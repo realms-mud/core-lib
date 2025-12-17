@@ -434,7 +434,7 @@ addSpecification("bonus stamina points", 20);   // Maximum physical energy
 ###### Combat Bonuses and Penalties
 ~~~c
 addSpecification("bonus attack", 5);            // Attack accuracy
-addSpecification("bonus defend attack", 3);     // Defensive ability
+addSpecification("bonus defese", 3);            // Defensive ability
 addSpecification("bonus damage", 2);            // Damage output
 addSpecification("bonus armor class", 1);       // Damage reduction
 addSpecification("bonus weapon class", 3);      // Weapon effectiveness
