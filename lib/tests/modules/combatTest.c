@@ -1,3 +1,4 @@
+
 //*****************************************************************************
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -10,9 +11,11 @@ object Target;
 object Room;
 
 /////////////////////////////////////////////////////////////////////////////
-void SetUpAttacker()
+varargs void SetUpAttacker(int useRealThing)
 {
-    Attacker = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Attacker = useRealThing ? clone_object("/lib/realizations/player.c") :
+        clone_object("/lib/tests/support/services/combatWithMockServices");
+
     Attacker.Name("Bob");
     Attacker.Str(20);
     Attacker.Dex(20);
@@ -1249,4 +1252,60 @@ void VitalsAndSingleLineVitalsReturnStrings()
     string singleLine = Attacker.singleLineVitals();
     ExpectTrue(stringp(vitals) && sizeof(vitals) > 0, "vitals returns a string");
     ExpectTrue(stringp(singleLine) && sizeof(singleLine) > 0, "singleLineVitals returns a string");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WeaponAttacksExecuteWhenNoWeaponAttacksTraitNotPresent()
+{
+    ToggleCallOutBypass();
+
+    SetUpAttacker(1);
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    weapon->set("bonus attack", 200);
+    move_object(weapon, Attacker);
+    ExpectTrue(weapon->equip("long sword"));
+
+    Target->setMaxHitPoints(1000);
+    Target->hitPoints(Target->maxHitPoints());
+
+    object subscriber = clone_object("/lib/tests/support/events/onHitSubscriber");
+    Target->registerEvent(subscriber);
+
+    move_object(Attacker, Room);
+    move_object(Target, Room);
+
+    ExpectTrue(Attacker->attack(Target));
+    ExpectTrue(subscriber->TimesOnHitEventReceived() > 0,
+        "weapon attack should have triggered hit event");
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WeaponAttacksSkippedWhenNoWeaponAttacksTraitPresent()
+{
+    ToggleCallOutBypass();
+
+    SetUpAttacker(1);
+    object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
+    weapon->set("bonus attack", 200);
+    move_object(weapon, Attacker);
+    ExpectTrue(weapon->equip("long sword"));
+
+    Attacker->addTrait("/lib/tests/support/traits/noAttackTrait.c");
+
+    Target->setMaxHitPoints(1000);
+    Target->hitPoints(Target->maxHitPoints());
+
+    object subscriber = clone_object("/lib/tests/support/events/onHitSubscriber");
+    Target->registerEvent(subscriber);
+
+    move_object(Attacker, Room);
+    move_object(Target, Room);
+
+    ExpectTrue(Attacker->attack(Target));
+    ExpectEq(0, subscriber->TimesOnHitEventReceived(),
+        "no hit events should occur when no weapon attacks trait is present");
+
+    ToggleCallOutBypass();
 }

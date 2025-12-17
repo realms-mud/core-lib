@@ -1097,6 +1097,14 @@ public nomask mapping *getAttacks()
         }
         combatCache["attacks"] = attacksToReturn;
     }
+
+    object traits = getModule("traits");
+    if (traits && traits->hasTraitOfRoot("no weapon attacks"))
+    {
+        attacksToReturn = filter(attacksToReturn,
+            (: !attackObject()->isWeaponAttack($1) :));
+    }
+
     return attacksToReturn + ({ });
 }
 
