@@ -23,8 +23,8 @@ protected void Setup()
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("affected research", ({
-        "Waking Nightmare", 1
-    }));
+    addSpecification("affected research", ([
+        "Waking Nightmare": 1
+    ]));
     addSpecification("affected research type", "max combination chain");
 }
