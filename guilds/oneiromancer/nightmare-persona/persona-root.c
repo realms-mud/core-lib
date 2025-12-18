@@ -25,7 +25,7 @@ protected void Setup()
     addSpecification("bonus psionic attack", 25);
 
     addSpecification("trait", 
-        "/lib/instances/traits/personas/oneiromancer/nightmare-persona-active.c");
+        "/guilds/oneiromancer/nightmare-persona/nightmare-persona-active.c");
 
     addSpecification("event handler", "nightmarePersonaEvent");
     addSpecification("command template", "nightmare persona");
