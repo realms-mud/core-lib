@@ -2,45 +2,44 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
+inherit "/lib/modules/research/instantaneousPersistedActiveResearchItem.c";
 
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Searing Light");
+    addSpecification("name", "Incinerate");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of focusing Ferianth's sacred fire into a beam of "
-        "searing light that burns the target.");
-    addSpecification("usage summary", "A focused beam of sacred fire");
+        "knowledge of setting a target ablaze with sacred fire that burns "
+        "away their defenses while draining their life.");
+    addSpecification("usage summary", "A burning attack that weakens defenses");
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/flame-touch.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/scorching-ray.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 3
+            "value": 23
         ]));
 
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 15);
+    addSpecification("spell point cost", 70);
 
-    addSpecification("damage hit points", ({ ([
-            "probability": 90,
-            "base damage": 10,
-            "range": 18
-        ]),
-        ([
-            "probability": 10,
-            "base damage": 18,
-            "range": 28
+    addSpecification("siphon hit points", ({ ([
+            "probability": 100,
+            "base damage": 50,
+            "range": 70
         ])
     }));
 
     addSpecification("damage type", "fire");
+
+    addSpecification("penalty to defense", 5);
+    addSpecification("penalty to armor class", 3);
+    addSpecification("duration", 45);
 
     addSpecification("modifiers", ({ 
         ([
@@ -71,13 +70,13 @@ protected void Setup()
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.15
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
@@ -107,21 +106,21 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.35
+            "rate": 0.50
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "additive",
-            "rate": 0.50
+            "rate": 0.75
         ])
     }));
 
-    addSpecification("cooldown", 6);
-    addSpecification("event handler", "searingLightEvent");
-    addSpecification("command template", "searing light [at ##Target##]");
+    addSpecification("cooldown", 20);
+    addSpecification("event handler", "incinerateEvent");
+    addSpecification("command template", "incinerate [##Target##]");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::focus## a beam of searing sacred light at "
-        "##TargetName##, burning ##TargetPossessive## flesh.");
+        "##Infinitive::set## ##TargetName## ablaze with sacred fire, "
+        "burning away ##TargetPossessive## defenses!");
 }

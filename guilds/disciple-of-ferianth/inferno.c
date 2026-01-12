@@ -119,6 +119,15 @@ private void TwentySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void TwentyNinthLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/pyromaniacs-focus.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/pyromaniacs-focus.c",
+        "/guilds/disciple-of-ferianth/inferno/divine-fire-potency.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFirstLevel()
 {
     addResearchElement("/guilds/disciple-of-ferianth/inferno/fire-storm.c");
@@ -131,12 +140,30 @@ private void ThirtyFirstLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirtyThirdLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/righteous-fury.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/righteous-fury.c",
+        "/guilds/disciple-of-ferianth/inferno/pyromaniacs-focus.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void ThirtyFifthLevel()
 {
     addResearchElement("/guilds/disciple-of-ferianth/inferno/immolation.c");
 
     addChild("/guilds/disciple-of-ferianth/inferno/immolation.c",
         "/guilds/disciple-of-ferianth/inferno/fire-storm.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void ThirtySeventhLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/flames-of-judgment.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/flames-of-judgment.c",
+        "/guilds/disciple-of-ferianth/inferno/righteous-fury.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -152,12 +179,30 @@ private void ThirtyNinthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyFirstLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/sacred-champion.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/sacred-champion.c",
+        "/guilds/disciple-of-ferianth/inferno/flames-of-judgment.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FortyThirdLevel()
 {
     addResearchElement("/guilds/disciple-of-ferianth/inferno/infernal-blast.c");
 
     addChild("/guilds/disciple-of-ferianth/inferno/infernal-blast.c",
         "/guilds/disciple-of-ferianth/inferno/hellfire.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FortyFifthLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/sacred-immolation.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/sacred-immolation.c",
+        "/guilds/disciple-of-ferianth/inferno/sacred-champion.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -173,12 +218,30 @@ private void FortySeventhLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FortyNinthLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/blinding-glory.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/blinding-glory.c",
+        "/guilds/disciple-of-ferianth/inferno/sacred-immolation.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FiftyFirstLevel()
 {
     addResearchElement("/guilds/disciple-of-ferianth/inferno/ferianths-fury.c");
 
     addChild("/guilds/disciple-of-ferianth/inferno/ferianths-fury.c",
         "/guilds/disciple-of-ferianth/inferno/rain-of-fire.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void FiftyThirdLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/essence-of-the-sun.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/essence-of-the-sun.c",
+        "/guilds/disciple-of-ferianth/inferno/blinding-glory.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -194,12 +257,30 @@ private void FiftyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void FiftySeventhLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/divine-judgment.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/divine-judgment.c",
+        "/guilds/disciple-of-ferianth/inferno/essence-of-the-sun.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void FiftyNinthLevel()
 {
     addResearchElement("/guilds/disciple-of-ferianth/inferno/divine-conflagration.c");
 
     addChild("/guilds/disciple-of-ferianth/inferno/divine-conflagration.c",
         "/guilds/disciple-of-ferianth/inferno/solar-flare.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyFirstLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/avatar-of-flame.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/avatar-of-flame.c",
+        "/guilds/disciple-of-ferianth/inferno/divine-judgment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -212,6 +293,15 @@ private void SixtyThirdLevel()
         "/guilds/disciple-of-ferianth/inferno/divine-conflagration.c");
     addChild("/guilds/disciple-of-ferianth/inferno/celestial-inferno.c",
         "/guilds/disciple-of-ferianth/inferno/purging-flames.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void SixtyFifthLevel()
+{
+    addResearchElement("/guilds/disciple-of-ferianth/inferno/harbinger-of-annihilation.c");
+
+    addChild("/guilds/disciple-of-ferianth/inferno/harbinger-of-annihilation.c",
+        "/guilds/disciple-of-ferianth/inferno/avatar-of-flame.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -247,14 +337,24 @@ protected void Setup()
     TwentyFirstLevel();
     TwentyThirdLevel();
     TwentySeventhLevel();
+    TwentyNinthLevel();
     ThirtyFirstLevel();
+    ThirtyThirdLevel();
     ThirtyFifthLevel();
+    ThirtySeventhLevel();
     ThirtyNinthLevel();
+    FortyFirstLevel();
     FortyThirdLevel();
+    FortyFifthLevel();
     FortySeventhLevel();
+    FortyNinthLevel();
     FiftyFirstLevel();
+    FiftyThirdLevel();
     FiftyFifthLevel();
+    FiftySeventhLevel();
     FiftyNinthLevel();
+    SixtyFirstLevel();
     SixtyThirdLevel();
+    SixtyFifthLevel();
     SixtySeventhLevel();
 }

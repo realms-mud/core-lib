@@ -7,36 +7,42 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Searing Light");
+    addSpecification("name", "Infernal Blast");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of focusing Ferianth's sacred fire into a beam of "
-        "searing light that burns the target.");
-    addSpecification("usage summary", "A focused beam of sacred fire");
+        "knowledge of releasing an explosive blast of infernal energy that "
+        "detonates on impact, dealing massive damage to the target and "
+        "splashing fire damage to all nearby enemies.");
+    addSpecification("usage summary", "An explosive blast with splash damage");
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/flame-touch.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/hellfire.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 3
+            "value": 43
         ]));
 
-    addSpecification("scope", "targeted");
+    addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 15);
+    addSpecification("spell point cost", 180);
 
     addSpecification("damage hit points", ({ ([
-            "probability": 90,
-            "base damage": 10,
-            "range": 18
+            "probability": 50,
+            "base damage": 140,
+            "range": 180
         ]),
         ([
-            "probability": 10,
-            "base damage": 18,
-            "range": 28
+            "probability": 35,
+            "base damage": 200,
+            "range": 260
+        ]),
+        ([
+            "probability": 15,
+            "base damage": 280,
+            "range": 350
         ])
     }));
 
@@ -68,34 +74,50 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/righteous-fury.c",
+            "name": "Righteous Fury",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.20
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/sacred-champion.c",
+            "name": "Sacred Champion",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.15
+        ]),
+        ([
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.15
+            "rate": 0.25
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
             "name": "theology",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
             "name": "evocation",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.12
         ]),
         ([
             "type": "skill",
             "name": "destruction",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.12
         ]),
         ([
             "type": "skill",
@@ -107,21 +129,27 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.35
+            "rate": 0.60
+        ]),
+        ([
+            "type": "attribute",
+            "name": "wisdom",
+            "formula": "additive",
+            "rate": 0.25
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "additive",
-            "rate": 0.50
+            "rate": 0.90
         ])
     }));
 
-    addSpecification("cooldown", 6);
-    addSpecification("event handler", "searingLightEvent");
-    addSpecification("command template", "searing light [at ##Target##]");
+    addSpecification("cooldown", 55);
+    addSpecification("event handler", "infernalBlastEvent");
+    addSpecification("command template", "infernal blast");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::focus## a beam of searing sacred light at "
-        "##TargetName##, burning ##TargetPossessive## flesh.");
+        "##Infinitive::release## an explosive blast of infernal energy! "
+        "The detonation engulfs all nearby enemies in a fiery shockwave!");
 }

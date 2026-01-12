@@ -7,33 +7,31 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Fire Mastery");
+    addSpecification("name", "Sacred Champion");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the disciple's fire magic offensive "
-        "abilities.");
+        "the mantle of Ferianth's sacred champion, greatly amplifying "
+        "the divine power behind area-effect conflagrations.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 5
+            "value": 41
         ]));
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/flame-touch.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/righteous-fury.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Flame Touch": 25,
-        "Searing Light": 25,
-        "Fire Bolt": 25,
-        "Burning Hands": 25,
-        "Heat Metal": 25,
-        "Flame Lash": 25,
-        "Fireball": 25,
-        "Pillar of Fire": 25,
-        "Scorching Ray": 25
+        "Infernal Blast": 30,
+        "Rain of Fire": 30,
+        "Ferianth's Fury": 30,
+        "Solar Flare": 30,
+        "Divine Conflagration": 30,
+        "Wrath of Ferianth": 30,
+        "Apocalyptic Fire": 30
     ]));
     addSpecification("affected research type", "percentage");
 }

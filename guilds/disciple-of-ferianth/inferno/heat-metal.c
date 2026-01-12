@@ -30,7 +30,6 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 25);
 
-    // Only works if target has metal equipment
     addSpecification("limited by", ([
         "opponent equipment material": "metal"
     ]));
@@ -50,14 +49,62 @@ protected void Setup()
 
     addSpecification("modifiers", ({ 
         ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/fire-mastery.c",
+            "name": "Fire Mastery",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/inferno-potency.c",
+            "name": "Inferno Potency",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/divine-fire-potency.c",
+            "name": "Divine Fire Potency",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
             "type": "skill",
             "name": "elemental fire",
+            "formula": "additive",
+            "rate": 0.20
+        ]),
+        ([
+            "type": "skill",
+            "name": "spellcraft",
+            "formula": "additive",
+            "rate": 0.15
+        ]),
+        ([
+            "type": "skill",
+            "name": "theology",
             "formula": "additive",
             "rate": 0.10
         ]),
         ([
             "type": "skill",
-            "name": "spellcraft",
+            "name": "evocation",
+            "formula": "additive",
+            "rate": 0.10
+        ]),
+        ([
+            "type": "skill",
+            "name": "destruction",
+            "formula": "additive",
+            "rate": 0.10
+        ]),
+        ([
+            "type": "skill",
+            "name": "magical essence",
             "formula": "additive",
             "rate": 0.10
         ]),
@@ -65,7 +112,13 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.25
+            "rate": 0.50
+        ]),
+        ([
+            "type": "level",
+            "name": "level",
+            "formula": "additive",
+            "rate": 0.75
         ])
     }));
 

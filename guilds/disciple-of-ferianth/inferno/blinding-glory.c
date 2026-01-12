@@ -7,33 +7,33 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Fire Mastery");
+    addSpecification("name", "Blinding Glory");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This skill provides the user with "
-        "knowledge that enhances the disciple's fire magic offensive "
-        "abilities.");
+        "knowledge of infusing their flames with blinding radiance, "
+        "enhancing attacks that combine fire with debilitating effects.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 5
+            "value": 49
         ]));
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/flame-touch.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/sacred-champion.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Flame Touch": 25,
-        "Searing Light": 25,
-        "Fire Bolt": 25,
-        "Burning Hands": 25,
-        "Heat Metal": 25,
-        "Flame Lash": 25,
-        "Fireball": 25,
-        "Pillar of Fire": 25,
-        "Scorching Ray": 25
+        "Rain of Fire": 20,
+        "Soulfire": 20,
+        "Ferianth's Fury": 20,
+        "Solar Flare": 20,
+        "Purging Flames": 20,
+        "Divine Conflagration": 20,
+        "Wrath of Ferianth": 20,
+        "Celestial Inferno": 20,
+        "Apocalyptic Fire": 20
     ]));
     addSpecification("affected research type", "percentage");
 }

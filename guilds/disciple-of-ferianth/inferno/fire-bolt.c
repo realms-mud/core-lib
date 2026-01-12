@@ -10,10 +10,8 @@ protected void Setup()
     addSpecification("name", "Fire Bolt");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of hurling a concentrated bolt of sacred fire that "
-        "strikes with divine fury.");
-    addSpecification("usage summary", "A ranged fire attack with "
-        "improved damage");
+        "knowledge of hurling a bolt of sacred fire at a target.");
+    addSpecification("usage summary", "A ranged bolt of sacred fire");
 
     addPrerequisite("/guilds/disciple-of-ferianth/inferno/searing-light.c",
         (["type":"research"]));
@@ -72,13 +70,13 @@ protected void Setup()
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.15
+            "rate": 0.18
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.12
         ]),
         ([
             "type": "skill",
@@ -108,13 +106,13 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.30
+            "rate": 0.40
         ]),
         ([
-            "type": "attribute",
-            "name": "wisdom",
+            "type": "level",
+            "name": "level",
             "formula": "additive",
-            "rate": 0.20
+            "rate": 0.60
         ])
     }));
 
@@ -123,5 +121,5 @@ protected void Setup()
     addSpecification("command template", "fire bolt [at ##Target##]");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::hurl## a bolt of sacred fire at ##TargetName##.");
+        "##Infinitive::hurl## a bolt of sacred fire at ##TargetName##!");
 }

@@ -10,10 +10,8 @@ protected void Setup()
     addSpecification("name", "Burning Hands");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of unleashing a cone of sacred fire from their hands, "
-        "scorching all enemies before them.");
-    addSpecification("usage summary", "An area attack that damages all "
-        "enemies in front of the caster");
+        "knowledge of releasing a cone of sacred fire from their hands.");
+    addSpecification("usage summary", "A cone of sacred fire affecting nearby enemies");
 
     addPrerequisite("/guilds/disciple-of-ferianth/inferno/fire-bolt.c",
         (["type":"research"]));
@@ -29,16 +27,16 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 35);
 
-    addSpecification("damage hit points", ({ ([
+    addSpecification("damage hit points", ({ ({
             "probability": 80,
             "base damage": 20,
             "range": 35
-        ]),
-        ([
+        }),
+        ({ 
             "probability": 20,
             "base damage": 35,
             "range": 50
-        ])
+        })
     }));
 
     addSpecification("damage type", "fire");
@@ -61,16 +59,24 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/divine-fire-potency.c",
+            "name": "Divine Fire Potency",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.15
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
@@ -100,13 +106,13 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.35
+            "rate": 0.45
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "additive",
-            "rate": 0.50
+            "rate": 0.70
         ])
     }));
 
@@ -115,6 +121,6 @@ protected void Setup()
     addSpecification("command template", "burning hands");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::thrust## ##InitiatorPossessive## hands forward, "
-        "unleashing a cone of sacred fire!");
+        "##Infinitive::release## a cone of sacred fire from "
+        "##InitiatorPossessive## hands, engulfing all nearby enemies!");
 }

@@ -7,48 +7,24 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Divine Fire Potency");
+    addSpecification("name", "Harbinger of Annihilation");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This skill provides the user with "
-        "advanced knowledge of divine fire, greatly enhancing the power of "
-        "all inferno abilities.");
+        "the ultimate understanding of apocalyptic destruction, "
+        "maximizing the devastating power of the most cataclysmic abilities.");
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 21
+            "value": 65
         ]));
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/inferno-potency.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/divine-judgment.c",
         (["type":"research"]));
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
-        "Flame Touch": 25,
-        "Searing Light": 25,
-        "Fire Bolt": 25,
-        "Burning Hands": 25,
-        "Heat Metal": 25,
-        "Flame Lash": 25,
-        "Fireball": 25,
-        "Pillar of Fire": 25,
-        "Scorching Ray": 25,
-        "Flame Strike": 25,
-        "Incinerate": 25,
-        "Wall of Fire": 25,
-        "Fire Storm": 25,
-        "Consuming Flames": 25,
-        "Immolation": 25,
-        "Hellfire": 25,
-        "Blazing Wrath": 25,
-        "Infernal Blast": 25,
-        "Rain of Fire": 25,
-        "Soulfire": 25,
-        "Ferianth's Fury": 25,
-        "Solar Flare": 25,
-        "Purging Flames": 25,
-        "Divine Conflagration": 25,
         "Wrath of Ferianth": 25,
         "Celestial Inferno": 25,
         "Apocalyptic Fire": 25

@@ -7,36 +7,36 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Searing Light");
+    addSpecification("name", "Fire Storm");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of focusing Ferianth's sacred fire into a beam of "
-        "searing light that burns the target.");
-    addSpecification("usage summary", "A focused beam of sacred fire");
+        "knowledge of conjuring a devastating storm of sacred fire that "
+        "rains down upon all enemies.");
+    addSpecification("usage summary", "A devastating area fire storm");
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/flame-touch.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/inferno/wall-of-fire.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 3
+            "value": 31
         ]));
 
-    addSpecification("scope", "targeted");
+    addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 15);
+    addSpecification("spell point cost", 125);
 
     addSpecification("damage hit points", ({ ([
-            "probability": 90,
-            "base damage": 10,
-            "range": 18
+            "probability": 70,
+            "base damage": 90,
+            "range": 120
         ]),
         ([
-            "probability": 10,
-            "base damage": 18,
-            "range": 28
+            "probability": 30,
+            "base damage": 140,
+            "range": 180
         ])
     }));
 
@@ -71,13 +71,13 @@ protected void Setup()
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.15
+            "rate": 0.20
         ]),
         ([
             "type": "skill",
             "name": "spellcraft",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
@@ -107,21 +107,21 @@ protected void Setup()
             "type": "attribute",
             "name": "intelligence",
             "formula": "additive",
-            "rate": 0.35
+            "rate": 0.50
         ]),
         ([
             "type": "level",
             "name": "level",
             "formula": "additive",
-            "rate": 0.50
+            "rate": 0.75
         ])
     }));
 
-    addSpecification("cooldown", 6);
-    addSpecification("event handler", "searingLightEvent");
-    addSpecification("command template", "searing light [at ##Target##]");
+    addSpecification("cooldown", 45);
+    addSpecification("event handler", "fireStormEvent");
+    addSpecification("command template", "fire storm");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::focus## a beam of searing sacred light at "
-        "##TargetName##, burning ##TargetPossessive## flesh.");
+        "##Infinitive::conjure## a devastating storm of sacred fire that "
+        "rains down upon all enemies!");
 }

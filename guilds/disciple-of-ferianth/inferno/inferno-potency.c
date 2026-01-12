@@ -26,12 +26,19 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("affected research", ([
         "Flame Touch": 25,
+        "Searing Light": 25,
         "Fire Bolt": 25,
         "Burning Hands": 25,
+        "Heat Metal": 25,
+        "Flame Lash": 25,
         "Fireball": 25,
         "Pillar of Fire": 25,
+        "Scorching Ray": 25,
         "Flame Strike": 25,
-        "Fire Storm": 25
+        "Incinerate": 25,
+        "Wall of Fire": 25,
+        "Fire Storm": 25,
+        "Consuming Flames": 25
     ]));
     addSpecification("affected research type", "percentage");
 }
