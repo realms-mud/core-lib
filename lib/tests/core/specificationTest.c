@@ -1038,3 +1038,119 @@ void DisplayLimitersStringCorrectWithLimitorForTraits()
         "following traits: Hunchback.\n\x1b[0m",
         Specification.displayLimiters(colorConfiguration, Configuration));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForOpponentEquipmentMaterial()
+{
+    mapping limitor = (["opponent equipment material":"metal"]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification.query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetLimitorForOpponentEquipmentMaterialWithList()
+{
+    mapping limitor = (["opponent equipment material":({ "metal", "crystal" })]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq(limitor, Specification.query("limited by"), "query the limitor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetLimitorForInvalidOpponentEquipmentMaterial()
+{
+    string err = catch (Specification.addSpecification("limited by", 
+        (["opponent equipment material":"cheese"])); nolog);
+    string expectedError = "*ERROR - specification: The value of 'limited by' "
+        "must be a valid limiting mapping. See the specification.validLimitor "
+        "method for details.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid material class");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForOpponentEquipmentMaterial()
+{
+    mapping limitor = (["opponent equipment material":"metal"]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+    ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "no equipment");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon.set("name", "sword");
+    weapon.set("weapon type", "long sword");
+    weapon.set("material", "steel");
+    weapon.set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Attacker);
+
+    ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "weapon not equipped");
+    ExpectTrue(weapon.equip("sword"), "weapon equip called");
+    ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met with metal weapon");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsFalseWhenOpponentHasNoMetalEquipment()
+{
+    mapping limitor = (["opponent equipment material":"metal"]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+
+    object armor = clone_object("/lib/items/armor");
+    armor.set("name", "leather armor");
+    armor.set("armor type", "soft leather");
+    armor.set("material", "leather");
+    armor.set("equipment locations", Armor);
+    move_object(armor, Attacker);
+
+    ExpectTrue(armor.equip("leather armor"), "armor equip called");
+    ExpectFalse(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors not met with leather armor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWithLimitorForOpponentEquipmentMaterialList()
+{
+    mapping limitor = (["opponent equipment material":({ "metal", "wood" })]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon.set("name", "staff");
+    weapon.set("weapon type", "staff");
+    weapon.set("material", "oak");
+    weapon.set("equipment locations", TwohandedWeapon);
+    move_object(weapon, Attacker);
+
+    ExpectTrue(weapon.equip("staff"), "weapon equip called");
+    ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met with wood weapon");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanApplySpecificationReturnsTrueWhenOpponentHasMetalArmor()
+{
+    mapping limitor = (["opponent equipment material":"metal"]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+
+    object armor = clone_object("/lib/items/armor");
+    armor.set("name", "chainmail");
+    armor.set("armor type", "chainmail");
+    armor.set("material", "steel");
+    armor.set("equipment locations", Armor);
+    move_object(armor, Attacker);
+
+    ExpectTrue(armor.equip("chainmail"), "armor equip called");
+    ExpectTrue(Specification.canApplySpecification("blah", Attacker, Attacker), "limitors met with metal armor");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForOpponentEquipmentMaterial()
+{
+    mapping limitor = (["opponent equipment material":"metal"]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when the opponent equipment material is metal.\n\x1b[0m", 
+        Specification.displayLimiters(colorConfiguration, Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplayLimitersStringCorrectWithLimitorForOpponentEquipmentMaterialList()
+{
+    mapping limitor = (["opponent equipment material":({ "metal", "wood" })]);
+    ExpectTrue(Specification.addSpecification("limited by", limitor), "set the limitor");
+    ExpectEq("\x1b[0;36mThis is only applied when the opponent equipment material is metal or wood.\n\x1b[0m", 
+        Specification.displayLimiters(colorConfiguration, Configuration));
+}

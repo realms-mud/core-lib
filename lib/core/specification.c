@@ -236,6 +236,7 @@ public nomask varargs string displayLimiters(string colorConfiguration,
             {
                 case "opponent race":
                 case "opponent guild":
+                case "opponent equipment material":
                 case "race":
                 case "guild":
                 case "crafting type":

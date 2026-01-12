@@ -144,7 +144,7 @@ public void SetupGuild()
     // Sacred Pyre - divine rituals and prayers (Pyromancer rank)
     addCriteria("sacred pyre", ([
         "type": "research tree",
-        "apply": "at rank pyromancer",
+        "apply": "at rank ardent",
         "research tree": "/guilds/disciple-of-ferianth/sacred-pyre.c"
     ]));
 

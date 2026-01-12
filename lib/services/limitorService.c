@@ -29,6 +29,9 @@ public nomask varargs int userFactorsMet(mapping specificationData, object owner
         ret = checkOpponentFactionLimitor(specificationData, target, verbose,
             colorConfiguration, configuration) && ret;
 
+        ret = checkOpponentEquipmentMaterialLimitor(specificationData, target, verbose,
+            colorConfiguration, configuration) && ret;
+
         ret = checkCraftingTypeLimitor(specificationData, target, verbose,
             colorConfiguration, configuration) && ret;
 

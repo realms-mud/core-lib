@@ -350,6 +350,31 @@ private nomask int validEquipmentLimitor(mixed equipmentValue)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int validOpponentEquipmentMaterialLimitor(mixed materialValue)
+{
+    int ret = 0;
+
+    // Valid material classes from materials.h
+    string *validMaterialClasses = ({ "textile", "crystal", "clay",
+        "skeletal", "leather", "metal", "ore", "stone", "wood", "plumage" });
+
+    if (pointerp(materialValue) && sizeof(materialValue))
+    {
+        int isValid = 0;
+        foreach(string material in materialValue)
+        {
+            isValid ||= (member(validMaterialClasses, material) > -1);
+        }
+        ret = isValid;
+    }
+    else if (stringp(materialValue))
+    {
+        ret = (member(validMaterialClasses, materialValue) > -1);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int validLimitor(mapping limitor)
 {
     int ret = 0;
@@ -464,6 +489,11 @@ public nomask int validLimitor(mapping limitor)
                     {
                         ret &&= intp(limitor[key]) && (limitor[key] >= 0)
                             && (limitor[key] <= 100);
+                        break;
+                    }
+                    case "opponent equipment material":
+                    {
+                        ret &&= validOpponentEquipmentMaterialLimitor(limitor[key]);
                         break;
                     }
                     default:

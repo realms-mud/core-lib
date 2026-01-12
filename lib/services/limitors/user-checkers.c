@@ -89,6 +89,72 @@ protected nomask int checkOpponentFactionLimitor(mapping specificationData,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask int checkOpponentEquipmentMaterialLimitor(mapping specificationData, 
+    object target, int verbose, string colorConfiguration, 
+    object configuration)
+{
+    int ret = 1;
+
+    if (member(specificationData["limited by"], "opponent equipment material"))
+    {
+        ret = 0;
+
+        if (target && objectp(target) && 
+            function_exists("equipmentInSlot", target))
+        {
+            object materialsService = getService("materials");
+
+            if (materialsService)
+            {
+                string *validMaterials = 
+                    pointerp(specificationData["limited by"]["opponent equipment material"]) ?
+                    specificationData["limited by"]["opponent equipment material"] :
+                    ({ specificationData["limited by"]["opponent equipment material"] });
+
+                string *slots = ({ "wielded primary", "wielded offhand", "armor", 
+                    "gloves", "helmet", "boots", "ring 1", "ring 2", "cloak", 
+                    "amulet", "belt", "arm greaves", "leg greaves", "bracers" });
+
+                foreach(string slot in slots)
+                {
+                    object item = target->equipmentInSlot(slot);
+
+                    if (item && objectp(item))
+                    {
+                        string material = item->query("material");
+                        if (material)
+                        {
+                            string materialClass = 
+                                materialsService->getMaterialTypeForMaterial(material);
+
+                            if (member(validMaterials, materialClass) > -1)
+                            {
+                                ret = 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!ret && verbose)
+        {
+            string materialList = 
+                pointerp(specificationData["limited by"]["opponent equipment material"]) ?
+                implode(specificationData["limited by"]["opponent equipment material"], ", ") :
+                specificationData["limited by"]["opponent equipment material"];
+
+            write(configuration->decorate(
+                sprintf("Your opponent is not using equipment made of %s.\n",
+                    materialList),
+                "missing prerequisites", "research", colorConfiguration));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int checkCraftingTypeLimitor(mapping specificationData, 
     object target, int verbose, string colorConfiguration, 
     object configuration)
