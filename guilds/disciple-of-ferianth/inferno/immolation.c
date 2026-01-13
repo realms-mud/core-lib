@@ -75,11 +75,27 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/divine-aegis.c",
-            "name": "Divine Aegis",
+            "research item": "/guilds/disciple-of-ferianth/inferno/pyromaniacs-focus.c",
+            "name": "Pyromaniac's Focus",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/righteous-fury.c",
+            "name": "Righteous Fury",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.30
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/flames-of-judgment.c",
+            "name": "Flames of Judgment",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
         ]),
         ([
             "type": "skill",

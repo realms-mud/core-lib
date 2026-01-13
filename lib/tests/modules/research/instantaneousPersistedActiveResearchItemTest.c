@@ -326,3 +326,176 @@ void ExecuteOnTargetAppliesNegativeTrait()
     ExpectTrue(ResearchItem.execute("zap frank", User), "can execute command");
     ExpectTrue(Target.isTraitOf("/lib/tests/support/traits/testTraitWithDuration.c"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsRemoveModifierWithString()
+{
+    ExpectTrue(ResearchItem.testAddSpecification("remove modifier", "poison"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsRemoveModifierWithArray()
+{
+    ExpectTrue(ResearchItem.testAddSpecification("remove modifier", 
+        ({ "poison", "disease", "slow" })));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationThrowsForInvalidRemoveModifier()
+{
+    string err = catch (ResearchItem.testAddSpecification("remove modifier", 123); nolog);
+    string expectedError = "*ERROR - instantaneousActiveResearchItem: "
+        "the 'remove modifier' specification must be a string "
+        "or an array of strings.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierRemovesSingleModifier()
+{
+    // First apply a poison modifier to Target
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ Target }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+
+    ResearchItem.testAddSpecification("remove modifier", "poison");
+    ExpectTrue(ResearchItem.execute("zap frank", User), "can execute command");
+
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierRemovesMultipleModifiers()
+{
+    // Apply poison and disease modifiers to Target
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ Target }));
+
+    object disease = clone_object("/lib/items/modifierObject");
+    disease.set("fully qualified name", "disease effect");
+    disease.set("penalty to constitution", 1);
+    disease.set("disease", 1);
+    disease.set("registration list", ({ Target }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "disease"), 
+        "disease is applied");
+
+    ResearchItem.testAddSpecification("remove modifier", ({ "poison", "disease" }));
+    ExpectTrue(ResearchItem.execute("zap frank", User), "can execute command");
+
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "disease"), 
+        "disease is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierWithHealAndPersistedEffects()
+{
+    // Apply a poison modifier to User (self-targeting test)
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ User }));
+
+    mapping* heal = ({
+        (["probability":100, "base damage" : 15, "range" : 0])
+    });
+    ResearchItem.testAddSpecification("increase hit points", heal);
+    ResearchItem.testAddSpecification("remove modifier", "poison");
+    ResearchItem.testAddSpecification("bonus heal hit points rate", 3);
+    ResearchItem.testAddSpecification("duration", 60);
+
+    User.hit(56);
+    ExpectTrue(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+    ExpectEq(100, User.hitPoints(), "User's initial HP");
+
+    ExpectTrue(ResearchItem.execute("zap bob", User), "can execute command");
+
+    // Poison removed
+    ExpectFalse(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+    // Healed
+    ExpectEq(115, User.hitPoints(), "User has been healed");
+    // Persisted effect applied
+    object modifier = User.registeredInventoryObject(program_name(ResearchItem) + "#" + User.RealName());
+    ExpectTrue(modifier, "Modifier with FQN is registered");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierInAreaRemovesFromAllAllies()
+{
+    ResearchItem.testAddSpecification("command template", "zap");
+    ResearchItem.testAddSpecification("scope", "area");
+
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander.Name("Earl");
+    bystander.addAlias("earl");
+    bystander.Str(20);
+    move_object(bystander, Room);
+
+    // Apply poison to Target, bystander, and User
+    object poison1 = clone_object("/lib/items/modifierObject");
+    poison1.set("fully qualified name", "poison effect 1");
+    poison1.set("penalty to strength", 1);
+    poison1.set("poison", 1);
+    poison1.set("registration list", ({ Target }));
+
+    object poison2 = clone_object("/lib/items/modifierObject");
+    poison2.set("fully qualified name", "poison effect 2");
+    poison2.set("penalty to strength", 1);
+    poison2.set("poison", 1);
+    poison2.set("registration list", ({ bystander }));
+
+    object poison3 = clone_object("/lib/items/modifierObject");
+    poison3.set("fully qualified name", "poison effect 3");
+    poison3.set("penalty to strength", 1);
+    poison3.set("poison", 1);
+    poison3.set("registration list", ({ User }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "target poison is applied");
+    ExpectTrue(bystander.inventoryGetModifier("combatModifiers", "poison"), 
+        "bystander poison is applied");
+    ExpectTrue(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "user poison is applied");
+
+    ResearchItem.testAddSpecification("remove modifier", "poison");
+    ResearchItem.testAddSpecification("bonus defense", 2);
+    ResearchItem.testAddSpecification("duration", 30);
+    ExpectTrue(ResearchItem.execute("zap", User), "can execute command");
+
+    // Target (enemy) should still have poison - beneficial effects don't apply to enemies
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "target poison is NOT removed (enemy)");
+
+    // Allies should have poison removed
+    ExpectFalse(bystander.inventoryGetModifier("combatModifiers", "poison"), 
+        "bystander poison is removed");
+    ExpectFalse(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "user poison is removed");
+
+    // Beneficial persisted effects should apply to allies only
+    ExpectTrue(User.registeredInventoryObject(program_name(ResearchItem) + "#" + User.RealName()),
+        "user has persisted effect");
+    ExpectTrue(bystander.registeredInventoryObject(program_name(ResearchItem) + "#" + User.RealName()),
+        "bystander has persisted effect");
+    ExpectFalse(Target.registeredInventoryObject(program_name(ResearchItem) + "#" + User.RealName()),
+        "target does NOT have persisted effect (enemy)");
+
+    destruct(bystander);
+}

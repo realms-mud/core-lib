@@ -7,13 +7,14 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Burning Hands");
+    addSpecification("name", "Sacred Warmth");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of releasing a cone of sacred fire from their hands.");
-    addSpecification("usage summary", "A cone of sacred fire affecting nearby enemies");
+        "knowledge of channeling Ferianth's sacred warmth to heal all nearby "
+        "allies simultaneously.");
+    addSpecification("usage summary", "An area-of-effect heal for allies");
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/fire-bolt.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/purifying-flames/burning-renewal.c",
         (["type":"research"]));
 
     addPrerequisite("level",
@@ -25,58 +26,51 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 35);
+    addSpecification("spell point cost", 50);
+    addSpecification("effect", "beneficial");
 
-    addSpecification("damage hit points", ({ ([
+    addSpecification("increase hit points", ({ ([
             "probability": 80,
-            "base damage": 20,
+            "base damage": 25,
             "range": 35
         ]),
-        ([ 
+        ([
             "probability": 20,
-            "base damage": 35,
-            "range": 50
+            "base damage": 40,
+            "range": 55
         ])
     }));
-
-    addSpecification("damage type", "fire");
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/fire-mastery.c",
-            "name": "Fire Mastery",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/healing-mastery.c",
+            "name": "Healing Mastery",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.15
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/inferno-potency.c",
-            "name": "Inferno Potency",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/purifying-potency.c",
+            "name": "Purifying Potency",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.15
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/divine-fire-potency.c",
-            "name": "Divine Fire Potency",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/divine-healing-potency.c",
+            "name": "Divine Healing Potency",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.20
         ]),
         ([
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.20
-        ]),
-        ([
-            "type": "skill",
-            "name": "spellcraft",
-            "formula": "additive",
-            "rate": 0.15
+            "rate": 0.05
         ]),
         ([
             "type": "skill",
@@ -86,41 +80,34 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "evocation",
-            "formula": "additive",
-            "rate": 0.10
+            "name": "spellcraft",
+            "formula": "logarithmic",
+            "rate": 1.20
         ]),
         ([
             "type": "skill",
-            "name": "destruction",
-            "formula": "additive",
-            "rate": 0.10
-        ]),
-        ([
-            "type": "skill",
-            "name": "magical essence",
+            "name": "healing",
             "formula": "additive",
             "rate": 0.10
         ]),
         ([
             "type": "attribute",
-            "name": "intelligence",
+            "name": "wisdom",
             "formula": "additive",
-            "rate": 0.45
+            "rate": 0.05
         ]),
         ([
             "type": "level",
             "name": "level",
-            "formula": "additive",
-            "rate": 0.70
+            "formula": "logarithmic",
+            "rate": 1.05
         ])
     }));
 
-    addSpecification("cooldown", 12);
-    addSpecification("event handler", "burningHandsEvent");
-    addSpecification("command template", "burning hands");
+    addSpecification("cooldown", 30);
+    addSpecification("event handler", "sacredWarmthEvent");
+    addSpecification("command template", "sacred warmth");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::release## a cone of sacred fire from "
-        "##InitiatorPossessive## hands, engulfing all nearby enemies!");
+        "##Infinitive::radiate## Ferianth's sacred warmth, healing all nearby allies!");
 }

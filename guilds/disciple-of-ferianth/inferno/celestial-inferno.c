@@ -89,27 +89,67 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/smite-the-wicked.c",
-            "name": "Smite the Wicked",
+            "research item": "/guilds/disciple-of-ferianth/inferno/pyromaniacs-focus.c",
+            "name": "Pyromaniac's Focus",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.30
+            "rate": 1.20
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/inner-light.c",
-            "name": "Inner Light",
+            "research item": "/guilds/disciple-of-ferianth/inferno/flames-of-judgment.c",
+            "name": "Flames of Judgment",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/celestial-blessing.c",
-            "name": "Celestial Blessing",
+            "research item": "/guilds/disciple-of-ferianth/inferno/sacred-immolation.c",
+            "name": "Sacred Immolation",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/blinding-glory.c",
+            "name": "Blinding Glory",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.20
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/essence-of-the-sun.c",
+            "name": "Essence of the Sun",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/divine-judgment.c",
+            "name": "Divine Judgment",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/avatar-of-flame.c",
+            "name": "Avatar of Flame",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/disciple-of-ferianth/inferno/harbinger-of-annihilation.c",
+            "name": "Harbinger of Annihilation",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
         ]),
         ([
             "type": "skill",

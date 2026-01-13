@@ -756,7 +756,162 @@ void ExecuteInAreaAppliedOnCorrectTargets()
     ExpectTrue(Effect.execute("throw turnip", User), "can execute command");
 
     ExpectEq(125, User.hitPoints(), "Bob's final HP");
-    ExpectEq(75, Target.hitPoints(), "Frank's final HP");
+    ExpectEq(50, Target.hitPoints(), "Frank's final HP (enemy - not healed)");
     ExpectEq(75, bystander.hitPoints(), "Earl's final HP");
-    ExpectEq(75, badguy.hitPoints(), "Fred's final HP");
+    ExpectEq(50, badguy.hitPoints(), "Fred's final HP (enemy - not healed)");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsRemoveModifierWithString()
+{
+    ExpectTrue(Effect.testAddSpecification("remove modifier", "poison"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationAllowsRemoveModifierWithArray()
+{
+    ExpectTrue(Effect.testAddSpecification("remove modifier", 
+        ({ "poison", "disease", "slow" })));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddSpecificationThrowsForInvalidRemoveModifier()
+{
+    string err = catch (Effect.testAddSpecification("remove modifier", 123); nolog);
+    string expectedError = "*ERROR - instantaneousActiveResearchItem: "
+        "the 'remove modifier' specification must be a string "
+        "or an array of strings.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierRemovesSingleModifier()
+{
+    // First apply a poison modifier to Target
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ Target }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+
+    Effect.testAddSpecification("remove modifier", "poison");
+    ExpectTrue(Effect.execute("throw turnip at frank", User), "can execute command");
+
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierRemovesMultipleModifiers()
+{
+    // Apply poison and disease modifiers to Target
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ Target }));
+
+    object disease = clone_object("/lib/items/modifierObject");
+    disease.set("fully qualified name", "disease effect");
+    disease.set("penalty to constitution", 1);
+    disease.set("disease", 1);
+    disease.set("registration list", ({ Target }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "disease"), 
+        "disease is applied");
+
+    Effect.testAddSpecification("remove modifier", ({ "poison", "disease" }));
+    ExpectTrue(Effect.execute("throw turnip at frank", User), "can execute command");
+
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "disease"), 
+        "disease is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierWithHealingRemovesPoisonAndHeals()
+{
+    // Apply a poison modifier to Target
+    object poison = clone_object("/lib/items/modifierObject");
+    poison.set("fully qualified name", "poison effect");
+    poison.set("penalty to strength", 1);
+    poison.set("poison", 1);
+    poison.set("registration list", ({ Target }));
+
+    mapping* heal = ({
+        (["probability":100, "base damage" : 15, "range" : 0])
+    });
+    Effect.testAddSpecification("increase hit points", heal);
+    Effect.testAddSpecification("remove modifier", "poison");
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is applied");
+    ExpectEq(50, Target.hitPoints(), "Frank's initial HP");
+
+    ExpectTrue(Effect.execute("throw turnip at frank", User), "can execute command");
+
+    ExpectFalse(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "poison is removed");
+    ExpectEq(65, Target.hitPoints(), "Frank has been healed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteRemoveModifierInAreaRemovesFromAllAllies()
+{
+    Effect.testAddSpecification("command template", "throw turnip");
+    Effect.testAddSpecification("scope", "area");
+
+    object bystander = clone_object("/lib/tests/support/services/combatWithMockServices");
+    bystander.Name("Earl");
+    bystander.addAlias("earl");
+    bystander.Str(20);
+    move_object(bystander, Room);
+
+    // Apply poison to Target, bystander, and User
+    object poison1 = clone_object("/lib/items/modifierObject");
+    poison1.set("fully qualified name", "poison effect 1");
+    poison1.set("penalty to strength", 1);
+    poison1.set("poison", 1);
+    poison1.set("registration list", ({ Target }));
+
+    object poison2 = clone_object("/lib/items/modifierObject");
+    poison2.set("fully qualified name", "poison effect 2");
+    poison2.set("penalty to strength", 1);
+    poison2.set("poison", 1);
+    poison2.set("registration list", ({ bystander }));
+
+    object poison3 = clone_object("/lib/items/modifierObject");
+    poison3.set("fully qualified name", "poison effect 3");
+    poison3.set("penalty to strength", 1);
+    poison3.set("poison", 1);
+    poison3.set("registration list", ({ User }));
+
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "target poison is applied");
+    ExpectTrue(bystander.inventoryGetModifier("combatModifiers", "poison"), 
+        "bystander poison is applied");
+    ExpectTrue(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "user poison is applied");
+
+    Effect.testAddSpecification("remove modifier", "poison");
+    ExpectTrue(Effect.execute("throw turnip", User), "can execute command");
+
+    // Target (enemy) should still have poison - beneficial effects don't apply to enemies
+    ExpectTrue(Target.inventoryGetModifier("combatModifiers", "poison"), 
+        "target poison is NOT removed (enemy)");
+
+    // Allies should have poison removed
+    ExpectFalse(bystander.inventoryGetModifier("combatModifiers", "poison"), 
+        "bystander poison is removed");
+    ExpectFalse(User.inventoryGetModifier("combatModifiers", "poison"), 
+        "user poison is removed");
+
+    destruct(bystander);
 }

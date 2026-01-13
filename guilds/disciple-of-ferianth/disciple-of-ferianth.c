@@ -141,7 +141,7 @@ public void SetupGuild()
         "research tree": "/guilds/disciple-of-ferianth/ashen-retribution.c"
     ]));
 
-    // Sacred Pyre - divine rituals and prayers (Pyromancer rank)
+    // Sacred Pyre - divine rituals and prayers (Ardent rank)
     addCriteria("sacred pyre", ([
         "type": "research tree",
         "apply": "at rank ardent",

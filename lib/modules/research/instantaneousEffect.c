@@ -285,6 +285,9 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
 
     if (member(effectData, "is beneficial"))
     {
+        // For beneficial effects, filter out enemies (monsters on kill list)
+        environmentObjects = filter(environmentObjects,
+            (: !($1->onKillList() && !$1->isRealizationOf("player")) :));
         environmentObjects += ({ owner });
     }
 

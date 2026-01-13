@@ -7,7 +7,7 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Fire Storm");
+    addSpecification("name", "Fireball");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
         "knowledge of conjuring a ball of sacred fire that explodes on "

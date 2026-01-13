@@ -26,6 +26,7 @@ protected nomask int addSpecification(string type, mixed value)
             stringp(value[0])))
         {
             specificationData[type] = stringp(value) ? ({ value }) : value;
+            specificationData["is beneficial"] = 1;
             ret = 1;
         }
         else

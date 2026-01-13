@@ -31,6 +31,21 @@ protected int addSpecification(string type, mixed value)
     {
         ret = 1;
     }
+    else if (!ret && (type == "remove modifier"))
+    {
+        if (stringp(value) || (pointerp(value) && sizeof(value) &&
+            stringp(value[0])))
+        {
+            specificationData[type] = stringp(value) ? ({ value }) : value;
+            ret = 1;
+        }
+        else
+        {
+            raise_error("ERROR - instantaneousActiveResearchItem: "
+                "the 'remove modifier' specification must be a string "
+                "or an array of strings.\n");
+        }
+    }
     else if(sscanf(type, "bonus %s", bonusToCheck) ||
             sscanf(type, "penalty to %s", bonusToCheck) ||
             sscanf(type, "apply %s", bonusToCheck))
@@ -208,6 +223,13 @@ protected int applyBeneficialEffect(object initiator, object target,
     {
         ret = 1;
         target->addStuffed(-applyFormula(initiator, "decrease stuffed", effectData));
+    }
+    if (member(effectData, "remove modifier"))
+    {
+        foreach(string modifier in effectData["remove modifier"])
+        {
+            ret = target->unregisterObjectsOfType(modifier) || ret;
+        }
     }
     return ret;
 }

@@ -7,120 +7,111 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Burning Hands");
+    addSpecification("name", "Cleansing Conflagration");
     addSpecification("source", "disciple of ferianth");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of releasing a cone of sacred fire from their hands.");
-    addSpecification("usage summary", "A cone of sacred fire affecting nearby enemies");
+        "knowledge of unleashing a conflagration of sacred fire that heals "
+        "all allies in the area while cleansing them of afflictions.");
+    addSpecification("usage summary", "Area heal with mass cleanse");
 
-    addPrerequisite("/guilds/disciple-of-ferianth/inferno/fire-bolt.c",
+    addPrerequisite("/guilds/disciple-of-ferianth/purifying-flames/burning-sanctuary.c",
         (["type":"research"]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "Disciple of Ferianth",
-            "value": 11
+            "value": 31
         ]));
 
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 35);
+    addSpecification("spell point cost", 130);
+    addSpecification("effect", "beneficial");
 
-    addSpecification("damage hit points", ({ ([
+    addSpecification("increase hit points", ({ ([
             "probability": 80,
-            "base damage": 20,
+            "base damage": 45,
             "range": 35
         ]),
-        ([ 
+        ([
             "probability": 20,
-            "base damage": 35,
-            "range": 50
+            "base damage": 80,
+            "range": 35
         ])
     }));
 
-    addSpecification("damage type", "fire");
+    addSpecification("remove modifier", ({ "poison", "disease", "slow", 
+        "enfeebled" }));
 
     addSpecification("modifiers", ({ 
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/fire-mastery.c",
-            "name": "Fire Mastery",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/healing-mastery.c",
+            "name": "Healing Mastery",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.15
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/inferno-potency.c",
-            "name": "Inferno Potency",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/purifying-potency.c",
+            "name": "Purifying Potency",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.15
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/divine-fire-potency.c",
-            "name": "Divine Fire Potency",
+            "research item": "/guilds/disciple-of-ferianth/purifying-flames/divine-healing-potency.c",
+            "name": "Divine Healing Potency",
             "formula": "multiplicative",
             "base value": 1,
-            "rate": 1.25
+            "rate": 1.20
         ]),
         ([
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
-            "rate": 0.20
-        ]),
-        ([
-            "type": "skill",
-            "name": "spellcraft",
-            "formula": "additive",
-            "rate": 0.15
+            "rate": 0.10
         ]),
         ([
             "type": "skill",
             "name": "theology",
             "formula": "additive",
-            "rate": 0.10
+            "rate": 0.15
         ]),
         ([
             "type": "skill",
-            "name": "evocation",
-            "formula": "additive",
-            "rate": 0.10
+            "name": "spellcraft",
+            "formula": "logarithmic",
+            "rate": 1.25
         ]),
         ([
             "type": "skill",
-            "name": "destruction",
-            "formula": "additive",
-            "rate": 0.10
-        ]),
-        ([
-            "type": "skill",
-            "name": "magical essence",
+            "name": "healing",
             "formula": "additive",
             "rate": 0.10
         ]),
         ([
             "type": "attribute",
-            "name": "intelligence",
+            "name": "wisdom",
             "formula": "additive",
-            "rate": 0.45
+            "rate": 0.05
         ]),
         ([
             "type": "level",
             "name": "level",
-            "formula": "additive",
-            "rate": 0.70
+            "formula": "logarithmic",
+            "rate": 1.10
         ])
     }));
 
-    addSpecification("cooldown", 12);
-    addSpecification("event handler", "burningHandsEvent");
-    addSpecification("command template", "burning hands");
+    addSpecification("cooldown", 100);
+    addSpecification("event handler", "cleansingConflagrationEvent");
+    addSpecification("command template", "cleansing conflagration");
 
     addSpecification("use ability message", "##InitiatorName## "
-        "##Infinitive::release## a cone of sacred fire from "
-        "##InitiatorPossessive## hands, engulfing all nearby enemies!");
+        "##Infinitive::unleash## a cleansing conflagration! Sacred fire "
+        "sweeps through the area, healing and purifying all allies.");
 }
