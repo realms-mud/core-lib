@@ -24,10 +24,9 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 60);
-    addSpecification("bonus defense", 10);
-    addSpecification("bonus soak", 12);
-    addSpecification("apply damage reflection", 25);
+    addSpecification("bonus hit points", 10);
+    addSpecification("bonus defense", 1);
+    addSpecification("bonus soak", 1);
 
     addSpecification("affected research", ([
         "Tsunami Shield": 25,

@@ -24,9 +24,8 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus hit points", 35);
-    addSpecification("bonus resist magical", 6);
-    addSpecification("apply damage reflection", 15);
+    addSpecification("bonus hit points", 10);
+    addSpecification("bonus resist magical", 2);
 
     addSpecification("affected research", ([
         "Shell of the Deep": 25,
