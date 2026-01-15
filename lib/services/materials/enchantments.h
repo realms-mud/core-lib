@@ -982,7 +982,7 @@ protected mapping equipmentEnchantments =
             "body": (["type":"skill", "value": 5]),
         ]),
         "effects": ([
-            "bonus damage reflection":1,
+            "apply damage reflection": 15,
         ]),
         "rune": "othala",
         "description": "Rebounds a portion of received damage back to the attacker.",

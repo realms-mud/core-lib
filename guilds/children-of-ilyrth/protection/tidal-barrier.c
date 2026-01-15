@@ -30,7 +30,7 @@ protected void Setup()
 
     addSpecification("bonus defense", 5);
     addSpecification("bonus soak", 5);
-    addSpecification("bonus damage reflection", 2);
+    addSpecification("apply damage reflection", 5);
 
     addSpecification("modifiers", ({ 
         ([

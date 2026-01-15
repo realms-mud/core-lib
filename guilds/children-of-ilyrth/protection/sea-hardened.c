@@ -26,7 +26,7 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("bonus hit points", 25);
     addSpecification("bonus soak", 3);
-    addSpecification("bonus damage reflection", 2);
+    addSpecification("apply damage reflection", 10);
 
     addSpecification("affected research", ([
         "Shell of the Deep": 25,

@@ -32,7 +32,7 @@ protected void Setup()
     addSpecification("bonus soak", 20);
     addSpecification("bonus resist physical", 25);
     addSpecification("bonus resist magical", 25);
-    addSpecification("bonus damage reflection", 10);
+    addSpecification("apply damage reflection", 40);
 
     addSpecification("modifiers", ({ 
         ([

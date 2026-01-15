@@ -24,7 +24,7 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus damage reflection", 1);
+    addSpecification("apply damage reflection", 5);
     addSpecification("bonus elemental water", 2);
 
     addSpecification("affected research", ([

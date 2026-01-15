@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("command template", "electric shroud");
     addSpecification("bonus resist electricity", 50);
     addSpecification("bonus resist physical", 25);
-    addSpecification("apply damage reflection", 1);
+    addSpecification("apply damage reflection", 20);
 
     addSpecification("use ability activate message", "A shroud of scintillating "
         "electrical energy wraps around ##InitiatorName##.");

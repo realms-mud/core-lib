@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("command template", "spirit shroud");
     addSpecification("bonus resist magical", 50);
     addSpecification("bonus resist physical", 25);
-    addSpecification("apply damage reflection", 1);
+    addSpecification("apply damage reflection", 20);
 
     addSpecification("use ability activate message", "A shroud of wispy "
         "mist wraps around ##InitiatorName##.");

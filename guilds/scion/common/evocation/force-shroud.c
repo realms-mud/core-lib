@@ -67,7 +67,7 @@ protected void Setup()
     addSpecification("command template", "force shroud");
     addSpecification("bonus resist energy", 50);
     addSpecification("bonus resist physical", 25);
-    addSpecification("apply damage reflection", 1);
+    addSpecification("apply damage reflection", 20);
 
     addSpecification("use ability activate message", "A shroud of scintillating "
         "magical energy wraps around ##InitiatorName##.");

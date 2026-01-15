@@ -27,7 +27,7 @@ protected void Setup()
     addSpecification("bonus hit points", 60);
     addSpecification("bonus defense", 10);
     addSpecification("bonus soak", 12);
-    addSpecification("bonus damage reflection", 5);
+    addSpecification("apply damage reflection", 25);
 
     addSpecification("affected research", ([
         "Tsunami Shield": 25,
