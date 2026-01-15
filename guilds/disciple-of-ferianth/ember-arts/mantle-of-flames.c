@@ -34,22 +34,22 @@ protected void Setup()
     addSpecification("bonus resist fire", 50);
 
     addSpecification("modifiers", ({ 
-        ({
+        ([
             "type": "research",
             "research item": "/guilds/disciple-of-ferianth/ember-arts/master-ember-potency.c",
             "name": "Master Ember Potency",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.30
-        }),
-        ({
+        ]),
+        ([
             "type": "research",
             "research item": "/guilds/disciple-of-ferianth/ember-arts/supreme-ember-potency.c",
             "name": "Supreme Ember Potency",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.35
-        })
+        ])
     }));
 
     addSpecification("cooldown", 60);

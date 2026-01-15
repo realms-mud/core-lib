@@ -24,8 +24,8 @@ protected void Setup()
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("affected research", ({
+    addSpecification("affected research", ([
         "Ferianth's Wildfire": 3
-    }));
+    ]));
     addSpecification("affected research type", "increase repeat effect");
 }

@@ -33,14 +33,14 @@ protected void Setup()
     addSpecification("apply fortified", 1);
 
     addSpecification("modifiers", ({ 
-        ({
+        ([
             "type": "research",
             "research item": "/guilds/disciple-of-ferianth/ember-arts/ember-potency.c",
             "name": "Ember Potency",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.15
-        })
+        ])
     }));
 
     addSpecification("cooldown", 15);

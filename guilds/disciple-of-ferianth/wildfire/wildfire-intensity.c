@@ -24,16 +24,16 @@ protected void Setup()
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("affected research", ({
-        "Smolder",
-        "Burning Brand",
-        "Spreading Flames",
-        "Conflagration",
-        "Raging Wildfire",
-        "Ferianth's Wildfire",
-        "Searing Devastation",
-        "Apocalyptic Firestorm",
-        "Ferianth's Eternal Pyre"
-    }));
+    addSpecification("affected research", ([
+        "Smolder": 1,
+        "Burning Brand": 1,
+        "Spreading Flames": 1,
+        "Conflagration": 1,
+        "Raging Wildfire": 1,
+        "Ferianth's Wildfire": 1,
+        "Searing Devastation": 1,
+        "Apocalyptic Firestorm": 1,
+        "Ferianth's Eternal Pyre": 1
+    ]));
     addSpecification("affected research type", "increase repeat effect");
 }

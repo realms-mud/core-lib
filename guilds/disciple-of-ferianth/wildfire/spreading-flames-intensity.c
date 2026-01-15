@@ -24,8 +24,8 @@ protected void Setup()
 
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("affected research", ({
+    addSpecification("affected research", ([
         "Spreading Flames"
-    }));
+    ]));
     addSpecification("affected research type", "increase repeat effect");
 }
