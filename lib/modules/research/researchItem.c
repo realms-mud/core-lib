@@ -270,7 +270,8 @@ protected int addSpecification(string type, mixed value)
             {
                 if (stringp(value) &&
                     (member(({ "percentage", "bonus", "max combination chain",
-                        "decrease cost", "decrease cooldown", "composite" }), 
+                        "decrease cost", "decrease cooldown", "composite",
+                        "increase repeat effect" }), 
                         value) > -1))
                 {
                     specificationData[type] = value;
@@ -410,6 +411,12 @@ private nomask string displayAffectedResearch(string colorConfiguration,
             case "decrease cooldown":
             {
                 appendType = "This reduces the cooldown delay to use '%s' "
+                    "by %s\n";
+                break;
+            }
+            case "increase repeat effect":
+            {
+                appendType = "This increases the repeat effect count of '%s' "
                     "by %s\n";
                 break;
             }

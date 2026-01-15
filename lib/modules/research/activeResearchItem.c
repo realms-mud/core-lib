@@ -61,6 +61,22 @@ protected int addSpecification(string type, mixed value)
             }
             break;
         }
+        case "repeat effect modifiers":
+        {
+            if(mappingp(value) && (sizeof(value) == sizeof(filter(value,
+                (: intp($2) && ($2 > 0) :)))))
+            {
+                specificationData[type] = value;
+                ret = 1;
+            }
+            else
+            {
+                raise_error(sprintf("ERROR - activeResearchItem: the '%s'"
+                    " specification must be a valid repeat effect modifier mapping.\n",
+                    type));
+            }
+            break;
+        }
         case "hit point cost modifiers":
         case "spell point cost modifiers":
         case "stamina point cost modifiers":
@@ -329,8 +345,20 @@ private nomask int useConsumables(object initiator)
 /////////////////////////////////////////////////////////////////////////////
 protected int getRepeatEffectCount(string command, object initiator)
 {
-    return member(specificationData, "repeat effect") ? 
+    int ret = member(specificationData, "repeat effect") ? 
         specificationData["repeat effect"] : 0;
+        
+    mapping modifiers = query("repeat effect modifiers");
+
+    if (mappingp(modifiers) && objectp(initiator))
+    {
+        modifiers = filter(modifiers, (: $3->isResearched($1) :), initiator);
+        foreach(string item in modifiers)
+        {
+            ret += modifiers[item];
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

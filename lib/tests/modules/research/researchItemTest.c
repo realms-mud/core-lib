@@ -239,3 +239,118 @@ void CanSetPrerequisites()
     ExpectEq("([ fetch a pencil: ([ type: quest, ]), guild: ([ type: guild, value: ({ test, }), ]), race: ([ type: race, value: ({ elf, half elf, high elf, }), ]), ])",
         ResearchItem.query("prerequisites"));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToPercentage()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "percentage"),
+        "set the affected research type");
+    ExpectEq("percentage", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToBonus()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "bonus"),
+        "set the affected research type");
+    ExpectEq("bonus", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToMaxCombinationChain()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "max combination chain"),
+        "set the affected research type");
+    ExpectEq("max combination chain", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToDecreaseCost()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "decrease cost"),
+        "set the affected research type");
+    ExpectEq("decrease cost", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToDecreaseCooldown()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "decrease cooldown"),
+        "set the affected research type");
+    ExpectEq("decrease cooldown", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToComposite()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "composite"),
+        "set the affected research type");
+    ExpectEq("composite", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchTypeToIncreaseRepeatEffect()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research type", "increase repeat effect"),
+        "set the affected research type");
+    ExpectEq("increase repeat effect", ResearchItem.query("affected research type"),
+        "query the affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetAffectedResearchTypeToInvalidValue()
+{
+    string err = catch (ResearchItem.addSpecification("affected research type", "weasel"); nolog);
+    string expectedError = "*ERROR - researchItem: the 'affected research type' specification must be either 'percentage' or 'bonus'.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid affected research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetAffectedResearchMapping()
+{
+    ExpectTrue(ResearchItem.addSpecification("affected research", ([
+        "Flame Blade": 10,
+        "Fire Ball": 15
+    ])), "set the affected research");
+    ExpectEq((["Flame Blade": 10, "Fire Ball": 15]),
+        ResearchItem.query("affected research"),
+        "query the affected research");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetAffectedResearchToNonMapping()
+{
+    string err = catch (ResearchItem.addSpecification("affected research", "weasel"); nolog);
+    string expectedError = "*ERROR - researchItem: the 'affected research' specification must be a properly formatted modifier.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid affected research");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetAffectedResearchWithNonStringKeys()
+{
+    string err = catch (ResearchItem.addSpecification("affected research", ([
+        1: 10
+    ])); nolog);
+    string expectedError = "*ERROR - researchItem: the 'affected research' specification must be a properly formatted modifier.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid affected research keys");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CannotSetAffectedResearchWithNonIntegerValues()
+{
+    string err = catch (ResearchItem.addSpecification("affected research", ([
+        "Flame Blade": "weasel"
+    ])); nolog);
+    string expectedError = "*ERROR - researchItem: the 'affected research' specification must be a properly formatted modifier.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid affected research values");
+}

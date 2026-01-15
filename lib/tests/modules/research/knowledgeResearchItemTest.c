@@ -47,3 +47,14 @@ void DisplaysResearchDetailsForResearchWithAffectingSet()
 
     destruct(research);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void DisplaysResearchDetailsForIncreaseRepeatEffectType()
+{
+    object research = clone_object("/lib/tests/support/research/repeatEffectResearchItem.c");
+
+    ExpectSubStringMatch("This increases the repeat effect count of 'Smolder' by [+]2",
+        research.researchDetails(), "query the research details");
+
+    destruct(research);
+}
