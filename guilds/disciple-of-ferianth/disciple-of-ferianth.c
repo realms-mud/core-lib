@@ -54,7 +54,6 @@ public void SetupGuild()
 
     setDefaultRank("acolyte");
 
-    // Resources - balanced caster with healing capability
     addCriteria("hit points", ([
         "type": "modifier",
         "apply": "3 every level",
@@ -83,7 +82,6 @@ public void SetupGuild()
         "apply": "5 every level"
     ]));
 
-    // Research points
     addCriteria("initial research points", ([
         "type": "research points",
         "apply": "5 at level 1"
