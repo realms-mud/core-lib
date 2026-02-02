@@ -10,6 +10,12 @@ public void SetupGuild()
     guildName("Disciple of Argloth");
     addPreferredSkillType("combat");
 
+    prohibitedGuildCombinations(({ "Scion of Dhuras", "fighter", "monk", 
+        "Drambor Edlothiad", "Guardian of Khazurath", "Children of Ilyrth",
+        "League of Assassins", "phaedra", "ranger", "rogue", "Werric Knight",
+        "Wrathguard", "necromancer", "Aegis Guard", "Disciple of Ferianth",
+        "druid" }));
+
     addCriteria("hit points", ([
         "type": "modifier",
         "apply" : "3 every level",

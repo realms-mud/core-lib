@@ -9,7 +9,7 @@ protected void Setup()
 {
     addSpecification("name", "Attack I");
     addSpecification("source", "Scion of Dhuras");
-    addSpecification("description", "This research attunes the "
+    addSpecification("description", "This research atunes the "
         "scion's avatar to be more adept at attacks.");
 
     addPrerequisite("level", ([  

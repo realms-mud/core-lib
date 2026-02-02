@@ -9,7 +9,10 @@ public void SetupGuild()
 {
     guildName("Drambor Edlothiad");
     addPreferredSkillType("combat");
-    prohibitedGuildCombinations(({ "Scion of Dhuras", "monk" }));
+    prohibitedGuildCombinations(({ "Scion of Dhuras", "fighter", "monk", 
+        "Disciple of Argloth", "Guardian of Khazurath",
+        "League of Assassins", "phaedra", "ranger", "rogue", "Werric Knight",
+        "Wrathguard", "necromancer", "Aegis Guard" }));
 
     addCriteria("hit points", ([
         "type": "modifier",

@@ -10,6 +10,10 @@ public void SetupGuild()
     guildName("Children of Ilyrth");
     addPreferredSkillType("magic");
 
+    prohibitedGuildCombinations(({ "Drambor Edlothiad", "Werric Knight",
+        "League of Assassins", "Wrathguard", "necromancer", "Disciple of Ferianth",
+        "druid", "Hand of Bilanx" }));
+
     addRank("initiate", ([
         "name": "initiate", 
         "title": "of the Waters", 

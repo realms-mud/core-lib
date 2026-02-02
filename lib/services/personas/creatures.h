@@ -2338,4 +2338,24 @@ private nosave mapping creatureBlueprints = ([
         "base spell points" : 50,
         "base stamina points" : 50
     ]),
+    "flame guardian": ([
+        "description": "A flame guardian is a divine servant of Ferianth, "
+            "manifested as a humanoid figure of living fire. Its body flickers "
+            "and shifts between deep orange and blinding white, leaving trails "
+            "of embers wherever it moves. Eyes of pure flame regard the world "
+            "with fierce devotion to its summoner.",
+        "category": "creatures",
+        "primary skills": ({ "elemental fire", "evocation", "spellcraft",
+            "no armor", "dodge" }),
+        "secondary skills": ({ "parry", "perception" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "guardian", "flame", "fire" }),
+        "attacks": ([
+            "fire": 25
+        ]),
+        "base hit points": 100,
+        "base spell points": 150,
+        "base stamina points": 50
+    ]),
 ]);

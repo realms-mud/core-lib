@@ -10,6 +10,10 @@ public void SetupGuild()
     guildName("Disciple of Ferianth");
     addPreferredSkillType("magic");
 
+    prohibitedGuildCombinations(({ "Drambor Edlothiad", "Werric Knight",
+        "League of Assassins", "Wrathguard", "necromancer",
+        "druid", "Hand of Bilanx", "Children of Ilyrth" }));
+
     addRank("acolyte", ([
         "name": "acolyte",
         "title": "the Disciple of Ferianth",
@@ -138,12 +142,24 @@ public void SetupGuild()
         "apply": "at rank flame keeper",
         "research tree": "/guilds/disciple-of-ferianth/ashen-retribution.c"
     ]));
+    addCriteria("flame keeper research points", ([
+        "type": "research points",
+        "apply": "1 every 5 levels",
+        "begin at rank": "flame keeper",
+        "end at rank": "ardent",
+    ]));
 
     // Sacred Pyre - divine rituals and prayers (Ardent rank)
     addCriteria("sacred pyre", ([
         "type": "research tree",
         "apply": "at rank ardent",
         "research tree": "/guilds/disciple-of-ferianth/sacred-pyre.c"
+    ]));
+    addCriteria("ardent research points", ([
+        "type": "research points",
+        "apply": "1 every 4 levels",
+        "begin at rank": "ardent",
+        "end at rank": "high priest",
     ]));
 
     // Divine Conflagration - high priest abilities (High Priest rank)
@@ -152,11 +168,22 @@ public void SetupGuild()
         "apply": "at rank high priest",
         "research tree": "/guilds/disciple-of-ferianth/divine-conflagration.c"
     ]));
+    addCriteria("high priest research points", ([
+        "type": "research points",
+        "apply": "1 every 3 levels",
+        "begin at rank": "high priest",
+        "end at rank": "exarch",
+    ]));
 
     // Ferianth's Grace - ultimate divine powers (Exarch rank)
     addCriteria("ferianths grace", ([
         "type": "research tree",
         "apply": "at rank exarch",
         "research tree": "/guilds/disciple-of-ferianth/ferianths-grace.c"
+    ]));
+    addCriteria("high priest research points", ([
+        "type": "research points",
+        "apply": "1 every 2 levels",
+        "begin at rank": "exarch"
     ]));
 }
