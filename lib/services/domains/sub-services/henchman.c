@@ -200,7 +200,7 @@ public nomask mapping getRandomHenchman(string type, string rating, int cost,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string getBenefitLevel(object henchman, string type)
 {
-    string traits = implode(henchman->Traits(type), "");
+    string traits = implode(henchman->Traits(), "");
     string santizedType = regreplace(type, " ", "-", 1);
     string ret = "low end worker";
 
