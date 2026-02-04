@@ -1450,13 +1450,17 @@ private nomask int determineFateFromDeath(object murderer)
 
     if(!isDead())
     {
-
+        object traits = getModule("traits");
         object wizard = getModule("wizard");
         if(wizard)
         {
             tell_object(wizard, getService("configuration")->decorate(
                 "Your wizardhood protects you from death.\n",
                 "death", "combat", colorConfiguration)); 
+        }
+        else if (traits && traits->hasTraitOfRoot("protected from death"))
+        {
+            combatNotification("onProtectedFromDeath", 1, 1);
         }
         else if(environment() && 
                 function_exists("suppressDeath", environment()))

@@ -69,7 +69,14 @@ public nomask varargs string *Traits(string type)
         traitList = filter(traitList,
             (: TraitService()->traitIsOfType($1, $2) :), type);
     }
-    return m_indices(traits);
+    return traitList;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *TraitsOfRoot(string root)
+{
+    return (filter(m_indices(traits),
+        (: TraitService()->traitIsOfRoot($1, $2) :), root));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -129,6 +136,20 @@ public nomask int addTrait(string trait)
         if(events && objectp(events))
         {
             events->notify("onTraitAdded", trait);
+
+            if(addedTrait && objectp(addedTrait))
+            {
+                string *eventHandlers = addedTrait->query("event handlers");
+                if (eventHandlers && pointerp(eventHandlers) && 
+                    sizeof(eventHandlers))
+                {
+                    foreach(string handler in eventHandlers)
+                    {
+                        events->registerEventHandler(handler);
+                    }
+                    events->registerEvent(addedTrait);
+                }
+            }
         }
 
         object state = getModule("state");
@@ -160,6 +181,8 @@ public nomask int removeTrait(string trait)
 
     if(isTraitOf(trait) && isValidTrait(trait))
     {
+        object removedTrait = TraitService()->traitObject(trait);
+
         m_delete(traits, trait);
 
         if(member(temporaryTraits, trait) > -1)
@@ -171,6 +194,16 @@ public nomask int removeTrait(string trait)
         if(events && objectp(events))
         {
             events->notify("onTraitRemoved", trait);
+
+            if(removedTrait && objectp(removedTrait))
+            {
+                string *eventHandlers = removedTrait->query("event handlers");
+                if (eventHandlers && pointerp(eventHandlers) && 
+                    sizeof(eventHandlers))
+                {
+                    events->unregisterEvent(removedTrait);
+                }
+            }
         }
 
         object state = getModule("state");

@@ -346,7 +346,7 @@ public nomask varargs int initiateResearch(string researchItem)
                     researchPoints -=
                         researchService()->getResearchCost(researchItem);
                     research[researchItem] = ([
-                        "when research began":time(),
+                        "when research began": time(),
                         "when research complete": time(),
                         "time spent learning": 0,
                         "research complete": 1

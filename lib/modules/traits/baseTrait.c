@@ -118,6 +118,22 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "event handlers":
+            {
+                if (value && pointerp(value) && sizeof(value) &&
+                    (sizeof(value) == sizeof(filter(value,
+                        (: stringp($1) && function_exists($1, this_object()) :)))))
+                {
+                    ret = 1;
+                    specificationData[type] = value;
+                }
+                else
+                {
+                    raise_error(sprintf("ERROR - trait: The '%s' value "
+                        "must be an array of functions on this object.\n", type));
+                }
+                break;
+            }
             case "cost":
             {
                 if (intp(value) && value < 0)

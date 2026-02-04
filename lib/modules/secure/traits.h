@@ -18,12 +18,36 @@ static nomask void loadTraits(mapping data, object persistence)
         if (sizeof(traitList))
         {
             object traitsService = getService("traits");
+            object events = getModule("events");
+
             foreach(string trait in traitList)
             {
                 string *bonuses = traitsService->getTraitBonuses(trait);
                 if (bonuses && sizeof(bonuses))
                 {
                     traits[trait]["bonuses"] = bonuses;
+                }
+
+                // Register trait objects that have event handlers
+                if (events && objectp(events))
+                {
+                    object traitObj = traitsService->traitObject(trait);
+                    if (traitObj && objectp(traitObj))
+                    {
+                        // Check if trait has custom event handlers defined
+                        string *eventHandlers = traitObj->query("event handlers");
+                        if (eventHandlers && pointerp(eventHandlers) && 
+                            sizeof(eventHandlers))
+                        {
+                            // Register any custom events that aren't already valid
+                            foreach(string handler in eventHandlers)
+                            {
+                                events->registerEventHandler(handler);
+                            }
+                            // Register the trait object to receive events
+                            events->registerEvent(traitObj);
+                        }
+                    }
                 }
             }
         }

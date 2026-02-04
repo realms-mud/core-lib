@@ -1,4 +1,3 @@
-
 //*****************************************************************************
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
@@ -1306,6 +1305,105 @@ void WeaponAttacksSkippedWhenNoWeaponAttacksTraitPresent()
     ExpectTrue(Attacker->attack(Target));
     ExpectEq(0, subscriber->TimesOnHitEventReceived(),
         "no hit events should occur when no weapon attacks trait is present");
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitWithProtectedFromDeathPreventsDeathAndCallsEventHandler()
+{
+    ToggleCallOutBypass();
+    
+    destruct(Attacker);
+    Attacker = clone_object("/lib/realizations/player.c");
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    move_object(Attacker, Room);
+
+    // Add the trait that protects from death
+    ExpectTrue(Attacker.addTrait("/lib/tests/support/traits/traitWithCallback.c"),
+        "trait added");
+    ExpectTrue(Attacker.hasTraitOfRoot("protected from death"),
+        "has protected from death root");
+
+    // Get initial hit points
+    int initialHP = Attacker.hitPoints();
+    ExpectTrue(initialHP > 0, "attacker has hit points");
+
+    // Deal lethal damage - should trigger protection
+    Target.hitPoints(Target.maxHitPoints());
+    
+    // The trait's onProtectedFromDeath should:
+    // 1. Prevent actual death (Ghost should not be set)
+    // 2. Stop all fights
+    // 3. Move the player to a safe location
+    // 4. Remove the trait
+    
+    ExpectFalse(Attacker.isDead(), "attacker is not dead before hit");
+    
+    // Deal enough damage to kill
+    Attacker.hit(initialHP + 100, "physical", Target);
+
+    // Verify death was prevented
+    ExpectFalse(Attacker.isDead(), "attacker is not dead after lethal hit");
+    
+    // Verify the trait was removed (as per the callback logic)
+    ExpectFalse(Attacker.hasTraitOfRoot("protected from death"),
+        "protected from death trait was removed");
+    
+    // Verify player was moved to safe location
+    ExpectEq("/areas/eledhel/southern-city/7x2", 
+        object_name(environment(Attacker)),
+        "player was moved to safe location");
+    
+    // Verify combat was stopped
+    ExpectFalse(Attacker.isInCombatWith(Target), 
+        "attacker is no longer in combat with target");
+
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitWithProtectedFromDeathDoesNotPreventDeathIfTraitNotPresent()
+{
+    ToggleCallOutBypass();
+    
+    destruct(Attacker);
+    Attacker = clone_object("/lib/realizations/player.c");
+    Attacker.Name("Bob");
+    Attacker.Str(20);
+    Attacker.Dex(20);
+    Attacker.Con(20);
+    Attacker.Int(20);
+    Attacker.Wis(20);
+    Attacker.hitPoints(Attacker.maxHitPoints());
+    move_object(Attacker, Room);
+
+    // Verify no protection trait
+    ExpectFalse(Attacker.hasTraitOfRoot("protected from death"),
+        "does not have protected from death root");
+
+    int initialHP = Attacker.hitPoints();
+    ExpectTrue(initialHP > 0, "attacker has hit points");
+
+    Target.hitPoints(Target.maxHitPoints());
+    
+    ExpectFalse(Attacker.isDead(), "attacker is not dead before hit");
+    
+    // Deal enough damage to kill
+    Attacker.hit(initialHP + 100, "physical", Target);
+    
+    // Verify death occurred
+    ExpectTrue(Attacker.isDead(), "attacker is dead after lethal hit");
+    
+    // Player should still be in original room (as a ghost/corpse scenario)
+    ExpectEq(object_name(Room), object_name(environment(Attacker)),
+        "player is still in combat room");
 
     ToggleCallOutBypass();
 }

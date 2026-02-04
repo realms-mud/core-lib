@@ -116,6 +116,21 @@ void TraitsReturnsListOfTraits()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TraitsOfRootReturnsEmptyWhenNoTraitsHaveBeenAdded()
+{
+    ExpectEq(({}), Traits.TraitsOfRoot("blarg"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TraitsOfRootReturnsListOfTraits()
+{
+    ExpectTrue(Traits.addTrait("/lib/tests/support/traits/testTraitWithoutResearch.c"));
+    ExpectTrue(Traits.addTrait("/lib/tests/support/traits/testTrait.c"));
+    ExpectEq(({ "/lib/tests/support/traits/testTraitWithoutResearch.c" }),
+        Traits.TraitsOfRoot("mean"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void TraitNamesReturnsEmptyWhenNoTraitsHaveBeenAdded()
 {
     ExpectEq(({}), Traits.TraitNames());
@@ -454,4 +469,173 @@ void CorrectEnchantmentsReturned()
     ExpectTrue(Traits.addTrait("/lib/tests/support/traits/anotherEnchantmentTrait.c"), "initiate research");
     ExpectEq((["electricity":5, "fire" : 6, "magical" : 1]),
         Traits.traitsEnchantments());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EventHandlersSpecificationAcceptsArrayOfValidFunctions()
+{
+    object trait = load_object("/lib/tests/support/traits/traitWithCallback.c");
+    
+    ExpectTrue(trait.isValidTrait(), "trait with event handlers is valid");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EventHandlersSpecificationRejectsEmptyArray()
+{
+    object trait = clone_object("/lib/tests/support/traits/testTraitWithoutResearch.c");
+    
+    string err = catch (trait.addSpecification("event handlers", ({})); nolog);
+    ExpectSubStringMatch("must be an array of functions", err,
+        "empty array is rejected");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EventHandlersSpecificationRejectsNonArrayValue()
+{
+    object trait = clone_object("/lib/tests/support/traits/testTraitWithoutResearch.c");
+    
+    string err = catch (trait.addSpecification("event handlers", "onSomeEvent"); nolog);
+    ExpectSubStringMatch("must be an array of functions", err,
+        "string value is rejected");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EventHandlersSpecificationRejectsArrayWithInvalidFunctions()
+{
+    object trait = clone_object("/lib/tests/support/traits/testTraitWithoutResearch.c");
+    
+    string err = catch (trait.addSpecification("event handlers", 
+        ({ "nonExistentFunction" })); nolog);
+    ExpectSubStringMatch("must be an array of functions", err,
+        "array with non-existent function is rejected");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EventHandlersSpecificationRejectsArrayWithNonStringElements()
+{
+    object trait = clone_object("/lib/tests/support/traits/testTraitWithoutResearch.c");
+    
+    string err = catch (trait.addSpecification("event handlers", 
+        ({ 123, "someFunction" })); nolog);
+    ExpectSubStringMatch("must be an array of functions", err,
+        "array with non-string element is rejected");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddTraitWithEventHandlersRegistersTraitAsEventSubscriber()
+{
+    ToggleCallOutBypass();
+    
+    string trait = "/lib/tests/support/traits/testTraitWithEventHandler.c";
+    object traitObj = load_object(trait);
+    traitObj.resetEventCount();
+    
+    ExpectFalse(Traits.isTraitOf(trait), "trait not initially present");
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    ExpectTrue(Traits.isTraitOf(trait), "trait is now present");
+    
+    // Fire the custom event and verify the trait receives it
+    ExpectFalse(traitObj.eventWasCalled(), "event not called yet");
+    Traits.notify("onTestEvent", "test data");
+    ExpectTrue(traitObj.eventWasCalled(), "event was called after notify");
+    ExpectEq(1, traitObj.getEventCallCount(), "event called exactly once");
+    
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddTraitWithoutEventHandlersDoesNotRegisterAsEventSubscriber()
+{
+    string trait = "/lib/tests/support/traits/testTrait.c";
+    object traitObj = load_object(trait);
+    
+    // Verify this trait does not have event handlers
+    ExpectFalse(traitObj.query("event handlers"), 
+        "test trait does not have event handlers");
+    
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    ExpectTrue(Traits.isTraitOf(trait), "trait is present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RemoveTraitWithEventHandlersUnregistersFromEvents()
+{
+    ToggleCallOutBypass();
+    
+    string trait = "/lib/tests/support/traits/testTraitWithEventHandler.c";
+    object traitObj = load_object(trait);
+    traitObj.resetEventCount();
+    
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    ExpectTrue(Traits.isTraitOf(trait), "trait is present");
+    
+    // Verify event works while trait is active
+    Traits.notify("onTestEvent", "test data");
+    ExpectEq(1, traitObj.getEventCallCount(), "event called once while trait active");
+    
+    ExpectTrue(Traits.removeTrait(trait), "trait removed");
+    ExpectFalse(Traits.isTraitOf(trait), "trait no longer present");
+    
+    // Verify event no longer reaches the trait after removal
+    traitObj.resetEventCount();
+    Traits.notify("onTestEvent", "test data");
+    ExpectEq(0, traitObj.getEventCallCount(), 
+        "event not called after trait removed");
+    
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RemoveTraitWithoutEventHandlersSucceeds()
+{
+    string trait = "/lib/tests/support/traits/testTrait.c";
+    
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    ExpectTrue(Traits.isTraitOf(trait), "trait is present");
+    
+    ExpectTrue(Traits.removeTrait(trait), "trait removed");
+    ExpectFalse(Traits.isTraitOf(trait), "trait no longer present");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CustomEventHandlersAreRegisteredWhenTraitAdded()
+{
+    ToggleCallOutBypass();
+    
+    string trait = "/lib/tests/support/traits/testTraitWithEventHandler.c";
+    object traitObj = load_object(trait);
+    traitObj.resetEventCount();
+    
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    
+    // The custom event handler should be registered and callable
+    // If registerEventHandler wasn't called, notify would silently fail
+    Traits.notify("onTestEvent", "custom event data");
+    ExpectTrue(traitObj.eventWasCalled(), 
+        "custom event handler was registered and called");
+    ExpectEq(Traits, traitObj.getLastCaller(),
+        "caller passed to event handler is correct");
+    
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MultipleNotificationsCallEventHandlerMultipleTimes()
+{
+    ToggleCallOutBypass();
+    
+    string trait = "/lib/tests/support/traits/testTraitWithEventHandler.c";
+    object traitObj = load_object(trait);
+    traitObj.resetEventCount();
+    
+    ExpectTrue(Traits.addTrait(trait), "trait added");
+    
+    Traits.notify("onTestEvent", "first");
+    Traits.notify("onTestEvent", "second");
+    Traits.notify("onTestEvent", "third");
+    
+    ExpectEq(3, traitObj.getEventCallCount(), 
+        "event handler called for each notification");
+    
+    ToggleCallOutBypass();
 }
