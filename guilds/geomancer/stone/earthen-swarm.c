@@ -26,6 +26,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 500);
+    addSpecification("repeat effect", 3);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
@@ -172,4 +173,6 @@ protected void Setup()
     addSpecification("use ability message", "##InitiatorName## "
         "##Infinitive::conjure## an overwhelming swarm of razor-sharp stone "
         "shards that tears through the area with devastating force.");
+    addSpecification("repeated ability message", "The stone swarm continues to slice "
+        "through ##TargetName##.");
 }
