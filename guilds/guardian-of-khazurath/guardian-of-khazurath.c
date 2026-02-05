@@ -10,7 +10,10 @@ public void SetupGuild()
     guildName("Guardian of Khazurath");
     addPreferredSkillType("combat");
 
-    prohibitedGuildCombinations(({ "Scion of Dhuras", "fighter", "monk", "Aegis Guard" }));
+    prohibitedGuildCombinations(({ "Scion of Dhuras", "fighter", "monk",
+        "Disciple of Argloth", "Drambor Edlothiad", "Aegis Guard",
+        "League of Assassins", "phaedra", "ranger", "rogue", "Werric Knight",
+        "Wrathguard", "necromancer" }));
 
     addCriteria("hit points", ([
         "type": "modifier",
