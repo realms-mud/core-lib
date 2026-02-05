@@ -49,7 +49,7 @@ protected void Setup()
             "range": 40
         ])
     }));
-    addSpecification("siphon stamina", ({ ([
+    addSpecification("siphon stamina points", ({ ([
             "probability": 80,
             "base damage": 10,
             "range": 20

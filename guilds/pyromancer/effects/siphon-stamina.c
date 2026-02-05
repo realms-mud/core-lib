@@ -27,7 +27,7 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 25);
 
-    addSpecification("siphon stamina", ({ ([
+    addSpecification("siphon stamina points", ({ ([
             "probability": 80,
             "base damage": 5,
             "range": 10
