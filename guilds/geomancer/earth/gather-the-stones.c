@@ -28,8 +28,8 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 250);
 
-    addSpecification("bonus defense", 35);
-    addSpecification("bonus damage reduction", 20);
+    addSpecification("bonus defense", 10);
+    addSpecification("bonus soak", 10);
     addSpecification("bonus earth attack", 25);
     addSpecification("bonus attack", 15);
     addSpecification("duration", 240);

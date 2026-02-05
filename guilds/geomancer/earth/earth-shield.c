@@ -27,8 +27,8 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 75);
 
-    addSpecification("bonus defense", 10);
-    addSpecification("bonus damage reduction", 5);
+    addSpecification("bonus defense", 5);
+    addSpecification("bonus soak", 3);
     addSpecification("duration", 120);
 
     addSpecification("modifiers", ({ 
