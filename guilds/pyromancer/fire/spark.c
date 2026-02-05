@@ -7,87 +7,104 @@ inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Scalding Blast");
-    addSpecification("source", "aquamancer");
+    addSpecification("name", "Spark");
+    addSpecification("source", "pyromancer");
     addSpecification("description", "This research provides the user with the "
-        "knowledge of the scalding blast spell. The aquamancer superheats "
-        "water to near-boiling temperatures and releases it in a searing jet "
-        "toward the target. The intense heat burns flesh while the water's "
-        "force batters the victim.");
+        "knowledge of the spark spell. The pyromancer ignites the air itself, "
+        "hurling a small but intense burst of flame at a single target. This "
+        "is a fundamental technique that forms the basis for more advanced "
+        "fire manipulation.");
 
-    addPrerequisite("/guilds/aquamancer/water/root.c",
+    addPrerequisite("/guilds/pyromancer/fire/root.c",
         (["type":"research"]));
-
-    addPrerequisite("level",
-        (["type":"level",
-            "guild": "aquamancer",
-            "value": 5
-        ]));
 
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("spell point cost", 30);
+    addSpecification("spell point cost", 10);
 
-    addSpecification("damage hit points", ({
-        ([
-            "probability": 85,
-            "base damage": 15,
-            "range": 25
+    addSpecification("damage hit points", ({ ([
+            "probability": 80,
+            "base damage": 5,
+            "range": 10
         ]),
         ([
-            "probability": 15,
-            "base damage": 25,
-            "range": 35
+            "probability": 20,
+            "base damage": 10,
+            "range": 20
         ])
     }));
-    addSpecification("damage type", "steam");
+    addSpecification("damage type", "fire");
 
     addSpecification("modifiers", ({
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/boiling-focus.c",
-            "name": "Boiling Focus",
+            "research item": "/guilds/pyromancer/fire/fire-blast.c",
+            "name": "Fire Blast",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/steamweaving.c",
-            "name": "Steamweaving",
+            "research item": "/guilds/pyromancer/fire/fire-mastery.c",
+            "name": "Fire Mastery",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/boiling-convergence.c",
-            "name": "Boiling Convergence",
+            "research item": "/guilds/pyromancer/fire/fire-channeling.c",
+            "name": "Fire Channeling",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/frozen-depths.c",
-            "name": "Frozen Depths",
+            "research item": "/guilds/pyromancer/fire/pyretic-flow.c",
+            "name": "Pyretic Flow",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/crushing-tide.c",
-            "name": "Crushing Tide",
+            "research item": "/guilds/pyromancer/fire/heart-of-the-flame.c",
+            "name": "Heart of the Flame",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/aquamancer/water/mist-veil.c",
-            "name": "Mist Veil",
+            "research item": "/guilds/pyromancer/fire/elemental-ignition.c",
+            "name": "Elemental Ignition",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/pyromancer/fire/inferno-mastery.c",
+            "name": "Inferno Mastery",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/pyromancer/fire/pyromantic-insight.c",
+            "name": "Pyromantic Insight",
+            "formula": "multiplicative",
+            "base value": 1,
+            "rate": 1.25
+        ]),
+        ([
+            "type": "research",
+            "research item": "/guilds/pyromancer/fire/fire-dominion.c",
+            "name": "Fire Dominion",
             "formula": "multiplicative",
             "base value": 1,
             "rate": 1.25
@@ -110,7 +127,7 @@ protected void Setup()
         ]),
         ([
             "type": "skill",
-            "name": "elemental water",
+            "name": "elemental fire",
             "formula": "additive",
             "rate": 0.10
         ]),
@@ -170,10 +187,10 @@ protected void Setup()
         ]),
     }));
 
-    addSpecification("cooldown", 10);
-    addSpecification("event handler", "scaldingBlastEvent");
-    addSpecification("command template", "scalding blast [at ##Target##]");
-    addSpecification("use ability message", "A blast of scalding, boiling water "
-        "bursts from ##InitiatorPossessive::Name## ##InitiatorWeapon## and "
-        "slams into ##TargetName## with searing fury.");
+    addSpecification("cooldown", 6);
+    addSpecification("event handler", "sparkEvent");
+    addSpecification("command template", "spark [at ##Target##]");
+    addSpecification("use ability message", "A searing burst of flame erupts "
+        "from ##InitiatorPossessive::Name## outstretched hand, striking "
+        "##TargetName##.");
 }

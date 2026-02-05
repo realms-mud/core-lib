@@ -51,10 +51,10 @@ protected void Setup()
     }));
     addSpecification("damage type", "fire");
 
-    addSpecification("repeat effect", 8);
+    addSpecification("repeat effect", 4);
     addSpecification("repeat effect modifiers", ([
-        "/guilds/disciple-of-ferianth/wildfire/apocalyptic-firestorm-intensity.c": 4,
-        "/guilds/disciple-of-ferianth/wildfire/wildfire-intensity.c": 2
+        "/guilds/disciple-of-ferianth/wildfire/apocalyptic-firestorm-intensity.c": 2,
+        "/guilds/disciple-of-ferianth/wildfire/wildfire-intensity.c": 1
     ]));
     addSpecification("repeated ability message", "The apocalyptic firestorm "
         "continues to rage!");
