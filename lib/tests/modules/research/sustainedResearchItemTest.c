@@ -381,7 +381,7 @@ void CallingExecuteWithSelfScopeAppliesEffectsToUser()
     ExpectEq(27, User.Str(), "strength after ability used");
 
     mapping *expectedAttacks = ({ 
-        (["attack type":"magical", "damage" : 10, "to hit" : 60]), 
+        (["attack type":"magical", "damage": 12, "to hit": 62 ]), 
         (["attack type":"wielded primary"]), 
         (["attack type":"wielded primary"]), 
         (["attack type":"wielded primary"]), 

@@ -104,6 +104,16 @@ void CanNotSetRaceToAnUnplayableRace()
 void MonstersCanSetRaceToAnUnplayableRace()
 {
     object monster = clone_object("/lib/realizations/monster.c");
+    object weapon = clone_object("/lib/items/weapon");
+    weapon.set("name", "sword");
+    weapon.set("defense class", 2);
+    weapon.set("weapon class", 10);
+    weapon.set("bonus hit points", 2);
+    weapon.set("material", "galvorn");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
+    move_object(weapon, monster);
+    weapon.equip("sword");
 
     ExpectTrue(monster.Race("fuin-nedesar"), "race is set to fuin-nedesar");
     ExpectEq("fuin-nedesar", monster.Race());
