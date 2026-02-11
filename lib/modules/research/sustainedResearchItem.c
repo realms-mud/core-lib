@@ -51,6 +51,7 @@ protected nomask int addSpecification(string type, mixed value)
             case "hit point cost":
             case "spell point cost":
             case "stamina point cost":
+            case "remove weapon attacks":
             case "cooldown":
             {
                 if(intp(value) && (value > 0))

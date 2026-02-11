@@ -744,3 +744,206 @@ void SupercedeTargetsPlacesNewFoeAtTopOfList()
 
     ExpectEq(newAttacker, Target.getTargetToAttack());
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesModifiersToBonusValues()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target.Name("Frank");
+    Target.addAlias("frank");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.addSkillPoints(200);
+    Target.advanceSkill("long sword", 10);
+    move_object(Target, Room);
+
+    User.addSkillPoints(200);
+    User.advanceSkill("elemental fire", 20);
+
+    ExpectTrue(ResearchItem.testAddSpecification("bonus long sword", 10));
+    ExpectTrue(ResearchItem.testAddSpecification("duration", 60));
+    ExpectTrue(ResearchItem.testAddSpecification("modifiers", ({
+        ([
+            "type": "skill",
+            "name": "elemental fire",
+            "formula": "additive",
+            "rate": 0.25
+        ])
+    })));
+
+    ExpectEq(10, Target.getSkill("long sword"), "initial long sword skill");
+
+    ExpectTrue(ResearchItem.testExecuteOnTarget("throw turnip at frank", User,
+        program_name(ResearchItem)), "can execute command");
+
+    // Base bonus is 10. User has 20 elemental fire with additive rate 0.25,
+    // so modifier adds to_int(20 * 0.25) = 5. Total bonus = 15.
+    ExpectEq(25, Target.getSkill("long sword"),
+        "long sword skill includes modifier-scaled bonus");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetAppliesModifiersToBonusAttacks()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/realizations/player.c");
+    Target.Name("Frank");
+    Target.addAlias("frank");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.addSkillPoints(200);
+    Target.advanceSkill("long sword", 10);
+    move_object(Target, Room);
+
+    User.addSkillPoints(200);
+    User.advanceSkill("elemental fire", 20);
+
+    ExpectTrue(ResearchItem.testAddSpecification("bonus attack", 5));
+    ExpectTrue(ResearchItem.testAddSpecification("bonus damage", 5));
+    ExpectTrue(ResearchItem.testAddSpecification("bonus fire attack", 10));
+    ExpectTrue(ResearchItem.testAddSpecification("duration", 60));
+    ExpectTrue(ResearchItem.testAddSpecification("modifiers", ({
+        ([
+            "type": "skill",
+            "name": "elemental fire",
+            "formula": "additive",
+            "rate": 0.25
+        ])
+    })));
+
+    ExpectEq(({ ([ "attack type": "unarmed",
+                    "to hit": 50,
+                    "damage": 10
+                ]) }), Target.getAttacks(),
+        "Only an unarmed attack before research is applied");
+
+    ExpectTrue(ResearchItem.testExecuteOnTarget("throw turnip at frank", User,
+        program_name(ResearchItem)), "can execute command");
+
+    ExpectEq(({ ([ "attack type": "fire",
+                    "to hit": 75,
+                    "damage": 25
+                ]) }), Target.getAttacks(),
+        "long sword skill includes modifier-scaled bonus");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetWithNoWeaponAttackSetRemovesWeaponAttack()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target.Name("Frank");
+    Target.addAlias("frank");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.addSkillPoints(200);
+    Target.advanceSkill("long sword", 10);
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon.set("name", "sword");
+    weapon.set("defense class", 2);
+    weapon.set("weapon class", 10);
+    weapon.set("bonus hit points", 2);
+    weapon.set("material", "galvorn");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Target);
+    weapon.equip("sword");
+    move_object(Target, Room);
+
+    User.addSkillPoints(200);
+    User.advanceSkill("elemental fire", 20);
+
+    ExpectTrue(ResearchItem.testAddSpecification("bonus fire attack", 10));
+    ExpectTrue(ResearchItem.testAddSpecification("remove weapon attacks", 1));
+    ExpectTrue(ResearchItem.testAddSpecification("duration", 60));
+    ExpectTrue(ResearchItem.testAddSpecification("modifiers", ({
+        ([
+            "type": "skill",
+            "name": "elemental fire",
+            "formula": "additive",
+            "rate": 0.25
+        ])
+    })));
+
+    ExpectEq(({ ([ "attack type": "wielded primary" ]) }), Target.getAttacks(),
+        "Only an unarmed attack before research is applied");
+
+    ExpectTrue(ResearchItem.testExecuteOnTarget("throw turnip at frank", User,
+        program_name(ResearchItem)), "can execute command");
+
+    ExpectEq(({ ([ "attack type": "fire",
+                    "to hit": 65,
+                    "damage": 15
+                ]) }), Target.getAttacks(),
+        "Weapon attack is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExecuteOnTargetWithoutNoWeaponAttackSetDoesNotRemoveWeaponAttack()
+{
+    destruct(Target);
+    object Target = clone_object("/lib/tests/support/services/combatWithMockServices");
+    Target.Name("Frank");
+    Target.addAlias("frank");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.addSkillPoints(200);
+    Target.advanceSkill("long sword", 10);
+
+    object weapon = clone_object("/lib/items/weapon");
+    weapon.set("name", "sword");
+    weapon.set("defense class", 2);
+    weapon.set("weapon class", 10);
+    weapon.set("bonus hit points", 2);
+    weapon.set("material", "galvorn");
+    weapon.set("weapon type", "long sword");
+    weapon.set("equipment locations", OnehandedWeapon);
+    move_object(weapon, Target);
+    weapon.equip("sword");
+    move_object(Target, Room);
+
+    User.addSkillPoints(200);
+    User.advanceSkill("elemental fire", 20);
+
+    ExpectTrue(ResearchItem.testAddSpecification("bonus fire attack", 10));
+    ExpectTrue(ResearchItem.testAddSpecification("duration", 60));
+    ExpectTrue(ResearchItem.testAddSpecification("modifiers", ({
+        ([
+            "type": "skill",
+            "name": "elemental fire",
+            "formula": "additive",
+            "rate": 0.25
+        ])
+    })));
+
+    ExpectEq(({ ([ "attack type": "wielded primary" ]) }), Target.getAttacks(),
+        "Only an unarmed attack before research is applied");
+
+    ExpectTrue(ResearchItem.testExecuteOnTarget("throw turnip at frank", User,
+        program_name(ResearchItem)), "can execute command");
+
+    ExpectEq(({ (["attack type":"wielded primary"]),
+                ([ "attack type": "fire",
+                    "to hit": 65,
+                    "damage": 15
+                ]) }), Target.getAttacks(),
+        "Weapon attack is not removed");
+}

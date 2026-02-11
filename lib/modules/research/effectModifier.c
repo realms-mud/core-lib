@@ -334,6 +334,11 @@ protected nomask object getModifierObject(object owner, mapping specificationDat
                 }
             }
         }
+
+        if(member(specificationData, "remove weapon attacks"))
+        {
+            ret->set("remove weapon attacks", specificationData["remove weapon attacks"]);
+        }
     }
     return ret;
 }

@@ -1022,16 +1022,7 @@ public nomask mapping *getAttacks()
             if (offhand && offhand->query("weapon class") &&
                 (offhand != inventory->equipmentInSlot("wielded primary")))
             {
-                attacksToReturn += ({ (["attack type":"wielded offhand"]) });
-            }
-
-            if (!sizeof(attacksToReturn))
-            {
-                attacksToReturn += ({ ([
-                    "attack type":"unarmed",
-                    "to hit" : 50,
-                    "damage" : 10
-                ]) });
+                attacksToReturn += ({ (["attack type": "wielded offhand"]) });
             }
 
             // Add attacks from external sources
@@ -1069,6 +1060,11 @@ public nomask mapping *getAttacks()
 
         if (modifiers && pointerp(modifiers) && sizeof(modifiers))
         {
+            if(sizeof(filter(modifiers, (: $1->query("remove weapon attacks") :))) > 0)
+            {
+                attacksToReturn = ({ });
+            }
+
             object attacksService = getService("attacks");
             if (attacksService && function_exists("validAttackTypes",
                 attacksService))
@@ -1081,8 +1077,12 @@ public nomask mapping *getAttacks()
                     {
                         if (modifier->query(sprintf("bonus %s attack", attack)))
                             attacksToReturn += ({ (["attack type": attack,
-                                "to hit" : 50 + modifier->query(sprintf("bonus %s attack", attack)),
-                                "damage" : modifier->query(sprintf("bonus %s attack", attack))
+                                "to hit": 50 + modifier->query(sprintf("bonus %s attack", attack)) +
+                                          inventory->inventoryGetAttackBonus(modifier) +
+                                          calculateServiceBonuses("AttackBonus"),
+								"damage": modifier->query(sprintf("bonus %s attack", attack)) +
+                                          inventory->inventoryGetDamageBonus(modifier, attack) +
+                                          calculateServiceBonuses("DamageBonus")
                         ]) });
                     }
                     if (modifier->query("bonus weapon attack") && 
@@ -1094,6 +1094,15 @@ public nomask mapping *getAttacks()
                     }
                 }
             }
+        }
+
+        if (!sizeof(attacksToReturn))
+        {
+            attacksToReturn += ({ ([
+                "attack type": "unarmed",
+                "to hit": 50,
+                "damage": 10
+            ]) });
         }
         combatCache["attacks"] = attacksToReturn;
     }

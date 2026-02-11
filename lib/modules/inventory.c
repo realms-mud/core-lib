@@ -802,8 +802,7 @@ public nomask int inventoryGetDamageBonus(object weapon, string damageType)
 {
     damageType = normalizeDamageType(damageType);
 
-    int ret = (damageType == "physical") ?
-        inventoryGetModifier("combatModifiers", "bonus damage") : 0;
+    int ret = inventoryGetModifier("combatModifiers", "bonus damage");
 
     string skillToUse = 0;
     

@@ -30,6 +30,7 @@ protected int addSpecification(string type, mixed value)
         case "spell point cost":
         case "stamina point cost":
         case "repeat effect":
+        case "remove weapon attacks":
         case "cooldown":
         {
             if(intp(value) && (value > 0))
