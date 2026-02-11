@@ -845,7 +845,7 @@ void CalculateDamageReturnsTheCorrectDamageForInventory()
     object modifier = clone_object("/lib/items/modifierObject");
     modifier.set("fully qualified name", "blah");
     modifier.set("bonus damage", 5);
-    modifier.set("enchantments", (["magical":3, "fire" : 10, "acid" : 10]));
+    modifier.set("enchantments", (["magical": 3, "fire": 10, "acid": 10]));
 
     Attacker.addSkillPoints(100);
     Attacker.advanceSkill("long sword", 8);
