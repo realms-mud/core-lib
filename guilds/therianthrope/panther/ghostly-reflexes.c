@@ -7,14 +7,14 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Primordial Beast");
+    addSpecification("name", "Ghostly Reflexes");
     addSpecification("source", "therianthrope");
-    addSpecification("description", "You channel the essence of the ancient "
-        "primordial bears, gaining tremendous combat prowess while transformed.");
+    addSpecification("description", "Your panther form becomes almost "
+        "incorporeal in its evasiveness, dodging attacks with supernatural ease.");
 
     addSpecification("limited by", ([
         "research active": ({
-            "/guilds/therianthrope/bear/bear-root.c"
+            "/guilds/therianthrope/panther/panther-root.c"
         })
     ]));
 
@@ -24,23 +24,15 @@ protected void Setup()
             "value": 27
         ]));
 
-    addPrerequisite("/guilds/therianthrope/bear/apex-predator.c",
+    addPrerequisite("/guilds/therianthrope/panther/night-eyes.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus strength", 1);
-    addSpecification("bonus damage", 2);
-    addSpecification("bonus attack", 3);
-    addSpecification("bonus defense", 3);
-
-    addSpecification("affected research type", "percentage");
-    addSpecification("affected research", ([
-        "Bear Claws": 25,
-        "Crushing Bite": 25,
-        "Bear Charge": 25,
-        "Maul": 25,
-        "Thunderous Roar": 25
-    ]));
+    addSpecification("bonus dodge", 3);
+    addSpecification("bonus parry", 3);
+    addSpecification("bonus resist physical", 2);
+    addSpecification("bonus resist magical", 3);
+    addSpecification("bonus resist energy", 3);
 }

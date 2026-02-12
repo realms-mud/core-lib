@@ -7,40 +7,42 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Primordial Beast");
+    addSpecification("name", "Lord of the Hunt");
     addSpecification("source", "therianthrope");
-    addSpecification("description", "You channel the essence of the ancient "
-        "primordial bears, gaining tremendous combat prowess while transformed.");
+    addSpecification("description", "Your panther form reaches its ultimate "
+        "potential, a perfect predator of unmatched speed and lethality.");
 
     addSpecification("limited by", ([
         "research active": ({
-            "/guilds/therianthrope/bear/bear-root.c"
+            "/guilds/therianthrope/panther/panther-root.c"
         })
     ]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "therianthrope",
-            "value": 27
+            "value": 31
         ]));
 
-    addPrerequisite("/guilds/therianthrope/bear/apex-predator.c",
+    addPrerequisite("/guilds/therianthrope/panther/phantasmal-panther.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus strength", 1);
-    addSpecification("bonus damage", 2);
-    addSpecification("bonus attack", 3);
-    addSpecification("bonus defense", 3);
+    addSpecification("bonus hit points", 50);
+    addSpecification("bonus attack", 5);
+    addSpecification("bonus damage", 5);
+    addSpecification("bonus dodge", 5);
+    addSpecification("bonus tail attack", 20);
 
     addSpecification("affected research type", "percentage");
     addSpecification("affected research", ([
-        "Bear Claws": 25,
-        "Crushing Bite": 25,
-        "Bear Charge": 25,
-        "Maul": 25,
-        "Thunderous Roar": 25
+        "Pounce": 30,
+        "Hamstring": 30,
+        "Rending Claws": 30,
+        "Savage Frenzy": 30,
+        "Throat Tear": 30,
+        "Predatory Surge": 30
     ]));
 }

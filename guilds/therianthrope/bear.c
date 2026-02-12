@@ -74,9 +74,12 @@ private void ThirteenthLevel()
 private void FifteenthLevel()
 {
     addResearchElement("/guilds/therianthrope/bear/claw-mastery.c");
+    addResearchElement("/guilds/therianthrope/bear/defensive-stance.c");
 
     addChild("/guilds/therianthrope/bear/claw-mastery.c",
         "/guilds/therianthrope/bear/bear-charge.c");
+    addChild("/guilds/therianthrope/bear/defensive-stance.c",
+        "/guilds/therianthrope/bear/den-mother.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

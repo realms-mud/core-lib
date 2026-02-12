@@ -7,40 +7,40 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Primordial Beast");
+    addSpecification("name", "Shadow Stalker");
     addSpecification("source", "therianthrope");
-    addSpecification("description", "You channel the essence of the ancient "
-        "primordial bears, gaining tremendous combat prowess while transformed.");
+    addSpecification("description", "You move like a shadow in panther form, "
+        "nearly invisible to your prey until it is too late.");
 
     addSpecification("limited by", ([
         "research active": ({
-            "/guilds/therianthrope/bear/bear-root.c"
+            "/guilds/therianthrope/panther/panther-root.c"
         })
     ]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "therianthrope",
-            "value": 27
+            "value": 21
         ]));
 
-    addPrerequisite("/guilds/therianthrope/bear/apex-predator.c",
+    addPrerequisite("/guilds/therianthrope/panther/killing-instinct.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus strength", 1);
-    addSpecification("bonus damage", 2);
-    addSpecification("bonus attack", 3);
-    addSpecification("bonus defense", 3);
+    addSpecification("bonus attack", 5);
+    addSpecification("bonus damage", 1);
+    addSpecification("bonus claw attack", 12);
 
     addSpecification("affected research type", "percentage");
     addSpecification("affected research", ([
-        "Bear Claws": 25,
-        "Crushing Bite": 25,
-        "Bear Charge": 25,
-        "Maul": 25,
-        "Thunderous Roar": 25
+        "Pounce": 25,
+        "Hamstring": 25,
+        "Rending Claws": 25,
+        "Savage Frenzy": 25,
+        "Throat Tear": 25,
+        "Predatory Surge": 25
     ]));
 }

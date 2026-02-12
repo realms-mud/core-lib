@@ -7,40 +7,29 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Primordial Beast");
+    addSpecification("name", "Feline Agility");
     addSpecification("source", "therianthrope");
-    addSpecification("description", "You channel the essence of the ancient "
-        "primordial bears, gaining tremendous combat prowess while transformed.");
+    addSpecification("description", "Your panther form grows more agile, "
+        "allowing you to weave through attacks with fluid grace.");
 
     addSpecification("limited by", ([
         "research active": ({
-            "/guilds/therianthrope/bear/bear-root.c"
+            "/guilds/therianthrope/panther/panther-root.c"
         })
     ]));
 
     addPrerequisite("level",
         (["type":"level",
             "guild": "therianthrope",
-            "value": 27
+            "value": 5
         ]));
 
-    addPrerequisite("/guilds/therianthrope/bear/apex-predator.c",
+    addPrerequisite("/guilds/therianthrope/panther/keen-senses.c",
         (["type":"research"]));
 
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus strength", 1);
-    addSpecification("bonus damage", 2);
-    addSpecification("bonus attack", 3);
-    addSpecification("bonus defense", 3);
-
-    addSpecification("affected research type", "percentage");
-    addSpecification("affected research", ([
-        "Bear Claws": 25,
-        "Crushing Bite": 25,
-        "Bear Charge": 25,
-        "Maul": 25,
-        "Thunderous Roar": 25
-    ]));
+    addSpecification("bonus dodge", 2);
+    addSpecification("bonus defense", 2);
 }

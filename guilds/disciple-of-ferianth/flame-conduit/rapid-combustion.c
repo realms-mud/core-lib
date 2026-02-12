@@ -32,7 +32,6 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
 
-    // Reduces cooldowns of form abilities
     addSpecification("affected research type", "decrease cooldown");
     addSpecification("affected research", ([
         "Flame Burst": 2,

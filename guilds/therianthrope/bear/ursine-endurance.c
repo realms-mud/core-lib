@@ -30,7 +30,7 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
-    addSpecification("bonus ressit physical", 1);
+    addSpecification("bonus resist physical", 1);
     addSpecification("bonus soak", 1);
     addSpecification("bonus hit points", 25);
 }

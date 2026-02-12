@@ -33,4 +33,13 @@ protected void Setup()
     addSpecification("bonus strength", 2);
     addSpecification("bonus constitution", 2);
     addSpecification("bonus attack", 2);
+
+    addSpecification("affected research type", "percentage");
+    addSpecification("affected research", ([
+        "Bear Claws": 20,
+        "Crushing Bite": 20,
+        "Bear Charge": 20,
+        "Maul": 20,
+        "Thunderous Roar": 20
+    ]));
 }

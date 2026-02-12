@@ -104,14 +104,16 @@ public nomask string *validAttackTypes()
     attackFiles -= ({ AttackBlueprint });
     foreach(string attack in attackFiles)
     {
-        object attackObj = getAttack(regreplace(attack, "Attack.c", ""));
+		string attackType = regreplace(attack, "Attack.c", "");
+        object attackObj = getAttack(attackType);
         if(attackObj)
         {
-            ret += ({ attackObj->getDamageType() });
+            ret += ({ attackType });
         }
     }
     ret = m_indices(mkmapping(ret));
-    return ret + ({ });
+
+    return ret - ({ "base" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
