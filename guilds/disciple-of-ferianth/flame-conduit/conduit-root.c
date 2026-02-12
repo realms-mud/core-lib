@@ -30,7 +30,6 @@ protected void Setup()
     addSpecification("trait",
         "/guilds/disciple-of-ferianth/flame-conduit/flame-conduit-active.c");
 
-
     addSpecification("command template", "flame conduit [form]");
     addSpecification("use ability activate message", "Sacred fire erupts from "
         "within ##InitiatorName## as ##InitiatorSubjective## ##Infinitive::transform## "

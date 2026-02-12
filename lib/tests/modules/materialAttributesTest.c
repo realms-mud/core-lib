@@ -713,3 +713,105 @@ void ShortReturnsCorrectMessageInSomeLight()
 
     destruct(Service);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsOverrideWhenFormTraitIsActive()
+{
+    Attributes.Name("Bob");
+    Attributes.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+
+    ExpectEq("A massive bear (Bob)", Attributes.short(),
+        "short returns form description with player name");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsNormalValueWhenNoFormTraitActive()
+{
+    Attributes.Name("Bob");
+
+    ExpectEq("Bob", Attributes.short(),
+        "short returns normal name when no form trait is active");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsNormalValueAfterFormTraitRemoved()
+{
+    Attributes.Name("Bob");
+    Attributes.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    ExpectEq("A massive bear (Bob)", Attributes.short(),
+        "short returns form description while trait is active");
+
+    Attributes.removeTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    ExpectEq("Bob", Attributes.short(),
+        "short returns normal name after trait is removed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsGhostNotFormWhenDead()
+{
+    Attributes.Name("Bob");
+    Attributes.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    Attributes.Ghost(1);
+
+    ExpectEq("ghost of Bob", Attributes.short(),
+        "short returns ghost description even when form trait is active");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ShortReturnsEmptyWhenInvisibleEvenWithFormTrait()
+{
+    Attributes.Name("Bob");
+    Attributes.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    Attributes.Invisibility(1);
+
+    ExpectEq("", Attributes.short(),
+        "short returns empty when invisible even with form trait");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsFormDescriptionWhenFormTraitIsActive()
+{
+    Attributes.Name("Tantor");
+    Attributes.Gender("male");
+    Attributes.Race("elf");
+    Attributes.hitPoints(200);
+    Attributes.Title("the Unclean");
+    Attributes.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+
+    string longDesc = Attributes.long();
+
+    ExpectTrue(sizeof(regexp(({ longDesc }),
+        "A massive bear \\(Tantor\\)")),
+        "long description shows form name with player name");
+    ExpectTrue(sizeof(regexp(({ longDesc }),
+        "shapeshifted")),
+        "long description shows shapeshifted instead of race");
+    ExpectTrue(sizeof(regexp(({ longDesc }),
+        "Before you stands A massive bear")),
+        "long description shows form-specific description text");
+    ExpectFalse(sizeof(regexp(({ longDesc }),
+        "the Unclean")),
+        "long description does not show title when in form");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void LongReturnsNormalDescriptionWhenNoFormTrait()
+{
+    Attributes.Name("Tantor");
+    Attributes.Gender("male");
+    Attributes.Race("elf");
+    Attributes.hitPoints(200);
+    Attributes.Title("the Unclean");
+
+    string longDesc = Attributes.long();
+
+    ExpectTrue(sizeof(regexp(({ longDesc }),
+        "Tantor the Unclean")),
+        "long description shows normal pretitle/name/title");
+    ExpectTrue(sizeof(regexp(({ longDesc }),
+        "elf")),
+        "long description shows race");
+    ExpectFalse(sizeof(regexp(({ longDesc }),
+        "shapeshifted")),
+        "long description does not show shapeshifted");
+}

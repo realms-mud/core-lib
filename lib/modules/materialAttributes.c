@@ -360,7 +360,17 @@ public varargs string short(string newShort)
         }
         case 9..1000:
         {
-            ret = shortDescription;
+            object traits = getModule("traits");
+            string traitDesc = traits ? traits->activeShortDescription() : 0;
+
+            if (traitDesc)
+            {
+                ret = sprintf("%s (%s)", traitDesc, capitalize(name));
+            }
+            else
+            {
+                ret = shortDescription;
+            }
             break;
         }
     }
@@ -487,26 +497,45 @@ public varargs string description(string msg)
 private string basicLongDescription(object configuration, 
     string colorConfiguration)
 {
-    string ret = capitalize(name);
+    string ret;
 
-    if (Pretitle())
+    object traits = getModule("traits");
+    string formDesc = traits ? traits->activeShortDescription() : 0;
+
+    if (formDesc)
     {
-        ret = Pretitle() + " " + ret;
+        ret = configuration->decorate(
+            sprintf("%s (%s)", formDesc, capitalize(name)),
+            "name", "long description", colorConfiguration);
     }
-
-    if (Title())
+    else
     {
-        ret += " " + Title();
-    }
+        ret = capitalize(name);
 
-    ret = configuration->decorate(ret, "name", "long description", 
-        colorConfiguration);
+        if (Pretitle())
+        {
+            ret = Pretitle() + " " + ret;
+        }
+
+        if (Title())
+        {
+            ret += " " + Title();
+        }
+
+        ret = configuration->decorate(ret, "name", "long description", 
+            colorConfiguration);
+    }
 
     ret += configuration->decorate(sprintf(" (%s)", Gender()),
         "gender", "long description", colorConfiguration);
 
     object race = getModule("races");
-    if (race && race->Race())
+    if (formDesc)
+    {
+        ret += configuration->decorate(" (shapeshifted)",
+            "race", "long description", colorConfiguration);
+    }
+    else if (race && race->Race())
     {
         ret += configuration->decorate(sprintf(" (%s)",
             race->apparentRace() ? race->apparentRace() : race->Race()),
@@ -514,7 +543,14 @@ private string basicLongDescription(object configuration,
     }
     ret += "\n";
 
-    if (longDescription && (longDescription != ""))
+    if (formDesc)
+    {
+        ret += configuration->decorate(
+            format(sprintf("Before you stands %s. Underneath the bestial "
+                "form, you can recognize %s.", formDesc, capitalize(name)), 78),
+            "description", "long description", colorConfiguration);
+    }
+    else if (longDescription && (longDescription != ""))
     {
         ret += configuration->decorate(format(longDescription, 78),
             "description", "long description", colorConfiguration);

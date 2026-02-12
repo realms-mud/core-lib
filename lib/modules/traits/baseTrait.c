@@ -105,6 +105,7 @@ protected int addSpecification(string type, mixed value)
             case "expire message":
             case "root":
             case "opposing root":
+            case "override short description":
             {
                 if(value && stringp(value))
                 {

@@ -597,3 +597,21 @@ public nomask string traitsList(string *types)
     }
     return "\n" + ret;
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string activeShortDescription()
+{
+    string ret = 0;
+    string *traitList = m_indices(traits);
+
+    foreach(string trait in traitList)
+    {
+        object traitObj = TraitService()->traitObject(trait);
+        if (traitObj && traitObj->query("override short description"))
+        {
+            ret = traitObj->query("override short description");
+            break;
+        }
+    }
+    return ret;
+}

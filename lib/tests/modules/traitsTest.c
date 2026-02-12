@@ -639,3 +639,49 @@ void MultipleNotificationsCallEventHandlerMultipleTimes()
     
     ToggleCallOutBypass();
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void ActiveShortDescriptionReturnsNullWhenNoFormTraitActive()
+{
+    object User = clone_object("/lib/realizations/player.c");
+    User.Name("Bob");
+    User.addAlias("bob");
+
+    ExpectEq(0, User.activeShortDescription(),
+        "activeShortDescription returns null when no form trait is active");
+
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActiveShortDescriptionReturnsOverrideWhenFormTraitActive()
+{
+    object User = clone_object("/lib/realizations/player.c");
+    User.Name("Bob");
+    User.addAlias("bob");
+
+    User.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+
+    ExpectEq("A massive bear", User.activeShortDescription(),
+        "activeShortDescription returns the override short description");
+
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActiveShortDescriptionReturnsNullAfterFormTraitRemoved()
+{
+    object User = clone_object("/lib/realizations/player.c");
+    User.Name("Bob");
+    User.addAlias("bob");
+
+    User.addTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    ExpectEq("A massive bear", User.activeShortDescription(),
+        "activeShortDescription returns value while trait is active");
+
+    User.removeTrait("/lib/tests/support/traits/testTraitWithShortOverride.c");
+    ExpectEq(0, User.activeShortDescription(),
+        "activeShortDescription returns null after trait is removed");
+
+    destruct(User);
+}

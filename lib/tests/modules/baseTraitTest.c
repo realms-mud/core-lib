@@ -313,3 +313,19 @@ void CanSetTriggeringResearch()
     ExpectEq(1, Trait.addSpecification("triggering research", "/lib/tests/support/research/testSustainedResearchItem.c"), "set the triggering research");
     ExpectEq("/lib/tests/support/research/testSustainedResearchItem.c", Trait.query("triggering research"), "can query the triggering research");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void SettingInvalidOverrideShortDescriptionThrowsError()
+{
+    string err = catch (Trait.addSpecification("override short description", 3); nolog);
+    string expectedError = "*ERROR - trait: The 'override short description' value must be a string.\n";
+
+    ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid override short description");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanSetOverrideShortDescription()
+{
+    ExpectEq(1, Trait.addSpecification("override short description", "A massive bear"), "set the override short description");
+    ExpectEq("A massive bear", Trait.query("override short description"), "can query the override short description");
+}
