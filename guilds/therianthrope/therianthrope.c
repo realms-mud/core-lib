@@ -84,5 +84,4 @@ public void SetupGuild()
         "apply": "at level 27",
         "research tree": "/guilds/therianthrope/dragon.c"
     ]));
-
 }
