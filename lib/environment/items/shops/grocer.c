@@ -17,8 +17,7 @@ public void Setup()
         "herbs, and wheels of cheese fill the air with a mingled aroma. "
         "A counter at the back displays loaves of bread and a small set of "
         "scales for weighing purchases. The floor is swept clean, and the "
-        "shop is lit by sunlight streaming through the front window. "
-        "##UseDescriptionSet##"
+        "shop is lit by sunlight streaming through the front window."
     );
 
     addNearDarkDescriptionTemplate(

@@ -122,7 +122,7 @@ private nosave mapping divineUserBlueprints = ([
     //    ]),
     //    "attacks" : (["fire":20]),
     //    "research" : ([
-    //        "flame of faith":1, 
+    //        "flame of faith": 1, 
     //        "ferianth's blaze" : 10,
     //        "purifying fire" : 15
     //    ]),
