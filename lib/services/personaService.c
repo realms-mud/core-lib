@@ -7,6 +7,7 @@
 #include "personas/fighters.h"
 #include "personas/magicUsers.h"
 #include "personas/clerics.h"
+#include "personas/npcs.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping personaBlueprints()
@@ -15,7 +16,8 @@ private nomask mapping personaBlueprints()
         dragonBlueprints +
         magicUserBlueprints +
         fighterBlueprints + 
-        divineUserBlueprints + ([]);
+        divineUserBlueprints +
+        npcBlueprints + ([]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

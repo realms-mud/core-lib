@@ -12,9 +12,10 @@
 #include "icons/keep-interior-icons.h"
 #include "icons/temple-interior-icons.h"
 #include "icons/crypt-interior-icons.h"
+#include "icons/village-icons.h"
 
 private mapping MapIcons = CityIcons + TempleIcons + 
     ForestIcons + RuinedInteriorIcons + KeepInteriorIcons + TempleInteriorIcons +
-    CryptInteriorIcons;
+    CryptInteriorIcons + VillageIcons;
 
 #endif
