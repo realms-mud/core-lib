@@ -13,6 +13,15 @@ protected void Setup()
         "then. I've got the best stock between here and the "
         "capital, and my prices are fair - don't let anyone tell "
         "you otherwise.'");
+    addTopic("village gossip", "@S@'What I don't know is what's "
+        "going on up at the keep. Lord Edran's been keeping to "
+        "himself more than usual, and his captain's been buying "
+        "up every scrap of dried food I can supply.' @D@She "
+        "frowns. @S@'You don't stockpile like that unless "
+        "you're expecting trouble. Or a siege.' @D@She shakes "
+        "her head. @S@'But what do I know? I'm just an old "
+        "woman who sells turnips.'");
+
     addResponse("first conversation", "Show me what you have.",
         "@D@She straightens up and gestures at the laden shelves "
         "with evident pride. @S@'Dried meats, hard cheese, road "
@@ -29,14 +38,6 @@ protected void Setup()
     addResponseTopic("first conversation",
         "You seem to know everyone here.", "village gossip");
 
-    addTopic("village gossip", "@S@'What I don't know is what's "
-        "going on up at the keep. Lord Edran's been keeping to "
-        "himself more than usual, and his captain's been buying "
-        "up every scrap of dried food I can supply.' @D@She "
-        "frowns. @S@'You don't stockpile like that unless "
-        "you're expecting trouble. Or a siege.' @D@She shakes "
-        "her head. @S@'But what do I know? I'm just an old "
-        "woman who sells turnips.'");
     addResponse("village gossip", "A siege? From whom?",
         "@D@Marta waves a hand dismissively, but her eyes "
         "betray concern. @S@'Who knows? Could be bandits "

@@ -227,7 +227,7 @@ void WhenMessagesAreSuppressedDescriptionCanBeNull()
 void GetDescriptionFromSetReturnsCorrectItemDescription()
 {
     destruct(Element);
-    Element = clone_object("/lib/environment/items/camp-fire.c");
+    Element = clone_object("/lib/environment/items/lighting/camp-fire.c");
 
     ExpectEq("You see the area around the campfire has been cleared away "
         "to place a barrier\nbetween the fire and other combustible objects. "

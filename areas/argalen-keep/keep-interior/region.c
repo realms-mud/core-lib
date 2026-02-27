@@ -8,7 +8,7 @@ inherit "/lib/environment/region.c";
 public void Setup()
 {
     setRegionName("Argalen Keep Interior");
-    setRegionType("keep interior");
+    setRegionType("stone keep");
     setDimensions(10, 8);
 
     // === Ground Floor ===

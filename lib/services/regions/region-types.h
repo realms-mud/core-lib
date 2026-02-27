@@ -402,7 +402,7 @@ protected mapping RegionTypes = ([
     ]),
 
     "temple": ([
-        "interior": "/lib/environment/interiors/ruin.c",
+        "interior": "/lib/environment/interiors/stone-temple.c",
         "potential features": ([ ]),
         "potential items": ([ ]),
         "potential objects": ({ }),
@@ -417,7 +417,7 @@ protected mapping RegionTypes = ([
     ]),
 
     "keep": ([
-        "interior": "/lib/environment/interiors/ruin.c",
+        "interior": "/lib/environment/interiors/stone-keep.c",
         "potential features": ([ ]),
         "potential items": ([ ]),
         "potential objects": ({ }),

@@ -19,8 +19,12 @@ public void Setup()
         }));
 
     addDescriptionTemplate("a ##Adjective##");
-    addNearDarkDescriptionTemplate("a freezing darkness. The cold bites through the blackness, and the outlines of icy stone can barely be seen.");
-    addLowLightDescriptionTemplate("a dark, frost-laced hall. Faint light glimmers off sheets of ice along the walls.");
-    addDimLightDescriptionTemplate("a dimly-lit ##Adjective##, the light casting pale reflections in the frost");
-    addSomeLightDescriptionTemplate("a cold, clear ##Adjective##, every frozen detail illuminated by the light");
+    addNearDarkDescriptionTemplate("a freezing darkness. The cold bites "
+        "through the blackness, and the outlines of icy stone can barely be seen.");
+    addLowLightDescriptionTemplate("a dark, frost-laced hall. Faint light "
+        "glimmers off sheets of ice along the walls.");
+    addDimLightDescriptionTemplate("a dimly-lit ##Adjective##, the light casting "
+        "pale reflections in the frost");
+    addSomeLightDescriptionTemplate("a cold, clear ##Adjective##, every frozen "
+        "detail illuminated by the light");
 }

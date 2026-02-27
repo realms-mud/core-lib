@@ -18,4 +18,8 @@ public void Setup()
 
     addExit("south", "/areas/argalen-keep/surrounding/12x2.c");
     addExit("north", "/areas/argalen-keep/surrounding/12x4.c");
+    addExit("west", "/areas/argalen-keep/surrounding/10x3.c");
+    addFeature("/lib/environment/features/paths/dirt-road.c", "west");
+    addExit("east", "/areas/argalen-keep/surrounding/14x3.c");
+    addFeature("/lib/environment/features/paths/trail.c", "east");
 }

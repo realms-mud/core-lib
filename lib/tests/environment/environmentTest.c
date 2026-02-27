@@ -1877,12 +1877,12 @@ void CorrectlyExtinguishActiveLightSource()
 /////////////////////////////////////////////////////////////////////////////
 void DecayingLightsCorrectlyDisplayed()
 {
-    object campfire = load_object("/lib/environment/items/camp-fire.c");
+    object campfire = load_object("/lib/environment/items/lighting/camp-fire.c");
 
     Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
+    Environment.testAddItem("/lib/environment/items/lighting/camp-fire.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person.Name("dwight");
@@ -1943,17 +1943,17 @@ void DecayingLightsCorrectlyDisplayed()
 /////////////////////////////////////////////////////////////////////////////
 void EnvironmentsIndependentlyHandleTheSameLightSource()
 {
-    object campfire = load_object("/lib/environment/items/camp-fire.c");
+    object campfire = load_object("/lib/environment/items/lighting/camp-fire.c");
 
     Service.timeOfDay("midnight");
     Environment.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
     Environment.testAddItem("/lib/environment/items/lighting/candle.c", "north");
-    Environment.testAddItem("/lib/environment/items/camp-fire.c", "west");
+    Environment.testAddItem("/lib/environment/items/lighting/camp-fire.c", "west");
 
     object environment2 =
         clone_object("/lib/tests/support/environment/testEnvironment.c");
     environment2.testSetTerrain("/lib/tests/support/environment/fakeTerrain.c");
-    environment2.testAddItem("/lib/environment/items/camp-fire.c", "west");
+    environment2.testAddItem("/lib/environment/items/lighting/camp-fire.c", "west");
 
     object person = clone_object("/lib/tests/support/services/mockPlayer.c");
     person.Name("dwight");

@@ -174,7 +174,7 @@ void ActiveAndInactiveLightSourcesCorrectlyDisplayed()
 void CanSetActiveDecayingLighting()
 {
     destruct(Element);
-    Element = clone_object("/lib/environment/items/camp-fire.c");
+    Element = clone_object("/lib/environment/items/lighting/camp-fire.c");
 
     ExpectEq("there are charred cinders and the ashen remains of a small "
         "campfire", 
@@ -200,7 +200,7 @@ void CanSetActiveDecayingLighting()
 void ActiveDecayingLightingWillResetToNoLight()
 {
     destruct(Element);
-    Element = clone_object("/lib/environment/items/camp-fire.c");
+    Element = clone_object("/lib/environment/items/lighting/camp-fire.c");
 
     ExpectEq("there are charred cinders and the ashen remains of a small "
         "campfire",

@@ -8,11 +8,11 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/village.c");
-    addBuilding("/lib/environment/buildings/shops/inn.c", "north",
+    addBuilding("/lib/environment/buildings/shops/inn.c", "west",
         "/areas/argalen-keep/surrounding/inn/0x0.c");
     addBuilding("/lib/environment/buildings/shops/bakery.c", "south");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
-    addItem("/lib/environment/items/lighting/lantern.c", "north");
+    addItem("/lib/environment/items/lighting/lantern.c", "west");
 
     addDecorator("village east-west road");
 

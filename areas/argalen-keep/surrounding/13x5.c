@@ -9,10 +9,10 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/village.c");
     addBuilding("/lib/environment/buildings/trades/market.c", "south");
-    addBuilding("/lib/environment/buildings/shops/grocer.c", "north",
-        "/areas/argalen-keep/surrounding/market/0x0.c");
+    addBuilding("/lib/environment/buildings/shops/grocer.c", "east",
+        "/areas/argalen-keep/surrounding/13x6.c");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
-    addItem("/lib/environment/items/lighting/lantern.c", "south");
+    addItem("/lib/environment/items/lighting/lantern.c", "east");
 
     addDecorator("village east-west road");
 

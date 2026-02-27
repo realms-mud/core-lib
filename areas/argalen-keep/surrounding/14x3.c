@@ -12,7 +12,7 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "northeast");
     addFeature("/lib/environment/features/water/creek.c", "south");
 
-    addExit("west", "/areas/argalen-keep/surrounding/13x3.c");
+    addExit("west", "/areas/argalen-keep/surrounding/12x3.c");
     addFeature("/lib/environment/features/paths/trail.c", "west");
     addExit("east", "/areas/argalen-keep/surrounding/15x3.c");
     addFeature("/lib/environment/features/paths/trail.c", "east");

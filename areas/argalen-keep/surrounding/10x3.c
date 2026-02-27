@@ -13,7 +13,7 @@ public void Setup()
     addBuilding("/lib/environment/buildings/homes/farm-house.c", "north");
     addBuilding("/lib/environment/buildings/trades/barn.c", "southwest");
 
-    addExit("east", "/areas/argalen-keep/surrounding/11x3.c");
+    addExit("east", "/areas/argalen-keep/surrounding/12x3.c");
     addFeature("/lib/environment/features/paths/dirt-road.c", "east");
     addExit("west", "/areas/argalen-keep/surrounding/9x3.c");
     addFeature("/lib/environment/features/paths/trail.c", "west");

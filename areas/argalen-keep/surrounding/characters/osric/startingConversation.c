@@ -11,6 +11,14 @@ protected void Setup()
         "his reading and offers a warm, if weary, smile. "
         "@S@'Welcome, child. Whether you seek solace or simply "
         "shelter from the road, you are welcome here.'");
+    addTopic("the chapel", "@S@'I came here as a young man, full "
+        "of certainty about the world.' @D@He chuckles softly. "
+        "@S@'The years have a way of replacing certainty with "
+        "questions, but I find the questions more honest.' @D@His "
+        "expression turns more serious. @S@'Of late, I have felt "
+        "a shadow growing. Something stirs in the east, in the "
+        "old hills. The land itself seems uneasy.'");
+
     addResponse("first conversation", "What is this place?",
         "@S@'This is a humble chapel, dedicated to the light that "
         "guides us through darkness. I have tended it for nearly "
@@ -25,13 +33,6 @@ protected void Setup()
         "me what weighs on your mind. I find that burdens shared "
         "are burdens halved.'");
 
-    addTopic("the chapel", "@S@'I came here as a young man, full "
-        "of certainty about the world.' @D@He chuckles softly. "
-        "@S@'The years have a way of replacing certainty with "
-        "questions, but I find the questions more honest.' @D@His "
-        "expression turns more serious. @S@'Of late, I have felt "
-        "a shadow growing. Something stirs in the east, in the "
-        "old hills. The land itself seems uneasy.'");
     addResponse("the chapel", "A shadow?",
         "@D@Osric shakes his head slowly. @S@'I cannot name it. "
         "But I have lived long enough to know the difference "
