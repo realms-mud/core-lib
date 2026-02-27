@@ -7,7 +7,7 @@ inherit "/lib/environment/items/baseItem.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("display case");
+    Name("museum display case");
     addAlias("case");
     addAlias("glass case");
     addAlias("cabinet");
