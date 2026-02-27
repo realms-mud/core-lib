@@ -11,7 +11,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/forge-fire.c", "north");
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/furniture/rack.c", "east");
-    addItem("/lib/environment/items/furniture/chest.c", "south");
+    addItem("/lib/environment/items/furniture/coffer.c", "south");
     addShop("/lib/environment/shopInventories/swordsmith.c");
 
     addObject("/areas/argalen-keep/surrounding/characters/branna/branna.c");
