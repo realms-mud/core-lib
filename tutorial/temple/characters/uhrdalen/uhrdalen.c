@@ -21,9 +21,13 @@ protected void Setup()
     SetUpPersonaOfLevel("wraith", 20);
 
     addConversation("/tutorial/temple/characters/uhrdalen/startingConversation.c");
+    addConversation("/tutorial/temple/characters/uhrdalen/betweenTestsConversation.c");
+    addConversation("/tutorial/temple/characters/uhrdalen/finalConversation.c");
 
     registerEventHandler("uhrdalenLeft");
     registerEventHandler("startFirstTest");
+    registerEventHandler("questCompleted");
+    registerEventHandler("revealName");
 }
 
 /////////////////////////////////////////////////////////////////////////////

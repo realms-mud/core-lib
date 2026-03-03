@@ -88,6 +88,13 @@ private mapping squareDisplay = ([
         "8-bit": "\x1b[0;38;5;244m",
         "24-bit": "\x1b[0;38;2;120;120;160m"
     ]),
+    "success":([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;248;1m",
+        "3-bit": "\x1b[0;34;1m",
+        "8-bit": "\x1b[0;38;5;20;1m",
+        "24-bit": "\x1b[0;38;2;0;0;220;1m"
+    ]),
 ]);
 
 private mapping gridDisplay = ([
@@ -369,8 +376,14 @@ public void finishPress()
 
         if (isValidPattern())
         {
+            object user = this_player();
+            string colorConfig = (objectp(user) && user->colorConfiguration()) ?
+                user->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
             tell_room(environment(this_player()), format(
-                "\x1b[0;34;1mA rune appears on the table.\x1b[0m", 78));
+                squareDisplay["success"][colorConfig] +
+                "A rune appears on the table." + closing, 78));
 
             object rune = 
                 clone_object("/tutorial/temple/objects/rune-negation.c");
@@ -386,7 +399,7 @@ public void finishPress()
                 owner);
 
             buttonsCanBePressed = 0;
-            stateMachine->receiveEvent(this_player(), "magicSquareCompleted");
+            stateMachine->receiveEvent(this_player(), "startSecondTest");
         }
     }
     else
@@ -402,11 +415,16 @@ public int allowMove()
 
     if (!isValidPattern())
     {
+        object user = this_player();
+        string colorConfig = (objectp(user) && user->colorConfiguration()) ?
+            user->colorConfiguration() : "none";
+        string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
         string message = format("As you approach the liquid, a brilliant arc of "
             "lightning crosses your path. You decide against "
             "proceeding.", 78);
 
-        write("\x1b[0;35m" + message + "\x1b[0m\n");
+        write(squareDisplay["grid"][colorConfig] + message + closing + "\n");
         ret = 0;
     }
     return ret;

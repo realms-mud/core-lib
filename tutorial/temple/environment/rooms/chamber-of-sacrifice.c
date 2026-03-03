@@ -16,17 +16,19 @@ public void Setup()
     addDecorator("ruined interior west wall");
     addDecorator("ruined interior west entry alcove", "third test");
 
-    // Second test
+    // Third test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "third test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "third test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "third test");
+
+    addObject("/tutorial/temple/objects/crucible.c");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private object pilon()
+private object crucible()
 {
-    return present("pilon-hidden", this_object());
+    return present("crucible-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,9 +36,16 @@ public int moveToIsAllowed(object user, object toLocation)
 {
     int ret = 1;
 
-    if (pilon())
+    if (crucible())
     {
-        ret = pilon()->allowMove();
+        ret = crucible()->allowMove();
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string suppressDeath()
+{
+    return "The spectral energy of the chamber sustains you. You "
+        "cannot die here, but the pain is very real.\n";
 }

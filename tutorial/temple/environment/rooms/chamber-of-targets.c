@@ -16,17 +16,19 @@ public void Setup()
     addDecorator("ruined interior west wall");
     addDecorator("ruined interior west entry alcove", "sixth test");
 
-    // Second test
+    // Sixth test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "sixth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "sixth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-5x5.c", "sixth test");
+
+    addObject("/tutorial/temple/objects/gauntlet.c");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private object pilon()
+private object gauntlet()
 {
-    return present("pilon-hidden", this_object());
+    return present("gauntlet-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -34,9 +36,16 @@ public int moveToIsAllowed(object user, object toLocation)
 {
     int ret = 1;
 
-    if (pilon())
+    if (gauntlet())
     {
-        ret = pilon()->allowMove();
+        ret = gauntlet()->allowMove();
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string suppressDeath()
+{
+    return "The chamber's ancient magic sustains you at the brink of "
+        "death. You must endure.\n";
 }

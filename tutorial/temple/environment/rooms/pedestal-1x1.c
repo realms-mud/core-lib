@@ -4,8 +4,6 @@
 //*****************************************************************************
 inherit "/lib/environment/environment.c";
 
-object Uhrdalen;
-
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
@@ -53,10 +51,19 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 public void spawnUhrdalen(object stateMachine, object player)
 {
-    Uhrdalen = clone_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c");
-    Uhrdalen->registerEvent(this_object());
-    move_object(Uhrdalen, this_object());
-    command("talk uhrdalen", player);
+    object uhrdalen = StateMachine ?
+        StateMachine->getUhrdalen() : 0;
+
+    if (objectp(uhrdalen))
+    {
+        string owner = cloneOwner();
+        object location = (owner && member(instances, owner)) ?
+            instances[owner] : this_object();
+
+        uhrdalen->registerEvent(this_object());
+        move_object(uhrdalen, location);
+        command("talk uhrdalen", player);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -87,6 +94,15 @@ public void uhrdalenLeft(object uhrdalen, object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public void revealName(object uhrdalen, object player)
+{
+    if (objectp(uhrdalen))
+    {
+        uhrdalen->revealName();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private object pedestal()
 {
     string owner = cloneOwner();
@@ -102,21 +118,57 @@ public void startFirstTest(object uhrdalen, object player)
         pedestal()->startFirstTest();
     }
 
-    if (objectp(Uhrdalen))
-    {
-        object *items = deep_inventory(Uhrdalen);
-        if (sizeof(items))
-        {
-            foreach(object item in items)
-            {
-                destruct(item);
-            }
-        }
-        destruct(Uhrdalen);
-    }
     if (StateMachine)
     {
         StateMachine->receiveEvent(player, "startFirstTest");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onStateChanged(object caller, string newState)
+{
+    ::onStateChanged(caller, newState);
+
+    if (pedestal())
+    {
+        switch(newState)
+        {
+            case "second test":
+            {
+                pedestal()->startSecondTest();
+                break;
+            }
+            case "third test":
+            {
+                pedestal()->startThirdTest();
+                break;
+            }
+            case "fourth test":
+            {
+                pedestal()->startFourthTest();
+                break;
+            }
+            case "fifth test":
+            {
+                pedestal()->startFifthTest();
+                break;
+            }
+            case "sixth test":
+            {
+                pedestal()->startSixthTest();
+                break;
+            }
+            case "seventh test":
+            {
+                pedestal()->startSeventhTest();
+                break;
+            }
+            case "quest complete":
+            {
+                pedestal()->startEighthTest();
+                break;
+            }
+        }
     }
 }
 
@@ -159,7 +211,6 @@ public int resetEverything(string command)
 {
     write("Resetting all the things!\n");
 
-    destruct(Uhrdalen);
     pedestal()->pressPlateOfDeath(1);
     this_player()->resetQuest("/tutorial/temple/stateMachine/obedienceStateMachine.c");
     load_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c")->resetConversationState();

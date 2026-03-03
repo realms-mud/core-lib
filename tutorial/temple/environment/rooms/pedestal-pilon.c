@@ -20,15 +20,15 @@ public void Setup()
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-2x5.c", "second test");
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-2.c", "second test");
 
-    addObject("/tutorial/temple/objects/pilon.c");
+    addObject("/tutorial/temple/objects/echo-pool.c");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private object pilon()
+private object echoPool()
 {
-    return present("pilon-hidden", this_object());
+    return present("pool-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,9 +36,9 @@ public int moveToIsAllowed(object user, object toLocation)
 {
     int ret = 1;
 
-    if (pilon())
+    if (echoPool())
     {
-        ret = pilon()->allowMove();
+        ret = echoPool()->allowMove();
     }
     return ret;
 }

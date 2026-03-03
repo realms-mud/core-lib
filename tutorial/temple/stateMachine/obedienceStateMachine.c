@@ -4,17 +4,15 @@
 //*****************************************************************************
 inherit "/lib/modules/quests/questItem.c";
 
+private object Uhrdalen;
+private string HoldingRoom =
+    "/tutorial/temple/environment/rooms/uhrdalen-holding.c";
+
 /////////////////////////////////////////////////////////////////////////////
 private void registerEventHandlers()
 {
     registerEventHandler("spawnUhrdalen");
-    registerEventHandler("startFirstTest");
-    registerEventHandler("startSecondTest");
-    registerEventHandler("startThirdTest");
-    registerEventHandler("startFourthTest");
-    registerEventHandler("startFifthTest");
-    registerEventHandler("startSixthTest");
-    registerEventHandler("startSeventhTest");
+    registerEventHandler("placeUhrdalen");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -48,24 +46,52 @@ protected void Setup()
         "named 'Uhrdalen' spoke to me and assigned me the task of "
         "completing the poem on the wall of runes.");
     addTransition("resistance rune placed", "first test", "startFirstTest");
+    addEntryAction("first test", "hideUhrdalen");
 
-    addState("second test", "When I did more stuff, other things happened.");
+    addState("second test", "I solved a magic square puzzle and found the "
+        "rune of negation. Uhrdalen's voice echoed in my mind, urging me "
+        "onward.");
     addTransition("first test", "second test", "startSecondTest");
+    addEntryAction("second test", "showUhrdalenBetweenTests");
 
-    addState("third test", "When I did more stuff, other things happened.");
+    addState("third test", "I arranged the echoes of Uhrdalen's memories "
+        "and found the runes of weakness and strength. They are the same "
+        "moment viewed from different sides.");
     addTransition("second test", "third test", "startThirdTest");
+    addEntryAction("third test", "showUhrdalenBetweenTests");
 
-    addState("fourth test", "When I did more stuff, other things happened.");
+    addState("fourth test", "I endured the crucible's flames and frost, "
+        "accepting the pain to free both captive spirits. The runes of "
+        "flame and frost were my reward.");
     addTransition("third test", "fourth test", "startFourthTest");
+    addEntryAction("fourth test", "showUhrdalenBetweenTests");
 
-    addState("fifth test", "When I did more stuff, other things happened.");
+    addState("fifth test", "I faced my own shadow in a mirror and learned "
+        "that some battles are won by refusing to fight. The runes of "
+        "fear and doom dissolved from the darkness.");
     addTransition("fourth test", "fifth test", "startFifthTest");
+    addEntryAction("fifth test", "showUhrdalenBetweenTests");
 
-    addState("sixth test", "When I did more stuff, other things happened.");
+    addState("sixth test", "I walked through Uhrdalen's memories and "
+        "relived his tragic choices. The runes of wisdom and endurance "
+        "came at the cost of understanding his pain.");
     addTransition("fifth test", "sixth test", "startSixthTest");
+    addEntryAction("sixth test", "showUhrdalenBetweenTests");
 
-    addState("seventh test", "When I did more stuff, other things happened.");
+    addState("seventh test", "I survived a gauntlet of spectral attacks, "
+        "pushed past endurance, and felt death's loving caress. The "
+        "rune of death was my prize for perseverance.");
     addTransition("sixth test", "seventh test", "startSeventhTest");
+    addEntryAction("seventh test", "showUhrdalenForFinalTest");
+
+    addState("quest complete", "Uhrdalen spoke with me one final time. "
+        "He gave me the rune of envy — his envy of my freedom. The poem "
+        "on the wall is now complete. I understand what obedience truly "
+        "means: not blind submission, but the wisdom to know when to "
+        "yield and when to stand.");
+    addTransition("seventh test", "quest complete", "questCompleted");
+    addEntryAction("quest complete", "onQuestCompleted");
+    addFinalState("quest complete", "success");
 
     setInitialState("entered room");
     startStateMachine();
@@ -76,5 +102,72 @@ protected void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void spawnUhrdalen(object player)
 {
+    Uhrdalen = clone_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c");
+    registerStateActor(Uhrdalen);
     notify("spawnUhrdalen", player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void hideUhrdalen(object player)
+{
+    if (objectp(Uhrdalen))
+    {
+        move_object(Uhrdalen, load_object(HoldingRoom));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void showUhrdalenBetweenTests(object player)
+{
+    if (!objectp(Uhrdalen) || !objectp(player))
+    {
+        return;
+    }
+
+    Uhrdalen->revealName();
+
+    object pedestalRoom = environment(player);
+    move_object(Uhrdalen, pedestalRoom);
+
+    player->characterState(Uhrdalen, CurrentState);
+    call_out("initiateUhrdalenConversation", 1, player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void showUhrdalenForFinalTest(object player)
+{
+    if (!objectp(Uhrdalen) || !objectp(player))
+    {
+        return;
+    }
+
+    Uhrdalen->revealName();
+    player->characterState(Uhrdalen, "seventh test");
+    notify("placeUhrdalen", player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void onQuestCompleted(object player)
+{
+    if (objectp(Uhrdalen) && objectp(player))
+    {
+        object rune = clone_object("/tutorial/temple/objects/rune-envy.c");
+        move_object(rune, environment(Uhrdalen));
+    }
+    hideUhrdalen(player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void initiateUhrdalenConversation(object player)
+{
+    if (objectp(Uhrdalen) && objectp(player))
+    {
+        command("talk uhrdalen", player);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public object getUhrdalen()
+{
+    return Uhrdalen;
 }

@@ -19,19 +19,28 @@ public void Setup()
 
     // Fourth test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "fourth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fourth test");
 
     // Fifth test
-    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-exit-3.c", "fourth test");
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fifth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fifth test");
+
+    addObject("/tutorial/temple/objects/shadow-mirror.c", "fourth test");
+    addObject("/tutorial/temple/objects/dream-pool.c", "fifth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private object pilon()
+private object puzzleObject()
 {
-    return present("pilon-hidden", this_object());
+    object mirror = present("mirror-hidden", this_object());
+    if (mirror) return mirror;
+
+    object dream = present("dream-hidden", this_object());
+    if (dream) return dream;
+
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -39,9 +48,16 @@ public int moveToIsAllowed(object user, object toLocation)
 {
     int ret = 1;
 
-    if (pilon())
+    if (puzzleObject())
     {
-        ret = pilon()->allowMove();
+        ret = puzzleObject()->allowMove();
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string suppressDeath()
+{
+    return "Dark energy sustains you. You cannot die here, but "
+        "the pain is very real.\n";
 }
