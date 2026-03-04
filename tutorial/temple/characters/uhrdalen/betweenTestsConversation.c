@@ -13,9 +13,9 @@ private void AfterMagicSquare()
     addTopic("second test", "@D@Uhrdalen's wispy form materializes before "
         "you. He regards you with what might be approval.\n\n"
         "@S@'You solved the grid. Interesting. The rune you found speaks "
-        "of negation — the denial of that which terrifies us. It is a "
+        "of negation - the denial of that which terrifies us. It is a "
         "powerful word, but an incomplete one.' @D@He pauses. @S@'Tell "
-        "me, ##ActorName## — can you truly negate fear, or merely push "
+        "me, ##ActorName## - can you truly negate fear, or merely push "
         "it aside for a time?'");
 
     addResponse("second test", "Fear can be overcome.",
@@ -27,7 +27,7 @@ private void AfterMagicSquare()
 
     addTopic("after magic square end", "@D@Uhrdalen tilts his skeletal "
         "head. @S@'A fair answer, either way. Fear is the thread that "
-        "runs through all of this — through the poem, through my story, "
+        "runs through all of this - through the poem, through my story, "
         "through yours. You will come to understand it better before "
         "the end.'\n\n@D@He gestures toward the pedestals. @S@'The "
         "orbs have shifted. A new path opens. Continue, seeker.'");
@@ -46,9 +46,9 @@ private void AfterEchoPool()
 {
     addTopic("third test", "@D@Uhrdalen appears once more, his form "
         "flickering at the edges.\n\n@S@'Weakness and strength. You "
-        "arranged the echoes of a life — my life, though you may not "
+        "arranged the echoes of a life - my life, though you may not "
         "have known it. The young mage who knelt before the altar was "
-        "weak in his desire for power. And strong — terribly strong — "
+        "weak in his desire for power. And strong - terribly strong - "
         "in his willingness to pay any price for it.' @D@His voice "
         "drops. @S@'They are the same quality, seen from different "
         "sides of the mirror.'");
@@ -80,11 +80,11 @@ private void AfterEchoPool()
 private void AfterCrucible()
 {
     addTopic("fourth test", "@D@Uhrdalen's form coalesces. He looks at "
-        "your hands — still red from flame and white from frost.\n\n"
+        "your hands - still red from flame and white from frost.\n\n"
         "@S@'Burning. Freezing. You endured both willingly. Most who "
         "reach this chamber try to find a way around the pain. There "
         "is none.' @D@He regards you carefully. @S@'The poem does not "
-        "speak of fire and ice as opposites. They are the same thing — "
+        "speak of fire and ice as opposites. They are the same thing - "
         "the price of serving a master who cares nothing for your "
         "suffering. I burned cities. I was frozen in chains of light. "
         "Both were the cost of obedience.'");
@@ -97,7 +97,7 @@ private void AfterCrucible()
         "@S@'I begin to see the shape of the poem.'");
 
     addTopic("after crucible end", "@S@'Why did I obey?' @D@Uhrdalen "
-        "echoes the question, or answers it — it is hard to tell. "
+        "echoes the question, or answers it - it is hard to tell. "
         "@S@'Because I did not know how to stop. Because the alternative "
         "was worse. Because obedience was all I knew. These are reasons "
         "and they are excuses and they are both true.'\n\n@D@He turns "
@@ -151,7 +151,7 @@ private void AfterMirror()
 /////////////////////////////////////////////////////////////////////////////
 private void AfterDream()
 {
-    addTopic("sixth test", "@D@Uhrdalen appears — and something is "
+    addTopic("sixth test", "@D@Uhrdalen appears - and something is "
         "different. He seems smaller, somehow. More fragile.\n\n@S@'You "
         "walked through my memories. You lived my choices.' @D@His voice "
         "is barely a whisper. @S@'No one has ever done that before. They "

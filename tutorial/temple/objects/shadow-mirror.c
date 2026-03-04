@@ -87,6 +87,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, mirrorColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int allowMove()
 {
     int ret = 1;
@@ -113,17 +133,11 @@ public void completeMirror()
 {
     puzzleSolved = 1;
 
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_player()), format(
-        mirrorColors["success"][colorConfig] +
+    tellRoom(environment(this_player()), "success", format(
         "The shadow dissolves into wisps of darkness that "
         "spiral away into nothing. The mirror cracks and falls silent. "
-        "Two runes clatter to the floor where the shadow stood." +
-        closing, 78));
+        "Two runes clatter to the floor where the shadow stood.",
+        78));
 
     object rune1 =
         clone_object("/tutorial/temple/objects/rune-fear.c");
@@ -178,27 +192,19 @@ public int attackShadow(string str)
 
     string msg = attackMessages[random(sizeof(attackMessages))];
 
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
     write("You strike at the shadow in the mirror!\n");
     say(sprintf("%s strikes at the shadow in the mirror!\n",
         this_player()->Name()));
 
-    tell_room(environment(this_player()), sprintf(
-        mirrorColors["pain"][colorConfig] +
+    tellRoom(environment(this_player()), "pain", sprintf(
         "The mirror cracks where you struck it, then reforms. "
-        "Your reflection grins and strikes back!\n%s" +
-        closing + "\n", msg));
+        "Your reflection grins and strikes back!\n%s\n", msg));
 
     this_player()->hit(20, "magical");
 
-    tell_room(environment(this_player()),
-        mirrorColors["hint"][colorConfig] +
+    tellRoom(environment(this_player()), "hint",
         "The shadow reforms, stronger than before. Perhaps "
-        "fighting is not the answer." + closing + "\n");
+        "fighting is not the answer.\n");
 
     call_out("finishAction", 2);
     return 1;
@@ -225,14 +231,8 @@ public int ignoreShadow(string str)
     string msg = ignoreMessages[min(ignoreCount - 1,
         sizeof(ignoreMessages) - 1)];
 
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_player()),
-        sprintf("%s%s%s\n", mirrorColors["calm"][colorConfig],
-            msg, closing));
+    tellRoom(environment(this_player()), "calm",
+        sprintf("%s\n", msg));
 
     if (ignoreCount >= requiredIgnores)
     {
@@ -240,11 +240,10 @@ public int ignoreShadow(string str)
     }
     else
     {
-        tell_room(environment(this_player()),
-            sprintf("%sThe shadow seems weaker. Continue to "
-            "resist the urge to fight. (%d/%d)%s\n",
-            mirrorColors["hint"][colorConfig],
-            ignoreCount, requiredIgnores, closing));
+        tellRoom(environment(this_player()), "hint",
+            sprintf("The shadow seems weaker. Continue to "
+            "resist the urge to fight. (%d/%d)\n",
+            ignoreCount, requiredIgnores));
         call_out("finishAction", 2);
     }
     return 1;
@@ -272,7 +271,7 @@ public string long()
 
     string desc = sprintf("%sA towering mirror of dark glass stands at "
         "the center of the room. Within it, your reflection moves "
-        "independently — a shadow-version of yourself that snarls and "
+        "independently - a shadow-version of yourself that snarls and "
         "claws at the glass, eager to strike. Its eyes burn with malice. "
         "It is everything you fear about yourself made manifest.%s\n\n"
         "%sYou can 'attack shadow' or you can 'ignore shadow', "

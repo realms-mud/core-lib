@@ -21,7 +21,7 @@ public void Setup()
         "The ingot mold is a hinged iron form with rectangular cavities for "
         "casting metal bars. Its interior is coated with a thin layer of "
         "chalk to prevent sticking, and traces of different metals gleam in "
-        "the crevices — copper green, silver white, and iron black."
+        "the crevices - copper green, silver white, and iron black."
     );
 
     addSomeLightDescriptionTemplate(

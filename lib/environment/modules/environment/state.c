@@ -122,7 +122,7 @@ public nomask object stateMachine()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void setupStateMachine(string owner)
+public nomask varargs void setupStateMachine(string owner, object actor)
 {
     object newSM = StateMachineService->getStateMachine(
         StateMachinePath, owner);
@@ -137,7 +137,17 @@ public nomask varargs void setupStateMachine(string owner)
         StateMachine->registerStateActor(this_object());
 
         pruneStateObjects();
-        currentState(StateMachine->getCurrentState());
+        string state = StateMachine->getCurrentState(actor);
+        if (!state)
+        {
+            state = StateMachine->getCurrentState();
+        }
+
+        if (state != StateMachine->getCurrentState())
+        {
+            StateMachine->syncState(state);
+        }
+        currentState(state);
         createStateObjects();
     }
 }

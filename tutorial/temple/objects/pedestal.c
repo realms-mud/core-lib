@@ -69,6 +69,16 @@ private mapping orbDisplay = ([
 private string currentTest = "none";
 private int platesCanBePressed = 0;
 
+private mapping pedestalColors = ([
+    "success":([
+        "none": "",
+        "grayscale": "\x1b[0;38;5;248;1m",
+        "3-bit": "\x1b[0;34;1m",
+        "8-bit": "\x1b[0;38;5;20;1m",
+        "24-bit": "\x1b[0;38;2;0;0;220;1m"
+    ]),
+]);
+
 private string *orbOrder = ({ "blue", "green", "red", "white" });
 private mapping orbs = (["north":-1, "south" : -1, "east" : -1, "west" : -1]);
 
@@ -139,6 +149,26 @@ private int isValidPattern()
 private int canTransition()
 {
     return isValidPattern();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, pedestalColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -266,9 +296,9 @@ public void finishPress()
 
         if (isValidPattern())
         {
-            tell_room(environment(this_player()), format(
-                "\x1b[0;34mThe liquid surrounding the passage way "
-                "widens, allowing safe passage\x1b[0m", 78));
+            tellRoom(environment(this_player()), "success", format(
+                "The liquid surrounding the passage way "
+                "widens, allowing safe passage", 78));
 
             object stateMachineService = getService("stateMachine");
 

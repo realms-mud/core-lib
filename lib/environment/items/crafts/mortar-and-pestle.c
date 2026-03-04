@@ -19,7 +19,7 @@ public void Setup()
 
     addItemTemplate(
         "The mortar is a heavy stone bowl, its interior worn smooth and "
-        "stained with the residue of a thousand ground ingredients — herb "
+        "stained with the residue of a thousand ground ingredients - herb "
         "green, mineral grey, root brown. The pestle is a thick cylinder "
         "of the same stone, shaped to fit the hand and polished by use "
         "to a satin finish."

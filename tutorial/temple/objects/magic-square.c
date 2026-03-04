@@ -305,6 +305,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, squareDisplay[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string grid(object configuration, string colorConfig, 
     string charsetConfig)
 {
@@ -376,14 +396,8 @@ public void finishPress()
 
         if (isValidPattern())
         {
-            object user = this_player();
-            string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-                user->colorConfiguration() : "none";
-            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-            tell_room(environment(this_player()), format(
-                squareDisplay["success"][colorConfig] +
-                "A rune appears on the table." + closing, 78));
+            tellRoom(environment(this_player()), "success", format(
+                "A rune appears on the table.", 78));
 
             object rune = 
                 clone_object("/tutorial/temple/objects/rune-negation.c");

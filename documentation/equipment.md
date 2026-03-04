@@ -259,7 +259,7 @@ both physical and magical bonuses. It is also enchantable, making it ideal
 for legendary weapons and armor.
 
 **Summary:**  
-Setting the material is not just cosmetic—it determines the item's stats,
+Setting the material is not just cosmetic-it determines the item's stats,
 value, crafting requirements, and even who can make or use it. For advanced 
 items, you can mix and match materials for each component using the 
 `crafting materials` mapping, giving you fine-grained control over every 

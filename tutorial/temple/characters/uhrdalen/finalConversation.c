@@ -12,7 +12,7 @@ private void TheReturn()
         "Almost warm.\n\n@S@'You have returned, ##ActorName##. You have "
         "walked through fire and frost, faced your shadow, lived my "
         "memories, and endured what would break lesser souls. One last "
-        "task remains — and it is perhaps the simplest and the hardest.'");
+        "task remains - and it is perhaps the simplest and the hardest.'");
 
     addResponse("seventh test", "What would you have me do?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@'What is "
@@ -26,7 +26,7 @@ private void TheReturn()
 private void TheMeaningOfThePoem()
 {
     addTopic("the meaning", "@S@'Tell me what the poem means. Not the "
-        "words — you can read those on the wall. Tell me what you have "
+        "words - you can read those on the wall. Tell me what you have "
         "learned. What does it mean to be weak and strong at once? To "
         "burn and freeze? To find no sanctuary yet long for freedom?'");
     addResponseTopic("seventh test", "What would you have me do?",
@@ -36,7 +36,7 @@ private void TheMeaningOfThePoem()
     addResponse("the meaning", "It is about you... @A@Wisdom@E@",
         "@D@@C@##InitiatorName## carefully ##ResponseInfinitive::reply##, "
         "@S@'The poem is your story, Uhrdalen. Every line is a piece of "
-        "your life — the oath, the power, the destruction, the binding. "
+        "your life - the oath, the power, the destruction, the binding. "
         "Weakness and strength were the same choice. You obeyed because "
         "you were too strong to break and too weak to refuse.'");
     addResponsePrerequisite("the meaning", "It is about you... @A@Wisdom@E@",
@@ -45,12 +45,12 @@ private void TheMeaningOfThePoem()
     addResponse("the meaning", "It is about obedience...",
         "@D@@C@##InitiatorName## thoughtfully ##ResponseInfinitive::say##, "
         "@S@'The poem is about what obedience costs. Every line is a "
-        "sacrifice — identity, freedom, peace. To obey without "
+        "sacrifice - identity, freedom, peace. To obey without "
         "understanding is to lose yourself.'");
 
     addResponse("the meaning", "I do not fully understand...",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::admit##, @S@'I will "
-        "not pretend to understand it all. But I felt it — in your "
+        "not pretend to understand it all. But I felt it - in your "
         "memories, in the fire, in the mirror. The poem is pain made "
         "into words.'");
 }
@@ -90,7 +90,7 @@ private void TheFinalRune()
         "with a soft, sad light.\n\n@S@'I long for freedom restored.' "
         "@D@He repeats the words as though tasting them.\n\n@S@'That "
         "is my line, ##ActorName##. It has always been mine. I envy you "
-        "your freedom — the freedom to choose, to leave, to act. I chose "
+        "your freedom - the freedom to choose, to leave, to act. I chose "
         "obedience and lost everything. You chose to understand and gained "
         "what I could not.'\n\n@D@He holds out the rune. @S@'Take it. "
         "Complete the poem. And when you leave this place, remember that "
@@ -117,8 +117,8 @@ private void UhrdalensFarewell()
         "Something that might be a smile crosses his skeletal features."
         "\n\n@S@'Perhaps. Perhaps completing this poem, after all these "
         "centuries, is the first step. You have given me something I had "
-        "forgotten — hope that the cycle can be broken.'\n\n@D@The wispy "
-        "figure bows deeply — a gesture of genuine respect from a being "
+        "forgotten - hope that the cycle can be broken.'\n\n@D@The wispy "
+        "figure bows deeply - a gesture of genuine respect from a being "
         "who has had little cause for it.\n\n@S@'Go now, ##ActorName##. "
         "Complete what you came here to do. The path is open to you.'\n\n"
         "@D@Uhrdalen fades from view. This time, it feels like a farewell "

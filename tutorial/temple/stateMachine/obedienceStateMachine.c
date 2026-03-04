@@ -13,6 +13,13 @@ private void registerEventHandlers()
 {
     registerEventHandler("spawnUhrdalen");
     registerEventHandler("placeUhrdalen");
+    registerEventHandler("startSecondTest");
+    registerEventHandler("startThirdTest");
+    registerEventHandler("startFourthTest");
+    registerEventHandler("startFifthTest");
+    registerEventHandler("startSixthTest");
+    registerEventHandler("startSeventhTest");
+    registerEventHandler("startEighthTest");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -85,7 +92,7 @@ protected void Setup()
     addEntryAction("seventh test", "showUhrdalenForFinalTest");
 
     addState("quest complete", "Uhrdalen spoke with me one final time. "
-        "He gave me the rune of envy — his envy of my freedom. The poem "
+        "He gave me the rune of envy - his envy of my freedom. The poem "
         "on the wall is now complete. I understand what obedience truly "
         "means: not blind submission, but the wisdom to know when to "
         "yield and when to stand.");
@@ -99,11 +106,28 @@ protected void Setup()
     registerEventHandlers();
 }
 
+private mapping testEvents = ([
+    "second test": "startSecondTest",
+    "third test": "startThirdTest",
+    "fourth test": "startFourthTest",
+    "fifth test": "startFifthTest",
+    "sixth test": "startSixthTest",
+]);
+
 /////////////////////////////////////////////////////////////////////////////
 void spawnUhrdalen(object player)
 {
     Uhrdalen = clone_object("/tutorial/temple/characters/uhrdalen/uhrdalen.c");
     registerStateActor(Uhrdalen);
+
+    if (objectp(player) && environment(player))
+    {
+        object room = environment(player);
+        Uhrdalen->registerEvent(room);
+        move_object(Uhrdalen, room);
+        call_out("initiateUhrdalenConversation", 1, player);
+    }
+
     notify("spawnUhrdalen", player);
 }
 
@@ -119,6 +143,11 @@ void hideUhrdalen(object player)
 /////////////////////////////////////////////////////////////////////////////
 void showUhrdalenBetweenTests(object player)
 {
+    if (member(testEvents, CurrentState))
+    {
+        notify(testEvents[CurrentState], player);
+    }
+
     if (!objectp(Uhrdalen) || !objectp(player))
     {
         return;
@@ -136,6 +165,8 @@ void showUhrdalenBetweenTests(object player)
 /////////////////////////////////////////////////////////////////////////////
 void showUhrdalenForFinalTest(object player)
 {
+    notify("startSeventhTest", player);
+
     if (!objectp(Uhrdalen) || !objectp(player))
     {
         return;
@@ -149,6 +180,8 @@ void showUhrdalenForFinalTest(object player)
 /////////////////////////////////////////////////////////////////////////////
 void onQuestCompleted(object player)
 {
+    notify("startEighthTest", player);
+
     if (objectp(Uhrdalen) && objectp(player))
     {
         object rune = clone_object("/tutorial/temple/objects/rune-envy.c");

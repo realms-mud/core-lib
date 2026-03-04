@@ -19,7 +19,7 @@ public void Setup()
     addItemTemplate(
         "The seed bin is a broad wooden box divided into compartments, "
         "each holding a different variety of seed. Small wooden labels "
-        "are tacked to each divider — wheat, barley, turnip, carrot, "
+        "are tacked to each divider - wheat, barley, turnip, carrot, "
         "and others. The seeds are dry and carefully stored, protected "
         "from moisture and vermin by tight-fitting lids."
     );

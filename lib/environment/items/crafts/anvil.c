@@ -29,7 +29,7 @@ public void Setup()
         "a heavy iron anvil sits on its stump, its surface scarred by work"
     );
     addDimLightDescriptionTemplate(
-        "a dark mass of iron sits on a wooden stump — an anvil"
+        "a dark mass of iron sits on a wooden stump - an anvil"
     );
     addLowLightDescriptionTemplate(
         "a heavy dark shape on a broad stump suggests an anvil"

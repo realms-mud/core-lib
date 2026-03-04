@@ -21,7 +21,7 @@ public void Setup()
         "The compost heap is a mound of decomposing vegetable matter, "
         "kitchen scraps, and garden waste in various stages of breaking "
         "down into rich, dark soil. It steams faintly in cool air and "
-        "smells of earth and decay — not entirely unpleasant. A pitchfork "
+        "smells of earth and decay - not entirely unpleasant. A pitchfork "
         "is stuck into its side."
     );
 

@@ -19,8 +19,8 @@ public void Setup()
     addDescriptionTemplate("a ##Adjective## crystal ball on a silver stand");
 
     addItemTemplate(
-        "The crystal ball is a sphere of flawless glass — or perhaps "
-        "something more — resting in a stand of tarnished silver wrought "
+        "The crystal ball is a sphere of flawless glass - or perhaps "
+        "something more - resting in a stand of tarnished silver wrought "
         "in the form of clutching claws. Staring into its depths reveals "
         "faint swirls of color that move of their own accord, hinting at "
         "visions just beyond the edge of perception."

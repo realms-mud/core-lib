@@ -56,13 +56,7 @@ public void spawnUhrdalen(object stateMachine, object player)
 
     if (objectp(uhrdalen))
     {
-        string owner = cloneOwner();
-        object location = (owner && member(instances, owner)) ?
-            instances[owner] : this_object();
-
         uhrdalen->registerEvent(this_object());
-        move_object(uhrdalen, location);
-        command("talk uhrdalen", player);
     }
 }
 
@@ -125,50 +119,65 @@ public void startFirstTest(object uhrdalen, object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public void onStateChanged(object caller, string newState)
+public void startSecondTest(object caller, object player)
 {
-    ::onStateChanged(caller, newState);
-
     if (pedestal())
     {
-        switch(newState)
-        {
-            case "second test":
-            {
-                pedestal()->startSecondTest();
-                break;
-            }
-            case "third test":
-            {
-                pedestal()->startThirdTest();
-                break;
-            }
-            case "fourth test":
-            {
-                pedestal()->startFourthTest();
-                break;
-            }
-            case "fifth test":
-            {
-                pedestal()->startFifthTest();
-                break;
-            }
-            case "sixth test":
-            {
-                pedestal()->startSixthTest();
-                break;
-            }
-            case "seventh test":
-            {
-                pedestal()->startSeventhTest();
-                break;
-            }
-            case "quest complete":
-            {
-                pedestal()->startEighthTest();
-                break;
-            }
-        }
+        pedestal()->startSecondTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startThirdTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startThirdTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startFourthTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startFourthTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startFifthTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startFifthTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startSixthTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startSixthTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startSeventhTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startSeventhTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startEighthTest(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startEighthTest();
     }
 }
 

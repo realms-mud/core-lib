@@ -23,7 +23,7 @@ Concepts and responsibilities
   - exposes mapping and mini-map rendering for UIs/players,
   - persists and restores regions via the region service.
 
-Quick start — manual region
+Quick start - manual region
 - Create a region file that inherits `/lib/environment/region.c` and implements `public void Setup()`.
 - In `Setup()` set the region metadata and call `setCoordinate` / `setEntryCoordinate` / `setExitCoordinate` for each room.
 
@@ -45,19 +45,19 @@ public void Setup()
 \`\`\`
 
 Key public region API
-- `setRegionName(string)` — set human-readable name.
-- `setRegionType(string)` — validated against the region service; chooses generation templates/decorators.
-- `setRegionLevel(int)` — optional level metadata (used by generation/services).
-- `setDimensions(int x, int y)` — set grid size (min/max enforced; default max 25x25).
+- `setRegionName(string)` - set human-readable name.
+- `setRegionType(string)` - validated against the region service; chooses generation templates/decorators.
+- `setRegionLevel(int)` - optional level metadata (used by generation/services).
+- `setDimensions(int x, int y)` - set grid size (min/max enforced; default max 25x25).
   - By default the minimum allowed (when auto-generating) is 5x5. Call `asManualRegion()` to bypass that minimum.
-- `asManualRegion()` — mark the region as manual; allows smaller dimensions and manual placement.
-- `setCoordinate(int x, int y, string path, string roomType)` — place an explicit environment at grid cell.
-- `setEntryCoordinate(int x, int y, string path, string enterFrom, string entryPoint)` — place and mark entry.
-- `setExitCoordinate(int x, int y, string path, string exitTo)` — place an explicit exit cell.
-- `createRegion(string enterFrom, string location, int *coordinates)` — generate (or load) region; returns entry direction.
-- `createRegionFromTemplate(mapping data, object connectedRegion)` — instantiate region from published template data.
-- `generateStaticFiles(string rootPath, int useRootPath)` — write out `region.c` and per-room `.c` files for a static region.
-- `persistRegion()` / `setPersistRegion(int)` — control persistence behavior; `save()` calls the RegionService.
+- `asManualRegion()` - mark the region as manual; allows smaller dimensions and manual placement.
+- `setCoordinate(int x, int y, string path, string roomType)` - place an explicit environment at grid cell.
+- `setEntryCoordinate(int x, int y, string path, string enterFrom, string entryPoint)` - place and mark entry.
+- `setExitCoordinate(int x, int y, string path, string exitTo)` - place an explicit exit cell.
+- `createRegion(string enterFrom, string location, int *coordinates)` - generate (or load) region; returns entry direction.
+- `createRegionFromTemplate(mapping data, object connectedRegion)` - instantiate region from published template data.
+- `generateStaticFiles(string rootPath, int useRootPath)` - write out `region.c` and per-room `.c` files for a static region.
+- `persistRegion()` / `setPersistRegion(int)` - control persistence behavior; `save()` calls the RegionService.
 
 Auto-generation families
 - Standard region generation (path + room placement + optional settlement):

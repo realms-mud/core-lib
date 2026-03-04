@@ -36,6 +36,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, dreamColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private string *colorInfo()
 {
     object user = this_player();
@@ -70,15 +90,10 @@ public void dreamCompleted(object player)
     puzzleSolved = 1;
     dreamActive = 0;
 
-    string colorConfig = (objectp(player) && player->colorConfiguration()) ?
-        player->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_object()), format(
-        dreamColors["success"][colorConfig] +
+    tellRoom(environment(this_object()), "success", format(
         "The pool's glow fades to a gentle shimmer. Two "
-        "runes rest on its surface, glistening with moisture." +
-        closing, 78));
+        "runes rest on its surface, glistening with moisture.",
+        78));
 
     object rune1 =
         clone_object("/tutorial/temple/objects/rune-wisdom.c");
@@ -123,16 +138,13 @@ public int touchPool(string str)
 
     dreamActive = 1;
 
-    string *ci = colorInfo();
-
     write("You reach toward the pool's surface...\n");
     say(sprintf("%s reaches toward the shimmering pool...\n",
         this_player()->Name()));
 
-    tell_room(environment(this_player()),
-        dreamColors["portal"][ci[0]] +
+    tellRoom(environment(this_player()), "portal",
         "The liquid surges upward, enveloping your hand. "
-        "The world dissolves into purple mist..." + ci[1] + "\n");
+        "The world dissolves into purple mist...\n");
 
     object dreamEntry = 
         load_object("/tutorial/temple/environment/rooms/dream/dream-entry.c");
@@ -157,7 +169,7 @@ public string long()
 
     return format("A pool of deep purple liquid shimmers with an "
         "otherworldly light. Ghostly images flicker just beneath the "
-        "surface — faces, places, moments from another life. The liquid "
+        "surface - faces, places, moments from another life. The liquid "
         "seems to beckon, promising understanding at the cost of "
         "experience.\n\nYou could 'touch pool' to enter the vision.", 78);
 }

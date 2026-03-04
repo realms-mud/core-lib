@@ -81,7 +81,7 @@ public int dreamChoice(string str)
     {
         tell_object(this_player(),
             colors["failure"][ci[0]] +
-            "You refuse. Heroic — but Uhrdalen did not refuse. "
+            "You refuse. Heroic - but Uhrdalen did not refuse. "
             "Not then. Not yet." + ci[1] + "\n");
         dreamEntry->resetDream(this_player());
         return 1;

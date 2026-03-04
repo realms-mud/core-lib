@@ -18,7 +18,7 @@ public void Setup()
 
     // First test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-1x5.c", "first test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "first test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "second test");
 
     addObject("/tutorial/temple/objects/magic-square.c");
 

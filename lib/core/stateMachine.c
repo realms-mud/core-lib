@@ -74,6 +74,15 @@ public varargs string getCurrentState(object caller)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void syncState(string state)
+{
+    if (state && stringp(state) && member(stateTree, state))
+    {
+        CurrentState = state;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void advanceState(object caller, string newState)
 {
     CurrentState = newState;

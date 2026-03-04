@@ -19,7 +19,7 @@ public void Setup()
 
     addItemTemplate(
         "The tanning vat is a deep wooden tub filled with a dark, "
-        "foul-smelling liquid — a brew of water, bark, and other agents "
+        "foul-smelling liquid - a brew of water, bark, and other agents "
         "used to cure raw hides into leather. Skins are submerged within, "
         "weighed down with stones. The stench is powerful enough to make "
         "the eyes water."

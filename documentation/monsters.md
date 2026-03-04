@@ -110,7 +110,7 @@ How the mapping is applied
 
 Practical guidance
 - If you want absolute attribute values, set them after `Race(...)` (e.g., `Intelligence(30);`).
-- Race-provided skills and pools are intended as baseline modifiers — persona and explicit overrides refine the final result.
+- Race-provided skills and pools are intended as baseline modifiers - persona and explicit overrides refine the final result.
 - Use the race `description` verbatim for examine/lore text to remain consistent.
 
 ---
@@ -172,13 +172,13 @@ Spell-like abilities are implemented as research items. The research system
 manages learning, cooldowns, sustained abilities and execution.
 
 Relevant APIs (real code in `lib/modules/research.c` and exposed in the personas module)
-- `initiateResearch(string researchPath)` — grant or start learning a research item (pass the research file path/identifier). Use this to add a specific research item to a monster.
-- `completedResearch()` — list research items already completed for the monster.
-- `researchInProgress()` — list time-based research items currently learning.
-- `researchCommand(string command)` — low-level helper to execute a research command (the research service typically routes this).
-- `addResearch(string researchPath)` — available via persona module as a convenience to register a research item (aliases to the research machinery).
-- `setResearchFrequency(int percentChancePerRound)` (personas module) — configure percent chance per combat round the research execution helper will attempt research.
-- `executePersonaResearch(string target, string specificResearch)` (personas module) — helper to request a research attempt. Pass target name and research path or leave research nil to allow the helper to select. The helper respects research frequency and cooldowns.
+- `initiateResearch(string researchPath)` - grant or start learning a research item (pass the research file path/identifier). Use this to add a specific research item to a monster.
+- `completedResearch()` - list research items already completed for the monster.
+- `researchInProgress()` - list time-based research items currently learning.
+- `researchCommand(string command)` - low-level helper to execute a research command (the research service typically routes this).
+- `addResearch(string researchPath)` - available via persona module as a convenience to register a research item (aliases to the research machinery).
+- `setResearchFrequency(int percentChancePerRound)` (personas module) - configure percent chance per combat round the research execution helper will attempt research.
+- `executePersonaResearch(string target, string specificResearch)` (personas module) - helper to request a research attempt. Pass target name and research path or leave research nil to allow the helper to select. The helper respects research frequency and cooldowns.
 
 Practical usage:
 ~~~
@@ -198,7 +198,7 @@ Notes
 Personality is expressed via traits. Traits are located under 
 `/lib/instances/traits/` and can modify messaging, AI and behavior.
 
-- `addTrait(string traitPath)` — adds a trait to the monster.
+- `addTrait(string traitPath)` - adds a trait to the monster.
 Example:
 ~~~
 addTrait("/lib/instances/traits/personality/haughty.c");
@@ -220,10 +220,10 @@ for how to author and attach conversation content. Attach via traits or event ha
 For roaming monsters use `wanderingMonster.c` or `monsterWithAI.c`.
 
 Key APIs in `lib/realizations/wanderingMonster.c` and `pathfinding.c`:
-- `enableWandering(int percentChance)` — enable roaming behavior and set default wander percent.
-- `setWanderFrequency(int frequency)` — how often (heartbeats) the wander check runs.
-- `setWanderChance(int chance)` — percent chance evaluated when the wander check runs.
-- `moveInDirection(string direction)` — programmatically move along an exit direction.
+- `enableWandering(int percentChance)` - enable roaming behavior and set default wander percent.
+- `setWanderFrequency(int frequency)` - how often (heartbeats) the wander check runs.
+- `setWanderChance(int chance)` - percent chance evaluated when the wander check runs.
+- `moveInDirection(string direction)` - programmatically move along an exit direction.
 - Pathfinding functions are available to construct patrols and route-following behavior.
 
 Wandering details
@@ -235,7 +235,7 @@ Wandering details
 ## 7. Combat Integration
 
 Combat is implemented in `lib/modules/combat.c` and tied into living objects 
-via `living.c`. Personas populate `getAttacks()`—the combat module reads 
+via `living.c`. Personas populate `getAttacks()`-the combat module reads 
 these to perform attacks.
 
 - Persona-provided attacks, breath weapons and research-based attacks integrate with combat heartbeats.
@@ -271,7 +271,7 @@ Valid `state` values
   - `"has some minor injuries."`
   - `"is barely inured."`
   - `"is in good shape."`
-  - `"any"` — fall-back for any health state
+  - `"any"` - fall-back for any health state
 - For `defensive miss`, `offensive miss`, `death`, and `kill` only `"any"` is supported (pass `"any"` or omit the state).
 
 Notes on `state`
@@ -318,13 +318,13 @@ Why use factions for monsters
 - Integrates with services that gate trading, reputation, and scripted reactions.
 
 Primary public methods (available on living objects)
-- `memberOfFaction(string faction)` — returns 1 if the object has joined the faction.
-- `Factions()` — returns the list of factions the object is currently a member of.
-- `factionDispositionToward(string faction)` — returns the current disposition string for that faction for this object (`"neutral"`, `"ally"`, `"hostile"`, `"betrayed"`, etc. — see the faction service for full mappings).
-- `factionReputationToward(string faction)` — integer reputation score tracked for that faction.
-- `joinFaction(string faction)` — attempt to join the faction (service validates).
-- `leaveFaction(string faction)` — attempt to leave a faction (service validates).
-- `updateFactionDisposition(string faction, int reputation, int killedMember)` — adjust reputation and record an interaction; `killedMember` (0/1) affects disposition change logic.
+- `memberOfFaction(string faction)` - returns 1 if the object has joined the faction.
+- `Factions()` - returns the list of factions the object is currently a member of.
+- `factionDispositionToward(string faction)` - returns the current disposition string for that faction for this object (`"neutral"`, `"ally"`, `"hostile"`, `"betrayed"`, etc. - see the faction service for full mappings).
+- `factionReputationToward(string faction)` - integer reputation score tracked for that faction.
+- `joinFaction(string faction)` - attempt to join the faction (service validates).
+- `leaveFaction(string faction)` - attempt to leave a faction (service validates).
+- `updateFactionDisposition(string faction, int reputation, int killedMember)` - adjust reputation and record an interaction; `killedMember` (0/1) affects disposition change logic.
 
 Key behaviours and notes
 - Unknown factions are lazily initialized by `isKnownFaction`, which creates the mapping entry and sets default disposition `"neutral"` and initial timestamps.
@@ -359,7 +359,7 @@ Typical runtime use
 Practical tips
 - Use absolute faction identifiers (the faction object path) when calling methods.
 - Persisted faction entries are stored in the monster's `factions` mapping; initializing values in `Setup()` is appropriate for static starting dispositions.
-- Remember `joinFaction`/`leaveFaction` consult service rules — those rules can later be extended to deny joins or require prerequisites.
+- Remember `joinFaction`/`leaveFaction` consult service rules - those rules can later be extended to deny joins or require prerequisites.
 
 ---
 
@@ -370,8 +370,8 @@ Practical tips
   - `advanceSkill(string skill, int amount)` to raise ranks, or
   - `decrementSkill(string skill, int amount)` to lower ranks and refund points.
 - Attribute setters: `Strength(int)`, `Intelligence(int)`, `Dexterity(int)`, etc., are provided by `lib/modules/attributes.c`.
-- `effectiveLevel(int)` — get/set the creature's effective level (used by persona and other systems).
-- `setMaxHitPoints(int)`, `setMaxSpellPoints(int)`, `setMaxStaminaPoints(int)` — set absolute pool values.
+- `effectiveLevel(int)` - get/set the creature's effective level (used by persona and other systems).
+- `setMaxHitPoints(int)`, `setMaxSpellPoints(int)`, `setMaxStaminaPoints(int)` - set absolute pool values.
 
 ---
 
@@ -379,12 +379,12 @@ Practical tips
 
 Inventory APIs are implemented in `lib/modules/inventory.c`. Useful methods for monsters:
 
-- `Equip(object item)` — equip an item.
-- `unequip(object item, int silently)` — unequip an item.
-- `registerObjectAsInventory(object item)` / `unregisterObjectAsInventory(object item)` — register modifier items.
-- `Money(int)`, `addMoney(int)`, `transferMoneyFrom(int)` — money management.
-- `transferItemsTo(object destination)` — move all items to a destination (use for corpse/loot handling).
-- `inventoryText(int verbose, int showMoney)` — formatted inventory view (debugging/display).
+- `Equip(object item)` - equip an item.
+- `unequip(object item, int silently)` - unequip an item.
+- `registerObjectAsInventory(object item)` / `unregisterObjectAsInventory(object item)` - register modifier items.
+- `Money(int)`, `addMoney(int)`, `transferMoneyFrom(int)` - money management.
+- `transferItemsTo(object destination)` - move all items to a destination (use for corpse/loot handling).
+- `inventoryText(int verbose, int showMoney)` - formatted inventory view (debugging/display).
 
 Best practices
 - When creating loot, use `transferItemsTo(...)` to move items to a corpse or room.
@@ -449,7 +449,7 @@ public void Setup()
 
 ---
 
-## 12. Appendix — Skills (Name, Type, Short description)
+## 12. Appendix - Skills (Name, Type, Short description)
 
 Below is a compact, copy-ready table containing every skill name, its type,
 and a short wrapped description. Columns are aligned for readability. Descriptions

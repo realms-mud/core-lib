@@ -48,7 +48,7 @@ public void init()
 
         tell_object(this_player(), format(
             colors["vision"][ci[0]] +
-            "A figure of terrible beauty stands before you — "
+            "A figure of terrible beauty stands before you - "
             "Xyris, the Lord of Shadows, as he appeared in life. His voice "
             "is honey and venom.\n\n"
             "@S@'You are gifted, young one. I see in you the potential for "
@@ -74,7 +74,7 @@ public int dreamChoice(string str)
     {
         tell_object(this_player(),
             colors["vision"][ci[0]] +
-            "You kneel and speak the oath. Xyris smiles — a "
+            "You kneel and speak the oath. Xyris smiles - a "
             "terrible, beautiful thing. Power floods through you like "
             "fire." + ci[1] + "\n");
         dreamEntry->advanceDream(this_player(), "accept");

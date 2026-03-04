@@ -49,24 +49,24 @@ Groups are the permission/command model for player/wizard roles. Group classes l
   }
   ```
 
-- Note: Wizards (via creation commands) may create group records through the group service — use the service rather than manipulating group files directly whenever possible.
+- Note: Wizards (via creation commands) may create group records through the group service - use the service rather than manipulating group files directly whenever possible.
 
-##### Security — privileged groups (master-level)
+##### Security - privileged groups (master-level)
 The secure/master layer exposes `priviledgeGroup.c` as the master-side base class for master-level permission profiles. These are NOT the same as the in-game group objects and are intended for master/driver checks only.
 
 Key points from `priviledgeGroup.c`:
 - Flag bits: `Owner = 0x1`, `Write = 0x2`, `Read = 0x4`, `Unknown = 0x8`, `None = 0x0`.
 - Core helpers:
-  - `addPermission(string path, int permission)` — builds a nested permissions map keyed by path components.
-  - `hasReadAccess(string path)` and `hasWriteAccess(string path)` — return the path when allowed.
-  - `addPriviledgedEfun(string command)` — whitelist of privileged efuns/methods that this privileged group allows (only a restrictive set permitted).
-  - `allowInheritedPermissions()` and `inheritPermissions(string method)` — support allowing permissions to be applied to callers that inherit this privileged class and the method is permitted.
+  - `addPermission(string path, int permission)` - builds a nested permissions map keyed by path components.
+  - `hasReadAccess(string path)` and `hasWriteAccess(string path)` - return the path when allowed.
+  - `addPriviledgedEfun(string command)` - whitelist of privileged efuns/methods that this privileged group allows (only a restrictive set permitted).
+  - `allowInheritedPermissions()` and `inheritPermissions(string method)` - support allowing permissions to be applied to callers that inherit this privileged class and the method is permitted.
 
 Important guidance:
 - Files that inherit from `priviledgeGroup.c` are master/secure classes. They are consulted by master-level code during privileged operations. Regular game code should not rely on these objects directly.
-- Examples below show how to author a privileged group file — these are examples of files that could live under `/secure/master/security/` and inherit `priviledgeGroup.c`.
+- Examples below show how to author a privileged group file - these are examples of files that could live under `/secure/master/security/` and inherit `priviledgeGroup.c`.
 
-Privileged-group example — file manager (inline):
+Privileged-group example - file manager (inline):
 ```
 inherit "/secure/master/security/priviledgeGroup.c";
 
@@ -86,7 +86,7 @@ protected void applyGroupDetails()
 }
 ```
 
-Privileged-group example — execution bridge (inline):
+Privileged-group example - execution bridge (inline):
 ```
 inherit "/secure/master/security/priviledgeGroup.c";
 
@@ -122,7 +122,7 @@ The simulated-efuns provide ANSI-aware, robust string utilities used across the 
 - `convertDataToString(mixed data)`  
   - Debug-friendly object/array/mapping-to-string converter.
 
-- `stringFromList(string *list, int isOr)` — human readable join of lists (`a, b, and c` or `a or b`).
+- `stringFromList(string *list, int isOr)` - human readable join of lists (`a, b, and c` or `a or b`).
 
 - `process_string` intentionally disabled in this codebase (returns `"Disabled\n"`).
 
@@ -130,22 +130,22 @@ The simulated-efuns provide ANSI-aware, robust string utilities used across the 
 Simulated-efuns expose safe helpers and test-mode hooks for user and interactive handling.
 
 - Registration and lookups
-  - `addUser(object user)` — registers interactive players/wizards to internal `players`/`wizards` mappings (caller must be interactive or in secure namespaces).
-  - `addLiving(object creature)` — registers non-player livings and prunes stale entries later.
-  - `findPlayer(string name)`, `findLiving(string name)`, `users()`, `players()`, `wizards()` — lookup helpers. `users()` filters `efun::users()` by visibility (honors `isInvisibleToCaller` if implemented).
+  - `addUser(object user)` - registers interactive players/wizards to internal `players`/`wizards` mappings (caller must be interactive or in secure namespaces).
+  - `addLiving(object creature)` - registers non-player livings and prunes stale entries later.
+  - `findPlayer(string name)`, `findLiving(string name)`, `users()`, `players()`, `wizards()` - lookup helpers. `users()` filters `efun::users()` by visibility (honors `isInvisibleToCaller` if implemented).
 
 - Interactive helpers
-  - `query_ip_name`, `query_ip_number`, `query_idle` — wrappers that return connection info if the object is interactive.
-  - `configureCharset(object player, string charset)` — sets the interactive encoding for the player (`"unicode"` ⇒ UTF-8).
+  - `query_ip_name`, `query_ip_number`, `query_idle` - wrappers that return connection info if the object is interactive.
+  - `configureCharset(object player, string charset)` - sets the interactive encoding for the player (`"unicode"` ⇒ UTF-8).
 
 - Good practices
-  - Don’t rely on `efun::users()` directly in libraries that need to be testable — use `users()` wrapper so tests can substitute canned lists.
+  - Don’t rely on `efun::users()` directly in libraries that need to be testable - use `users()` wrapper so tests can substitute canned lists.
 
 ##### Databases (important: internal-only)
 Database helpers in `secure/simulated-efuns/database.c` are low-level and intended for core/migration code only. Application authors should not call driver-level DB efuns directly.
 
 - NEVER call driver-level DB helpers directly in gameplay code. Specifically, avoid calling:
-  - `db_connect`, `db_handles`, `db_exec`, `db_fetch`, `db_error`, etc. — these are internal and may be wrapped or validated by the persistence layer.
+  - `db_connect`, `db_handles`, `db_exec`, `db_fetch`, `db_error`, etc. - these are internal and may be wrapped or validated by the persistence layer.
 - Use the provided data-access services:
   - `/lib/modules/secure/dataAccess.c` (and other higher-level services) expose safe, audited, schema-aware methods that hide SQL and connection details.
   - Example pattern (inline): instead of `db_connect` do:
@@ -158,7 +158,7 @@ Database helpers in `secure/simulated-efuns/database.c` are low-level and intend
   - `db_connect` wrapper will run `validateDatabase` on the first connection, which calls migration scripts and initial SQL from `/secure/simulated-efuns/database/`.
   - `validateDatabase` & `migrateDatabase` ensure schema is created and up-to-date; migration SQL files live under `/secure/simulated-efuns/database/migrations/`.
   - `db_exec` in the simulated-efuns wraps efun `db_exec` and logs driver errors to `/log/DBERROR`.
-  - `db_handles()` is deliberately disabled (returns `({})`) for security — do not expect to enumerate handles.
+  - `db_handles()` is deliberately disabled (returns `({})`) for security - do not expect to enumerate handles.
 
 - Testing and CI
   - `testing.c` includes `validateTestDatabase()` to create/migrate a test DB for CI runs. Tests should call service-layer helpers, not db_ efuns.
@@ -166,7 +166,7 @@ Database helpers in `secure/simulated-efuns/database.c` are low-level and intend
 ##### Short recommended rules
 - Use `getService("...")` to get services. Avoid `load_object(...)` unless you truly need to.
 - For permission checks in gameplay: use `/lib/services/groups/*` objects and their APIs.
-- Do not call database efuns directly — use the secure data-access services.
+- Do not call database efuns directly - use the secure data-access services.
 - Use `users()`, `findPlayer()`, and other simulated-efun wrappers for testable user interactions.
 - When authoring text output, prefer `format()` and `textWidth()` to handle ANSI/unicode reliably.
 

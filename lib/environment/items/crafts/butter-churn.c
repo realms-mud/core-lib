@@ -19,8 +19,8 @@ public void Setup()
     addItemTemplate(
         "The butter churn is a tall, narrow wooden barrel with a plunger "
         "handle protruding from its lidded top. The interior is stained "
-        "white with cream residue, and the dasher — a wooden cross on a "
-        "long pole — shows the wear of countless hours of rhythmic "
+        "white with cream residue, and the dasher - a wooden cross on a "
+        "long pole - shows the wear of countless hours of rhythmic "
         "churning. A faint smell of buttermilk clings to the wood."
     );
 

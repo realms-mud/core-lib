@@ -40,14 +40,14 @@ public void init()
         tell_object(this_player(), format(
             colors["vision"][ci[0]] +
             "The city is ash. A broken talisman lies at your "
-            "feet — the last gift from someone you once loved. Xyris's "
+            "feet - the last gift from someone you once loved. Xyris's "
             "voice comes one final time.\n\n"
             "@S@'You have proven your worth. Now I bind you to this place "
             "as its eternal guardian. Your flesh shall wither but your "
             "spirit shall endure. This is my final command.'\n\n"
             "The chains of light descend. You may 'submit' to the binding "
             "or 'break' free. But Uhrdalen did not break free. Not then. "
-            "That came much, much later — as a skeleton tending runes "
+            "That came much, much later - as a skeleton tending runes "
             "on a wall, waiting for someone like you." +
             ci[1] + "\n", 78));
     }
@@ -79,7 +79,7 @@ public int dreamChoice(string str)
         tell_object(this_player(),
             colors["failure"][ci[0]] +
             "You try to break free. If only Uhrdalen had. "
-            "But he did not — not in this moment." + ci[1] + "\n");
+            "But he did not - not in this moment." + ci[1] + "\n");
         dreamEntry->resetDream(this_player());
         return 1;
     }

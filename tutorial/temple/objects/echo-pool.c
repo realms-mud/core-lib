@@ -118,6 +118,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, echoColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int allowMove()
 {
     int ret = 1;
@@ -191,15 +211,9 @@ public void finishOrder()
     {
         puzzleSolved = 1;
 
-        object user = this_player();
-        string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-            user->colorConfiguration() : "none";
-        string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-        tell_room(environment(this_player()), format(
-            echoColors["success"][colorConfig] +
+        tellRoom(environment(this_player()), "success", format(
             "The echoes harmonize into a single voice. Two "
-            "runes rise from the depths of the pool." + closing, 78));
+            "runes rise from the depths of the pool.", 78));
 
         object rune1 =
             clone_object("/tutorial/temple/objects/rune-weakness.c");
@@ -299,7 +313,7 @@ public string long()
     string closing = (colorConfig == "none") ? "" : "\x1b[0m";
 
     string desc = sprintf("%sThe pool shimmers with an inner light. As you "
-        "gaze into its depths, ghostly images swirl and fragment — echoes "
+        "gaze into its depths, ghostly images swirl and fragment - echoes "
         "of a life lived long ago. Six scenes replay in jumbled disorder. "
         "Each is labeled with a letter. They seem to tell a story, if only "
         "you could determine the correct order.%s\n%s\n"

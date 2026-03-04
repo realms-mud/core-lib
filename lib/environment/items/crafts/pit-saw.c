@@ -19,7 +19,7 @@ public void Setup()
 
     addItemTemplate(
         "The pit saw is a massive blade set in a wooden frame, designed "
-        "to be worked by two men — one above and one standing in the pit "
+        "to be worked by two men - one above and one standing in the pit "
         "below. The teeth are large and freshly filed, and the blade is "
         "oiled to prevent rust. Sawdust fills the pit to ankle depth."
     );

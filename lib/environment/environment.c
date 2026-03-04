@@ -256,7 +256,7 @@ public nomask varargs void enterEnvironment(object actor, object party)
 
     if (stateMachinePath())
     {
-        location->setupStateMachine(owner);
+        location->setupStateMachine(owner, actor);
     }
 
     move_object(actor, location);

@@ -21,7 +21,7 @@ public void Setup()
         "Bundles of dried herbs hang from the rafters and ceiling hooks, "
         "tied with twine at their stems. Lavender, rosemary, sage, thyme, "
         "and dozens of less familiar plants dangle in various stages of "
-        "drying. The air is thick with their mingled fragrances — sweet, "
+        "drying. The air is thick with their mingled fragrances - sweet, "
         "sharp, bitter, and earthy all at once."
     );
 

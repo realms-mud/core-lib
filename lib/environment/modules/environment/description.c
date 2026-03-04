@@ -228,7 +228,7 @@ private nomask string displayLongDetails(string description, string *map,
     // This will only handle one efun call. The likelihood of needing more
     // was deemed remote enough that getting this working for N invocations
     // did not seem worth the effort.
-    ret = regreplace(regreplace(ret, "\x1f", "", 1), "\x1e", " ", 1);
+    ret = regreplace(regreplace(ret, "\x1f", "\n", 1), "\x1e", " ", 1);
 
     ret = regreplace(ret, "##CLEAR##", 
         (colorConfiguration != "none") ? "\x1b[0m" : "", 1);

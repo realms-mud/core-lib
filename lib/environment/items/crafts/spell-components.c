@@ -28,7 +28,7 @@ public void Setup()
     );
 
     addSomeLightDescriptionTemplate(
-        "shelves of spell components line the wall — jars, vials, and "
+        "shelves of spell components line the wall - jars, vials, and "
         "pouches of exotic ingredients"
     );
     addDimLightDescriptionTemplate(

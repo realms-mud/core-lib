@@ -68,7 +68,7 @@ public void init()
         tell_object(this_player(), format(
             dreamColors["vision"][colorConfig] +
             "The purple mist clears. You find yourself in a "
-            "chamber that feels familiar yet wrong — as though you are "
+            "chamber that feels familiar yet wrong - as though you are "
             "seeing it through another's eyes. You are Uhrdalen, long "
             "before the binding. The world is younger and so are you.\n\n"
             "A corridor leads north." + closing + "\n", 78));
@@ -87,7 +87,7 @@ public void resetDream(object player)
     tell_object(player,
         dreamColors["failure"][colorConfig] +
         "The vision shatters! The world spins and reforms. "
-        "You are back at the beginning. You cannot change what was — "
+        "You are back at the beginning. You cannot change what was - "
         "you must relive it as it happened." + closing + "\n");
     move_object(player, this_object());
 }

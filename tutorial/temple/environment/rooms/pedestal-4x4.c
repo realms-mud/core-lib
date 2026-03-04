@@ -21,7 +21,7 @@ public void Setup()
     addDecorator("ruined interior amethyst floor west east", "first test");
 
     // Second test
-    addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x45.c", "second test");
+    addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x4.c", "second test");
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x4.c", "second test");
     addDecorator("ruined interior amethyst floor north south", "second test");
 

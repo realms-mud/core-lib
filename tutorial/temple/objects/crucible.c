@@ -96,6 +96,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, crucibleColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int allowMove()
 {
     int ret = 1;
@@ -170,16 +190,10 @@ public void completeCrucible()
 {
     puzzleSolved = 1;
 
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_player()), format(
-        crucibleColors["success"][colorConfig] +
+    tellRoom(environment(this_player()), "success", format(
         "The braziers flare brilliantly and then go dark. "
         "Two runes materialize between them, hovering in the air before "
-        "clattering to the floor." + closing, 78));
+        "clattering to the floor.", 78));
 
     object rune1 =
         clone_object("/tutorial/temple/objects/rune-flame.c");
@@ -223,14 +237,8 @@ public void finishTouch(string element)
     }
     else
     {
-        object user = this_player();
-        string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-            user->colorConfiguration() : "none";
-        string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
         tell_room(environment(this_player()),
-            sprintf(crucibleColors["hint"][colorConfig] +
-                "The braziers pulse with energy:" + closing + "%s",
+            sprintf("The braziers pulse with energy:%s",
                 displayCrucible()));
     }
 }

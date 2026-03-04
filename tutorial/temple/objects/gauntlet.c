@@ -70,6 +70,26 @@ private int isValidPattern()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void tellRoom(object room, string colorKey, string message)
+{
+    object *characters = filter(all_inventory(room),
+        (: $1->isRealizationOfLiving() :));
+
+    foreach(object person in characters)
+    {
+        if (objectp(person))
+        {
+            string colorConfig = (person->colorConfiguration()) ?
+                person->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+
+            tell_object(person, gauntletColors[colorKey][colorConfig] +
+                message + closing);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int allowMove()
 {
     int ret = 1;
@@ -97,22 +117,10 @@ public void completeGauntlet()
     puzzleSolved = 1;
     gauntletActive = 0;
 
-    object *players = filter(all_inventory(environment(this_object())),
-        (: $1->isRealizationOfPlayer() :));
-
-    string colorConfig = "none";
-    if (sizeof(players))
-    {
-        colorConfig = (players[0]->colorConfiguration()) ?
-            players[0]->colorConfiguration() : "none";
-    }
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_object()), format(
-        gauntletColors["success"][colorConfig] +
+    tellRoom(environment(this_object()), "success", format(
         "Silence falls. The chamber is still. You have "
         "endured. A single rune materializes in the air before you, "
-        "drifting gently to the floor." + closing, 78));
+        "drifting gently to the floor.", 78));
 
     object rune1 =
         clone_object("/tutorial/temple/objects/rune-death.c");
@@ -171,16 +179,9 @@ public void fireWave()
     string damageType = waves[currentWave][1];
     int damage = waves[currentWave][2];
 
-    object user = players[0];
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(room, sprintf("\n%s--- Wave %d of %d ---%s\n%s%s%s\n",
-        gauntletColors["wave"][colorConfig],
-        currentWave + 1, totalWaves, closing,
-        gauntletColors["wave"][colorConfig],
-        message, closing));
+    tellRoom(room, "wave", sprintf(
+        "\n--- Wave %d of %d ---\n%s\n",
+        currentWave + 1, totalWaves, message));
 
     foreach(object player in players)
     {
@@ -209,16 +210,10 @@ public int beginGauntlet(string str)
     gauntletActive = 1;
     currentWave = 0;
 
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
-
-    tell_room(environment(this_player()), format(
-        gauntletColors["start"][colorConfig] +
+    tellRoom(environment(this_player()), "start", format(
         "You steel yourself and step onto the central glyph. "
-        "The chamber hums with gathering energy. The gauntlet begins!" +
-        closing, 78));
+        "The chamber hums with gathering energy. The gauntlet begins!",
+        78));
 
     call_out("fireWave", 3);
     return 1;
@@ -247,7 +242,7 @@ public string long()
     }
 
     string desc = sprintf("%sThe chamber thrums with contained energy. "
-        "Strange marks score the walls — burns, frost patterns, and "
+        "Strange marks score the walls - burns, frost patterns, and "
         "gouges that speak of terrible forces. At the center of the "
         "floor, a glyph pulses with a slow, ominous light. An "
         "inscription reads: 'Step forth and endure. There is no victory "

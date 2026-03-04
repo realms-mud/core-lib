@@ -29,7 +29,7 @@ public void Setup()
         "deeply scarred"
     );
     addDimLightDescriptionTemplate(
-        "a heavy block of wood on thick legs is visible — a butcher block"
+        "a heavy block of wood on thick legs is visible - a butcher block"
     );
     addLowLightDescriptionTemplate(
         "a massive low table of thick wood stands in the work area"

@@ -28,7 +28,7 @@ public void Setup()
         "a cheese press stands in the dairy, whey dripping from its base"
     );
     addDimLightDescriptionTemplate(
-        "a wooden frame with a screw mechanism is visible — a cheese press"
+        "a wooden frame with a screw mechanism is visible - a cheese press"
     );
     addLowLightDescriptionTemplate(
         "a heavy wooden frame with a vertical screw stands nearby"
