@@ -20,7 +20,7 @@ public void Setup()
     addObject("/tutorial/temple/objects/rune-wall.c");
     addObject("/tutorial/temple/objects/pedestal.c");
 
-    addObject("/tutorial/temple/objects/rune-resistance.c", "entered room");
+    addPersistentObject("/tutorial/temple/objects/rune-resistance.c", "entered room");
 
     addDecorator("ruined interior amethyst floor", "default");
 

@@ -637,6 +637,113 @@ void OnlyObjectsForProperStateArePresent()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AddPersistentObjectRaisesErrorOnFailure()
+{
+    string expected = "*ERROR in environment.c: '/lib/tests/bad/path.c' is not a valid file.\n";
+    string err = catch (Environment.testAddPersistentObject("/lib/tests/bad/path.c"); nolog);
+    ExpectEq(expected, err);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddPersistentObjectToDefaultStateCreatesObjectOnReset()
+{
+    Environment.testAddPersistentObject("/lib/items/weapon.c");
+    ExpectFalse(sizeof(all_inventory(Environment)));
+    Environment.reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistentObjectNotPrunedOnStateChange()
+{
+    ToggleCallOutBypass();
+    object stateMachine =
+        getService("stateMachine").getStateMachine(
+            "/lib/tests/support/core/simpleStateMachine.c");
+
+    Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddPersistentObject("/lib/items/armor.c", "default");
+
+    Environment.reset();
+    ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for default state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    stateMachine.receiveEvent(Environment, "blahTransition");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "persistent object survives state change");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor still present");
+
+    destruct(stateMachine);
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistentObjectForStateCreatedButNotPrunedOnTransition()
+{
+    ToggleCallOutBypass();
+    object stateMachine =
+        getService("stateMachine").getStateMachine(
+            "/lib/tests/support/core/simpleStateMachine.c");
+
+    Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddPersistentObject("/lib/items/armor.c", "blah");
+
+    Environment.reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)), "1 element visible for default state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectFalse(present_clone("/lib/items/armor.c", Environment), "armor not yet present");
+
+    stateMachine.receiveEvent(Environment, "blahTransition");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "2 elements visible for 'blah' state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    stateMachine.receiveEvent(Environment, "blahTwoTransition");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "persistent object survives transition to 'blah2'");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor still present after state change");
+
+    destruct(stateMachine);
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RegularStateObjectPrunedButPersistentObjectSurvives()
+{
+    ToggleCallOutBypass();
+    object stateMachine =
+        getService("stateMachine").getStateMachine(
+            "/lib/tests/support/core/simpleStateMachine.c");
+
+    Environment.setStateMachine("/lib/tests/support/core/simpleStateMachine.c", 1);
+    Environment.testAddObject("/lib/items/weapon.c");
+    Environment.testAddObject("/lib/items/item.c", "blah");
+    Environment.testAddPersistentObject("/lib/items/armor.c", "blah");
+
+    Environment.reset();
+    ExpectEq(1, sizeof(all_inventory(Environment)), "1 element for default state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+
+    stateMachine.receiveEvent(Environment, "blahTransition");
+    ExpectEq(3, sizeof(all_inventory(Environment)), "3 elements visible for 'blah' state");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectTrue(present_clone("/lib/items/item.c", Environment), "item present");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor present");
+
+    stateMachine.receiveEvent(Environment, "blahTwoTransition");
+    ExpectEq(2, sizeof(all_inventory(Environment)), "regular item pruned, persistent survives");
+    ExpectTrue(present_clone("/lib/items/weapon.c", Environment), "weapon present");
+    ExpectFalse(present_clone("/lib/items/item.c", Environment), "item pruned");
+    ExpectTrue(present_clone("/lib/items/armor.c", Environment), "armor still present");
+
+    destruct(stateMachine);
+    ToggleCallOutBypass();
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CallerForOnStateChangedMustBeCurrentlySetStateMachine()
 {
     ToggleCallOutBypass();

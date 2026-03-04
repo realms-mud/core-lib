@@ -180,6 +180,29 @@ protected nomask varargs void addObject(string file, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addPersistentObject(string file, string state)
+{
+    if (!state)
+    {
+        state = "default";
+    }
+
+    if (stringp(file) && (file_size(file) > 0))
+    {
+        if (!member(environmentalElements["persistent objects"], state))
+        {
+            environmentalElements["persistent objects"][state] = ({});
+        }
+        environmentalElements["persistent objects"][state] += ({ file });
+    }
+    else
+    {
+        raise_error(sprintf("ERROR in environment.c: '%s' is not a "
+            "valid file.\n", file));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int isEnvironmentalElement(string item)
 {
     return member(aliasesToElements, currentState()) &&

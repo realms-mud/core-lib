@@ -61,10 +61,21 @@ protected nomask void createStateObjects()
     {
         stateObjects += environmentalElements["objects"][currentState()];
     }
+    if ((currentState() != "default") &&
+        member(environmentalElements["persistent objects"], currentState()) && 
+        sizeof(environmentalElements["persistent objects"][currentState()]))
+    {
+        stateObjects += environmentalElements["persistent objects"][currentState()];
+    }
     if (member(environmentalElements["objects"], "default") && 
         sizeof(environmentalElements["objects"]["default"]))
     {
         stateObjects += environmentalElements["objects"]["default"];
+    }
+    if (member(environmentalElements["persistent objects"], "default") && 
+        sizeof(environmentalElements["persistent objects"]["default"]))
+    {
+        stateObjects += environmentalElements["persistent objects"]["default"];
     }
 
     if (pointerp(stateObjects) && sizeof(stateObjects))
@@ -100,7 +111,7 @@ public void init()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onStateChanged(object caller, string newState)
 {
-    if (caller == StateMachine)
+    if (caller == StateMachine && newState != currentState())
     {
         pruneStateObjects();
         currentState(newState);
@@ -127,14 +138,17 @@ public nomask varargs void setupStateMachine(string owner, object actor)
     object newSM = StateMachineService->getStateMachine(
         StateMachinePath, owner);
 
-    if (objectp(newSM) && (newSM != StateMachine))
+    if (objectp(newSM))
     {
-        if (StateMachine)
+        if (newSM != StateMachine)
         {
-            StateMachine->unregisterStateActor(this_object());
+            if (StateMachine)
+            {
+                StateMachine->unregisterStateActor(this_object());
+            }
+            StateMachine = newSM;
+            StateMachine->registerStateActor(this_object());
         }
-        StateMachine = newSM;
-        StateMachine->registerStateActor(this_object());
 
         pruneStateObjects();
         string state = StateMachine->getCurrentState(actor);

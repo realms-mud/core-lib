@@ -37,6 +37,12 @@ public varargs void testAddObject(string file, string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public varargs void testAddPersistentObject(string file, string state)
+{
+    addPersistentObject(file, state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs void testSetAdditionalLongDescription(
     string description, string state)
 {

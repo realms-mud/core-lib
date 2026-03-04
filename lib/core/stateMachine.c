@@ -110,7 +110,6 @@ public nomask varargs int receiveEvent(object caller, string eventName, object i
             {
                 onExit(currentState, caller);
                 currentState = transition["transition"];
-                notify("onStateChanged", currentState);
                 advanceState(caller, currentState);
                 onEnter(currentState, caller);
             }
