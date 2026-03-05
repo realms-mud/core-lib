@@ -18,7 +18,7 @@ public void Setup()
 
     // Third test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "third test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "third test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "fourth test");
 
     addObject("/tutorial/temple/objects/crucible.c");
 

@@ -19,11 +19,11 @@ public void Setup()
 
     // Fourth test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fourth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "fifth test");
 
     // Fifth test
     addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fifth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fifth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "sixth test");
 
     addObject("/tutorial/temple/objects/shadow-mirror.c", "fourth test");
     addObject("/tutorial/temple/objects/dream-pool.c", "fifth test");

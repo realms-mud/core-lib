@@ -55,42 +55,113 @@ private mapping echoColors = ([
     ]),
 ]);
 
+private mapping borderChars = ([
+    "/":([
+        "unicode": "\u2554",
+        "ascii": "+"
+    ]),
+    "`":([
+        "unicode": "\u2557",
+        "ascii": "+"
+    ]),
+    "L":([
+        "unicode": "\u255a",
+        "ascii": "+"
+    ]),
+    "J":([
+        "unicode": "\u255d",
+        "ascii": "+"
+    ]),
+    "T":([
+        "unicode": "\u2566",
+        "ascii": "+"
+    ]),
+    "U":([
+        "unicode": "\u2569",
+        "ascii": "+"
+    ]),
+    "~":([
+        "unicode": "\u2550",
+        "ascii": "-"
+    ]),
+]);
+
 // The six memory fragments. Correct chronological order is 1-6.
+// Labels are intentionally non-sequential to prevent alphabetical solving.
 private mapping fragments = ([
-    "A":([
+    "R":([
         "text": "A young mage kneels before an altar, swearing fealty",
+        "detail": "A young man in simple grey robes kneels before an "
+            "altar of dark stone. His face is eager, flushed with "
+            "ambition. An unseen presence accepts his oath and shadows "
+            "curl around his outstretched hands like living things. He "
+            "does not flinch. In his eyes burns the absolute certainty "
+            "of youth - that power, once gained, can be controlled.",
         "correct": 1,
         "current": 0,
     ]),
-    "B":([
+    "K":([
         "text": "The mage is gifted a staff of bone and whispers",
+        "detail": "The same man, older now, receives a staff carved "
+            "from a single enormous bone. As his fingers close around "
+            "it, whispered voices fill the air - promises of power, "
+            "secrets of the dead. His eyes glow briefly with violet "
+            "light. He smiles, and it is the last genuine smile you "
+            "see from him.",
         "correct": 2,
         "current": 0,
     ]),
-    "C":([
+    "W":([
         "text": "A city burns as the mage watches from a dark tower",
+        "detail": "A great city burns below a tower of black stone. "
+            "The mage stands at its peak, staff raised, his face a "
+            "mask of terrible concentration. Below, people flee "
+            "through streets choked with flame and ash. He does not "
+            "look away. Not because he is cruel, but because looking "
+            "away would mean acknowledging what he has become.",
         "correct": 3,
         "current": 0,
     ]),
-    "D":([
+    "M":([
         "text": "The mage weeps over a broken talisman, alone",
+        "detail": "In a bare stone cell, the mage cradles the "
+            "shattered remains of a small talisman - perhaps a "
+            "locket, perhaps a charm of warding. His robes are torn, "
+            "his face gaunt with exhaustion. He weeps without sound. "
+            "The shadows that once embraced him draw away, leaving "
+            "him utterly alone in the cold light.",
         "correct": 4,
         "current": 0,
     ]),
-    "E":([
+    "P":([
         "text": "Chains of light bind the mage to a wall of amethyst",
+        "detail": "Brilliant chains of white-gold light pin the mage "
+            "against a wall of raw amethyst. His staff lies broken "
+            "at his feet. A towering figure, radiant and terrible, "
+            "pronounces judgment in words that crackle like thunder. "
+            "The mage does not resist. His eyes hold no defiance - "
+            "only the quiet recognition of one who always knew this "
+            "moment would come.",
         "correct": 5,
         "current": 0,
     ]),
-    "F":([
+    "Q":([
         "text": "A skeletal figure tends a wall of runes, eternal",
+        "detail": "A skeletal figure in tattered robes carefully "
+            "tends a wall covered in glowing runes. There is no "
+            "anger in its movements, no urgency - only the patient, "
+            "endless work of one who has accepted an eternity of "
+            "servitude. A faint violet glow pulses in its hollow eye "
+            "sockets. It pauses, bony fingers tracing a rune, and "
+            "for a moment something like peace crosses its fleshless "
+            "features.",
         "correct": 6,
         "current": 0,
     ]),
 ]);
 
 // Scrambled display order
-private string *displayOrder = ({ "D", "A", "F", "C", "B", "E" });
+private string *displayOrder = ({ "M", "R", "Q", "W", "K", "P" });
 private int puzzleSolved = 0;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -165,11 +236,27 @@ public string displayEchoes()
     object user = this_player();
     string colorConfig = (objectp(user) && user->colorConfiguration()) ?
         user->colorConfiguration() : "none";
+    string charsetConfig = (objectp(user) && user->charsetConfiguration()) ?
+        user->charsetConfiguration() : "ascii";
 
     string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+    string bc = echoColors["border"][colorConfig];
+    string vbar = (charsetConfig == "unicode") ? "\u2551" : "|";
 
-    string ret = "\n" + echoColors["border"][colorConfig] +
-        "\t+---+-------------------------------------------+" + closing + "\n";
+    string topBorder =
+        "/~~~T~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`";
+    string botBorder =
+        "L~~~U~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~J";
+
+    foreach(string ch in m_indices(borderChars))
+    {
+        topBorder = regreplace(topBorder, ch,
+            borderChars[ch][charsetConfig], 1);
+        botBorder = regreplace(botBorder, ch,
+            borderChars[ch][charsetConfig], 1);
+    }
+
+    string ret = "\n" + bc + "\t" + topBorder + closing + "\n";
 
     foreach(string key in displayOrder)
     {
@@ -186,16 +273,15 @@ public string displayEchoes()
         string slot = (fragments[key]["current"] > 0) ?
             sprintf("%d", fragments[key]["current"]) : ".";
 
-        ret += echoColors["border"][colorConfig] + "\t| " +
+        ret += bc + "\t" + vbar + " " +
             echoColors["slot"][colorConfig] + slot + " " +
-            echoColors["border"][colorConfig] + "| " +
-            slotColor + sprintf("%-41s", 
+            bc + vbar + " " +
+            slotColor + sprintf("%-56s",
                 sprintf("[%s] %s", key, fragments[key]["text"])) +
-            echoColors["border"][colorConfig] + " |" + closing + "\n";
+            " " + bc + vbar + closing + "\n";
     }
 
-    ret += echoColors["border"][colorConfig] +
-        "\t+---+-------------------------------------------+" + closing + "\n";
+    ret += bc + "\t" + botBorder + closing + "\n";
 
     return ret;
 }
@@ -299,33 +385,36 @@ public int clearEchoes(string str)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public string short()
+public int visionEcho(string str)
 {
-    return "A shimmering pool of purple liquid";
-}
+    if (puzzleSolved)
+    {
+        write("The pool is still. The echoes have already been ordered.\n");
+        return 1;
+    }
 
-/////////////////////////////////////////////////////////////////////////////
-public string long()
-{
-    object user = this_player();
-    string colorConfig = (objectp(user) && user->colorConfiguration()) ?
-        user->colorConfiguration() : "none";
-    string closing = (colorConfig == "none") ? "" : "\x1b[0m";
+    if (stringp(str) && sizeof(str))
+    {
+        string letter = upper_case(str);
+        if (member(fragments, letter))
+        {
+            object user = this_player();
+            string colorConfig = (objectp(user) &&
+                user->colorConfiguration()) ?
+                user->colorConfiguration() : "none";
+            string closing = (colorConfig == "none") ? "" : "\x1b[0m";
 
-    string desc = sprintf("%sThe pool shimmers with an inner light. As you "
-        "gaze into its depths, ghostly images swirl and fragment - echoes "
-        "of a life lived long ago. Six scenes replay in jumbled disorder. "
-        "Each is labeled with a letter. They seem to tell a story, if only "
-        "you could determine the correct order.%s\n%s\n"
-        "%sUse 'order <letter> <position>' to arrange them (1-6). "
-        "Use 'clear echoes' to reset.%s\n",
-        echoColors["description"][colorConfig],
-        closing,
-        displayEchoes(),
-        echoColors["instructions"][colorConfig],
-        closing);
+            write(echoColors["description"][colorConfig] +
+                format("You gaze deeply into echo " + letter +
+                    "...\n\n" + fragments[letter]["detail"], 78) +
+                closing + "\n");
+            return 1;
+        }
+    }
 
-    return format(desc, 78);
+    notify_fail("Which echo do you wish to examine? "
+        "Use 'vision <letter>'.\n");
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -333,4 +422,5 @@ public void init()
 {
     add_action("orderEcho", "order");
     add_action("clearEchoes", "clear");
+    add_action("visionEcho", "vision");
 }

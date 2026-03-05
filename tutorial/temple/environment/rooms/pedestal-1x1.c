@@ -203,6 +203,14 @@ public void init()
     {
         add_action("resetEverything", "resetEverything");
         add_action("updateState", "updateState");
+
+        if (StateMachine && member(({ "second test", "third test",
+            "fourth test", "fifth test", "sixth test",
+            "seventh test" }),
+            currentState()) > -1)
+        {
+            StateMachine->placeUhrdalenForConversation(this_player());
+        }
     }
 }
 

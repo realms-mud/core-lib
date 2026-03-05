@@ -24,31 +24,43 @@ private void enterRoom(string roomPath)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void advanceStateMachine(string event)
+private void traverseFirstUhrdalenConversation()
 {
-    object sm = getStateMachine();
-    sm->receiveEvent(Player, event);
+    command("2", Player);
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+    command("1", Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void beginQuest()
+private void traverseSecondUhrdalenConversation()
 {
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    command("resetEverything", Player);
-    command("get rune", Player);
-    command("place resistance", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void advanceToFirstTest()
+private void traverseThirdUhrdalenConversation()
 {
-    command("2", Player);
     command("1", Player);
-    command("2", Player);
     command("1", Player);
-    command("2", Player);
     command("1", Player);
-    command("2", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
     command("1", Player);
     command("1", Player);
 }
@@ -77,6 +89,67 @@ private void traverseFirstPassage()
     command("e", Player);
     command("e", Player);
     command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openSecondPassage()
+{
+    command("press envy", Player);
+    command("press fear", Player);
+    command("press sorrow", Player);
+    command("press wrath", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openThirdPassage()
+{
+    command("press envy", Player);
+    command("press envy", Player);
+    command("press envy", Player);
+    command("press envy", Player);
+    command("press fear", Player);
+    command("press fear", Player);
+    command("press fear", Player);
+    command("press fear", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseSecondPassage()
+{
+    command("s", Player);
+    command("e", Player);
+    command("s", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("e", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseThirdPassage()
+{
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("w", Player);
+    command("s", Player);
+    command("e", Player);
+    command("e", Player);
     command("n", Player);
     command("n", Player);
     command("e", Player);
@@ -126,19 +199,221 @@ private void solveMagicSquare()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private void advanceToSecondTest()
+private void solveVisionQuest()
 {
-    advanceToFirstTest();
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-square.c");
-    solveMagicSquare();
+    command("order m 4", Player);
+    command("order r 1", Player);
+    command("order q 6", Player);
+    command("order w 3", Player);
+    command("order k 2", Player);
+    command("order p 5", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void solveCrucibleQuest()
+{
+    command("touch flame", Player);
+    command("touch flame", Player);
+    command("touch flame", Player);
+    command("touch frost", Player);
+    command("touch frost", Player);
+    command("touch frost", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseFourthUhrdalenConversation()
+{
+    command("1", Player);
+    command("1", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openFourthPassage()
+{
+    command("press envy", Player);
+    command("press fear", Player);
+    command("press sorrow", Player);
+    command("press wrath", Player);
+    command("press envy", Player);
+    command("press fear", Player);
+    command("press sorrow", Player);
+    command("press wrath", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseFourthPassage()
+{
+    command("e", Player);
+    command("e", Player);
+    command("e", Player);
+    command("s", Player);
+    command("w", Player);
+    command("s", Player);
+    command("w", Player);
+    command("s", Player);
+    command("e", Player);
+    command("e", Player);
+    command("e", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void solveMirrorQuest()
+{
+    command("ignore shadow", Player);
+    command("ignore shadow", Player);
+    command("ignore shadow", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseFifthUhrdalenConversation()
+{
+    command("1", Player);
+    command("1", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openFifthPassage()
+{
+    command("press sorrow", Player);
+    command("press wrath", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseFifthPassage()
+{
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+    command("s", Player);
+    command("w", Player);
+    command("w", Player);
+    command("s", Player);
+    command("e", Player);
+    command("e", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void solveDreamQuest()
+{
+    command("touch pool", Player);
+    command("n", Player);
+    command("accept", Player);
+    command("n", Player);
+    command("obey", Player);
+    command("n", Player);
+    command("submit", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseSixthUhrdalenConversation()
+{
+    command("1", Player);
+    command("1", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openSixthPassage()
+{
+    command("press envy", Player);
+    command("press fear", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseSixthPassage()
+{
+    command("s", Player);
+    command("e", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("w", Player);
+    command("s", Player);
+    command("e", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void solveGauntletQuest()
+{
+    command("begin gauntlet", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void openSeventhPassage()
+{
+    command("press fear", Player);
+    command("press fear", Player);
+    command("press fear", Player);
+    command("press wrath", Player);
+    command("press wrath", Player);
+    command("press envy", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseFinalUhrdalenConversation()
+{
+    command("1", Player);
+    command("2", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int isInState(string state)
+{
+    return (Player->questState(QuestPath) == state) && 
+        (environment(Player)->currentState() == state);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private int runeAppeared(string runeType)
+{
+    object rune = present(sprintf("rune of %s", runeType), environment(Player));
+    return objectp(rune) && rune->getRuneType() == runeType;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "enterRoom", "getStateMachine",
-        "advanceStateMachine", "beginQuest", "advanceToFirstTest",
-        "solveMagicSquare", "advanceToSecondTest" });
+    ignoreList += ({ "enterRoom", "getStateMachine", "traverseFirstPassage",
+        "isInState", "openFirstPassage", "solveMagicSquare",
+        "traverseFirstUhrdalenConversation", "runeAppeared",
+        "traverseSecondUhrdalenConversation",
+        "traverseThirdUhrdalenConversation",
+        "traverseFourthUhrdalenConversation",
+        "traverseFifthUhrdalenConversation",
+        "traverseSixthUhrdalenConversation",
+        "traverseFinalUhrdalenConversation",
+        "openSecondPassage", "traverseSecondPassage", "solveVisionQuest",
+        "openThirdPassage", "traverseThirdPassage", "solveCrucibleQuest",
+        "openFourthPassage", "traverseFourthPassage", "solveMirrorQuest",
+        "openFifthPassage", "traverseFifthPassage", "solveDreamQuest",
+        "openSixthPassage", "traverseSixthPassage", "solveGauntletQuest",
+        "openSeventhPassage",
+        "executeFirstChallenge", "executeSecondChallenge",
+        "executeThirdChallenge", "executeFourthChallenge",
+        "executeFifthChallenge", "executeSixthChallenge",
+        "executeFinalChallenge" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -175,319 +450,286 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void PlayerCanEnterPedestalRoomAndGetRune()
+private void executeFirstChallenge()
 {
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-
-    object room = environment(Player);
-    ExpectTrue(objectp(room));
-
-    object rune = present("rune", room);
-
-    ExpectTrue(objectp(rune), "resistance rune is present");
-    ExpectEq("resistance", rune->getRuneType());
+    ExpectTrue(runeAppeared("resistance"),
+        "resistance rune appeared in the room");
 
     command("get rune", Player);
-    ExpectTrue(present("rune", Player), "rune is in player inventory");
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void PickingUpRuneBeginsQuestAndAdvancesToStartingTheTest()
-{
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    command("get rune", Player);
+    ExpectTrue(isInState("starting the test"),
+        "player is in starting the test state");
 
-    ExpectEq("starting the test",
-        Player->questState(QuestPath));
-}
+    command("place resistance", Player);
 
-/////////////////////////////////////////////////////////////////////////////
-void PlacingResistanceRuneOnWallAdvancesToResistanceRunePlaced()
-{
-    beginQuest();
+    ExpectTrue(isInState("resistance rune placed"),
+        "player is in resistance rune placed state");
 
-    ExpectEq("resistance rune placed",
-        Player->questState(QuestPath));
-}
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
 
-/////////////////////////////////////////////////////////////////////////////
-void UhrdalenSpawnsAfterResistanceRunePlaced()
-{
-    beginQuest();
-
-    object sm = getStateMachine();
-    object uhrdalen = sm->getUhrdalen();
-    ExpectTrue(objectp(uhrdalen), "uhrdalen was spawned");
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void StartFirstTestAdvancesQuestAndOpensPedestalExit()
-{
-    beginQuest();
-    advanceToFirstTest();
-
-    ExpectEq("first test", Player->questState(QuestPath));
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    ExpectEq("first test", environment(Player)->currentState());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void UhrdalenIsHiddenAfterFirstTestBegins()
-{
-    beginQuest();
-
-    object sm = getStateMachine();
-    object uhrdalen = sm->getUhrdalen();
     ExpectTrue(objectp(uhrdalen), "uhrdalen was spawned");
     ExpectEq(environment(Player), environment(uhrdalen),
         "uhrdalen is in the player room");
 
-    advanceStateMachine("startFirstTest");
+    traverseFirstUhrdalenConversation();
 
     ExpectNotEq(environment(Player), environment(uhrdalen),
         "uhrdalen moved to holding room");
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void CompletingPedestalPuzzleOpensPassage()
-{
-    beginQuest();
-    advanceToFirstTest();
-
-    object room = environment(Player);
-    object pedestal = present("pedestal-hidden", room);
-    ExpectTrue(objectp(pedestal), "pedestal is present");
+    ExpectTrue(isInState("first test"), "player is in first test state");
 
     openFirstPassage();
 
     ExpectSubStringMatch("allowing safe passage",
         Player->caughtMessage());
-}
 
-/////////////////////////////////////////////////////////////////////////////
-void CanTraverseFirstTestPathToMagicSquareRoom()
-{
-    beginQuest();
-    advanceToFirstTest();
-
-    openFirstPassage();
     traverseFirstPassage();
 
-    ExpectEq("first test", environment(Player)->currentState());
-    ExpectEq(load_object("/tutorial/temple/environment/rooms/pedestal-square.c"), 
+    ExpectTrue(isInState("first test"),
+        "player is still in first test state");
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/pedestal-square.c"),
         environment(Player));
 
     solveMagicSquare();
 
-    ExpectEq("second test", Player->questState(QuestPath));
-}
+    ExpectTrue(runeAppeared("negation"),
+        "negation rune appeared in the room after solving magic square");
 
-/*
-/////////////////////////////////////////////////////////////////////////////
-void CompletingMagicSquareAdvancesToSecondTest()
-{
-    advanceToSecondTest();
-
-    ExpectEq("second test", Player->questState(QuestPath));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void NegationRuneAppearsAfterMagicSquareCompleted()
-{
-    advanceToSecondTest();
-
-    object rune = present("rune", environment(Player));
-    ExpectTrue(objectp(rune), "negation rune appeared");
-    ExpectEq("negation", rune->getRuneType());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void CanPickUpNegationRuneAfterMagicSquare()
-{
-    advanceToSecondTest();
+    ExpectTrue(isInState("second test"),
+        "player is in second test state");
 
     command("get rune", Player);
-    ExpectTrue(present("rune", Player), "negation rune picked up");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void PedestalPilonHasCorrectStateInSecondTest()
+private void executeSecondChallenge()
 {
-    advanceToSecondTest();
+    command("e", Player);
 
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-pilon.c");
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
 
-    object room = environment(Player);
-    ExpectEq("second test", room->currentState());
-}
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room");
+    traverseSecondUhrdalenConversation();
 
-/////////////////////////////////////////////////////////////////////////////
-void CanPlaceNegationRuneOnWall()
-{
-    advanceToSecondTest();
-    command("get rune", Player);
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room");
 
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
+    openSecondPassage();
 
-    command("place negation", Player);
-    ExpectSubStringMatch("place.*rune of negation",
+    ExpectSubStringMatch("allowing safe passage",
         Player->caughtMessage());
+    traverseSecondPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/pedestal-pilon.c"),
+        environment(Player));
+
+    solveVisionQuest();
+    ExpectTrue(runeAppeared("strength"),
+        "strength rune appeared in the room after solving echoes");
+    ExpectTrue(runeAppeared("weakness"),
+        "weakness rune appeared in the room after solving echoes");
+
+    ExpectTrue(isInState("third test"),
+        "player is in third test state");
+
+    command("get all", Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void QuestStateAdvancesCorrectlyThroughAllEarlyTransitions()
+private void executeThirdChallenge()
+{
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
+
+    command("e", Player);
+
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room after echo pool");
+
+    traverseThirdUhrdalenConversation();
+
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room after third conversation");
+
+    openThirdPassage();
+
+    ExpectSubStringMatch("allowing safe passage",
+        Player->caughtMessage());
+
+    traverseThirdPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/chamber-of-sacrifice.c"),
+        environment(Player));
+
+    solveCrucibleQuest();
+    ExpectTrue(runeAppeared("flame"),
+        "flame rune appeared in the room after solving crucible");
+    ExpectTrue(runeAppeared("frost"),
+        "frost rune appeared in the room after solving crucible");
+
+    ExpectTrue(isInState("fourth test"),
+        "player is in fourth test state");
+
+    command("get all", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeFourthChallenge()
+{
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
+
+    command("e", Player);
+
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room after crucible");
+
+    traverseFourthUhrdalenConversation();
+
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room after fourth conversation");
+
+    openFourthPassage();
+
+    ExpectSubStringMatch("allowing safe passage",
+        Player->caughtMessage());
+
+    traverseFourthPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/rod-chamber.c"),
+        environment(Player));
+
+    solveMirrorQuest();
+    ExpectTrue(runeAppeared("fear"),
+        "fear rune appeared in the room after solving mirror");
+    ExpectTrue(runeAppeared("doom"),
+        "doom rune appeared in the room after solving mirror");
+
+    ExpectTrue(isInState("fifth test"),
+        "player is in fifth test state");
+
+    command("get all", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeFifthChallenge()
+{
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
+
+    command("e", Player);
+
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room after mirror");
+
+    traverseFifthUhrdalenConversation();
+
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room after fifth conversation");
+
+    openFifthPassage();
+
+    ExpectSubStringMatch("allowing safe passage",
+        Player->caughtMessage());
+
+    traverseFifthPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/rod-chamber.c"),
+        environment(Player));
+
+    solveDreamQuest();
+    ExpectTrue(runeAppeared("wisdom"),
+        "wisdom rune appeared in the room after solving dream");
+    ExpectTrue(runeAppeared("endurance"),
+        "endurance rune appeared in the room after solving dream");
+
+    ExpectTrue(isInState("sixth test"),
+        "player is in sixth test state");
+
+    command("get all", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeSixthChallenge()
+{
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
+
+    command("e", Player);
+
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room after dream");
+
+    traverseSixthUhrdalenConversation();
+
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room after sixth conversation");
+
+    openSixthPassage();
+
+    ExpectSubStringMatch("allowing safe passage",
+        Player->caughtMessage());
+
+    traverseSixthPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/chamber-of-targets.c"),
+        environment(Player));
+
+    solveGauntletQuest();
+    ExpectTrue(runeAppeared("death"),
+        "death rune appeared in the room after solving gauntlet");
+
+    ExpectTrue(isInState("seventh test"),
+        "player is in seventh test state");
+
+    command("get all", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeFinalChallenge()
+{
+    object stateMachine = getStateMachine();
+    object uhrdalen = stateMachine->getUhrdalen();
+
+    command("e", Player);
+
+    ExpectEq(environment(Player), environment(uhrdalen),
+        "uhrdalen is in the player room for final conversation");
+
+    traverseFinalUhrdalenConversation();
+
+    ExpectTrue(Player->questIsCompleted(QuestPath),
+        "quest is completed");
+
+    ExpectTrue(runeAppeared("envy"),
+        "envy rune appeared after quest completion");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CanCompleteObedienceQuest()
 {
     enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
+    command("resetEverything", Player);
 
-    ExpectFalse(Player->questState(QuestPath));
+    executeFirstChallenge();
+    executeSecondChallenge();
 
-    command("get rune", Player);
-    ExpectEq("starting the test",
-        Player->questState(QuestPath));
+    Player->resetCatchList();
+    executeThirdChallenge();
 
-    command("place resistance", Player);
-    ExpectEq("resistance rune placed",
-        Player->questState(QuestPath));
+    Player->resetCatchList();
+    executeFourthChallenge();
 
-    advanceStateMachine("startFirstTest");
-    ExpectEq("first test",
-        Player->questState(QuestPath));
+    Player->resetCatchList();
+    executeFifthChallenge();
 
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-square.c");
-    solveMagicSquare();
-    ExpectEq("second test",
-        Player->questState(QuestPath));
+    Player->resetCatchList();
+    executeSixthChallenge();
+
+    Player->resetCatchList();
+    executeFinalChallenge();
 }
-
-/////////////////////////////////////////////////////////////////////////////
-void EnvironmentStateMatchesQuestStateAfterEveryTransition()
-{
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    object room = environment(Player);
-
-    command("get rune", Player);
-    ExpectEq("starting the test", Player->questState(QuestPath));
-
-    ToggleCallOutBypass();
-    command("place resistance", Player);
-    ExpectEq("resistance rune placed", room->currentState());
-
-    advanceStateMachine("startFirstTest");
-    ExpectEq("first test", room->currentState());
-    ToggleCallOutBypass();
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void StateIsPreservedWhenReEnteringPedestalRoom()
-{
-    advanceToSecondTest();
-
-    ExpectEq("second test", Player->questState(QuestPath));
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    ExpectEq("second test", environment(Player)->currentState());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void StateIsPreservedWhenReEnteringPilonRoom()
-{
-    advanceToSecondTest();
-
-    ExpectEq("second test", Player->questState(QuestPath));
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-pilon.c");
-    ExpectEq("second test", environment(Player)->currentState());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void AllRoomsGetCorrectStateFromStateMachine()
-{
-    advanceToFirstTest();
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x2.c");
-    ExpectEq("first test", environment(Player)->currentState());
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x5.c");
-    ExpectEq("first test", environment(Player)->currentState());
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-square.c");
-    ExpectEq("first test", environment(Player)->currentState());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void SubsequentTestTransitionsUpdateQuestState()
-{
-    advanceToSecondTest();
-
-    ExpectEq("second test",
-        Player->questState(QuestPath));
-
-    advanceStateMachine("startThirdTest");
-    ExpectEq("third test",
-        Player->questState(QuestPath));
-
-    advanceStateMachine("startFourthTest");
-    ExpectEq("fourth test",
-        Player->questState(QuestPath));
-
-    advanceStateMachine("startFifthTest");
-    ExpectEq("fifth test",
-        Player->questState(QuestPath));
-
-    advanceStateMachine("startSixthTest");
-    ExpectEq("sixth test",
-        Player->questState(QuestPath));
-
-    advanceStateMachine("startSeventhTest");
-    ExpectEq("seventh test",
-        Player->questState(QuestPath));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void QuestCompletionMarksQuestAsComplete()
-{
-    advanceToSecondTest();
-
-    advanceStateMachine("startThirdTest");
-    advanceStateMachine("startFourthTest");
-    advanceStateMachine("startFifthTest");
-    advanceStateMachine("startSixthTest");
-    advanceStateMachine("startSeventhTest");
-    advanceStateMachine("questCompleted");
-
-    ExpectEq("quest complete",
-        Player->questState(QuestPath));
-    ExpectTrue(Player->questIsCompleted(QuestPath));
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void RoomStateMatchesQuestStateAfterAllTransitions()
-{
-    advanceToSecondTest();
-
-    advanceStateMachine("startThirdTest");
-    advanceStateMachine("startFourthTest");
-    advanceStateMachine("startFifthTest");
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-1x1.c");
-    ExpectEq("fifth test", environment(Player)->currentState());
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-2x1.c");
-    ExpectEq("fifth test", environment(Player)->currentState());
-}
-
-/////////////////////////////////////////////////////////////////////////////
-void InitSyncsEnvironmentStateFromPlayerQuestState()
-{
-    advanceToSecondTest();
-
-    ExpectEq("second test", Player->questState(QuestPath));
-
-    advanceStateMachine("startThirdTest");
-    ExpectEq("third test", Player->questState(QuestPath));
-
-    enterRoom("/tutorial/temple/environment/rooms/pedestal-pilon.c");
-    ExpectEq("third test", environment(Player)->currentState());
-}
-*/

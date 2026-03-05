@@ -7,6 +7,7 @@ inherit "/lib/modules/quests/questItem.c";
 private object Uhrdalen;
 private string HoldingRoom =
     "/tutorial/temple/environment/rooms/uhrdalen-holding.c";
+private string UhrdalenShownForState = "";
 
 /////////////////////////////////////////////////////////////////////////////
 private void registerEventHandlers()
@@ -147,16 +148,21 @@ void showUhrdalenBetweenTests(object player)
     {
         notify(testEvents[CurrentState], player);
     }
+}
 
-    if (!objectp(Uhrdalen) || !objectp(player))
+/////////////////////////////////////////////////////////////////////////////
+public void placeUhrdalenForConversation(object player)
+{
+    if (!objectp(Uhrdalen) || !objectp(player) ||
+        UhrdalenShownForState == CurrentState)
     {
         return;
     }
 
+    UhrdalenShownForState = CurrentState;
     Uhrdalen->revealName();
 
-    object pedestalRoom = environment(player);
-    move_object(Uhrdalen, pedestalRoom);
+    move_object(Uhrdalen, environment(player));
 
     player->characterState(Uhrdalen, CurrentState);
     call_out("initiateUhrdalenConversation", 1, player);
