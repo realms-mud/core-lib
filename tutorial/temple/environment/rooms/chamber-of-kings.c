@@ -11,19 +11,25 @@ public void Setup()
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
     addFeature("/tutorial/temple/environment/features/amethyst-floor.c");
     addFeature("/tutorial/temple/environment/features/amethyst-ceiling.c");
-    addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
-    addDecorator("ruined interior amethyst floor", "default");
+    addDecorator("ruined interior north wall");
+    addDecorator("ruined interior north entry alcove", "poem complete");
 
-    // Fifth test
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-4x2.c", "fifth test");
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x1.c", "fifth test");
-    addDecorator("ruined interior amethyst floor east south", "fifth test");
+    addExit("north",
+        "/tutorial/temple/environment/rooms/pedestal-5x5.c",
+        "poem complete");
+    addExit("north",
+        "/tutorial/temple/environment/rooms/pedestal-5x5.c",
+        "quest complete");
 
-    // Poem complete (final passage)
-    addExit("north", "/tutorial/temple/environment/rooms/pedestal-3x1.c", "poem complete");
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-5x1.c", "poem complete");
-    addDecorator("ruined interior amethyst floor north south", "poem complete");
+    addObject("/tutorial/temple/objects/seal-blade.c");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public string suppressDeath()
+{
+    return "Dark energy sustains you. You cannot die here, but "
+        "the pain is very real.\n";
 }

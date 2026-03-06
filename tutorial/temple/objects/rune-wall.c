@@ -108,7 +108,7 @@ public int allRunesPlaced()
     int *items = m_values(wall, 1);
     items -= ({ 0 });
 
-    return (sizeof(items) == 18);
+    return (sizeof(items) == 0);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -257,6 +257,30 @@ public int placeRune(string rune)
                 if (stateMachine)
                 {
                     stateMachine->receiveEvent(this_player(), "resistanceRunePlaced");
+                }
+            }
+
+            if (allRunesPlaced())
+            {
+                messageParser->displayMessage(
+                    "As the final rune slides into place, the entire wall "
+                    "pulses with blinding light. The poem is whole. A deep "
+                    "rumble shakes the chamber and the pedestals flare "
+                    "with renewed energy. A hidden path awaits.\n",
+                    this_player(), 0, "rune wall", "tutorial");
+
+                object stateMachineService = getService("stateMachine");
+
+                object party = this_player()->getParty();
+                string owner = party ? party->partyName() : this_player()->RealName();
+
+                object stateMachine = stateMachineService->getStateMachine(
+                    "/tutorial/temple/stateMachine/obedienceStateMachine.c",
+                    owner);
+
+                if (stateMachine)
+                {
+                    stateMachine->receiveEvent(this_player(), "allRunesPlaced");
                 }
             }
             ret = 1;

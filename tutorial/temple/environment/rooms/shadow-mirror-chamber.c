@@ -15,18 +15,12 @@ public void Setup()
 
     addDecorator("ruined interior west wall");
     addDecorator("ruined interior west entry alcove", "fourth test");
-    addDecorator("ruined interior west entry alcove", "fifth test");
 
     // Fourth test
-    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fourth test");
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-4x5.c", "fourth test");
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "fifth test");
 
-    // Fifth test
-    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fifth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "sixth test");
-
     addObject("/tutorial/temple/objects/shadow-mirror.c", "fourth test");
-    addObject("/tutorial/temple/objects/dream-pool.c", "fifth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
@@ -34,13 +28,7 @@ public void Setup()
 /////////////////////////////////////////////////////////////////////////////
 private object puzzleObject()
 {
-    object mirror = present("mirror-hidden", this_object());
-    if (mirror) return mirror;
-
-    object dream = present("dream-hidden", this_object());
-    if (dream) return dream;
-
-    return 0;
+    return present("mirror-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////

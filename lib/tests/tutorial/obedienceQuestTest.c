@@ -225,6 +225,8 @@ private void traverseFourthUhrdalenConversation()
 {
     command("1", Player);
     command("1", Player);
+    command("1", Player);
+    command("1", Player);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -267,6 +269,8 @@ private void solveMirrorQuest()
 /////////////////////////////////////////////////////////////////////////////
 private void traverseFifthUhrdalenConversation()
 {
+    command("1", Player);
+    command("1", Player);
     command("1", Player);
     command("1", Player);
 }
@@ -316,6 +320,9 @@ private void solveDreamQuest()
 /////////////////////////////////////////////////////////////////////////////
 private void traverseSixthUhrdalenConversation()
 {
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
     command("1", Player);
     command("1", Player);
 }
@@ -369,10 +376,52 @@ private void openSeventhPassage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void traverseSeventhPassage()
+{
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+    command("e", Player);
+    command("n", Player);
+    command("w", Player);
+    command("n", Player);
+    command("e", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void solveSealQuest()
+{
+    command("cut blade", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void traverseSeilyndriaConversation()
+{
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+    command("1", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void traverseFinalUhrdalenConversation()
 {
     command("1", Player);
     command("2", Player);
+    command("1", Player);
+    command("1", Player);
     command("1", Player);
     command("1", Player);
     command("1", Player);
@@ -409,11 +458,12 @@ void Init()
         "openFourthPassage", "traverseFourthPassage", "solveMirrorQuest",
         "openFifthPassage", "traverseFifthPassage", "solveDreamQuest",
         "openSixthPassage", "traverseSixthPassage", "solveGauntletQuest",
-        "openSeventhPassage",
+        "openSeventhPassage", "traverseSeventhPassage",
+        "solveSealQuest", "traverseSeilyndriaConversation",
         "executeFirstChallenge", "executeSecondChallenge",
         "executeThirdChallenge", "executeFourthChallenge",
         "executeFifthChallenge", "executeSixthChallenge",
-        "executeFinalChallenge" });
+        "executeFinalChallenge", "executeSealChallenge" });
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -600,7 +650,7 @@ private void executeFourthChallenge()
 
     traverseFourthPassage();
 
-    ExpectEq(load_object("/tutorial/temple/environment/rooms/rod-chamber.c"),
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/shadow-mirror-chamber.c"),
         environment(Player));
 
     solveMirrorQuest();
@@ -638,7 +688,7 @@ private void executeFifthChallenge()
 
     traverseFifthPassage();
 
-    ExpectEq(load_object("/tutorial/temple/environment/rooms/rod-chamber.c"),
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/dream-chamber.c"),
         environment(Player));
 
     solveDreamQuest();
@@ -702,11 +752,53 @@ private void executeFinalChallenge()
 
     traverseFinalUhrdalenConversation();
 
+    ExpectNotEq(environment(Player), environment(uhrdalen),
+        "uhrdalen moved to holding room after final conversation");
+
+    ExpectTrue(present("envy", Player),
+        "player has the rune of envy in inventory");
+
+    ExpectFalse(Player->questIsCompleted(QuestPath),
+        "quest is not completed");
+
+    command("place negation", Player);
+    command("place strength", Player);
+    command("place weakness", Player);
+    command("place flame", Player);
+    command("place frost", Player);
+    command("place fear", Player);
+    command("place doom", Player);
+    command("place wisdom", Player);
+    command("place endurance", Player);
+    command("place death", Player);
+    command("place envy", Player);
+
+    ExpectTrue(isInState("poem complete"),
+        "player is in poem complete state after placing all runes");
+
+    ExpectFalse(Player->questIsCompleted(QuestPath),
+        "quest is not completed after placing all runes");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void executeSealChallenge()
+{
+    openSeventhPassage();
+
+    ExpectSubStringMatch("allowing safe passage",
+        Player->caughtMessage());
+
+    traverseSeventhPassage();
+
+    ExpectEq(load_object("/tutorial/temple/environment/rooms/chamber-of-kings.c"),
+        environment(Player));
+
+    solveSealQuest();
+
+    traverseSeilyndriaConversation();
+
     ExpectTrue(Player->questIsCompleted(QuestPath),
         "quest is completed");
-
-    ExpectTrue(runeAppeared("envy"),
-        "envy rune appeared after quest completion");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -716,20 +808,18 @@ void CanCompleteObedienceQuest()
     command("resetEverything", Player);
 
     executeFirstChallenge();
+
     executeSecondChallenge();
 
-    Player->resetCatchList();
     executeThirdChallenge();
 
-    Player->resetCatchList();
     executeFourthChallenge();
 
-    Player->resetCatchList();
     executeFifthChallenge();
 
-    Player->resetCatchList();
     executeSixthChallenge();
 
-    Player->resetCatchList();
     executeFinalChallenge();
+
+    executeSealChallenge();
 }

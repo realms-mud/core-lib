@@ -407,6 +407,14 @@ public void startSixthTest()
 /////////////////////////////////////////////////////////////////////////////
 public void startSeventhTest()
 {
+    pressPlateOfDeath(1);
+    currentTest = "none";
+    platesCanBePressed = 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startFinalPassage()
+{
     currentTest = "stealth";
     platesCanBePressed = 1;
     pressPlateOfDeath();

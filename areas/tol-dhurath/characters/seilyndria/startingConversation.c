@@ -417,18 +417,19 @@ private void MaiwynDiscussionWhatDidTheyDo()
 private void MaiwynGoForthAndQuest()
 {
     addTopic("go forth and quest", "@D@Maiwyn looks longingly at the gate "
-        "house, clearly conflicted between fleeing to safety and helping. "
-        "She turns to ##InitiatorName## and finally says, @S@'Very well. I "
-        "will do what I can, but I warn you: I am no fighter. If you are "
-        "asking that of me, I fear you will be deeply disappointed. When "
-        "blows land, I will be doing my best to get out of the way.' "
-        "@D@Maiwyn points to the south and adds, @S@'You might start by "
-        "barring the gate. No sense in having the others interrupt us with "
-        "their return.'");
+        "house, clearly conflicted. She turns to ##InitiatorName## with "
+        "an expression of genuine anguish. @S@'I want to help, truly I "
+        "do, but...' @D@She looks down at her trembling hands. @S@'I "
+        "am no fighter. Eight years in that wretched place... I can "
+        "barely stand, let alone swing a blade. I would only slow you "
+        "down and get us both killed.' @D@She squares her shoulders with "
+        "visible effort. @S@'I will find a safe place to hide nearby. "
+        "Do what must be done, and I will wait for you. Be careful, "
+        "##ActorName##. These are dangerous people.'\n\n@D@Maiwyn "
+        "points to the south. @S@'You might start by barring the gate. "
+        "No sense in having the others interrupt with their return.'");
     addResponseTopic("story more info", "Assistance @I@Quest@E@",
         "go forth and quest");
-    addResponseEffect("story more info", "Assistance @I@Quest@E@",
-        (["join":1])); 
     addTopicEvent("go forth and quest", "maiwyn helps");
 }
 

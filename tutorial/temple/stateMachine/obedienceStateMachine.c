@@ -20,6 +20,7 @@ private void registerEventHandlers()
     registerEventHandler("startFifthTest");
     registerEventHandler("startSixthTest");
     registerEventHandler("startSeventhTest");
+    registerEventHandler("startFinalPassage");
     registerEventHandler("startEighthTest");
 }
 
@@ -92,12 +93,26 @@ protected void Setup()
     addTransition("sixth test", "seventh test", "startSeventhTest");
     addEntryAction("seventh test", "showUhrdalenForFinalTest");
 
-    addState("quest complete", "Uhrdalen spoke with me one final time. "
+    addState("poem complete", "Uhrdalen spoke with me one final time. "
         "He gave me the rune of envy - his envy of my freedom. The poem "
         "on the wall is now complete. I understand what obedience truly "
         "means: not blind submission, but the wisdom to know when to "
         "yield and when to stand.");
-    addTransition("seventh test", "quest complete", "questCompleted");
+    addTransition("seventh test", "poem complete", "allRunesPlaced");
+    addEntryAction("poem complete", "activateFinalPassage");
+
+    addState("quest complete", "After completing the poem on the rune "
+        "wall, the pedestals revealed one final passage. Deep within, "
+        "I found a sealed chamber with a terrible mechanism - a blade, "
+        "a vessel, and a withered heart. When I cut myself upon the "
+        "blade, my blood broke the seal and unleashed Seilyndria, the "
+        "Goddess of Destruction, from her millennia-long imprisonment. "
+        "The Test of Obedience was never about my obedience - it was "
+        "her design, crafted to find someone compliant enough to break "
+        "her prison. She vanished into the world with promises of ruin, "
+        "and I am left with the horror of what my obedience has "
+        "wrought.");
+    addTransition("poem complete", "quest complete", "questCompleted");
     addEntryAction("quest complete", "onQuestCompleted");
     addFinalState("quest complete", "success");
 
@@ -184,16 +199,15 @@ void showUhrdalenForFinalTest(object player)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void activateFinalPassage(object player)
+{
+    notify("startFinalPassage", player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void onQuestCompleted(object player)
 {
     notify("startEighthTest", player);
-
-    if (objectp(Uhrdalen) && objectp(player))
-    {
-        object rune = clone_object("/tutorial/temple/objects/rune-envy.c");
-        move_object(rune, environment(Uhrdalen));
-    }
-    hideUhrdalen(player);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -26,10 +26,10 @@ public void Setup()
     addExit("east", "/tutorial/temple/environment/rooms/pedestal-2x2.c", "sixth test");
     addDecorator("ruined interior amethyst floor east north", "sixth test");
 
-    // Seventh test
-    addExit("north", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "seventh test");
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-3x1.c", "seventh test");
-    addDecorator("ruined interior amethyst floor north south", "seventh test");
+    // Poem complete (final passage)
+    addExit("north", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "poem complete");
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-3x1.c", "poem complete");
+    addDecorator("ruined interior amethyst floor north south", "poem complete");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

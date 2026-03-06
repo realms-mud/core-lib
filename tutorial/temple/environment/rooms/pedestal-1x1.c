@@ -44,8 +44,8 @@ public void Setup()
     // Sixth test
     addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "sixth test");
 
-    // Seventh test
-    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "seventh test");
+    // Poem complete (final passage)
+    addExit("south", "/tutorial/temple/environment/rooms/pedestal-2x1.c", "poem complete");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -169,6 +169,15 @@ public void startSeventhTest(object caller, object player)
     if (pedestal())
     {
         pedestal()->startSeventhTest();
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void startFinalPassage(object caller, object player)
+{
+    if (pedestal())
+    {
+        pedestal()->startFinalPassage();
     }
 }
 

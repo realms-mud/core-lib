@@ -4,6 +4,9 @@
 //*****************************************************************************
 virtual inherit "/lib/modules/conversations/baseConversation.c";
 
+private string HoldingRoom =
+    "/tutorial/temple/environment/rooms/uhrdalen-holding.c";
+
 /////////////////////////////////////////////////////////////////////////////
 private void TheReturn()
 {
@@ -95,8 +98,7 @@ private void TheFinalRune()
         "what I could not.'\n\n@D@He holds out the rune. @S@'Take it. "
         "Complete the poem. And when you leave this place, remember that "
         "obedience without understanding is slavery, but obedience with "
-        "understanding is wisdom.'\n\n@D@He places the rune of envy in "
-        "your hands. His form flickers.");
+        "understanding is wisdom.'");
     addResponseTopic("uhrdalen responds", "I long for freedom restored.",
         "the final rune");
     addResponseTopic("uhrdalen responds", "Tell me.", "the final rune");
@@ -105,32 +107,61 @@ private void TheFinalRune()
         "@D@@C@##InitiatorName## ##ResponseInfinitive::bow## "
         "##InitiatorPossessive## head, @S@'Thank you, Uhrdalen. I will "
         "remember.'");
+    addResponseEffect("the final rune", "Thank you, Uhrdalen.",
+        (["give": "/tutorial/temple/objects/rune-envy.c"]));
+
     addResponse("the final rune", "Will you be free?",
         "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@'And you? "
         "Will you find freedom?'");
+    addResponseEffect("the final rune", "Will you be free?",
+        (["give": "/tutorial/temple/objects/rune-envy.c"]));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TheSeventhVerse()
+{
+    addTopic("seventh verse", "@D@Uhrdalen's form steadies for a moment. "
+        "Something that might be a smile crosses his skeletal features."
+        "\n\n@S@'Perhaps. Perhaps completing this poem, after all these "
+        "centuries, is the first step. You have given me something I had "
+        "forgotten - hope that the cycle can be broken.'\n\n@D@His gaze "
+        "drifts toward the pedestals one final time.\n\n@S@'One last "
+        "verse, for you will need it:\nThe crimson fires of war rage "
+        "to the north.\nThe sapphire tears of sorrow fall to the south.\n"
+        "The pale silence of surrender drifts to the east.\nThe emerald "
+        "bite of envy lingers to the west.'\n\n@D@He fixes you with "
+        "his hollow gaze.\n\n@S@'Place every rune upon the wall, "
+        "##ActorName##. Every verse must be whole before the poem can "
+        "speak its truth. Only then will your task here be complete.'");
+    addResponseTopic("the final rune", "Thank you, Uhrdalen.",
+        "seventh verse");
+    addResponseTopic("the final rune", "Will you be free?",
+        "seventh verse");
+
+    addResponse("seventh verse", "I will see it done.",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::nod##. "
+        "@S@'I will see it done.'");
+    addResponse("seventh verse", "Every rune. I understand.",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::glance## "
+        "at the wall of runes. @S@'Every rune. I understand.'");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private void UhrdalensFarewell()
 {
-    addTopic("farewell", "@D@Uhrdalen's form steadies for a moment. "
-        "Something that might be a smile crosses his skeletal features."
-        "\n\n@S@'Perhaps. Perhaps completing this poem, after all these "
-        "centuries, is the first step. You have given me something I had "
-        "forgotten - hope that the cycle can be broken.'\n\n@D@The wispy "
-        "figure bows deeply - a gesture of genuine respect from a being "
-        "who has had little cause for it.\n\n@S@'Go now, ##ActorName##. "
-        "Complete what you came here to do. The path is open to you.'\n\n"
-        "@D@Uhrdalen fades from view. This time, it feels like a farewell "
-        "rather than a disappearance.");
-    addResponseTopic("the final rune", "Thank you, Uhrdalen.", "farewell");
-    addResponseTopic("the final rune", "Will you be free?", "farewell");
+    addTopic("farewell", "@D@The wispy figure bows deeply - a gesture "
+        "of genuine respect from a being who has had little cause for "
+        "it.\n\n@S@'Go now, ##ActorName##. Complete what you came here "
+        "to do. The path is open to you.'\n\n@D@Uhrdalen fades from "
+        "view. This time, it feels like a farewell rather than a "
+        "disappearance.");
+    addResponseTopic("seventh verse", "I will see it done.", "farewell");
+    addResponseTopic("seventh verse", "Every rune. I understand.",
+        "farewell");
 
     addResponse("farewell", "@I@Continue@E@", "@I@Continue@E@");
-
-    addTopic("end of quest", "");
-    addResponseTopic("farewell", "@I@Continue@E@", "end of quest");
-    addTopicEvent("end of quest", "questCompleted");
+    addResponseEffect("farewell", "@I@Continue@E@",
+        (["move": HoldingRoom]));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -140,5 +171,6 @@ protected void Setup()
     TheMeaningOfThePoem();
     UhrdalenResponds();
     TheFinalRune();
+    TheSeventhVerse();
     UhrdalensFarewell();
 }

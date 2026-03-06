@@ -10,7 +10,7 @@ public void Setup()
     cloneEnvironment();
     setInterior("/tutorial/temple/environment/interiors/pedestal-chamber.c");
     addDecorator("ruined interior north wall");
-    addDecorator("ruined interior north entry alcove", "seventh test");
+    addDecorator("ruined interior north entry alcove", "poem complete");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }

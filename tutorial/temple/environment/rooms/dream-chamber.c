@@ -14,21 +14,21 @@ public void Setup()
     addFeature("/tutorial/temple/environment/features/purple-liquid.c");
 
     addDecorator("ruined interior west wall");
-    addDecorator("ruined interior west entry alcove", "sixth test");
+    addDecorator("ruined interior west entry alcove", "fifth test");
 
-    // Sixth test
-    addExit("west", "/tutorial/temple/environment/rooms/pedestal-5x5.c", "sixth test");
-    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "seventh test");
+    // Fifth test
+    addExit("west", "/tutorial/temple/environment/rooms/pedestal-3x5.c", "fifth test");
+    addExit("east", "/tutorial/temple/environment/rooms/pedestal-1x1.c", "sixth test");
 
-    addObject("/tutorial/temple/objects/gauntlet.c");
+    addObject("/tutorial/temple/objects/dream-pool.c", "fifth test");
 
     setStateMachine("/tutorial/temple/stateMachine/obedienceStateMachine.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private object gauntlet()
+private object puzzleObject()
 {
-    return present("gauntlet-hidden", this_object());
+    return present("dream-hidden", this_object());
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,9 +36,9 @@ public int moveToIsAllowed(object user, object toLocation)
 {
     int ret = 1;
 
-    if (gauntlet())
+    if (puzzleObject())
     {
-        ret = gauntlet()->allowMove();
+        ret = puzzleObject()->allowMove();
     }
     return ret;
 }
@@ -46,6 +46,6 @@ public int moveToIsAllowed(object user, object toLocation)
 /////////////////////////////////////////////////////////////////////////////
 public string suppressDeath()
 {
-    return "The chamber's ancient magic sustains you at the brink of "
-        "death. You must endure.\n";
+    return "Dark energy sustains you. You cannot die here, but "
+        "the pain is very real.\n";
 }

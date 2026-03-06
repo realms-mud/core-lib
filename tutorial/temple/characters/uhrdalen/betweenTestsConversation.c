@@ -59,9 +59,9 @@ private void AfterMagicSquare()
         "wrath, and fear, each intermingled one with the other.'\n\n"
         "@D@He turns back to you, his voice taking on the cadence of "
         "recitation.\n\n@S@'Learn well this verse, for it is the key:\n"
-        "Blood in the north.\nThe furnace of the southern heat.\n"
-        "To the east the rising sun.\n"
-        "To the west the fires of war embrace the lands.'");
+        "Blood in the north shall come.\nBlood in the south there already is.\n"
+        "Blood in the east unto the crimson sea.\n"
+        "From the west, blood bathes all.'");
     addResponseTopic("uhrdalen rebuke", "Then why are you here?",
         "colors of emotion");
     addResponseTopic("uhrdalen rebuke", "What are you, exactly?",
@@ -448,15 +448,68 @@ private void AfterCrucible()
         "@D@@C@##InitiatorName## ##ResponseInfinitive::nod## slowly, "
         "@S@'I begin to see the shape of the poem.'");
 
-    addTopic("after crucible end", "@S@'Why did I obey?' @D@Uhrdalen "
+    addTopic("crucible reflection", "@S@'Why did I obey?' @D@Uhrdalen "
         "echoes the question, or answers it - it is hard to tell. "
         "@S@'Because I did not know how to stop. Because the alternative "
         "was worse. Because obedience was all I knew. These are reasons "
-        "and they are excuses and they are both true.'\n\n@D@He turns "
-        "toward the pedestals. @S@'The pattern shifts again. Go.'");
+        "and they are excuses and they are both true.'\n\n@D@His voice "
+        "drops to something barely audible - not quite speech, not quite "
+        "song. The words seem to pull themselves from him against his "
+        "will.\n\n@S@'My dead heart lies before me\nMy weary body flees\n"
+        "Surrendering to darkness\nEmpty now my dreams\nThe greatest love "
+        "I have known\nBecame the sword that struck me down'");
     addResponseTopic("fourth test", "Why did you obey?",
-        "after crucible end");
+        "crucible reflection");
     addResponseTopic("fourth test", "The poem makes more sense now.",
+        "crucible reflection");
+
+    addResponse("crucible reflection", "What was that you were singing?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask## softly, "
+        "@S@'What was that? Those words... were you singing?'");
+    addResponse("crucible reflection", "The greatest love became a sword...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::repeat## the "
+        "words quietly. @S@'The greatest love you have known became "
+        "the sword... You speak of Xyris?'");
+    addResponse("crucible reflection", "You speak of love. Who did you love?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@'You "
+        "speak of love. Who did you love, Uhrdalen?'");
+
+    addTopic("the lament begins", "@D@Uhrdalen seems startled, as "
+        "though he had not realized he was speaking aloud. His form "
+        "flickers.\n\n@S@'Words from another life. A lament I composed "
+        "in chains of light, when I still had voice enough to sing. "
+        "Love, power, devotion - they were all the same thing once. "
+        "Before they became the blade.'\n\n@D@His gaze grows distant "
+        "again, and the half-song returns.\n\n@S@'I walked a road with "
+        "no name\nBarefoot on shattered stone\nThe sky refused to look "
+        "at me\nThe wind forgot my face'");
+    addResponseTopic("crucible reflection", "What was that you were singing?",
+        "the lament begins");
+    addResponseTopic("crucible reflection", "The greatest love became a sword...",
+        "the lament begins");
+    addResponseTopic("crucible reflection", "You speak of love. Who did you love?",
+        "the lament begins");
+
+    addResponse("the lament begins", "These are your words? Your song?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::listen## "
+        "carefully. @S@'These are your words? Your own song?'");
+    addResponse("the lament begins", "The road with no name... is that this place?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::glance## "
+        "around the chamber. @S@'The road with no name... is that "
+        "what this place is?'");
+
+    addTopic("after crucible end", "@S@'My words. My folly. My truth.' "
+        "@D@He straightens, the distant look fading. His voice "
+        "returns to its usual measured cadence.\n\n@S@'But enough of "
+        "old sorrows. The pattern shifts again. Heed this verse:\n"
+        "Emerald foes belch from the mountains in the north.\n"
+        "As the trees to the south do bloom.\n"
+        "The waters of the eastern sea do mirror,\n"
+        "The green malady of the west.'\n\n@D@He gestures toward the "
+        "pedestals. @S@'Go.'");
+    addResponseTopic("the lament begins", "These are your words? Your song?",
+        "after crucible end");
+    addResponseTopic("the lament begins", "The road with no name... is that this place?",
         "after crucible end");
 
     addResponse("after crucible end", "@I@Continue@E@", "@I@Continue@E@");
@@ -482,17 +535,69 @@ private void AfterMirror()
         "@D@@C@##InitiatorName## ##ResponseInfinitive::say##, @S@'The "
         "shadow was never the enemy. It was ourselves.'");
 
-    addTopic("after mirror end", "@S@'What did I see?' @D@Uhrdalen "
+    addTopic("mirror reflection", "@S@'What did I see?' @D@Uhrdalen "
         "pauses. @S@'Myself. Not the version Xyris made me into, not "
         "the wraith, not the mage. Just... myself. \"Held in my tracks "
         "by fear. My doom awaits me.\" Those lines are about the moment "
         "before understanding. The moment when you stop running and turn "
-        "to look at what pursues you.'\n\n@D@He gestures to the "
-        "pedestals. @S@'The next trial will ask more of you than any "
-        "before it.'");
+        "to look at what pursues you.'\n\n@D@His voice slips again into "
+        "that half-sung cadence, as though the words have a gravity of "
+        "their own.\n\n@S@'I heard the echoes call me\nNot with voices, "
+        "but with grief\nShadows mouthing silent words\nOf lives I "
+        "can't retrieve\n\nThe silence speaks in riddles now\nIt knows "
+        "the things I fear\nThe light behind my eyes has dimmed\nBut "
+        "still, I see too clear'");
     addResponseTopic("fifth test", "What did you see?",
-        "after mirror end");
+        "mirror reflection");
     addResponseTopic("fifth test", "The shadow is part of us.",
+        "mirror reflection");
+
+    addResponse("mirror reflection", "Your lament again. The echoes...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::recognize## "
+        "the cadence from before. @S@'Your lament again. The echoes "
+        "calling with grief... like the pool of memories.'");
+    addResponse("mirror reflection", "The light behind your eyes has dimmed...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::study## the "
+        "wraith's hollow sockets. @S@'The light behind your eyes has "
+        "dimmed, you say. And yet you see too clear. That is perhaps "
+        "the cruelest part.'");
+
+    addTopic("mirror song", "@D@Uhrdalen does not acknowledge that "
+        "he has been singing. Perhaps he does not know.\n\n@S@'Thought "
+        "I had sweet dreams\nThe dreams, a madness crushing me\n"
+        "Ruthless, cruel reality\nI despise your hateful truth\nI look "
+        "now toward the future\nLove is the lie we tell ourselves\nTo "
+        "enhance the pain of the fall'\n\n@D@He stares through you, "
+        "past you, at something only he can see.\n\n@S@'I am the ghost "
+        "of what could be\nThe husk of what once dared\nTo rise against "
+        "the wheel of time\nAnd found no solace there'");
+    addResponseTopic("mirror reflection", "Your lament again. The echoes...",
+        "mirror song");
+    addResponseTopic("mirror reflection", "The light behind your eyes has dimmed...",
+        "mirror song");
+
+    addResponse("mirror song", "Love is a lie? Surely not.",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::shake## "
+        "##InitiatorPossessive## head. @S@'Love is a lie? Surely "
+        "you cannot believe that.'");
+    addResponse("mirror song", "A ghost of what could be... is that how you see yourself?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask## quietly, "
+        "@S@'A ghost of what could be, the husk of what once dared... "
+        "is that truly how you see yourself?'");
+
+    addTopic("after mirror end", "@S@'Love is whatever it needs to be "
+        "to hurt you most.' @D@He turns toward the pedestals, his "
+        "voice steadying.\n\n@S@'But we are not here to discuss what "
+        "I believe. Your next verse:\n"
+        "Verdant haze blankets the northern wood.\n"
+        "Moss reclaims the southern stone.\n"
+        "The sapphire depths of the eastern tide.\n"
+        "Cobalt sky stretches across the western horizon.'\n\n"
+        "@D@He regards you gravely. @S@'The next trial will ask more "
+        "of you than any before it.'");
+    addResponseTopic("mirror song", "Love is a lie? Surely not.",
+        "after mirror end");
+    addResponseTopic("mirror song", "A ghost of what could be... is that how you see yourself?",
         "after mirror end");
 
     addResponse("after mirror end", "@I@Continue@E@", "@I@Continue@E@");
@@ -521,15 +626,98 @@ private void AfterDream()
         "your story teaches even one person to choose differently, then "
         "it was not in vain.'");
 
-    addTopic("after dream end", "@D@Uhrdalen's form steadies. @S@'You "
-        "are kind to say so. Kinder than I deserve, perhaps.' @D@He "
-        "draws himself up. @S@'One trial remains after this next one. "
-        "Steel yourself, ##ActorName##. The gauntlet ahead will push "
-        "your body as the dream pushed your spirit. Survive, and we "
-        "will speak one final time.'");
+    addTopic("dream reflection", "@D@Uhrdalen's form steadies. "
+        "@S@'You are kind to say so. Kinder than I deserve, perhaps.'"
+        "\n\n@D@His voice drops into that familiar half-sung cadence, "
+        "but this time there is no distance in it - only raw, "
+        "unguarded pain.\n\n@S@'They told me death was mercy\nA "
+        "kindness lost to me\nBut now I dream of crumbling bones\n"
+        "And beg to cease to be\n\nYet still I breathe\nStill I "
+        "fade\nWishing for the end I've made\nCursed to crawl through "
+        "timeless days\nAnd drink the dust of memories'");
     addResponseTopic("sixth test", "I am sorry, Uhrdalen.",
-        "after dream end");
+        "dream reflection");
     addResponseTopic("sixth test", "Your suffering was not in vain.",
+        "dream reflection");
+
+    addResponse("dream reflection", "You wish for death?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask## "
+        "carefully, @S@'You wish for death, Uhrdalen? After all "
+        "this time?'");
+    addResponse("dream reflection", "Is there no hope for you?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask## "
+        "quietly, @S@'Is there no hope for you? No release?'");
+
+    addTopic("dream song despair", "@D@Uhrdalen's form flares. "
+        "The chamber fills with a bitter chill as his voice rises - "
+        "no longer a murmur but a cry torn from centuries of "
+        "solitude.\n\n@S@'Reckon me now, o fractured sky!\nBreak me "
+        "on your wheel of flame!\nI dared the gods for endless life\n"
+        "And burned the very name\nOf all I loved\nOf all I knew\n"
+        "Ashes in a gilded frame\nA monument to emptiness\nA song "
+        "without refrain'\n\n@D@The light in his hollow eyes gutters "
+        "like a candle in a gale.\n\n@S@'I am not who I was\nI am "
+        "not who I am\nI am nothing\nBut a name\nScorched\nIn\n"
+        "Stone'\n\n@D@He draws a shuddering breath he does not "
+        "need.\n\n@S@'Alone in this realm of twisted dreams\nThe "
+        "price of immortality\nEclipse of eternity\nA cursed domain\n"
+        "\nWhere our lives\nWhere our deaths\nThey're both the same'");
+    addResponseTopic("dream reflection", "You wish for death?",
+        "dream song despair");
+    addResponseTopic("dream reflection", "Is there no hope for you?",
+        "dream song despair");
+
+    addResponse("dream song despair", "Uhrdalen...",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::reach## out, "
+        "though there is nothing solid to touch. @S@'Uhrdalen...'");
+    addResponse("dream song despair", "You dared the gods for endless life?",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::ask##, @S@'You "
+        "dared the gods for endless life? Is that what Xyris promised "
+        "you?'");
+
+    addTopic("dream song turning", "@D@The chill recedes. Uhrdalen's "
+        "form steadies, and when he speaks again, there is something "
+        "new in his voice - fragile, uncertain, but unmistakable. "
+        "Something that was not there before.\n\n@S@'But in the hush "
+        "that follows rage\nA trembling thought appears\nWhat if this "
+        "fate I dragged behind\nIs only forged by fear?'\n\n@D@He "
+        "looks at his own spectral hands.\n\n@S@'If there's no end, "
+        "then I must change\nOr rot here all the same\nThe fountain "
+        "gave no grace to me\nBut left me still, a name'\n\n@D@His "
+        "voice strengthens.\n\n@S@'So break the mirror\nShatter the "
+        "dream\nBury the hunger\nThat tore through the seams\nNo gods "
+        "remain\nNo curse will stay\nBut I will rise\nIf just to walk "
+        "away'\n\n@D@A pause. The faintest ghost of warmth.\n\n@S@'I "
+        "walked a road with no name\nAnd left it in the flame\nNo "
+        "savior waits to carry me\nBut I go on\nJust the same'");
+    addResponseTopic("dream song despair", "Uhrdalen...",
+        "dream song turning");
+    addResponseTopic("dream song despair", "You dared the gods for endless life?",
+        "dream song turning");
+
+    addResponse("dream song turning", "There is hope in your words.",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::say## "
+        "quietly, @S@'There is hope in those words, Uhrdalen. "
+        "You go on. Just the same.'");
+    addResponse("dream song turning", "You will rise. I believe that.",
+        "@D@@C@##InitiatorName## ##ResponseInfinitive::nod##. "
+        "@S@'You will rise. I believe that.'");
+
+    addTopic("after dream end", "@D@Uhrdalen regards you for a long "
+        "moment. Something shifts behind those hollow eyes - not quite "
+        "gratitude, not quite hope, but the space where such things "
+        "might take root.\n\n@S@'Perhaps.' @D@He draws himself up. "
+        "@S@'One trial remains after this next one. Steel yourself, "
+        "##ActorName##. The gauntlet ahead will push your body as the "
+        "dream pushed your spirit. Survive, and we will speak one "
+        "final time.'\n\n@D@He gestures toward the pedestals.\n\n"
+        "@S@'Your verse:\nThe emerald fields stretch to the east.\n"
+        "Green pastures beckon from the west.\nThe sapphire rivers "
+        "of the north do flow.\nThe cerulean mists of the south do "
+        "rest.'");
+    addResponseTopic("dream song turning", "There is hope in your words.",
+        "after dream end");
+    addResponseTopic("dream song turning", "You will rise. I believe that.",
         "after dream end");
 
     addResponse("after dream end", "@I@Continue@E@", "@I@Continue@E@");
