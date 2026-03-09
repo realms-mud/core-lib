@@ -8,15 +8,10 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     cloneEnvironment();
-    setStateMachine("/areas/tol-dhurath/state-machine/tol-dhurath-quest.c");
+    setInterior("/areas/tol-dhurath/interiors/pedestal-chamber.c");
+    addDecorator("ruined interior south-west corner hallway");
 
-    setInterior("/lib/environment/interiors/ruin.c");
-    addDecorator("ruined interior east-west hallway");
-
-    addExit("west",
-        "/areas/tol-dhurath/temple-interior/16x3.c");
-    addExit("east",
-        "/areas/tol-dhurath/temple-interior/18x3.c");
+    setStateMachine("/areas/tol-dhurath/state-machine/obedience-quest.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,7 +20,7 @@ public string **customIcon(string **baseIcon, string color, string charset)
     string baseColor = getService("region")->iconColor(
         decoratorType(), color);
 
-    baseIcon[2][2] = sprintf("%s%s%s", baseColor,
+    baseIcon[2][0] = sprintf("%s%s%s", baseColor,
         (charset == "unicode") ? "\u2566" : "+",
         (baseColor != "") ? "\x1b[0m" : baseColor);
 

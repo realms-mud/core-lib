@@ -16,9 +16,6 @@ public void Setup()
     addExit("east", "/tutorial/rooms/onTheTrailPart7.c", "on the trail");
     addObject("/tutorial/characters/brendan/brendan.c", "on the trail");
 
-    addExit("north", "/tutorial/temple/environment/rooms/entry-to-pedestal.c", 
-        "enter the lair");
-
     setStateMachine("/tutorial/stateMachines/introStateMachine.c");
 }
 

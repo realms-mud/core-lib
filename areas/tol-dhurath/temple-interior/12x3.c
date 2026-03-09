@@ -10,6 +10,15 @@ public void Setup()
     cloneEnvironment();
     setStateMachine("/areas/tol-dhurath/state-machine/tol-dhurath-quest.c");
 
-    setInterior("/lib/environment/interiors/ruin.c");
-    addDecorator("ruined interior east-west hallway");
+    setInterior("/lib/environment/interiors/ruin-hallway.c");
+    addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
+    addItem("/lib/environment/items/lighting/sconce.c", "west");
+    addDecorator("ruined interior east-west hallway north entry");
+
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/11x3.c");
+    addExit("east",
+        "/areas/tol-dhurath/temple-interior/13x3.c");
+    addExitWithDoor("north",
+        "/areas/tol-dhurath/temple-interior/pedestal-5x0.c");
 }

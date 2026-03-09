@@ -12,4 +12,11 @@ public void Setup()
 
     setInterior("/lib/environment/interiors/ruin.c");
     addDecorator("ruined interior east T-intersection");
+
+    addExit("east",
+        "/areas/tol-dhurath/temple-interior/12x3.c");
+    addExit("north",
+        "/areas/tol-dhurath/temple-interior/11x4.c");
+    addExitWithDoor("south",
+        "/areas/tol-dhurath/temple-interior/11x2.c");
 }

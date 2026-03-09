@@ -1,0 +1,37 @@
+//*****************************************************************************
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+virtual inherit "/lib/realizations/npc.c";
+
+/////////////////////////////////////////////////////////////////////////////
+protected void Setup()
+{
+    Name("uhrdalen");
+    short("A wispy figure");
+    description("The wispy figure is largely skeletal in nature, though "
+        "ethereal and without substance. A bitterly frigid chill emanates "
+        "from the thing. It is enveloped by a thin white veil, almost as of "
+        "silk.");
+    addAlias("wispy figure");
+    addAlias("figure");
+
+    Gender("male");
+    Race("maegenstryd");
+    SetUpPersonaOfLevel("wraith", 20);
+
+    addConversation("/areas/tol-dhurath/characters/uhrdalen/startingConversation.c");
+    addConversation("/areas/tol-dhurath/characters/uhrdalen/betweenTestsConversation.c");
+    addConversation("/areas/tol-dhurath/characters/uhrdalen/finalConversation.c");
+
+    registerEventHandler("uhrdalenLeft");
+    registerEventHandler("startFirstTest");
+    registerEventHandler("questCompleted");
+    registerEventHandler("revealName");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void revealName()
+{
+    short("Uhrdalen");
+}

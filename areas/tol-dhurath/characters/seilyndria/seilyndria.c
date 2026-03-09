@@ -44,7 +44,9 @@ protected void Setup()
     addTrait("/lib/instances/traits/personality/feared.c");
 
     addConversation("/areas/tol-dhurath/characters/seilyndria/startingConversation.c");
+    addConversation("/areas/tol-dhurath/characters/seilyndria/sealConversation.c");
 
+    registerEventHandler("revealSeilyndria");
     registerEventHandler("revealName");
     registerEventHandler("playerGaveName");
     registerEvent(this_object());
@@ -56,6 +58,23 @@ public void revealName()
     Name("maiwyn");
     short("Maiwyn");
     addAlias("maiwyn");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void revealSeilyndria()
+{
+    Name("seilyndria");
+    short("Seilyndria");
+    addAlias("seilyndria");
+
+    description("A woman of terrible beauty stands before you. Her "
+        "features are exquisite beyond mortal measure - high cheekbones, "
+        "full lips curved in a knowing smile, and eyes of deep violet "
+        "that seem to hold the weight of millennia. Her hair flows like "
+        "liquid shadow, dark and impossibly long. She wears a gown that "
+        "seems woven from twilight itself - shifting between deep purple "
+        "and absolute black. An aura of immense power radiates from her, "
+        "making the air itself tremble.");
 }
 
 /////////////////////////////////////////////////////////////////////////////

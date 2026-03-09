@@ -12,6 +12,9 @@ public void Setup()
 
     setInterior("/lib/environment/interiors/ruin.c");
     addDecorator("ruined interior east alcove");
+
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/18x3.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
