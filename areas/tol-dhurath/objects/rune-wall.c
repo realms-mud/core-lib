@@ -209,6 +209,37 @@ public int id(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void applyExperience()
+{
+    string colorConfiguration = this_player()->colorConfiguration();
+    object configuration = getService("configuration");
+
+    object party = this_player()->getParty();
+    if (objectp(party))
+    {
+        object* members = party->members(1);
+        foreach(object member in members)
+        {
+            if (objectp(member))
+            {
+                colorConfiguration = member->colorConfiguration();
+                member->addExperience(50, "background", 1);
+                tell_object(member, configuration->decorate(
+                    "You have gained 50 experience.\n", "level up", "score",
+                    colorConfiguration));
+            }
+        }
+    }
+    else
+    {
+        this_player()->addExperience(50, "background", 1);
+        tell_object(this_player(), configuration->decorate(
+            "You have gained 50 experience.\n", "level up", "score",
+            colorConfiguration));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public int placeRune(string rune)
 {
     int ret = 0;
@@ -270,6 +301,7 @@ public int placeRune(string rune)
                     this_player(), 0, "rune wall", "tutorial");
 
                 object stateMachineService = getService("stateMachine");
+                applyExperience();
 
                 object party = this_player()->getParty();
                 string owner = party ? party->partyName() : this_player()->RealName();

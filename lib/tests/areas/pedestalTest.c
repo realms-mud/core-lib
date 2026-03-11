@@ -80,10 +80,10 @@ void CanCompleteFirstTest()
 
     command("press wrath", Player);
     ExpectSubStringMatch("W.*G.*B.*R", 
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -101,10 +101,10 @@ void CanCompleteSecondTest()
 
     command("press wrath", Player);
     ExpectSubStringMatch("R.*R.*R.*R",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -134,10 +134,10 @@ void CanCompleteThirdTest()
 
     command("press fear", Player);
     ExpectSubStringMatch("W.*W.*W.*W",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -167,10 +167,10 @@ void CanCompleteFourthTest()
 
     command("press wrath", Player);
     ExpectSubStringMatch("G.*G.*G.*G",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -182,10 +182,10 @@ void CanCompleteFifthTest()
 
     command("press wrath", Player);
     ExpectSubStringMatch("G.*B.*B.*G",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -197,10 +197,10 @@ void CanCompleteSixthTest()
 
     command("press fear", Player);
     ExpectSubStringMatch("B.*G.*G.*B",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -225,10 +225,10 @@ void CanCompleteSeventhTest()
 
     command("press envy", Player);
     ExpectSubStringMatch("R.*G.*W.*B",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 
     ExpectSubStringMatch("The liquid surrounding the passage way widens, allowing safe passage",
-        Player.caughtMessage());
+        implode(Player.caughtMessages(), "\n"));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -256,7 +256,7 @@ void CanSeeNoColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("[ \t\n]+W[ \t\n]+G[ \t\n]+B[ \t\n]+R",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -275,7 +275,7 @@ void CanSeeThreeBitColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("0;37;1mW.*0;32;1mG.*0;34;1mB.*0;31;1mR",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -294,7 +294,7 @@ void CanSeeEightBitColors()
 
     command("press wrath", Player);
     ExpectSubStringMatch("0;38;5;15;1mW.*0;38;5;28;1mG.*0;38;5;20;1mB.*0;38;5;124;1mR",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -315,5 +315,5 @@ void CanSeeTwentyFourBitColors()
     command("press wrath", Player);
     ExpectSubStringMatch("0;38;2;255;255;255;1mW.*0;38;2;0;180;0;1mG.*"
         "0;38;2;0;0;220;1mB.*0;38;2;180;0;0;1mR",
-        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 2]);
+        Player.caughtMessages()[sizeof(Player.caughtMessages()) - 3]);
 }

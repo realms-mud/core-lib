@@ -286,6 +286,37 @@ private int isValidPlate(string plate)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void applyExperience()
+{
+    string colorConfiguration = this_player()->colorConfiguration();
+    object configuration = getService("configuration");
+
+    object party = this_player()->getParty();
+    if (objectp(party))
+    {
+        object *members = party->members(1);
+        foreach(object member in members)
+        {
+            if (objectp(member))
+            {
+                colorConfiguration = member->colorConfiguration();
+                member->addExperience(50, "background", 1);
+                tell_object(member, configuration->decorate(
+                    "You have gained 50 experience.\n", "level up", "score",
+                    colorConfiguration));
+            }
+        }
+    }
+    else
+    {
+        this_player()->addExperience(50, "background", 1);
+        tell_object(this_player(), configuration->decorate(
+            "You have gained 50 experience.\n", "level up", "score",
+            colorConfiguration));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void finishPress()
 {
     if (platesCanBePressed)
@@ -300,6 +331,7 @@ public void finishPress()
                 "The liquid surrounding the passage way "
                 "widens, allowing safe passage", 78));
 
+            applyExperience();
             object stateMachineService = getService("stateMachine");
 
             object party = this_player()->getParty();

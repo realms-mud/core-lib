@@ -16,6 +16,8 @@ public void Setup()
 
     addExit("north", "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c",
         "entered room");
+    addExit("north", "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c",
+        "uhrdalen left");
 
     addObject("/areas/tol-dhurath/objects/rune-wall.c");
     addObject("/areas/tol-dhurath/objects/pedestal.c");
@@ -196,7 +198,7 @@ public int moveToIsAllowed(object user, object toLocation)
     int ret = 1;
 
     if (pedestal() && sizeof(regexp(({ object_name(toLocation) }), 
-        "pedestal-[0-9]+x[0-9]+")))
+        "pedestal-[1-5]+x[0-5]+")))
     {
         ret = pedestal()->allowMove();
     }

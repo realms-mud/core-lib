@@ -484,6 +484,7 @@ void Setup()
     Player->advanceSkill("mathematics", 5);
     Player->advanceSkill("spellcraft", 5);
     Player->advanceSkill("diplomacy", 5);
+    Player->joinGuild("background");
 
     set_this_player(Player);
     Player->addCommands();
@@ -532,7 +533,7 @@ private void executeFirstChallenge()
     openFirstPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseFirstPassage();
 
@@ -571,7 +572,7 @@ private void executeSecondChallenge()
     openSecondPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
     traverseSecondPassage();
 
     ExpectEq(load_object("/areas/tol-dhurath/temple-interior/pedestal-pilon.c"),
@@ -608,7 +609,7 @@ private void executeThirdChallenge()
     openThirdPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseThirdPassage();
 
@@ -646,7 +647,7 @@ private void executeFourthChallenge()
     openFourthPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseFourthPassage();
 
@@ -684,7 +685,7 @@ private void executeFifthChallenge()
     openFifthPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseFifthPassage();
 
@@ -722,7 +723,7 @@ private void executeSixthChallenge()
     openSixthPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseSixthPassage();
 
@@ -786,7 +787,7 @@ private void executeSealChallenge()
     openSeventhPassage();
 
     ExpectSubStringMatch("allowing safe passage",
-        Player->caughtMessage());
+        implode(Player->caughtMessages(), "\n"));
 
     traverseSeventhPassage();
 
@@ -822,4 +823,5 @@ void CanCompleteObedienceQuest()
     executeFinalChallenge();
 
     executeSealChallenge();
+    ExpectEq(1000, Player->effectiveExperience());
 }

@@ -386,6 +386,37 @@ public string displayMagicSquare()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void applyExperience()
+{
+    string colorConfiguration = this_player()->colorConfiguration();
+    object configuration = getService("configuration");
+
+    object party = this_player()->getParty();
+    if (objectp(party))
+    {
+        object* members = party->members(1);
+        foreach(object member in members)
+        {
+            if (objectp(member))
+            {
+                colorConfiguration = member->colorConfiguration();
+                member->addExperience(100, "background", 1);
+                tell_object(member, configuration->decorate(
+                    "You have gained 100 experience.\n", "level up", "score",
+                    colorConfiguration));
+            }
+        }
+    }
+    else
+    {
+        this_player()->addExperience(100, "background", 1);
+        tell_object(this_player(), configuration->decorate(
+            "You have gained 100 experience.\n", "level up", "score",
+            colorConfiguration));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void finishPress()
 {
     if (buttonsCanBePressed)
@@ -404,6 +435,7 @@ public void finishPress()
             move_object(rune, environment(this_object()));
 
             object stateMachineService = getService("stateMachine");
+            applyExperience();
 
             object party = this_player()->getParty();
             string owner = party ? party->partyName() : this_player()->RealName();
