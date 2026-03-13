@@ -7,7 +7,7 @@ inherit "/lib/environment/terrain/baseTerrain.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("keep");
+    Name("keep exterior");
 
     addAdjectives(({
         "stone keep rising above the surrounding town",
