@@ -57,8 +57,8 @@ public string Type()
 /////////////////////////////////////////////////////////////////////////////
 public nomask void reset()
 {
-    object *harvestItems = m_values(
-        filter(harvestData, (: $1 == $2->name() :)));
+    object *harvestItems = sizeof(harvestData) && mappingp(harvestData) ?
+        m_values(filter(harvestData, (: $1 == $2->name() :))) : ({ });
 
     if (sizeof(harvestItems))
     {
@@ -68,8 +68,8 @@ public nomask void reset()
         }
     }
 
-    object *bonusItems = m_values(
-        filter(bonusData, (: $1 == $2->name() :)));
+    object *bonusItems = sizeof(bonusData) && mappingp(bonusData) ?
+        m_values(filter(bonusData, (: $1 == $2->name() :))) : ({ });
 
     if (sizeof(bonusItems))
     {

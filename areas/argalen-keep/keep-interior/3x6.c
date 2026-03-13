@@ -14,7 +14,7 @@ public void Setup()
     addItem("/lib/environment/items/furniture/book-shelf.c", "west");
     addItem("/lib/environment/items/furniture/book-shelf.c", "east");
     addItem("/lib/environment/items/furniture/writing-desk.c", "south");
-    addDecorator("keep interior north alcove");
+    addDecorator("keep interior northwest corner");
 
     addExitWithDoor("south",
         "/areas/argalen-keep/keep-interior/3x5.c");

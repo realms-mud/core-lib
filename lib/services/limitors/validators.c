@@ -356,7 +356,8 @@ private nomask int validOpponentEquipmentMaterialLimitor(mixed materialValue)
 
     // Valid material classes from materials.h
     string *validMaterialClasses = ({ "textile", "crystal", "clay",
-        "skeletal", "leather", "metal", "ore", "stone", "wood", "plumage" });
+        "skeletal", "leather", "metal", "ore", "stone", "wood", "plumage",
+        "resin" });
 
     if (pointerp(materialValue) && sizeof(materialValue))
     {

@@ -12,7 +12,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/banquet-hall.c");
     addItem("/lib/environment/items/lighting/fireplace.c", "east");
     addItem("/lib/environment/items/furniture/buffet.c", "north");
-    addDecorator("keep interior floor");
+    addDecorator("keep interior north-west corner hallway");
 
     addExit("west",
         "/areas/argalen-keep/keep-interior/5x3.c");

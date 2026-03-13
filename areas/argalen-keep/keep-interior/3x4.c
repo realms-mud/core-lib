@@ -11,7 +11,7 @@ public void Setup()
 
     setInterior("/lib/environment/interiors/hallway.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "west");
-    addDecorator("keep interior west alcove south entry");
+    addDecorator("keep interior west alcove north-south entry");
 
     addExitWithDoor("south",
         "/areas/argalen-keep/keep-interior/3x3.c");

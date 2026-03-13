@@ -9,8 +9,8 @@ public void Setup()
 {
     setStateMachine("/areas/argalen-keep/state-machine/argalen-keep-quest.c");
 
-    setTerrain("/lib/environment/terrain/keep.c");
-    addDecorator("keep interior courtyard with pillar");
+    setInterior("/lib/environment/interiors/courtyard.c");
+    addDecorator("keep interior floor");
 
     addExit("south",
         "/areas/argalen-keep/keep-interior/5x0.c");

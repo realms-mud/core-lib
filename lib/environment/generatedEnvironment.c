@@ -402,7 +402,6 @@ public void init()
         deferredRegion = 0;
     }
 
-    printf("player = %O\n", this_player());
     environment::init();
 }
 

@@ -13,7 +13,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/chandelier.c", "north");
     addItem("/lib/environment/items/furniture/long-table.c", "south");
     addItem("/lib/environment/items/lighting/fireplace.c", "west");
-    addDecorator("keep interior floor");
+    addDecorator("keep interior north-east corner hallway");
 
     addExit("east",
         "/areas/argalen-keep/keep-interior/5x3.c");

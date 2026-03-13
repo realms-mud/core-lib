@@ -82,7 +82,7 @@ public void Setup()
     harvestableResource("tulip tree", 30, 
         "/lib/instances/items/materials/wood/tulip-tree.c",
         "a heavily-forested stand of tulip trees. Several trees "
-        "remain", ({ "deciduous tree", "tulip tree", "tree" }));
+        "remain", ({ "deciduous tree", "tulip", "tree" }));
     harvestRequiresTool("tulip tree", "axe");
 
     harvestableResource("tulip tree seed", 15,

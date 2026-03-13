@@ -79,7 +79,7 @@ public void Setup()
     harvestableResource("olive tree", 25, 
         "/lib/instances/items/materials/wood/olive.c",
         "a heavily-forested stand of olive trees. Several trees remain",
-        ({ "evergreen tree", "olive tree", "tree" }));
+        ({ "evergreen tree", "tree" }));
     harvestRequiresTool("olive tree", "axe");
 
     harvestableResource("olive", 20,

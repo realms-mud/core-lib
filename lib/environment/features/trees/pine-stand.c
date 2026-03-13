@@ -89,4 +89,8 @@ public void Setup()
         "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
         ({ "nut" }));
     limitHarvestBySeason("pine nut", "summer");
+
+    harvestableResource("pine resin", 15,
+        "/lib/instances/items/materials/resin/pine-resin.c", 0,
+        ({ "resin", "sap" }));
 }

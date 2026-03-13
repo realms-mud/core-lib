@@ -7,7 +7,7 @@ inherit "/lib/environment/interiors/baseInterior.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("library");
+    Name("library interior");
 
     addAdjectives(({
         "quiet library lined with towering shelves of ancient leather-bound tomes",

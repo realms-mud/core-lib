@@ -77,11 +77,11 @@ public void Setup()
         "wild boar gathering the nutritious chestnuts among the "
         "branches.");
 
-    harvestableResource("chestnut", 25, 
+    harvestableResource("chestnut tree", 25, 
         "/lib/instances/items/materials/wood/chestnut.c",
         "a heavily-forested stand of chestnut trees. Several trees "
-        "remain", ({ "deciduous tree", "chestnut tree", "tree" }));
-    harvestRequiresTool("chestnut", "axe");
+        "remain", ({ "deciduous tree", "tree" }));
+    harvestRequiresTool("chestnut tree", "axe");
 
     harvestableResource("chestnut nut", 25,
         "/lib/instances/items/food/plants/nuts/chestnut.c", 0,

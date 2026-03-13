@@ -81,7 +81,7 @@ public void Setup()
     harvestableResource("redbud tree", 20, 
         "/lib/instances/items/materials/wood/redbud.c",
         "a heavily-forested stand of redbud trees. Several trees "
-        "remain", ({ "deciduous tree", "redbud tree", "tree" }));
+        "remain", ({ "deciduous tree", "redbud", "tree" }));
     harvestRequiresTool("redbud tree", "axe");
 
     harvestableResource("redbud pod", 15,

@@ -31,7 +31,7 @@ public void Setup()
         "is a signal fire with a strong blaze, sending sparks and smoke into the sky",
         "is a signal fire with a vigorous blaze, visible from a great distance",
         "a blazing signal fire roars atop the platform, its flames visible for miles"
-    ));
+    }));
 
     addItemTemplate(
         "The signal fire is built atop a stone platform, with wood and brush "

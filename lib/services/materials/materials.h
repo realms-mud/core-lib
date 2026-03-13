@@ -4598,6 +4598,17 @@ protected mapping materials =
         "experience modifier": 1,
         "default value": 50,
     ]),
+    "pine resin": ([
+        "class": "resin",
+        "crafting skill required": 1,
+        "crafting prerequisites": ([
+        ]),
+        "value multiplier": 1.0,
+        "default description": "This is pine resin.",
+        "scarcity": "common",
+        "experience modifier": 1,
+        "default value": 10,
+    ]),
     "kirnalt": ([
         "class": "metal",
         "crafting skill required": 80,

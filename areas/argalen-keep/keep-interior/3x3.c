@@ -12,7 +12,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/guard-room.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "west");
     addItem("/lib/environment/items/furniture/chest.c", "north");
-    addDecorator("keep interior west alcove north-south entry");
+    addDecorator("keep interior north-south hallway");
 
     addExitWithDoor("south",
         "/areas/argalen-keep/keep-interior/3x2.c");

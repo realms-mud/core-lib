@@ -82,7 +82,7 @@ public void Setup()
     harvestableResource("pawpaw tree", 20, 
         "/lib/instances/items/materials/wood/pawpaw.c",
         "a heavily-forested stand of pawpaw trees. Several trees "
-        "remain", ({ "deciduous tree", "pawpaw tree", "tree" }));
+        "remain", ({ "deciduous tree", "tree" }));
     harvestRequiresTool("pawpaw tree", "axe");
 
     harvestableResource("pawpaw", 15,

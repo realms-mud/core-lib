@@ -81,7 +81,7 @@ public void Setup()
     harvestableResource("sassafras tree", 25, 
         "/lib/instances/items/materials/wood/sassafras.c",
         "a heavily-forested stand of sassafras trees. Several trees "
-        "remain", ({ "deciduous tree", "sassafras tree", "tree" }));
+        "remain", ({ "deciduous tree", "sassafras", "tree" }));
     harvestRequiresTool("sassafras tree", "axe");
 
     harvestableResource("sassafras berry", 15,

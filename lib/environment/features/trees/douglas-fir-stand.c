@@ -89,8 +89,12 @@ public void Setup()
         ({ "cone", "conifer cone" }));
     limitHarvestBySeason("douglas fir cone", "summer");
 
-    harvestableResource("fir seed", 20,
-        "/lib/instances/items/food/plants/seeds/fir-seed.c", 0,
-        ({ "seed" }));
-    limitHarvestBySeason("fir seed", "summer");
+    harvestableResource("pine nut", 25,
+        "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
+        ({ "nut", "fir nut" }));
+    limitHarvestBySeason("pine nut", "summer");
+
+    harvestableResource("fir resin", 15,
+        "/lib/instances/items/materials/resin/pine-resin.c", 0,
+        ({ "resin", "sap", "pine resin", "douglas fir resin" }));
 }

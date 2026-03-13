@@ -13,7 +13,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/hearth.c", "east");
     addItem("/lib/environment/items/furniture/cabinet.c", "north");
     addItem("/lib/environment/items/furniture/long-table.c", "west");
-    addDecorator("keep interior east alcove south entry");
+    addDecorator("keep interior south entry alcove");
 
     addExitWithDoor("south",
         "/areas/argalen-keep/keep-interior/7x2.c");

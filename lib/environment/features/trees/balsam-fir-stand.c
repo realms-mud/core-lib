@@ -88,6 +88,11 @@ public void Setup()
     limitHarvestBySeason("balsam fir cone", "summer");
 
     harvestableResource("balsam resin", 15,
-        "/lib/instances/items/materials/resin/balsam-resin.c", 0,
-        ({ "resin", "sap" }));
+        "/lib/instances/items/materials/resin/pine-resin.c", 0,
+        ({ "resin", "sap", "pine resin" }));
+
+    harvestableResource("pine nut", 25,
+        "/lib/instances/items/food/plants/nuts/pine-nut.c", 0,
+        ({ "nut", "fir nut" }));
+    limitHarvestBySeason("pine nut", "summer");
 }

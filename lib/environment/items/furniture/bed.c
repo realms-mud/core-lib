@@ -24,16 +24,16 @@ public void Setup()
     );
 
     addSomeLightDescriptionTemplate(
-        "a wooden bed stands against the wall, its mattress covered in linen"
+        "a wooden bed that stands against the wall, its mattress covered in linen"
     );
     addDimLightDescriptionTemplate(
-        "a bed is visible in the gloom, its outline broad and low"
+        "a bed visible in the gloom, its outline broad and low"
     );
     addLowLightDescriptionTemplate(
         "a faint shape of a bed can be made out, little more than a shadow"
     );
     addNearDarkDescriptionTemplate(
-        "a vague shadow suggests a bed is present, but details are lost in "
+        "a vague shadow that suggests a bed is present, but details are lost in "
         "the darkness"
     );
 }

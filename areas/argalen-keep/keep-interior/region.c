@@ -75,8 +75,12 @@ public void Setup()
     // Lord's chambers and study (y=6)
     setCoordinate(3, 6,
         "/areas/argalen-keep/keep-interior/3x6.c", "none");
+    setCoordinate(4, 6,
+        "/areas/argalen-keep/keep-interior/4x6.c", "none");
     setCoordinate(5, 6,
         "/areas/argalen-keep/keep-interior/5x6.c", "none");
+    setCoordinate(6, 6,
+        "/areas/argalen-keep/keep-interior/6x6.c", "none");
     setCoordinate(7, 6,
         "/areas/argalen-keep/keep-interior/7x6.c", "none");
 }

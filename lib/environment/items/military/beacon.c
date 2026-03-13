@@ -30,7 +30,7 @@ public void Setup()
         "is a beacon with a strong blaze, sending sparks and smoke into the sky",
         "is a beacon with a vigorous blaze, visible from a great distance",
         "a blazing beacon roars atop the platform, its flames visible for miles"
-    ));
+    }));
 
     addItemTemplate(
         "The beacon is built atop a stone platform, with wood and brush "

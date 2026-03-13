@@ -12,7 +12,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/hallway.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "south");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");
-    addDecorator("keep interior north T-intersection south entry");
+    addDecorator("keep interior south T-intersection north entry");
 
     addExit("south",
         "/areas/argalen-keep/keep-interior/5x4.c");

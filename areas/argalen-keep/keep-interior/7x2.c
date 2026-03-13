@@ -12,7 +12,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/kitchen.c");
     addItem("/lib/environment/items/lighting/hearth.c", "north");
     addItem("/lib/environment/items/furniture/cabinet.c", "east");
-    addDecorator("keep interior east entry alcove");
+    addDecorator("keep interior east alcove north entry");
 
     addExit("west",
         "/areas/argalen-keep/keep-interior/6x2.c");

@@ -2,16 +2,13 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/environment.c";
+virtual inherit "/lib/items/material.c";
 
 /////////////////////////////////////////////////////////////////////////////
-public void Setup()
+protected void Setup()
 {
-    setStateMachine("/areas/argalen-keep/state-machine/argalen-keep-quest.c");
-
-    setInterior("/lib/environment/interiors/courtyard.c");
-    addDecorator("keep interior west alcove");
-
-    addExit("east",
-        "/areas/argalen-keep/keep-interior/5x1.c");
+    set("name", "Pine Resin");
+    set("short", "Pine Resin");
+    set("aliases", ({ "resin", "sap" }));
+    set("blueprint", "pine resin");
 }

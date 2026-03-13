@@ -77,7 +77,7 @@ public void Setup()
     harvestableResource("fig tree", 25, 
         "/lib/instances/items/materials/wood/fig.c",
         "a heavily-forested stand of fig trees. Several trees remain",
-        ({ "deciduous tree", "fig tree", "tree" }));
+        ({ "deciduous tree", "tree" }));
     harvestRequiresTool("fig tree", "axe");
 
     harvestableResource("fig", 20,

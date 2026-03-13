@@ -85,8 +85,7 @@ public void Setup()
     harvestableResource("black walnut tree", 25, 
         "/lib/instances/items/materials/wood/black-walnut.c",
         "a heavily-forested stand of black walnut trees. Several trees "
-        "remain", ({ "deciduous tree", "black walnut tree", "walnut "
-        "tree", "tree" }));
+        "remain", ({ "deciduous tree", "walnut tree", "tree" }));
     harvestRequiresTool("black walnut tree", "axe");
 
     harvestableResource("black walnut", 25,
