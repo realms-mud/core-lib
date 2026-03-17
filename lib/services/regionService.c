@@ -13,6 +13,7 @@ private string FeaturePrefix = "/lib/environment/";
 
 private mapping WeightedFeatures = ([]);
 private mapping WeightedEncounters = ([]);
+private mapping WeightedNonCombatEncounters = ([]);
 
 private string *availableDirections = ({ "north", "south", "east", "west",
     "northwest", "northeast", "southwest", "southeast" });
@@ -198,6 +199,42 @@ private nomask string *generateEncounters(string regionType, mapping encounters)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string *generateNonCombatEncounters(string regionType,
+    mapping encounters)
+{
+    string *ret = ({});
+
+    if (sizeof(encounters))
+    {
+        string ncKey = "nc-" + regionType;
+        if (!member(WeightedNonCombatEncounters, ncKey))
+        {
+            WeightedNonCombatEncounters[ncKey] = ({});
+
+            foreach(string encounter in m_indices(encounters))
+            {
+                for (int i = 0; i < encounters[encounter]; i++)
+                {
+                    WeightedNonCombatEncounters[ncKey] += ({ encounter });
+                }
+            }
+        }
+
+        if (sizeof(WeightedNonCombatEncounters[ncKey]))
+        {
+            int count = 1 + random(2);
+            for (int i = 0; i < count; i++)
+            {
+                ret += ({ WeightedNonCombatEncounters[ncKey]
+                    [random(sizeof(WeightedNonCombatEncounters[ncKey]))] });
+            }
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping generateRoomData(object region, mapping data)
 {
     mapping ret = 0;
@@ -232,6 +269,13 @@ public nomask mapping generateRoomData(object region, mapping data)
         ret["creatures"] = (data["room type"] == "room") ?
             generateEncounters(regionType, 
                 RegionTypes[regionType]["potential encounters"]) : ([]);
+
+        ret["non-combat creatures"] =
+            (member(RegionTypes[regionType], "potential non-combat encounters") &&
+            sizeof(RegionTypes[regionType]["potential non-combat encounters"])) ?
+            generateNonCombatEncounters(regionType,
+                RegionTypes[regionType]["potential non-combat encounters"]) :
+            ({});
 
         ret["room type"] = data["room type"];
 
