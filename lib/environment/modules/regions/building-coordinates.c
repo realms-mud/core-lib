@@ -11,11 +11,11 @@ protected nomask int *getTargetCoordinates(int x, int y, string direction)
     
     if (direction == "north")
     {
-        targetY++;  // North is UP, which is LOWER Y in the array
+        targetY++;  // North is UP = higher Y
     }
     else if (direction == "south")
     {
-        targetY--;  // South is DOWN, which is HIGHER Y in the array
+        targetY--;  // South is DOWN = lower Y
     }
     else if (direction == "east")
     {

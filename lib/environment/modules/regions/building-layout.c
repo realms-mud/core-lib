@@ -129,10 +129,10 @@ private nomask int tryPlaceEntry(mixed *layout, int x, int y, int dx, int dy)
 private nomask void placeEntryFromSouth(mixed *layout, int entryX)
 {
     int placed = 0;
-    
-    for (int y = sizeof(layout) - 1; y >= 0 && !placed; y--)
+
+    for (int y = 0; y < sizeof(layout) && !placed; y++)
     {
-        placed = tryPlaceEntry(layout, entryX, y, 0, -1);
+        placed = tryPlaceEntry(layout, entryX, y, 0, 1);
     }
 }
 
@@ -140,10 +140,10 @@ private nomask void placeEntryFromSouth(mixed *layout, int entryX)
 private nomask void placeEntryFromNorth(mixed *layout, int entryX)
 {
     int placed = 0;
-    
-    for (int y = 0; y < sizeof(layout) && !placed; y++)
+
+    for (int y = sizeof(layout) - 1; y >= 0 && !placed; y--)
     {
-        placed = tryPlaceEntry(layout, entryX, y, 0, 1);
+        placed = tryPlaceEntry(layout, entryX, y, 0, -1);
     }
 }
 
@@ -170,26 +170,82 @@ private nomask void placeEntryFromWest(mixed *layout, int entryY)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int findValidEntryX(mixed *layout, int centerX, int maxX, 
+    int checkY)
+{
+    int maxY = sizeof(layout);
+
+    for (int row = checkY; row >= 0 && row < maxY; 
+        row += (checkY < maxY / 2) ? 1 : -1)
+    {
+        for (int offset = 0; offset < maxX; offset++)
+        {
+            if (centerX + offset < maxX && 
+                layout[row][centerX + offset] >= 2)
+            {
+                return centerX + offset;
+            }
+            if (centerX - offset >= 0 && 
+                layout[row][centerX - offset] >= 2)
+            {
+                return centerX - offset;
+            }
+        }
+    }
+    return centerX;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int findValidEntryY(mixed *layout, int centerY, int maxY, 
+    int checkX)
+{
+    int maxX = sizeof(layout[0]);
+
+    for (int col = checkX; col >= 0 && col < maxX;
+        col += (checkX < maxX / 2) ? 1 : -1)
+    {
+        for (int offset = 0; offset < maxY; offset++)
+        {
+            if (centerY + offset < maxY && 
+                layout[centerY + offset][col] >= 2)
+            {
+                return centerY + offset;
+            }
+            if (centerY - offset >= 0 && 
+                layout[centerY - offset][col] >= 2)
+            {
+                return centerY - offset;
+            }
+        }
+    }
+    return centerY;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void placeEntry(mixed *layout, string enterFrom)
 {
     int maxX = sizeof(layout[0]);
     int maxY = sizeof(layout);
-    
+
     if (enterFrom == "south")
     {
-        placeEntryFromSouth(layout, maxX / 2);
+        int entryX = findValidEntryX(layout, maxX / 2, maxX, 1);
+        placeEntryFromSouth(layout, entryX);
     }
     else if (enterFrom == "north")
     {
-        placeEntryFromNorth(layout, maxX / 2);
+        int entryX = findValidEntryX(layout, maxX / 2, maxX, maxY - 2);
+        placeEntryFromNorth(layout, entryX);
     }
     else if (enterFrom == "east")
     {
-        placeEntryFromEast(layout, maxY / 2);
+        int entryY = findValidEntryY(layout, maxY / 2, maxY, maxX - 2);
+        placeEntryFromEast(layout, entryY);
     }
     else if (enterFrom == "west")
     {
-        placeEntryFromWest(layout, maxY / 2);
+        int entryY = findValidEntryY(layout, maxY / 2, maxY, 1);
+        placeEntryFromWest(layout, entryY);
     }
 }
 

@@ -83,7 +83,7 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
 {
     EntryPoint = location;
     EnterFrom = enterFrom;
-    
+
     mapping template = generateBuildingTemplate(enterFrom);
     if (template)
     {
@@ -92,60 +92,85 @@ private nomask void populateBuildingGrid(string enterFrom, string location,
         mixed *doorData = template["doorData"];
         int maxY = sizeof(layout);
         int maxX = maxY > 0 ? sizeof(layout[0]) : 0;
-        
+
         MaxX = template["dimensions"]["x"];
         MaxY = template["dimensions"]["y"];
-        
+
         createEmptyGrid(MaxX, MaxY);
-        
+
         string baseType = member(template, "base type") ? 
             template["base type"] : 
             (RegionType + " interior");
-        
+
         mapping roomTypeDefs = template["room types"];
-        
+
         for (int y = 0; y < maxY; y++)
         {
             mixed *layoutRow = layout[y];
             for (int x = 0; x < maxX; x++)
             {
                 int roomType = layoutRow[x];
-                
-                if (roomType != 0 && member(roomTypeDefs, roomType))
+
+                if (roomType >= 2 && member(roomTypeDefs, roomType))
                 {
                     mapping typeInfo = roomTypeDefs[roomType];
-                    string roomTypeStr = typeInfo["name"];
                     string iconStrategy = typeInfo["icon"];
                     string iconKey = "none";
-                    
-                    if (iconStrategy == "wall")
+
+                    if (iconStrategy == "base+name")
                     {
-                        iconKey = "wall";
-                    }
-                    else if (iconStrategy == "base+name")
-                    {
-                        iconKey = baseType + " " + roomTypeStr;
+                        iconKey = baseType + " " + typeInfo["name"];
                     }
                     else if (iconStrategy == "generated")
                     {
                         iconKey = generateRoomIconKey(x, y, layout, 
                             roomIds, doorData, RegionType);
                     }
-                    
+
                     if (roomType == 4)
                     {
                         entry = ({ x, y });
                     }
-                    
+
                     grid[x][y] = ([
                         "x": x,
                         "y": y,
-                        "room type": roomTypeStr,
+                        "room type": "none",
                         "is placed": 1,
                         "exits": ([]),
                         "environment": 0,
                         "decorator type": iconKey
                     ]);
+                }
+            }
+        }
+
+        for (int y = 0; y < maxY; y++)
+        {
+            for (int x = 0; x < maxX; x++)
+            {
+                if (layout[y][x] >= 2)
+                {
+                    mapping exits = ([]);
+
+                    if (y + 1 < maxY && layout[y + 1][x] >= 2)
+                    {
+                        exits["north"] = sprintf("%dx%d", x, y + 1);
+                    }
+                    if (y - 1 >= 0 && layout[y - 1][x] >= 2)
+                    {
+                        exits["south"] = sprintf("%dx%d", x, y - 1);
+                    }
+                    if (x + 1 < maxX && layout[y][x + 1] >= 2)
+                    {
+                        exits["east"] = sprintf("%dx%d", x + 1, y);
+                    }
+                    if (x - 1 >= 0 && layout[y][x - 1] >= 2)
+                    {
+                        exits["west"] = sprintf("%dx%d", x - 1, y);
+                    }
+
+                    grid[x][y]["exits"] = exits;
                 }
             }
         }

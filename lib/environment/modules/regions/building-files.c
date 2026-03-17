@@ -11,11 +11,11 @@ protected nomask mapping generateRoomExits(int x, int y, mixed *layout)
     
     if (hasConnectionInDirection(x, y, layout, "north"))
     {
-        ret["north"] = ([ "x": x, "y": y - 1 ]);
+        ret["north"] = ([ "x": x, "y": y + 1 ]);
     }
     if (hasConnectionInDirection(x, y, layout, "south"))
     {
-        ret["south"] = ([ "x": x, "y": y + 1 ]);
+        ret["south"] = ([ "x": x, "y": y - 1 ]);
     }
     if (hasConnectionInDirection(x, y, layout, "east"))
     {

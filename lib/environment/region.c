@@ -184,7 +184,7 @@ public nomask varargs void setCoordinate(int x, int y, string path,
 
     if (!roomType)
     {
-        roomType = "room";
+        roomType = "none";
     }
 
     if (sizeof(grid) < MaxX)

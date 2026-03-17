@@ -30,7 +30,8 @@ public nomask int isValidRegion(object region)
 {
     int ret = 0;
     if (objectp(region) &&
-        member(inherit_list(region), "/lib/environment/region.c") > -1)
+        (member(inherit_list(region), "/lib/environment/region.c") > -1 ||
+        member(inherit_list(region), "/lib/environment/walkableRegion.c") > -1))
     {
         ret = isValidRegionType(region->regionType());
     }

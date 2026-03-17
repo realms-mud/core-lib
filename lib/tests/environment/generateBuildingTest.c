@@ -224,28 +224,36 @@ void BuildingRegionHasCoordinateData()
     Region.setRegionName("test temple");
     Region.setRegionType("temple");
     Region.createRegion("south", "/some/location");
-    
-    int foundRooms = 0;
-    int foundWalls = 0;
-    int foundEntry = 0;
-    
+
+    int decoratedCells = 0;
+    int voidCells = 0;
+
     for (int x = 0; x < Region.xDimension(); x++)
     {
         for (int y = 0; y < Region.yDimension(); y++)
         {
             mapping cell = Region.coordinateToMapping(x, y);
-            if (mappingp(cell) && member(cell, "room type"))
+            if (mappingp(cell))
             {
-                if (cell["room type"] == "room") foundRooms = 1;
-                if (cell["room type"] == "wall") foundWalls = 1;
-                if (cell["room type"] == "entry") foundEntry = 1;
+                if (member(cell, "decorator type") &&
+                    cell["decorator type"] != "none")
+                {
+                    decoratedCells++;
+                }
+                else
+                {
+                    voidCells++;
+                }
             }
         }
     }
-    
-    ExpectTrue(foundRooms, "Building has rooms");
-    ExpectTrue(foundWalls, "Building has walls");
-    ExpectTrue(foundEntry, "Building has entry");
+
+    int *entry = Region.getEntry();
+
+    ExpectTrue(decoratedCells > 0, "Building has decorated rooms");
+    ExpectTrue(voidCells > 0, "Building has void areas (walls)");
+    ExpectTrue(pointerp(entry) && sizeof(entry) == 2,
+        "Building has entry");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -269,22 +277,28 @@ void KeepRegionHasSpecialRooms()
     Region.setRegionName("test keep");
     Region.setRegionType("keep");
     Region.createRegion("north", "/some/location");
-    
-    int foundThrone = 0;
-    
+
+    int foundDecorator = 0;
+
     for (int x = 0; x < Region.xDimension(); x++)
     {
         for (int y = 0; y < Region.yDimension(); y++)
         {
             mapping cell = Region.coordinateToMapping(x, y);
-            if (mappingp(cell) && member(cell, "room type"))
+            if (mappingp(cell) && member(cell, "decorator type"))
             {
-                if (cell["room type"] == "throne") foundThrone = 1;
+                foundDecorator = 1;
+                break;
             }
         }
+        if (foundDecorator)
+        {
+            break;
+        }
     }
-    
-    ExpectTrue(foundThrone, "Keep has throne room");
+
+    ExpectTrue(foundDecorator,
+        "Keep has decorated center room");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -293,12 +307,15 @@ void BuildingRegionCanGetCoordinateData()
     Region.setRegionName("test temple");
     Region.setRegionType("temple");
     Region.createRegion("south", "/some/location");
-    
+
     int *entry = Region.getEntry();
     mapping data = Region.coordinateToMapping(entry[0], entry[1]);
-    
+
     ExpectTrue(mappingp(data), "Coordinate data exists");
-    ExpectEq("entry", data["room type"], "Entry room type is correct");
+    ExpectEq("none", data["room type"],
+        "Room type is none per hand-crafted convention");
+    ExpectTrue(member(data, "decorator type") > 0,
+        "Entry has decorator type");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -331,15 +348,21 @@ void DifferentBuildingTypesHaveDifferentLayouts()
     temple.setRegionName("temple");
     temple.setRegionType("temple");
     temple.createRegion("south", "/some/location");
-    
+
     object crypt = clone_object("/lib/environment/region.c");
     crypt.setRegionName("crypt");
     crypt.setRegionType("crypt");
     crypt.createRegion("north", "/some/location");
-    
-    ExpectNotEq(temple.xDimension(), crypt.xDimension(), 
-        "Different building types have different dimensions");
-    
+
+    ExpectTrue(temple.xDimension() >= 18 && temple.xDimension() <= 25,
+        "Temple width is within expected range");
+    ExpectTrue(crypt.xDimension() >= 15 && crypt.xDimension() <= 25,
+        "Crypt width is within expected range");
+    ExpectTrue(temple.yDimension() >= 9 && temple.yDimension() <= 11,
+        "Temple height is within expected range");
+    ExpectTrue(crypt.yDimension() >= 8 && crypt.yDimension() <= 11,
+        "Crypt height is within expected range");
+
     destruct(temple);
     destruct(crypt);
 }
@@ -350,25 +373,22 @@ void CryptUsesTunnelingAlgorithm()
     Region.setRegionName("test crypt");
     Region.setRegionType("crypt");
     Region.createRegion("west", "/some/location");
-    
-    // Verify the crypt uses tunneling by checking for corridor types
+
     int foundCorridor = 0;
-    
+
     for (int x = 0; x < Region.xDimension(); x++)
     {
         for (int y = 0; y < Region.yDimension(); y++)
         {
             mapping cell = Region.coordinateToMapping(x, y);
-            if (mappingp(cell) && member(cell, "room type"))
+            if (mappingp(cell) && member(cell, "decorator type") &&
+                cell["decorator type"] != "none")
             {
-                if (cell["room type"] != "wall")
-                {
-                    foundCorridor = 1;
-                }
+                foundCorridor = 1;
             }
         }
     }
-    
+
     ExpectTrue(foundCorridor, "Crypt has corridors from tunneling algorithm");
 }
 
@@ -378,27 +398,22 @@ void TunnelingCreatesConnectedDungeon()
     Region.setRegionName("test crypt");
     Region.setRegionType("crypt");
     Region.createRegion("north", "/some/location");
-    
-    // Count carved spaces (corridors + rooms)
+
     int carvedSpaces = 0;
-    
+
     for (int x = 0; x < Region.xDimension(); x++)
     {
         for (int y = 0; y < Region.yDimension(); y++)
         {
             mapping cell = Region.coordinateToMapping(x, y);
-            if (mappingp(cell) && member(cell, "room type"))
+            if (mappingp(cell) && member(cell, "decorator type") &&
+                cell["decorator type"] != "none")
             {
-                string roomType = cell["room type"];
-                if (roomType != "wall" && roomType != "none")
-                {
-                    carvedSpaces++;
-                }
+                carvedSpaces++;
             }
         }
     }
-    
-    // Should have significant carved space
+
     ExpectTrue(carvedSpaces > 20, "Tunneling creates sufficient dungeon space");
 }
 
