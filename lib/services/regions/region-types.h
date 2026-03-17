@@ -73,6 +73,13 @@ protected mapping RegionTypes = ([
             "harpy": 5,
             "dog": 15,
         ]),
+        "potential non-combat encounters": ([
+            "cat": 20,
+            "dog": 30,
+            "horse": 10,
+            "priest": 5,
+            "grocer": 3,
+        ]),
         "default character": ([
             "ascii": "*",
             "unicode": "\u273e"
@@ -161,6 +168,12 @@ protected mapping RegionTypes = ([
             "owlbear": 5,
             "giant spider": 10,
             "harpy": 5,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 15,
+            "dog": 25,
+            "horse": 10,
+            "priest": 3,
         ])
     ]),
     "mountainous forest":([
@@ -208,11 +221,17 @@ protected mapping RegionTypes = ([
             "giant spider": 10,
             "harpy": 8,
             "earth elemental": 3,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 10,
+            "dog": 20,
+            "horse": 8,
+            "priest": 3,
         ])
     ]),
 
-    "city":([
-        "terrain":"/lib/environment/terrain/city.c",
+    "city": ([
+        "terrain": "/lib/environment/terrain/city.c",
         "potential features" : ([]),
         "path type" : "/lib/environment/features/paths/road.c",
         "potential items" : ([ "objects": ([
@@ -226,10 +245,19 @@ protected mapping RegionTypes = ([
         "settlement chance" : 0,
         "settlement size" : 0,
         "potential encounters" : ([
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 15,
+            "blacksmith": 10,
+            "grocer": 20,
+            "priest": 10,
+            "cat": 20,
+            "dog": 15,
+            "horse": 10,
         ])
     ]),
 
-    "rural":([
+    "rural": ([
         "terrain":"/lib/environment/terrain/farmland.c",
         "potential features" : ([]),
         "path type" : "/lib/environment/features/paths/road.c",
@@ -244,10 +272,16 @@ protected mapping RegionTypes = ([
         "settlement chance" : 0,
         "settlement size" : 0,
         "potential encounters" : ([
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 15,
+            "dog": 25,
+            "horse": 20,
+            "grocer": 5,
         ])
     ]),
 
-    "hilly rural":([
+    "hilly rural": ([
         "terrain": "/lib/environment/terrain/farmland.c",
         "potential features": Terrain,
         "path type": "/lib/environment/features/paths/road.c",
@@ -278,10 +312,17 @@ protected mapping RegionTypes = ([
             "outlaw": 75,
             "skeleton": 15,
             "zombie": 10,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 10,
+            "dog": 20,
+            "horse": 15,
+            "grocer": 5,
+            "priest": 3,
         ])
     ]),
 
-    "forest village":([
+    "forest village": ([
         "terrain": "/lib/environment/terrain/village.c",
         "potential features": Trees,
         "path type": "/lib/environment/features/paths/road.c",
@@ -302,10 +343,19 @@ protected mapping RegionTypes = ([
         "potential encounters": ([
             "ruffian": 50,
             "outlaw": 25,
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 25,
+            "blacksmith": 20,
+            "grocer": 20,
+            "priest": 15,
+            "cat": 15,
+            "dog": 25,
+            "horse": 10,
         ])
     ]),
 
-    "riverside village":([
+    "riverside village": ([
         "terrain": "/lib/environment/terrain/village.c",
         "potential features": ([ "water": ([ "river": 10, "brook": 30 ]) ]),
         "path type": "/lib/environment/features/paths/road.c",
@@ -326,10 +376,19 @@ protected mapping RegionTypes = ([
         "potential encounters": ([
             "ruffian": 50,
             "outlaw": 25,
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 25,
+            "blacksmith": 20,
+            "grocer": 20,
+            "priest": 15,
+            "cat": 15,
+            "dog": 25,
+            "horse": 10,
         ])
     ]),
 
-    "riverside city":([
+    "riverside city": ([
         "terrain": "/lib/environment/terrain/city.c",
         "potential features": ([ "water": ([ "river": 15 ]) ]),
         "path type": "/lib/environment/features/paths/road.c",
@@ -344,10 +403,19 @@ protected mapping RegionTypes = ([
         "settlement chance": 0,
         "settlement size": 0,
         "potential encounters": ([
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 15,
+            "blacksmith": 10,
+            "grocer": 20,
+            "priest": 10,
+            "cat": 20,
+            "dog": 15,
+            "horse": 10,
         ])
     ]),
 
-    "riverside forest":([
+    "riverside forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
         "potential features": Trees + ([ "water": ([ 
             "river": 15, "brook": 40, "creek": 50, "stream": 40 ]) ]),
@@ -376,10 +444,15 @@ protected mapping RegionTypes = ([
             "raccoon": 30,
             "giant spider": 10,
             "naga": 3,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 10,
+            "dog": 20,
+            "horse": 10,
         ])
     ]),
 
-    "rocky lakeside forest":([
+    "rocky lakeside forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
         "potential features": Trees + ([ "water": ([ 
             "rocky-lake-shore": 25, "lake": 10 ]) ]),
@@ -407,7 +480,7 @@ protected mapping RegionTypes = ([
         ])
     ]),
 
-    "sandy lakeside forest":([
+    "sandy lakeside forest": ([
         "terrain": "/lib/environment/terrain/forest.c",
         "potential features": Trees + ([ "water": ([ 
             "sandy-lake-beach": 25, "lake": 10 ]) ]),
@@ -432,7 +505,7 @@ protected mapping RegionTypes = ([
         ])
     ]),
 
-    "rocky lakeside":([
+    "rocky lakeside": ([
         "terrain": "/lib/environment/terrain/plains.c",
         "potential features": Terrain + ([ "water": ([ 
             "rocky-lake-shore": 30, "lake": 15 ]) ]),
@@ -454,7 +527,7 @@ protected mapping RegionTypes = ([
         ])
     ]),
 
-    "sandy lakeside":([
+    "sandy lakeside": ([
         "terrain": "/lib/environment/terrain/plains.c",
         "potential features": Terrain + ([ "water": ([ 
             "sandy-lake-beach": 30, "lake": 15 ]) ]),
@@ -475,7 +548,7 @@ protected mapping RegionTypes = ([
         ])
     ]),
 
-    "lakeside village":([
+    "lakeside village": ([
         "terrain": "/lib/environment/terrain/village.c",
         "potential features": ([ "water": ([ "lake": 10 ]) ]),
         "path type": "/lib/environment/features/paths/road.c",
@@ -493,10 +566,19 @@ protected mapping RegionTypes = ([
         "settlement size": 12,
         "potential encounters": ([
             "ruffian": 40,
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 25,
+            "blacksmith": 20,
+            "grocer": 20,
+            "priest": 15,
+            "cat": 15,
+            "dog": 25,
+            "horse": 10,
         ])
     ]),
 
-    "lakeside city":([
+    "lakeside city": ([
         "terrain": "/lib/environment/terrain/city.c",
         "potential features": ([ "water": ([ "lake": 10 ]) ]),
         "path type": "/lib/environment/features/paths/road.c",
@@ -511,10 +593,19 @@ protected mapping RegionTypes = ([
         "settlement chance": 0,
         "settlement size": 0,
         "potential encounters": ([
+        ]),
+        "potential non-combat encounters": ([
+            "innkeeper": 15,
+            "blacksmith": 10,
+            "grocer": 20,
+            "priest": 10,
+            "cat": 20,
+            "dog": 15,
+            "horse": 10,
         ])
     ]),
 
-    "desert":([
+    "desert": ([
         "terrain": "/lib/environment/terrain/desert.c",
         "potential features": Terrain,
         "path type": "/lib/environment/features/paths/path.c",
@@ -544,7 +635,7 @@ protected mapping RegionTypes = ([
         ])
     ]),
 
-    "desert oasis":([
+    "desert oasis": ([
         "terrain": "/lib/environment/terrain/desert.c",
         "potential features": Trees + ([ "water": ([ "pond": 25 ]) ]),
         "potential items": ([ ]),
@@ -596,10 +687,17 @@ protected mapping RegionTypes = ([
             "raccoon": 15,
             "groundhog": 15,
             "dog": 10,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 10,
+            "dog": 20,
+            "horse": 25,
+            "priest": 3,
+            "grocer": 3,
         ])
     ]),
 
-    "hilly plains":([
+    "hilly plains": ([
         "terrain": "/lib/environment/terrain/plains.c",
         "potential features": Terrain,
         "path type": "/lib/environment/features/paths/path.c",
@@ -626,10 +724,16 @@ protected mapping RegionTypes = ([
             "red fox": 20,
             "raccoon": 15,
             "groundhog": 10,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 10,
+            "dog": 15,
+            "horse": 20,
+            "priest": 3,
         ])
     ]),
 
-    "swamp":([
+    "swamp": ([
         "terrain": "/lib/environment/terrain/swamp.c",
         "potential features": Trees + ([ "water": ([ 
             "pond": 40, "creek": 30, "brook": 20 ]) ]),
@@ -1076,10 +1180,17 @@ protected mapping RegionTypes = ([
             "raven": 15,
             "owlbear": 5,
             "dog": 10,
+        ]),
+        "potential non-combat encounters": ([
+            "cat": 15,
+            "dog": 15,
+            "horse": 10,
+            "priest": 5,
+            "unicorn": 1,
         ])
     ]),
 
-    "wasteland":([
+    "wasteland": ([
         "terrain": "/lib/environment/terrain/rocky-desert.c",
         "potential features": Terrain,
         "path type": "/lib/environment/features/paths/path.c",

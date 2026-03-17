@@ -8,6 +8,8 @@ private object regionService = getService("region");
 
 private string *possibleEncounters = ({});
 private object *currentEncounters = ({});
+private string *possibleNonCombatEncounters = ({});
+private object *currentNonCombatEncounters = ({});
 private int timeUntilNextEncounter;
 private int isSpawningEncounters = 0;
 private mapping deferredRegion = 0;
@@ -88,6 +90,16 @@ protected nomask varargs void addRandomCreature(string *creatures,
     if (sizeof(creatures))
     {
         possibleEncounters = creatures + ({});
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addNonCombatCreature(
+    string *creatures, string state)
+{
+    if (sizeof(creatures))
+    {
+        possibleNonCombatEncounters = creatures + ({});
     }
 }
 
@@ -264,6 +276,12 @@ public nomask varargs mapping generateEnvironment(mapping data, object region,
 
             addRandomCreature(roomData["creatures"], state);
 
+            if (sizeof(roomData["non-combat creatures"]))
+            {
+                addNonCombatCreature(
+                    roomData["non-combat creatures"], state);
+            }
+
             if (data["room type"] == "exit")
             {
                 deferGenerateRegion(data["exit to"], 
@@ -297,6 +315,51 @@ public nomask void addEntryExit(string direction, string location)
     if (PathType)
     {
         addFeature(PathType, direction);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected void setUpNonCombatEncounter(object player)
+{
+    currentNonCombatEncounters = filter(currentNonCombatEncounters,
+        (: objectp($1) && (environment($1) == this_object()) :));
+
+    if (objectp(player) &&
+        sizeof(possibleNonCombatEncounters) &&
+        !sizeof(currentNonCombatEncounters))
+    {
+        object personaService = getService("persona");
+
+        int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
+            getRegion()->regionLevel() : player->effectiveLevel();
+
+        string name = possibleNonCombatEncounters[
+            random(sizeof(possibleNonCombatEncounters))];
+
+        int level = (objectp(getRegion()) && getRegion()->regionLevel()) ?
+            (baseLevel - 2 + random(5)) :
+            (baseLevel - 3 + random(7));
+
+        if (level < 1)
+        {
+            level = 1;
+        }
+
+        object npc = clone_object("/lib/realizations/npc.c");
+        npc->SetUpPersonaOfLevel(
+            personaService->getRandomPersona(name, level), level, 1);
+
+        npc->Gender(random(2) ? "female" : "male");
+        npc->addAlias(name);
+
+        if (npc->Race() == "deity")
+        {
+            npc->apparentRace("human");
+        }
+        npc->Name(capitalize(name));
+
+        currentNonCombatEncounters += ({ npc });
+        move_object(npc, this_object());
     }
 }
 
@@ -366,9 +429,10 @@ protected void setUpEncounter(object player)
                 isSpawningEncounters = 0;
             }
         }
+
+        setUpNonCombatEncounter(player);
     }
 }
-
 
 /////////////////////////////////////////////////////////////////////////////
 public void init()
