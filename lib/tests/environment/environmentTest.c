@@ -2173,9 +2173,9 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
     move_object(player, environment);
 
     command("s", player);
-    ExpectEq("+--   ===' This is a very large and cavernous chamber - easily two hundred\n"
-        "|        ' yards wide by two hundred yards long. The ceiling is hard to\n"
-        "| +   ===' discern from this distance, but it appears to be solid amethyst.\n"
+    ExpectEq("+--==+===' This is a very large and cavernous chamber - easily two hundred\n"
+        "|    |   ' yards wide by two hundred yards long. The ceiling is hard to\n"
+        "| ++\\+===' discern from this distance, but it appears to be solid amethyst.\n"
         "| |:@::::' The floor is fashioned out of what appears to be solid amethyst. A\n"
         "| |@P@:::' luminous, roiling purple liquid fills the room, occasion ripples\n"
         "| |:@::::' gyrating along the visible surface where a path has been sliced\n"
