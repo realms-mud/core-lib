@@ -2167,20 +2167,21 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
     player.colorConfiguration("none");
     player.charsetConfiguration("ascii");
 
+    load_object("/areas/tol-dhurath/temple-interior/region.c");
     object environment =
-        load_object("/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+        load_object("/areas/tol-dhurath/temple-interior/pedestal-0x1.c");
     move_object(player, environment);
 
     command("s", player);
-    ExpectEq("| |      ' This is a very large and cavernous chamber - easily two hundred\n"
-        "| |      ' yards wide by two hundred yards long. The ceiling is hard to\n"
-        "+/+======' discern from this distance, but it appears to be solid amethyst.\n"
-        ":@:::::::' The floor is fashioned out of what appears to be solid amethyst. A\n"
-        "@P@::::::' luminous, roiling purple liquid fills the room, occasion ripples\n"
-        ":@:::::::' gyrating along the visible surface where a path has been sliced\n"
-        ":::::::::' through it. The liquid is held at bay from the path by some unseen\n"
-        ":::::::::' barrier - or perhaps, despite its appearance, it is as solid as\n"
-        ":::::::::' rock. It is impossible to tell for sure - the constant bursts of\n"
+    ExpectEq("+--   ===' This is a very large and cavernous chamber - easily two hundred\n"
+        "|        ' yards wide by two hundred yards long. The ceiling is hard to\n"
+        "| +   ===' discern from this distance, but it appears to be solid amethyst.\n"
+        "| |:@::::' The floor is fashioned out of what appears to be solid amethyst. A\n"
+        "| |@P@:::' luminous, roiling purple liquid fills the room, occasion ripples\n"
+        "| |:@::::' gyrating along the visible surface where a path has been sliced\n"
+        "| |::::::' through it. The liquid is held at bay from the path by some unseen\n"
+        "| |::::::' barrier - or perhaps, despite its appearance, it is as solid as\n"
+        "| |::::::' rock. It is impossible to tell for sure - the constant bursts of\n"
         "lightning coursing through the substance are enough to keep even the most\n"
         "foolhardy away. Along the wall near the entry, many intricate runes have been\n"
         "carved. In the center of the liquid-free area stand four three-foot tall\n"

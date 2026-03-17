@@ -145,15 +145,18 @@ void CanCreateManualRegions()
         "/lib/tests/support/environment/region/0x0.c", "west",
         "/lib/tests/support/environment/darkRoom.c");
 
-    Region.setCoordinate(0, 1, "/lib/tests/support/environment/region/0x1.c");
+    Region.setCoordinate(0, 1, "/lib/tests/support/environment/region/0x1.c",
+        "room");
     Region.setCoordinate(1, 0, "/lib/tests/support/environment/region/1x0.c",
         "path");
     Region.setCoordinate(1, 1, "/lib/tests/support/environment/region/1x1.c",
         "path");
     Region.setCoordinate(1, 2, "/lib/tests/support/environment/region/1x2.c",
         "path");
-    Region.setCoordinate(2, 0, "/lib/tests/support/environment/region/2x0.c");
-    Region.setCoordinate(2, 2, "/lib/tests/support/environment/region/2x2.c");
+    Region.setCoordinate(2, 0, "/lib/tests/support/environment/region/2x0.c",
+        "room");
+    Region.setCoordinate(2, 2, "/lib/tests/support/environment/region/2x2.c",
+        "room");
     Region.setCoordinate(1, 3, "/lib/tests/support/environment/region/1x3.c",
         "path");
     Region.setExitCoordinate(1, 4, "/lib/tests/support/environment/region/1x4.c",
@@ -183,8 +186,9 @@ void MapsChangeWithStateTransitions()
     Player.charsetConfiguration("ascii");
     set_this_player(Player);
 
-    object environment = 
-        load_object("/tutorial/temple/environment/rooms/entry-to-pedestal.c");
+    load_object("/areas/tol-dhurath/temple-interior/region.c");
+    object environment =
+        load_object("/areas/tol-dhurath/temple-interior/pedestal-0x1.c");
 
     move_object(Player, environment);
 
@@ -194,60 +198,74 @@ void MapsChangeWithStateTransitions()
     object stateMachine = environment(Player).stateMachine();
 
     ExpectEq("\n"
-        "| |                  \n"
-        "| |                  \n"
-        "+/+============+==   \n"
-        ":@:::::::::::::|     \n"
-        "@P@::::::::::::|     \n"
-        ":@:::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        "===============+     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n", region.displayMap(Player, stateMachine.getCurrentState()));
+        "         +=========================++--==+============--+   \n"
+        "         |                         ||    |              |   \n"
+        "         | |+ +===+ +===+ +===+ +| || ++\\+============+ |   \n"
+        "         | |                     | || |:@:::::::::::::| |   \n"
+        "         |         +     +         || |@P@::::::::::::| |   \n"
+        "         | |                     | || |:@:::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "         |                         || |:::::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "         |         +     +         || |:::::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "         |                         || |:::::::::::::::| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "+--===+=++\\+                     +\\+| |:::::::::::::::| |   \n"
+        "|     |+|| |       +     +       | || |:::::::::::::::| |   \n"
+        "|     | || |                     | || |:::::::::::::::| |   \n"
+        "+/+===+\\++ |         + +         | ++\\+====================+\n"
+        "|          |         +-+         |                         |\n"
+        "+==+\\+===+ |  *-----++-+*-----*  | +=========+=+=====+=====+\n"
+        "|\\       | +==+--+--+ - +--+--+==+/+         | +     |     |\n"
+        "|*       |          |   |          |         | /     |     |\n"
+        "|/       -/+======+ |   |  *    *  +===+ +===+ +     ===== |\n"
+        "+--======+ +--++--+/+   |          |   +\\+   | +===--+     |\n"
+        "|             ||    |   |  *    *  |   | |   | |     |     |\n"
+        "| ++ ++ ++ ++ ||    +   |          |   | |   | |     |     |\n"
+        "| ++ ++ ++ ++ ||    |   |  ******  |+\\++ ++\\++ +===+\\=     |\n"
+        "|             ||    |   |   *LL*   /                 /     |\n"
+        "--+=========--++-+--+   --+=*==*=--+===============+=====--+\n", 
+            region.displayMap(Player, stateMachine.getCurrentState()));
 
     command("get rune", Player);
     command("place rune", Player);
     stateMachine.receiveEvent(Player, "startFirstTest", Player);
 
     ExpectEq("\n"
-        "                     \n"
-        "                     \n"
-        "===============+==   \n"
-        ":@:::::::::::::+==   \n"
-        "@P@  ::::::::  /     \n"
-        ":@:: :::::::: :+==   \n"
-        ":::: :::::::: :|     \n"
-        "::::       :: :|     \n"
-        ":::::::::: :: :|     \n"
-        ":::::::::: :: :|     \n"
-        ":::::::    :: :|     \n"
-        "::::::: ::::: :|     \n"
-        "::::::: ::::: :|     \n"
-        ":::::::       :|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        ":::::::::::::::|     \n"
-        "===============+     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n"
-        "                     \n", region.displayMap(Player, stateMachine.getCurrentState()));
+        "         +=========================++--==+============--+   \n"
+        "         |                         ||    |              |   \n"
+        "         | |+ +===+ +===+ +===+ +| || +==+============+ |   \n"
+        "         | |                     | || |:@:::::::::::::+==   \n"
+        "         |         +     +         || |@P@  ::::::::  /     \n"
+        "         | |                     | || |:@:: :::::::: :+==   \n"
+        "         | |                     | || |:::: :::::::: :| |   \n"
+        "         |                         || |::::       :: :| |   \n"
+        "         | |                     | || |:::::::::: :: :| |   \n"
+        "         | |                     | || |:::::::::: :: :| |   \n"
+        "         |         +     +         || |:::::::    :: :| |   \n"
+        "         | |                     | || |::::::: ::::: :| |   \n"
+        "         | |                     | || |::::::: ::::: :| |   \n"
+        "         |                         || |:::::::       :| |   \n"
+        "         | |                     | || |:::::::::::::::| |   \n"
+        "+--===+=++\\+                     +\\+| |:::::::::::::::| |   \n"
+        "|     |+|| |       +     +       | || |:::::::::::::::| |   \n"
+        "|     | || |                     | || |:::::::::::::::| |   \n"
+        "+/+===+\\++ |         + +         | ++\\+====================+\n"
+        "|          |         +-+         |                         |\n"
+        "+==+\\+===+ |  *-----++-+*-----*  | +=========+=+=====+=====+\n"
+        "|\\       | +==+--+--+ - +--+--+==+/+         | +     |     |\n"
+        "|*       |          |   |          |         | /     |     |\n"
+        "|/       -/+======+ |   |  *    *  +===+ +===+ +     ===== |\n"
+        "+--======+ +--++--+/+   |          |   +\\+   | +===--+     |\n"
+        "|             ||    |   |  *    *  |   | |   | |     |     |\n"
+        "| ++ ++ ++ ++ ||    +   |          |   | |   | |     |     |\n"
+        "| ++ ++ ++ ++ ||    |   |  ******  |+\\++ ++\\++ +===+\\=     |\n"
+        "|             ||    |   |   *LL*   /                 /     |\n"
+        "--+=========--++-+--+   --+=*==*=--+===============+=====--+\n", 
+        region.displayMap(Player, stateMachine.getCurrentState()));
     
     command("resetEverything", Player);
     destruct(environment);

@@ -4,7 +4,6 @@
 #*****************************************************************************
 
 /tutorial/stateMachines/introStateMachine.c
-/tutorial/temple/environment/rooms/entry-to-pedestal.c
 /areas/eledhel/central-city/central-city.c
 /areas/eledhel/northern-city/northern-city.c
 /areas/eledhel/southern-city/southern-city.c
