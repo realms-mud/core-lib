@@ -9,6 +9,7 @@ protected void Setup()
 {
     set("name", "Book");
     set("short", "Book");
+    set("title", "Book");
     set("aliases", ({ "book" }));
     set("blueprint", "book");
 }
