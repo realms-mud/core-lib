@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A worn leather-bound chronicle, Volume II");
     set("title", "A Chronicle of the Eastern Lands, Volume II: "
         "The Age of Empires");
-    set("aliases", ({ "chronicle", "volume ii", "volume 2",
+    set("aliases", ({ "chronicle", "volume ii", "volume 2", "book",
         "chronicle volume ii", "chronicle volume 2" }));
     set("long", "A thick tome bound in cracked brown leather, companion "
         "to the first volume. The spine reads: 'A Chronicle of the "
@@ -25,7 +25,7 @@ protected void Setup()
         "Year 153: Ulric IV becomes king of Hillgarath.\n\n"
         "Year 155: Nernem, Eslarach, Endurghul, and Zhendulach "
         "annexed by Dor-Temnost.\n\n"
-        "Year 158: Rhun annexed by Dor-Temnost.\n\n"
+        "Year 158: Rhundaur annexed by Dor-Temnost.\n\n"
         "Year 171: Khendazach annexed by Dor-Temnost.\n\n"
         "Year 173: Elonach slain in battle. Elonoch II becomes king "
         "of Dor-Temnost. He is said to look exactly like his father, "
@@ -46,7 +46,7 @@ protected void Setup()
         "do his three sons. Ainderie becomes the first ruling queen "
         "of Hillgarath at the age of six. Amid unrest, Daedrun "
         "declares as regent.\n\n"
-        "Year 207: Ainderie weds Curudil, one of Daedrun's Noldor "
+        "Year 207: Ainderie weds Curudil, one of Daedrun's high elf "
         "companions. Curudil refuses the rightful power of king, "
         "deferring all rulership to his wife.\n\n"
         "Year 212: Kirnost and Meledwath form an alliance amid fears "
@@ -79,7 +79,7 @@ protected void Setup()
         "youngest sister Almarien. With Bregandil travels Cuilornir, "
         "his close friend. Carandur and Dor-Lonis are recovered. The "
         "alliance moves across the Lonis River. In the west, Eldarion "
-        "crosses into Rhun. The inhabitants flock to his banner.\n\n"
+        "crosses into Rhundaur. The inhabitants flock to his banner.\n\n"
         "Year 311: Bregandil founds the city of Eledhel. Colonists "
         "begin to trickle from Ardain and Eneldhor to the east.\n\n"
         "Year 313: Celebgaer falls to the alliance.\n\n"
@@ -108,7 +108,7 @@ protected void Setup()
 
     addChapter("The Battle of Utumnadh",
         "Year 406: A dark force, believed to be one of the fallen "
-        "Maia, sets up power within Utumnadh. The alliance "
+        "gods, sets up power within Utumnadh. The alliance "
         "formulates plans to attack.\n\n"
         "Year 409: The Battle of Utumnadh. The alliance is victorious, "
         "but at a great cost. Mirost, Hillgarath, and Eledhel are all "

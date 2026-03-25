@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A worn leather-bound chronicle, Volume I");
     set("title", "A Chronicle of the Eastern Lands, Volume I: The Age of Restoration");
     set("aliases", ({ "chronicle", "volume i", "volume 1",
-        "chronicle volume i", "chronicle volume 1",
+        "chronicle volume i", "chronicle volume 1", "book",
         "chronicle of the eastern lands" }));
     set("long", "A thick tome bound in cracked brown leather. The "
         "spine bears the faded gilt lettering: 'A Chronicle of the "
@@ -43,7 +43,7 @@ protected void Setup()
         "Year 22: Delerath Keep founded by Ulric upon the ashes of "
         "the fallen kingdom, a bastion against the advancing tide.\n\n"
         "Year 23: Dor-Duilath is overrun by forces from Andurath, led "
-        "by their long-standing wizard-king Pallando. The great city "
+        "by their long-standing wizard-king Dervach. The great city "
         "of Helcarion falls to Andurath.\n\n"
         "Year 27: Celebdiul and Meluin fall to Andurath.\n\n"
         "Year 28: Linmir falls to a joint attack by Kharand and "
@@ -75,15 +75,15 @@ protected void Setup()
         "war on Andurath. Orothysse is supplied from the sea.\n\n"
         "Year 40: The elves of Echorluin hand a devastating defeat "
         "to the navy of Andurath off the shores of Orothysse. The "
-        "army of Eneldhor, led by Arendor and Eomer of Rohan, "
+        "army of Eneldhor, led by Arendor and Eonach of Norgaard, "
         "disembarks. With Arendor travels his longtime friend and "
-        "son of Halbarad, Halgaladh.\n\n"
+        "son of Halbaladh, Halgaladh.\n\n"
         "Year 41: King Surachar of Kharand is slain in battle. The "
         "army of Kharand that had occupied the land around Delerath "
         "is utterly destroyed. One of Surachar's advisors, a wizard "
-        "of considerable power named Alatar, assumes command of the "
+        "of considerable power named Egornac, assumes command of the "
         "armies.\n\n"
-        "Year 42: Alatar retakes Delerath Keep and pushes into "
+        "Year 42: Egornac retakes Delerath Keep and pushes into "
         "Hillgarath as far as Dhuras Tower.\n\n"
         "[A marginal note in a different hand reads: 'Dhuras Tower "
         "- our founding place. How near we came to losing it before "
@@ -101,23 +101,23 @@ protected void Setup()
         "Year 45: The lands as far south as Helcarion and Duilath "
         "Keep north to the Lonis River are recovered from Andurath. "
         "Elechar declares himself king of Kirnost.\n\n"
-        "Year 46: Alatar vanishes, never to be seen again. The armies "
+        "Year 46: Egornac vanishes, never to be seen again. The armies "
         "of Kharand are overwhelmed. Dor-Temnost is founded with "
         "Tirnost as its capital. Lonis, Rhudenost, and Calciduil form "
         "an alliance that is to become the Kingdom of Nurenlun. The "
         "Kharand capital of Khendrus is razed. Kharand surrenders and "
         "is allowed to remain autonomous under a heavy yearly tribute "
-        "to Dor-Temnost. Pallando falls in battle. King Werra is slain. "
+        "to Dor-Temnost. Dervach falls in battle. King Werra is slain. "
         "Andurath collapses and falls into civil war as many countless "
         "pretenders vie for the throne. Ulric II becomes king of "
-        "Hillgarath. Arendor and Eomer return to the west.");
+        "Hillgarath. Arendor and Eonach return to the west.");
 
     addChapter("The Age of Settlement",
         "Year 47: Serach becomes the first permanent settlement of "
         "Eneldhor in the east. King Ulric II gifts all lands east of "
         "River Hillgarath to Eneldhor. A group of 400 elves from "
         "Echorluin settle at Hillgarath Keep. The group consists "
-        "largely of Noldor and is led by one who calls himself "
+        "largely of high elves and is led by one who calls himself "
         "Daedrun. Daedrun swears fealty to Ulric II and joins the "
         "Werric Knighthood.\n\n"
         "Year 49: Menadrost declares independence from Andurath.\n\n"
@@ -146,7 +146,7 @@ protected void Setup()
         "[A marginal note: 'The first destruction of our keep. We "
         "rebuilt stronger.']\n\n"
         "Year 111: Eldarion, son of Arendor, and his longtime friend "
-        "Elthoron, scion of Halbarad's line, reach Serach.\n\n"
+        "Elthoron, scion of Halbaladh's line, reach Serach.\n\n"
         "Year 112: The orcish stronghold near Utumnadh is utterly "
         "destroyed. Eldarion returns to Eneldhor.\n\n"
         "Year 114: Dor-Temnost declares war on Kharand. Uladar is "

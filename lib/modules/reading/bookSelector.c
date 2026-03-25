@@ -17,8 +17,9 @@ public nomask void InitializeSelector()
 {
     AllowUndo = 0;
     AllowAbort = 1;
-    HasDescription = 1;
-    Type = "Reading";
+    HasDescription = 0;
+    NumColumns = 2;
+    Type = "";
     Data = ([]);
 }
 
@@ -40,7 +41,8 @@ protected nomask void setUpUserForSelection()
         title = "Untitled";
     }
 
-    Description = title;
+    Type = title;
+    Description = "Select a chapter to read";
     SuppressColon = 1;
 
     mapping *chapters = Book->query("chapters");
@@ -52,7 +54,8 @@ protected nomask void setUpUserForSelection()
             Data[key] = ([
                 "name": chapters[i]["title"],
                 "type": "chapter",
-                "description": chapters[i]["text"] + "\n",
+                "description": chapters[i]["text"],
+                "do not format": 1,
             ]);
         }
     }
@@ -75,14 +78,29 @@ protected nomask int processSelection(string selection)
             return 1;
         }
 
-        tell_object(User, configuration->decorate(
-            sprintf("\n  %s\n\n", Data[selection]["name"]),
-            "heading", "selector", colorConfiguration) +
+        if (Data[selection]["type"] == "chapter")
+        {
+            tell_object(User, configuration->decorate(
+                sprintf("\n  %s\n\n", Data[selection]["name"]),
+                "heading", "selector", colorConfiguration) +
             configuration->decorate(
-            format(Data[selection]["description"], 78),
+            format(Data[selection]["description"], 78) + "\n",
             "description", "selector", colorConfiguration));
 
-        return -1;
+            Data = (["1": ([
+                "name": "Return",
+                "type": "return",
+                "description": "Return to the table of contents.\n"
+            ])]);
+
+            return -1;
+        }
+
+        if (Data[selection]["type"] == "return")
+        {
+            setUpUserForSelection();
+            return -1;
+        }
     }
     return -1;
 }

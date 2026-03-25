@@ -71,7 +71,7 @@ which properties and behaviors are available to you.
 - **Other Equipment**: For items that are neither weapons nor armor (rings, cloaks, amulets, etc.), inherit from `/lib/items/equipment.c`. This is the most generic form and is suitable for accessories and utility items.
 
 Choosing the correct inheritance ensures your item interacts properly 
-with the game’s systems, such as combat, inventory, and character progression.
+with the game's systems, such as combat, inventory, and character progression.
 
 ### Step 2: Set the Blueprint
 
@@ -181,7 +181,7 @@ override.
 
 ### Step 3: Define Materials and Components
 
-Materials and components are the heart of the equipment system’s flexibility. 
+Materials and components are the heart of the equipment system's flexibility. 
 They allow you to specify exactly what your item is made of and how it is 
 constructed, and they have a direct impact on the item's stats, value, 
 and even who can craft it.
@@ -194,7 +194,7 @@ set("material", "steel");
 ~~~
 
 When you set the material to `"steel"`, your item will inherit all the 
-properties defined for steel in `materials.h`. Here’s what the steel mapping looks like:
+properties defined for steel in `materials.h`. Here's what the steel mapping looks like:
 
 ~~~c
 "steel": ([
@@ -234,7 +234,7 @@ The `materials.h` file contains many more materials, each with unique
 properties, crafting requirements, and bonuses. For example, you might find 
 rare magical metals, enchanted woods, or even materials that grant elemental 
 resistances or special effects. Always check `materials.h` for inspiration and 
-to ensure you’re using the right material for your item’s theme and intended 
+to ensure you're using the right material for your item's theme and intended 
 power level.
 
 **Example of a Magical Material:**  
@@ -299,7 +299,7 @@ in commands. A well-written `long` description adds flavor and immersion.
 
 ### Step 5: Add Equipment-Specific Properties
 
-Depending on your item’s type, you can set additional properties 
+Depending on your item's type, you can set additional properties 
 to define its behavior in combat and other systems.
 
 Below is a detailed description of every property you can set on 
@@ -414,7 +414,7 @@ set("armor type", "plate");
 - **armor type**: The category of armor (e.g., plate, leather, chain).
 
 **Note:** These properties override or supplement blueprint 
-defaults, allowing you to fine-tune your item’s performance.
+defaults, allowing you to fine-tune your item's performance.
 
 ### Step 6: Add Bonuses, Enchantments, and Resistances
 
@@ -430,7 +430,7 @@ set("bonus armor class", 3);
 ~~~
 
 - **bonus <stat/skill>**: Any valid stat or skill can be given 
-- a bonus. This directly increases the player’s abilities when 
+- a bonus. This directly increases the player's abilities when 
 - the item is equipped.
 
 **Enchantments:**
@@ -498,7 +498,7 @@ set("equipment locations", OnehandedWeapon);
 Other options include: `TwohandedWeapon`, `Shield`, `Helmet`, `Armor`, `Gloves`, `Boots`, `Cloak`, `Ring`, `Ring2`.
 
 **Tip:** Properly setting equipment locations ensures your item 
-interacts correctly with the character’s inventory and equipment system.
+interacts correctly with the character's inventory and equipment system.
 
 ### Step 9: Add Special Properties
 
@@ -539,7 +539,7 @@ set("ungettable", 1);              // Cannot be picked up
 ### Step 10: Material-Driven Descriptions
 
 Material-driven descriptions make your items dynamic and immersive. You can 
-use material placeholders in your item’s description, which are automatically 
+use material placeholders in your item's description, which are automatically 
 replaced with the actual materials used.
 
 ~~~c
@@ -683,5 +683,5 @@ and easy to extend for any type of item you wish to create.
 
 **Remember:** The more detail and creativity you put into your item 
 definitions, the more engaging and rewarding the equipment will be for 
-players. Take advantage of the system’s flexibility to create items that 
+players. Take advantage of the system's flexibility to create items that 
 are not only mechanically interesting but also rich in lore and flavor.

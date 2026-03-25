@@ -12,7 +12,7 @@ protected void Setup()
     set("title", "Heroes of the Eastern Lands: Notable Figures "
         "in the History of Hillgarath and Eledhel");
     set("aliases", ({ "heroes", "heroes of the eastern lands",
-        "illustrated folio", "folio", "gilded book" }));
+        "illustrated folio", "folio", "gilded book", "book" }));
     set("long", "A large folio with a gilded spine and faded "
         "illustrations. Portraits of notable historical figures "
         "face pages of biographical text. Several pages have been "
@@ -23,7 +23,7 @@ protected void Setup()
         "fractured western realms in Year 0. When Werra of "
         "Hillgarath called for aid against Kharand and Andurath, "
         "Arendor answered with a massive army in Year 43. With "
-        "him traveled his friend Halgaladh, son of Halbarad.\n\n"
+        "him traveled his friend Halgaladh, son of Halbaladh.\n\n"
         "He returned to war once more in the Orcslayer Wars of "
         "Year 109. Arendor passed in Year 120, having reigned "
         "for over a century.");
@@ -36,7 +36,7 @@ protected void Setup()
         "Knighthood, the martial order that has defended "
         "Hillgarath for nearly three thousand years.\n\n"
         "Werra was slain in Year 46 during the final battles "
-        "against Pallando of Andurath. His knighthood endures.");
+        "against Dervach of Andurath. His knighthood endures.");
 
     addChapter("Daedrun Kellgaard",
         "A high elf who arrived at Hillgarath Keep in Year 47 "

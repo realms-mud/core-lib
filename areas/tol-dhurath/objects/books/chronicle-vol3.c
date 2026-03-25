@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A worn leather-bound chronicle, Volume III");
     set("title", "A Chronicle of the Eastern Lands, Volume III: "
         "The Long Twilight");
-    set("aliases", ({ "chronicle", "volume iii", "volume 3",
+    set("aliases", ({ "chronicle", "volume iii", "volume 3", "book",
         "chronicle volume iii", "chronicle volume 3" }));
     set("long", "A thick tome bound in cracked brown leather, the "
         "third in a series. The spine reads: 'A Chronicle of the "
@@ -51,7 +51,7 @@ protected void Setup()
         "Emissaries of Durin XI Stonehelm of Erebor, Gloin IV of "
         "Aglarond, and Khazurin of Khazurath meet with Azgurin IX "
         "in Mirost.\n\n"
-        "Year 1218: A Noldor elf known as Argloth the Wise is "
+        "Year 1218: A high elf known as Argloth the Wise is "
         "gifted the Tower of Dhuras by King Balgamir and given "
         "the title of Governor of Dhuras.\n\n"
         "[A marginal note in a proud hand: 'Our order's founding. "

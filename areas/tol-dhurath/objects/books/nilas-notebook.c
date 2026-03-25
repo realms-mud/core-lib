@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A battered leather notebook");
     set("title", "The Journal of Nilas, Knight of the Order of the Night");
     set("aliases", ({ "notebook", "journal", "battered notebook",
-        "leather notebook", "nilas journal", "nilas notebook" }));
+        "leather notebook", "nilas journal", "nilas notebook", "book" }));
     set("long", "A small, battered notebook bound in cheap leather "
         "stained with salt spray and what might be blood. The pages "
         "are filled with cramped, angular handwriting. The author "
@@ -501,7 +501,7 @@ protected void Setup()
         "4 Dulath 2942: Vargath is dead. This has proven to be "
         "a minor issue, for we have fled from the mighty Sir "
         "Kellgaard today. Nay, Dalthus is no match for that "
-        "one's skill - one of those wretched Noldor who refuse "
+        "one's skill - one of those wretched high elves who refuse "
         "to leave this world. Go back to live with your gods, "
         "I say. Still, we shall teach them not to leave their "
         "homes unattended. We march in haste to Orothysse.");

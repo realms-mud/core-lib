@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A vellum-bound book embossed with a tower sigil");
     set("title", "The Scions of Dhuras: A History of the Order");
     set("aliases", ({ "scions book", "scions history", "history of the order",
-        "vellum book", "tower book" }));
+        "vellum book", "tower book", "book" }));
     set("long", "A handsome book bound in pale vellum, embossed with "
         "a silver tower sigil on the front cover. The pages are "
         "crisp and well-maintained, suggesting the Scions took "

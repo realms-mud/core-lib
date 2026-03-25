@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A worn leather-bound chronicle, Volume IV");
     set("title", "A Chronicle of the Eastern Lands, Volume IV: "
         "The Modern Age");
-    set("aliases", ({ "chronicle", "volume iv", "volume 4",
+    set("aliases", ({ "chronicle", "volume iv", "volume 4", "book",
         "chronicle volume iv", "chronicle volume 4" }));
     set("long", "The newest of the chronicle volumes, bound in the "
         "same style as its predecessors but with less wear. The "

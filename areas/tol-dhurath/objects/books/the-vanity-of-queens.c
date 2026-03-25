@@ -12,7 +12,7 @@ protected void Setup()
     set("title", "The Vanity of Queens: Bryleth of Andurath and "
         "the Keepers of the Night");
     set("aliases", ({ "vanity of queens", "bryleth book", "slim book",
-        "amethyst book" }));
+        "amethyst book", "book" }));
     set("long", "A slim, elegant book with a cracked amethyst stone "
         "set into its dark leather cover. The text within is "
         "written in two distinct hands, suggesting it was a "

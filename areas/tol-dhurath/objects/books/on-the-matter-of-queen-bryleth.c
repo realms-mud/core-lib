@@ -12,7 +12,7 @@ protected void Setup()
     set("title", "On the Matter of Queen Bryleth, called 'the Vain' "
         "- A Treatise by the Scions of Dhuras");
     set("aliases", ({ "treatise", "bryleth", "matter of queen bryleth",
-        "treatise on bryleth", "violet book" }));
+        "treatise on bryleth", "violet book", "book" }));
     set("long", "A slim volume bound in dark violet leather that "
         "has aged to near-black. The title is stamped in silver "
         "leaf that still catches the light: 'On the Matter of Queen "
@@ -67,7 +67,7 @@ protected void Setup()
         "The acolyte named this goddess: Seilyndria.\n\n"
         "Cross-referencing with the oldest texts in our library, "
         "we find scattered references to a being of that name in "
-        "pre-Numenorean sources. She is described as a Maia of "
+        "pre-Numenorean sources. She is described as a goddess of "
         "terrible beauty and great power who fell to darkness in "
         "the earliest ages of the world. Her domains were "
         "destruction, ruin, and the unmaking of what others had "

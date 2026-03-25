@@ -139,7 +139,7 @@ Simulated-efuns expose safe helpers and test-mode hooks for user and interactive
   - `configureCharset(object player, string charset)` - sets the interactive encoding for the player (`"unicode"` ⇒ UTF-8).
 
 - Good practices
-  - Don’t rely on `efun::users()` directly in libraries that need to be testable - use `users()` wrapper so tests can substitute canned lists.
+  - Don't rely on `efun::users()` directly in libraries that need to be testable - use `users()` wrapper so tests can substitute canned lists.
 
 ##### Databases (important: internal-only)
 Database helpers in `secure/simulated-efuns/database.c` are low-level and intended for core/migration code only. Application authors should not call driver-level DB efuns directly.

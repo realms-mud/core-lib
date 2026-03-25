@@ -8,7 +8,7 @@ inherit "/lib/commands/baseCommand.c";
 public nomask void SetupCommand()
 {
     CommandType = "Interactions";
-    addCommandTemplate("read ##Target##");
+    addCommandTemplate("read [##Target##]");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -72,35 +72,6 @@ public nomask int execute(string command, object initiator)
                 selector->setBook(target);
                 selector->registerEvent(this_object());
                 selector->initiateSelector(initiator);
-            }
-            else
-            {
-                string content = 0;
-
-                if (function_exists("tableOfContents", target))
-                {
-                    content = target->tableOfContents();
-                }
-                else
-                {
-                    content = target->query("read message identified");
-                    if (!content)
-                    {
-                        content =
-                            target->query("read message unidentified");
-                    }
-                }
-
-                if (content)
-                {
-                    tell_object(initiator, content);
-                }
-                else
-                {
-                    tell_object(initiator, sprintf(
-                        "There is nothing to read on %s.\n",
-                        target->query("short") || "that"));
-                }
             }
         }
         else

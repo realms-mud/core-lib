@@ -11,7 +11,7 @@ protected void Setup()
     set("short", "A book bound in red-dyed leather");
     set("title", "The Werric Knighthood: Shield of Hillgarath");
     set("aliases", ({ "werric", "werric knighthood", "red book",
-        "knighthood", "shield of hillgarath" }));
+        "knighthood", "shield of hillgarath", "book" }));
     set("long", "A handsome book bound in red-dyed leather, stamped "
         "with the crossed-swords emblem of the Werric Knighthood. "
         "It appears to be a combination of history and recruiting "

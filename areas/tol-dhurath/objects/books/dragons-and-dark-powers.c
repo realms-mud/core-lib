@@ -12,7 +12,7 @@ protected void Setup()
     set("title", "Dragons and Dark Powers: Utumnadh and the "
         "Terrors That Issue Forth");
     set("aliases", ({ "dragons", "dragons and dark powers",
-        "scorched book", "claw book" }));
+        "scorched book", "claw book", "book" }));
     set("long", "A book that appears to have survived a fire. The "
         "leather cover bears what look like claw marks. Despite "
         "the damage, the text within is largely intact.");
@@ -29,7 +29,7 @@ protected void Setup()
 
     addChapter("The Battle of Utumnadh, Year 409",
         "In Year 406, a dark force - believed to be one of "
-        "the fallen Maia - established power within Utumnadh. "
+        "the fallen gods - established power within Utumnadh. "
         "The alliance formulated plans to attack.\n\n"
         "The battle in Year 409 was victorious but devastating. "
         "Three kings fell: the kings of Mirost, Hillgarath, and "
