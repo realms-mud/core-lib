@@ -46,12 +46,12 @@ protected void Setup()
         "Thus did the realm, though vast upon the map,\n"
         "Begin to shrink where will no longer held.\n");
 
-    addChapter("The Emperor’s Answer",
+    addChapter("The Emperor's Answer",
         "When word was brought of lands that slipped his grasp,\n"
         "Elonoch rose in fury from his throne.\n"
         "'Shall dust defy the hand that raised it high?'\n"
         "So spoke the lord of Dor-Temnost in wrath.\n"
-        "'Send forth the legions—burn what will not bow;\n"
+        "'Send forth the legions-burn what will not bow;\n"
         "Let ruin teach what mercy could not hold.'\n"
         "Thus was his will made iron law once more,\n"
         "And fire went forth where doubt had taken root.\n"
@@ -95,7 +95,7 @@ protected void Setup()
         "Then from the east the final breach was made,\n"
         "And through it poured the host that would not break.\n"
         "A voice was heard amid the failing lines:\n"
-        "'The day is lost—save what you may and flee!'\n"
+        "'The day is lost-save what you may and flee!'\n"
         "So spread the word, and order turned to rout.\n"
         "The gates were taken, and the banners cast,\n"
         "And Tirnost fell as others fell before.\n"

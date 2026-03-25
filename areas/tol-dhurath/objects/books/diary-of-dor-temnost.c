@@ -65,7 +65,7 @@ protected void Setup()
         "The enemy burned our trenches. We burned theirs. The night was endless.\n"
         "I watched a boy I knew shot trying to drink from a puddle.\n"
         "I did not weep. I could not. My hands were sticky with mud and blood.\n"
-        "A comrade told a joke about the emperor’s moustache. We laughed.\n"
+        "A comrade told a joke about the emperor's moustache. We laughed.\n"
         "The laughter felt wrong, yet necessary. It kept the madness at bay.\n"
         "I saw my own reflection in the water: hollow, dirt-smeared eyes.\n"
         "I realized I no longer recognized the man I had been.\n"

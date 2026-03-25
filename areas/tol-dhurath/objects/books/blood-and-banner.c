@@ -67,7 +67,7 @@ protected void Setup()
     addChapter("Letters to Those Left Behind",
         "A selection of letters home shows varied grief: some men wrote of "
         "glory and duty, some confessed fear and shame, many were brief and "
-        "practical—requests for socks, bread and the names of friends still "
+        "practical-requests for socks, bread and the names of friends still "
         "alive. The women's replies kept houses running and the poor fed while "
         "suits of armor gathered dust by empty fires.");
 

@@ -68,7 +68,7 @@ protected void Setup()
         "air filled with the clatter of iron on iron. The king's shout cut "
         "the chaos and the captains moved to hold the line; the enemy "
         "pressed and then faltered where the banner passed. It was not a "
-        "rout, but a warning—first blood for both sides—and the keepers of "
+        "rout, but a warning-first blood for both sides-and the keepers of "
         "Hillgarath learned then the mettle of their foe.");
 
     addChapter("V - The Shieldwall Holds",
