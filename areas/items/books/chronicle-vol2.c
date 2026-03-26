@@ -57,7 +57,7 @@ protected void Setup()
         "River. The alliance matches these moves.\n\n"
         "Year 216: Mirost joins the alliance at the request of Queen "
         "Ainderie. Eldarion reinforces Serach as war looks inevitable. "
-        "He enlists the aid of the men of Dale and dwarves of Erebor "
+        "He enlists the aid of the men of Dale and dwarves of Ekalbor "
         "and the Iron Hills.\n\n"
         "Year 218: Ainderie personally leads her armies into battle "
         "as Dor-Lonis is invaded by Elonoch II. He is soundly defeated "

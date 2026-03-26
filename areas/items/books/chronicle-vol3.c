@@ -48,7 +48,7 @@ protected void Setup()
 
     addChapter("The Dwarven League and Argloth the Wise",
         "Year 1204: The League of Dwarven Nations is founded. "
-        "Emissaries of Durin XI Stonehelm of Erebor, Gloin IV of "
+        "Emissaries of Dhuran XI Stonehelm of Ekalbor, Glanrin IV of "
         "Aglarond, and Khazurin of Khazurath meet with Azgurin IX "
         "in Mirost.\n\n"
         "Year 1218: A high elf known as Argloth the Wise is "
