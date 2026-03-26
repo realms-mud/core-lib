@@ -87,7 +87,7 @@ protected void Setup()
         "Argloth fell beneath combined blows; Sylthasis collapsed beside him.\n"
         "Kuarl: 'I do not rejoice. Only relief. The mountain is quiet, yet scarred.'\n"
         "Undead trembled, then disintegrated; shadow lifted from Mirost.\n"
-        "Argloth's diary: 'I am undone… yet I saw truth. The mountain… speaks…'\n"
+        "Argloth's diary: I am undone... yet I saw truth. The mountain... speaks...\n"
         "Knights wept for the fallen; dwarves counted their dead silently.\n"
         "Kuarl: 'We will never call this home. Its stones remember evil.'\n"
         "The halls were marked, yet uninhabitable; the taint lingered in stone.\n"

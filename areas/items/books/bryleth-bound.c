@@ -14,13 +14,13 @@ protected void Setup()
         "kharand histories", "book", "binding of bryleth",
         "the binding of bryleth" }));
     set("long", "This volume records the capture and imprisonment of "
-        "Bryleth the Vain, last ruler of Kharand’s shadowed age. "
+        "Bryleth the Vain, last ruler of Kharand's shadowed age. "
         "Though written in the tone of history, the account bears "
         "uneasy gaps, contradictions, and hints of truths left "
         "unspoken. It is said this record was sealed for good reason.");
 
     addChapter("Chapter 1: The Queen Unmasked",
-        "In the years after Kharand’s fall, Bryleth was not found.\n"
+        "In the years after Kharand's fall, Bryleth was not found.\n"
         "Many believed she had fled beyond reach, or perished unseen.\n"
         "Yet whispers persisted among the learned and the wary.\n"
         "She had endured where no mortal woman could have endured.\n"

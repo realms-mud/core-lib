@@ -4,24 +4,24 @@
 //*****************************************************************************
 
 private mapping verses = ([
-    "weakness":"I am weak",
-    "strength" : "I am strong",
-    "flame" : "Burning",
-    "frost" : "Freezing",
-    "aegis" : "Hiding behind inconsequential armor",
-    "negation" : "I negate my greatest fears",
-    "senses" : "Unseeing, unhearing",
-    "wisdom" : "Feeling wise beyond my years",
-    "endurance" : "Pushed past endurance",
-    "resistance" : "Resisting no longer",
-    "death" : "I feel death's loving caress",
-    "torment" : "Dispel my torment",
-    "doom" : "My doom awaits me",
-    "phantom" : "My phantoms assail me",
-    "fear" : "Held in my tracks by fear",
-    "domination" : "Dominated by my inadequacies",
-    "sanctuary" : "I find no sanctuary",
-    "envy" : "I long for freedom restored"
+    "weakness": "I am weak",
+    "strength": "I am strong",
+    "flame": "Burning",
+    "frost": "Freezing",
+    "aegis": "Hiding behind inconsequential armor",
+    "negation": "I negate my greatest fears",
+    "senses": "Unseeing, unhearing",
+    "wisdom": "Feeling wise beyond my years",
+    "endurance": "Pushed past endurance",
+    "resistance": "Resisting no longer",
+    "death": "I feel death's loving caress",
+    "torment": "Dispel my torment",
+    "doom": "My doom awaits me",
+    "phantom": "My phantoms assail me",
+    "fear": "Held in my tracks by fear",
+    "domination": "Dominated by my inadequacies",
+    "sanctuary": "I find no sanctuary",
+    "envy": "I long for freedom restored"
 ]);
 
 private mapping colors = ([

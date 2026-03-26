@@ -35,7 +35,7 @@ protected void Setup()
         "is a responsibility.\n");
 
     addChapter("The Sacrifice",
-        "The runes, the verses, the poem—they are more than relics. They are\n"
+        "The runes, the verses, the poem - they are more than relics. They are\n"
         "my confession, my offering, the threads of my life woven into words.\n"
         "\n"
         "I place each rune, not for myself, but for the one who comes after.\n"
