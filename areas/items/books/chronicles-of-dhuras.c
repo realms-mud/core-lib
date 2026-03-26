@@ -41,7 +41,7 @@ protected void Setup()
         "Students gathered, and an order took form around him.\n"
         "They studied not only war, but the hidden workings of the world.\n"
         "Dhuras grew from fortress into seat of knowledge.\n"
-        "Few foresaw the reach of Argloth’s later ambition.\n"
+        "Few foresaw the reach of Argloth's later ambition.\n"
         "[A marginal note: 'He was great before he was feared.']\n");
 
     addChapter("On the Fading of Balgamir",
@@ -97,7 +97,7 @@ protected void Setup()
         "In 1692, the dragon Ilzhagash descended upon Mirost.\n"
         "The dwarves met it in battle and slew the beast.\n"
         "Their losses were great, though victory was certain.\n"
-        "Yet before the year’s end, another came: Sylthasis.\n"
+        "Yet before the year's end, another came: Sylthasis.\n"
         "It issued from Utumnadh, greater in fury than the first.\n"
         "In 1693, Arnost was destroyed utterly by its fire.\n"
         "Mirost too fell, its defenses broken beyond repair.\n"

@@ -51,7 +51,7 @@ protected void Setup()
         "I taste the air of the valleys below. Sweet with ignorance.\n"
         "I consider walking among them, invisible, unstoppable.\n"
         "I stop. The dead cannot forgive mistakes. I cannot forgive myself.\n"
-        "I trace the wounds on Sylthasis’ scales, counting each scratch.\n"
+        "I trace the wounds on Sylthasis' scales, counting each scratch.\n"
         "I catalog horrors, both mine and theirs, in meticulous detail.\n"
         "I feel joy. It is bitter, sharp, but joy nonetheless.\n"
         "I write it down. Perhaps someone will read this, some day.\n"

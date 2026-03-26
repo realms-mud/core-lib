@@ -78,6 +78,6 @@ protected void Setup()
         "\n"
         "Only the means are in question.\n"
         "\n"
-        "— Argloth\n"
+        "- Argloth\n"
         "[A later note in another hand: 'He had already decided.']\n");
 }

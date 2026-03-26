@@ -59,7 +59,7 @@ protected void Setup()
         "We ask only that you remember what has made you wise, and\n"
         "not what tempts you toward greatness alone.\n"
         "\n"
-        "— The Circle of Dhuras\n"
+        "- The Circle of Dhuras\n"
         "\n"
         "[A marginal note, perhaps in Argloth's own hand: 'I read and nod.\n"
         "But they do not yet know what I have seen in Zhardeg.']\n");
