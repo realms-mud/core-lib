@@ -51,7 +51,7 @@ protected void Setup()
         "A lone rider brought news of distant fires and eerie lights.\n"
         "Beren suggested sending envoys to Eledhel to seek counsel.\n"
         "The council debated whether to strike preemptively or wait.\n"
-        "Some feared the enemy was testing the Vale’s resolve carefully.\n"
+        "Some feared the enemy was testing the Vale's resolve carefully.\n"
         "The forests echoed with cries heard only at dusk or dawn.\n"
         "Dwarves reported wards failing on old altars, inscriptions fading.\n"
         "Areladur inspected them personally, touching the stones lightly.\n"

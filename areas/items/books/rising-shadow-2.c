@@ -46,7 +46,7 @@ protected void Setup()
         "Dwarves smashed the gates with axes, splinters flying into the sky.\n"
         "Areladur shouted orders, his voice cutting through smoke and chaos.\n"
         "Knights rode into the fray, lances and swords gleaming.\n"
-        "The enemy’s lines wavered, but hidden horrors lurked behind them.\n"
+        "The enemy's lines wavered, but hidden horrors lurked behind them.\n"
         "Some men vanished, taken by shadows that moved faster than thought.\n"
         "The air smelled of fire, iron, and a bitter, unnatural scent.\n"
         "Areladur fought near the walls, seeing both bravery and terror.\n"
@@ -67,9 +67,9 @@ protected void Setup()
         "Spells flickered through the air, lightning snapping across stone.\n"
         "Men fell unconscious, their minds twisted by visions of fire and death.\n"
         "Dwarves muttered incantations, trying to shield themselves from the magic.\n"
-        "Areladur’s sword cut through an orc, yet his mind feared the unseen.\n"
-        "Beren struck down one of Zarnedh’s lieutenants, the clash ringing like steel.\n"
-        "The shadows seemed alive, moving of their own will, swallowing men.\n"
+        "Areladur's sword cut through an orc, yet his mind feared the unseen.\n"
+        "Beren struck down one of Zarnedh's lieutenants, the clash ringing like\n"
+        "steel. The shadows seemed alive, moving of their own will, swallowing men.\n"
         "Fires from the walls danced like spirits, illuminating terror in the snow.\n"
         "Areladur rallied his knights, calling for courage against the darkness.\n"
         "Some envoys fainted, unable to endure the unnatural visions.\n"
@@ -80,8 +80,9 @@ protected void Setup()
         "Areladur raised his shield, praying that courage might be enough.\n"
         "The knights of Hillgarath and Eledhel formed lines, unyielding.\n"
         "Dwarves carved wards into the snow, anchoring spells to the earth.\n"
-        "The battle had become a war of flesh and arcane, and few could tell which would prevail.\n"
-        "Yet none faltered; hope burned despite the darkness around them.");
+        "The battle had become a war of flesh and arcane, and few could tell\n"
+        "which would prevail. Yet none faltered; hope burned despite the\n"
+        "darkness around them.");
 
     addChapter("Chapter 10: The Heart of Kharand",
         "The allies breached the inner courtyard, smoke and ash thick around them.\n"
@@ -90,9 +91,10 @@ protected void Setup()
         "Areladur fought toward the tower, seeking the sorcerer himself.\n"
         "Beren cleared a path, slaying orcs and twisted beasts alike.\n"
         "The courtyard became a storm of blood, snow, and magic.\n"
-        "Some knights fell, their bodies swallowed by shadows before they hit the ground.\n"
-        "Dwarves pushed onward, axes biting, shields splintering but unyielding.\n"
-        "Areladur saw Zarnedh atop the tower, staff raised, power radiating.\n"
+        "Some knights fell, their bodies swallowed by shadows before they hit\n"
+        "the ground. Dwarves pushed onward, axes biting, shields splintering\n"
+        "but unyielding. Areladur saw Zarnedh atop the tower, staff raised,\n"
+        "power radiating.\n"
         "Lightning cracked the stones around them, arcane fire searing flesh.\n"
         "The allied leaders called for a final charge, voices trembling but resolute.\n"
         "Men and dwarves surged together, banners snapping through the smoke.\n"
@@ -101,7 +103,7 @@ protected void Setup()
         "Areladur drew every ounce of strength, running, leaping, striking.\n"
         "Beren and the dwarves followed, forming a living shield of courage.\n"
         "The courtyard was a storm of chaos, yet a path opened to the tower stairs.\n"
-        "Shadows recoiled as the first strike reached the sorcerer’s feet.\n"
+        "Shadows recoiled as the first strike reached the sorcerer's feet.\n"
         "The tide of battle shifted, slowly, inexorably, toward the allies.\n"
         "Hope burned, faint but real, amidst the ruins of Kharand.");
 
@@ -109,7 +111,7 @@ protected void Setup()
         "Areladur reached the tower, staff of the sorcerer glowing with malice.\n"
         "Beren smashed the doors, cutting down guards and twisted creatures.\n"
         "The dwarves pressed from behind, axes swinging, shields raised.\n"
-        "Zarnedh’s eyes blazed, lightning striking the walls and floor.\n"
+        "Zarnedh's eyes blazed, lightning striking the walls and floor.\n"
         "The air itself seemed alive, trying to push them back, yet they pressed on.\n"
         "Areladur leapt, sword striking through magical barriers.\n"
         "The sorcerer staggered, chanting curses that shook the stones.\n"
@@ -117,15 +119,16 @@ protected void Setup()
         "Dwarves cut down summoned horrors, each blow ringing in frozen silence.\n"
         "Zarnedh fell backward, staff clattering across the stones.\n"
         "The shadows collapsed, fleeing the light and courage before them.\n"
-        "Areladur’s sword found the sorcerer’s chest, silence answering the cry.\n"
+        "Areladur's sword found the sorcerer's chest, silence answering the cry.\n"
         "Beren and the dwarves cheered, though their voices trembled with exhaustion.\n"
         "The courtyard lay in ruins, but the allies had prevailed.\n"
         "Snow fell on broken banners, blood, and shattered stone.\n"
         "Men helped wounded men, dwarves tended their own, and the dead were counted.\n"
         "Victory was theirs, but the cost was heavy and deep.\n"
-        "Areladur recorded it all in his journal, knowing memory would be their only shield.\n"
-        "The dark power of Kharand was broken, yet whispers of shadows remained.\n"
-        "They looked toward home, knowing the Vale would never forget this night.");
+        "Areladur recorded it all in his journal, knowing memory would be\n"
+        "their only shield. The dark power of Kharand was broken, yet\n"
+        "whispers of shadows remained. They looked toward home, knowing the\n"
+        "Vale would never forget this night.");
 
     addChapter("Chapter 12: After the Winter",
         "The snow melted, revealing fields and roads scarred by battle.\n"
@@ -142,10 +145,11 @@ protected void Setup()
         "Beren swore that Hillgarath would never forget the courage displayed.\n"
         "Villages repaired their homes, rebuilding what had been lost.\n"
         "The Vale slowly returned to life, yet silence sometimes carried memory.\n"
-        "Dwarves returned to their halls, the scars of Mirost and Kharand carried in mind.\n"
-        "Allies spoke of unity and vigilance, knowing darkness could return.\n"
-        "Snow fell again, lighter this time, as though forgiving the blood spilled.\n"
-        "Areladur looked to the mountains, recording every lesson learned.\n"
-        "The Vale endured, stronger but wary, shaped forever by the Winter of Shadows.\n"
-        "Thus ended the war against Kharand, yet its memory would linger like a shadow on stone.");
+        "Dwarves returned to their halls, the scars of Mirost and Kharand\n"
+        "carried in mind. Allies spoke of unity and vigilance, knowing\n"
+        "darkness could return. Snow fell again, lighter this time, as though\n"
+        "forgiving the blood spilled. Areladur looked to the mountains,\n"
+        "recording every lesson learned. The Vale endured, stronger but wary,\n"
+        "shaped forever by the Winter of Shadows. Thus ended the war against\n"
+        "Kharand, yet its memory would linger like a shadow on stone.");
 }

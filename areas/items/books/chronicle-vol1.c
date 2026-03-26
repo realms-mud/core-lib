@@ -9,7 +9,8 @@ protected void Setup()
 {
     set("name", "A Chronicle of the Eastern Lands, Volume I");
     set("short", "A worn leather-bound chronicle, Volume I");
-    set("title", "A Chronicle of the Eastern Lands, Volume I: The Age of Restoration");
+    set("title", 
+        "A Chronicle of the Eastern Lands, Volume I: The Age of Restoration");
     set("aliases", ({ "chronicle", "volume i", "volume 1",
         "chronicle volume i", "chronicle volume 1", "book",
         "chronicle of the eastern lands" }));

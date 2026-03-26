@@ -24,11 +24,12 @@ protected void Setup()
         "A mother clutched her child, eyes wide and empty.\n"
         "The cattle were down in the fields, twitching, silent.\n"
         "The town doctor shook his head; no words would follow.\n"
-        "We burned the first hut, smoke choked our lungs, but it stank less than the inside.\n"
-        "I laughed once at a man who tripped over his own fear.\n"
-        "We knew the smell of death now, and it followed us like a shadow.\n"
-        "Rivers swelled, not with rain, but with the bodies we could not bury.\n"
-        "We were all alive, yet part of us had already joined them.\n");
+        "We burned the first hut, smoke choked our lungs, but it stank less\n"
+        "than the inside. I laughed once at a man who tripped over his own\n"
+        "fear. We knew the smell of death now, and it followed us like a\n"
+        "shadow. Rivers swelled, not with rain, but with the bodies we\n"
+        "could not bury. We were all alive, yet part of us had already\n"
+        "joined them.\n");
 
     addChapter("The Long Days",
         "We moved among the sick, hands trembling, hearts hollow.\n"
@@ -36,11 +37,12 @@ protected void Setup()
         "I found myself counting rations instead of people.\n"
         "The children stared at us with blank faces; their parents gone.\n"
         "We joked sometimes, too bitterly, too darkly, and it saved no one.\n"
-        "I saw a man pull his own fingers from a corpse to eat, and smiled faintly.\n"
-        "It was not hunger but something else, a fracture in our minds.\n"
-        "We washed hands until they cracked, but the plague seeped into the soul.\n"
-        "No prayers reached the skies; the wind carried only the moans.\n"
-        "I wrote letters I would never send, to people I could not remember.\n");
+        "I saw a man pull his own fingers from a corpse to eat, and smiled\n"
+        "faintly. It was not hunger but something else, a fracture in our\n"
+        "minds. We washed hands until they cracked, but the plague seeped\n"
+        "into the soul. No prayers reached the skies; the wind carried only\n"
+        "the moans. I wrote letters I would never send, to people I could\n"
+        "not remember.\n");
 
     addChapter("Night and Silence",
         "The nights were the worst; shadows moved with a mind of their own.\n"

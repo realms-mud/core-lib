@@ -27,10 +27,10 @@ protected void Setup()
         "I cannot look away; I feel a pull in my chest, a hunger I do not name.\n"
         "One dwarf whispers, 'Best we wait for dawn.'\n"
         "I shake my head. Dawn is a delay. Power does not wait.\n"
-        "The dragon exhales fire into the night, and the smell of smoke bites my lungs.\n"
-        "I feel it judging me, measuring my heart. I welcome the scrutiny.\n"
-        "I shout, 'Come, wyrm! Show me what you are!' and my voice cracks.\n"
-        "The men hesitate, fear written on every face.\n"
+        "The dragon exhales fire into the night, and the smell of smoke bites\n"
+        "my lungs. I feel it judging me, measuring my heart. I welcome\n"
+        "the scrutiny. I shout, 'Come, wyrm! Show me what you are!' and\n"
+        "my voice cracks. The men hesitate, fear written on every face.\n"
         "I press forward, torch raised, pulse racing, chest tight with thrill.\n"
         "Sylthasis descends, wings like black thunder, eyes like molten gold.\n"
         "I feel its mind brushing against mine, immense and patient.\n"
@@ -40,7 +40,8 @@ protected void Setup()
         "The dragon roars, a sound that shakes stone and bone alike.\n"
         "I taste blood, smoke, and fear; yet fear is a spice, not a barrier.\n"
         "This is the first true test; the first step toward power.\n"
-        "[Marginal note: 'I understood then that fascination and fear were intertwined.']");
+        "[Marginal note: 'I understood then that fascination and fear were\n"
+        "intertwined.']");
 
     addChapter("The Fissure Widens",
         "Sylthasis retreats into the upper cliffs, taunting with a hiss.\n"
@@ -99,5 +100,6 @@ protected void Setup()
         "I know I must continue, though I sense a line I will soon cross.\n"
         "My pulse is the pulse of Zhardeg, my breath is the wind over Utumnadh.\n"
         "I shiver, but not from cold. Something inside me has awakened.\n"
-        "[Marginal note: 'I cannot name it. It is hunger, it is knowledge, it is fear.']");
+        "[Marginal note: 'I cannot name it. It is hunger, it is knowledge,\n"
+        "it is fear.']");
 }

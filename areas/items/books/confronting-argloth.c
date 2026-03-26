@@ -47,9 +47,10 @@ protected void Setup()
         "The air smelled of smoke, blood, and death; every shout echoed on stone.\n"
         "Amid the chaos, Argloth strode, pale eyes fixed on the living.\n"
         "Fragments of his diary lay on the ground: 'They fear me. They should.'\n"
-        "A Werric Knight fell, hand to throat, yet rose again as undead under Argloth.\n"
-        "Dwarves hurled axes, severing limbs, yet more rose from shattered walls.\n"
-        "Knights formed a wall; dwarves pressed behind, shields and axes interlocking.\n"
+        "A Werric Knight fell, hand to throat, yet rose again as undead under\n"
+        "Argloth. Dwarves hurled axes, severing limbs, yet more rose from\n"
+        "shattered walls. Knights formed a wall; dwarves pressed behind,\n"
+        "shields and axes interlocking.\n"
         "Every step forward was paid in blood, yet retreat was unthinkable.\n"
         "From a tower, Argloth called: 'I will remake this world in shadow.'\n"
         "Sylthasis descended, teeth bared, a roar shaking stones from the peak.\n"
@@ -59,8 +60,9 @@ protected void Setup()
         "A great axe struck Sylthasis' wing; the dragon roared, scattering debris.\n"
         "Argloth screamed, a sound that twisted the air, rattling hearts.\n"
         "His diary page fluttered: 'The mountain speaks. I obey. None can stop me.'\n"
-        "A final push of steel and courage closed the distance to the fallen king.\n"
-        "The dead trembled. Sylthasis faltered. Mirost quaked with the end's approach.");
+        "A final push of steel and courage closed the distance to the fallen\n"
+        "king. The dead trembled. Sylthasis faltered. Mirost quaked with the\n"
+        "end's approach.");
 
     addChapter("The Fall and Aftermath",
         "Argloth fell under combined blows from knights and dwarves.\n"
@@ -68,10 +70,11 @@ protected void Setup()
         "The undead trembled, then crumbled, their shadows dissipating.\n"
         "Victory was won, but the cost was immense: men, dwarves, and knights alike.\n"
         "The mountain was silent. Smoke curled from ruined walls and towers.\n"
-        "No one celebrated. Survivors wept for friends, for fallen, for what Mirost was.\n"
-        "Fragments of Argloth's diary were gathered, warnings of ambition and power.\n"
-        "Dwarves marked the halls, yet refused to dwell there; a taint lingered.\n"
-        "Werric Knights swore oaths: Mirost would never rise again, the memory preserved.\n"
+        "No one celebrated. Survivors wept for friends, for fallen, for what\n"
+        "Mirost was. Fragments of Argloth's diary were gathered, warnings of\n"
+        "ambition and power. Dwarves marked the halls, yet refused to dwell\n"
+        "there; a taint lingered. Werric Knights swore oaths: Mirost would\n"
+        "never rise again, the memory preserved.\n"
         "The mountain seemed to breathe, as if the fallen king still lingered.\n"
         "Yet hope remained; surviving leaders pledged protection and vigilance.\n"
         "They departed slowly, carrying stories, scars, and lessons learned.\n"
@@ -81,6 +84,7 @@ protected void Setup()
         "The dwarves whispered: 'Preserve knowledge, not ambition.'\n"
         "The knights whispered prayers, hearts heavy with loss.\n"
         "The mountain, silent once more, watched over the scarred land.\n"
-        "All who survived remembered: courage endures, madness destroys.\n"
-        "Thus ended the last battle of Mirost, where heroes, shadows, and the fallen met.");
+        "All who survived remembered: courage endures, madness destroys. Thus\n"
+        "ended the last battle of Mirost, where heroes, shadows, and the\n"
+        "fallen met.");
 }

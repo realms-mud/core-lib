@@ -62,7 +62,7 @@ protected void Setup()
         "The city was theirs, yet no one felt victory in the cold ruins.");
 
     addChapter("Chapter 3: The Hordes of Kharand",
-        "Scouts returned with tidings of Kharand’s armies on the move.\n"
+        "Scouts returned with tidings of Kharand's armies on the move.\n"
         "Zarnedh the Great had united the lands, his banners black and red.\n"
         "Villages burned, and the survivors fled southward into the Vale.\n"
         "The alliance gathered quickly, for hesitation meant annihilation.\n"
@@ -78,7 +78,7 @@ protected void Setup()
         "Some suggested spies and subterfuge, others favored open battle.\n"
         "The snow fell thickly, and the roads became uncertain and perilous.\n"
         "Men shivered in their cloaks; dwarves cursed the cold and the silence.\n"
-        "Every dawn brought new reports of Kharand’s reach extending.\n"
+        "Every dawn brought new reports of Kharand's reach extending.\n"
         "The alliance pressed forward, hearts heavy, eyes wider still.\n"
         "The shadow of war had fallen on the Vale, and none could hide.\n"
         "Hope clung tightly, but fear whispered of a darkness beyond war.");
@@ -123,7 +123,7 @@ protected void Setup()
         "At dusk, the field lay strewn with bodies, yet the enemy remained.\n"
         "The allies huddled in camps, tending wounds and haunted minds.\n"
         "No fires burned fully; smoke rose only to mingle with fear.\n"
-        "Whispers spread: Kharand’s army hid greater horrors yet unseen.\n"
+        "Whispers spread: Kharand's army hid greater horrors yet unseen.\n"
         "Even the bravest felt dread gnawing at their courage.\n"
         "And so, the night fell heavy, promising a darker dawn.");
 
@@ -131,7 +131,7 @@ protected void Setup()
         "The alliance pressed forward, weary but unbroken.\n"
         "Villages passed were silent, empty, or scorched to black.\n"
         "The dead seemed ever near, tracks appearing then fading.\n"
-        "Scouts reported Kharand’s banners flying atop distant ridges.\n"
+        "Scouts reported Kharand's banners flying atop distant ridges.\n"
         "Dwarves whispered of old magics stirring in the mountains.\n"
         "Knights and soldiers huddled together, sharing sparse food.\n"
         "Areladur rode with Beren, discussing plans in low voices.\n"
@@ -140,7 +140,7 @@ protected void Setup()
         "Men shivered not from cold but from the weight of stories heard.\n"
         "They spoke of horrors, some true, some whispered in fear.\n"
         "The alliance moved slowly, keeping eyes open for ambush.\n"
-        "Every shadow could conceal Kharand’s soldiers or something worse.\n"
+        "Every shadow could conceal Kharand's soldiers or something worse.\n"
         "Dwarves carved runes into rock, wards against spirits and dark magic.\n"
         "Fires burned low; men slept lightly, dreaming of dead comrades.\n"
         "Whispers rose, then died, as if the wind itself remembered pain.\n"

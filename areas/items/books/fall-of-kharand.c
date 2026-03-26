@@ -18,19 +18,19 @@ protected void Setup()
         "and the toll of war, bringing the story of the north to its turning point.");
 
     addChapter("Chapter 1: Gathering Storm",
-        "Reports came of Kharand’s forces gathering beyond the mountains.\n"
+        "Reports came of Kharand's forces gathering beyond the mountains.\n"
         "Beren and Areladur convened the northern lords at Hillgarath.\n"
         "Messengers spoke of thousands of orcs and undead in marching columns.\n"
         "The dwarves of Khazurath prepared siege engines and magical wards.\n"
-        "Villagers were conscripted to fortify towns along the Vale’s rivers.\n"
+        "Villagers were conscripted to fortify towns along the Vale's rivers.\n"
         "Areladur sent scouts into the forests, noting traps and hidden camps.\n"
         "Spies reported strange new commanders among the northern hordes.\n"
         "The air smelled of frost and smoke, as if the land itself warned them.\n"
         "Banners were hoisted, armor polished, and swords sharpened anew.\n"
-        "The alliance’s strategy balanced defense with swift counterattacks.\n"
+        "The alliance's strategy balanced defense with swift counterattacks.\n"
         "Even the bravest felt the weight of the coming storm.\n"
         "Nights were filled with watchfires, and the distant mountains glowed.\n"
-        "Rumors spoke of dark magics strengthening Kharand’s dead soldiers.\n"
+        "Rumors spoke of dark magics strengthening Kharand's dead soldiers.\n"
         "Villagers whispered prayers to old gods and forgotten spirits.\n"
         "Areladur kept a journal, noting fear, hope, and the courage shown.\n"
         "The Vale braced itself, knowing the first blow could decide all.\n"
@@ -41,14 +41,14 @@ protected void Setup()
 
     addChapter("Chapter 2: Clash at the Northern Pass",
         "The army reached the narrow northern pass as snow began to fall.\n"
-        "Kharand’s forces awaited, a wall of shields and moving dead.\n"
+        "Kharand's forces awaited, a wall of shields and moving dead.\n"
         "Beren led the vanguard, swords gleaming despite the biting wind.\n"
         "Dwarves set traps along the cliffs, axes ready and fire at hand.\n"
         "The first clash was sudden, orcs charging, undead surging without pause.\n"
         "Arrows fell in waves, shields splintered, and the ground shook.\n"
         "Men and dwarves fought side by side, every step hard won.\n"
         "Corpses rose even after being felled, animated by dark sorcery.\n"
-        "Areladur’s command kept lines from breaking under relentless assault.\n"
+        "Areladur's command kept lines from breaking under relentless assault.\n"
         "Knights formed squares, spears braced, hammers swung, magic unleashed.\n"
         "The battle raged from dawn until the sun dipped behind the mountains.\n"
         "Banners tattered, warriors exhausted, yet the pass held against Kharand.\n"
@@ -62,7 +62,7 @@ protected void Setup()
         "The clash had ended, but the shadow of war lingered, cold and constant.");
 
     addChapter("Chapter 3: Secrets Beneath the Mountains",
-        "Scouts reported tunnels beneath Kharand’s occupied fortresses.\n"
+        "Scouts reported tunnels beneath Kharand's occupied fortresses.\n"
         "Areladur led a small company to investigate the dark passages.\n"
         "Torches flickered, revealing signs of ritual and ancient carvings.\n"
         "Whispers echoed from stone walls, almost speaking to the living.\n"
@@ -84,7 +84,7 @@ protected void Setup()
         "All understood that patience and resolve were as important as steel.");
 
     addChapter("Chapter 4: The Siege of Kharand",
-        "The alliance reached Kharand’s gates, massive walls looming ahead.\n"
+        "The alliance reached Kharand's gates, massive walls looming ahead.\n"
         "Banners flapped in the cold wind, echoing determination of all.\n"
         "Orcish guards and undead patrolled the walls, ever vigilant.\n"
         "Siege engines were placed, ready to batter gates and towers.\n"

@@ -11,7 +11,8 @@ protected void Setup()
     set("short", "A book titled 'The Battle on the Mountain'");
     set("title", "A Soldier on Utumnadh: Witness to Orcs and Shadow");
     set("aliases",
-        ({ "utumnadh battle", "soldier mountain account", "orcs and darkness", "book" }));
+        ({ "utumnadh battle", "soldier mountain account", "orcs and darkness", 
+            "book" }));
     set("long",
         "A soldier recounts the Battle of Utumnadh from the mountain slopes: "
         "the terror of orcs, the presence of a dark power, and the slow "
@@ -81,9 +82,9 @@ protected void Setup()
         "The orcs scattered or fell; the dark presence receded into shadow.\n"
         "We counted bodies we could not name, and did not try.\n"
         "The mountain held our screams in its cliffs, its stones soaked in blood.\n"
-        "I touched the edge of the summit and shivered, knowing its watch had not ended.\n"
-        "We descended, hollowed, broken, carrying what remained of the living.\n"
-        "Some laughed quietly, some wept; all of us were changed.\n"
+        "I touched the edge of the summit and shivered, knowing its watch had \n"
+        "not ended. We descended, hollowed, broken, carrying what remained of the\n"
+        "living. Some laughed quietly, some wept; all of us were changed.\n"
         "Rivers ran brown with stone dust and blood, a testament to our struggle.\n"
         "I slept that night on cold earth, dreaming of shadow and orcish cries.\n"
         "Utumnadh stood above us, silent and eternal, indifferent as the void.\n"
