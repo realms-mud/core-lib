@@ -32,12 +32,15 @@ private nomask string convertDamageMappingToString(mapping damages,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string applyEnchantments(object weapon, object initiator)
+protected nomask mapping getEnchantmentMapping(object weapon, object initiator)
 {
-    string ret = 0;
-
     mapping enchantments = weapon->query("enchantments");
-    if (!enchantments)
+
+    if (enchantments)
+    {
+        enchantments = enchantments + ([]);
+    }
+    else
     {
         enchantments = ([]);
     }
@@ -53,16 +56,26 @@ protected nomask string applyEnchantments(object weapon, object initiator)
         }
     }
 
-    return convertDamageMappingToString(enchantments, initiator);
+    return enchantments;
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask string applyResistances(object item, object initiator)
+protected nomask string applyEnchantments(object weapon, object initiator)
 {
-    string ret = 0;
+    return convertDamageMappingToString(getEnchantmentMapping(weapon, initiator),
+        initiator);
+}
 
+/////////////////////////////////////////////////////////////////////////////
+protected nomask mapping getResistanceMapping(object item, object initiator)
+{
     mapping resistances = item->query("resistances");
-    if (!resistances)
+
+    if (resistances)
+    {
+        resistances = resistances + ([]);
+    }
+    else
     {
         resistances = ([]);
     }
@@ -89,7 +102,14 @@ protected nomask string applyResistances(object item, object initiator)
         }
     }
 
-    return convertDamageMappingToString(resistances, initiator);
+    return resistances;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask string applyResistances(object item, object initiator)
+{
+    return convertDamageMappingToString(getResistanceMapping(item, initiator),
+        initiator);
 }
 
 /////////////////////////////////////////////////////////////////////////////

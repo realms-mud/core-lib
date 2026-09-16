@@ -191,3 +191,53 @@ void ResetRegionTrackingCausesRegionToBeRepushedOnNextLook()
     ExpectSubStringMatch("Room.Info", Player.caughtGmcp(),
         "Room.Info always pushed on each look");
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void RegionSnapshotCellIncludesDecoratorKey()
+{
+    object region = clone_object("/lib/tests/support/environment/regionHelper.c");
+    region.setRegionName("Fake Region");
+    region.setRegionType("tol-dhurath");
+    region.asManualRegion();
+    region.setDimensions(1, 1);
+    region.setCoordinate(0, 0,
+        "/lib/tests/support/environment/testEnvironment.c", "none");
+
+    object roomEnvironment = region.coordinateToMapping(0, 0)["environment"];
+    mapping snapshot = roomEnvironment.buildRegionSnapshot();
+    mapping cell = snapshot["rooms"][0];
+
+    ExpectTrue(member(cell, "decorator"), "region snapshot cell exposes a decorator key");
+    ExpectTrue(stringp(cell["decorator"]),
+        "decorator key is a string identifier suitable for client-side lookup");
+
+    destruct(region);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RegionSnapshotCellIncludesEnvironmentalElements()
+{
+    object region = clone_object("/lib/tests/support/environment/regionHelper.c");
+    region.setRegionName("Fake Region");
+    region.setRegionType("tol-dhurath");
+    region.asManualRegion();
+    region.setDimensions(1, 1);
+    region.setCoordinate(0, 0,
+        "/lib/tests/support/environment/testEnvironment.c", "none");
+
+    object roomEnvironment = region.coordinateToMapping(0, 0)["environment"];
+    roomEnvironment.testAddFeature("/lib/tests/support/environment/fakeFeature.c", "north");
+    roomEnvironment.testAddItem("/lib/tests/support/environment/fakeItem.c", "north");
+
+    mapping snapshot = roomEnvironment.buildRegionSnapshot();
+    mapping cell = snapshot["rooms"][0];
+
+    ExpectEq(1, sizeof(cell["features"]),
+        "region snapshot cell carries the room's feature elements");
+    ExpectEq(1, sizeof(cell["items"]),
+        "region snapshot cell carries the room's item elements");
+    ExpectEq("north", cell["features"][0]["locations"][0]["description"],
+        "feature location description is resolved for the region snapshot cell");
+
+    destruct(region);
+}

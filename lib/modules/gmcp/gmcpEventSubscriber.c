@@ -193,6 +193,67 @@ private string *equipSlotsForItem(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+// Authoritative item category for the client's inventory tab filtering.
+// Derived from the server-side inheritance hierarchy (not from free-text
+// name/type heuristics), so it always agrees with what the item actually is.
+/////////////////////////////////////////////////////////////////////////////
+private string categoryForItem(object item)
+{
+    string *inherits = inherit_list(item);
+
+    if (member(inherits, "/lib/items/weapon.c") > -1)
+    {
+        return "weapon";
+    }
+    if (member(inherits, "/lib/items/armor.c") > -1)
+    {
+        return "armor";
+    }
+    if (member(inherits, "/lib/items/potion.c") > -1)
+    {
+        return "potion";
+    }
+    if (member(inherits, "/lib/items/material.c") > -1)
+    {
+        return "material";
+    }
+    if (member(inherits, "/lib/items/ingredient.c") > -1)
+    {
+        return "material";
+    }
+    if (member(inherits, "/lib/items/instrument.c") > -1)
+    {
+        return "weapon";
+    }
+    if (member(inherits, "/lib/items/food.c") > -1)
+    {
+        return "food";
+    }
+    if (member(inherits, "/lib/items/scroll.c") > -1)
+    {
+        return "scroll";
+    }
+    if (member(inherits, "/lib/items/rune.c") > -1)
+    {
+        return "rune";
+    }
+    if (member(inherits, "/lib/items/key.c") > -1)
+    {
+        return "key";
+    }
+    if (member(inherits, "/lib/items/book.c") > -1)
+    {
+        return "book";
+    }
+    if (member(inherits, "/lib/items/container.c") > -1)
+    {
+        return "container";
+    }
+
+    return "other";
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private mapping summarizeInventoryItem(object item, string slot)
 {
     mapping ret = 0;
@@ -202,11 +263,16 @@ private mapping summarizeInventoryItem(object item, string slot)
         string type = item->query("weapon type") ||
             item->query("armor type") ||
             item->query("instrument type") || "";
+        object materialsService = getService("materials");
+        mapping details = materialsService ?
+            materialsService->getItemDetails(item) : ([]);
 
         ret = ([
             "name": item->query("name"),
             "short": item->query("short"),
-            "type": type
+            "type": type,
+            "category": categoryForItem(item),
+            "details": details
         ]);
 
         if (stringp(slot))

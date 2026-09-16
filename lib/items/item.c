@@ -245,9 +245,18 @@ public mixed query(string element)
                 }
                 break;
             }
+            case "name":
+            {
+                ret = (!query("identified") && itemData["blueprint"]) ?
+                    capitalize(itemData["blueprint"]) :
+                    (itemData["name"] ? itemData["name"] : 0);
+                break;
+            }
             case "short":
             {
-                ret = itemData["short"] ? itemData["short"] : query("name");
+                ret = (!query("identified") && itemData["blueprint"]) ?
+                    capitalize(itemData["blueprint"]) :
+                    (itemData["short"] ? itemData["short"] : query("name"));
                 break;
             }
             case "bonuses":

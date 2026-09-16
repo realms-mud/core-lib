@@ -339,6 +339,60 @@ void EquippedItemIncludesTypeField()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EquippedWeaponIncludesWeaponCategoryField()
+{
+    object sword = BuildWeapon("sword", "a short sword",
+        "short sword", OnehandedWeapon);
+    sword.equip("sword");
+
+    Subscriber.pushInventory();
+    ExpectSubStringMatch("\"category\":\"weapon\"", Player.caughtGmcp(),
+        "weapon category derived from inheritance, not free-text type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EquippedArmorIncludesArmorCategoryField()
+{
+    object armor = BuildArmor("chain mail", "a suit of chain mail",
+        "chain mail", Armor);
+    armor.equip("armor");
+
+    Subscriber.pushInventory();
+    ExpectSubStringMatch("\"category\":\"armor\"", Player.caughtGmcp(),
+        "armor category derived from inheritance, not free-text type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CarriedPotionIncludesPotionCategoryField()
+{
+    object potion = clone_object("/lib/items/potion");
+    potion.set("name", "potion");
+    potion.set("short", "a fizzy potion");
+    move_object(potion, Player);
+
+    Subscriber.pushInventory();
+    ExpectSubStringMatch("\"category\":\"potion\"", Player.caughtGmcp(),
+        "potion category derived from inheritance");
+
+    destruct(potion);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CarriedMaterialIncludesMaterialCategoryField()
+{
+    object material = clone_object("/lib/items/material");
+    material.set("name", "iron ingot");
+    material.set("short", "an iron ingot");
+    move_object(material, Player);
+
+    Subscriber.pushInventory();
+    ExpectSubStringMatch("\"category\":\"material\"", Player.caughtGmcp(),
+        "material category derived from inheritance");
+
+    destruct(material);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void EquippedItemDoesNotIncludeEquipSlotsField()
 {
     object sword = BuildWeapon("sword", "a short sword",

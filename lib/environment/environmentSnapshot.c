@@ -21,6 +21,31 @@ private nomask int viewerHasGmcp(object viewer)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask string snapshotCellDecorator(mapping cell)
+{
+    string ret = 0;
+    object environment = member(cell, "environment") ? cell["environment"] : 0;
+
+    if (objectp(environment) && function_exists("decoratorType", environment))
+    {
+        ret = environment->decoratorType(0);
+    }
+
+    if (!stringp(ret) && member(cell, "decorator type") &&
+        stringp(cell["decorator type"]))
+    {
+        ret = cell["decorator type"];
+    }
+
+    if (!stringp(ret))
+    {
+        ret = cell["room type"];
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask mapping snapshotRegionCell(int x, int y, mapping cell)
 {
     mapping ret = ([
@@ -28,6 +53,7 @@ private nomask mapping snapshotRegionCell(int x, int y, mapping cell)
         "y": y,
         "type": cell["room type"],
         "path": cell["name"],
+        "decorator": snapshotCellDecorator(cell),
     ]);
 
     if (member(cell, "exit to") && stringp(cell["exit to"]))
@@ -38,6 +64,17 @@ private nomask mapping snapshotRegionCell(int x, int y, mapping cell)
     if (member(cell, "state exits"))
     {
         ret["exits"] = cell["state exits"];
+    }
+
+    if (objectp(cell["environment"]) &&
+        function_exists("buildRoomSnapshot", cell["environment"]))
+    {
+        mapping roomSnapshot = cell["environment"]->buildRoomSnapshot();
+
+        ret["terrain"] = roomSnapshot["terrain"];
+        ret["interior"] = roomSnapshot["interior"];
+        ret["features"] = roomSnapshot["features"];
+        ret["items"] = roomSnapshot["items"];
     }
 
     return ret;

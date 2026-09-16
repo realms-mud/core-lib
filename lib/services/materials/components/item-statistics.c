@@ -30,6 +30,20 @@ protected nomask string applyBonusDetails(object item, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask mapping getBonusMapping(object item)
+{
+    mapping ret = ([]);
+    string *bonuses = sort_array(item->query("bonuses"),
+                                (: return $1 > $2; :));
+
+    foreach(string bonus in bonuses)
+    {
+        ret[bonus] = item->query(bonus);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getMaterialDetails(object item)
 {
     string retVal = "";
@@ -38,31 +52,42 @@ public nomask string getMaterialDetails(object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs string getMaterialQualityFormatter(object equipment)
+private nomask string qualityTier(object equipment)
 {
-    string qualityFormat = "normal quality";
-    string qualityMessage = "   ";
+    string quality = "normal quality";
 
     if (getMaterialCraftsmanshipBonus(equipment) > 4)
     {
-        qualityFormat = "masterwork";
-        qualityMessage = "(M)";
+        quality = "masterwork";
     }
     else if (equipment->query("enchanted") > 4)
     {
-        qualityFormat = "powerful enchantment";
-        qualityMessage = "(P)";
+        quality = "powerful enchantment";
     }
     else if (getMaterialCraftsmanshipBonus(equipment))
     {
-        qualityFormat = "well-crafted";
-        qualityMessage = "(C)";
+        quality = "well-crafted";
     }
     else if (equipment->query("enchanted"))
     {
-        qualityFormat = "enchanted";
-        qualityMessage = "(E)";
+        quality = "enchanted";
     }
+    return quality;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs string getMaterialQualityFormatter(object equipment)
+{
+    mapping qualityMessages = ([
+        "normal quality": "   ",
+        "masterwork": "(M)",
+        "powerful enchantment": "(P)",
+        "well-crafted": "(C)",
+        "enchanted": "(E)"
+    ]);
+
+    string qualityFormat = qualityTier(equipment);
+    string qualityMessage = qualityMessages[qualityFormat];
 
     return sprintf("%s %s", "%s", qualityMessage);
 }
@@ -71,42 +96,18 @@ public nomask varargs string getMaterialQualityFormatter(object equipment)
 public varargs string applyMaterialQualityToText(object equipment, 
     string text, object initiator)
 {
-    string qualityFormat = "normal quality";
-    string qualityText = "typical for its type";
+    mapping qualityTexts = ([
+        "masterwork": "a masterwork item",
+        "powerful enchantment": "enchanted with a powerful aura",
+        "enchanted": "enchanted",
+        "well-crafted": "a well-crafted item",
+        "normal quality": "typical for its type"
+    ]);
 
-    if (getMaterialCraftsmanshipBonus(equipment) > 4)
-    {
-        qualityFormat = "masterwork";
-        if(!text)
-        {
-            qualityText = "a masterwork item";
-        }
-    }
-    else if (equipment->query("enchanted") > 4)
-    {
-        qualityFormat = "powerful enchantment";
-        if (!text)
-        {
-            qualityText = "enchanted with a powerful aura";
-        }
-    }
-    else if (equipment->query("enchanted"))
-    {
-        qualityFormat = "enchanted";
-        if (!text)
-        {
-            qualityText = "enchanted";
-        }
-    }
-    else if (getMaterialCraftsmanshipBonus(equipment))
-    {
-        qualityFormat = "well-crafted";
-        if (!text)
-        {
-            qualityText = "a well-crafted item";
-        }
-    }
-    else
+    string qualityFormat = qualityTier(equipment);
+    string qualityText = qualityTexts[qualityFormat];
+
+    if (qualityFormat == "normal quality")
     {
         equipment->identify();
     }
@@ -279,6 +280,130 @@ public nomask mapping getItemSummary(object equipment)
     else
     {
         ret["No data"] = 0;
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getRangeMapping(int baseValue, float spread)
+{
+    return ([
+        "min": to_int(baseValue - spread),
+        "max": to_int(baseValue + spread)
+    ]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping getComponentDetails(object equipment)
+{
+    mapping ret = ([]);
+    mapping craftingMaterials = equipment->query("crafting materials");
+
+    if (craftingMaterials && mappingp(craftingMaterials))
+    {
+        string *components = filter(m_indices(craftingMaterials),
+            (: mappingp($2[$1]) :), craftingMaterials);
+
+        foreach(string component in components)
+        {
+            mapping componentData = craftingMaterials[component];
+            mapping componentMaterials = ([]);
+
+            foreach(string materialClass in materialClasses)
+            {
+                if (member(componentData, materialClass) &&
+                    isValidMaterial(componentData[materialClass]))
+                {
+                    componentMaterials[materialClass] = ([
+                        "material": componentData[materialClass],
+                        "class": materials[componentData[materialClass]]["class"]
+                    ]);
+                }
+            }
+
+            ret[component] = ([
+                "componentClass": component,
+                "style": member(componentData, "type") ? componentData["type"] : 0,
+                "materials": componentMaterials,
+                "isPrimary": (component == equipment->query("primary component")) ? 1 : 0
+            ]);
+        }
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int isMagicalItem(mapping enchantments, mapping resistances,
+    mapping bonuses, object equipment)
+{
+    return sizeof(enchantments) || sizeof(resistances) || sizeof(bonuses) ||
+        equipment->query("enchanted") || equipment->query("cursed");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getItemDetails(object equipment)
+{
+    mapping ret = ([]);
+
+    if (isValidItem(equipment))
+    {
+        int identified = equipment->query("identified") ? 1 : 0;
+        mapping enchantments = getEnchantmentMapping(equipment, 0);
+        mapping resistances = getResistanceMapping(equipment, 0);
+        mapping bonuses = getBonusMapping(equipment);
+        int magical = isMagicalItem(enchantments, resistances, bonuses, equipment);
+
+        ret = ([
+            "identified": identified,
+            "magical": magical ? 1 : 0,
+            "quality": qualityTier(equipment),
+            "description": equipment->query("long") || equipment->query("short"),
+            "materialsDescription": getService("crafting")->getEquipmentMaterials(equipment),
+            "material": equipment->query("material"),
+            "weight": equipment->query("weight"),
+            "encumberance": getEncumberanceData(equipment, 0),
+            "runeSlots": equipment->query("rune slots") || 0,
+            "runesFused": equipment->query("runes fused") || 0,
+            "fusedRunes": equipment->query("runes fused") ? equipment->query("fused runes") || ([]) : ([]),
+            "components": getComponentDetails(equipment)
+        ]);
+
+        // Magical properties (enchantments, resistances, bonuses, curses) are
+        // only revealed once the item has been identified.
+        if (!magical || identified)
+        {
+            ret["cursed"] = equipment->query("cursed") ? 1 : 0;
+            ret["enchantments"] = enchantments;
+            ret["resistances"] = resistances;
+            ret["bonuses"] = bonuses;
+        }
+
+        if (equipment->query("weapon type"))
+        {
+            ret["weaponType"] = equipment->query("weapon type");
+
+            if (!magical || identified)
+            {
+                int baseAttack = getAttackData(equipment, 0);
+                int baseDamage = getDamageData(equipment, 0);
+                int baseDefense = getWeaponDefenseData(equipment, 0);
+
+                ret["attack"] = getRangeMapping(baseAttack, 100.0);
+                ret["damage"] = getRangeMapping(baseDamage, baseDamage / 8.0);
+                ret["defense"] = getRangeMapping(baseDefense, baseDefense / 8.0);
+            }
+        }
+        else if (equipment->query("armor type"))
+        {
+            ret["armorType"] = equipment->query("armor type");
+
+            if (!magical || identified)
+            {
+                ret["soak"] = getDamageProtectionData(equipment, 0);
+            }
+        }
     }
 
     return ret;

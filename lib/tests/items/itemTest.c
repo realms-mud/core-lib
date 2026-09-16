@@ -820,6 +820,49 @@ void IdentificationOnlyHappensOnce()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void UnidentifiedEnchantedItemDisplaysBlueprintNameOnly()
+{
+    destruct(Item);
+    Item = clone_object("/lib/instances/items/armor/heavy-armor/brigandine.c");
+    Item.set("name", "Brigandine of Acid");
+    Item.set("short", "Brigandine of Acid");
+
+    ExpectEq("Brigandine", Item.query("name"),
+        "unidentified item's name falls back to its blueprint name");
+    ExpectEq("Brigandine", Item.query("short"),
+        "unidentified item's short falls back to its blueprint name");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IdentifiedEnchantedItemDisplaysFullName()
+{
+    destruct(Item);
+    Item = clone_object("/lib/instances/items/armor/heavy-armor/brigandine.c");
+    Item.set("name", "Brigandine of Acid");
+    Item.set("short", "Brigandine of Acid");
+
+    Item.identify();
+
+    ExpectEq("Brigandine of Acid", Item.query("name"),
+        "identified item's name displays its full enchanted name");
+    ExpectEq("Brigandine of Acid", Item.query("short"),
+        "identified item's short displays its full enchanted name");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnidentifiedItemWithoutBlueprintKeepsItsSetName()
+{
+    ExpectFalse(Item.query("identified"), "item starts unidentified");
+    Item.set("name", "Gertrude");
+    Item.set("short", "a strange item named Gertrude");
+
+    ExpectEq("Gertrude", Item.query("name"),
+        "item with no blueprint keeps its plain name while unidentified");
+    ExpectEq("a strange item named Gertrude", Item.query("short"),
+        "item with no blueprint keeps its plain short while unidentified");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void IdReturnsTrueForCorrectIdentifiers()
 {
     // This test is kinda dumb - but long prints to stdout
