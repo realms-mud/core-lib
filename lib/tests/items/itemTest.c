@@ -826,6 +826,7 @@ void UnidentifiedEnchantedItemDisplaysBlueprintNameOnly()
     Item = clone_object("/lib/instances/items/armor/heavy-armor/brigandine.c");
     Item.set("name", "Brigandine of Acid");
     Item.set("short", "Brigandine of Acid");
+    Item.set("bonus acid attack", 1);
 
     ExpectEq("Brigandine", Item.query("name"),
         "unidentified item's name falls back to its blueprint name");
@@ -840,6 +841,7 @@ void IdentifiedEnchantedItemDisplaysFullName()
     Item = clone_object("/lib/instances/items/armor/heavy-armor/brigandine.c");
     Item.set("name", "Brigandine of Acid");
     Item.set("short", "Brigandine of Acid");
+    Item.set("bonus acid attack", 1);
 
     Item.identify();
 

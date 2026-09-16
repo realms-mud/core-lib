@@ -245,21 +245,21 @@ public mixed query(string element)
                 }
                 break;
             }
-            case "name":
-            {
-                ret = (!query("identified") && itemData["blueprint"]) ?
-                    capitalize(itemData["blueprint"]) :
-                    (itemData["name"] ? itemData["name"] : 0);
-                break;
-            }
-            case "short":
-            {
-                ret = (!query("identified") && itemData["blueprint"]) ?
-                    capitalize(itemData["blueprint"]) :
-                    (itemData["short"] ? itemData["short"] : query("name"));
-                break;
-            }
-            case "bonuses":
+case "name":
+{
+    ret = (query("enchanted") && !query("identified") && itemData["blueprint"]) ?
+        capitalize(itemData["blueprint"]) :
+        (itemData["name"] ? itemData["name"] : 0);
+    break;
+}
+case "short":
+{
+    ret = (query("enchanted") && !query("identified") && itemData["blueprint"]) ?
+        capitalize(itemData["blueprint"]) :
+        (itemData["short"] ? itemData["short"] : query("name"));
+    break;
+}
+case "bonuses":
             {
                 ret = filter(m_indices(itemData),
                     (: return sizeof(regexp(({ $1 }), "bonus")) > 0; :));

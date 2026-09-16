@@ -353,8 +353,8 @@ void EquippedWeaponIncludesWeaponCategoryField()
 /////////////////////////////////////////////////////////////////////////////
 void EquippedArmorIncludesArmorCategoryField()
 {
-    object armor = BuildArmor("chain mail", "a suit of chain mail",
-        "chain mail", Armor);
+    object armor = BuildArmor("chainmail", "a suit of chainmail",
+        "chainmail", Armor);
     armor.equip("armor");
 
     Subscriber.pushInventory();

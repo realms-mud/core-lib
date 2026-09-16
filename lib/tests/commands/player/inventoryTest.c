@@ -52,6 +52,7 @@ void BuildInventory()
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
     equipment.set("bonus spirit", 1);
     equipment.set("short", "The land-loving mother-pigeon of all things");
+    equipment.identify();
     move_object(equipment, Player);
 
     equipment = clone_object("/lib/instances/items/armor/accessories/ring.c");
@@ -77,6 +78,7 @@ void BuildInventory()
     equipment = clone_object("/lib/instances/items/armor/medium-armor/chainmail.c");
     equipment.set("bonus soak", 1);
     equipment.set("short", "Chainmail of Chains");
+    equipment.identify();
     move_object(equipment, Player);
     equipment.equip("armor");
 }
