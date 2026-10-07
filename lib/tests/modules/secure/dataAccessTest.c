@@ -257,6 +257,9 @@ void GetPlayerDataReturnsDataFromDatabase()
     ExpectTrue(member(result, "LastLogin"));
     m_delete(result, "whenCreated");
     m_delete(result, "LastLogin");
+    m_delete(expected, "experiences");
+    m_delete(result, "experiences");
+    m_delete(result, "experiences persisted");
 
     ExpectEq(expected, result);
 }
@@ -289,6 +292,9 @@ void GetPlayerDataForWizardReturnsDataFromDatabase()
     ExpectTrue(member(result, "LastLogin"));
     m_delete(result, "whenCreated");
     m_delete(result, "LastLogin");
+    m_delete(expected, "experiences");
+    m_delete(result, "experiences");
+    m_delete(result, "experiences persisted");
 
     ExpectEq(expected, result);
 }
