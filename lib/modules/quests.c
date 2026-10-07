@@ -10,6 +10,20 @@ virtual inherit "/lib/core/thing.c";
 
 private object questsService = getService("quests");
 
+/////////////////////////////////////////////////////////////////////////////
+private void recordQuestObservation(string type, string questItem,
+    mapping context)
+{
+    if (function_exists("recordObservation", this_object()))
+    {
+        this_object()->recordObservation(([
+            "type": type,
+            "subject": questItem,
+            "context": context + ([ "state": quests[questItem]["state"] ])
+        ]));
+    }
+}
+
 //-----------------------------------------------------------------------------
 // Method: questNotification
 // Description: This method is used to broadcast all quest-related events
@@ -148,16 +162,29 @@ private void checkQuestCompletion(string questItem, object questObj)
 {
     if (questObj->questInCompletionState(quests[questItem]["state"]))
     {
+        int wasCompleted = quests[questItem]["is completed"];
         quests[questItem]["is active"] = 0;
         quests[questItem]["is completed"] = 1;
+        if (!wasCompleted)
+        {
+            recordQuestObservation("quest.completed", questItem, ([]));
+        }
         questNotification("onQuestCompleted", questItem);
 
         if (questObj->questSucceeded(this_object()))
         {
+            if (!wasCompleted)
+            {
+                recordQuestObservation("quest.succeeded", questItem, ([]));
+            }
             questNotification("onQuestSucceeded", questItem);
         }
         else
         {
+            if (!wasCompleted)
+            {
+                recordQuestObservation("quest.failed", questItem, ([]));
+            }
             questNotification("onQuestFailed", questItem);
         }
     }
@@ -172,12 +199,19 @@ public nomask int advanceQuestState(string questItem, string newState)
         object questObj = getQuestObject(questItem);
         if(questObj && objectp(questObj))
         {
+            string previousState = quests[questItem]["state"];
             ret = 1;
             quests[questItem]["states completed"] +=
                 ({ quests[questItem]["state"] });
 
             quests[questItem]["state"] = newState;
 
+            if (previousState != newState)
+            {
+                recordQuestObservation("quest.advanced", questItem, ([
+                    "previous state": previousState
+                ]));
+            }
             questNotification("onQuestAdvancedState", questItem);
             checkQuestCompletion(questItem, questObj);
         }
@@ -202,6 +236,7 @@ public nomask int beginQuest(string questItem)
             "is active" : 1,
             "is completed": 0
         ]);
+        recordQuestObservation("quest.started", questItem, ([]));
         questNotification("onQuestStarted", questItem);
 
         checkQuestCompletion(questItem, questObj);

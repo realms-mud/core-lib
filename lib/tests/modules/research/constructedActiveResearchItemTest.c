@@ -459,6 +459,12 @@ void ExecuteDeductsAggregatedSpellPointCost()
     ExpectTrue(User.researchCommand("test spell test combo"), 
         "spell execution succeeds");
 
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
+    ExpectTrue(User.hasObservation(([
+        "type":"research.use",
+        "research":program_name(ResearchItem)
+    ])));
+
     // Base: SP=10, Component A: SP=10 = 20 total
     ExpectEq(initialSP - 20, User.spellPoints(), 
         "spell points deducted correctly");

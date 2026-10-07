@@ -48,6 +48,91 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void StructuredSoulRecordsCanonicalActionAndExplicitAdverb()
+{
+    ExpectTrue(Player.executeCommand("ack -a Happily -t earl"));
+    mapping *entries = Player.queryObservations(([ "type":"social.emote" ]));
+    ExpectEq(1, sizeof(entries));
+    ExpectEq("soul", entries[0]["context"]["emote type"]);
+    ExpectEq("ack", entries[0]["context"]["action"]);
+    ExpectEq("happily", entries[0]["context"]["adverb"]);
+    ExpectEq(1, entries[0]["context"]["explicit"]);
+    ExpectSubStringMatch("bob", lower_case(entries[0]["actor"]));
+    ExpectSubStringMatch("earl", lower_case(entries[0]["subject"]));
+    ExpectEq(entries[0]["subject"], entries[0]["context"]["target"]);
+    ExpectEq(2, sizeof(entries[0]["participants"]));
+    ExpectEq(program_name(this_object()), entries[0]["location"]);
+    ExpectEq(0, Target.countObservations(([ "type":"social.emote" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UntargetedSoulRecordsOnlyActorAndVocabulary()
+{
+    ExpectTrue(Player.executeCommand("snore"));
+    mapping *entries = Player.queryObservations(([ "type":"social.emote" ]));
+    ExpectEq(1, sizeof(entries));
+    ExpectEq("snore", entries[0]["subject"]);
+    ExpectEq("loudly", entries[0]["context"]["adverb"]);
+    ExpectEq("", entries[0]["context"]["target"]);
+    ExpectEq(({ entries[0]["actor"] }), entries[0]["participants"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void BlockedInvalidAndMissingTargetsDoNotRecordSoul()
+{
+    ExpectTrue(Target.block("bob"));
+    ExpectTrue(Player.executeCommand("ack -t earl"));
+    ExpectSubStringMatch("blocked", Player.caughtMessage());
+    ExpectTrue(Player.executeCommand("ack -t absentcharacter"));
+    ExpectSubStringMatch("not a living character", Player.caughtMessage());
+    ExpectTrue(Player.executeCommand("ack -t bob"));
+    ExpectTrue(Player.executeCommand("ack -invalid value"));
+    ExpectTrue(Player.executeCommand("ack -t"));
+    ExpectEq(0, Player.countObservations(([ "type":"social.emote" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NonlivingTargetAndNoLocationDoNotRecordSoul()
+{
+    object item = clone_object("/lib/tests/support/items/testSword.c");
+    move_object(item, this_object());
+    ExpectTrue(Player.executeCommand("ack -t sword"));
+    ExpectEq(0, Player.countObservations(([ "type":"social.emote" ])));
+    destruct(item);
+    object unplaced = clone_object("/lib/tests/support/services/mockPlayer.c");
+    unplaced.Name("unplaced");
+    ExpectFalse(environment(unplaced));
+    object soul = load_object("/lib/commands/player/soul.c");
+    ExpectTrue(soul.execute("ack", unplaced));
+    ExpectEq(0, unplaced.countObservations(([ "type":"social.emote" ])));
+    destruct(unplaced);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void GenericFreeformEmotesNeverBecomeSemanticObservations()
+{
+    ExpectTrue(Player.executeCommand(
+        "emote insults Earl and threatens him with a promise"));
+    ExpectTrue(Player.executeCommand(": waves happily at Earl"));
+    ExpectEq(0, Player.countObservations(([ "type":"social" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SoulDoesNotAutomaticallyChangeOpinions()
+{
+    object npc = clone_object("/lib/tests/support/services/mockNPC.c");
+    npc.Name("speaker");
+    move_object(npc, this_object());
+    int opinion = npc.opinionOf(Player);
+    ExpectTrue(Player.executeCommand("admire -t speaker"));
+    ExpectTrue(Player.executeCommand("taunt -t speaker"));
+    ExpectEq(opinion, npc.opinionOf(Player));
+    ExpectEq(2, Player.countObservations(([ "type":"social.emote" ])));
+    ExpectEq(0, Player.countObservations(([ "type":"social.insult" ])));
+    destruct(npc);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void InvalidFlagsDoNotParse()
 {
     ExpectTrue(Player.executeCommand("ack -ve blah"));

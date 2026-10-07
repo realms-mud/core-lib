@@ -567,3 +567,92 @@ void ResponsesAreCorrectlyHighlighted()
     command("talk", Actor);
     ExpectSubStringMatch("0;36mFirst", implode(Actor.caughtMessages(), ""));
 }
+
+/////////////////////////////////////////////////////////////////////////////
+void TwoActorsAtSameNPCConsumeOnlyTheirOwnMenus()
+{
+    Actor = PrepActor(1, "gorthaur");
+    object second = PrepActor(1, "maeglin");
+    Owner.testAddConversation("/lib/tests/support/conversations/testConversation.c");
+    Actor.characterState(Owner, "first conversation");
+    second.characterState(Owner, "start quest");
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectTrue(command("talk gertrude", second));
+    Actor.resetCatchList();
+    second.resetCatchList();
+    ExpectTrue(command("1", Actor));
+    ExpectSubStringMatch("Then let's talk", Actor.caughtMessage());
+    ExpectEq("default", Actor.stateFor(Owner));
+    ExpectTrue(command("2", second));
+    ExpectSubStringMatch("I am Maeglin", second.caughtMessage());
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.response" ])));
+    ExpectEq(1, second.countObservations(([ "type":"conversation.response" ])));
+    destruct(second);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ActorsRetainRoutingAcrossDifferentConversationObjects()
+{
+    Actor = PrepActor(1, "gorthaur");
+    object second = PrepActor(1, "maeglin");
+    second.Race("human");
+    Owner.testAddConversation("/lib/tests/support/conversations/testConversation.c");
+    Owner.testAddConversation("/lib/tests/support/conversations/isolatedConversation.c");
+    Actor.characterState(Owner, "first conversation");
+    second.characterState(Owner, "isolated menu");
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectTrue(command("talk gertrude", second));
+    Actor.resetCatchList();
+    ExpectTrue(command("1", Actor));
+    ExpectSubStringMatch("Then let's talk", Actor.caughtMessage());
+    second.resetCatchList();
+    ExpectTrue(command("1", second));
+    ExpectSubStringMatch("The common response", second.caughtMessage());
+    destruct(second);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExplicitRenderedTopicsDeduplicateRepeatedTalkAndRepeat()
+{
+    Actor = PrepActor(1, "gorthaur");
+    Owner.testAddConversation("/lib/tests/support/conversations/testConversation.c");
+    Actor.characterState(Owner, "first conversation");
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectTrue(command("repeat", Actor));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.started" ])));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.topic" ])));
+    ExpectTrue(command("1", Actor));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.topic" ])));
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectEq(2, Actor.countObservations(([ "type":"conversation.topic" ])));
+    mapping *entries = Actor.queryObservations(([ "type":"conversation.topic" ]));
+    ExpectEq("first conversation", entries[0]["context"]["topic"]);
+    ExpectEq("default", entries[1]["context"]["topic"]);
+    ExpectEq(1, entries[0]["context"]["explicit"]);
+    ExpectEq(program_name(Owner), entries[0]["subject"]);
+    ExpectEq(program_name(Room), entries[0]["location"]);
+    Actor.characterState(Owner, "unknown topic");
+    ExpectFalse(Owner.beginConversation(Actor));
+    ExpectEq(2, Actor.countObservations(([ "type":"conversation.topic" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TriggeredAndPrerequisiteBlockedTopicsDoNotRecordExplicitTopics()
+{
+    Actor = PrepActor(1, "gorthaur");
+    Actor.Race("human");
+    Owner.testAddConversation("/lib/tests/support/conversations/isolatedConversation.c");
+    Actor.characterState(Owner, "isolated blocked");
+    efun::set_this_player(Actor);
+    ExpectFalse(Owner.beginConversation(Actor));
+    ExpectEq(0, Actor.countObservations(([ "type":"conversation.topic" ])));
+    Owner.onTriggerConversation(Actor, "isolated menu");
+    Owner.onTriggerConversation(Actor, "isolated menu");
+    ExpectEq(0, Actor.countObservations(([ "type":"conversation.topic" ])));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.started" ])));
+    Actor.characterState(Owner, "isolated menu");
+    ExpectTrue(command("talk gertrude", Actor));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.topic" ])));
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.started" ])));
+}

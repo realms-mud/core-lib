@@ -35,6 +35,46 @@ void IntoxicatedSetsIntoxicationLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AlcoholConsumptionKeepsItemAndStateSnapshots()
+{
+    object drink = clone_object("/lib/tests/support/items/testDrink.c");
+    drink.set("biological strength", 3);
+    mapping before = Character.biologicalState();
+    ExpectTrue(Character.drinkAlcohol(drink));
+    mapping after = Character.biologicalState();
+    string item = program_name(drink);
+    destruct(drink);
+    mapping *entries = Character.queryObservations(([
+        "type":"consumption.alcohol"
+    ]));
+    ExpectEq(1, sizeof(entries));
+    ExpectEq(item, entries[0]["context"]["item"]);
+    ExpectEq("Test Pilsner Beer", entries[0]["context"]["item name"]);
+    ExpectEq("pilsner beer", entries[0]["context"]["blueprint"]);
+    ExpectEq(before, entries[0]["context"]["before"]);
+    ExpectEq(after, entries[0]["context"]["after"]);
+    ExpectTrue(after["intoxicated"] > before["intoxicated"]);
+    Character.Intoxicated(1000);
+    Character.heart_beat();
+    ExpectEq(1, getService("experiences")->countObservations(
+        Character.experiencesLog(), ([ "type":"consumption" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FailedAndNoOpConsumptionDoesNotRecord()
+{
+    object drink = clone_object("/lib/tests/support/items/testDrink.c");
+    Character.Intoxicated(1000);
+    ExpectFalse(Character.drinkAlcohol(drink));
+    ExpectFalse(Character.eat(drink));
+    drink.set("biological strength", -1);
+    drink.set("biological effect", "none");
+    ExpectTrue(Character.drink(drink));
+    ExpectEq(0, Character.countObservations(([ "type":"consumption" ])));
+    destruct(drink);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void IntoxicatedFiresOnIntoxicationChangedEventWhenValueChanges()
 {
     object subscriber = clone_object("/lib/tests/support/events/mockBiologicalSubscriber");

@@ -6,6 +6,24 @@ virtual inherit "/lib/core/organizations.c";
 #include "/lib/modules/secure/factions.h"
 
 /////////////////////////////////////////////////////////////////////////////
+private void recordFactionObservation(string type, string faction,
+    string previousDisposition)
+{
+    if (function_exists("recordObservation", this_object()))
+    {
+        this_object()->recordObservation(([
+            "type": type,
+            "subject": faction,
+            "context": ([
+                "previous disposition": previousDisposition,
+                "disposition": factions[faction]["disposition"],
+                "reputation": factions[faction]["reputation"]
+            ])
+        ]));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int memberOfFaction(string faction)
 {
     return (member(factions, faction) &&
@@ -95,6 +113,8 @@ public nomask int joinFaction(string faction)
         ret = 1;
         int reputation = 0;
         int interactions = 0;
+        string previousDisposition = member(factions, faction) ?
+            factions[faction]["disposition"] : 0;
 
         if (member(factions, faction))
         {
@@ -112,6 +132,13 @@ public nomask int joinFaction(string faction)
         ]);
 
         memberOfFactions += ({ faction });
+        recordFactionObservation("faction.joined", faction,
+            previousDisposition);
+        if (previousDisposition != factions[faction]["disposition"])
+        {
+            recordFactionObservation("faction.dispositionChanged", faction,
+                previousDisposition);
+        }
     }
     return ret;
 }
@@ -129,6 +156,7 @@ public nomask int leaveFaction(string faction)
         ret = 1;
         int reputation = factions[faction]["reputation"];
         int interactions = factions[faction]["number of interactions"];
+        string previousDisposition = factions[faction]["disposition"];
 
         factions[faction] = ([
             "disposition": "betrayed",
@@ -140,6 +168,25 @@ public nomask int leaveFaction(string faction)
         ]);
 
         memberOfFactions -= ({ faction });
+        if (reputation != factions[faction]["reputation"] &&
+            function_exists("recordObservation", this_object()))
+        {
+            this_object()->recordObservation(([
+                "type": "faction.reputationChanged",
+                "subject": faction,
+                "context": ([
+                    "previous reputation": reputation,
+                    "reputation": factions[faction]["reputation"]
+                ])
+            ]));
+        }
+        recordFactionObservation("faction.left", faction,
+            previousDisposition);
+        if (previousDisposition != factions[faction]["disposition"])
+        {
+            recordFactionObservation("faction.dispositionChanged", faction,
+                previousDisposition);
+        }
     }
     return ret;
 }
@@ -187,6 +234,10 @@ public nomask varargs void updateFactionDisposition(string faction, int reputati
 {
     if (isValidFaction(faction))
     {
+        int previousReputation = member(factions, faction) ?
+            factions[faction]["reputation"] : 0;
+        string previousDisposition = member(factions, faction) ?
+            factions[faction]["disposition"] : "neutral";
         if (!member(factions, faction))
         {
             factions[faction] = ([
@@ -207,6 +258,23 @@ public nomask varargs void updateFactionDisposition(string faction, int reputati
 
         factions[faction]["last interaction reputation"] =
             factions[faction]["reputation"];
+        if (previousReputation != factions[faction]["reputation"] &&
+            function_exists("recordObservation", this_object()))
+        {
+            this_object()->recordObservation(([
+                "type": "faction.reputationChanged",
+                "subject": faction,
+                "context": ([
+                    "previous reputation": previousReputation,
+                    "reputation": factions[faction]["reputation"]
+                ])
+            ]));
+        }
+        if (previousDisposition != factions[faction]["disposition"])
+        {
+            recordFactionObservation("faction.dispositionChanged", faction,
+                previousDisposition);
+        }
     }
 }
 

@@ -125,6 +125,8 @@ void CanExecuteCompositeActiveResearch()
     ExpectEq("You begin to play a song...\n", User.caughtMessage());
     ExpectTrue(User.hasActiveCompositeResearch());
 
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
+
     object compositeResearch = 
         load_object("/lib/tests/support/research/compositeRoot.c");
 
@@ -141,6 +143,8 @@ void CanExecuteCompositeActiveResearch()
     ExpectEq(-21, Target.calculateDefendAttack());
 
     User.heart_beat();
+    ExpectEq(1, getService("experiences")->countObservations(
+        User.experiencesLog(), ([ "type":"research.use" ])));
     ExpectEq("You sing, 'Oh, sing me a song of the weasels, man.'\n", 
         User.caughtMessage());
 

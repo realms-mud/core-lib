@@ -278,9 +278,56 @@ private nomask int getMaximumBiologicalLevel(string type)
 //
 // Returns: true if the item can be consumed.
 //-----------------------------------------------------------------------------
+public nomask mapping biologicalState()
+{
+    mapping ret = ([
+        "intoxicated":intoxicated,
+        "drugged":drugged,
+        "stuffed":stuffed,
+        "soaked":soaked,
+        "headache":headache
+    ]);
+    object combat = getModule("combat");
+    if (combat)
+    {
+        ret += ([
+            "hit points":combat->hitPoints(),
+            "spell points":combat->spellPoints(),
+            "stamina points":combat->staminaPoints()
+        ]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void recordConsumption(object item, string kind, mapping before)
+{
+    object experiences = getModule("experiences");
+    mapping after = biologicalState();
+    if (experiences && !getService("experiences")->matchesObservation(
+        ([ "context":after ]), before))
+    {
+        experiences->recordObservation(([
+            "type":"consumption." + kind,
+            "subject":item,
+            "context":([
+                "item":program_name(item),
+                "item name":item->query("name"),
+                "blueprint":item->query("blueprint"),
+                "biological effect":item->query("biological effect"),
+                "biological strength":item->query("biological strength"),
+                "before":before,
+                "after":after
+            ])
+        ]));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int drinkAlcohol(object drink)
 {
     int ret = 0;
+    mapping before = biologicalState();
     int maxIntox = getMaximumBiologicalLevel("intoxication");
 
     if (Intoxicated() > maxIntox)
@@ -304,6 +351,7 @@ public nomask int drinkAlcohol(object drink)
         }
         getService("biological")->applyBiologicalEffect(this_object(), 
             drink);
+        recordConsumption(drink, "alcohol", before);
    }    
     return ret;
 }
@@ -323,6 +371,7 @@ public nomask int drinkAlcohol(object drink)
 public nomask int consumeDrug(object drug)
 {
     int ret = 0;
+    mapping before = biologicalState();
     int maxDrugged = getMaximumBiologicalLevel("drugged");
 
     if(Drugged() > maxDrugged)
@@ -346,6 +395,7 @@ public nomask int consumeDrug(object drug)
         }
         getService("biological")->applyBiologicalEffect(this_object(), 
             drug);
+        recordConsumption(drug, "drug", before);
     }    
     return ret;
 }
@@ -364,6 +414,7 @@ public nomask int consumeDrug(object drug)
 public nomask int drink(object drink)
 {
     int ret = 0;
+    mapping before = biologicalState();
     int maxSoak = getMaximumBiologicalLevel("soaked");
     
     if(Soaked() > maxSoak)
@@ -388,6 +439,7 @@ public nomask int drink(object drink)
         }
         getService("biological")->applyBiologicalEffect(this_object(), 
             drink);
+        recordConsumption(drink, "drink", before);
     }
     return ret;
 }
@@ -406,6 +458,7 @@ public nomask int drink(object drink)
 public nomask int eat(object food)
 {
     int ret = 0;
+    mapping before = biologicalState();
     int maxStuffed = getMaximumBiologicalLevel("stuffed");
 
     if(Stuffed() > maxStuffed)
@@ -430,6 +483,7 @@ public nomask int eat(object food)
         }
         getService("biological")->applyBiologicalEffect(this_object(), 
             food);
+        recordConsumption(food, "food", before);
     }    
     return ret;
 }

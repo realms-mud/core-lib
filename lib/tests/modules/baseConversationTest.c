@@ -52,6 +52,107 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ResponseMenusAreIsolatedByActorObject()
+{
+    object second = clone_object("/lib/tests/support/services/mockPlayer.c");
+    second.Name("Second speaker");
+    second.Race("human");
+    move_object(second, environment(Actor));
+    Actor.Race("elf");
+    Conversation.testAddTopic("test", "A shared topic.");
+    Conversation.testAddResponse("test", "A elf", "Elf choice.");
+    Conversation.testAddResponsePrerequisite("test", "A elf", ([
+        "race":([ "type":"race", "value":({ "elf" }) ])
+    ]));
+    Conversation.testAddResponse("test", "B common", "Common choice.");
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    ExpectFalse(Conversation.displayResponse("1", second, Owner));
+    ExpectTrue(Conversation.speakMessage("test", second, Owner));
+    ExpectEq(2, sizeof(Conversation.responses(Actor)));
+    ExpectEq(1, sizeof(Conversation.responses(second)));
+    ExpectTrue(Conversation.displayResponse("1", Actor, Owner));
+    ExpectSubStringMatch("Elf choice", Actor.caughtMessage());
+    ExpectEq(0, sizeof(Conversation.responses(Actor)));
+    ExpectEq(1, sizeof(Conversation.responses(second)));
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectTrue(Conversation.displayResponse("1", second, Owner));
+    ExpectSubStringMatch("Common choice", second.caughtMessage());
+    ExpectEq(1, Actor.countObservations(([ "type":"conversation.response" ])));
+    ExpectEq(1, second.countObservations(([ "type":"conversation.response" ])));
+    destruct(second);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ResponsePrerequisitesAreRecheckedBeforeEffectsAndRecording()
+{
+    Actor.Race("elf");
+    Conversation.testAddTopic("test", "A shared topic.");
+    Conversation.testAddResponse("test", "Elf", "Elf choice.");
+    Conversation.testAddResponsePrerequisite("test", "Elf", ([
+        "race":([ "type":"race", "value":({ "elf" }) ])
+    ]));
+    Conversation.testAddResponseEffect("test", "Elf", ([ "opinion":5 ]));
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    Actor.Race("human");
+    int opinion = Owner.opinionOf(Actor);
+    Actor.resetCatchList();
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(0, sizeof(Actor.caughtMessages()));
+    ExpectEq(opinion, Owner.opinionOf(Actor));
+    ExpectEq(0, Actor.countObservations(([ "type":"conversation.response" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TopicWithoutResponsesClearsOnlyActorsOldChoices()
+{
+    object second = clone_object("/lib/tests/support/services/mockPlayer.c");
+    second.Name("Second speaker");
+    move_object(second, environment(Actor));
+    Conversation.testAddTopic("test", "A shared topic.");
+    Conversation.testAddResponse("test", "Choice", "Old choice.");
+    Conversation.testAddTopic("terminal", "A terminal topic.");
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    ExpectTrue(Conversation.speakMessage("test", second, Owner));
+    ExpectTrue(Conversation.speakMessage("terminal", Actor, Owner));
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectTrue(Conversation.displayResponse("1", second, Owner));
+    destruct(second);
+    ExpectEq(0, sizeof(Conversation.responses(Actor)));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TopicPrerequisitesAreRecheckedWhenSelectingResponse()
+{
+    Actor.Race("elf");
+    Conversation.testAddTopic("test", "An elf-only topic.");
+    Conversation.testAddTopicPrerequisite("test", ([
+        "race":([ "type":"race", "value":({ "elf" }) ])
+    ]));
+    Conversation.testAddResponse("test", "Choice", "An old choice.");
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    Actor.Race("human");
+    Actor.resetCatchList();
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(0, sizeof(Actor.caughtMessages()));
+    ExpectEq(0, Actor.countObservations(([ "type":"conversation.response" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DeadActorsArePrunedWithoutLosingLiveChoices()
+{
+    object second = clone_object("/lib/tests/support/services/mockPlayer.c");
+    second.Name("Second speaker");
+    move_object(second, environment(Actor));
+    Conversation.testAddTopic("test", "A shared topic.");
+    Conversation.testAddResponse("test", "Choice", "A choice.");
+    ExpectTrue(Conversation.speakMessage("test", second, Owner));
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    destruct(second);
+    ExpectEq(({ "1" }), Conversation.responses(Actor));
+    ExpectTrue(Conversation.displayResponse("1", Actor, Owner));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddTopicAddsDiscussionTopic()
 {
     Conversation.testAddTopic("test", "This is a test message");

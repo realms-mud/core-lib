@@ -17,7 +17,8 @@ void Setup()
     ResearchItem = clone_object("/lib/tests/support/research/testRitualResearchItem");
     ResearchItem.addSpecification("command template", "the command");
 
-    User = clone_object("/lib/tests/support/services/combatWithMockServices");
+    User = clone_object(
+        "/lib/tests/support/services/observationCombatActor.c");
     User.Name("Bob");
     User.Str(20);
     User.Int(20);
@@ -44,6 +45,24 @@ void CleanUp()
 void TypeIsRitual()
 {
     ExpectEq("ritual", ResearchItem.query("type"), "query the research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RitualUseRecordsOnlySuccessfulExecution()
+{
+    User.ToggleMockResearch();
+    ResearchItem.addSpecification("scope", "self");
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ExpectEq(0, User.countObservations(([ "type":"research.use" ])));
+    User.heart_beat();
+    ResearchItem.TogglePerformRitual();
+    ExpectTrue(ResearchItem.execute("the command", User));
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
+    User.heart_beat();
+    User.ToggleCooldown();
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////

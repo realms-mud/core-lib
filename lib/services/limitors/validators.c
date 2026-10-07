@@ -432,6 +432,15 @@ public nomask int validLimitor(mapping limitor)
                         ret &&= validResearchLimitor(limitor[key]);
                         break;
                     }
+                    case "observation":
+                    {
+                        ret &&= mappingp(limitor[key]) &&
+                            stringp(limitor[key]["type"]) &&
+                            sizeof(limitor[key]["type"]) &&
+                            intp(limitor[key]["minimum"]) &&
+                            limitor[key]["minimum"] > 0;
+                        break;
+                    }
                     case "research active":
                     {
                         ret &&= validResearchIsActiveLimitor(limitor[key]);

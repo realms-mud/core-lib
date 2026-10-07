@@ -571,20 +571,48 @@ private nomask void executeResponseEffect(mapping effects,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void cleanResponseKeys()
+{
+    foreach(mixed actor in m_indices(responseKeys))
+    {
+        if (!objectp(actor))
+        {
+            m_delete(responseKeys, actor);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int displayResponse(string choice, object actor, object owner)
 {
     int ret = 0;
 
-    if (objectp(owner) && member(responseKeys, choice))
+    cleanResponseKeys();
+    string key = objectp(actor) && mappingp(responseKeys[actor]) ?
+        responseKeys[actor][choice] : 0;
+    string id = stringp(key) ? regexplode(key, "#")[0] : 0;
+    if (objectp(owner) && stringp(key) &&
+        checkPrerequisites(actor, id, owner) &&
+        checkPrerequisites(actor, key, owner))
     {
         ret = 1;
-        string key = responseKeys[choice];
-        string id = regexplode(key, "#")[0];
 
         displayMessage("\n" + topics[id]["responses"][key]["template"] + 
             "\n\n", actor, owner);
-        responseKeys = ([]);
+        m_delete(responseKeys, actor);
 
+        if (objectp(actor) && function_exists("recordObservation", actor))
+        {
+            actor->recordObservation(([
+                "type": "conversation.response",
+                "subject": program_name(owner),
+                "participants": ({ owner }),
+                "context": ([
+                    "topic": id,
+                    "response": key
+                ])
+            ]));
+        }
         if (member(topics[id]["responses"][key], "topic"))
         {
             owner->responseFromConversation(actor,
@@ -611,9 +639,10 @@ public nomask int displayResponse(string choice, object actor, object owner)
 /////////////////////////////////////////////////////////////////////////////
 private nomask void displayResponses(string id, object actor, object owner)
 {
+    cleanResponseKeys();
+    responseKeys[actor] = ([]);
     if (member(topics, id) && member(topics[id], "responses"))
     {
-        responseKeys = ([]);
         string *responses = sort_array(m_indices(topics[id]["responses"]),
             (: $1 > $2 :));
 
@@ -630,7 +659,7 @@ private nomask void displayResponses(string id, object actor, object owner)
                 string choice = to_string(elements);
                 if (!disabled)
                 {
-                    responseKeys[choice] = id + "#" +
+                    responseKeys[actor][choice] = id + "#" +
                         topics[id]["responses"][response]["selection"];
                 }
 
@@ -667,9 +696,12 @@ private nomask void displayResponses(string id, object actor, object owner)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string *responses()
+public nomask varargs string *responses(object actor)
 {
-    return m_indices(responseKeys) + ({});
+    cleanResponseKeys();
+    actor = objectp(actor) ? actor : this_player();
+    return objectp(actor) && mappingp(responseKeys[actor]) ?
+        m_indices(responseKeys[actor]) + ({}) : ({});
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -703,6 +735,7 @@ public nomask int speakMessage(string key, object actor, object owner)
         member(topics[key], "template") &&
         checkPrerequisites(actor, key, owner))
     {
+        m_delete(responseKeys, actor);
         displayMessage("\n" + getTopicTemplate(key, actor, owner), actor, owner);
         owner->updateSpokenTopic(actor, key);
 

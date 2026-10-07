@@ -1176,6 +1176,14 @@ public nomask int unregisterAttacker(object attacker)
     if (member(hostileList, attacker))
     {
         ret = 1;
+        object experiences = getModule("experiences");
+        if (experiences && objectp(attacker))
+        {
+            experiences->recordObservation(([
+                "type":"combat.ended",
+                "subject":attacker
+            ]));
+        }
         m_delete(hostileList, attacker);
     }
     return ret;
@@ -1309,6 +1317,14 @@ public nomask int registerAttacker(object attacker)
     if (ret && !member(hostileList, attacker) && attacker->has("combat"))
     {
         hostileList[attacker] = (["time": time() + sizeof(hostileList) ]);
+        object experiences = getModule("experiences");
+        if (experiences)
+        {
+            experiences->recordObservation(([
+                "type":"combat.started",
+                "subject":attacker
+            ]));
+        }
     }
     return ret;
 }
@@ -1320,6 +1336,7 @@ public nomask int supercedeAttackers(object attacker)
 
     if (ret && attacker->has("combat"))
     {
+        registerAttacker(attacker);
         hostileList[attacker] = ([ "time": 1 ]);
     }
     return ret;
@@ -1361,6 +1378,17 @@ public nomask void generateCombatStatistics(object foe)
     {
         getModule("player")->saveCombatStatistics(this_object(), foe);
     }            
+    object experiences = getModule("experiences");
+    if (foe && experiences)
+    {
+        mapping observation = ([
+            "type": "combat.kill",
+            "subject": foe
+        ]);
+        observation["context"] = getService("experiences")->
+            buildObservationContext(this_object(), observation);
+        experiences->recordObservation(observation);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1505,6 +1533,18 @@ private nomask int determineFateFromDeath(object murderer)
     
     if(killMe)
     {
+        object experiences = getModule("experiences");
+        if (experiences)
+        {
+            experiences->recordObservation(([
+                "type":"combat.death",
+                "subject":murderer ? murderer : this_object()
+            ]));
+        }
+        foreach(object opponent in m_indices(hostileList))
+        {
+            stopFight(opponent);
+        }
         object player = getModule("player");
         if (player)
         {
@@ -2266,7 +2306,7 @@ static nomask void combatHeartBeat()
             {
                 if (foe && !member(hostileList, foe))
                 {
-                    hostileList[foe] = (["time": time()]);
+                    registerAttacker(foe);
                 }
             }
         }

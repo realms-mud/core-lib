@@ -76,6 +76,15 @@ public nomask int craftItem(object item, object user)
 {
     int canCraft = 0;
     mapping materialsUsed = materialsUsedForCrafting(item);
+    string itemPath = program_name(item);
+    mapping context = ([
+        "name": item->query("name"),
+        "blueprint": item->query("blueprint"),
+        "recipe": item->query("blueprint"),
+        "materials": deep_copy(item->query("crafting materials")),
+        "materials used": deep_copy(materialsUsed),
+        "craftsmanship": item->query("craftsmanship")
+    ]);
 
     updateItemExperience(item);
 
@@ -91,6 +100,15 @@ public nomask int craftItem(object item, object user)
     }
     canCraft &&= applyEnchantments(item, user);
 
+    if (!canCraft && sizeof(materialsUsed) && objectp(user) &&
+        function_exists("recordObservation", user))
+    {
+        user->recordObservation(([
+            "type": "craft.failed",
+            "subject": itemPath,
+            "context": context
+        ]));
+    }
     return canCraft;
 }
 

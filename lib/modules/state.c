@@ -5,6 +5,8 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/state.h"
 
+public nomask string stateFor(object caller);
+
 /////////////////////////////////////////////////////////////////////////////
 public void executeStateChange(object caller, string newState)
 {
@@ -23,6 +25,7 @@ public nomask void onStateChanged(object caller, string newState)
 {
     if (objectp(caller))
     {
+        string previousState = stateFor(caller);
         object persistence = getModule("secure/persistence");
         if (objectp(persistence))
         {
@@ -31,6 +34,19 @@ public nomask void onStateChanged(object caller, string newState)
         else
         {
             characterStates[getKey(caller)] = newState;
+        }
+        if ((previousState != newState) &&
+            (stateFor(caller) == newState) &&
+            function_exists("recordObservation", this_object()))
+        {
+            this_object()->recordObservation(([
+                "type": "state.changed",
+                "subject": getKey(caller),
+                "context": ([
+                    "previous state": previousState,
+                    "state": newState
+                ])
+            ]));
         }
         executeStateChange(caller, newState);
 

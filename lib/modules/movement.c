@@ -11,12 +11,14 @@ virtual inherit "/lib/core/thing.c";
 public nomask void runAway()
 {
     object originalLocation = environment();
+    object combat = getModule("combat");
+    object opponent = combat ? combat->getTargetToAttack(1) : 0;
     if(originalLocation && function_exists("exits", originalLocation))
     {
         string *possibleDestinations = originalLocation->exits();
         object materialAttributes = getModule("materialAttributes");
 
-        if(possibleDestinations && materialAttributes &&
+        if(sizeof(possibleDestinations) && materialAttributes &&
             !materialAttributes->queryProperty("no fear"))
         {
             int attemptsToRun = 0;
@@ -37,6 +39,28 @@ public nomask void runAway()
             else
             {
                 write("Your legs run away with you!\n");
+                object experiences = getModule("experiences");
+                if (opponent && experiences)
+                {
+                    experiences->recordObservation(([
+                        "type":"combat.fled",
+                        "subject":opponent,
+                        "location":originalLocation,
+                        "context":([
+                            "destination":program_name(environment())
+                        ])
+                    ]));
+                }
+                if (combat)
+                {
+                    foreach(object foe in all_inventory(originalLocation))
+                    {
+                        if (combat->isInCombatWith(foe))
+                        {
+                            combat->stopFight(foe);
+                        }
+                    }
+                }
             }
         }
     }
@@ -100,6 +124,8 @@ public varargs nomask int move(string location, string direction,
     int silently, object region)
 {
     int ret = 0;
+    object fromRoom = environment();
+    string fromLocation = fromRoom ? program_name(fromRoom) : "";
     object environmentService = getService("environment");
     if (environmentService)
     {
@@ -129,6 +155,49 @@ public varargs nomask int move(string location, string direction,
 
             newLocation->enterEnvironment(this_object(), 
                 this_object()->getParty());
+
+            if (environment() &&
+                function_exists("recordObservation", this_object()))
+            {
+                object toRoom = environment();
+                string toLocation = program_name(toRoom);
+                mapping context = ([
+                    "from": fromLocation,
+                    "to": toLocation,
+                    "direction": direction || ""
+                ]);
+                object fromRegion = objectp(fromRoom) &&
+                    function_exists("getRegion", fromRoom) ?
+                    fromRoom->getRegion() : 0;
+                object toRegion = function_exists("getRegion", toRoom) ?
+                    toRoom->getRegion() : 0;
+                mapping leaveContext = context + ([]);
+                mapping enterContext = context + ([]);
+                if (objectp(fromRegion))
+                {
+                    leaveContext["region"] = program_name(fromRegion);
+                    leaveContext["region name"] = fromRegion->regionName();
+                    context["from region"] = program_name(fromRegion);
+                }
+                if (objectp(toRegion))
+                {
+                    enterContext["region"] = program_name(toRegion);
+                    enterContext["region name"] = toRegion->regionName();
+                    context["to region"] = program_name(toRegion);
+                }
+                this_object()->recordObservation(([
+                    "type": "movement.leave",
+                    "subject": toLocation,
+                    "location": fromRoom || fromLocation,
+                    "context": context + leaveContext
+                ]));
+                this_object()->recordObservation(([
+                    "type": "movement.enter",
+                    "subject": fromLocation,
+                    "location": toRoom,
+                    "context": context + enterContext
+                ]));
+            }
 
             if (materialAttributes->canSee() && 
                 !materialAttributes->Invisibility() && !silently)

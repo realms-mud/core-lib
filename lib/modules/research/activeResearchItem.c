@@ -110,6 +110,7 @@ protected int addSpecification(string type, mixed value)
         case "use ability fail message":
         case "use ability cooldown message":
         case "use combination message":
+        case "observation type":
         {
             if (value && stringp(value))
             {
@@ -417,11 +418,36 @@ public nomask int execute(string command, object initiator)
         
         if(ret && (!initiator->spellAction() || compositeResearch))
         {
+            mapping observation = 0;
+            if (!compositeResearch &&
+                function_exists("recordObservation", initiator))
+            {
+                object target = getTarget(initiator, command);
+                observation = ([
+                    "type": query("observation type") || "research.use",
+                    "actor": initiator,
+                    "subject": target ? target : initiator,
+                    "context": ([
+                        "research": researchName,
+                        "ability": query("name"),
+                        "kata": query("name")
+                    ])
+                ]);
+                object experiences = getService("experiences");
+                observation["context"] = experiences->
+                    buildObservationContext(initiator, observation);
+                observation = experiences->normalizeObservation(observation);
+                m_delete(observation, "actor");
+            }
             ret = useConsumables(initiator) && 
                 applyToScope(command, initiator, researchName);
 
             if(ret)
             {
+                if (observation)
+                {
+                    initiator->recordObservation(observation);
+                }
                 int repeatCount = getRepeatEffectCount(command, initiator);
                 if (repeatCount)
                 {
@@ -443,6 +469,10 @@ public nomask int execute(string command, object initiator)
                 }
             }
             initiator->spellAction(1);
+        }
+        else if (ret)
+        {
+            ret = 0;
         }
     }
     return ret;

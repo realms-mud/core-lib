@@ -14,6 +14,62 @@ private nomask object researchService()
     return getService("research");
 }
 
+public nomask string *availableResearchTrees();
+
+/////////////////////////////////////////////////////////////////////////////
+private void recordResearchObservation(string type, string researchItem,
+    mapping context)
+{
+    if (function_exists("recordObservation", this_object()))
+    {
+        context = context + ([]);
+        object item = researchService()->researchObject(researchItem);
+        object selectedTree = item ? 0 :
+            researchService()->researchTree(researchItem);
+        string source = item ? item->query("source") :
+            (selectedTree ? selectedTree->Source() : 0);
+        string *trees = ({ });
+        if (selectedTree)
+        {
+            trees += ({ researchItem });
+        }
+        else
+        {
+            foreach(string tree in availableResearchTrees())
+            {
+                object treeObject = researchService()->researchTree(tree);
+                if (treeObject &&
+                    treeObject->isMemberOfResearchTree(researchItem))
+                {
+                    trees += ({ tree });
+                    if (!source && treeObject->Source())
+                    {
+                        source = treeObject->Source();
+                    }
+                }
+            }
+        }
+        if (sizeof(trees))
+        {
+            context["research trees"] = trees;
+        }
+        if (stringp(source) && source != "")
+        {
+            context["source"] = source;
+            object guilds = getModule("guilds");
+            if (guilds && guilds->memberOfGuild(source))
+            {
+                context["guild"] = source;
+            }
+        }
+        this_object()->recordObservation(([
+            "type": type,
+            "subject": researchItem,
+            "context": context
+        ]));
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int equivalentIsResearched(string researchItem)
 {
@@ -140,6 +196,10 @@ public nomask varargs int activateSustainedResearch(object researchObj,
         {
             state->resetCaches();
         }
+        recordResearchObservation("research.use", researchItem, ([
+            "ability":researchObj->query("name"),
+            "activation":"sustained"
+        ]));
     }
     return ret;
 }
@@ -185,6 +245,9 @@ public nomask int deactivateSustainedResearch(string researchItem)
         {
             state->resetCaches();
         }
+        recordResearchObservation("research.deactivated", researchItem, ([
+            "activation":"sustained"
+        ]));
     }
     return ret;
 }
@@ -354,6 +417,10 @@ public nomask varargs int initiateResearch(string researchItem)
 
                     ret = 1;
 
+                    recordResearchObservation("research.learn", researchItem,
+                        ([ "research type": "points" ]));
+                    recordResearchObservation("research.complete", researchItem,
+                        ([ "research type": "points" ]));
                     object events = getModule("events");
                     if (events && objectp(events))
                     {
@@ -373,6 +440,8 @@ public nomask varargs int initiateResearch(string researchItem)
                 ]);
                 ret = 1;
                 
+                recordResearchObservation("research.learn", researchItem,
+                    ([ "research type": "timed" ]));
                 object events = getModule("events");
                 if(events && objectp(events))
                 {
@@ -391,6 +460,12 @@ public nomask varargs int initiateResearch(string researchItem)
                 ]);
                 ret = 1;
                 
+                mapping context = ([ "research type":
+                    researchService()->getResearchType(researchItem) ]);
+                recordResearchObservation("research.learn", researchItem,
+                    context);
+                recordResearchObservation("research.complete", researchItem,
+                    context);
                 object events = getModule("events");
                 if(events && objectp(events))
                 {
@@ -513,6 +588,9 @@ public nomask int addResearchChoice(mapping researchChoice)
 private void processResearchChoice(string researchItem, string choice, 
     string selection, string event)
 {
+    int offeredSelection = member(researchChoices[choice], selection) &&
+        mappingp(researchChoices[choice][selection]) &&
+        (researchChoices[choice][selection]["key"] == researchItem);
     string *choicesToObsolete = member(researchChoices[choice][selection], "obsoletes") ?
         researchChoices[choice][selection]["obsoletes"] : ({});
 
@@ -533,6 +611,14 @@ private void processResearchChoice(string researchItem, string choice,
 
     m_delete(researchChoices, choice);
 
+    if (offeredSelection)
+    {
+        recordResearchObservation(event == "onResearchPathChosen" ?
+            "research.pathChosen" : "research.choiceChosen", researchItem, ([
+                "choice": choice,
+                "selection": selection
+            ]));
+    }
     object events = getModule("events");
     if (events && objectp(events))
     {
@@ -871,6 +957,8 @@ static nomask void researchHeartBeat()
                     research[researchItem]["when research complete"] = time();
                     research[researchItem]["research complete"] = 1;
 
+                    recordResearchObservation("research.complete", researchItem,
+                        ([ "research type": "timed" ]));
                     object events = getModule("events");
                     if (events && objectp(events))
                     {

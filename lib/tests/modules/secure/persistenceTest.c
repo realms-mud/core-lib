@@ -168,11 +168,11 @@ void PlayerResearchRestored()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void PlayerExperienceRestored()
+void PlayerExperiencesRestored()
 {
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
 
-    mapping *observations = dataAccess.queryExperienceByPlayer("gorthaur",
+    mapping *observations = dataAccess.queryObservationsByPlayer("gorthaur",
         ([]), 0, 0);
 
     ExpectEq(1, sizeof(observations));
@@ -181,12 +181,12 @@ void PlayerExperienceRestored()
     ExpectEq(142, observations[0]["metadata"]["damage"]);
     ExpectEq("snow", observations[0]["context"]["weather"]);
 
-    ExpectTrue(dataAccess.hasExperienceByPlayer("gorthaur",
+    ExpectTrue(dataAccess.hasObservationByPlayer("gorthaur",
         ([ "type": "combat.kill" ])));
-    ExpectEq(1, dataAccess.countExperienceByPlayer("gorthaur",
+    ExpectEq(1, dataAccess.countObservationsByPlayer("gorthaur",
         ([ "type": "combat" ])));
 
-    mapping *filtered = dataAccess.queryExperienceByPlayer("gorthaur",
+    mapping *filtered = dataAccess.queryObservationsByPlayer("gorthaur",
         ([ "type": "combat.kill", "weather": "snow", "weapon": "katana" ]),
         0, 0);
     ExpectEq(1, sizeof(filtered));
@@ -444,26 +444,250 @@ void PlayerResearchSaved()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void PlayerExperienceSaved()
+void PlayerExperiencesSaved()
 {
-    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-
-    dataAccess.recordExperienceObservation("gorthaur", ([
+    Player.restore("gorthaur");
+    mapping recorded = Player.recordObservation(([
         "type": "movement.enter",
         "subject": "tol-dhurath temple",
         "participants": ({ }),
         "timestamp": 1234,
         "location": "/areas/tol-dhurath/entry/1x0.c",
-        "context": ([ "terrain": "forest" ]),
-        "metadata": ([ "speed": "walk" ])
+        "context": ([
+            "terrain": "forest",
+            "details": ([ "wind": "north", "conditions": ({ "snow", "ice" }) ])
+        ]),
+        "metadata": ([
+            "speed": "walk",
+            "measurements": ({ "slow", 2 })
+        ])
+    ]));
+    ExpectTrue(Player.hasObservation(([ "type": "combat.kill" ])));
+
+    recorded["context"]["details"]["wind"] = "east";
+    recorded["metadata"]["measurements"][0] = "fast";
+
+    Player.save();
+
+    object restoredPlayer = clone_object("/lib/realizations/player.c");
+    restoredPlayer.restore("gorthaur");
+
+    ExpectTrue(restoredPlayer.hasObservation(([
+        "type": "movement.enter", "terrain": "forest" ])));
+    mapping *observations = restoredPlayer.queryObservations(([
+        "type": "movement.enter" ]));
+    ExpectEq(recorded["ID"], observations[0]["ID"]);
+    ExpectEq("north", observations[0]["context"]["details"]["wind"]);
+    ExpectEq(({ "snow", "ice" }),
+        observations[0]["context"]["details"]["conditions"]);
+    ExpectEq(({ "slow", 2 }), observations[0]["metadata"]["measurements"]);
+    ExpectEq(1, restoredPlayer.countObservations(([
+        "type": "movement.enter",
+        "context": ([ "details": ([ "wind": "north" ]) ])
+    ])));
+    ExpectTrue(restoredPlayer.hasObservation(([ "type": "combat.kill" ])));
+    restoredPlayer.restore("gorthaur");
+    ExpectEq(1, restoredPlayer.countObservations(([
+        "type": "movement.enter",
+        "timestamp": 1234
+    ])));
+
+    destruct(restoredPlayer);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExperiencesV2CodecPreservesScalarsAndDelimiters()
+{
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    mapping context = ([
+        "": "",
+        "note##:=:": "a##b:=:c:@experience-v1@",
+        "nested": ([ "empty": ([]), "list": ({ }) ])
+    ]);
+    mapping metadata = ([
+        "ratio": 1.25,
+        "negative": -2.5,
+        "count": -7,
+        "values": ({ "", 0, 3.5, "##:=:" })
+    ]);
+    mapping recorded = dataAccess.recordObservation("gorthaur", ([
+        "type": "test.codec.v2",
+        "participants": ({ "", "a##b:=:c" }),
+        "context": context,
+        "metadata": metadata
+    ]));
+    ExpectTrue(stringp(recorded["ID"]));
+    ExpectEq(36, sizeof(recorded["ID"]));
+    ExpectFalse(member(recorded, "_observationId"));
+
+    dataAccess.recordObservation("gorthaur", recorded);
+    mapping *observations = dataAccess.queryObservationsByPlayer("gorthaur",
+        ([ "type": "test.codec.v2" ]));
+    ExpectEq(1, sizeof(observations));
+    ExpectEq(recorded["ID"], observations[0]["ID"]);
+    ExpectEq(context, observations[0]["context"]);
+    ExpectEq(metadata, observations[0]["metadata"]);
+    ExpectTrue(floatp(observations[0]["metadata"]["ratio"]));
+    ExpectTrue(intp(observations[0]["metadata"]["count"]));
+    ExpectEq(({ "", "a##b:=:c" }), observations[0]["participants"]);
+
+    int dbHandle = db_connect(RealmsDatabase());
+    db_exec(dbHandle, "use " + RealmsDatabase() + ";");
+    db_exec(dbHandle, sprintf("select participants, observationContext, "
+        "observationMetadata from experienceObservations "
+        "where observationKey = '%s';", db_conv_string(recorded["ID"])));
+    mixed row = db_fetch(dbHandle);
+    ExpectSubStringMatch("@experiences-v2@array:", row[0]);
+    ExpectSubStringMatch("@experiences-v2@mapping:", row[1]);
+    ExpectSubStringMatch("string:0:", row[1]);
+    ExpectSubStringMatch("integer:2:-7", row[2]);
+    ExpectSubStringMatch("float:", row[2]);
+    while (db_fetch(dbHandle));
+    db_close(dbHandle);
+    destruct(dataAccess);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistedSocialExperienceUnlocksRealResearch()
+{
+    string research = "/lib/tests/support/research/observant-diplomat.c";
+    Player.restore("gorthaur");
+    object room = clone_object("/lib/environment/environment.c");
+    move_object(Player, room);
+    object soul = load_object("/lib/commands/player/soul.c");
+    ExpectFalse(Player.canResearch(research));
+    ExpectFalse(Player.initiateResearch(research));
+    ExpectTrue(soul.execute("smile", Player));
+    ExpectTrue(Player.hasObservation(([
+        "type": "social.emote",
+        "action": "smile"
+    ])));
+    Player.save();
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player.restore("gorthaur");
+    ExpectTrue(Player.canResearch(research));
+    Player.addResearchPoints(1);
+    ExpectTrue(Player.initiateResearch(research));
+    ExpectTrue(Player.isResearched(research));
+    Player.save();
+    destruct(Player);
+    Player = clone_object("/lib/realizations/player.c");
+    Player.restore("gorthaur");
+    ExpectTrue(Player.isResearched(research));
+    destruct(room);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void saveEncodedExperience(string type, string participants,
+    string context, string metadata)
+{
+    int dbHandle = db_connect(RealmsDatabase());
+    db_exec(dbHandle, "use " + RealmsDatabase() + ";");
+    db_exec(dbHandle, "select id from players where name = 'gorthaur';");
+    mixed playerRow = db_fetch(dbHandle);
+    while (db_fetch(dbHandle));
+    string observationId = generateGuid();
+    db_exec(dbHandle, sprintf("call saveExperienceObservation("
+        "'%s',%d,'%s','','','%s',777,'','%s','%s');",
+        db_conv_string(observationId), to_int(playerRow[0]),
+        db_conv_string(type), db_conv_string(participants),
+        db_conv_string(context), db_conv_string(metadata)));
+    while (db_fetch(dbHandle));
+    db_close(dbHandle);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExperiencesLegacyV1CodecRemainsReadable()
+{
+    string nestedPayload = "1:string:5:countinteger:2:-7";
+    string contextPayload = "3:string:5:emptystring:0:"
+        "string:4:notestring:8:a##b:=:c" +
+        sprintf("string:6:nestedmapping:%d:%s", sizeof(nestedPayload),
+            nestedPayload);
+    string metadataPayload = "1:string:5:ratiofloat:4:1.25";
+    saveEncodedExperience("test.codec.v1",
+        "@experience-v1@array:28:2:string:0:string:8:a##b:=:c",
+        sprintf("@experience-v1@mapping:%d:%s", sizeof(contextPayload),
+            contextPayload),
+        sprintf("@experience-v1@mapping:%d:%s", sizeof(metadataPayload),
+            metadataPayload));
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    mapping *observations = dataAccess.queryObservationsByPlayer("gorthaur",
+        ([ "type": "test.codec.v1" ]));
+    ExpectEq(1, sizeof(observations));
+    ExpectEq(({ "", "a##b:=:c" }), observations[0]["participants"]);
+    ExpectEq(([ "empty": "", "note": "a##b:=:c",
+        "nested": ([ "count": -7 ]) ]), observations[0]["context"]);
+    ExpectEq(([ "ratio": 1.25 ]), observations[0]["metadata"]);
+    ExpectTrue(floatp(observations[0]["metadata"]["ratio"]));
+    destruct(dataAccess);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExperiencesLegacyPlainCodecRemainsReadable()
+{
+    saveEncodedExperience("test.codec.plain", "first##second",
+        "weather:=:snow##count:=:-7", "damage:=:142##note:=:\"old\"");
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    mapping *observations = dataAccess.queryObservationsByPlayer("gorthaur",
+        ([ "type": "test.codec.plain" ]));
+    ExpectEq(1, sizeof(observations));
+    ExpectEq(({ "first", "second" }), observations[0]["participants"]);
+    ExpectEq(([ "weather": "snow", "count": -7 ]),
+        observations[0]["context"]);
+    ExpectEq(([ "damage": 142, "note": "old" ]),
+        observations[0]["metadata"]);
+    destruct(dataAccess);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void StalePlayerSaveDoesNotDeleteNewObservations()
+{
+    Player.restore("gorthaur");
+    object stalePlayer = clone_object("/lib/realizations/player.c");
+    stalePlayer.restore("gorthaur");
+
+    Player.recordObservation(([ "type": "test.append.first" ]));
+    Player.save();
+
+    stalePlayer.recordObservation(([ "type": "test.append.second" ]));
+    stalePlayer.save();
+    stalePlayer.save();
+
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    ExpectEq(1, dataAccess.countObservationsByPlayer("gorthaur",
+        ([ "type": "test.append.first" ])));
+    ExpectEq(1, dataAccess.countObservationsByPlayer("gorthaur",
+        ([ "type": "test.append.second" ])));
+
+    destruct(dataAccess);
+    destruct(stalePlayer);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FilteredObservationsPaginationAppliesAfterMatching()
+{
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess.recordObservation("gorthaur", ([
+        "type": "test.page.match",
+        "subject": "first"
+    ]));
+    dataAccess.recordObservation("gorthaur", ([
+        "type": "test.page.skip",
+        "subject": "unmatched"
+    ]));
+    dataAccess.recordObservation("gorthaur", ([
+        "type": "test.page.match",
+        "subject": "second"
     ]));
 
-    ExpectTrue(dataAccess.hasExperienceByPlayer("gorthaur",
-        ([ "type": "movement.enter" ])));
-    ExpectEq(2, sizeof(dataAccess.queryExperienceByPlayer("gorthaur",
-        ([]), 0, 0)));
-    ExpectEq(1, dataAccess.countExperienceByPlayer("gorthaur",
-        ([ "type": "movement.enter", "terrain": "forest" ])));
+    mapping *page = dataAccess.queryObservationsByPlayer("gorthaur",
+        ([ "type": "test.page.match" ]), 1, 1);
+
+    ExpectEq(1, sizeof(page));
+    ExpectEq("second", page[0]["subject"]);
 
     destruct(dataAccess);
 }

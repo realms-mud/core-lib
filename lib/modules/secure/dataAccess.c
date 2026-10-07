@@ -18,7 +18,7 @@ virtual inherit "/lib/modules/secure/dataServices/conversationsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/stateDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/settingsDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/domainsDataService.c";
-virtual inherit "/lib/modules/secure/dataServices/experienceDataService.c";
+virtual inherit "/lib/modules/secure/dataServices/experiencesDataService.c";
 virtual inherit "/lib/modules/secure/dataServices/relationshipsDataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ public nomask mapping getPlayerData(string name)
                 data += getPlayerSettings(dbHandle, name);
                 // data += getPlayerDomains(data["playerId"], dbHandle);
                 data += getInventory(data["playerId"], dbHandle);
-                data += getExperience(data["playerId"], dbHandle);
+                data += getExperiences(data["playerId"], dbHandle);
                 data += getRelationships(data["playerId"], dbHandle, name);
             }
 
@@ -97,7 +97,28 @@ public nomask void savePlayerData(mapping playerData)
             saveSettings(dbHandle, playerData);
 //            saveDomains(dbHandle, playerId, playerData);
             saveInventory(dbHandle, playerId, playerData);
-            saveExperience(dbHandle, playerId, playerData);
+            db_exec(dbHandle, "start transaction;");
+            mixed failure = db_error(dbHandle);
+            if (!failure)
+            {
+                failure = catch(saveExperiences(dbHandle, playerId,
+                    playerData); nolog);
+            }
+            if (!failure)
+            {
+                db_exec(dbHandle, "commit;");
+                if (db_error(dbHandle))
+                {
+                    failure = "Observation commit failed: " +
+                        db_error(dbHandle);
+                }
+            }
+            if (failure)
+            {
+                db_exec(dbHandle, "rollback;");
+                db_close(dbHandle);
+                raise_error(sprintf("%s\n", failure));
+            }
             saveRelationships(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }

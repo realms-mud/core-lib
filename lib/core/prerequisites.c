@@ -75,7 +75,8 @@ private nomask int isValidPrerequisiteType(string type)
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
         "opinion", "state", "presence", "not present", "guild rank",
-        "guilds at level", "guilds at rank", "spoken topics" }), type) > -1);
+        "guilds at level", "guilds at rank", "spoken topics",
+        "observation" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -89,9 +90,22 @@ private nomask int isValidPrerequisiteType(string type)
 //-----------------------------------------------------------------------------
 protected nomask int validPrerequisite(mapping prerequisite)
 {
-    return (prerequisite && mappingp(prerequisite) &&
+    int ret = prerequisite && mappingp(prerequisite) &&
             member(prerequisite, "type") && 
-            isValidPrerequisiteType(prerequisite["type"]));
+            isValidPrerequisiteType(prerequisite["type"]);
+
+    if (ret && prerequisite["type"] == "observation")
+    {
+        ret = mappingp(prerequisite["criteria"]) &&
+            sizeof(prerequisite["criteria"]) &&
+            intp(prerequisite["value"]) && prerequisite["value"] > 0;
+        if (ret && member(prerequisite["criteria"], "type"))
+        {
+            ret = stringp(prerequisite["criteria"]["type"]) &&
+                sizeof(prerequisite["criteria"]["type"]);
+        }
+    }
+    return ret;
 }
 
 //-----------------------------------------------------------------------------
@@ -690,6 +704,15 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                             prerequisiteData["value"]);
                         break;
                     }
+                    case "observation":
+                    {
+                        ret &&= validResearcher(researcher) &&
+                            function_exists("countObservations", researcher) &&
+                            researcher->countObservations(
+                                prerequisiteData["criteria"]) >=
+                                prerequisiteData["value"];
+                        break;
+                    }
                     case "opinion":
                     {
                         ret &&= owner && (owner->opinionOf(researcher) >=
@@ -858,6 +881,12 @@ public nomask string displayPrerequisites(string colorConfiguration,
                     prereq = sprintf("%s %s %d", capitalize(key),
                         (key == "best kill") ? "level is" : "kill count of",
                         prerequisites[key]["value"]);
+                    break;
+                }
+                case "observation":
+                {
+                    prereq = sprintf("%s observation count of %d",
+                        capitalize(key), prerequisites[key]["value"]);
                     break;
                 }
                 case "guild rank":

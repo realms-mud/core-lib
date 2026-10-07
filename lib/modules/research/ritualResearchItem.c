@@ -59,6 +59,7 @@ protected int addSpecification(string type, mixed value)
             break;
         }
         case "event handler":
+        case "observation type":
         case "use ability message":
         case "use ability fail message":
         case "use ability cooldown message":
@@ -316,9 +317,33 @@ public nomask int execute(string command, object initiator)
         }
         if (!initiator->spellAction())
         {
+            mapping observation = 0;
+            if (ret && function_exists("recordObservation", initiator))
+            {
+                object target = getTarget(initiator, command);
+                object experiences = getService("experiences");
+                observation = ([
+                    "type":query("observation type") || "research.use",
+                    "actor":initiator,
+                    "subject":target ? target : initiator,
+                    "context":([
+                        "research":researchName,
+                        "ability":query("name"),
+                        "activation":"ritual"
+                    ])
+                ]);
+                observation["context"] = experiences->
+                    buildObservationContext(initiator, observation);
+                observation = experiences->normalizeObservation(observation);
+                m_delete(observation, "actor");
+            }
             ret &&= useConsumables(initiator) && performRitual(initiator) &&
                 applyToScope(command, initiator, researchName);
 
+            if (ret && observation)
+            {
+                initiator->recordObservation(observation);
+            }
             if (!ret && member(specificationData, "use ability fail message"))
             {
                 displayMessage(specificationData["use ability fail message"],

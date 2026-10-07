@@ -9,6 +9,12 @@ int AllowTo = 1;
 int isLight = 0;
 
 /////////////////////////////////////////////////////////////////////////////
+public void addTestExit(string direction, string destination)
+{
+    addExit(direction, destination);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public void toggleAllowFrom()
 {
     AllowFrom = !AllowFrom;

@@ -1076,9 +1076,10 @@ public nomask void SetupCommand()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void speakMessage(string messageTemplate,
+private nomask int speakMessage(string messageTemplate,
     object initiator, object target)
 {
+    int ret = 0;
     if (environment(initiator))
     {
         object configuration = getService("configuration");
@@ -1122,11 +1123,13 @@ private nomask void speakMessage(string messageTemplate,
                         tell_object(person, configuration->decorate(
                             format(parsedMessage, 78), "message", "soul",
                             person->colorConfiguration()));
+                        ret = 1;
                     }
                 }
             }
         }
     }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1176,11 +1179,14 @@ public nomask int execute(string command, object initiator)
         {
             ret = 1;
             object targetObj = 0;
-            string language = 0;
+            int targeted = 0;
+            string adverb = sizeof(regexp(({ messageTemplate }),
+                "##Adverb::[^#]+##")) ? regreplace(messageTemplate,
+                ".*##Adverb::([^#]+)##.*", "\\1", 1) : "";
 
             if (sizeof(regexp(({ command }), "-a(dverb)* [A-Za-z]+")))
             {
-                string adverb = regreplace(command, ".*-a(dverb)* ([A-Za-z]+).*", "\\2", 1);
+                adverb = regreplace(command, ".*-a(dverb)* ([A-Za-z]+).*", "\\2", 1);
                 command = regreplace(command, " *-a(dverb)* ([A-Za-z]+)", "", 1);
                 messageTemplate = regreplace(messageTemplate, "##Adverb(::[^#]+)*##", adverb);
             }
@@ -1191,6 +1197,7 @@ public nomask int execute(string command, object initiator)
 
             if (sizeof(regexp(({ command }), "-t(arget)* '*[A-Za-z]+")))
             {
+                targeted = 1;
                 string target = regreplace(command, ".*-t(arget)* ([A-Za-z]+|'[^']+').*", "\\2", 1);
                 target = regreplace(target, "'([^']+)'", "\\1", 1);
                 targetObj = present(target, environment(initiator));
@@ -1211,13 +1218,42 @@ public nomask int execute(string command, object initiator)
                 string flag = regreplace(action + command, commandList + " (-[A-Za-z]+).*", "\\2", 1);
                 tell_object(initiator, sprintf("Command failed: The '%s' flag is not valid.\n", flag));
             }
+            else if (targeted && (!objectp(targetObj) ||
+                !function_exists("isRealizationOfLiving", targetObj) ||
+                !targetObj->isRealizationOfLiving()))
+            {
+                tell_object(initiator,
+                    "Command failed: That target is not a living character here.\n");
+            }
+            else if (sizeof(regexp(({ command }), "[^ ]")))
+            {
+                tell_object(initiator,
+                    "Command failed: Unexpected soul command arguments.\n");
+            }
             else if ((initiator == targetObj) && !member(emoteTemplates[action], "can self-target"))
             {
                 tell_object(initiator, "Command failed: You cannot target yourself.\n");
             }
-            else
+            else if (speakMessage(messageTemplate, initiator, targetObj))
             {
-                speakMessage(messageTemplate, initiator, targetObj);
+                if (function_exists("recordObservation", initiator))
+                {
+                    initiator->recordObservation(([
+                        "type":"social.emote",
+                        "actor":initiator,
+                        "subject":targetObj ? targetObj : action,
+                        "participants":targetObj ?
+                            ({ initiator, targetObj }) : ({ initiator }),
+                        "location":environment(initiator),
+                        "context":([
+                            "emote type":"soul",
+                            "action":action,
+                            "adverb":lower_case(adverb),
+                            "explicit":1,
+                            "target":targetObj ? targetObj : ""
+                        ])
+                    ]));
+                }
 
                 if (targetObj && (initiator != targetObj) && 
                     !targetObj->isRealizationOfPlayer() &&
@@ -1227,11 +1263,6 @@ public nomask int execute(string command, object initiator)
                     {
                         speakMessage(emoteTemplates[action]["reactions"]["retaliation"],
                             targetObj, initiator);
-                    }
-                    if (member(emoteTemplates[action], "opinion modifier"))
-                    {
-                        targetObj->alterOpinionFromEmote(initiator,
-                            emoteTemplates[action]);
                     }
                 }
             }
@@ -1312,12 +1343,9 @@ protected string description(string displayCommand, string colorConfiguration)
 {
     return format("The various soul commands are a series of canned emotes "
         "that can be used to interact with other players and characters "
-        "in the game. For non-player characters, many of these commands "
-        "will have an affect on their opinion of the player and can "
-        "lead to reciprocation, be it friendly, rude, or romantic. Much of "
-        "these reciprocations are directly tied to the character's "
-        "personality traits. If you abuse an NPC, don't be surprised if "
-        "they abuse you back!\n\nPlayers can block other players from "
+        "in the game. Some non-player characters can respond to these "
+        "actions. Soul commands do not automatically change opinions "
+        "or reputation.\n\nPlayers can block other players from "
         "using these commands against them via the 'block player' setting. "
         "that can be modified via the set command.", 78);
 }

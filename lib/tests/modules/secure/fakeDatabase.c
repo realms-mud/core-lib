@@ -139,7 +139,7 @@ public nomask mapping Gorthaur()
         "userName": "gorthaur",
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c", "/lib/tests/support/research/testConstructedTree.c" }),
-        "experience": ({
+        "experiences": ({
             ([
                 "type": "combat.kill",
                 "actor": "/lib/realizations/player#gorthaur",
@@ -467,7 +467,7 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "userName": (name ? name : "earl"),
         "onKillList": 1,
         "openResearchTrees": ({ "/lib/tests/support/research/testSecondResearchTree.c", "/lib/tests/support/research/testBlargTree.c", "/lib/tests/support/research/testConstructedTree.c" }),
-        "experience": ({
+        "experiences": ({
             ([
                 "type": "combat.kill",
                 "actor": sprintf("/lib/realizations/player#%s", (name ? name : "earl")),

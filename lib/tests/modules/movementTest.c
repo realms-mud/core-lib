@@ -46,8 +46,84 @@ void CanMoveUserFromOneEnvironmentToAnother()
     ExpectTrue(present(Movement, FromPlace), "currently in from place");
     ExpectTrue(Movement.move(program_name(ToPlace)), "move called");
     ExpectTrue(present(Movement, ToPlace), "moved to to place");
+    ExpectEq(1, Movement.countObservations(([ "type": "movement.leave" ])));
+    ExpectEq(1, Movement.countObservations(([ "type": "movement.enter" ])));
+    ExpectTrue(Movement.hasObservation(([
+        "type": "movement.leave",
+        "location": program_name(FromPlace),
+        "subject": program_name(ToPlace)
+    ])));
+    ExpectTrue(Movement.hasObservation(([
+        "type": "movement.enter",
+        "location": program_name(ToPlace),
+        "subject": program_name(FromPlace),
+        "from": program_name(FromPlace),
+        "to": program_name(ToPlace)
+    ])));
     ExpectEq("This is the long description.\n",
         Movement.caughtMessage());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void SuccessfulEscapeRecordsFleeAndEndsBothSides()
+{
+    FromPlace.addTestExit("north", program_name(ToPlace));
+    efun::set_this_player(Movement);
+    FromPlace.init();
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe.Name("Pursuer");
+    move_object(foe, FromPlace);
+    ExpectTrue(Movement.registerAttacker(foe));
+    ExpectTrue(foe.registerAttacker(Movement));
+    Movement.runAway();
+    ExpectTrue(environment(Movement) == ToPlace);
+    ExpectEq(1, Movement.countObservations(([ "type":"combat.fled" ])));
+    ExpectEq(1, Movement.countObservations(([ "type":"combat.ended" ])));
+    ExpectEq(1, foe.countObservations(([ "type":"combat.ended" ])));
+    ExpectFalse(foe.isInCombatWith(Movement));
+    destruct(foe);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void BlockedEscapeDoesNotRecordFleeOrEndCombat()
+{
+    FromPlace.addTestExit("north", program_name(ToPlace));
+    efun::set_this_player(Movement);
+    FromPlace.init();
+    FromPlace.toggleAllowTo();
+    object foe = clone_object("/lib/realizations/monster.c");
+    foe.Name("Pursuer");
+    move_object(foe, FromPlace);
+    ExpectTrue(Movement.registerAttacker(foe));
+    Movement.runAway();
+    ExpectTrue(environment(Movement) == FromPlace);
+    ExpectEq(0, Movement.countObservations(([ "type":"combat.fled" ])));
+    ExpectEq(0, Movement.countObservations(([ "type":"combat.ended" ])));
+    ExpectTrue(Movement.isInCombatWith(foe));
+    destruct(foe);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MovementCapturesActualSourceAndDestinationRegions()
+{
+    object sourceRegion = clone_object("/lib/environment/region.c");
+    object destinationRegion = clone_object("/lib/environment/region.c");
+    sourceRegion->setRegionName("Source region");
+    destinationRegion->setRegionName("Destination region");
+    FromPlace->setRegion(sourceRegion);
+    ToPlace->setRegion(destinationRegion);
+    ExpectTrue(Movement.move(program_name(ToPlace), "north"));
+    mapping *left = Movement.queryObservations(([ "type": "movement.leave" ]));
+    mapping *entered = Movement.queryObservations(([
+        "type": "movement.enter"
+    ]));
+    ExpectEq("Source region", left[0]["context"]["region name"]);
+    ExpectEq("Destination region", entered[0]["context"]["region name"]);
+    ExpectEq(program_name(sourceRegion), left[0]["context"]["region"]);
+    ExpectEq(program_name(destinationRegion), entered[0]["context"]["region"]);
+    ExpectEq("north", entered[0]["context"]["direction"]);
+    destruct(sourceRegion);
+    destruct(destinationRegion);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -162,6 +238,7 @@ void MoveIsPreventedWhenAllowFromIsProhibited()
 {
     ToPlace.toggleAllowFrom();
     ExpectFalse(Movement.move(program_name(ToPlace), "north"), "move called");
+    ExpectFalse(Movement.hasObservation(([ "type": "movement" ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -169,6 +246,7 @@ void MoveIsPreventedWhenAllowToIsProhibited()
 {
     FromPlace.toggleAllowTo();
     ExpectFalse(Movement.move(program_name(ToPlace), "north"), "move called");
+    ExpectFalse(Movement.hasObservation(([ "type": "movement" ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////

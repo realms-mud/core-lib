@@ -4,6 +4,38 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask int checkObservationLimitor(mapping specificationData,
+    object owner, int verbose, string colorConfiguration,
+    object configuration)
+{
+    int ret = 1;
+
+    if (member(specificationData["limited by"], "observation"))
+    {
+        mixed observation = specificationData["limited by"]["observation"];
+        ret = getService("limitor")->validLimitor(([
+            "observation": observation
+        ])) && objectp(owner) &&
+            function_exists("countObservations", owner);
+
+        if (ret)
+        {
+            mapping criteria = observation + ([]);
+            m_delete(criteria, "minimum");
+            ret = owner->countObservations(criteria) >= observation["minimum"];
+        }
+
+        if (!ret && verbose)
+        {
+            write(configuration->decorate(
+                "You have not made enough matching observations.\n",
+                "missing prerequisites", "research", colorConfiguration));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int checkOpponentRaceLimitor(mapping specificationData, 
     object target, int verbose, string colorConfiguration, 
     object configuration)

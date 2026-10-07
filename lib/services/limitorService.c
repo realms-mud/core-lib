@@ -79,6 +79,9 @@ public nomask varargs int userFactorsMet(mapping specificationData, object owner
 
         ret = checkResearchActiveLimitor(specificationData, owner, verbose,
             colorConfiguration, configuration) && ret;
+
+        ret = checkObservationLimitor(specificationData, owner, verbose,
+            colorConfiguration, configuration) && ret;
     }
 
     return ret;

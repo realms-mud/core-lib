@@ -365,6 +365,25 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                         "traits:", convertToString(traits));
                     break;
                 }
+                case "observation":
+                {
+                    mapping observation =
+                        specificationData["limited by"][key];
+                    string criteria = observation["type"];
+                    foreach(string filterKey in sort_array(
+                        m_indices(observation), (: $1 > $2 :)))
+                    {
+                        if (filterKey != "type" && filterKey != "minimum")
+                        {
+                            criteria += sprintf(", %s: %O", filterKey,
+                                observation[filterKey]);
+                        }
+                    }
+                    ret += sprintf("This is only applied when you have at "
+                        "least %d matching observations (%s).\n",
+                        observation["minimum"], criteria);
+                    break;
+                }
             }
         }
     }

@@ -14,7 +14,8 @@ void Setup()
     ResearchItem = clone_object("/lib/tests/support/research/testActiveResearchItem");
     ResearchItem.addSpecification("command template", "the command");
 
-    User = clone_object("/lib/tests/support/services/combatWithMockServices");
+    User = clone_object(
+        "/lib/tests/support/services/observationCombatActor.c");
     User.Name("Bob");
     User.Str(20);
     User.Int(20);
@@ -38,6 +39,40 @@ void CleanUp()
 void TypeIsActive()
 {
     ExpectEq("active", ResearchItem.query("type"), "query the research type");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void UnannotatedSuccessfulUseRecordsOnceWithoutRepeatSpam()
+{
+    User.ToggleMockResearch();
+    ResearchItem.addSpecification("scope", "self");
+    ExpectTrue(ResearchItem.execute("the command", User));
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ResearchItem.testRepeatEffect(1, "the command", User,
+        program_name(ResearchItem));
+    ExpectEq(1, User.countObservations(([ "type":"research.use" ])));
+    mapping entry = User.queryObservations(([
+        "type":"research.use"
+    ]))[0];
+    ExpectEq(program_name(ResearchItem), entry["context"]["research"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FailedUnannotatedUseAndCooldownDoNotRecord()
+{
+    ExpectFalse(ResearchItem.execute("the command", User));
+    User.ToggleMockResearch();
+    ExpectFalse(ResearchItem.execute("the command", User));
+    User.heart_beat();
+    ResearchItem.addSpecification("scope", "self");
+    User.ToggleCooldown();
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ExpectEq(0, User.countObservations(([ "type":"research.use" ])));
+    User.ToggleCooldown();
+    ResearchItem.addSpecification("spell point cost", 10000);
+    ExpectFalse(ResearchItem.execute("the command", User));
+    ExpectEq(0, User.countObservations(([ "type":"research.use" ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -311,8 +311,7 @@ protected int executeOnSelf(string unparsedCommand, object owner,
         }
         else
         {
-            ret = 1;
-            activateCompositeResearch(owner, researchToUse);
+            ret = activateCompositeResearch(owner, researchToUse);
         }
     }
 
@@ -342,8 +341,7 @@ protected int executeInArea(string unparsedCommand, object owner,
         }
         else
         {
-            ret = 1;
-            activateCompositeResearch(owner, researchToUse);
+            ret = activateCompositeResearch(owner, researchToUse);
         }
     }
 

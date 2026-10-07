@@ -5,6 +5,36 @@
 virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/conversations.h"
 
+private nosave mapping actorConversations = ([]);
+private nosave mapping observedTopics = ([]);
+private nosave mapping startedTopics = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask void cleanActorConversations()
+{
+    foreach(mixed actor in m_indices(actorConversations))
+    {
+        if (!objectp(actor))
+        {
+            m_delete(actorConversations, actor);
+        }
+    }
+    foreach(mixed actor in m_indices(observedTopics))
+    {
+        if (!objectp(actor))
+        {
+            m_delete(observedTopics, actor);
+        }
+    }
+    foreach(mixed actor in m_indices(startedTopics))
+    {
+        if (!objectp(actor))
+        {
+            m_delete(startedTopics, actor);
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////
 public nomask int opinionOf(object target)
 {
@@ -132,9 +162,11 @@ public nomask void resetConversationState()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void initializeResponses()
+private nomask void initializeResponses(object actor)
 {
-    string *responses = CurrentTopic->responses();
+    object conversation = actorConversations[actor];
+    string *responses = objectp(conversation) ?
+        conversation->responses(actor) : ({});
     if (sizeof(responses))
     {
         this_object()->init();
@@ -161,10 +193,11 @@ public nomask int canConverse(object actor)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask int beginConversation(object actor)
+private int startConversation(object actor, int observeStart)
 {
     int ret = 0;
 
+    cleanActorConversations();
     if (objectp(actor) && actor->has("state"))
     {
         string actorState = actor->stateFor(this_object());
@@ -172,12 +205,51 @@ public nomask int beginConversation(object actor)
 
         if (member(topics, topic))
         {
-            CurrentTopic = topics[topic];
-            ret = CurrentTopic->speakMessage(topic, actor, this_object());
-            initializeResponses();
+            actorConversations[actor] = topics[topic];
+            ret = topics[topic]->speakMessage(topic, actor, this_object());
+            if (ret && observeStart &&
+                environment(actor) &&
+                function_exists("recordObservation", actor))
+            {
+                if (startedTopics[actor] != topic)
+                {
+                    startedTopics[actor] = topic;
+                    actor->recordObservation(([
+                        "type":"conversation.started",
+                        "subject":program_name(this_object()),
+                        "participants":({ this_object() }),
+                        "context":([ "topic":topic ])
+                    ]));
+                }
+                if (observedTopics[actor] != topic)
+                {
+                    observedTopics[actor] = topic;
+                    actor->recordObservation(([
+                        "type":"conversation.topic",
+                        "actor":actor,
+                        "subject":program_name(this_object()),
+                        "participants":({ actor, this_object() }),
+                        "location":environment(actor),
+                        "context":([
+                            "topic":topic,
+                            "explicit":1
+                        ])
+                    ]));
+                }
+            }
+            if (ret)
+            {
+                initializeResponses(actor);
+            }
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int beginConversation(object actor)
+{
+    return startConversation(actor, 1);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -188,7 +260,7 @@ public nomask void responseFromConversation(object actor, string response)
         actor->characterState(this_object(), response);
         if (response != "default")
         {
-            beginConversation(actor);
+            startConversation(actor, 0);
         }
     }
 }
@@ -196,24 +268,45 @@ public nomask void responseFromConversation(object actor, string response)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int respondToConversation(string choice)
 {
-    remove_action(1);
-    return CurrentTopic && CurrentTopic->displayResponse(query_command(),
-        this_player(), this_object());
+    int ret = 0;
+    cleanActorConversations();
+    object actor = this_player();
+    object conversation = actorConversations[actor];
+    if (objectp(actor) && objectp(conversation))
+    {
+        ret = conversation->displayResponse(query_command(),
+            actor, this_object());
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void onTriggerConversation(object caller,
     string conversation)
 {
-    if (member(topics, conversation))
+    cleanActorConversations();
+    if (objectp(caller) && member(topics, conversation))
     {
         object actor = caller->isRealizationOfPlayer() ? caller : this_player();
-        CurrentTopic = topics[conversation];
+        actorConversations[actor] = topics[conversation];
 
-        CurrentTopic->speakMessage(conversation, actor, this_object());
-        if (present(this_object(), environment(caller)))
+        int spoken = topics[conversation]->speakMessage(conversation, actor,
+            this_object());
+        if (spoken && objectp(actor) &&
+            startedTopics[actor] != conversation && environment(actor) &&
+            function_exists("recordObservation", actor))
         {
-            initializeResponses();
+            startedTopics[actor] = conversation;
+            actor->recordObservation(([
+                "type": "conversation.started",
+                "subject": program_name(this_object()),
+                "participants": ({ this_object() }),
+                "context": ([ "topic": conversation ])
+            ]));
+        }
+        if (spoken && present(this_object(), environment(caller)))
+        {
+            initializeResponses(actor);
         }
     }
 }
