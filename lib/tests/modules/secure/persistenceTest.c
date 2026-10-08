@@ -707,7 +707,7 @@ void PlayerRelationshipsSaved()
 
     ExpectEq(8, dataAccess.relationshipDimensionByPlayerAndTarget("gorthaur",
         targetKey, "trust"));
-    ExpectEq(2, sizeof(dataAccess.relationshipHistoryByPlayerAndTarget(
+    ExpectEq(1, sizeof(dataAccess.relationshipHistoryByPlayerAndTarget(
         "gorthaur", targetKey, ([]))));
 
     destruct(dataAccess);

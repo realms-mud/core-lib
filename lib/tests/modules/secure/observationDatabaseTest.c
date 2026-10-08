@@ -57,7 +57,7 @@ void CleanUp()
 
 void DatabaseObservationQueriesUsePersistedRows()
 {
-    ExpectEq(13, DatabaseVersionFromDatabase());
+    ExpectEq(15, DatabaseVersionFromDatabase());
     ExpectEq(1, DataAccess.countObservationsByPlayer("gorthaur", ([])));
     ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
         "type": "COMBAT", "weapon": "KATANA", "since": 777,
@@ -359,7 +359,7 @@ void MigrationBackfillsExistingV2V1AndPlainRows()
         "where versionType='database';");
     int handle = db_connect(RealmsDatabase());
     db_close(handle);
-    ExpectEq(13, DatabaseVersionFromDatabase());
+    ExpectEq(15, DatabaseVersionFromDatabase());
     ExpectEq(3, DataAccess.countObservationsByPlayer("gorthaur", ([])));
     ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
         "type": "COMBAT", "context": ([ "weather": "SNOW" ])

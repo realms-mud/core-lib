@@ -10,6 +10,7 @@ private string BaseQuest = "/lib/modules/quests/questItem.c";
 private string Name = 0;
 private string Description = 0;
 private string Type = "secondary";
+private mapping relationshipEffects = ([]);
 
 private object configuration = 
     getService("configuration");
@@ -61,6 +62,47 @@ private object configuration =
     //     "descrptions": "I must lay off the sauce - and the wenches. King Tantor"
     //         " is dead because of my night of debauchery.",
     //     "is final state": "failure",
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask varargs void addRelationshipEffect(string state,
+    string target, mapping changes, string direction)
+{
+    if (!member(stateTree, state) ||
+        getService("relationship")->identity(target) == "" ||
+        !getService("relationship")->validChanges(changes) ||
+        (direction && direction != "toward" && direction != "from"))
+    {
+        raise_error("ERROR - questItem: Invalid relationship effect.\n");
+    }
+    else
+    {
+        if (!member(relationshipEffects, state))
+        {
+            relationshipEffects[state] = ({ });
+        }
+        relationshipEffects[state] += ({ ([
+            "target":target,
+            "changes":changes + ([]),
+            "direction":direction ? direction : "from"
+        ]) });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void applyRelationshipEffects(object quester, string state)
+{
+    if (member(relationshipEffects, state))
+    {
+        foreach(mapping effect in relationshipEffects[state])
+        {
+            quester->recordRelationshipInteraction(effect["target"],
+                "quest.relationship", effect["changes"], ([
+                    "quest":program_name(this_object()),
+                    "state":state
+                ]), effect["direction"]);
+        }
+    }
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask void create()

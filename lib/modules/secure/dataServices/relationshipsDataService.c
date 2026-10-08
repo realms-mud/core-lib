@@ -5,6 +5,120 @@
 virtual inherit "/lib/modules/secure/dataServices/dataService.c";
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping *worldRelationships(string source, string target)
+{
+    if (sizeof(regexp(({ source, target }),
+        "^/lib/realizations/player[.]c#")))
+    {
+        raise_error("ERROR - world relationships: Player identities require "
+            "a live player relationship module.\n");
+    }
+    mapping records = ([]);
+    int handle = connect();
+    string query = sprintf("select targetKey, dimension, value, revision, "
+        "updated from worldRelationshipDimensions where sourceKey = '%s'",
+        sanitizeString(source));
+    if (target != "")
+    {
+        query += sprintf(" and targetKey = '%s'", sanitizeString(target));
+    }
+    db_exec(handle, query + ";");
+    if (db_error(handle))
+    {
+        string error = db_error(handle);
+        disconnect(handle);
+        raise_error("ERROR - world relationships query: " + error + "\n");
+    }
+    else
+    {
+        mixed row;
+        while (row = db_fetch(handle))
+        {
+            string key = convertString(row[0]);
+            if (!member(records, key))
+            {
+                records[key] = ([
+                    "source":source,
+                    "target":key,
+                    "dimensions":([]),
+                    "revision":0,
+                    "updated":to_int(row[4])
+                ]);
+            }
+            records[key]["dimensions"][convertString(row[1])] =
+                to_int(row[2]);
+            records[key]["revision"] += to_int(row[3]);
+            if (to_int(row[4]) > records[key]["updated"])
+            {
+                records[key]["updated"] = to_int(row[4]);
+            }
+        }
+        disconnect(handle);
+    }
+    return m_values(records);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping changeWorldRelationship(string source, string target,
+    mapping changes)
+{
+    object service = getService("relationship");
+    mapping ret = ([]);
+    if (service->identity(source) == "" ||
+        service->identity(target) == "" || source == target ||
+        !service->validChanges(changes) ||
+        sizeof(regexp(({ source, target }),
+            "^/lib/realizations/player[.]c#")))
+    {
+        raise_error("ERROR - world relationships: Invalid change.\n");
+    }
+    else
+    {
+        int handle = connect();
+        db_exec(handle, "start transaction;");
+        string error = db_error(handle);
+        foreach(string dimension in sort_array(m_indices(changes),
+            (: $1 > $2 :)))
+        {
+            if (!error)
+            {
+                int *bounds = service->dimensionBounds(dimension);
+                int delta = changes[dimension];
+                delta = delta > 200 ? 200 : (delta < -200 ? -200 : delta);
+                db_exec(handle, sprintf(
+                    "call changeWorldRelationshipDimension("
+                    "'%s', '%s', '%s', %d, %d, %d, %d);",
+                    sanitizeString(source), sanitizeString(target),
+                    sanitizeString(dimension), delta, bounds[0], bounds[1],
+                    time()));
+                error = db_error(handle);
+                while (db_fetch(handle));
+            }
+        }
+        if (!error)
+        {
+            db_exec(handle, "commit;");
+            error = db_error(handle);
+        }
+        if (error)
+        {
+            db_exec(handle, "rollback;");
+        }
+        disconnect(handle);
+        if (error)
+        {
+            raise_error("ERROR - world relationships save: " + error + "\n");
+        }
+        else
+        {
+            mapping *records = worldRelationships(source, target);
+            ret = records[0];
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask string serializeMapping(mapping data)
 {
     string ret = "";
@@ -25,7 +139,9 @@ private nomask mixed parseScalar(string value)
 {
     mixed ret = value;
 
-    if (stringp(value) && sizeof(regexp(({ value }), "^-?[0-9]+$")))
+    if (stringp(value) &&
+        (sizeof(regexp(({ value }), "^[0-9]+$")) ||
+            sizeof(regexp(({ value }), "^-[0-9]+$"))))
     {
         ret = to_int(value);
     }
@@ -57,6 +173,63 @@ private nomask mapping deserializeMapping(string data)
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask mapping getResearchMentorships(int playerId, int handle)
+{
+    mapping ret = ([ "researchMentorships":([]) ]);
+    db_exec(handle, sprintf("select researchKey, teacherKey, changes "
+        "from researchMentorships where playerId = %d;", playerId));
+    if (db_error(handle))
+    {
+        raise_error("ERROR - mentorship load: " + db_error(handle) + "\n");
+    }
+    mixed row;
+    while (row = db_fetch(handle))
+    {
+        ret["researchMentorships"][convertString(row[0])] = ([
+            "teacher":convertString(row[1]),
+            "changes":deserializeMapping(convertString(row[2]))
+        ]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void saveResearchMentorships(int handle, int playerId,
+    mapping playerData)
+{
+    if (mappingp(playerData["researchMentorships"]))
+    {
+        db_exec(handle, sprintf("call pruneResearchMentorships(%d);", playerId));
+        if (db_error(handle))
+        {
+            raise_error("ERROR - mentorship prune: " + db_error(handle) + "\n");
+        }
+        while (db_fetch(handle));
+        foreach(string item in m_indices(playerData["researchMentorships"]))
+        {
+            mapping lesson = playerData["researchMentorships"][item];
+            if (!mappingp(lesson) ||
+                getService("relationship")->identity(lesson["teacher"]) == "" ||
+                !getService("relationship")->validChanges(lesson["changes"]))
+            {
+                raise_error("ERROR - mentorship save: Invalid lesson.\n");
+            }
+            db_exec(handle, sprintf(
+                "call saveResearchMentorship(%d, '%s', '%s', '%s');",
+                playerId, sanitizeString(item),
+                sanitizeString(lesson["teacher"]),
+                sanitizeString(serializeMapping(lesson["changes"]))));
+            if (db_error(handle))
+            {
+                raise_error("ERROR - mentorship save: " +
+                    db_error(handle) + "\n");
+            }
+            while (db_fetch(handle));
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -174,47 +347,24 @@ public nomask mapping *queryRelationshipsByPlayer(string playerName,
         db_exec(dbHandle, queryString);
 
         mixed result;
+        string *targets = ({ });
         do
         {
             result = db_fetch(dbHandle);
             if (result)
             {
-                mapping relationship = relationshipByPlayerIdAndTarget(playerId,
-                    convertString(result[0]), dbHandle);
-
-                int matches = 1;
-                if (mappingp(query) && sizeof(query))
-                {
-                    foreach(string key in m_indices(query))
-                    {
-                        if (key == "target")
-                        {
-                            matches = (relationship["target"] == query[key]);
-                        }
-                        else if (member(relationship["dimensions"], key))
-                        {
-                            matches =
-                                (to_int(relationship["dimensions"][key]) >=
-                                    to_int(query[key]));
-                        }
-                        else
-                        {
-                            matches = 0;
-                        }
-
-                        if (!matches)
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                if (matches)
-                {
-                    ret += ({ relationship + ([]) });
-                }
+                targets += ({ convertString(result[0]) });
             }
         } while (result);
+        foreach(string target in targets)
+        {
+            mapping relationship = relationshipByPlayerIdAndTarget(playerId,
+                target, dbHandle);
+            if (getService("relationship")->matchesQuery(relationship, query))
+            {
+                ret += ({ relationship });
+            }
+        }
     }
 
     disconnect(dbHandle);
@@ -292,8 +442,13 @@ public nomask mapping updateRelationshipByPlayerAndTarget(string playerName,
 {
     mapping ret = ([]);
 
-    if (stringp(playerName) && stringp(targetKey) && mappingp(dimensionChanges) &&
-        sizeof(dimensionChanges))
+    if (!stringp(playerName) || playerName == "" ||
+        getService("relationship")->identity(targetKey) == "" ||
+        !getService("relationship")->validChanges(dimensionChanges))
+    {
+        raise_error("ERROR - relationships data service: Invalid update.\n");
+    }
+    else
     {
         int dbHandle = connect();
         int playerId = playerIdByName(playerName, dbHandle);
@@ -305,14 +460,8 @@ public nomask mapping updateRelationshipByPlayerAndTarget(string playerName,
             mapping dimensions = member(relationship, "dimensions") ?
                 relationship["dimensions"] + ([]) : ([]);
 
-            foreach(string dimension in m_indices(dimensionChanges))
-            {
-                if (!member(dimensions, dimension))
-                {
-                    dimensions[dimension] = 0;
-                }
-                dimensions[dimension] += to_int(dimensionChanges[dimension]);
-            }
+            dimensions = getService("relationship")->applyChanges(
+                dimensions, dimensionChanges);
 
             int updated = time();
             string queryString = sprintf("call saveRelationship(%d, '%s', %d);",
@@ -327,22 +476,6 @@ public nomask mapping updateRelationshipByPlayerAndTarget(string playerName,
                     sanitizeString(targetKey),
                     sanitizeString(dimension),
                     to_int(dimensions[dimension]));
-                db_exec(dbHandle, queryString);
-                result = db_fetch(dbHandle);
-            }
-
-            foreach(string changedDimension in m_indices(dimensionChanges))
-            {
-                queryString = sprintf("call saveRelationshipHistory(%d, '%s', '%s', %d, %d, %d, '%s', '%s', '%s');",
-                    playerId,
-                    sanitizeString(targetKey),
-                    sanitizeString(changedDimension),
-                    to_int(dimensionChanges[changedDimension]),
-                    to_int(dimensions[changedDimension]),
-                    updated,
-                    sanitizeString(producer),
-                    sanitizeString(serializeMapping(context)),
-                    sanitizeString(serializeMapping(metadata)));
                 db_exec(dbHandle, queryString);
                 result = db_fetch(dbHandle);
             }
@@ -382,10 +515,11 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
 {
     mapping ret = ([
         "relationships": ([]),
-        "relationshipHistory": ([])
+        "relationshipHistory": ([]),
+        "incomingRelationships":([])
     ]);
 
-    string source = sprintf("/lib/realizations/player#%s",
+    string source = sprintf("/lib/realizations/player.c#%s",
         capitalize(playerName));
 
     string query = sprintf("select targetKey from relationships "
@@ -393,12 +527,18 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
     db_exec(dbHandle, query);
 
     mixed result;
+    string *targets = ({ });
     do
     {
         result = db_fetch(dbHandle);
         if (result)
         {
-            string target = convertString(result[0]);
+            targets += ({ convertString(result[0]) });
+        }
+    } while (result);
+
+    foreach(string target in targets)
+    {
             mapping relationship =
                 relationshipByPlayerIdAndTarget(playerId, target, dbHandle);
             relationship["source"] = source;
@@ -432,6 +572,29 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
                     ]) });
                 }
             } while (historyResult);
+    }
+
+    query = sprintf("select sourceKey, dimension, value, updated "
+        "from incomingRelationshipDimensions where playerId = %d;",
+        playerId);
+    db_exec(dbHandle, query);
+    do
+    {
+        result = db_fetch(dbHandle);
+        if (result)
+        {
+            string key = convertString(result[0]);
+            if (!member(ret["incomingRelationships"], key))
+            {
+                ret["incomingRelationships"][key] = ([
+                    "source":key,
+                    "target":source,
+                    "dimensions":([]),
+                    "updated":to_int(result[3])
+                ]);
+            }
+            ret["incomingRelationships"][key]["dimensions"][
+                convertString(result[1])] = to_int(result[2]);
         }
     } while (result);
 
@@ -444,9 +607,8 @@ protected nomask void saveRelationships(int dbHandle, int playerId,
 {
     if (member(playerData, "relationships") && mappingp(playerData["relationships"]))
     {
-        string query = sprintf("call pruneRelationships(%d);", playerId);
-        db_exec(dbHandle, query);
-        mixed result = db_fetch(dbHandle);
+        string query;
+        mixed result;
 
         foreach(string target in m_indices(playerData["relationships"]))
         {
@@ -456,6 +618,11 @@ protected nomask void saveRelationships(int dbHandle, int playerId,
                 sanitizeString(target),
                 to_int(relationship["updated"]));
             db_exec(dbHandle, query);
+            if (db_error(dbHandle))
+            {
+                raise_error("ERROR - relationship save: " +
+                    db_error(dbHandle) + "\n");
+            }
             result = db_fetch(dbHandle);
 
             if (member(relationship, "dimensions") &&
@@ -469,6 +636,11 @@ protected nomask void saveRelationships(int dbHandle, int playerId,
                         sanitizeString(dimension),
                         to_int(relationship["dimensions"][dimension]));
                     db_exec(dbHandle, query);
+                    if (db_error(dbHandle))
+                    {
+                        raise_error("ERROR - relationship dimension save: " +
+                            db_error(dbHandle) + "\n");
+                    }
                     result = db_fetch(dbHandle);
                 }
             }
@@ -494,9 +666,37 @@ protected nomask void saveRelationships(int dbHandle, int playerId,
                             sanitizeString(serializeMapping(history["context"])),
                             sanitizeString(serializeMapping(history["metadata"])));
                         db_exec(dbHandle, query);
+                        if (db_error(dbHandle))
+                        {
+                            raise_error("ERROR - relationship history save: " +
+                                db_error(dbHandle) + "\n");
+                        }
                         result = db_fetch(dbHandle);
                     }
                 }
+            }
+        }
+    }
+    if (mappingp(playerData["incomingRelationships"]))
+    {
+        foreach(string source in m_indices(playerData["incomingRelationships"]))
+        {
+            mapping record = playerData["incomingRelationships"][source];
+            foreach(string dimension in m_indices(record["dimensions"]))
+            {
+                string incomingQuery = sprintf(
+                    "call saveIncomingRelationshipDimension("
+                    "%d, '%s', '%s', %d, %d);",
+                    playerId, sanitizeString(source),
+                    sanitizeString(dimension),
+                    record["dimensions"][dimension], record["updated"]);
+                db_exec(dbHandle, incomingQuery);
+                if (db_error(dbHandle))
+                {
+                    raise_error("ERROR - incoming relationship save: " +
+                        db_error(dbHandle) + "\n");
+                }
+                mixed incomingResult = db_fetch(dbHandle);
             }
         }
     }

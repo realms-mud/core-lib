@@ -20,6 +20,19 @@ private mapping activeCompositeResearch = 0;
 private mapping constructedResearch = ([]);
 
 private int researchPoints = 0;
+private mapping researchMentorships = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask mapping mentorshipSnapshot()
+{
+    mapping ret = ([]);
+    foreach(string item in m_indices(researchMentorships))
+    {
+        ret[item] = researchMentorships[item] + ([]);
+        ret[item]["changes"] = researchMentorships[item]["changes"] + ([]);
+    }
+    return ret;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 static nomask void loadResearch(mapping data, object persistence)
@@ -34,6 +47,9 @@ static nomask void loadResearch(mapping data, object persistence)
             openResearchTrees = openTrees;
         }
         research = persistence->extractSavedMapping("research", data);
+        mapping lessons = persistence->extractSavedMapping(
+            "researchMentorships", data);
+        researchMentorships = mappingp(lessons) ? lessons : ([]);
 
         string *researchItems = m_indices(research);
         if (sizeof(researchItems))
@@ -82,6 +98,7 @@ static nomask mapping sendResearch()
 {
     return ([
         "research": sendResearchMapping(research),
+        "researchMentorships":mentorshipSnapshot(),
         "researchChoices": sendResearchMapping(researchChoices),
         "openResearchTrees": openResearchTrees,
         "availableResearchPoints": researchPoints,

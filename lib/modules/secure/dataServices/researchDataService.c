@@ -217,6 +217,11 @@ protected nomask void saveResearch(int dbHandle, int playerId, mapping playerDat
                 playerData["research"][research]["cooldown"]);
 
             db_exec(dbHandle, query);
+            if (db_error(dbHandle))
+            {
+                raise_error("ERROR - research save: " +
+                    db_error(dbHandle) + "\n");
+            }
             mixed result = db_fetch(dbHandle);
 
             if (member(playerData["research"][research], "sustained active"))
@@ -230,6 +235,11 @@ protected nomask void saveResearch(int dbHandle, int playerId, mapping playerDat
                     sanitizeString(playerData["research"][research]["active modifier object"]));
 
                 db_exec(dbHandle, query);
+                if (db_error(dbHandle))
+                {
+                    raise_error("ERROR - sustained research save: " +
+                        db_error(dbHandle) + "\n");
+                }
                 result = db_fetch(dbHandle);
             }
             else
@@ -240,6 +250,11 @@ protected nomask void saveResearch(int dbHandle, int playerId, mapping playerDat
                     sanitizeString(research));
 
                 db_exec(dbHandle, query);
+                if (db_error(dbHandle))
+                {
+                    raise_error("ERROR - sustained research removal: " +
+                        db_error(dbHandle) + "\n");
+                }
                 result = db_fetch(dbHandle);
             }
         }

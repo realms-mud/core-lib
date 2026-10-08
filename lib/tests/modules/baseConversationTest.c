@@ -91,7 +91,13 @@ void ResponsePrerequisitesAreRecheckedBeforeEffectsAndRecording()
     Conversation.testAddResponsePrerequisite("test", "Elf", ([
         "race":([ "type":"race", "value":({ "elf" }) ])
     ]));
-    Conversation.testAddResponseEffect("test", "Elf", ([ "opinion":5 ]));
+    Conversation.testAddResponseEffect("test", "Elf", ([
+        "opinion":5,
+        "relationship":([
+            "from":([ "trust":5 ]),
+            "toward":([ "respect":3 ])
+        ])
+    ]));
     ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
     Actor.Race("human");
     int opinion = Owner.opinionOf(Actor);
@@ -99,6 +105,8 @@ void ResponsePrerequisitesAreRecheckedBeforeEffectsAndRecording()
     ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
     ExpectEq(0, sizeof(Actor.caughtMessages()));
     ExpectEq(opinion, Owner.opinionOf(Actor));
+    ExpectFalse(Owner.hasRelationship(Actor));
+    ExpectFalse(Actor.hasRelationship(Owner));
     ExpectEq(0, Actor.countObservations(([ "type":"conversation.response" ])));
 }
 
@@ -542,6 +550,28 @@ void AddResponseEffectAllowsAndAppliesOpinion()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void RelationshipEffectIsDirectionalAndDoesNotReplaceOpinion()
+{
+    Conversation.testAddTopic("relationship", "A meaningful conversation.");
+    Conversation.testAddResponse("relationship", "Promise", "I will help.");
+    Conversation.testAddResponseEffect("relationship", "Promise", ([
+        "relationship":([ "trust":5 ]),
+        "opinion":2
+    ]));
+    int opinion = Owner.opinionOf(Actor);
+    ExpectTrue(Conversation.speakMessage("relationship", Actor, Owner));
+    ExpectTrue(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(5, Owner.relationshipValue(Actor, "trust"));
+    ExpectEq(0, Actor.relationshipValue(Owner, "trust"));
+    ExpectEq(opinion + 2, Owner.opinionOf(Actor));
+    ExpectEq(1, Actor.countObservations(([
+        "type":"conversation.relationship"
+    ])));
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(5, Owner.relationshipValue(Actor, "trust"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AddResponseEffectAllowsAndAppliesAttack()
 {
     Conversation.testAddTopic("test", "This is a test message");
@@ -552,6 +582,54 @@ void AddResponseEffectAllowsAndAppliesAttack()
     ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
     Conversation.displayResponse("1", Actor, Owner);
     ExpectEq("Gorthaur", Owner.getHostileList());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EachTreeResponseCanAlterBothDirectionsOfTheRelationshipMatrix()
+{
+    Conversation.testAddTopic("matrix", "Choose how to respond.");
+    Conversation.testAddResponse("matrix", "A honest", "I will help.");
+    Conversation.testAddResponse("matrix", "B insulting", "Go away.");
+    Conversation.testAddResponseEffect("matrix", "A honest", ([
+        "relationship":([
+            "from":([ "trust":7, "respect":3 ]),
+            "toward":([ "admiration":4, "obligation":2 ])
+        ])
+    ]));
+    Conversation.testAddResponseEffect("matrix", "B insulting", ([
+        "relationship":([
+            "from":([ "respect":-10 ]),
+            "toward":([ "affection":-5 ])
+        ])
+    ]));
+    ExpectTrue(Conversation.speakMessage("matrix", Actor, Owner));
+    ExpectTrue(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(7, Owner.relationshipValue(Actor, "trust"));
+    ExpectEq(3, Owner.relationshipValue(Actor, "respect"));
+    ExpectEq(4, Actor.relationshipValue(Owner, "admiration"));
+    ExpectEq(2, Actor.relationshipValue(Owner, "obligation"));
+    ExpectEq(0, Actor.relationshipValue(Owner, "affection"));
+    ExpectEq(2, Actor.countObservations(([
+        "type":"conversation.relationship",
+        "topic":"matrix",
+        "response":"matrix#A honest"
+    ])));
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectEq(7, Owner.relationshipValue(Actor, "trust"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidDirectedResponseEffectIsRejectedBeforeSelectingTheResponse()
+{
+    Conversation.testAddTopic("matrix", "Choose.");
+    Conversation.testAddResponse("matrix", "A", "A.");
+    ExpectTrue(stringp(catch(Conversation.testAddResponseEffect("matrix", "A",
+        ([ "relationship":([
+            "from":([ "trust":5 ]),
+            "toward":([ "not a dimension":1 ])
+        ]) ])); nolog)));
+    ExpectFalse(Owner.hasRelationship(Actor));
+    ExpectFalse(Actor.hasRelationship(Owner));
 }
 
 /////////////////////////////////////////////////////////////////////////////

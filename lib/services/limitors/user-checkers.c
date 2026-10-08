@@ -4,6 +4,26 @@
 //*****************************************************************************
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask int checkRelationshipLimitor(mapping specificationData,
+    object owner, object target, int verbose, string colorConfiguration,
+    object configuration)
+{
+    int ret = 1;
+    if (member(specificationData["limited by"], "relationship"))
+    {
+        ret = getService("relationship")->meetsCondition(owner,
+            specificationData["limited by"]["relationship"], 0, target);
+        if (!ret && verbose)
+        {
+            write(configuration->decorate(
+                "The required relationship conditions are not met.\n",
+                "missing prerequisites", "research", colorConfiguration));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int checkObservationLimitor(mapping specificationData,
     object owner, int verbose, string colorConfiguration,
     object configuration)

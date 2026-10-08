@@ -441,6 +441,12 @@ public nomask int validLimitor(mapping limitor)
                             limitor[key]["minimum"] > 0;
                         break;
                     }
+                    case "relationship":
+                    {
+                        ret &&= getService("relationship")->validCondition(
+                            limitor[key]);
+                        break;
+                    }
                     case "research active":
                     {
                         ret &&= validResearchIsActiveLimitor(limitor[key]);

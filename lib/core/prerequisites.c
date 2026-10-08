@@ -76,7 +76,7 @@ private nomask int isValidPrerequisiteType(string type)
         "race", "faction", "trait", "background", "combat statistic", "level",
         "opinion", "state", "presence", "not present", "guild rank",
         "guilds at level", "guilds at rank", "spoken topics",
-        "observation" }), type) > -1);
+        "observation", "relationship" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -104,6 +104,10 @@ protected nomask int validPrerequisite(mapping prerequisite)
             ret = stringp(prerequisite["criteria"]["type"]) &&
                 sizeof(prerequisite["criteria"]["type"]);
         }
+    }
+    if (ret && prerequisite["type"] == "relationship")
+    {
+        ret = getService("relationship")->validCondition(prerequisite);
     }
     return ret;
 }
@@ -713,6 +717,12 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                                 prerequisiteData["value"];
                         break;
                     }
+                    case "relationship":
+                    {
+                        ret &&= getService("relationship")->meetsCondition(
+                            researcher, prerequisiteData, owner);
+                        break;
+                    }
                     case "opinion":
                     {
                         ret &&= owner && (owner->opinionOf(researcher) >=
@@ -887,6 +897,20 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 {
                     prereq = sprintf("%s observation count of %d",
                         capitalize(key), prerequisites[key]["value"]);
+                    break;
+                }
+                case "relationship":
+                {
+                    mapping condition = prerequisites[key];
+                    prereq = sprintf("%s %s %s: %s", capitalize(key),
+                        condition["direction"], condition["target"],
+                        member(condition, "classification") ?
+                            condition["classification"] :
+                            sprintf("%s%s%s", condition["dimension"],
+                                member(condition, "minimum") ?
+                                    sprintf(" >= %d", condition["minimum"]) : "",
+                                member(condition, "maximum") ?
+                                    sprintf(" <= %d", condition["maximum"]) : ""));
                     break;
                 }
                 case "guild rank":

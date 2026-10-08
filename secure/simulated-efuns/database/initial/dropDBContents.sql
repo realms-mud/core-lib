@@ -134,6 +134,14 @@ drop procedure if exists pruneExperience;
 ##
 drop procedure if exists saveRelationshipHistory;
 ##
+drop procedure if exists saveIncomingRelationshipDimension;
+##
+drop procedure if exists changeWorldRelationshipDimension;
+##
+drop procedure if exists saveResearchMentorship;
+##
+drop procedure if exists pruneResearchMentorships;
+##
 drop procedure if exists saveRelationshipDimension;
 ##
 drop procedure if exists saveRelationship;
@@ -289,6 +297,12 @@ drop table if exists temporaryTraits;
 drop table if exists inventory;
 ##
 drop table if exists factions;
+##
+drop table if exists incomingRelationshipDimensions;
+##
+drop table if exists researchMentorships;
+##
+drop table if exists worldRelationshipDimensions;
 ##
 drop table if exists players;
 ##

@@ -1170,6 +1170,12 @@ public nomask string getHostileList()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask object *combatOpponents()
+{
+    return filter(m_indices(hostileList), (: objectp($1) :));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int unregisterAttacker(object attacker)
 {
     int ret = 0;
@@ -2003,6 +2009,18 @@ protected nomask void doOneAttack(object foe, object weapon)
 private nomask void registerAttack(object attacker, object foe, 
     int fireEvents)
 {
+    if (fireEvents && !member(hostileList, foe) &&
+        function_exists("relationshipType", foe) &&
+        member(({ "friend", "ally", "trusted ally" }),
+            foe->relationshipType(this_object())) >= 0)
+    {
+        this_object()->recordRelationshipInteraction(foe, "combat.betrayal",
+            foe->relationshipInteractionChanges("combat.betrayal"),
+            ([
+                "attacker":getService("relationship")->identity(this_object()),
+                "victim":getService("relationship")->identity(foe)
+            ]), "from");
+    }
     foe->registerAttacker(this_object());
     registerAttacker(foe);
 
@@ -2036,7 +2054,13 @@ public nomask int attack(object foe)
     int ret = 0;
     object traits = getModule("traits");
 
-    if(abortCombat(foe))
+    if (objectp(foe) &&
+        function_exists("aiMayAttack", this_object()) &&
+        !this_object()->aiMayAttack(foe))
+    {
+        tell_object(this_object(), "You refuse to attack a trusted ally.\n");
+    }
+    else if(abortCombat(foe))
     {
         if(foe)
         {
@@ -2108,6 +2132,41 @@ public nomask int attack(object foe)
             persona->executePersonaResearch(foe->RealName());
         }
         roundsSinceAttack = 0;
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int protectAlly(object ally, object attacker)
+{
+    int ret = 0;
+    if (objectp(ally) && objectp(attacker) && ally != this_object() &&
+        attacker != this_object() && attacker != ally &&
+        environment(this_object()) &&
+        environment(ally) == environment(this_object()) &&
+        environment(attacker) == environment(this_object()) &&
+        !ally->isDead() && ally->isInCombatWith(attacker) &&
+        attacker->isInCombatWith(ally))
+    {
+        int endangered = ally->hitPoints() <= ally->maxHitPoints() / 4;
+        string opponent = getService("relationship")->identity(attacker);
+        ret = attack(attacker);
+        if (ret)
+        {
+            if (objectp(attacker))
+            {
+                ally->stopFight(attacker);
+            }
+            string event = endangered && !sizeof(ally->combatOpponents()) ?
+                "combat.rescue" : "combat.protected";
+            this_object()->recordRelationshipInteraction(ally, event,
+                ally->relationshipInteractionChanges(event),
+                ([ "attacker":opponent ]), "from");
+        }
+    }
+    else
+    {
+        tell_object(this_object(), "You cannot intervene in that fight.\n");
     }
     return ret;
 }

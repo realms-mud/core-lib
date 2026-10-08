@@ -230,7 +230,8 @@ private nomask varargs void checkForDispositionChange(string faction, int killed
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs void updateFactionDisposition(string faction, int reputation, int killedMember)
+public nomask varargs void updateFactionDisposition(string faction,
+    int reputation, int killedMember, object witness)
 {
     if (isValidFaction(faction))
     {
@@ -274,6 +275,14 @@ public nomask varargs void updateFactionDisposition(string faction, int reputati
         {
             recordFactionObservation("faction.dispositionChanged", faction,
                 previousDisposition);
+        }
+        if (objectp(witness) && witness != this_object() &&
+            previousReputation != factions[faction]["reputation"] &&
+            function_exists("relationshipInteraction", witness))
+        {
+            witness->relationshipInteraction(this_object(),
+                (reputation > 0 ? "faction.helped:" : "faction.harmed:") +
+                    faction, ([ "faction":faction, "reputation":reputation ]));
         }
     }
 }

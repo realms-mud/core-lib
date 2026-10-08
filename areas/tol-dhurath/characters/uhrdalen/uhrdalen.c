@@ -8,6 +8,9 @@ virtual inherit "/lib/realizations/npc.c";
 protected void Setup()
 {
     Name("uhrdalen");
+    addRelationshipInteraction("social.bow", ([ "respect":1 ]));
+    addRelationshipInteraction("social.slap",
+        ([ "trust":-5, "respect":-2, "suspicion":3 ]));
     short("A wispy figure");
     description("The wispy figure is largely skeletal in nature, though "
         "ethereal and without substance. A bitterly frigid chill emanates "

@@ -8,6 +8,10 @@ private mapping services = ([]);
 object getService(string service)
 {
     object ret = 0;
+    if (service == "relationships")
+    {
+        service = "relationship";
+    }
 
     if (member(services, service) && objectp(services[service]))
     {

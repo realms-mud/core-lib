@@ -1236,6 +1236,12 @@ public nomask int execute(string command, object initiator)
             }
             else if (speakMessage(messageTemplate, initiator, targetObj))
             {
+                if (targetObj && targetObj != initiator &&
+                    function_exists("relationshipInteraction", targetObj))
+                {
+                    targetObj->relationshipInteraction(initiator,
+                        "social." + action, ([ "adverb":lower_case(adverb) ]));
+                }
                 if (function_exists("recordObservation", initiator))
                 {
                     initiator->recordObservation(([

@@ -63,17 +63,91 @@ void QueryRelationshipsReturnsMatchingDimensionThresholds()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void RelationshipHistoryCapturesChanges()
+void RelationshipHistoryBelongsToExperiences()
 {
     Service.updateRelationship(Source, Target, ([ "trust": 4 ]),
         ([ "location": "inn" ]),
         ([ "note": "first impression" ]),
         "conversation.greet");
 
-    mapping *history = Service.relationshipHistoryFor(Source, Target, ([]));
+    ExpectEq(0, sizeof(Service.relationshipHistoryFor(Source, Target, ([]))));
+    Source.recordRelationshipInteraction(Target, "gift.given",
+        ([ "gratitude":5 ]), ([ "item":"amulet" ]));
+    ExpectEq(1, Source.countObservations(([ "type":"gift.given" ])));
+}
 
-    ExpectEq(1, sizeof(history));
-    ExpectEq("trust", history[0]["dimension"]);
-    ExpectEq(4, history[0]["delta"]);
-    ExpectEq("conversation.greet", history[0]["producer"]);
+/////////////////////////////////////////////////////////////////////////////
+void ValuesRespectDimensionSpecificBounds()
+{
+    Service.modify(Source, Target, "trust", 1000);
+    Service.modify(Source, Target, "fear", -1000);
+    ExpectEq(100, Source.relationshipValue(Target, "trust"));
+    ExpectEq(0, Source.relationshipValue(Target, "fear"));
+    Service.modify(Source, Target, "trust", -1000);
+    ExpectEq(-100, Source.relationshipValue(Target, "trust"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void InvalidBatchIsRejectedWithoutPartialMutation()
+{
+    string error = catch(Service.updateRelationship(Source, Target,
+        ([ "trust":5, "bogus":10 ]), ([]), ([]), "test"); nolog);
+    ExpectTrue(stringp(error));
+    ExpectFalse(Source.hasRelationship(Target));
+    error = catch(Service.modify(Source, Source, "trust", 5); nolog);
+    ExpectTrue(stringp(error));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ReturnedStateDoesNotPermitExternalMutation()
+{
+    mapping record = Service.modify(Source, Target, "trust", 5);
+    record["dimensions"]["trust"] = -100;
+    ExpectEq(5, Source.relationshipValue(Target, "trust"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ServiceInstancesUseModuleOwnedTruth()
+{
+    Service.modify(Source, Target, "trust", 5);
+    object second = clone_object("/lib/services/relationshipService.c");
+    second.modify(Source, Target, "trust", 2);
+    ExpectEq(7, Service.relationshipDimensionToward(Source, Target, "trust"));
+    destruct(second);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DerivedClassificationTracksCurrentValues()
+{
+    ExpectEq("stranger", Source.relationshipType(Target));
+    Service.updateRelationship(Source, Target,
+        ([ "trust":60, "respect":50, "affection":40 ]),
+        ([]), ([]), "test");
+    ExpectEq("friend", Source.relationshipType(Target));
+    Source.setRelationshipValue(Target, "trust", -80);
+    ExpectEq("enemy", Source.relationshipType(Target));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DimensionIsolationAndMissingValuesUseZeroBaseline()
+{
+    Service.modify(Source, Target, "trust", 10);
+    ExpectEq(0, Source.relationshipValue(Target, "respect"));
+    object third = clone_object("/lib/tests/support/services/mockPlayer.c");
+    third.Name("third");
+    ExpectEq(0, Source.relationshipValue(third, "trust"));
+    ExpectTrue(Service.meetsCondition(Source, ([
+        "target":Service.identity(third),
+        "direction":"toward",
+        "dimension":"trust",
+        "minimum":0,
+        "maximum":0
+    ])));
+    destruct(third);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ServiceAliasesResolveToTheSameStatelessInstance()
+{
+    ExpectEq(getService("relationship"), getService("relationships"));
 }

@@ -115,6 +115,10 @@ protected void Setup()
     addTransition("poem complete", "quest complete", "questCompleted");
     addEntryAction("quest complete", "onQuestCompleted");
     addFinalState("quest complete", "success");
+    addRelationshipEffect("quest complete",
+        getService("relationship")->identity(load_object(
+            "/areas/tol-dhurath/characters/uhrdalen/uhrdalen.c")),
+        ([ "trust":10, "respect":5, "gratitude":10 ]));
 
     setInitialState("entered room");
     startStateMachine();

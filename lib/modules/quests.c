@@ -208,6 +208,10 @@ public nomask int advanceQuestState(string questItem, string newState)
 
             if (previousState != newState)
             {
+                if (member(quests[questItem]["states completed"], newState) < 0)
+                {
+                    questObj->applyRelationshipEffects(this_object(), newState);
+                }
                 recordQuestObservation("quest.advanced", questItem, ([
                     "previous state": previousState
                 ]));
@@ -236,6 +240,7 @@ public nomask int beginQuest(string questItem)
             "is active" : 1,
             "is completed": 0
         ]);
+        questObj->applyRelationshipEffects(this_object(), questObj->initialState());
         recordQuestObservation("quest.started", questItem, ([]));
         questNotification("onQuestStarted", questItem);
 

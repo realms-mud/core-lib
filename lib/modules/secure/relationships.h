@@ -6,7 +6,9 @@
 #define relationshipsModule_h
 
 private mapping relationships = ([]);
+private mapping incomingRelationships = ([]);
 private mapping relationshipHistory = ([]);
+private nosave mapping derivedRelationships = ([]);
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping cloneRelationshipEntry(mapping relationship)
@@ -86,6 +88,7 @@ static nomask void loadRelationships(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence))
     {
+        derivedRelationships = ([]);
         mapping savedRelationships =
             persistence->extractSaveData("relationships", data);
         if (mappingp(savedRelationships))
@@ -99,6 +102,10 @@ static nomask void loadRelationships(mapping data, object persistence)
         {
             relationshipHistory = cloneRelationshipHistory(savedHistory);
         }
+        mapping savedIncoming =
+            persistence->extractSaveData("incomingRelationships", data);
+        incomingRelationships = mappingp(savedIncoming) ?
+            cloneRelationshipMap(savedIncoming) : ([]);
     }
 }
 
@@ -107,6 +114,7 @@ static nomask mapping sendRelationships()
 {
     return ([
         "relationships": cloneRelationshipMap(relationships),
+        "incomingRelationships":cloneRelationshipMap(incomingRelationships),
         "relationshipHistory": cloneRelationshipHistory(relationshipHistory)
     ]);
 }

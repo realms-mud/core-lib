@@ -262,11 +262,27 @@ protected nomask void addResponseEvent(string id, string selection, string event
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int validRelationshipEffect(mixed effect)
+{
+    int ret = getService("relationship")->validChanges(effect);
+    if (!ret && mappingp(effect) && sizeof(effect))
+    {
+        ret = 1;
+        foreach(string direction in m_indices(effect))
+        {
+            ret &&= member(({ "from", "toward" }), direction) >= 0 &&
+                getService("relationship")->validChanges(effect[direction]);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private int isValidEffect(mapping effectMap)
 {
     int ret = 0;
     string *validEffects = ({ "opinion", "attack", "move", "give", "vanish",
-        "experience", "join", "trait" });
+        "experience", "join", "trait", "relationship" });
     string *effects = m_indices(effectMap);
     if (sizeof(effects))
     {
@@ -277,6 +293,11 @@ private int isValidEffect(mapping effectMap)
 
             switch (effect)
             {
+                case "relationship":
+                {
+                    ret &&= validRelationshipEffect(effectMap[effect]);
+                    break;
+                }
                 case "experience":
                 {
                     ret &&= (intp(effectMap[effect]) ||
@@ -486,8 +507,22 @@ protected nomask void displayMessage(string message, object initiator,
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask void executeResponseEffect(mapping effects,
-    object actor, object owner)
+    object actor, object owner, mapping context)
 {
+    if (member(effects, "relationship"))
+    {
+        mapping changes = effects["relationship"];
+        if (getService("relationship")->validChanges(changes))
+        {
+            changes = ([ "from":changes ]);
+        }
+        foreach(string direction in m_indices(changes))
+        {
+            actor->recordRelationshipInteraction(owner,
+                "conversation.relationship", changes[direction], context,
+                direction);
+        }
+    }
     if (member(effects, "opinion"))
     {
         owner->alterOpinionOf(actor, effects["opinion"]);
@@ -630,7 +665,7 @@ public nomask int displayResponse(string choice, object actor, object owner)
         if (member(topics[id]["responses"][key], "effect"))
         {
             executeResponseEffect(topics[id]["responses"][key]["effect"],
-                actor, owner);
+                actor, owner, ([ "topic":id, "response":key ]));
         }
     }
     return ret;

@@ -43,6 +43,7 @@ public nomask mapping getPlayerData(string name)
                 data += getMaterialAttributes(data["playerId"], dbHandle);
                 data += getQuestData(data["playerId"], dbHandle);
                 data += getResearch(data["playerId"], dbHandle);
+                data += getResearchMentorships(data["playerId"], dbHandle);
                 data += getResearchChoices(data["playerId"], dbHandle);
                 data += getOpenResearchTrees(data["playerId"], dbHandle);
                 data += getCompositeResearch(data["playerId"], dbHandle);
@@ -85,7 +86,6 @@ public nomask void savePlayerData(mapping playerData)
             saveMaterialAttributes(dbHandle, playerId, playerData);
             saveGuildData(dbHandle, playerId, playerData);
             saveQuestData(dbHandle, playerId, playerData);
-            saveResearch(dbHandle, playerId, playerData);
             saveResearchChoices(dbHandle, playerId, playerData);
             saveOpenResearchTrees(dbHandle, playerId, playerData);
             saveCompositeResearch(dbHandle, playerData);
@@ -101,8 +101,12 @@ public nomask void savePlayerData(mapping playerData)
             mixed failure = db_error(dbHandle);
             if (!failure)
             {
-                failure = catch(saveExperiences(dbHandle, playerId,
-                    playerData); nolog);
+                failure = catch(
+                    saveResearch(dbHandle, playerId, playerData),
+                    saveResearchMentorships(dbHandle, playerId, playerData),
+                    saveExperiences(dbHandle, playerId, playerData),
+                    saveRelationships(dbHandle, playerId, playerData);
+                    nolog);
             }
             if (!failure)
             {
@@ -119,7 +123,6 @@ public nomask void savePlayerData(mapping playerData)
                 db_close(dbHandle);
                 raise_error(sprintf("%s\n", failure));
             }
-            saveRelationships(dbHandle, playerId, playerData);
             db_close(dbHandle);
         }
     }

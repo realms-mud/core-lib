@@ -82,6 +82,9 @@ public nomask varargs int userFactorsMet(mapping specificationData, object owner
 
         ret = checkObservationLimitor(specificationData, owner, verbose,
             colorConfiguration, configuration) && ret;
+            
+        ret = checkRelationshipLimitor(specificationData, owner, target,
+            verbose, colorConfiguration, configuration) && ret;
     }
 
     return ret;

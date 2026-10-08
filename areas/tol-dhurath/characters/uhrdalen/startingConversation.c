@@ -29,6 +29,8 @@ private void ThePlayerAndTheirName()
         "@D@@C@##InitiatorName## ##ResponseInfinitive::respond##, @S@'Who I "
         "am is not your concern, wraith. You have a task for me? Get on with "
         "it.'");
+    addResponseEffect("first conversation", "None of your business...",
+        ([ "relationship":([ "respect":-2, "suspicion":2 ]) ]));
 
     addResponse("first conversation", "I think I'll deflect...", 
         "@D@@C@##InitiatorName## ##ResponseInfinitive::reply##, @S@'I am "
@@ -91,6 +93,8 @@ private void WhoAreYou()
     addResponse("who are you", "I'll humor you...", "@D@@C@##InitiatorName## "
         "##ResponseInfinitive::reply##, @S@'I was the protector of the one I have "
         "failed. Yet " + overallRespose);
+    addResponseEffect("who are you", "I'll humor you...",
+        ([ "relationship":([ "trust":2, "respect":2 ]) ]));
 }
 
 /////////////////////////////////////////////////////////////////////////////

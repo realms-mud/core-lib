@@ -76,6 +76,20 @@ protected nomask void limitDisplayBySeason(string season)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void limitDisplayByRelationship(mapping condition)
+{
+    if (getService("relationship")->validCondition(condition))
+    {
+        limitors["limited by"]["relationship"] = condition + ([]);
+    }
+    else
+    {
+        raise_error("EnvironmentalElement: A valid relationship condition "
+            "must be specified.\n");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask void limitDisplayByTimeOfDay(string timeOfDay)
 {
     addToLimitors("time of day", timeOfDay);

@@ -5,8 +5,17 @@
 virtual inherit "/lib/realizations/monster.c";
 virtual inherit "/lib/modules/conversations.c";
 virtual inherit "/lib/modules/crafting.c";
+virtual inherit "/lib/modules/artificialIntelligence.c";
 
 protected object leader;
+
+/////////////////////////////////////////////////////////////////////////////
+public void create()
+{
+    monster::create();
+    registerHeartBeat("ai");
+    set_heart_beat(1);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int isRealizationOfNpc()

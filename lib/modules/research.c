@@ -499,6 +499,58 @@ public nomask varargs int initiateResearch(string researchItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void completeMentorship(string researchItem)
+{
+    if (member(researchMentorships, researchItem))
+    {
+        mapping lesson = researchMentorships[researchItem];
+        if (getService("relationship")->identity(lesson["teacher"]) == "" ||
+            !getService("relationship")->validChanges(lesson["changes"]))
+        {
+            raise_error(sprintf("ERROR - research: Invalid mentorship "
+                "changes %O from %s.\n",
+                lesson["changes"], lesson["teacher"]));
+        }
+        this_object()->recordRelationshipInteraction(lesson["teacher"],
+            "training.completed", lesson["changes"],
+            ([ "research":researchItem ]), "from");
+        m_delete(researchMentorships, researchItem);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int learnResearchFrom(object teacher, string researchItem)
+{
+    int ret = 0;
+    if (!function_exists("recordObservation", this_object()))
+    {
+        raise_error("ERROR - research: Mentored learning requires "
+            "the experiences module.\n");
+    }
+    else if (objectp(teacher) && teacher != this_object() &&
+        function_exists("isRealizationOfNpc", teacher) &&
+        teacher->isRealizationOfNpc() &&
+        function_exists("isResearched", teacher) &&
+        teacher->isResearched(researchItem))
+    {
+        ret = initiateResearch(researchItem);
+        if (ret)
+        {
+            researchMentorships[researchItem] = ([
+                "teacher":getService("relationship")->identity(teacher),
+                "changes":teacher->relationshipInteractionChanges(
+                    "training.completed")
+            ]);
+            if (isResearched(researchItem))
+            {
+                completeMentorship(researchItem);
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getResearchChoices()
 {
     return researchChoices + ([]);
@@ -959,6 +1011,7 @@ static nomask void researchHeartBeat()
 
                     recordResearchObservation("research.complete", researchItem,
                         ([ "research type": "timed" ]));
+                    completeMentorship(researchItem);
                     object events = getModule("events");
                     if (events && objectp(events))
                     {

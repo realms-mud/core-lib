@@ -89,6 +89,17 @@ public nomask int execute(string command, object initiator)
                         {
                             move_object(target, receiver);
                         }
+                        if (objectp(receiver) && receiver != initiator &&
+                            function_exists("relationshipInteraction", receiver))
+                        {
+                            receiver->relationshipInteraction(initiator,
+                                "gift.received", ([ "item":itemName ]));
+                            initiator->recordObservation(([
+                                "type":"gift.given",
+                                "subject":receiver,
+                                "context":([ "item":itemName ])
+                            ]));
+                        }
                         displayMessage("##InitiatorName## ##Infinitive::give## " 
                             "##TargetName## " + itemName + ".\n",
                             initiator, receiver);
