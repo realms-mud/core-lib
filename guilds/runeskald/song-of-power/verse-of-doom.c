@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "sing verse of doom");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::proclaim## the verse of doom, voice thundering with dark prophetic power.");

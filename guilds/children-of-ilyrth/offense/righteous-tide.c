@@ -104,12 +104,21 @@ private void TwentyFifthLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void TwentySeventhLevel()
+{
+    addResearchElement("/guilds/children-of-ilyrth/offense/maelstrom.c");
+
+    addChild("/guilds/children-of-ilyrth/offense/maelstrom.c",
+        "/guilds/children-of-ilyrth/offense/churning-vortex.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void TwentyNinthLevel()
 {
     addResearchElement("/guilds/children-of-ilyrth/offense/abyssal-pressure.c");
 
     addChild("/guilds/children-of-ilyrth/offense/abyssal-pressure.c",
-        "/guilds/children-of-ilyrth/offense/churning-vortex.c");
+        "/guilds/children-of-ilyrth/offense/maelstrom.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -125,12 +134,21 @@ private void ThirtyThirdLevel()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void ThirtyFifthLevel()
+{
+    addResearchElement("/guilds/children-of-ilyrth/offense/tsunami.c");
+
+    addChild("/guilds/children-of-ilyrth/offense/tsunami.c",
+        "/guilds/children-of-ilyrth/offense/ilryths-tide.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void ThirtySeventhLevel()
 {
     addResearchElement("/guilds/children-of-ilyrth/offense/oceans-wrath.c");
 
     addChild("/guilds/children-of-ilyrth/offense/oceans-wrath.c",
-        "/guilds/children-of-ilyrth/offense/ilryths-tide.c");
+        "/guilds/children-of-ilyrth/offense/tsunami.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -213,8 +231,10 @@ protected void Setup()
     NineteenthLevel();
     TwentyFirstLevel();
     TwentyFifthLevel();
+    TwentySeventhLevel();
     TwentyNinthLevel();
     ThirtyThirdLevel();
+    ThirtyFifthLevel();
     ThirtySeventhLevel();
     FortyFirstLevel();
     FortyFifthLevel();

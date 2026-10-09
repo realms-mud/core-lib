@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke inferno surge");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::ignite## the air in a surge of incinerating runic flame that scorches all nearby foes.");

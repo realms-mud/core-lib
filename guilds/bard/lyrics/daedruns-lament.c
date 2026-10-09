@@ -30,7 +30,7 @@ protected void Setup()
           "guild": "bard",
           "value": 7 ]));
 
-    addPrerequisite("/guilds/bard/lyrics/demoralizing-lyric.c",
+    addPrerequisite("/guilds/bard/lyrics/demoralizing-lyrics.c",
         (["type": "research"]));
 
     addSpecification("modifiers", ({ 

@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune barrage");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::launch## a barrage of rune-stones that explode across the area.");

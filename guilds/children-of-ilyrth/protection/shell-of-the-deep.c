@@ -19,7 +19,7 @@ protected void Setup()
           "guild": "Children of Ilyrth",
           "value": 9 ]));
 
-    addPrerequisite("/guilds/children-of-ilyrth/protection/ilryths-protection.c",
+    addPrerequisite("/guilds/children-of-ilyrth/protection/ilyrths-protection.c",
         (["type": "research"]));
 
     addSpecification("scope", "self");
@@ -71,7 +71,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Children of Ilyrth",
             "formula": "logarithmic",
             "rate": 1.10
         ])

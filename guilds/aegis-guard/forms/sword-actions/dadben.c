@@ -17,9 +17,9 @@ protected void Setup()
     addSpecification("usage summary", "An offensive onslaught designed to "
         "leave opponentsd prone.");
 
-    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/athra.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/athra.c",
         (["type": "research"]));
-    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/an-vund.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-vund.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

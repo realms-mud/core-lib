@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke spirit shatter ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::compress## a sphere of ancestral energy inside ##TargetName## and detonate it.");

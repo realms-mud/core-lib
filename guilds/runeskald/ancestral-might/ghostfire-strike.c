@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke ghostfire strike ##Target##");
     addSpecification("use ability message",
         "##InitiatorName##'s weapon blazes with ghostfire as they deliver a ferocious strike at ##TargetName##.");

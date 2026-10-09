@@ -55,7 +55,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -63,63 +63,72 @@ protected void Setup()
             "type": "research",
             "name": "Destruction Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/destruction-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Destruction Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/destruction-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Destruction",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/pure-destruction.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Destruction",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/primal-destruction.c"
         ]),
         ([
             "type": "research",
             "name": "Total Devastation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/total-devastation.c"
         ]),
         ([
             "type": "research",
             "name": "Destructive Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/destructive-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Entropy Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/entropy-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Entropy Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/entropy-supremacy.c"
         ]),
         ([
             "type": "research",
             "name": "Destruction Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/destruction/destruction-supremacy.c"
         ]),
     }));

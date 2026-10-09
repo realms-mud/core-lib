@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke rune of sundering");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::speak## a rune of sundering and the air fractures outward in a shockwave.");

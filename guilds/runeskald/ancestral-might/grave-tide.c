@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "invoke grave tide");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::tear## open a rift to the spirit world and a tide of grave-cold ghosts pours forth.");

@@ -82,7 +82,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilryths-embrace.c",
+            "research item": "/guilds/children-of-ilyrth/healing/ilyrths-embrace.c",
             "name": "Ilryth's Embrace",
             "formula": "multiplicative",
             "base value": 1,
@@ -126,7 +126,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Children of Ilyrth",
             "formula": "logarithmic",
             "rate": 1.20
         ])

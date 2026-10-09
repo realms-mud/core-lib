@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "chain rune ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::launch## a rune-stone that bounces between nearby foes, striking ##TargetName## first.");

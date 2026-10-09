@@ -117,7 +117,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "aeromancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

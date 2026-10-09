@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "sing song of annihilation");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::bellow## a song of pure annihilation that tears through the entire area.");

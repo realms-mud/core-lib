@@ -44,7 +44,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/bard/percussion/baxteros-meter.c",
+            "research item": "/guilds/bard/percussion/baxeros-meter.c",
             "name": "Baxteros' Meter",
             "formula": "multiplicative",
             "base value": 1,

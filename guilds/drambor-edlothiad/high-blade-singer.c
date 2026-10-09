@@ -63,10 +63,13 @@ private void ThirteenthLevel()
 {
     addResearchElement("/guilds/drambor-edlothiad/bladesinger/elven-war-dance.c");
     addResearchElement("/guilds/drambor-edlothiad/bladesinger/resonant-ward.c");
+    addResearchElement("/guilds/drambor-edlothiad/bladesinger/harmonic-flow.c");
 
     addChild("/guilds/drambor-edlothiad/bladesinger/elven-war-dance.c",
         "/guilds/drambor-edlothiad/bladesinger/bladesong-of-valor.c");
     addChild("/guilds/drambor-edlothiad/bladesinger/resonant-ward.c",
+        "/guilds/drambor-edlothiad/bladesinger/shield-of-song.c");
+    addChild("/guilds/drambor-edlothiad/bladesinger/harmonic-flow.c",
         "/guilds/drambor-edlothiad/bladesinger/shield-of-song.c");
 }
 
@@ -82,7 +85,7 @@ private void FifteenthLevel()
     addChild("/guilds/drambor-edlothiad/bladesinger/bladesinger-elven-grace.c",
         "/guilds/drambor-edlothiad/bladesinger/resonant-ward.c");
     addChild("/guilds/drambor-edlothiad/bladesinger/counter-melody.c",
-        "/guilds/drambor-edlothiad/bladesinger/shield-of-song.c");
+        "/guilds/drambor-edlothiad/bladesinger/harmonic-flow.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

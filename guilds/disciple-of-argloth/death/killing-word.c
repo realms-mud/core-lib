@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "Disciple of Argloth");
     addSpecification("description", "This research teaches the Disciple to speak a single word in the language of death - a word so charged with necrotic power that it kills on impact.");
 
-    addPrerequisite("/guilds/disciple-of-argloth/death/inevitable-end",
+    addPrerequisite("/guilds/disciple-of-argloth/death/inevitable-end.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
@@ -122,7 +122,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Argloth",
             "formula": "additive",
             "rate": 0.50
         ]),

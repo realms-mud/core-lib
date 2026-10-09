@@ -620,6 +620,305 @@ void ExecuteDisplaysCombinationMessage()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ConstructedSpellWithDamageComponentReducesTargetHitPoints()
+{
+    load_object("/lib/tests/support/research/testConstructedFixedDamageEffect.c");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.spellPoints(User.maxSpellPoints());
+
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.hitPoints(100);
+    move_object(Target, Room);
+
+    ExpectTrue(User.setConstructedResearch("test combo", ([
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedFixedDamageEffect.c",
+        "elements": ({})
+    ])), "setConstructedResearch succeeds");
+
+    int initialHP = Target.hitPoints();
+
+    ExpectTrue(User.researchCommand("test spell test combo"),
+        "spell execution succeeds");
+
+    ExpectTrue(Target.hitPoints() < initialHP,
+        "target's hit points were reduced by more than 0");
+
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DamageScalesWithConstructedSpellMultiplier()
+{
+    load_object("/lib/tests/support/research/testConstructedMultiplierComponent.c");
+    load_object("/lib/tests/support/research/testConstructedHighMultiplierComponent.c");
+    load_object("/lib/tests/support/research/testConstructedFixedDamageEffect.c");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+
+    // Low multiplier (5%) spell
+    ExpectTrue(User.setConstructedResearch("low combo", ([
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedMultiplierComponent.c",
+        "elements": ({
+            (["research": "/lib/tests/support/research/testConstructedFixedDamageEffect.c"])
+        })
+    ])), "setConstructedResearch succeeds for low multiplier combo");
+
+    mapping lowData = ResearchItem.testGetEffectSpecificationData(
+        "test spell low combo", User);
+    int lowDamage = lowData["damage hit points"][0]["base damage"];
+
+    // High multiplier (50%) spell
+    ExpectTrue(User.setConstructedResearch("high combo", ([
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedHighMultiplierComponent.c",
+        "elements": ({
+            (["research": "/lib/tests/support/research/testConstructedFixedDamageEffect.c"])
+        })
+    ])), "setConstructedResearch succeeds for high multiplier combo");
+
+    mapping highData = ResearchItem.testGetEffectSpecificationData(
+        "test spell high combo", User);
+    int highDamage = highData["damage hit points"][0]["base damage"];
+
+    ExpectTrue(highDamage > lowDamage,
+        "a higher constructed spell multiplier deals more damage");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ComponentModifiersAreAppliedExactlyOnce()
+{
+    object effect = load_object(
+        "/lib/tests/support/research/testConstructedFixedDamageEffect.c");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+
+    // Since the fixed test effect uses a fixed (range 0) formula, calling
+    // getEffectsToApply() directly produces the exact, deterministic amount
+    // of damage that already has the component's own modifiers applied once.
+    int expectedDamage = effect.getEffectsToApply(User)["effects"]["damage hit points"];
+
+    ExpectTrue(User.setConstructedResearch("test combo", ([
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedFixedDamageEffect.c",
+        "elements": ({})
+    ])), "setConstructedResearch succeeds");
+
+    mapping effectData = ResearchItem.testGetEffectSpecificationData(
+        "test spell test combo", User);
+    int actualDamage = effectData["damage hit points"][0]["base damage"];
+
+    ExpectEq(expectedDamage, actualDamage,
+        "component modifiers are applied exactly once, not re-applied by "
+        "the constructed spell's own formula");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HealComponentIncreasesTargetHitPoints()
+{
+    load_object("/lib/tests/support/research/testConstructedFixedHealEffect.c");
+
+    User.addResearchPoints(1);
+    User.initiateResearch("/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.spellPoints(User.maxSpellPoints());
+
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    Target.Str(20);
+    Target.Int(20);
+    Target.Dex(20);
+    Target.Con(20);
+    Target.Wis(20);
+    Target.Chr(20);
+    Target.hitPoints(50);
+    move_object(Target, Room);
+
+    ExpectTrue(User.setConstructedResearch("test combo", ([
+        "constraint": "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": "/lib/tests/support/research/testConstructedFixedHealEffect.c",
+        "elements": ({})
+    ])), "setConstructedResearch succeeds");
+
+    int initialHP = Target.hitPoints();
+    User.researchCommand("test spell test combo");
+
+    ExpectTrue(Target.hitPoints() > initialHP,
+        "a heal component increases the target's hit points");
+
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistedBuffUsesComponentModifiersAndRefreshesWithoutStacking()
+{
+    string path =
+        "/lib/tests/support/research/testConstructedPersistedEffect.c";
+    object component = load_object(path);
+    User.addResearchPoints(1);
+    User.initiateResearch(
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    ExpectTrue(User.setConstructedResearch("buff", ([
+        "constraint":
+            "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": path,
+        "elements": ({})
+    ])), "buff is constructed");
+
+    ExpectTrue(ResearchItem.testApplyBeneficialEffect(
+        "test spell buff", User, User), "buff applies to caster");
+    string identity = program_name(ResearchItem) + "#" + User.RealName() +
+        "#" + program_name(component);
+    object modifier = User.registeredInventoryObject(identity);
+    ExpectTrue(objectp(modifier), "buff is registered");
+    ExpectEq(8, modifier.query("bonus attack"),
+        "component attribute modifier applies exactly once");
+    mapping data = ResearchItem.testGetEffectSpecificationData(
+        "test spell buff", User);
+    ExpectEq(60, data["persisted components"][0]["data"]["duration"],
+        "component duration is preserved");
+
+    ResearchItem.testApplyBeneficialEffect("test spell buff", User, User);
+    ExpectFalse(objectp(modifier), "recast removes previous modifier");
+    modifier = User.registeredInventoryObject(identity);
+    ExpectTrue(objectp(modifier), "replacement is registered");
+    ResearchItem.testDeactivateModifier(modifier);
+    ExpectFalse(objectp(User.registeredInventoryObject(identity)),
+        "expiration removes registration");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ConstructedDamageAndSlowApplyTogetherWithoutAffectingCaster()
+{
+    string path = "/guilds/pyromancer/effects/apply-slow.c";
+    object component = load_object(path);
+    User.addResearchPoints(1);
+    User.initiateResearch(
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    ExpectTrue(User.setConstructedResearch("slow", ([
+        "constraint":
+            "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": path,
+        "elements": ({ ([
+            "research":
+                "/lib/tests/support/research/testConstructedFixedDamageEffect.c"
+        ]) })
+    ])), "mixed spell is constructed");
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    Target.Con(20);
+    Target.hitPoints(100);
+    move_object(Target, Room);
+    int initialHP = Target.hitPoints();
+    ExpectTrue(User.researchCommand("test spell slow"),
+        "mixed spell executes");
+    ExpectTrue(Target.hitPoints() < initialHP, "damage applies");
+    string identity =
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c#" +
+        User.RealName() + "#" + program_name(component);
+    object modifier = Target.registeredInventoryObject(identity);
+    ExpectTrue(objectp(modifier), "slow is registered on hostile target");
+    ExpectEq(component.getPersistedEffectsToApply(User)["apply slow"],
+        modifier.query("slow"), "component modifiers apply to slow once");
+    ExpectFalse(objectp(User.registeredInventoryObject(identity)),
+        "hostile debuff never applies to caster");
+    ResearchItem.testDeactivateModifier(modifier);
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MixedAreaSpellAppliesBuffToCasterAndDamageToEnemy()
+{
+    string path =
+        "/lib/tests/support/research/testConstructedPersistedEffect.c";
+    object component = load_object(path);
+    User.addResearchPoints(1);
+    User.initiateResearch(
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.setConstructedResearch("mixed", ([
+        "constraint":
+            "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": path,
+        "elements": ({ ([
+            "research":
+                "/lib/tests/support/research/testConstructedFixedDamageEffect.c"
+        ]) })
+    ]));
+    object Target = clone_object("/lib/realizations/monster.c");
+    Target.Name("Orc");
+    Target.Con(20);
+    Target.hitPoints(100);
+    move_object(Target, Room);
+    int initialHP = Target.hitPoints();
+    int casterHP = User.hitPoints();
+    ExpectTrue(User.researchCommand("test spell mixed"),
+        "mixed area spell executes");
+    string identity =
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c#" +
+        User.RealName() + "#" + program_name(component);
+    object modifier = User.registeredInventoryObject(identity);
+    ExpectTrue(objectp(modifier), "caster receives buff");
+    ExpectFalse(objectp(Target.registeredInventoryObject(identity)),
+        "enemy does not receive buff");
+    ExpectTrue(Target.hitPoints() < initialHP, "enemy receives damage");
+    ExpectEq(casterHP, User.hitPoints(), "caster does not receive damage");
+    ResearchItem.testDeactivateModifier(modifier);
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistedDebuffCannotApplyToProtectedPlayer()
+{
+    string path = "/guilds/pyromancer/effects/apply-slow.c";
+    load_object(path);
+    User.addResearchPoints(1);
+    User.initiateResearch(
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.setConstructedResearch("slow", ([
+        "constraint":
+            "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": path,
+        "elements": ({})
+    ]));
+    object Target = clone_object("/lib/tests/support/services/mockPlayer.c");
+    Target.Name("Fred");
+    ExpectFalse(ResearchItem.testApplyEffect("test spell slow", User, Target),
+        "hostile component cannot affect protected player");
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PersistedBuffDoesNotApplyToAreaEnemies()
+{
+    string path = "/guilds/pyromancer/effects/enhance-attack.c";
+    load_object(path);
+    User.addResearchPoints(1);
+    User.initiateResearch(
+        "/lib/tests/support/research/testConstructedActiveResearchItem.c");
+    User.setConstructedResearch("buff", ([
+        "constraint":
+            "/lib/tests/support/research/testConstructedActiveResearchItem.c",
+        "type": path,
+        "elements": ({})
+    ]));
+    object Target = clone_object("/lib/realizations/monster.c");
+    ExpectFalse(ResearchItem.testApplyEffect("test spell buff", User, Target),
+        "area buff skips enemies");
+    destruct(Target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ExecuteFailsWhenNotEnoughSpellPointsForFullCost()
 {
     load_object("/lib/tests/support/research/testConstructedComponentA.c");

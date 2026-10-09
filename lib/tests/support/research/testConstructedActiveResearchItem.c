@@ -43,3 +43,31 @@ public int testGetRepeatEffectCount(string command, object initiator)
 {
     return getRepeatEffectCount(command, initiator);
 }
+
+/////////////////////////////////////////////////////////////////////////////
+public mapping testGetEffectSpecificationData(string command, object owner)
+{
+    return getEffectSpecificationData(command, owner);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int testApplyEffect(string command, object owner, object target)
+{
+    mapping effectData = getEffectSpecificationData(command, owner);
+
+    return applyEffect(owner, target, effectData);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public int testApplyBeneficialEffect(string command, object owner, object target)
+{
+    mapping effectData = getEffectSpecificationData(command, owner);
+
+    return applyBeneficialEffect(owner, target, effectData);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void testDeactivateModifier(object modifier)
+{
+    deactivateModifierObject(modifier);
+}

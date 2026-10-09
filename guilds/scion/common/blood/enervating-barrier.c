@@ -25,7 +25,7 @@ protected void Setup()
 
     addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type": "research"]));
-    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/parasitic-tendrils.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/choking-tendrils.c", WeaponType),
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
@@ -78,7 +78,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name" : "level",
+            "name" : "Scion of Dhuras",
             "formula" : "logarithmic",
             "rate" : 1.10
         ]),

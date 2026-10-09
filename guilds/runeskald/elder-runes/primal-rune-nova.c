@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 30);
     addSpecification("command template", "primal rune nova");
     addSpecification("use ability message",
         "##InitiatorName## shatters a primal rune, unleashing a nova of primordial destruction across the entire area.");

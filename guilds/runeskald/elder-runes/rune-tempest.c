@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "invoke rune tempest");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::call## down a tempest of rune lightning that tears through the surrounding area.");

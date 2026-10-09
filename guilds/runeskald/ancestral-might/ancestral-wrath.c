@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke ancestral wrath ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## the rage of the ancestors upon ##TargetName##.");

@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke blizzard strike");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::launch## a barrage of razor ice shards that rakes everything nearby.");

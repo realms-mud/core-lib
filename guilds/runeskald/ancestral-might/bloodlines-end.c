@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 30);
     addSpecification("command template", "invoke bloodline's end");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::collapse## the full power of their bloodline into one cataclysmic eruption.");

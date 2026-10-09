@@ -269,6 +269,43 @@ protected nomask int applyModifiers(int value, object initiator,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected mapping persistedSpecificationExport(mapping specificationData)
+{
+    return specificationData;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping getPersistedEffectsToApply(object owner)
+{
+    mapping ret = ([]);
+    string *keys = this_object()->query("raw bonuses") +
+        this_object()->query("penalties") + this_object()->query("apply to");
+
+    foreach(string key in m_indices(mkmapping(keys)))
+    {
+        string bonus;
+        if ((sscanf(key, "bonus %s", bonus) ||
+            sscanf(key, "penalty to %s", bonus) ||
+            sscanf(key, "apply %s", bonus)) &&
+            getService("bonuses")->isValidBonus(bonus))
+        {
+            ret[key] = applyModifiers(this_object()->query(key), owner,
+                this_object()->query("modifiers"));
+        }
+    }
+    foreach(string key in ({ "duration", "trait", "negative trait",
+        "is negative effect", "supercede targets" }))
+    {
+        mixed value = this_object()->query(key);
+        if (value)
+        {
+            ret[key] = value;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void deactivateModifierObject(object modifierToDeactivate)
 {
     if (modifierToDeactivate && objectp(modifierToDeactivate))

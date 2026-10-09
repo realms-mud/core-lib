@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke spirit storm");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a howling storm of ancestor spirits that tears through the area.");

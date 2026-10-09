@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "anguished wail");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::let## out an anguished wail laced with runic grief that scours the area.");

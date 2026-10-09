@@ -25,7 +25,7 @@ protected void Setup()
 
     addPrerequisite(sprintf("/guilds/scion/paths/%s/root.c", WeaponType),
         (["type": "research"]));
-    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/shockstrike.c", WeaponType),
+    addPrerequisite(sprintf("/guilds/scion/paths/%s/blood/soulstrike.c", WeaponType),
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",

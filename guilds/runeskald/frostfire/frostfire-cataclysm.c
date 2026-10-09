@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "frostfire cataclysm");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a cataclysmic explosion of frost and fire that engulfs the entire area.");

@@ -83,7 +83,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Ferianth",
             "formula": "logarithmic",
             "rate": 1.10
         ])

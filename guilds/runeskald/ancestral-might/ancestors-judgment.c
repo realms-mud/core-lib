@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "invoke ancestor's judgment ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::call## down the judgment of the ancestors upon ##TargetName##.");

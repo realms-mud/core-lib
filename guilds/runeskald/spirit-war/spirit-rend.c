@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke spirit rend ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::drive## a warrior spirit through ##TargetName##'s defenses.");

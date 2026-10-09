@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "Disciple of Argloth");
     addSpecification("description", "This research hardens the Disciple against death itself through their deep attunement to death energy.");
 
-    addPrerequisite("/guilds/disciple-of-argloth/death/dark-potency",
+    addPrerequisite("/guilds/disciple-of-argloth/blood/dark-potency.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",

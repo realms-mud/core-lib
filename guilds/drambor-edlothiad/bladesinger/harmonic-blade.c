@@ -14,11 +14,11 @@ protected void Setup()
         "blade, enhancing its effectiveness as a weapon and magical conduit.");
 
     addPrerequisite(
-        "/guilds/drambor-edlothiad/bladesinger/perfect-bladesong.c",
+        "/guilds/drambor-edlothiad/blade/perfect-bladesong.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
-            "guild": "/guilds/drambor-edlothiad/drambor-edlothiad.c",
+            "guild": "Drambor Edlothiad",
             "value": 39
         ]));
 

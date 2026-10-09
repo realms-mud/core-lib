@@ -289,6 +289,10 @@ protected nomask int executeInArea(string unparsedCommand, object owner,
             (: !($1->onKillList() && !$1->isRealizationOf("player")) :));
         environmentObjects += ({ owner });
     }
+    else if (member(effectData, "persisted components"))
+    {
+        ret += applyBeneficialEffect(owner, owner, effectData);
+    }
 
     foreach(object target in environmentObjects)
     {

@@ -27,6 +27,7 @@ protected void Setup()
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
     addSpecification("spell point cost", 350);
+    addSpecification("cooldown", 180);
 
     addSpecification("damage hit points", ({ ([
             "probability": 80,
@@ -136,7 +137,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "cryomancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

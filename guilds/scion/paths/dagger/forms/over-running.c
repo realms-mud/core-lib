@@ -23,7 +23,7 @@ protected void Setup()
 
     addPrerequisite("/guilds/scion/paths/dagger/forms/thrusting.c",
         (["type": "research"]));
-    addPrerequisite("/guilds/scion/paths/dagger/forms/over-stab maneuver.c",
+    addPrerequisite("/guilds/scion/paths/dagger/forms/over-strike.c",
         (["type": "research"]));
     addPrerequisite("/guilds/scion/paths/dagger/forms/dance-of-death.c",
         (["type": "research"]));

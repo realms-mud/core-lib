@@ -61,7 +61,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -69,63 +69,72 @@ protected void Setup()
             "type": "research",
             "name": "Divination Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/divination-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Divination Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/divination-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Divination",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/pure-divination.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Divination",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/primal-divination.c"
         ]),
         ([
             "type": "research",
             "name": "Total Divination",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/total-divination.c"
         ]),
         ([
             "type": "research",
             "name": "Divinatory Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/divinatory-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Oracle Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/oracle-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Oracle Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/oracle-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Oracle Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/divination/oracle-supremacy.c"
         ]),
     }));

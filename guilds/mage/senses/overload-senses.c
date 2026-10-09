@@ -61,7 +61,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -69,63 +69,72 @@ protected void Setup()
             "type": "research",
             "name": "Senses Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/senses-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Senses Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/senses-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Senses",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/pure-senses.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Senses",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/primal-senses.c"
         ]),
         ([
             "type": "research",
             "name": "Total Senses",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/total-senses.c"
         ]),
         ([
             "type": "research",
             "name": "Sensory Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/sensory-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Perception Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/perception-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Perception Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/perception-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Perception Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/senses/perception-supremacy.c"
         ]),
     }));

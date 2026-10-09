@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune inferno ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::hurl## a fire rune that erupts in a column of runic flame around ##TargetName##.");

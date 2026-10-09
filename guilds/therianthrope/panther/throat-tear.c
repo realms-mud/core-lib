@@ -125,7 +125,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "therianthrope",
             "formula": "additive",
             "rate": 0.75
         ])

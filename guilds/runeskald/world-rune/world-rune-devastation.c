@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke world rune devastation ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::speak## a world rune of devastation and the air tears apart around ##TargetName##.");

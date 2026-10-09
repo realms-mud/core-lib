@@ -106,7 +106,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Hand of Bilanx",
             "formula": "logarithmic",
             "rate": 1.08
         ])
@@ -167,7 +167,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Hand of Bilanx",
             "formula": "logarithmic",
             "rate": 1.10
         ])

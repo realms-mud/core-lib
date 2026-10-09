@@ -137,9 +137,12 @@ private void TwentySeventhLevel()
 private void TwentyNinthLevel()
 {
     addResearchElement("/guilds/aeromancer/lightning/ball-lightning.c");
+    addResearchElement("/guilds/aeromancer/lightning/boltmasters-speed.c");
 
     addChild("/guilds/aeromancer/lightning/ball-lightning.c",
         "/guilds/aeromancer/lightning/static-discharge.c");
+    addChild("/guilds/aeromancer/lightning/boltmasters-speed.c",
+        "/guilds/aeromancer/lightning/boltmasters-finess.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -160,7 +163,7 @@ private void ThirtyThirdLevel()
     addChild("/guilds/aeromancer/lightning/electrostatic-induction.c",
         "/guilds/aeromancer/lightning/enhanced-discharge.c");
     addChild("/guilds/aeromancer/lightning/boltmasters-endurance.c",
-        "/guilds/aeromancer/lightning/boltmasters-finess.c");
+        "/guilds/aeromancer/lightning/boltmasters-speed.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

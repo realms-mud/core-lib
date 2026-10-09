@@ -88,7 +88,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/divine-aegis.c",
+            "research item": "/guilds/disciple-of-ferianth/ashen-retribution/divine-aegis.c",
             "name": "Divine Aegis",
             "formula": "multiplicative",
             "base value": 1,
@@ -144,7 +144,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Ferianth",
             "formula": "additive",
             "rate": 0.95
         ])

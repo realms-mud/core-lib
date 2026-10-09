@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "sing curse of weakness ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::sing## a draining verse that saps the strength from ##TargetName##.");

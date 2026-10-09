@@ -162,7 +162,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Argloth",
             "formula": "additive",
             "rate": 0.50
         ]),

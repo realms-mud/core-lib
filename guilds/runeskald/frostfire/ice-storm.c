@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "ice storm");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::call## down a ferocious ice storm, pelting the area with rune-ice.");

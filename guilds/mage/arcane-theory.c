@@ -298,11 +298,8 @@ private void FiftyNinthLevel()
 /////////////////////////////////////////////////////////////////////////////
 private void SixtyFirstLevel()
 {
-    addResearchElement("/guilds/mage/arcane-theory/arcane-supremacy.c");
     addResearchElement("/guilds/mage/arcane-theory/absolute-arcana.c");
 
-    addChild("/guilds/mage/arcane-theory/arcane-supremacy.c",
-        "/guilds/mage/arcane-theory/archmage-constitution.c");
     addChild("/guilds/mage/arcane-theory/absolute-arcana.c",
         "/guilds/mage/arcane-theory/archmage-constitution.c");
 }
@@ -351,4 +348,3 @@ protected void Setup()
     FiftyNinthLevel();
     SixtyFirstLevel();
 }
-

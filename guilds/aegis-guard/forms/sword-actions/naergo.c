@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "A punishing thrust used to bypass "
         "heavy armor.");
 
-    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/beraid.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/beraid.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

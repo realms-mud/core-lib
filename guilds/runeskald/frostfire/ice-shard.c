@@ -18,6 +18,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "ice shard ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::conjure## a rune-ice shard and drives it into ##TargetName##.");

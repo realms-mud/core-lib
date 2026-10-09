@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "rune pulse");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a pulse of rune force that rattles everything nearby.");

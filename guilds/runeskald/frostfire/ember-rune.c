@@ -18,6 +18,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "ember rune ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::hurl## a smouldering ember-rune at ##TargetName##.");

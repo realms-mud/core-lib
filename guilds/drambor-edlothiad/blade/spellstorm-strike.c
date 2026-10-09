@@ -18,7 +18,7 @@ protected void Setup()
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
-            "guild": "/guilds/drambor-edlothiad/drambor-edlothiad.c",
+            "guild": "Drambor Edlothiad",
             "value": 23
         ]));
 
@@ -61,7 +61,7 @@ protected void Setup()
             "formula": "logarithmic",
             "rate": 1.50]),
         (["type": "level",
-            "name": "level",
+            "name": "Drambor Edlothiad",
             "formula": "logarithmic",
             "rate": 1.15]),
         (["type": "attribute",

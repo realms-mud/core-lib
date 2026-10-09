@@ -42,7 +42,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "pyromancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

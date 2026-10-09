@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "rune strike ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::channel## the rune's power into a crushing blow against ##TargetName##.");

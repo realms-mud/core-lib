@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "frostfire burst");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::detonate## fused ice and fire runes in a blinding frostfire explosion.");

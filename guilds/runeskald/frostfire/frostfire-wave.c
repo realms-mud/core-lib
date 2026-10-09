@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "frostfire wave");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::send## a crashing wave of frost and flame across the area.");

@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune shatter");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::shatter## a ward-rune in a burst of protective force that blasts all nearby foes.");

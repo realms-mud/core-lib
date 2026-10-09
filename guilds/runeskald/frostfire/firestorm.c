@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "firestorm");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::conjure## a raging firestorm of runic flame that scorches the area.");

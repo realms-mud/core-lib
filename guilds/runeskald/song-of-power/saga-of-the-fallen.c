@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "sing saga of the fallen ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::sing## the saga of the fallen, invoking the weight of countless deaths on ##TargetName##.");

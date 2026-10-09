@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune smash ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::bring## a rune-empowered smash down on ##TargetName## with bone-crushing force.");

@@ -127,7 +127,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "aquamancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

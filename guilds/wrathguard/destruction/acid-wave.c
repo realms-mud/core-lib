@@ -80,7 +80,7 @@ protected void Setup()
             "type": "skill",
             "name": "spellcraft",
             "formula": "logarithmic",
-            "rate": 1.00
+            "rate": 1.05
         ]),
         ([
             "type": "skill",
@@ -102,7 +102,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Wrathguard",
             "formula": "additive",
             "rate": 0.60
         ])

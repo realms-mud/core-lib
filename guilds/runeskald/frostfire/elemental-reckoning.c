@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "invoke elemental reckoning");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a devastating wave of frost and fire that tears through the entire area.");

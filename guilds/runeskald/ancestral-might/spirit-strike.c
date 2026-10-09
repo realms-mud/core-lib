@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke spirit strike ##Target##");
     addSpecification("use ability message",
         "##InitiatorName##'s arm blazes with spirit-light as an ancestor guides a precise strike at ##TargetName##.");

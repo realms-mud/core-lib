@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "sing echo of doom ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::sing## the echo of doom, a resonating pronouncement of final destruction aimed at ##TargetName##.");

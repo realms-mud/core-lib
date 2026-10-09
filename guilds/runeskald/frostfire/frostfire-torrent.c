@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "frostfire torrent ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::blast## ##TargetName## with a torrent of intertwined frost and flame.");

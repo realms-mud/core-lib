@@ -13,7 +13,7 @@ protected void Setup()
         "knowledge of a song that sends out a tremendous sonic blast from their "
         "weapon that causes damage to a targeted enemy.");
 
-    addPrerequisite("/guilds/bard/melee/sanguine-song.c",
+    addPrerequisite("/guilds/bard/melee/sangine-song.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "long sword",

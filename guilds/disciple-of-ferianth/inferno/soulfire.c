@@ -77,22 +77,6 @@ protected void Setup()
             "rate": 1.25
         ]),
         ([
-            "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/smite-the-wicked.c",
-            "name": "Smite the Wicked",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.20
-        ]),
-        ([
-            "type": "research",
-            "research item": "/guilds/disciple-of-ferianth/inferno/inner-light.c",
-            "name": "Inner Light",
-            "formula": "multiplicative",
-            "base value": 1,
-            "rate": 1.15
-        ]),
-        ([
             "type": "skill",
             "name": "elemental fire",
             "formula": "additive",
@@ -142,7 +126,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Ferianth",
             "formula": "additive",
             "rate": 0.95
         ])

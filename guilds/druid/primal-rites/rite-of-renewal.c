@@ -137,7 +137,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "druid",
             "formula": "logarithmic",
             "rate": 1.05
         ])

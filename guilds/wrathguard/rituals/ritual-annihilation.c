@@ -36,7 +36,7 @@ protected void Setup()
             "rate": 0.3]),
         (["type": "attribute", "name": "intelligence", "formula": "additive",
             "rate": 0.25]),
-        (["type": "level", "name": "level", "formula": "additive",
+        (["type": "level", "name": "Wrathguard", "formula": "additive",
             "rate": 2.6])
     }));
     addPrerequisite("/guilds/wrathguard/rituals/rite-of-ruin.c",

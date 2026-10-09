@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke world rune torrent");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::speak## a torrent of world runes, filling the air with shattering primordial force.");

@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 30);
     addSpecification("command template", "primal rune burst ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## shatters a primal rune with a thunderous concussion, engulfing ##TargetName## in primordial force.");

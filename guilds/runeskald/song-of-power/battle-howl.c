@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "battle howl");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a terrifying battle howl that shakes all nearby foes.");

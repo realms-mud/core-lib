@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke ancestors war cry");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## an ancestral war cry that echoes with spirit-thunder.");

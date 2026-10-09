@@ -55,7 +55,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -63,63 +63,72 @@ protected void Setup()
             "type": "research",
             "name": "Mind Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/mind-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Mind Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/mind-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Mind",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/pure-mind.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Mind",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/primal-mind.c"
         ]),
         ([
             "type": "research",
             "name": "Total Mind",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/total-mind.c"
         ]),
         ([
             "type": "research",
             "name": "Mind Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/mind-supremacy.c"
         ]),
         ([
             "type": "research",
             "name": "Psionic Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/psionic-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Psionic Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/psionic-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Psionic Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/mind/psionic-supremacy.c"
         ]),
     }));

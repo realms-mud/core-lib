@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "frostfire bolt ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::hurl## a swirling bolt of frost and flame at ##TargetName##.");

@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "frost lance ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::conjure## a lance of glacial rune-ice and hurls it at ##TargetName##.");

@@ -65,7 +65,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "necromancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

@@ -54,7 +54,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "oneiromancer",
             "formula": "logarithmic",
             "rate": 1.15
         ]),

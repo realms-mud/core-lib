@@ -74,7 +74,7 @@ protected void Setup()
         ]),
         ([
             "type": "research",
-            "research item": "/guilds/children-of-ilyrth/healing/ilryths-blessing.c",
+            "research item": "/guilds/children-of-ilyrth/healing/ilyrths-blessing.c",
             "name": "Ilryth's Blessing",
             "formula": "multiplicative",
             "base value": 1,
@@ -126,7 +126,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Children of Ilyrth",
             "formula": "logarithmic",
             "rate": 1.08
         ])

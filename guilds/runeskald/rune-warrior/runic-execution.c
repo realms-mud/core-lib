@@ -22,6 +22,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "runic execution ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::channel## every painted rune into one thunderous execution strike against ##TargetName##.");

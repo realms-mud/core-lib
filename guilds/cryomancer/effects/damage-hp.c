@@ -95,7 +95,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "cryomancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

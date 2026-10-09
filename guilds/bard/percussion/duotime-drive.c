@@ -21,7 +21,7 @@ protected void Setup()
         "value": 43
     ]));
 
-    addPrerequisite("/guilds/bard/percussion/baxteros-meter.c",
+    addPrerequisite("/guilds/bard/percussion/baxeros-meter.c",
         (["type": "research"]));
 
     addSpecification("research type", "points");

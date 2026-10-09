@@ -20,7 +20,7 @@ protected void Setup()
         (["type": "research"]));
     addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-aras.c",
         (["type": "research"]));
-    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/an-foph.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/an-foph.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

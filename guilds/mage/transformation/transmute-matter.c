@@ -55,7 +55,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -63,63 +63,72 @@ protected void Setup()
             "type": "research",
             "name": "Transformation Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transformation-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Transformation Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transformation-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Transformation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/pure-transformation.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Transformation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/primal-transformation.c"
         ]),
         ([
             "type": "research",
             "name": "Total Transformation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/total-transformation.c"
         ]),
         ([
             "type": "research",
             "name": "Transformative Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transformative-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Transmutation Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transmutation-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Transmutation Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transmutation-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Transmutation Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/transformation/transmutation-supremacy.c"
         ]),
     }));

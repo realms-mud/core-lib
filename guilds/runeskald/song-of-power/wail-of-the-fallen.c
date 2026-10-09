@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "sing wail of the fallen");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a wail of fallen warriors that echoes through the area.");

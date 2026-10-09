@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "sing voice of ruin ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::direct## a lance of pure ruinous song at ##TargetName##.");

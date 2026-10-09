@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "A punishing stab capable of shattering "
         "any guards.");
 
-    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/gliri.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/gliri.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

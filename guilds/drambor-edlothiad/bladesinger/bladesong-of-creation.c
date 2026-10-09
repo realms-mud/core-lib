@@ -14,11 +14,11 @@ protected void Setup()
         "creative forces of existence, mending wounds and restoring allies.");
 
     addPrerequisite(
-        "/guilds/drambor-edlothiad/bladesinger/advanced-bladesong.c",
+        "/guilds/drambor-edlothiad/blade/advanced-bladesong.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
-            "guild": "/guilds/drambor-edlothiad/drambor-edlothiad.c",
+            "guild": "Drambor Edlothiad",
             "value": 39
         ]));
 

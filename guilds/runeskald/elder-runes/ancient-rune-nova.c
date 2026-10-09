@@ -24,6 +24,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "ancient rune nova");
     addSpecification("use ability message",
         "##InitiatorName## shatters an ancient rune with a deafening roar, "

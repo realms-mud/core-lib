@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "Disciple of Argloth");
     addSpecification("description", "This research grants the Disciple dominion over the grave itself - a passive command over death energy in all its forms.");
 
-    addPrerequisite("/guilds/disciple-of-argloth/death/death-mastery",
+    addPrerequisite("/guilds/disciple-of-argloth/necromancy/death-mastery.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",

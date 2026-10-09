@@ -130,7 +130,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "League of Assassins",
             "formula": "additive",
             "rate": 1.0
         ])

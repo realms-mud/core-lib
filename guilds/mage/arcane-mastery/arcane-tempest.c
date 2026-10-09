@@ -55,7 +55,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.75
         ]),
@@ -63,42 +63,48 @@ protected void Setup()
             "type": "research",
             "name": "Mastery Amplification",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/mastery-amplification.c"
         ]),
         ([
             "type": "research",
             "name": "Mastery Synergy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/mastery-synergy.c"
         ]),
         ([
             "type": "research",
             "name": "Mastery Resonance",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/mastery-resonance.c"
         ]),
         ([
             "type": "research",
             "name": "Mastery Confluence",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/mastery-confluence.c"
         ]),
         ([
             "type": "research",
             "name": "Archmage Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/archmage-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Archmage Synergy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/arcane-mastery/archmage-synergy.c"
         ]),
     }));

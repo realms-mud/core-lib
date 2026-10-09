@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "sundering rune ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::hurl## a sundering rune-stone that tears into ##TargetName##.");

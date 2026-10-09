@@ -104,7 +104,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Order of Phaedra",
             "formula": "additive",
             "rate": 0.75
         ])

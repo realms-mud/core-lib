@@ -479,19 +479,111 @@ protected int getRepeatEffectCount(string command, object initiator)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int applyAdditionalEffects(object initiator, object target,
+    mapping effectData, int beneficial)
+{
+    int ret = 0;
+    mapping *effects = effectData["persisted components"];
+
+    if (target && pointerp(effects))
+    {
+        foreach(mapping component in effects)
+        {
+            mapping data = component["data"];
+            int negative = data["is negative effect"] ||
+                data["negative trait"];
+            int hostile = (target != initiator) &&
+                ((target->onKillList() &&
+                    !target->isRealizationOf("player")) ||
+                (target->isRealizationOf("player") &&
+                    initiator->isRealizationOf("player") &&
+                    target->onKillList() && initiator->onKillList()));
+
+            if (((beneficial && !negative) || (!beneficial && negative)) &&
+                ((!negative && ((query("scope") != "area") ||
+                    !target->isRealizationOf("monster"))) ||
+                    (negative && hostile)))
+            {
+                string trait = negative ? data["negative trait"] :
+                    data["trait"];
+                if (trait && target->has("traits"))
+                {
+                    ret = target->addTrait(trait) || ret;
+                }
+                if (data["duration"])
+                {
+                    string identity = program_name(this_object()) + "#" +
+                        initiator->RealName() + "#" + component["research"];
+                    object previous =
+                        target->registeredInventoryObject(identity);
+                    if (previous)
+                    {
+                        deactivateModifierObject(previous);
+                    }
+                    object modifier = getModifierObject(initiator, data);
+                    if (modifier)
+                    {
+                        modifier->set("fully qualified name", identity);
+                        if (modifier->registerModifierWithTargetList(
+                            ({ target })))
+                        {
+                            call_out("deactivateModifierObject",
+                                data["duration"], modifier);
+                            ret = 1;
+                        }
+                        else
+                        {
+                            destruct(modifier);
+                        }
+                    }
+                }
+                if (negative && ret)
+                {
+                    initiator->registerAttacker(target);
+                    target->registerAttacker(initiator);
+                    if (data["supercede targets"])
+                    {
+                        target->supercedeAttackers(initiator);
+                    }
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected mapping getEffectSpecificationData(string command, object owner)
 {
     mapping ret = specificationData + ([]);
     
     object *components = getConstructedDetails(command, owner);
-    
+
     if (sizeof(components))
     {
         string message = "";
         string descriptor = "";
-        
+        mapping effectTotals = ([]);
+        int multiplierPercentage = 0;
+        ret["persisted components"] = ({});
+
         foreach(object item in components)
         {
+            mapping affectedResearch;
+
+            if (function_exists("getPersistedEffectsToApply", item))
+            {
+                mapping persisted = item->getPersistedEffectsToApply(owner);
+                if (persisted["duration"] || persisted["trait"] ||
+                    persisted["negative trait"])
+                {
+                    ret["persisted components"] += ({ ([
+                        "research": program_name(item),
+                        "data": persisted
+                    ]) });
+                }
+            }
+
             // Get damage type from function components
             string damageType = item->query("damage type");
             if (damageType)
@@ -513,52 +605,63 @@ protected mapping getEffectSpecificationData(string command, object owner)
                 descriptor = itemDescriptor;
             }
 
-            // Aggregate effects and modifiers from components
+            // Aggregate the constructed spell multiplier bonus
+            affectedResearch = item->query("affected research");
+            if (mappingp(affectedResearch) &&
+                (item->query("affected research type") == "percentage") &&
+                member(affectedResearch, "Constructed Spell Multiplier"))
+            {
+                multiplierPercentage +=
+                    affectedResearch["Constructed Spell Multiplier"];
+            }
+
+            // Aggregate effects from components; the components already
+            // applied their own modifiers when rolling these values.
             if (function_exists("getEffectsToApply", item))
             {
                 mapping itemEffects = item->getEffectsToApply(owner);
-                
+
                 if (mappingp(itemEffects) && member(itemEffects, "effects"))
                 {
                     foreach(string effectType in m_indices(itemEffects["effects"]))
                     {
-                        if (!member(ret, effectType))
+                        if (!member(effectTotals, effectType))
                         {
-                            ret[effectType] = ({});
+                            effectTotals[effectType] = 0;
                         }
-                        // Aggregate the calculated effect values
-                        if (!member(ret, effectType + " value"))
-                        {
-                            ret[effectType + " value"] = 0;
-                        }
-                        ret[effectType + " value"] += itemEffects["effects"][effectType];
+                        effectTotals[effectType] +=
+                            itemEffects["effects"][effectType];
                     }
                 }
             }
-
-            // Merge modifiers from components
-            mixed *itemModifiers = item->query("modifiers");
-            if (pointerp(itemModifiers) && sizeof(itemModifiers))
-            {
-                if (!member(ret, "modifiers"))
-                {
-                    ret["modifiers"] = ({});
-                }
-                ret["modifiers"] += itemModifiers;
-            }
         }
-        
+
+        // Apply the aggregated constructed spell multiplier and build a
+        // fixed formula from the already-rolled, already-modified total so
+        // it is not passed back through applyFormula's modifiers again.
+        foreach(string effectType in m_indices(effectTotals))
+        {
+            int total = effectTotals[effectType] *
+                (100 + multiplierPercentage) / 100;
+
+            ret[effectType] = ({ ([
+                "probability": 100,
+                "base damage": total,
+                "range": 0
+            ]) });
+        }
+
         // Replace ##Function## with the descriptor
         if (message != "" && descriptor != "")
         {
             message = regreplace(message, "##Function##", descriptor, 1);
         }
-        
+
         if (message != "")
         {
             ret["use ability message"] = message;
         }
     }
-    
+
     return ret;
 }

@@ -129,11 +129,23 @@ private void TwentyThirdLevel()
 {
     addResearchElement("/guilds/drambor-edlothiad/defense/fortified-will.c");
     addResearchElement("/guilds/drambor-edlothiad/defense/impenetrable-will.c");
+    addResearchElement("/guilds/drambor-edlothiad/defense/arcane-barrier.c");
 
     addChild("/guilds/drambor-edlothiad/defense/fortified-will.c",
         "/guilds/drambor-edlothiad/defense/arcane-absorption.c");
     addChild("/guilds/drambor-edlothiad/defense/impenetrable-will.c",
         "/guilds/drambor-edlothiad/defense/mystic-resilience.c");
+    addChild("/guilds/drambor-edlothiad/defense/arcane-barrier.c",
+        "/guilds/drambor-edlothiad/defense/arcane-absorption.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private void TwentyFifthLevel()
+{
+    addResearchElement("/guilds/drambor-edlothiad/defense/aegis-of-resolve.c");
+
+    addChild("/guilds/drambor-edlothiad/defense/aegis-of-resolve.c",
+        "/guilds/drambor-edlothiad/defense/arcane-barrier.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -289,6 +301,7 @@ protected void Setup()
     NineteenthLevel();
     TwentyFirstLevel();
     TwentyThirdLevel();
+    TwentyFifthLevel();
     TwentySeventhLevel();
     ThirtyFirstLevel();
     ThirtyFifthLevel();

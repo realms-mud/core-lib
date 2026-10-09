@@ -22,6 +22,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "runic rampage");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::enter## a runic rampage, weapon flashing with rune-light as it carves through all nearby foes.");

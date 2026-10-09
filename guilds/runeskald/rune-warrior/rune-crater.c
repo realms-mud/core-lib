@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune crater");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::slam## a rune-charged weapon into the ground, sending a shockwave through nearby enemies.");

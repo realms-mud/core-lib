@@ -19,6 +19,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke rune of the world-frost ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::speak## the rune of the world-frost and a wave of primordial cold crashes into ##TargetName##.");

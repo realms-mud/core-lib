@@ -140,7 +140,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "geomancer",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

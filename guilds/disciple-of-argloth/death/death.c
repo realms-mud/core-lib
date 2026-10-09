@@ -239,9 +239,12 @@ private void FortyEighthLevel()
 private void FiftiethLevel()
 {
     addResearchElement("/guilds/disciple-of-argloth/death/scythe-of-argloth.c");
+    addResearchElement("/guilds/disciple-of-argloth/death/inevitable-end.c");
 
     addChild("/guilds/disciple-of-argloth/death/scythe-of-argloth.c",
         "/guilds/disciple-of-argloth/death/root.c");
+    addChild("/guilds/disciple-of-argloth/death/inevitable-end.c",
+        "/guilds/disciple-of-argloth/death/scythe-of-argloth.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -253,7 +256,7 @@ private void FiftySecondLevel()
     addChild("/guilds/disciple-of-argloth/death/ending-amplification.c",
         "/guilds/disciple-of-argloth/death/root.c");
     addChild("/guilds/disciple-of-argloth/death/killing-word.c",
-        "/guilds/disciple-of-argloth/death/root.c");
+        "/guilds/disciple-of-argloth/death/inevitable-end.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -296,9 +299,12 @@ private void FiftyEighthLevel()
 private void SixtiethLevel()
 {
     addResearchElement("/guilds/disciple-of-argloth/death/death-amplification.c");
+    addResearchElement("/guilds/disciple-of-argloth/death/deathbringer.c");
 
     addChild("/guilds/disciple-of-argloth/death/death-amplification.c",
         "/guilds/disciple-of-argloth/death/root.c");
+    addChild("/guilds/disciple-of-argloth/death/deathbringer.c",
+        "/guilds/disciple-of-argloth/death/killing-word.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -310,7 +316,7 @@ private void SixtySecondLevel()
     addChild("/guilds/disciple-of-argloth/death/cold-inevitability.c",
         "/guilds/disciple-of-argloth/death/root.c");
     addChild("/guilds/disciple-of-argloth/death/deathbringer-mastery.c",
-        "/guilds/disciple-of-argloth/death/root.c");
+        "/guilds/disciple-of-argloth/death/deathbringer.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

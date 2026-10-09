@@ -17,7 +17,7 @@ protected void Setup()
     addSpecification("usage summary", "An artful dance of blades that "
         "shatters defenses.");
 
-    addPrerequisite("/guilds/aegis-guard/forms/sword-guarding/raeg.c",
+    addPrerequisite("/guilds/aegis-guard/forms/sword-actions/raeg.c",
         (["type": "research"]));
 
     addSpecification("limited by", (["equipment":({ "dagger", "short sword",

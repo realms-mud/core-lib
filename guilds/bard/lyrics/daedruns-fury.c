@@ -30,7 +30,7 @@ protected void Setup()
           "guild": "bard",
           "value": 7 ]));
 
-    addPrerequisite("/guilds/bard/lyrics/inspiring-lyric.c",
+    addPrerequisite("/guilds/bard/lyrics/inspiring-lyrics.c",
         (["type": "research"]));
 
     addSpecification("modifiers", ({ 

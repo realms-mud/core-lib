@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "rune bolt ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::fire## a crackling bolt of rune energy at ##TargetName##.");

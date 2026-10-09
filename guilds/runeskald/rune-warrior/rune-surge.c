@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune surge ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::release## a surge of rune energy from their painted runes into ##TargetName##.");

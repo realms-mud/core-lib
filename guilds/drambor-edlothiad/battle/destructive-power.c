@@ -16,7 +16,7 @@ protected void Setup()
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",
-            "guild": "/guilds/drambor-edlothiad/drambor-edlothiad.c",
+            "guild": "Drambor Edlothiad",
             "value": 27
         ]));
     addSpecification("scope", "self");

@@ -55,7 +55,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -63,63 +63,72 @@ protected void Setup()
             "type": "research",
             "name": "Manipulation Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/manipulation-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Manipulation Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/manipulation-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Manipulation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/pure-manipulation.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Manipulation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/primal-manipulation.c"
         ]),
         ([
             "type": "research",
             "name": "Total Manipulation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/total-manipulation.c"
         ]),
         ([
             "type": "research",
             "name": "Manipulative Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/manipulative-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Siphon Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/siphon-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Siphon Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/siphon-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Siphon Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/manipulation/siphon-supremacy.c"
         ]),
     }));

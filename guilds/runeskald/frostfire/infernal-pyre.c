@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "infernal pyre ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::ignite## an infernal pyre of runic fire beneath ##TargetName##.");

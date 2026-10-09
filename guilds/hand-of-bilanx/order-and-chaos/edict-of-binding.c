@@ -110,7 +110,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Hand of Bilanx",
             "formula": "logarithmic",
             "base value": 1,
             "rate": 1.05

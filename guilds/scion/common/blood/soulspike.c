@@ -85,7 +85,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Scion of Dhuras",
             "formula": "logarithmic",
             "rate": 1.05
         ]),

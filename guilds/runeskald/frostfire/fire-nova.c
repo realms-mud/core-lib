@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "fire nova");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::erupt## in a burst of runic fire, scorching all nearby foes.");

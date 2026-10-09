@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke rune lash ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::crack## a whip of searing runic force at ##TargetName##.");

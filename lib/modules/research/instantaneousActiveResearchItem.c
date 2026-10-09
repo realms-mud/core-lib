@@ -45,6 +45,13 @@ protected nomask int addSpecification(string type, mixed value)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected int applyAdditionalEffects(object initiator, object target,
+    mapping effectData, int beneficial)
+{
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int applyBeneficialEffect(object initiator, object target,
     mapping effectData)
 {
@@ -97,6 +104,7 @@ protected nomask int applyBeneficialEffect(object initiator, object target,
             ret = target->unregisterObjectsOfType(modifier) || ret;
         }
     }
+    ret = applyAdditionalEffects(initiator, target, effectData, 1) || ret;
     return ret;
 }
 
@@ -201,6 +209,7 @@ protected nomask int applyEffect(object initiator, object target,
         }
     }
     
-    ret ||= applyBeneficialEffect(initiator, target, effectData);
+    ret = applyBeneficialEffect(initiator, target, effectData) || ret;
+    ret = applyAdditionalEffects(initiator, target, effectData, 0) || ret;
     return ret;
 }

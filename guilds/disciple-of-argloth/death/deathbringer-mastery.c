@@ -11,7 +11,7 @@ protected void Setup()
     addSpecification("source", "Disciple of Argloth");
     addSpecification("description", "This research completes the Disciple's mastery of the death arts, making them a true deathbringer - one of Argloth's most feared instruments.");
 
-    addPrerequisite("/guilds/disciple-of-argloth/death/deathbringer",
+    addPrerequisite("/guilds/disciple-of-argloth/death/deathbringer.c",
         (["type": "research"]));
     addPrerequisite("level",
         (["type": "level",

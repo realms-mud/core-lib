@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "runic whirlwind");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::spin## in a blazing runic whirlwind, weapon carving through all nearby foes.");

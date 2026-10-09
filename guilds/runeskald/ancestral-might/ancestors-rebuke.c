@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 12);
     addSpecification("command template", "invoke ancestor's rebuke ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::direct## the cold rebuke of an ancestor spirit at ##TargetName##.");

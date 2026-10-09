@@ -52,7 +52,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "mage",
             "formula": "additive",
             "rate": 0.5
         ]),
@@ -60,70 +60,80 @@ protected void Setup()
             "type": "research",
             "name": "Evocation Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/evocation-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Evocation Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/evocation-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Pure Evocation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/pure-evocation.c"
         ]),
         ([
             "type": "research",
             "name": "Primal Evocation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/primal-evocation.c"
         ]),
         ([
             "type": "research",
             "name": "Total Evocation",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/total-evocation.c"
         ]),
         ([
             "type": "research",
             "name": "Evocative Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/evocative-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Force Theory",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/force-theory.c"
         ]),
         ([
             "type": "research",
             "name": "Force Mastery",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/force-mastery.c"
         ]),
         ([
             "type": "research",
             "name": "Force Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/force-supremacy.c"
         ]),
         ([
             "type": "research",
             "name": "Evocation Supremacy",
             "formula": "multiplicative",
-            "rate": 0.10,
+            "base value": 1,
+            "rate": 1.1,
             "research item": "/guilds/mage/evocation/evocation-supremacy.c"
         ]),
     }));

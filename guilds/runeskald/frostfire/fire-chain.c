@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "fire chain");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## runic fire that leaps between nearby foes.");

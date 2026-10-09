@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "sing saga of annihilation");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::sing## the saga of annihilation, voice cracking like thunder across the battlefield.");

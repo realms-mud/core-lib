@@ -21,6 +21,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "rune volley ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::fling## a storm of rune-shards at ##TargetName##.");

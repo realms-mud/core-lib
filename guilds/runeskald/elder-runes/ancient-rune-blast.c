@@ -23,6 +23,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 40);
     addSpecification("command template", "ancient rune blast ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## shatters an ancient rune at ##TargetName## with a deafening crack of raw power.");

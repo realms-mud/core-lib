@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "area");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "frost chain");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::unleash## a chain of glacial rune-ice that arcs between nearby foes.");

@@ -89,7 +89,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Wrathguard",
             "formula": "additive",
             "rate": 0.70
         ])

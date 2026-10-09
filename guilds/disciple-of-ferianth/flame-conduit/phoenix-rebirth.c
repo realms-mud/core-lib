@@ -121,7 +121,7 @@ protected void Setup()
         ]),
         ([
             "type": "level",
-            "name": "level",
+            "name": "Disciple of Ferianth",
             "formula": "additive",
             "rate": 0.75
         ])

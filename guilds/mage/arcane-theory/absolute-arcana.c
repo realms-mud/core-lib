@@ -13,7 +13,7 @@ protected void Setup()
 
     addPrerequisite("level",
         (["type": "level", "guild": "mage", "value": 61]));
-    addPrerequisite("/guilds/mage/arcane-theory/arcane-supremacy.c",
+    addPrerequisite("/guilds/mage/arcane-theory/archmage-constitution.c",
         (["type": "research"]));
 
     addSpecification("research type", "points");

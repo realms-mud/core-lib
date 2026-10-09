@@ -20,6 +20,7 @@ protected void Setup()
     addSpecification("scope", "targeted");
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+    addSpecification("cooldown", 20);
     addSpecification("command template", "glacier crash ##Target##");
     addSpecification("use ability message",
         "##InitiatorName## ##Infinitive::crash## a massive wall of rune-ice down upon ##TargetName##.");
