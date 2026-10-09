@@ -86,6 +86,7 @@ public nomask void savePlayerData(mapping playerData)
             saveMaterialAttributes(dbHandle, playerId, playerData);
             saveGuildData(dbHandle, playerId, playerData);
             saveQuestData(dbHandle, playerId, playerData);
+            saveResearch(dbHandle, playerId, playerData);
             saveResearchChoices(dbHandle, playerId, playerData);
             saveOpenResearchTrees(dbHandle, playerId, playerData);
             saveCompositeResearch(dbHandle, playerData);
@@ -102,7 +103,6 @@ public nomask void savePlayerData(mapping playerData)
             if (!failure)
             {
                 failure = catch(
-                    saveResearch(dbHandle, playerId, playerData),
                     saveResearchMentorships(dbHandle, playerId, playerData),
                     saveExperiences(dbHandle, playerId, playerData),
                     saveRelationships(dbHandle, playerId, playerData);

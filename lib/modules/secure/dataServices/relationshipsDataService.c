@@ -193,6 +193,12 @@ protected nomask mapping getResearchMentorships(int playerId, int handle)
             "changes":deserializeMapping(convertString(row[2]))
         ]);
     }
+
+    if (!sizeof(ret["researchMentorships"]))
+    {
+        m_delete(ret, "researchMentorships");
+    }
+
     return ret;
 }
 
@@ -519,7 +525,7 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
         "incomingRelationships":([])
     ]);
 
-    string source = sprintf("/lib/realizations/player.c#%s",
+    string source = sprintf("/lib/realizations/player#%s",
         capitalize(playerName));
 
     string query = sprintf("select targetKey from relationships "
@@ -597,6 +603,11 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
                 convertString(result[1])] = to_int(result[2]);
         }
     } while (result);
+
+    if (!sizeof(ret["incomingRelationships"]))
+    {
+        m_delete(ret, "incomingRelationships");
+    }
 
     return ret;
 }
