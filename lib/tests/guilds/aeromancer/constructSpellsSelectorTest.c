@@ -174,7 +174,7 @@ void DescribeASpellShowsCorrectDetails()
         "                        Modified -> 1.25 * your not a staff weapon damage\n"
         "                                    (subtractive)\n"
         "                        Modified -> 0.10 * your elemental air skill (additive)\n"
-        "                        Modified -> 1.05 * your level (logarithmic)\n"
+        "                        Modified -> 1.05 * your aeromancer level (logarithmic)\n"
         "                        Modified -> 1.25 * your spellcraft skill (logarithmic)\n"
         "                        Modified -> 1.25 * your magical essence skill\n"
         "                                    (logarithmic)\n"
