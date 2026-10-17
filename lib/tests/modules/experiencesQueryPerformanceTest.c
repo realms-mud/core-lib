@@ -68,8 +68,6 @@ void RecordingDoesNotRetainObservationMappings()
     ExpectTrue(cost < 400000,
         "Recording 100 observations must use fewer than 400000 eval units");
     ExpectEq(101, Actor.countObservations(([ "type":"movement" ])));
-    debug_message(sprintf("Observation recording: %d eval units for 100; "
-        "retained player bytes %d -> %d\n", cost, before, after));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,9 +91,6 @@ void QueryEvaluationAndPlayerMemoryDoNotGrowWithHistory()
     ExpectTrue(Actor.hasObservation(([]), 1000));
     ExpectFalse(Actor.hasObservation(([]), 1002));
     ExpectEq(100, sizeof(Actor.queryObservations(([]), 1000000)));
-    debug_message(sprintf("Observation count: %d -> %d eval units for "
-        "1 -> 1001 stored rows; retained player bytes %d\n",
-        smallCost, largeCost, memoryBefore));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -113,7 +108,5 @@ void NpcsDoNotBuildContextOrRetainHistory()
     ExpectEq(memoryBefore, object_info(npc, OI_DATA_SIZE_TOTAL));
     ExpectEq(0, npc.countObservations(([])));
     ExpectFalse(npc.recordsObservations());
-    debug_message(sprintf("Skipped NPC recording: %d eval units for 1000; "
-        "zero retained history\n", cost));
     destruct(npc);
 }

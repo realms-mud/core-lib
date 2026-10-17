@@ -34,6 +34,10 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    Actor.disableObservationPersistence();
+    Research.disableObservationPersistence();
+    destruct(Actor);
+    destruct(Research);
     if (objectp(Item))
     {
         destruct(Item);
@@ -46,10 +50,6 @@ void CleanUp()
     {
         destruct(Room);
     }
-    Actor.disableObservationPersistence();
-    Research.disableObservationPersistence();
-    destruct(Actor);
-    destruct(Research);
 }
 
 /////////////////////////////////////////////////////////////////////////////

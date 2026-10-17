@@ -10,6 +10,7 @@ object Specification;
 object Limitor;
 object Configuration;
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Actor = clone_object(
@@ -22,6 +23,7 @@ void Setup()
     Configuration = getService("configuration");
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Actor);
@@ -29,6 +31,7 @@ void CleanUp()
     destruct(Specification);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteRejectsMalformedObservationRules()
 {
     foreach(mixed type in ({ 1, "", ({ "combat.kata" }) }))
@@ -57,6 +60,7 @@ void PrerequisiteRejectsMalformedObservationRules()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteChecksThresholdAndForwardsCriteria()
 {
     mapping criteria = ([
@@ -78,6 +82,7 @@ void PrerequisiteChecksThresholdAndForwardsCriteria()
     ExpectTrue(Prerequisite.checkPrerequisites(Actor));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteSupportsGroupedObservationRules()
 {
     ExpectTrue(Prerequisite.AddTestPrerequisite("kata", ([
@@ -90,6 +95,7 @@ void PrerequisiteSupportsGroupedObservationRules()
     ExpectTrue(Prerequisite.checkPrerequisites(Actor, "kata group"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteFailsWithoutObservationQuerySupport()
 {
     object unsupported = clone_object(
@@ -104,6 +110,7 @@ void PrerequisiteFailsWithoutObservationQuerySupport()
     destruct(unsupported);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteDisplaysObservationThreshold()
 {
     ExpectTrue(Prerequisite.AddTestPrerequisite("kata", ([
@@ -116,6 +123,7 @@ void PrerequisiteDisplaysObservationThreshold()
         Prerequisite.displayPrerequisites("none", Configuration));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorRejectsMalformedObservationRules()
 {
     foreach(mixed observation in ({ 0, "combat.kata", ([]),
@@ -134,6 +142,7 @@ void LimitorRejectsMalformedObservationRules()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorChecksThresholdAndRemovesOnlyMinimum()
 {
     mapping criteria = ([
@@ -157,6 +166,7 @@ void LimitorChecksThresholdAndRemovesOnlyMinimum()
     ExpectTrue(Specification.canApplySpecification("kata", Actor));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorFailsWithoutObservationQuerySupport()
 {
     object unsupported = clone_object(
@@ -168,6 +178,7 @@ void LimitorFailsWithoutObservationQuerySupport()
     destruct(unsupported);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorRejectsMalformedRulesAtRuntime()
 {
     ExpectFalse(Limitor.userFactorsMet(([
@@ -177,6 +188,7 @@ void LimitorRejectsMalformedRulesAtRuntime()
     ]), Actor));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorDisplaysThresholdAndFilters()
 {
     ExpectTrue(Specification.addSpecification("limited by", ([
@@ -193,6 +205,7 @@ void LimitorDisplaysThresholdAndFilters()
         Specification.displayLimiters("none", Configuration, 1));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorProvidesVerboseFailureMessage()
 {
     ExpectFalse(Limitor.userFactorsMet(([

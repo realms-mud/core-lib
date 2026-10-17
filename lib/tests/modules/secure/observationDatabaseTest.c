@@ -99,6 +99,32 @@ void DatabaseAssignsItsAutoIncrementPrimaryKey()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void NativeIdsDoNotMutateInputObservations()
+{
+    mapping observation = ([ "type":"immutable.input" ]);
+    mapping first = DataAccess.recordObservation("gorthaur", observation);
+    mapping second = DataAccess.recordObservation("gorthaur", observation);
+
+    ExpectFalse(member(observation, "ID"));
+    ExpectTrue(to_int(first["ID"]) > 0);
+    ExpectTrue(to_int(second["ID"]) > 0);
+    ExpectTrue(first["ID"] != second["ID"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ImportedHistoryCanBeSavedForDifferentPlayers()
+{
+    mapping playerData = Database.Gorthaur();
+    foreach(string name in ({ "import-first", "import-second", "import-third" }))
+    {
+        playerData["name"] = name;
+        DataAccess.savePlayerData(playerData);
+        ExpectFalse(member(playerData["experiences"][0], "ID"));
+        ExpectEq(1, DataAccess.countObservationsByPlayer(name, ([])));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void RecursiveFiltersMatchServiceExactly()
 {
     mapping observation = DataAccess.recordObservation("gorthaur", ([

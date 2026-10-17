@@ -55,6 +55,10 @@ void CleanUp()
     destruct(Chainmail);
     destruct(Item);
     destruct(Player);
+    foreach(object item in deep_inventory(Room))
+    {
+        destruct(item);
+    }
     destruct(Room);
 }
 

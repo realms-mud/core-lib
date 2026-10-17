@@ -274,55 +274,19 @@ void WanderingRespectsChanceSetting()
 /////////////////////////////////////////////////////////////////////////////
 void MonsterDoesNotBacktrackUnlessDeadEnd()
 {
-    // Move monster to adjacent room first
-    Monster.moveInDirection("north");
-    object middleRoom = environment(Monster);
-    
-    // Enable maximum wandering to ensure movement attempts
     Monster.setWanderChance(100);
     Monster.setWanderFrequency(1);
-    
-    // Now when wandering is triggered, it should not go back south
-    // unless that's the only option
-    string *exits = middleRoom->exits();
-    
-    if (sizeof(exits) > 1)
+
+    for (int index = 0; index < 10; index++)
     {
-        // Multiple exits - should not backtrack
-        int attempts = 0;
-        int backtrackCount = 0;
-        
-        // Test multiple wandering attempts
-        for (int i = 0; i < 10; i++)
-        {
-            object roomBefore = environment(Monster);
-            Monster.heart_beat();
-            object roomAfter = environment(Monster);
-            
-            if (roomAfter != roomBefore)
-            {
-                attempts++;
-                // Check if it went back to start room (backtracked)
-                if (roomAfter == StartRoom)
-                {
-                    backtrackCount++;
-                    // Move back to middle room for next test
-                    move_object(Monster, middleRoom);
-                }
-            }
-        }
-        
-        // With multiple exits, backtracking should be rare or non-existent
-        if (attempts > 0)
-        {
-            float backtrackRate = (float)backtrackCount / (float)attempts;
-            ExpectTrue(backtrackRate < 0.5, 
-                "Backtracking should be avoided when multiple exits available");
-        }
-    }
-    else
-    {
-        ExpectTrue(1, "Only one exit available - backtracking test not applicable");
+        ExpectTrue(Monster.moveInDirection("north"));
+        ExpectEq(AdjacentRoom, environment(Monster));
+        Monster.heart_beat();
+        ExpectEq(DeadEndRoom, environment(Monster),
+            "Wandering must take the exit that does not backtrack");
+        ExpectTrue(Monster.moveInDirection("south"));
+        ExpectTrue(Monster.moveInDirection("south"));
+        ExpectEq(StartRoom, environment(Monster));
     }
 }
 

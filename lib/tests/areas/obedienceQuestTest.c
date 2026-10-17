@@ -444,6 +444,18 @@ private int runeAppeared(string runeType)
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
+    setRestoreCaller(this_object());
+    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    database.PrepDatabase();
+    object authentication = clone_object(
+        "/lib/modules/secure/dataServices/authenticationDataService.c");
+    authentication.saveUser("gorthaur", "gorthaur", "127.0.0.1");
+    destruct(authentication);
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess.savePlayerData(database.Gorthaur());
+    destruct(dataAccess);
+    destruct(database);
+
     ignoreList += ({ "enterRoom", "getStateMachine", "traverseFirstPassage",
         "isInState", "openFirstPassage", "solveMagicSquare",
         "traverseFirstUhrdalenConversation", "runeAppeared",

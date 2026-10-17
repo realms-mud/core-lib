@@ -12,4 +12,6 @@ protected nomask void applyGroupDetails()
 
     addPriviledgedEfun("get_dir");
     addPriviledgedEfun("read_file");
+    addPriviledgedEfun("file_size");
+    addPriviledgedEfun("read_bytes");
 }

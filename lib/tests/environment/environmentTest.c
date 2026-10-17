@@ -2198,7 +2198,7 @@ void VeryLongRoomDescriptionsDisplayCorrectly()
         "A wall with many runes etched into it\n"
         "Rune of Resistance\n\n", 
         player.caughtMessage());
-    destruct(environment);
+    destruct(player);
 }
 
 /////////////////////////////////////////////////////////////////////////////

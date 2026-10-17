@@ -217,7 +217,8 @@ void Setup()
 
     Region = clone_object("/lib/tests/support/environment/regionHelper.c");
 
-    Environment = clone_object("/lib/environment/generatedEnvironment.c");
+    Environment = clone_object(
+        "/lib/tests/support/environment/encounter-environment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -311,7 +312,10 @@ void EncountersGeneratedWhenUserEntersEnvironment()
             "north": "1x3"
         ])
     ]);
-    Region.addTestRoom(1, 2, data);
+    Environment.generateEnvironment(data, Region);
+    Environment.setTestEncounters(({ "skeleton" }));
+    Region.setRegionLevel(5);
+    data["environment"] = Environment;
 
     move_object(Player, data["environment"]);
 
@@ -333,7 +337,10 @@ void EncountersNotDuplicatedIfCreaturesAlreadyPresent()
         "is placed": 1,
         "exits": ([ "north": "1x3" ])
     ]);
-    Region.addTestRoom(1, 2, data);
+    Environment.generateEnvironment(data, Region);
+    Environment.setTestEncounters(({ "skeleton" }));
+    Region.setRegionLevel(5);
+    data["environment"] = Environment;
 
     object env = data["environment"];
     move_object(Player, env);

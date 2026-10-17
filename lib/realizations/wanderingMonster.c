@@ -158,7 +158,9 @@ private string *getValidWanderDirections()
                     }
                     
                     // Check if destination matches our last location
-                    if (destination && (object_name(lastLocation) == destination))
+                    if (destination &&
+                        (object_name(lastLocation) == destination ||
+                            program_name(lastLocation) == destination))
                     {
                         shouldAdd = 0;
                     }

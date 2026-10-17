@@ -537,6 +537,7 @@ public nomask mapping recordObservation(string playerName,
 
     if (stringp(playerName) && mappingp(observation))
     {
+        observation = observation + ([]);
         int dbHandle = connect();
         int playerId = playerIdByName(playerName, dbHandle);
 
@@ -597,8 +598,7 @@ protected nomask void saveExperiences(int dbHandle, int playerId,
     {
         foreach(mapping observation in playerData["experiences"])
         {
-            observation["ID"] = saveObservation(dbHandle, playerId,
-                observation, 1);
+            saveObservation(dbHandle, playerId, observation, 0);
         }
     }
 }

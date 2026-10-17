@@ -31,8 +31,11 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    User.disableObservationPersistence();
-    destruct(User);
+    if (objectp(User))
+    {
+        User.disableObservationPersistence();
+        destruct(User);
+    }
     destruct(ResearchItem);
 }
 

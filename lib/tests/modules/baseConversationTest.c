@@ -46,7 +46,10 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Actor.disableObservationPersistence();
+    if (function_exists("disableObservationPersistence", Actor))
+    {
+        Actor.disableObservationPersistence();
+    }
     destruct(Owner);
     destruct(Actor);
     destruct(Conversation);

@@ -51,7 +51,10 @@ void CleanUp()
     {
         destruct(Requested);
     }
-    Target.disableObservationPersistence();
+    if (function_exists("disableObservationPersistence", Target))
+    {
+        Target.disableObservationPersistence();
+    }
     Player.disableObservationPersistence();
     destruct(Target);
     destruct(Player);
@@ -92,6 +95,7 @@ void DeclinedOrStaleOffersDoNotChangeInventoryOrRelationships()
 
 void DefaultNpcAiAcceptsFairTradeAndRejectsUnfairOrEnemyOffers()
 {
+    Target.disableObservationPersistence();
     destruct(Target);
     Target = clone_object("/lib/tests/support/relationships/npc.c");
     Target.Str(20);

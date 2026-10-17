@@ -50,6 +50,7 @@ public int executeTests()
         if (err)
         {
             CurrentTestPassed = 0;
+            AnyFailure = 1;
             debug_message(sprintf("%s %s threw an error: %s\n", Fail, test, err), 0x5);
         }
         else
@@ -61,6 +62,7 @@ public int executeTests()
         if(err)
         {
             CurrentTestPassed = 0;
+            AnyFailure = 1;
             debug_message(sprintf("%s %s threw an error: %s\n", Fail, test, err), 0x5);
         }
 

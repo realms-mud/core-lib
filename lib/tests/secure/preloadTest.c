@@ -55,12 +55,12 @@ void PreloadCompilesNormalFiles()
     string logFile = filter(get_dir("/", 0x10),
         (: sizeof(regexp(({ $1 }), ".debug.log")) :))[0];
 
-    string initialLogFile = read_file(logFile);
+    int initialLogSize = file_size(logFile);
 
     Preload.preload("/lib/realizations/player.c");
 
-    string finalLogFile = read_file(logFile);
-    finalLogFile = finalLogFile[sizeof(initialLogFile)..];
+    string finalLogFile = to_text(read_bytes(logFile, initialLogSize,
+        file_size(logFile) - initialLogSize), "UTF-8");
 
     ExpectSubStringMatch("Compiling file: /lib/realizations/player.c", 
         finalLogFile);
@@ -72,12 +72,12 @@ void PreloadExecutesTests()
     string logFile = filter(get_dir("/", 0x10),
         (: sizeof(regexp(({ $1 }), ".debug.log")) :))[0];
 
-    string initialLogFile = read_file(logFile);
+    int initialLogSize = file_size(logFile);
 
     Preload.preload("/lib/tests/support/master/fakeTest.c");
 
-    string finalLogFile = read_file(logFile);
-    finalLogFile = finalLogFile[sizeof(initialLogFile)..];
+    string finalLogFile = to_text(read_bytes(logFile, initialLogSize,
+        file_size(logFile) - initialLogSize), "UTF-8");
 
     ExpectSubStringMatch("Testing /lib/tests/support/master/fakeTest.*"
         "PASSED", finalLogFile);
@@ -89,12 +89,12 @@ void PreloadDoesNotExecuteTestFixtureExecuteTestsMethod()
     string logFile = filter(get_dir("/", 0x10),
         (: sizeof(regexp(({ $1 }), ".debug.log")) :))[0];
 
-    string initialLogFile = read_file(logFile);
+    int initialLogSize = file_size(logFile);
 
     Preload.preload("/lib/tests/framework/testFixture.c");
 
-    string finalLogFile = read_file(logFile);
-    finalLogFile = finalLogFile[sizeof(initialLogFile)..];
+    string finalLogFile = to_text(read_bytes(logFile, initialLogSize,
+        file_size(logFile) - initialLogSize), "UTF-8");
 
     ExpectSubStringMatch("Compiling file: /lib/tests/framework/testFixture", 
         finalLogFile);

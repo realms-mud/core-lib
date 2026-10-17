@@ -93,7 +93,12 @@ public nomask void preload(string file)
         function_exists("executeTests", compiledFile) &&
         (file != "/lib/tests/framework/testFixture.c"))
     {
-        catch (compiledFile->executeTests());
+        mixed failure = catch(compiledFile->executeTests());
+        if (failure)
+        {
+            debug_message(sprintf("[  FAILED  ] %s threw an error: %s\n",
+                file, failure), 0x5);
+        }
     }
 
     debug_message(sprintf(" -> built in %d ms.\n", 

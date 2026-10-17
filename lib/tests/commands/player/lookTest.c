@@ -98,6 +98,8 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    load_object("/lib/tests/support/environment/fakeFeature.c")->
+        currentState("default");
     destruct(Player);
     destruct(Environment);
     destruct(Service);
