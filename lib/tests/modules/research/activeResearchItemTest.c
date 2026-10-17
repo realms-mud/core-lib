@@ -33,7 +33,6 @@ void CleanUp()
 {
     if (objectp(User))
     {
-        User.disableObservationPersistence();
         destruct(User);
     }
     destruct(ResearchItem);
@@ -48,7 +47,6 @@ void TypeIsActive()
 /////////////////////////////////////////////////////////////////////////////
 void UnannotatedSuccessfulUseRecordsOnceWithoutRepeatSpam()
 {
-    User.enableObservationPersistence();
     User.ToggleMockResearch();
     ResearchItem.addSpecification("scope", "self");
     ExpectTrue(ResearchItem.execute("the command", User));
@@ -66,7 +64,6 @@ void UnannotatedSuccessfulUseRecordsOnceWithoutRepeatSpam()
 /////////////////////////////////////////////////////////////////////////////
 void FailedUnannotatedUseAndCooldownDoNotRecord()
 {
-    User.enableObservationPersistence();
     ExpectFalse(ResearchItem.execute("the command", User));
     User.ToggleMockResearch();
     ExpectFalse(ResearchItem.execute("the command", User));

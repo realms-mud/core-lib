@@ -6,6 +6,12 @@ virtual inherit "/lib/core/thing.c";
 #include "/lib/modules/secure/experiences.h"
 
 /////////////////////////////////////////////////////////////////////////////
+protected object experiencesService()
+{
+    return getService("experiences");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int recordsObservations()
 {
     return experienceOwnerId() > 0;
@@ -24,7 +30,7 @@ public nomask varargs mapping recordObservation(mapping observation,
         objectp(actor) && (actor == this_object() ||
             actor == previous_object()))
     {
-        object service = getService("experiences");
+        object service = experiencesService();
         observation += ([ "actor":actor ]);
         if (!contextCaptured && (!member(observation, "context") ||
             mappingp(observation["context"])))
@@ -49,7 +55,7 @@ public nomask varargs mapping *queryObservations(mapping criteria,
     int playerId = experienceOwnerId();
     if (playerId && mappingp(criteria))
     {
-        ret = getService("experiences")->queryPlayerObservations(
+        ret = experiencesService()->queryPlayerObservations(
             playerId, criteria, limit, offset);
     }
     return ret;
@@ -62,7 +68,7 @@ public nomask int countObservations(mapping criteria)
     int playerId = experienceOwnerId();
     if (playerId && mappingp(criteria))
     {
-        ret = getService("experiences")->countPlayerObservations(
+        ret = experiencesService()->countPlayerObservations(
             playerId, criteria);
     }
     return ret;
@@ -75,7 +81,7 @@ public nomask varargs int hasObservation(mapping criteria, int minimum)
     int playerId = experienceOwnerId();
     if (playerId && mappingp(criteria))
     {
-        ret = getService("experiences")->hasPlayerObservation(
+        ret = experiencesService()->hasPlayerObservation(
             playerId, criteria, minimum > 0 ? minimum : 1);
     }
     return ret;

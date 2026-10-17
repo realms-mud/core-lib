@@ -13,7 +13,6 @@ void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("alice");
-    Player.enableObservationPersistence();
     Npc = clone_object("/lib/tests/support/relationships/npc.c");
     Prerequisite = clone_object("/lib/tests/support/research/prerequisiteItem.c");
 }
@@ -23,7 +22,6 @@ void CleanUp()
 {
     destruct(Prerequisite);
     destruct(Npc);
-    Player.disableObservationPersistence();
     destruct(Player);
 }
 

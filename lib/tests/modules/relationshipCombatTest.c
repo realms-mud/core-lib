@@ -16,7 +16,6 @@ void Setup()
     Room = clone_object("/lib/tests/support/relationships/room.c");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("alice");
-    Player.enableObservationPersistence();
     Player.Str(20);
     Player.Con(20);
     Player.Race("human");
@@ -59,7 +58,6 @@ void CleanUp()
     destruct(Enemy);
     destruct(Npc);
     destruct(Ally);
-    Player.disableObservationPersistence();
     destruct(Player);
     destruct(Room);
 }

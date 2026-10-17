@@ -16,14 +16,12 @@ void Setup()
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
 
     Source.Name("gorthaur");
-    Source.enableObservationPersistence();
     Target.Name("fred");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Source.disableObservationPersistence();
     destruct(Source);
     destruct(Target);
     destruct(Service);

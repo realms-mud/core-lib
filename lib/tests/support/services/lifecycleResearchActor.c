@@ -3,4 +3,4 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/tests/support/services/researchWithMockServices.c";
-virtual inherit "/lib/tests/support/services/databaseExperienceOwner.c";
+virtual inherit "/lib/tests/support/services/mock-observations.c";

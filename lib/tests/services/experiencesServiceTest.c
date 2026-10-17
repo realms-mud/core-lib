@@ -13,14 +13,12 @@ void Setup()
     Service = clone_object("/lib/services/experiencesService.c");
     Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
     Actor.Name("Observation actor");
-    Actor.enableObservationPersistence();
     move_object(Actor, "/lib/tests/support/environment/fakeEnvironment.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Service);
 }

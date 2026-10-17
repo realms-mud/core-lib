@@ -101,7 +101,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    User.disableObservationPersistence();
     destruct(User.getParty());
     destruct(Target);
     destruct(Friend);
@@ -112,7 +111,6 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanExecuteCompositeActiveResearch()
 {
-    User.enableObservationPersistence();
     object instrument =
         clone_object("/lib/instances/items/instruments/strings/lute.c");
     move_object(instrument, User);

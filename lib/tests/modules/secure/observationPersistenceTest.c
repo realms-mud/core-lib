@@ -27,10 +27,6 @@ void Init()
 private mixed *sqlRows(string query)
 {
     mixed *ret = ({ });
-    if (RealmsDatabase() != "RealmsQA")
-    {
-        raise_error("Observation persistence tests require QA.\n");
-    }
     int handle = db_connect(RealmsDatabase());
     db_exec(handle, query);
     string failure = db_error(handle);
@@ -161,4 +157,47 @@ void NpcInteractionsAreOwnedAndQueriedByTheTriggeringPlayer()
         "subject":npc
     ])));
     destruct(npc);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RestoreKeepsDatabaseHistoryWithoutHydratingIt()
+{
+    sqlRows("delete from experienceObservations;");
+    mapping data = Database.Gorthaur();
+    data["experiences"] += ({ ([
+        "type":"combat.kata.tiger",
+        "actor":"/lib/realizations/player#gorthaur",
+        "subject":"orc",
+        "participants":({ }),
+        "timestamp":100,
+        "location":"temple",
+        "context":([ "minutes after midnight":1380, "weapon":"katana" ]),
+        "metadata":([ "outcome":"success" ])
+    ]) });
+    DataAccess.savePlayerData(data);
+    object player = clone_object("/lib/realizations/player.c");
+    ExpectFalse(player.recordObservation(([ "type":"movement.enter" ])));
+    player.restore("gorthaur");
+    ExpectEq(0, player.countObservations(([ "type":"movement" ])));
+    ExpectEq(2, player.countObservations(([ "type":"combat" ])));
+    mapping criteria = ([
+        "type":"combat.kata",
+        "time window":([ "center":0, "minutes":60 ]),
+        "since":100,
+        "until":100,
+        "weapon":"KATANA",
+        "outcome":"success"
+    ]);
+    ExpectEq(1, player.countObservations(criteria));
+    ExpectEq(player.queryObservations(criteria),
+        DataAccess.queryObservationsByPlayer("gorthaur", criteria, 0, 0));
+    criteria["time window"]["minutes"] = "invalid";
+    ExpectEq(0, player.countObservations(criteria));
+    ExpectEq(0, DataAccess.countObservationsByPlayer("gorthaur", criteria));
+    ExpectEq(0, DataAccess.countObservationsByPlayer("gorthaur", 0));
+    player.recordObservation(([ "type":"research.learn" ]));
+    player.restore("gorthaur");
+    ExpectEq(1, player.countObservations(([ "type":"research" ])));
+    ExpectEq(2, player.countObservations(([ "type":"combat" ])));
+    destruct(player);
 }

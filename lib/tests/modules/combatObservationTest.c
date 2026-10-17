@@ -17,7 +17,6 @@ void Setup()
     Actor = clone_object(
         "/lib/tests/support/services/observationCombatActor.c");
     Actor.Name("Kata practitioner");
-    Actor.enableObservationPersistence();
     Actor.ToggleMockResearch();
     Actor.toggleKillList();
     Actor.Str(20);
@@ -52,7 +51,6 @@ void CleanUp()
     destruct(Prerequisite);
     destruct(Kata);
     destruct(Target);
-    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Room);
 }

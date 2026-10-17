@@ -188,6 +188,11 @@ Normal recording does not fetch that ID back into the driver; explicit bounded
 queries return it as a string-valued `ID` for compatibility with older IDs.
 `generateGuid()` and its cache have been removed. Legacy stored IDs remain
 readable and repeated explicit writes with an existing ID remain idempotent.
+
+Explicit recording returns the assigned ID without modifying the input
+observation. Legacy snapshot imports also leave input observations unchanged,
+so reusing an unidentified observation template for another player creates
+new database-owned IDs rather than copying an assigned ID between players.
 The v2 serializer uses descriptive `string`, `mapping`, `array`, `integer`,
 and `float` tags. Nested context and metadata retain scalar types, and the
 reader still accepts the previous v1 marker with descriptive tags and plain
@@ -229,6 +234,12 @@ item through another reload. It adds no production monk content.
 QA tests cover nested and legacy descriptive formats, malformed criteria,
 SQL injection, immediate visibility, player isolation, bounded pages,
 auto-increment IDs, NPC-to-player attribution, and explicit write failures.
+General unit tests use actor-local observation call captures and the pure
+matching helpers; their observation writes never access the database.
+These captures are test-only and disappear with the actor. No persistence
+enable/disable switches or database-name checks are required. Dedicated
+database, persistence, and performance tests use real persisted players and
+stored procedures.
 EXPLAIN on 1,000 representative noise rows verifies the composite indexes.
 The performance fixture checks unchanged `OI_DATA_SIZE_TOTAL` after recording
 100 events and after querying a 1,001-row history. It requires fewer than

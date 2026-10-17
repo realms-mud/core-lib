@@ -33,7 +33,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    User.disableObservationPersistence();
     destruct(User);
     destruct(ResearchItem);
     destruct(Room);
@@ -440,7 +439,6 @@ void RepeatEffectCountAggregatesMultipleComponentRepeatEffects()
 /////////////////////////////////////////////////////////////////////////////
 void ExecuteDeductsAggregatedSpellPointCost()
 {
-    User.enableObservationPersistence();
     // Load components
     load_object("/lib/tests/support/research/testConstructedComponentA.c");
 

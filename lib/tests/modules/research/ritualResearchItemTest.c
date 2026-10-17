@@ -36,7 +36,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    User.disableObservationPersistence();
     destruct(User);
     destruct(ResearchItem);
     destruct(Room);
@@ -51,7 +50,6 @@ void TypeIsRitual()
 /////////////////////////////////////////////////////////////////////////////
 void RitualUseRecordsOnlySuccessfulExecution()
 {
-    User.enableObservationPersistence();
     User.ToggleMockResearch();
     ResearchItem.addSpecification("scope", "self");
     ExpectFalse(ResearchItem.execute("the command", User));

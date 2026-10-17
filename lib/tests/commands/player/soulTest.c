@@ -42,7 +42,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Player.disableObservationPersistence();
     destruct(Player);
     destruct(Target);
     destruct(Bystander);
@@ -51,7 +50,6 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void StructuredSoulRecordsCanonicalActionAndExplicitAdverb()
 {
-    Player.enableObservationPersistence();
     ExpectTrue(Player.executeCommand("ack -a Happily -t earl"));
     mapping *entries = Player.queryObservations(([ "type":"social.emote" ]));
     ExpectEq(1, sizeof(entries));
@@ -70,7 +68,6 @@ void StructuredSoulRecordsCanonicalActionAndExplicitAdverb()
 /////////////////////////////////////////////////////////////////////////////
 void UntargetedSoulRecordsOnlyActorAndVocabulary()
 {
-    Player.enableObservationPersistence();
     ExpectTrue(Player.executeCommand("snore"));
     mapping *entries = Player.queryObservations(([ "type":"social.emote" ]));
     ExpectEq(1, sizeof(entries));
@@ -83,7 +80,6 @@ void UntargetedSoulRecordsOnlyActorAndVocabulary()
 /////////////////////////////////////////////////////////////////////////////
 void BlockedInvalidAndMissingTargetsDoNotRecordSoul()
 {
-    Player.enableObservationPersistence();
     ExpectTrue(Target.block("bob"));
     ExpectTrue(Player.executeCommand("ack -t earl"));
     ExpectSubStringMatch("blocked", Player.caughtMessage());
@@ -98,7 +94,6 @@ void BlockedInvalidAndMissingTargetsDoNotRecordSoul()
 /////////////////////////////////////////////////////////////////////////////
 void NonlivingTargetAndNoLocationDoNotRecordSoul()
 {
-    Player.enableObservationPersistence();
     object item = clone_object("/lib/tests/support/items/testSword.c");
     move_object(item, this_object());
     ExpectTrue(Player.executeCommand("ack -t sword"));
@@ -125,7 +120,6 @@ void GenericFreeformEmotesNeverBecomeSemanticObservations()
 /////////////////////////////////////////////////////////////////////////////
 void SoulDoesNotAutomaticallyChangeOpinions()
 {
-    Player.enableObservationPersistence();
     object npc = clone_object("/lib/tests/support/services/mockNPC.c");
     npc.Name("speaker");
     move_object(npc, this_object());

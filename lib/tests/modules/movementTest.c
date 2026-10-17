@@ -12,7 +12,8 @@ object ToPlace;
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Movement = clone_object("/lib/tests/support/services/mockPlayer");
+    Movement = clone_object(
+        "/lib/tests/support/services/mockPlayer.c");
     Movement.Name("Bob");
     Movement.Str(10);
     Movement.Int(10);
@@ -35,7 +36,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Movement.disableObservationPersistence();
     destruct(Movement);
     destruct(FromPlace);
     destruct(ToPlace);
@@ -44,7 +44,6 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void CanMoveUserFromOneEnvironmentToAnother()
 {
-    Movement.enableObservationPersistence();
     ExpectTrue(present(Movement, FromPlace), "currently in from place");
     ExpectTrue(Movement.move(program_name(ToPlace)), "move called");
     ExpectTrue(present(Movement, ToPlace), "moved to to place");
@@ -69,7 +68,6 @@ void CanMoveUserFromOneEnvironmentToAnother()
 /////////////////////////////////////////////////////////////////////////////
 void SuccessfulEscapeRecordsFleeAndEndsBothSides()
 {
-    Movement.enableObservationPersistence();
     FromPlace.addTestExit("north", program_name(ToPlace));
     efun::set_this_player(Movement);
     FromPlace.init();
@@ -90,7 +88,6 @@ void SuccessfulEscapeRecordsFleeAndEndsBothSides()
 /////////////////////////////////////////////////////////////////////////////
 void BlockedEscapeDoesNotRecordFleeOrEndCombat()
 {
-    Movement.enableObservationPersistence();
     FromPlace.addTestExit("north", program_name(ToPlace));
     efun::set_this_player(Movement);
     FromPlace.init();
@@ -110,7 +107,6 @@ void BlockedEscapeDoesNotRecordFleeOrEndCombat()
 /////////////////////////////////////////////////////////////////////////////
 void MovementCapturesActualSourceAndDestinationRegions()
 {
-    Movement.enableObservationPersistence();
     object sourceRegion = clone_object("/lib/environment/region.c");
     object destinationRegion = clone_object("/lib/environment/region.c");
     sourceRegion->setRegionName("Source region");
@@ -241,7 +237,6 @@ void ObserverSeesNothingWhenItIsDarkAndObjectArrives()
 /////////////////////////////////////////////////////////////////////////////
 void MoveIsPreventedWhenAllowFromIsProhibited()
 {
-    Movement.enableObservationPersistence();
     ToPlace.toggleAllowFrom();
     ExpectFalse(Movement.move(program_name(ToPlace), "north"), "move called");
     ExpectFalse(Movement.hasObservation(([ "type": "movement" ])));
@@ -250,7 +245,6 @@ void MoveIsPreventedWhenAllowFromIsProhibited()
 /////////////////////////////////////////////////////////////////////////////
 void MoveIsPreventedWhenAllowToIsProhibited()
 {
-    Movement.enableObservationPersistence();
     FromPlace.toggleAllowTo();
     ExpectFalse(Movement.move(program_name(ToPlace), "north"), "move called");
     ExpectFalse(Movement.hasObservation(([ "type": "movement" ])));

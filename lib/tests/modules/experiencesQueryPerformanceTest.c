@@ -6,26 +6,50 @@ inherit "/lib/tests/framework/testFixture.c";
 #include <object_info.h>
 
 private object Actor;
+private object Database;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     ignoreList += ({ "seedHistory" });
+    setRestoreCaller(this_object());
+    Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    Database.PrepDatabase();
+    object authentication = clone_object(
+        "/lib/modules/secure/dataServices/authenticationDataService.c");
+    authentication.saveUser("gorthaur", "gorthaur", "127.0.0.1");
+    destruct(authentication);
+    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    dataAccess.savePlayerData(Database.Gorthaur());
+    destruct(dataAccess);
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
-    Actor.Name("Performance actor");
-    Actor.enableObservationPersistence();
+    int handle = db_connect(RealmsDatabase());
+    db_exec(handle, "delete from experienceObservations;");
+    string failure = db_error(handle);
+    while (db_fetch(handle));
+    db_close(handle);
+    if (failure)
+    {
+        raise_error("Performance fixture failed: " + failure + "\n");
+    }
+    Actor = clone_object("/lib/realizations/player.c");
+    Actor.restore("gorthaur");
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Actor.disableObservationPersistence();
     destruct(Actor);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
+    destruct(Database);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -36,11 +60,13 @@ private void seedHistory()
         "union all select 3 union all select 4 union all select 5 "
         "union all select 6 union all select 7 union all select 8 "
         "union all select 9)";
+    mapping observation = Actor.queryObservations(([]), 1, 0)[0];
     db_exec(handle, sprintf("insert into experienceObservations "
         "(playerId,observationType,actor,observationTime) select "
-        "%d,'history.event','actor',0 from %s a cross join %s b "
-        "cross join %s c;", Actor.observationTestPlayerId(),
-        digits, digits, digits));
+        "owner.playerId,'history.event','actor',0 "
+        "from experienceObservations owner cross join %s a cross join %s b "
+        "cross join %s c where owner.id=%d;",
+        digits, digits, digits, to_int(observation["ID"])));
     if (db_error(handle))
     {
         raise_error("Performance fixture failed: " + db_error(handle) + "\n");

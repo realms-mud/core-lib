@@ -14,13 +14,11 @@ void Setup()
     Other = clone_object("/lib/realizations/monster.c");
     Actor.Name("Bob");
     Other.Name("Bob");
-    Actor.enableObservationPersistence();
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Other);
 }
@@ -183,49 +181,12 @@ void IndexedOutputsCannotMutateStoredCandidates()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void RestoreKeepsDatabaseHistoryWithoutHydratingIt()
+void MockObservationCallsAreIsolatedBetweenActors()
 {
-    setRestoreCaller(this_object());
-    object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    database.PrepDatabase();
-    object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    mapping data = database.Gorthaur();
-    data["experiences"] += ({ ([
-        "type":"combat.kata.tiger",
-        "actor":"/lib/realizations/player#gorthaur",
-        "subject":"orc",
-        "participants": ({ }),
-        "timestamp":100,
-        "location":"temple",
-        "context": ([ "minutes after midnight":1380, "weapon":"katana" ]),
-        "metadata": ([ "outcome":"success" ])
-    ]) });
-    dataAccess.savePlayerData(data);
-    object player = clone_object("/lib/realizations/player.c");
-    ExpectFalse(player.recordObservation(([ "type":"movement.enter" ])));
-    player.restore("gorthaur");
-    ExpectEq(0, player.countObservations(([ "type":"movement" ])));
-    ExpectEq(2, player.countObservations(([ "type":"combat" ])));
-    mapping criteria = ([
-        "type":"combat.kata",
-        "time window": ([ "center":0, "minutes":60 ]),
-        "since":100,
-        "until":100,
-        "weapon":"KATANA",
-        "outcome":"success"
-    ]);
-    ExpectEq(1, player.countObservations(criteria));
-    ExpectEq(player.queryObservations(criteria),
-        dataAccess.queryObservationsByPlayer("gorthaur", criteria, 0, 0));
-    criteria["time window"]["minutes"] = "invalid";
-    ExpectEq(0, player.countObservations(criteria));
-    ExpectEq(0, dataAccess.countObservationsByPlayer("gorthaur", criteria));
-    ExpectEq(0, dataAccess.countObservationsByPlayer("gorthaur", 0));
-    player.recordObservation(([ "type":"research.learn" ]));
-    player.restore("gorthaur");
-    ExpectEq(1, player.countObservations(([ "type":"research" ])));
-    ExpectEq(2, player.countObservations(([ "type":"combat" ])));
-    destruct(player);
-    destruct(dataAccess);
-    destruct(database);
+    object another = clone_object(
+        "/lib/tests/support/services/mockPlayer.c");
+    Actor.recordObservation(([ "type":"combat.kata" ]));
+    ExpectEq(1, Actor.countObservations(([])));
+    ExpectEq(0, another.countObservations(([])));
+    destruct(another);
 }

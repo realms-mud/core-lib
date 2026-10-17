@@ -13,7 +13,8 @@ void Setup()
     getService("environment");
 
     ToggleCallOutBypass();
-    Character = clone_object("/lib/tests/support/services/mockPlayer");
+    Character = clone_object(
+        "/lib/tests/support/services/mockPlayer.c");
     Character.Name("Bob");
     Character.Con(5);
 
@@ -23,7 +24,6 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
-    Character.disableObservationPersistence();
     destruct(Character);
     ToggleCallOutBypass();
 }
@@ -38,7 +38,6 @@ void IntoxicatedSetsIntoxicationLevel()
 /////////////////////////////////////////////////////////////////////////////
 void AlcoholConsumptionKeepsItemAndStateSnapshots()
 {
-    Character.enableObservationPersistence();
     object drink = clone_object("/lib/tests/support/items/testDrink.c");
     drink.set("biological strength", 3);
     mapping before = Character.biologicalState();
@@ -64,7 +63,6 @@ void AlcoholConsumptionKeepsItemAndStateSnapshots()
 /////////////////////////////////////////////////////////////////////////////
 void FailedAndNoOpConsumptionDoesNotRecord()
 {
-    Character.enableObservationPersistence();
     object drink = clone_object("/lib/tests/support/items/testDrink.c");
     Character.Intoxicated(1000);
     ExpectFalse(Character.drinkAlcohol(drink));

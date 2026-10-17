@@ -3,7 +3,7 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/player.c";
-virtual inherit "/lib/tests/support/services/databaseExperienceOwner.c";
+virtual inherit "/lib/tests/support/services/mock-observations.c";
 
 private string lastCatch = 0;
 private string *catchList = ({ });
@@ -12,7 +12,13 @@ private string *gmcpFrames = ({ });
 /////////////////////////////////////////////////////////////////////////////
 protected int experienceOwnerId()
 {
-    return databaseExperienceOwner::experienceOwnerId();
+    return 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected object experiencesService()
+{
+    return this_object();
 }
 
 /////////////////////////////////////////////////////////////////////////////
