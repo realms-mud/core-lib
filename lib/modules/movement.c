@@ -40,10 +40,16 @@ public nomask void runAway()
             {
                 write("Your legs run away with you!\n");
                 object experiences = getModule("experiences");
-                if (opponent && experiences)
+                object observationOwner = experiences &&
+                    experiences->recordsObservations() ? this_object() :
+                    opponent && function_exists("recordsObservations",
+                        opponent) && opponent->recordsObservations() ?
+                            opponent : 0;
+                if (opponent && observationOwner)
                 {
-                    experiences->recordObservation(([
+                    observationOwner->recordObservation(([
                         "type":"combat.fled",
+                        "actor":this_object(),
                         "subject":opponent,
                         "location":originalLocation,
                         "context":([
@@ -157,7 +163,8 @@ public varargs nomask int move(string location, string direction,
                 this_object()->getParty());
 
             if (environment() &&
-                function_exists("recordObservation", this_object()))
+                function_exists("recordsObservations", this_object()) &&
+                this_object()->recordsObservations())
             {
                 object toRoom = environment();
                 string toLocation = program_name(toRoom);

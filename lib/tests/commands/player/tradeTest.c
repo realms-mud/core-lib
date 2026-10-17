@@ -15,12 +15,14 @@ void Setup()
     Room = clone_object("/lib/environment/environment.c");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("alice");
+    Player.enableObservationPersistence();
     Player.Str(20);
     Player.Con(20);
     Player.Race("human");
     Player.addCommands();
     Target = clone_object("/lib/tests/support/services/mockPlayer.c");
     Target.Name("bob");
+    Target.enableObservationPersistence();
     Target.Str(20);
     Target.Con(20);
     Target.Race("human");
@@ -49,6 +51,8 @@ void CleanUp()
     {
         destruct(Requested);
     }
+    Target.disableObservationPersistence();
+    Player.disableObservationPersistence();
     destruct(Target);
     destruct(Player);
     destruct(Room);

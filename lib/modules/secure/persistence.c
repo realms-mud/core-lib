@@ -27,7 +27,7 @@ private nomask mapping getPlayerInfo()
     string *services = ({ "materialAttributes", "attributes",
         "biological", "combat", "races", "guilds", "quests",
         "research", "skills", "traits", "factions",
-        "settings", "wizard", "domains", "inventory", "experiences",
+        "settings", "wizard", "domains", "inventory",
         "relationships"
     });
 
@@ -52,16 +52,6 @@ public nomask void save()
         if (sizeof(playerData))
         {
             DataAccess()->savePlayerData(playerData);
-            if (!playerData["is guest"] &&
-                stringp(playerData["name"]) && playerData["name"] != "")
-            {
-                object experiences = getModule("experiences");
-                if (experiences)
-                {
-                    experiences->acknowledgeExperiences(
-                        playerData["experiences"]);
-                }
-            }
         }
         this_object()->notify("onSaveSucceeded");
     }

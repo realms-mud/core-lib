@@ -7,11 +7,22 @@ inherit "/lib/tests/framework/testFixture.c";
 private object DataAccess;
 private object Database;
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     ignoreList += ({ "sqlRows" });
+    setRestoreCaller(this_object());
+    Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
+    Database.PrepDatabase();
+    object authentication = clone_object(
+        "/lib/modules/secure/dataServices/authenticationDataService.c");
+    authentication.saveUser("gorthaur", "gorthaur", "127.0.0.1");
+    destruct(authentication);
+    DataAccess = clone_object("/lib/modules/secure/dataAccess.c");
+    DataAccess.savePlayerData(Database.Gorthaur());
 }
 
+/////////////////////////////////////////////////////////////////////////////
 private mixed *sqlRows(string query)
 {
     mixed *ret = ({ });
@@ -30,20 +41,16 @@ private mixed *sqlRows(string query)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    setRestoreCaller(this_object());
-    Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
-    Database.PrepDatabase();
-    object authentication = clone_object(
-        "/lib/modules/secure/dataServices/authenticationDataService.c");
-    authentication.saveUser("gorthaur", "gorthaur", "127.0.0.1");
-    destruct(authentication);
-    DataAccess = clone_object("/lib/modules/secure/dataAccess.c");
-    DataAccess.savePlayerData(Database.Gorthaur());
+    sqlRows("delete from experienceObservations;");
+    DataAccess.recordObservation("gorthaur",
+        Database.Gorthaur()["experiences"][0]);
 }
 
-void CleanUp()
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
 {
     if (objectp(DataAccess))
     {
@@ -55,9 +62,10 @@ void CleanUp()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void DatabaseObservationQueriesUsePersistedRows()
 {
-    ExpectEq(15, DatabaseVersionFromDatabase());
+    ExpectEq(17, DatabaseVersionFromDatabase());
     ExpectEq(1, DataAccess.countObservationsByPlayer("gorthaur", ([])));
     ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
         "type": "COMBAT", "weapon": "KATANA", "since": 777,
@@ -70,6 +78,27 @@ void DatabaseObservationQueriesUsePersistedRows()
         ([ "weather": "SNOW" ]), 1, 0)));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void DatabaseAssignsItsAutoIncrementPrimaryKey()
+{
+    mapping observation = ([ "type":"automatic.id" ]);
+    mapping saved = DataAccess.recordObservation("gorthaur", observation);
+    ExpectTrue(to_int(saved["ID"]) > 0);
+    mixed *rows = sqlRows(sprintf("select id, observationKey from "
+        "experienceObservations where id=%d;", to_int(saved["ID"])));
+    ExpectEq(1, sizeof(rows));
+    ExpectEq(to_int(saved["ID"]), to_int(rows[0][0]));
+    ExpectFalse(rows[0][1]);
+    ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
+        "ID":saved["ID"]
+    ])));
+    DataAccess.recordObservation("gorthaur", saved);
+    ExpectEq(1, DataAccess.countObservationsByPlayer("gorthaur", ([
+        "type":"automatic.id"
+    ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void RecursiveFiltersMatchServiceExactly()
 {
     mapping observation = DataAccess.recordObservation("gorthaur", ([
@@ -128,6 +157,7 @@ void RecursiveFiltersMatchServiceExactly()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CircularWindowsAndMalformedCriteriaMatchService()
 {
     mapping observation = DataAccess.recordObservation("gorthaur", ([
@@ -180,6 +210,7 @@ void CircularWindowsAndMalformedCriteriaMatchService()
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PaginationAndExcludedIdsAreAppliedAfterFiltering()
 {
     for (int index = 0; index < 8; index++)
@@ -212,7 +243,8 @@ void PaginationAndExcludedIdsAreAppliedAfterFiltering()
     ExpectEq(0, DataAccess.countObservationsByPlayer("absent", ([])));
 }
 
-void RestoreLoadsLatestHundredInChronologicalInsertionOrder()
+/////////////////////////////////////////////////////////////////////////////
+void RestoreDoesNotLoadHistoryAndQueriesAreBounded()
 {
     for (int index = 0; index < 105; index++)
     {
@@ -222,17 +254,21 @@ void RestoreLoadsLatestHundredInChronologicalInsertionOrder()
         ]));
     }
     mapping restored = DataAccess.getPlayerData("gorthaur");
-    ExpectEq(1, restored["experiences persisted"]);
     ExpectTrue(restored["playerId"] > 0);
-    ExpectEq(100, sizeof(restored["experiences"]));
-    ExpectEq("history-5", restored["experiences"][0]["ID"]);
-    ExpectEq("history-104", restored["experiences"][99]["ID"]);
+    ExpectFalse(member(restored, "experiences"));
+    ExpectFalse(member(restored, "experiences persisted"));
+    mapping *page = DataAccess.queryObservationsByPlayer("gorthaur",
+        ([ "type":"history" ]), 1000, 0);
+    ExpectEq(100, sizeof(page));
+    ExpectEq("history-0", page[0]["ID"]);
+    ExpectEq("history-99", page[99]["ID"]);
     ExpectEq(106, DataAccess.countObservationsByPlayer("gorthaur", ([])));
     ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
         "ID": "history-0"
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LegacyPlainAndV1FormatsRemainSearchable()
 {
     sqlRows("call saveExperienceObservation('plain',1,'legacy.plain',"
@@ -259,6 +295,7 @@ void LegacyPlainAndV1FormatsRemainSearchable()
     ExpectEq(7, rows[1]["context"]["x"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LegacyArrayNumericMembersKeepStrictTypes()
 {
     sqlRows("call saveExperienceObservation('legacy-float',1,'legacy.float',"
@@ -273,6 +310,7 @@ void LegacyArrayNumericMembersKeepStrictTypes()
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RepeatedSavesRemainAppendOnlyAndIdempotent()
 {
     mapping observation = DataAccess.recordObservation("gorthaur", ([
@@ -291,6 +329,7 @@ void RepeatedSavesRemainAppendOnlyAndIdempotent()
     ExpectEq(2, DataAccess.countObservationsByPlayer("gorthaur", ([])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void QueryValuesCannotInjectSql()
 {
     string payload = "' OR 1=1; -- \\\" %_";
@@ -312,6 +351,7 @@ void QueryValuesCannotInjectSql()
         ({ payload })));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CompositeIndexesAreAvailableToQueryPlanner()
 {
     sqlRows("insert into experienceObservations (observationKey, playerId, "
@@ -345,6 +385,7 @@ void CompositeIndexesAreAvailableToQueryPlanner()
     ExpectSubStringMatch("experience_player_time", timePlan[1][6]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MigrationBackfillsExistingV2V1AndPlainRows()
 {
     LegacyPlainAndV1FormatsRemainSearchable();
@@ -359,7 +400,7 @@ void MigrationBackfillsExistingV2V1AndPlainRows()
         "where versionType='database';");
     int handle = db_connect(RealmsDatabase());
     db_close(handle);
-    ExpectEq(15, DatabaseVersionFromDatabase());
+    ExpectEq(17, DatabaseVersionFromDatabase());
     ExpectEq(3, DataAccess.countObservationsByPlayer("gorthaur", ([])));
     ExpectTrue(DataAccess.hasObservationByPlayer("gorthaur", ([
         "type": "COMBAT", "context": ([ "weather": "SNOW" ])

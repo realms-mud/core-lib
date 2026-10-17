@@ -16,9 +16,11 @@ void Setup()
     getService("environment");
     Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
     Actor.Name("Lifecycle actor");
+    Actor.enableObservationPersistence();
     Research = clone_object(
         "/lib/tests/support/services/lifecycleResearchActor.c");
     Research.Name("Lifecycle researcher");
+    Research.enableObservationPersistence();
     Research.Str(20);
     Research.Int(20);
     Research.Dex(20);
@@ -44,6 +46,8 @@ void CleanUp()
     {
         destruct(Room);
     }
+    Actor.disableObservationPersistence();
+    Research.disableObservationPersistence();
     destruct(Actor);
     destruct(Research);
 }

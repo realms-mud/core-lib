@@ -300,26 +300,40 @@ public nomask mapping biologicalState()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private mapping consumptionObservationState()
+{
+    mapping ret = 0;
+    object experiences = getModule("experiences");
+    if (experiences && experiences->recordsObservations())
+    {
+        ret = biologicalState();
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void recordConsumption(object item, string kind, mapping before)
 {
-    object experiences = getModule("experiences");
-    mapping after = biologicalState();
-    if (experiences && !getService("experiences")->matchesObservation(
-        ([ "context":after ]), before))
+    if (before)
     {
-        experiences->recordObservation(([
-            "type":"consumption." + kind,
-            "subject":item,
-            "context":([
-                "item":program_name(item),
-                "item name":item->query("name"),
-                "blueprint":item->query("blueprint"),
-                "biological effect":item->query("biological effect"),
-                "biological strength":item->query("biological strength"),
-                "before":before,
-                "after":after
-            ])
-        ]));
+        mapping after = biologicalState();
+        if (!getService("experiences")->matchesObservation(
+            ([ "context":after ]), before))
+        {
+            getModule("experiences")->recordObservation(([
+                "type":"consumption." + kind,
+                "subject":item,
+                "context":([
+                    "item":program_name(item),
+                    "item name":item->query("name"),
+                    "blueprint":item->query("blueprint"),
+                    "biological effect":item->query("biological effect"),
+                    "biological strength":item->query("biological strength"),
+                    "before":before,
+                    "after":after
+                ])
+            ]));
+        }
     }
 }
 
@@ -327,7 +341,7 @@ private void recordConsumption(object item, string kind, mapping before)
 public nomask int drinkAlcohol(object drink)
 {
     int ret = 0;
-    mapping before = biologicalState();
+    mapping before = consumptionObservationState();
     int maxIntox = getMaximumBiologicalLevel("intoxication");
 
     if (Intoxicated() > maxIntox)
@@ -371,7 +385,7 @@ public nomask int drinkAlcohol(object drink)
 public nomask int consumeDrug(object drug)
 {
     int ret = 0;
-    mapping before = biologicalState();
+    mapping before = consumptionObservationState();
     int maxDrugged = getMaximumBiologicalLevel("drugged");
 
     if(Drugged() > maxDrugged)
@@ -414,7 +428,7 @@ public nomask int consumeDrug(object drug)
 public nomask int drink(object drink)
 {
     int ret = 0;
-    mapping before = biologicalState();
+    mapping before = consumptionObservationState();
     int maxSoak = getMaximumBiologicalLevel("soaked");
     
     if(Soaked() > maxSoak)
@@ -458,7 +472,7 @@ public nomask int drink(object drink)
 public nomask int eat(object food)
 {
     int ret = 0;
-    mapping before = biologicalState();
+    mapping before = consumptionObservationState();
     int maxStuffed = getMaximumBiologicalLevel("stuffed");
 
     if(Stuffed() > maxStuffed)

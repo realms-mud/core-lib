@@ -7,21 +7,26 @@ inherit "/lib/tests/framework/testFixture.c";
 object Actor;
 object Other;
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Actor = clone_object("/lib/realizations/monster.c");
+    Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
     Other = clone_object("/lib/realizations/monster.c");
     Actor.Name("Bob");
     Other.Name("Bob");
+    Actor.enableObservationPersistence();
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Other);
 }
 
-void ObservationLogBelongsToModuleInstance()
+/////////////////////////////////////////////////////////////////////////////
+void ObservationHistoryBelongsToPlayerNotNpc()
 {
     ExpectTrue(Actor.has("experiences"));
     ExpectFalse(Actor.has("experience"));
@@ -39,6 +44,7 @@ void ObservationLogBelongsToModuleInstance()
     ExpectEq(1, Actor.countObservations(([])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void InvalidFieldsAreRejected()
 {
     ExpectFalse(Actor.recordObservation(([
@@ -52,6 +58,7 @@ void InvalidFieldsAreRejected()
     ExpectEq(0, Actor.countObservations(([])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void QueryReturnsIndependentSnapshots()
 {
     Actor.recordObservation(([
@@ -65,10 +72,12 @@ void QueryReturnsIndependentSnapshots()
     ExpectEq(program_name(Actor), result[0]["location"]);
     result[0]["context"]["weapon"] = "staff";
     ExpectTrue(Actor.hasObservation(([ "weapon": "katana" ])));
-    ExpectEq(1, Actor.experiencesSummary()["total"]);
-    ExpectEq("katana", Actor.mostFrequentExperiencedContext("weapon"));
+    ExpectEq(1, Actor.countObservations(([])));
+    ExpectFalse(function_exists("experiencesLog", Actor));
+    ExpectFalse(function_exists("experiencesSummary", Actor));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PluralServiceRecordsOnOwningModule()
 {
     ExpectFalse(getService("experience"));
@@ -79,6 +88,7 @@ void PluralServiceRecordsOnOwningModule()
     ExpectEq(0, Other.countObservations(([])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CombatKillCapturesTargetContext()
 {
     Other.Race("orc");
@@ -96,6 +106,7 @@ void CombatKillCapturesTargetContext()
     ExpectEq(0, Actor.countObservations(([ "type": "combat.hit" ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void HierarchicalCandidatesMatchOnlyCompletePrefixes()
 {
     foreach(string type in ({ "COMBAT.KATA.TIGER", "combat.kata.crane",
@@ -116,6 +127,7 @@ void HierarchicalCandidatesMatchOnlyCompletePrefixes()
     ExpectEq(0, sizeof(Actor.queryObservations(0)));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void IndexedQueriesCombineHistoricalWindowRangeAndNestedFilters()
 {
     foreach(int minutes in ({ 60, 61, 1380, 1379 }))
@@ -141,8 +153,8 @@ void IndexedQueriesCombineHistoricalWindowRangeAndNestedFilters()
     ExpectEq(2, Actor.countObservations(criteria));
     ExpectEq(2, sizeof(Actor.queryObservations(criteria)));
     ExpectTrue(Actor.hasObservation(criteria));
-    ExpectEq(2, getService("experiences")->countObservations(
-        Actor.experiencesLog(), criteria));
+    ExpectTrue(Actor.hasObservation(criteria, 2));
+    ExpectFalse(Actor.hasObservation(criteria, 3));
     criteria["until"] = 99;
     ExpectEq(0, Actor.countObservations(criteria));
     ExpectFalse(Actor.hasObservation(criteria));
@@ -151,6 +163,7 @@ void IndexedQueriesCombineHistoricalWindowRangeAndNestedFilters()
     ExpectEq(0, Actor.countObservations(criteria));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void IndexedOutputsCannotMutateStoredCandidates()
 {
     mapping result = Actor.recordObservation(([
@@ -169,7 +182,8 @@ void IndexedOutputsCannotMutateStoredCandidates()
     ExpectEq(0, Actor.countObservations(([ "type":"movement" ])));
 }
 
-void RestoreRebuildsIndexAndDatabaseQueriesUseSameMatcher()
+/////////////////////////////////////////////////////////////////////////////
+void RestoreKeepsDatabaseHistoryWithoutHydratingIt()
 {
     setRestoreCaller(this_object());
     object database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
@@ -177,7 +191,6 @@ void RestoreRebuildsIndexAndDatabaseQueriesUseSameMatcher()
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
     mapping data = database.Gorthaur();
     data["experiences"] += ({ ([
-        "ID":generateGuid(),
         "type":"combat.kata.tiger",
         "actor":"/lib/realizations/player#gorthaur",
         "subject":"orc",
@@ -189,7 +202,7 @@ void RestoreRebuildsIndexAndDatabaseQueriesUseSameMatcher()
     ]) });
     dataAccess.savePlayerData(data);
     object player = clone_object("/lib/realizations/player.c");
-    player.recordObservation(([ "type":"movement.enter" ]));
+    ExpectFalse(player.recordObservation(([ "type":"movement.enter" ])));
     player.restore("gorthaur");
     ExpectEq(0, player.countObservations(([ "type":"movement" ])));
     ExpectEq(2, player.countObservations(([ "type":"combat" ])));
@@ -210,7 +223,7 @@ void RestoreRebuildsIndexAndDatabaseQueriesUseSameMatcher()
     ExpectEq(0, dataAccess.countObservationsByPlayer("gorthaur", 0));
     player.recordObservation(([ "type":"research.learn" ]));
     player.restore("gorthaur");
-    ExpectEq(0, player.countObservations(([ "type":"research" ])));
+    ExpectEq(1, player.countObservations(([ "type":"research" ])));
     ExpectEq(2, player.countObservations(([ "type":"combat" ])));
     destruct(player);
     destruct(dataAccess);

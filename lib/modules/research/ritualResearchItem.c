@@ -318,7 +318,8 @@ public nomask int execute(string command, object initiator)
         if (!initiator->spellAction())
         {
             mapping observation = 0;
-            if (ret && function_exists("recordObservation", initiator))
+            if (ret && function_exists("recordsObservations", initiator) &&
+                initiator->recordsObservations())
             {
                 object target = getTarget(initiator, command);
                 object experiences = getService("experiences");
@@ -342,7 +343,7 @@ public nomask int execute(string command, object initiator)
 
             if (ret && observation)
             {
-                initiator->recordObservation(observation);
+                initiator->recordObservation(observation, 1);
             }
             if (!ret && member(specificationData, "use ability fail message"))
             {

@@ -173,7 +173,7 @@ void PlayerExperiencesRestored()
     object dataAccess = clone_object("/lib/modules/secure/dataAccess.c");
 
     mapping *observations = dataAccess.queryObservationsByPlayer("gorthaur",
-        ([]), 0, 0);
+        ([ "type":"combat.kill" ]), 0, 0);
 
     ExpectEq(1, sizeof(observations));
     ExpectEq("combat.kill", observations[0]["type"]);
@@ -476,7 +476,10 @@ void PlayerExperiencesSaved()
         "type": "movement.enter", "terrain": "forest" ])));
     mapping *observations = restoredPlayer.queryObservations(([
         "type": "movement.enter" ]));
-    ExpectEq(recorded["ID"], observations[0]["ID"]);
+    ExpectFalse(member(recorded, "ID"));
+    ExpectTrue(to_int(observations[0]["ID"]) > 0);
+    ExpectEq(observations[0]["ID"], Player.queryObservations(([
+        "type": "movement.enter" ]))[0]["ID"]);
     ExpectEq("north", observations[0]["context"]["details"]["wind"]);
     ExpectEq(({ "snow", "ice" }),
         observations[0]["context"]["details"]["conditions"]);
@@ -517,7 +520,7 @@ void ExperiencesV2CodecPreservesScalarsAndDelimiters()
         "metadata": metadata
     ]));
     ExpectTrue(stringp(recorded["ID"]));
-    ExpectEq(36, sizeof(recorded["ID"]));
+    ExpectTrue(to_int(recorded["ID"]) > 0);
     ExpectFalse(member(recorded, "_observationId"));
 
     dataAccess.recordObservation("gorthaur", recorded);
@@ -535,7 +538,7 @@ void ExperiencesV2CodecPreservesScalarsAndDelimiters()
     db_exec(dbHandle, "use " + RealmsDatabase() + ";");
     db_exec(dbHandle, sprintf("select participants, observationContext, "
         "observationMetadata from experienceObservations "
-        "where observationKey = '%s';", db_conv_string(recorded["ID"])));
+        "where id = %d;", to_int(recorded["ID"])));
     mixed row = db_fetch(dbHandle);
     ExpectSubStringMatch("@experiences-v2@array:", row[0]);
     ExpectSubStringMatch("@experiences-v2@mapping:", row[1]);
@@ -587,10 +590,9 @@ private void saveEncodedExperience(string type, string participants,
     db_exec(dbHandle, "select id from players where name = 'gorthaur';");
     mixed playerRow = db_fetch(dbHandle);
     while (db_fetch(dbHandle));
-    string observationId = generateGuid();
     db_exec(dbHandle, sprintf("call saveExperienceObservation("
-        "'%s',%d,'%s','','','%s',777,'','%s','%s');",
-        db_conv_string(observationId), to_int(playerRow[0]),
+        "'',%d,'%s','','','%s',777,'','%s','%s');",
+        to_int(playerRow[0]),
         db_conv_string(type), db_conv_string(participants),
         db_conv_string(context), db_conv_string(metadata)));
     while (db_fetch(dbHandle));

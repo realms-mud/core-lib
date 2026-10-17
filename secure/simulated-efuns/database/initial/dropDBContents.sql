@@ -130,6 +130,26 @@ drop procedure if exists saveBlockedUser;
 ##
 drop procedure if exists saveExperienceObservation;
 ##
+drop procedure if exists prepareExperienceQuery;
+##
+drop trigger if exists observationSearchInsert;
+##
+drop trigger if exists observationSearchUpdate;
+##
+drop function if exists observationDocument;
+##
+drop function if exists observationMatches;
+##
+drop function if exists observationValueMatches;
+##
+drop function if exists observationMember;
+##
+drop function if exists observationScalarEqual;
+##
+drop function if exists observationLegacy;
+##
+drop function if exists observationDecode;
+##
 drop procedure if exists pruneExperience;
 ##
 drop procedure if exists saveRelationshipHistory;

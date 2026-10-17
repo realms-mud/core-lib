@@ -711,10 +711,10 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                     case "observation":
                     {
                         ret &&= validResearcher(researcher) &&
-                            function_exists("countObservations", researcher) &&
-                            researcher->countObservations(
-                                prerequisiteData["criteria"]) >=
-                                prerequisiteData["value"];
+                            function_exists("hasObservation", researcher) &&
+                            researcher->hasObservation(
+                                prerequisiteData["criteria"],
+                                prerequisiteData["value"]);
                         break;
                     }
                     case "relationship":

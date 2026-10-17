@@ -23,6 +23,7 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    Character.disableObservationPersistence();
     destruct(Character);
     ToggleCallOutBypass();
 }
@@ -37,6 +38,7 @@ void IntoxicatedSetsIntoxicationLevel()
 /////////////////////////////////////////////////////////////////////////////
 void AlcoholConsumptionKeepsItemAndStateSnapshots()
 {
+    Character.enableObservationPersistence();
     object drink = clone_object("/lib/tests/support/items/testDrink.c");
     drink.set("biological strength", 3);
     mapping before = Character.biologicalState();
@@ -56,13 +58,13 @@ void AlcoholConsumptionKeepsItemAndStateSnapshots()
     ExpectTrue(after["intoxicated"] > before["intoxicated"]);
     Character.Intoxicated(1000);
     Character.heart_beat();
-    ExpectEq(1, getService("experiences")->countObservations(
-        Character.experiencesLog(), ([ "type":"consumption" ])));
+    ExpectEq(1, Character.countObservations(([ "type":"consumption" ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void FailedAndNoOpConsumptionDoesNotRecord()
 {
+    Character.enableObservationPersistence();
     object drink = clone_object("/lib/tests/support/items/testDrink.c");
     Character.Intoxicated(1000);
     ExpectFalse(Character.drinkAlcohol(drink));

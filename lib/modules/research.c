@@ -20,7 +20,8 @@ public nomask string *availableResearchTrees();
 private void recordResearchObservation(string type, string researchItem,
     mapping context)
 {
-    if (function_exists("recordObservation", this_object()))
+    if (function_exists("recordsObservations", this_object()) &&
+        this_object()->recordsObservations())
     {
         context = context + ([]);
         object item = researchService()->researchObject(researchItem);

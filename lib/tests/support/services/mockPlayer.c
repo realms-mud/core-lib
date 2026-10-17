@@ -3,10 +3,17 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 virtual inherit "/lib/realizations/player.c";
+virtual inherit "/lib/tests/support/services/databaseExperienceOwner.c";
 
 private string lastCatch = 0;
 private string *catchList = ({ });
 private string *gmcpFrames = ({ });
+
+/////////////////////////////////////////////////////////////////////////////
+protected int experienceOwnerId()
+{
+    return databaseExperienceOwner::experienceOwnerId();
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public void agePlayer(int amount)

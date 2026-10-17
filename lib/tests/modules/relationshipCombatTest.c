@@ -10,11 +10,13 @@ object Npc;
 object Enemy;
 object Room;
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Room = clone_object("/lib/tests/support/relationships/room.c");
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("alice");
+    Player.enableObservationPersistence();
     Player.Str(20);
     Player.Con(20);
     Player.Race("human");
@@ -51,15 +53,18 @@ void Setup()
     move_object(Enemy, Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Enemy);
     destruct(Npc);
     destruct(Ally);
+    Player.disableObservationPersistence();
     destruct(Player);
     destruct(Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ProtectCommandDivertsActualCombatAndRecordsARescueOnce()
 {
     Ally.hit(Ally.hitPoints() - 1, "magical");
@@ -76,6 +81,7 @@ void ProtectCommandDivertsActualCombatAndRecordsARescueOnce()
     ExpectEq(1, Player.countObservations(([ "type":"combat.rescue" ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void DefaultNpcAiProtectsKnownAlliesButDoesNotHelpStrangers()
 {
     Player.registerAttacker(Enemy);
@@ -87,9 +93,14 @@ void DefaultNpcAiProtectsKnownAlliesButDoesNotHelpStrangers()
     ExpectTrue(Npc.isInCombatWith(Enemy));
     ExpectFalse(Player.isInCombatWith(Enemy));
     ExpectEq(5, Player.relationshipValue(Npc, "trust"));
-    ExpectEq(1, Npc.countObservations(([ "type":"combat.protected" ])));
+    ExpectEq(0, Npc.countObservations(([ "type":"combat.protected" ])));
+    ExpectTrue(Player.hasObservation(([
+        "type":"combat.protected",
+        "actor":Npc
+    ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AttackingATrustedNpcIsOneBetrayalNotOnePerRound()
 {
     Npc.updateRelationshipToward(Player,
@@ -104,6 +115,7 @@ void AttackingATrustedNpcIsOneBetrayalNotOnePerRound()
     ExpectEq(1, Player.countObservations(([ "type":"combat.betrayal" ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FearRetreatReportsActualMovementNotAVoidReturnValue()
 {
     Npc.modifyRelationship(Player, "fear", 75);
@@ -119,9 +131,14 @@ void FearRetreatReportsActualMovementNotAVoidReturnValue()
     ExpectFalse(environment(Npc) == Room);
     ExpectFalse(Npc.inCombat());
     ExpectFalse(Player.isInCombatWith(Npc));
-    ExpectEq(1, Npc.countObservations(([ "type":"combat.fled" ])));
+    ExpectEq(0, Npc.countObservations(([ "type":"combat.fled" ])));
+    ExpectTrue(Player.hasObservation(([
+        "type":"combat.fled",
+        "actor":Npc
+    ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PeacefulRoomsBlockAssistanceWithoutRelationshipEffects()
 {
     Ally.registerAttacker(Enemy);
@@ -136,6 +153,7 @@ void PeacefulRoomsBlockAssistanceWithoutRelationshipEffects()
     ExpectEq(0, Player.countObservations(([ "type":"combat.protected" ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LowHealthWithAnotherOpponentIsProtectionNotRescue()
 {
     Ally.hit(Ally.hitPoints() - 1, "magical");
@@ -149,6 +167,7 @@ void LowHealthWithAnotherOpponentIsProtectionNotRescue()
     ExpectEq(0, Player.countObservations(([ "type":"combat.rescue" ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AlliedNpcCanRetaliateWithoutRecordingReverseBetrayal()
 {
     Npc.updateRelationshipToward(Player,

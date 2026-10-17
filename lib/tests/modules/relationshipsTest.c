@@ -8,21 +8,26 @@ object Player;
 object Npc;
 object Prerequisite;
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Player = clone_object("/lib/tests/support/services/mockPlayer.c");
     Player.Name("alice");
+    Player.enableObservationPersistence();
     Npc = clone_object("/lib/tests/support/relationships/npc.c");
     Prerequisite = clone_object("/lib/tests/support/research/prerequisiteItem.c");
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     destruct(Prerequisite);
     destruct(Npc);
+    Player.disableObservationPersistence();
     destruct(Player);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void NamedNpcAttitudesSurviveRespawnWithoutSharingPlayers()
 {
     Npc.modifyRelationship(Player, "trust", 10);
@@ -37,6 +42,7 @@ void NamedNpcAttitudesSurviveRespawnWithoutSharingPlayers()
     destruct(other);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void QuestUnlocksExactIncomingRelationshipPrerequisiteOnce()
 {
     string lesson = "/lib/tests/support/relationships/research.c";
@@ -63,6 +69,7 @@ void QuestUnlocksExactIncomingRelationshipPrerequisiteOnce()
     ExpectEq(10, Npc.relationshipValue(Player, "trust"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MissingAndMalformedPrerequisiteDataFailClosed()
 {
     ExpectFalse(Prerequisite.AddTestPrerequisite("bad", ([
@@ -81,6 +88,7 @@ void MissingAndMalformedPrerequisiteDataFailClosed()
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LimitorsCheckTargetDirectionAndInclusiveThresholds()
 {
     object service = getService("limitor");
@@ -101,6 +109,7 @@ void LimitorsCheckTargetDirectionAndInclusiveThresholds()
     ExpectFalse(service.userFactorsMet(([ "limited by":rule ]), Player, Npc));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void OnlyAuthoredInteractionsChangeAttitudes()
 {
     ExpectFalse(Npc.relationshipInteraction(Player, "social.hug", ([])));
@@ -110,6 +119,7 @@ void OnlyAuthoredInteractionsChangeAttitudes()
     ExpectEq(0, Npc.relationshipValue(Player, "trust"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void StructuredSocialAndGiftCommandsApplyOnlySuccessfulAuthoredRules()
 {
     Player.Race("human");
@@ -132,6 +142,7 @@ void StructuredSocialAndGiftCommandsApplyOnlySuccessfulAuthoredRules()
     destruct(gift);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void TeachingRequiresKnowledgeAndSuccessfulResearch()
 {
     string item = "/lib/tests/support/research/testGrantedResearchItem.c";
@@ -144,6 +155,7 @@ void TeachingRequiresKnowledgeAndSuccessfulResearch()
     ExpectEq(2, Npc.relationshipValue(Player, "respect"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FactionEffectsRequireAnExplicitWitnessAndAuthoredRule()
 {
     string faction = "/lib/tests/support/factions/goodGuys.c";
@@ -155,6 +167,7 @@ void FactionEffectsRequireAnExplicitWitnessAndAuthoredRule()
     ExpectEq(3, Npc.relationshipValue(Player, "trust"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AuthoredInterpersonalTradeRecordsEvidenceAndIncomingTruth()
 {
     Player.recordRelationshipInteraction(Npc, "trade.completed",

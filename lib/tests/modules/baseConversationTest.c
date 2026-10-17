@@ -46,6 +46,7 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    Actor.disableObservationPersistence();
     destruct(Owner);
     destruct(Actor);
     destruct(Conversation);
@@ -54,8 +55,10 @@ void CleanUp()
 /////////////////////////////////////////////////////////////////////////////
 void ResponseMenusAreIsolatedByActorObject()
 {
+    Actor.enableObservationPersistence();
     object second = clone_object("/lib/tests/support/services/mockPlayer.c");
     second.Name("Second speaker");
+    second.enableObservationPersistence();
     second.Race("human");
     move_object(second, environment(Actor));
     Actor.Race("elf");
@@ -79,6 +82,7 @@ void ResponseMenusAreIsolatedByActorObject()
     ExpectSubStringMatch("Common choice", second.caughtMessage());
     ExpectEq(1, Actor.countObservations(([ "type":"conversation.response" ])));
     ExpectEq(1, second.countObservations(([ "type":"conversation.response" ])));
+    second.disableObservationPersistence();
     destruct(second);
 }
 
@@ -552,6 +556,7 @@ void AddResponseEffectAllowsAndAppliesOpinion()
 /////////////////////////////////////////////////////////////////////////////
 void RelationshipEffectIsDirectionalAndDoesNotReplaceOpinion()
 {
+    Actor.enableObservationPersistence();
     Conversation.testAddTopic("relationship", "A meaningful conversation.");
     Conversation.testAddResponse("relationship", "Promise", "I will help.");
     Conversation.testAddResponseEffect("relationship", "Promise", ([
@@ -587,6 +592,7 @@ void AddResponseEffectAllowsAndAppliesAttack()
 /////////////////////////////////////////////////////////////////////////////
 void EachTreeResponseCanAlterBothDirectionsOfTheRelationshipMatrix()
 {
+    Actor.enableObservationPersistence();
     Conversation.testAddTopic("matrix", "Choose how to respond.");
     Conversation.testAddResponse("matrix", "A honest", "I will help.");
     Conversation.testAddResponse("matrix", "B insulting", "Go away.");

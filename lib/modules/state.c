@@ -37,7 +37,8 @@ public nomask void onStateChanged(object caller, string newState)
         }
         if ((previousState != newState) &&
             (stateFor(caller) == newState) &&
-            function_exists("recordObservation", this_object()))
+            function_exists("recordsObservations", this_object()) &&
+            this_object()->recordsObservations())
         {
             this_object()->recordObservation(([
                 "type": "state.changed",

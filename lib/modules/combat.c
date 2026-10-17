@@ -1183,7 +1183,8 @@ public nomask int unregisterAttacker(object attacker)
     {
         ret = 1;
         object experiences = getModule("experiences");
-        if (experiences && objectp(attacker))
+        if (experiences && objectp(attacker) &&
+            experiences->recordsObservations())
         {
             experiences->recordObservation(([
                 "type":"combat.ended",
@@ -1324,7 +1325,7 @@ public nomask int registerAttacker(object attacker)
     {
         hostileList[attacker] = (["time": time() + sizeof(hostileList) ]);
         object experiences = getModule("experiences");
-        if (experiences)
+        if (experiences && experiences->recordsObservations())
         {
             experiences->recordObservation(([
                 "type":"combat.started",
@@ -1385,7 +1386,7 @@ public nomask void generateCombatStatistics(object foe)
         getModule("player")->saveCombatStatistics(this_object(), foe);
     }            
     object experiences = getModule("experiences");
-    if (foe && experiences)
+    if (foe && experiences && experiences->recordsObservations())
     {
         mapping observation = ([
             "type": "combat.kill",
@@ -1393,7 +1394,7 @@ public nomask void generateCombatStatistics(object foe)
         ]);
         observation["context"] = getService("experiences")->
             buildObservationContext(this_object(), observation);
-        experiences->recordObservation(observation);
+        experiences->recordObservation(observation, 1);
     }
 }
 
@@ -1540,7 +1541,7 @@ private nomask int determineFateFromDeath(object murderer)
     if(killMe)
     {
         object experiences = getModule("experiences");
-        if (experiences)
+        if (experiences && experiences->recordsObservations())
         {
             experiences->recordObservation(([
                 "type":"combat.death",

@@ -9,7 +9,8 @@ virtual inherit "/lib/core/organizations.c";
 private void recordFactionObservation(string type, string faction,
     string previousDisposition)
 {
-    if (function_exists("recordObservation", this_object()))
+    if (function_exists("recordsObservations", this_object()) &&
+        this_object()->recordsObservations())
     {
         this_object()->recordObservation(([
             "type": type,
@@ -169,7 +170,8 @@ public nomask int leaveFaction(string faction)
 
         memberOfFactions -= ({ faction });
         if (reputation != factions[faction]["reputation"] &&
-            function_exists("recordObservation", this_object()))
+            function_exists("recordsObservations", this_object()) &&
+            this_object()->recordsObservations())
         {
             this_object()->recordObservation(([
                 "type": "faction.reputationChanged",
@@ -260,7 +262,8 @@ public nomask varargs void updateFactionDisposition(string faction,
         factions[faction]["last interaction reputation"] =
             factions[faction]["reputation"];
         if (previousReputation != factions[faction]["reputation"] &&
-            function_exists("recordObservation", this_object()))
+            function_exists("recordsObservations", this_object()) &&
+            this_object()->recordsObservations())
         {
             this_object()->recordObservation(([
                 "type": "faction.reputationChanged",

@@ -8,39 +8,10 @@ private object Database;
 private object DataAccess;
 private object Player;
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     ignoreList += ({ "sqlRows" });
-}
-
-private mixed *sqlRows(string query)
-{
-    mixed *ret = ({ });
-    if (RealmsDatabase() != "RealmsQA")
-    {
-        raise_error("Observation persistence tests require QA.\n");
-    }
-    else
-    {
-        int handle = db_connect(RealmsDatabase());
-        db_exec(handle, query);
-        string failure = db_error(handle);
-        mixed row;
-        while (row = db_fetch(handle))
-        {
-            ret += ({ row });
-        }
-        db_close(handle);
-        if (failure)
-        {
-            raise_error(failure + "\n");
-        }
-    }
-    return ret;
-}
-
-void Setup()
-{
     setRestoreCaller(this_object());
     Database = clone_object("/lib/tests/modules/secure/fakeDatabase.c");
     Database.PrepDatabase();
@@ -50,94 +21,144 @@ void Setup()
     destruct(authentication);
     DataAccess = clone_object("/lib/modules/secure/dataAccess.c");
     DataAccess.savePlayerData(Database.Gorthaur());
-    Player = clone_object("/lib/realizations/player.c");
 }
 
+/////////////////////////////////////////////////////////////////////////////
+private mixed *sqlRows(string query)
+{
+    mixed *ret = ({ });
+    if (RealmsDatabase() != "RealmsQA")
+    {
+        raise_error("Observation persistence tests require QA.\n");
+    }
+    int handle = db_connect(RealmsDatabase());
+    db_exec(handle, query);
+    string failure = db_error(handle);
+    mixed row;
+    while (row = db_fetch(handle))
+    {
+        ret += ({ row });
+    }
+    db_close(handle);
+    if (failure)
+    {
+        raise_error(failure + "\n");
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void Setup()
+{
+    sqlRows("delete from experienceObservations;");
+    DataAccess.recordObservation("gorthaur",
+        Database.Gorthaur()["experiences"][0]);
+    Player = clone_object("/lib/realizations/player.c");
+    Player.restore("gorthaur");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     sqlRows("drop trigger if exists observationTestFailure;");
     destruct(Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
     destruct(DataAccess);
     destruct(Database);
 }
 
-void BoundedRestoreQueriesLifetimeAndPendingWithoutDoubleCounting()
+/////////////////////////////////////////////////////////////////////////////
+void RecordingIsImmediatelyVisibleAcrossPlayerInstances()
 {
-    DataAccess.recordObservation("gorthaur", ([
-        "ID": "old-social", "type": "social.emote",
-        "context": ([ "action": "smile" ])
-    ]));
-    for (int index = 0; index < 105; index++)
-    {
-        DataAccess.recordObservation("gorthaur", ([
-            "ID": sprintf("history-%d", index), "type": "history.event",
-            "context": ([ "sequence": index ])
-        ]));
-    }
-    Player.restore("gorthaur");
-    ExpectEq(100, sizeof(Player.experiencesLog()));
-    ExpectEq(105, Player.countObservations(([ "type": "history" ])));
-    ExpectTrue(Player.hasObservation(([ "ID": "history-0" ])));
-    ExpectTrue(Player.canResearch(
-        "/lib/tests/support/research/observant-diplomat.c"));
-    Player.recordObservation(([ "ID": "pending", "type": "history.event" ]));
-    Player.recordObservation(([ "ID": "pending", "type": "history.event" ]));
-    DataAccess.recordObservation("gorthaur", ([
-        "ID": "pending", "type": "history.event"
-    ]));
-    Player.recordObservation(([ "ID": "pending-2", "type": "history.event" ]));
-    ExpectEq(107, Player.countObservations(([ "type": "history" ])));
-    mapping *page = Player.queryObservations(([ "type": "history" ]), 2, 104);
-    ExpectEq(2, sizeof(page));
-    ExpectEq("history-104", page[0]["ID"]);
-    ExpectEq("pending", page[1]["ID"]);
-    page = Player.queryObservations(([ "type": "history" ]), 1, 106);
-    ExpectEq("pending-2", page[0]["ID"]);
-    ExpectEq(0, sizeof(Player.queryObservations(
-        ([ "type": "history" ]), 1, 107)));
-    Player.save();
-    ExpectEq(100, sizeof(Player.experiencesLog()));
-    ExpectEq(107, Player.countObservations(([ "type": "history" ])));
-}
-
-void SavesOnlyPendingRowsAndAcknowledgesSuccessfulBatch()
-{
-    Player.restore("gorthaur");
-    sqlRows("create trigger observationTestFailure before insert on "
-        "experienceObservations for each row begin "
-        "if exists(select 1 from experienceObservations where "
-        "observationKey=NEW.observationKey) then signal sqlstate '45000' "
-        "set message_text='Historical observation resent'; end if; end;");
-    Player.recordObservation(([ "ID": "delta", "type": "delta.event" ]));
-    mixed firstFailure = catch(Player.save(); nolog);
-    mixed secondFailure = catch(Player.save(); nolog);
-    sqlRows("drop trigger observationTestFailure;");
-    ExpectFalse(firstFailure);
-    ExpectFalse(secondFailure);
+    object other = clone_object("/lib/realizations/player.c");
+    other.restore("gorthaur");
+    Player.recordObservation(([ "type":"immediate.event" ]));
+    ExpectEq(1, other.countObservations(([ "type":"immediate" ])));
     ExpectEq(1, DataAccess.countObservationsByPlayer("gorthaur",
-        ([ "type": "delta" ])));
+        ([ "type":"immediate" ])));
+    other.save();
+    Player.save();
+    Player.restore("gorthaur");
+    ExpectEq(1, Player.countObservations(([ "type":"immediate" ])));
+    ExpectFalse(function_exists("experiencesLog", Player));
+    ExpectFalse(function_exists("experiencesSummary", Player));
+    ExpectFalse(member(DataAccess.getPlayerData("gorthaur"), "experiences"));
+    destruct(other);
 }
 
-void FailedBatchRollsBackAndPendingRowsRetry()
+/////////////////////////////////////////////////////////////////////////////
+void PlayerSaveNeverResubmitsObservationHistory()
 {
-    Player.restore("gorthaur");
-    Player.recordObservation(([ "ID": "retry-first", "type": "retry.event" ]));
-    Player.recordObservation(([ "ID": "retry-failure", "type": "retry.event" ]));
+    Player.recordObservation(([ "type":"saved.event" ]));
     sqlRows("create trigger observationTestFailure before insert on "
-        "experienceObservations for each row begin "
-        "if NEW.observationKey='retry-failure' then signal sqlstate '45000' "
-        "set message_text='Injected observation save failure'; end if; end;");
+        "experienceObservations for each row signal sqlstate '45000' "
+        "set message_text='Player save must not insert observations';");
     mixed failure = catch(Player.save(); nolog);
-    sqlRows("drop trigger observationTestFailure;");
+    ExpectFalse(failure);
+    ExpectEq(1, Player.countObservations(([ "type":"saved" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void IdenticalEventsReceiveDistinctDatabasePrimaryKeys()
+{
+    mapping observation = ([ "type":"identical.event", "timestamp":1234 ]);
+    Player.recordObservation(observation);
+    Player.recordObservation(observation);
+    mapping *saved = Player.queryObservations(([ "type":"identical" ]));
+    ExpectEq(2, sizeof(saved));
+    ExpectTrue(to_int(saved[0]["ID"]) > 0);
+    ExpectTrue(to_int(saved[1]["ID"]) > 0);
+    ExpectTrue(saved[0]["ID"] != saved[1]["ID"]);
+    Player.save();
+    ExpectEq(2, Player.countObservations(([ "type":"identical" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void FailedRecordingIsReportedAndDoesNotCreatePendingHistory()
+{
+    sqlRows("create trigger observationTestFailure before insert on "
+        "experienceObservations for each row signal sqlstate '45000' "
+        "set message_text='Injected observation write failure';");
+    mixed failure = catch(Player.recordObservation(([
+        "type":"failure.event"
+    ])); nolog);
     ExpectTrue(stringp(failure));
-    ExpectEq(0, DataAccess.countObservationsByPlayer("gorthaur",
-        ([ "type": "retry" ])));
-    ExpectEq(2, Player.countObservations(([ "type": "retry" ])));
+    sqlRows("drop trigger observationTestFailure;");
+    ExpectFalse(Player.hasObservation(([ "type":"failure" ])));
     Player.save();
-    ExpectEq(2, DataAccess.countObservationsByPlayer("gorthaur",
-        ([ "type": "retry" ])));
-    ExpectEq(2, Player.countObservations(([ "type": "retry" ])));
-    Player.save();
-    ExpectEq(2, DataAccess.countObservationsByPlayer("gorthaur",
-        ([ "type": "retry" ])));
+    ExpectFalse(Player.hasObservation(([ "type":"failure" ])));
+    Player.recordObservation(([ "type":"failure.event" ]));
+    ExpectEq(1, Player.countObservations(([ "type":"failure" ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NpcInteractionsAreOwnedAndQueriedByTheTriggeringPlayer()
+{
+    object npc = clone_object("/lib/realizations/monster.c");
+    npc.Name("Chen");
+    Player.recordObservation(([
+        "type":"conversation.helped",
+        "subject":npc,
+        "participants":({ npc })
+    ]));
+    ExpectTrue(Player.hasObservation(([
+        "type":"conversation",
+        "subject":npc,
+        "participants":({ npc })
+    ])));
+    ExpectFalse(npc.recordsObservations());
+    ExpectFalse(npc.recordObservation(([ "type":"npc.private" ])));
+    ExpectEq(0, npc.countObservations(([])));
+    mapping another = Database.Gorthaur();
+    another["name"] = "another";
+    another["experiences"] = ({ });
+    DataAccess.savePlayerData(another);
+    ExpectFalse(DataAccess.hasObservationByPlayer("another", ([
+        "subject":npc
+    ])));
+    destruct(npc);
 }

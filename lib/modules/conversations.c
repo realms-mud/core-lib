@@ -209,7 +209,8 @@ private int startConversation(object actor, int observeStart)
             ret = topics[topic]->speakMessage(topic, actor, this_object());
             if (ret && observeStart &&
                 environment(actor) &&
-                function_exists("recordObservation", actor))
+                function_exists("recordsObservations", actor) &&
+                actor->recordsObservations())
             {
                 if (startedTopics[actor] != topic)
                 {
@@ -294,7 +295,8 @@ public nomask void onTriggerConversation(object caller,
             this_object());
         if (spoken && objectp(actor) &&
             startedTopics[actor] != conversation && environment(actor) &&
-            function_exists("recordObservation", actor))
+            function_exists("recordsObservations", actor) &&
+            actor->recordsObservations())
         {
             startedTopics[actor] = conversation;
             actor->recordObservation(([

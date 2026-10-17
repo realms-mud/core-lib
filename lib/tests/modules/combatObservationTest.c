@@ -17,6 +17,7 @@ void Setup()
     Actor = clone_object(
         "/lib/tests/support/services/observationCombatActor.c");
     Actor.Name("Kata practitioner");
+    Actor.enableObservationPersistence();
     Actor.ToggleMockResearch();
     Actor.toggleKillList();
     Actor.Str(20);
@@ -51,6 +52,7 @@ void CleanUp()
     destruct(Prerequisite);
     destruct(Kata);
     destruct(Target);
+    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Room);
 }
@@ -118,7 +120,7 @@ void CombatTransitionsRecordOnlyChangedHostility()
     Actor.stopFight(Target);
     Actor.stopFight(Target);
     ExpectEq(1, Actor.countObservations(([ "type":"combat.ended" ])));
-    ExpectEq(1, Target.countObservations(([ "type":"combat.ended" ])));
+    ExpectEq(0, Target.countObservations(([ "type":"combat.ended" ])));
     ExpectFalse(Actor.isInCombatWith(Target));
     ExpectFalse(Target.isInCombatWith(Actor));
 }
@@ -131,9 +133,9 @@ void DeathRecordsVictimAndKillerWithoutDuplicates()
     Actor.hit(100000, "fire", Target);
     ExpectTrue(Actor.isDead());
     ExpectEq(1, Actor.countObservations(([ "type":"combat.death" ])));
-    ExpectEq(1, Target.countObservations(([ "type":"combat.kill" ])));
+    ExpectEq(0, Target.countObservations(([ "type":"combat.kill" ])));
     ExpectEq(1, Actor.countObservations(([ "type":"combat.ended" ])));
     Actor.hit(100000, "fire", Target);
     ExpectEq(1, Actor.countObservations(([ "type":"combat.death" ])));
-    ExpectEq(1, Target.countObservations(([ "type":"combat.kill" ])));
+    ExpectEq(0, Target.countObservations(([ "type":"combat.kill" ])));
 }

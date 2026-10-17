@@ -10,7 +10,8 @@ private nosave object CraftingItem;
 private void recordCraftingObservation(string type)
 {
     if (objectp(CraftingItem) &&
-        function_exists("recordObservation", this_object()))
+        function_exists("recordsObservations", this_object()) &&
+        this_object()->recordsObservations())
     {
         this_object()->recordObservation(([
             "type": type,

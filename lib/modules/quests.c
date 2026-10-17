@@ -14,7 +14,8 @@ private object questsService = getService("quests");
 private void recordQuestObservation(string type, string questItem,
     mapping context)
 {
-    if (function_exists("recordObservation", this_object()))
+    if (function_exists("recordsObservations", this_object()) &&
+        this_object()->recordsObservations())
     {
         this_object()->recordObservation(([
             "type": type,

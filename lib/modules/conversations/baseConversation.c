@@ -636,7 +636,8 @@ public nomask int displayResponse(string choice, object actor, object owner)
             "\n\n", actor, owner);
         m_delete(responseKeys, actor);
 
-        if (objectp(actor) && function_exists("recordObservation", actor))
+        if (objectp(actor) && function_exists("recordsObservations", actor) &&
+            actor->recordsObservations())
         {
             actor->recordObservation(([
                 "type": "conversation.response",

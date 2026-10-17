@@ -398,20 +398,28 @@ public nomask varargs mapping recordRelationshipInteraction(mixed target,
         ret = direction == "from" ?
             updateRelationshipFrom(target, changes, context, ([]), type) :
             updateRelationshipToward(target, changes, context, ([]), type);
-        mapping observation = this_object()->recordObservation(([
-            "type":type,
-            "subject":target,
-            "context":mappingp(context) ? context : ([]),
-            "metadata":([
-                "relationship source":ret["source"],
-                "relationship target":ret["target"],
-                "relationship changes":changes + ([])
-            ])
-        ]));
-        if (!mappingp(observation))
+        object observationOwner = this_object()->recordsObservations() ?
+            this_object() : objectp(target) &&
+            function_exists("recordsObservations", target) &&
+            target->recordsObservations() ? target : 0;
+        if (observationOwner)
         {
-            raise_error("ERROR - relationships: Could not record "
-                "the interaction observation.\n");
+            mapping observation = observationOwner->recordObservation(([
+                "type":type,
+                "actor":this_object(),
+                "subject":target,
+                "context":mappingp(context) ? context : ([]),
+                "metadata":([
+                    "relationship source":ret["source"],
+                    "relationship target":ret["target"],
+                    "relationship changes":changes + ([])
+                ])
+            ]));
+            if (!mappingp(observation))
+            {
+                raise_error("ERROR - relationships: Could not record "
+                    "the interaction observation.\n");
+            }
         }
     }
     return ret;

@@ -7,37 +7,13 @@ private int hasBeenValidated = 0;
 /////////////////////////////////////////////////////////////////////////////
 public nomask int DatabaseVersion()
 {
-    return 15;
+    return 17;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask string RealmsDatabase()
 {
     return "RealmsLib";
-}
-
-/////////////////////////////////////////////////////////////////////////////
-public nomask string generateGuid()
-{
-    string ret = "";
-    int dbHandle = db_connect(RealmsDatabase());
-
-    if (dbHandle)
-    {
-        efun::db_exec(dbHandle, "select UUID();");
-        mixed result = db_fetch(dbHandle);
-        if (result && stringp(result[0]))
-        {
-            ret = result[0];
-        }
-        while (db_fetch(dbHandle));
-        db_close(dbHandle);
-    }
-    if (!sizeof(ret))
-    {
-        raise_error("Unable to generate a database GUID.\n");
-    }
-    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

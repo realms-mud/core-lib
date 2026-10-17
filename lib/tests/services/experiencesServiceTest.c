@@ -7,20 +7,25 @@ inherit "/lib/tests/framework/testFixture.c";
 object Service;
 object Actor;
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Service = clone_object("/lib/services/experiencesService.c");
-    Actor = clone_object("/lib/realizations/monster.c");
+    Actor = clone_object("/lib/tests/support/services/mockPlayer.c");
     Actor.Name("Observation actor");
+    Actor.enableObservationPersistence();
     move_object(Actor, "/lib/tests/support/environment/fakeEnvironment.c");
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    Actor.disableObservationPersistence();
     destruct(Actor);
     destruct(Service);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void NormalizationDoesNotStoreHistory()
 {
     mapping result = Service.normalizeObservation(([
@@ -38,7 +43,7 @@ void NormalizationDoesNotStoreHistory()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void ObservationIDIsAStableDatabaseGuid()
+void NormalizationDoesNotAllocateObservationIds()
 {
     mapping first = Service.normalizeObservation(([
         "type": "combat.kata",
@@ -48,38 +53,33 @@ void ObservationIDIsAStableDatabaseGuid()
         "type": "combat.kata",
         "actor": Actor
     ]));
-    string *segments = explode(first["ID"], "-");
-    ExpectEq(({ 8, 4, 4, 4, 12 }), map(segments, (: sizeof($1) :)));
-    ExpectEq(1, sizeof(regexp(({ first["ID"] }), "^[0-9a-f-]+$")));
-    ExpectTrue(first["ID"] != second["ID"]);
-    ExpectEq(first["ID"], Service.normalizeObservation(first)["ID"]);
+    ExpectFalse(member(first, "ID"));
+    ExpectFalse(member(second, "ID"));
+    ExpectFalse(member(Service.normalizeObservation(first), "ID"));
+    first["ID"] = "123";
+    ExpectEq("123", Service.normalizeObservation(first)["ID"]);
     ExpectFalse(member(first, "_observationId"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ExplicitModuleRecordingDoesNotCreateServiceHistory()
 {
     ExpectTrue(Service.recordObservation(Actor, ([
         "type": "combat.kata"
     ])));
     ExpectEq(1, Actor.countObservations(([])));
-    ExpectEq(0, Service.countObservations(({ }), ([])));
+    ExpectFalse(function_exists("countObservations", Service));
 }
 
-void SummaryIsDerivedWithoutStoringHistory()
+/////////////////////////////////////////////////////////////////////////////
+void HistoryAndSummaryApisAreAbsent()
 {
-    mapping observation = Service.normalizeObservation(([
-        "type": "combat.kata",
-        "actor": Actor,
-        "context": ([ "weapon": "katana" ])
-    ]));
-    mapping summary = Service.summarizeObservations(({ observation }));
-    ExpectEq(1, summary["total"]);
-    ExpectEq(1, summary["context"]["weapon"]["katana"]);
-    summary["context"]["weapon"]["katana"] = 99;
-    ExpectEq(1, Service.summarizeObservations(({ observation }))["total"]);
-    ExpectEq(0, Actor.countObservations(([])));
+    ExpectFalse(function_exists("experiencesLog", Actor));
+    ExpectFalse(function_exists("experiencesSummary", Actor));
+    ExpectFalse(function_exists("summarizeObservations", Service));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ContextCapturePreservesProducerFacts()
 {
     Actor.Race("orc");
@@ -93,6 +93,99 @@ void ContextCapturePreservesProducerFacts()
     ExpectTrue(member(result, "moon phase"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
+void DetailedContextIsLimitedToCombatResearchAndCrafting()
+{
+    Actor.Race("human");
+    foreach(string type in ({ "combat.kata", "research.learned",
+        "craft.completed", "movement.enter" }))
+    {
+        int detailed = type != "movement.enter";
+        mapping context = Service.buildObservationContext(Actor, ([
+            "type":type,
+            "subject":Actor
+        ]));
+        ExpectEq("human", context["race"]);
+        ExpectTrue(member(context, "guilds"));
+        ExpectTrue(member(context, "factions"));
+        ExpectEq(detailed, member(context, "equipment"));
+        ExpectEq(detailed, member(context, "active research"));
+        ExpectEq(detailed, member(context, "effects"));
+        ExpectEq(type == "combat.kata", member(context, "target identity"));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void CombatContextCapturesEquippedWeaponAndTarget()
+{
+    Actor.Race("human");
+    Actor.Str(20);
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon.set("blueprint", "katana");
+    move_object(weapon, Actor);
+    ExpectTrue(Actor.equip(weapon));
+    mapping context = Service.buildObservationContext(Actor, ([
+        "type":"combat.kata",
+        "subject":Actor
+    ]));
+    ExpectEq("katana", context["weapon"]);
+    ExpectEq(sprintf("%s#any", program_name(weapon)),
+        context["weapon identity"]);
+    ExpectEq(({}), context["equipment"]);
+    ExpectEq(Actor.Name(), context["target name"]);
+    ExpectEq("human", context["target race"]);
+    ExpectEq(Actor.effectiveLevel(), context["target level"]);
+    destruct(weapon);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ExplicitRoomContextWorksWithoutAnActor()
+{
+    object room = environment(Actor);
+    mapping context = Service.buildObservationContext(0, ([
+        "type":"movement.enter",
+        "location":room
+    ]));
+    ExpectTrue(member(context, "environment state"));
+    ExpectEq(room.currentState(), context["environment state"]);
+    ExpectTrue(member(context, "season"));
+    ExpectFalse(member(context, "race"));
+    ExpectFalse(member(Service.buildObservationContext(0, ([
+        "type":"movement.enter"
+    ])), "environment state"));
+    ExpectEq(([]), Service.buildObservationContext(0, 0));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MatcherPreservesFieldPrecedence()
+{
+    mapping observation = ([
+        "type":"combat.kata",
+        "shared":0,
+        "context":([
+            "shared":1,
+            "context value":"SNOW"
+        ]),
+        "metadata":([
+            "shared":2,
+            "context value":"rain",
+            "metadata value":({ "first", "second" })
+        ])
+    ]);
+    ExpectTrue(Service.matchesObservation(observation, ([
+        "shared":0,
+        "context value":"snow",
+        "metadata value":({ "second" })
+    ])));
+    ExpectFalse(Service.matchesObservation(observation, ([ "shared":1 ])));
+    ExpectFalse(Service.matchesObservation(observation, ([ "shared":2 ])));
+    ExpectFalse(Service.matchesObservation(observation, ([
+        "context value":"rain"
+    ])));
+    ExpectFalse(Service.matchesObservation(observation, ([ "missing":0 ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void MatcherNormalizesObjectsAndSupportsNestedCriteria()
 {
     mapping result = Service.normalizeObservation(([
@@ -133,7 +226,7 @@ void InvalidObservationIsRejected()
 {
     ExpectFalse(Service.recordObservation(0, ([ "type": "combat.kill" ])));
     ExpectFalse(Service.recordObservation(Actor, ([ "type": "" ])));
-    ExpectEq(0, sizeof(Actor.experiencesLog()));
+    ExpectEq(0, Actor.countObservations(([])));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -147,7 +240,7 @@ void QueryNormalizesObjectCriteria()
         "context": ([ "teacher": Actor ])
     ]));
 
-    ExpectEq(1, Service.countObservations(Actor.experiencesLog(), ([
+    ExpectEq(1, Actor.countObservations(([
         "actor": Actor,
         "subject": Actor,
         "participants": ({ Actor }),
@@ -163,7 +256,7 @@ void RecordedObservationIsImmutable()
     context["conditions"] = ([ "wind": "north" ]);
     metadata["details"] = ([ "source": "critical" ]);
 
-    Service.recordObservation(Actor, ([
+    mapping recorded = Service.recordObservation(Actor, ([
         "type": "combat.kill",
         "actor": Actor,
         "subject": "orc",
@@ -175,8 +268,10 @@ void RecordedObservationIsImmutable()
     context["conditions"]["wind"] = "south";
     metadata["damage"] = 99;
     metadata["details"]["source"] = "ordinary";
+    recorded["context"]["conditions"]["wind"] = "west";
+    recorded["metadata"]["details"]["source"] = "modified result";
 
-    mapping *result = Actor.experiencesLog();
+    mapping *result = Actor.queryObservations(([]));
     ExpectEq("snow", result[0]["context"]["weather"]);
     ExpectEq(10, result[0]["metadata"]["damage"]);
     ExpectEq("north", result[0]["context"]["conditions"]["wind"]);
@@ -185,7 +280,7 @@ void RecordedObservationIsImmutable()
     result[0]["context"]["conditions"]["wind"] = "east";
     result[0]["metadata"]["details"]["source"] = "changed";
 
-    mapping *stored = Actor.experiencesLog();
+    mapping *stored = Actor.queryObservations(([]));
     ExpectEq("north", stored[0]["context"]["conditions"]["wind"]);
     ExpectEq("critical", stored[0]["metadata"]["details"]["source"]);
 }
@@ -214,7 +309,7 @@ void QuerySupportsHierarchicalTypeAndContext()
         "context": ([ "terrain": "forest" ])
     ]));
 
-    mapping *results = Service.queryObservations(Actor.experiencesLog(), ([
+    mapping *results = Actor.queryObservations(([
         "type": "combat",
         "weapon": "katana"
     ]));
@@ -232,12 +327,12 @@ void CountAndHasObservationWorkForQueries()
         "metadata": ([ "response": "accept" ])
     ]));
 
-    ExpectEq(1, Service.countObservations(Actor.experiencesLog(), ([
+    ExpectEq(1, Actor.countObservations(([
         "type": "conversation.greet",
         "response": "accept"
     ])));
 
-    ExpectTrue(Service.hasObservation(Actor.experiencesLog(), ([
+    ExpectTrue(Actor.hasObservation(([
         "type": "conversation",
         "response": "accept"
     ])));
@@ -269,15 +364,12 @@ void AggregationsUpdateFromRecordedObservations()
 
     ExpectEq(2, Actor.countExperiencedType("combat.kill"));
     ExpectEq(2, Actor.countExperiencedType("combat"));
-    ExpectEq("katana",
-        Actor.mostFrequentExperiencedContext("weapon"));
-
-    mapping summary = Actor.experiencesSummary();
-    ExpectEq(3, summary["total"]);
+    ExpectEq(2, Actor.countObservations(([ "weapon":"katana" ])));
+    ExpectEq(3, Actor.countObservations(([])));
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void SummaryCannotMutateOwnerObservations()
+void ThresholdQueriesReturnOnlyTheRequestedDecision()
 {
     Actor.recordObservation(([
         "type": "combat.attack",
@@ -285,13 +377,11 @@ void SummaryCannotMutateOwnerObservations()
         "context": ([ "weapon": "katana" ])
     ]));
 
-    mapping summary = Actor.experiencesSummary();
-    summary["context"]["weapon"]["katana"] = 99;
-
-    ExpectEq(1, Actor.experiencesSummary()["context"]["weapon"]["katana"]);
-    ExpectEq("katana", Actor.mostFrequentExperiencedContext("weapon"));
+    ExpectTrue(Actor.hasObservation(([ "weapon":"katana" ]), 1));
+    ExpectFalse(Actor.hasObservation(([ "weapon":"katana" ]), 2));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RemovedGlobalApisAreAbsent()
 {
     foreach(string name in ({ "allObservations", "observationsFor",
@@ -302,6 +392,7 @@ void RemovedGlobalApisAreAbsent()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MidnightWindowIncludesCircularBoundaries()
 {
     mapping criteria = ([
@@ -330,6 +421,7 @@ void MidnightWindowIncludesCircularBoundaries()
     ]), ([ "time window": ([ "center":0, "minutes":720 ]) ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MalformedWindowsAndHistoricalMinutesFailSafely()
 {
     foreach(mixed window in ({ 0, "midnight", ({ 0, 60 }), ([]),
@@ -360,6 +452,7 @@ void MalformedWindowsAndHistoricalMinutesFailSafely()
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void TimestampRangesAreInclusiveAndValidated()
 {
     mapping observation = ([ "timestamp":100 ]);
@@ -380,23 +473,12 @@ void TimestampRangesAreInclusiveAndValidated()
     ExpectFalse(Service.matchesObservation(([]), ([ "since":0 ])));
 }
 
-void ListQueriesArePureDeepCopiesAndRejectInvalidCriteria()
+/////////////////////////////////////////////////////////////////////////////
+void ListQueryApisAreAbsent()
 {
-    mapping *observations = ({ ([
-        "type":"combat.kata",
-        "context": ([ "details": ([ "stances": ({ "tiger" }) ]) ]),
-        "extra": ([ "values": ({ 1 }) ])
-    ]) });
-    mapping *result = Service.queryObservations(observations, ([]));
-    result[0]["context"]["details"]["stances"][0] = "crane";
-    result[0]["extra"]["values"][0] = 2;
-    ExpectEq("tiger", observations[0]["context"]["details"]["stances"][0]);
-    ExpectEq(1, observations[0]["extra"]["values"][0]);
-    ExpectEq(1, Service.countObservations(observations, ([])));
-    ExpectTrue(Service.hasObservation(observations, ([])));
-    ExpectEq(0, sizeof(Service.queryObservations(observations, 0)));
-    ExpectEq(0, Service.countObservations(observations, 0));
-    ExpectFalse(Service.hasObservation(observations, 0));
-    ExpectEq(0, Service.countObservations(0, ([])));
-    ExpectFalse(Service.hasObservation(0, ([])));
+    foreach(string method in ({ "queryObservations", "countObservations",
+        "hasObservation", "summarizeObservations" }))
+    {
+        ExpectFalse(function_exists(method, Service));
+    }
 }

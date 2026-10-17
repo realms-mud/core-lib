@@ -72,6 +72,11 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    if (objectp(Actor) &&
+        function_exists("disableObservationPersistence", Actor))
+    {
+        Actor.disableObservationPersistence();
+    }
     destruct(Owner);
     destruct(Actor);
     destruct(Room);
@@ -572,7 +577,9 @@ void ResponsesAreCorrectlyHighlighted()
 void TwoActorsAtSameNPCConsumeOnlyTheirOwnMenus()
 {
     Actor = PrepActor(1, "gorthaur");
+    Actor.enableObservationPersistence();
     object second = PrepActor(1, "maeglin");
+    second.enableObservationPersistence();
     Owner.testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Actor.characterState(Owner, "first conversation");
     second.characterState(Owner, "start quest");
@@ -587,6 +594,7 @@ void TwoActorsAtSameNPCConsumeOnlyTheirOwnMenus()
     ExpectSubStringMatch("I am Maeglin", second.caughtMessage());
     ExpectEq(1, Actor.countObservations(([ "type":"conversation.response" ])));
     ExpectEq(1, second.countObservations(([ "type":"conversation.response" ])));
+    second.disableObservationPersistence();
     destruct(second);
 }
 
@@ -615,6 +623,7 @@ void ActorsRetainRoutingAcrossDifferentConversationObjects()
 void ExplicitRenderedTopicsDeduplicateRepeatedTalkAndRepeat()
 {
     Actor = PrepActor(1, "gorthaur");
+    Actor.enableObservationPersistence();
     Owner.testAddConversation("/lib/tests/support/conversations/testConversation.c");
     Actor.characterState(Owner, "first conversation");
     ExpectTrue(command("talk gertrude", Actor));
@@ -641,6 +650,7 @@ void ExplicitRenderedTopicsDeduplicateRepeatedTalkAndRepeat()
 void TriggeredAndPrerequisiteBlockedTopicsDoNotRecordExplicitTopics()
 {
     Actor = PrepActor(1, "gorthaur");
+    Actor.enableObservationPersistence();
     Actor.Race("human");
     Owner.testAddConversation("/lib/tests/support/conversations/isolatedConversation.c");
     Actor.characterState(Owner, "isolated blocked");

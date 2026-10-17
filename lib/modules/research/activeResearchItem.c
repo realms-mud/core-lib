@@ -420,7 +420,8 @@ public nomask int execute(string command, object initiator)
         {
             mapping observation = 0;
             if (!compositeResearch &&
-                function_exists("recordObservation", initiator))
+                function_exists("recordsObservations", initiator) &&
+                initiator->recordsObservations())
             {
                 object target = getTarget(initiator, command);
                 observation = ([
@@ -446,7 +447,7 @@ public nomask int execute(string command, object initiator)
             {
                 if (observation)
                 {
-                    initiator->recordObservation(observation);
+                    initiator->recordObservation(observation, 1);
                 }
                 int repeatCount = getRepeatEffectCount(command, initiator);
                 if (repeatCount)

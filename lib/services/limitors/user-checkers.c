@@ -36,13 +36,13 @@ protected nomask int checkObservationLimitor(mapping specificationData,
         ret = getService("limitor")->validLimitor(([
             "observation": observation
         ])) && objectp(owner) &&
-            function_exists("countObservations", owner);
+            function_exists("hasObservation", owner);
 
         if (ret)
         {
             mapping criteria = observation + ([]);
             m_delete(criteria, "minimum");
-            ret = owner->countObservations(criteria) >= observation["minimum"];
+            ret = owner->hasObservation(criteria, observation["minimum"]);
         }
 
         if (!ret && verbose)

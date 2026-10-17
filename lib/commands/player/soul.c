@@ -1242,7 +1242,8 @@ public nomask int execute(string command, object initiator)
                     targetObj->relationshipInteraction(initiator,
                         "social." + action, ([ "adverb":lower_case(adverb) ]));
                 }
-                if (function_exists("recordObservation", initiator))
+                if (function_exists("recordsObservations", initiator) &&
+                    initiator->recordsObservations())
                 {
                     initiator->recordObservation(([
                         "type":"social.emote",

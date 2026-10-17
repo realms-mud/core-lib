@@ -101,7 +101,8 @@ public nomask int craftItem(object item, object user)
     canCraft &&= applyEnchantments(item, user);
 
     if (!canCraft && sizeof(materialsUsed) && objectp(user) &&
-        function_exists("recordObservation", user))
+        function_exists("recordsObservations", user) &&
+        user->recordsObservations())
     {
         user->recordObservation(([
             "type": "craft.failed",

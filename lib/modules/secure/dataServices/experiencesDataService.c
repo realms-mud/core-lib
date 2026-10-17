@@ -325,88 +325,33 @@ private nomask int playerIdByName(string playerName, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string observationPredicate(int playerId, mapping query,
-    string *excludedIds)
+private nomask void prepareObservationQuery(int playerId, mapping query,
+    string operation, int limit, int offset, string *excludedIds,
+    int dbHandle)
 {
-    string ret = sprintf("playerId = %d", playerId);
-    if (!mappingp(query))
+    db_exec(dbHandle, sprintf("call prepareExperienceQuery("
+        "%d,'%s','%s',%d,%d,'%s');", playerId,
+        sanitizeString(encodeExperiencesValue(query)), operation,
+        limit > 0 ? limit : 50, offset > 0 ? offset : 0,
+        sanitizeString(encodeExperiencesValue(
+            pointerp(excludedIds) ? excludedIds : ({ })))));
+    if (db_error(dbHandle))
     {
-        ret += " and 0";
+        raise_error("Observation query preparation failed: " +
+            db_error(dbHandle) + "\n");
     }
-    else
-    {
-        if (member(query, "type"))
-        {
-            if (stringp(query["type"]) && sizeof(query["type"]))
-            {
-                string type = lower_case(query["type"]);
-                ret += sprintf(" and (searchType = '%s' or "
-                    "(searchType >= '%s' and searchType < '%s'))",
-                    sanitizeString(type), sanitizeString(type + "."),
-                    sanitizeString(type + "/"));
-            }
-            else
-            {
-                ret += " and 0";
-            }
-        }
-        foreach(string boundary in ({ "since", "until" }))
-        {
-            if (member(query, boundary))
-            {
-                if (intp(query[boundary]) && query[boundary] >= 0)
-                {
-                    ret += sprintf(" and observationTime %s %d",
-                        boundary == "since" ? ">=" : "<=", query[boundary]);
-                }
-                else
-                {
-                    ret += " and 0";
-                }
-            }
-        }
-        ret += sprintf(" and observationMatches(searchDocument, "
-            "observationDecode('%s')) = 1",
-            sanitizeString(encodeExperiencesValue(query)));
-    }
-    if (pointerp(excludedIds) && sizeof(excludedIds))
-    {
-        string *ids = ({ });
-        foreach(mixed id in excludedIds)
-        {
-            if (stringp(id))
-            {
-                ids += ({ "'" + sanitizeString(id) + "'" });
-            }
-        }
-        if (sizeof(ids))
-        {
-            ret += " and observationKey not in (" + implode(ids, ",") + ")";
-        }
-    }
-    return ret;
+    while (db_fetch(dbHandle));
 }
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask mapping *queryObservationsByPlayerId(int playerId, mapping query,
-    int limit, int offset, int dbHandle, string *excludedIds, int latest)
+    int limit, int offset, int dbHandle, string *excludedIds)
 {
     mapping *ret = ({ });
 
-    string queryString = sprintf("select observationKey, observationType, actor, subject, "
-        "participants, observationTime, location, observationContext, "
-        "observationMetadata from experienceObservations "
-        "where %s order by id %s",
-        observationPredicate(playerId, query, excludedIds),
-        latest ? "desc" : "asc");
-    if (limit > 0 || offset > 0)
-    {
-        queryString += sprintf(" limit %s offset %d",
-            limit > 0 ? sprintf("%d", limit) :
-                "18446744073709551615", offset > 0 ? offset : 0);
-    }
-    queryString += ";";
-    db_exec(dbHandle, queryString);
+    prepareObservationQuery(playerId, query, "query", limit, offset,
+        excludedIds, dbHandle);
+    db_exec(dbHandle, "execute experienceQuery;");
     if (db_error(dbHandle))
     {
         raise_error("Observation query failed: " + db_error(dbHandle) + "\n");
@@ -430,10 +375,16 @@ private nomask mapping *queryObservationsByPlayerId(int playerId, mapping query,
                 "metadata": deserializeMapping(convertString(result[8]))
             ]);
 
-            ret = latest ? ({ observation }) + ret :
-                ret + ({ observation });
+            ret += ({ observation });
         }
     } while (result);
+    db_exec(dbHandle, "deallocate prepare experienceQuery;");
+    if (db_error(dbHandle))
+    {
+        raise_error("Observation query cleanup failed: " +
+            db_error(dbHandle) + "\n");
+    }
+    while (db_fetch(dbHandle));
 
     return ret;
 }
@@ -450,7 +401,7 @@ public nomask varargs mapping *queryObservationsByPlayer(string playerName,
     if (playerId)
     {
         ret = queryObservationsByPlayerId(playerId, query, limit, offset,
-            dbHandle, excludedIds, 0);
+            dbHandle, excludedIds);
     }
 
     disconnect(dbHandle);
@@ -458,20 +409,16 @@ public nomask varargs mapping *queryObservationsByPlayer(string playerName,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask int observationAggregate(string playerName, mapping query,
-    string *excludedIds, int existence)
+private nomask int observationAggregate(int playerId, mapping query,
+    string *excludedIds, int minimum, int dbHandle)
 {
     int ret = 0;
-    int dbHandle = connect();
-    int playerId = playerIdByName(playerName, dbHandle);
     if (playerId)
     {
-        string predicate = observationPredicate(playerId, query, excludedIds);
-        string sql = existence ? sprintf("select exists(select 1 from "
-            "experienceObservations where %s);", predicate) :
-            sprintf("select count(*) from experienceObservations where %s;",
-                predicate);
-        db_exec(dbHandle, sql);
+        prepareObservationQuery(playerId, query,
+            minimum > 0 ? "minimum" : "count", minimum, 0,
+            excludedIds, dbHandle);
+        db_exec(dbHandle, "select @experienceResult;");
         if (db_error(dbHandle))
         {
             raise_error("Observation aggregate failed: " +
@@ -483,7 +430,6 @@ private nomask int observationAggregate(string playerName, mapping query,
             ret = to_int(result[0]);
         }
     }
-    disconnect(dbHandle);
     return ret;
 }
 
@@ -491,14 +437,96 @@ private nomask int observationAggregate(string playerName, mapping query,
 public nomask varargs int countObservationsByPlayer(string playerName,
     mapping query, string *excludedIds)
 {
-    return observationAggregate(playerName, query, excludedIds, 0);
+    int dbHandle = connect();
+    int ret = observationAggregate(playerIdByName(playerName, dbHandle),
+        query, excludedIds, 0, dbHandle);
+    disconnect(dbHandle);
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs int hasObservationByPlayer(string playerName,
     mapping query, string *excludedIds)
 {
-    return observationAggregate(playerName, query, excludedIds, 1);
+    int dbHandle = connect();
+    int ret = observationAggregate(playerIdByName(playerName, dbHandle),
+        query, excludedIds, 1, dbHandle);
+    disconnect(dbHandle);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask mapping *queryPlayerObservations(int playerId,
+    mapping criteria, int limit, int offset)
+{
+    int dbHandle = connect();
+    mapping *ret = queryObservationsByPlayerId(playerId, criteria,
+        limit, offset, dbHandle, 0);
+    disconnect(dbHandle);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int countPlayerObservations(int playerId, mapping criteria,
+    int minimum)
+{
+    int dbHandle = connect();
+    int ret = observationAggregate(playerId, criteria, 0, minimum, dbHandle);
+    disconnect(dbHandle);
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask string saveObservation(int dbHandle, int playerId,
+    mapping observation, int fetchId)
+{
+    string ret = "";
+    string query = sprintf("call saveExperienceObservation("
+        "'%s',%d,'%s','%s','%s','%s',%d,'%s','%s','%s');",
+        sanitizeString(stringp(observation["ID"]) ? observation["ID"] : ""),
+        playerId,
+        sanitizeString(lower_case(observation["type"])),
+        sanitizeString(observation["actor"]),
+        sanitizeString(observation["subject"]),
+        sanitizeString(serializeArray(observation["participants"])),
+        to_int(observation["timestamp"]),
+        sanitizeString(observation["location"]),
+        sanitizeString(serializeMapping(observation["context"])),
+        sanitizeString(serializeMapping(observation["metadata"])));
+
+    db_exec(dbHandle, query);
+    if (db_error(dbHandle))
+    {
+        raise_error("Observation save failed: " + db_error(dbHandle) + "\n");
+    }
+    while (db_fetch(dbHandle));
+    if (fetchId)
+    {
+        db_exec(dbHandle, "select COALESCE(observationKey, CAST(id AS CHAR)) "
+            "from experienceObservations where id = LAST_INSERT_ID();");
+        if (db_error(dbHandle))
+        {
+            raise_error("Observation ID query failed: " +
+                db_error(dbHandle) + "\n");
+        }
+        mixed result = db_fetch(dbHandle);
+        if (!result || convertString(result[0]) == "")
+        {
+            raise_error("Observation save did not return an ID.\n");
+        }
+        ret = convertString(result[0]);
+        while (db_fetch(dbHandle));
+    }
+
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void storeObservation(int playerId, mapping observation)
+{
+    int dbHandle = connect();
+    saveObservation(dbHandle, playerId, observation, 0);
+    disconnect(dbHandle);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -549,33 +577,8 @@ public nomask mapping recordObservation(string playerName,
             {
                 observation["subject"] = "";
             }
-            if (!member(observation, "ID") ||
-                !stringp(observation["ID"]) ||
-                (observation["ID"] == ""))
-            {
-                observation["ID"] = generateGuid();
-            }
-
-            string query = sprintf("call saveExperienceObservation('%s',%d,'%s','%s','%s',"
-                "'%s',%d,'%s','%s','%s');",
-                sanitizeString(observation["ID"]),
-                playerId,
-                sanitizeString(lower_case(observation["type"])),
-                sanitizeString(observation["actor"]),
-                sanitizeString(observation["subject"]),
-                sanitizeString(serializeArray(observation["participants"])),
-                to_int(observation["timestamp"]),
-                sanitizeString(observation["location"]),
-                sanitizeString(serializeMapping(observation["context"])),
-                sanitizeString(serializeMapping(observation["metadata"])));
-
-            db_exec(dbHandle, query);
-            if (db_error(dbHandle))
-            {
-                raise_error("Observation save failed: " +
-                    db_error(dbHandle) + "\n");
-            }
-            mixed result = db_fetch(dbHandle);
+            observation["ID"] = saveObservation(dbHandle, playerId,
+                observation, 1);
 
             ret = observation + ([]);
         }
@@ -587,14 +590,6 @@ public nomask mapping recordObservation(string playerName,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////
-protected nomask mapping getExperiences(int playerId, int dbHandle)
-{
-    return ([ "experiences": queryObservationsByPlayerId(playerId, ([]),
-        100, 0, dbHandle, 0, 1), "experiences persisted": 1 ]);
-}
-
-/////////////////////////////////////////////////////////////////////////////
 protected nomask void saveExperiences(int dbHandle, int playerId,
     mapping playerData)
 {
@@ -602,33 +597,8 @@ protected nomask void saveExperiences(int dbHandle, int playerId,
     {
         foreach(mapping observation in playerData["experiences"])
         {
-            if (!member(observation, "ID") ||
-                !stringp(observation["ID"]) ||
-                (observation["ID"] == ""))
-            {
-                observation["ID"] = generateGuid();
-            }
-
-            string query = sprintf("call saveExperienceObservation('%s',%d,'%s','%s','%s',"
-                "'%s',%d,'%s','%s','%s');",
-                sanitizeString(observation["ID"]),
-                playerId,
-                sanitizeString(observation["type"]),
-                sanitizeString(observation["actor"]),
-                sanitizeString(observation["subject"]),
-                sanitizeString(serializeArray(observation["participants"])),
-                to_int(observation["timestamp"]),
-                sanitizeString(observation["location"]),
-                sanitizeString(serializeMapping(observation["context"])),
-                sanitizeString(serializeMapping(observation["metadata"])));
-
-            db_exec(dbHandle, query);
-            if (db_error(dbHandle))
-            {
-                raise_error("Observation save failed: " +
-                    db_error(dbHandle) + "\n");
-            }
-            mixed result = db_fetch(dbHandle);
+            observation["ID"] = saveObservation(dbHandle, playerId,
+                observation, 1);
         }
     }
 }
