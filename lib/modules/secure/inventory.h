@@ -43,6 +43,7 @@ static nomask void loadInventory(mapping data, object persistence)
 {
     if (isValidPersistenceObject(persistence) && member(data, "inventory"))
     {
+        changingEquipment++;
         money = persistence->extractSaveData("money", data);
         mapping items = persistence->extractSavedMapping("inventory", data);
 
@@ -117,6 +118,8 @@ static nomask void loadInventory(mapping data, object persistence)
             }
             this_object()->resetCombatCache();
         }
+        changingEquipment--;
+        refreshResearchEquipment();
     }
 }
 

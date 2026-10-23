@@ -605,7 +605,7 @@ void CanUseEquipmentOfTypeAffectedByArmorType()
 {
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
     move_object(armor, User);
@@ -620,7 +620,7 @@ void CanUseEquipmentOfTypeAllowsArmorTypeIfNotBlocked()
 {
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
     move_object(armor, User);
@@ -635,7 +635,7 @@ void CanUseEquipmentOfTypeAllowsArmorTypeIfAnyJoinedGuildDoes()
 {
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
     move_object(armor, User);
@@ -653,7 +653,7 @@ void CanUseEquipmentOfTypeAffectedByArmorLocation()
 {
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor | LegGreaves);
     move_object(armor, User);
@@ -669,7 +669,7 @@ void CanUseEquipmentOfTypeAllowsArmorLocationNotOfBlockedLocation()
     Guild.resetProhibitions();
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
     move_object(armor, User);
@@ -685,7 +685,7 @@ void CanUseEquipmentOfTypeAllowsArmorLocationIfAnyJoinedGuildDoes()
 {
     object armor = clone_object("/lib/items/armor");
     armor.set("name", "blah");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor | LegGreaves);
     move_object(armor, User);
@@ -703,7 +703,7 @@ void CanUseEquipmentOfTypeAffectedByWeaponType()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -718,7 +718,7 @@ void CanUseEquipmentOfTypeDoesNotBlockWeaponsNotOfTypeSpecified()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "axe");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -733,7 +733,7 @@ void CanUseEquipmentOfTypeAllowsWeaponTypeIfAnyJoinedGuildDoes()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -751,7 +751,7 @@ void CanUseEquipmentOfTypeAffectedByDamageType()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -766,7 +766,7 @@ void CanUseEquipmentOfTypentDoesNotBlockDamageNotOfTypeSpecified()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "axe");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -781,7 +781,7 @@ void CanUseEquipmentOfTypeDoesNotAllowDamageTypeEvenIfAnyJoinedGuildDoes()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -799,7 +799,7 @@ void CanUseEquipmentOfTypeAffectedByMaterialType()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -815,7 +815,7 @@ void CanUseEquipmentOfTypentDoesNotBlockMaterialNotOfTypeSpecified()
     Guild.resetProhibitions();
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "axe");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -831,7 +831,7 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialTypeEvenIfAnyJoinedGuildDoes()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -849,12 +849,12 @@ void CanUseEquipmentOfTypeAffectedByMaterial()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
 
-    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "galvorn" })));
+    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "obsynite" })));
     User.joinGuild("test");
     ExpectFalse(weapon.equip("blah"));
 }
@@ -866,7 +866,7 @@ void CanUseEquipmentOfTypentDoesNotBlockMaterialNotSpecified()
 
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "axe");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
@@ -882,12 +882,12 @@ void CanUseEquipmentOfTypeDoesNotAllowMaterialEvenIfAnyJoinedGuildDoes()
 {
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, User);
 
-    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "galvorn" })));
+    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "obsynite" })));
     User.joinGuild("test");
 
     object guild = load_object("/lib/tests/support/guilds/fighterGuild.c");

@@ -38,7 +38,7 @@ protected void Setup()
         "Yet merit in battle does not alone confer rule.\n"
         "It is said he claimed no crown by birth,\n"
         "yet he did not refuse it when offered.\n"
-        "The presence of Eldarion at the crowning\n"
+        "The presence of Eldrevan at the crowning\n"
         "is taken as proof of legitimacy.\n"
         "It may also be taken as influence.\n"
         "For what is granted by a greater king\n"

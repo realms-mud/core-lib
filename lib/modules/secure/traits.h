@@ -57,6 +57,26 @@ static nomask void loadTraits(mapping data, object persistence)
         if (stringp(temporaryTraitsString))
         {
             temporaryTraits = explode(temporaryTraitsString, "##") - ({ "" });
+            object research = getModule("research");
+            if (research)
+            {
+                foreach (string trait in temporaryTraits + ({}))
+                {
+                    object traitObj = getService("traits")->traitObject(trait);
+                    if (traitObj && traitObj->query("triggering research") &&
+                        research->sustainedResearchIsActive(
+                            traitObj->query("triggering research")) &&
+                        !member(traits, trait))
+                    {
+                        temporaryTraits -= ({ trait });
+                        if (!this_object()->addTrait(trait))
+                        {
+                            raise_error(sprintf("ERROR - traits: could not "
+                                "restore sustained trait '%s'.\n", trait));
+                        }
+                    }
+                }
+            }
         }
     }
 }

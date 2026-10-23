@@ -5,6 +5,10 @@
 virtual inherit "/lib/core/thing.c";
 
 #include "/lib/include/inventory.h"
+
+private int changingEquipment;
+private nomask void refreshResearchEquipment();
+
 #include "/lib/modules/secure/inventory.h"
 
 private mapping inventoryCache = ([
@@ -225,12 +229,30 @@ private nomask int equipItemInSlot(string slot, object item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask void refreshResearchEquipment()
+{
+    if (!changingEquipment)
+    {
+        object research = getModule("research");
+        if (research && function_exists(
+            "refreshEquipmentLimitedSustainedResearch", research))
+        {
+            research->refreshEquipmentLimitedSustainedResearch();
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void inventoryEvent(string event)
 {
     object eventObj = getModule("events");
     if(eventObj && objectp(eventObj))
     {
         eventObj->notify(event);
+    }
+    if (member(({ "onEquip", "onUnequip" }), event) >= 0)
+    {
+        refreshResearchEquipment();
     }
 }
 
@@ -386,6 +408,7 @@ public nomask varargs int unequip(object itemToUnequip, int silently)
 public nomask int equip(object itemToEquip)
 {
     int ret = 0;
+    changingEquipment++;
 
     if(isEquipment(itemToEquip) && canEquip(itemToEquip))
     {
@@ -436,6 +459,8 @@ public nomask int equip(object itemToEquip)
         }
         inventoryEvent("onEquip");
     }  
+    changingEquipment--;
+    refreshResearchEquipment();
     return ret;
 }
 

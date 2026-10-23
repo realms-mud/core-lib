@@ -2197,7 +2197,7 @@ protected mapping materials =
         "experience modifier": 1.75,
         "default value": 4,
     ]),
-    "mithril ore": ([
+    "lunarite ore": ([
         "class": "ore",
         "crafting skill required": 25,
         "crafting prerequisites": ([
@@ -2205,8 +2205,8 @@ protected mapping materials =
             "mining": (["type": "skill", "value": 10]),
             "metal crafting": (["type": "skill", "value": 10])
         ]),
-        "default description": "This is a chunk of mithril ore, a silvery, mythic raw material "
-            "for smelting into mithril ingots.",
+        "default description": "This is a chunk of lunarite ore, a silvery, mythic raw material "
+            "for smelting into lunarite ingots.",
         "scarcity": "very rare",
         "rune slots bonus": 2,
         "experience modifier": 2.5,
@@ -2273,7 +2273,7 @@ protected mapping materials =
         "experience modifier": 1.1,
         "default value": 2,
     ]),
-    "galvorn ore": ([
+    "obsynite ore": ([
         "class": "ore",
         "crafting skill required": 40,
         "crafting prerequisites": ([
@@ -2281,8 +2281,8 @@ protected mapping materials =
             "mining": (["type": "skill", "value": 20]),
             "metal crafting": (["type": "skill", "value": 10])
         ]),
-        "default description": "This is a chunk of galvorn ore, a black, mythic raw material "
-            "for smelting into galvorn ingots.",
+        "default description": "This is a chunk of obsynite ore, a black, mythic raw material "
+            "for smelting into obsynite ingots.",
         "scarcity": "very rare",
         "rune slots bonus": 2,
         "experience modifier": 2.75,
@@ -3152,7 +3152,7 @@ protected mapping materials =
         "experience modifier": 1,
         "default value": 1,
     ]),
-    "mithril": ([
+    "lunarite": ([
         "class": "metal",
         "crafting skill required": 25,
         "crafting prerequisites": ([
@@ -3163,7 +3163,7 @@ protected mapping materials =
             "physics": (["type": "skill", "value": 3])
         ]),
         "crafting materials": ([
-            "mithril ore": 3,
+            "lunarite ore": 3,
         ]),
         "attack": ([
             "physical": 3,
@@ -3175,7 +3175,7 @@ protected mapping materials =
         ]),
         "encumberance": -4,
         "value multiplier": 20.0,
-        "default description": "This is a refined mithril ingot. This metal is incredibly "
+        "default description": "This is a refined lunarite ingot. This metal is incredibly "
             "strong, yet lighter than steel and is an excellent magical conduit.",
         "scarcity": "very rare",
         "rune slots bonus": 2,
@@ -3279,7 +3279,7 @@ protected mapping materials =
         "experience modifier": 2.5,
         "default value": 875,
     ]),
-    "galvorn": ([
+    "obsynite": ([
         "class": "metal",
         "crafting skill required": 40,
         "crafting prerequisites": ([
@@ -3290,7 +3290,7 @@ protected mapping materials =
             "physics": (["type": "skill", "value": 5])
         ]),
         "crafting materials": ([
-            "galvorn ore": 3,
+            "obsynite ore": 3,
         ]),
         "attack": ([
             "physical": 8,
@@ -3304,7 +3304,7 @@ protected mapping materials =
         ]),
         "encumberance": 2,
         "value multiplier": 25.0,
-        "default description": "This is a refined galvorn ingot. This black metal is incredibly "
+        "default description": "This is a refined obsynite ingot. This black metal is incredibly "
                 "strong, but is heavier than steel. It has incredible conductivity, being "
                 "superior to even silver in this regard.",
         "scarcity": "very rare",
@@ -4760,7 +4760,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "kirluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4775,7 +4775,7 @@ protected mapping materials =
         ]),
         "encumberance": -2,
         "value multiplier": 70.0,
-        "default description": "This is a kirluin-infused mithril alloy. It has "
+        "default description": "This is a kirluin-infused lunarite alloy. It has "
                 "a pale blue sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4798,7 +4798,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "gwyrluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4813,7 +4813,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "default description": "This is a gwyrluin-infused mithril alloy. It has "
+        "default description": "This is a gwyrluin-infused lunarite alloy. It has "
                 "a pale grey-brown sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4836,7 +4836,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "durluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4851,7 +4851,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 75.0,
-        "default description": "This is a durluin-infused mithril alloy. It has "
+        "default description": "This is a durluin-infused lunarite alloy. It has "
                 "a dark grey sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4874,7 +4874,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "trynluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4889,7 +4889,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 75.0,
-        "default description": "This is a trynluin-infused mithril alloy. It has "
+        "default description": "This is a trynluin-infused lunarite alloy. It has "
                 "a golden sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4912,7 +4912,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "rhudluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4927,7 +4927,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "default description": "This is a rhudluin-infused mithril alloy. It has "
+        "default description": "This is a rhudluin-infused lunarite alloy. It has "
                 "a pale red sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4950,7 +4950,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "melynuin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -4965,7 +4965,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "default description": "This is a melynuin-infused mithril alloy. It has "
+        "default description": "This is a melynuin-infused lunarite alloy. It has "
                 "a pale yellow sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -4988,7 +4988,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "asurluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -5003,7 +5003,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "default description": "This is a asurluin-infused mithril alloy. It has "
+        "default description": "This is a asurluin-infused lunarite alloy. It has "
                 "a deep blue sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",
@@ -5026,7 +5026,7 @@ protected mapping materials =
         ]),
         "crafting materials": ([
             "marnluin": 1,
-            "mithril": 2,
+            "lunarite": 2,
             "graphite": 1
         ]),
         "attack": ([
@@ -5041,7 +5041,7 @@ protected mapping materials =
         ]),
         "encumberance": -3,
         "value multiplier": 70.0,
-        "default description": "This is a marnluin-infused mithril alloy. It has "
+        "default description": "This is a marnluin-infused lunarite alloy. It has "
                 "a pale ice-blue sheen and is exceptionally beautiful. It is "
                 "incredibly strong and durable with incredible magical "
                 "properties.",

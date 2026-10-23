@@ -650,7 +650,7 @@ Guilds can restrict equipment types based on various criteria.
 ### Material Prohibition
 
 ```
-addEquipmentProhibition("material", ({ "iron", "steel", "mithril" }));
+addEquipmentProhibition("material", ({ "iron", "steel", "lunarite" }));
 ```
 
 ### Material Type Prohibition

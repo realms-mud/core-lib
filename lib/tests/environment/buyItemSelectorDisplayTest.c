@@ -35,7 +35,7 @@ void Init()
 
     weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     weapon.identify();
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("name", "Sword of Weasels");
     weapon.set("bonus strength", 1);
     Store.storeItem(weapon);

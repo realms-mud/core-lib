@@ -60,9 +60,148 @@ void CannotAddInvalidPrerequisite()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void AnyOfRejectsEmptyAndMalformedRoutes()
+{
+    foreach(mixed routes in ({ 0, ([]), ({}), ({ ([]) }), ({ "route" }),
+        ({ ([ "invalid":([ "type":"unknown" ]) ]) }),
+        ({ ([ "invalid":"research" ]) }),
+        ({ ([ 1:([ "type":"research" ]) ]) }) }))
+    {
+        ExpectFalse(Prerequisite.AddTestPrerequisite("routes", ([
+            "type":"any of",
+            "prerequisites":routes
+        ])));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AnyOfRequiresOneWholeRouteWithoutMixingConditions()
+{
+    ExpectTrue(Prerequisite.AddTestPrerequisite("routes", ([
+        "type":"any of",
+        "prerequisites":({
+            ([
+                "strength":([ "type":"attribute", "value":10 ]),
+                "dexterity":([ "type":"attribute", "value":10 ])
+            ]),
+            ([
+                "intelligence":([ "type":"attribute", "value":20 ]),
+                "wisdom":([ "type":"attribute", "value":20 ])
+            ])
+        })
+    ])));
+    ExpectTrue(Prerequisite.AddTestPrerequisite("constitution",
+        ([ "type":"attribute", "value":10 ])));
+    Researcher.Str(20);
+    Researcher.Dex(5);
+    Researcher.Int(20);
+    Researcher.Wis(5);
+    Researcher.Con(20);
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher));
+    Researcher.Dex(20);
+    ExpectTrue(Prerequisite.checkPrerequisites(Researcher));
+    Researcher.Con(5);
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher));
+    Researcher.Con(20);
+    Researcher.Dex(5);
+    Researcher.Wis(20);
+    ExpectTrue(Prerequisite.checkPrerequisites(Researcher));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NestedAnyOfWorksInNamedGroupsAndDisplaysEveryCondition()
+{
+    ExpectTrue(Prerequisite.AddTestPrerequisite("routes", ([
+        "type":"any of",
+        "prerequisites":({
+            ([
+                "inner":([
+                    "type":"any of",
+                    "prerequisites":({
+                        ([ "strength":([
+                            "type":"attribute", "value":10
+                        ]) ]),
+                        ([ "wisdom":([
+                            "type":"attribute", "value":20
+                        ]) ])
+                    })
+                ])
+            ])
+        })
+    ]), "test group"));
+    Researcher.Str(5);
+    Researcher.Wis(5);
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher, "test group"));
+    Researcher.Wis(20);
+    ExpectTrue(Prerequisite.checkPrerequisites(Researcher, "test group"));
+
+    object display = clone_object(
+        "/lib/tests/support/research/prerequisiteItem.c");
+    ExpectTrue(display.AddTestPrerequisite("routes", ([
+        "type":"any of",
+        "prerequisites":({
+            ([ "strength":([ "type":"attribute", "value":10 ]) ]),
+            ([ "wisdom":([ "type":"attribute", "value":20 ]) ])
+        })
+    ])));
+    string text = display.displayPrerequisites("none", Configuration);
+    ExpectSubStringMatch("complete any one route", text);
+    ExpectSubStringMatch("Route 1:", text);
+    ExpectSubStringMatch("Route 2:", text);
+    ExpectSubStringMatch("Strength of 10", text);
+    ExpectSubStringMatch("Wisdom of 20", text);
+    destruct(display);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CanAddValidPrerequisite()
 {
     PopulatePrerequisites();
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AnyOfRetainsResearchEquivalence()
+{
+    destruct(Researcher);
+    Researcher = clone_object(
+        "/lib/tests/support/services/researchWithMockServices");
+    Researcher.Name("Bob");
+    Researcher.addResearchPoints(2);
+    ExpectTrue(Prerequisite.AddTestPrerequisite("routes", ([
+        "type":"any of",
+        "prerequisites":({
+            ([ "/lib/tests/support/research/testResearchA.c":([
+                "type":"research"
+            ]) ]),
+            ([ "strength":([ "type":"attribute", "value":999 ]) ])
+        })
+    ])));
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher));
+    ExpectTrue(Researcher.initiateResearch(
+        "/lib/tests/support/research/equivalenceItem.c"));
+    ExpectTrue(Prerequisite.checkPrerequisites(Researcher));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AnyOfPassesTheOwnerIntoNestedConditions()
+{
+    object owner = clone_object("/lib/realizations/npc.c");
+    destruct(Researcher);
+    Researcher = clone_object("/lib/realizations/player.c");
+    Researcher.Name("Bob");
+    ExpectTrue(Prerequisite.AddTestPrerequisite("routes", ([
+        "type":"any of",
+        "prerequisites":({
+            ([ "opinion":([ "type":"opinion", "value":20 ]) ]),
+            ([ "strength":([ "type":"attribute", "value":999 ]) ])
+        })
+    ])));
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher, 0, owner));
+    Researcher.addTrait(
+        "/lib/instances/traits/educational/articulate.c");
+    ExpectTrue(Prerequisite.checkPrerequisites(Researcher, 0, owner));
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher));
+    destruct(owner);
 }
 
 /////////////////////////////////////////////////////////////////////////////

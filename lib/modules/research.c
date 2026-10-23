@@ -234,6 +234,17 @@ public nomask int deactivateSustainedResearch(string researchItem)
         object researchObj = researchService()->researchObject(researchItem);
         if(researchObj)
         {
+            object traits = getModule("traits");
+            string trait = researchObj->query("trait");
+            if (traits && stringp(trait))
+            {
+                object traitObj = getService("traits")->traitObject(trait);
+                if (traitObj && traitObj->query("triggering research") ==
+                    researchItem)
+                {
+                    traits->removeTrait(trait);
+                }
+            }
             int cooldown = researchObj->cooldown(this_object());
             if (cooldown)
             {
@@ -394,7 +405,7 @@ public nomask void registerResearchEvents()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask varargs int initiateResearch(string researchItem)
+private nomask int startResearch(string researchItem)
 {
     int ret = 0;
     if(researchItem && stringp(researchItem) && 
@@ -500,6 +511,21 @@ public nomask varargs int initiateResearch(string researchItem)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask varargs int initiateResearch(string researchItem)
+{
+    int ret = 0;
+    if (researchItem && stringp(researchItem))
+    {
+        object item = researchService()->researchObject(researchItem);
+        if (item && !item->query("teacher required"))
+        {
+            ret = startResearch(researchItem);
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask void completeMentorship(string researchItem)
 {
     if (member(researchMentorships, researchItem))
@@ -531,20 +557,39 @@ public nomask int learnResearchFrom(object teacher, string researchItem)
     else if (objectp(teacher) && teacher != this_object() &&
         function_exists("isRealizationOfNpc", teacher) &&
         teacher->isRealizationOfNpc() &&
-        function_exists("isResearched", teacher) &&
-        teacher->isResearched(researchItem))
+        function_exists("isResearched", teacher))
     {
-        ret = initiateResearch(researchItem);
-        if (ret)
+        object item = researchService()->researchObject(researchItem);
+        int knowsLesson = teacher->isResearched(researchItem);
+        if (function_exists("teachesResearch", teacher))
         {
-            researchMentorships[researchItem] = ([
-                "teacher":getService("relationship")->identity(teacher),
-                "changes":teacher->relationshipInteractionChanges(
-                    "training.completed")
-            ]);
-            if (isResearched(researchItem))
+            knowsLesson = teacher->teachesResearch(researchItem) &&
+                teacher->canTeachResearch(this_object(), researchItem);
+        }
+        if (item && knowsLesson && (!item->query("teacher required") ||
+            (environment(this_object()) &&
+                environment(this_object()) == environment(teacher))))
+        {
+            mapping changes = teacher->relationshipInteractionChanges(
+                "training.completed");
+            string identity = getService("relationship")->identity(teacher);
+            if (identity == "" ||
+                !getService("relationship")->validChanges(changes))
             {
-                completeMentorship(researchItem);
+                raise_error("ERROR - research: Invalid teacher identity "
+                    "or training relationship changes.\n");
+            }
+            ret = startResearch(researchItem);
+            if (ret)
+            {
+                researchMentorships[researchItem] = ([
+                    "teacher":identity,
+                    "changes":changes
+                ]);
+                if (isResearched(researchItem))
+                {
+                    completeMentorship(researchItem);
+                }
             }
         }
     }
@@ -926,6 +971,34 @@ private nomask void applyCooldown(string researchItem, object researchObj,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask void refreshEquipmentLimitedSustainedResearch()
+{
+    foreach(string path in m_indices(research))
+    {
+        if (sustainedResearchIsActive(path))
+        {
+            object item = researchService()->researchObject(path);
+            mapping limits = item->query("limited by");
+            if (mappingp(limits))
+            {
+                limits = filter(limits, (: member(
+                    ({ "equipment", "empty equipment slots" }), $1) >= 0 :));
+                if (sizeof(limits) &&
+                    !getService("limitor")->userFactorsMet(
+                        ([ "limited by":limits ]), this_object()) &&
+                    deactivateSustainedResearch(path))
+                {
+                    tell_object(this_object(), "You release " +
+                        item->query("name") +
+                        " because its equipment requirements are no "
+                        "longer met.\n");
+                }
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask int researchCommand(string command)
 {
     int ret = 0;
@@ -966,7 +1039,8 @@ public nomask int researchCommand(string command)
             }
         }
     }
-    if(commandToExecute && canApplyLimitedEffect(commandToExecute, command))
+    if(commandToExecute && (sustainedResearchIsActive(commandToExecute) ||
+        canApplyLimitedEffect(commandToExecute, command)))
     {
         ret = researchService()->researchCommand(commandToExecute,
             command, this_object());

@@ -63,7 +63,7 @@ protected void Setup()
         "hesitating. One looked to be the typical rascally sort, "
         "an unclean brute with a sneering face. The other, "
         "apparently the brains of the outfit, was a greasy "
-        "fellow - perhaps a dunadan, though obviously a fallen "
+        "fellow - perhaps a Kaldimarean, though obviously a fallen "
         "one.");
 
     addChapter("15 Murath - Nightshade Speaks",
@@ -156,7 +156,7 @@ protected void Setup()
         "prisoners:\n\n"
         "Nightblade - 'tis an impressive jagged-bladed two "
         "handed sword fashioned of that rare black metal known "
-        "as 'galvorn'. It is nearly 6 feet in length and bears "
+        "as 'obsynite'. It is nearly 6 feet in length and bears "
         "a hilt fashioned out of a midnight blue crystal. The "
         "make of this is unknown to our sages. The hilts have "
         "been fashioned into a dragon's claw.");
@@ -181,9 +181,9 @@ protected void Setup()
 
     addChapter("15 Murath - Inventory: Other Effects",
         "Anguruth - This is the sword of Cypress. It appears "
-        "to have been crafted of mithril! It is a weapon "
+        "to have been crafted of lunarite! It is a weapon "
         "roughly 50 inches and quite clearly is an ancient "
-        "blade of the Numenorians.\n\n"
+        "blade of the Kaldimareans.\n\n"
         "A few other trinkets of marginal use, including a "
         "worn book on Corporum. Apparently Nightshade fancies "
         "himself a necromancer. Also of note are some swords "
@@ -400,7 +400,7 @@ protected void Setup()
 
     addChapter("16 Murath - I Find the Blade",
         "16 Murath 2942: I have found the Nightblade! A "
-        "disagreeable dunedain scum carried it in the pathetic "
+        "disagreeable Kaldimareans scum carried it in the pathetic "
         "militia of Tineas. I felled the weakling myself and "
         "wrested the blade from him myself. It is mine and mine "
         "alone. Oh, the sword... It is a two-handed sword with "
@@ -508,14 +508,14 @@ protected void Setup()
 
     addChapter("5 Dulath - Orothysse Falls",
         "5 Dulath 2942: Our Queen blessed us when one of those "
-        "rat whelp halflings approached and distracted "
+        "rat whelp smallfolk approached and distracted "
         "Umbrithel, high magus and lord of Orothysse. His "
         "defenses down, Dalthus was able to send the cleric to "
         "Werra's side. The meddlesome Kellgaard appears to "
         "have also been slain in that moment. Our glorious "
         "Queen looked upon us with favor today; a testament to "
         "our status as the chosen. Dalthus rode in glory with "
-        "Angladhrim, that is the Quenya name for the "
+        "Angladhrim, that is the High Elvish name for the "
         "Nightblade. He is truly the avatar of my Queen.");
 
     addChapter("5 Dulath - The Undead Attack",

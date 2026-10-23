@@ -261,7 +261,7 @@ void PassiveResearchAttacksApplied()
     weapon.set("name", "blah");
     weapon.set("defense class", 2);
     weapon.set("weapon class", 10);
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Research);
@@ -807,6 +807,21 @@ void ResearchSustainedCommandReducesByCost()
     ExpectEq(140, Research.maxSpellPoints(), "max spell points decreased");
     ExpectTrue(Research.sustainedResearchIsActive("/lib/tests/support/research/testSustainedTraitResearch.c"), "research is active");
     ExpectTrue(target.isTraitOf("/lib/tests/support/traits/testTraitForSustainedResearch.c"), "trait is active");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DeactivatingSustainedResearchRemovesItsOwnTraitImmediately()
+{
+    string item = "/lib/tests/support/research/testSustainedTraitResearch.c";
+    string trait = "/lib/tests/support/traits/testTraitForSustainedResearch.c";
+    ExpectTrue(Research.initiateResearch(item));
+    ExpectTrue(Research.activateSustainedResearch(load_object(item)));
+    ExpectTrue(Research.addTrait(trait));
+    ExpectTrue(Research.isTraitOf(trait));
+    ExpectTrue(Research.deactivateSustainedResearch(item));
+    ExpectFalse(Research.isTraitOf(trait));
+    ExpectFalse(Research.hasTraitOfRoot("mean"));
+    ExpectTrue(Research.blockedByCooldown(item));
 }
 
 /////////////////////////////////////////////////////////////////////////////

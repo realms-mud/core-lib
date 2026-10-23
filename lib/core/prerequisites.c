@@ -76,7 +76,7 @@ private nomask int isValidPrerequisiteType(string type)
         "race", "faction", "trait", "background", "combat statistic", "level",
         "opinion", "state", "presence", "not present", "guild rank",
         "guilds at level", "guilds at rank", "spoken topics",
-        "observation", "relationship" }), type) > -1);
+        "observation", "relationship", "any of" }), type) > -1);
 }
 
 //-----------------------------------------------------------------------------
@@ -94,47 +94,51 @@ protected nomask int validPrerequisite(mapping prerequisite)
             member(prerequisite, "type") && 
             isValidPrerequisiteType(prerequisite["type"]);
 
+    if (ret && prerequisite["type"] == "any of")
+    {
+        mixed alternatives = prerequisite["prerequisites"];
+        ret = pointerp(alternatives) && sizeof(alternatives);
+        if (ret)
+        {
+            foreach(mixed alternative in alternatives)
+            {
+                ret &&= mappingp(alternative) && sizeof(alternative);
+                if (ret)
+                {
+                    foreach(mixed key, mixed condition in alternative)
+                    {
+                        ret &&= stringp(key) && sizeof(key) &&
+                            mappingp(condition) &&
+                            validPrerequisite(condition);
+                    }
+                }
+            }
+        }
+    }
     if (ret && prerequisite["type"] == "observation")
     {
-        ret = mappingp(prerequisite["criteria"]) &&
-            sizeof(prerequisite["criteria"]) &&
+        mixed criteria = prerequisite["criteria"];
+        ret = (mappingp(criteria) || pointerp(criteria)) &&
+            sizeof(criteria) &&
             intp(prerequisite["value"]) && prerequisite["value"] > 0;
-        if (ret && member(prerequisite["criteria"], "type"))
+        if (ret)
         {
-            ret = stringp(prerequisite["criteria"]["type"]) &&
-                sizeof(prerequisite["criteria"]["type"]);
+            mixed *alternatives = mappingp(criteria) ?
+                ({ criteria }) : criteria;
+            foreach(mixed alternative in alternatives)
+            {
+                ret &&= mappingp(alternative) && sizeof(alternative);
+                if (ret && member(alternative, "type"))
+                {
+                    ret = stringp(alternative["type"]) &&
+                        sizeof(alternative["type"]);
+                }
+            }
         }
     }
     if (ret && prerequisite["type"] == "relationship")
     {
         ret = getService("relationship")->validCondition(prerequisite);
-    }
-    return ret;
-}
-
-//-----------------------------------------------------------------------------
-// Method: getPrerequisite
-// Description: This method will return the details mapping for the requested
-//              prerequisite if it exists.
-//
-// Parameters: prerequisite - the prerequisite to retrieve
-//
-// Returns: the details mapping for the specified prerequisite.
-//-----------------------------------------------------------------------------   
-private nomask mapping getPrerequisite(string prerequisite, string grouping)
-{
-    mapping ret = 0;
-
-    if (grouping && member(prerequisites, grouping) &&
-        member(prerequisites[grouping], prerequisite) &&
-        validPrerequisite(prerequisites[grouping][prerequisite]))
-    {
-        ret = prerequisites[grouping][prerequisite] + ([]);
-    }
-    else if(member(prerequisites, prerequisite) &&
-       validPrerequisite(prerequisites[prerequisite]))
-    {
-        ret = prerequisites[prerequisite] + ([ ]);
     }
     return ret;
 }
@@ -605,23 +609,38 @@ private nomask int checkSpokenTopics(object researcher, object checker,
 //
 // Returns: true if the researcher object has passed all of the prerequisites.
 //-----------------------------------------------------------------------------                        
-public nomask varargs int checkPrerequisites(object researcher, string grouping, 
+private nomask int checkPrerequisiteList(object researcher, mapping required,
     object owner)
 {
     int ret = 1;
     
-    string *prerequisiteList = (grouping && member(prerequisites, grouping)) ?
-        m_indices(prerequisites[grouping]) : m_indices(prerequisites);
+    string *prerequisiteList = m_indices(required);
 
     if(sizeof(prerequisiteList))
     {
         foreach(string prerequisite in prerequisiteList)
         {
-            mapping prerequisiteData = getPrerequisite(prerequisite, grouping);
-            if (prerequisiteData)
+            mapping prerequisiteData = required[prerequisite];
+            if (mappingp(prerequisiteData) &&
+                validPrerequisite(prerequisiteData))
             {
                 switch (prerequisiteData["type"])
                 {
+                    case "any of":
+                    {
+                        int matched = 0;
+                        foreach(mapping alternative in
+                            prerequisiteData["prerequisites"])
+                        {
+                            if (ret && !matched)
+                            {
+                                matched = checkPrerequisiteList(researcher,
+                                    alternative, owner);
+                            }
+                        }
+                        ret &&= matched;
+                        break;
+                    }
                     case "research":
                     {
                         // This should NOT be used to handle prerequisites
@@ -710,11 +729,24 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
                     }
                     case "observation":
                     {
-                        ret &&= validResearcher(researcher) &&
-                            function_exists("hasObservation", researcher) &&
-                            researcher->hasObservation(
-                                prerequisiteData["criteria"],
-                                prerequisiteData["value"]);
+                        int observed = 0;
+                        if (ret && validResearcher(researcher) &&
+                            function_exists("hasObservation", researcher))
+                        {
+                            mixed criteria = prerequisiteData["criteria"];
+                            mapping *alternatives = mappingp(criteria) ?
+                                ({ criteria }) : criteria;
+                            foreach(mapping alternative in alternatives)
+                            {
+                                if (!observed)
+                                {
+                                    observed = researcher->hasObservation(
+                                        alternative,
+                                        prerequisiteData["value"]);
+                                }
+                            }
+                        }
+                        ret &&= observed;
                         break;
                     }
                     case "relationship":
@@ -763,6 +795,15 @@ public nomask varargs int checkPrerequisites(object researcher, string grouping,
     }
 
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs int checkPrerequisites(object researcher, string grouping,
+    object owner)
+{
+    mapping required = (grouping && member(prerequisites, grouping)) ?
+        prerequisites[grouping] : prerequisites;
+    return checkPrerequisiteList(researcher, required, owner);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -817,26 +858,42 @@ private nomask string displayTraitPrerequsite(string *traits)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask string displayPrerequisites(string colorConfiguration, 
-    object configuration)
+private nomask string displayPrerequisiteList(string colorConfiguration,
+    object configuration, mapping required)
 {
     string ret = "";
 
-    if (sizeof(prerequisites) && objectp(configuration))
+    if (sizeof(required) && objectp(configuration))
     {
         ret = configuration->decorate("Prerequisites:\n",
             "field header", "research", colorConfiguration);
 
-        string *prereqKeys = sort_array(m_indices(prerequisites), 
+        string *prereqKeys = sort_array(m_indices(required),
             (: sprintf("%s%s", $3[$1]["type"], $1) > 
-                sprintf("%s%s", $3[$2]["type"], $2) :), prerequisites);
+                sprintf("%s%s", $3[$2]["type"], $2) :), required);
 
         foreach(string key in prereqKeys)
         {
             string prereq = "";
             string supplementalInfo = 0;
-            switch (prerequisites[key]["type"])
+            switch (required[key]["type"])
             {
+                case "any of":
+                {
+                    prereq = capitalize(key) + ": complete any one route";
+                    supplementalInfo = "";
+                    int route = 0;
+                    foreach(mapping alternative in
+                        required[key]["prerequisites"])
+                    {
+                        supplementalInfo += configuration->decorate(
+                            sprintf("  Route %d:\n", ++route),
+                            "prerequisite", "research", colorConfiguration) +
+                            displayPrerequisiteList(colorConfiguration,
+                                configuration, alternative);
+                    }
+                    break;
+                }
                 case "quest":
                 {
                     prereq = displayQuestPrerequsite(key);
@@ -870,7 +927,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 }
                 case "trait":
                 {
-                    prereq = displayTraitPrerequsite(prerequisites[key]["value"]);
+                    prereq = displayTraitPrerequsite(required[key]["value"]);
                     break;
                 }
                 case "attribute":
@@ -879,10 +936,10 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 case "skill":
                 {
                     prereq = sprintf("%s of %d", capitalize(key), 
-                        prerequisites[key]["value"]);
-                    if (member(prerequisites[key], "guild"))
+                        required[key]["value"]);
+                    if (member(required[key], "guild"))
                     {
-                        prereq += " in " + capitalize(prerequisites[key]["guild"]);
+                        prereq += " in " + capitalize(required[key]["guild"]);
                     }
                     break;
                 }
@@ -890,18 +947,23 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 {
                     prereq = sprintf("%s %s %d", capitalize(key),
                         (key == "best kill") ? "level is" : "kill count of",
-                        prerequisites[key]["value"]);
+                        required[key]["value"]);
                     break;
                 }
                 case "observation":
                 {
                     prereq = sprintf("%s observation count of %d",
-                        capitalize(key), prerequisites[key]["value"]);
+                        capitalize(key), required[key]["value"]);
+                    if (pointerp(required[key]["criteria"]))
+                    {
+                        prereq += sprintf(" in any one of %d alternatives",
+                            sizeof(required[key]["criteria"]));
+                    }
                     break;
                 }
                 case "relationship":
                 {
-                    mapping condition = prerequisites[key];
+                    mapping condition = required[key];
                     prereq = sprintf("%s %s %s: %s", capitalize(key),
                         condition["direction"], condition["target"],
                         member(condition, "classification") ?
@@ -916,7 +978,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 case "guild rank":
                 {
                     prereq = sprintf("Rank in the %s guild of ", 
-                        prerequisites[key]["guild"]);
+                        required[key]["guild"]);
                     // Yes, fall through! 
                 }
                 case "guild":
@@ -925,11 +987,11 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 case "not present":
                 case "faction":
                 {
-                    if (pointerp(prerequisites[key]["value"]) &&
-                        sizeof(prerequisites[key]["value"]))
+                    if (pointerp(required[key]["value"]) &&
+                        sizeof(required[key]["value"]))
                     {
                         string *words = explode(implode(
-                            prerequisites[key]["value"], " or "), " ");
+                            required[key]["value"], " or "), " ");
 
                         int size = sizeof(words);
                         for (int i = 0; i < size; i++)
@@ -946,36 +1008,36 @@ public nomask string displayPrerequisites(string colorConfiguration,
                 }
                 case "guilds at level":
                 {
-                    if (pointerp(prerequisites[key]["guilds"]) &&
-                        sizeof(prerequisites[key]["guilds"]))
+                    if (pointerp(required[key]["guilds"]) &&
+                        sizeof(required[key]["guilds"]))
                     {
                         string *guildNames = map(
-                            prerequisites[key]["guilds"],
+                            required[key]["guilds"],
                             (: capitalize($1) :));
                         prereq = sprintf(
                             "Member of at least %d of: %s at level %d",
-                            prerequisites[key]["minimum guilds"],
+                            required[key]["minimum guilds"],
                             implode(guildNames, ", "),
-                            prerequisites[key]["value"]);
+                            required[key]["value"]);
                     }
                     break;
                 }
                 case "guilds at rank":
                 {
-                    if (pointerp(prerequisites[key]["guilds"]) &&
-                        sizeof(prerequisites[key]["guilds"]) &&
-                        pointerp(prerequisites[key]["value"]) &&
-                        sizeof(prerequisites[key]["value"]))
+                    if (pointerp(required[key]["guilds"]) &&
+                        sizeof(required[key]["guilds"]) &&
+                        pointerp(required[key]["value"]) &&
+                        sizeof(required[key]["value"]))
                     {
                         string *guildNames = map(
-                            prerequisites[key]["guilds"],
+                            required[key]["guilds"],
                             (: capitalize($1) :));
                         string *rankNames = map(
-                            prerequisites[key]["value"],
+                            required[key]["value"],
                             (: capitalize($1) :));
                         prereq = sprintf(
                             "Member of at least %d of: %s at rank %s",
-                            prerequisites[key]["minimum guilds"],
+                            required[key]["minimum guilds"],
                             implode(guildNames, ", "),
                             implode(rankNames, " or "));
                     }
@@ -989,7 +1051,7 @@ public nomask string displayPrerequisites(string colorConfiguration,
             }
 
             ret += configuration->decorate(sprintf("%15s: ",
-                        capitalize(prerequisites[key]["type"])),
+                        capitalize(required[key]["type"])),
                     "field data", "research", colorConfiguration) +
                 configuration->decorate(prereq + "\n",
                     "prerequisite", "research", colorConfiguration);
@@ -1001,4 +1063,12 @@ public nomask string displayPrerequisites(string colorConfiguration,
         }
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string displayPrerequisites(string colorConfiguration,
+    object configuration)
+{
+    return displayPrerequisiteList(colorConfiguration, configuration,
+        prerequisites);
 }

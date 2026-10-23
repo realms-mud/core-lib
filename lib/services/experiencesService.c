@@ -470,6 +470,40 @@ private nomask void addCombatContext(mapping context, object actor,
         {
             context["target level"] = subject->effectiveLevel();
         }
+        if (objectp(actor) && function_exists("effectiveLevel", actor))
+        {
+            int actorLevel = actor->effectiveLevel();
+            int npc = function_exists("isRealizationOfMonster", subject) &&
+                subject->isRealizationOfMonster();
+            int engaged = function_exists("isInCombatWith", subject) &&
+                subject->isInCombatWith(actor);
+            int allied = 0;
+            object party = function_exists("getParty", actor) ?
+                actor->getParty() : 0;
+            if (party && function_exists("members", party))
+            {
+                allied = member(party->members(1), subject) >= 0;
+            }
+            if (function_exists("leaderName", subject) &&
+                function_exists("RealName", actor))
+            {
+                allied ||= subject->leaderName() &&
+                    subject->leaderName() == actor->RealName();
+            }
+            context["actor level"] = actorLevel;
+            context["opponent engaged"] = engaged;
+            context["opponent allied"] = allied;
+            context["target alive"] = function_exists("hitPoints", subject) &&
+                subject->hitPoints() > 0 &&
+                (!function_exists("isDead", subject) || !subject->isDead());
+            context["qualifying opponent"] = npc && subject != actor &&
+                engaged && !allied && context["target alive"] &&
+                actorLevel > 0 &&
+                member(context, "target level") &&
+                2 * context["target level"] >= actorLevel &&
+                environment(actor) &&
+                environment(actor) == environment(subject);
+        }
     }
     if (objectp(actor) && function_exists("equipmentInSlot", actor))
     {
@@ -515,7 +549,10 @@ public nomask mapping buildObservationContext(object actor,
         }
         addActorContext(ret, actor, detailed);
         addRoomContext(ret, actor, room);
-        if (typeMatches("combat", observation["type"]))
+        if (typeMatches("combat", observation["type"]) ||
+            (typeMatches("research.use", observation["type"]) &&
+                objectp(observation["subject"]) &&
+                observation["subject"] != actor))
         {
             addCombatContext(ret, actor, observation["subject"]);
         }

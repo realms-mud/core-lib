@@ -222,6 +222,27 @@ From `researchItem.c`, the valid type values are:
   - Summoned creatures join player's party
   - Can limit maximum number simultaneously summoned
 
+#### Active consumables and target validation
+
+Active abilities can require components through the shared consumables
+specification:
+
+```c
+addSpecification("consumables", ([ "arrow":1 ]));
+```
+
+Components are matched by item `id()` in the actor's direct inventory or
+current room. Ammunition containers contribute their actual `quantity`;
+an empty container reports zero and is retained for refilling. A successful
+use reduces the quantity or destroys an ordinary consumed item as appropriate.
+
+Active Research checks equipment limiters, cooldown, target existence for
+targeted scope, and resource reserves before consuming components. Missing
+targets and components produce player feedback rather than silently failing.
+These rejected actions do not consume components, spend resource costs, or
+record successful-use observations. The normal action-turn gate still
+applies to attempted execution.
+
 ### 2. Passive Research
 
 **Type**: `"passive"`
@@ -264,16 +285,29 @@ From `researchItem.c`, the valid type values are:
 
 **Key Characteristics**:
 - Must be activated (like active research)
-- Remains active until deactivated or user runs out of resources
-- Has initial activation cost (not consumed, but must have resources available)
+- Remains active until deactivated or an authored maintenance rule stops it
+- Activation checks reservation costs against maximum resource pools
 - Reduces maximum resource pools while active
 - Can be toggled on/off with same command
 - Provides bonuses only while active
 
 **Resource Cost Mechanics**:
-- **Initial cost**: Must have this amount available to activate (not consumed)
+- **Initial cost**: The corresponding maximum pool must support this amount
 - **Sustained cost**: Reduces maximum HP/SP/Stamina while active
-- If current resources drop below sustained cost, automatically deactivates
+- No blanket periodic upkeep or automatic shutdown occurs merely because a
+  current resource pool reaches zero; authored per-hit costs are separate
+
+Deactivation immediately removes the owner's authored `trait` when its
+`triggering research` matches the ability. It does not remove unrelated
+traits of the same root. Saved temporary traits linked to still-active
+sustained Research are reconstructed during player restoration without
+reactivating the ability, reserving resources again, or recording another use.
+Ordinary timed temporary traits are not reconstructed by that rule.
+
+The monk's Mindful Ward uses this model to reserve maximum stamina while the
+existing `mana shield` combat rule spends spell points on post-mitigation
+damage. A depleted spell-point pool does not disable that ward. See
+[monk.md](monk.md) for the exact initial resource and mitigation contract.
 
 **What Sustained Research Can Provide**:
 - All passive-style bonuses (but only while active)
@@ -454,6 +488,7 @@ Prerequisites determine whether a character can LEARN a research item. They are 
 | `presence` | Object/character present | Requires altar present |
 | `not present` | Object/character absent | Requires no witnesses |
 | `spoken topics` | Has discussed topics | Has spoken about "ancient magic" |
+| `any of` | Complete any one entire prerequisite mapping | Matching technique, theory, and practice route |
 
 ### Adding Prerequisites
 
@@ -492,6 +527,55 @@ addSpecification("prerequisites", ([
     ])
 ]));
 ```
+
+### Alternative prerequisite groups
+
+Use `any of` when alternatives contain several requirements that must
+stay together. Its `prerequisites` array contains nonempty mappings in
+the normal prerequisite format. All entries within a mapping are ANDed;
+the mappings themselves are ORed. Ordinary prerequisites outside this
+group still apply. Groups can nest, and existing owner-dependent checks
+and research equivalence work inside them.
+
+```c
+addPrerequisite("specialist practice", ([
+    "type":"any of",
+    "prerequisites":({
+        ([
+            "/guilds/monk/kama/reaping-cut.c":([ "type":"research" ]),
+            "/guilds/monk/kama/reaping-lines.c":([ "type":"research" ]),
+            "practice":([
+                "type":"observation",
+                "criteria":([
+                    "type":"combat.kata",
+                    "research":"/guilds/monk/kama/reaping-cut.c",
+                    "qualifying opponent":1
+                ]),
+                "value":20
+            ])
+        ]),
+        ([
+            "/guilds/monk/claw/crossing-rake.c":([ "type":"research" ]),
+            "/guilds/monk/claw/crossing-talons.c":([ "type":"research" ]),
+            "practice":([
+                "type":"observation",
+                "criteria":([
+                    "type":"combat.kata",
+                    "research":"/guilds/monk/claw/crossing-rake.c",
+                    "qualifying opponent":1
+                ]),
+                "value":20
+            ])
+        ])
+    })
+]));
+```
+
+This cannot combine twenty Reaping Cuts with Crossing Talons knowledge.
+The display lists every route's required research and threshold.
+Empty routes, unknown condition types, malformed mappings, and invalid
+nested groups are rejected. Named prerequisite groupings retain their
+existing meaning; `any of` does not change their default behavior.
 
 ### Research Tree Prerequisites
 
@@ -618,6 +702,25 @@ execution checks limitors before consumables and resource spending as well.
 No new player persistence or eligibility cache is introduced. Blueprint
 renames/removals require explicit updates to authored restrictions and items;
 there is no automatic broadening to a weapon skill.
+
+### Empty equipment slots
+
+Use `empty equipment slots` when an ability or passive requires free hands:
+
+```c
+addSpecification("limited by", ([
+    "empty equipment slots":({
+        "wielded primary", "wielded offhand"
+    })
+]));
+```
+
+The value is one registered equipment-slot name or a nonempty array of
+registered names. Every listed slot must be empty. Unknown slots and
+malformed values are rejected at authoring. Carried equipment is ignored;
+the example permits worn gloves and armor. Runtime checks inspect current
+slot contents, including direct active execution and passive-bonus queries.
+The specification description and verbose failure identify the slots.
 
 ### Prerequisites vs Limiters Summary
 
@@ -786,6 +889,60 @@ addSpecification("research type", "tree root");
 
 ---
 
+### Teacher-guided learning
+
+Research can opt into in-person instruction independently of its learning
+type:
+
+```c
+addSpecification("teacher required", 1);
+```
+
+The value must be `0` or `1`; omitted or `0` preserves self-learning.
+`canResearch()` still reports normal prerequisite eligibility. For a
+teacher-required item, `initiateResearch()` cannot start learning, including
+for `granted` items. The research menu explains the requirement instead of
+offering a self-learning action.
+
+Use `student->learnResearchFrom(teacher, researchItem)` to begin instruction.
+The teacher must be an NPC, offer that lesson, and share the student's room
+for teacher-required research. Normal tree dependencies, prerequisites,
+equivalences, costs, and duplicate/in-progress protections still apply.
+
+[researchTeacher.c](../lib/realizations/researchTeacher.c) provides an explicit
+NPC curriculum:
+
+```c
+inherit "/lib/realizations/researchTeacher.c";
+
+protected void Setup()
+{
+    Name("instructor");
+    addLesson("/guilds/monk/discipline/initiates-discipline.c", ([]), "");
+}
+```
+
+`addLesson(item, requirements, explanation)` declares the teacher's knowledge
+and limits teaching to that curriculum; it does not grant the NPC the item's
+combat bonuses. Requirements use shared prerequisite mappings, including
+observations and directional relationships with `"target":"owner"` for the
+teacher. Supply an explanation for nonempty requirements. `lessonRefusal()`
+and `canTeachResearch()` recheck current eligibility without caching it.
+NPCs without a declared curriculum retain the existing requirement that they
+actually have researched the item.
+
+Players use `lessons from <teacher>` and
+`learn <lesson name> from <teacher>`. Teachers that expose a `teachingGuild()`
+also accept `enroll with <teacher>` and `advance with <teacher>`, delegating
+to normal guild membership and promotion rules.
+
+Successful completion records the existing `training.completed` interaction
+and observation exactly once. Timed instruction begins in person, but normal
+study can continue after leaving the room or after the teacher disappears.
+The existing persisted mentorship snapshot survives save/restore; it does
+not require a live teacher at completion. No new per-player learning store
+or schema is introduced.
+
 ## Common Specifications
 
 All research types share these fundamental specifications.
@@ -804,6 +961,9 @@ addSpecification("research type", "points");  // or timed, granted, tree root
 ```
 // Learning cost (required if research type is "points" or "timed")
 addSpecification("research cost", 2);
+
+// Optional in-person instruction
+addSpecification("teacher required", 1);
 
 // Organization and categorization
 addSpecification("source", "mage");  // Usually guild or origin
@@ -850,8 +1010,8 @@ The research system provides two distinct mechanisms for research items to refer
 | Feature | Related Research | Affected Research |
 |---------|-----------------|-------------------|
 | **Used By** | Knowledge research only | Any research type (typically passive) |
-| **Purpose** | Documents theoretical connections | Provides actual mechanical modifications |
-| **Effect** | Display only - informational | Active gameplay effect - modifies damage, cost, cooldown, or combo chains |
+| **Purpose** | Documents theoretical connections | Describes intended mechanical enhancements |
+| **Effect** | Display only - informational | Display metadata; runtime effects require receiving-ability wiring |
 | **Direction** | Defined ON the knowledge item | Defined ON the modifying research |
 | **Syntax** | Array of file paths | Mapping of display names to numeric values |
 | **Display Location** | Shows in related research details | Shows in the modifying research's details |
@@ -905,13 +1065,16 @@ protected void Setup()
 
 When a player examines "gust", they'll see that "elemental air" knowledge is related, but there's no mechanical bonus.
 
-### Affected Research (Mechanical Modifications)
+### Affected Research (Declared Enhancements)
 
-**Purpose**: Provides actual mechanical modifications to other research items. This system allows one research item (typically passive) to enhance the damage, reduce costs, modify cooldowns, or extend combo chains of other abilities.
+**Purpose**: Describes enhancements to other research items. These
+specifications are validated and displayed, but do not automatically change
+damage, costs, cooldowns, or combination limits. The receiving ability must
+explicitly implement the effect.
 
 **Specifications**: Two specifications work together:
 1. `"affected research"` - Mapping of research display names to numeric values
-2. `"affected research type"` - Defines how those values are applied
+2. `"affected research type"` - Describes the intended kind of enhancement
 
 **Valid For**: Any research type, but most commonly used in passive research
 
@@ -969,6 +1132,42 @@ This reduces the cooldown delay to use 'teleport' by 15
 ```
 
 ### Affected Research Examples
+
+The following examples show enhancement declarations for research details,
+not complete runtime implementations. To make an enhancement mechanical,
+wire the receiving ability. For example, on an instantaneous ability:
+
+```c
+addSpecification("modifiers", ({
+    ([
+        "type":"research",
+        "name":"Elbow Anatomy",
+        "research item":"/guilds/monk/unarmed/elbow-anatomy.c",
+        "formula":"additive",
+        "base value":1,
+        "rate":3.0
+    ])
+}));
+```
+
+This adds three to the effect formula only when the initiator has learned
+the referenced research. Merge it with the ability's other modifiers rather
+than replacing skill/attribute scaling. Resource costs and cooldowns use
+their corresponding receiver-side specifications:
+
+```c
+addSpecification("stamina point cost modifiers", ([
+    "/guilds/monk/katana/draw-economy.c":1
+]));
+addSpecification("cooldown modifiers", ([
+    "/guilds/monk/katana/decisive-rhythm.c":4
+]));
+```
+
+The costs and cooldowns are reduced only for learned referenced research.
+These are separate examples for their respective abilities, not a single
+definition. Test actual effects, costs, and cooldown values; displayed
+enhancement text alone does not establish runtime behavior.
 
 #### Example 1: Percentage Damage Enhancement
 
@@ -1268,10 +1467,10 @@ addSpecification("related research", ({
 }));
 ```
 
-**AFFECTED RESEARCH (Any Type - Mechanical Effect)**
+**AFFECTED RESEARCH (Any Type - Enhancement Metadata)**
 - Defined ON modifying research
 - References abilities by DISPLAY NAMES
-- Actual gameplay effect
+- Runtime effects require explicit receiving-ability wiring
 
 ```
 addSpecification("affected research type", "percentage");  // or bonus, decrease cost, etc.
@@ -1289,7 +1488,8 @@ addSpecification("affected research", ([
 
 2. **Case Sensitivity**: Display names in affected research must match exactly (case-sensitive)
 
-3. **Multiple Modifiers**: An ability can be affected by multiple passive research items - effects stack
+3. **Multiple Modifiers**: Stacking is determined by the receiving ability's
+   explicit modifiers, not by these display declarations.
 
 4. **No Self-Reference**: Research cannot affect itself
 

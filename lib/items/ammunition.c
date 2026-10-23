@@ -20,6 +20,11 @@ public nomask mixed query(string element)
             ret = itemData["max capacity"] - itemData["quantity"];
             break;
         }
+        case "quantity":
+        {
+            ret = itemData["quantity"];
+            break;
+        }
         case "short":
         {
             ret = item::query("short");

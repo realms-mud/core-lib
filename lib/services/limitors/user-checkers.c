@@ -357,6 +357,35 @@ protected nomask int checkSpellPointsDrainedLimitor(mapping specificationData,
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask int checkEmptyEquipmentSlotsLimitor(mapping specificationData,
+    object owner, int verbose, string colorConfiguration,
+    object configuration)
+{
+    int ret = 1;
+    if (member(specificationData["limited by"], "empty equipment slots"))
+    {
+        mixed rule = specificationData["limited by"]["empty equipment slots"];
+        string *slots = pointerp(rule) ? rule : ({ rule });
+        ret = function_exists("equipmentInSlot", owner) != 0;
+        if (ret)
+        {
+            foreach(string slot in slots)
+            {
+                ret = !owner->equipmentInSlot(slot) && ret;
+            }
+        }
+        if (!ret && verbose)
+        {
+            write(configuration->decorate(sprintf(
+                "These equipment slots must be empty: %s.\n",
+                implode(slots, ", ")), "missing prerequisites",
+                "research", colorConfiguration));
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int checkEquipmentLimitor(mapping specificationData, 
     object owner, int verbose, string colorConfiguration, 
     object configuration)

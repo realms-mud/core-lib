@@ -15,7 +15,7 @@ public void Setup()
         "a different raw ore - ruddy iron, greenish copper, dark lead, and "
         "glittering chunks of silver-bearing galena. Samples of rarer finds "
         "sit in a locked glass case on the counter: nuggets of gold, rough "
-        "mithril ore with its distinctive blue-silver sheen, and a chunk of "
+        "lunarite ore with its distinctive blue-silver sheen, and a chunk of "
         "obsidian. A heavy beam scale stands beside the case for weighing "
         "purchases, and a slate board lists prices per stone weight. The air "
         "is dry and carries a faint mineral tang."
@@ -39,7 +39,7 @@ public void Setup()
     );
     addDescriptionTemplate(
         "light fills the ore merchant's shop, making the copper ore gleam "
-        "green, the galena sparkle, and the mithril sample shine with an "
+        "green, the galena sparkle, and the lunarite sample shine with an "
         "almost otherworldly luster"
     );
 }

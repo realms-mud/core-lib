@@ -26,7 +26,7 @@ protected void Setup()
         "not in peace, but in the aftermath of hard-won war.\n"
         "The land chosen lay east of the Lonis River,\n"
         "a place contested, yet well-suited for defense.\n"
-        "Bregandil, nephew to King Eldarion,\n"
+        "Bregandil, nephew to King Eldrevan,\n"
         "was first among those who resolved to remain.\n"
         "It is recorded that he chose the site himself,\n"
         "preferring strength of ground over ease of living.\n"
@@ -40,7 +40,7 @@ protected void Setup()
 
     addChapter("On the Crowning of Bregandil",
         "In the year three hundred fourteen, the crown was set.\n"
-        "Eldarion himself came east for this purpose,\n"
+        "Eldrevan himself came east for this purpose,\n"
         "bringing with him both authority and witness.\n"
         "The act was conducted without excess display,\n"
         "and before those whose labor had raised the city.\n"
@@ -105,7 +105,7 @@ protected void Setup()
 
     addChapter("On Relations with the West",
         "Relations with western realms remained strong,\n"
-        "particularly with the house of Eldarion.\n"
+        "particularly with the house of Eldrevan.\n"
         "Aid was given when required,\n"
         "though not without expectation of return.\n"
         "Trade routes were established in due course,\n"

@@ -30,8 +30,8 @@ protected void Setup()
         "The kings of men knew that fate favored no mortal hand.\n"
         "Bryleth smiled, her shadow stretching over every hall.\n");
 
-    addChapter("The Shadow of Utumnadh",
-        "A darkness rose in Utumnadh, a godless terror unseen.\n"
+    addChapter("The Shadow of Morthundal",
+        "A darkness rose in Morthundal, a godless terror unseen.\n"
         "Allied kings gathered, swords drawn, shields shining.\n"
         "'Strike as one! Let the enemy see the banners of unity and dread,'\n"
         "they roared. The battle raged like storm and fire.\n"

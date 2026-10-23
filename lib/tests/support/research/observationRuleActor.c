@@ -4,6 +4,13 @@
 //*****************************************************************************
 private int observationCount;
 private mapping lastCriteria;
+private mapping researchCounts = ([]);
+
+/////////////////////////////////////////////////////////////////////////////
+public void setResearchObservationCount(string research, int count)
+{
+    researchCounts[research] = count;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 public int has(string module)
@@ -27,14 +34,14 @@ public void setObservationCount(int count)
 public int countObservations(mapping criteria)
 {
     lastCriteria = criteria + ([]);
-    return observationCount;
+    return member(researchCounts, criteria["research"]) ?
+        researchCounts[criteria["research"]] : observationCount;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public int hasObservation(mapping criteria, int minimum)
 {
-    lastCriteria = criteria + ([]);
-    return observationCount >= minimum;
+    return countObservations(criteria) >= minimum;
 }
 
 /////////////////////////////////////////////////////////////////////////////

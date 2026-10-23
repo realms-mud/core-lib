@@ -100,7 +100,7 @@ protected void Setup()
 
     addChapter("On Diplomacy and Alliances",
         "Not all victories are won by steel alone. The coming of Arendor "
-        "altered the balance, as timely aid often does. Moreover, Eldarion "
+        "altered the balance, as timely aid often does. Moreover, Eldrevan "
         "made use of the sea, moving men with a swiftness the enemy could "
         "not match. From this it may be learned that clear terms and swift "
         "agreement are as valuable as any stratagem.");

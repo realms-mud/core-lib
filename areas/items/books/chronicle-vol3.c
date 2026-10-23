@@ -20,7 +20,7 @@ protected void Setup()
         "a flood.");
 
     addChapter("The Line of Kings",
-        "Year 667: Erestel becomes king of Eledhel as Ar-Telcontar.\n\n"
+        "Year 667: Erestel becomes king of Eledhel, the first to style himself heir of Arendor.\n\n"
         "Year 683: Maglandil becomes king of Hillgarath.\n\n"
         "Year 708: Plague sweeps through the lands. Lands south of "
         "Linmir are the most heavily hit.\n\n"
@@ -49,7 +49,7 @@ protected void Setup()
     addChapter("The Dwarven League and Argloth the Wise",
         "Year 1204: The League of Dwarven Nations is founded. "
         "Emissaries of Dhuran XI Stonehelm of Ekalbor, Glanrin IV of "
-        "Aglarond, and Khazurin of Khazurath meet with Azgurin IX "
+        "Glimmerdeep, and Khazurin of Khazurath meet with Azgurin IX "
         "in Mirost.\n\n"
         "Year 1218: A high elf known as Argloth the Wise is "
         "gifted the Tower of Dhuras by King Balgamir and given "
@@ -86,9 +86,9 @@ protected void Setup()
         "evil occurrences, musters the forces of Dhuras and falls "
         "upon the stronghold of the Keepers of the Night. He takes "
         "the tower of Zhardeg for his own.\n\n"
-        "Year 1692: The dragon Ilzhagash issues from Utumnadh and "
+        "Year 1692: The dragon Ilzhagash issues from Morthundal and "
         "attacks Mirost. The dwarves slay the beast. Later that "
-        "year, Sylthasis, another dragon, issues from Utumnadh.\n\n"
+        "year, Sylthasis, another dragon, issues from Morthundal.\n\n"
         "Year 1693: Arnost destroyed by Sylthasis. Mirost falls "
         "to the dragon. The remnants of the land seek protection "
         "in Hillgarath. In time, most of the survivors swell the "

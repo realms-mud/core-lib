@@ -82,7 +82,7 @@ void AttributesAreModifiedByInventory()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("bonus strength", 1);
     weapon.set("equipment locations", OnehandedWeapon);
@@ -91,7 +91,7 @@ void AttributesAreModifiedByInventory()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("bonus strength", 2);
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");

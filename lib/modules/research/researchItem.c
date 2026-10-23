@@ -209,6 +209,20 @@ protected int addSpecification(string type, mixed value)
                 }
                 break;
             }
+            case "teacher required":
+            {
+                if (intp(value) && member(({ 0, 1 }), value) >= 0)
+                {
+                    specificationData[type] = value;
+                    ret = 1;
+                }
+                else
+                {
+                    raise_error("ERROR - researchItem: The value of "
+                        "'teacher required' must be 0 or 1.\n");
+                }
+                break;
+            }
             case "research cost":
             {
                 if(value && intp(value) && (value > 0))
@@ -825,6 +839,9 @@ public nomask string researchDetails()
         configuration->decorate(format(query("description"), 78) + "\n",
             "field data", "research", colorConfiguration) +
         displayCost(colorConfiguration, configuration) +
+        (query("teacher required") ?
+            researchRow("Learning", "Requires a teacher",
+                colorConfiguration, configuration) : "") +
         researchRow("Research Type", capitalize(query("type")),
             colorConfiguration, configuration) + 
         researchRow("Scope", query("scope") ? capitalize(query("scope")) : "N/A",

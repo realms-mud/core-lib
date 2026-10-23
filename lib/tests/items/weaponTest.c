@@ -244,8 +244,8 @@ void CorrectDamageTypeReturnedForQueryDamageType()
     ExpectEq(1, sizeof(Weapon.query("damage type")), "one damage type returned for iron");
     ExpectEq("physical", Weapon.query("damage type")[0], "physical damage type returned");
 
-    ExpectTrue(Weapon.set("material", "galvorn"), "type set to galvorn");
-    ExpectEq(2, sizeof(Weapon.query("damage type")), "two damage type returned for galvorn");
+    ExpectTrue(Weapon.set("material", "obsynite"), "type set to obsynite");
+    ExpectEq(2, sizeof(Weapon.query("damage type")), "two damage type returned for obsynite");
     ExpectTrue(member(Weapon.query("damage type"), "magical") > -1, "magical damage type returned");
     ExpectTrue(member(Weapon.query("damage type"), "physical") > -1, "physical damage type returned");
 
@@ -259,7 +259,7 @@ void CorrectDamageTypeReturnedForQueryDamageType()
 /////////////////////////////////////////////////////////////////////////////
 void CorrectDamageTypeReturnedWhenNonPhysicalDamageSet()
 {
-    ExpectTrue(Weapon.set("material", "galvorn"), "type set to galvorn");
+    ExpectTrue(Weapon.set("material", "obsynite"), "type set to obsynite");
     ExpectTrue(Weapon.set("primary damage type", "fire"));
     ExpectEq("fire", Weapon.getDamageType());
     ExpectEq(({ "fire", "magical" }), Weapon.query("damage type"));
@@ -300,7 +300,7 @@ void CanDamageEtherealReturnsTrueIfItIsMasterwork()
 void CanDamageEtherealReturnsTrueIfMaterialHasCorrectProperties()
 {
     Weapon.set("blueprint", "long sword");
-    Weapon.set("material", "galvorn");
+    Weapon.set("material", "obsynite");
     ExpectTrue(Weapon.canDamageEthereal());
 }
 
@@ -368,7 +368,7 @@ void SetComponentCorrectlySetsComponents()
     Weapon.set("blueprint", "long sword");
 
     Weapon.setComponent("blade", "Type XIIa",
-        (["metal": "galvorn" ]));
+        (["metal": "obsynite" ]));
     Weapon.setComponent("crossguard", "Snake Form",
         (["metal": "steel", "crystal" : "ruby"]));
     Weapon.setComponent("hilt", "Spiral Hilt",
@@ -377,7 +377,7 @@ void SetComponentCorrectlySetsComponents()
         (["metal": "steel", "crystal": "garnet" ]));
 
     ExpectEq("This is a sword with a blade that is about 40 inches (100 cm) long. The blade\n"
-        "is a broad, flat, and evenly tapered galvorn blade with a lenticular\n"
+        "is a broad, flat, and evenly tapered obsynite blade with a lenticular\n"
         "cross-section. The fuller is narrow and runs 2/3 of the length of the blade,\n"
         "ending in a sharp, acute point. The crossguard is an ornate steel knuckleguard\n"
         "that has been sculpted to appear as though a snake with ruby eyes is\n"
@@ -400,7 +400,7 @@ void SetComponentCorrectlySetsComponents()
 void SetComponentFailsWhenBlueprintNotSet()
 {
     string error = catch (Weapon.setComponent("blade", "Type XIIa",
-        (["metal": "galvorn"])); nolog);
+        (["metal": "obsynite"])); nolog);
 
     ExpectEq("*Equipment: A blueprint must be set before components can be assigned.\n",
         error);
@@ -411,7 +411,7 @@ void SetComponentFailsWhenInvalidComponentSet()
 {
     Weapon.set("blueprint", "long sword");
     string error = catch (Weapon.setComponent("blade", "Type Invalid",
-        (["metal": "galvorn"])); nolog);
+        (["metal": "obsynite"])); nolog);
 
     ExpectEq("*ERROR in materials: Type Invalid is not a valid blade component.\n",
         error);

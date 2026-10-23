@@ -12,7 +12,7 @@ protected void Setup()
     set("aliases", ({ "sword", "long sword" }));
     set("long", "This is the sword of weasels. It's neat.");
     set("weapon type", "long sword");
-    set("material", "galvorn");
+    set("material", "obsynite");
     set("value", 850);
     set("bonus armor class", 5);
 }

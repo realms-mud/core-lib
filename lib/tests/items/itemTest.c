@@ -37,7 +37,7 @@ void CanSetBonusesOnItems()
 void QueryingBonusesReturnsAllAddedBonuses()
 {
     Item.set("weight", 3);
-    Item.set("material", "galvorn");
+    Item.set("material", "obsynite");
 
     ExpectTrue(Item.set("bonus armor class", 5), "bonus armor class can be set");
     ExpectEq(({ "bonus armor class" }), Item.query("bonuses"));
@@ -413,8 +413,8 @@ void DestructMethodMustExistOnObjectToBeSet()
 /////////////////////////////////////////////////////////////////////////////
 void CanSetMaterialOnItems()
 {
-    ExpectTrue(Item.set("material", "mithril"), "material can be set");
-    ExpectEq("mithril", Item.query("material"), "'mithril' material was returned");
+    ExpectTrue(Item.set("material", "lunarite"), "material can be set");
+    ExpectEq("lunarite", Item.query("material"), "'lunarite' material was returned");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -893,7 +893,7 @@ void CraftingMaterialsAreDisplayedInLongDescription()
             "crossguard": ([
                 "crystal": "ruby", 
                 "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
-                "metal": "galvorn", 
+                "metal": "obsynite", 
                 "type": "Dracolich Form", 
                 "value": 325
             ]), 
@@ -916,7 +916,7 @@ void CraftingMaterialsAreDisplayedInLongDescription()
 
     ExpectSubStringMatch("The blade is a broad, flat, admantite blade with parallel edges and a\n"
         "lenticular cross - section. The fuller is narrow and runs half of the length\n"
-        "of the blade, ending in a rounded point. The crossguard is an ornate galvorn\n"
+        "of the blade, ending in a rounded point. The crossguard is an ornate obsynite\n"
         "knuckleguard that has been sculpted to appear as though a dracolich with ruby\n"
         "eyes is protecting the user's hand. The hilt is a hilt of gold covered with a\n"
         "slightly ovular grip made out of koa and wrapped in spiraled gold wire. The\n"
@@ -940,13 +940,13 @@ void ItemDescriptionsDisplayedCorrectly()
     object material =
         clone_object("/lib/instances/items/materials/metal/kirnalt.c");
 
-    ExpectEq("This is a kirluin-infused mithril alloy. It has a pale blue sheen and is\n"
+    ExpectEq("This is a kirluin-infused lunarite alloy. It has a pale blue sheen and is\n"
         "exceptionally beautiful. It is incredibly strong and durable with incredible\n"
         "magical properties.\n"
         "This kirnalt is typical for its type.\n\n", 
         material.long());
 
-    ExpectEq("This is a kirluin-infused mithril alloy. It has a pale blue sheen "
+    ExpectEq("This is a kirluin-infused lunarite alloy. It has a pale blue sheen "
         "and is exceptionally beautiful. It is incredibly strong and durable "
         "with incredible magical properties.",
         material.query("description"));

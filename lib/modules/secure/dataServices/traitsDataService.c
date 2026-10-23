@@ -90,8 +90,7 @@ protected nomask void saveTraits(int dbHandle, int playerId, mapping playerData)
         }
     }
 
-    if (member(playerData, "temporaryTraits") &&
-        sizeof(playerData["temporaryTraits"]))
+    if (member(playerData, "temporaryTraits"))
     {
         string query = sprintf("call saveTemporaryTraits(%d,'%s');",
             playerId, sanitizeString(playerData["temporaryTraits"]));

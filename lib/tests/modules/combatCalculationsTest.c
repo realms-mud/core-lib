@@ -43,7 +43,7 @@ object CreateWeapon(string name)
     weapon.set("defense class", 2);
     weapon.set("weapon class", 10);
     weapon.set("bonus hit points", 2);
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attacker);
@@ -232,7 +232,7 @@ void CalculateDefendAttackUsesCorrectShieldData()
 void CalculateDefendAttackUsesCorrectArmorData()
 {
     object armor = CreateArmor("stuff");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("craftsmanship", 40);
 
     Attacker.addSkillPoints(200);
@@ -361,7 +361,7 @@ void CalculateAttackWithWeaponCorrectlyAppliesWeaponData()
     // This includes: -4 for defender's defend attack, 2 dexterity bonus, 
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
-    // 5 for weapon attack and 5 for galvorn's attack bonus
+    // 5 for weapon attack and 5 for obsynite's attack bonus
     ExpectEq(-17, Attacker.calculateAttack(Target, weapon, 1), "untrained attack");
     
     Attacker.advanceSkill("long sword", 1);
@@ -396,7 +396,7 @@ void CalculateAttackWithWeaponCorrectlyAppliesSkillPenalty()
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -7 weapon encumberance (materials (-2) plus lack of skill (-5)),
     // -1 for the skill penalty, 5 for weapon attack and 5 for 
-    // galvorn's attack bonus
+    // obsynite's attack bonus
     ExpectEq(-19, Attacker.calculateAttack(Target, weapon, 1), "untrained attack");
 
     Attacker.advanceSkill("long sword", 1);
@@ -418,7 +418,7 @@ void CalculateAttackWithDualWieldWeaponCorrectlyAppliesWeaponData()
     // This includes: -4 for defender's defend attack, 2 dexterity bonus, 
     // 2 intelligence bonus, -20 for attacking untrained with longsword, 
     // -14 weapon encumberance (materials (-4) plus regular (-10)),
-    // 5 for galvorn's attack bonus, -5 for untrained dual wield, and -5 for
+    // 5 for obsynite's attack bonus, -5 for untrained dual wield, and -5 for
     // base primary weapon dual wield penalty, 4 for attribute bonus for skill,
     // and 5 for weapon attack
     ExpectEq(-44, Attacker.calculateAttack(Target, weapon, 1), "untrained attack");
@@ -911,13 +911,13 @@ void CalculateDamageReturnsTheCorrectDamageForWeapons()
     ExpectEq(4, Attacker.calculateDamage(weapon, "physical", 1), "No weapon equipped");
     ExpectTrue(weapon.equip("blah"), "weapon equip called");
 
-    // wc is 10 and the bonus from galvorn is 8.
+    // wc is 10 and the bonus from obsynite is 8.
     ExpectEq(22, Attacker.calculateDamage(weapon, "physical", 1, "physical damage"));
 
     Attacker.advanceSkill("long sword", 11);
     ExpectEq(25, Attacker.calculateDamage(weapon, "physical", 1, "physical damage after skill increased"));
 
-    ExpectEq(7, Attacker.calculateDamage(weapon, "magical", 1, "Only attribute and magical damage from galvorn are counted"));
+    ExpectEq(7, Attacker.calculateDamage(weapon, "magical", 1, "Only attribute and magical damage from obsynite are counted"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

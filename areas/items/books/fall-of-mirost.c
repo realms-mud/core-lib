@@ -23,7 +23,7 @@ protected void Setup()
         "Hear now the fall of Mirost, proud city of stone.\n"
         "Strong were her gates, and high were her towers.\n"
         "Her banners flew bright in the winds of the north.\n"
-        "Yet doom came winged from the heights of Utumnadh.\n"
+        "Yet doom came winged from the heights of Morthundal.\n"
         "Sylthasis the Terrible, flame of the abyss.\n"
         "Fire in her breath, and shadow her mantle.\n"
         "She descended in wrath, and the sky burned red.\n"

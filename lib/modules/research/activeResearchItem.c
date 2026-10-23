@@ -330,6 +330,11 @@ private nomask int useConsumables(object initiator)
                 {
                     ret = 0;
                     itemsToConsume = ([]);
+                    displayMessageToSelf(sprintf(
+                        "You do not have the required %s to use '%s'.\n",
+                        item, member(specificationData, "name") ?
+                            specificationData["name"] : "that skill"),
+                        initiator);
                     break;
                 }
             }
@@ -408,6 +413,15 @@ public nomask int execute(string command, object initiator)
         }
 
         mapping costs = getUsageCosts(command, initiator);
+        if (ret && (query("scope") == "targeted") &&
+            !getTarget(initiator, command))
+        {
+            displayMessageToSelf(sprintf(
+                "You must specify a valid target for '%s'.\n",
+                member(specificationData, "name") ?
+                    specificationData["name"] : "that skill"), initiator);
+            ret = 0;
+        }
         if(ret && ((costs["hit point cost"] > initiator->hitPoints()) ||
             (costs["spell point cost"] > initiator->spellPoints()) ||
             (costs["stamina point cost"] > initiator->staminaPoints())))

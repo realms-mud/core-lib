@@ -45,7 +45,7 @@ object CreateWeapon(string name)
     weapon.set("defense class", 2);
     weapon.set("weapon class", 10);
     weapon.set("bonus hit points", 2);
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Attacker);
@@ -806,7 +806,7 @@ void AttackSucceedsWhenTargetEtherealAndDamageTypeCanDamageThem()
     object weapon = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     Attacker.addSkillPoints(100);
     ExpectTrue(Attacker.advanceSkill("long sword", 20));
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
 
     // Need to remove random miss chances
     weapon.set("bonus attack", 200);

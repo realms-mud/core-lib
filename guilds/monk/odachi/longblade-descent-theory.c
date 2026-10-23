@@ -1,0 +1,13 @@
+//*****************************************************************************
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
+//                      the accompanying LICENSE file for details.
+//*****************************************************************************
+inherit "/lib/modules/research/knowledgeResearchItem.c";
+#include "/guilds/monk/martial-research.h"
+
+protected void Setup()
+{
+    martialTheory("Longblade Descent Theory", "Study the descending "
+        "commitment: adds three to Descending Arc's damage formula.",
+        20, "descending-arc", "odachi", "Descending Arc", "bonus", 3);
+}

@@ -27,7 +27,7 @@ protected void Setup()
         "Knights shouted prayers; shields rattled on armor, axes gleamed.\n"
         "A wind carried a parchment: Argloth's scrawl, ink bleeding from fear.\n"
         "'They will kneel. Or die.'\n"
-        "Kuarl of Erebor read it aloud, voice shaking but steady.\n"
+        "Kuarl of Garnhold read it aloud, voice shaking but steady.\n"
         "The mountain trembled, each step heavy, echoing the doom ahead.\n"
         "No one dared laugh; tension hung thick as smoke.\n"
         "Yet beneath the fear, a spark of defiance burned.\n"
@@ -80,7 +80,7 @@ protected void Setup()
         "Kuarl: 'I have lost friends, yet the dead cannot hold me forever.'\n"
         "The inner keep loomed; Argloth's presence dark and consuming.\n"
         "Sylthasis faltered under combined steel; the mountain groaned.\n"
-        "Kuarl: 'Perhaps Durin is with us yet.'\n"
+        "Kuarl: 'Perhaps Korvan is with us yet.'\n"
         "A single cry, 'For Mirost!' echoed; the tide turned.");
 
     addChapter("The Fall of Argloth",

@@ -3,10 +3,12 @@
 #                      See the accompanying LICENSE file for details.
 #*****************************************************************************
 
+/guilds/monk/monk.c
 /tutorial/stateMachines/introStateMachine.c
 /areas/eledhel/central-city/central-city.c
 /areas/eledhel/northern-city/northern-city.c
 /areas/eledhel/southern-city/southern-city.c
+/areas/eledhel/southern-city/monk-hall/region.c
 /areas/eledhel/southern-city/anguleith/anguleith.c
 /areas/eledhel/southern-city/axe-and-hammer/axe-and-hammer.c
 /areas/eledhel/southern-city/church-of-ilyrth/church-of-ilyrth.c

@@ -73,7 +73,7 @@ void SetUpInventory()
     material.set("quantity", 3);
     move_object(material, Player);
 
-    material = clone_object("/lib/instances/items/materials/metal/galvorn.c");
+    material = clone_object("/lib/instances/items/materials/metal/obsynite.c");
     material.set("quantity", 3);
     move_object(material, Player);
 
@@ -162,7 +162,7 @@ void PopulateSwordData(object sword)
         ]), 
         "crossguard": ([ "crystal": "ruby", 
                     "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
-                    "metal": "galvorn", 
+                    "metal": "obsynite", 
                     "type": "Dracolich Form", 
                     "value": 325 
         ]), 
@@ -273,7 +273,7 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     ExpectEq((["crystal": (["ruby": 5]),
         "leather": (["pegasus leather": 5]),
         "metal": (["admantite": 11, 
-                   "galvorn": 3,
+                   "obsynite": 3,
                    "gold": 3,
                    "iron": 8,
                    "platinum": 3,
@@ -316,7 +316,7 @@ void CraftingASwordGeneratesTheCorrectItemAndReducesMaterials()
     ExpectEq((["crystal":(["ruby":2]),
         "leather" : (["pegasus leather":4]),
         "metal" : (["admantite":5,
-            "galvorn" : 1,
+            "obsynite" : 1,
             "gold" : 2,
             "iron" : 8,
             "platinum" : 2,

@@ -20,7 +20,7 @@ protected void Setup()
 
     addChapter("The March to the Ruins",
         "The Werric Knights assembled at dawn, banners heavy with dew.\n"
-        "Dwarves of Khazurath and Erebor marched beside them, axes gleaming.\n"
+        "Dwarves of Khazurath and Garnhold marched beside them, axes gleaming.\n"
         "From the hills, Mirost's shattered walls loomed, blackened and silent.\n"
         "Argloth had summoned horrors; whispers warned of undead and shadow.\n"
         "Soldiers tightened armor, checked weapons, hearts pounding with fear.\n"

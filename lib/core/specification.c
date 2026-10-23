@@ -278,6 +278,14 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     ret += sprintf(limiter, "you", "are", key);
                     break;
                 }
+                case "empty equipment slots":
+                {
+                    mixed rule = specificationData["limited by"][key];
+                    string *slots = pointerp(rule) ? rule : ({ rule });
+                    ret += sprintf(limiter, "your", implode(slots, ", "),
+                        "slots are empty");
+                    break;
+                }
                 case "equipment":
                 {
                     mixed rule = specificationData["limited by"][key];

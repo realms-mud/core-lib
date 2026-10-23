@@ -306,7 +306,7 @@ void ApplyModifiersCorrectlyAppliesWeaponDamage()
 {
     object weapon = 
         clone_object("/lib/instances/items/weapons/swords/long-sword.c");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("enchantments", (["magical":3, "fire" : 5, "acid" : 5]));
     move_object(weapon, User);
    

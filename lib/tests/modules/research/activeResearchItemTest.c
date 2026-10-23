@@ -310,6 +310,8 @@ void CallingExecuteOnSelfScopeCallsExecuteOnSelf()
 /////////////////////////////////////////////////////////////////////////////
 void CallingExecuteOnTargetedScopeCallsExecuteOnTarget()
 {
+    object room = clone_object("/lib/environment/environment.c");
+    move_object(User, room);
     ResearchItem.addSpecification("scope", "targeted");
     ResearchItem.ToggleReportExecution();
 
@@ -318,6 +320,32 @@ void CallingExecuteOnTargetedScopeCallsExecuteOnTarget()
     string err = catch (ResearchItem.execute("the command", User); nolog);
     string expectedError = "*research: executeOnTarget called";
     ExpectEq(expectedError, err);
+    destruct(room);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MissingTargetDoesNotConsumeAmmunitionOrResources()
+{
+    object room = clone_object("/lib/environment/environment.c");
+    move_object(User, room);
+    object quiver = clone_object("/lib/items/ammunition.c");
+    quiver.set("ammunition type", "arrow");
+    quiver.set("max capacity", 4);
+    quiver.set("quantity", 4);
+    move_object(quiver, User);
+    ResearchItem.addSpecification("scope", "targeted");
+    ResearchItem.addSpecification("command template", "shoot ##Target##");
+    ResearchItem.addSpecification("consumables", ([ "arrow":1 ]));
+    ResearchItem.addSpecification("stamina point cost", 10);
+    User.ToggleMockResearch();
+    int stamina = User.staminaPoints();
+    ExpectFalse(ResearchItem.execute("shoot absent", User));
+    ExpectEq(4, quiver.query("quantity"));
+    ExpectEq(stamina, User.staminaPoints());
+    ExpectSubStringMatch("valid target", User.caughtMessage());
+    ExpectEq(0, User.countObservations(([ "type":"research.use" ])));
+    destruct(quiver);
+    destruct(room);
 }
 
 /////////////////////////////////////////////////////////////////////////////

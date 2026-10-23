@@ -61,6 +61,49 @@ void ExactBlueprintRequiresEquippedItemNotJustMatchingSkill()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EmptySlotRulesValidateAllSlotsAndRejectMalformedValues()
+{
+    object service = getService("limitor");
+    ExpectTrue(service.validLimitor(([
+        "empty equipment slots":"wielded primary"
+    ])));
+    ExpectTrue(service.validLimitor(([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ])));
+    ExpectFalse(service.validLimitor(([ "empty equipment slots":({}) ])));
+    ExpectFalse(service.validLimitor(([ "empty equipment slots":"hands" ])));
+    ExpectFalse(service.validLimitor(([
+        "empty equipment slots":({ "wielded primary", 1 })
+    ])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void EmptyWieldedSlotsIgnoreCarriedWeaponsAndWornGloves()
+{
+    Specification.addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+    ExpectTrue(Specification.canApplySpecification("test", User));
+    ExpectTrue(Katana.equip("katana"));
+    ExpectFalse(Specification.canApplySpecification("test", User));
+    ExpectTrue(Katana.unequip("katana"));
+    Other.set("equipment locations", OnehandedWeapon);
+    ExpectTrue(Other.equip("other offhand"));
+    ExpectFalse(Specification.canApplySpecification("test", User));
+    ExpectTrue(Other.unequip("other"));
+    object gloves = clone_object("/lib/items/armor.c");
+    gloves.set("blueprint", "gloves");
+    gloves.set("name", "gloves");
+    move_object(gloves, User);
+    ExpectTrue(gloves.equip("gloves"));
+    ExpectTrue(Specification.canApplySpecification("test", User));
+    ExpectSubStringMatch("slots are empty",
+        Specification.displayLimiters("none", getService("configuration"), 1));
+    ExpectTrue(gloves.unequip("gloves"));
+    destruct(gloves);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void IndependentInstancesOfTheSameBlueprintQualify()
 {
     Other.set("blueprint", "katana");

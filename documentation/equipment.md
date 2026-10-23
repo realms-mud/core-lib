@@ -238,10 +238,10 @@ to ensure you're using the right material for your item's theme and intended
 power level.
 
 **Example of a Magical Material:**  
-Suppose you want to use a magical material like `"mithril"` (see `materials.h` for the full mapping):
+Suppose you want to use a magical material like `"lunarite"` (see `materials.h` for the full mapping):
 
 ~~~c
-"mithril": ([
+"lunarite": ([
     "class": "metal",
     "crafting skill required": 25,
     "crafting prerequisites": ([ ... ]),
@@ -254,7 +254,7 @@ Suppose you want to use a magical material like `"mithril"` (see `materials.h` f
 ])
 ~~~
 
-Mithril is much harder to craft, requires higher skills, and provides 
+Lunarite is much harder to craft, requires higher skills, and provides 
 both physical and magical bonuses. It is also enchantable, making it ideal 
 for legendary weapons and armor.
 
@@ -550,7 +550,7 @@ by a metal pommel set with crystal.");
 
 When viewed, this becomes:
 
-> "This masterwork blade features a mithril blade with an ornate steel 
+> "This masterwork blade features a lunarite blade with an ornate steel 
 crossguard. The hilt combines koa wood and pegasus leather wrapped with gold 
 wire, topped by a platinum pommel set with ruby."
 
@@ -572,15 +572,15 @@ protected void Setup()
     set("name", "Elemental Katana");
     set("short", "an elemental katana");
     set("blueprint", "katana");
-    set("material", "mithril");
-    set("primary crafting material", "mithril");
+    set("material", "lunarite");
+    set("primary crafting material", "lunarite");
     set("primary component", "blade");
     set("craftsmanship", 92);
 
     set("crafting materials", ([
         "blade": ([
             "description": "a gracefully curved, single-edged blade...",
-            "metal": "mithril",
+            "metal": "lunarite",
             "type": "Curved Edge",
             "value": 200
         ]),

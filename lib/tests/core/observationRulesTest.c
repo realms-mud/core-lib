@@ -96,6 +96,61 @@ void PrerequisiteSupportsGroupedObservationRules()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void PrerequisiteRejectsMalformedObservationAlternatives()
+{
+    foreach(mixed criteria in ({ ({}), ({ ([]) }),
+        ({ ([ "type":"" ]) }), ({ ([ "type":1 ]) }),
+        ({ ([ "type":"combat.kata" ]), 0 }),
+        ({ ({ ([ "type":"combat.kata" ]) }) }) }))
+    {
+        ExpectFalse(Prerequisite.AddTestPrerequisite("practice", ([
+            "type":"observation",
+            "criteria":criteria,
+            "value":10
+        ])));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ObservationAlternativesRequireOneFullThresholdWithoutSumming()
+{
+    mapping first = ([ "type":"combat.kata", "research":"first" ]);
+    mapping second = ([ "type":"research.use", "research":"second" ]);
+    ExpectTrue(Prerequisite.AddTestPrerequisite("practice", ([
+        "type":"observation",
+        "criteria":({ first, second }),
+        "value":10
+    ]), "trial"));
+    Actor.setResearchObservationCount("first", 9);
+    Actor.setResearchObservationCount("second", 9);
+    ExpectFalse(Prerequisite.checkPrerequisites(Actor, "trial"));
+    ExpectEq(second, Actor.queriedCriteria());
+    Actor.setResearchObservationCount("second", 10);
+    ExpectTrue(Prerequisite.checkPrerequisites(Actor, "trial"));
+    Actor.setResearchObservationCount("first", 10);
+    Actor.setResearchObservationCount("second", 0);
+    ExpectTrue(Prerequisite.checkPrerequisites(Actor, "trial"));
+    ExpectEq(first, Actor.queriedCriteria());
+    ExpectFalse(Prerequisite.checkPrerequisites(0, "trial"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void PrerequisiteDisplaysIndependentAlternativeThreshold()
+{
+    ExpectTrue(Prerequisite.AddTestPrerequisite("practice", ([
+        "type":"observation",
+        "criteria":({
+            ([ "type":"combat.kata" ]),
+            ([ "type":"research.use" ])
+        }),
+        "value":10
+    ])));
+    ExpectEq("Prerequisites:\n    Observation: Practice observation count "
+        "of 10 in any one of 2 alternatives\n",
+        Prerequisite.displayPrerequisites("none", Configuration));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void PrerequisiteFailsWithoutObservationQuerySupport()
 {
     object unsupported = clone_object(

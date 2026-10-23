@@ -34,6 +34,15 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TerminalRanksCannotAdvanceToDefaultRank()
+{
+    Guild.guildName("fake mage");
+    ExpectTrue(Guild.testAddRank("terminal", ([ "name":"terminal" ])));
+    ExpectFalse(Guild.canAdvanceRank(User, "terminal"));
+    ExpectEq("terminal", Guild.advanceRank(User, "terminal"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GuildNameSetsAndGetsNameOfGuild()
 {
     ExpectEq("BaseGuild", Guild.guildName(), "initial name is 'BaseGuild'");
@@ -434,6 +443,9 @@ void CanAdvanceRankOnlyWhenPrerequisitesAreMet()
     User.addSkillPoints(20);
     User.advanceSkill("long sword", 10);
     ExpectTrue(Guild.canAdvanceRank(User, "lesser squid"));
+    ExpectEq("grand master squid",
+        Guild.advanceRank(User, "lesser squid"),
+        "ranks without attached rewards still advance");
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1390,11 +1402,11 @@ void CannotAddInvalidDamageTypeToEquipmentProhibition()
 void CanUseEquipmentOfTypeNotAffectedByMaterial()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
-    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "galvorn" })));
+    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "obsynite" })));
     ExpectTrue(Guild.canUseEquipmentOfType(weapon));
 }
 
@@ -1402,11 +1414,11 @@ void CanUseEquipmentOfTypeNotAffectedByMaterial()
 void isProhibitedEquipmentAffectedByMaterial()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
-    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "galvorn" })));
+    ExpectTrue(Guild.testAddEquipmentProhibition("material", ({ "obsynite" })));
     ExpectTrue(Guild.isProhibitedEquipment(weapon));
 }
 
@@ -1414,7 +1426,7 @@ void isProhibitedEquipmentAffectedByMaterial()
 void CanUseEquipmentOfTypeNotAffectedByMaterialType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
@@ -1426,7 +1438,7 @@ void CanUseEquipmentOfTypeNotAffectedByMaterialType()
 void isProhibitedEquipmentAffectedByMaterialType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
@@ -1438,7 +1450,7 @@ void isProhibitedEquipmentAffectedByMaterialType()
 void CanUseEquipmentOfTypeAffectedByArmorType()
 {
     object armor = clone_object("/lib/items/armor");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
 
@@ -1450,7 +1462,7 @@ void CanUseEquipmentOfTypeAffectedByArmorType()
 void isProhibitedEquipmentNotAffectedByArmorType()
 {
     object armor = clone_object("/lib/items/armor");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", Armor);
 
@@ -1462,7 +1474,7 @@ void isProhibitedEquipmentNotAffectedByArmorType()
 void CanUseEquipmentOfTypeAffectedByArmorLocation()
 {
     object armor = clone_object("/lib/items/armor");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", ArmGreaves | LegGreaves | Armor);
 
@@ -1474,7 +1486,7 @@ void CanUseEquipmentOfTypeAffectedByArmorLocation()
 void isProhibitedEquipmentNotAffectedByArmorLocation()
 {
     object armor = clone_object("/lib/items/armor");
-    armor.set("material", "galvorn");
+    armor.set("material", "obsynite");
     armor.set("armor type", "chainmail");
     armor.set("equipment locations", OnehandedWeapon);
 
@@ -1486,7 +1498,7 @@ void isProhibitedEquipmentNotAffectedByArmorLocation()
 void CanUseEquipmentOfTypeAffectedByWeaponType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
@@ -1498,7 +1510,7 @@ void CanUseEquipmentOfTypeAffectedByWeaponType()
 void isProhibitedEquipmentNotAffectedByWeaponType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
@@ -1510,7 +1522,7 @@ void isProhibitedEquipmentNotAffectedByWeaponType()
 void CanUseEquipmentOfTypeNotAffectedByDamageType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 
@@ -1522,7 +1534,7 @@ void CanUseEquipmentOfTypeNotAffectedByDamageType()
 void isProhibitedEquipmentAffectedByDamageType()
 {
     object weapon = clone_object("/lib/items/weapon");
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
 

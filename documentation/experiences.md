@@ -103,6 +103,29 @@ identity, name, race and level, primary weapon blueprint and identity, state,
 active sustained research when available, season, moon phase, and time of day.
 Explicit producer context takes precedence over captured facts.
 
+When the actor and target expose the corresponding combat APIs, context also
+captures `actor level`, `opponent engaged`, `opponent allied`, `target alive`,
+and `qualifying opponent`. The qualification flag requires a living,
+non-ghost NPC other than the actor, already fighting the actor in the same
+non-null room, with at least half the actor's positive effective level.
+Actor party members and NPCs led by the actor are excluded. These are
+historical pre-effect facts, not queries against the target's later state.
+Targeted `research.use` events with another object as their subject capture
+the same opponent facts. Self-use, sustained activation with a Research-path
+subject, and learning events do not gain opponent qualification context.
+
+The monk's Measured Palm uses `combat.kata` and its Research path together
+with `qualifying opponent: 1` to gate Balanced Recovery at exactly ten
+successful executions. Opening strikes on neutral NPCs are excluded;
+qualifying killing blows retain their pre-effect facts. Repeated uses on
+one target or within one encounter count. Successful execution is the
+existing active-effect contract, not a separate accuracy or positive-damage
+requirement. Counts use existing database-side observation prerequisites,
+not per-player practice counters or in-memory history.
+The monk's Adept trial also accepts ten qualifying Focused Pulse uses through
+its existing `research.use` event, or ten qualifying uses of one approved
+kata. Partial counts across techniques are not combined.
+
 Combat records `combat.started` when an opponent is newly registered and
 `combat.ended` when that opponent is removed. Repeated registration or removal
 does not duplicate these events. Kills retain `combat.kill` alongside existing
@@ -161,6 +184,27 @@ addPrerequisite("kata practice", ([
     "value": 100
 ]));
 ```
+
+`criteria` may instead be a nonempty array of nonempty mappings. Any one
+alternative must independently reach `value`; matching counts are not added
+across alternatives. Alternatives use the same criteria format and positive
+threshold as a single mapping:
+
+```c
+addPrerequisite("specialist practice", ([
+    "type":"observation",
+    "criteria":({
+        ([ "type":"combat.kata", "research":"/guilds/example/kata.c" ]),
+        ([ "type":"research.use", "research":"/guilds/example/pulse.c" ])
+    }),
+    "value":10
+]));
+```
+
+This is a prerequisite-level choice, not a new query operator. Each check
+uses the existing bounded `hasObservation` query and stops querying once an
+alternative passes. Separate prerequisites still combine with logical AND,
+and existing single-mapping prerequisites retain their behavior.
 
 A limitor uses a flat filter with a positive `minimum`:
 
@@ -254,4 +298,6 @@ getter exists in the inspected APIs. Unsupported facts are omitted rather
 than invented: regions identify location, active sustained research identifies
 maintained abilities, blueprints identify recipes, and craftsmanship describes
 item quality. The current environment weather adjustment is a stub. Retention
-policy and production monk progression are intentionally not implemented.
+policy is not implemented. The initial monk unarmed practice gate is
+documented in [monk.md](monk.md); trials and broader mastery gates remain
+future content.

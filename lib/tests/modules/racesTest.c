@@ -109,7 +109,7 @@ void MonstersCanSetRaceToAnUnplayableRace()
     weapon.set("defense class", 2);
     weapon.set("weapon class", 10);
     weapon.set("bonus hit points", 2);
-    weapon.set("material", "galvorn");
+    weapon.set("material", "obsynite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, monster);

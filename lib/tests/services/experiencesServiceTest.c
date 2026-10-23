@@ -155,6 +155,40 @@ void ExplicitRoomContextWorksWithoutAnActor()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TargetedResearchUsesCaptureCombatFactsWithoutChangingOtherEvents()
+{
+    load_object("/guilds/monk/monk.c");
+    ExpectTrue(Actor.joinGuild("monk"));
+    object target = clone_object("/lib/realizations/npc.c");
+    target.Name("opponent");
+    target.effectiveLevel(Actor.effectiveLevel());
+    target.setMaxHitPoints(1000);
+    move_object(target, environment(Actor));
+    mapping observation = ([ "type":"research.use", "subject":target ]);
+    mapping context = Service.buildObservationContext(Actor, observation);
+    ExpectFalse(context["qualifying opponent"]);
+    ExpectTrue(target.registerAttacker(Actor));
+    context = Service.buildObservationContext(Actor, observation);
+    ExpectTrue(context["qualifying opponent"]);
+    ExpectTrue(context["target alive"]);
+    ExpectEq(target.Name(), context["target name"]);
+    ExpectEq(Actor.effectiveLevel(), context["target level"]);
+    ExpectFalse(member(Service.buildObservationContext(Actor, ([
+        "type":"research.learned",
+        "subject":target
+    ])), "qualifying opponent"));
+    ExpectFalse(member(Service.buildObservationContext(Actor, ([
+        "type":"research.use",
+        "subject":Actor
+    ])), "qualifying opponent"));
+    ExpectFalse(member(Service.buildObservationContext(Actor, ([
+        "type":"research.use",
+        "subject":"/guilds/monk/mana-shield/mindful-ward.c"
+    ])), "qualifying opponent"));
+    destruct(target);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void MatcherPreservesFieldPrecedence()
 {
     mapping observation = ([

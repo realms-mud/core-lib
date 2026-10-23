@@ -545,10 +545,14 @@ public nomask int canAdvanceLevel(object guildMember)
 private nomask string getNextRank(string rank)
 {
     string ret = "default";
-    if(rank && member(ranks, rank) && member(ranks[rank], "next rank"))
+    if(rank && member(ranks, rank))
     {
-        ret = member(ranks, ranks[rank]["next rank"]) ?
-            ranks[rank]["next rank"] : rank;
+        ret = rank;
+        if (member(ranks[rank], "next rank") &&
+            member(ranks, ranks[rank]["next rank"]))
+        {
+            ret = ranks[rank]["next rank"];
+        }
     }
     return ret;
 }
@@ -884,21 +888,21 @@ public nomask string advanceRank(object guildMember, string currentRank)
     if(canAdvanceRank(guildMember, currentRank))
     {
         string nextRank = getNextRank(currentRank);
+        int rankAdvanced = 1;
 
         if(member(advancementGrid, nextRank) && advancementGrid[nextRank] &&
            mappingp(advancementGrid[nextRank]))
         {
-            int rankAdvanced = 1;
             string *criteriaToApply = m_indices(advancementGrid[nextRank]);
             foreach(string criterion in criteriaToApply)
             {
                 rankAdvanced &&= applyAdvancementCriterion(
                     advancementGrid[nextRank][criterion], guildMember);
             }
-            if(rankAdvanced)
-            {
-                ret = nextRank;
-            }
+        }
+        if(rankAdvanced)
+        {
+            ret = nextRank;
         }
     }
     return ret;

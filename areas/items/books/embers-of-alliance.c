@@ -17,7 +17,7 @@ protected void Setup()
         "snippets of correspondence and council notes.");
 
     addChapter("Prefatory Letters",
-        "Eldarion's letters to Werra show a patient diplomacy. He urged a "
+        "Eldrevan's letters to Werra show a patient diplomacy. He urged a "
         "durable security pact that balanced respect for local autonomy "
         "with clear expectations of mutual aid. His instructions were "
         "practical: list what each city could muster, set rendezvous "
@@ -40,7 +40,7 @@ protected void Setup()
         "with incentives and a pragmatic hand.");
 
     addChapter("Diplomatic Maneuvers",
-        "Eldarion's envoys courted chieftains with both gifts and guarantees: "
+        "Eldrevan's envoys courted chieftains with both gifts and guarantees: "
         "retain your customs, keep your local leaders, but swear to assist "
         "in times of invasion. This guarantee of internal autonomy in "
         "exchange for external fidelity proved decisive in securing a "
@@ -49,7 +49,7 @@ protected void Setup()
     addChapter("The Crown for Bregandil",
         "The crown made for Bregandil was as much political as ceremonial. "
         "Its crafting involved the smiths of Dur-Hal, and its blessing by "
-        "Eldarion was a legal act: it bound Bregandil's house to Eneldhor by "
+        "Eldrevan was a legal act: it bound Bregandil's house to Eneldhor by "
         "oath and gift. Such acts convert personal loyalty into institutional "
         "obligation.");
 
@@ -66,7 +66,7 @@ protected void Setup()
         "defense into a mobile network of resupply.");
 
     addChapter("The Cost of Treaty",
-        "Treaties required concessions. Eldarion ceded certain levies and "
+        "Treaties required concessions. Eldrevan ceded certain levies and "
         "allowed local governors more autonomy than traditional feudal "
         "ties. This pragmatic adjustment bought stability and saved lives "
         "in the long run: the price of compromise sometimes buys more "

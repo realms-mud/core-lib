@@ -98,7 +98,7 @@ protected void Setup()
         "I feel the first true spark of what they will later call corruption.\n"
         "Sylthasis' presence merges with the tower, with stone, with me.\n"
         "I know I must continue, though I sense a line I will soon cross.\n"
-        "My pulse is the pulse of Zhardeg, my breath is the wind over Utumnadh.\n"
+        "My pulse is the pulse of Zhardeg, my breath is the wind over Morthundal.\n"
         "I shiver, but not from cold. Something inside me has awakened.\n"
         "[Marginal note: 'I cannot name it. It is hunger, it is knowledge,\n"
         "it is fear.']");

@@ -57,7 +57,7 @@ protected void Setup()
         "[Marginal note: 'Life, death, and the space between are mine to command.']");
 
     addChapter("The Mountain Watches",
-        "The cliffs of Utumnadh groan under the weight of the dead.\n"
+        "The cliffs of Morthundal groan under the weight of the dead.\n"
         "I walk among them, and they obey without question.\n"
         "The living flee; the dying obey; I stand in the eye of power.\n"
         "I feel Sylthasis' spirit, bound to my will, pulsing in my veins.\n"

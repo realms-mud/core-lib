@@ -397,7 +397,7 @@ void InventoryGetEncumberanceReturnsCorrectValue()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");
     move_object(shield, Inventory);
@@ -473,7 +473,7 @@ void InventoryGetAttackBonusReturnsCorrectValue()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -481,7 +481,7 @@ void InventoryGetAttackBonusReturnsCorrectValue()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");
     move_object(shield, Inventory);
@@ -525,7 +525,7 @@ void InventoryGetAttackBonusReturnsPenaltyWhenDualWielding()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -533,7 +533,7 @@ void InventoryGetAttackBonusReturnsPenaltyWhenDualWielding()
     object offhand = clone_object("/lib/items/weapon");
     offhand.set("name", "blarg");
     offhand.set("defense class", 1);
-    offhand.set("material", "mithril");
+    offhand.set("material", "lunarite");
     offhand.set("equipment locations", OnehandedWeapon);
     offhand.set("weapon type", "long sword");
     move_object(offhand, Inventory);
@@ -582,7 +582,7 @@ void InventoryGetAttackBonusAppliesSkillPenalty()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -606,7 +606,7 @@ void InventoryGetDamageBonusReturnsCorrectValue()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -614,7 +614,7 @@ void InventoryGetDamageBonusReturnsCorrectValue()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");
     move_object(shield, Inventory);
@@ -660,7 +660,7 @@ void InventoryGetDamageBonusHandlesSkillPenalty()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -825,7 +825,7 @@ void TransferItemsToUnequipsAndMovesAllDroppableItemsToDestination()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -833,7 +833,7 @@ void TransferItemsToUnequipsAndMovesAllDroppableItemsToDestination()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");
     move_object(shield, Inventory);
@@ -874,7 +874,7 @@ void TransferItemsToDoesNotMoveCursedOrUnmoveableObjects()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     mapping curseInfo = ([
@@ -888,7 +888,7 @@ void TransferItemsToDoesNotMoveCursedOrUnmoveableObjects()
     object shield = clone_object("/lib/items/weapon");
     shield.set("name", "shield");
     shield.set("defense class", 1);
-    shield.set("material", "mithril");
+    shield.set("material", "lunarite");
     shield.set("equipment locations", Shield);
     shield.set("weapon type", "shield");
     move_object(shield, Inventory);
@@ -931,7 +931,7 @@ void CanCarryCorrectlyDeterminesCurrentCarryWeight()
 
     object item = clone_object("/lib/tests/support/items/testSword.c");
     move_object(item, Inventory);
-    ExpectEq(13, Inventory.canCarry(item), "Galvorn sword by default weighs 7");
+    ExpectEq(13, Inventory.canCarry(item), "obsynite sword by default weighs 7");
 
     item.set("weight", 100);
     ExpectFalse(Inventory.canCarry(item), "returns false when max carry is exceeded");
@@ -1194,7 +1194,7 @@ void DamageBonusCalledFirstDoesNotCorruptAttackBonusCache()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -1217,7 +1217,7 @@ void AttackBonusCalledFirstDoesNotCorruptDamageBonusCache()
     object weapon = clone_object("/lib/items/weapon");
     weapon.set("name", "blah");
     weapon.set("weapon class", 8);
-    weapon.set("material", "mithril");
+    weapon.set("material", "lunarite");
     weapon.set("weapon type", "long sword");
     weapon.set("equipment locations", OnehandedWeapon);
     move_object(weapon, Inventory);
@@ -1244,7 +1244,7 @@ void DamageAndAttackBonusReturnSameValuesRegardlessOfCallOrder()
     object weaponA = clone_object("/lib/items/weapon");
     weaponA.set("name", "bladeA");
     weaponA.set("weapon class", 8);
-    weaponA.set("material", "mithril");
+    weaponA.set("material", "lunarite");
     weaponA.set("weapon type", "long sword");
     weaponA.set("equipment locations", OnehandedWeapon);
     move_object(weaponA, playerA);
@@ -1265,7 +1265,7 @@ void DamageAndAttackBonusReturnSameValuesRegardlessOfCallOrder()
     object weaponB = clone_object("/lib/items/weapon");
     weaponB.set("name", "bladeB");
     weaponB.set("weapon class", 8);
-    weaponB.set("material", "mithril");
+    weaponB.set("material", "lunarite");
     weaponB.set("weapon type", "long sword");
     weaponB.set("equipment locations", OnehandedWeapon);
     move_object(weaponB, playerB);

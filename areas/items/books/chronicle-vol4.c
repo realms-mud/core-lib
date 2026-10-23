@@ -41,7 +41,7 @@ protected void Setup()
         "alarmed, the remaining nations of the Lonis Vale join "
         "the alliance.\n\n"
         "Year 2194: Emendacil abdicates the throne of Hillgarath "
-        "to his son Beren.\n\n"
+        "to his son Berrec.\n\n"
         "Year 2213: Arvadan abdicates the throne of Eledhel to "
         "his son Areladur.");
 
@@ -104,7 +104,7 @@ protected void Setup()
         "mutual protection.\n\n"
         "Year 2366: Alendur, second son of King Romenadur, slain "
         "in battle near Helcarion.\n\n"
-        "Year 2368: Aradan assumes the throne of Eledhel.");
+        "Year 2368: Aravel assumes the throne of Eledhel.");
 
     addChapter("Plague, War, and the Kellgaard Dynasty",
         "Year 2379: Romenadur slain in battle with Kharand. "
@@ -119,7 +119,7 @@ protected void Setup()
         "is slain in battle. Given the lack of heir and fearing "
         "instability, Daedrun assumes the throne of Hillgarath "
         "as Daedrun Kellgaard I.\n\n"
-        "Year 2416: Aradan slain in battle by Hirnost. Ardenel "
+        "Year 2416: Aravel slain in battle by Hirnost. Ardenel "
         "assumes the throne of Eledhel.");
 
     addChapter("The Orcish Campaigns",
@@ -163,7 +163,7 @@ protected void Setup()
         "Year 2916: Ardenel of Eledhel, King Uldor III of Tirnost, "
         "and Lord Kellgaard of Hillgarath hold council amid fears "
         "of growing darkness. Uldor notes activity in Kharand and "
-        "Andurath and rumors of darkness from Utumnadh. Lord "
+        "Andurath and rumors of darkness from Morthundal. Lord "
         "Kellgaard discusses the re-emergence of the Keepers of "
         "the Night.\n\n"
         "Year 2926: Aradin, son of Ardenel, takes charge of the "
@@ -172,7 +172,7 @@ protected void Setup()
         "Year 2941: The orcs are utterly destroyed, their "
         "strongholds of Eznairun, Eralkidh, and Gharndar utterly "
         "wiped from the surface of the world. The king's sons "
-        "Aredec and Arador, as well as the king's nephew Aramed, "
+        "Aredec and Aldoran, as well as the king's nephew Aramed, "
         "performed with great distinction.\n\n"
         "[The chronicle ends here. The final entry is written in "
         "a rushed hand, as though the scribe was interrupted "

@@ -19,7 +19,7 @@ protected void Setup()
 
     addChapter("Chapter 1: Gathering Storm",
         "Reports came of Kharand's forces gathering beyond the mountains.\n"
-        "Beren and Areladur convened the northern lords at Hillgarath.\n"
+        "Berrec and Areladur convened the northern lords at Hillgarath.\n"
         "Messengers spoke of thousands of orcs and undead in marching columns.\n"
         "The dwarves of Khazurath prepared siege engines and magical wards.\n"
         "Villagers were conscripted to fortify towns along the Vale's rivers.\n"
@@ -42,7 +42,7 @@ protected void Setup()
     addChapter("Chapter 2: Clash at the Northern Pass",
         "The army reached the narrow northern pass as snow began to fall.\n"
         "Kharand's forces awaited, a wall of shields and moving dead.\n"
-        "Beren led the vanguard, swords gleaming despite the biting wind.\n"
+        "Berrec led the vanguard, swords gleaming despite the biting wind.\n"
         "Dwarves set traps along the cliffs, axes ready and fire at hand.\n"
         "The first clash was sudden, orcs charging, undead surging without pause.\n"
         "Arrows fell in waves, shields splintered, and the ground shook.\n"
@@ -73,7 +73,7 @@ protected void Setup()
         "Areladur noted everything, for knowledge was a weapon in itself.\n"
         "Some scrolls hinted at controlling the dead, dark power of Kharand.\n"
         "They returned to the surface, wary of traps and shadowed foes.\n"
-        "Reports to Beren and the council informed strategic decisions.\n"
+        "Reports to Berrec and the council informed strategic decisions.\n"
         "The knowledge of the tunnels changed the plans for the coming battle.\n"
         "Every fortification could now be threatened from below.\n"
         "New defenses were constructed, and spies infiltrated the enemy ranks.\n"
@@ -93,7 +93,7 @@ protected void Setup()
         "Knights charged in waves, attempting breaches under heavy fire.\n"
         "Corpses animated by dark magic struck from hidden positions.\n"
         "Every breach attempt was met with deadly resistance and traps.\n"
-        "Beren and Areladur coordinated flanks, supporting faltering sections.\n"
+        "Berrec and Areladur coordinated flanks, supporting faltering sections.\n"
         "The battle stretched for days, neither side yielding ground.\n"
         "Villagers and levies carried supplies, tended the wounded and dead.\n"
         "The siege tested morale, courage, and endurance to their limits.\n"

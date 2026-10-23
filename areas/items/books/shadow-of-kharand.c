@@ -74,7 +74,7 @@ protected void Setup()
         "Caravans carrying supplies to the border vanished without trace.\n"
         "Villagers fled, leaving homesteads to the shadows.\n"
         "Some brought tales of the dead walking in the night.\n"
-        "Others swore of a terrible figure in black atop Utumnadh.\n"
+        "Others swore of a terrible figure in black atop Morthundal.\n"
         "The mountains seemed alive with malignant intent.\n"
         "Areladur called the dwarves of Khazurath to council.\n"
         "They spoke of ancient magic stirring in Mirost's ruins.\n"

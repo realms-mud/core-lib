@@ -19,13 +19,13 @@ protected void Setup()
         "A measured account compiled from royal archives, dwarven "
         "records, and the writings of the Dhurasian order. It traces "
         "the founding of alliances, the rise of Argloth, and the "
-        "devastation wrought by dragons from Utumnadh.");
+        "devastation wrought by dragons from Morthundal.");
 
     addChapter("On the League of Dwarven Nations",
         "In the year 1204 was founded the League of Dwarven Nations.\n"
         "Emissaries gathered in Mirost under solemn oath and witness.\n"
         "Dhuran XI Stonehelm of Ekalbor sent word and gold.\n"
-        "Glanrin IV of Aglarond brought craft and counsel.\n"
+        "Glanrin IV of Glimmerdeep brought craft and counsel.\n"
         "Khazurin of Khazurath spoke for the deep halls.\n"
         "Azgurin IX received them in Mirost with measured honor.\n"
         "Their accord bound trade, war, and mutual defense.\n"
@@ -93,12 +93,12 @@ protected void Setup()
         "Whether this was victory or transformation is debated.\n"
         "[A marginal note: 'He fought darkness, and kept it.']\n");
 
-    addChapter("On the Dragons of Utumnadh",
+    addChapter("On the Dragons of Morthundal",
         "In 1692, the dragon Ilzhagash descended upon Mirost.\n"
         "The dwarves met it in battle and slew the beast.\n"
         "Their losses were great, though victory was certain.\n"
         "Yet before the year's end, another came: Sylthasis.\n"
-        "It issued from Utumnadh, greater in fury than the first.\n"
+        "It issued from Morthundal, greater in fury than the first.\n"
         "In 1693, Arnost was destroyed utterly by its fire.\n"
         "Mirost too fell, its defenses broken beyond repair.\n"
         "Survivors fled, many seeking refuge in Hillgarath.\n"
@@ -111,5 +111,5 @@ protected void Setup()
         "In 1714, Emandil assumed rule in Hillgarath.\n"
         "The lands remained scarred, yet not broken.\n"
         "From ruin arose new strength, though memory lingered.\n"
-        "The shadow of Utumnadh had not wholly passed.\n");
+        "The shadow of Morthundal had not wholly passed.\n");
 }

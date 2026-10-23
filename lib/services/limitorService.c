@@ -70,6 +70,9 @@ public nomask varargs int userFactorsMet(mapping specificationData, object owner
         ret = checkEquipmentLimitor(specificationData, owner, verbose,
             colorConfiguration, configuration) && ret;
 
+        ret = checkEmptyEquipmentSlotsLimitor(specificationData, owner, verbose,
+            colorConfiguration, configuration) && ret;
+
         ret = checkSkillLimitor(specificationData, owner, verbose,
             colorConfiguration, configuration) && ret;
 

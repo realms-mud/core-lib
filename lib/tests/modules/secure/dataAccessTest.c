@@ -265,6 +265,22 @@ void GetPlayerDataReturnsDataFromDatabase()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void SavedTemporaryTraitsAreReplacedAndCleared()
+{
+    mapping data = Database.Gorthaur();
+    DataAccess.savePlayerData(data);
+    data["temporaryTraits"] = "/guilds/monk/mana-shield/ward-trait.c";
+    DataAccess.savePlayerData(data);
+    mapping restored = DataAccess.getPlayerData("gorthaur");
+    ExpectEq(data["temporaryTraits"], restored["temporaryTraits"]);
+    data["temporaryTraits"] = "";
+    DataAccess.savePlayerData(data);
+    restored = DataAccess.getPlayerData("gorthaur");
+    ExpectEq("", restored["temporaryTraits"]);
+    DataAccess.savePlayerData(Database.Gorthaur());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GetPlayerDataForGuestReturnsSimpleMap()
 {
     mapping expected = ([ 

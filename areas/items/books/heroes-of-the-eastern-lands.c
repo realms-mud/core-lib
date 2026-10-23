@@ -60,10 +60,10 @@ protected void Setup()
         "Year 287. Curudil, grief-stricken, passed into the west.");
 
     addChapter("Bregandil, First King of Eledhel",
-        "Nephew of Eldarion, Bregandil led the fleet that "
+        "Nephew of Eldrevan, Bregandil led the fleet that "
         "reinforced the eastern alliance in Year 309. He "
         "founded the city of Eledhel in Year 311 and was "
-        "crowned its first king by Eldarion himself in 314.\n\n"
+        "crowned its first king by Eldrevan himself in 314.\n\n"
         "With him traveled Cuilornir, who founded the Aegis "
         "Guard - the elite force charged with the protection "
         "of Eledhel and its interests. Bregandil's line has "
@@ -85,8 +85,8 @@ protected void Setup()
     addChapter("The Kings of Eledhel",
         "From Bregandil to the present day, Eledhel has been "
         "ruled by his descendants. Notable among them:\n\n"
-        "Finwendil (409) - Lost his father at Utumnadh.\n"
-        "Erestel/Ar-Telcontar (667) - A long and peaceful "
+        "Finwendil (409) - Lost his father at Morthundal.\n"
+        "Erestel, heir of Arendor (667) - A long and peaceful "
         "reign.\n"
         "Arienwen (1765) - First queen. Aided Calendil's "
         "restoration of Hillgarath.\n"

@@ -21,7 +21,7 @@ protected void Setup()
 
     addChapter("The Oath of Departure",
         "Hear now of Bregandil, bold among princes,\n"
-        "Sister's son to Eldarion the steadfast king.\n"
+        "Sister's son to Eldrevan the steadfast king.\n"
         "When war was kindled on the eastern shore,\n"
         "He stood before his kin and made this oath:\n"
         "'I will not linger where the walls are sure,\n"
@@ -87,7 +87,7 @@ protected void Setup()
         "A shield for all who dwelt within those walls.\n");
 
     addChapter("The Crowning",
-        "When word was sent, Eldarion himself\n"
+        "When word was sent, Eldrevan himself\n"
         "Came eastward to behold what had been made.\n"
         "He saw the walls, the people, and the will,\n"
         "And knew a realm had risen from the strife.\n"
@@ -97,7 +97,7 @@ protected void Setup()
         "'Not mine this realm, nor mine the right to rule,\n"
         "But his who claimed it first by deed and oath.\n"
         "Let all men know this crown is justly won.'\n"
-        "So spoke Eldarion, and none gainsaid.\n"
+        "So spoke Eldrevan, and none gainsaid.\n"
         "Then Bregandil in turn addressed his folk:\n"
         "'This land is yours as much as it is mine;\n"
         "Together shall we guard what we have made.'\n"

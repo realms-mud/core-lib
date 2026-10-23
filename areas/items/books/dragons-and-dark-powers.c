@@ -9,7 +9,7 @@ protected void Setup()
 {
     set("name", "Dragons and Dark Powers");
     set("short", "A scorched book with claw marks on the cover");
-    set("title", "Dragons and Dark Powers: Utumnadh and the "
+    set("title", "Dragons and Dark Powers: Morthundal and the "
         "Terrors That Issue Forth");
     set("aliases", ({ "dragons", "dragons and dark powers",
         "scorched book", "claw book", "book" }));
@@ -17,8 +17,8 @@ protected void Setup()
         "leather cover bears what look like claw marks. Despite "
         "the damage, the text within is largely intact.");
 
-    addChapter("The Shadow of Utumnadh",
-        "Utumnadh has been a source of evil since before the "
+    addChapter("The Shadow of Morthundal",
+        "Morthundal has been a source of evil since before the "
         "founding of the eastern kingdoms. In Year 84, smoke "
         "first belched from its depths and orcs began to "
         "multiply in the surrounding mountains. By Year 108, "
@@ -27,18 +27,18 @@ protected void Setup()
         "The Orcslayer Wars that followed required the combined "
         "might of Hillgarath, Mirost, and Eneldhor to quell.");
 
-    addChapter("The Battle of Utumnadh, Year 409",
+    addChapter("The Battle of Morthundal, Year 409",
         "In Year 406, a dark force - believed to be one of "
-        "the fallen gods - established power within Utumnadh. "
+        "the fallen gods - established power within Morthundal. "
         "The alliance formulated plans to attack.\n\n"
         "The battle in Year 409 was victorious but devastating. "
         "Three kings fell: the kings of Mirost, Hillgarath, and "
-        "Eledhel. The menace within Utumnadh grew silent, but "
+        "Eledhel. The menace within Morthundal grew silent, but "
         "the cost was immense. This battle shaped the political "
         "landscape of the east for centuries to come.");
 
     addChapter("Ilzhagash and Sylthasis",
-        "In Year 1692, two dragons issued from Utumnadh. The "
+        "In Year 1692, two dragons issued from Morthundal. The "
         "first, Ilzhagash, attacked Mirost and was slain by "
         "the dwarves. The second, Sylthasis, proved far more "
         "terrible.\n\n"
@@ -83,10 +83,10 @@ protected void Setup()
         "not vanish. They fled Mirost in Year 2012, descending "
         "on Hillgarath. Rumors spread of undead hordes in the "
         "mountains - Argloth's legacy, perhaps, or something "
-        "worse stirring in Utumnadh's depths.\n\n"
+        "worse stirring in Morthundal's depths.\n\n"
         "The Battle of Zhaghadel in Years 2671-2674 silenced "
         "the orcs for two centuries. But they returned in Year "
         "2870, and in Year 2940 they besieged Ethyl Tirath. "
-        "Whatever dwells within Utumnadh, it is not done with "
+        "Whatever dwells within Morthundal, it is not done with "
         "the world.");
 }

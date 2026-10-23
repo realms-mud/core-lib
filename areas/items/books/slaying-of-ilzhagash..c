@@ -21,7 +21,7 @@ protected void Setup()
         "proud, and precise, honoring those who stood and did not yield.");
 
     addChapter("Of the Coming of Ilzhagash",
-        "In the year 1692, the wyrm Ilzhagash came forth from Utumnadh.\n"
+        "In the year 1692, the wyrm Ilzhagash came forth from Morthundal.\n"
         "It descended upon Arnost in fire and ruin.\n"
         "Walls were broken, and the upper halls laid waste.\n"
         "Men fled before it, as was their nature.\n"
@@ -31,7 +31,7 @@ protected void Setup()
         "And no dwarf who hears such a call remains seated.\n");
 
     addChapter("Of the Muster of the League",
-        "Hosts were gathered from Ekalbor, Aglarond, and Khazurath.\n"
+        "Hosts were gathered from Ekalbor, Glimmerdeep, and Khazurath.\n"
         "Dhuran XI Stonehelm sent warriors of proven lineage.\n"
         "Glanrin IV sent smiths whose craft was equal to their arms.\n"
         "Khazurin brought forth veterans of deep roads and old wars.\n"

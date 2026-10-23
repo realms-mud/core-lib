@@ -153,7 +153,7 @@ public nomask mapping Gorthaur()
         }),
         "relationships": ([
             "/lib/realizations/monster#fred": ([
-                "source": "/lib/realizations/player#Gorthaur",
+                "source": "/lib/realizations/player.c#Gorthaur",
                 "target": "/lib/realizations/monster#fred",
                 "dimensions": ([ "trust": 5, "respect": 2 ]),
                 "updated": 777
@@ -162,7 +162,7 @@ public nomask mapping Gorthaur()
         "relationshipHistory": ([
             "/lib/realizations/monster#fred": ({
                 ([
-                    "source": "/lib/realizations/player#Gorthaur",
+                    "source": "/lib/realizations/player.c#Gorthaur",
                     "target": "/lib/realizations/monster#fred",
                     "dimension": "trust",
                     "delta": 5,
@@ -481,7 +481,8 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         }),
         "relationships": ([
             "/lib/realizations/monster#fred": ([
-                "source": sprintf("/lib/realizations/player#%s", capitalize(name ? name : "earl")),
+                "source": sprintf("/lib/realizations/player.c#%s",
+                    capitalize(name ? name : "earl")),
                 "target": "/lib/realizations/monster#fred",
                 "dimensions": ([ "trust": 5, "respect": 2 ]),
                 "updated": 777
@@ -490,7 +491,8 @@ public nomask varargs mapping GetWizardOfLevel(string level, string name,
         "relationshipHistory": ([
             "/lib/realizations/monster#fred": ({
                 ([
-                    "source": sprintf("/lib/realizations/player#%s", capitalize(name ? name : "earl")),
+                    "source": sprintf("/lib/realizations/player.c#%s",
+                        capitalize(name ? name : "earl")),
                     "target": "/lib/realizations/monster#fred",
                     "dimension": "trust",
                     "delta": 5,

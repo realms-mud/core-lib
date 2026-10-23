@@ -79,11 +79,11 @@ protected void Setup()
         "Than live to see our halls in ashes laid.'\n"
         "So held they fast beneath the gathering dark.\n");
 
-    addChapter("The Coming of Eldarion",
+    addChapter("The Coming of Eldrevan",
         "In one hundred eleven rode two into war:\n"
-        "Eldarion, son of Arendor the wise,\n"
+        "Eldrevan, son of Arendor the wise,\n"
         "And Elthoron of Halbaladh's proud line.\n"
-        "Before the host, Eldarion raised his voice:\n"
+        "Before the host, Eldrevan raised his voice:\n"
         "'Men of the West, I come not here for name,\n"
         "Nor glory sung in halls when I am dust.\n"
         "I come that none shall say we did not stand\n"
@@ -94,10 +94,10 @@ protected void Setup()
         "So were they bound in word as well as deed,\n"
         "And hope was kindled in the watching host.\n");
 
-    addChapter("The Fall of Utumnadh",
-        "In one hundred twelve they marched on Utumnadh,\n"
+    addChapter("The Fall of Morthundal",
+        "In one hundred twelve they marched on Morthundal,\n"
         "A fortress black, long rooted in the night.\n"
-        "Before the walls, Eldarion gave command:\n"
+        "Before the walls, Eldrevan gave command:\n"
         "'Break now this gate, and let no shadow stand!\n"
         "For every stone that falls redeems the slain\n"
         "Whose blood yet cries from Arnost's silent streets.'\n"
@@ -107,7 +107,7 @@ protected void Setup()
         "'See now! The night itself is driven back!'\n"
         "So fell the stronghold, broken into ash,\n"
         "And all who saw it knew the tide had turned.\n"
-        "Then Eldarion returned unto his home,\n"
+        "Then Eldrevan returned unto his home,\n"
         "His oath fulfilled, yet war not ended still.\n");
 
     addChapter("The Expanding War",

@@ -34,6 +34,13 @@ protected mapping researchMenuSetup(string type)
             Service->getResearchDetails(type) +
             Service->displayTreePrerequisites(type, User);
 
+        if (researchObj->query("teacher required") &&
+            !User->isResearched(type))
+        {
+            Description += "Seek a teacher and use 'lessons from <teacher>' "
+                "or 'learn <lesson> from <teacher>'.\n";
+        }
+
         if (User->isResearching(type))
         {
             NumColumns = 1;
@@ -45,6 +52,7 @@ protected mapping researchMenuSetup(string type)
         }
 
         if (!User->isResearched(type) && !User->isResearching(type) &&
+            !researchObj->query("teacher required") &&
             User->canResearch(type) && !User->equivalentIsResearched(type) &&
             ((researchObj->query("research type") == "timed") ||
             ((researchObj->query("research type") == "points") &&
@@ -146,32 +154,34 @@ protected nomask string displayDetails(string choice)
 
     int useUnicode = User->charsetConfiguration() == "unicode";
 
-    if (User->isResearched(Data[choice]["type"]))
+    if (member(({ "exit", "learn" }), Data[choice]["type"]) < 0)
     {
-        ret = configuration->decorate(useUnicode ? " (\u2605)" : " (*)", 
-            "known", "research", colorConfiguration);
-    }
-    else if (User->equivalentIsResearched(Data[choice]["type"]))
-    {
-        ret = configuration->decorate(useUnicode ? " (\u2248)" : " (~)",
-            "equivalent", "research", colorConfiguration);
-    }
-    else if (member(User->availableResearchTrees(), Data[choice]["type"]) > -1)
-    {
-        ret = configuration->decorate(useUnicode ? " (\u21e8)" : " (T)",
-            "available tree", "research", colorConfiguration);
-    }
-    else if (User->isResearching(Data[choice]["type"]))
-    {
-        ret = configuration->decorate(useUnicode ? " (\u231b)" : " (!)", 
-            "in progress", "research", colorConfiguration);
-    }
-    else if (!User->canResearch(Data[choice]["type"]) &&
-        (member(({ "Return to previous menu", "Research this item" }),
-            Data[choice]["name"]) < 0))
-    {
-        ret = configuration->decorate(useUnicode ? " (\u2573)" : " (X)", 
-            "missing prerequisites", "research", colorConfiguration);
+        if (User->isResearched(Data[choice]["type"]))
+        {
+            ret = configuration->decorate(useUnicode ? " (\u2605)" : " (*)",
+                "known", "research", colorConfiguration);
+        }
+        else if (User->equivalentIsResearched(Data[choice]["type"]))
+        {
+            ret = configuration->decorate(useUnicode ? " (\u2248)" : " (~)",
+                "equivalent", "research", colorConfiguration);
+        }
+        else if (member(User->availableResearchTrees(),
+            Data[choice]["type"]) > -1)
+        {
+            ret = configuration->decorate(useUnicode ? " (\u21e8)" : " (T)",
+                "available tree", "research", colorConfiguration);
+        }
+        else if (User->isResearching(Data[choice]["type"]))
+        {
+            ret = configuration->decorate(useUnicode ? " (\u231b)" : " (!)",
+                "in progress", "research", colorConfiguration);
+        }
+        else if (!User->canResearch(Data[choice]["type"]))
+        {
+            ret = configuration->decorate(useUnicode ? " (\u2573)" : " (X)",
+                "missing prerequisites", "research", colorConfiguration);
+        }
     }
     return ret;
 }

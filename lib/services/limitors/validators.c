@@ -572,6 +572,20 @@ public nomask int validLimitor(mapping limitor)
                             stringp(limitor[key]);
                         break;
                     }
+                    case "empty equipment slots":
+                    {
+                        mixed *slots = pointerp(limitor[key]) ?
+                            limitor[key] : ({ limitor[key] });
+                        ret &&= sizeof(slots) > 0;
+                        string *validSlots = getService("materials")->
+                            slotsUsedByItemMask(AllWielded | AllWorn);
+                        foreach(mixed slot in slots)
+                        {
+                            ret &&= stringp(slot) &&
+                                member(validSlots, slot) >= 0;
+                        }
+                        break;
+                    }
                     case "equipment":
                     {
                         ret &&= validEquipmentLimitor(limitor[key]);

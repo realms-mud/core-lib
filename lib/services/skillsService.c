@@ -282,7 +282,7 @@ private mapping skills = ([
             "given the proper materials and time. In order to make some of "
             "the more ornate and/or magical armors, additional skills, such "
             "as Metal Crafting and Spellcraft may be necessary. Increases in "
-            "this skill allow mithril and galvorn or other exotic materials "
+            "this skill allow lunarite and obsynite or other exotic materials "
             "to be used.\n"
     ]),   
     "blacksmithing": ([

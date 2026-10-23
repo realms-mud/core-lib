@@ -95,7 +95,7 @@ protected void Setup()
         "Dor-Temnost watched, and answered in like kind,\n"
         "Till riverbanks were lined with waiting steel.\n"
         "Mirost joined at Ainderie's own call,\n"
-        "And Eldarion made ready far and wide.\n"
+        "And Eldrevan made ready far and wide.\n"
         "He spoke unto his captains and his kin:\n"
         "'Call forth the north, the mountain, and the vale;\n"
         "For if we stand divided, we are lost.'\n"
@@ -137,7 +137,7 @@ protected void Setup()
         "Men came from west and east to make it strong,\n"
         "A beacon set against the darkened world.\n"
         "And when at last the crown was placed with care,\n"
-        "Eldarion spoke before the gathered host:\n"
+        "Eldrevan spoke before the gathered host:\n"
         "'Not mine this crown, but his who forged this land.'\n"
         "Thus rose a kingdom born of war and will.\n");
 }

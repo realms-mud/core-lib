@@ -494,7 +494,7 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
     material.set("quantity", 3);
     move_object(material, Player);
 
-    material = clone_object("/lib/instances/items/materials/metal/galvorn.c");
+    material = clone_object("/lib/instances/items/materials/metal/obsynite.c");
     material.set("quantity", 3);
     move_object(material, Player);
 
@@ -518,7 +518,7 @@ void OnCraftingCompletedIsEmittedWhenCraftingIsCompleted()
         ]), 
         "crossguard": ([ "crystal": "ruby", 
                     "description": "an ornate metal knuckleguard that has been sculpted to appear as though a dracolich with crystal eyes is protecting the user's hand.", 
-                    "metal": "galvorn", 
+                    "metal": "obsynite", 
                     "type": "Dracolich Form", 
                     "value": 325 
         ]), 

@@ -32,7 +32,7 @@ protected void Setup()
         "The Werrics have fought in every major conflict of "
         "the eastern lands:\n\n"
         "Year 37: Retook Delerath with the dwarves of Mirost.\n"
-        "Year 409: Fought at Utumnadh. Lost their king.\n"
+        "Year 409: Fought at Morthundal. Lost their king.\n"
         "Year 1816: Restored King Calendil after civil war.\n"
         "Year 1965: Destroyed Argloth at the Battle of Mirost.\n"
         "Year 2249: Broke the siege of Celebduil.\n"

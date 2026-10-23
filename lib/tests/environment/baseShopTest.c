@@ -75,7 +75,7 @@ void StoreItemPlacesItemInShopInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("craftsmanship", 80);
-    sword.set("material", "galvorn");
+    sword.set("material", "obsynite");
     sword.set("bonus attack", 5);
 
     ExpectEq(0, sizeof(Shop.storeInventory()));
@@ -87,7 +87,7 @@ void StoreItemPlacesItemInShopInventory()
     sword = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("all", Shop.storeInventory()["/lib/instances/items/weapons/swords/long-sword"]["data"]);
     ExpectEq("Long sword", sword.query("name"));
-    ExpectEq("galvorn", sword.query("material"));
+    ExpectEq("obsynite", sword.query("material"));
     ExpectEq(80, sword.query("craftsmanship"));
     destruct(sword);
 }
@@ -97,7 +97,7 @@ void BuyItemRemovesItemFromInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("craftsmanship", 80);
-    sword.set("material", "galvorn");
+    sword.set("material", "obsynite");
     sword.set("bonus attack", 5);
 
     ExpectTrue(Shop.storeItem(sword));
@@ -132,7 +132,7 @@ void BuyItemDoesNotRemovePermanentItemsFromInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("craftsmanship", 80);
-    sword.set("material", "galvorn");
+    sword.set("material", "obsynite");
     sword.set("bonus attack", 5);
 
     ExpectTrue(Shop.storeItem(sword,1));
@@ -147,7 +147,7 @@ void BuyNonExistantItemReturnsFalseAndDoesNotRemoveItemsFromInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("craftsmanship", 80);
-    sword.set("material", "galvorn");
+    sword.set("material", "obsynite");
     sword.set("bonus attack", 5);
 
     ExpectTrue(Shop.storeItem(sword));
@@ -162,7 +162,7 @@ void ResetInventoryClearsInventory()
 {
     object sword = load_object("/lib/instances/items/weapons/swords/long-sword.c");
     sword.set("craftsmanship", 80);
-    sword.set("material", "galvorn");
+    sword.set("material", "obsynite");
     sword.set("bonus attack", 5);
 
     ExpectTrue(Shop.storeItem(sword));
@@ -194,7 +194,7 @@ void UpdateShopInventoryRemovesGenericWeaponsButNotSpecialOnes()
 {
     object swordA = clone_object("/lib/instances/items/weapons/swords/long-sword.c");
     swordA.set("craftsmanship", 80);
-    swordA.set("material", "galvorn");
+    swordA.set("material", "obsynite");
     swordA.set("bonus attack", 5);
 
     object swordB = clone_object("/lib/instances/items/weapons/swords/long-sword.c");

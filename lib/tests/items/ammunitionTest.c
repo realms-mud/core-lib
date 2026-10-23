@@ -29,6 +29,18 @@ void IdReturnsTrueForAmmunitionType()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EmptyAmmunitionReportsZeroRatherThanBooleanPresence()
+{
+    ExpectEq(0, Ammo.query("quantity"));
+    ExpectTrue(Ammo.set("quantity", 1));
+    ExpectEq(1, Ammo.query("quantity"));
+    ExpectTrue(Ammo.set("quantity", 0));
+    ExpectEq(0, Ammo.query("quantity"));
+    ExpectEq(24, Ammo.query("remaining capacity"));
+    ExpectTrue(Ammo.doNotDestroyWhenConsumed());
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ShortReturnsCorrectMessageWhenEmpty()
 {
     ExpectEq("A quiver that is empty (24 max)", 
