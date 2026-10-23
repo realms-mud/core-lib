@@ -280,8 +280,21 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                 }
                 case "equipment":
                 {
+                    mixed rule = specificationData["limited by"][key];
                     string equipment = "";
-                    if (pointerp(specificationData["limited by"][key]) &&
+                    if (mappingp(rule) ||
+                        (pointerp(rule) && sizeof(rule) && mappingp(rule[0])))
+                    {
+                        mapping *requirements = mappingp(rule) ?
+                            ({ rule }) : rule;
+                        foreach(mapping requirement in requirements)
+                        {
+                            ret += sprintf(limiter, "you're", "using:",
+                                getService("limitor")->
+                                    describeEquipmentRequirement(requirement));
+                        }
+                    }
+                    else if (pointerp(specificationData["limited by"][key]) &&
                         sizeof(specificationData["limited by"][key]))
                     {
                         equipment =
@@ -291,7 +304,10 @@ public nomask varargs string displayLimiters(string colorConfiguration,
                     {
                         equipment = specificationData["limited by"][key];
                     }
-                    ret += sprintf(limiter, "you're", "using:", equipment);
+                    if (equipment != "")
+                    {
+                        ret += sprintf(limiter, "you're", "using:", equipment);
+                    }
                     break;
                 }
                 case "attribute":

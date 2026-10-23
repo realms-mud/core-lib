@@ -297,6 +297,8 @@ Incoming dimensions use stored-procedure upserts and a cascading player foreign
 key. Outgoing dimensions retain the existing tables and procedures. Saves no
 longer prune all relationships, avoiding loss of unrelated persisted targets.
 The existing player persistence pipeline now includes the relationship domain.
+Restored outgoing sources and incoming targets use the same canonical
+`/lib/realizations/player.c#Name` identity as the live player module.
 Do not concurrently edit the same character through multiple live objects;
 dimension writes follow the existing player's single-writer save lifecycle.
 Research progress, pending mentorships, observations, and relationships share

@@ -7,6 +7,23 @@ virtual inherit "/lib/services/limitors/user-checkers.c";
 virtual inherit "/lib/services/limitors/environment-checkers.c";
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask string describeEquipmentRequirement(mapping requirement)
+{
+    string *fields = ({ });
+    foreach(string field in ({ "blueprint", "type", "slot" }))
+    {
+        if (member(requirement, field))
+        {
+            string value = pointerp(requirement[field]) ?
+                implode(sort_array(requirement[field], (: $1 > $2 :)),
+                    " or ") : requirement[field];
+            fields += ({ field + ": " + value });
+        }
+    }
+    return implode(fields, "; ");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int userFactorsMet(mapping specificationData, object owner, 
     object target, int verbose)
 {

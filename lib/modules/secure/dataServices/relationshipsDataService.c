@@ -525,7 +525,7 @@ protected nomask mapping getRelationships(int playerId, int dbHandle,
         "incomingRelationships":([])
     ]);
 
-    string source = sprintf("/lib/realizations/player#%s",
+    string source = sprintf("/lib/realizations/player.c#%s",
         capitalize(playerName));
 
     string query = sprintf("select targetKey from relationships "

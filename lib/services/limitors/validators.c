@@ -2,6 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include "/lib/include/inventory.h"
 
 /////////////////////////////////////////////////////////////////////////////
 private nomask int validRaceLimitor(mixed raceValue)
@@ -317,6 +318,49 @@ private nomask int validEnvironmentLimitor(mixed type)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int validEquipmentRequirement(mapping requirement)
+{
+    int ret = sizeof(requirement) &&
+        (member(requirement, "blueprint") || member(requirement, "type"));
+    object materials = getService("materials");
+    foreach(mixed key in m_indices(requirement))
+    {
+        if (key == "slot")
+        {
+            ret &&= stringp(requirement[key]) &&
+                member(materials->slotsUsedByItemMask(AllWielded | AllWorn),
+                    requirement[key]) >= 0;
+        }
+        else if (key == "blueprint" || key == "type")
+        {
+            mixed values = requirement[key];
+            values = pointerp(values) ? values : ({ values });
+            ret &&= sizeof(values) > 0;
+            foreach(mixed value in values)
+            {
+                int valid = 0;
+                if (stringp(value) && sizeof(value))
+                {
+                    valid = key == "blueprint" ?
+                        (materials->isValidWeaponBlueprint(value) ||
+                            materials->isValidArmorBlueprint(value) ||
+                            materials->isValidInstrumentBlueprint(value)) :
+                        (materials->isValidWeaponType(value) ||
+                            materials->isValidArmorType(value) ||
+                            materials->isValidInstrumentBlueprint(value));
+                }
+                ret &&= valid;
+            }
+        }
+        else
+        {
+            ret = 0;
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int validEquipmentLimitor(mixed equipmentValue)
 {
     int ret = 0;
@@ -324,20 +368,60 @@ private nomask int validEquipmentLimitor(mixed equipmentValue)
     object materialsService = getService("materials");
     if (materialsService)
     {
-        if (pointerp(equipmentValue) && sizeof(equipmentValue))
+        if (mappingp(equipmentValue))
+        {
+            ret = validEquipmentRequirement(equipmentValue);
+        }
+        else if (pointerp(equipmentValue) && sizeof(equipmentValue) &&
+            mappingp(equipmentValue[0]))
+        {
+            ret = 1;
+            mapping slotBlueprints = ([]);
+            foreach(mixed requirement in equipmentValue)
+            {
+                if (mappingp(requirement) &&
+                    validEquipmentRequirement(requirement))
+                {
+                    if (member(requirement, "slot") &&
+                        member(requirement, "blueprint"))
+                    {
+                        string slot = requirement["slot"];
+                        string *allowed = pointerp(requirement["blueprint"]) ?
+                            requirement["blueprint"] :
+                            ({ requirement["blueprint"] });
+                        if (member(slotBlueprints, slot))
+                        {
+                            allowed &= slotBlueprints[slot];
+                        }
+                        slotBlueprints[slot] = allowed;
+                        ret &&= sizeof(allowed) > 0;
+                    }
+                }
+                else
+                {
+                    ret = 0;
+                }
+            }
+        }
+        else if (pointerp(equipmentValue) && sizeof(equipmentValue))
         {
             int isValid = 0;
-            foreach(string equipment in equipmentValue)
+            ret = 1;
+            foreach(mixed equipment in equipmentValue)
             {
-                isValid ||= materialsService->isValidArmorType(equipment) ||
-                    materialsService->isValidArmorBlueprint(equipment) ||
-                    materialsService->isValidInstrumentBlueprint(equipment) ||
-                    materialsService->isValidWeaponType(equipment) ||
-                    materialsService->isValidWeaponBlueprint(equipment);
+                ret &&= stringp(equipment);
+                if (stringp(equipment))
+                {
+                    isValid ||= materialsService->isValidArmorType(equipment) ||
+                        materialsService->isValidArmorBlueprint(equipment) ||
+                        materialsService->isValidInstrumentBlueprint(equipment) ||
+                        materialsService->isValidWeaponType(equipment) ||
+                        materialsService->isValidWeaponBlueprint(equipment);
+                }
             }
-            ret = isValid;
+            ret &&= isValid;
         }
-        else
+        else if (stringp(equipmentValue))
         {
             ret = materialsService->isValidArmorType(equipmentValue) ||
                 materialsService->isValidArmorBlueprint(equipmentValue) ||

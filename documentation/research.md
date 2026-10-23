@@ -506,7 +506,8 @@ Research trees add **parent-child prerequisites** automatically:
 
 Limiters determine whether a character can USE a research item after it's learned. They're checked each time the ability is used.
 
-**Defined in**: `lib/core/specification.c` and `lib/services/limitor.c`
+**Defined in**: [specification.c](../lib/core/specification.c) and
+[limitorService.c](../lib/services/limitorService.c)
 
 ### Valid Limiter Types
 
@@ -529,7 +530,7 @@ Limiters determine whether a character can USE a research item after it's learne
 | `near death` | Must be below HP threshold | 0-100 (percentage) |
 | `stamina drained` | Must be below stamina threshold | 0-100 (percentage) |
 | `spell points drained` | Must be below SP threshold | 0-100 (percentage) |
-| `equipment` | Must be using equipment | Equipment name or array of equipment |
+| `equipment` | Must be using equipment | Legacy type string/list, structured requirement, or array of structured requirements |
 | `attribute` | Minimum attribute requirement | Mapping of attribute: value |
 | `skill` | Minimum skill requirement | Mapping of skill: value |
 | `quests` | Must have completed quests | Array of quest paths |
@@ -555,6 +556,68 @@ addSpecification("limited by", ([
     })
 ]));
 ```
+
+### Exact equipment blueprints and slots
+
+Legacy equipment strings continue to match equipment types (normally the
+weapon skill), not exact blueprints. A string array means any listed type.
+For an exact design, use the structured equipment form:
+
+```c
+addSpecification("limited by", ([
+    "equipment":([
+        "blueprint":"katana",
+        "type":"hand and a half sword",
+        "slot":"wielded primary"
+    ]),
+    "skill":([ "hand and a half sword":25 ])
+]));
+```
+
+- `blueprint` matches `query("blueprint")`, not the item's name, file, or
+  weapon skill. Two separate katana items both qualify.
+- `type` retains the existing equipment-type matching rules.
+- At least one of `blueprint` or `type` is required. Each accepts a string or
+  a nonempty array of alternatives.
+- Optional `slot` uses an actual registry slot such as `wielded primary`,
+  `wielded offhand`, or `armor`, not an inventory location.
+- All fields in one mapping must match the same equipped object. A katana
+  in one hand and a matching skill on a different weapon do not satisfy a
+  combined requirement.
+- Other limiter keys remain AND conditions. A skill threshold does not
+  become a learning prerequisite unless separately authored as one.
+
+An array of mappings requires every mapping to pass. For example, this
+requires a katana in the primary hand and a kama in the offhand:
+
+```c
+addSpecification("limited by", ([
+    "equipment":({
+        ([ "blueprint":"katana", "slot":"wielded primary" ]),
+        ([ "blueprint":"kama", "slot":"wielded offhand" ])
+    })
+]));
+```
+
+Use different explicit slots when different items are required. Without
+slots, one item can satisfy multiple requirements. Do not mix strings and
+mappings in one equipment array.
+
+Unknown fields, invalid identifiers, empty alternatives, invalid slots, and
+disjoint blueprint requirements for the same slot are rejected at authoring.
+Type overrides remain supported; a combined type/blueprint mismatch fails at
+runtime rather than matching a different item. Items without a matching
+blueprint do not qualify merely because their skill matches. Blueprint
+matching honors the item's existing blueprint query and its legacy fallback;
+it does not add a new stored blueprint property.
+
+Carried items do not count. Checks inspect current equipment on each use and
+each repeated active effect; swapping or unequipping a weapon immediately
+changes eligibility without forgetting learned research. Direct active
+execution checks limitors before consumables and resource spending as well.
+No new player persistence or eligibility cache is introduced. Blueprint
+renames/removals require explicit updates to authored restrictions and items;
+there is no automatic broadening to a weapon skill.
 
 ### Prerequisites vs Limiters Summary
 

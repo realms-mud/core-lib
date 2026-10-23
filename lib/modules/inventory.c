@@ -109,6 +109,17 @@ private nomask object *equippedByMask(int mask)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask int equipmentMatchesType(object equipment, string type)
+{
+    return (equipment->query("weapon type") == type) ||
+        (equipment->query("armor type") == type) ||
+        (equipment->query("instrument type") == type) ||
+        (equipment->query("crafting tool") == type) ||
+        (member(materialsObject()->slotsUsedByItemMask(
+            equipment->query("equipment locations")), type) > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask varargs int usingEquipmentOfType(string type, int location)
 {
     int ret = 0;
@@ -118,13 +129,7 @@ public nomask varargs int usingEquipmentOfType(string type, int location)
     {
         foreach(object equipment in items)
         {
-            ret ||= (equipment->query("weapon type") == type) ||
-                (equipment->query("armor type") == type) ||
-                (equipment->query("instrument type") == type) ||
-                (equipment->query("crafting tool") == type) ||
-                (member(
-                    materialsObject()->slotsUsedByItemMask(equipment->query("equipment locations")),
-                    type) > -1);
+            ret ||= equipmentMatchesType(equipment, type);
         }
     }
     return ret;
@@ -142,6 +147,42 @@ public nomask object equipmentInSlot(string slot)
        objectp(itemRegistry["equipped"][slot]))
     {
         ret = itemRegistry["equipped"][slot];
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask int usingEquipmentMatching(mapping requirement)
+{
+    int ret = 0;
+    if (!getService("limitor")->validLimitor(([ "equipment":requirement ])))
+    {
+        raise_error("ERROR - inventory: Invalid equipment requirement.\n");
+    }
+    else
+    {
+        foreach(object equipment in equippedByMask(AllWielded | AllWorn))
+        {
+            int matches = !member(requirement, "slot") ||
+                equipmentInSlot(requirement["slot"]) == equipment;
+            foreach(string field in ({ "blueprint", "type" }))
+            {
+                if (member(requirement, field))
+                {
+                    string *values = pointerp(requirement[field]) ?
+                        requirement[field] : ({ requirement[field] });
+                    int found = 0;
+                    foreach(string value in values)
+                    {
+                        found ||= field == "blueprint" ?
+                            equipment->query("blueprint") == value :
+                            equipmentMatchesType(equipment, value);
+                    }
+                    matches &&= found;
+                }
+            }
+            ret ||= matches;
+        }
     }
     return ret;
 }

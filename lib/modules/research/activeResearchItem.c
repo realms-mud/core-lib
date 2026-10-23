@@ -275,9 +275,11 @@ private nomask int applyToScope(string command, object owner,
 public nomask void repeatEffect(int timesRemaining, string command, 
     object owner, string researchName)
 {
-    int ret = applyToScope(command, owner, researchName);
+    int ret = objectp(owner) &&
+        canApplySpecification(command, owner, getTarget(owner, command), 1) &&
+        applyToScope(command, owner, researchName);
 
-    if(member(specificationData, "repeated ability message") &&
+    if(ret && member(specificationData, "repeated ability message") &&
         stringp(specificationData["repeated ability message"]))
     {
         object target = getTarget(owner, command);
@@ -385,7 +387,9 @@ public nomask int execute(string command, object initiator)
     if(initiator && objectp(initiator) && 
         (canExecuteCommand(command) || (compositeResearch == command)) &&
         function_exists("isResearched", initiator) &&
-        initiator->isResearched(researchName))
+        initiator->isResearched(researchName) &&
+        canApplySpecification(command, initiator,
+            getTarget(initiator, command), 1))
     {
         notify_fail("");
         ret = 1;

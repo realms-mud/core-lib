@@ -85,6 +85,70 @@ void DamageHitPointsWillExecuteAttack()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void BlueprintRestrictionsGateExecutionAndResourceUseAfterWeaponSwaps()
+{
+    Effect.testAddSpecification("damage hit points", ({
+        ([ "probability":100, "base damage":25, "range":0 ])
+    }));
+    Effect.testAddSpecification("spell point cost", 5);
+    Effect.testAddSpecification("limited by", ([
+        "equipment":([ "blueprint":"katana" ])
+    ]));
+    int energy = User.spellPoints();
+    int cost = 5 - User.researchBonusTo("ReduceSpellPoints");
+    ExpectFalse(Effect.execute("throw turnip at frank", User));
+    ExpectEq(50, Target.hitPoints());
+    ExpectEq(energy, User.spellPoints());
+
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon.set("blueprint", "katana");
+    weapon.set("name", "blade");
+    move_object(weapon, User);
+    ExpectTrue(weapon.equip("blade"));
+    ExpectTrue(Effect.execute("throw turnip at frank", User));
+    ExpectTrue(Target.hitPoints() < 50);
+    ExpectEq(energy - cost, User.spellPoints());
+    int remaining = Target.hitPoints();
+    User.stopFight(Target);
+    Target.stopFight(User);
+    User.heart_beat();
+    int afterRecovery = User.spellPoints();
+
+    ExpectTrue(weapon.unequip("blade"));
+    weapon.set("blueprint", "bastard sword");
+    ExpectTrue(weapon.equip("blade"));
+    ExpectFalse(Effect.execute("throw turnip at frank", User));
+    ExpectEq(remaining, Target.hitPoints());
+    ExpectEq(afterRecovery, User.spellPoints());
+    destruct(weapon);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void RepeatedEffectsRecheckBlueprintAfterEquipmentChanges()
+{
+    Effect.testAddSpecification("damage hit points", ({
+        ([ "probability":100, "base damage":5, "range":0 ])
+    }));
+    Effect.testAddSpecification("limited by", ([
+        "equipment":([ "blueprint":"katana" ])
+    ]));
+    object weapon = clone_object("/lib/items/weapon.c");
+    weapon.set("blueprint", "katana");
+    weapon.set("name", "blade");
+    move_object(weapon, User);
+    ExpectTrue(weapon.equip("blade"));
+    Effect.repeatEffect(1, "throw turnip at frank", User,
+        program_name(Effect));
+    ExpectTrue(Target.hitPoints() < 50);
+    int remaining = Target.hitPoints();
+    ExpectTrue(weapon.unequip("blade"));
+    Effect.repeatEffect(1, "throw turnip at frank", User,
+        program_name(Effect));
+    ExpectEq(remaining, Target.hitPoints());
+    destruct(weapon);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void IncreaseHitPointsWillNotExecuteAttack()
 {
     mapping formula = ([

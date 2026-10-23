@@ -365,7 +365,30 @@ protected nomask int checkEquipmentLimitor(mapping specificationData,
 
     if (member(specificationData["limited by"], "equipment"))
     {
-        if (pointerp(specificationData["limited by"]["equipment"]) &&
+        mixed equipmentRule = specificationData["limited by"]["equipment"];
+        if (mappingp(equipmentRule) ||
+            (pointerp(equipmentRule) && sizeof(equipmentRule) &&
+                mappingp(equipmentRule[0])))
+        {
+            mapping *requirements = mappingp(equipmentRule) ?
+                ({ equipmentRule }) : equipmentRule;
+            foreach(mapping requirement in requirements)
+            {
+                int matches = function_exists("usingEquipmentMatching", owner) &&
+                    owner->usingEquipmentMatching(requirement);
+                ret = matches && ret;
+                if (!matches && verbose)
+                {
+                    write(configuration->decorate(sprintf(
+                        "You must be using the proper equipment for that "
+                        "(%s).\n", getService("limitor")->
+                            describeEquipmentRequirement(requirement)),
+                        "missing prerequisites", "research",
+                        colorConfiguration));
+                }
+            }
+        }
+        else if (pointerp(specificationData["limited by"]["equipment"]) &&
             sizeof(specificationData["limited by"]["equipment"]))
         {
             int hasEquipment = 0;
@@ -382,7 +405,9 @@ protected nomask int checkEquipmentLimitor(mapping specificationData,
                 owner->usingEquipmentOfType(specificationData["limited by"]["equipment"]);
         }
 
-        if (!ret && verbose)
+        if (!ret && verbose && !mappingp(equipmentRule) &&
+            !(pointerp(equipmentRule) && sizeof(equipmentRule) &&
+                mappingp(equipmentRule[0])))
         {
             write(configuration->decorate(
                 sprintf("You must be using the proper equipment for that (%s).\n",

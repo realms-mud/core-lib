@@ -48,6 +48,7 @@ void CleanUp()
 void BothDirectionsAndMultipleTargetsSurviveSaveDestroyRestore()
 {
     string npcKey = getService("relationship")->identity(Npc);
+    string playerKey = Player.relationshipIdentity();
     Player.modifyRelationship(Npc, "trust", 12);
     Player.modifyRelationship("/actors/second.c#Second", "respect", 7);
     Npc.modifyRelationship(Player, "trust", 34);
@@ -61,6 +62,19 @@ void BothDirectionsAndMultipleTargetsSurviveSaveDestroyRestore()
     Player = clone_object("/lib/realizations/player.c");
     Player.restore("gorthaur");
     Npc = clone_object("/lib/tests/support/relationships/npc.c");
+    ExpectEq(playerKey, Player.relationshipIdentity());
+    mapping outgoing = Player.relationshipToward(Npc);
+    ExpectEq(playerKey, outgoing["source"]);
+    ExpectEq(npcKey, outgoing["target"]);
+    mapping incoming = Player.relationshipFrom(Npc);
+    ExpectEq(npcKey, incoming["source"]);
+    ExpectEq(playerKey, incoming["target"]);
+    mapping second = Player.relationshipToward("/actors/second.c#Second");
+    ExpectEq(playerKey, second["source"]);
+    ExpectEq("/actors/second.c#Second", second["target"]);
+    mapping third = Player.relationshipFrom("/actors/third.c#Third");
+    ExpectEq("/actors/third.c#Third", third["source"]);
+    ExpectEq(playerKey, third["target"]);
     ExpectEq(12, Player.relationshipValue(npcKey, "trust"));
     ExpectEq(34, Npc.relationshipValue(Player, "trust"));
     ExpectEq(7, Player.relationshipValue("/actors/second.c#Second", "respect"));
@@ -75,12 +89,16 @@ void BothDirectionsAndMultipleTargetsSurviveSaveDestroyRestore()
     Player = clone_object("/lib/realizations/player.c");
     Player.restore("gorthaur");
     ExpectEq(35, Npc.relationshipValue(Player, "trust"));
+    ExpectEq(playerKey, Player.relationshipToward(Npc)["source"]);
+    ExpectEq(playerKey, Player.relationshipFrom(Npc)["target"]);
 }
 
 void LegacyHistoryIsPreservedWithoutCreatingNewHistory()
 {
     string target = "/lib/realizations/monster#fred";
     ExpectEq(1, sizeof(Player.relationshipHistoryToward(target, ([]))));
+    ExpectEq(Player.relationshipIdentity(),
+        Player.relationshipHistoryToward(target, ([]))[0]["source"]);
     Player.modifyRelationship(target, "trust", 3);
     Player.save();
     Player.save();
