@@ -30,7 +30,7 @@ void PrepareRecognizedStudent()
 {
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian, Intro));
-    AdvanceMonkToLevel(5);
+    AdvanceMonkToLevel(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -117,7 +117,7 @@ void EnrollmentCurriculumAndInitialLessonWorkThroughPlayerCommands()
 void TeachingUsesInstructorRespectRatherThanStudentOpinion()
 {
     ExpectTrue(User.joinGuild("monk"));
-    AdvanceMonkToLevel(5);
+    AdvanceMonkToLevel(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -144,7 +144,7 @@ void AdvancedTeacherRequiresRecognitionRankAndOwnCurriculum()
 {
     PrepareRecognizedStudent();
     ExpectFalse(User.learnResearchFrom(Ren, Controlled));
-    AdvanceMonkToLevel(10);
+    AdvanceMonkToLevel(20);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.executeCommand("advance with lian"));
@@ -186,7 +186,7 @@ void RecognitionCannotBeSelfGrantedEvenAfterAllPrerequisitesAreMet()
 {
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian, Intro));
-    AdvanceMonkToLevel(5);
+    AdvanceMonkToLevel(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));

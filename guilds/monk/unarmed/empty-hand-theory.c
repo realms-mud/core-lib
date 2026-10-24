@@ -3,10 +3,65 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Empty Hand Theory", "Uniting intention and alignment "
-        "adds three points to Empty Hand's damage.", 25, "empty-hand",
-        "unarmed", "Empty Hand", "bonus", 3);
+    addSpecification("name", "Empty Hand Theory");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Uniting intention and alignment refines earlier techniques: "
+        "three points for Measured Palm, Driving Elbow, Hammer Fist, and "
+        "Empty Hand; two for Rising Heel and Crushing Embrace; one for "
+        "Sapping Palm and Meridian Strike.");
+
+    addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":60
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/unarmed/empty-hand.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/unarmed/empty-hand.c",
+            "/guilds/monk/unarmed/measured-palm.c",
+            "/guilds/monk/unarmed/driving-elbow.c",
+            "/guilds/monk/unarmed/hammer-fist.c",
+            "/guilds/monk/unarmed/rising-heel.c",
+            "/guilds/monk/unarmed/crushing-embrace.c",
+            "/guilds/monk/unarmed/sapping-palm.c",
+            "/guilds/monk/unarmed/meridian-strike.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Empty Hand":3,
+        "Measured Palm":3,
+        "Driving Elbow":3,
+        "Hammer Fist":3,
+        "Rising Heel":2,
+        "Crushing Embrace":2,
+        "Sapping Palm":1,
+        "Meridian Strike":1
+    ]));
 }

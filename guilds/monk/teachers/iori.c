@@ -4,6 +4,7 @@
 //*****************************************************************************
 inherit "/lib/realizations/researchTeacher.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("iori");
@@ -16,13 +17,6 @@ protected void Setup()
     SetUpPersonaOfLevel("archer", 30);
     addRelationshipInteraction("training.completed",
         ([ "respect":2, "admiration":1 ]));
-    object tree = getService("research")->researchTree(
-        "/guilds/monk/archery.c");
-    foreach(object item in m_indices(tree->getFlattenedResearchTree()))
-    {
-        if (item->query("research type") != "tree root")
-        {
-            addLesson(program_name(item), ([]), "");
-        }
-    }
+    deferLessonLoading();
+    addLessonTree("/guilds/monk/archery.c", ({}));
 }

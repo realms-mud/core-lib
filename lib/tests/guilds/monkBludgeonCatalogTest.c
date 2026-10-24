@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object Tree;
 object User;
@@ -12,6 +11,7 @@ object Weapon;
 object Offhand;
 string Base = "/guilds/monk/bludgeon/";
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     load_object("/guilds/monk/monk.c");
@@ -19,6 +19,7 @@ void Init()
         "LearnPath", "TeachMonkTrialLesson", "CompleteMonkUpperTrial" });
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Tree = load_object("/guilds/monk/bludgeon.c");
@@ -36,6 +37,7 @@ void Setup()
     move_object(User, Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     if (Offhand)
@@ -50,6 +52,7 @@ void CleanUp()
     destruct(Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EquipBlueprint(string blueprint)
 {
     if (Weapon)
@@ -63,6 +66,7 @@ void EquipBlueprint(string blueprint)
     ExpectTrue(Weapon.equip("implement"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceMonk(int level)
 {
     int advancing = 1;
@@ -74,6 +78,7 @@ void AdvanceMonk(int level)
     ExpectEq(level, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareMaster(object lian, object ren)
 {
     ExpectTrue(User.joinGuild("monk"));
@@ -85,7 +90,7 @@ void PrepareMaster(object lian, object ren)
         "mastery-of-fundamentals" });
     for (int index = 0; index < sizeof(foundations); index++)
     {
-        AdvanceMonk(5 * (index + 1));
+        AdvanceMonk(MonkPromotionLevels[index]);
         ExpectTrue(User.initiateResearch("/guilds/monk/discipline/" +
             foundations[index] + ".c"));
         if (index == 2)
@@ -119,6 +124,7 @@ void PrepareMaster(object lian, object ren)
     ExpectEq("master", User.guildRank("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LearnPath(string path, object ren)
 {
     if (!User.isResearched(path))
@@ -144,6 +150,7 @@ void LearnPath(string path, object ren)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryBludgeonItemIsLearnableThroughRealTeachersAndDependencies()
 {
     object lian = clone_object("/guilds/monk/teachers/lian.c");
@@ -167,6 +174,7 @@ void EveryBludgeonItemIsLearnableThroughRealTeachersAndDependencies()
     destruct(lian);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FortyNonRootItemsHaveRealAndVariedEffects()
 {
     mapping catalog = Tree.getFlattenedResearchTree();
@@ -213,15 +221,9 @@ void FortyNonRootItemsHaveRealAndVariedEffects()
     ExpectEq(5, counts["sustained"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void NewItemsRequireMembershipRankLevelAndExplicitResearchParents()
 {
-    mapping rankAtLevel = ([
-        10:"disciple",
-        15:"adept",
-        20:"senior disciple",
-        25:"master candidate",
-        30:"master"
-    ]);
     int checked = 0;
     foreach (object item in m_indices(Tree.getFlattenedResearchTree()))
     {
@@ -236,7 +238,10 @@ void NewItemsRequireMembershipRankLevelAndExplicitResearchParents()
             ExpectEq(({ "monk" }), prerequisites["monk"]["value"]);
             ExpectEq("monk", prerequisites["level"]["guild"]);
             ExpectEq("guild rank", prerequisites["rank"]["type"]);
-            ExpectEq(rankAtLevel[level],
+            ExpectEq(level < 10 ? "initiate" :
+                level < 20 ? "student" : level < 30 ? "disciple" :
+                level < 40 ? "adept" : level < 55 ? "senior disciple" :
+                level < 70 ? "master candidate" : "master",
                 prerequisites["rank"]["value"][0]);
             foreach (string parent in Tree.getParents(path))
             {
@@ -250,6 +255,7 @@ void NewItemsRequireMembershipRankLevelAndExplicitResearchParents()
     ExpectEq(38, checked);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryKnowledgeEffectHasAnExecutableReceiver()
 {
     mapping byName = ([]);
@@ -298,6 +304,7 @@ void EveryKnowledgeEffectHasAnExecutableReceiver()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RuntimeEquipmentLimitsCoverKnowledgePassivesSustainsAndAttacks()
 {
     foreach (string blueprint in ({ "staff", "quarterstaff", "mace",
@@ -328,6 +335,7 @@ void RuntimeEquipmentLimitsCoverKnowledgePassivesSustainsAndAttacks()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FamilyBonusesRequireBothLiveTypeAndBlueprint()
 {
     EquipBlueprint("mace");
@@ -352,6 +360,7 @@ void FamilyBonusesRequireBothLiveTypeAndBlueprint()
     ExpectFalse(grip.canApplySpecification("bonus mace", User));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MasteryPassivesRequireBothDefensiveAndKnowledgeBranches()
 {
     foreach (string item, string *parents in ([
@@ -362,8 +371,13 @@ void MasteryPassivesRequireBothDefensiveAndKnowledgeBranches()
     {
         mapping prerequisites =
             load_object(Base + item + ".c").getPrerequisites();
-        ExpectEq(30, prerequisites["level"]["value"]);
-        ExpectEq(({ "master" }), prerequisites["rank"]["value"]);
+        ExpectEq(item == "staff-equilibrium" ? 56 :
+            item == "mace-composure" ? 58 : 60,
+            prerequisites["level"]["value"]);
+        string *ranks = prerequisites["rank"]["value"];
+        ExpectEq(2, sizeof(ranks));
+        ExpectTrue(member(ranks, "master candidate") >= 0);
+        ExpectTrue(member(ranks, "master") >= 0);
         foreach (string parent in parents)
         {
             ExpectEq("research",
@@ -372,6 +386,7 @@ void MasteryPassivesRequireBothDefensiveAndKnowledgeBranches()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FoundationKnowledgeActuallyChangesMeasuredImpactCooldown()
 {
     object lian = clone_object("/guilds/monk/teachers/lian.c");
@@ -382,7 +397,7 @@ void FoundationKnowledgeActuallyChangesMeasuredImpactCooldown()
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceMonk(5);
+    AdvanceMonk(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -390,7 +405,7 @@ void FoundationKnowledgeActuallyChangesMeasuredImpactCooldown()
         "/guilds/monk/discipline/steady-practice.c"));
     ExpectTrue(User.learnResearchFrom(lian,
         "/guilds/monk/discipline/teachers-recognition.c"));
-    AdvanceMonk(10);
+    AdvanceMonk(20);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.advanceRank("monk"));

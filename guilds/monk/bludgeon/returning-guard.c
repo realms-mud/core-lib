@@ -3,29 +3,67 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Returning Guard", "Maintain a compact recovery guard for "
-        "one parry and one defense. Reserve eight stamina; each received "
-        "hit costs one stamina. Requires a primary bludgeon.", 15, 2,
-        "/guilds/monk/bludgeon/recovery-economy.c", ([
+    addSpecification("name", "Returning Guard");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Maintain a compact recovery guard for one parry and one defense. "
+        "Reserve eight stamina; each received hit costs one stamina. "
+        "Requires a primary bludgeon.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":({ "staff", "mace", "hammer" }),
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":32
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "adept", "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/recovery-economy.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
+
     addSpecification("bonus parry", 1);
     addSpecification("bonus defense", 1);
+
     addSpecification("stamina point cost", 8);
-    addSpecification("per hit received cost", ([ "stamina points":1 ]));
+
+    addSpecification("per hit received cost", ([
+        "stamina points":1
+    ]));
+
     addSpecification("cooldown", 10);
+
     addSpecification("command template", "kata returning guard");
     addSpecification("use ability activate message",
-        "##InitiatorName## settle##InitiatorReflexive## into a returning guard.");
+        "##InitiatorName## settle##InitiatorReflexive## into a returning "
+        "guard.");
     addSpecification("use ability deactivate message",
         "##InitiatorName## relax##InitiatorReflexive## the returning guard.");
 }

@@ -3,10 +3,56 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Pulse Mapping", "Recognizing vulnerable rhythms adds "
-        "three points to Meridian Strike's spell-point drain.", 25,
-        "meridian-strike", "unarmed", "Meridian Strike", "bonus", 3);
+    addSpecification("name", "Pulse Mapping");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Recognizing vulnerable rhythms adds three points to Meridian "
+        "Strike and Returning Breath, and two to Sapping Palm and "
+        "Centering Breath.");
+
+    addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":62
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/unarmed/meridian-strike.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/unarmed/meridian-strike.c",
+            "/guilds/monk/unarmed/returning-breath.c",
+            "/guilds/monk/unarmed/sapping-palm.c",
+            "/guilds/monk/unarmed/centering-breath.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Meridian Strike":3,
+        "Returning Breath":3,
+        "Sapping Palm":2,
+        "Centering Breath":2
+    ]));
 }

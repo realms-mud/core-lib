@@ -3,12 +3,43 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Lucid Mind", "Interrupt the habit of wasteful exertion, "
-        "adding one to the existing spell-point reduction bonus.",
-        30, 3, "/guilds/monk/pure-chi/perfect-economy.c", ([]));
+    addSpecification("name", "Lucid Mind");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Interrupt the habit of wasteful exertion, adding one to the "
+        "existing spell-point reduction bonus.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":55
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/perfect-economy.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus reduce spell points", 1);
 }

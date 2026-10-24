@@ -35,9 +35,9 @@ public nomask int execute(string command, object initiator)
             message = sprintf("%s offers these lessons:\n", teacher->Name());
             foreach(string item in teacher->teachableResearch())
             {
-                object research = getService("research")->researchObject(item);
+                string name = getService("lessons")->lessonName(item);
                 string refusal = teacher->lessonRefusal(initiator, item);
-                message += sprintf("  %s: %s\n", research->query("name"),
+                message += sprintf("  %s: %s\n", name,
                     sizeof(refusal) ? refusal : "Ready to learn.");
             }
         }
@@ -65,15 +65,8 @@ public nomask int execute(string command, object initiator)
         {
             string name = lower_case(regreplace(command,
                 "^learn (.+) from .+$", "\\1"));
-            string *matches = ({});
-            foreach(string item in teacher->teachableResearch())
-            {
-                object research = getService("research")->researchObject(item);
-                if (lower_case(research->query("name")) == name)
-                {
-                    matches += ({ item });
-                }
-            }
+            string *matches = getService("lessons")->matchingLessons(
+                teacher->teachableResearch(), name);
             message = "That lesson is not uniquely identified in this "
                 "teacher's curriculum. Use 'lessons from <teacher>'.\n";
             if (sizeof(matches) == 1)

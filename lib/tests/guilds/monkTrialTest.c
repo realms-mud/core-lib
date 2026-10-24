@@ -14,6 +14,7 @@ object Room;
 object Target;
 object Weapon;
 object Companion;
+int StudentNumber;
 string Trial = "/guilds/monk/discipline/adepts-trial.c";
 string Palm = "/guilds/monk/unarmed/measured-palm.c";
 string Cut = "/guilds/monk/katana/measured-cut.c";
@@ -32,14 +33,22 @@ void Init()
     ignoreList += ({ "AdvanceMonkToLevel", "PrepareDisciple",
         "PrepareCandidate", "ReadyPractice", "AddHistoricalPractice",
         "CompleteTrialUsing" });
+    Room = clone_object("/lib/environment/environment.c");
+    Lian = clone_object("/guilds/monk/teachers/lian.c");
+    Ren = clone_object("/guilds/monk/teachers/ren.c");
+    Sora = clone_object("/guilds/monk/teachers/sora.c");
+    Iori = clone_object("/guilds/monk/teachers/iori.c");
+    foreach(object teacher in ({ Lian, Ren, Sora, Iori }))
+    {
+        move_object(teacher, Room);
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/environment.c");
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User.Name("candidate");
+    User.Name(sprintf("candidate%d", ++StudentNumber));
     User.Str(20);
     User.Int(20);
     User.Dex(20);
@@ -48,19 +57,11 @@ void Setup()
     User.Chr(20);
     User.Race("human");
     User.colorConfiguration("none");
-    Lian = clone_object("/guilds/monk/teachers/lian.c");
-    Ren = clone_object("/guilds/monk/teachers/ren.c");
-    Sora = clone_object("/guilds/monk/teachers/sora.c");
-    Iori = clone_object("/guilds/monk/teachers/iori.c");
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
-    Target.effectiveLevel(8);
+    Target.effectiveLevel(15);
     Target.setMaxHitPoints(10000);
     move_object(User, Room);
-    move_object(Lian, Room);
-    move_object(Ren, Room);
-    move_object(Sora, Room);
-    move_object(Iori, Room);
     move_object(Target, Room);
 }
 
@@ -80,11 +81,16 @@ void CleanUp()
         destruct(Arrows);
     }
     destruct(Target);
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
     destruct(Ren);
     destruct(Sora);
     destruct(Iori);
     destruct(Lian);
-    destruct(User);
     destruct(Room);
 }
 
@@ -106,7 +112,7 @@ void PrepareDisciple(int recognized)
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceMonkToLevel(5);
+    AdvanceMonkToLevel(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -117,7 +123,7 @@ void PrepareDisciple(int recognized)
         ExpectTrue(User.learnResearchFrom(Lian,
             "/guilds/monk/discipline/teachers-recognition.c"));
     }
-    AdvanceMonkToLevel(10);
+    AdvanceMonkToLevel(20);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -127,7 +133,7 @@ void PrepareDisciple(int recognized)
 void PrepareCandidate()
 {
     PrepareDisciple(1);
-    AdvanceMonkToLevel(15);
+    AdvanceMonkToLevel(30);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciples-insight.c"));
 }
@@ -174,8 +180,6 @@ varargs void CompleteTrialUsing(string research, string command,
         research == Draw ? Iori : Ren;
     if (research == Draw)
     {
-        ExpectTrue(User.learnResearchFrom(Iori,
-            "/guilds/monk/archery/archers-grip.c"));
         Arrows = clone_object("/lib/items/ammunition.c");
         Arrows.set("name", "practice quiver");
         Arrows.set("ammunition type", "arrow");
@@ -343,7 +347,7 @@ void TrialRequiresMembershipLevelInsightAndRecognition()
     PrepareDisciple(0);
     AddHistoricalPractice(Palm, "combat.kata", 10, 1);
     ExpectFalse(User.canResearch(Trial));
-    AdvanceMonkToLevel(15);
+    AdvanceMonkToLevel(30);
     ExpectFalse(User.canResearch(Trial));
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciples-insight.c"));
@@ -375,11 +379,11 @@ void ChiOpeningStrikesAndWeakOpponentsDoNotProvideTrialEvidence()
         "research":Pulse
     ])));
     ExpectEq(0, User.countObservations(criteria));
-    Target.effectiveLevel(7);
+    Target.effectiveLevel(14);
     ReadyPractice();
     ExpectTrue(User.executeCommand("chi focused pulse at opponent"));
     ExpectEq(0, User.countObservations(criteria));
-    Target.effectiveLevel(8);
+    Target.effectiveLevel(15);
     ReadyPractice();
     ExpectTrue(User.executeCommand("chi focused pulse at opponent"));
     ExpectEq(1, User.countObservations(criteria));

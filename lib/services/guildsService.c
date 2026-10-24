@@ -94,7 +94,6 @@ public nomask int registerGuild(string location)
     if (file_size(location) > 0)
     {
         object guild = getGuildObject(location);
-        guild->SetupGuild();
 
         if (guild && objectp(guild) &&
             (member(inherit_list(guild), BaseGuild) > -1) &&

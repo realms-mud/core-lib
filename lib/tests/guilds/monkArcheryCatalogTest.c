@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object User;
 object Lian;
@@ -13,23 +12,33 @@ object Room;
 object Target;
 object Arrows;
 object *Weapons;
+int StudentNumber;
 string Base = "/guilds/monk/archery/";
 string Draw = "/guilds/monk/archery/measured-draw.c";
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     load_object("/guilds/monk/monk.c");
     ignoreList += ({ "AdvanceTo", "PrepareDisciple", "PrepareMaster",
         "LearnPath", "EquipWeapon", "RecoverAction", "LearnDraw",
         "TeachMonkTrialLesson", "CompleteMonkUpperTrial" });
+    Room = clone_object("/lib/environment/environment.c");
+    Lian = clone_object("/guilds/monk/teachers/lian.c");
+    Ren = clone_object("/guilds/monk/teachers/ren.c");
+    Iori = clone_object("/guilds/monk/teachers/iori.c");
+    foreach(object teacher in ({ Lian, Ren, Iori }))
+    {
+        move_object(teacher, Room);
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Weapons = ({});
-    Room = clone_object("/lib/environment/environment.c");
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User.Name("archer");
+    User.Name(sprintf("archer%d", ++StudentNumber));
     User.Str(20);
     User.Int(20);
     User.Dex(20);
@@ -37,12 +46,9 @@ void Setup()
     User.Wis(20);
     User.Chr(20);
     User.colorConfiguration("none");
-    Lian = clone_object("/guilds/monk/teachers/lian.c");
-    Ren = clone_object("/guilds/monk/teachers/ren.c");
-    Iori = clone_object("/guilds/monk/teachers/iori.c");
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
-    Target.effectiveLevel(15);
+    Target.effectiveLevel(35);
     Target.setMaxHitPoints(10000);
     Arrows = clone_object("/lib/items/ammunition.c");
     Arrows.set("name", "practice quiver");
@@ -50,13 +56,11 @@ void Setup()
     Arrows.set("max capacity", 40);
     Arrows.set("quantity", 40);
     move_object(User, Room);
-    move_object(Lian, Room);
-    move_object(Ren, Room);
-    move_object(Iori, Room);
     move_object(Target, Room);
     move_object(Arrows, User);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     foreach(object weapon in Weapons)
@@ -68,13 +72,19 @@ void CleanUp()
     }
     destruct(Arrows);
     destruct(Target);
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
     destruct(Iori);
     destruct(Ren);
     destruct(Lian);
-    destruct(User);
     destruct(Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceTo(int level)
 {
     int advancing = 1;
@@ -86,13 +96,14 @@ void AdvanceTo(int level)
     ExpectEq(level, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareDisciple(int recognized)
 {
     ExpectTrue(User.joinGuild("monk"));
     User.addResearchPoints(500);
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceTo(5);
+    AdvanceTo(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -103,9 +114,9 @@ void PrepareDisciple(int recognized)
         ExpectTrue(User.learnResearchFrom(Lian,
             "/guilds/monk/discipline/teachers-recognition.c"));
     }
-    AdvanceTo(9);
-    ExpectFalse(User.isResearched(Base + "root.c"));
-    AdvanceTo(10);
+    AdvanceTo(19);
+    ExpectTrue(User.isResearched(Base + "root.c"));
+    AdvanceTo(20);
     ExpectTrue(User.isResearched(Base + "root.c"));
     ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/archery.c") >= 0);
@@ -114,6 +125,7 @@ void PrepareDisciple(int recognized)
     ExpectTrue(User.advanceRank("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareMaster()
 {
     PrepareDisciple(1);
@@ -121,7 +133,7 @@ void PrepareMaster()
         "inner-discipline", "mastery-of-fundamentals" });
     for (int index = 0; index < sizeof(foundations); index++)
     {
-        AdvanceTo(15 + 5 * index);
+        AdvanceTo(MonkPromotionLevels[index + 2]);
         ExpectTrue(User.initiateResearch("/guilds/monk/discipline/" +
             foundations[index] + ".c"));
         if (!index)
@@ -148,21 +160,14 @@ void PrepareMaster()
     ExpectEq("master", User.guildRank("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LearnPath(string name)
 {
     string path = Base + name + ".c";
-    if (!User.isResearched(path))
-    {
-        object tree = getService("research")->researchTree(
-            "/guilds/monk/archery.c");
-        foreach(string parent in tree->getParents(path))
-        {
-            LearnPath(regreplace(parent, "^.*/([^/]+).c$", "\\1"));
-        }
-        ExpectTrue(User.learnResearchFrom(Iori, path), path);
-    }
+    TeachMonkTrialLesson(User, ({ Iori }), path);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 object EquipWeapon(string blueprint)
 {
     object weapon = clone_object("/lib/items/weapon.c");
@@ -174,6 +179,7 @@ object EquipWeapon(string blueprint)
     return weapon;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RecoverAction()
 {
     User.stopFight(Target);
@@ -192,6 +198,7 @@ void RecoverAction()
     ExpectTrue(User.registerAttacker(Target));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LearnDraw()
 {
     PrepareDisciple(1);
@@ -200,6 +207,7 @@ void LearnDraw()
     RecoverAction();
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FortyLessonsHaveMixedTypesAndExecutableKnowledgeReceivers()
 {
     object tree = getService("research")->researchTree(
@@ -233,7 +241,7 @@ void FortyLessonsHaveMixedTypesAndExecutableKnowledgeReceivers()
             item->query("research type") != "tree root")
         {
             mapping affected = item->query("affected research");
-            ExpectEq(1, sizeof(affected));
+            ExpectTrue(sizeof(affected) >= 1);
             foreach(string name in m_indices(affected))
             {
                 object receiver = names[name];
@@ -249,7 +257,10 @@ void FortyLessonsHaveMixedTypesAndExecutableKnowledgeReceivers()
                         {
                             wired ||= modifier["type"] == "research" &&
                                 modifier["research item"] == path &&
-                                modifier["rate"] == 3.0;
+                                modifier["formula"] == "additive" &&
+                                modifier["base value"] == 1 &&
+                                modifier["rate"] ==
+                                    to_float(affected[name]);
                         }
                     }
                     foreach(string key in ({
@@ -267,6 +278,7 @@ void FortyLessonsHaveMixedTypesAndExecutableKnowledgeReceivers()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllFortyLessonsAreGenuinelyReachableThroughIori()
 {
     PrepareMaster();
@@ -286,10 +298,13 @@ void AllFortyLessonsAreGenuinelyReachableThroughIori()
     ExpectEq(40, count);
 }
 
-void LevelTenRecognitionAndNearbyCorrectTeacherAreRequired()
+/////////////////////////////////////////////////////////////////////////////
+void RecognitionAndNearbyCorrectTeacherAreRequiredForAdvancedLessons()
 {
     PrepareDisciple(0);
-    string lesson = Base + "archers-grip.c";
+    ExpectTrue(User.learnResearchFrom(Iori, Draw));
+    ExpectTrue(User.learnResearchFrom(Iori, Base + "archers-grip.c"));
+    string lesson = Base + "archers-footing.c";
     int points = User.researchPoints();
     ExpectFalse(User.learnResearchFrom(Iori, lesson));
     ExpectEq(points, User.researchPoints());
@@ -304,20 +319,22 @@ void LevelTenRecognitionAndNearbyCorrectTeacherAreRequired()
     move_object(Iori, Room);
     ExpectTrue(User.executeCommand("lessons from iori"));
     ExpectSubStringMatch("Measured Draw", User.caughtMessage());
-    ExpectTrue(User.executeCommand("learn archer's grip from iori"));
+    ExpectTrue(User.executeCommand("learn archer's footing from iori"));
     points = User.researchPoints();
     int respect = Iori.relationshipValue(User, "respect");
     ExpectFalse(User.learnResearchFrom(Iori, lesson));
     ExpectEq(points, User.researchPoints());
     ExpectEq(respect, Iori.relationshipValue(User, "respect"));
     ExpectTrue(User.leaveGuild("monk"));
-    ExpectFalse(User.learnResearchFrom(Iori, Base + "measured-draw.c"));
+    ExpectFalse(User.learnResearchFrom(Iori, Base + "archers-guard.c"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllFiveBowBlueprintsQualifyButCarriedAndOtherWeaponsDoNot()
 {
     PrepareDisciple(1);
     LearnPath("measured-draw");
+    LearnPath("archers-grip");
     object draw = load_object(Draw);
     int bonus = User.researchBonusTo("bow");
     ExpectFalse(draw.canApplySpecification("", User));
@@ -339,6 +356,7 @@ void AllFiveBowBlueprintsQualifyButCarriedAndOtherWeaponsDoNot()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void KnowledgeChangesRealDamageCostsAndCooldowns()
 {
     PrepareMaster();
@@ -364,6 +382,7 @@ void KnowledgeChangesRealDamageCostsAndCooldowns()
     ExpectEq(21, finalDraw.getUsageCosts("", User)["stamina point cost"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void BowWeaponDamageContributesToActualShotFormula()
 {
     PrepareDisciple(1);
@@ -378,6 +397,7 @@ void BowWeaponDamageContributesToActualShotFormula()
         damage);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MeasuredDrawConsumesOneArrowTenStaminaAndRecordsOneUse()
 {
     LearnDraw();
@@ -409,6 +429,7 @@ void MeasuredDrawConsumesOneArrowTenStaminaAndRecordsOneUse()
     ExpectEq(38, Arrows.query("quantity"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MissingArrowsFailClearlyWithoutCostsCooldownOrPractice()
 {
     LearnDraw();
@@ -431,6 +452,7 @@ void MissingArrowsFailClearlyWithoutCostsCooldownOrPractice()
     ExpectTrue(objectp(Arrows));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void WrongAmmunitionAndRemoteArrowsDoNotQualify()
 {
     LearnDraw();
@@ -448,6 +470,7 @@ void WrongAmmunitionAndRemoteArrowsDoNotQualify()
     ExpectEq(39, Arrows.query("quantity"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void WrongGearMissingTargetsAndInsufficientStaminaWasteNothing()
 {
     LearnDraw();
@@ -469,6 +492,7 @@ void WrongGearMissingTargetsAndInsufficientStaminaWasteNothing()
     ])));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllElevenShotsConsumeArrowsAndApplyTheirAuthoredResourceEffect()
 {
     PrepareMaster();
@@ -510,6 +534,7 @@ void AllElevenShotsConsumeArrowsAndApplyTheirAuthoredResourceEffect()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PatientDrawRetainsBonusesAcrossBowsAndCancelsOnInvalidEquipment()
 {
     PrepareMaster();
@@ -544,6 +569,7 @@ void PatientDrawRetainsBonusesAcrossBowsAndCancelsOnInvalidEquipment()
     ExpectEq(maximum, User.maxStaminaPoints());
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryFormReservesStaminaAndCanBeReleasedWithoutArrows()
 {
     PrepareMaster();
@@ -567,6 +593,7 @@ void EveryFormReservesStaminaAndCanBeReleasedWithoutArrows()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RecenteringHealsWithResourceCostsButNoArrowOrWeaponDamage()
 {
     PrepareMaster();

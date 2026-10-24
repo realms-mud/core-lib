@@ -4,6 +4,7 @@
 //*****************************************************************************
 inherit "/lib/realizations/researchTeacher.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     Name("sora");
@@ -17,17 +18,10 @@ protected void Setup()
     SetUpPersonaOfLevel("swordsman", 30);
     addRelationshipInteraction("training.completed",
         ([ "respect":2, "admiration":1 ]));
+    deferLessonLoading();
     foreach(string discipline in ({ "paired-swords", "odachi",
         "kama", "claw" }))
     {
-        object tree = getService("research")->researchTree(
-            "/guilds/monk/" + discipline + ".c");
-        foreach(object item in m_indices(tree->getFlattenedResearchTree()))
-        {
-            if (item->query("research type") != "tree root")
-            {
-                addLesson(program_name(item), ([]), "");
-            }
-        }
+        addLessonTree("/guilds/monk/" + discipline + ".c", ({}));
     }
 }

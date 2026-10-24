@@ -2,9 +2,8 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 #include "/lib/include/inventory.h"
-#include "/lib/tests/support/guilds/monk-trials.h"
 
 object Player;
 
@@ -48,12 +47,12 @@ void MembershipRankResearchAndAwardsSurviveSaveDestroyRestore()
     string breath = "/guilds/monk/discipline/disciplined-breath.c";
     ExpectTrue(Player.joinGuild("monk"));
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 5)
+    while (advancing && Player.guildLevel("monk") < 10)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(5, Player.guildLevel("monk"));
+    ExpectEq(10, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(breath));
     ExpectTrue(Player.advanceRank("monk"));
     int points = Player.researchPoints();
@@ -64,7 +63,7 @@ void MembershipRankResearchAndAwardsSurviveSaveDestroyRestore()
     Player = clone_object("/lib/realizations/player.c");
     Player.restore("gorthaur");
     ExpectTrue(Player.memberOfGuild("monk"));
-    ExpectEq(5, Player.guildLevel("monk"));
+    ExpectEq(10, Player.guildLevel("monk"));
     ExpectEq("student", Player.guildRank("monk"));
     ExpectTrue(Player.isResearched(breath));
     ExpectTrue(member(Player.availableResearchTrees(),
@@ -191,7 +190,7 @@ void CombatPracticeThresholdSurvivesRestoreAndUnlocksTheTaughtFollowUp()
     ExpectEq(5, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
-    ExpectTrue(Player.advanceRank("monk"));
+    ExpectFalse(Player.advanceRank("monk"));
     ExpectTrue(Player.learnResearchFrom(teacher, palm));
     for (int index = 0; index < 9; index++)
     {
@@ -250,12 +249,12 @@ void PrepareRecognizedDisciple(object lian)
     ExpectTrue(Player.learnResearchFrom(lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 5)
+    while (advancing && Player.guildLevel("monk") < 10)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(5, Player.guildLevel("monk"));
+    ExpectEq(10, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(Player.advanceRank("monk"));
@@ -263,12 +262,12 @@ void PrepareRecognizedDisciple(object lian)
         "/guilds/monk/discipline/steady-practice.c"));
     ExpectTrue(Player.learnResearchFrom(lian,
         "/guilds/monk/discipline/teachers-recognition.c"));
-    while (advancing && Player.guildLevel("monk") < 10)
+    while (advancing && Player.guildLevel("monk") < 20)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(10, Player.guildLevel("monk"));
+    ExpectEq(20, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(Player.advanceRank("monk"));
@@ -409,7 +408,7 @@ varargs void RoundTripBladeStudy(string discipline, string *lessons,
     ExpectTrue(Player.advanceSkill(bonusSkill, 1));
     foreach(string item in lessons)
     {
-        ExpectTrue(Player.learnResearchFrom(sora, base + item + ".c"));
+        TeachMonkTrialLesson(Player, ({ lian, sora }), base + item + ".c");
     }
     object weapon = clone_object("/lib/items/weapon.c");
     weapon.set("blueprint", blueprint);
@@ -521,7 +520,7 @@ void BowArrowsKnowledgePracticeAndActiveDrawSurviveRestoreTogether()
     object iori = clone_object("/guilds/monk/teachers/iori.c");
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(6);
+    foe.effectiveLevel(10);
     foe.setMaxHitPoints(10000);
     move_object(Player, room);
     move_object(lian, room);
@@ -531,8 +530,8 @@ void BowArrowsKnowledgePracticeAndActiveDrawSurviveRestoreTogether()
     Player.addResearchPoints(50);
     Player.addSkillPoints(200);
     ExpectTrue(Player.advanceSkill("bow", 1));
-    foreach(string item in ({ "archers-grip", "archers-footing",
-        "archers-guard", "measured-draw", "draw-geometry", "patient-draw" }))
+    foreach(string item in ({ "measured-draw", "archers-grip",
+        "draw-geometry", "archers-footing", "archers-guard", "patient-draw" }))
     {
         ExpectTrue(Player.learnResearchFrom(iori, base + item + ".c"));
     }
@@ -655,7 +654,7 @@ void AdeptTrialPracticeCertificationAndPromotionSurviveRestore()
     object ren = clone_object("/guilds/monk/teachers/ren.c");
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(8);
+    foe.effectiveLevel(15);
     foe.setMaxHitPoints(10000);
     move_object(Player, room);
     move_object(lian, room);
@@ -663,12 +662,12 @@ void AdeptTrialPracticeCertificationAndPromotionSurviveRestore()
     move_object(foe, room);
     PrepareRecognizedDisciple(lian);
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 15)
+    while (advancing && Player.guildLevel("monk") < 30)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(15, Player.guildLevel("monk"));
+    ExpectEq(30, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/disciples-insight.c"));
     ExpectTrue(Player.learnResearchFrom(lian, palm));
@@ -763,7 +762,7 @@ void ExistingAdeptsRestoreWithoutRetroactiveTrialOrDemotion()
     move_object(lian, room);
     PrepareRecognizedDisciple(lian);
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 15)
+    while (advancing && Player.guildLevel("monk") < 30)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
@@ -782,12 +781,12 @@ void ExistingAdeptsRestoreWithoutRetroactiveTrialOrDemotion()
     ExpectEq("adept", Player.guildRank("monk"));
     ExpectFalse(Player.isResearched(
         "/guilds/monk/discipline/adepts-trial.c"));
-    while (advancing && Player.guildLevel("monk") < 20)
+    while (advancing && Player.guildLevel("monk") < 40)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(20, Player.guildLevel("monk"));
+    ExpectEq(40, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/adepts-focus.c"));
     ExpectFalse(Player.advanceRank("monk"));
@@ -816,7 +815,7 @@ void UpperTrialThresholdsCertificationsAndPromotionsSurviveRestore()
     PrepareRecognizedDisciple(lian);
     Player.addResearchPoints(100);
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 15)
+    while (advancing && Player.guildLevel("monk") < 30)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
@@ -844,12 +843,13 @@ void UpperTrialThresholdsCertificationsAndPromotionsSurviveRestore()
         "master" });
     for (int stage = 0; stage < sizeof(trials); stage++)
     {
-        while (advancing && Player.guildLevel("monk") < 20 + 5 * stage)
+        while (advancing && Player.guildLevel("monk") <
+            MonkPromotionLevels[stage + 3])
         {
             Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
             advancing = Player.advanceLevel("monk");
         }
-        ExpectEq(20 + 5 * stage, Player.guildLevel("monk"));
+        ExpectEq(MonkPromotionLevels[stage + 3], Player.guildLevel("monk"));
         ExpectTrue(Player.initiateResearch("/guilds/monk/discipline/" +
             foundations[stage] + ".c"));
         string path = "/guilds/monk/discipline/" + trials[stage] + ".c";
@@ -979,7 +979,7 @@ void BludgeonLessonsAndPracticeSurviveRestoreAcrossWeaponFamilies()
     object ren = clone_object("/guilds/monk/teachers/ren.c");
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(6);
+    foe.effectiveLevel(10);
     foe.setMaxHitPoints(10000);
     object mace = clone_object("/lib/items/weapon.c");
     mace.set("blueprint", "mace");
@@ -1067,7 +1067,7 @@ void ChiAndActiveWardSurviveRestoreWithoutDuplicatedReservations()
     object ren = clone_object("/guilds/monk/teachers/ren.c");
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(6);
+    foe.effectiveLevel(10);
     foe.setMaxHitPoints(10000);
     move_object(Player, room);
     move_object(lian, room);
@@ -1166,7 +1166,7 @@ void KatanaKnowledgePracticeAndConditionalBonusSurviveRestore()
     object teacher = clone_object("/guilds/monk/teachers/lian.c");
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(3);
+    foe.effectiveLevel(5);
     foe.setMaxHitPoints(10000);
     object katana = clone_object("/lib/items/weapon.c");
     katana.set("blueprint", "katana");
@@ -1182,12 +1182,12 @@ void KatanaKnowledgePracticeAndConditionalBonusSurviveRestore()
     ExpectTrue(Player.learnResearchFrom(teacher,
         "/guilds/monk/discipline/initiates-discipline.c"));
     int advancing = 1;
-    while (advancing && Player.guildLevel("monk") < 5)
+    while (advancing && Player.guildLevel("monk") < 10)
     {
         Player.addExperience(Player.experienceToNextLevel("monk"), "monk");
         advancing = Player.advanceLevel("monk");
     }
-    ExpectEq(5, Player.guildLevel("monk"));
+    ExpectEq(10, Player.guildLevel("monk"));
     ExpectTrue(Player.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(Player.advanceRank("monk"));

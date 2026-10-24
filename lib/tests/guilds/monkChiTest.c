@@ -43,7 +43,7 @@ void Setup()
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
     Target.Race("human");
-    Target.effectiveLevel(6);
+    Target.effectiveLevel(10);
     Target.setMaxHitPoints(10000);
     move_object(User, Room);
     move_object(Lian, Room);
@@ -79,10 +79,10 @@ void PrepareDisciple(int withRecognition)
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceMonkToLevel(5);
-    ExpectFalse(member(User.availableResearchTrees(),
+    AdvanceMonkToLevel(10);
+    ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/pure-chi.c") >= 0);
-    ExpectFalse(member(User.availableResearchTrees(),
+    ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/mana-shield.c") >= 0);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
@@ -94,7 +94,7 @@ void PrepareDisciple(int withRecognition)
         ExpectTrue(User.learnResearchFrom(Lian,
             "/guilds/monk/discipline/teachers-recognition.c"));
     }
-    AdvanceMonkToLevel(10);
+    AdvanceMonkToLevel(20);
     ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/pure-chi.c") >= 0);
     ExpectTrue(member(User.availableResearchTrees(),
@@ -103,8 +103,8 @@ void PrepareDisciple(int withRecognition)
     ExpectTrue(User.isResearched("/guilds/monk/mana-shield/root.c"));
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
-    ExpectFalse(User.canResearch(Pulse));
-    ExpectFalse(User.canResearch(Ward));
+    ExpectTrue(User.canResearch(Pulse));
+    ExpectTrue(User.canResearch(Ward));
     ExpectTrue(User.advanceRank("monk"));
     User.hitPoints(10000);
     User.spellPoints(10000);
@@ -123,14 +123,14 @@ void ClearRecovery()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void LessonsRequireRecognitionRankAndTheAdvancedTeacher()
+void InitialLessonsRequireFoundationsAndTheCorrectTeacher()
 {
     ExpectFalse(User.canResearch(Pulse));
     ExpectFalse(User.canResearch(Ward));
     PrepareDisciple(0);
     int points = User.researchPoints();
-    ExpectFalse(User.learnResearchFrom(Ren, Pulse));
-    ExpectFalse(User.learnResearchFrom(Ren, Ward));
+    ExpectTrue(User.canResearch(Pulse));
+    ExpectTrue(User.canResearch(Ward));
     ExpectEq(points, User.researchPoints());
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/steady-practice.c"));

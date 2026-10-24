@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object User;
 object Guild;
@@ -80,7 +79,7 @@ void RepeatedSetupDoesNotDuplicateMonkBonuses()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void JoiningAppliesInitialAwardsAndOpensOnlyFoundationTree()
+void JoiningAppliesInitialAwardsAndOpensAllElevenTrees()
 {
     int hp = User.maxHitPoints();
     int sp = User.maxSpellPoints();
@@ -93,8 +92,16 @@ void JoiningAppliesInitialAwardsAndOpensOnlyFoundationTree()
     ExpectEq(stamina + 3, User.maxStaminaPoints());
     ExpectEq(5, User.AvailableSkillPoints());
     ExpectEq(6, User.researchPoints());
-    ExpectEq(({ "/guilds/monk/discipline.c" }),
-        User.availableResearchTrees());
+    ExpectEq(11, sizeof(User.availableResearchTrees()));
+    foreach(string tree in ({ "discipline", "unarmed", "katana",
+        "bludgeon", "pure-chi", "mana-shield", "paired-swords", "odachi",
+        "archery", "kama", "claw" }))
+    {
+        ExpectTrue(member(User.availableResearchTrees(),
+            "/guilds/monk/" + tree + ".c") >= 0, tree);
+        ExpectTrue(User.isResearched("/guilds/monk/" + tree + "/root.c"),
+            tree);
+    }
     ExpectTrue(User.isResearched("/guilds/monk/discipline/root.c"));
     ExpectFalse(User.joinGuild("monk"));
     ExpectEq(6, User.researchPoints());
@@ -142,13 +149,16 @@ void RankAdvancementRequiresBothLevelAndFoundationalResearch()
     ExpectFalse(User.canResearch(breath));
     ExpectTrue(User.joinGuild("monk"));
     ExpectFalse(User.advanceRank("monk"));
-    ExpectFalse(User.canResearch(breath));
-    AdvanceMonkToLevel(5);
+    ExpectTrue(User.canResearch(breath));
+    AdvanceMonkToLevel(9);
     ExpectFalse(User.advanceRank("monk"));
     ExpectTrue(User.initiateResearch(breath));
     int points = User.researchPoints();
     ExpectFalse(User.initiateResearch(breath));
     ExpectEq(points, User.researchPoints());
+    ExpectFalse(User.advanceRank("monk"));
+    AdvanceMonkToLevel(10);
+    points = User.researchPoints();
     ExpectTrue(User.advanceRank("monk"));
     ExpectEq("student", User.guildRank("monk"));
     ExpectFalse(User.advanceRank("monk"));
@@ -167,7 +177,7 @@ void AllRanksAdvanceWithoutArtificialPromotionRewards()
     ExpectTrue(User.joinGuild("monk"));
     for (int index = 0; index < sizeof(ranks); index++)
     {
-        AdvanceMonkToLevel(5 * (index + 1));
+        AdvanceMonkToLevel(MonkPromotionLevels[index]);
         string item = sprintf("/guilds/monk/discipline/%s.c", items[index]);
         ExpectFalse(User.advanceRank("monk"));
         ExpectTrue(User.initiateResearch(item));
@@ -225,8 +235,8 @@ void AllRanksAdvanceWithoutArtificialPromotionRewards()
         ExpectEq(points, User.researchPoints());
         ExpectFalse(User.advanceRank("monk"));
     }
-    ExpectEq(26 - trialCosts, User.researchPoints());
-    ExpectEq(150, User.AvailableSkillPoints());
+    ExpectEq(66 - trialCosts, User.researchPoints());
+    ExpectEq(350, User.AvailableSkillPoints());
     ExpectTrue(User.demoteRank("monk"));
     ExpectEq("master candidate", User.guildRank("monk"));
     ExpectTrue(User.advanceRank("monk"));
@@ -237,7 +247,7 @@ void AllRanksAdvanceWithoutArtificialPromotionRewards()
 void HigherResearchRequiresRankNotOnlyLevel()
 {
     ExpectTrue(User.joinGuild("monk"));
-    AdvanceMonkToLevel(10);
+    AdvanceMonkToLevel(20);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     string awareness = "/guilds/monk/discipline/students-awareness.c";
@@ -269,7 +279,7 @@ void RejoiningUsesExistingDelayRankResetAndProbationWithoutNewAwards()
 {
     string breath = "/guilds/monk/discipline/disciplined-breath.c";
     ExpectTrue(User.joinGuild("monk"));
-    AdvanceMonkToLevel(5);
+    AdvanceMonkToLevel(10);
     ExpectTrue(User.initiateResearch(breath));
     ExpectTrue(User.advanceRank("monk"));
     int skillPoints = User.AvailableSkillPoints();
@@ -278,7 +288,7 @@ void RejoiningUsesExistingDelayRankResetAndProbationWithoutNewAwards()
     ExpectFalse(User.joinGuild("monk"));
     User.agePlayer(Guild.outcastUntilDelay());
     ExpectTrue(User.joinGuild("monk"));
-    ExpectEq(5, User.guildLevel("monk"));
+    ExpectEq(10, User.guildLevel("monk"));
     ExpectEq("initiate", User.guildRank("monk"));
     ExpectTrue(User.isResearched(breath));
     ExpectEq(skillPoints, User.AvailableSkillPoints());

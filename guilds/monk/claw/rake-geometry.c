@@ -3,11 +3,65 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Rake Geometry", "Study the close claw line: adds "
-        "three to Measured Rake's damage formula.", 10,
-        "measured-rake", "claw", "Measured Rake", "bonus", 3);
+    addSpecification("name", "Rake Geometry");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Study the close claw line: adds three to Measured Rake's damage "
+        "formula.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"tiger claws",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":3
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "initiate",
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/claw/measured-rake.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/claw/measured-rake.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Measured Rake":3,
+        "Claw Check":1,
+        "Breath Rake":1,
+        "Crossing Rake":2,
+        "Rising Talon":2,
+        "Claw Recentering":1
+    ]));
 }

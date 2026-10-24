@@ -3,12 +3,60 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Paired Point Theory", "Support the thrusting line "
-        "with the other blade: adds three to Companion Thrust's damage.",
-        20, "companion-thrust", "paired-swords", "Companion Thrust",
-        "bonus", 3);
+    addSpecification("name", "Paired Point Theory");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Support the thrusting line with the other blade: adds three to "
+        "Companion Thrust's damage.");
+
+    addSpecification("limited by", ([
+        "equipment":({
+            ([
+                "blueprint":"katana",
+                "slot":"wielded primary"
+            ]),
+            ([
+                "blueprint":"wakisashi",
+                "slot":"wielded offhand"
+            ])
+        })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":40
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/paired-swords/companion-thrust.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/paired-swords/companion-thrust.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Companion Thrust":3,
+        "Breath Shear":1,
+        "Close Circle":1
+    ]));
 }

@@ -18,6 +18,7 @@ protected int CanReJoinGuild = 1;
 protected string *ProhibitedGuilds = ({ });
 protected mapping prohibitedEquipment = ([]);
 private int IsNonCombatGuild = 0;
+private int deferredResearchTrees;
 
 private mapping ranks = ([ 
 //  This mapping must have the following form:
@@ -179,6 +180,12 @@ private nomask int isValidCriteriaApply(string instruction)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+protected nomask void deferResearchTreeLoading()
+{
+    deferredResearchTrees = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidCriteria(mapping criteria)
 {
     // The other things will simply be ignored if invalid
@@ -187,7 +194,11 @@ private nomask int isValidCriteria(mapping criteria)
         ((member(criteria, "research object") && getService("research")) ? 
              getService("research")->validResearch(criteria["research object"]) : 1) &&
         ((member(criteria, "research tree") && getService("research")) ? 
-             getService("research")->researchTree(criteria["research tree"]) : 1) &&
+             (deferredResearchTrees ?
+                 getService("research")->researchFileExists(
+                     criteria["research tree"]) :
+                 getService("research")->researchTree(
+                     criteria["research tree"])) : 1) &&
         ((member(criteria, "trait object") && getService("traits")) ? 
              getService("traits")->validTrait(criteria["trait object"]) : 1));
 }
@@ -707,10 +718,17 @@ private nomask int applyResearchPointsCriterion(mapping criterion, object guildM
 private nomask int isValidResearchCriterion(mapping criterion, string type,
     object guildMember)
 {
-    return guildMember->has("research") && member(criterion, type) &&
+    int ret = guildMember->has("research") && member(criterion, type) &&
         stringp(criterion[type]) && getService("research") &&
         (getService("research")->validResearch(criterion[type]) ||
             getService("research")->researchTree(criterion[type]));
+    if (!ret && deferredResearchTrees && type == "research tree" &&
+        guildMember->has("research") && member(criterion, type))
+    {
+        raise_error(sprintf("ERROR - baseGuild: Invalid deferred research "
+            "tree %s.\n", criterion[type]));
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -3,16 +3,61 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("High Guard", "Reserve eight maximum stamina for "
-        "+3 parry at a cost of one damage.", 10, 3, "guard-lines", "katana");
+    addSpecification("name", "High Guard");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve eight maximum stamina for +3 parry at a cost of one damage.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":12
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/guard-lines.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("stamina point cost", 8);
     addSpecification("cooldown", 4);
+
     addSpecification("command template", "kata high guard");
+
     addSpecification("bonus parry", 3);
     addSpecification("penalty to damage", 1);
 }

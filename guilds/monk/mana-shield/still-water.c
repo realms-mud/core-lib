@@ -3,15 +3,49 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Still Water", "Let the ward bear distractions while "
-        "your muscles relax, adding one natural stamina healing while "
-        "Mindful Ward is active.",
-        15, 2, "/guilds/monk/mana-shield/recovery-habit.c", ([
-            "research active":({
-                "/guilds/monk/mana-shield/mindful-ward.c" }) ]));
+    addSpecification("name", "Still Water");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Let the ward bear distractions while your muscles relax, adding one "
+        "natural stamina healing while Mindful Ward is active.");
+
+    addSpecification("limited by", ([
+        "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":30
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/mana-shield/recovery-habit.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus heal stamina", 1);
 }

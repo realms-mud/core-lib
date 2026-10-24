@@ -12,6 +12,7 @@ private string name;
 private string description;
 private string source;
 private string treeRoot;
+private int deferredResearchLoading;
 
 private mapping tree = ([
 ]);
@@ -20,6 +21,12 @@ private mapping tree = ([
 protected void Setup()
 {
 
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void deferResearchLoading()
+{
+    deferredResearchLoading = 1;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,6 +65,11 @@ public nomask object getResearchItem(string element)
     if (service)
     {
         ret = service->researchObject(element);
+        if (!ret && deferredResearchLoading && member(tree, element))
+        {
+            raise_error(sprintf("ERROR - researchTree: Registered element "
+                "%s is not a valid research item.\n", element));
+        }
     }
     return ret;
 }
@@ -97,7 +109,7 @@ public nomask varargs string TreeRoot(string newRoot)
 {
     if(newRoot && stringp(newRoot) && member(tree, newRoot))
     {
-        if(getResearchItem(newRoot))
+        if(deferredResearchLoading || getResearchItem(newRoot))
         {
             treeRoot = newRoot;
         }
@@ -232,7 +244,9 @@ private nomask int validateRelationship(string child, string parent)
 public nomask int addChild(string child, string parent)
 {
     int ret = 0;
-    if((child != parent) && getResearchItem(child) && getResearchItem(parent))
+    if ((child != parent) && member(tree, child) && member(tree, parent) &&
+        (deferredResearchLoading ||
+            (getResearchItem(child) && getResearchItem(parent))))
     {
         if(!tree[child]["parents"])
         {
@@ -270,7 +284,10 @@ public nomask int addResearchElement(string location)
 {
     int ret = 0;
     
-    if(getResearchItem(location))
+    if (deferredResearchLoading ?
+        (stringp(location) && sizeof(location) > 2 &&
+            location[0] == '/' && location[<2..] == ".c") :
+        getResearchItem(location))
     {
         if(!member(tree, location))
         {
@@ -294,6 +311,12 @@ public nomask int addResearchElement(string location)
             "object before it can be added to any trees.\n");
     }
     return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask string *getResearchPaths()
+{
+    return m_indices(tree);
 }
 
 /////////////////////////////////////////////////////////////////////////////

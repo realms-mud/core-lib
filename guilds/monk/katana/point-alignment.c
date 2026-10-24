@@ -3,10 +3,55 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Point Alignment", "A precisely aligned point adds "
-        "three points to Needle Thrust's damage.", 25, "needle-thrust",
-        "katana", "Needle Thrust", "bonus", 3);
+    addSpecification("name", "Point Alignment");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "A precisely aligned point adds three points to Needle Thrust's "
+        "damage.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":52
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "senior disciple",
+        "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/needle-thrust.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/katana/needle-thrust.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Needle Thrust":3,
+        "Hilt Check":1,
+        "Drawn Circle":1
+    ]));
 }

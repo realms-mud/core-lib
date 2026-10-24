@@ -7,19 +7,44 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addPrerequisite("monk", ([ "type":"guild", "value":({ "monk" }) ]));
-    addPrerequisite("level",
-        ([ "type":"level", "guild":"monk", "value":15 ]));
+    addSpecification("name", "Adept's Trial");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Ren assesses your demonstrated practice before endorsing promotion "
+        "to adept. Requires ten qualifying uses of any one of Measured Palm, "
+        "Measured Cut, Measured Impact, Focused Pulse, Linked Cut, "
+        "Committed Cut, Measured Draw, Measured Hook, or Measured Rake "
+        "against already-hostile, non-allied living NPCs in the same room at "
+        "least half your effective level. Repeated uses in one encounter "
+        "count; partial counts across techniques do not. This free "
+        "assessment grants no combat bonus or automatic promotion.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":30
+    ]));
     addPrerequisite("rank", ([
         "type":"guild rank",
         "guild":"monk",
-        "value":({ "disciple", "adept", "senior disciple",
-            "master candidate", "master" })
+        "value":({
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
     ]));
-    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c",
-        ([ "type":"research" ]));
-    addPrerequisite("/guilds/monk/discipline/disciples-insight.c",
-        ([ "type":"research" ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/discipline/disciples-insight.c", ([
+        "type":"research"
+    ]));
     addPrerequisite("specialist practice", ([
         "type":"observation",
         "criteria":({
@@ -71,17 +96,7 @@ protected void Setup()
         }),
         "value":10
     ]));
-    addSpecification("name", "Adept's Trial");
-    addSpecification("description", "Ren assesses your demonstrated practice "
-        "before endorsing promotion to adept. Requires ten qualifying uses "
-        "of any one of Measured Palm, Measured Cut, Measured Impact, "
-        "Focused Pulse, Linked Cut, Committed Cut, Measured Draw, "
-        "Measured Hook, or Measured Rake against "
-        "already-hostile, non-allied living NPCs in "
-        "the same room at least half your effective level. Repeated uses "
-        "in one encounter count; partial counts across techniques do not. "
-        "This free assessment grants no combat bonus or automatic promotion.");
-    addSpecification("source", "monk");
+
     addSpecification("research type", "granted");
     addSpecification("teacher required", 1);
 }

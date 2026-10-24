@@ -3,12 +3,45 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Inward Listening", "Notice disruptions in breath and "
-        "posture before they become visible, improving perception by two.",
-        20, 2, "/guilds/monk/pure-chi/contemplative-focus.c", ([]));
+    addSpecification("name", "Inward Listening");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Notice disruptions in breath and posture before they become "
+        "visible, improving perception by two.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":39
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/contemplative-focus.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus perception", 2);
 }

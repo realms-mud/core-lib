@@ -2,30 +2,36 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object User;
 object Room;
 object Lian;
 object Ren;
 int EnergyLessonsLearned;
+int StudentNumber;
 string Chi = "/guilds/monk/pure-chi/";
 string Shield = "/guilds/monk/mana-shield/";
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     load_object("/guilds/monk/monk.c");
     ignoreList += ({ "CheckCatalog", "PrepareDisciple", "AdvanceMonk",
         "PrepareMaster", "TeachEnergyLesson", "TeachMonkTrialLesson",
         "CompleteMonkUpperTrial" });
+    Room = clone_object("/lib/environment/environment.c");
+    Lian = clone_object("/guilds/monk/teachers/lian.c");
+    Ren = clone_object("/guilds/monk/teachers/ren.c");
+    move_object(Lian, Room);
+    move_object(Ren, Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
-    Room = clone_object("/lib/environment/environment.c");
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User.Name("energy student");
+    User.Name(sprintf("energy%d", ++StudentNumber));
     User.Race("human");
     User.Str(20);
     User.Int(20);
@@ -34,22 +40,25 @@ void Setup()
     User.Wis(20);
     User.Chr(20);
     User.colorConfiguration("none");
-    Lian = clone_object("/guilds/monk/teachers/lian.c");
-    Ren = clone_object("/guilds/monk/teachers/ren.c");
     move_object(User, Room);
-    move_object(Lian, Room);
-    move_object(Ren, Room);
     EnergyLessonsLearned = 0;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
+{
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
 {
     destruct(Ren);
     destruct(Lian);
-    destruct(User);
     destruct(Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceMonk(int level)
 {
     int advancing = 1;
@@ -61,12 +70,13 @@ void AdvanceMonk(int level)
     ExpectEq(level, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareDisciple()
 {
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceMonk(5);
+    AdvanceMonk(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -74,7 +84,7 @@ void PrepareDisciple()
         "/guilds/monk/discipline/steady-practice.c"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/teachers-recognition.c"));
-    AdvanceMonk(10);
+    AdvanceMonk(20);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.advanceRank("monk"));
@@ -82,6 +92,7 @@ void PrepareDisciple()
     User.staminaPoints(10000);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareMaster()
 {
     ExpectTrue(User.joinGuild("monk"));
@@ -93,7 +104,7 @@ void PrepareMaster()
         "mastery-of-fundamentals" });
     for (int index = 0; index < sizeof(foundations); index++)
     {
-        AdvanceMonk(5 * (index + 1));
+        AdvanceMonk(MonkPromotionLevels[index]);
         ExpectTrue(User.initiateResearch("/guilds/monk/discipline/" +
             foundations[index] + ".c"));
         if (index == 2)
@@ -127,6 +138,7 @@ void PrepareMaster()
     ExpectEq("master", User.guildRank("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void TeachEnergyLesson(string path, object tree)
 {
     if (!User.isResearched(path))
@@ -134,6 +146,14 @@ void TeachEnergyLesson(string path, object tree)
         foreach (string parent in tree.getParents(path))
         {
             TeachEnergyLesson(parent, tree);
+        }
+        foreach(string prerequisite, mapping requirement in
+            tree.getResearchItem(path).getPrerequisites())
+        {
+            if (requirement["type"] == "research")
+            {
+                TeachEnergyLesson(prerequisite, tree);
+            }
         }
         ExpectTrue(Ren.teachesResearch(path));
         ExpectTrue(User.canResearch(path));
@@ -144,6 +164,7 @@ void TeachEnergyLesson(string path, object tree)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CheckCatalog(string treePath, string original, int active, int sustained)
 {
     object tree = load_object(treePath);
@@ -153,12 +174,6 @@ void CheckCatalog(string treePath, string original, int active, int sustained)
         "passive":0,
         "active":0,
         "sustained":0
-    ]);
-    mapping rankAtLevel = ([
-        10:"disciple",
-        15:"adept",
-        20:"senior disciple",
-        30:"master"
     ]);
     mapping names = ([]);
     int newItems = 0;
@@ -203,7 +218,10 @@ void CheckCatalog(string treePath, string original, int active, int sustained)
                 ExpectEq(({ "monk" }), prerequisites["monk"]["value"]);
                 ExpectEq("monk", prerequisites["level"]["guild"]);
                 ExpectEq("guild rank", prerequisites["rank"]["type"]);
-                ExpectEq(rankAtLevel[level],
+                ExpectEq(level < 10 ? "initiate" :
+                    level < 20 ? "student" : level < 30 ? "disciple" :
+                    level < 40 ? "adept" : level < 55 ? "senior disciple" :
+                    level < 70 ? "master candidate" : "master",
                     prerequisites["rank"]["value"][0]);
                 foreach (string parent in tree.getParents(path))
                 {
@@ -222,11 +240,13 @@ void CheckCatalog(string treePath, string original, int active, int sustained)
     ExpectEq(sustained, counts["sustained"]);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PureChiHasFortyMeaningfulGatedLessons()
 {
     CheckCatalog("/guilds/monk/pure-chi.c", Chi + "focused-pulse.c", 12, 4);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ManaShieldHasFortyLessonsWithoutRegisteringItsTrait()
 {
     CheckCatalog("/guilds/monk/mana-shield.c",
@@ -235,6 +255,7 @@ void ManaShieldHasFortyLessonsWithoutRegisteringItsTrait()
         isMemberOfResearchTree(Shield + "ward-trait.c"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryEnergyLessonIsReachableThroughRenAndItsRealDependencies()
 {
     PrepareMaster();
@@ -260,6 +281,7 @@ void EveryEnergyLessonIsReachableThroughRenAndItsRealDependencies()
     ExpectEq(80, EnergyLessonsLearned);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void KnowledgeDisplayModifiersHaveRealReceivingMechanics()
 {
     foreach (string treePath in ({
@@ -319,6 +341,7 @@ void KnowledgeDisplayModifiersHaveRealReceivingMechanics()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void NewWardPracticeUsesTheOriginalWardAndNoAdditionalShieldTrait()
 {
     mapping catalog = load_object("/guilds/monk/mana-shield.c").
@@ -341,6 +364,7 @@ void NewWardPracticeUsesTheOriginalWardAndNoAdditionalShieldTrait()
     ExpectEq(27, limited);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void FoundationKnowledgeActuallyChangesSpellPointCosts()
 {
     PrepareDisciple();
@@ -357,12 +381,15 @@ void FoundationKnowledgeActuallyChangesSpellPointCosts()
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "ward-anatomy.c"));
     object mending = load_object(Shield + "ward-mending.c");
     ExpectEq(8, mending.getUsageCosts("", User)["spell point cost"]);
+    ExpectTrue(User.learnResearchFrom(Ren, Shield + "recovery-cycle.c"));
+    ExpectTrue(User.learnResearchFrom(Ren, Shield + "recovery-habit.c"));
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "guarded-breath.c"));
     ExpectEq(7, mending.getUsageCosts("", User)["spell point cost"]);
     ExpectEq(10, load_object(Shield + "mindful-ward.c").
         query("stamina point cost"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void WardDependentPassivesAndConversionRequireTheExistingWard()
 {
     PrepareDisciple();
@@ -370,6 +397,7 @@ void WardDependentPassivesAndConversionRequireTheExistingWard()
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "ward-anatomy.c"));
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "recovery-cycle.c"));
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "recovery-habit.c"));
+    ExpectTrue(User.learnResearchFrom(Ren, Shield + "ward-mending.c"));
     ExpectTrue(User.learnResearchFrom(Ren, Shield + "breath-conversion.c"));
     object habit = load_object(Shield + "recovery-habit.c");
     ExpectFalse(habit.canApplySpecification("bonus heal spell points", User));
@@ -385,9 +413,17 @@ void WardDependentPassivesAndConversionRequireTheExistingWard()
     User.spellPoints(-20);
     int mana = User.spellPoints();
     stamina = User.staminaPoints();
+    int minimum = 6 + 3 + 1 +
+        to_int(User.getSkill("meditation") * 0.1) +
+        to_int(User.getSkill("concentration") * 0.06) +
+        to_int(User.getSkill("magical essence") * 0.08) +
+        to_int(User.getSkill("spirit") * 0.04) +
+        to_int(User.attributeValue("constitution") * 0.08) +
+        to_int(User.attributeValue("wisdom") * 0.12) +
+        to_int(User.attributeValue("intelligence") * 0.04);
     ExpectTrue(User.executeCommand("chi breath conversion"));
     ExpectEq(stamina - 12, User.staminaPoints());
-    ExpectTrue(User.spellPoints() >= mana + 6);
-    ExpectTrue(User.spellPoints() <= mana + 8);
+    ExpectTrue(User.spellPoints() >= mana + minimum);
+    ExpectTrue(User.spellPoints() <= mana + minimum + 2);
     ExpectTrue(User.blockedByCooldown(Shield + "breath-conversion.c"));
 }

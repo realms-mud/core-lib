@@ -7,12 +7,34 @@ virtual inherit "/lib/core/prerequisites.c";
 
 private string *lessons = ({});
 private mapping lessonRequirements = ([]);
+private mapping lessonTrees = ([]);
+private int deferredLessonLoading;
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void deferLessonLoading()
+{
+    deferredLessonLoading = 1;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void addLessonTree(string treePath, string *excluded)
+{
+    if (!getService("research")->researchFileExists(treePath) ||
+        !pointerp(excluded) || member(lessonTrees, treePath))
+    {
+        raise_error("ERROR - researchTeacher: Invalid or duplicate "
+            "lesson tree.\n");
+    }
+    lessonTrees[treePath] = excluded + ({});
+}
 
 /////////////////////////////////////////////////////////////////////////////
 protected nomask void addLesson(string researchItem, mapping requirements,
     string explanation)
 {
-    if (!getService("research")->validResearch(researchItem) ||
+    if (!(deferredLessonLoading ?
+            getService("research")->researchFileExists(researchItem) :
+            getService("research")->validResearch(researchItem)) ||
         !mappingp(requirements) || !stringp(explanation) ||
         (sizeof(requirements) && !sizeof(explanation)) ||
         member(lessons, researchItem) >= 0)
@@ -37,13 +59,27 @@ protected nomask void addLesson(string researchItem, mapping requirements,
 /////////////////////////////////////////////////////////////////////////////
 public nomask string *teachableResearch()
 {
-    return lessons + ({});
+    string *ret = lessons + ({});
+    foreach(string treePath, string *excluded in lessonTrees)
+    {
+        ret += (getService("lessons")->lessonPaths(treePath) - excluded) - ret;
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
 public nomask int teachesResearch(string researchItem)
 {
-    return member(lessons, researchItem) >= 0;
+    int ret = member(lessons, researchItem) >= 0;
+    foreach(string treePath, string *excluded in lessonTrees)
+    {
+        if (!ret && member(excluded, researchItem) < 0)
+        {
+            ret = member(getService("lessons")->lessonPaths(treePath),
+                researchItem) >= 0;
+        }
+    }
+    return ret;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -56,14 +92,19 @@ public string teachingGuild()
 public nomask string lessonRefusal(object student, string researchItem)
 {
     string ret = "";
-    object item = getService("research")->researchObject(researchItem);
-    if (!objectp(student) || student == this_object() ||
-        !environment(this_object()) ||
-        environment(student) != environment(this_object()))
+    object item = 0;
+    int present = objectp(student) && student != this_object() &&
+        environment(this_object()) &&
+        environment(student) == environment(this_object());
+    if (present && teachesResearch(researchItem))
+    {
+        item = getService("lessons")->lessonObject(researchItem);
+    }
+    if (!present)
     {
         ret = "You must be in the same room as your teacher.";
     }
-    else if (!teachesResearch(researchItem) || !item)
+    else if (!item)
     {
         ret = "That lesson is not part of this teacher's curriculum.";
     }

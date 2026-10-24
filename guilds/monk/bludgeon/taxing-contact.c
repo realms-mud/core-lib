@@ -3,42 +3,133 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Taxing Contact", "Repeatedly load the opponent's guard "
-        "through one firm contact, dealing modest injury and stamina "
-        "damage. This neither stuns nor disarms.", 20, 3,
-        "/guilds/monk/bludgeon/mace-recovery.c", ([
+    addSpecification("name", "Taxing Contact");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Repeatedly load the opponent's guard through one firm contact, "
+        "dealing modest injury and stamina damage. This neither stuns nor "
+        "disarms.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":"mace",
             "blueprint":({ "mace", "flanged mace", "morning star" }),
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":48
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/mace-recovery.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "targeted");
     addSpecification("effect", "combat");
     addSpecification("stamina point cost", 11);
     addSpecification("cooldown", 15);
+
     addSpecification("stamina point cost modifiers", ([
         "/guilds/monk/bludgeon/mace-recovery.c":1
     ]));
+
     addSpecification("command template", "kata taxing contact at ##Target##");
-    addSpecification("use ability message", "##InitiatorName## "
-        "drive##InitiatorReflexive## a taxing mace contact at ##TargetName##.");
+    addSpecification("use ability message",
+        "##InitiatorName## drive##InitiatorReflexive## a taxing mace contact "
+        "at ##TargetName##.");
+
     addSpecification("observation type", "combat.kata");
     addSpecification("damage type", "bludgeon");
     addSpecification("damage hit points", ({
-        ([ "probability":100, "base damage":5, "range":2 ])
+        ([
+            "probability":100,
+            "base damage":5,
+            "range":2
+        ])
     }));
     addSpecification("damage stamina points", ({
-        ([ "probability":100, "base damage":9, "range":3 ])
+        ([
+            "probability":100,
+            "base damage":9,
+            "range":3
+        ])
     }));
+
     addSpecification("modifiers", ({
-        ([ "type":"attribute", "name":"strength",
-            "formula":"additive", "rate":0.1 ]),
-        ([ "type":"skill", "name":"mace",
-            "formula":"additive", "rate":0.03 ])
+        ([
+            "type":"skill",
+            "name":"perception",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"skill",
+            "name":"anatomy and physiology",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"wisdom",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Leverage Study",
+            "research item":"/guilds/monk/bludgeon/leverage-study.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Momentum Mastery",
+            "research item":"/guilds/monk/bludgeon/momentum-mastery.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ]),
+        ([
+            "type":"attribute",
+            "name":"strength",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"mace",
+            "formula":"additive",
+            "rate":0.03
+        ])
     }));
 }

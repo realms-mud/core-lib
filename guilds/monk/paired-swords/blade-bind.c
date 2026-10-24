@@ -3,12 +3,152 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialAttack("Blade Bind", "Exhaust the opponent's guard through "
-        "a brief bind. Drains stamina without disarming or immobilizing.",
-        15, "companion-leverage", "paired-swords", "damage stamina points",
-        16, 3, 12, 18, "binding-lines");
+    addSpecification("name", "Blade Bind");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Exhaust the opponent's guard through a brief bind. Drains stamina "
+        "without disarming or immobilizing.");
+
+    addSpecification("limited by", ([
+        "equipment":({
+            ([
+                "blueprint":"katana",
+                "slot":"wielded primary"
+            ]),
+            ([
+                "blueprint":"wakisashi",
+                "slot":"wielded offhand"
+            ])
+        })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":12
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "student", "disciple", "adept", "senior disciple",
+            "master candidate", "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/paired-swords/companion-leverage.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
+    addSpecification("scope", "targeted");
+    addSpecification("effect", "combat");
+    addSpecification("stamina point cost", 12);
+    addSpecification("cooldown", 18);
+
+    addSpecification("command template", "kata blade bind at ##Target##");
+    addSpecification("usage summary", "kata blade bind at <target>");
+    addSpecification("use ability message",
+        "##InitiatorName## ##Infinitive::execute## blade bind against "
+        "##TargetName##.");
+
+    addSpecification("observation type", "combat.kata");
+    addSpecification("damage type", "slash");
+    addSpecification("damage stamina points", ({
+        ([
+            "probability":100,
+            "base damage":16,
+            "range":3
+        ])
+    }));
+
+    addSpecification("modifiers", ({
+        ([
+            "type":"skill",
+            "name":"hand and a half sword",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"weapon damage",
+            "name":"paired-swords",
+            "types":({ "hand and a half sword" }),
+            "formula":"additive",
+            "rate":0.35
+        ]),
+        ([
+            "type":"offhand damage",
+            "name":"wakisashi",
+            "types":({ "short sword" }),
+            "formula":"additive",
+            "rate":0.2
+        ]),
+        ([
+            "type":"research",
+            "name":"Binding Lines",
+            "research item":"/guilds/monk/paired-swords/binding-lines.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":3.0
+        ]),
+        ([
+            "type":"skill",
+            "name":"short sword",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"parry",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"strength",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"intelligence",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Companion Leverage",
+            "research item":"/guilds/monk/paired-swords/companion-leverage.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Crossing Lines",
+            "research item":"/guilds/monk/paired-swords/crossing-lines.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":1.0
+        ])
+    }));
 }

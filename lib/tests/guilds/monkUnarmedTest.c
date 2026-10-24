@@ -66,7 +66,7 @@ void CleanUp()
 void PrepareStudent()
 {
     ExpectTrue(User.joinGuild("monk"));
-    ExpectFalse(member(User.availableResearchTrees(),
+    ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/unarmed.c") >= 0);
     ExpectTrue(User.learnResearchFrom(Teacher,
         "/guilds/monk/discipline/initiates-discipline.c"));
@@ -82,7 +82,8 @@ void PrepareStudent()
     ExpectTrue(User.isResearched("/guilds/monk/unarmed/root.c"));
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
-    ExpectTrue(User.advanceRank("monk"));
+    ExpectFalse(User.advanceRank("monk"));
+    ExpectEq("initiate", User.guildRank("monk"));
     ExpectFalse(User.initiateResearch(Palm));
     ExpectTrue(User.learnResearchFrom(Teacher, Palm));
 }

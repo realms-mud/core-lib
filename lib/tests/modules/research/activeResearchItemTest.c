@@ -108,6 +108,7 @@ void SettingInvalidSpellPointCostThrowsError()
     string expectedError = "*ERROR - activeResearchItem: the 'spell point cost' specification must be an integer greater than 0.\n";
     ExpectEq(expectedError, err, "The correct exception is thrown when setting invalid value");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 void CanSetValidStaminaPointCost()
 {

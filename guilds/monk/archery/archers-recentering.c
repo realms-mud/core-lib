@@ -3,26 +3,116 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Archer's Recentering", "Spend eight spell points "
-        "and six stamina to restore a modest amount of your own health "
-        "with a primary bow. No arrow is consumed.",
-        20, 3, "draw-recovery", "archery");
+    addSpecification("name", "Archer's Recentering");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Spend eight spell points and six stamina to restore a modest amount "
+        "of your own health with a primary bow. No arrow is consumed.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "type":"bow",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":38
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "adept",
+        "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/archery/draw-recovery.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("spell point cost", 8);
     addSpecification("stamina point cost", 6);
     addSpecification("cooldown", 24);
+
     addSpecification("command template", "kata archer's recentering");
     addSpecification("usage summary", "kata archer's recentering");
+
     addSpecification("increase hit points", ({
-        ([ "probability":100, "base damage":12, "range":3 ])
+        ([
+            "probability":100,
+            "base damage":12,
+            "range":3
+        ])
     }));
+
     addSpecification("modifiers", ({
-        ([ "type":"attribute", "name":"wisdom",
-            "formula":"additive", "rate":0.1 ])
+        ([
+            "type":"skill",
+            "name":"meditation",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"anatomy and physiology",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"bow",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"skill",
+            "name":"perception",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"attribute",
+            "name":"constitution",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Bow Breath Theory",
+            "research item":"/guilds/monk/archery/bow-breath-theory.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":3.0
+        ]),
+        ([
+            "type":"attribute",
+            "name":"wisdom",
+            "formula":"additive",
+            "rate":0.1
+        ])
     }));
 }

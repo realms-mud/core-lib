@@ -3,12 +3,149 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialAttack("Twin Edge", "Commit both blade lines to one demanding "
-        "finishing action against one opponent.", 30, "paired-mastery",
-        "paired-swords", "damage hit points", 30, 3, 20, 24,
-        "twin-edge-theory");
+    addSpecification("name", "Twin Edge");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Commit both blade lines to one demanding finishing action against "
+        "one opponent.");
+
+    addSpecification("limited by", ([
+        "equipment":({
+            ([
+                "blueprint":"katana",
+                "slot":"wielded primary"
+            ]),
+            ([
+                "blueprint":"wakisashi",
+                "slot":"wielded offhand"
+            ])
+        })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":68
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/paired-swords/paired-mastery.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
+    addSpecification("scope", "targeted");
+    addSpecification("effect", "combat");
+    addSpecification("stamina point cost", 20);
+    addSpecification("cooldown", 24);
+
+    addSpecification("command template", "kata twin edge at ##Target##");
+    addSpecification("usage summary", "kata twin edge at <target>");
+    addSpecification("use ability message",
+        "##InitiatorName## ##Infinitive::execute## twin edge against "
+        "##TargetName##.");
+
+    addSpecification("observation type", "combat.kata");
+    addSpecification("damage type", "slash");
+    addSpecification("damage hit points", ({
+        ([
+            "probability":100,
+            "base damage":30,
+            "range":3
+        ])
+    }));
+
+    addSpecification("modifiers", ({
+        ([
+            "type":"skill",
+            "name":"hand and a half sword",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"weapon damage",
+            "name":"paired-swords",
+            "types":({ "hand and a half sword" }),
+            "formula":"additive",
+            "rate":0.35
+        ]),
+        ([
+            "type":"offhand damage",
+            "name":"wakisashi",
+            "types":({ "short sword" }),
+            "formula":"additive",
+            "rate":0.2
+        ]),
+        ([
+            "type":"research",
+            "name":"Twin Edge Theory",
+            "research item":"/guilds/monk/paired-swords/twin-edge-theory.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":3.0
+        ]),
+        ([
+            "type":"skill",
+            "name":"short sword",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"anatomy and physiology",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"strength",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"intelligence",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Opening Geometry",
+            "research item":"/guilds/monk/paired-swords/opening-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Alternating Lines",
+            "research item":"/guilds/monk/paired-swords/alternating-lines.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ])
+    }));
 }

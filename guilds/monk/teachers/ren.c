@@ -18,11 +18,8 @@ protected void Setup()
     SetUpPersonaOfLevel("staff man", 25);
     addRelationshipInteraction("training.completed",
         ([ "respect":2, "admiration":1 ]));
+    deferLessonLoading();
     addLesson("/guilds/monk/discipline/controlled-expenditure.c", ([]), "");
-    addLesson("/guilds/monk/pure-chi/focused-pulse.c", ([]), "");
-    addLesson("/guilds/monk/mana-shield/mindful-ward.c", ([]), "");
-    addLesson("/guilds/monk/bludgeon/measured-impact.c", ([]), "");
-    addLesson("/guilds/monk/bludgeon/settled-guard.c", ([]), "");
     addLesson("/guilds/monk/discipline/adepts-trial.c", ([]), "");
     addLesson("/guilds/monk/discipline/senior-disciples-trial.c", ([]), "");
     addLesson("/guilds/monk/discipline/master-candidates-trial.c", ([]), "");
@@ -41,15 +38,6 @@ protected void Setup()
         "/guilds/monk/mana-shield.c"
     }))
     {
-        object tree = getService("research")->researchTree(treePath);
-        foreach(object item in m_indices(tree->getFlattenedResearchTree()))
-        {
-            string path = program_name(item);
-            if (item->query("research type") != "tree root" &&
-                member(lianLessons, path) < 0 && !teachesResearch(path))
-            {
-                addLesson(path, ([]), "");
-            }
-        }
+        addLessonTree(treePath, lianLessons);
     }
 }

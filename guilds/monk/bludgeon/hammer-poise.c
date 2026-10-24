@@ -3,23 +3,55 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addPrerequisite("/guilds/monk/bludgeon/anvil-geometry.c",
-        ([ "type":"research" ]));
-    monkResearch("Hammer Poise", "Combine anvil geometry with braced "
-        "recovery to control a heavy head without overextension. Grants "
-        "one strength and one defense with a primary war hammer.", 30, 4,
-        "/guilds/monk/bludgeon/braced-recovery.c", ([
+    addSpecification("name", "Hammer Poise");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Combine anvil geometry with braced recovery to control a heavy head "
+        "without overextension. Grants one strength and one defense with a "
+        "primary war hammer.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":"hammer",
             "blueprint":"war hammer",
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("/guilds/monk/bludgeon/anvil-geometry.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":60
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/braced-recovery.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 4);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
+
     addSpecification("bonus strength", 1);
     addSpecification("bonus defense", 1);
 }

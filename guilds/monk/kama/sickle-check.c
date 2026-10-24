@@ -3,12 +3,144 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialAttack("Sickle Check", "Force an exhausting response to "
-        "one kama motion, draining stamina without immobilization.",
-        10, "sickle-footing", "kama", "damage stamina points",
-        12, 2, 8, 14, "sickle-leverage");
+    addSpecification("name", "Sickle Check");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Force an exhausting response to one kama motion, draining stamina "
+        "without immobilization.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":5
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "initiate",
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/sickle-footing.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
+    addSpecification("scope", "targeted");
+    addSpecification("effect", "combat");
+    addSpecification("stamina point cost", 8);
+    addSpecification("cooldown", 14);
+
+    addSpecification("command template", "kata sickle check at ##Target##");
+    addSpecification("usage summary", "kata sickle check at <target>");
+    addSpecification("use ability message",
+        "##InitiatorName## ##Infinitive::execute## sickle check against "
+        "##TargetName##.");
+
+    addSpecification("observation type", "combat.kata");
+    addSpecification("damage type", "slash");
+    addSpecification("damage stamina points", ({
+        ([
+            "probability":100,
+            "base damage":12,
+            "range":2
+        ])
+    }));
+
+    addSpecification("modifiers", ({
+        ([
+            "type":"skill",
+            "name":"short sword",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"weapon damage",
+            "name":"kama",
+            "types":({ "short sword" }),
+            "formula":"additive",
+            "rate":0.5
+        ]),
+        ([
+            "type":"research",
+            "name":"Sickle Leverage",
+            "research item":"/guilds/monk/kama/sickle-leverage.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":3.0
+        ]),
+        ([
+            "type":"skill",
+            "name":"parry",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"physics",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"strength",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"constitution",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Hook Geometry",
+            "research item":"/guilds/monk/kama/hook-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Binding Geometry",
+            "research item":"/guilds/monk/kama/binding-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ])
+    }));
 }

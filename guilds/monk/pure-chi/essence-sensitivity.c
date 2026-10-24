@@ -3,12 +3,48 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Essence Sensitivity", "Feel the grain of internal energy "
-        "before shaping it, improving magical essence by two.",
-        10, 1, "/guilds/monk/pure-chi/chi-anatomy.c", ([]));
+    addSpecification("name", "Essence Sensitivity");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Feel the grain of internal energy before shaping it, improving "
+        "magical essence by two.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":4
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "initiate",
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/chi-anatomy.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus magical essence", 2);
 }

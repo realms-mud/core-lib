@@ -3,12 +3,46 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Mental Abacus", "Rehearse energy paths as precise mental "
-        "figures, granting one intelligence for deliberate shaping.",
-        15, 2, "/guilds/monk/pure-chi/pulse-cadence.c", ([]));
+    addSpecification("name", "Mental Abacus");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Rehearse energy paths as precise mental figures, granting one "
+        "intelligence for deliberate shaping.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":27
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/pulse-cadence.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus intelligence", 1);
 }

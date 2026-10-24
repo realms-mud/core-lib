@@ -3,18 +3,56 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Stone Stance", "Reserve twelve maximum stamina for "
-        "+3 soak and -2 attack; received hits cost one stamina.", 20, 3,
-        "grounded-base", "unarmed");
+    addSpecification("name", "Stone Stance");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve twelve maximum stamina for +3 soak and -2 attack; received "
+        "hits cost one stamina.");
+
+    addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":42
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/unarmed/grounded-base.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("stamina point cost", 12);
     addSpecification("cooldown", 4);
+
     addSpecification("command template", "kata stone stance");
+
     addSpecification("bonus soak", 3);
     addSpecification("penalty to attack", 2);
-    addSpecification("per hit received cost", ([ "stamina points":1 ]));
+
+    addSpecification("per hit received cost", ([
+        "stamina points":1
+    ]));
 }

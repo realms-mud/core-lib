@@ -4,13 +4,20 @@
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addPrerequisite("monk", ([ "type":"guild", "value":({ "monk" }) ]));
     addSpecification("name", "Monastic Archery Foundations");
-    addSpecification("description", "The discipline of measured bow releases. "
-        "Lessons require instruction; combat techniques require a primary "
-        "bow and consume an arrow through the normal consumables system.");
     addSpecification("source", "monk");
+    addSpecification("description",
+        "The discipline of measured bow releases. Lessons require "
+        "instruction; combat techniques require a primary bow and consume an "
+        "arrow through the normal consumables system.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+
     addSpecification("research type", "tree root");
 }

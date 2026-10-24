@@ -2,9 +2,11 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-#ifndef MonkTrialTestSupport
-#define MonkTrialTestSupport
+inherit "/lib/tests/framework/testFixture.c";
 
+int *MonkPromotionLevels = ({ 10, 20, 30, 40, 55, 70 });
+
+/////////////////////////////////////////////////////////////////////////////
 void TeachMonkTrialLesson(object student, object *teachers, string path)
 {
     if (!student.isResearched(path))
@@ -14,6 +16,15 @@ void TeachMonkTrialLesson(object student, object *teachers, string path)
         foreach(string parent in tree.getParents(path))
         {
             TeachMonkTrialLesson(student, teachers, parent);
+        }
+        object item = tree.getResearchItem(path);
+        foreach(string prerequisite, mapping requirement in
+            item.getPrerequisites())
+        {
+            if (requirement["type"] == "research")
+            {
+                TeachMonkTrialLesson(student, teachers, prerequisite);
+            }
         }
         object instructor = 0;
         foreach(object teacher in teachers)
@@ -31,6 +42,7 @@ void TeachMonkTrialLesson(object student, object *teachers, string path)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CompleteMonkUpperTrial(object student, object lian, object ren, int stage)
 {
     string *trials = ({ "senior-disciples-trial", "master-candidates-trial",
@@ -59,4 +71,3 @@ void CompleteMonkUpperTrial(object student, object lian, object ren, int stage)
     }
     ExpectTrue(student.learnResearchFrom(ren, path), path);
 }
-#endif

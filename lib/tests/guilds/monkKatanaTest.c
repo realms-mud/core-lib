@@ -40,7 +40,7 @@ void Setup()
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
     Target.Race("human");
-    Target.effectiveLevel(3);
+    Target.effectiveLevel(5);
     Target.setMaxHitPoints(10000);
     Katana = clone_object("/lib/items/weapon.c");
     Katana.set("blueprint", "katana");
@@ -75,17 +75,17 @@ void CleanUp()
 void PrepareStudent()
 {
     ExpectTrue(User.joinGuild("monk"));
-    ExpectFalse(member(User.availableResearchTrees(),
+    ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/katana.c") >= 0);
     ExpectTrue(User.learnResearchFrom(Teacher,
         "/guilds/monk/discipline/initiates-discipline.c"));
     int advancing = 1;
-    while (advancing && User.guildLevel("monk") < 5)
+    while (advancing && User.guildLevel("monk") < 10)
     {
         User.addExperience(User.experienceToNextLevel("monk"), "monk");
         advancing = User.advanceLevel("monk");
     }
-    ExpectEq(5, User.guildLevel("monk"));
+    ExpectEq(10, User.guildLevel("monk"));
     ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/katana.c") >= 0);
     ExpectTrue(User.isResearched("/guilds/monk/katana/root.c"));

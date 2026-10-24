@@ -3,12 +3,135 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialAttack("Crescent Reap", "Commit the kama to one broad "
-        "curved cut against a single opponent.",
-        20, "reaping-lines", "kama", "damage hit points",
-        24, 3, 16, 20, "crescent-geometry");
+    addSpecification("name", "Crescent Reap");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Commit the kama to one broad curved cut against a single opponent.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":42
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/reaping-lines.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
+    addSpecification("scope", "targeted");
+    addSpecification("effect", "combat");
+    addSpecification("stamina point cost", 16);
+    addSpecification("cooldown", 20);
+
+    addSpecification("command template", "kata crescent reap at ##Target##");
+    addSpecification("usage summary", "kata crescent reap at <target>");
+    addSpecification("use ability message",
+        "##InitiatorName## ##Infinitive::execute## crescent reap against "
+        "##TargetName##.");
+
+    addSpecification("observation type", "combat.kata");
+    addSpecification("damage type", "slash");
+    addSpecification("damage hit points", ({
+        ([
+            "probability":100,
+            "base damage":24,
+            "range":3
+        ])
+    }));
+
+    addSpecification("modifiers", ({
+        ([
+            "type":"skill",
+            "name":"short sword",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"weapon damage",
+            "name":"kama",
+            "types":({ "short sword" }),
+            "formula":"additive",
+            "rate":0.5
+        ]),
+        ([
+            "type":"research",
+            "name":"Crescent Geometry",
+            "research item":"/guilds/monk/kama/crescent-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":3.0
+        ]),
+        ([
+            "type":"skill",
+            "name":"physics",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"tactics",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"strength",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"constitution",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Reaping Lines",
+            "research item":"/guilds/monk/kama/reaping-lines.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Hook Geometry",
+            "research item":"/guilds/monk/kama/hook-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ])
+    }));
 }

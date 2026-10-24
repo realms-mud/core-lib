@@ -90,6 +90,21 @@ guilds/<guild-name>/
 
 ## Creating a Guild
 
+### Initialization and registration
+
+`baseGuild.create()` calls `SetupGuild()` before automatically registering a
+named guild. The guild service loads and registers that initialized object;
+it must not call `SetupGuild()` again. Repeated registration must not rebuild
+level criteria, duplicate recurring bonuses, or repeat other setup effects.
+Destroying and reloading a guild creates a fresh, normally initialized object.
+
+The service previously repeated setup during registration, which doubled
+recurring modifiers in guilds without their own idempotence guard. Registration
+now leaves setup exclusively to object creation. A normal server restart is
+required to replace already-loaded guilds with inflated criteria; hot-loading
+the service does not repair their existing in-memory definitions. This fix
+does not rewrite saved character records or perform a database migration.
+
 ### Basic Guild Template
 
 Every guild must inherit from `baseGuild.c` and implement `SetupGuild()`:

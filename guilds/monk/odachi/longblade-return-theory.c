@@ -3,11 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Longblade Return Theory", "Study the odachi's "
-        "returning line: adds three to Returning Arc's damage formula.",
-        25, "returning-arc", "odachi", "Returning Arc", "bonus", 3);
+    addSpecification("name", "Longblade Return Theory");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Study the odachi's returning line: adds three to Returning Arc's "
+        "damage formula.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"odachi",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":61
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/odachi/returning-arc.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/odachi/returning-arc.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Returning Arc":3
+    ]));
 }

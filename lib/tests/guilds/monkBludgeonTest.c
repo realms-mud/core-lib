@@ -42,7 +42,7 @@ void Setup()
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
     Target.Race("human");
-    Target.effectiveLevel(6);
+    Target.effectiveLevel(10);
     Target.setMaxHitPoints(10000);
     Weapon = clone_object("/lib/items/weapon.c");
     Weapon.set("blueprint", "mace");
@@ -93,8 +93,8 @@ void PrepareDisciple(int withRecognition)
     ExpectTrue(User.joinGuild("monk"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceMonkToLevel(5);
-    ExpectFalse(member(User.availableResearchTrees(),
+    AdvanceMonkToLevel(10);
+    ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/bludgeon.c") >= 0);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
@@ -106,13 +106,13 @@ void PrepareDisciple(int withRecognition)
         ExpectTrue(User.learnResearchFrom(Lian,
             "/guilds/monk/discipline/teachers-recognition.c"));
     }
-    AdvanceMonkToLevel(10);
+    AdvanceMonkToLevel(20);
     ExpectTrue(member(User.availableResearchTrees(),
         "/guilds/monk/bludgeon.c") >= 0);
     ExpectTrue(User.isResearched("/guilds/monk/bludgeon/root.c"));
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
-    ExpectFalse(User.canResearch(Impact));
+    ExpectTrue(User.canResearch(Impact));
     ExpectTrue(User.advanceRank("monk"));
     User.hitPoints(10000);
     User.spellPoints(10000);
@@ -135,12 +135,12 @@ void ReadyKata()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void InstructionRequiresRecognitionRankAndRenButNotAWeapon()
+void InitialInstructionRequiresFoundationsAndRenButNotAWeapon()
 {
     ExpectFalse(User.canResearch(Impact));
     PrepareDisciple(0);
     int points = User.researchPoints();
-    ExpectFalse(User.learnResearchFrom(Ren, Impact));
+    ExpectTrue(User.canResearch(Impact));
     ExpectEq(points, User.researchPoints());
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/steady-practice.c"));

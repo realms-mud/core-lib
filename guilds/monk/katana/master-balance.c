@@ -3,11 +3,51 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Master Balance", "A master's precise weight transfer "
-        "grants +1 dexterity with a primary katana.", 30, 3,
-        "measured-distance", "katana");
+    addSpecification("name", "Master Balance");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "A master's precise weight transfer grants +1 dexterity with a "
+        "primary katana.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":66
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "master candidate",
+        "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/measured-distance.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/point-alignment.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus dexterity", 1);
 }

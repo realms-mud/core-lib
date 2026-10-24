@@ -3,22 +3,61 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Leverage Study", "Advanced study of mass and lever arms "
-        "adds one point to Measured Impact and Draining Impact. The "
-        "principles apply only with a primary staff, mace, or hammer.",
-        20, 3, "/guilds/monk/bludgeon/returning-guard.c", ([
+    addSpecification("name", "Leverage Study");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Advanced study of mass and lever arms adds one point to Measured "
+        "Impact and Draining Impact. The principles apply only with a "
+        "primary staff, mace, or hammer.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":({ "staff", "mace", "hammer" }),
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":40
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/returning-guard.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
         "Measured Impact":1,
-        "Draining Impact":1
+        "Draining Impact":1,
+        "Sweeping Arc":1,
+        "Compact Blow":1,
+        "Falling Head":1,
+        "Pressing Shaft":1,
+        "Taxing Contact":1,
+        "Burdening Blow":1,
+        "Horizon Stroke":1,
+        "Centerline Crush":1,
+        "Anvil Descent":1
     ]));
 }

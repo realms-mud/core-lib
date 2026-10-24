@@ -3,19 +3,53 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Balanced Circulation", "Reserve eight maximum spell "
-        "points for continuous tissue repair. Gain two natural hit-point "
-        "healing at the expense of two damage.",
-        20, 3, "/guilds/monk/pure-chi/returning-current.c", ([]));
+    addSpecification("name", "Balanced Circulation");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve eight maximum spell points for continuous tissue repair. "
+        "Gain two natural hit-point healing at the expense of two damage.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":33
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/returning-current.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("spell point cost", 8);
     addSpecification("cooldown", 8);
+
     addSpecification("bonus heal hit points", 2);
     addSpecification("penalty to damage", 2);
+
     addSpecification("command template", "chi balanced circulation");
     addSpecification("use ability activate message",
         "A gentle repairing rhythm settles within ##InitiatorName##.");

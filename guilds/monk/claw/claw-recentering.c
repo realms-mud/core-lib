@@ -3,25 +3,126 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Claw Recentering", "Spend eight spell points "
-        "and six stamina to restore modest health with primary tiger claws.",
-        20, 3, "claw-recovery", "claw");
+    addSpecification("name", "Claw Recentering");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Spend eight spell points and six stamina to restore modest health "
+        "with primary tiger claws.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"tiger claws",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":25
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "disciple", "adept", "senior disciple", "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/claw/claw-recovery.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("spell point cost", 8);
     addSpecification("stamina point cost", 6);
     addSpecification("cooldown", 22);
+
     addSpecification("command template", "kata claw recentering");
     addSpecification("usage summary", "kata claw recentering");
+
     addSpecification("increase hit points", ({
-        ([ "probability":100, "base damage":10, "range":3 ])
+        ([
+            "probability":100,
+            "base damage":10,
+            "range":3
+        ])
     }));
+
     addSpecification("modifiers", ({
-        ([ "type":"attribute", "name":"wisdom",
-            "formula":"additive", "rate":0.1 ])
+        ([
+            "type":"attribute",
+            "name":"wisdom",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"anatomy and physiology",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"skill",
+            "name":"perception",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"skill",
+            "name":"dodge",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"skill",
+            "name":"parry",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"attribute",
+            "name":"constitution",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.05
+        ]),
+        ([
+            "type":"research",
+            "name":"Rake Geometry",
+            "research item":"/guilds/monk/claw/rake-geometry.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Claw Breath Theory",
+            "research item":"/guilds/monk/claw/claw-breath-theory.c",
+            "formula":"additive",
+            "base value":1,
+            "rate":2.0
+        ])
     }));
 }

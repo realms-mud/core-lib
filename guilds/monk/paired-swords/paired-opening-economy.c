@@ -3,12 +3,58 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Paired Opening Economy", "Waste less effort behind "
-        "the feint: reduce Opening Cut's authored stamina cost by two.",
-        25, "opening-geometry", "paired-swords", "Opening Cut",
-        "decrease cost", 2);
+    addSpecification("name", "Paired Opening Economy");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Waste less effort behind the feint: reduce Opening Cut's authored "
+        "stamina cost by two.");
+
+    addSpecification("limited by", ([
+        "equipment":({
+            ([
+                "blueprint":"katana",
+                "slot":"wielded primary"
+            ]),
+            ([
+                "blueprint":"wakisashi",
+                "slot":"wielded offhand"
+            ])
+        })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":58
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/paired-swords/opening-geometry.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/paired-swords/opening-geometry.c" }));
+    addSpecification("affected research type", "decrease cost");
+    addSpecification("affected research", ([
+        "Opening Cut":2
+    ]));
 }

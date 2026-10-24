@@ -4,11 +4,13 @@
 //*****************************************************************************
 inherit "/lib/tests/support/guilds/monkMasteryTrialFixture.c";
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryMasterRouteCrossesFortyWithRealExecutionWithoutCrossTraining()
 {
     ExerciseAllRoutes(2);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void MasterCanDemonstrateAllFortyUsesWithoutSeededMasterPractice()
 {
     PrepareAt(2, "unarmed", "");
@@ -17,7 +19,7 @@ void MasterCanDemonstrateAllFortyUsesWithoutSeededMasterPractice()
     for (int use = 0; use < 40; use++)
     {
         ExpectFalse(User.canResearch(TrialPath(2)));
-        RecoverPractice();
+        RecoverPractice("/guilds/monk/unarmed/empty-hand.c");
         ExpectTrue(Target.registerAttacker(User));
         ExpectTrue(User.registerAttacker(Target));
         ExpectTrue(User.executeCommand("kata empty hand at opponent"));

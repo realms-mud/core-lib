@@ -11,6 +11,7 @@ public void SetupGuild()
     {
         guildName("monk");
         guildClass("combat");
+        deferResearchTreeLoading();
         addPreferredSkillType("combat");
 
         addRank("initiate", ([
@@ -63,19 +64,19 @@ public void SetupGuild()
         setDefaultRank("initiate");
 
         addRankPrerequisite("student", ([
-            "level":([ "type":"level", "guild":"monk", "value":5 ]),
+            "level":([ "type":"level", "guild":"monk", "value":10 ]),
             "/guilds/monk/discipline/disciplined-breath.c":([
                 "type":"research"
             ])
         ]));
         addRankPrerequisite("disciple", ([
-            "level":([ "type":"level", "guild":"monk", "value":10 ]),
+            "level":([ "type":"level", "guild":"monk", "value":20 ]),
             "/guilds/monk/discipline/students-awareness.c":([
                 "type":"research"
             ])
         ]));
         addRankPrerequisite("adept", ([
-            "level":([ "type":"level", "guild":"monk", "value":15 ]),
+            "level":([ "type":"level", "guild":"monk", "value":30 ]),
             "/guilds/monk/discipline/disciples-insight.c":([
                 "type":"research"
             ]),
@@ -84,7 +85,7 @@ public void SetupGuild()
             ])
         ]));
         addRankPrerequisite("senior disciple", ([
-            "level":([ "type":"level", "guild":"monk", "value":20 ]),
+            "level":([ "type":"level", "guild":"monk", "value":40 ]),
             "/guilds/monk/discipline/adepts-focus.c":([
                 "type":"research"
             ]),
@@ -93,7 +94,7 @@ public void SetupGuild()
             ])
         ]));
         addRankPrerequisite("master candidate", ([
-            "level":([ "type":"level", "guild":"monk", "value":25 ]),
+            "level":([ "type":"level", "guild":"monk", "value":55 ]),
             "/guilds/monk/discipline/inner-discipline.c":([
                 "type":"research"
             ]),
@@ -102,7 +103,7 @@ public void SetupGuild()
             ])
         ]));
         addRankPrerequisite("master", ([
-            "level":([ "type":"level", "guild":"monk", "value":30 ]),
+            "level":([ "type":"level", "guild":"monk", "value":70 ]),
             "/guilds/monk/discipline/mastery-of-fundamentals.c":([
                 "type":"research"
             ]),
@@ -151,52 +152,52 @@ public void SetupGuild()
         ]));
         addCriteria("unarmed discipline", ([
             "type":"research tree",
-            "apply":"at level 5",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/unarmed.c"
         ]));
         addCriteria("katana discipline", ([
             "type":"research tree",
-            "apply":"at level 5",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/katana.c"
         ]));
         addCriteria("pure chi", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/pure-chi.c"
         ]));
         addCriteria("mana shield mechanics", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/mana-shield.c"
         ]));
         addCriteria("bludgeon discipline", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/bludgeon.c"
         ]));
         addCriteria("paired sword discipline", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/paired-swords.c"
         ]));
         addCriteria("odachi discipline", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/odachi.c"
         ]));
         addCriteria("monastic archery", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/archery.c"
         ]));
         addCriteria("kama discipline", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/kama.c"
         ]));
         addCriteria("claw discipline", ([
             "type":"research tree",
-            "apply":"at level 10",
+            "apply":"at level 1",
             "research tree":"/guilds/monk/claw.c"
         ]));
     }

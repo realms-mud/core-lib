@@ -3,11 +3,49 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Returning Rhythm", "A complete breathing cycle reduces "
-        "Returning Breath's cooldown by four seconds.", 30,
-        "returning-breath", "unarmed", "Returning Breath",
-        "decrease cooldown", 4);
+    addSpecification("name", "Returning Rhythm");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "A complete breathing cycle reduces Returning Breath's cooldown by "
+        "four seconds.");
+
+    addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":68
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/unarmed/returning-breath.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/unarmed/returning-breath.c" }));
+    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research", ([
+        "Returning Breath":4
+    ]));
 }

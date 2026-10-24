@@ -3,31 +3,149 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Ward Mending", "Spend spell points to mend injuries "
-        "while the existing ward remains active. This replenishes health, "
-        "not a separate shield or absorption reserve.",
-        10, 2, "/guilds/monk/mana-shield/ward-anatomy.c", ([
-            "research active":({
-                "/guilds/monk/mana-shield/mindful-ward.c" }) ]));
+    addSpecification("name", "Ward Mending");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Spend spell points to mend injuries while the existing ward remains "
+        "active. This replenishes health, not a separate shield or "
+        "absorption reserve.");
+
+    addSpecification("limited by", ([
+        "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":9
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "initiate",
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/mana-shield/ward-anatomy.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/mana-shield/recovery-cycle.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("spell point cost", 8);
     addSpecification("cooldown", 30);
+
     addSpecification("command template", "chi ward mending");
     addSpecification("use ability message",
-        "##InitiatorName## mend##InitiatorReflexive## wounds "
-        "beneath the quiet ward.");
+        "##InitiatorName## mend##InitiatorReflexive## wounds beneath the "
+        "quiet ward.");
+
     addSpecification("increase hit points", ({
-        ([ "probability":100, "base damage":12, "range":4 ]) }));
+        ([
+            "probability":100,
+            "base damage":12,
+            "range":4
+        ])
+    }));
+
     addSpecification("modifiers", ({
-        ([ "type":"attribute", "name":"wisdom",
-            "formula":"additive", "rate":0.15 ]) }));
+        ([
+            "type":"attribute",
+            "name":"wisdom",
+            "formula":"additive",
+            "rate":0.15
+        ]),
+        ([
+            "type":"skill",
+            "name":"healing",
+            "formula":"additive",
+            "rate":0.12
+        ]),
+        ([
+            "type":"skill",
+            "name":"anatomy and physiology",
+            "formula":"additive",
+            "rate":0.08
+        ]),
+        ([
+            "type":"skill",
+            "name":"magical essence",
+            "formula":"additive",
+            "rate":0.06
+        ]),
+        ([
+            "type":"skill",
+            "name":"meditation",
+            "formula":"additive",
+            "rate":0.08
+        ]),
+        ([
+            "type":"attribute",
+            "name":"constitution",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"intelligence",
+            "formula":"additive",
+            "rate":0.04
+        ]),
+        ([
+            "type":"research",
+            "name":"Ward Anatomy",
+            "research item":"/guilds/monk/mana-shield/ward-anatomy.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":3.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Recovery Cycle",
+            "research item":"/guilds/monk/mana-shield/recovery-cycle.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":2.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Refuge Theory",
+            "research item":"/guilds/monk/mana-shield/refuge-theory.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":1.0
+        ])
+    }));
+
     addSpecification("spell point cost modifiers", ([
-        "/guilds/monk/mana-shield/guarded-breath.c":1 ]));
+        "/guilds/monk/mana-shield/guarded-breath.c":1
+    ]));
+
     addSpecification("cooldown modifiers", ([
-        "/guilds/monk/mana-shield/renewing-rhythm.c":4 ]));
+        "/guilds/monk/mana-shield/renewing-rhythm.c":4
+    ]));
 }

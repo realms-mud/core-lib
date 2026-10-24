@@ -3,18 +3,61 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Sickle Ward", "Reserve ten maximum stamina "
-        "for +3 parry at a cost of one attack.",
-        10, 3, "sickle-guard", "kama");
+    addSpecification("name", "Sickle Ward");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve ten maximum stamina for +3 parry at a cost of one attack.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":10
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "student",
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/sickle-guard.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("stamina point cost", 10);
     addSpecification("cooldown", 4);
+
     addSpecification("command template", "kata sickle ward");
+
     addSpecification("bonus parry", 3);
     addSpecification("penalty to attack", 1);
 }

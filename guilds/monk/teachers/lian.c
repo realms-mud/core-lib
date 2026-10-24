@@ -24,6 +24,7 @@ protected void Setup()
     addRelationshipInteraction("training.completed",
         ([ "respect":2, "admiration":1 ]));
 
+    deferLessonLoading();
     addLesson("/guilds/monk/discipline/initiates-discipline.c", ([]), "");
     addLesson("/guilds/monk/discipline/steady-practice.c", ([
         "Lian's respect":([

@@ -4,13 +4,20 @@
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addPrerequisite("monk", ([ "type":"guild", "value":({ "monk" }) ]));
     addSpecification("name", "Katana Foundations");
-    addSpecification("description", "The principles of controlled cuts and "
-        "recovery with a katana. This foundation opens the curriculum; "
-        "individual techniques still require instruction.");
     addSpecification("source", "monk");
+    addSpecification("description",
+        "The principles of controlled cuts and recovery with a katana. This "
+        "foundation opens the curriculum; individual techniques still "
+        "require instruction.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+
     addSpecification("research type", "tree root");
 }

@@ -3,13 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Pulse Cadence", "Time broad projections between breaths. "
-        "Driving Wave recovers two seconds sooner.",
-        15, 2, "/guilds/monk/pure-chi/pulse-geometry.c", ([]));
+    addSpecification("name", "Pulse Cadence");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Time broad projections between breaths. Driving Wave recovers two "
+        "seconds sooner.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":23
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/pulse-geometry.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/needle-of-chi.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("affected research type", "decrease cooldown");
-    addSpecification("affected research", ([ "Driving Wave":2 ]));
+    addSpecification("affected research", ([
+        "Driving Wave":2
+    ]));
 }

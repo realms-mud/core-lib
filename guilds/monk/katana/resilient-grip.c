@@ -3,10 +3,47 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Resilient Grip", "Relaxed forearms grant +10 maximum "
-        "stamina with a primary katana.", 15, 2, "rooted-cut", "katana");
+    addSpecification("name", "Resilient Grip");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Relaxed forearms grant +10 maximum stamina with a primary katana.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":24
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "disciple",
+        "adept", "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/rooted-cut.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus stamina points", 10);
 }

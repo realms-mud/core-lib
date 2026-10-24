@@ -3,18 +3,61 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Paired Flow", "Reserve fourteen maximum stamina "
-        "for +3 dodge at a cost of two damage.", 20, 3,
-        "paired-footwork", "paired-swords");
+    addSpecification("name", "Paired Flow");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve fourteen maximum stamina for +3 dodge at a cost of two "
+        "damage.");
+
+    addSpecification("limited by", ([
+        "equipment":({
+            ([
+                "blueprint":"katana",
+                "slot":"wielded primary"
+            ]),
+            ([
+                "blueprint":"wakisashi",
+                "slot":"wielded offhand"
+            ])
+        })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":48
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/paired-swords/paired-footwork.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
     addSpecification("stamina point cost", 14);
     addSpecification("cooldown", 4);
+
     addSpecification("command template", "kata paired flow");
+
     addSpecification("bonus dodge", 3);
     addSpecification("penalty to damage", 2);
 }

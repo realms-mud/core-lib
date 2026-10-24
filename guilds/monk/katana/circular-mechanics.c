@@ -3,10 +3,56 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Circular Mechanics", "Controlled rotational force adds "
-        "three points to Drawn Circle's single-target damage.", 20,
-        "drawn-circle", "katana", "Drawn Circle", "bonus", 3);
+    addSpecification("name", "Circular Mechanics");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Controlled rotational force adds three points to Drawn Circle's "
+        "single-target damage.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":42
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/drawn-circle.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/katana/drawn-circle.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Drawn Circle":3,
+        "Quick Draw":2,
+        "Guard Breaker":1,
+        "Decisive Cut":2,
+        "Silent Edge":2
+    ]));
 }

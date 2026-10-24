@@ -4,6 +4,7 @@
 //*****************************************************************************
 inherit "/lib/modules/traits/baseTrait.c";
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     addSpecification("type", "sustained effect");

@@ -3,12 +3,49 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Sickle Conditioning", "Condition the kama arm "
-        "for repeated cuts: +6 maximum stamina.",
-        15, 1, "sickle-footing", "kama");
+    addSpecification("name", "Sickle Conditioning");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Condition the kama arm for repeated cuts: +6 maximum stamina.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":22
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "disciple", "adept", "senior disciple", "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/sickle-footing.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus stamina points", 6);
 }

@@ -3,11 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Hook Return Theory", "Study recovery into a return "
-        "cut: adds three to Returning Hook's damage formula.", 25,
-        "returning-hook", "kama", "Returning Hook", "bonus", 3);
+    addSpecification("name", "Hook Return Theory");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Study recovery into a return cut: adds three to Returning Hook's "
+        "damage formula.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":60
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/returning-hook.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/kama/returning-hook.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Returning Hook":3
+    ]));
 }

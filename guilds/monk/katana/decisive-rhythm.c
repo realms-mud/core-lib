@@ -3,10 +3,53 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Decisive Rhythm", "Recovering the finishing rhythm "
-        "reduces Decisive Cut's cooldown by four seconds.", 30,
-        "decisive-angle", "katana", "Decisive Cut", "decrease cooldown", 4);
+    addSpecification("name", "Decisive Rhythm");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Recovering the finishing rhythm reduces Decisive Cut's cooldown by "
+        "four seconds.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":64
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "master candidate",
+        "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/decisive-angle.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/katana/decisive-angle.c" }));
+    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research", ([
+        "Decisive Cut":4
+    ]));
 }

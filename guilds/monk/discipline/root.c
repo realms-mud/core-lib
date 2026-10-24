@@ -7,11 +7,17 @@ inherit "/lib/modules/research/knowledgeResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addPrerequisite("monk", ([ "type":"guild", "value":({ "monk" }) ]));
     addSpecification("name", "Foundation of Practice");
     addSpecification("source", "monk");
-    addSpecification("description", "You understand the monastic approach "
-        "to measured practice: patient repetition, awareness of your "
-        "limitations, and deliberate improvement.");
+    addSpecification("description",
+        "You understand the monastic approach to measured practice: patient "
+        "repetition, awareness of your limitations, and deliberate "
+        "improvement.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+
     addSpecification("research type", "tree root");
 }

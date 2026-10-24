@@ -70,6 +70,8 @@ protected mapping prerequisites = ([
 //
 // Returns: true if the prerequisite type is valid.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
@@ -88,6 +90,8 @@ private nomask int isValidPrerequisiteType(string type)
 //
 // Returns: true if the prerequisite is of valid format.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 protected nomask int validPrerequisite(mapping prerequisite)
 {
     int ret = prerequisite && mappingp(prerequisite) &&
@@ -150,6 +154,7 @@ protected nomask int validPrerequisite(mapping prerequisite)
 //
 // Returns: the prerequisites mapping
 //----------------------------------------------------------------------------- 
+/////////////////////////////////////////////////////////////////////////////
 public nomask mapping getPrerequisites()
 {
     return prerequisites + ([ ]);
@@ -167,6 +172,7 @@ public nomask mapping getPrerequisites()
 //
 // Returns: true if the prerequisite has been added
 //-----------------------------------------------------------------------------  
+/////////////////////////////////////////////////////////////////////////////
 protected nomask varargs int addPrerequisite(string key, mapping prerequisite, 
     string grouping)
 {
@@ -201,6 +207,8 @@ protected nomask varargs int addPrerequisite(string key, mapping prerequisite,
 //
 // Returns: true if the researcher object is of type 'research'
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int validResearcher(object researcher)
 {
     return (researcher && objectp(researcher) && researcher->has("research"));
@@ -217,6 +225,8 @@ private nomask int validResearcher(object researcher)
 //
 // Returns: true if the researcher object 'knows' the passed research topic
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkResearch(object researcher, string research)
 {
     return (validResearcher(researcher) && researcher->has("research") &&
@@ -236,6 +246,8 @@ private nomask int checkResearch(object researcher, string research)
 // Returns: true if the researcher object has attribute of at least the
 //          specified value.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkAttribute(object researcher, string attribute, 
     int value)
 {
@@ -255,6 +267,8 @@ private nomask int checkAttribute(object researcher, string attribute,
 // Returns: true if the researcher object has skill of at least the
 //          specified value.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkSkill(object researcher, string skill, int value)
 {
     return (validResearcher(researcher) && researcher->has("skills") &&
@@ -274,6 +288,8 @@ private nomask int checkSkill(object researcher, string skill, int value)
 //
 // Returns: true if the researcher object is of at least the specified level
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask varargs int checkLevel(object researcher, int level, string guild)
 {
     int ret = validResearcher(researcher) && researcher->has("guilds");
@@ -301,6 +317,7 @@ private nomask varargs int checkLevel(object researcher, int level, string guild
 //
 // Returns: true if the researcher object has completed the passed quest
 //-----------------------------------------------------------------------------    
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkQuest(object researcher, string quest)
 {
     return (validResearcher(researcher) && researcher->has("quests") &&
@@ -318,6 +335,8 @@ private nomask int checkQuest(object researcher, string quest)
 // Returns: true if the researcher object is a member of at least one of the
 //          specified guilds.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkGuilds(object researcher, string *guilds)
 {
     int ret = 0;
@@ -356,6 +375,8 @@ private nomask int checkGuildRanks(object researcher, string guild,
 //
 // Returns: true if the researcher meets the minimum-guild-count requirement.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkGuildLevels(object researcher, string *guilds,
     int minimumGuilds, int level)
 {
@@ -390,6 +411,8 @@ private nomask int checkGuildLevels(object researcher, string *guilds,
 //
 // Returns: true if the researcher meets the minimum-guild-count requirement.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkMultiGuildRanks(object researcher, string *guilds,
     int minimumGuilds, string *ranks)
 {
@@ -422,6 +445,8 @@ private nomask int checkMultiGuildRanks(object researcher, string *guilds,
 // Returns: true if the researcher object is a member of one of the specified
 //          races.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkRaces(object researcher, string *races)
 {
     int ret = 0;
@@ -450,6 +475,8 @@ private nomask int checkRaces(object researcher, string *races)
 // Returns: true if the researcher object is a member of at least one of the
 //          specified factions.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkFactions(object researcher, string *factions)
 {
     int ret = 0;
@@ -478,6 +505,8 @@ private nomask int checkFactions(object researcher, string *factions)
 // Returns: true if the researcher object has at least one of the specified
 //          traits.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkTraits(object researcher, string *traits)
 {
     int ret = 0;
@@ -506,6 +535,8 @@ private nomask int checkTraits(object researcher, string *traits)
 // Returns: true if the researcher object has at least one of the specified
 //          backgrounds.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkBackground(object researcher, string *backgrounds)
 {
     int ret = 0;
@@ -536,6 +567,8 @@ private nomask int checkBackground(object researcher, string *backgrounds)
 // Returns: true if the researcher object has combat statistics of the given
 //          type of at least the specified value.
 //-----------------------------------------------------------------------------
+
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkCombatStats(object researcher, string type, int value)
 {
     // Only two types are supported: "best kill" which is the level of the best
@@ -609,6 +642,7 @@ private nomask int checkSpokenTopics(object researcher, object checker,
 //
 // Returns: true if the researcher object has passed all of the prerequisites.
 //-----------------------------------------------------------------------------                        
+/////////////////////////////////////////////////////////////////////////////
 private nomask int checkPrerequisiteList(object researcher, mapping required,
     object owner)
 {

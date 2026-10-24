@@ -7,24 +7,30 @@ inherit "/lib/modules/research/passiveResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
+    addSpecification("name", "Adept's Focus");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Deliberate concentration improves your understanding and control of "
+        "magical techniques.");
+
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
-        "value":20
+        "value":40
     ]));
     addPrerequisite("rank", ([
         "type":"guild rank",
         "guild":"monk",
         "value":({ "adept", "senior disciple", "master candidate", "master" })
     ]));
-    addPrerequisite("/guilds/monk/discipline/disciples-insight.c",
-        ([ "type":"research" ]));
-    addSpecification("name", "Adept's Focus");
-    addSpecification("source", "monk");
-    addSpecification("description", "Deliberate concentration improves "
-        "your understanding and control of magical techniques.");
+    addPrerequisite("/guilds/monk/discipline/disciples-insight.c", ([
+        "type":"research"
+    ]));
+
     addSpecification("scope", "self");
+
     addSpecification("research type", "points");
     addSpecification("research cost", 1);
+
     addSpecification("bonus spellcraft", 2);
 }

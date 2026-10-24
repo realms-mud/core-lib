@@ -3,12 +3,45 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Deep Recollection", "Reassemble scattered attention "
-        "during recovery, adding one to spell-point recovery bonuses.",
-        20, 2, "/guilds/monk/pure-chi/replenishing-stillness.c", ([]));
+    addSpecification("name", "Deep Recollection");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reassemble scattered attention during recovery, adding one to "
+        "spell-point recovery bonuses.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":37
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/replenishing-stillness.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus recover spell points", 1);
 }

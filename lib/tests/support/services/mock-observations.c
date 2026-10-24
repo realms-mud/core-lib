@@ -77,5 +77,17 @@ public int countPlayerObservations(int playerId, mapping criteria)
 /////////////////////////////////////////////////////////////////////////////
 public int hasPlayerObservation(int playerId, mapping criteria, int minimum)
 {
-    return countPlayerObservations(playerId, criteria) >= minimum;
+    int count = 0;
+    int ret = minimum <= 0;
+    object service = getService("experiences");
+    foreach(mapping observation in observationCalls)
+    {
+        if (ret)
+        {
+            break;
+        }
+        count += service->matchesObservation(observation, criteria);
+        ret = count >= minimum;
+    }
+    return ret;
 }

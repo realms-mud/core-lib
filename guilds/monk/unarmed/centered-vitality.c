@@ -3,10 +3,44 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Centered Vitality", "A settled empty-handed posture "
-        "grants +10 maximum hit points.", 15, 2, "grounded-base", "unarmed");
+    addSpecification("name", "Centered Vitality");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "A settled empty-handed posture grants +10 maximum hit points.");
+
+    addSpecification("limited by", ([
+        "empty equipment slots":({ "wielded primary", "wielded offhand" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":20
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "disciple", "adept", "senior disciple",
+            "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/unarmed/grounded-base.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus hit points", 10);
 }

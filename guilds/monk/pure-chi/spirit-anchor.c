@@ -3,12 +3,43 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Spirit Anchor", "Keep your inner identity steady when "
-        "foreign magic intrudes, granting three magical resistance.",
-        30, 3, "/guilds/monk/pure-chi/etheric-poise.c", ([]));
+    addSpecification("name", "Spirit Anchor");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Keep your inner identity steady when foreign magic intrudes, "
+        "granting three magical resistance.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":61
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/etheric-poise.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus resist magical", 3);
 }

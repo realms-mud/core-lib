@@ -3,12 +3,51 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Archer's Composure", "Accept the pause before "
-        "release: +1 wisdom while wielding a primary bow.",
-        25, 1, "archers-guard", "archery");
+    addSpecification("name", "Archer's Composure");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Accept the pause before release: +1 wisdom while wielding a primary "
+        "bow.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "type":"bow",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":52
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "senior disciple",
+        "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/archery/archers-guard.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/archery/archers-recentering.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus wisdom", 1);
 }

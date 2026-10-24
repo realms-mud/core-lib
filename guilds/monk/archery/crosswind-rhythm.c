@@ -3,12 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Crosswind Rhythm", "Recover smoothly from oblique "
-        "releases: reduces Crosswind Shot's cooldown by four seconds.",
-        20, "crosswind-geometry", "archery", "Crosswind Shot",
-        "decrease cooldown", 4);
+    addSpecification("name", "Crosswind Rhythm");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Recover smoothly from oblique releases: reduces Crosswind Shot's "
+        "cooldown by four seconds.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "type":"bow",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":40
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/archery/crosswind-geometry.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/archery/crosswind-geometry.c" }));
+    addSpecification("affected research type", "decrease cooldown");
+    addSpecification("affected research", ([
+        "Crosswind Shot":4
+    ]));
 }

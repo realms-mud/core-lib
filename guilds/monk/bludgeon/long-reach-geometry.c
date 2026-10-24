@@ -3,23 +3,55 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Long Reach Geometry", "Study the staff's contact angles "
-        "at full extension. Adds two damage to Sweeping Arc and Horizon "
-        "Stroke and opens the staff's master technique.", 25, 3,
-        "/guilds/monk/bludgeon/pressing-shaft.c", ([
+    addSpecification("name", "Long Reach Geometry");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Study the staff's contact angles at full extension. Adds two damage "
+        "to Sweeping Arc and Horizon Stroke and opens the staff's master "
+        "technique.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":"staff",
             "blueprint":({ "staff", "quarterstaff" }),
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":46
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "senior disciple",
+        "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/pressing-shaft.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
         "Sweeping Arc":2,
-        "Horizon Stroke":2
+        "Horizon Stroke":2,
+        "Pressing Shaft":1
     ]));
 }

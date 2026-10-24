@@ -3,11 +3,49 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialResearch("Claw Mastery", "Unify the tiger-claw grip and "
-        "close footwork: +2 dagger.", 30, 1, "claw-composure", "claw");
+    addSpecification("name", "Claw Mastery");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Unify the tiger-claw grip and close footwork: +2 dagger.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"tiger claws",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":63
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/claw/claw-composure.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/claw/rake-return-theory.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 1);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus dagger", 2);
 }

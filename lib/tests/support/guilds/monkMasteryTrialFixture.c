@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object User;
 object Room;
@@ -13,6 +12,7 @@ object Sora;
 object Iori;
 object Target;
 object *Gear;
+int CandidateNumber;
 string *Trials = ({ "senior-disciples-trial", "master-candidates-trial",
     "masters-trial" });
 string *Ranks = ({ "senior disciple", "master candidate", "master" });
@@ -28,6 +28,7 @@ mapping Basics = ([
     "claw":"measured-rake"
 ]);
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     load_object("/guilds/monk/monk.c");
@@ -35,14 +36,24 @@ void Init()
         "TrialPath", "Routes", "RouteFor", "AdvanceTo", "AddEvidence",
         "TeachRoute", "PrepareAt", "RecoverPractice", "EquipFor",
         "ExerciseAllRoutes" });
+    Room = clone_object("/lib/environment/environment.c");
+    Lian = clone_object("/guilds/monk/teachers/lian.c");
+    Ren = clone_object("/guilds/monk/teachers/ren.c");
+    Sora = clone_object("/guilds/monk/teachers/sora.c");
+    Iori = clone_object("/guilds/monk/teachers/iori.c");
+    foreach(object teacher in ({ Lian, Ren, Sora, Iori }))
+    {
+        move_object(teacher, Room);
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Gear = ({});
-    Room = clone_object("/lib/environment/environment.c");
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User.Name("mastery candidate");
+    // Distinct identities isolate relationships with the reused teachers.
+    User.Name(sprintf("candidate%d", ++CandidateNumber));
     User.Race("human");
     User.Str(20);
     User.Int(20);
@@ -51,22 +62,19 @@ void Setup()
     User.Wis(20);
     User.Chr(20);
     User.colorConfiguration("none");
-    Lian = clone_object("/guilds/monk/teachers/lian.c");
-    Ren = clone_object("/guilds/monk/teachers/ren.c");
-    Sora = clone_object("/guilds/monk/teachers/sora.c");
-    Iori = clone_object("/guilds/monk/teachers/iori.c");
     Target = clone_object("/lib/realizations/npc.c");
     Target.Name("opponent");
-    Target.effectiveLevel(15);
+    Target.effectiveLevel(35);
     Target.Int(30);
     Target.Con(30);
     Target.setMaxHitPoints(100000);
-    foreach(object actor in ({ User, Lian, Ren, Sora, Iori, Target }))
+    foreach(object actor in ({ User, Target }))
     {
         move_object(actor, Room);
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     foreach(object item in Gear)
@@ -76,23 +84,33 @@ void CleanUp()
             destruct(item);
         }
     }
-    foreach(object actor in ({ Target, Iori, Sora, Ren, Lian, User, Room }))
+    destruct(Target);
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
+    foreach(object actor in ({ Iori, Sora, Ren, Lian, Room }))
     {
         destruct(actor);
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 string TrialPath(int stage)
 {
     return "/guilds/monk/discipline/" + Trials[stage] + ".c";
 }
 
+/////////////////////////////////////////////////////////////////////////////
 mapping *Routes(int stage)
 {
     object trial = getService("research")->researchObject(TrialPath(stage));
     return trial.getPrerequisites()["specialist mastery"]["prerequisites"];
 }
 
+/////////////////////////////////////////////////////////////////////////////
 mapping RouteFor(int stage, string discipline, string family)
 {
     mapping ret = 0;
@@ -123,6 +141,7 @@ mapping RouteFor(int stage, string discipline, string family)
     return ret;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceTo(int level)
 {
     int advancing = 1;
@@ -134,6 +153,7 @@ void AdvanceTo(int level)
     ExpectEq(level, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AddEvidence(mapping route, int count, int qualifying, string event)
 {
     mapping criteria = route["qualifying practice"]["criteria"];
@@ -149,6 +169,7 @@ void AddEvidence(mapping route, int count, int qualifying, string event)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void TeachRoute(mapping route)
 {
     foreach(string path, mapping condition in route)
@@ -160,6 +181,7 @@ void TeachRoute(mapping route)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareAt(int stage, string discipline, string family)
 {
     ExpectTrue(User.joinGuild("monk"));
@@ -171,7 +193,7 @@ void PrepareAt(int stage, string discipline, string family)
         "mastery-of-fundamentals" });
     for (int index = 0; index <= stage + 3; index++)
     {
-        AdvanceTo(5 * (index + 1));
+        AdvanceTo(MonkPromotionLevels[index]);
         ExpectTrue(User.initiateResearch("/guilds/monk/discipline/" +
             foundations[index] + ".c"));
         if (index == 2)
@@ -213,13 +235,22 @@ void PrepareAt(int stage, string discipline, string family)
     ExpectFalse(User.advanceRank("monk"));
 }
 
-void RecoverPractice()
+/////////////////////////////////////////////////////////////////////////////
+varargs void RecoverPractice(string technique)
 {
     User.stopFight(Target);
     Target.stopFight(User);
-    for (int tick = 0; tick < 20; tick++)
+    int ticks = 0;
+    while (ticks < 40 && (User.spellAction() ||
+        (technique && User.blockedByCooldown(technique))))
     {
         User.heart_beat();
+        ticks++;
+    }
+    ExpectFalse(User.spellAction(), "Action-turn recovery");
+    if (technique)
+    {
+        ExpectFalse(User.blockedByCooldown(technique), technique);
     }
     User.hitPoints(100000);
     User.staminaPoints(100000);
@@ -228,6 +259,7 @@ void RecoverPractice()
     Target.spellPoints(100000);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EquipFor(string technique)
 {
     string discipline = regreplace(technique,
@@ -277,6 +309,7 @@ void EquipFor(string technique)
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ExerciseAllRoutes(int stage)
 {
     mapping *routes = Routes(stage);

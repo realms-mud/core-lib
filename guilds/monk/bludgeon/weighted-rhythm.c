@@ -3,30 +3,69 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Weighted Rhythm", "Maintain a measured mace rhythm for "
-        "one attack and one damage. Reserve ten stamina and spend one "
-        "stamina per landed hit; requires a mace-school primary.", 15, 2,
-        "/guilds/monk/bludgeon/compact-blow.c", ([
+    addSpecification("name", "Weighted Rhythm");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Maintain a measured mace rhythm for one attack and one damage. "
+        "Reserve ten stamina and spend one stamina per landed hit; requires "
+        "a mace-school primary.");
+
+    addSpecification("limited by", ([
         "equipment":([
             "type":"mace",
             "blueprint":({ "mace", "flanged mace", "morning star" }),
             "slot":"wielded primary"
         ])
     ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":20
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({         "disciple",
+        "adept", "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/bludgeon/compact-blow.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
+
     addSpecification("bonus attack", 1);
     addSpecification("bonus damage", 1);
+
     addSpecification("stamina point cost", 10);
-    addSpecification("per hit landed cost", ([ "stamina points":1 ]));
+
+    addSpecification("per hit landed cost", ([
+        "stamina points":1
+    ]));
+
     addSpecification("cooldown", 12);
+
     addSpecification("command template", "kata weighted rhythm");
     addSpecification("use ability activate message",
-        "##InitiatorName## adopt##InitiatorReflexive## a weighted mace rhythm.");
+        "##InitiatorName## adopt##InitiatorReflexive## a weighted mace "
+        "rhythm.");
     addSpecification("use ability deactivate message",
         "##InitiatorName## release##InitiatorReflexive## the weighted rhythm.");
 }

@@ -15,7 +15,8 @@ private mapping researchByNameAndSource = ([]);
 private nomask varargs int valueIsCached(string research, string element, 
     string subElement)
 {
-    return member(researchCache, research) &&
+    return objectp(researchItemCache[research]) &&
+        member(researchCache, research) &&
         member(researchCache[research], element) &&
         (!subElement || member(researchCache[research][element], subElement));
 }
@@ -55,7 +56,9 @@ private nomask void setUpEquivalence(string researchItem)
         {
             researchEquivalencies[equivalence] = ({ });
         }
-        researchEquivalencies[equivalence] += ({ researchItem });
+        researchEquivalencies[equivalence] =
+            (researchEquivalencies[equivalence] - ({ researchItem })) +
+                ({ researchItem });
     }
 }
 
@@ -71,7 +74,9 @@ private nomask void setUpCooldownGroup(string researchItem)
         {
             researchCooldownGroups[cooldownGroup] = ({ });
         }
-        researchCooldownGroups[cooldownGroup] += ({ researchItem });
+        researchCooldownGroups[cooldownGroup] =
+            (researchCooldownGroups[cooldownGroup] - ({ researchItem })) +
+                ({ researchItem });
     }
 }
 
@@ -86,6 +91,7 @@ private nomask object getResearchItem(string researchItem)
     }
     else
     {
+        researchCache[researchItem] = ([]);
         researchItemCache[researchItem] = load_object(researchItem);
 
         researchByNameAndSource[sprintf("%s#%s",
@@ -111,6 +117,13 @@ private nomask string getFullyQualifiedPath(string item)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask int researchFileExists(string path)
+{
+    path = getFullyQualifiedPath(path);
+    return stringp(path) && sizeof(path) && file_size(path) > 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask object researchObject(string researchItem)
 {
     // The passed in value for researchItem must be a file containing a valid
@@ -122,14 +135,15 @@ public nomask object researchObject(string researchItem)
     { 
         ret = getResearchItem(researchItem);
 
-        if(!ret || (member(inherit_list(ret), BaseResearch) < 0) ||
-           !ret->isValidResearchItem())
+        if (!valueIsCached(researchItem, "valid item"))
+        {
+            cacheValue(objectp(ret) &&
+                member(inherit_list(ret), BaseResearch) >= 0 &&
+                ret->isValidResearchItem(), researchItem, "valid item");
+        }
+        if (!researchCache[researchItem]["valid item"])
         {
             ret = 0;
-        }
-        else
-        {
-            researchCache[researchItem] = ([]);
         }
     }
     return ret;
@@ -147,13 +161,15 @@ public nomask object researchTree(string tree)
     {
         ret = getResearchItem(tree);
 
-        if(member(inherit_list(ret), BaseResearchTree) < 0)
+        if (!valueIsCached(tree, "valid tree"))
+        {
+            cacheValue(objectp(ret) &&
+                member(inherit_list(ret), BaseResearchTree) >= 0,
+                tree, "valid tree");
+        }
+        if (!researchCache[tree]["valid tree"])
         {
             ret = 0;
-        }
-        else
-        {
-            researchCache[tree] = ([]);
         }
     }
     return ret;
@@ -171,12 +187,15 @@ public string getResearchByNameAndSource(string name, string source)
 /////////////////////////////////////////////////////////////////////////////
 public nomask int validResearch(string researchItem)
 {
-    int ret = member(researchCache, researchItem);
-
-    if (!ret)
+    researchItem = getFullyQualifiedPath(researchItem);
+    int ret = 0;
+    if (valueIsCached(researchItem, "valid item"))
     {
-        object researchObj = researchObject(researchItem);
-        ret = (researchObj && objectp(researchObj));
+        ret = researchCache[researchItem]["valid item"];
+    }
+    else
+    {
+        ret = objectp(researchObject(researchItem));
     }
     return ret;
 }

@@ -57,6 +57,47 @@ void InvalidFieldsAreRejected()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void MockThresholdQueriesPreserveExactCountsAndNonpositiveMinimums()
+{
+    mapping criteria = ([ "type":"combat.kata" ]);
+    ExpectFalse(Actor.hasObservation(criteria, 1));
+    ExpectTrue(Actor.hasPlayerObservation(1, criteria, 0));
+    ExpectTrue(Actor.hasPlayerObservation(1, criteria, -1));
+    for (int index = 0; index < 3; index++)
+    {
+        Actor.recordObservation(([ "type":"combat.kata" ]), 1);
+        Actor.recordObservation(([ "type":"movement.enter" ]), 1);
+    }
+    ExpectTrue(Actor.hasObservation(criteria, 3));
+    ExpectFalse(Actor.hasObservation(criteria, 4));
+    ExpectEq(3, Actor.countObservations(criteria));
+    ExpectEq(6, Actor.countObservations(([])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void MockSatisfiedThresholdCostDoesNotGrowWithUnrelatedHistory()
+{
+    mapping criteria = ([ "type":"combat.kata" ]);
+    for (int index = 0; index < 3; index++)
+    {
+        Actor.recordObservation(([ "type":"combat.kata" ]), 1);
+    }
+    int start = get_eval_cost();
+    ExpectTrue(Actor.hasObservation(criteria, 3));
+    int smallCost = start - get_eval_cost();
+    for (int index = 0; index < 200; index++)
+    {
+        Actor.recordObservation(([ "type":"movement.enter" ]), 1);
+    }
+    start = get_eval_cost();
+    ExpectTrue(Actor.hasObservation(criteria, 3));
+    int largeCost = start - get_eval_cost();
+    ExpectTrue(largeCost < smallCost + 500,
+        "A satisfied threshold must not scan the remaining history");
+    ExpectEq(203, Actor.countObservations(([])));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void QueryReturnsIndependentSnapshots()
 {
     Actor.recordObservation(([

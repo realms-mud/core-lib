@@ -3,16 +3,51 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Quiet Intervals", "Recover the inward breath without "
-        "rushing it. Restorative Chi Breath and Returning Current recover "
-        "four seconds sooner.",
-        20, 2, "/guilds/monk/pure-chi/circulation-theory.c", ([]));
+    addSpecification("name", "Quiet Intervals");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Recover the inward breath without rushing it. Restorative Chi "
+        "Breath and Returning Current recover four seconds sooner.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":41
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/circulation-theory.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/returning-current.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
     addSpecification("affected research type", "decrease cooldown");
     addSpecification("affected research", ([
         "Restorative Chi Breath":4,
-        "Returning Current":4 ]));
+        "Returning Current":4
+    ]));
 }

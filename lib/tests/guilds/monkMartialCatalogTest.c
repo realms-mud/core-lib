@@ -2,8 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/tests/framework/testFixture.c";
-#include "/lib/tests/support/guilds/monk-trials.h"
+inherit "/lib/tests/support/guilds/monkTrialFixture.c";
 
 object User;
 object Lian;
@@ -13,21 +12,36 @@ object Iori;
 object Room;
 object Weapon;
 object *ExtraWeapons;
+int StudentNumber;
 
+/////////////////////////////////////////////////////////////////////////////
 void Init()
 {
     load_object("/guilds/monk/monk.c");
     ignoreList += ({ "PrepareMaster", "LearnPath", "AdvanceTo",
         "RecoverAction", "EquipWeapon", "TeachMonkTrialLesson",
         "CompleteMonkUpperTrial" });
+    Room = clone_object("/lib/environment/environment.c");
+    Lian = clone_object("/guilds/monk/teachers/lian.c");
+    Ren = clone_object("/guilds/monk/teachers/ren.c");
+    Sora = clone_object("/guilds/monk/teachers/sora.c");
+    Iori = clone_object("/guilds/monk/teachers/iori.c");
+    foreach(object teacher in ({ Lian, Ren, Sora, Iori }))
+    {
+        move_object(teacher, Room);
+    }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
+    foreach(object teacher in ({ Lian, Ren, Sora, Iori }))
+    {
+        move_object(teacher, Room);
+    }
     ExtraWeapons = ({});
-    Room = clone_object("/lib/environment/environment.c");
     User = clone_object("/lib/tests/support/services/mockPlayer.c");
-    User.Name("catalogue");
+    User.Name(sprintf("catalogue%d", ++StudentNumber));
     User.Str(20);
     User.Int(20);
     User.Dex(20);
@@ -35,21 +49,14 @@ void Setup()
     User.Wis(20);
     User.Chr(20);
     User.colorConfiguration("none");
-    Lian = clone_object("/guilds/monk/teachers/lian.c");
-    Ren = clone_object("/guilds/monk/teachers/ren.c");
-    Sora = clone_object("/guilds/monk/teachers/sora.c");
-    Iori = clone_object("/guilds/monk/teachers/iori.c");
     Weapon = clone_object("/lib/items/weapon.c");
     Weapon.set("blueprint", "katana");
     Weapon.set("name", "katana");
     move_object(User, Room);
-    move_object(Lian, Room);
-    move_object(Ren, Room);
-    move_object(Sora, Room);
-    move_object(Iori, Room);
     move_object(Weapon, User);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
     foreach(object item in ExtraWeapons)
@@ -60,14 +67,20 @@ void CleanUp()
         }
     }
     destruct(Weapon);
+    destruct(User);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TearDown()
+{
     destruct(Ren);
     destruct(Sora);
     destruct(Iori);
     destruct(Lian);
-    destruct(User);
     destruct(Room);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AdvanceTo(int level)
 {
     int advancing = 1;
@@ -79,6 +92,7 @@ void AdvanceTo(int level)
     ExpectEq(level, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PrepareMaster()
 {
     ExpectTrue(User.joinGuild("monk"));
@@ -90,7 +104,7 @@ void PrepareMaster()
         "mastery-of-fundamentals" });
     for (int index = 0; index < sizeof(foundations); index++)
     {
-        AdvanceTo(5 * (index + 1));
+        AdvanceTo(MonkPromotionLevels[index]);
         ExpectTrue(User.initiateResearch("/guilds/monk/discipline/" +
             foundations[index] + ".c"));
         if (index == 2)
@@ -124,24 +138,14 @@ void PrepareMaster()
     ExpectEq("master", User.guildRank("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void LearnPath(string discipline, string name)
 {
     string path = "/guilds/monk/" + discipline + "/" + name + ".c";
-    if (!User.isResearched(path))
-    {
-        object tree = getService("research")->researchTree(
-            "/guilds/monk/" + discipline + ".c");
-        foreach(string parent in tree->getParents(path))
-        {
-            string file = regreplace(parent, "^.*/([^/]+).c$", "\\1");
-            LearnPath(discipline, file);
-        }
-        object teacher = Lian.teachesResearch(path) ? Lian :
-            Sora.teachesResearch(path) ? Sora : Ren;
-        ExpectTrue(User.learnResearchFrom(teacher, path), path);
-    }
+    TeachMonkTrialLesson(User, ({ Lian, Ren, Sora }), path);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void RecoverAction(object opponent)
 {
     if (opponent)
@@ -157,6 +161,7 @@ void RecoverAction(object opponent)
     User.spellPoints(10000);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 object EquipWeapon(string name, string blueprint, int offhand)
 {
     object item = clone_object("/lib/items/weapon.c");
@@ -169,6 +174,7 @@ object EquipWeapon(string name, string blueprint, int offhand)
     return item;
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllTenCatalogsHaveUniqueTaughtLessonsAndCommands()
 {
     mapping names = ([]);
@@ -208,7 +214,8 @@ void AllTenCatalogsHaveUniqueTaughtLessonsAndCommands()
     ExpectEq(400, sizeof(names));
 }
 
-void ExpandedLessonsRequireRecognitionAndOpenAtStudentTier()
+/////////////////////////////////////////////////////////////////////////////
+void ExpandedLessonsRequireRecognitionAndOpenBeforeStudentRank()
 {
     string lesson = "/guilds/monk/unarmed/quiet-footwork.c";
     ExpectTrue(User.joinGuild("monk"));
@@ -217,7 +224,7 @@ void ExpandedLessonsRequireRecognitionAndOpenAtStudentTier()
     AdvanceTo(5);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
-    ExpectTrue(User.advanceRank("monk"));
+    ExpectFalse(User.advanceRank("monk"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/unarmed/measured-palm.c"));
     int points = User.researchPoints();
@@ -230,10 +237,11 @@ void ExpandedLessonsRequireRecognitionAndOpenAtStudentTier()
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/teachers-recognition.c"));
     ExpectTrue(User.learnResearchFrom(Ren, lesson));
-    ExpectEq("student", User.guildRank("monk"));
+    ExpectEq("initiate", User.guildRank("monk"));
     ExpectEq(5, User.guildLevel("monk"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void BothTreesHaveFortyNonRootItemsAndMixedResearchTypes()
 {
     foreach(string discipline in ({ "unarmed", "katana" }))
@@ -264,6 +272,7 @@ void BothTreesHaveFortyNonRootItemsAndMixedResearchTypes()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryMartialCatalogItemIsReachableThroughItsTeacherAndDependencies()
 {
     PrepareMaster();
@@ -282,15 +291,33 @@ void EveryMartialCatalogItemIsReachableThroughItsTeacherAndDependencies()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void KnowledgeActuallyChangesDamageCostsAndCooldowns()
 {
-    PrepareMaster();
+    ExpectTrue(User.joinGuild("monk"));
+    AdvanceTo(10);
+    ExpectTrue(User.initiateResearch(
+        "/guilds/monk/discipline/disciplined-breath.c"));
+    ExpectTrue(User.advanceRank("monk"));
+    User.addResearchPoints(100);
+    ExpectTrue(User.learnResearchFrom(Lian,
+        "/guilds/monk/discipline/initiates-discipline.c"));
+    ExpectTrue(User.learnResearchFrom(Lian,
+        "/guilds/monk/discipline/steady-practice.c"));
+    ExpectTrue(User.learnResearchFrom(Lian,
+        "/guilds/monk/discipline/teachers-recognition.c"));
     LearnPath("unarmed", "driving-elbow");
     object elbow = load_object("/guilds/monk/unarmed/driving-elbow.c");
     int before = elbow.getEffectsToApply(User)["effects"]["damage hit points"];
     LearnPath("unarmed", "elbow-anatomy");
     ExpectEq(before + 3,
         elbow.getEffectsToApply(User)["effects"]["damage hit points"]);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void KnowledgeActuallyChangesCostsAndCooldowns()
+{
+    PrepareMaster();
     LearnPath("katana", "quick-draw");
     object draw = load_object("/guilds/monk/katana/quick-draw.c");
     ExpectEq(6, draw.getUsageCosts("", User)["stamina point cost"]);
@@ -303,6 +330,7 @@ void KnowledgeActuallyChangesDamageCostsAndCooldowns()
     ExpectEq(14, cut.cooldown(User));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PassiveBonusesTrackCurrentEquipment()
 {
     PrepareMaster();
@@ -319,6 +347,7 @@ void PassiveBonusesTrackCurrentEquipment()
     ExpectEq(unarmedParry, User.researchBonusTo("parry"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void SustainedFormsReserveResourcesAndCanBeReleasedAfterEquipmentChanges()
 {
     PrepareMaster();
@@ -367,6 +396,7 @@ void SustainedFormsReserveResourcesAndCanBeReleasedAfterEquipmentChanges()
     destruct(replacement);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void NewAttacksUseNormalDamageAndDrainOpponentResources()
 {
     PrepareMaster();
@@ -399,6 +429,7 @@ void NewAttacksUseNormalDamageAndDrainOpponentResources()
     destruct(target);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void SoraCatalogsHaveFortyNonRootItemsWithExecutableKnowledge()
 {
     foreach(string discipline in ({ "paired-swords", "odachi",
@@ -437,7 +468,7 @@ void SoraCatalogsHaveFortyNonRootItemsWithExecutableKnowledge()
                 item->query("research type") != "tree root")
             {
                 mapping affected = item->query("affected research");
-                ExpectEq(1, sizeof(affected));
+                ExpectTrue(sizeof(affected) >= 1);
                 foreach(string name in m_indices(affected))
                 {
                     object receiver = names[name];
@@ -454,7 +485,9 @@ void SoraCatalogsHaveFortyNonRootItemsWithExecutableKnowledge()
                                 if (modifier["type"] == "research" &&
                                     modifier["research item"] == path &&
                                     modifier["base value"] == 1 &&
-                                    modifier["rate"] == 3.0)
+                                    modifier["formula"] == "additive" &&
+                                    modifier["rate"] ==
+                                        to_float(affected[name]))
                                 {
                                     wired = 1;
                                 }
@@ -480,25 +513,32 @@ void SoraCatalogsHaveFortyNonRootItemsWithExecutableKnowledge()
     }
 }
 
-void SwordTreesOpenAtTenAndTeachingRequiresRecognition()
+/////////////////////////////////////////////////////////////////////////////
+void SwordTreesOpenAtOneAndAdvancedTeachingRequiresRecognition()
 {
-    string grip = "/guilds/monk/paired-swords/paired-grip.c";
+    string grip = "/guilds/monk/paired-swords/companion-grip.c";
     ExpectTrue(User.joinGuild("monk"));
+    ExpectTrue(User.isResearched("/guilds/monk/paired-swords/root.c"));
+    ExpectTrue(User.isResearched("/guilds/monk/odachi/root.c"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceTo(5);
+    AdvanceTo(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
-    AdvanceTo(9);
-    ExpectFalse(User.isResearched("/guilds/monk/paired-swords/root.c"));
-    ExpectFalse(User.isResearched("/guilds/monk/odachi/root.c"));
-    AdvanceTo(10);
+    AdvanceTo(19);
+    ExpectTrue(User.isResearched("/guilds/monk/paired-swords/root.c"));
+    ExpectTrue(User.isResearched("/guilds/monk/odachi/root.c"));
+    AdvanceTo(20);
     ExpectTrue(User.isResearched("/guilds/monk/paired-swords/root.c"));
     ExpectTrue(User.isResearched("/guilds/monk/odachi/root.c"));
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.advanceRank("monk"));
+    ExpectTrue(User.learnResearchFrom(Sora,
+        "/guilds/monk/paired-swords/linked-cut.c"));
+    ExpectTrue(User.learnResearchFrom(Sora,
+        "/guilds/monk/paired-swords/paired-grip.c"));
     int points = User.researchPoints();
     ExpectFalse(User.learnResearchFrom(Sora, grip));
     ExpectEq(points, User.researchPoints());
@@ -516,10 +556,11 @@ void SwordTreesOpenAtTenAndTeachingRequiresRecognition()
     ExpectEq(respect, Sora.relationshipValue(User, "respect"));
     move_object(Sora, this_object());
     ExpectFalse(User.learnResearchFrom(Sora,
-        "/guilds/monk/paired-swords/companion-grip.c"));
+        "/guilds/monk/paired-swords/paired-guard.c"));
     ExpectEq(points, User.researchPoints());
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PairedStyleRequiresBothExactBlueprintsInTheirCorrectSlots()
 {
     PrepareMaster();
@@ -550,10 +591,12 @@ void PairedStyleRequiresBothExactBlueprintsInTheirCorrectSlots()
     ExpectEq(baseline, User.researchBonusTo("short sword"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void OdachiStyleRejectsSameSkillSwordsAndNormalOffhandReplacement()
 {
     PrepareMaster();
     LearnPath("odachi", "committed-cut");
+    LearnPath("odachi", "longblade-grip");
     int baseline = User.researchBonusTo("two-handed sword");
     object cut = load_object("/guilds/monk/odachi/committed-cut.c");
     object odachi = EquipWeapon("odachi", "odachi", 0);
@@ -571,6 +614,7 @@ void OdachiStyleRejectsSameSkillSwordsAndNormalOffhandReplacement()
     ExpectFalse(cut.canApplySpecification("", User));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void SwordKnowledgeChangesActualDamageCostsAndCooldowns()
 {
     PrepareMaster();
@@ -609,6 +653,7 @@ void SwordKnowledgeChangesActualDamageCostsAndCooldowns()
     ExpectEq(18, horizon.cooldown(User));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void SwordFormsReserveResourcesAndEndWhenEitherStyleBecomesInvalid()
 {
     PrepareMaster();
@@ -662,6 +707,7 @@ void SwordFormsReserveResourcesAndEndWhenEitherStyleBecomesInvalid()
     ExpectEq(parry - 1, User.getSkill("parry"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PairedAttackUsesBothWeaponsAndOneNormalCostCooldownAndObservation()
 {
     PrepareMaster();
@@ -724,22 +770,25 @@ void PairedAttackUsesBothWeaponsAndOneNormalCostCooldownAndObservation()
     destruct(target);
 }
 
-void ShortBladeRootsOpenAtTenAndSoraRequiresRecognition()
+/////////////////////////////////////////////////////////////////////////////
+void ShortBladeRootsOpenAtOneAndAdvancedTeachingRequiresRecognition()
 {
     ExpectTrue(User.joinGuild("monk"));
+    ExpectTrue(User.isResearched("/guilds/monk/kama/root.c"));
+    ExpectTrue(User.isResearched("/guilds/monk/claw/root.c"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/initiates-discipline.c"));
-    AdvanceTo(5);
+    AdvanceTo(10);
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/disciplined-breath.c"));
     ExpectTrue(User.advanceRank("monk"));
-    AdvanceTo(9);
+    AdvanceTo(19);
     foreach(string discipline in ({ "kama", "claw" }))
     {
-        ExpectFalse(User.isResearched("/guilds/monk/" +
+        ExpectTrue(User.isResearched("/guilds/monk/" +
             discipline + "/root.c"));
     }
-    AdvanceTo(10);
+    AdvanceTo(20);
     foreach(string discipline in ({ "kama", "claw" }))
     {
         ExpectTrue(User.isResearched("/guilds/monk/" +
@@ -750,7 +799,11 @@ void ShortBladeRootsOpenAtTenAndSoraRequiresRecognition()
     ExpectTrue(User.initiateResearch(
         "/guilds/monk/discipline/students-awareness.c"));
     ExpectTrue(User.advanceRank("monk"));
-    string grip = "/guilds/monk/kama/hooked-grip.c";
+    ExpectTrue(User.learnResearchFrom(Sora,
+        "/guilds/monk/kama/measured-hook.c"));
+    ExpectTrue(User.learnResearchFrom(Sora,
+        "/guilds/monk/claw/measured-rake.c"));
+    string grip = "/guilds/monk/kama/hook-geometry.c";
     int points = User.researchPoints();
     ExpectFalse(User.learnResearchFrom(Sora, grip));
     ExpectEq(points, User.researchPoints());
@@ -758,7 +811,7 @@ void ShortBladeRootsOpenAtTenAndSoraRequiresRecognition()
         "/guilds/monk/discipline/steady-practice.c"));
     ExpectTrue(User.learnResearchFrom(Lian,
         "/guilds/monk/discipline/teachers-recognition.c"));
-    foreach(string path in ({ grip, "/guilds/monk/claw/claw-grip.c" }))
+    foreach(string path in ({ grip, "/guilds/monk/claw/rake-geometry.c" }))
     {
         ExpectFalse(User.initiateResearch(path));
         ExpectFalse(User.learnResearchFrom(Ren, path));
@@ -777,6 +830,7 @@ void ShortBladeRootsOpenAtTenAndSoraRequiresRecognition()
         "/guilds/monk/kama/sickle-distance.c"));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladesRequireExactPrimaryBlueprintsNotTheirSharedSkills()
 {
     PrepareMaster();
@@ -788,6 +842,8 @@ void ShortBladesRequireExactPrimaryBlueprintsNotTheirSharedSkills()
         string basic = discipline == "kama" ? "measured-hook" :
             "measured-rake";
         LearnPath(discipline, basic);
+        LearnPath(discipline, discipline == "kama" ?
+            "hooked-grip" : "claw-grip");
         object ability = load_object("/guilds/monk/" + discipline +
             "/" + basic + ".c");
         int baseline = User.researchBonusTo(skill);
@@ -808,6 +864,7 @@ void ShortBladesRequireExactPrimaryBlueprintsNotTheirSharedSkills()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladeKnowledgeChangesActualDamageCostsAndCooldowns()
 {
     PrepareMaster();
@@ -846,12 +903,13 @@ void ShortBladeKnowledgeChangesActualDamageCostsAndCooldowns()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllTwentyTwoShortBladeAttacksApplyOneEffectCostAndObservation()
 {
     PrepareMaster();
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(15);
+    foe.effectiveLevel(35);
     foe.setMaxHitPoints(10000);
     move_object(foe, Room);
     mapping catalogs = ([
@@ -911,12 +969,13 @@ void AllTwentyTwoShortBladeAttacksApplyOneEffectCostAndObservation()
     destruct(foe);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladeBasicsHonorExactCooldownsAndRejectWrongGearWithoutCost()
 {
     PrepareMaster();
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(15);
+    foe.effectiveLevel(35);
     foe.setMaxHitPoints(10000);
     move_object(foe, Room);
     foreach(string discipline in ({ "kama", "claw" }))
@@ -964,6 +1023,7 @@ void ShortBladeBasicsHonorExactCooldownsAndRejectWrongGearWithoutCost()
     destruct(foe);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladeDamageUsesPrimaryWeaponAndNotAnUnrelatedOffhand()
 {
     PrepareMaster();
@@ -994,6 +1054,7 @@ void ShortBladeDamageUsesPrimaryWeaponAndNotAnUnrelatedOffhand()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladeFormsKeepValidReplacementsAndReleaseInvalidOnes()
 {
     PrepareMaster();
@@ -1038,6 +1099,7 @@ void ShortBladeFormsKeepValidReplacementsAndReleaseInvalidOnes()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void AllEightShortBladeFormsReserveAndReleaseTheirAuthoredStamina()
 {
     PrepareMaster();
@@ -1074,12 +1136,13 @@ void AllEightShortBladeFormsReserveAndReleaseTheirAuthoredStamina()
     }
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void ShortBladeRecenteringHealsWithoutWeaponScaling()
 {
     PrepareMaster();
     object foe = clone_object("/lib/realizations/npc.c");
     foe.Name("opponent");
-    foe.effectiveLevel(15);
+    foe.effectiveLevel(35);
     move_object(foe, Room);
     foreach(string discipline in ({ "kama", "claw" }))
     {
@@ -1109,6 +1172,7 @@ void ShortBladeRecenteringHealsWithoutWeaponScaling()
     destruct(foe);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CommittedCutUsesItsHeavyCostAndExactEighteenSecondCooldown()
 {
     PrepareMaster();

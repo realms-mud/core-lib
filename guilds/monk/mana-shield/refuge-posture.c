@@ -3,21 +3,58 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/sustainedResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Refuge Posture", "Reserve eight maximum stamina for "
-        "three magical resistance at the expense of one attack. No "
-        "additional damage absorption is created.",
-        15, 3, "/guilds/monk/mana-shield/refuge-theory.c", ([
-            "research active":({
-                "/guilds/monk/mana-shield/mindful-ward.c" }) ]));
+    addSpecification("name", "Refuge Posture");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Reserve eight maximum stamina for three magical resistance at the "
+        "expense of one attack. No additional damage absorption is created.");
+
+    addSpecification("limited by", ([
+        "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":26
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "disciple",
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/mana-shield/refuge-theory.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "self");
     addSpecification("stamina point cost", 8);
     addSpecification("cooldown", 8);
+
     addSpecification("bonus resist magical", 3);
     addSpecification("penalty to attack", 1);
+
     addSpecification("command template", "chi refuge posture");
     addSpecification("use ability activate message",
         "##InitiatorName## assume##InitiatorReflexive## a refuge posture.");

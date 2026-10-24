@@ -3,10 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Breath Timing", "Timing a strike against concentration "
-        "adds three points to Breath Cut's spell-point drain.", 15,
-        "breath-cut", "katana", "Breath Cut", "bonus", 3);
+    addSpecification("name", "Breath Timing");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Timing a strike against concentration adds three points to Breath "
+        "Cut's spell-point drain.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"katana",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":38
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "adept", "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/katana/breath-cut.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/katana/breath-cut.c" }));
+    addSpecification("affected research type", "bonus");
+    addSpecification("affected research", ([
+        "Breath Cut":3
+    ]));
 }

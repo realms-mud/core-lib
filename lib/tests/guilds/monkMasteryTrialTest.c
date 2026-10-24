@@ -4,16 +4,19 @@
 //*****************************************************************************
 inherit "/lib/tests/support/guilds/monkMasteryTrialFixture.c";
 
+/////////////////////////////////////////////////////////////////////////////
 void EverySeniorRouteCrossesTwentyWithRealExecutionWithoutCrossTraining()
 {
     ExerciseAllRoutes(0);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void EveryCandidateRouteCrossesThirtyWithRealExecutionWithoutCrossTraining()
 {
     ExerciseAllRoutes(1);
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void KnowledgeAndPracticeMustBelongToTheSameRoute()
 {
     PrepareAt(0, "unarmed", "");
@@ -31,6 +34,7 @@ void KnowledgeAndPracticeMustBelongToTheSameRoute()
     ExpectTrue(User.canResearch(TrialPath(0)));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void PartialCountsWrongEventsAndUnqualifiedUsesCannotBeCombined()
 {
     PrepareAt(0, "unarmed", "");
@@ -50,6 +54,7 @@ void PartialCountsWrongEventsAndUnqualifiedUsesCannotBeCombined()
     ExpectTrue(User.canResearch(TrialPath(0)));
 }
 
+/////////////////////////////////////////////////////////////////////////////
 void CertificationsRequireMembershipRankLevelRecognitionAndFoundation()
 {
     foreach(string trial in Trials)

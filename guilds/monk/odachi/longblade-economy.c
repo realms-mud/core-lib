@@ -3,12 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Longblade Economy", "Remove wasted effort from "
-        "the foundational stroke: reduce Committed Cut's authored "
-        "stamina cost by two.", 20, "commitment-theory", "odachi",
-        "Committed Cut", "decrease cost", 2);
+    addSpecification("name", "Longblade Economy");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Remove wasted effort from the foundational stroke: reduce Committed "
+        "Cut's authored stamina cost by two.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"odachi",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":51
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/odachi/commitment-theory.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/odachi/commitment-theory.c" }));
+    addSpecification("affected research type", "decrease cost");
+    addSpecification("affected research", ([
+        "Committed Cut":2
+    ]));
 }

@@ -3,31 +3,137 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/instantaneousActiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Interrupting Thread", "Cast a fine thread from the "
-        "ward's stable boundary to disrupt an opponent's spell points. "
-        "It does not silence commands or cancel casting.",
-        20, 3, "/guilds/monk/mana-shield/disruption-theory.c", ([
-            "research active":({
-                "/guilds/monk/mana-shield/mindful-ward.c" }) ]));
+    addSpecification("name", "Interrupting Thread");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Cast a fine thread from the ward's stable boundary to disrupt an "
+        "opponent's spell points. It does not silence commands or cancel "
+        "casting.");
+
+    addSpecification("limited by", ([
+        "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":36
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "adept",
+            "senior disciple",
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/mana-shield/disruption-theory.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("scope", "targeted");
     addSpecification("effect", "combat");
     addSpecification("spell point cost", 14);
     addSpecification("cooldown", 30);
+
     addSpecification("command template",
         "chi interrupting thread at ##Target##");
     addSpecification("use ability message",
-        "##InitiatorName## cast##InitiatorReflexive## a disruptive "
-        "thread of chi toward ##TargetName##.");
+        "##InitiatorName## cast##InitiatorReflexive## a disruptive thread of "
+        "chi toward ##TargetName##.");
+
     addSpecification("damage type", "energy");
     addSpecification("damage spell points", ({
-        ([ "probability":100, "base damage":16, "range":4 ]) }));
+        ([
+            "probability":100,
+            "base damage":16,
+            "range":4
+        ])
+    }));
+
     addSpecification("modifiers", ({
-        ([ "type":"skill", "name":"spellcraft",
-            "formula":"additive", "rate":0.12 ]),
-        ([ "type":"attribute", "name":"intelligence",
-            "formula":"additive", "rate":0.12 ]) }));
+        ([
+            "type":"skill",
+            "name":"spellcraft",
+            "formula":"additive",
+            "rate":0.12
+        ]),
+        ([
+            "type":"attribute",
+            "name":"intelligence",
+            "formula":"additive",
+            "rate":0.12
+        ]),
+        ([
+            "type":"skill",
+            "name":"divination",
+            "formula":"additive",
+            "rate":0.12
+        ]),
+        ([
+            "type":"skill",
+            "name":"magical essence",
+            "formula":"additive",
+            "rate":0.08
+        ]),
+        ([
+            "type":"skill",
+            "name":"concentration",
+            "formula":"additive",
+            "rate":0.1
+        ]),
+        ([
+            "type":"attribute",
+            "name":"wisdom",
+            "formula":"additive",
+            "rate":0.08
+        ]),
+        ([
+            "type":"attribute",
+            "name":"dexterity",
+            "formula":"additive",
+            "rate":0.06
+        ]),
+        ([
+            "type":"research",
+            "name":"Disruption Theory",
+            "research item":"/guilds/monk/mana-shield/disruption-theory.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":3.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Ward Anatomy",
+            "research item":"/guilds/monk/mana-shield/ward-anatomy.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Refuge Theory",
+            "research item":"/guilds/monk/mana-shield/refuge-theory.c",
+            "base value":1,
+            "formula":"additive",
+            "rate":2.0
+        ])
+    }));
 }

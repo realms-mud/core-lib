@@ -3,11 +3,52 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/knowledgeResearchItem.c";
-#include "/guilds/monk/martial-research.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    martialTheory("Hook Economy", "Avoid unnecessary tension during "
-        "a controlled cut: Measured Hook costs two less stamina.",
-        15, "hook-geometry", "kama", "Measured Hook", "decrease cost", 2);
+    addSpecification("name", "Hook Economy");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Avoid unnecessary tension during a controlled cut: Measured Hook "
+        "costs two less stamina.");
+
+    addSpecification("limited by", ([
+        "equipment":([
+            "blueprint":"kama",
+            "slot":"wielded primary"
+        ])
+    ]));
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":34
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({ "adept", "senior disciple", "master candidate", "master" })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/kama/hook-geometry.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 2);
+    addSpecification("teacher required", 1);
+
+    addSpecification("related research",
+        ({ "/guilds/monk/kama/hook-geometry.c" }));
+    addSpecification("affected research type", "decrease cost");
+    addSpecification("affected research", ([
+        "Measured Hook":2
+    ]));
 }

@@ -3,12 +3,43 @@
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
 inherit "/lib/modules/research/passiveResearchItem.c";
-#include "/guilds/monk/research-support.h"
 
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    monkResearch("Unfettered Flow", "Release unnecessary muscular effort "
-        "while circulating chi, adding one to stamina recovery bonuses.",
-        30, 3, "/guilds/monk/pure-chi/deep-recollection.c", ([]));
+    addSpecification("name", "Unfettered Flow");
+    addSpecification("source", "monk");
+    addSpecification("description",
+        "Release unnecessary muscular effort while circulating chi, adding "
+        "one to stamina recovery bonuses.");
+
+    addPrerequisite("monk", ([
+        "type":"guild",
+        "value":({ "monk" })
+    ]));
+    addPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":67
+    ]));
+    addPrerequisite("rank", ([
+        "type":"guild rank",
+        "guild":"monk",
+        "value":({
+            "master candidate",
+            "master"
+        })
+    ]));
+    addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
+        "type":"research"
+    ]));
+    addPrerequisite("/guilds/monk/pure-chi/deep-recollection.c", ([
+        "type":"research"
+    ]));
+
+    addSpecification("research type", "points");
+    addSpecification("research cost", 3);
+    addSpecification("teacher required", 1);
+
     addSpecification("bonus recover stamina points", 1);
 }
