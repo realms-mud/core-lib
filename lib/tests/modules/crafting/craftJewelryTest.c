@@ -216,7 +216,7 @@ void CannotSelectComponentUntilMaterialsChosen()
     ExpectSubStringMatch("31mConfirm", Player.caughtMessage());
 
     command("2", Player);
-    command("16", Player);
+    command("15", Player);
     ExpectSubStringMatch("32mConfirm", Player.caughtMessage());
 }
 
@@ -232,7 +232,7 @@ void CanSelectComponentIfUnusedMaterialTypeNotSelected()
     ExpectSubStringMatch("31mConfirm", Player.caughtMessage());
 
     command("2", Player);
-    command("16", Player);
+    command("15", Player);
     ExpectSubStringMatch("32mConfirm", Player.caughtMessage());
 }
 
@@ -247,7 +247,7 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     command("1", Player);
     command("26", Player);
     command("2", Player);
-    command("16", Player);
+    command("15", Player);
     command("19", Player);
     command("1", Player);
     command("1", Player);

@@ -212,7 +212,7 @@ void CanCraftItemWithBothPrimaryMaterialAndComponent()
     command("3", Player);
     command("31", Player);
     command("2", Player);
-    command("16", Player);
+    command("15", Player);
     command("15", Player);
     command("2", Player);
     command("3", Player);

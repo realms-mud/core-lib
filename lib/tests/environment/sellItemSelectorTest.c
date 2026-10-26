@@ -318,7 +318,7 @@ void ItemDetailsShowLongPlusValue()
     command("? 1", Player);
     ExpectEq("\x1b[0;36mThis is the sword of weasels. It's neat.\n"
         "\x1b[0;35mThis long sword is enchanted.\n"
-        "\x1b[0m\x1b[0;36m    Material: \x1b[0m\x1b[0;33mobsynite\x1b[0m\n"
+        "\x1b[0m\x1b[0;36m    Material: \x1b[0m\x1b[0;33mObsynite\x1b[0m\n"
         "\x1b[0;36m    Attack: \x1b[0m\x1b[0;33m10\x1b[0m\x1b[0;33m to 110\x1b[0m\n"
         "\x1b[0;36m    Damage: \x1b[0m\x1b[0;33m15\x1b[0m\x1b[0;33m to 20\x1b[0m\x1b[0;31m [+5 magical]\x1b[0m\n"
         "\x1b[0;36m    Defense: \x1b[0m\x1b[0;33m1\x1b[0m\x1b[0;33m to 2\x1b[0m\n"

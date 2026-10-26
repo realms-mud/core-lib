@@ -130,7 +130,7 @@ void WeaponStatisticsModifiedByMaterial()
     Weapon.set("material", "obsynite");
 
     string expected = sprintf(NormalEquipment, "This long sword is typical for its type.\n") +
-        sprintf(DetailString, "Material", "obsynite") +
+        sprintf(DetailString, "Material", "Obsynite") +
         sprintf(DetailsText, "Attack", 0, 100) +
         sprintf("\x1b[0;36m    %s: \x1b[0m\x1b[0;33m%d\x1b[0m\x1b[0;33m to %d\x1b[0m", "Damage", 11, 14) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 5, "magical") +
@@ -150,7 +150,7 @@ void WeaponStatisticsModifiedByEnchantment()
     Weapon.set("enchantments", (["fire":10, "magical" : 2]));
 
     string expected = sprintf(Enchanted, "This long sword is enchanted.\n") +
-        sprintf(DetailString, "Material", "obsynite") +
+        sprintf(DetailString, "Material", "Obsynite") +
         sprintf(DetailsText, "Attack", 0, 100) +
         sprintf("\x1b[0;36m    %s: \x1b[0m\x1b[0;33m%d\x1b[0m\x1b[0;33m to %d\x1b[0m", "Damage", 11, 14) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 10, "fire") +
@@ -296,7 +296,7 @@ void ArmorStatisticsModifiedByMaterial()
     armor.set("identified");
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
-        sprintf(DetailString, "Material", "obsynite") +
+        sprintf(DetailString, "Material", "Obsynite") +
         sprintf("\x1b[0;36m    %s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
@@ -320,7 +320,7 @@ void ArmorProtectionNotModifiedBySkill()
     Player.advanceSkill("chainmail", 10);
 
     string expected = sprintf(NormalEquipment, "This chainmail is typical for its type.\n") +
-        sprintf(DetailString, "Material", "obsynite") +
+        sprintf(DetailString, "Material", "Obsynite") +
         sprintf("\x1b[0;36m    %s: \x1b[0m\x1b[0;33m%d\x1b[0m", "Damage Protection", 11) +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m", 3, "electricity") +
         sprintf("\x1b[0;31m [+%d %s]\x1b[0m\n", 3, "fire") +
