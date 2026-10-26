@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Intent Reading");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use the ward as a stable reference for interpreting magic, gaining "
-        "two spellcraft while it is active.");
+        "Every working leaves a signature against your shield. You learn "
+        "to read the shape of an enemy's intention in those fleeting "
+        "traces, before the spell has fully taken form.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +44,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus spellcraft", 2);
+    addSpecification("bonus spellcraft", 8);
 }

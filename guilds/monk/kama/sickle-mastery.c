@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Unify curved cuts and patient recovery: +2 short sword.");
+        "The old field tool no longer feels separate from your hand. "
+        "Its point, haft, and hungry inner curve answer a thought "
+        "with the intimacy of fingers closing around a familiar task.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus short sword", 2);
+    addSpecification("bonus short sword", 6);
 }

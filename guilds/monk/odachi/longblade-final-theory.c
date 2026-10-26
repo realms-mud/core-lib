@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Final Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Master the finishing commitment: adds three to Final Horizon's "
-        "damage formula.");
+        "The master's final cut is chosen before the adversary "
+        "understands the question. Study the gathering of that "
+        "decision until nothing in the stroke remains accidental.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rising Talon");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Drive the claw points upward through one opening against a single "
-        "opponent.");
+        "Sink beneath the foe's guarding arm and rise with the "
+        "talons leading. The upward thrust carries the legs' "
+        "stored force into a seam hidden from a level approach.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

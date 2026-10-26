@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release tension after a close strike: +1 stamina healing rate.");
+        "The hand need not remain clenched after the points withdraw. "
+        "Let the tendons soften behind the frame, allowing breath "
+        "to return to the small muscles that did the work.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

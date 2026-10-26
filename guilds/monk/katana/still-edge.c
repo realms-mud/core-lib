@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Still Edge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve fourteen maximum stamina for +4 sword skill and +2 parry; "
-        "landed hits cost one spell point.");
+        "Hold the edge as though its reflection rested on undisturbed "
+        "water. Beneath the apparent stillness, every part of the "
+        "swordsman remains awake.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

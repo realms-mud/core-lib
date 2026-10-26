@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Needle of Chi");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Send a thin, quick energy needle instead of a broad pulse. Geometry "
-        "improves its carefully aimed point.");
+        "Draw the current into a filament finer than a silk thread. "
+        "A flick of the fingers sends its bright point toward the "
+        "small opening your patient eye has found.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

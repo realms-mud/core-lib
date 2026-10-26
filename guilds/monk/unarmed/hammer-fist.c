@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Hammer Fist");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A committed downward blow offers narrow damage variance at a high "
-        "stamina cost.");
+        "The closed hand falls with the blunt certainty of a smith's "
+        "hammer. Your knees sink beneath it, driving the descending "
+        "edge of the fist through the foe's sheltering arms.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

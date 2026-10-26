@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Relax the unused line between exchanges: +1 stamina healing rate.");
+        "Neither hand needs to labor when its companion holds "
+        "the watch. Learn to release the quiet wrist and let "
+        "the breath unwind the strain between exchanges.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

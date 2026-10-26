@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover into one committed claw thrust. This is not an extra attack "
-        "or a combination.");
+        "From the gathered hand beside your ribs, drive the "
+        "talons back into the exchange. The foe meets a forceful "
+        "return where they expected only the end of your retreat.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

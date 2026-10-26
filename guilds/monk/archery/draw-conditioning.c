@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Conditioning");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Condition the back for repeated draws: +6 maximum stamina while "
-        "wielding a primary bow.");
+        "Return each day to the stubborn weight of the practice bow. "
+        "What once shook the shoulders becomes familiar labor, "
+        "borne by the whole body instead of the struggling arm.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +44,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 6);
+    addSpecification("bonus stamina points", 25);
 }

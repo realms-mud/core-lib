@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Finishing Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Eliminating wasted movement reduces Empty Hand's authored stamina "
-        "cost by two.");
+        "The finishing hand must not drag the rest of the body after it. "
+        "Practice ends with the candle still burning beside your sleeve, "
+        "untouched by any flourish that did not belong to the strike.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

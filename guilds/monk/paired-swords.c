@@ -333,10 +333,6 @@ protected void Setup()
     Source("monk");
     deferResearchLoading();
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addResearchElement("/guilds/monk/paired-swords/root.c");
     TreeRoot("/guilds/monk/paired-swords/root.c");

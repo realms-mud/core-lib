@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Piercing Intent");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Disrupt an opponent's spell-point reserve instead of wounding "
-        "flesh. Spellcraft locates the current.");
+        "Look past the body's outline to the restless current beneath it. "
+        "Your intent slips through that hidden stream like a stone "
+        "through still water, scattering its reflected light.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

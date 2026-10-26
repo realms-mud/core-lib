@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Replenishing Stillness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Let unused tension drain away between actions, adding one to "
-        "natural spell-point healing.");
+        "Release the effort that remains after a movement has ended. "
+        "In the stillness it leaves behind, the inner spring begins "
+        "to fill again, clear and untroubled.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +41,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal spell points", 1);
+    addSpecification("bonus heal spell points", 3);
 }

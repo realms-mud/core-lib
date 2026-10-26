@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Footing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Set a stable base beneath the long blade: +1 defense.");
+        "Place your feet as though setting stones beneath a bridge. "
+        "The long sword may travel far above them, but its weight "
+        "must never find the foundation wanting.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

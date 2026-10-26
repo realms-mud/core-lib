@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Talon Point Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the precise claw opening: adds three to Talon Point's damage "
-        "formula.");
+        "A single dark mark on the practice cloth gives the "
+        "eye nowhere else to wander. Find it with the leading "
+        "talon until precision survives even the confusion of nearness.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Bow Breath Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study concentration under pressure: adds three to Breath-Piercing "
-        "Shot's spell-point drain.");
+        "Study how breath betrays a mind preparing a working. The "
+        "moment of inward concentration leaves a fragile rhythm "
+        "that a well-timed shaft can trouble.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

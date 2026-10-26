@@ -335,10 +335,6 @@ protected void Setup()
     Source("monk");
     deferResearchLoading();
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addResearchElement("/guilds/monk/pure-chi/root.c");
     TreeRoot("/guilds/monk/pure-chi/root.c");

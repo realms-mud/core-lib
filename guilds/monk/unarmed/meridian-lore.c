@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Meridian Lore");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Knowledge of concentration pathways adds three points to Sapping "
-        "Palm and Meridian Strike, two to Returning Breath's healing, and "
-        "one to Centering Breath's healing.");
+        "The old diagrams trace rivers beneath the skin. Learning where "
+        "those rivers gather lets the same hand disturb a foe's inward "
+        "peace or guide warmth back into your own battered limbs.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

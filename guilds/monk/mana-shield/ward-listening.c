@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Ward Listening");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read small disturbances across your ward's surface, gaining two "
-        "perception only while it is active.");
+        "Close your eyes and listen beyond the breath. The shield "
+        "whispers of passing motion in a language of pressure and "
+        "tremor, revealing what the eye might overlook.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -53,5 +37,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus perception", 2);
+    addSpecification("bonus perception", 4);
 }

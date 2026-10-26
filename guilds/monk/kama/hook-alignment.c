@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the wrist before a committed kama release: +1 attack.");
+        "The hook must follow the forearm rather than wrench it aside. "
+        "With the wrist settled behind the haft, the sickle's point "
+        "arrives where your eye has already chosen.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,22 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate", "student", "disciple", "adept",
-            "senior disciple", "master candidate", "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

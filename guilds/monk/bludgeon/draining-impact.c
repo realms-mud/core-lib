@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Draining Impact");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Strike the opponent's braced guard to exhaust stamina rather than "
-        "injure. Scales gently with the best staff, mace, or hammer skill "
-        "and monk level.");
+        "Meet a braced guard with a deliberate, weighty contact. "
+        "The defender feels the exchange long after the weapons "
+        "part, in the labor of holding their stance together.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

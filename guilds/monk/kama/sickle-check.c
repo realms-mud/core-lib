@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Check");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Force an exhausting response to one kama motion, draining stamina "
-        "without immobilization.");
+        "Lay the sickle's threat across the foe's next step. To avoid "
+        "its bite they must wrench their weight aside, spending "
+        "breath on a movement they never meant to make.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

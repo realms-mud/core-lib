@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Trajectory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the committed release: adds three to Final Draw's damage "
-        "formula.");
+        "Contemplate the whole flight before the arrow leaves "
+        "the string. In that imagined course, small doubts "
+        "and imperfect angles have nowhere left to hide.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

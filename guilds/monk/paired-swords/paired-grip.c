@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain the katana's line while coordinating the companion blade: "
-        "+1 hand and a half sword.");
+        "Without a second hand on the katana's hilt, the wrist "
+        "must learn a quieter discipline. Let the long blade "
+        "settle into the grip rather than dragging it into place.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

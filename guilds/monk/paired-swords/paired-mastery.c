@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover behind either blade without losing the other's line: +2 "
-        "parry.");
+        "No hurried glance passes between your swords now. "
+        "The master's hands know where their companion waits, "
+        "and the guard closes with the ease of clasped palms.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -54,5 +51,5 @@ protected void Setup()
     addSpecification("research cost", 4);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus parry", 2);
+    addSpecification("bonus parry", 6);
 }

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Circling Talon");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve fourteen maximum stamina for +3 defense at a cost of two "
-        "attack. No extra movement applies.");
+        "Hold the claw frame before you as though turning a small "
+        "wheel. Your gaze follows the foe around its rim, keeping "
+        "the body sheltered rather than reaching after an uncertain kill.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata circling talon");
 
-    addSpecification("bonus defense", 3);
+    addSpecification("bonus defense", 6);
     addSpecification("penalty to attack", 2);
 }

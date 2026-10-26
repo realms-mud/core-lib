@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Controlled Expenditure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An advanced instructor teaches economy of movement, reducing "
-        "stamina expenditure by one through the normal stamina-pool "
-        "modifier.");
+        "An experienced instructor finds the effort hidden "
+        "between your movements. Learn to leave that burden "
+        "behind, giving each gesture only what its purpose requires.");
 
     addPrerequisite("level", ([
         "type":"level",

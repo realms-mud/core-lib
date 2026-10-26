@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Footing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep a stable base behind the kama's short reach: +1 defense.");
+        "Place the feet as a reaper would on treacherous ground. "
+        "A short blade leaves little room for stumbling, so every "
+        "draw begins with earth firmly beneath both soles.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

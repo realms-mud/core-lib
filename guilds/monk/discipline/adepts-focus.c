@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Adept's Focus");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliberate concentration improves your understanding and control of "
-        "magical techniques.");
+        "Return to the same quiet thought until its edges "
+        "grow clear. The adept learns to hold intent steady "
+        "when the world offers a hundred reasons to let it wander.");
 
     addPrerequisite("level", ([
         "type":"level",

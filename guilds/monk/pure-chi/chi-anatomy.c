@@ -10,31 +10,14 @@ protected void Setup()
     addSpecification("name", "Chi Anatomy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Trace the channels that carry spell-point chi. This lesson opens "
-        "precision projection and restorative work, strengthening these "
-        "techniques as their channels become familiar.");
+        "Beneath flesh and bone lies a landscape known through breath "
+        "rather than sight. Learn its hidden waterways, the quiet pools "
+        "and narrow crossings through which your living essence moves.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

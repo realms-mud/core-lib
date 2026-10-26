@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Weighted Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain a measured mace rhythm for one attack and one damage. "
-        "Reserve ten stamina and spend one stamina per landed hit; requires "
-        "a mace-school primary.");
+        "Give the mace a measured rhythm of approach and "
+        "return. Its heavy head marks the beat while "
+        "your stance follows with the patience of a slow drum.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

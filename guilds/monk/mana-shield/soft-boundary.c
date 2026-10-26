@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Soft Boundary");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Yield with the ward rather than brace against it, gaining one "
-        "defense while Mindful Ward is active.");
+        "A rigid wall invites a breaking blow. You learn instead to let "
+        "the shield yield like silk beneath a hand, guiding an enemy's "
+        "force away from the body it was meant to strike.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -50,5 +34,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus defense", 1);
+    addSpecification("bonus defense", 3);
 }

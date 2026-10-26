@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Unfettered Flow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release unnecessary muscular effort while circulating chi, adding "
-        "one to stamina recovery bonuses.");
+        "Unclench the muscles that labor even when no task calls on them. "
+        "Freed of that hidden burden, breath and motion find "
+        "their way back to an effortless accord.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -41,5 +38,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus recover stamina points", 1);
+    addSpecification("bonus recover stamina points", 5);
 }

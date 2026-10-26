@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Return Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study recovery into a return cut: adds three to Returning Hook's "
-        "damage formula.");
+        "The retreating sickle leaves a question in the air. Study "
+        "how the elbow folds and the haft turns, bringing the edge "
+        "back through a line the foe believed had already passed.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

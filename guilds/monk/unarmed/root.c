@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Unarmed Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The principles of deliberate, empty-hand movement. This foundation "
-        "opens the unarmed curriculum; individual forms still require "
-        "instruction and demonstrated practice.");
+        "Lay the weapon on the rack and enter the courtyard with empty "
+        "hands. Here the first lesson is not how to strike, but how to "
+        "stand without borrowing courage from steel.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addSpecification("research type", "tree root");
 }

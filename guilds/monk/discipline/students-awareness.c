@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Student's Awareness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Patient observation sharpens your perception, helping you notice "
-        "details before committing to action.");
+        "Watch the practice hall before stepping into "
+        "its motion. Footfalls, breathing, and the "
+        "space between students reveal lessons a hurried eye would miss.");
 
     addPrerequisite("level", ([
         "type":"level",

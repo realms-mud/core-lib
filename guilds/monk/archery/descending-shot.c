@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Descending Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Send one arrow down a steep line within the current room. This does "
-        "not attack other rooms.");
+        "Raise the bow into a steep, deliberate draw and release "
+        "down through the opening below. The arrow falls upon "
+        "the guard like a hawk stooping from its watch.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

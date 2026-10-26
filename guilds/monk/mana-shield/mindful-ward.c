@@ -7,33 +7,17 @@ inherit "/lib/modules/research/sustainedResearchItem.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
-    addSpecification("name", "Mindful Ward");
+    addSpecification("name", "Mana Shield");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain a ward that reserves ten maximum stamina and diverts "
-        "post-mitigation damage into spell points at one point per damage. "
-        "Overflow damages hit points. An empty spell-point pool leaves the "
-        "ward enabled but unable to absorb damage until spell points "
-        "recover. Toggle it off to release the stamina reservation; no spell "
-        "points are refunded.");
+        "A measured breath draws your inner current beyond the skin. "
+        "Pale strands of chi interlace around you, turning aside the world's "
+        "violence before it can disturb the stillness within.");
 
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"
@@ -54,13 +38,73 @@ protected void Setup()
     addSpecification("stamina point cost", 10);
     addSpecification("cooldown", 4);
 
-    addSpecification("command template", "chi mindful ward");
-    addSpecification("usage summary", "chi mindful ward");
+    addSpecification("command template", "mana shield");
+    addSpecification("usage summary", "mana shield");
+
+    addSpecification("bonus resist acid", 1);
+    addSpecification("bonus resist air", 1);
+    addSpecification("bonus resist chaos", 1);
+    addSpecification("bonus resist cold", 1);
+    addSpecification("bonus resist earth", 1);
+    addSpecification("bonus resist electricity", 1);
+    addSpecification("bonus resist energy", 1);
+    addSpecification("bonus resist evil", 1);
+    addSpecification("bonus resist fire", 1);
+    addSpecification("bonus resist good", 1);
+    addSpecification("bonus resist magical", 1);
+    addSpecification("bonus resist neutral", 1);
+    addSpecification("bonus resist physical", 1);
+    addSpecification("bonus resist psionic", 1);
+    addSpecification("bonus resist undead", 1);
+    addSpecification("bonus resist water", 1);
+
+    addSpecification("modifiers", ({
+        ([
+            "type":"research",
+            "name":"Ward Anatomy",
+            "research item":"/guilds/monk/mana-shield/ward-anatomy.c",
+            "base value":2,
+            "formula":"additive",
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Recovery Cycle",
+            "research item":"/guilds/monk/mana-shield/recovery-cycle.c",
+            "base value":2,
+            "formula":"additive",
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Refuge Theory",
+            "research item":"/guilds/monk/mana-shield/refuge-theory.c",
+            "base value":3,
+            "formula":"additive",
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Disruption Theory",
+            "research item":"/guilds/monk/mana-shield/disruption-theory.c",
+            "base value":4,
+            "formula":"additive",
+            "rate":1.0
+        ]),
+        ([
+            "type":"research",
+            "name":"Lucid Refuge",
+            "research item":"/guilds/monk/mana-shield/lucid-refuge.c",
+            "base value":5,
+            "formula":"additive",
+            "rate":1.0
+        ])
+    }));
 
     addSpecification("trait", "/guilds/monk/mana-shield/ward-trait.c");
 
     addSpecification("use ability activate message",
-        "A quiet ward of energy settles around ##InitiatorName##.");
+        "A luminous shield of woven chi surrounds ##InitiatorName##.");
     addSpecification("use ability deactivate message",
-        "The quiet ward around ##InitiatorName## fades.");
+        "The mana shield around ##InitiatorName## unravels into light.");
 }

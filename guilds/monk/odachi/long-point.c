@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Long Point");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the odachi's point for a single thrust against an opponent in "
-        "the same room.");
+        "The wide sweep folds into a straight road of steel. "
+        "Driving from the rear foot, you send the odachi's point "
+        "down the narrow passage beneath the opposing weapon.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

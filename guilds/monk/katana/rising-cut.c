@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rising Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An ascending single-target cut commits eight stamina to a broad "
-        "damage range.");
+        "From a lowered point the katana climbs through the opposing "
+        "line, carrying the strength of the rising body along its "
+        "gleaming edge.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

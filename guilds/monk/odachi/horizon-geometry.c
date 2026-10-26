@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Horizon Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read the broad cutting line without overextending: adds three to "
-        "Horizon Cut's damage.");
+        "Mark the broad stroke's beginning and its end in the dust. "
+        "The lesson lies between them: keeping your center inside "
+        "the circle while the edge travels its rim.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

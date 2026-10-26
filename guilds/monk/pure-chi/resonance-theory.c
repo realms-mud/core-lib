@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Resonance Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Distinguish the body's rhythm from the rhythm of its energy. Opens "
-        "attacks on an opponent's reserves while strengthening familiar "
-        "projections and the restorative currents they share.");
+        "The body and its current do not always sing the same note. "
+        "Learn to hear their subtle harmonies and discord, following "
+        "the places where a touch can quiet or unsettle the whole.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

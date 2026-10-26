@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Inner Refuge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve six maximum spell points to improve natural spell-point "
-        "healing by one at a cost of two damage. This supports recovery, not "
-        "extra absorption.");
+        "Withdraw your attention to the quiet place behind the breath. "
+        "While the shield bears the clamor around you, your inner current "
+        "flows clear again, like a spring sheltered beneath stone.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -51,7 +47,7 @@ protected void Setup()
     addSpecification("spell point cost", 6);
     addSpecification("cooldown", 8);
 
-    addSpecification("bonus heal spell points", 1);
+    addSpecification("bonus heal spell points", 6);
     addSpecification("penalty to damage", 2);
 
     addSpecification("command template", "chi inner refuge");

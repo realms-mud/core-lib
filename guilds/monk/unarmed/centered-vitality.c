@@ -10,16 +10,14 @@ protected void Setup()
     addSpecification("name", "Centered Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A settled empty-handed posture grants +10 maximum hit points.");
+        "Hours beneath the practice waterfall teach you to yield without "
+        "collapsing. With nothing clenched in either hand, the whole body "
+        "becomes a vessel that can weather the next hardship.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -42,5 +40,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 10);
+    addSpecification("bonus hit points", 40);
 }

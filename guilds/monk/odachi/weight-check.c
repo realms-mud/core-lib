@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Weight Check");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Make the opponent spend stamina resisting the long blade. Does not "
-        "automatically stagger or pin.");
+        "You lay the odachi's weight onto the opposing line and "
+        "step behind it. The adversary must choose how to carry "
+        "a burden that grows heavier with resistance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

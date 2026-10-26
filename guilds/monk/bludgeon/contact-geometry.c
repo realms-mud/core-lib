@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Contact Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study how the mace head meets a surface. Adds ten percent to "
-        "Compact Blow and Centerline Crush and opens the mace's master "
-        "technique; grants no armor bypass.");
+        "Observe the small differences between a glancing touch "
+        "and a settled impact. The mace teaches its geometry "
+        "through the angle of the wrist and the turn of the hips.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

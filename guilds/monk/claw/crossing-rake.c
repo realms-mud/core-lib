@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossing Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Cross the opponent's line with one tiger-claw thrust, not multiple "
-        "strikes.");
+        "Pass the talons across the foe's leading arm and drive "
+        "them through the space beyond it. The crossing approach "
+        "hides a direct thrust behind an apparently sideways motion.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

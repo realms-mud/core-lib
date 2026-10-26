@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Resilient Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Relaxed forearms grant +10 maximum stamina with a primary katana.");
+        "Long hours of cutting teach the hands when to close and when "
+        "to yield. The grip survives the lesson because it no longer "
+        "fights the sword between strokes.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 10);
+    addSpecification("bonus stamina points", 30);
 }

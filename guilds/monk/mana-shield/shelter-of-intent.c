@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Shelter of Intent");
     addSpecification("source", "monk");
     addSpecification("description",
-        "While warded, spend chi to prepare twenty seconds of fire, cold, "
-        "and electricity resistance. These resistances are ordinary "
-        "defenses, not an extra shield.");
+        "Spread your hands and lay a calm intention over the shield. "
+        "Flame gutters, frost loosens, and the storm's bright fingers "
+        "slide across a surface as serene as an undisturbed pond.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -53,9 +49,9 @@ protected void Setup()
 
     addSpecification("duration", 20);
 
-    addSpecification("bonus resist fire", 3);
-    addSpecification("bonus resist cold", 3);
-    addSpecification("bonus resist electricity", 3);
+    addSpecification("bonus resist fire", 15);
+    addSpecification("bonus resist cold", 15);
+    addSpecification("bonus resist electricity", 15);
 
     addSpecification("command template", "chi shelter of intent");
     addSpecification("use ability message",

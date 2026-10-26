@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Endurance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover efficiently after a demanding draw: +2 stamina healing rate "
-        "with a primary bow.");
+        "Let the bow arm soften after each release without surrendering "
+        "its readiness. Long afternoons at the butts teach the body "
+        "how to rest within the rhythm of its labor.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -46,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina rate", 2);
+    addSpecification("bonus heal stamina rate", 4);
 }

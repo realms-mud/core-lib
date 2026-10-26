@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Sapping Palm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A precise pressure strike drains the opponent's spell points "
-        "without transferring them.");
+        "The palm slips past the guard to trouble the quiet behind it. "
+        "A jarring touch at a breathing point leaves the foe struggling "
+        "to gather the inward strength they had held ready.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Tiring Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Force a tiring defense that drains stamina without paralysis, "
-        "pinning, or a grapple.");
+        "Bring the talons close enough that the foe must haul "
+        "their whole guard aside. The narrow escape leaves them "
+        "breathing hard, their own hurried defense doing the tiring work.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

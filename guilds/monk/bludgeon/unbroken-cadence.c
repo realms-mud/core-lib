@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Unbroken Cadence");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain an economical offensive cadence for one attack and one "
-        "damage. Reserve eighteen stamina; each landed hit costs one "
-        "stamina. Uses any primary bludgeon.");
+        "Set each impact within the rhythm of its returning "
+        "weight. The measured cadence carries you through "
+        "the exchange without the hesitation of a broken step.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,8 +45,8 @@ protected void Setup()
     addSpecification("scope", "self");
     addSpecification("effect", "beneficial");
 
-    addSpecification("bonus attack", 1);
-    addSpecification("bonus damage", 1);
+    addSpecification("bonus attack", 5);
+    addSpecification("bonus damage", 5);
 
     addSpecification("stamina point cost", 18);
 

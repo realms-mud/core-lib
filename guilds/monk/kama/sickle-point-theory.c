@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Point Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the kama's pointed opening: adds three to Sickle Point's "
-        "damage formula.");
+        "A drawn crescent conceals a direct road at its tip. Study "
+        "that road on the padded dummy, learning when the point "
+        "should arrive before the foe can prepare for the hook.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

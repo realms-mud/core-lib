@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Initiate's Discipline");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An instructor teaches safe, deliberate unarmed movement. This first "
-        "lesson begins a mentored curriculum without replacing the "
-        "self-taught foundations.");
+        "Bow at the threshold of the practice hall and "
+        "set aside the need to hurry. Your first lessons "
+        "teach the hands to move deliberately and the mind to listen.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("/guilds/monk/discipline/root.c", ([
         "type":"research"
     ]));

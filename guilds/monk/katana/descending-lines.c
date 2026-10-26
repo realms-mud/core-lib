@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Descending Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Placing the descending arc adds three points to Descending Cut's "
-        "damage.");
+        "The falling blade must find a seam, not merely the ground. "
+        "Follow the slope of the shoulders and the tilt of a raised "
+        "weapon until the downward path becomes clear.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

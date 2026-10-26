@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Twin Edge Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the commitment of both blade lines: adds three to Twin Edge's "
-        "single damage formula.");
+        "The last lesson is not to make the swords alike. "
+        "Understand what each must give the other when the "
+        "whole duel is entrusted to their meeting purpose.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

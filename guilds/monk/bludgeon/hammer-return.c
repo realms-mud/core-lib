@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Hammer Return");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover a descending hammer along its natural arc. Falling Head, "
-        "Burdening Blow, and Anvil Descent each cost one less stamina with a "
-        "primary war hammer.");
+        "Follow the hammer through its natural returning arc. "
+        "Rather than hauling against the weight, guide it "
+        "home along the course the last stroke has already begun.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

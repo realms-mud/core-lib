@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Endure prolonged kama drills: +6 maximum hit points.");
+        "Season after season of close sickle work has taught your "
+        "body how to endure its dangerous harvest. You carry the "
+        "scars without guarding them, sure of the strength beneath.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 6);
+    addSpecification("bonus hit points", 60);
 }

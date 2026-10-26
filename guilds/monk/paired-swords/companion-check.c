@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Companion Check");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Press the opponent's guard with the paired blades to drain stamina, "
-        "not hit points.");
+        "The companion blade nudges the opposing guard out of "
+        "comfort while the katana lends its weight. What seemed "
+        "a small correction becomes an awkward struggle.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

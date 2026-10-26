@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Descending Arc");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit the heavy blade downward for one costly strike, leaving a "
-        "long recovery.");
+        "The odachi rises into the light above your head, then "
+        "descends with your settling stance. Its long shadow passes "
+        "over the adversary just before the edge arrives.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Reap");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit stamina and recovery time to one heavy kama cut.");
+        "The waiting sickle turns at last. You draw the full weight "
+        "of your stance through its inward edge, gathering the whole "
+        "exchange into a merciless harvest stroke.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

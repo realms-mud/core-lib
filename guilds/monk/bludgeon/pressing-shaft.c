@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Pressing Shaft");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Press the shaft against the opponent's guard, taxing stamina "
-        "without direct injury. Staff skill and constitution sustain this "
-        "controlled exertion.");
+        "Set the staff across your opponent's guard and lean "
+        "through a grounded stance. The patient pressure "
+        "asks their whole body to answer the length of the shaft.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

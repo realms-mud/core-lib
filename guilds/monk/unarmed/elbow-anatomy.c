@@ -10,35 +10,18 @@ protected void Setup()
     addSpecification("name", "Elbow Anatomy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Anatomical placement strengthens palm, elbow, fist, knee, and "
-        "meridian techniques. Driving Elbow gains three points; Empty Hand "
-        "gains two; the other affected strikes gain one.");
+        "A skeleton in the teaching hall reveals doors hidden beneath "
+        "muscle: the floating rib, the hinge of the jaw, the hollow below "
+        "the shoulder. Your elbow learns to knock where bone cannot brace.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

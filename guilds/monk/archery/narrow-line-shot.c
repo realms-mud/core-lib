@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Narrow-Line Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release one arrow along a narrow opening. Ordinary arrow resistance "
-        "still applies.");
+        "Wait for a seam no wider than the arrow's shadow. "
+        "A careful release sends the shaft through that brief "
+        "invitation before the guard closes around it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

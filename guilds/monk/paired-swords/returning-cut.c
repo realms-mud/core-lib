@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover behind the companion blade and cut back along the opening.");
+        "The wakizashi receives the threat while the katana "
+        "turns homeward. Behind that brief shelter, the long "
+        "edge returns along a line the opponent has left bare.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

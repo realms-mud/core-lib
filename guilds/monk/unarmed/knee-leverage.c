@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Knee Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Understanding leverage adds three points to Disrupting Knee's "
-        "stamina drain, two to Crushing Embrace's drain, and one to "
-        "Measured Palm and Rising Heel.");
+        "The knee rises from the earth, not from the thigh alone. "
+        "Study the tilt of the pelvis and the pull of the guarding hand "
+        "until close pressure can steal an opponent's breath.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

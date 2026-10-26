@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit one arrow and substantial stamina to a heavy release with a "
-        "long recovery.");
+        "Settle every breath and motion behind a final, unhurried "
+        "draw. The string parts from your fingers with the "
+        "solemn certainty of a decision that cannot be recalled.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

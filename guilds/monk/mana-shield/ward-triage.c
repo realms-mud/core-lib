@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Ward Triage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read which wounds most urgently need chi. Sheltering Touch gains "
-        "three healing through its research modifier and becomes available "
-        "for study.");
+        "Within the shield's calm, pain has a shape rather than a voice. "
+        "Learn to distinguish a body's deepest distress from its "
+        "loudest complaint, and guide your care where it is needed.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

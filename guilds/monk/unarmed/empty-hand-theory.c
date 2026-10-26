@@ -10,19 +10,14 @@ protected void Setup()
     addSpecification("name", "Empty Hand Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Uniting intention and alignment refines earlier techniques: "
-        "three points for Measured Palm, Driving Elbow, Hammer Fist, and "
-        "Empty Hand; two for Rising Heel and Crushing Embrace; one for "
-        "Sapping Palm and Meridian Strike.");
+        "The master erases the names of the forms from the practice slate. "
+        "Palm, heel, and elbow are no longer separate answers, but ways "
+        "for an unburdened body to speak the same intention.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Heart Mending");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Guide a sustained exhalation into another person's wounds. The chi "
-        "heals flesh, not their reserves.");
+        "Rest your palm near another's wounds and listen for the faltering "
+        "rhythm beneath them. A warm thread follows your exhalation, "
+        "coaxing the injured flesh back toward wholeness.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

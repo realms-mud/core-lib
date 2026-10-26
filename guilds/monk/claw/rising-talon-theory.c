@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rising Talon Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the upward thrust: adds three to Rising Talon's damage "
-        "formula.");
+        "Follow a hanging cord from the floor toward the chin. "
+        "The rising lesson teaches knees and wrist to lift "
+        "together, preserving a straight road through a crowded guard.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

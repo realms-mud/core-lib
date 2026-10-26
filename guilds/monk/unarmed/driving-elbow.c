@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Driving Elbow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A compact elbow strike trades extra stamina for a stronger physical "
-        "hit.");
+        "Turn the hip through a space too narrow for a fist. The elbow "
+        "follows like the head of a ram, carrying the weight of your "
+        "stance into the opening beside the guard.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

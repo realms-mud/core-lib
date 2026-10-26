@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Foundation of Practice");
     addSpecification("source", "monk");
     addSpecification("description",
-        "You understand the monastic approach to measured practice: patient "
-        "repetition, awareness of your limitations, and deliberate "
-        "improvement.");
+        "The monastic path begins with patient repetition "
+        "and an honest regard for one's limits. Each "
+        "day's practice offers another chance to meet them without pride.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addSpecification("research type", "tree root");
 }

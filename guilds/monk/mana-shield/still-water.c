@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Still Water");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Let the ward bear distractions while your muscles relax, adding one "
-        "natural stamina healing while Mindful Ward is active.");
+        "Beneath the shield, movement need not leave a wake. You learn "
+        "to release each effort as it ends, letting the body's deep "
+        "reserves settle clear as water after rain.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +44,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina", 1);
+    addSpecification("bonus heal stamina", 4);
 }

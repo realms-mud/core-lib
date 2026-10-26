@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit stamina to one forceful tiger-claw thrust followed by "
-        "deliberate recovery.");
+        "Set the rear heel and send the talons home with a "
+        "hunter's final certainty. All the small, patient advances "
+        "of the close guard resolve into this committed thrust.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Patient Sickle");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eighteen maximum stamina for +4 short sword at a cost of "
-        "two dodge.");
+        "Keep the sickle still while the foe invents dangers around "
+        "it. Such patience roots you close to the exchange, waiting "
+        "for the precise movement that makes the inward edge inevitable.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata patient sickle");
 
-    addSpecification("bonus short sword", 4);
+    addSpecification("bonus short sword", 10);
     addSpecification("penalty to dodge", 2);
 }

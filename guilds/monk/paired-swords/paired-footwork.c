@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Footwork");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep both blades clear during evasive movement: +1 dodge.");
+        "Slide away without crossing your heels or crowding "
+        "either sword. The floor belongs to the feet first; "
+        "the hands can only defend the room they leave above.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,22 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate", "student", "disciple", "adept",
-            "senior disciple", "master candidate", "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

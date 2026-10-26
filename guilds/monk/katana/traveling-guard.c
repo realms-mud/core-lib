@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Traveling Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keeping cover during movement grants +1 parry with a primary katana.");
+        "Carry the guard across the floor as carefully as a lamp "
+        "through wind. Each sliding step leaves the blade free to "
+        "meet steel rather than rescue your balance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

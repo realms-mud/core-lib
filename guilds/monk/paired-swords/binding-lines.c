@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Binding Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study how a brief bind taxes the guard: adds three to Blade Bind's "
-        "stamina drain, not an immobilization effect.");
+        "Where steel meets steel, the companion blade gives the "
+        "struggle another angle. Learn to lean into that crossing "
+        "without tangling your own wrists beneath it.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

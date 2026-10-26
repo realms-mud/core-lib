@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Forward Talon");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +3 attack at a cost of two "
-        "defense.");
+        "Carry the talons ahead of the shoulder and crowd the "
+        "foe's attention with their points. The predatory guard "
+        "finds openings eagerly, at the risk of leaving your own behind.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata forward talon");
 
-    addSpecification("bonus attack", 3);
+    addSpecification("bonus attack", 6);
     addSpecification("penalty to defense", 2);
 }

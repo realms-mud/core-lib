@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Staff Equilibrium");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master combines reach geometry and crossbar defense into a stable "
-        "staff stance, granting one attack and two dodge while a staff or "
-        "quarterstaff is primary.");
+        "Hold the staff in an easy balance that extends "
+        "through the body to the earth. Either end may "
+        "move while the center remains quietly your own.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -24,10 +24,6 @@ protected void Setup()
 
     addPrerequisite("/guilds/monk/bludgeon/long-reach-geometry.c", ([
         "type":"research"
-    ]));
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
     ]));
     addPrerequisite("level", ([
         "type":"level",
@@ -52,6 +48,6 @@ protected void Setup()
 
     addSpecification("scope", "self");
 
-    addSpecification("bonus attack", 1);
-    addSpecification("bonus dodge", 2);
+    addSpecification("bonus attack", 3);
+    addSpecification("bonus dodge", 5);
 }

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Talon Point");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver one precise tiger-claw thrust. Normal thrust resistance "
-        "still applies.");
+        "Gather the clustered points behind the leading talon "
+        "and choose a small opening. The thrust is spare and "
+        "unwavering, trusting placement rather than a sweeping show of steel.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

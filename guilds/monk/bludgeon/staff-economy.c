@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Staff Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use the staff's returning end rather than resetting the whole "
-        "weapon. Sweeping Arc, Pressing Shaft, and Horizon Stroke each cost "
-        "one less stamina.");
+        "Remember the end of the staff that has not yet "
+        "struck. Its return can begin the next gesture, "
+        "sparing you the labor of turning the whole length anew.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

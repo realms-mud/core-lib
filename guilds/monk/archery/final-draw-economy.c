@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Draw Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reduce excess muscular effort: Final Draw costs three less stamina "
-        "but still consumes an arrow.");
+        "At the fullest draw, distinguish resolve from strain. "
+        "Allow the stance to bear what the arms cannot, keeping "
+        "the committed shot free of desperate effort.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

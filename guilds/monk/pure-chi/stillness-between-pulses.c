@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Stillness Between Pulses");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reset intent rather than carrying it into the next attack. Needle "
-        "of Chi recovers one second sooner and Driving Wave two seconds "
-        "sooner.");
+        "Allow each projection to end completely before you summon "
+        "another. The brief silence between them becomes a clean "
+        "page, free of the last gesture's unfinished intent.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

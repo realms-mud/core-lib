@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Ward Counterpulse");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliberately project chi from a stable ward. It spends spell points "
-        "normally and neither stores nor reflects previously absorbed "
-        "damage.");
+        "Find the quiet center behind the shield's luminous "
+        "weave. From that shelter, send a deliberate pulse "
+        "outward, its light parting the strands before they close again.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

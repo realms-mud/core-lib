@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Exhausting Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit one arrow to a costly stamina-draining release. It does not "
-        "paralyze or pin the target.");
+        "Hold the draw until your foe commits their weight, then "
+        "loose where escape demands the hardest effort. Their "
+        "answer comes with heaving breath and trembling limbs.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

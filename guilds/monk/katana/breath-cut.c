@@ -10,8 +10,8 @@ protected void Setup()
     addSpecification("name", "Breath Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A precise concentration-breaking cut drains spell points instead of "
-        "health.");
+        "Your edge arrives at the moment an opponent gathers breath, "
+        "turning a carefully held thought into a desperate flinch.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +20,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

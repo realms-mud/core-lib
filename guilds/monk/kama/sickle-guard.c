@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the kama between your body and the next blow: +1 parry.");
+        "Hold the haft across the approaching line with the crescent "
+        "turned outward. The guard asks the foe to negotiate both "
+        "wood and waiting steel before they can reach your body.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

@@ -10,35 +10,18 @@ protected void Setup()
     addSpecification("name", "Ward Mending");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend spell points to mend injuries while the existing ward remains "
-        "active. This replenishes health, not a separate shield or "
-        "absorption reserve.");
+        "Guide a warm strand of the shield inward along the line of an "
+        "injury. Beneath its soft glow, torn flesh remembers its proper "
+        "shape and pain loosens its grip on your breathing.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

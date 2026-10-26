@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Horizon");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit to a demanding single-target finishing cut with the odachi's "
-        "longest recovery.");
+        "The whole duel narrows to the boundary of your blade. "
+        "You cross it with an unwavering step and draw the final "
+        "horizon through the opponent standing before you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

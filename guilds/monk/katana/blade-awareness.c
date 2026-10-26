@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Blade Awareness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Attending to the blade's reach grants +2 perception with a primary "
-        "katana.");
+        "The polished edge becomes a quiet measure of the space around you. "
+        "A shifting shoulder or a heel lifting from the dust no longer "
+        "escapes your notice.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

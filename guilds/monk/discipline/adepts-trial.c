@@ -10,19 +10,10 @@ protected void Setup()
     addSpecification("name", "Adept's Trial");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Ren assesses your demonstrated practice before endorsing promotion "
-        "to adept. Requires ten qualifying uses of any one of Measured Palm, "
-        "Measured Cut, Measured Impact, Focused Pulse, Linked Cut, "
-        "Committed Cut, Measured Draw, Measured Hook, or Measured Rake "
-        "against already-hostile, non-allied living NPCs in the same room at "
-        "least half your effective level. Repeated uses in one encounter "
-        "count; partial counts across techniques do not. This free "
-        "assessment grants no combat bonus or automatic promotion.");
+        "Ren looks beyond the polished movements of the "
+        "practice hall. The trial asks whether patient "
+        "instruction has become dependable conduct under real danger.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

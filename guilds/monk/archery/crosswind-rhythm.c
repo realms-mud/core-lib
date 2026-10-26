@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crosswind Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover smoothly from oblique releases: reduces Crosswind Shot's "
-        "cooldown by four seconds.");
+        "Let the turn of an oblique release carry you back into "
+        "alignment. The bow returns like a reed after a passing "
+        "gust, ready without a jarring change of course.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

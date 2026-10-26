@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Palm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A deliberate single palm strike using normal physical damage "
-        "resolution. Both wielded slots must be empty; worn gloves and armor "
-        "are allowed.");
+        "Set an open palm against the practice board before learning to "
+        "strike it. That same deliberate placement carries into battle: "
+        "a rooted step, a turning waist, and the heel of the hand.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
@@ -22,19 +22,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

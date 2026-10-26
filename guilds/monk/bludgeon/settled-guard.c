@@ -10,10 +10,9 @@ protected void Setup()
     addSpecification("name", "Settled Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Further instruction in recovering after Measured Impact grants +1 "
-        "parry while a staff, mace, or hammer occupies your primary wielded "
-        "slot. Normal equipment rules still determine whether an offhand "
-        "item can be used.");
+        "Settle the weapon between exchanges rather than "
+        "letting it drift. A quiet guard gives the hands "
+        "a familiar place from which to meet the next threat.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -26,19 +25,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

@@ -13,7 +13,7 @@ string Pulse = "/guilds/monk/pure-chi/focused-pulse.c";
 string Ward = "/guilds/monk/mana-shield/mindful-ward.c";
 string WardTrait = "/guilds/monk/mana-shield/ward-trait.c";
 string PulseCommand = "chi focused pulse at opponent";
-string WardCommand = "chi mindful ward";
+string WardCommand = "mana shield";
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -145,10 +145,10 @@ void InitialLessonsRequireFoundationsAndTheCorrectTeacher()
     points = User.researchPoints();
     ExpectTrue(User.executeCommand("lessons from ren"));
     ExpectSubStringMatch("Focused Pulse", User.caughtMessage());
-    ExpectSubStringMatch("Mindful Ward", User.caughtMessage());
+    ExpectSubStringMatch("Mana Shield", User.caughtMessage());
     ExpectTrue(User.executeCommand("learn focused pulse from ren"));
     ExpectTrue(User.isResearched(Pulse));
-    ExpectTrue(User.executeCommand("learn mindful ward from ren"));
+    ExpectTrue(User.executeCommand("learn mana shield from ren"));
     ExpectTrue(User.isResearched(Ward));
     ExpectEq(points - 4, User.researchPoints());
     ExpectEq(4, Ren.relationshipValue(User, "respect"));

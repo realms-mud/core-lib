@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Resist overcommitting a hooked blade: +1 wisdom.");
+        "The hooked edge tempts its wielder to pull harder than needed. "
+        "Learn to leave a stubborn opening alone, trusting judgment "
+        "rather than dragging yourself after an unwilling blade.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

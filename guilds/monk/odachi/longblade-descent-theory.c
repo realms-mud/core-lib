@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Descent Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the descending commitment: adds three to Descending Arc's "
-        "damage formula.");
+        "A falling sword can still wander. Study the moment the "
+        "hips settle beneath the lifted hilt, giving the descending "
+        "edge a purpose more exact than gravity alone.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

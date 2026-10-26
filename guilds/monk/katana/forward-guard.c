@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Forward Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina for +3 attack and -2 defense.");
+        "Set the point toward the opponent's heart and let your stance "
+        "lean into the unanswered question. Retreat feels distant "
+        "when every line of the body speaks of advance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

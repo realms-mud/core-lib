@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Recovery Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An adept wastes less motion returning to guard: Measured Impact and "
-        "Draining Impact cost one less stamina while a primary bludgeon is "
-        "equipped.");
+        "Examine the wandering movements that follow a strike. "
+        "Trim away each useless turn until the weapon returns "
+        "to guard by the quietest path it can take.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

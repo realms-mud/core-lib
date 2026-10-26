@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Horizon Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Make the finishing commitment less wasteful: reduce Final Horizon's "
-        "authored stamina cost by three.");
+        "At the farthest reach of the discipline, strength is no "
+        "longer spent wrestling with conviction. Release the last "
+        "hesitation and the great blade finds its own clean passage.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

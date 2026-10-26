@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Breath Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study concentration under close pressure: adds three to Breath "
-        "Rake's spell-point drain.");
+        "Read the tiny pause before a foe gathers their inward "
+        "strength. A claw arriving in that pause can trouble "
+        "concentration more deeply than a louder, less deliberate threat.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

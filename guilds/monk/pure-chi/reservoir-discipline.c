@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Reservoir Discipline");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Hold a measured reserve without tension, adding six to the ordinary "
-        "spell-point maximum.");
+        "Deepen the quiet pool beneath your breathing without forcing "
+        "its banks. Patient practice teaches the body to shelter "
+        "a fuller current without disturbing its surface.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -46,5 +30,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus spell points", 6);
+    addSpecification("bonus spell points", 25);
 }

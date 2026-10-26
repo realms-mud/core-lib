@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Inner Discipline");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A practiced mental center offers modest resistance to psionic "
-        "attacks without replacing other defenses.");
+        "Find the quiet place within that does not answer "
+        "every voice that calls to it. There your own "
+        "thoughts remain familiar, even under another will's pressure.");
 
     addPrerequisite("level", ([
         "type":"level",

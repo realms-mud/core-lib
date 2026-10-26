@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Inward Listening");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Notice disruptions in breath and posture before they become "
-        "visible, improving perception by two.");
+        "Listen beneath speech and footfall for the small betrayals of "
+        "breath. A held exhalation or a sudden hitch in posture can "
+        "reveal an intention before the hand begins to move.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -43,5 +40,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus perception", 2);
+    addSpecification("bonus perception", 4);
 }

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Reaping Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study a committed curved cut: adds three to Reaping Cut's damage "
-        "formula.");
+        "Bundles of reeds mark the practice yard in uneven rows. "
+        "Find the line through each without leaning past your feet, "
+        "learning to bring a reaper's sure draw into the press of battle.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

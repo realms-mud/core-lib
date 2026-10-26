@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Pressure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Present two lines without adding an automatic attack: +1 attack.");
+        "Leave the adversary no comfortable blade to watch. "
+        "The katana's promise and the wakizashi's quiet warning "
+        "make every settled guard feel incomplete.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

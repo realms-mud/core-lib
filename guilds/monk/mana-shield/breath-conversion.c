@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Breath Conversion");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend twelve stamina to recover a base six to eight spell points "
-        "while warded, improved by breathing discipline and recovery theory. "
-        "Recovery is bounded by the ordinary spell-point maximum.");
+        "Draw a deep breath through tired muscles and guide its warmth "
+        "into the shield. The scattered threads of your inner current "
+        "gather again beneath its shelter.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Hammer Poise");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Combine anvil geometry with braced recovery to control a heavy head "
-        "without overextension. Grants one strength and one defense with a "
-        "primary war hammer.");
+        "Carry the hammer as a poised weight rather than a "
+        "burden. The head waits above a settled stance, its "
+        "promise of motion held without restless swaying.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -24,10 +24,6 @@ protected void Setup()
 
     addPrerequisite("/guilds/monk/bludgeon/anvil-geometry.c", ([
         "type":"research"
-    ]));
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
     ]));
     addPrerequisite("level", ([
         "type":"level",
@@ -53,5 +49,5 @@ protected void Setup()
     addSpecification("scope", "self");
 
     addSpecification("bonus strength", 1);
-    addSpecification("bonus defense", 1);
+    addSpecification("bonus defense", 5);
 }

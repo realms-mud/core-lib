@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Brace the Spirit");
     addSpecification("source", "monk");
     addSpecification("description",
-        "While warded, spend chi for twelve seconds of braced defense. The "
-        "brief posture grants three defense and does not absorb damage "
-        "itself.");
+        "Set your heel and let the shield settle against your stance. For "
+        "a breath, body and spirit stand together like a mountain enduring "
+        "the first thunder of a storm.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -56,7 +52,8 @@ protected void Setup()
 
     addSpecification("duration", 12);
 
-    addSpecification("bonus defense", 3);
+    addSpecification("bonus defense", 8);
+    addSpecification("bonus soak", 4);
 
     addSpecification("command template", "chi brace the spirit");
     addSpecification("use ability message",

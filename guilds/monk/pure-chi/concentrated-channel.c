@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Concentrated Channel");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum spell points to reinforce energy attacks, at "
-        "a cost of one defense.");
+        "Narrow the wandering streams of your intent into a single course. "
+        "The gathered current hums beneath the skin, eager to follow "
+        "every outward gesture.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

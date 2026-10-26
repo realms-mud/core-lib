@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Blade Bind");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Exhaust the opponent's guard through a brief bind. Drains stamina "
-        "without disarming or immobilizing.");
+        "The katana meets the opposing weapon and the wakizashi "
+        "joins the crossing. For a breath, the adversary's strength "
+        "is caught between the competing lines of your blades.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

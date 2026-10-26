@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crescent Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the broad sickle arc: adds three to Crescent Reap's damage "
-        "formula.");
+        "A charcoal crescent on the floor shows where the edge should "
+        "travel. Walk its curve until the blade's short reach becomes "
+        "an advantage, drawing force inward instead of scattering it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

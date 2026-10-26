@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossing Talons");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the crossing thrust: adds three to Crossing Rake's damage "
-        "formula.");
+        "Lay two reeds across one another to mark the guarding "
+        "arm and the hidden road beyond it. The crossing lesson "
+        "teaches your hand to find that road without wandering.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

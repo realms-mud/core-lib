@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Return Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover into the paired line sooner: reduce Returning Cut's "
-        "cooldown by four seconds.");
+        "The return belongs to the waiting blade as much as "
+        "the traveling one. Follow the handoff between them "
+        "until the pause in their conversation disappears.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

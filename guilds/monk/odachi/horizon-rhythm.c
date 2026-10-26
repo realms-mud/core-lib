@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Horizon Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the odachi's broad line sooner: reduce Horizon Cut's "
-        "cooldown by four seconds.");
+        "Do not follow the horizon stroke with your eyes after it "
+        "has passed. Feel its return through the turning hips, "
+        "and gather the blade before its weight pulls you astray.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

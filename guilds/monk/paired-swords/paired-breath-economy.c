@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Breath Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reduce Breath Shear's authored stamina cost by two.");
+        "Keep your own breathing free while troubling another's "
+        "composure. The paired pressure needs no clenched chest "
+        "or rigid shoulder to make its meaning felt.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

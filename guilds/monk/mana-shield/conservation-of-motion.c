@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Conservation of Motion");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Let intent finish the motion rather than spend more force. "
-        "Sheltering Touch and Stillpoint Rebuke each cost two fewer spell "
-        "points.");
+        "A master's gesture ends where intention begins. You learn to let "
+        "the shield carry that intention outward, leaving no wasted "
+        "movement between a merciful touch and a stern rebuke.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

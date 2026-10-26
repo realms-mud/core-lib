@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Turn an incoming line with the claw frame: +1 parry.");
+        "Angle the metal frame across the foe's approach instead "
+        "of meeting it squarely. A small turn of the forearm "
+        "guides the dangerous line past your ribs.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

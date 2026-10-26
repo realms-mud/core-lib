@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Momentum Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's uninterrupted recovery adds two points to the effects of "
-        "Measured Impact and Draining Impact, and opens Unbroken Cadence.");
+        "Learn to keep the weapon's story unbroken from one "
+        "stroke to the next. What once required a halt and "
+        "a fresh effort becomes a single continuing motion.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Essence Sensitivity");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Feel the grain of internal energy before shaping it, improving "
-        "magical essence by two.");
+        "Learn to feel the grain of chi as a carpenter feels the grain "
+        "of wood. What once seemed shapeless reveals fine currents "
+        "that yield willingly to a patient touch.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

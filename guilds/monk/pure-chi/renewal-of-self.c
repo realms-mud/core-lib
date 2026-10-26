@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Renewal of Self");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit a large measure of chi to restore your wounds and stamina in "
-        "one long recovery cycle.");
+        "Fold your attention inward until the noise of battle grows "
+        "distant. The gathered current washes through bruised flesh "
+        "and weary limbs like rain through a parched garden.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Quick Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A short opening cut favors a six-second cooldown over the damage of "
-        "heavier techniques.");
+        "The hand moves before the opponent has finished judging your "
+        "stillness. A bright crescent of steel marks the place where "
+        "the waiting sword becomes a cut.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Rising Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Studying ascending cuts adds three points to Rising Cut's damage.");
+        "An upward cut begins beneath the opponent's notice. Study "
+        "the spaces left by a high weapon and learn to lift the edge "
+        "through them without lifting your own center.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

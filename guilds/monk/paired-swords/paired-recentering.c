@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Recentering");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend eight spell points and six stamina to restore a modest amount "
-        "of your own health while holding the correct pair.");
+        "Gather the blades near your center and breathe between "
+        "their quiet edges. For a moment the struggle outside "
+        "gives way to the work of making yourself whole.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

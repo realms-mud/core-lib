@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Grappling Mechanics");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Efficient leverage adds three points to Crushing Embrace's stamina "
-        "drain, two to Disrupting Knee's drain, and one to Driving Elbow "
-        "and Hammer Fist. These techniques do not immobilize the opponent.");
+        "Paired drills reveal how a shoulder becomes a lever and a "
+        "stubborn stance becomes its own burden. Learn to borrow the "
+        "foe's resistance rather than meet it with a contest of strength.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

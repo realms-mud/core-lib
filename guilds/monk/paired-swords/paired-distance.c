@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read the space between the two blades: +1 perception while the "
-        "correct pair is wielded.");
+        "A katana and a wakizashi measure the world differently. "
+        "Hold their unequal reaches in your awareness until "
+        "the space between them no longer hides surprises.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

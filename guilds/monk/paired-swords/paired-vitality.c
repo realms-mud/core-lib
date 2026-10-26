@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Condition yourself for sustained paired exchanges: +6 maximum hit "
-        "points.");
+        "The sword hall has left its lessons in scar and sinew. "
+        "Through bruising exchanges you have learned to keep "
+        "your center intact when the paired guard is tested.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -51,5 +48,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 6);
+    addSpecification("bonus hit points", 50);
 }

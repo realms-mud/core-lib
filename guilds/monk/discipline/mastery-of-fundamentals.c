@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Mastery of Fundamentals");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Years of deliberate practice refine your unarmed technique. This is "
-        "a modest improvement to the fundamentals, not a replacement for "
-        "specialized kata.");
+        "Return to the first stance after years upon "
+        "the path. What once seemed simple now holds "
+        "the whole discipline in the placement of a foot and an open hand.");
 
     addPrerequisite("level", ([
         "type":"level",

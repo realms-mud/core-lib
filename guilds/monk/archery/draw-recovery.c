@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Relax safely between releases: +1 stamina healing rate while "
-        "wielding a primary bow.");
+        "Follow the release with a slow loosening of the back. "
+        "The bow remains poised while the body sheds the strain "
+        "of the draw instead of carrying it into the next.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

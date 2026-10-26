@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Disciplined Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Measured breathing helps you recover stamina between exertions and "
-        "establishes the discipline expected of a student.");
+        "Measure the breath without imprisoning it. "
+        "Inhale and exhale become the patient companions "
+        "of movement, anchoring practice in a quiet rhythm.");
 
     addPrerequisite("level", ([
         "type":"level",

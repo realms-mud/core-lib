@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Refuge Posture");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum stamina for three magical resistance at the "
-        "expense of one attack. No additional damage absorption is created.");
+        "Fold your stance around an unbroken line of breath. The shield "
+        "draws close, its light gathering into overlapping folds through "
+        "which hostile workings struggle to find a path.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,7 +49,8 @@ protected void Setup()
     addSpecification("stamina point cost", 8);
     addSpecification("cooldown", 8);
 
-    addSpecification("bonus resist magical", 3);
+    addSpecification("bonus resist magical", 8);
+    addSpecification("bonus soak", 4);
     addSpecification("penalty to attack", 1);
 
     addSpecification("command template", "chi refuge posture");

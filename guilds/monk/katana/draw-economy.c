@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Removing wasted motion reduces Quick Draw's authored stamina cost "
-        "by one.");
+        "A tight shoulder and a wandering elbow betray haste. Pare "
+        "them from the draw until the sword leaves its resting line "
+        "as naturally as a hand opening.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

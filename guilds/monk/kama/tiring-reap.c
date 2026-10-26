@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Tiring Reap");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Force a demanding defense that drains stamina without paralysis or "
-        "a movement lock.");
+        "Draw a low, insistent crescent that makes the foe haul "
+        "their weight clear. The sickle leaves them free to move, "
+        "but makes them feel the price of every hurried step.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

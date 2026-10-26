@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Rake Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid wasted effort in a heavy claw thrust: Final Rake costs three "
-        "less stamina.");
+        "At the end of the decisive thrust, the master is still "
+        "balanced enough to lift a foot. Learn to leave behind "
+        "the desperate lunge that spends strength after the work is done.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

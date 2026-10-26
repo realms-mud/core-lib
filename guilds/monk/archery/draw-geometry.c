@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the line of release: adds three to Measured Draw's damage "
-        "formula.");
+        "Trace a straight course from the drawn string through "
+        "the arrow's point. The lesson lies in every small angle "
+        "that can bend a faithful release away from its purpose.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

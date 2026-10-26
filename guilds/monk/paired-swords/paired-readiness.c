@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Readiness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Coordinate the hands and feet under pressure: +1 dexterity.");
+        "The feet begin the turn before either wrist must hurry. "
+        "Long practice has woven the unequal swords into the "
+        "body's instinctive answer to a changing fight.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

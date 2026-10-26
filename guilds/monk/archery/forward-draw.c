@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Forward Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve fourteen maximum stamina for +3 attack at a cost of two "
-        "defense.");
+        "Lean your purpose into the shot and meet the string "
+        "with a forward-set stance. The whole body presses "
+        "toward the mark, impatient with any retreat.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

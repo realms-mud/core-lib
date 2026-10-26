@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Centered Release");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release energy from an unmoving center. Unified Current adds three "
-        "strength to this projection.");
+        "Still your hands and let intent gather behind the breastbone. "
+        "When you release it, the current strikes outward while your "
+        "center remains as undisturbed as a mountain beneath the wind.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

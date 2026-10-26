@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Decisive Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recovering the finishing rhythm reduces Decisive Cut's cooldown by "
-        "four seconds.");
+        "Victory must not draw the sword farther than the fight demands. "
+        "Trace the finishing stroke back to its quiet center, ready "
+        "for the opponent who has not yet fallen.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

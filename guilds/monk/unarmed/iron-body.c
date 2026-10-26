@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Iron Body");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Conditioned muscles grant +1 fortified while fighting without "
-        "wielded equipment.");
+        "Bruises from the ironwood posts fade, but the patient discipline "
+        "remains. Breath braces the trunk before impact, making the "
+        "unarmed body feel less like flesh than tempered metal.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -42,5 +39,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus fortified", 1);
+    addSpecification("bonus fortified", 5);
 }

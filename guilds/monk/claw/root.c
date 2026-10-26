@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Tiger Claw Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The discipline of precise tiger-claw thrusts. Individual lessons "
-        "require instruction and an exact tiger claws blueprint in the "
-        "primary wielded slot for use.");
+        "Fasten the tiger claws and learn the unsettling intimacy "
+        "of their reach. This school lives inside the long blade's "
+        "comfort, where patient feet and a precise hand must agree.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addSpecification("research type", "tree root");
 }

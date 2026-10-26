@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Returning Current");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Exchange spell-point chi for bodily stamina, restoring motion "
-        "rather than wounds.");
+        "Lead a returning stream down the spine and out through tired "
+        "limbs. The heaviness of exertion loosens, and motion returns "
+        "with the easy rhythm of water finding its bed.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

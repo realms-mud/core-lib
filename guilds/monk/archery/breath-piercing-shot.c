@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath-Piercing Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend one arrow to disrupt an opponent's concentration by draining "
-        "spell points. It does not silence or prevent casting.");
+        "Wait for the inward breath that gathers an opponent's "
+        "concentration, then loose into that delicate moment. "
+        "The shaft's passage scatters their carefully ordered intent.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

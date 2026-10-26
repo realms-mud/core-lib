@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Companion Thrust");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Cover a single thrust with the other blade. Uses thrust damage "
-        "rather than an extra attack.");
+        "The longer edge shelters the shorter point as you close. "
+        "A spare turn of the offhand sends the wakizashi down the "
+        "thin lane hidden beside the katana.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

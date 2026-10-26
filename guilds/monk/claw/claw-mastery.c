@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Unify the tiger-claw grip and close footwork: +2 dagger.");
+        "There is no longer a pause between the eye finding a "
+        "seam and the talons knowing it. Years in the close guard "
+        "have made steel, hand, and hunting step a single habit.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus dagger", 2);
+    addSpecification("bonus dagger", 6);
 }

@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Linked Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Understand how the companion blade supports a cut: adds three to "
-        "Linked Cut's damage formula. Shared alignment also supports checks, "
-        "crossings, alternation, breath attacks, and recovery.");
+        "Two swords need not tell the same story. Learn how the "
+        "short blade's watchful presence allows the long blade "
+        "to speak with a clearer, more certain voice.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -27,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

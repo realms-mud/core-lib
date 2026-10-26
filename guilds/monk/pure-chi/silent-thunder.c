@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Silent Thunder");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Concentrate a master's intent into a single costly energy strike. "
-        "Unified Current multiplies its base power; wisdom and essence "
-        "provide smaller additions.");
+        "Let every wandering thought fall silent. From that perfect "
+        "stillness, release a single stroke of intent whose arrival "
+        "is felt through the bones before any sound can follow.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

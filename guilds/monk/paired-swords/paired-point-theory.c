@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Point Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Support the thrusting line with the other blade: adds three to "
-        "Companion Thrust's damage.");
+        "The companion point travels best beneath a patient "
+        "shelter. Study how the katana turns an opposing edge "
+        "without straying into the thrust it is meant to protect.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

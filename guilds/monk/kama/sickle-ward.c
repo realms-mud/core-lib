@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Ward");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina for +3 parry at a cost of one attack.");
+        "Fold the sickle close and watch along the haft. Your "
+        "attention stays with the foe's weapon, turning its approach "
+        "aside even when a tempting opening asks you to pursue.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

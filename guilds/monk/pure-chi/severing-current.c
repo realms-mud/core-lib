@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Severing Current");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Cut across body and inner reserve at once, trading efficiency for "
-        "disruption of both resources.");
+        "Shape your intent into a cold, dividing edge. It passes "
+        "through flesh and the current beneath it together, leaving "
+        "a jarring silence where their rhythms once agreed.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

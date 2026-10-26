@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Remove wasted effort from the foundational stroke: reduce Committed "
-        "Cut's authored stamina cost by two.");
+        "Return to the first stroke with a veteran's honest eye. "
+        "Strip away the clenched jaw, the lifted heel, and the "
+        "small struggles that once passed for determination.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

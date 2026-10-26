@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Horizon Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver one broad odachi cut against a single opponent in the same "
-        "room; this is not an area attack.");
+        "Turn from the waist and draw a broad line across the "
+        "opponent's guard, as though the long edge were dividing "
+        "the evening sky from the darkening earth.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

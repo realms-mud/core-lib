@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Point");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Drive the kama's point into one opening with a controlled thrust.");
+        "Turn the wrist so the sickle's tip leads instead of its edge. "
+        "A compact step carries that narrow promise through the "
+        "opening left by a guard expecting another curved draw.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

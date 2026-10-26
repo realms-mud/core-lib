@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Mindful Casting");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid needless energy expenditure while warded, adding one to the "
-        "existing spell-point reduction bonus rather than changing absorbed "
-        "damage costs.");
+        "Shape your workings within the shelter of the shield instead "
+        "of casting them against its current. Power follows the channels "
+        "already laid by your breathing, cleanly and without strain.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,5 +46,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus reduce spell points", 1);
+    addSpecification("bonus reduce spell points", 3);
 }

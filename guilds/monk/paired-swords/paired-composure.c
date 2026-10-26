@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Distinguish a real opening from a feint between the blades: +1 "
-        "wisdom.");
+        "The temptation to answer every moving edge fades with "
+        "practice. Amid the bright confusion, you learn to hear "
+        "which threat carries the opponent's true intention.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

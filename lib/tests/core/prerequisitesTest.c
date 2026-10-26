@@ -242,6 +242,22 @@ void CheckPrerequsistesCorrectlyHandlesLevelChecks()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void NamedGuildLevelDoesNotFallBackToAnotherGuildsEffectiveLevel()
+{
+    Researcher.ToggleMockGuilds();
+    Researcher.SetGuild("fighter");
+    Researcher.SetLevel(10);
+    ExpectTrue(Prerequisite.AddTestPrerequisite("level", ([
+        "type":"level",
+        "guild":"monk",
+        "value":1
+    ])));
+    ExpectTrue(Researcher.effectiveLevel() >= 1);
+    ExpectFalse(Prerequisite.checkPrerequisites(Researcher),
+        "a named guild requires that guild's membership and level");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CheckPrerequsistesCorrectlyHandlesGuildChecks()
 {
     Researcher.ToggleMockGuilds();

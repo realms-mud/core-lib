@@ -1089,7 +1089,7 @@ void ChiAndActiveWardSurviveRestoreWithoutDuplicatedReservations()
         Player.heart_beat();
     }
     int maximum = Player.maxStaminaPoints();
-    ExpectTrue(Player.researchCommand("chi mindful ward"));
+    ExpectTrue(Player.researchCommand("mana shield"));
     ExpectTrue(Player.hasTraitOfRoot("mana shield"));
     ExpectEq(maximum - 10, Player.maxStaminaPoints());
     Player.spellPoints(-Player.spellPoints());
@@ -1129,7 +1129,7 @@ void ChiAndActiveWardSurviveRestoreWithoutDuplicatedReservations()
     ExpectEq(0, Player.hit(20, "physical", foe));
     ExpectEq(health, Player.hitPoints());
     ExpectEq(37 - damage, Player.spellPoints());
-    ExpectTrue(Player.researchCommand("chi mindful ward"));
+    ExpectTrue(Player.researchCommand("mana shield"));
     ExpectFalse(Player.hasTraitOfRoot("mana shield"));
     ExpectEq(maximum, Player.maxStaminaPoints());
     ExpectEq(37 - damage, Player.spellPoints());

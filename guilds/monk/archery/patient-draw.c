@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Patient Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina for +3 bow at a cost of one attack.");
+        "Let the target wander beneath your sight without "
+        "chasing it. The patient archer waits for the world "
+        "to enter the line already held by the bow.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

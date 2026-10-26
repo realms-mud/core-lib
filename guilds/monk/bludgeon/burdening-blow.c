@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Burdening Blow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Load the opponent's defense with the war hammer's weight to drain "
-        "stamina rather than hit points. Hammer skill and constitution "
-        "sustain the pressure.");
+        "Lay the hammer's weight upon a braced defense and follow "
+        "through with patient pressure. Your opponent must bear "
+        "that burden in their shoulders and their breath.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

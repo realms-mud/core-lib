@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Rake Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the committed thrust: adds three to Final Rake's damage "
-        "formula.");
+        "Study the instant when a crowded guard can no longer "
+        "turn. The decisive talon belongs in that narrow instant, "
+        "supported by the whole body rather than a straining arm.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

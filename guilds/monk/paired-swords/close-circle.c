@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Close Circle");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Tire a single opponent with closing blade lines. Drains stamina "
-        "without preventing movement.");
+        "You step inside the adversary's comfortable measure and "
+        "fold both blades around the guard. Their arms must labor "
+        "to answer the narrowing circle of steel.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

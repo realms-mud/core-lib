@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Boundless Focus");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum spell points to sharpen spellcraft by four. "
-        "Outward vigilance suffers two defense while the inner calculation "
-        "is maintained.");
+        "The clamor of the world falls away as you contemplate the current "
+        "within. Its smallest eddies become clear, each waiting to be "
+        "guided by a thought as precise as a calligrapher's final stroke.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,7 +45,7 @@ protected void Setup()
     addSpecification("spell point cost", 12);
     addSpecification("cooldown", 10);
 
-    addSpecification("bonus spellcraft", 4);
+    addSpecification("bonus spellcraft", 10);
     addSpecification("penalty to defense", 2);
 
     addSpecification("command template", "chi boundless focus");

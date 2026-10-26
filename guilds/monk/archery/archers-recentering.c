@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Recentering");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend eight spell points and six stamina to restore a modest amount "
-        "of your own health with a primary bow. No arrow is consumed.");
+        "Lower the bow and draw your attention back from its distant "
+        "mark. A slow breath gathers warmth beneath the ribs, "
+        "soothing the hurts that haste had driven from your mind.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

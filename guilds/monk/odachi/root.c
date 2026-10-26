@@ -10,14 +10,9 @@ protected void Setup()
     addSpecification("name", "Odachi Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The discipline of committed odachi cuts and deliberate recovery. "
-        "Individual lessons require instruction and the actual odachi "
-        "blueprint.");
-
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
+        "The long sword waits on the rack like a question about "
+        "patience. To lift it is simple; to carry its weight through "
+        "a clean decision is the work of a lifetime.");
 
     addSpecification("research type", "tree root");
 }

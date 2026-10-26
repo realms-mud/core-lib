@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Polished Defense");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Minimizing exposed angles grants +1 armor class with a primary "
-        "katana.");
+        "Years of small corrections have polished the rough corners "
+        "from your guard. The shoulder turns, the hip follows, and "
+        "an inviting target becomes a glancing surface.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus armor class", 1);
+    addSpecification("bonus armor class", 3);
 }

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Sight");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the point without overcorrecting the heavy blade: +1 "
-        "dexterity.");
+        "Keep the far point steady against the smallest movement "
+        "of the adversary. Your hands learn a delicate conversation "
+        "with a blade that once seemed capable only of shouting.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

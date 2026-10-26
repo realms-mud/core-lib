@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Alternating Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Choose an opening between the two blade lines and deliver one "
-        "strike, not two independent hits.");
+        "The adversary follows the bright katana while the shorter "
+        "blade quietly changes the question. You cut through the "
+        "opening between their expectation and your chosen answer.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Heavy Rebuke");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Exhaust a single opponent through heavy guard pressure. Drains "
-        "stamina without a paralysis effect.");
+        "Meet the stubborn guard with the full authority of the "
+        "odachi. The rebuke rings through locked wrists and straining "
+        "shoulders, demanding that the adversary answer its weight.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Braced Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Brace your recovering war hammer close to the body, granting one "
-        "soak and one parry only while a hammer-type war hammer is primary.");
+        "Bring the returning hammer close to your center. The haft "
+        "and braced shoulders form a compact shelter while "
+        "the heavy head finds its place for the next exchange.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,6 +46,6 @@ protected void Setup()
 
     addSpecification("scope", "self");
 
-    addSpecification("bonus soak", 1);
-    addSpecification("bonus parry", 1);
+    addSpecification("bonus soak", 3);
+    addSpecification("bonus parry", 3);
 }

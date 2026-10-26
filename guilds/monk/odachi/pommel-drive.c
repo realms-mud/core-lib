@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Pommel Drive");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Press with the odachi's hilt and weight to drain the opponent's "
-        "stamina rather than health.");
+        "You shorten the great sword's argument to the length of "
+        "its hilt, driving the pommel into the crowded guard and "
+        "forcing the adversary to brace against your advance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

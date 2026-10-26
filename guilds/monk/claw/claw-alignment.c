@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the tiger-claw points before striking: +1 attack.");
+        "The points must carry the forearm's intention without "
+        "splaying the wrist. Patient work against a hanging gourd "
+        "teaches the talons to arrive along the line you chose.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,22 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate", "student", "disciple", "adept",
-            "senior disciple", "master candidate", "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

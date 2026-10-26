@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain a compact recovery guard for one parry and one defense. "
-        "Reserve eight stamina; each received hit costs one stamina. "
-        "Requires a primary bludgeon.");
+        "Let every stroke return through a compact shelter "
+        "before it begins again. The recovering haft waits "
+        "across the opening your foe hoped to exploit.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Quiet Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Disrupt concentration with one close claw action, draining spell "
-        "points without silence.");
+        "Beneath the noise of the exchange, the talons make a "
+        "small intrusion at a breathing point. The foe's inward "
+        "poise falters before they understand what your hand has done.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

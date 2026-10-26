@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Shelter");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum stamina for +3 dodge at a cost of one damage.");
+        "Draw the elbows in and look past the waiting talons. "
+        "This guarded posture favors the narrow escape over the "
+        "deep thrust, keeping your body behind its small steel shelter.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Fist Compression");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Compressing a short striking arc adds three points to Hammer Fist "
-        "and Empty Hand, two to Measured Palm and Driving Elbow, and one "
-        "to Rising Heel and Crushing Embrace.");
+        "Strike the hanging sandbag without drawing the hand back. "
+        "The lesson lies in the small closing of the ribs and the sudden "
+        "settling of the heel, not in the distance the fist travels.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

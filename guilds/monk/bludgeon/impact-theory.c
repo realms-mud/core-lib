@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Impact Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study contact and recovery to shorten Measured Impact's cooldown by "
-        "one second. This foundation opens the staff, mace, and war hammer "
-        "schools.");
+        "Learn to read an impact through the hands that deliver "
+        "it. Contact, rebound, and recovery are parts of the "
+        "same lesson, not separate moments to be forced apart.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

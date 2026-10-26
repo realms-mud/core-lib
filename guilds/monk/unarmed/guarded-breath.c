@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Guarded Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Breathing through defensive transitions grants +1 defense while "
-        "empty-handed.");
+        "Never leave the lungs empty when the guard changes. A quiet "
+        "exhalation keeps the ribs settled while your hands pass from "
+        "one watchful position to the next.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

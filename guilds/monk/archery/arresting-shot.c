@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Arresting Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend one arrow to tax an opponent's stamina. This does not "
-        "immobilize or interrupt the opponent.");
+        "Send a shaft toward the line your foe most wants to hold. "
+        "Meeting its threat demands an awkward, laboring response "
+        "that leaves their next breath short.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

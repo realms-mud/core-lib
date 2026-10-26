@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Opening Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Waste less effort behind the feint: reduce Opening Cut's authored "
-        "stamina cost by two.");
+        "A convincing invitation needs no grand gesture. "
+        "Refine the companion blade's suggestion until the "
+        "opponent supplies all the movement the opening needs.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,14 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Sword Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The coordination of a primary katana and offhand wakizashi. "
-        "Individual lessons require instruction; two weapons do not "
-        "automatically grant extra attacks.");
-
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
+        "On the rack the katana and wakizashi seem an unequal "
+        "pair. In practiced hands, their different voices can "
+        "learn to tell the same enduring story.");
 
     addSpecification("research type", "tree root");
 }

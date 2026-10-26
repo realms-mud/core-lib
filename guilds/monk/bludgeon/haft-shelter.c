@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Haft Shelter");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the mace haft near the defending line between blows, granting "
-        "two parry with a primary mace, flanged mace, or morning star.");
+        "Keep the mace's haft close to the line your foe must "
+        "cross. Between short blows it becomes a quiet barrier, "
+        "always returning to stand between intent and flesh.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,5 +46,5 @@ protected void Setup()
 
     addSpecification("scope", "self");
 
-    addSpecification("bonus parry", 2);
+    addSpecification("bonus parry", 4);
 }

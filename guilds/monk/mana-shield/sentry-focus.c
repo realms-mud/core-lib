@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Sentry Focus");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve six maximum stamina for watchful defense. Gain two defense; "
-        "this is not another ward.");
+        "Rest your attention on the shield's outer edge. Small ripples "
+        "become clear warnings, and your hands begin to answer them "
+        "before conscious thought can name the danger.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -54,7 +38,7 @@ protected void Setup()
     addSpecification("stamina point cost", 6);
     addSpecification("cooldown", 6);
 
-    addSpecification("bonus defense", 2);
+    addSpecification("bonus defense", 4);
 
     addSpecification("command template", "chi sentry focus");
     addSpecification("use ability activate message",

@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Centerline Crush");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit the mace head along a direct centerline for a deliberate "
-        "master-level blow. Its long recovery and stamina demand trade "
-        "frequency for contact force.");
+        "Gather the mace close and drive it along the body's central "
+        "line. Nothing wanders from that direct purpose, from "
+        "the grounded heel to the iron head's arrival.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

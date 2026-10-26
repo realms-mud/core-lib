@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Lucid Refuge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read a hostile current without losing your own center. Ward "
-        "Counterpulse gains ten percent of its base projection through its "
-        "receiving research modifier.");
+        "The shield becomes a clear lens rather than a wall. You see the "
+        "shape of each approaching disturbance without sharing its "
+        "turmoil, and weave your answer with unwavering clarity.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -42,8 +38,8 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("affected research type", "percentage");
+    addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
-        "Ward Counterpulse":10
+        "Mana Shield":5
     ]));
 }

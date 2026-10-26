@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Twin Edge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit both blade lines to one demanding finishing action against "
-        "one opponent.");
+        "The companion edge shapes the passage and the katana "
+        "claims it. Both hands commit without discord, bringing "
+        "the long conversation of the duel to its final phrase.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

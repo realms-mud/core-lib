@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Binding Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study exhausting kama angles: adds three to Binding Hook's "
-        "stamina-drain formula.");
+        "A hooked blade need not win a contest of strength. Study the "
+        "angles that make an opponent lift, twist, and brace against "
+        "their own weight whenever the sickle presses close.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

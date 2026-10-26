@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Restorative Chi Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Turn spell-point chi inward to close minor wounds. Wisdom guides "
-        "the breath into injured tissue.");
+        "Breathe toward the ache rather than drawing away from it. "
+        "A gentle warmth follows your attention into the injury, "
+        "easing the body's struggle to knit itself together.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

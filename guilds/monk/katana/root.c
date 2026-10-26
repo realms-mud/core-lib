@@ -10,14 +10,9 @@ protected void Setup()
     addSpecification("name", "Katana Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The principles of controlled cuts and recovery with a katana. This "
-        "foundation opens the curriculum; individual techniques still "
-        "require instruction.");
-
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
+        "On the polished floor of the sword hall, patience gives "
+        "shape to steel. The katana's curved edge asks for a steady "
+        "hand, an honest stance, and the courage to begin again.");
 
     addSpecification("research type", "tree root");
 }

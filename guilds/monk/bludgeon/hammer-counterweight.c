@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Hammer Counterweight");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the war hammer's head and haft as a counterweighted lever. "
-        "Opens war hammer instruction and shortens Falling Head's cooldown "
-        "by one second.");
+        "Feel the conversation between the hammer's head and "
+        "the haft beneath your hands. Each answers the other's "
+        "weight, revealing how a heavy weapon can return lightly.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,27 +22,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

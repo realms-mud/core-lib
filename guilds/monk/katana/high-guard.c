@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "High Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum stamina for +3 parry at a cost of one damage.");
+        "Raise the katana beside the crown, elbows gathered beneath "
+        "its shelter. From this watchful roof, descending steel meets "
+        "an edge already waiting for it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Still Bow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twenty maximum stamina for +4 bow at a cost of two dodge.");
+        "Become still beneath the bow's gathered weight. "
+        "Foot, hand, and gaze hold their quiet accord until "
+        "the arrow seems to depart from stillness itself.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -51,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata still bow");
 
-    addSpecification("bonus bow", 4);
+    addSpecification("bonus bow", 8);
     addSpecification("penalty to dodge", 2);
 }

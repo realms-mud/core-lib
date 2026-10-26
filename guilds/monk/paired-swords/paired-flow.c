@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Flow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve fourteen maximum stamina for +3 dodge at a cost of two "
-        "damage.");
+        "The blades drift past each other as your feet yield "
+        "beneath the exchange. You give the opponent no settled "
+        "shape to strike, only a turning current of steel.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

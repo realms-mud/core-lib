@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Point of Release");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Refine the instant of release: adds three to Narrow-Line Shot's "
-        "damage formula.");
+        "Attend to the instant between holding and letting go. "
+        "The fingers must open without command or hesitation, "
+        "leaving the arrow's narrow course untouched.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

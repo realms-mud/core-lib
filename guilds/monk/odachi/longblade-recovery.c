@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release needless tension between committed strokes: +1 stamina "
-        "healing rate.");
+        "After the stroke, open the hands just enough to let the "
+        "strain depart. The odachi hangs in its guard while the "
+        "breath finds the space your effort left behind.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

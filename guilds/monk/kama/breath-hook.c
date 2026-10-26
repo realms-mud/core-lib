@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath Hook");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Distract the opponent with one kama motion that drains spell "
-        "points. It applies no silence.");
+        "The crescent flashes near the face, then turns toward a "
+        "breathing point. Fear of its inward edge breaks the foe's "
+        "quiet concentration as surely as a shout in a shrine.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

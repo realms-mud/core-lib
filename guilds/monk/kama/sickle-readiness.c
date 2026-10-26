@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Readiness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the kama hand ready to change lines: +1 dexterity.");
+        "Balance the haft across relaxed fingers between exchanges. "
+        "The smallest twitch can then turn point to edge or guard "
+        "to threat, before stiffness has time to choose for you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus dexterity", 1);
+    addSpecification("bonus dexterity", 2);
 }

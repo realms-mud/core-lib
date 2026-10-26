@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Breath Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Time heavy blade pressure against concentration: adds three to "
-        "Breath Cleaver's spell-point drain.");
+        "Even a disciplined mind betrays itself in the body's "
+        "preparations. Learn to bring the looming edge into that "
+        "brief inward silence before intention becomes action.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Open Hand Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deflecting with an open hand grants +1 parry without wielded "
-        "equipment.");
+        "Do not catch the blade; greet the arm that carries it. An open "
+        "hand brushes the attacking line aside while the other waits "
+        "near the heart, neither fist trapped by its own tension.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

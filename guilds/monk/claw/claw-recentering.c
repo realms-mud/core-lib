@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Recentering");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend eight spell points and six stamina to restore modest health "
-        "with primary tiger claws.");
+        "Bring the talons back beside the heart and soften the "
+        "grip beneath them. A measured inward breath finds the "
+        "hurts left by close fighting and gathers warmth around them.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

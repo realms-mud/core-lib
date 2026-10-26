@@ -7,11 +7,12 @@ inherit "/lib/modules/traits/baseTrait.c";
 /////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
+    addSpecification("name", "Mana Shield");
+    addSpecification("description",
+        "A luminous weave of chi moves with your breath, sheltering the "
+        "quiet center from which every movement begins.");
     addSpecification("type", "sustained effect");
-    addSpecification("name", "Mindful Ward");
     addSpecification("root", "mana shield");
-    addSpecification("description", "Your spell points absorb incoming "
-        "damage through a sustained ward.");
     addSpecification("triggering research",
         "/guilds/monk/mana-shield/mindful-ward.c");
 }

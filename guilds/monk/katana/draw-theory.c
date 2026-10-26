@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Blade alignment adds three points to Quick Draw's damage.");
+        "Before steel clears its resting place, the cut already has a "
+        "direction. Learn to join the turn of the wrist to that hidden "
+        "line instead of correcting it after the draw.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

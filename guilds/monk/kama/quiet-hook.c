@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Quiet Hook");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Pressure the opponent's concentration with one kama action, "
-        "draining spell points without silence.");
+        "Hide the turn of the hook beneath an ordinary change of guard. "
+        "Its quiet arrival at a breathing point unravels the inward "
+        "composure the foe had thought safely beyond your reach.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

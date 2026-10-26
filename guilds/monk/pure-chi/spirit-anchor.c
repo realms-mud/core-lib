@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Spirit Anchor");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep your inner identity steady when foreign magic intrudes, "
-        "granting three magical resistance.");
+        "Remember the shape of your own spirit when a foreign will "
+        "presses against it. That familiar center holds fast like "
+        "an anchor buried beneath the troubled surface of the sea.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -41,5 +38,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus resist magical", 3);
+    addSpecification("bonus resist magical", 15);
 }

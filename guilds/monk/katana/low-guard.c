@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Low Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +2 soak and +1 dodge, "
-        "sacrificing two attack.");
+        "The point settles toward the earth while your knees soften "
+        "beneath it. Accept the weight of the coming exchange without "
+        "letting it uproot your center.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

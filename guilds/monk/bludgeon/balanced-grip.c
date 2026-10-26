@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Balanced Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep both staff ends responsive with a balanced grip, granting two "
-        "staff skill while a staff or quarterstaff is primary.");
+        "Let the staff rest between the hands like a balance beam. "
+        "Neither end is idle; the smallest shift of pressure "
+        "awakens the length beyond your fingers.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,27 +22,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

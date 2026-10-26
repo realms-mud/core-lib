@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Opening Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use a companion-blade feint to support one committed katana strike.");
+        "A flicker from the wakizashi draws the promised defense. "
+        "The katana follows the space left behind, turning the "
+        "opponent's careful answer into the opening you sought.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

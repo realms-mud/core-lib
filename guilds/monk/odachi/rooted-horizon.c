@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rooted Horizon");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eighteen maximum stamina for +3 soak at a cost of three "
-        "attack.");
+        "Sink beneath the long guard and let the earth take your "
+        "weight. The odachi's horizon does not rise to meet the "
+        "storm; it stands while the storm breaks against it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

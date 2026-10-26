@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Descending Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A committed descending strike trades more stamina and recovery for "
-        "concentrated damage.");
+        "Steel hangs above the brow for a breath, then falls like rain "
+        "from a temple eave. Your whole stance settles behind the edge "
+        "as it parts the opponent's guard.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

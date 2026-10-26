@@ -10,18 +10,10 @@ protected void Setup()
     addSpecification("name", "Senior Disciple's Trial");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Ren assesses advanced specialist practice before endorsing your "
-        "next promotion. Learn one listed technique and its matching "
-        "knowledge, and demonstrate 20 qualifying uses of that technique "
-        "against already-hostile, non-allied living NPCs in the same room at "
-        "least half your effective level. Historical practice counts; "
-        "partial counts and knowledge from other routes do not combine. This "
-        "free assessment grants no combat bonus or automatic promotion.");
+        "Ren asks the advancing disciple to show more "
+        "than a familiar motion. The trial seeks the "
+        "judgment behind it, tested where a careless choice has consequence.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

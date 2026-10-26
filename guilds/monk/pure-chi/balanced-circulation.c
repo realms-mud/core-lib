@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Balanced Circulation");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum spell points for continuous tissue repair. "
-        "Gain two natural hit-point healing at the expense of two damage.");
+        "Let the inner current travel where pain has broken its course. "
+        "With every measured breath, warmth gathers beneath old bruises "
+        "and the body quietly begins to mend.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,7 +44,7 @@ protected void Setup()
     addSpecification("spell point cost", 8);
     addSpecification("cooldown", 8);
 
-    addSpecification("bonus heal hit points", 2);
+    addSpecification("bonus heal hit points", 5);
     addSpecification("penalty to damage", 2);
 
     addSpecification("command template", "chi balanced circulation");

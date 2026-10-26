@@ -10,33 +10,18 @@ protected void Setup()
     addSpecification("name", "Quiet Footwork");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Economical steps grant +1 dodge while both hands are empty.");
+        "Cross a floor dusted with ash without raising a cloud. The "
+        "exercise teaches small, gliding steps that carry you clear of "
+        "danger without announcing where the next step will fall.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

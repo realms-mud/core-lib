@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Driving Wave");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Drive a broad front of chi through an opponent, bruising the body "
-        "and draining stamina together.");
+        "Push from the earth through an open palm, sending a rolling "
+        "surge of chi into your foe. Its weight passes through the body "
+        "like a breaker that leaves even firm footing uncertain.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

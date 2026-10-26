@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Lucid Mind");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Interrupt the habit of wasteful exertion, adding one to the "
-        "existing spell-point reduction bonus.");
+        "Set aside the anxious thoughts that pull a gesture out of shape. "
+        "With the mind clear, intent travels directly from stillness "
+        "into action, leaving no restless wake behind it.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -41,5 +38,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus reduce spell points", 1);
+    addSpecification("bonus reduce spell points", 3);
 }

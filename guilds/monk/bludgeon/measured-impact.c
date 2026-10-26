@@ -10,10 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Impact");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver a controlled impact with a staff, mace, or hammer in your "
-        "primary wielded slot. This technique accepts those weapon types "
-        "rather than specific blueprints and adds no offhand restriction "
-        "beyond normal equipment rules.");
+        "Set your breath behind a deliberate stroke and feel "
+        "the weapon settle into its mark. Control lies in "
+        "the patient joining of weight, distance, and intent.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -26,19 +25,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Pulse Mapping");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recognizing vulnerable rhythms adds three points to Meridian "
-        "Strike and Returning Breath, and two to Sapping Palm and "
-        "Centering Breath.");
+        "Listen at the wrist, the throat, and the hollow of the elbow. "
+        "Each pulse tells a different part of the body's story; together "
+        "they reveal where a wounded current needs guidance or interruption.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

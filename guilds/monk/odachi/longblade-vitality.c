@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Endure the demands of heavy blade practice: +8 maximum hit points.");
+        "Bruises from the heavy practice sword fade into a body "
+        "seasoned by the hall. You have learned to bear the shock "
+        "of an exchange without letting it hollow you out.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 8);
+    addSpecification("bonus hit points", 50);
 }

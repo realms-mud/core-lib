@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Conditioning");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Condition the kama arm for repeated cuts: +6 maximum stamina.");
+        "Long afternoons cutting sodden reed bundles build more than "
+        "a strong arm. Breath, grip, and back learn to share the work, "
+        "carrying the sickle steadily long after the first ache.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 6);
+    addSpecification("bonus stamina points", 35);
 }

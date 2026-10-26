@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossing Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the claw guard smoothly: Crossing Rake's cooldown is four "
-        "seconds shorter.");
+        "The crossing hand should come home along the foe's "
+        "retreating line. Rehearse that quiet return until the "
+        "end of the thrust already holds the beginning of your guard.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

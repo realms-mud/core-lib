@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the body ready to evade between shots: +1 dodge while wielding "
-        "a primary bow.");
+        "Do not let your gaze follow the arrow so far that you forget "
+        "the world around you. Keep the shoulders loose and the "
+        "weight ready to slip aside from an approaching blow.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

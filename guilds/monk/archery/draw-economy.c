@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Bow Draw Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid wasted tension: reduces Measured Draw's stamina cost by two, "
-        "without saving its arrow.");
+        "Find the muscles that tighten without helping the shot. "
+        "Let them soften, leaving only the patient strength "
+        "needed to bring the string to its resting place.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

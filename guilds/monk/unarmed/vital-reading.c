@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Vital Reading");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reading subtle changes of breathing grants +3 perception in an "
-        "empty-handed form.");
+        "A trembling nostril, a swallowed breath, a shoulder held too "
+        "still: the body confesses before its owner moves. Your empty "
+        "hands wait while you read the next line of that confession.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus perception", 3);
+    addSpecification("bonus perception", 6);
 }

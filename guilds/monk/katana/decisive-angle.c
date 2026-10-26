@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Decisive Angle");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Selecting the finishing angle adds three points to Decisive Cut's "
-        "damage.");
+        "The final opening rarely lies where the eye first seeks it. "
+        "Read the angle hidden behind a faltering guard, and let the "
+        "blade follow the truth rather than the invitation.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

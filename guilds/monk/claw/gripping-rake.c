@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Gripping Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Tax the opponent's stamina with one close tiger-claw action. No "
-        "grapple or movement lock applies.");
+        "Press the frame inward where the foe's guard is cramped. "
+        "They can pull away, but the awkward effort of clearing "
+        "the talons leaves their shoulders burning.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

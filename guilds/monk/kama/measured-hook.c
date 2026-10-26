@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Hook");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver one controlled kama cut and recover the hooked blade.");
+        "Offer the hook beyond the guard, then draw it neatly home. "
+        "The plain practice cut teaches the sickle's true voice: "
+        "not a sweeping flourish, but an edge that bites on its return.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

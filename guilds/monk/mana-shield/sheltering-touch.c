@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Sheltering Touch");
     addSpecification("source", "monk");
     addSpecification("description",
-        "While your own ward is active, guide chi into another person's "
-        "injuries. This heals health without granting the target a mana "
-        "shield.");
+        "Reach beyond the shelter of your shield with an open hand. "
+        "A strand of its gentle light follows your touch, carrying "
+        "warmth into another's wounds and quieting their pain.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

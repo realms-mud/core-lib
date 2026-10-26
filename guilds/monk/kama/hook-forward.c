@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Forward");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +3 attack at a cost of two "
-        "defense.");
+        "Lead with the curved blade and let the body follow its threat. "
+        "This insistent posture gives the foe little peace, though "
+        "your own shelter narrows as you press after them.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata hook forward");
 
-    addSpecification("bonus attack", 3);
+    addSpecification("bonus attack", 6);
     addSpecification("penalty to defense", 2);
 }

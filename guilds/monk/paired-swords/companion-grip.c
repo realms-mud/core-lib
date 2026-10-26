@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Companion Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Coordinate the offhand wakizashi without crowding the katana: +1 "
-        "short sword.");
+        "The shorter sword deserves a hand of its own, not an echo "
+        "of the other wrist. Give the wakizashi room to turn without "
+        "letting it wander across the katana's path.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

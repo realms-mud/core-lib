@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Renewing Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Fit recovery into the ward's natural rhythm. Ward Mending recovers "
-        "four seconds sooner and Measured Renewal six seconds sooner.");
+        "Hear the returning cadence beneath the clash of battle. Each "
+        "tremor of the shield marks another chance to gather yourself, "
+        "until renewal becomes part of the dance rather than a retreat.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

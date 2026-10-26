@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Heel Trajectory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Studying the rising arc adds three points to Rising Heel, two "
-        "to Empty Hand, and one to Disrupting Knee's stamina drain.");
+        "Chalk arcs on the courtyard wall mark the path of the heel. "
+        "Follow them until the hip opens cleanly and the standing foot "
+        "can carry the whole rising curve without wavering.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

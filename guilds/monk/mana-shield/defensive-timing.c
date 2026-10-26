@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Defensive Timing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover breath between impacts. Breath Conversion recovers four "
-        "seconds sooner and Brace the Spirit six seconds sooner.");
+        "The instant after a blow is not empty. By listening to the "
+        "shield's fading tremor, you find the moment to breathe and "
+        "prepare before the next disturbance arrives.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

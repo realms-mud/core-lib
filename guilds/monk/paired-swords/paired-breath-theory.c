@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Breath Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Coordinate blade pressure with the opponent's concentration: adds "
-        "three to Breath Shear's spell-point drain.");
+        "Watch for the inward look that precedes focused intent. "
+        "The swords need only enter that private moment from "
+        "different directions to make certainty falter.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Forward Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +3 attack at a cost of two "
-        "defense.");
+        "Present the katana's point with the wakizashi watching "
+        "beneath it. The paired guard presses its question "
+        "forward, asking the adversary to give ground.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

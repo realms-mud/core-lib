@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Silent Edge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's single committed strike costs twenty stamina with a "
-        "twenty-second cooldown.");
+        "There is no flourish to the master's answer. The katana "
+        "crosses the dwindling space in a still, unwavering stroke, "
+        "and only afterward does the room seem to breathe again.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

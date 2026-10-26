@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Mace Head Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study contact with a mace, flanged mace, or morning star. Opens "
-        "mace instruction and shortens Compact Blow's cooldown by one "
-        "second.");
+        "Turn the mace slowly through the practice stroke, "
+        "watching how its head follows the wrist. Learn the "
+        "alignment that carries its weight faithfully into contact.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,27 +22,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

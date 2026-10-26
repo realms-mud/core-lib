@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Stillpoint Rebuke");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Launch a deliberate master-level rebuke from your ward's still "
-        "center, harming flesh and energy without reflecting or storing "
-        "incoming damage.");
+        "From the shield's motionless center, extend a single finger. "
+        "The gathered silence follows it outward, breaking against "
+        "your opponent with the sudden authority of a temple bell.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Patient Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Measured pauses improve stamina healing rate by one while "
-        "empty-handed.");
+        "Veterans know which silences in a fight can be trusted. Let "
+        "your shoulders loosen during those brief lulls, gathering "
+        "breath without letting the empty hands drift from their watch.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -42,5 +39,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina rate", 1);
+    addSpecification("bonus heal stamina rate", 3);
 }

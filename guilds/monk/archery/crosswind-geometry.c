@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crosswind Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the oblique release: adds three to Crosswind Shot's damage "
-        "formula.");
+        "Follow the slanting lines that a square guard leaves "
+        "unwatched. Their geometry teaches the bow hand to seek "
+        "an approach beyond the defender's easy expectation.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Tiger Stance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina for +3 damage and -2 defense; landed "
-        "hits cost two stamina.");
+        "The tiger does not ask the thicket to open. Lean into a "
+        "predatory crouch and drive each strike beyond the foe's guard, "
+        "accepting the exposure that comes with such hungry pursuit.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,7 +47,7 @@ protected void Setup()
 
     addSpecification("command template", "kata tiger stance");
 
-    addSpecification("bonus damage", 3);
+    addSpecification("bonus damage", 5);
     addSpecification("penalty to defense", 2);
 
     addSpecification("per hit landed cost", ([

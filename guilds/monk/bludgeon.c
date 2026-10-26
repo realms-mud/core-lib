@@ -333,10 +333,6 @@ protected void Setup()
     Source("monk");
     deferResearchLoading();
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addResearchElement("/guilds/monk/bludgeon/root.c");
     TreeRoot("/guilds/monk/bludgeon/root.c");

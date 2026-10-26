@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Measured Expenditure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Match expenditure to the body's actual need. Restorative Chi Breath "
-        "and Returning Current each save one spell point through their cost "
-        "modifiers.");
+        "Attend to what the body asks rather than what fear demands. "
+        "Guide the healing current with a physician's restraint, "
+        "letting each small stream find the place that needs it.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

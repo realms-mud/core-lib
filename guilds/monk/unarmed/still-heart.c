@@ -10,16 +10,14 @@ protected void Setup()
     addSpecification("name", "Still Heart");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's unhurried empty-handed awareness grants +1 wisdom.");
+        "In the master's courtyard, even falling leaves seem hurried. "
+        "You have learned to let fear finish speaking before choosing "
+        "your answer, and to hear what its clamor once concealed.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus wisdom", 1);
+    addSpecification("bonus wisdom", 3);
 }

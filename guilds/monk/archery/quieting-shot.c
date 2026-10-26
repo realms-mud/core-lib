@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Quieting Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend one arrow to drain spell points through distracting pressure. "
-        "It applies no silence.");
+        "Loose into the space where your foe gathers thought "
+        "and breath. The sudden threat breaks that inward "
+        "rhythm, leaving intent scattered in its wake.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

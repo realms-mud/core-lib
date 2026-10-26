@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Breath Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study concentration under curved-blade pressure: adds three to "
-        "Breath Hook's spell-point drain.");
+        "Watch a sparring partner's breathing as the hook approaches. "
+        "The flinch before contact reveals the instant when outward "
+        "alarm can break the careful gathering of inward power.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

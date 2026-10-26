@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study exhausting close defenses: adds three to Claw Check's "
-        "stamina-drain formula.");
+        "Against a padded partner, learn where a short threat "
+        "forces a long response. Shoulder, elbow, and hip can "
+        "be made to labor even when the talons barely advance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

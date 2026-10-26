@@ -10,16 +10,14 @@ protected void Setup()
     addSpecification("name", "Grounded Base");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Rooted weight distribution grants +1 soak in an empty-handed form.");
+        "Stand on the packed earth until you can feel where each push "
+        "would carry you. A blow that once folded the chest now travels "
+        "through the legs and disappears beneath your feet.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

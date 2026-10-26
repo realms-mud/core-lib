@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Meridian Strike");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An advanced concentration-breaking strike drains spell points, not "
-        "health.");
+        "A small, exact touch lands where the foe's inward current "
+        "surfaces. The body scarcely recoils, yet the thought being "
+        "gathered behind the eyes scatters like startled birds.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

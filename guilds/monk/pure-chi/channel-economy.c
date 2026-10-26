@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Channel Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Prevent energy loss at the end of a large projection. Driving Wave "
-        "and Piercing Intent each save two spell points; sustained "
-        "reservations are unchanged.");
+        "Study the instant when a torrent leaves its channel. By closing "
+        "the passage gently behind it, you keep the trailing current from "
+        "scattering into useless sparks.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

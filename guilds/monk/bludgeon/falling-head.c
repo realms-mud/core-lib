@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Falling Head");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Guide the war hammer's head through a descending blow. Strength and "
-        "weapon mass reward a committed stroke with a longer recovery than "
-        "close mace work.");
+        "Guide the hammer above the guard and let its weight "
+        "join the downward stroke. Your hands steer the fall "
+        "while the whole body follows its gathering momentum.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

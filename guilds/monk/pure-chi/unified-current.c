@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Unified Current");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reconcile force and stillness. Centered Release gains three "
-        "strength; Silent Thunder gains ten percent of its base projection.");
+        "At last, force and stillness cease to seem opposed. The current "
+        "gathers without strain and departs without hesitation, "
+        "a single purpose moving through a tranquil heart.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

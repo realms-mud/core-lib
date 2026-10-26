@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Disciple's Insight");
     addSpecification("source", "monk");
     addSpecification("description",
-        "You recognize small shifts in balance and intent, improving your "
-        "ability to dodge an incoming attack.");
+        "A shift of weight or a tightening hand speaks "
+        "before the blow arrives. The disciple learns "
+        "to hear these small warnings without waiting for certainty.");
 
     addPrerequisite("level", ([
         "type":"level",

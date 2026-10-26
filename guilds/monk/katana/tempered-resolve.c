@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Tempered Resolve");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Unshaken commitment grants +1 fortified with a primary katana.");
+        "The sword has been folded in fire; your resolve has been "
+        "folded through defeat. Neither the ringing impact nor the "
+        "fear behind it can easily bend you now.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

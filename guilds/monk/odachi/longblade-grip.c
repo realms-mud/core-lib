@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Support the odachi throughout a committed stroke: +1 two-handed "
-        "sword.");
+        "Separate the hands along the long hilt and feel how they "
+        "answer each other. The rear hand guides the journey that "
+        "the forward hand must never try to force.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

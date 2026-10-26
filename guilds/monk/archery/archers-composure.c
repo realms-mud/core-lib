@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Accept the pause before release: +1 wisdom while wielding a primary "
-        "bow.");
+        "Rest in the pause before the string slips free. Doubt and "
+        "impatience pass like clouds across the practice yard, leaving "
+        "the shot untroubled by either.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

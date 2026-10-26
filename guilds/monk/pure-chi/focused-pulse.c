@@ -10,27 +10,14 @@ protected void Setup()
     addSpecification("name", "Focused Pulse");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Project a focused pulse of internal energy at an opponent, spending "
-        "spell points through the normal resource and energy-damage "
-        "systems. No separate chi pool is used.");
+        "Gather a breath behind the palm and loose it with a sharp, "
+        "deliberate gesture. A pale pulse crosses the space between "
+        "you and your foe, carrying the force of your intent.");
 
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

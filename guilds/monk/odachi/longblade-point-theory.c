@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Point Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Support the long thrust with the whole body: adds three to Long "
-        "Point's thrust damage.");
+        "A long point magnifies every wandering wrist. Learn to "
+        "send the thrust from the floor through the spine, keeping "
+        "the hands quiet while the body carries the steel.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

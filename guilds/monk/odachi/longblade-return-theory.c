@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Return Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the odachi's returning line: adds three to Returning Arc's "
-        "damage formula.");
+        "The long blade's departure has already drawn the beginning "
+        "of its return. Follow that curve through the opponent's "
+        "changing guard rather than dragging steel back by force.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

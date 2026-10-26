@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Perfect Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "End a major circulation precisely when its work is done. Heart "
-        "Mending and Centered Release each cost two fewer spell points.");
+        "Learn the exact instant when a working has fulfilled its purpose. "
+        "Close the circle without lingering, as a master lifts the "
+        "brush before a finished stroke can blur.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

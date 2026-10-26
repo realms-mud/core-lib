@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Disrupting Knee");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A close knee attack drains stamina instead of hit points; it does "
-        "not stun.");
+        "When an opponent crowds your hands, the rising knee finds the "
+        "space beneath their breath. Its purpose is to make every "
+        "subsequent effort feel heavier than the last.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Vigilant Renewal");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend twenty-four stamina to restore health and a modest "
-        "spell-point reserve without dropping your ward. The long recovery "
-        "prevents constant conversion.");
+        "Open your stance and let a complete breath pass through the "
+        "shield. Its light returns through bone and spirit alike, "
+        "washing away the weariness of a long and watchful struggle.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

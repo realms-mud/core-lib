@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Vigor");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Sustain the coordination of two weapons: +5 maximum stamina.");
+        "The long drills no longer end with leaden wrists. "
+        "You carry both swords through the fading light, "
+        "their changing weight familiar as your own breathing.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -25,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,5 +48,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 5);
+    addSpecification("bonus stamina points", 50);
 }

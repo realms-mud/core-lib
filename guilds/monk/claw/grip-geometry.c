@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Grip Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study tiring claw pressure: adds three to Gripping Rake's "
-        "stamina-drain formula.");
+        "Map the bends that make a defending arm heavy. The "
+        "claw frame need only threaten those angles to make "
+        "the foe spend breath holding their own body against you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

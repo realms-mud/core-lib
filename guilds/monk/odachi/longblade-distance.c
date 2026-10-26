@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Judge an opening before committing the odachi: +1 perception.");
+        "The odachi's reach makes a false opening tempting. Learn "
+        "to read the far shoulder and the planted foot before "
+        "trusting what the empty space appears to offer.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

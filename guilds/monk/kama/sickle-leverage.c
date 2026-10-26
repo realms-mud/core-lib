@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study tiring defensive responses: adds three to Sickle Check's "
-        "stamina-drain formula.");
+        "Spar with a weighted practice haft and watch which turns "
+        "make your partner labor. A slight change of hook or elbow "
+        "can ask more of their stance than a heavy shove ever could.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

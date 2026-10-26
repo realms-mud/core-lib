@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read the distance before committing the curved blade: +1 perception.");
+        "A hook reaches differently from a straight blade. Measure "
+        "the gap with your eyes until you can judge where the point "
+        "passes and where the inner edge will finally close.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

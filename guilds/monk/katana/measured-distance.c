@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reading an opponent's approach grants +1 dodge with a primary "
-        "katana; it adds no reach mechanic.");
+        "Watch the empty ground between your toes and the opponent's. "
+        "A patient swordsman knows when that emptiness is about to "
+        "vanish, and has already begun to move.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

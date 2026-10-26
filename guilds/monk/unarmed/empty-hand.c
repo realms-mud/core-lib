@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Empty Hand");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A high-commitment finishing strike consumes sixteen stamina before "
-        "efficiency training.");
+        "For an instant there is no remembered form, only the opening. "
+        "Foot, spine, and hand arrive together in a stark, unadorned "
+        "blow that leaves nothing of your intent withheld.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

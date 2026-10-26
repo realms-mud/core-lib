@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossing Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Cross the defensive line and commit one coordinated cut against a "
-        "single opponent.");
+        "The companion edge turns the guard aside as the katana "
+        "passes across it. Your hands part like opening shutters, "
+        "revealing the cut behind the crossing.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

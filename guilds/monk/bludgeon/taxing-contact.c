@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Taxing Contact");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Repeatedly load the opponent's guard through one firm contact, "
-        "dealing modest injury and stamina damage. This neither stuns nor "
-        "disarms.");
+        "Drive the mace into a guarded line and stay with "
+        "the contact long enough to make its weight felt. "
+        "The defender must labor to hold against the stubborn head.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

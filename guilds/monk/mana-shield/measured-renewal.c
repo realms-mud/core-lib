@@ -10,19 +10,14 @@ protected void Setup()
     addSpecification("name", "Measured Renewal");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Trade eighteen stamina for a base recovery of twelve to fourteen "
-        "spell points, enhanced by controlled circulation and recovery "
-        "theory. This long cycle replenishes the normal pool, not shield "
-        "capacity.");
+        "Follow a slow circle with your hands, drawing the shield's "
+        "fluttering edge inward before opening it once more. The motion "
+        "leaves your breath deep and your spirit freshly gathered.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

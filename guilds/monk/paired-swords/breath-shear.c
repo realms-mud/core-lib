@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath Shear");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Pressure an opponent's concentration with the paired blades, "
-        "draining spell points.");
+        "One edge draws the eye while the other crowds the breath. "
+        "The opponent's inward composure frays as the paired "
+        "blades keep asking incompatible questions.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

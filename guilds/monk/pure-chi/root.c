@@ -10,15 +10,10 @@ protected void Setup()
     addSpecification("name", "Pure Chi Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The principles of focusing internal energy through your existing "
-        "spell-point reserves. Disciplined breathing opens the first "
-        "projection lesson; further study develops circulation and "
-        "resonance without a separate chi pool.");
+        "In the quiet between breaths, discover the current that joins "
+        "body and intent. The first lessons teach you to listen; "
+        "those that follow teach the current to answer.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addSpecification("research type", "tree root");
 }

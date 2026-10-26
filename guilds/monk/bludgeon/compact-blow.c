@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Compact Blow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver a short mace blow from a closed guard. A narrow damage "
-        "range rewards accuracy and mace skill without claiming armor "
-        "penetration.");
+        "From a closed guard, send the mace head through a brief "
+        "and purposeful arc. Its weight arrives before a broad "
+        "swing would have found room to begin.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

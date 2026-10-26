@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Judge an opponent's movement before release: +1 perception while "
-        "wielding a primary bow.");
+        "Watch the ground your opponent has yet to cross. The space "
+        "between you becomes a measure of footsteps and breaths "
+        "rather than an empty stretch of air.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

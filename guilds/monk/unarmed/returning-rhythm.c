@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Returning Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A complete breathing cycle reduces Returning Breath's cooldown by "
-        "four seconds.");
+        "Recovery need not end in a held breath. Complete the circle "
+        "with a soft exhalation, leaving the chest open for the next "
+        "healing current instead of clutching at the last.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

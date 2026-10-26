@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Master Balance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's precise weight transfer grants +1 dexterity with a "
-        "primary katana.");
+        "The practice floor no longer hears the transfer of your "
+        "weight. Hand, heel, and sword arrive together, with nothing "
+        "left for the body to catch up to.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

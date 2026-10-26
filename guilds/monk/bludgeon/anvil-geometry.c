@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Anvil Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study how a descending hammer transfers force at contact. Adds two "
-        "damage to Falling Head and Anvil Descent and opens master-level war "
-        "hammer work.");
+        "Study where the falling head meets the plane beneath it. "
+        "The angle of that meeting decides whether force scatters "
+        "across the surface or settles deep into its mark.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

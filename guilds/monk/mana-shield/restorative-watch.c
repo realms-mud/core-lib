@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Restorative Watch");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep reserve recovery separate from anxious vigilance, adding one "
-        "spell-point recovery bonus while Mindful Ward is active.");
+        "Let the shield stand watch at the edge of your awareness. With "
+        "that patient sentinel beside you, the inner current no longer "
+        "scatters at every threat in the corner of your eye.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -46,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus recover spell points", 1);
+    addSpecification("bonus recover spell points", 5);
 }

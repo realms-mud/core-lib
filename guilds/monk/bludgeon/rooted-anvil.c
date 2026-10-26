@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Rooted Anvil");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Brace behind a war hammer for two soak and one attack. Reserve "
-        "twelve stamina and spend one stamina per received hit. Does not "
-        "prevent movement or enemy actions.");
+        "Sink your weight beneath the hammer and meet the "
+        "exchange from a deeply settled stance. Like an "
+        "anvil, the grounded body gives the falling head its purpose.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

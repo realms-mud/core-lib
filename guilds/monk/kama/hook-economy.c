@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid unnecessary tension during a controlled cut: Measured Hook "
-        "costs two less stamina.");
+        "Clenching the haft only makes the curve fight your hand. "
+        "Loosen the last fingers and let the sickle's balance carry "
+        "the edge through the draw before closing your grip again.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

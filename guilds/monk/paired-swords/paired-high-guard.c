@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired High Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina for +3 parry at a cost of one damage "
-        "while holding the pair.");
+        "Lift the katana above the brow while the companion edge "
+        "guards the approach below. Beneath this uneven roof, "
+        "each sword trusts the shelter of the other.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

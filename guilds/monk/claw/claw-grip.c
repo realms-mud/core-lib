@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the tiger claws with the striking hand: +1 dagger.");
+        "Set the frame against the palm until the fingers can close "
+        "without strain. The unfamiliar points gradually become "
+        "part of the hand's own sense of reach.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

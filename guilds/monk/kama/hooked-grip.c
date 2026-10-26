@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Hooked Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Support the kama's curved blade through recovery: +1 short sword.");
+        "Wrap the fingers around the short haft without choking its "
+        "balance. The blade should feel like a bent extension of "
+        "the hand, not a tool trying to escape it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

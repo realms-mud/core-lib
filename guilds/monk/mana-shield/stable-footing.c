@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Stable Footing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Move your feet independently of the ward's motion, gaining two "
-        "dodge while Mindful Ward is active.");
+        "Feel the pressure of each impact through the shield and into "
+        "the ground. Your feet follow those shifting lines, finding "
+        "the place where a violent current cannot unseat you.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -48,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus dodge", 2);
+    addSpecification("bonus dodge", 8);
 }

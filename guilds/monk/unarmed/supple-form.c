@@ -10,16 +10,14 @@ protected void Setup()
     addSpecification("name", "Supple Form");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Flexible empty-handed transitions grant +1 dexterity.");
+        "Practice beneath a low lattice until every rigid habit catches "
+        "against the wood. In time the spine bends, the hips turn, and "
+        "your reaching hands find paths that once seemed closed.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

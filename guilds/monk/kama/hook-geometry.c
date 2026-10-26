@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the kama's curved line: adds three to Measured Hook's damage "
-        "formula.");
+        "Straight weapons teach the eye to expect a straight answer. "
+        "Map the space behind that expectation, where the kama's "
+        "inward edge can turn a harmless-looking reach into a cut.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

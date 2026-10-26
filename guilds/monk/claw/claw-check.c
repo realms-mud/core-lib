@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Check");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Force an exhausting close defense that drains stamina without "
-        "immobilizing the opponent.");
+        "Present the talons inside the foe's reach and make them "
+        "wrench their guard back into place. The cramped response "
+        "leaves less breath for whatever they meant to do next.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

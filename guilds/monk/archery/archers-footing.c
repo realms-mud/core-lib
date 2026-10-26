@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Footing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain a defensible shooting base: +1 defense while wielding a "
-        "primary bow.");
+        "Set your feet as carefully as you set the arrow. A balanced "
+        "stance leaves no hurried scramble when a foe closes the "
+        "distance between the target and the bow.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

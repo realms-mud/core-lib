@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath Cleaver");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use committed blade pressure to disrupt an opponent's spell-point "
-        "reserve.");
+        "The long blade comes on with the certainty of a falling beam. "
+        "Faced with its passage, the opponent's carefully gathered "
+        "thought scatters into the urgent business of survival.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,15 +10,10 @@ protected void Setup()
     addSpecification("name", "Disruption Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study hostile currents against a stable ward. Opens reserve "
-        "disruption and deliberate counterprojections rather than automatic "
-        "retaliation, sharpening those techniques through an understanding "
-        "of where hostile energy can be interrupted.");
+        "Hostile magic announces itself in the weave before it reaches "
+        "your flesh. Learn to untangle those foreign currents and turn "
+        "their passage into a lesson in the shield's deeper structure.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,6 +45,7 @@ protected void Setup()
 
     addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
+        "Mana Shield":4,
         "Deflecting Palm":2,
         "Interrupting Thread":3,
         "Ward Counterpulse":3,

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Tempered Nerves");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Refuse to echo hostile magic within your nerves. Gain two magical "
-        "resistance while warded.");
+        "The shield hums when hostile magic brushes its weave. Through "
+        "long exposure to that unsettling song, you teach your nerves "
+        "to remain quiet rather than answer its discord.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -46,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus resist magical", 2);
+    addSpecification("bonus resist magical", 10);
 }

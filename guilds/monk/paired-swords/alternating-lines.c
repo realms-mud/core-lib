@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Alternating Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Read the safer of two openings: adds three to Alternating Cut's "
-        "single damage formula.");
+        "An opponent cannot watch both edges with equal care. "
+        "Study the shifting gaze and the uncertain guard until "
+        "you can tell which blade has become the forgotten one.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

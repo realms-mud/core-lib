@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Anchored Haft");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Anchor the war hammer's haft in a controlled grip, granting two "
-        "hammer skill while a war hammer with the hammer type occupies the "
-        "primary slot.");
+        "Settle the hammer's haft into the hands without choking its "
+        "movement. The heavy head becomes a familiar weight whose "
+        "course you guide rather than struggle to restrain.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath Timing");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Timing a strike against concentration adds three points to Breath "
-        "Cut's spell-point drain.");
+        "Listen beneath the clash of steel for the breath that precedes "
+        "intent. The smallest hesitation tells you when the mind has "
+        "left the body's defenses unattended.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

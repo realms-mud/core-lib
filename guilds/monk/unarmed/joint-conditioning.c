@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Joint Conditioning");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Conditioned joints grant +1 armor class in an empty-handed fighting "
-        "form.");
+        "Slow circles under a teacher's hands strengthen the hinges of "
+        "the body. The wrist yields before it breaks; the knee settles "
+        "before an awkward landing can wrench it aside.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

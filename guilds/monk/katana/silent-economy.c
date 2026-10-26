@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Silent Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's economy reduces Silent Edge's authored stamina cost by "
-        "three.");
+        "At the end of long practice, even effort grows quiet. "
+        "Abandon the last needless tension and allow the finishing "
+        "stroke to pass through you without resistance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

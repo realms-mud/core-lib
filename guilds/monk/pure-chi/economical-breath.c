@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Economical Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Waste less chi during small projections. Needle of Chi costs one "
-        "fewer spell point.");
+        "A needle needs a steady hand, not a flood of strength. Practice "
+        "releasing only the breath that belongs to the motion, keeping "
+        "the rest of the current tranquil within.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

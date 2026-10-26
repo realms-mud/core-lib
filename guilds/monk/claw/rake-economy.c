@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rake Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid wasted tension in a short thrust: Measured Rake costs two "
-        "less stamina.");
+        "A white-knuckled grip makes even a short thrust laborious. "
+        "Practice with a strip of paper beneath the frame, keeping "
+        "it uncrumpled until the instant the points arrive.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

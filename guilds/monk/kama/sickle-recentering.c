@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Recentering");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend eight spell points and six stamina to restore modest health "
-        "while wielding a kama.");
+        "Lower the sickle beside the ribs and breathe along the "
+        "sheltered side of its haft. Beneath that small crescent of "
+        "steel, inward warmth begins to soothe the body's hurts.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

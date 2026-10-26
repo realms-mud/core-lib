@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Flowing Current");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve six maximum spell points to maintain a smooth current, "
-        "improving magical essence by three.");
+        "Relax the hidden knots that turn the inner stream against itself. "
+        "Chi moves through the body in an unbroken ribbon, following "
+        "your breath without hesitation or strain.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Deflecting Palm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Project a ward-guided palm of chi that exhausts an opponent's "
-        "stamina instead of injuring flesh.");
+        "Turn your palm along the curve of the shield and meet the "
+        "attacker's effort at an angle. Their strength pours past you, "
+        "leaving them struggling to recover their stance.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

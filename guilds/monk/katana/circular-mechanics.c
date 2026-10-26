@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Circular Mechanics");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Controlled rotational force adds three points to Drawn Circle's "
-        "single-target damage.");
+        "A circle drawn by the hands alone has no heart. Study how the "
+        "turn begins beneath the feet and travels unbroken through the "
+        "hips to the farthest inch of steel.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

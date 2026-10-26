@@ -10,15 +10,9 @@ protected void Setup()
     addSpecification("name", "Mana Shield Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The principles of shaping a ward from your existing spell-point "
-        "reserves. Disciplined breathing opens Mindful Ward, followed by "
-        "guarded recovery and counterprojection without another energy "
-        "pool.");
-
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
+        "The boundary between body and spirit need not end at the skin. "
+        "Through patient breathing and an untroubled mind, the monk learns "
+        "to weave that boundary into a shelter against the world.");
 
     addSpecification("research type", "tree root");
 }

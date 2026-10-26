@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Burdening Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend one arrow to force an exhausting response, draining stamina "
-        "without a movement lock.");
+        "Press the shot into a line that makes evasion costly. "
+        "Your foe must wrench clear or brace hard against it, "
+        "carrying the strain into the exchange that follows.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Hook Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Relax the drawing arm after a hook: +1 stamina healing rate.");
+        "After the drawing cut, let the elbow hang for the breadth "
+        "of an exhalation. The sickle remains watchful while the "
+        "arm releases the strain it no longer needs to carry.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina rate", 1);
+    addSpecification("bonus heal stamina rate", 2);
 }

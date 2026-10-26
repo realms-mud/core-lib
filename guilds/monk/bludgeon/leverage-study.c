@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Leverage Study");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Advanced study of mass and lever arms adds one point to Measured "
-        "Impact and Draining Impact. The principles apply only with a "
-        "primary staff, mace, or hammer.");
+        "Move the hands along the haft and feel how the world "
+        "changes around their meeting point. Distance and weight "
+        "become partners when their leverage is understood.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

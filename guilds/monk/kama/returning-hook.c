@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Hook");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the kama into one powerful return cut, not an automatic "
-        "second attack.");
+        "From a withdrawn guard, reverse the sickle's curve with a "
+        "sharp turn of the waist. The returning edge catches the foe "
+        "advancing into what seemed to be empty space.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Restorative Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Guiding breath through recovery adds three points to both "
-        "Centering Breath's and Returning Breath's healing.");
+        "The infirmary teaches a gentler use for a fighter's discipline. "
+        "Follow the ache rather than fleeing it, carrying the breath "
+        "into places the body has tightened against its own pain.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

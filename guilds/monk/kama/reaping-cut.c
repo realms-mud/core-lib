@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Reaping Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Carry the curved kama edge through one committed cut.");
+        "Step past the foe's leading side and pull the sickle across "
+        "the opening. Hip and shoulder turn as they would in the "
+        "fields, though this harvest is far less forgiving.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

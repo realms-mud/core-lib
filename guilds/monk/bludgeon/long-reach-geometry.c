@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Long Reach Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the staff's contact angles at full extension. Adds two damage "
-        "to Sweeping Arc and Horizon Stroke and opens the staff's master "
-        "technique.");
+        "Follow the staff's far end through the space beyond "
+        "your hands. At full reach, a small turn near the "
+        "center becomes a sweeping change at its distant tip.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

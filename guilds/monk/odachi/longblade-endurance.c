@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Endurance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Waste less breath resetting the long blade: +2 stamina healing rate.");
+        "The great sword returns and your breath returns with it. "
+        "Exertion passes through the practiced body like a gust "
+        "through reeds, leaving the roots unshaken.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

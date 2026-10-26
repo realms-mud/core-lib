@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Essence Weaving");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Interlace narrow streams without letting them interfere, improving "
-        "spellcraft by two.");
+        "Lay one thread of intent beside another without tangling their "
+        "courses. Through patient repetition, the separate strands "
+        "become a living pattern beneath your hands.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

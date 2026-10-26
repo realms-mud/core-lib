@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Arc");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the odachi and commit one returning strike with demanding "
-        "stamina and recovery costs.");
+        "The odachi passes beyond the guard and wheels back on "
+        "your turning stance. Its returning edge finds the space "
+        "the opponent opened while watching it depart.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

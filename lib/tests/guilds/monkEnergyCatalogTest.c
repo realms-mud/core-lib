@@ -214,15 +214,19 @@ void CheckCatalog(string treePath, string original, int active, int sustained)
             {
                 mapping prerequisites = item.getPrerequisites();
                 int level = prerequisites["level"]["value"];
-                ExpectEq("guild", prerequisites["monk"]["type"]);
-                ExpectEq(({ "monk" }), prerequisites["monk"]["value"]);
+                ExpectFalse(member(prerequisites, "monk"));
                 ExpectEq("monk", prerequisites["level"]["guild"]);
-                ExpectEq("guild rank", prerequisites["rank"]["type"]);
-                ExpectEq(level < 10 ? "initiate" :
-                    level < 20 ? "student" : level < 30 ? "disciple" :
-                    level < 40 ? "adept" : level < 55 ? "senior disciple" :
-                    level < 70 ? "master candidate" : "master",
-                    prerequisites["rank"]["value"][0]);
+                if (member(prerequisites, "rank"))
+                {
+                    ExpectTrue(level >= 10,
+                        "rank gates must exclude at least one rank");
+                    ExpectEq("guild rank", prerequisites["rank"]["type"]);
+                    ExpectEq(level < 20 ? "student" :
+                        level < 30 ? "disciple" : level < 40 ? "adept" :
+                        level < 55 ? "senior disciple" :
+                        level < 70 ? "master candidate" : "master",
+                        prerequisites["rank"]["value"][0]);
+                }
                 foreach (string parent in tree.getParents(path))
                 {
                     ExpectEq("research", prerequisites[parent]["type"]);
@@ -404,7 +408,7 @@ void WardDependentPassivesAndConversionRequireTheExistingWard()
     int stamina = User.staminaPoints();
     ExpectFalse(User.executeCommand("chi breath conversion"));
     ExpectEq(stamina, User.staminaPoints());
-    ExpectTrue(User.executeCommand("chi mindful ward"));
+    ExpectTrue(User.executeCommand("mana shield"));
     ExpectTrue(habit.canApplySpecification("bonus heal spell points", User));
     for (int tick = 0; tick < 4; tick++)
     {

@@ -217,7 +217,10 @@ void InstantaneousFormulasHaveDistinctSkillsAttributesAndResearch()
             mixed modifiers = item.query("modifiers");
             if (pointerp(modifiers))
             {
-                ExpectTrue(sizeof(modifiers) >= 8, path + " depth");
+                int shield = path ==
+                    "/guilds/monk/mana-shield/mindful-ward.c";
+                ExpectTrue(sizeof(modifiers) >= (shield ? 5 : 8),
+                    path + " depth");
                 mapping distinct = ([]);
                 int skills = 0;
                 int attributes = 0;
@@ -232,9 +235,19 @@ void InstantaneousFormulasHaveDistinctSkillsAttributesAndResearch()
                     attributes += modifier["type"] == "attribute";
                     research += modifier["type"] == "research";
                 }
-                ExpectTrue(skills >= 2, path + " skill contributions");
-                ExpectTrue(attributes >= 2, path + " attribute contributions");
-                ExpectTrue(research >= 1, path + " research contributions");
+                if (shield)
+                {
+                    ExpectEq(sizeof(modifiers), research,
+                        "mana shield improves through its focused tree");
+                }
+                else
+                {
+                    ExpectTrue(skills >= 2, path + " skill contributions");
+                    ExpectTrue(attributes >= 2,
+                        path + " attribute contributions");
+                    ExpectTrue(research >= 1,
+                        path + " research contributions");
+                }
             }
         }
     }

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Decisive Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A costly finishing cut commits sixteen stamina and an "
-        "eighteen-second cooldown.");
+        "All the small corrections of the duel fall away. You step "
+        "through the opening with a cut that leaves neither doubt nor "
+        "a wavering hand behind it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

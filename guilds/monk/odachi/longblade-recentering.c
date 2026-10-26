@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Recentering");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend ten spell points and eight stamina to restore a modest amount "
-        "of your own health while wielding the odachi.");
+        "Rest the long blade in a quiet guard and collect yourself "
+        "behind it. The breath descends through the battered body, "
+        "calling scattered strength back toward the center.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

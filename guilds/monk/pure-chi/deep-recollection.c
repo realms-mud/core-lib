@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Deep Recollection");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reassemble scattered attention during recovery, adding one to "
-        "spell-point recovery bonuses.");
+        "Recall the quiet of the meditation hall even amid the confusion "
+        "of battle. Scattered thoughts return like birds to their roost, "
+        "bringing the inner current back into harmony.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -43,5 +40,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus recover spell points", 1);
+    addSpecification("bonus recover spell points", 3);
 }

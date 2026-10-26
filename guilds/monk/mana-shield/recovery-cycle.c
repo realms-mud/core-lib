@@ -10,31 +10,14 @@ protected void Setup()
     addSpecification("name", "Recovery Cycle");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Trace the interval between absorbed blows. Opens "
-        "stamina-to-spell-point conversion while warded and strengthens "
-        "restorative techniques without altering their resource costs.");
+        "Trace the interval between one impact and the next. As the shield "
+        "settles, its ripples guide spent chi back toward your center, "
+        "completing a circle that violence would otherwise break.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -49,6 +32,7 @@ protected void Setup()
 
     addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
+        "Mana Shield":2,
         "Ward Mending":2,
         "Breath Conversion":3,
         "Measured Renewal":3,

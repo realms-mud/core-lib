@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Endure the strain of prolonged bow practice: +6 maximum hit points "
-        "while wielding a primary bow.");
+        "Years beneath the drawn bow have tempered more than the "
+        "shoulders. Breath, sinew, and resolve hold together when "
+        "a bruising exchange threatens to break your stance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -46,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 6);
+    addSpecification("bonus hit points", 50);
 }

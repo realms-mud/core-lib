@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Grip");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align the bow hand without twisting the release: +1 bow while "
-        "wielding a primary bow.");
+        "Cradle the bow without wrestling it. The pressure of the "
+        "grip settles through the heel of the hand, leaving the "
+        "string's departure clean and undisturbed.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

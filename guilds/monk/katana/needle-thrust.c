@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Needle Thrust");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A deliberately aligned thrust exchanges damage variance for a "
-        "longer recovery.");
+        "Gather the wandering edge into a narrow point of intent. "
+        "The katana slips forward like a needle through folded cloth, "
+        "seeking the seam the broader cuts passed over.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release one arrow with a controlled draw and deliberate recovery.");
+        "Draw until breath, string, and sight meet in quiet "
+        "agreement. Release without snatching at the moment, "
+        "then follow the arrow's departure with a steady hand.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

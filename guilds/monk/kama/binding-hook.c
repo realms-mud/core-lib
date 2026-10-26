@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Binding Hook");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Tax the opponent's stamina with one close kama action. It does not "
-        "bind movement or disarm.");
+        "Turn the sickle inward as the foe tries to draw away. Its "
+        "crooked pressure makes the retreat a labor of shoulders and "
+        "hips, leaving a ragged breath in the space between you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

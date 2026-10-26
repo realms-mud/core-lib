@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Endurance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover breath without dropping the kama guard: +2 stamina healing "
-        "rate.");
+        "In the long watch, the sickle scarcely moves. You have "
+        "learned to rest behind its curve, easing the breath and "
+        "forearm without surrendering the line you keep for the foe.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina rate", 2);
+    addSpecification("bonus heal stamina rate", 4);
 }

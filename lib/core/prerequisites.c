@@ -295,9 +295,10 @@ private nomask varargs int checkLevel(object researcher, int level, string guild
     int ret = validResearcher(researcher) && researcher->has("guilds");
     if(ret)
     {
-        if(guild && stringp(guild) && researcher->memberOfGuild(guild))
+        if(guild && stringp(guild))
         {
-            ret &&= researcher->guildLevel(guild) >= level;
+            ret &&= researcher->memberOfGuild(guild) &&
+                researcher->guildLevel(guild) >= level;
         }
         else
         {

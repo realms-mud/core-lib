@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Cleansing Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend chi to clear alcohol and drugs from your body. This does not "
-        "remove diseases or magical curses.");
+        "Draw a clean breath deep into the belly and send it through "
+        "clouded blood. The bitter fog of indulgence lifts with the "
+        "exhalation, leaving the senses clear and wakeful.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

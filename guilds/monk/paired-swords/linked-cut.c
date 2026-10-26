@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Linked Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use the companion blade to support one deliberate katana strike; "
-        "this is a single damage action.");
+        "Let the wakizashi keep watch while the katana travels. "
+        "The first paired lesson is a clean cut made with the "
+        "quiet confidence of a companion at its shoulder.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

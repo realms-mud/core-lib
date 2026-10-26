@@ -222,7 +222,7 @@ void FortyNonRootItemsHaveRealAndVariedEffects()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void NewItemsRequireMembershipRankLevelAndExplicitResearchParents()
+void NewItemsRequireLevelAndExplicitResearchParentsWithoutRedundantGates()
 {
     int checked = 0;
     foreach (object item in m_indices(Tree.getFlattenedResearchTree()))
@@ -234,15 +234,21 @@ void NewItemsRequireMembershipRankLevelAndExplicitResearchParents()
         {
             mapping prerequisites = item.getPrerequisites();
             int level = prerequisites["level"]["value"];
-            ExpectEq("guild", prerequisites["monk"]["type"]);
-            ExpectEq(({ "monk" }), prerequisites["monk"]["value"]);
+            ExpectFalse(member(prerequisites, "monk"));
             ExpectEq("monk", prerequisites["level"]["guild"]);
-            ExpectEq("guild rank", prerequisites["rank"]["type"]);
-            ExpectEq(level < 10 ? "initiate" :
-                level < 20 ? "student" : level < 30 ? "disciple" :
-                level < 40 ? "adept" : level < 55 ? "senior disciple" :
-                level < 70 ? "master candidate" : "master",
-                prerequisites["rank"]["value"][0]);
+            if (level < 10)
+            {
+                ExpectFalse(member(prerequisites, "rank"));
+            }
+            else
+            {
+                ExpectEq("guild rank", prerequisites["rank"]["type"]);
+                ExpectEq(level < 20 ? "student" :
+                    level < 30 ? "disciple" : level < 40 ? "adept" :
+                    level < 55 ? "senior disciple" :
+                    level < 70 ? "master candidate" : "master",
+                    prerequisites["rank"]["value"][0]);
+            }
             foreach (string parent in Tree.getParents(path))
             {
                 ExpectEq("research", prerequisites[parent]["type"]);

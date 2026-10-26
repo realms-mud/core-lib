@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Centering Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend eight stamina to restore a small amount of your own health "
-        "while empty-handed.");
+        "Spread the fingers and draw a slow breath beneath the pain. "
+        "As the shoulders settle, warmth gathers around bruised flesh "
+        "and the body's scattered strength begins to return.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Guard Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintaining a guarded line grants +1 defense with a primary katana.");
+        "A guard is not a pose but a promise to the space before you. "
+        "Keep the edge between your center and the approaching threat, "
+        "even while the feet are finding new ground.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

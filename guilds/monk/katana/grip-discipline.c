@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Grip Discipline");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Correct pressure grants +1 hand and a half sword with a primary "
-        "katana.");
+        "Hold the katana firmly enough to guide it, gently enough to "
+        "hear its weight. The teacher's correction begins in the "
+        "little fingers, not in the strength of the arms.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

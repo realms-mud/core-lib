@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Elastic Defense");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Rebound into position after each ward-guided evasion, gaining two "
-        "defense class while warded.");
+        "The shield bends, and you bend with it. Long practice teaches "
+        "your body to return as naturally as a willow branch, never "
+        "remaining where an enemy expects to find you.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -46,5 +43,5 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus defense class", 2);
+    addSpecification("bonus defense class", 12);
 }

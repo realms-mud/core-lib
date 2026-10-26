@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Horizon Stroke");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Deliver one committed staff stroke with a long recovery. Weapon "
-        "leverage and trained staff skill produce a measured master-level "
-        "impact.");
+        "Turn the staff through a level line as broad and "
+        "unbroken as the distant horizon. The stroke gathers "
+        "the length of the weapon behind a single point of contact.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

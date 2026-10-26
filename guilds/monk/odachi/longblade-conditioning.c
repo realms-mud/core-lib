@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Conditioning");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Condition the body to carry the odachi through recovery: +6 maximum "
-        "stamina.");
+        "At dusk the practice blade still rises above your head. "
+        "The patient labor of legs, back, and shoulders has become "
+        "an endurance that survives the fading light.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -48,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 6);
+    addSpecification("bonus stamina points", 35);
 }

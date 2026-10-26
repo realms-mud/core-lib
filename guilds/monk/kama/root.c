@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Kama Foundations");
     addSpecification("source", "monk");
     addSpecification("description",
-        "The discipline of sickle cuts and tiring hooks. Individual lessons "
-        "require instruction and an exact kama blueprint in the primary "
-        "wielded slot for use.");
+        "The monastery's sickle remembers the field from which it came. "
+        "Its lessons turn a laborer's patient draw into an art of "
+        "crooked approaches, inward cuts, and hard-earned breath.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
 
     addSpecification("research type", "tree root");
 }

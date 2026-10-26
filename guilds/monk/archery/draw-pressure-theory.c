@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Pressure Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study tiring responses to arrows: adds three to Burdening Shot's "
-        "stamina-drain formula.");
+        "Watch how a defender bears the threat of an arrow. "
+        "A braced knee, a twisted shoulder, or a hurried retreat "
+        "reveals where pressure can make their own weight a burden.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

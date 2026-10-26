@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Falling Trajectory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study descending lines: adds three to Descending Shot's damage "
-        "formula.");
+        "Study the narrowing spaces beneath a raised guard. "
+        "A descending line has its own balance, and patient "
+        "practice teaches you to follow it without wavering.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

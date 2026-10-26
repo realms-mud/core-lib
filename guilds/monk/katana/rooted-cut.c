@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Rooted Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Grounding each cut grants +1 ordinary damage with a primary katana.");
+        "Feel the floor answer through your rear heel. A cut rooted "
+        "in the ground carries a conviction that straining arms "
+        "alone can never lend it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

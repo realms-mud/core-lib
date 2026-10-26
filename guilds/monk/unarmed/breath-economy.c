@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Breath Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reducing tension lowers Centering Breath's authored stamina cost by "
-        "two.");
+        "An anxious breath catches against the ribs. Learn to soften the "
+        "belly instead, letting the exhalation find its own depth without "
+        "wrestling it into obedience.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

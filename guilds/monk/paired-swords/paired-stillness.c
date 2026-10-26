@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Stillness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eighteen maximum stamina for +3 hand and a half sword and "
-        "+3 short sword at a cost of two attack.");
+        "Hold the unequal blades in a silence neither must "
+        "break first. In the master's patient guard, their "
+        "separate paths have become a shared understanding.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -58,7 +55,7 @@ protected void Setup()
 
     addSpecification("command template", "kata paired stillness");
 
-    addSpecification("bonus hand and a half sword", 3);
-    addSpecification("bonus short sword", 3);
+    addSpecification("bonus hand and a half sword", 6);
+    addSpecification("bonus short sword", 6);
     addSpecification("penalty to attack", 2);
 }

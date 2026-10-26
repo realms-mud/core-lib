@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Hand Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Aligning wrist and forearm grants +2 unarmed skill while both "
-        "wielded slots are empty.");
+        "A reed lashed along the forearm teaches the wrist not to buckle. "
+        "Once the bindings come away, the hand remembers the straight "
+        "path between knuckle, elbow, and shoulder.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

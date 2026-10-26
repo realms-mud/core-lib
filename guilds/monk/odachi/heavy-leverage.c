@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Heavy Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the effort needed to resist the odachi's hilt: adds three to "
-        "Pommel Drive's stamina drain.");
+        "The long hilt is a lever, not a club to wave blindly. "
+        "Learn to turn it against braced hands until the opponent "
+        "must shoulder the weight you have already set in motion.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

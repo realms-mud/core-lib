@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Unwavering Eye");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintaining deliberate attention grants +1 wisdom with a primary "
-        "katana.");
+        "Anger follows the blade; fear follows the wound. Let both "
+        "pass beyond your gaze, and watch instead the intention "
+        "taking shape in the opponent before you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

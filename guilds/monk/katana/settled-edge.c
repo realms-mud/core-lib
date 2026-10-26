@@ -10,10 +10,9 @@ protected void Setup()
     addSpecification("name", "Settled Edge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Further instruction in controlling the recovering blade grants +1 "
-        "hand and a half sword while a katana occupies your primary wielded "
-        "slot. Your offhand is unrestricted. Requires knowledge of Measured "
-        "Cut.");
+        "The lesson continues after the cut is over. Settle the "
+        "katana without a shiver in the point, keeping the same "
+        "attention you gave the edge on its outward path.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -26,19 +25,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/katana/measured-cut.c", ([
         "type":"research"

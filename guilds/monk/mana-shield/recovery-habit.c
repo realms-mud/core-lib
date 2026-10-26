@@ -10,34 +10,18 @@ protected void Setup()
     addSpecification("name", "Recovery Habit");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use the ward's regular rhythm to settle your breathing, adding one "
-        "natural spell-point healing while Mindful Ward is active.");
+        "The shield rises and falls with your breathing. In time, that "
+        "gentle rhythm becomes familiar enough to follow even amid "
+        "violence, guiding your scattered thoughts home.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"
@@ -50,5 +34,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal spell points", 1);
+    addSpecification("bonus heal spell points", 3);
 }

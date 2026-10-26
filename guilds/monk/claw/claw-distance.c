@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Distance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recognize openings at close quarters: +1 perception.");
+        "At claw range, a shift of the chin can matter more than "
+        "a stride. Practice reading the small spaces between "
+        "guarding arms until nearness no longer confuses the eye.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

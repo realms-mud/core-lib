@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Reap Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the committed final curve: adds three to Final Reap's damage "
-        "formula.");
+        "The oldest lesson is demonstrated on a rope hung motionless. "
+        "Do not chase it with the blade; arrange stance, draw, and "
+        "closing curve so that the severing seems inevitable.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rake Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the close claw line: adds three to Measured Rake's damage "
-        "formula.");
+        "The padded dummy is marked with seams narrower than "
+        "your hand. Work along them until the clustered points "
+        "can enter cleanly without wasting their force against the guard.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

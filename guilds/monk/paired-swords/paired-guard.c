@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Paired Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep one blade ready while the other recovers: +1 parry with the "
-        "specified pair.");
+        "When the katana returns, the wakizashi waits; when the "
+        "short sword moves, the long edge watches. Learn the "
+        "courtesy that keeps neither hand abandoned.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

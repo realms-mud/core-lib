@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Conditioning");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Condition the hands for tiger-claw drills: +5 maximum stamina.");
+        "Climbing ropes with the practice frame tires the fingers "
+        "before the back. Over many mornings, hand and shoulder "
+        "learn to share a tenacity that neither possessed alone.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus stamina points", 5);
+    addSpecification("bonus stamina points", 35);
 }

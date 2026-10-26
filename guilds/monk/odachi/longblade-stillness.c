@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Stillness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twenty-two maximum stamina for +4 two-handed sword and +2 "
-        "parry at a cost of two dodge.");
+        "The master's odachi waits without sagging, its distant "
+        "point as quiet as the hands that hold it. Beneath that "
+        "still horizon, the stance has the patience of a mountain.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,7 +49,7 @@ protected void Setup()
 
     addSpecification("command template", "kata longblade stillness");
 
-    addSpecification("bonus two-handed sword", 4);
-    addSpecification("bonus parry", 2);
+    addSpecification("bonus two-handed sword", 8);
+    addSpecification("bonus parry", 4);
     addSpecification("penalty to dodge", 2);
 }

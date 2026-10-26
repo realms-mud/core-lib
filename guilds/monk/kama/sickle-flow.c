@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Sickle Flow");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve fourteen maximum stamina for +3 dodge at a cost of two "
-        "damage.");
+        "Follow the sickle's circling guard rather than forcing it "
+        "to follow you. The body slips around its sheltered center, "
+        "giving ground freely instead of setting itself for a hard cut.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata sickle flow");
 
-    addSpecification("bonus dodge", 3);
+    addSpecification("bonus dodge", 6);
     addSpecification("penalty to damage", 2);
 }

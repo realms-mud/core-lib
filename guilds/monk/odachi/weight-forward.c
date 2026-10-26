@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Weight Forward");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve sixteen maximum stamina for +4 damage at a cost of three "
-        "defense.");
+        "Let the long blade lead your stance toward the adversary. "
+        "With your weight gathered behind the edge, every promise "
+        "of retreat gives way to the coming stroke.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

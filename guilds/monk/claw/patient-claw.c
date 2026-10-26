@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Patient Claw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eighteen maximum stamina for +4 dagger at a cost of two "
-        "dodge.");
+        "The old hunter waits where another would spring. Settle "
+        "into the close guard and study the foe through motionless "
+        "talons, trusting exactness more than the safety of distance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -52,6 +49,6 @@ protected void Setup()
 
     addSpecification("command template", "kata patient claw");
 
-    addSpecification("bonus dagger", 4);
+    addSpecification("bonus dagger", 10);
     addSpecification("penalty to dodge", 2);
 }

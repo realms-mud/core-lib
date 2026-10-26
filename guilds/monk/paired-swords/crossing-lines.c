@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossing Lines");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recognize a crossing opening: adds three to Crossing Cut's damage "
-        "formula and opens later paired cuts.");
+        "Draw the meeting paths of the swords in chalk before "
+        "trying them in steel. The useful crossing carries the "
+        "opponent's guard away without obstructing your own edge.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

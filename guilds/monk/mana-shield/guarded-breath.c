@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Guarded Ward Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep attention on the ward while repairing wounds. Ward Mending "
-        "costs one fewer spell point.");
+        "Breathe as though tending an ember in cupped hands. The shield "
+        "keeps the outer world at a distance while you coax warmth into "
+        "the places where pain has interrupted your rhythm.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

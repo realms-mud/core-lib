@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Hilt Check");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A close hilt check drains stamina rather than health and grants no "
-        "stun or disarm.");
+        "As the distance closes, you turn the hilt into the struggle "
+        "and crowd the opponent's hands, demanding an awkward effort "
+        "to hold their weapon on line.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

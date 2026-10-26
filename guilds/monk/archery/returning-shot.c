@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Returning Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover into one demanding follow-up release. One arrow is "
-        "consumed, not returned.");
+        "Let the bow's recoil guide your hand back to the "
+        "string. A fresh shaft rises from that returning "
+        "motion, answering the opening left by the last.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

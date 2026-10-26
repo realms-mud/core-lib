@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Sentinel Meditation");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve ten maximum stamina to gain three defense, sacrificing two "
-        "weapon attack and spending one spell point per received hit. No "
-        "absorption layer is added.");
+        "Stand within the shield as a lantern stands within its glass. "
+        "Your outward movements grow spare and deliberate, while within, "
+        "an unwavering awareness attends to every approaching shadow.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,7 +46,8 @@ protected void Setup()
     addSpecification("stamina point cost", 10);
     addSpecification("cooldown", 10);
 
-    addSpecification("bonus defense", 3);
+    addSpecification("bonus defense", 15);
+    addSpecification("bonus soak", 8);
     addSpecification("penalty to weapon attack", 2);
 
     addSpecification("per hit received cost", ([

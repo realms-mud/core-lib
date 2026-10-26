@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Etheric Poise");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep your internal current from resonating with hostile energy, "
-        "granting two energy resistance.");
+        "Hold your own rhythm when alien currents beat against it. "
+        "Like a deep bell sounding through a storm, the quiet note "
+        "within refuses to be drowned by another's will.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -42,5 +39,5 @@ protected void Setup()
     addSpecification("research cost", 2);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus resist energy", 2);
+    addSpecification("bonus resist energy", 10);
 }

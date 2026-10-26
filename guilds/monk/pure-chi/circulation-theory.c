@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Circulation Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the return path of spent chi. This opens cleansing and "
-        "stamina restoration without a new pool, adding three points of "
-        "restorative strength to the techniques informed by this study.");
+        "No current truly ends where the eye loses it. Follow the breath "
+        "back through the body's winding channels and discover how "
+        "outward exertion may find its way home.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

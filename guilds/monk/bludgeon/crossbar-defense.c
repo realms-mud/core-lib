@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Crossbar Defense");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Present the staff across an incoming line, granting one defense and "
-        "one soak with a primary staff or quarterstaff. This is mitigation, "
-        "not an attack cancellation.");
+        "Present the staff across the line of an incoming blow. "
+        "Yield through the knees while the wood bears the "
+        "contact, letting its length share the burden.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -50,6 +46,6 @@ protected void Setup()
 
     addSpecification("scope", "self");
 
-    addSpecification("bonus defense", 1);
-    addSpecification("bonus soak", 1);
+    addSpecification("bonus defense", 3);
+    addSpecification("bonus soak", 3);
 }

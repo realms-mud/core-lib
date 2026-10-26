@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Companion Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use the blade pair's leverage efficiently: adds three to Companion "
-        "Check's stamina drain.");
+        "A light touch from the wakizashi can make the longer "
+        "blade feel impossibly heavy. Study where the hands "
+        "share their burden and where the opponent must bear it.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,27 +27,10 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Guard Pressure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Applying pressure efficiently adds three points to Guard Breaker's "
-        "stamina drain.");
+        "Resistance speaks through the joined blades. Learn where "
+        "the opponent braces too hard, and place your weight where "
+        "that stubbornness must bear the greatest strain.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

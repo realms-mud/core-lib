@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Committed Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit the odachi to one heavy cut with substantial stamina "
-        "expenditure and deliberate recovery.");
+        "Your feet take their places and the great sword follows. "
+        "The cut crosses the practice line with the patient weight "
+        "of a gate closing against a storm.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

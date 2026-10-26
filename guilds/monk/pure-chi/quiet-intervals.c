@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Quiet Intervals");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the inward breath without rushing it. Restorative Chi "
-        "Breath and Returning Current recover four seconds sooner.");
+        "Do not chase the breath after it leaves you. Welcome the quiet "
+        "interval in its place, and feel the returning current "
+        "assemble itself without the disturbance of haste.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

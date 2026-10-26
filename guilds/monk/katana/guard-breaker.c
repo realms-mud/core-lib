@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Guard Breaker");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Repeated pressure drains stamina without automatically lowering "
-        "armor or preventing defense.");
+        "You bear down on the opposing blade and make the adversary "
+        "carry the struggle. Each refusal to yield becomes another "
+        "burden in their trembling arms.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

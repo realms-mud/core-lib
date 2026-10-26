@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Draw Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align shoulder, elbow, and bow hand: +1 attack while wielding a "
-        "primary bow.");
+        "Bring shoulder, elbow, and bow hand into a quiet agreement. "
+        "When the bones carry the draw, the string no longer "
+        "tugs your aim away from its intended line.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

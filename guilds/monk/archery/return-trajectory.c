@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Return Trajectory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study recovery into a follow-up: adds three to Returning Shot's "
-        "damage formula.");
+        "The bow's return is the beginning of another flight. "
+        "Study how the drawing hand comes home, carrying "
+        "the next arrow naturally toward its place.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

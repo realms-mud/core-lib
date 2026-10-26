@@ -10,15 +10,10 @@ protected void Setup()
     addSpecification("name", "Refuge Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Separate defensive posture from absorption. Opens brief bracing and "
-        "magical resistance without adding another mana-shield layer. "
-        "Understanding that distinction strengthens recovery and deliberate "
-        "counterprojections without changing the ward's absorption.");
+        "A true refuge is shaped around those it shelters. Studying the "
+        "shield's response to your own movements teaches you to lay its "
+        "threads in harmony with bone, breath, and intention.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -48,6 +43,7 @@ protected void Setup()
 
     addSpecification("affected research type", "bonus");
     addSpecification("affected research", ([
+        "Mana Shield":3,
         "Ward Mending":1,
         "Breath Conversion":1,
         "Measured Renewal":2,

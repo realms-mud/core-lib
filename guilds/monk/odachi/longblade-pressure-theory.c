@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Pressure Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Understand resistance to the heavy blade: adds three to Weight "
-        "Check's stamina drain and opens Stilling Arc.");
+        "The opponent feels the odachi before its edge reaches "
+        "flesh. Study how a small change in the hilt makes them "
+        "brace against a much greater burden.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

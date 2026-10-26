@@ -10,10 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Cut");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A controlled single cut using the katana in your primary wielded "
-        "slot. Your offhand is unrestricted. The cut uses normal slashing "
-        "damage resolution and scales with your primary weapon, sword skill, "
-        "and strength.");
+        "Step onto the practice line and let the katana describe a "
+        "clean, unhurried arc. The first lesson is not to swing "
+        "harder, but to finish exactly where you intended.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -26,19 +25,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Readiness");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the claw hand supple between thrusts: +1 dexterity.");
+        "Flex the fingers while the frame remains poised. The "
+        "talons must never grow heavy in a waiting hand; a supple "
+        "wrist lets their direction change with a flicker of intent.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus dexterity", 1);
+    addSpecification("bonus dexterity", 2);
 }

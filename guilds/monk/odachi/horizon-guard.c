@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Horizon Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +3 parry at a cost of two attack.");
+        "Hold the long blade across the world before you. The broad "
+        "guard asks for patience, letting an approaching weapon "
+        "declare its purpose before you answer.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

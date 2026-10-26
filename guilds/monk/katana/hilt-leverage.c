@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Hilt Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Efficient pressure adds three points to Hilt Check's stamina drain.");
+        "At close quarters the smallest turn of the hilt carries the "
+        "whole body's argument. Study the fulcrum beneath the hands "
+        "rather than wrestling against the length of the blade.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

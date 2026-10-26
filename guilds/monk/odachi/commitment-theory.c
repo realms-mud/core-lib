@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Commitment Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the odachi's committed line: adds three to Committed Cut's "
-        "damage formula.");
+        "An odachi does not forgive a decision made halfway through "
+        "the stroke. Read the opening before the blade moves, and "
+        "learn what it means to place your whole stance behind it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":3
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

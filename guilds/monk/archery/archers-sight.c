@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Sight");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Coordinate eye and release without haste: +1 dexterity while "
-        "wielding a primary bow.");
+        "Let the eye lead the hand without dragging it into haste. "
+        "The target's smallest motion finds an answer in the "
+        "quiet adjustments of your fingers.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

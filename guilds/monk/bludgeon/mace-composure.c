@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Mace Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Combine contact geometry and haft shelter to remain composed in "
-        "close combat. Grants two defense and one damage with a primary "
-        "mace-school weapon.");
+        "Remain composed in the crowded space where the mace "
+        "does its work. Short motions and an untroubled gaze "
+        "keep the press of bodies from stealing your purpose.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -24,10 +24,6 @@ protected void Setup()
 
     addPrerequisite("/guilds/monk/bludgeon/contact-geometry.c", ([
         "type":"research"
-    ]));
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
     ]));
     addPrerequisite("level", ([
         "type":"level",
@@ -52,6 +48,6 @@ protected void Setup()
 
     addSpecification("scope", "self");
 
-    addSpecification("bonus defense", 2);
-    addSpecification("bonus damage", 1);
+    addSpecification("bonus defense", 5);
+    addSpecification("bonus damage", 3);
 }

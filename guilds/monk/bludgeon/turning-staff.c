@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Turning Staff");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Maintain a turning staff guard for two parry. Reserve eight stamina "
-        "and spend one stamina on each received hit. Requires a primary "
-        "staff or quarterstaff.");
+        "Keep the staff turning in patient circles before "
+        "the body. An approaching weapon meets a length "
+        "of wood already traveling to greet it.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

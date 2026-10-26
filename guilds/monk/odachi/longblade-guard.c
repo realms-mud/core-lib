@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Guard");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the heavy blade into a defensive line: +1 parry.");
+        "Bring the odachi home along a sheltered path. The return "
+        "is not the absence of a cut, but the careful placing of "
+        "steel where another blade would like to pass.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

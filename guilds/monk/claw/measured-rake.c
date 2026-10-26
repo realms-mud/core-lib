@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Measured Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Drive the tiger claws through one controlled close thrust.");
+        "Begin close enough to see the foe's breath catch. "
+        "A short, deliberate extension of the hand carries the "
+        "tiger-claw points through the opening before the shoulder follows.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":1
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

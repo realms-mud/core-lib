@@ -10,27 +10,14 @@ protected void Setup()
     addSpecification("name", "Steady Practice");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Guided repetition makes each recovery more effective. An instructor "
-        "who respects your initial training can help you recover one "
-        "additional stamina point per recovery.");
+        "Return to the practice floor when yesterday's "
+        "enthusiasm has faded. In quiet repetition, "
+        "the body learns a steadiness that excitement cannot teach.");
 
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/initiates-discipline.c", ([
         "type":"research"

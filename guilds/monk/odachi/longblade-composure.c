@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep the body controlled under the odachi's momentum: +1 "
-        "constitution.");
+        "Long practice teaches the body not to panic beneath a "
+        "heavy burden. The chest stays open and the breath settles "
+        "even when the odachi shudders against resistance.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

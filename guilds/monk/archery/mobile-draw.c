@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Mobile Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve sixteen maximum stamina for +3 dodge at a cost of two "
-        "damage. It grants no extra movement.");
+        "Keep your weight light beneath the drawn bow. Small "
+        "turns of the hips and quiet changes of footing leave "
+        "a pursuing foe uncertain where your stance will settle.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Crushing Embrace");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Brief close pressure drains stamina but does not immobilize or "
-        "prevent escape.");
+        "Step inside the guard and fold your weight against the foe's "
+        "frame. The embrace lasts only a breath, but escaping its "
+        "pressure leaves the chest heaving.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

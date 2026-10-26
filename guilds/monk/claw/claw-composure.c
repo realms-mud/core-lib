@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Composure");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Choose deliberate openings instead of reckless flurries: +1 wisdom.");
+        "The claws invite a hunter's impatience. Learn to notice "
+        "that hunger without obeying it, passing over a dangerous "
+        "opening so the next approach belongs to your judgment.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

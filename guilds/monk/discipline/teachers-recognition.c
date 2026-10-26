@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Teacher's Recognition");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Your first instructor acknowledges your completed lessons and "
-        "recommends you for advanced instruction. This recognition opens "
-        "further teaching; it is not a mastery trial.");
+        "Your instructor offers a quiet nod at the end "
+        "of practice. It is an acknowledgment of patient "
+        "work, and an invitation to carry that work into deeper study.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

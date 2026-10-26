@@ -10,8 +10,8 @@ protected void Setup()
     addSpecification("name", "Drawn Circle");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A circular cut has a wide damage range against one opponent; it is "
-        "not an area attack.");
+        "The katana sweeps around your turning body, its curve closing "
+        "like a brushstroke around the adversary before you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +20,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

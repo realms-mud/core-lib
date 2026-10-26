@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Pulse Cadence");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Time broad projections between breaths. Driving Wave recovers two "
-        "seconds sooner.");
+        "Hear the interval between the crash of a wave and its returning "
+        "wash. Shape your projections to that cadence, allowing "
+        "the next breath to rise naturally from the last.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,30 +10,14 @@ protected void Setup()
     addSpecification("name", "Contemplative Focus");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Practice observing an impulse without obeying it. Your settled "
-        "judgment grants one wisdom.");
+        "Sit with each passing impulse as you would with a visitor at "
+        "the monastery gate. Listen without haste, and learn which "
+        "voices deserve to guide your hand.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":9
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

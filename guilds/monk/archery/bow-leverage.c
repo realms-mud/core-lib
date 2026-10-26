@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Bow Leverage");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study exhausting lines: adds three to Arresting Shot's "
-        "stamina-drain formula.");
+        "Trace the angles that force a defender to turn against "
+        "their own balance. A small change at release can demand "
+        "a much greater effort where the arrow arrives.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":7
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Returning Breath");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Spend twelve spell points and eight stamina on advanced "
-        "self-restoration.");
+        "Draw your attention back from the foe and into the body's "
+        "darkened corners. A deep returning breath kindles warmth there, "
+        "coaxing injured flesh toward wholeness.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

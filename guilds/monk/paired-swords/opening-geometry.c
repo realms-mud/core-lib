@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Opening Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study the line behind a paired feint: adds three to Opening Cut's "
-        "damage formula.");
+        "A feint fails when it offers a lie no swordsman would "
+        "believe. Study a credible threat with the companion "
+        "blade, and the empty line its answer will create.");
 
     addSpecification("limited by", ([
         "equipment":({
@@ -26,10 +27,6 @@ protected void Setup()
         })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

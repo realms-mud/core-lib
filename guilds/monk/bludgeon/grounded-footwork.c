@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Grounded Footwork");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover your stance behind a primary bludgeon, granting one defense "
-        "without restricting the offhand.");
+        "Return the feet beneath the weapon instead of reaching "
+        "after it. A grounded stance leaves the body ready "
+        "when the weight of the exchange comes back toward you.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

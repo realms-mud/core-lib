@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Sweeping Arc");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A single-target staff sweep follows a broad arc into the opponent's "
-        "flank. Control comes from staff skill and dexterity; it does not "
-        "trip or move the target.");
+        "Turn the staff through a broad arc toward the "
+        "flank. Its length follows the hips in a smooth "
+        "sweep, gathering purpose as it circles the guard.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

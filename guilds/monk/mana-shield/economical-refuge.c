@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Economical Refuge");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Use posture before force. Brace the Spirit saves one spell point "
-        "and Measured Renewal saves two stamina through their own cost "
-        "modifiers.");
+        "A shelter built against the wind needs no struggle to remain "
+        "standing. So too can your stance support the shield, freeing "
+        "your breath from the habit of fighting every impact.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

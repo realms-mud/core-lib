@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Longblade Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Unify grip, footing, and recovery: +2 two-handed sword.");
+        "The practice sword that once ruled your posture now "
+        "follows it. From the placement of a toe to the last tremor "
+        "of the tip, the odachi has become an unbroken intention.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -47,5 +45,5 @@ protected void Setup()
     addSpecification("research cost", 4);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus two-handed sword", 2);
+    addSpecification("bonus two-handed sword", 6);
 }

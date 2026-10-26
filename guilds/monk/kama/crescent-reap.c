@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Crescent Reap");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Commit the kama to one broad curved cut against a single opponent.");
+        "Sweep the sickle around the foe's sheltering guard. The curve "
+        "closes like a crescent moon slipping behind cloud, its inner "
+        "edge finding flesh along the retreating line.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

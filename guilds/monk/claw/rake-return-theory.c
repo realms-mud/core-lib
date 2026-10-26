@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Rake Return Theory");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Study recovery into one return thrust: adds three to Returning "
-        "Rake's damage formula.");
+        "Withdrawal changes the shape of the close exchange. "
+        "Learn how a folding elbow conceals the next line, "
+        "bringing the talons forward from a guard the foe misread.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

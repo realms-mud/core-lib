@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Footwork");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Stay mobile behind the short tiger-claw guard: +1 dodge.");
+        "Step around the chalk circle without crossing your feet. "
+        "A weapon so close to the knuckles asks the legs to do "
+        "what a longer blade might accomplish at arm's length.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":4
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

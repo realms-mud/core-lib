@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Rising Heel");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An ascending heel kick has a wider damage range and a longer "
-        "commitment than the palm.");
+        "The guarding hands draw the eye while the heel climbs beneath "
+        "them. A turn of the supporting foot sends the kick upward "
+        "like a branch springing free of snow.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

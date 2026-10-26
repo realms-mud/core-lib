@@ -10,11 +10,9 @@ protected void Setup()
     addSpecification("name", "Balanced Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Instruction in recovering your balance after a committed palm "
-        "strike grants +1 dodge while both wielded slots are empty. Requires "
-        "ten successful Measured Palm executions against already-hostile, "
-        "non-allied NPCs at least half your effective level. Repeated uses "
-        "in one encounter count.");
+        "The palm has barely landed when the rear foot draws your weight "
+        "home. A teacher watches for the moment you stop falling after "
+        "your own hand and stand ready for the answer.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
@@ -24,19 +22,6 @@ protected void Setup()
         "type":"level",
         "guild":"monk",
         "value":2
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/unarmed/measured-palm.c", ([
         "type":"research"

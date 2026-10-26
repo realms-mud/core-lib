@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Reaping Rhythm");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the kama smoothly: Reaping Cut's cooldown is four seconds "
-        "shorter.");
+        "The harvest song never stops between stalks. Let its cadence "
+        "teach your feet when to settle and your wrist when to turn, "
+        "so the sickle does not linger at the end of its draw.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

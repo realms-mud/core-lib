@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Endurance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover breath while maintaining the short guard: +2 stamina "
-        "healing rate.");
+        "Long bouts have taught you to find rest inside the close "
+        "guard itself. The chest rises quietly behind the talons, "
+        "gathering breath without giving the foe a careless moment.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus heal stamina rate", 2);
+    addSpecification("bonus heal stamina rate", 4);
 }

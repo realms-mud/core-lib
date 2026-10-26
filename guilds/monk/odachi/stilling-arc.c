@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Stilling Arc");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Disrupt an opponent's energy through a demanding blade action. "
-        "Drains spell points without silence.");
+        "A measured turn brings the looming blade across the "
+        "adversary's vision. In the shadow of that passing edge, "
+        "their inward cadence loses its place.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

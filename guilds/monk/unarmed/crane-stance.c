@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Crane Stance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve eight maximum stamina for +3 dodge; each received hit costs "
-        "one spell point.");
+        "The lifted heel seems precarious until the hips turn beneath it. "
+        "Like a crane above troubled water, you surrender the place a blow "
+        "seeks while keeping your balance somewhere it cannot follow.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

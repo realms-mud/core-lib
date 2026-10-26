@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Crosswind Shot");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Release one arrow along a measured oblique line. No "
-        "weather-dependent bonus is applied.");
+        "Turn through the hips as the string leaves your fingers. "
+        "The shaft takes a slanting line across your foe's guard, "
+        "swift and unexpected as a gust through an open doorway.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

@@ -10,14 +10,10 @@ protected void Setup()
     addSpecification("name", "Seamless Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reset vigilance without interrupting restoration. Vigilant Renewal "
-        "recovers ten seconds sooner and Shelter of Intent eight seconds "
-        "sooner.");
+        "There is no longer a seam between vigilance and repose. Breath "
+        "flows through both, and the shield follows it without a falter, "
+        "even as your attention turns from shelter to renewal.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

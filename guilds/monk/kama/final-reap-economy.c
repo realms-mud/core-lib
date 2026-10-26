@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Final Reap Economy");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Avoid wasted effort in a heavy kama cut: Final Reap costs three "
-        "less stamina.");
+        "A master leaves no flourish after the harvest stroke. Learn "
+        "where the wrist must soften so the sickle comes home without "
+        "dragging the shoulder through an empty circle.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

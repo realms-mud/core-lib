@@ -10,18 +10,14 @@ protected void Setup()
     addSpecification("name", "Interrupting Thread");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Cast a fine thread from the ward's stable boundary to disrupt an "
-        "opponent's spell points. It does not silence commands or cancel "
-        "casting.");
+        "Pluck a strand from the shield and cast it through the enemy's "
+        "gathering power. The thread sings briefly, then parts, leaving "
+        "their carefully ordered currents in disarray.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

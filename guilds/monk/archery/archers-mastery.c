@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Archer's Mastery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Integrate grip, footing, and release: +2 bow while wielding a "
-        "primary bow.");
+        "The separate lessons of hand, eye, and footing become a "
+        "single gesture. Drawing and releasing feel as natural "
+        "as breathing, each shot complete before thought intrudes.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,5 +46,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus bow", 2);
+    addSpecification("bonus bow", 6);
 }

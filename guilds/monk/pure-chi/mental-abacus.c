@@ -10,13 +10,10 @@ protected void Setup()
     addSpecification("name", "Mental Abacus");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Rehearse energy paths as precise mental figures, granting one "
-        "intelligence for deliberate shaping.");
+        "Arrange the paths of chi in the mind like beads upon a counting "
+        "frame. Their shifting relationships become familiar until "
+        "you can hold an intricate pattern without losing its center.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

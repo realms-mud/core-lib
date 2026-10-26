@@ -10,31 +10,14 @@ protected void Setup()
     addSpecification("name", "Pulse Geometry");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Align a narrow energy front with the target. Needle of Chi gains "
-        "two points of projection strength; its alignment also sharpens "
-        "Focused Pulse, Driving Wave, Piercing Intent, and Severing Current.");
+        "Trace the invisible lines between the palm and its destination. "
+        "Angles that seemed empty reveal where a current will spread, "
+        "where it will gather, and where its edge will meet resistance.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":6
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

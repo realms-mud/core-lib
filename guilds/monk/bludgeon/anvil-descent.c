@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Anvil Descent");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A master's deliberate descending war hammer strike inflicts injury "
-        "and strains the target's stamina. Its expense and long recovery "
-        "limit repeated use.");
+        "Raise the hammer with the patience of a smith judging the "
+        "heat of iron. Its descending head drives through the guard "
+        "with the stern finality of a forging stroke.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

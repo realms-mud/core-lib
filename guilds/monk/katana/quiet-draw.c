@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Quiet Draw");
     addSpecification("source", "monk");
     addSpecification("description",
-        "An economical opening grants +1 attack with a primary katana.");
+        "Do not announce the sword with a lifted shoulder or a "
+        "tightened jaw. Let the first sign of your intention be the "
+        "edge itself, already on its chosen path.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,27 +21,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":8
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

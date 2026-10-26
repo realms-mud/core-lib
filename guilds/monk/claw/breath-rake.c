@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Breath Rake");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Distract the opponent's concentration with one claw action, "
-        "draining spell points without silence.");
+        "Lift the talons toward the throat as the foe draws breath. "
+        "The close, jarring contact troubles the inward calm they "
+        "need to gather power behind their guarded face.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

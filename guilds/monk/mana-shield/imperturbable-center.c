@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Imperturbable Center");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Keep foreign energy from disturbing your central current, gaining "
-        "three energy resistance while Mindful Ward is active.");
+        "At the heart of the shield, every current has a place. Alien "
+        "energies wash across that ordered stillness and pass away "
+        "without finding a foothold in your spirit.");
 
     addSpecification("limited by", ([
         "research active":({ "/guilds/monk/mana-shield/mindful-ward.c" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -45,5 +42,6 @@ protected void Setup()
     addSpecification("research cost", 3);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus resist energy", 3);
+    addSpecification("bonus resist energy", 12);
+    addSpecification("bonus resist psionic", 12);
 }

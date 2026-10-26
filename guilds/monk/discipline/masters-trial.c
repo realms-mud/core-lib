@@ -10,18 +10,10 @@ protected void Setup()
     addSpecification("name", "Master's Trial");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Ren assesses advanced specialist practice before endorsing your "
-        "next promotion. Learn one listed technique and its matching "
-        "knowledge, and demonstrate 40 qualifying uses of that technique "
-        "against already-hostile, non-allied living NPCs in the same room at "
-        "least half your effective level. Historical practice counts; "
-        "partial counts and knowledge from other routes do not combine. This "
-        "free assessment grants no combat bonus or automatic promotion.");
+        "The final trial is not a display of ornament "
+        "or haste. Ren seeks a practice so deeply lived "
+        "that restraint, purpose, and action no longer stand apart.");
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

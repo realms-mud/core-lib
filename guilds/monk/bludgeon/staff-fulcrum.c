@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Staff Fulcrum");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Learn the changing fulcrum of a staff or quarterstaff. Opens staff "
-        "instruction and shortens Sweeping Arc's cooldown by one second.");
+        "Let the hands discover how the staff's center "
+        "changes as it turns. Each new fulcrum offers "
+        "a different answer to the weight beyond your grip.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -21,27 +22,10 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
         "value":5
-    ]));
-    addPrerequisite("rank", ([
-        "type":"guild rank",
-        "guild":"monk",
-        "value":({
-            "initiate",
-            "student",
-            "disciple",
-            "adept",
-            "senior disciple",
-            "master candidate",
-            "master"
-        })
     ]));
     addPrerequisite("/guilds/monk/discipline/teachers-recognition.c", ([
         "type":"research"

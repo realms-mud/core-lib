@@ -10,7 +10,9 @@ protected void Setup()
     addSpecification("name", "Claw Vitality");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Endure the risk of close quarters: +6 maximum hit points.");
+        "The scars of the close guard have become teachers rather "
+        "than warnings. Your body meets hardship with the stubborn "
+        "assurance of a hunter that has survived many narrow encounters.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -19,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -44,5 +42,5 @@ protected void Setup()
     addSpecification("research cost", 1);
     addSpecification("teacher required", 1);
 
-    addSpecification("bonus hit points", 6);
+    addSpecification("bonus hit points", 60);
 }

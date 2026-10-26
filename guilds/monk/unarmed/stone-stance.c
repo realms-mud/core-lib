@@ -10,17 +10,14 @@ protected void Setup()
     addSpecification("name", "Stone Stance");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Reserve twelve maximum stamina for +3 soak and -2 attack; received "
-        "hits cost one stamina.");
+        "Sink the hips and make the breath broad behind the ribs. "
+        "You become the stone in the stream: slow to pursue, difficult "
+        "to shift, and patient beneath the battering current.");
 
     addSpecification("limited by", ([
         "empty equipment slots":({ "wielded primary", "wielded offhand" })
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
@@ -49,7 +46,7 @@ protected void Setup()
 
     addSpecification("command template", "kata stone stance");
 
-    addSpecification("bonus soak", 3);
+    addSpecification("bonus soak", 6);
     addSpecification("penalty to attack", 2);
 
     addSpecification("per hit received cost", ([

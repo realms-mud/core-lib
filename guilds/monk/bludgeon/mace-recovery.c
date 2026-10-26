@@ -10,9 +10,9 @@ protected void Setup()
     addSpecification("name", "Mace Recovery");
     addSpecification("source", "monk");
     addSpecification("description",
-        "Recover the heavy head through a short circle. Compact Blow, Taxing "
-        "Contact, and Centerline Crush each cost one less stamina with a "
-        "mace-school primary.");
+        "Let the mace head circle home close to the body. "
+        "The returning weight folds into your guard instead "
+        "of dragging the arm through a needless struggle.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -22,10 +22,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",

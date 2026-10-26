@@ -10,8 +10,9 @@ protected void Setup()
     addSpecification("name", "Point Alignment");
     addSpecification("source", "monk");
     addSpecification("description",
-        "A precisely aligned point adds three points to Needle Thrust's "
-        "damage.");
+        "Sight along the blade without chasing its tip. When wrist, "
+        "elbow, and rear heel share the same purpose, the point needs "
+        "no hurried correction on its journey.");
 
     addSpecification("limited by", ([
         "equipment":([
@@ -20,10 +21,6 @@ protected void Setup()
         ])
     ]));
 
-    addPrerequisite("monk", ([
-        "type":"guild",
-        "value":({ "monk" })
-    ]));
     addPrerequisite("level", ([
         "type":"level",
         "guild":"monk",
