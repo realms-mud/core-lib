@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/trees/oak-stand.c", "west");
     addFeature("/lib/environment/features/trees/ash-stand.c", "east");
     addFeature("/lib/environment/features/water/brook.c", "northwest");
+    addDecorator("forest trail intersection");
 
     addExit("south", "/areas/argalen-keep/surrounding/12x0.c");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");

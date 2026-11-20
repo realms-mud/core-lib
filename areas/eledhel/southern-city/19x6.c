@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/trades/warehouse.c",
-        "east", "/areas/eledhel/southern-city/warehouse/0x1.c");
+        "east");
 
     addExit("south", "/areas/eledhel/southern-city/19x5.c");
     addExit("north", "/areas/eledhel/southern-city/19x7.c");

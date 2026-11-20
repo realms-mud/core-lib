@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail east-west");
+    setShortDescription("The hummock line");
     addFeature("/lib/environment/features/landforms/hummock.c", "north");
 
     addExit("west", "/areas/eledhel/west-rural-two/5x9.c");

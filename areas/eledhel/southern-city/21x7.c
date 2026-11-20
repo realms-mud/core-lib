@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/trades/shipYard.c",
-        "east", "/areas/eledhel/southern-city/shipyard/0x1.c");
+        "east");
 
     addExit("west", "/areas/eledhel/southern-city/20x7.c");
 }

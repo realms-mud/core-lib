@@ -45,4 +45,16 @@ protected void Setup()
     generator.CreateAegisEquipment(this_object());
 
     addConversation("/areas/tol-dhurath/characters/galadhel/startingConversation.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/return-to-aegis-camp.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/evendim-squad.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/post-keepers-lair.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/gift-training-objectives.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/gift-training-break.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/galadhel/galadhel-mantle.c");
 }

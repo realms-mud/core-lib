@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/cliff.c", "east");
     addFeature("/lib/environment/features/trees/pine-stand.c", "south");
     addBuilding("/lib/environment/buildings/trades/mining-company.c", "north");
+    addDecorator("hill trail west dead end");
 
     addExit("west", "/areas/argalen-keep/surrounding/15x4.c");
     addFeature("/lib/environment/features/paths/trail.c", "west");

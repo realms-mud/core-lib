@@ -10,6 +10,7 @@ public void Setup()
     setTerrain("/lib/environment/terrain/farmland.c");
     addFeature("/lib/environment/features/trees/apple-stand.c", "west");
     addFeature("/lib/environment/features/landforms/dale.c", "northwest");
+    addDecorator("farm path south-east bend");
 
     addExit("east", "/areas/argalen-keep/surrounding/12x2.c");
     addFeature("/lib/environment/features/paths/dirt-road.c", "east");

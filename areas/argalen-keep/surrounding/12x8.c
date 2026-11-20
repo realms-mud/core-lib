@@ -15,6 +15,7 @@ public void Setup()
     addDecorator("village keep gate");
 
     addExit("south", "/areas/argalen-keep/surrounding/12x7.c");
-    addExit("north",
-        "/areas/argalen-keep/keep-interior/5x0.c");
+    addExitWithDoor("north",
+        "/areas/argalen-keep/keep-interior/5x0.c",
+        "/lib/environment/doors/keep-gate.c");
 }

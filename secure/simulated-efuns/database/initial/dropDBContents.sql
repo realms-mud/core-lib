@@ -262,6 +262,8 @@ drop table if exists domainSections;
 ##
 drop table if exists domains;
 ##
+drop table if exists npcDomainAdministrators;
+##
 drop table if exists settings;
 ##
 drop table if exists blockedUsers;

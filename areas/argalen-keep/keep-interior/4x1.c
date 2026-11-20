@@ -10,6 +10,7 @@ public void Setup()
     setStateMachine("/areas/argalen-keep/state-machine/argalen-keep-quest.c");
 
     setInterior("/lib/environment/interiors/courtyard.c");
+    addItem("/lib/environment/items/objects/flower-box.c", "north");
     addDecorator("keep interior west alcove");
 
     addExit("east",

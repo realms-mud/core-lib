@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/military/tall-wall-tower.c",
-        "south", "/areas/eledhel/southern-city/southwest-gate-tower/0x4.c");
+        "south");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
     addFeature("/lib/environment/features/paths/entry-path.c", "south");

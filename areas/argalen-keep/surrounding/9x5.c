@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/trees/ash-stand.c", "west");
     addFeature("/lib/environment/features/trees/hickory-stand.c", "southwest");
     addFeature("/lib/environment/features/landforms/combe.c", "south");
+    addDecorator("forest trail north");
 
     addExit("north", "/areas/argalen-keep/surrounding/9x4.c");
     addFeature("/lib/environment/features/paths/trail.c", "north");

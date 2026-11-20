@@ -12,6 +12,7 @@ public void Setup()
     addFeature("/lib/environment/features/trees/maple-stand.c", "south");
     addFeature("/lib/environment/features/water/brook.c", "west");
     addFeature("/lib/environment/features/landforms/glen.c", "southwest");
+    addDecorator("forest trail south-east");
 
     addExit("east", "/areas/argalen-keep/surrounding/10x3.c");
     addFeature("/lib/environment/features/paths/trail.c", "east");

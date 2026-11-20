@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c",
-        "south", "/areas/eledhel/southern-city/scion-of-dhuras/5x5.c");
+        "south");
 
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");

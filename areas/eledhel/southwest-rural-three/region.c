@@ -7,12 +7,13 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("southwest-rural-two");
-    setRegionType("rural");
+    setRegionName("southwest-rural-three");
+    setRegionType("hilly rural");
+    setRegionLevel(2);
     setDimensions(25, 5);
     setEntryCoordinate(24, 0,
-        "/areas/eledhel/southwest-rural-three/24x0.c", "east",
-        "/areas/eledhel/southwest-rural-two/0x2.c");
+        "/areas/eledhel/southwest-rural-three/24x0.c", "south",
+        "/areas/eledhel/south-rural-route-03/0x2.c");
 
     setCoordinate(0, 0,
         "/areas/eledhel/southwest-rural-three/0x0.c", "path");

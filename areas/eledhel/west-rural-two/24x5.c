@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail south-west");
+    setShortDescription("The far forest track");
     addFeature("/lib/environment/features/trees/oak-stand.c", "west");
     addFeature("/lib/environment/features/landforms/hill.c", "west");
 

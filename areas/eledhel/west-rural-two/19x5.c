@@ -2,16 +2,19 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail north-west");
+    setShortDescription("The cedar ledge");
     addFeature("/lib/environment/features/trees/pine-stand.c", "north");
     addFeature("/lib/environment/features/trees/bing-cherry-stand.c", "north");
     addFeature("/lib/environment/features/landforms/dell.c", "north");
 
+    addItem("/lib/environment/items/objects/outlaw-warning-sign.c", "north");
     addExit("west", "/areas/eledhel/west-rural-two/18x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
     addExit("north", "/areas/eledhel/west-rural-two/19x6.c");

@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/military/tall-wall-tower.c",
-        "east", "/areas/eledhel/southern-city/southeast-tower/0x1.c");
+        "east");
     addBuilding("/lib/environment/buildings/military/military-training-ground.c",
         "west");
     addBuilding("/lib/environment/buildings/military/city-wall.c", "south");

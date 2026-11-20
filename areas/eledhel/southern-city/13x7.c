@@ -9,6 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addShop("/lib/environment/shopInventories/gem-crafter.c");
+    addObject("/areas/eledhel/southern-city/characters/miraen/miraen.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "east");
     addItem("/lib/environment/items/lighting/window.c", "west");
 

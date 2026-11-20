@@ -12,6 +12,6 @@ public void Setup()
     addExit("west", "/areas/eledhel/southwest-rural-three/23x0.c");
     addFeature("/lib/environment/features/paths/road.c", "west");
 
-    addExit("east", "/areas/eledhel/southwest-rural-two/0x2.c");
-    addFeature("/lib/environment/features/paths/road.c", "east");
+    addExit("south", "/areas/eledhel/south-rural-route-03/0x2.c");
+    addFeature("/lib/environment/features/paths/road.c", "south");
 }

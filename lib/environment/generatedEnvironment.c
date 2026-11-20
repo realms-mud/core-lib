@@ -6,12 +6,6 @@ inherit "/lib/environment/environment.c";
 
 private object regionService = getService("region");
 
-private string *possibleEncounters = ({});
-private object *currentEncounters = ({});
-private string *possibleNonCombatEncounters = ({});
-private object *currentNonCombatEncounters = ({});
-private int timeUntilNextEncounter;
-private int isSpawningEncounters = 0;
 private mapping deferredRegion = 0;
 private string PathType = 0;
 
@@ -80,26 +74,6 @@ private nomask varargs void addRandomObjects(mapping items, string state)
     foreach(string item in m_indices(items))
     {
         addObject(items[item], state);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addRandomCreature(string *creatures, 
-    string state)
-{
-    if (sizeof(creatures))
-    {
-        possibleEncounters = creatures + ({});
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected nomask varargs void addNonCombatCreature(
-    string *creatures, string state)
-{
-    if (sizeof(creatures))
-    {
-        possibleNonCombatEncounters = creatures + ({});
     }
 }
 
@@ -315,122 +289,6 @@ public nomask void addEntryExit(string direction, string location)
     if (PathType)
     {
         addFeature(PathType, direction);
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected void setUpNonCombatEncounter(object player)
-{
-    currentNonCombatEncounters = filter(currentNonCombatEncounters,
-        (: objectp($1) && (environment($1) == this_object()) :));
-
-    if (objectp(player) &&
-        sizeof(possibleNonCombatEncounters) &&
-        !sizeof(currentNonCombatEncounters))
-    {
-        object personaService = getService("persona");
-
-        int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
-            getRegion()->regionLevel() : player->effectiveLevel();
-
-        string name = possibleNonCombatEncounters[
-            random(sizeof(possibleNonCombatEncounters))];
-
-        int level = (objectp(getRegion()) && getRegion()->regionLevel()) ?
-            (baseLevel - 2 + random(5)) :
-            (baseLevel - 3 + random(7));
-
-        if (level < 1)
-        {
-            level = 1;
-        }
-
-        object npc = clone_object("/lib/realizations/npc.c");
-        npc->SetUpPersonaOfLevel(
-            personaService->getRandomPersona(name, level), level, 1);
-
-        npc->Gender(random(2) ? "female" : "male");
-        npc->addAlias(name);
-
-        if (npc->Race() == "deity")
-        {
-            npc->apparentRace("human");
-        }
-        npc->Name(capitalize(name));
-
-        currentNonCombatEncounters += ({ npc });
-        move_object(npc, this_object());
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected void setUpEncounter(object player)
-{
-    if (!isSpawningEncounters)
-    {
-        currentEncounters = filter(currentEncounters,
-            (: objectp($1) && (environment($1) == this_object()) :));
-
-        if (objectp(player) && (time() > timeUntilNextEncounter) &&
-            sizeof(possibleEncounters) && !sizeof(currentEncounters))
-        {
-            timeUntilNextEncounter = time() + 300;
-
-            object personaService = getService("persona");
-
-            int baseLevel = (objectp(getRegion()) && getRegion()->regionLevel()) ?
-                getRegion()->regionLevel() : player->effectiveLevel();
-
-            string *encounterList = personaService->filterEncountersForLevel(
-                possibleEncounters, baseLevel);
-            if (sizeof(encounterList))
-            {
-                string name = encounterList[random(sizeof(encounterList))];
-
-                int count = 1;
-                if (member(({ "outlaw", "ruffian", "undead", "timber wolf", "gray wolf",
-                    "red wolf", "coyote", "zombie", "skeleton" }), name) > -1)
-                {
-                    count = 1 + random(3);
-                }
-
-                currentEncounters = ({ });
-                isSpawningEncounters = 1;
-                for (int i = 0; i < count; i++)
-                {
-                    int level = (objectp(getRegion()) && getRegion()->regionLevel()) ?
-                        (baseLevel - 2 + random(5)) :
-                        (baseLevel - 5 + random(11));
-
-                    object encounter = clone_object("/lib/realizations/monster.c");
-                    encounter->SetUpPersonaOfLevel(
-                        personaService->getRandomPersona(name, level), level, 1);
-
-                    encounter->Gender(random(2) ? "female" : "male");
-                    encounter->addAlias(name);
-
-                    if (encounter->Race() == "deity")
-                    {
-                        encounter->apparentRace("human");
-                    }
-                    string realName = name;
-                    if (encounter->apparentRace() &&
-                        (member(({ "outlaw", "ruffian", "skeleton", "zombie" }), name) > -1))
-                    {
-                        realName = sprintf("%s (%s)", name,
-                            capitalize(encounter->apparentRace()));
-                    }
-                    encounter->Name(realName);
-                    encounter->setUpRandomEquipment(5 + (encounter->effectiveLevel() * 3));
-
-                    move_object(encounter, this_object());
-                    currentEncounters += ({ encounter });
-                }
-                isSpawningEncounters = 0;
-            }
-        }
-
-        setUpNonCombatEncounter(player);
     }
 }
 

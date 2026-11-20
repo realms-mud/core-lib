@@ -11,6 +11,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "south");
     addShop("/lib/environment/shopInventories/dagger-smith.c");
+    addObject("/areas/eledhel/southern-city/characters/seli/seli.c");
 
     addExit("south", "/areas/eledhel/southern-city/swordsmith/0x1.c");
 }

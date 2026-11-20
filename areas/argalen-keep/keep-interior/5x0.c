@@ -14,8 +14,9 @@ public void Setup()
     addItem("/lib/environment/items/lighting/lit-torch.c", "west");
     addDecorator("keep interior south gatehouse");
 
-    addExit("south",
-        "/areas/argalen-keep/surrounding/12x8.c");
+    addExitWithDoor("south",
+        "/areas/argalen-keep/surrounding/12x8.c",
+        "/lib/environment/doors/keep-gate.c");
     addExit("north",
         "/areas/argalen-keep/keep-interior/5x1.c");
 }

@@ -33,6 +33,18 @@ public nomask mapping getPlayerHolding(object player, string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+public nomask mapping getAuthoredHolding(string location)
+{
+    mapping ret = 0;
+
+    if (member(AuthoredHoldings, location))
+    {
+        ret = AuthoredHoldings[location] + ([]);
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 public nomask string getLocationDisplayName(string location)
 {
     string ret = 0;

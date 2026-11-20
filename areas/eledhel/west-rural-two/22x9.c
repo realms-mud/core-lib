@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail south-west");
+    setShortDescription("The ash ridge");
     addFeature("/lib/environment/features/trees/ash-stand.c", "east");
 
     addExit("west", "/areas/eledhel/west-rural-two/21x9.c");

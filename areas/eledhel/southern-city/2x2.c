@@ -18,5 +18,5 @@ public void Setup()
 
     addExit("south", "/areas/eledhel/southern-city/2x1.c");
     addExit("east", "/areas/eledhel/southern-city/3x2.c");
-    addExit("west", "/areas/eledhel/southern-city/2x2.c");
+    addExit("west", "/areas/eledhel/southern-city/1x2.c");
 }

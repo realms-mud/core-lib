@@ -11,5 +11,6 @@ public void Setup()
 
     addExit("south", "/areas/eledhel/southwest-rural-two/18x1.c");
     addFeature("/lib/environment/features/paths/road.c", "south");
+    addRandomCreature(({ "boar", "ruffian", "gray fox" }));
 }
 

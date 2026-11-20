@@ -12,7 +12,9 @@ public void Setup()
     addFeature("/lib/environment/features/trees/elm-stand.c", "south");
     addFeature("/lib/environment/features/landforms/knoll.c", "northwest");
     addFeature("/lib/environment/features/water/brook.c", "southwest");
+    addDecorator("forest trail east");
 
     addExit("east", "/areas/argalen-keep/surrounding/9x4.c");
+    addExit("west", "/areas/argalen-keep/patrol-woods/24x4.c");
     addFeature("/lib/environment/features/paths/trail.c", "east");
 }

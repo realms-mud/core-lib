@@ -19,6 +19,13 @@ protected void Setup()
         "@S@'Though I'll say, things have been a mite unsettled "
         "lately. Strange folk on the roads, and the soldiers at the "
         "keep seem more on edge than usual.'");
+    addTopic("the inn", "@D@Aldric glances around the common room. "
+        "@S@'This is the warmest room in the village, and I try to "
+        "keep it welcoming. Travelers can rest here without having "
+        "to explain their whole lives at the door.'");
+    addTopic("the road", "@S@'The road south is usually quiet. "
+        "Lately, I would tell anyone traveling alone to keep an "
+        "eye out and come back before dark.'");
 
     addResponse("first conversation", "What can you tell me about this village?",
         "@S@'Argalen? It's a quiet place, mostly. Good folk, hard "
@@ -30,6 +37,13 @@ protected void Setup()
         "@D@Aldric chuckles and reaches for a tankard. "
         "@S@'That's what I like to hear! Take a seat and I'll "
         "pour you something proper.'");
+    addResponseTopic("first conversation", "I could use a drink.",
+        "the inn");
+    addResponse("first conversation", "Is the road safe?",
+        "@S@'Safe enough in daylight, but keep your wits about you. "
+        "The captain at the keep knows more than I do.'");
+    addResponseTopic("first conversation", "Is the road safe?",
+        "the road");
 
     addResponse("the village", "Strange folk?",
         "@D@Aldric glances around and lowers his voice. "
@@ -43,4 +57,12 @@ protected void Setup()
         "bit stern. His guards keep the peace, and in return we "
         "keep them fed and watered.' @D@He shrugs. @S@'It's a "
         "good arrangement.'");
+    addResponse("the village", "Where can I find a meal?",
+        "@S@'Here, if you have the coin. Marta can sell you food "
+        "for the road, but she won't cook it for you.'");
+    addResponseTopic("the village", "Where can I find a meal?",
+        "the inn");
+    addResponse("the road", "What should I do if I meet trouble?",
+        "@S@'Do not make yourself a hero over a rumor. Return to "
+        "the village and tell the keep's guards what you saw.'");
 }

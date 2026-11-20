@@ -47,3 +47,69 @@ protected mapping Locations = ([
         "type": "trading post"
     ]),
 ]);
+
+protected mapping AuthoredHoldings = ([
+    "house aladain":([
+        "id": "house-aladain",
+        "name": "House Aladain",
+        "owner": "Lord and Lady Aladain",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/aladain/grounds/3x4.c",
+        "type": "keep"
+    ]),
+    "house oeldhen":([
+        "id": "house-oeldhen",
+        "name": "House Oeldhen",
+        "owner": "House Oeldhen",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/oeldhen/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house llenwych":([
+        "id": "house-llenwych",
+        "name": "House Llenwych",
+        "owner": "House Llenwych",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/llenwych/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house urdhan":([
+        "id": "house-urdhan",
+        "name": "House Urdhan",
+        "owner": "House Urdhan",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/urdhan/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house hador":([
+        "id": "house-hador",
+        "name": "House Hador",
+        "owner": "House Hador",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/hador/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house endur":([
+        "id": "house-endur",
+        "name": "House Endur",
+        "owner": "House Endur",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/endur/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house celedrath":([
+        "id": "house-celedrath",
+        "name": "House Celedrath",
+        "owner": "Celedrath household",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/celedrath/grounds/0x2.c",
+        "type": "keep"
+    ])
+]);

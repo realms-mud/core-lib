@@ -9,6 +9,7 @@ public void Setup()
 {
     setRegionName("West of Eledhel - Rural");
     setRegionType("forest");
+    setRegionLevel(3);
     setDimensions(25, 10);
     // EntryCoordinate
     setSettlementChance(-1);
@@ -147,6 +148,10 @@ public void Setup()
         "/areas/eledhel/west-rural/22x7.c", "path");
     setCoordinate(23, 0,
         "/areas/eledhel/west-rural/23x0.c", "path");
+    setCoordinate(23, 1,
+        "/areas/eledhel/west-rural/23x1.c", "path");
+    setCoordinate(23, 2,
+        "/areas/eledhel/west-rural/23x2.c", "room");
     setCoordinate(23, 3,
         "/areas/eledhel/west-rural/23x3.c", "path");
     setCoordinate(23, 4,

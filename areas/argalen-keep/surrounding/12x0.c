@@ -12,6 +12,7 @@ public void Setup()
     addFeature("/lib/environment/features/trees/elm-stand.c", "east");
     addFeature("/lib/environment/features/landforms/dell.c", "southwest");
     addItem("/lib/environment/items/objects/signPost.c", "north");
+    addDecorator("forest trail intersection");
 
     addExit("north", "/areas/argalen-keep/surrounding/12x1.c");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
@@ -19,4 +20,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/trail.c", "west");
     addExit("east", "/areas/argalen-keep/surrounding/13x0.c");
     addFeature("/lib/environment/features/paths/trail.c", "east");
+    addExit("south", "/areas/argalen-keep/patrol-coast/12x0.c");
+    addFeature("/lib/environment/features/paths/trail.c", "south");
 }

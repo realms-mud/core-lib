@@ -4,6 +4,67 @@
 //*****************************************************************************
 
 private nosave mapping npcBlueprints = ([
+    "farmer":([
+        "description":"A farmer wears patched work clothes and carries "
+            "the marks of seasons spent tending crops and livestock.",
+        "category":"npcs",
+        "is humanoid":1,
+        "primary skills":({ "no armor", "common", "agriculture",
+            "animal handling", "perception" }),
+        "secondary skills":({ "dodge", "listen", "spot", "carpentry" }),
+        "traits":({}),
+        "potential traits":({}),
+        "aliases":({ "farm worker" }),
+        "base hit points":50,
+        "base spell points":10,
+        "base stamina points":40
+    ]),
+    "miller":([
+        "description":"A miller brushes flour from practical work "
+            "clothes, checking measures and listening to the machinery.",
+        "category":"npcs",
+        "is humanoid":1,
+        "primary skills":({ "no armor", "common", "agriculture",
+            "carpentry", "mathematics", "perception" }),
+        "secondary skills":({ "dodge", "listen", "spot", "wood crafting" }),
+        "traits":({}),
+        "potential traits":({}),
+        "aliases":({ "mill worker" }),
+        "base hit points":50,
+        "base spell points":10,
+        "base stamina points":40
+    ]),
+    "forester":([
+        "description":"A forester wears weathered working clothes and "
+            "keeps woodland tools close at hand. Their attention moves "
+            "between the trees, the trail, and anyone using it.",
+        "category":"npcs",
+        "is humanoid":1,
+        "primary skills":({ "no armor", "common", "wood crafting",
+            "animal handling", "perception" }),
+        "secondary skills":({ "dodge", "listen", "spot", "agriculture" }),
+        "traits":({}),
+        "potential traits":({}),
+        "aliases":({ "woodsman", "woodswoman", "hunter" }),
+        "base hit points":50,
+        "base spell points":10,
+        "base stamina points":40
+    ]),
+    "fisherman":([
+        "description":"A coastal fisher wears practical clothes marked "
+            "by salt and spray, and keeps a careful eye on wind and water.",
+        "category":"npcs",
+        "is humanoid":1,
+        "primary skills":({ "no armor", "common", "navigation",
+            "perception" }),
+        "secondary skills":({ "dodge", "listen", "spot", "agriculture" }),
+        "traits":({}),
+        "potential traits":({}),
+        "aliases":({ "coastal fisher", "net fisher" }),
+        "base hit points":50,
+        "base spell points":10,
+        "base stamina points":40
+    ]),
     "innkeeper":([
         "description": "An innkeeper is stout and welcoming, with ruddy cheeks and "
             "well-worn hands from years of hauling kegs and tending fires. "
@@ -84,5 +145,22 @@ private nosave mapping npcBlueprints = ([
         "base hit points": 40,
         "base spell points": 10,
         "base stamina points": 25
+    ]),
+    "city guard":([
+        "description": "A city guard is alert and disciplined, dressed in "
+            "serviceable armor bearing the local watch insignia. Their "
+            "eyes move constantly over the street, and one hand rests "
+            "near a well-kept weapon.",
+        "category": "npcs",
+        "is humanoid": 1,
+        "primary skills": ({ "hard leather", "common", "short sword",
+            "parry", "perception", "listen", "spot" }),
+        "secondary skills": ({ "dodge", "shield", "long sword" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "guard", "watch" }),
+        "base hit points": 80,
+        "base spell points": 10,
+        "base stamina points": 60
     ]),
 ]);

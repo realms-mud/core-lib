@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/hill.c", "southeast");
     addFeature("/lib/environment/features/trees/fir-stand.c", "west");
     addFeature("/lib/environment/features/landforms/crag.c", "east");
+    addDecorator("hill trail north-east bend");
 
     addExit("north", "/areas/argalen-keep/surrounding/15x3.c");
     addFeature("/lib/environment/features/paths/trail.c", "north");

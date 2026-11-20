@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
     addFeature("/lib/environment/features/landforms/dale.c", "east");
+    addDecorator("farm track intersection");
 
     addExit("south", "/areas/argalen-keep/surrounding/12x1.c");
     addExit("north", "/areas/argalen-keep/surrounding/12x3.c");

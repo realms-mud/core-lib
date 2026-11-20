@@ -997,7 +997,7 @@ protected mapping RegionTypes = ([
     ]),
 
     "wooden building":([
-        "interior": "/lib/environment/interiors/wooden-interior-shop.c",
+        "interior": "/lib/environment/interiors/wood-interior-shop.c",
         "potential features": ([ ]),
         "potential items": ([ "lighting": ([ "window": 10 ]),
             "furniture": ([ "counter": 8, "small-shelf": 5,

@@ -10,12 +10,11 @@ public void Setup()
     setRegionName("Argalen Keep Interior");
     setRegionType("stone keep");
     setDimensions(10, 8);
+    setEntryCoordinate(5, 0,
+        "/areas/argalen-keep/keep-interior/5x0.c", "south",
+        "/areas/argalen-keep/surrounding/12x8.c");
 
     // === Ground Floor ===
-    // Gatehouse entry (y=0)
-    setCoordinate(5, 0,
-        "/areas/argalen-keep/keep-interior/5x0.c", "none");
-
     // Courtyard (y=1)
     setCoordinate(4, 1,
         "/areas/argalen-keep/keep-interior/4x1.c", "none");

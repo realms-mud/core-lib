@@ -7,8 +7,9 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setRegionName("Western");
+    setRegionName("Eledhel - Western Wilds");
     setRegionType("forest");
+    setRegionLevel(4);
     setDimensions(25, 10);
     // EntryCoordinate
     setSettlementChance(-1);
@@ -129,6 +130,8 @@ public void Setup()
         "/areas/eledhel/west-rural-two/19x9.c", "path");
     setCoordinate(1, 0,
         "/areas/eledhel/west-rural-two/1x0.c", "exit");
+    setCoordinate(1, 1,
+        "/areas/eledhel/west-rural-two/1x1.c", "path");
     setCoordinate(1, 2,
         "/areas/eledhel/west-rural-two/1x2.c", "room");
     setCoordinate(1, 3,

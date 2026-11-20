@@ -9,7 +9,6 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/wood-interior-shop.c");
 
-    addDecorator("village large house");
     addItem("/lib/environment/items/lighting/window.c", "south");
     addItem("/lib/environment/items/furniture/counter.c", "north");
     addItem("/lib/environment/items/furniture/small-shelf.c", "east");
@@ -17,7 +16,8 @@ public void Setup()
     addItem("/lib/environment/items/lighting/oil-lamp.c", "north");
     addShop("/lib/environment/shopInventories/apothecary.c");
 
-    addObject("/areas/argalen-keep/surrounding/characters/marta/marta.c");
+    addDecorator("village market");
 
-    addExitWithDoor("west", "/areas/argalen-keep/surrounding/13x5.c");
+    addExitWithDoor("west", "/areas/argalen-keep/surrounding/13x5.c",
+        "/lib/environment/doors/plank-door.c");
 }

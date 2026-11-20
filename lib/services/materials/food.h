@@ -7,6 +7,53 @@
 
 protected mapping food =
 ([
+    "blackberry": ([
+        "type":"fruit",
+        "subtype":"berry",
+        "crafting prerequisites":([
+            "agriculture":(["type":"skill", "value":3])
+        ]),
+        "default description":"A dark bramble berry, soft and sweet "
+            "beneath its cluster of small glossy drupelets.",
+        "base experience":1
+    ]),
+    "raspberry": ([
+        "type":"fruit",
+        "subtype":"berry",
+        "crafting prerequisites":([
+            "agriculture":(["type":"skill", "value":3])
+        ]),
+        "default description":"A delicate red berry with a hollow "
+            "center and a fragrant, slightly tart flesh.",
+        "base experience":1
+    ]),
+    "cabbage": ([
+        "type":"vegetable",
+        "crafting prerequisites":([
+            "agriculture":(["type":"skill", "value":3])
+        ]),
+        "default description":"A compact head of pale green leaves "
+            "wrapped tightly around a crisp heart.",
+        "base experience":1
+    ]),
+    "kale": ([
+        "type":"vegetable",
+        "crafting prerequisites":([
+            "agriculture":(["type":"skill", "value":3])
+        ]),
+        "default description":"A handful of dark, curled leaves with "
+            "firm stems, suitable for the village cooking pot.",
+        "base experience":1
+    ]),
+    "pumpkin": ([
+        "type":"vegetable",
+        "crafting prerequisites":([
+            "agriculture":(["type":"skill", "value":3])
+        ]),
+        "default description":"A small orange pumpkin with a hard "
+            "ridged rind and a thick, woody stalk.",
+        "base experience":1
+    ]),
     "tomato": ([
         "type": "vegetable",
         "subtype": "tomato",

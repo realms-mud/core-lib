@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail east-west");
+    setShortDescription("The falls on gulley creek");
     addFeature("/lib/environment/features/water/ravine-waterfall.c", "southwest");
     addFeature("/lib/environment/features/water/gulley-creek.c", "southwest");
 

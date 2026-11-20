@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail south");
+    setShortDescription("The maple ford");
     addFeature("/lib/environment/features/trees/maple-stand.c", "south");
 
     addExit("south", "/areas/eledhel/west-rural-two/3x5.c");

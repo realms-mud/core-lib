@@ -8,7 +8,8 @@ inherit "/lib/environment/region.c";
 public void Setup()
 {
     setRegionName("southwest-rural-two");
-    setRegionType("rural");
+    setRegionType("hilly rural");
+    setRegionLevel(3);
     setDimensions(25, 5);
     setEntryCoordinate(24, 3,
         "/areas/eledhel/southwest-rural-two/24x3.c", "east",

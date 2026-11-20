@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/civic/university-building.c",
-        "north", "/areas/eledhel/southern-city/university/10x0.c");
+        "north");
 
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");

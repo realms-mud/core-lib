@@ -14,5 +14,5 @@ public void Setup()
     addExit("east", "/areas/eledhel/west-rural/22x1.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
 
-    addRandomCreature(({"ruffian","zombie","gopher","boar"}));
+    addRandomCreature(({"ruffian","gopher","boar"}));
 }

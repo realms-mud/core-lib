@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail T-south");
+    setShortDescription("The canyon-brook fork");
     addFeature("/lib/environment/features/water/canyon-brook.c", "west");
 
     addExit("south", "/areas/eledhel/west-rural-two/10x8.c");

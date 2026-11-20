@@ -6,6 +6,7 @@ virtual inherit "/lib/environment/modules/environment/core.c";
 virtual inherit "/lib/environment/modules/environment/bonuses.c";
 virtual inherit "/lib/environment/modules/environment/description.c";
 virtual inherit "/lib/environment/modules/environment/elements.c";
+virtual inherit "/lib/environment/modules/environment/encounters.c";
 virtual inherit "/lib/environment/modules/environment/exits.c";
 virtual inherit "/lib/environment/modules/environment/generated-region.c";
 virtual inherit "/lib/environment/modules/environment/harvest.c";
@@ -125,12 +126,6 @@ public nomask int move(string str)
 
     return moveToDestination(this_player(), direction, destination, 
         region, state);
-}
-
-/////////////////////////////////////////////////////////////////////////////
-protected void setUpEncounter(object player)
-{
-
 }
 
 /////////////////////////////////////////////////////////////////////////////

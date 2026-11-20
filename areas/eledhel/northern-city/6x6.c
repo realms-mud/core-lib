@@ -8,6 +8,10 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
-
-    addDecorator("tall southwest tower");
+    setShortDescription("The paved approach to Arena Park");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "east");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
+    addDecorator("east-west road");
+    addExit("east", "/areas/eledhel/northern-city/7x6.c");
+    addExit("west", "/areas/eledhel/northern-city/5x6.c");
 }

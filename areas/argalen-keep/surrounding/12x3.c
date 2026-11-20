@@ -14,7 +14,7 @@ public void Setup()
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
     addFeature("/lib/environment/features/trees/apple-stand.c", "southwest");
 
-    addDecorator("village north-south road");
+    addDecorator("farm track intersection");
 
     addExit("south", "/areas/argalen-keep/surrounding/12x2.c");
     addExit("north", "/areas/argalen-keep/surrounding/12x4.c");

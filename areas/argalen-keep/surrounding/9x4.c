@@ -11,6 +11,7 @@ public void Setup()
     addFeature("/lib/environment/features/trees/oak-stand.c", "east");
     addFeature("/lib/environment/features/trees/walnut-stand.c", "north");
     addFeature("/lib/environment/features/water/brook.c", "south");
+    addDecorator("forest trail T-west");
 
     addExit("west", "/areas/argalen-keep/surrounding/8x4.c");
     addFeature("/lib/environment/features/paths/trail.c", "west");

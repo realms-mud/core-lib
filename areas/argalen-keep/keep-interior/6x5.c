@@ -11,10 +11,12 @@ public void Setup()
 
     setInterior("/lib/environment/interiors/hallway.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "south");
-    addDecorator("keep interior east-west hallway");
+    addDecorator("keep interior east-west hallway north entry");
 
     addExit("west",
         "/areas/argalen-keep/keep-interior/5x5.c");
     addExit("east",
         "/areas/argalen-keep/keep-interior/7x5.c");
+    addExitWithDoor("north",
+        "/areas/argalen-keep/keep-interior/6x6.c");
 }

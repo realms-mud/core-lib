@@ -334,6 +334,7 @@ protected nomask mapping getPlayerDomainData(string player, int dbHandle)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
 private nomask void saveUnitTraits(int dbHandle, int unitId,
     string *traits)
 {
@@ -360,7 +361,7 @@ private nomask void saveUnitTraits(int dbHandle, int unitId,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void saveDomainUnits(int dbHandle, int componentId, 
+private nomask void saveDomainUnits(int dbHandle, int componentId,
     mapping data)
 {
     if (sizeof(data))
@@ -501,7 +502,8 @@ private nomask void saveDomainComponentMaterials(int dbHandle, int componentId,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void saveDomainComponents(int dbHandle, int sectionId, mapping data)
+private nomask void saveDomainComponents(int dbHandle, int sectionId,
+    mapping data)
 {
     if (sizeof(data))
     {
@@ -535,7 +537,8 @@ private nomask void saveDomainComponents(int dbHandle, int sectionId, mapping da
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void saveDomainSections(int dbHandle, int domainId, mapping data)
+private nomask void saveDomainSections(int dbHandle, int domainId,
+    mapping data)
 {
     if (sizeof(data))
     {

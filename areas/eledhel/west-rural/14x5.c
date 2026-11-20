@@ -16,5 +16,5 @@ public void Setup()
     addExit("west", "/areas/eledhel/west-rural/13x5.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
 
-    addRandomCreature(({"warg","otter","keeper of the night","mink","opossum"}));
+    addRandomCreature(({"warg","otter","mink","opossum"}));
 }

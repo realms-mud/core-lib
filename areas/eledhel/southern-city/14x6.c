@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/trades/smelter.c",
-        "east", "/areas/eledhel/southern-city/smelter/0x0.c");
+        "east");
 
     addExit("north", "/areas/eledhel/southern-city/14x7.c");
     addExit("south", "/areas/eledhel/southern-city/14x5.c");

@@ -9,6 +9,7 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/brick-interior-shop.c");
     addShop("/lib/environment/shopInventories/medium-armorer.c");
+    addObject("/areas/eledhel/southern-city/characters/liora/liora.c");
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/lighting/window.c", "east");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "south");

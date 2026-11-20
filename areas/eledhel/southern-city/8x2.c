@@ -8,8 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c", 
-        "north", "/areas/eledhel/southern-city/scion-of-dhuras/5x0.c");
+    addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c",
+        "north");
     addBuilding("/lib/environment/buildings/military/military-training-ground.c",
         "south");
     addBuilding("/lib/environment/buildings/military/city-wall.c", "south");

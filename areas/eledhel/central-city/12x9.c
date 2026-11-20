@@ -9,6 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
+    addDecorator("north-south road");
     addExit("north", "/areas/eledhel/northern-city/12x0.c");
     addExit("south", "/areas/eledhel/central-city/12x8.c");
 }

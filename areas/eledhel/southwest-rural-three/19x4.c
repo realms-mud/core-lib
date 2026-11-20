@@ -13,5 +13,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/road.c", "south");
     addExit("east", "/areas/eledhel/southwest-rural-three/20x4.c");
     addFeature("/lib/environment/features/paths/road.c", "east");
+    addRandomCreature(({ "outlaw", "coyote", "raccoon" }));
 }
 

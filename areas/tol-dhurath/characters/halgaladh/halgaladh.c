@@ -50,4 +50,10 @@ protected void Setup()
     generator.CreateAegisEquipment(this_object());
 
     addConversation("/areas/tol-dhurath/characters/halgaladh/startingConversation.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/halgaladh/return-to-aegis-camp.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/halgaladh/evendim-squad.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/halgaladh/gift-training.c");
 }

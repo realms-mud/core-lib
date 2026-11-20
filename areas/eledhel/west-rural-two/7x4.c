@@ -2,12 +2,14 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
-inherit "/lib/environment/generatedEnvironment.c";
+inherit "/lib/environment/environment.c";
 
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail north-south");
+    setShortDescription("The cherrywood path");
     addFeature("/lib/environment/features/trees/beech-stand.c", "north");
     addFeature("/lib/environment/features/trees/elm-stand.c", "north");
     addFeature("/lib/environment/features/trees/bing-cherry-stand.c", "north");

@@ -16,5 +16,8 @@ public void Setup()
 
     addObject("/areas/argalen-keep/surrounding/characters/marta/marta.c");
 
-    addExitWithDoor("west", "/areas/argalen-keep/surrounding/13x5.c");
+    addDecorator("village market");
+
+    addExitWithDoor("west", "/areas/argalen-keep/surrounding/13x5.c",
+        "/lib/environment/doors/plank-door.c");
 }

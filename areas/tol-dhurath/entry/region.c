@@ -9,6 +9,7 @@ public void Setup()
 {
     setRegionName("Tol-Dhurath Entry");
     setRegionType("forest");
+    setRegionLevel(3);
     setDimensions(25, 10);
 
     setCoordinate(0, 0,

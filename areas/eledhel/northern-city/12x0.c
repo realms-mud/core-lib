@@ -9,5 +9,10 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
 
-    addDecorator("tall southwest tower");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "south");
+    addDecorator("north-south road");
+
+    addExit("north", "/areas/eledhel/northern-city/12x1.c");
+    addExit("south", "/areas/eledhel/central-city/12x9.c");
 }

@@ -13,5 +13,7 @@ public void Setup()
     addFeature("/lib/environment/features/paths/road.c", "south");
     addExit("east", "/areas/eledhel/southern-rural/3x6.c");
     addFeature("/lib/environment/features/paths/road.c", "east");
+    addExit("north", "/areas/eledhel/estates/urdhan/grounds/0x2.c");
+    addFeature("/lib/environment/features/paths/path.c", "north");
 }
 

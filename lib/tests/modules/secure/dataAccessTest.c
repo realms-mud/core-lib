@@ -573,3 +573,4 @@ void UpdatesToUnitTraitsSavedCorrectly()
     ExpectEq(data["domains"]["argalach castle"]["keep"]["components"]["main stone keep"]["units"],
         loadedData["argalach castle"]["keep"]["components"]["main stone keep"]["units"]);
 }
+

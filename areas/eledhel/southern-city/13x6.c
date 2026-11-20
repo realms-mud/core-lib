@@ -9,6 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addShop("/lib/environment/shopInventories/jeweler.c");
+    addObject("/areas/eledhel/southern-city/characters/thessan/thessan.c");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "east");
     addItem("/lib/environment/items/lighting/window.c", "west");
 

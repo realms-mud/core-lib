@@ -9,6 +9,7 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/wood-interior-shop.c");
     addShop("/lib/environment/shopInventories/bowyer.c");
+    addObject("/areas/eledhel/southern-city/characters/othar/othar.c");
     addItem("/lib/environment/items/lighting/window.c", "west");
     addItem("/lib/environment/items/lighting/window.c", "south");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");

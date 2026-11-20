@@ -16,6 +16,9 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "north");
     addExit("west", "/areas/eledhel/west-rural/21x2.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
+    addExit("east", "/areas/eledhel/west-rural/23x2.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
+    addDecorator("village road T-north");
 
     addRandomCreature(({"ruffian","black bear","outlaw","timber wolf","opossum"}));
 }

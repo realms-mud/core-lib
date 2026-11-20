@@ -13,4 +13,9 @@ public void Setup()
     addFeature("/lib/environment/features/paths/road.c", "west");
     addExit("east", "/areas/eledhel/southwest-rural-one/12x3.c");
     addFeature("/lib/environment/features/paths/road.c", "east");
+    addExit("north", "/areas/eledhel/estates/hador/grounds/0x2.c");
+    addFeature("/lib/environment/features/paths/path.c", "north");
+    addRandomCreature(({
+        "white-tail deer", "red fox", "ruffian", "outlaw"
+    }));
 }

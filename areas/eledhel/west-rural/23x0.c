@@ -14,4 +14,7 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "west");
     addExit("east", "/areas/eledhel/west-rural/24x0.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
+    addExit("south", "/areas/eledhel/west-rural/23x1.c");
+    addFeature("/lib/environment/features/paths/path.c", "south");
+    addDecorator("village road T-south");
 }

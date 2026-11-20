@@ -34,7 +34,6 @@ public nomask int buildDomainUpgrade(string location, string element,
 {
     int ret = 0;
     object Service = getService("domain");
-
     if (member(holdings, location))
     {
         string type = getDomainType(location);

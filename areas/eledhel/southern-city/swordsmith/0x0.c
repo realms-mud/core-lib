@@ -11,6 +11,7 @@ public void Setup()
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");
     addItem("/lib/environment/items/lighting/window.c", "west");
     addShop("/lib/environment/shopInventories/swordsmith.c");
+    addObject("/areas/eledhel/southern-city/characters/harn/harn.c");
 
     addExit("north", "/areas/eledhel/southern-city/swordsmith/0x1.c");
 }

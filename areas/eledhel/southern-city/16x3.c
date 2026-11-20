@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/shops/inn.c",
-        "east", "/areas/eledhel/southern-city/inn/0x0.c");
+        "east");
     addBuilding("/lib/environment/buildings/homes/large-limestone-house.c",
         "west");
 

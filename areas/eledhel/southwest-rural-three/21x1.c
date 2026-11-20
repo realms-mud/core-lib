@@ -13,5 +13,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/road.c", "east");
     addExit("north", "/areas/eledhel/southwest-rural-three/21x2.c");
     addFeature("/lib/environment/features/paths/road.c", "north");
+    addRandomCreature(({ "gray wolf", "ruffian", "red fox" }));
 }
 

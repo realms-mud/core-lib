@@ -37,6 +37,12 @@ protected void Setup()
     addTrait("/lib/instances/traits/personality/stubborn.c");
 
     addConversation("/areas/tol-dhurath/characters/vilias/startingConversation.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/vilias/visited-by-vilias.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/vilias/vilias-tale.c");
+    addConversation(
+        "/areas/tol-dhurath/characters/vilias/vilias-in-the-mind.c");
 }
 
 /////////////////////////////////////////////////////////////////////////////

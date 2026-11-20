@@ -2624,9 +2624,9 @@ private mapping KeepInteriorIcons = ([
                 ])
             ])
         ]),
-        "ascii": ({ ({ "#floor# ", "#floor# ", "#floor# ", }),
-            ({ "#floor# ", "#floor# ", "#floor# ", }),
-            ({ "#floor# ", "#floor# ", "#floor# ", }) }),
+        "ascii": ({ ({ "#floor#.", "#floor#.", "#floor#.", }),
+            ({ "#floor#.", "#floor#.", "#floor#.", }),
+            ({ "#floor#.", "#floor#.", "#floor#.", }) }),
         "unicode": ({ ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
             ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }),
             ({ "#floor#\u2591", "#floor#\u2591", "#floor#\u2591" }) })

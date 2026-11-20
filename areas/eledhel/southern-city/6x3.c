@@ -9,7 +9,7 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
     addBuilding("/lib/environment/buildings/guilds/scion-of-dhuras.c",
-        "east", "/areas/eledhel/southern-city/scion-of-dhuras/0x1.c");
+        "east");
 
     addExit("north", "/areas/eledhel/southern-city/6x4.c");
     addExit("south", "/areas/eledhel/southern-city/6x2.c");

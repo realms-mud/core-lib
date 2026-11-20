@@ -37,6 +37,38 @@ void SettingInvalidRegionTypeThrowsError()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void WoodenShopFloorPlanUsesAnExistingInterior()
+{
+    mapping floorPlan = getService("region")->getFloorPlan("wooden shop");
+    ExpectTrue(mappingp(floorPlan));
+    ExpectEq("/lib/environment/interiors/wood-interior-shop.c",
+        floorPlan["interior"]);
+    ExpectTrue(load_object(floorPlan["interior"]));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void WoodenBuildingRegionUsesAnExistingInterior()
+{
+    object region = clone_object(
+        "/lib/tests/support/environment/regionHelper.c");
+    region.setRegionName("A wooden building");
+    region.setRegionType("wooden building");
+    region.setDimensions(5, 5);
+
+    mapping room = getService("region")->generateRoomData(region, ([
+        "x":2,
+        "y":2,
+        "room type":"room",
+        "exits":([])
+    ]));
+    string interior = room["interior"];
+    ExpectEq("/lib/environment/interiors/wood-interior-shop.c", interior);
+    ExpectTrue(load_object(interior));
+
+    destruct(region);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void CannotGenerateRegionWithoutType()
 {
     Region.setRegionName("a forest");
@@ -395,6 +427,71 @@ void GetMapIconReturnsWithNoColorWithASCII()
             ({ "+", "-", "+" }) }),
         Service.getMapIcon(region,
             "ruined interior south gatehouse", "none", "ascii"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void NewLandscapeIconsRenderInBothCharacterSets()
+{
+    string error;
+    object Service;
+    object region;
+    string *decorators;
+
+    error = catch (set_this_player(Player));
+    ExpectEq(0, error, "Was able to call set_this_player");
+
+    Service = getService("region");
+    region =
+        load_object("/areas/tol-dhurath/temple-interior/region.c");
+    decorators = ({
+        "forest trail east",
+        "forest trail west",
+        "forest trail north",
+        "forest trail north-east",
+        "forest trail north-west",
+        "forest trail south-east",
+        "forest trail T-north",
+        "forest trail T-west",
+        "forest trail intersection",
+        "farm track east-west",
+        "farm track north-south",
+        "farm track intersection",
+        "farm track T-north",
+        "farm track T-south",
+        "farm track T-east",
+        "farm track T-west",
+        "farm path north-east bend",
+        "farm path south-east bend",
+        "farm path south-west bend",
+        "farm path south dead end",
+        "farm path west dead end",
+        "farm orchard intersection",
+        "farm threshing yard",
+        "hill pass east-west",
+        "hill pass north-south",
+        "hill quarry T-west",
+        "hill quarry T-east",
+        "hill trail south-west bend",
+        "hill trail north-east bend",
+        "hill trail west dead end",
+        "rocky shore",
+        "sandy shore",
+        "cave north-west passage",
+        "cave south-west passage",
+        "cave south-east passage"
+    });
+
+    foreach(string charset in ({ "ascii", "unicode" }))
+    {
+        foreach(string decorator in decorators)
+        {
+            ExpectNotEq(({ ({ " ", " ", " " }),
+                ({ " ", " ", " " }), ({ " ", " ", " " }) }),
+                Service.getMapIcon(region, decorator, "none", charset),
+                sprintf("The %s icon renders in the %s character set",
+                    decorator, charset));
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

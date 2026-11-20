@@ -12,6 +12,7 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/dale.c", "south");
     addBuilding("/lib/environment/buildings/homes/farm-house.c", "north");
     addBuilding("/lib/environment/buildings/trades/barn.c", "southwest");
+    addDecorator("farm track east-west");
 
     addExit("east", "/areas/argalen-keep/surrounding/12x3.c");
     addFeature("/lib/environment/features/paths/dirt-road.c", "east");

@@ -13,5 +13,8 @@ public void Setup()
     addFeature("/lib/environment/features/paths/road.c", "south");
     addExit("east", "/areas/eledhel/southwest-rural-two/13x1.c");
     addFeature("/lib/environment/features/paths/road.c", "east");
+    addExit("west", "/areas/eledhel/estates/endur/grounds/0x2.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
+    addRandomCreature(({ "mule deer", "timber wolf", "outlaw" }));
 }
 

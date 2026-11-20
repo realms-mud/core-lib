@@ -8,7 +8,7 @@ virtual inherit "/lib/items/book.c";
 protected void Setup()
 {
     set("name", "The Founding of Eledhel");
-    set("short", "A book titled 'A Song of Ruin and Renewal");
+    set("short", "A book titled 'The Founding of Eledhel'");
     set("title",
         "The Founding of Eledhel: A Song of Ruin and Renewal");
     set("aliases",

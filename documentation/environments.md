@@ -45,7 +45,6 @@ optional steps:
 - Add cloned objects - these would be monsters/NPCs, weapons, armor, treasures, and so on
 - Add shop/shop inventory - If the environment is a shop, you can specify the type of shop and set up the buying/selling of items.
 - Add exits - You can attach environments togetherby setting up actions and the desired destination.
-- Set an additional long description
 - Set a short description.
 - Set up a state machine to drive interesting behaviors. 
 
@@ -253,17 +252,17 @@ for examples) and the optional key object if the door is locked / lockable (see
 
 #### Regions
 
-##### Region Auto-Generation
+A mapped area inherits `/lib/environment/region.c`. Register each authored
+room with `setCoordinate(x, y, path, roomType)`. The fourth argument is a
+room-type label such as `"entry"`, `"path"`, or `"room"`; it is not a state
+machine state. State-dependent exits and environmental elements are defined
+on the room itself.
 
-The system supports automatic generation of regions using several sophisticated 
-algorithms. This is handled through the generate-region.c module, which can create:
-
-- **Terrain-based regions**: Automatically generates outdoor areas with appropriate terrain transitions
-- **Settlement generation**: Creates villages, towns, and cities with logical building placement
-- **Path generation**: Automatically creates roads, trails, and connections between locations
-- **Room generation**: Creates interior spaces with appropriate connections and features
-
-To use auto-generation, you typically create a region controller file that defines the parameters:
+Use `setEntryCoordinate` to identify a region's entry room and its connection
+to the adjoining area. Use `setExitCoordinate` for a region's outward exit.
+Dimensions may be smaller than 5x5 only after calling `asManualRegion()`.
+Ordinary mapped world geography should use hand-authored rooms and explicit
+coordinates rather than runtime region generation.
 
 ~~~c
 inherit "/lib/environment/region.c";
@@ -271,12 +270,17 @@ inherit "/lib/environment/region.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    setName("mystical forest");
-    setDimensions(10, 10);
-    setTerrainType("forest");
-    setSettlementDensity(0.1);
-    setPathDensity(0.3);
-    generateRegion();
+    setRegionName("a forest road");
+    setRegionType("forest");
+    setRegionLevel(3);
+    setDimensions(5, 5);
+
+    setEntryCoordinate(0, 2, "/areas/example/forest/0x2.c", "west",
+        "/areas/example/previous-region/24x5.c");
+    setCoordinate(1, 2, "/areas/example/forest/1x2.c", "path");
+    setCoordinate(2, 2, "/areas/example/forest/2x2.c", "path");
+    setExitCoordinate(4, 2, "/areas/example/forest/4x2.c",
+        "/areas/example/next-region/0x2.c");
 }
 ~~~
 
@@ -313,12 +317,13 @@ Map decorators are defined in header files located in `/lib/services/regions/ico
 
 - **keep-interior-icons.h** - Keep and castle interior representations
 - **ruined-interior-icons.h** - Ruined building and dungeon interiors
+- **temple-interior-icons.h** and **crypt-interior-icons.h** - Specialized interiors
 - **forest-icons.h** - Forest and woodland terrain representations
-- **mountain-icons.h** - Mountain and rocky terrain representations
-- **desert-icons.h** - Desert and arid terrain representations
-- **water-icons.h** - Water and aquatic terrain representations
-- **urban-icons.h** - City and town representations
-- **underground-icons.h** - Cave and underground representations
+- **farm-icons.h** - Farm tracks, fields, orchards, and working yards
+- **hill-icons.h** - Hill passes and quarry routes
+- **coast-icons.h** - Rocky and sandy shores
+- **cave-icons.h** - Cave passages
+- **city-icons.h**, **temple-icons.h**, and **village-icons.h** - Settlement and landmark representations
 
 ###### Decorator Structure
 
@@ -545,26 +550,6 @@ graphical clients, while maintaining compatibility across different
 terminal types and color capabilities.
 
 
-#### Additional Descriptions
-~~~c
-varargs void setAdditionalLongDescription(string description, string state);
-~~~
-
-This method allows you to add supplementary descriptive text that appears after 
-the standard environmental description. The description can contain embedded efun 
-calls and template variables as described in the environmental element documentation.
-
-The optional state parameter allows you to make the additional description 
-conditional on the current state of the environment's state machine. This enables 
-dynamic descriptions that change based on events, time, or other conditions.
-
-Examples:
-~~~c
-setAdditionalLongDescription("A gentle breeze stirs the leaves overhead.");
-setAdditionalLongDescription("The area is filled with the acrid smell of smoke.", "on fire");
-setAdditionalLongDescription("##Season## flowers bloom along the path.", "spring");
-~~~
-
 #### Short Descriptions
 ~~~c
 void setShortDescription(string newShort);
@@ -608,40 +593,6 @@ setStateMachine("/lib/environment/stateMachines/forgeFire.c");
 This might control a forge that can be lit and extinguished, changing the 
 environment's lighting, available actions, and descriptions.
 
-##### Environmental Bonuses
-Environmental bonuses provide mechanical benefits to characters in specific 
-locations. These are managed through the bonuses.c module and can affect:
-
-- **Skill bonuses**: Improvements to specific skills while in the environment
-- **Attribute bonuses**: Temporary increases to character attributes
-- **Healing bonuses**: Enhanced recovery rates for health, spell points, or stamina
-- **Resistance bonuses**: Protection against specific damage types or effects
-
-Environmental bonuses can be:
-- **Permanent**: Always active while in the environment
-- **Conditional**: Active only under certain conditions or states
-- **Time-based**: Active during specific times of day or seasons
-- **Faction-based**: Available only to specific character types or factions
-
-Examples of environmental bonus setup:
-~~~c
-// In a library environment
-addBonus("research", 5);
-addBonus("magic theory", 3);
-
-// In a temple environment
-addBonus("anatomy and physiology", 8);
-addBonus("resist evil", 20);
-
-// In a forge environment
-addBonus("blacksmithing", 10);
-addBonus("weapon smithing", 5);
-~~~
-
-These bonuses are automatically applied when characters enter the environment 
-and removed when they leave, providing immersive mechanical benefits that 
-encourage exploration and strategic positioning.
-
 #### Complete Environment Examples
 
 Here are some complete examples showing how these various components work together:
@@ -656,22 +607,14 @@ public void Setup()
     setTerrain("/lib/environment/terrain/forest.c");
     
     addFeature("/lib/environment/features/clearing.c", "center");
-    addFeature("/lib/environment/features/stream.c", "east");
-    addItem("/lib/environment/items/campfire.c", "center");
+    addFeature("/lib/environment/features/water/stream.c", "east");
+    addItem("/lib/environment/items/lighting/lantern.c", "center");
+    addDecorator("deciduous forest 1");
     
     addExit("north", "/domains/forest/rooms/path1.c");
     addExit("south", "/domains/forest/rooms/path2.c");
     
-    setAdditionalLongDescription("Wildflowers carpet the ground in a "
-        "riot of color.", "spring");
-    setAdditionalLongDescription("The clearing is filled with the "
-        "golden light of autumn.", "fall");
-    
     setShortDescription("a peaceful forest clearing");
-    
-    // Bonus for nature-related activities
-    addBonus("survival", 8);
-    addBonus("herbalism", 5);
 }
 ~~~
 
@@ -684,25 +627,17 @@ public void Setup()
 {
     setInterior("/lib/environment/interiors/temple.c");
     
-    addFeature("/lib/environment/features/altar.c", "north");
+    addItem("/lib/environment/items/furniture/pew.c", "north");
     addItem("/lib/environment/items/lighting/brazier.c", "northeast");
     addItem("/lib/environment/items/lighting/brazier.c", "northwest");
-    addItem("/lib/environment/items/pews.c", "center");
+    addItem("/lib/environment/items/furniture/pew.c", "center");
     
     addExit("south", "/domains/temple/rooms/entrance.c");
     addExit("east", "/domains/temple/rooms/side-chapel.c");
     
     setStateMachine("/lib/environment/stateMachines/templeRitual.c");
     
-    setAdditionalLongDescription("The altar glows with divine light, "
-        "and the air thrums with sacred energy.", "blessed");
-    
     setShortDescription("the temple sanctuary");
-    
-    // Healing bonuses in consecrated space
-    addBonus("healing", 10);
-    addBonus("resist evil", 25);
-    addBonus("divine magic", 8);
 }
 ~~~
 
@@ -720,15 +655,12 @@ public void Setup()
     addItem("/lib/environment/items/shelves.c", "west");
     addItem("/lib/environment/items/lighting/lantern.c", "ceiling");
     
-    addShop("/lib/environment/shopInventories/weaponsmith.c");
+    addShop("/lib/environment/shopInventories/swordsmith.c");
     
     addExit("out", "/domains/town/rooms/market-square.c");
     
     setShortDescription("a cluttered weapon shop");
     
-    // Bonus for appraising weapons
-    addBonus("appraisal", 5);
-    addBonus("weapon lore", 3);
 }
 ~~~
 
