@@ -495,4 +495,342 @@ private nosave mapping fighterBlueprints = ([
         "base spell points": 100,
         "base stamina points": 50
     ]),
+    "bard": ([
+        "description": "Bards are quick-witted performers, equally at ease in a crowded "
+            "tavern and a dangerous skirmish. Their instruments and voices carry "
+            "stories, taunts, and stirring refrains that unsettle their foes.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "short sword", "dagger", "no armor", "spellcraft",
+            "magical essence", "dodge", "parry" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "reading", "anatomy and physiology", "persuasion" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "bard", "skald", "minstrel" }),
+        "equipment": ([
+            "weapons": ({ "swords", "daggers" }),
+            "armor/clothing": ({ "robes", "leathers" }),
+            "armor/accessories": ({ "boots", "gloves", "ring", "amulet" })
+        ]),
+        "attacks": ([ "sonic": 15 ]),
+        "research": ([
+            "battle melody": 1,
+            "dissonant chord": 10,
+            "anthem of courage": 15
+        ]),
+        "base hit points": 80,
+        "base spell points": 80,
+        "base stamina points": 60
+    ]),
+    "rogue": ([
+        "description": "Rogues favor speed, caution, and unfair advantages. They move "
+            "quietly, watch every opening, and carry the light weapons needed to "
+            "strike before an opponent can react.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "dagger", "short sword", "no armor", "dodge",
+            "parry", "dual wield" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "reading", "anatomy and physiology", "short sword" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "rogue", "thief" }),
+        "equipment": ([
+            "weapons": ({ "daggers", "swords" }),
+            "armor": ({ "light-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gloves", "ring" })
+        ]),
+        "attacks": ([ "physical": 20 ]),
+        "research": ([
+            "cheap shot": 1,
+            "crippling strike": 10,
+            "lethal opening": 15
+        ]),
+        "base hit points": 80,
+        "base spell points": 40,
+        "base stamina points": 80
+    ]),
+    "monk": ([
+        "description": "Monks are disciplined martial artists whose calm movements hide "
+            "explosive speed. Their training turns empty hands into formidable "
+            "weapons and lets them withstand blows that would stagger others.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "unarmed", "parry", "dodge", "no armor", "staff",
+            "body", "spirit", "transformation" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "reading", "anatomy and physiology" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "monk", "martial artist" }),
+        "equipment": ([
+            "weapons": ({ "staffs" }),
+            "armor/clothing": ({ "robes" }),
+            "armor/accessories": ({ "boots", "gloves", "amulet" })
+        ]),
+        "attacks": ([ "bludgeon": 20 ]),
+        "research": ([
+            "palm strike": 1,
+            "chi burst": 10,
+            "hundred strikes": 15
+        ]),
+        "base hit points": 90,
+        "base spell points": 60,
+        "base stamina points": 70
+    ]),
+    "ranger": ([
+        "description": "Rangers are self-reliant scouts who know the wilds as well as "
+            "their own weapons. They watch the land for danger, strike from range, "
+            "and adapt quickly when a fight closes in.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "bow", "dagger", "short sword", "dodge",
+            "hard leather", "no armor", "animal", "plant", "perception" }),
+        "secondary skills": ({ "parry", "listen", "spot", "common", "reading",
+            "anatomy and physiology", "elemental earth", "elemental water" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "ranger", "scout", "warden" }),
+        "equipment": ([
+            "weapons": ({ "bows", "daggers", "swords" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gloves", "ring" })
+        ]),
+        "attacks": ([ "arrow": 20 ]),
+        "research": ([
+            "aimed shot": 1,
+            "elemental arrow": 10,
+            "hunters volley": 15
+        ]),
+        "base hit points": 100,
+        "base spell points": 40,
+        "base stamina points": 70
+    ]),
+    "runeskald": ([
+        "description": "Runeskalds carve ancient power into runes and carry their "
+            "ancestral songs into battle. Their magic is rough and immediate, "
+            "shaping weapon strikes with elemental and spiritual force.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "axe", "hammer", "staff", "no armor", "spellcraft",
+            "magical essence", "war", "body", "spirit" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "elemental earth", "elemental fire" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "runeskald", "rune warrior", "skald" }),
+        "equipment": ([
+            "weapons": ({ "axes", "hammers", "staffs" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gloves", "amulet" })
+        ]),
+        "attacks": ([ "cold": 20 ]),
+        "research": ([
+            "rune strike": 1,
+            "frostfire glyph": 10,
+            "world rune blast": 15
+        ]),
+        "base hit points": 100,
+        "base spell points": 80,
+        "base stamina points": 70
+    ]),
+    "league of assassins": ([
+        "description": "Assassins of the League are patient and exacting, concealing "
+            "their intentions until a single opening is enough. They favor light "
+            "blades, careful footwork, and decisive attacks.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "dagger", "short sword", "no armor", "dodge",
+            "parry", "dual wield" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "reading", "anatomy and physiology" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "assassin", "league assassin" }),
+        "equipment": ([
+            "weapons": ({ "daggers", "swords" }),
+            "armor": ({ "light-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gloves", "ring" })
+        ]),
+        "attacks": ([ "poison": 20 ]),
+        "research": ([
+            "assassin mark": 1,
+            "shadow strike": 10,
+            "silent execution": 15
+        ]),
+        "base hit points": 70,
+        "base spell points": 40,
+        "base stamina points": 90
+    ]),
+    "drambor edlothiad": ([
+        "description": "Blade singers of the Drambor Edlothiad weave elven sorcery "
+            "through precise swordplay. They are swift and composed, turning a "
+            "well-timed cut into an extension of their magic.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "long sword", "hand and a half sword", "no armor",
+            "spellcraft", "evocation", "magical essence", "parry", "dodge" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "reading", "elemental air", "transformation", "manipulation" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "blade singer", "spell sword", "elven warrior mage" }),
+        "equipment": ([
+            "weapons": ({ "swords" }),
+            "armor": ({ "light-armor" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", "ring" })
+        ]),
+        "attacks": ([ "magical": 20 ]),
+        "research": ([
+            "spellblade strike": 1,
+            "arcane edge": 10,
+            "blade song": 15
+        ]),
+        "base hit points": 100,
+        "base spell points": 100,
+        "base stamina points": 60
+    ]),
+    "scion of dhuras": ([
+        "description": "Scions of Dhuras channel elemental power through a weapon of "
+            "their choosing. They combine disciplined melee technique with "
+            "magical force, adapting their attacks to the needs of the fight.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "long sword", "dagger", "axe", "mace", "hammer",
+            "staff", "no armor", "spellcraft", "magical essence", "blood",
+            "spirit" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "destruction", "elemental fire" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "scion", "weapon mage" }),
+        "equipment": ([
+            "weapons": ({ "swords", "daggers", "axes", "maces", "hammers",
+                "staffs" }),
+            "armor": ({ "light-armor", "medium-armor" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", "ring" })
+        ]),
+        "attacks": ([ "magical": 20 ]),
+        "research": ([
+            "charged weapon": 1,
+            "avatar strike": 10,
+            "dhuras fury": 15
+        ]),
+        "base hit points": 90,
+        "base spell points": 90,
+        "base stamina points": 60
+    ]),
+    "therianthrope": ([
+        "description": "Therianthropes carry a bestial strength beneath their humanoid "
+            "form. Their movements are restless and predatory, and their natural "
+            "weapons make them dangerous at close quarters.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "unarmed", "dodge", "no armor", "transformation",
+            "animal", "body", "spirit", "elemental earth" }),
+        "secondary skills": ({ "parry", "perception", "listen", "spot", "common",
+            "anatomy and physiology", "plant" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "shifter", "beast warrior" }),
+        "equipment": ([
+            "armor/clothing": ({ "leathers" }),
+            "armor/accessories": ({ "amulet", "boots", "gloves" })
+        ]),
+        "attacks": ([ "physical": 20 ]),
+        "research": ([
+            "primal claw": 1,
+            "predator pounce": 10,
+            "primal maul": 15
+        ]),
+        "base hit points": 110,
+        "base spell points": 60,
+        "base stamina points": 80
+    ]),
+    "aegis guard": ([
+        "description": "Aegis Guards are disciplined protectors trained to hold a line "
+            "under pressure. Their swordplay is measured, their defenses deliberate, "
+            "and they answer an opening with a controlled counterstrike.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "long sword", "shield", "parry", "dodge",
+            "plate armor", "chainmail", "no armor" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "anatomy and physiology", "short sword", "mace" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "aegis", "guardsman" }),
+        "equipment": ([
+            "weapons": ({ "swords" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gauntlets", "helm" })
+        ]),
+        "attacks": ([ "bludgeon": 20 ]),
+        "research": ([
+            "shield bash": 1,
+            "guardians counter": 10,
+            "aegis judgment": 15
+        ]),
+        "base hit points": 140,
+        "base spell points": 40,
+        "base stamina points": 70
+    ]),
+    "werric knight": ([
+        "description": "Werric Knights are steadfast warriors who carry the discipline "
+            "of the crown into battle. Their armor is practical, their weapons "
+            "well-kept, and their courage inspires those who stand beside them.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "long sword", "warhammer", "mace", "shield",
+            "parry", "dodge", "plate armor", "chainmail" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "anatomy and physiology", "leadership" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "werric", "crown knight", "knight" }),
+        "equipment": ([
+            "weapons": ({ "swords", "hammers", "maces" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gauntlets", "helm",
+                "ring" })
+        ]),
+        "attacks": ([ "bludgeon": 20 ]),
+        "research": ([
+            "battle charge": 1,
+            "werric might": 10,
+            "knightly onslaught": 15
+        ]),
+        "base hit points": 150,
+        "base spell points": 30,
+        "base stamina points": 80
+    ]),
+    "guardian of khazurath": ([
+        "description": "Guardians of Khazurath are broad, enduring defenders trained "
+            "to protect their mountain home. They trust in heavy weapons, "
+            "unyielding armor, and the strength of the stone beneath their feet.",
+        "category": "fighters",
+        "is humanoid": 1,
+        "primary skills": ({ "axe", "hammer", "shield", "plate armor",
+            "chainmail", "parry", "dodge", "elemental earth" }),
+        "secondary skills": ({ "perception", "listen", "spot", "common",
+            "anatomy and physiology", "hard leather", "no armor" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "guardian", "dwarven defender" }),
+        "equipment": ([
+            "weapons": ({ "axes", "hammers" }),
+            "armor": ({ "medium-armor", "heavy-armor" }),
+            "armor/accessories": ({ "belt", "boots", "gauntlets", "helm" })
+        ]),
+        "attacks": ([ "earth": 20 ]),
+        "research": ([
+            "mountain blow": 1,
+            "stonebreaker": 10,
+            "khazurath fury": 15
+        ]),
+        "base hit points": 170,
+        "base spell points": 20,
+        "base stamina points": 80
+    ]),
 ]);

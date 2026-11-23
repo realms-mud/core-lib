@@ -320,7 +320,8 @@ void AllClericPersonasGetResearchAndTraits()
 {
     string *personas = ({ "cleric of xyris", "cleric of seilyndria",
         "cleric of bilanx", "cleric of ferianth", "cleric of ilyrth",
-        "cleric of werra", "druid" });
+        "cleric of werra", "children of ilyrth", "disciple of ferianth",
+        "hand of bilanx", "wrathguard", "druid" });
     string category;
     string traitPath;
     object testPersona;
@@ -339,6 +340,39 @@ void AllClericPersonasGetResearchAndTraits()
 
         ExpectTrue(testPersona->isTraitOf(traitPath));
         ExpectEq(3, sizeof(testPersona->completedResearch()));
+        destruct(testPersona);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AllOtherGuildPersonasGetResearchAndTraits()
+{
+    string *personas = ({ "bard", "rogue", "monk", "ranger", "runeskald",
+        "league of assassins", "drambor edlothiad", "scion of dhuras",
+        "therianthrope", "aegis guard", "werric knight",
+        "guardian of khazurath", "disciple of argloth" });
+    string category;
+    string traitPath;
+    object testPersona;
+    object *equipment;
+
+    foreach(string personaName in personas)
+    {
+        testPersona = clone_object("/lib/realizations/monster");
+        testPersona.Name("Bob");
+        testPersona.Gender("male");
+        move_object(testPersona, this_object());
+        testPersona.SetUpPersonaOfLevel(personaName, 15);
+        equipment = getService("persona")->getRandomEquipment(testPersona, 0);
+
+        category = (personaName == "disciple of argloth") ? "mages" :
+            "fighters";
+        traitPath = sprintf("/lib/instances/traits/personas/%s/%s.c",
+            category, regreplace(personaName, " ", "-", 1));
+
+        ExpectTrue(testPersona->isTraitOf(traitPath));
+        ExpectEq(3, sizeof(testPersona->completedResearch()));
+        ExpectTrue(sizeof(equipment) > 0);
         destruct(testPersona);
     }
 }

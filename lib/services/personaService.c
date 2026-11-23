@@ -390,7 +390,9 @@ public nomask string getRandomPersona(string type, int level)
         {
             string *personas = filter(m_indices(blueprints),
                 (: $2[$1]["category"] == "fighters" :), blueprints);
-            personas -= ({ "knight", "phaedra", "knight of the storm" });
+            personas -= ({ "knight", "phaedra", "knight of the storm",
+                "aegis guard", "drambor edlothiad", "guardian of khazurath",
+                "werric knight" });
 
             ret = personas[random(sizeof(personas))];
             break;

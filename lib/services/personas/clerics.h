@@ -226,4 +226,117 @@ private nosave mapping divineUserBlueprints = ([
         "base spell points": 180,
         "base stamina points": 65
     ]),
+    "children of ilyrth": ([
+        "description": "Children of Ilyrth stand against cruelty with steady resolve. "
+            "They wield the power of the deep, turning the force of the tides "
+            "against those who threaten the helpless.",
+        "category": "clerics",
+        "is humanoid": 1,
+        "primary skills": ({ "staff", "no armor", "spellcraft", "divine essence",
+            "elemental water", "body", "spirit", "protection" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "divination", "elemental air", "transformation" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "priest of ilyrth", "wavekeeper", "water cleric" }),
+        "equipment": ([
+            "weapons": ({ "staffs" }),
+            "armor/clothing": ({ "robes", "vestments" }),
+            "armor/accessories": ({ "amulet", "ring", "boots", "gloves" })
+        ]),
+        "attacks": ([ "water": 20 ]),
+        "research": ([
+            "rising tide": 1,
+            "tidal rebuke": 10,
+            "wave of judgment": 15
+        ]),
+        "base hit points": 60,
+        "base spell points": 200,
+        "base stamina points": 60
+    ]),
+    "disciple of ferianth": ([
+        "description": "Disciples of Ferianth are bold devotees who carry the living "
+            "flame into battle. Their bright faith is matched by forceful "
+            "attacks that leave little room for hesitation.",
+        "category": "clerics",
+        "is humanoid": 1,
+        "primary skills": ({ "mace", "staff", "no armor", "spellcraft",
+            "divine essence", "elemental fire", "body", "spirit", "destruction" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "divination", "elemental earth", "elemental air" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "fire priest", "disciple", "priest of ferianth" }),
+        "equipment": ([
+            "weapons": ({ "maces", "staffs" }),
+            "armor/clothing": ({ "robes", "vestments" }),
+            "armor/accessories": ({ "amulet", "ring", "boots", "gloves" })
+        ]),
+        "attacks": ([ "fire": 20 ]),
+        "research": ([
+            "ember touch": 1,
+            "sacred pyre": 10,
+            "inferno": 15
+        ]),
+        "base hit points": 60,
+        "base spell points": 180,
+        "base stamina points": 60
+    ]),
+    "hand of bilanx": ([
+        "description": "The Hand of Bilanx acts as an impartial arbiter, weighing "
+            "every action before bringing order to the conflict. Their measured "
+            "magic turns balance into a weapon.",
+        "category": "clerics",
+        "is humanoid": 1,
+        "primary skills": ({ "staff", "no armor", "spellcraft", "divine essence",
+            "balance", "body", "spirit", "protection" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "divination", "elemental earth", "elemental air",
+            "elemental fire", "elemental water" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "arbiter", "priest of bilanx", "scales priest" }),
+        "equipment": ([
+            "weapons": ({ "staffs" }),
+            "armor/clothing": ({ "robes", "vestments" }),
+            "armor/accessories": ({ "amulet", "ring", "boots", "gloves" })
+        ]),
+        "attacks": ([ "magical": 20 ]),
+        "research": ([
+            "measured force": 1,
+            "scales of judgment": 10,
+            "perfect harmony": 15
+        ]),
+        "base hit points": 60,
+        "base spell points": 180,
+        "base stamina points": 60
+    ]),
+    "wrathguard": ([
+        "description": "Wrathguards are relentless agents of Seilyndria, pursuing "
+            "retribution with fierce conviction. They meet opposition with "
+            "unflinching attacks and the burning force of divine wrath.",
+        "category": "clerics",
+        "is humanoid": 1,
+        "primary skills": ({ "flail", "mace", "no armor", "spellcraft",
+            "divine essence", "retribution", "body", "spirit", "destruction" }),
+        "secondary skills": ({ "parry", "dodge", "perception", "listen", "spot",
+            "common", "reading", "divination", "elemental fire", "elemental air" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "zealot", "avenger", "priest of seilyndria" }),
+        "equipment": ([
+            "weapons": ({ "flails", "maces" }),
+            "armor/clothing": ({ "robes", "vestments" }),
+            "armor/accessories": ({ "amulet", "ring", "boots", "gloves" })
+        ]),
+        "attacks": ([ "fire": 20 ]),
+        "research": ([
+            "zealous strike": 1,
+            "divine wrath": 10,
+            "wrathstorm": 15
+        ]),
+        "base hit points": 60,
+        "base spell points": 180,
+        "base stamina points": 60
+    ]),
 ]);

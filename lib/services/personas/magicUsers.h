@@ -408,6 +408,37 @@ private nosave mapping magicUserBlueprints = ([
         "base spell points": 200,
         "base stamina points": 50
     ]),
+    "disciple of argloth": ([
+        "description": "Disciples of Argloth study blood, death, and forbidden "
+            "scholarship. Their presence is unnerving, and their deliberate "
+            "incantations turn a foe's life force against them.",
+        "category": "mages",
+        "is humanoid": 1,
+        "primary skills": ({ "dagger", "staff", "no armor", "spellcraft",
+            "magical essence", "blood", "spirit", "necromancy", "destruction" }),
+        "secondary skills": ({ "parry", "dodge", "anatomy and physiology",
+            "perception", "listen", "spot", "common", "reading", "divination",
+            "transformation", "manipulation", "elemental earth", "mind",
+            "senses" }),
+        "traits": ({ }),
+        "potential traits": ({ }),
+        "aliases": ({ "blood mage", "death scholar", "necromancer" }),
+        "equipment": ([
+            "weapons": ({ "daggers", "staffs" }),
+            "armor/clothing": ({ "robes" }),
+            "armor/accessories": ({ "bracers", "boots", "gloves", "ring",
+                "circlet", "necklace" })
+        ]),
+        "attacks": ([ "undead": 20 ]),
+        "research": ([
+            "blood lance": 1,
+            "grave grasp": 10,
+            "unholy ascendance": 15
+        ]),
+        "base hit points": 50,
+        "base spell points": 210,
+        "base stamina points": 50
+    ]),
     //"illusionist": ([
     //    "description": "Illusionists are elusive and unpredictable, their presence often "
     //        "accompanied by a shimmer in the air or a fleeting afterimage. They are "
