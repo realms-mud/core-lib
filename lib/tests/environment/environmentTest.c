@@ -544,6 +544,29 @@ void SetInteriorRaisesErrorOnFailure()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void EnvironmentElementsWithSameNameCanBeRegisteredByType()
+{
+    Service.registerElement("/lib/environment/features/cave.c", "feature");
+    Service.registerElement("/lib/environment/interiors/cave.c", "interior");
+    Service.registerElement("/lib/environment/buildings/trades/workshop.c",
+        "building");
+    Service.registerElement("/lib/environment/interiors/workshop.c",
+        "interior");
+    Service.registerElement(
+        "/lib/environment/features/stairs/straight-staircase.c", "feature");
+    Service.registerElement(
+        "/lib/environment/features/stairs/spiral-staircase.c", "feature");
+
+    ExpectTrue(Service.isValidEnvironmentItem("cave", "feature"));
+    ExpectTrue(Service.isValidEnvironmentItem("cave", "interior"));
+    ExpectTrue(Service.isValidEnvironmentItem("workshop", "building"));
+    ExpectTrue(Service.isValidEnvironmentItem("workshop", "interior"));
+    ExpectTrue(Service.isValidEnvironmentItem("straight staircase",
+        "feature"));
+    ExpectTrue(Service.isValidEnvironmentItem("spiral staircase", "feature"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void SetInteriorCanOnlyBeCalledOnce()
 {
     string expected = "*ERROR in environment.c: Only one terrain OR one interior can be set.\n";

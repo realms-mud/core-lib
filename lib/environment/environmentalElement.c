@@ -94,9 +94,11 @@ public nomask void create()
     }
 
     if (getService("environment") && stringp(elementName) &&
-        !getService("environment")->isValidEnvironmentItem(elementName))
+        !getService("environment")->isValidEnvironmentItem(elementName,
+            Type()))
     {
-        getService("environment")->registerElement(program_name(this_object()));
+        getService("environment")->registerElement(program_name(this_object()),
+            Type());
     }
     reset();
 }

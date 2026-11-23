@@ -146,7 +146,8 @@ private nomask mapping *snapshotElementsOfType(string type)
         foreach(string element, mixed placements in environmentalElements[type])
         {
             object elementObj =
-                getService("environment")->environmentalObject(element);
+                getService("environment")->environmentalObject(element,
+                    type);
 
             mapping *locations = ({});
             if (pointerp(placements))

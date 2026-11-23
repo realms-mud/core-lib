@@ -35,10 +35,10 @@ private nomask mapping getLocation(mixed location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask void setUpAliases(string element)
+private nomask void setUpAliases(string element, string type)
 {
     object environmentalObj =
-        getService("environment")->environmentalObject(element);
+        getService("environment")->environmentalObject(element, type);
 
     foreach(string state in environmentalObj->states())
     {
@@ -57,9 +57,12 @@ private nomask void setUpAliases(string element)
 protected nomask varargs int addEnvironmentalElement(string element, string type, mixed location)
 {
     int ret = 1;
-    if (!getService("environment")->isValidEnvironmentItem(element))
+    int isFilePath = stringp(element) && sizeof(element) &&
+        ((element[0] == '/') || (strstr(element, "/") > -1));
+    if (!getService("environment")->isValidEnvironmentItem(element, type))
     {
-        ret = getService("environment")->registerElement(element, type);
+        ret = isFilePath &&
+            getService("environment")->registerElement(element, type);
         if (ret)
         {
             object elementObj = load_object(element);
@@ -74,17 +77,21 @@ protected nomask varargs int addEnvironmentalElement(string element, string type
                     "direction for '%s' as it has no description.\n", element));
             }
         }
-        else if(element && (file_size(element) > 0) &&
+        else if(isFilePath && (file_size(element) > 0) &&
             getService("environment")->isValidEnvironmentItem(load_object(element)->Name(), type))
         {
             raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
                 "A conflicting item with that name already exists.\n", element));
         }
-        else
+        else if (isFilePath)
         {
             raise_error(sprintf("ERROR in environment.c: Unable to register '%s'. "
                 "Be sure that the file exists and inherits a valid environmental "
                 "element.\n", element));
+        }
+        else
+        {
+            ret = 0;
         }
     }
 
@@ -99,7 +106,7 @@ protected nomask varargs int addEnvironmentalElement(string element, string type
         environmentalElements[type][element] =
             m_indices(mkmapping(environmentalElements[type][element] +
                 ({ getLocation(location) }) - ({ 0 })));
-        setUpAliases(element);
+        setUpAliases(element, type);
     }
     return ret;
 }
@@ -266,7 +273,8 @@ protected string getElementDescriptions(string type, int illuminationLevel)
             }
 
             object elementObj = 
-                getService("environment")->environmentalObject(element);
+                getService("environment")->environmentalObject(element,
+                    type);
             if (elementObj && 
                 (!this_player() || elementObj->elementIsAvailable(this_player())))
             {
@@ -303,7 +311,8 @@ protected varargs string getBaseDescriptionForType(string type,
     if (member(environmentalElements, type) && sizeof(environmentalElements[type]))
     {
         string element = m_indices(environmentalElements[type])[0];
-        object base = getService("environment")->environmentalObject(element);
+        object base = getService("environment")->environmentalObject(element,
+            type);
         if (base)
         {
             ret = base->description(currentState(), illuminationLevel,

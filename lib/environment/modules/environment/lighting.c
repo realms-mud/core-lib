@@ -19,7 +19,8 @@ private nomask int getElementLighting()
             foreach(string element in elements)
             {
                 object elementObj =
-                    getService("environment")->environmentalObject(element);
+                    getService("environment")->environmentalObject(element,
+                        elementType);
                 if (elementObj && 
                     (!this_player() || elementObj->elementIsAvailable(this_player())))
                 {
@@ -77,9 +78,10 @@ protected nomask void setUpActiveLighting()
         {
             string *elements = filter(
                 m_indices(environmentalElements[elementType]),
-                (: $3->environmentalObject($1) &&
-                    $3->environmentalObject($1)->canActivateLightSource($2) :),
-                currentState(), getService("environment"));
+                (: $3->environmentalObject($1, $4) &&
+                    $3->environmentalObject($1, $4)->
+                        canActivateLightSource($2) :),
+                currentState(), getService("environment"), elementType);
 
             haveActiveLights ||= sizeof(elements);
         }
@@ -95,27 +97,37 @@ protected nomask void setUpActiveLighting()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private nomask string *getActiveLightElements(string filter)
+private nomask mapping *getActiveLightElements(string filter)
 {
-    string *ret = ({});
+    mapping *ret = ({});
     foreach(string elementType in({ "terrain", "feature", "building", "item" }))
     {
         if (sizeof(environmentalElements[elementType]))
         {
             string *elements = filter(
                 m_indices(environmentalElements[elementType]),
-                (: ($4->environmentalObject($1) &&
-                    $4->environmentalObject($1)->canActivateLightSource($2) &&
-                    (!$3 || (member($4->environmentalObject($1)->aliases($2), 
-                        $3) > -1))) :),
-                currentState(), filter, getService("environment"));
+                (: ($4->environmentalObject($1, $5) &&
+                    $4->environmentalObject($1, $5)->
+                        canActivateLightSource($2) &&
+                    (!$3 || (member($4->environmentalObject($1, $5)->
+                        aliases($2), $3) > -1))) :),
+                currentState(), filter, getService("environment"),
+                elementType);
             if (sizeof(elements))
             {
-                ret += elements;
+                foreach(string element in elements)
+                {
+                    ret += ({ ([
+                        "type": elementType,
+                        "element": element
+                    ]) });
+                }
             }
         }
     }
-    return sort_array(ret, (: $1 > $2 :));
+    return sort_array(ret, (: ($1["element"] > $2["element"]) ||
+        (($1["element"] == $2["element"]) &&
+            ($1["type"] > $2["type"])) :));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -152,14 +164,15 @@ private nomask int manipulateLights(string whichLights, string action,
     string verb)
 {
     string *activatedItems = ({});
-    string *elements = getActiveLightElements(whichLights);
+    mapping *elements = getActiveLightElements(whichLights);
 
     if (sizeof(elements))
     {
-        foreach(string element in elements)
+        foreach(mapping element in elements)
         {
             object elementObj =
-                getService("environment")->environmentalObject(element);
+                getService("environment")->environmentalObject(
+                    element["element"], element["type"]);
 
             if (elementObj &&
                 (!this_player() || elementObj->elementIsAvailable(this_player())))

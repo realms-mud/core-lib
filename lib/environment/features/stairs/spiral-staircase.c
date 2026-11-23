@@ -7,7 +7,7 @@ inherit "/lib/environment/features/baseFeature.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
-    Name("straight staircase");
+    Name("spiral staircase");
     suppressEntryMessage();
     addAlias("stairs");
     addAlias("staircase");

@@ -91,14 +91,37 @@ public nomask object getEnvironment(string location)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask object environmentalObject(string element)
+private nomask string elementPath(string element, string type)
+{
+    string ret = 0;
+    if (element && stringp(element) && type && member(elementList, type) &&
+        member(elementList[type], element))
+    {
+        ret = elementList[type][element];
+    }
+    else if (element && stringp(element) && !type)
+    {
+        foreach(string elementType in m_indices(elementList))
+        {
+            if (!ret && member(elementList[elementType], element))
+            {
+                ret = elementList[elementType][element];
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask varargs object environmentalObject(string element,
+    string type)
 {
     object ret = 0;
 
-    if (element && stringp(element) && member(elementList, element) &&
-        (file_size(elementList[element]) > 0))
+    string path = elementPath(element, type);
+    if (path && (file_size(path) > 0))
     {
-        ret = getEnvironmentObject(elementList[element]);
+        ret = getEnvironmentObject(path);
         if (member(inherit_list(ret), BaseElement) < 0)
         {
             ret = 0;
@@ -114,7 +137,7 @@ public nomask object environmentalObject(string element)
 /////////////////////////////////////////////////////////////////////////////
 public nomask varargs int isValidEnvironmentItem(string element, string type)
 {
-    object environmentalObj = environmentalObject(element);
+    object environmentalObj = environmentalObject(element, type);
     return (environmentalObj && objectp(environmentalObj) &&
         environmentalObj->Name() && 
         (!type || (environmentalObj->Type() == type)));
@@ -144,21 +167,31 @@ public nomask varargs int registerElement(string location, string type)
 
         if (element && objectp(element) &&
             (member(inherit_list(element), BaseElement) > -1) &&
-            element->Name() && !member(elementList, element->Name()))
+            element->Name())
         {
-            ret = 1;
-            elementList[element->Name()] = location;
-
-            if (type && stringp(type) &&
-                (element->Type() != type))
+            string elementType = element->Type();
+            if (!type)
             {
-                ret = 0;
+                type = elementType;
             }
-        }
-        else
-        {
-            ret = member(elementList, element->Name()) &&
-                (location == elementList[element->Name()]);
+
+            if (type && stringp(type) && (elementType == type))
+            {
+                if (!member(elementList, type))
+                {
+                    elementList[type] = ([]);
+                }
+
+                if (!member(elementList[type], element->Name()))
+                {
+                    elementList[type][element->Name()] = location;
+                    ret = 1;
+                }
+                else
+                {
+                    ret = (location == elementList[type][element->Name()]);
+                }
+            }
         }
     }
 
