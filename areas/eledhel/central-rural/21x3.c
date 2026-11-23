@@ -18,4 +18,5 @@ public void Setup()
     addExit("north", "/areas/eledhel/central-rural/21x4.c");
     addExit("east", "/areas/eledhel/central-rural/22x3.c");
     addExit("south", "/areas/eledhel/estates/aladain/grounds/0x2.c");
+    addExit("west", "/areas/northern-road/north-gate/3x3.c");
 }

@@ -58,6 +58,86 @@ protected mapping AuthoredHoldings = ([
             "/areas/eledhel/estates/aladain/grounds/3x4.c",
         "type": "keep"
     ]),
+    "house anduradan":([
+        "id": "house-anduradan",
+        "name": "House Anduradan",
+        "owner": "Lord Aerandir Anduradan",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/anduradan/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house belectar":([
+        "id": "house-belectar",
+        "name": "House Belectar",
+        "owner": "Lord Arawn Belectar",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/belectar/grounds/0x0.c",
+        "type": "keep"
+    ]),
+    "house belathon":([
+        "id": "house-belathon",
+        "name": "House Belathon",
+        "owner": "Brena Belathon",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/belathon/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house dalthren":([
+        "id": "house-dalthren",
+        "name": "House Dalthren",
+        "owner": "Aelinwen Dalthren",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/dalthren/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house erator":([
+        "id": "house-erator",
+        "name": "House Erator",
+        "owner": "House Erator",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/erator/grounds/0x0.c",
+        "type": "keep"
+    ]),
+    "house eolach":([
+        "id": "house-eolach",
+        "name": "House Eolach",
+        "owner": "Lord Balechor",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/eolach/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house hrondil":([
+        "id": "house-hrondil",
+        "name": "House Hrondil",
+        "owner": "Lord Gunther Hrondil",
+        "allegiance": "Eledhel",
+        "entry point": "/areas/hrondil/grounds/0x0.c",
+        "type": "keep"
+    ]),
+    "house gundil":([
+        "id": "house-gundil",
+        "name": "House Gundil",
+        "owner": "Lord Gruffyd and Lady Alyssa",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/gundil/grounds/0x0.c",
+        "type": "keep"
+    ]),
+    "house kirin":([
+        "id": "house-kirin",
+        "name": "House Kirin",
+        "owner": "General Kirin and Lady Riana",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/estates/kirin/grounds/0x2.c",
+        "type": "keep"
+    ]),
     "house oeldhen":([
         "id": "house-oeldhen",
         "name": "House Oeldhen",
@@ -92,6 +172,15 @@ protected mapping AuthoredHoldings = ([
         "allegiance": "Eledhel",
         "entry point":
             "/areas/eledhel/estates/hador/grounds/0x2.c",
+        "type": "keep"
+    ]),
+    "house hadrath":([
+        "id": "house-hadrath",
+        "name": "House Hadrath",
+        "owner": "House Hadrath",
+        "allegiance": "Eledhel",
+        "entry point":
+            "/areas/eledhel/hadrath/grounds/0x2.c",
         "type": "keep"
     ]),
     "house endur":([

@@ -2,6 +2,7 @@
 // Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD, All rights reserved. See
 //                      the accompanying LICENSE file for details.
 //*****************************************************************************
+#include <functionlist.h>
 inherit "/lib/tests/framework/testFixture.c";
 
 object Region;
@@ -9,10 +10,44 @@ object Player;
 object *Harvested = ({});
 object *Spawned = ({});
 
+protected void selectTestMethods(string *selectedTests)
+{
+    ignoreList -= selectedTests;
+
+    foreach (string test in functionlist(this_object(),
+        RETURN_FUNCTION_NAME | NAME_INHERITED))
+    {
+        if (member(selectedTests, test) < 0)
+        {
+            ignoreList += ({ test });
+        }
+    }
+}
+
+protected void runSelectedTests(string *selectedTests)
+{
+    for (int index = 0; index < sizeof(selectedTests); index++)
+    {
+        call_other(this_object(), selectedTests[index]);
+        if (index < sizeof(selectedTests) - 1)
+        {
+            CleanUp();
+            Setup();
+        }
+    }
+}
+
 /////////////////////////////////////////////////////////////////////////////
 void Init()
 {
-    ignoreList += ({ "shortestRoomPathInRegion" });
+    selectTestMethods(({
+        "FarmBeltHasConnectedAuthoredRoomsAndGraphicalDecorators",
+        "CommonMeasureWayhouseConnectsStandYardAndRooms",
+        "AbandonedCellarHasAConnectedFiveRoomLoop",
+        "BoughcrossOrchardRoomsConnectToTheAccessLane",
+        "BoughcrossResidentsAppearAtTheirWorksites",
+        "LinwaethSmithyFacadeLoadsBeforeItsRegionIsValidated"
+    }));
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -361,11 +396,19 @@ void LinwaethSmithyFacadeLoadsBeforeItsRegionIsValidated()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void AuthoredRegionFixtureValidatesMultipleRegions()
+protected void validateAuthoredRegions(string *regionPaths)
 {
     object validator = clone_object(
         "/lib/tests/support/environment/authoredRegionValidator.c");
-    string *errors = validator->validateRegions(({
+    string *errors = validator->validateRegions(regionPaths);
+
+    ExpectEq(({}), errors);
+    destruct(validator);
+}
+
+void AuthoredCoreRegionsValidate()
+{
+    validateAuthoredRegions(({
         "/areas/argalen-keep/surrounding/region.c",
         "/areas/argalen-keep/patrol-woods/region.c",
         "/areas/argalen-keep/patrol-coast/region.c",
@@ -380,10 +423,13 @@ void AuthoredRegionFixtureValidatesMultipleRegions()
         "/areas/eledhel/vargath-keep/keep-interior/region.c",
         "/areas/linwaeth/looming-stag/region.c",
         "/areas/linwaeth/smithy/region.c",
-        "/areas/linwaeth/region.c",
-        "/areas/eledhel/south-coast-one/region.c",
-        "/areas/eledhel/south-coast-two/region.c",
-        "/areas/eledhel/south-coast-two/cove-cave/region.c",
+        "/areas/linwaeth/region.c"
+    }));
+}
+
+void SouthernRoadRegionsValidate()
+{
+    validateAuthoredRegions(({
         "/areas/eledhel/south-rural-route-01/region.c",
         "/areas/eledhel/south-rural-route-02/region.c",
         "/areas/eledhel/south-rural-route-03/region.c",
@@ -392,6 +438,20 @@ void AuthoredRegionFixtureValidatesMultipleRegions()
         "/areas/eledhel/south-rural-route-06/region.c",
         "/areas/eledhel/south-rural-route-07/region.c",
         "/areas/eledhel/south-rural-route-08/region.c",
+        "/areas/eledhel/tirwen/region.c",
+        "/areas/eledhel/tirwen/farmhouse/region.c",
+        "/areas/eledhel/dhorlen/region.c",
+        "/areas/eledhel/dhorlen/mill/region.c",
+        "/areas/eledhel/hadrath/watchlands/region.c",
+        "/areas/eledhel/hadrath/grounds/region.c",
+        "/areas/eledhel/hadrath/keep-interior/region.c",
+        "/areas/eledhel/southwest-rural-four/region.c"
+    }));
+}
+
+void SouthernCoastRegionsValidate()
+{
+    validateAuthoredRegions(({
         "/areas/eledhel/south-rural-route-09/region.c",
         "/areas/eledhel/south-rural-route-10/region.c",
         "/areas/eledhel/south-rural-route-11/region.c",
@@ -401,10 +461,18 @@ void AuthoredRegionFixtureValidatesMultipleRegions()
         "/areas/eledhel/south-rural-route-15/region.c",
         "/areas/eledhel/south-rural-route-16/region.c",
         "/areas/eledhel/south-rural-route-17/region.c",
-        "/areas/eledhel/southwest-rural-four/region.c",
         "/areas/eledhel/southwest-rural-five/region.c",
+        "/areas/eledhel/south-coast-one/region.c",
+        "/areas/eledhel/south-coast-two/region.c",
+        "/areas/eledhel/south-coast-two/cove-cave/region.c",
         "/areas/eledhel/rhaedhen/region.c",
-        "/areas/anor/region.c",
+        "/areas/anor/region.c"
+    }));
+}
+
+void CapitalAndMinlachRegionsValidate()
+{
+    validateAuthoredRegions(({
         "/areas/eledhel/northern-city/phaedra-headquarters/region.c",
         "/areas/eledhel/northern-city/prison/region.c",
         "/areas/eledhel/northern-city/arena/region.c",
@@ -412,9 +480,6 @@ void AuthoredRegionFixtureValidatesMultipleRegions()
         "/areas/minlach/surrounding/region.c",
         "/areas/minlach/shore/region.c"
     }));
-
-    ExpectEq(({}), errors);
-    destruct(validator);
 }
 
 void SouthernManorRegionsValidate()
@@ -559,7 +624,8 @@ void SouthernRoadConnectsTheCountrysideAndItsManorBranches()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-private int shortestRoomPathInRegion(object region, string start, string finish)
+protected int shortestRoomPathInRegion(object region, string start,
+    string finish)
 {
     mapping localRooms = ([]);
     mapping distances = ([ start: 0 ]);
@@ -886,6 +952,173 @@ void RhaedhenResidentsAppearAtTheirWorksites()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void TirwenBranchesFromTheMeasuredKingsRoad()
+{
+    object road = load_object(
+        "/areas/eledhel/south-rural-route-05/20x2.c");
+    object entry = load_object("/areas/eledhel/tirwen/3x1.c");
+    object farmDoor = load_object("/areas/eledhel/tirwen/4x2.c");
+    object interiorEntry =
+        load_object("/areas/eledhel/tirwen/farmhouse/0x1.c");
+    object region = load_object("/areas/eledhel/tirwen/region.c");
+
+    ExpectEq("/areas/eledhel/tirwen/3x1.c",
+        road->getExitDirections()["default"]["north"]);
+    ExpectEq("/areas/eledhel/south-rural-route-05/20x2.c",
+        entry->getExitDirections()["default"]["south"]);
+    ExpectEq("village road T-north", road->decoratorType(0));
+    ExpectEq("/areas/eledhel/tirwen/4x1.c",
+        farmDoor->getExitDirections()["default"]["north"]);
+    ExpectEq("/areas/eledhel/tirwen/farmhouse/0x1.c",
+        farmDoor->getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/tirwen/4x2.c",
+        interiorEntry->getExitDirections()["default"]["west"]);
+    ExpectEq(7, region->xDimension());
+    ExpectEq(5, region->yDimension());
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void TirwenResidentsAppearAtTheirWorksites()
+{
+    mapping residents = ([
+        "/areas/eledhel/tirwen/farmhouse/0x0.c": "Rilwen",
+        "/areas/eledhel/tirwen/6x1.c": "Edran"
+    ]);
+
+    foreach (string path, string name in residents)
+    {
+        object room = clone_object(path);
+        Harvested += ({ room });
+        int foundResident = 0;
+        move_object(Player, room);
+        foreach (object resident in all_inventory(room))
+        {
+            if (resident != Player &&
+                function_exists("isRealizationOfNpc", resident) &&
+                resident->isRealizationOfNpc())
+            {
+                if (resident->id(name))
+                {
+                    foundResident = 1;
+                }
+                Spawned += ({ resident });
+            }
+        }
+        ExpectTrue(foundResident, path);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DhorlenBranchesFromTheMeasuredRoadAndCrossesTheRiver()
+{
+    object road = load_object(
+        "/areas/eledhel/south-rural-route-07/22x2.c");
+    object entry = load_object("/areas/eledhel/dhorlen/3x1.c");
+    object yard = load_object("/areas/eledhel/dhorlen/2x2.c");
+    object millEntry = load_object("/areas/eledhel/dhorlen/mill/0x1.c");
+    object region = load_object("/areas/eledhel/dhorlen/region.c");
+
+    ExpectEq("/areas/eledhel/dhorlen/3x1.c",
+        road->getExitDirections()["default"]["south"]);
+    ExpectEq("village road T-south", road->decoratorType(0));
+    ExpectEq("/areas/eledhel/south-rural-route-07/22x2.c",
+        entry->getExitDirections()["default"]["north"]);
+    ExpectEq("/areas/eledhel/dhorlen/mill/0x1.c",
+        yard->getExitDirections()["default"]["north"]);
+    ExpectEq("/areas/eledhel/dhorlen/2x2.c",
+        millEntry->getExitDirections()["default"]["south"]);
+    ExpectTrue(shortestRoomPathInRegion(region,
+        "/areas/eledhel/dhorlen/3x1.c",
+        "/areas/eledhel/dhorlen/3x3.c") >= 2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void DhorlenMillerAppearsAtTheWaterMill()
+{
+    object room = clone_object("/areas/eledhel/dhorlen/mill/0x0.c");
+    Harvested += ({ room });
+    move_object(Player, room);
+    int foundResident = 0;
+
+    foreach (object resident in all_inventory(room))
+    {
+        if (resident != Player &&
+            function_exists("isRealizationOfNpc", resident) &&
+            resident->isRealizationOfNpc())
+        {
+            if (resident->id("Nereth"))
+            {
+                foundResident = 1;
+            }
+            Spawned += ({ resident });
+        }
+    }
+    ExpectTrue(foundResident);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HadrathWatchlandsContainTwoHundredConnectedRooms()
+{
+    object region = load_object(
+        "/areas/eledhel/hadrath/watchlands/region.c");
+    object road = load_object(
+        "/areas/eledhel/south-rural-route-08/18x2.c");
+    int placedRooms = 0;
+
+    for (int x = 0; x < region->xDimension(); x++)
+    {
+        for (int y = 0; y < region->yDimension(); y++)
+        {
+            mapping cell = region->coordinateToMapping(x, y);
+            if (mappingp(cell) && cell["is placed"])
+            {
+                placedRooms++;
+            }
+        }
+    }
+
+    ExpectEq(200, placedRooms);
+    ExpectEq("/areas/eledhel/hadrath/watchlands/0x0.c",
+        road->getExitDirections()["default"]["south"]);
+    ExpectEq("/areas/eledhel/south-rural-route-08/18x2.c",
+        load_object("/areas/eledhel/hadrath/watchlands/0x0.c")->
+            getExitDirections()["default"]["north"]);
+    ExpectTrue(shortestRoomPathInRegion(region,
+        "/areas/eledhel/hadrath/watchlands/0x0.c",
+        "/areas/eledhel/hadrath/watchlands/19x9.c") >= 20);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HadrathResidentsAppearAtTheirWorksites()
+{
+    mapping residents = ([
+        "/areas/eledhel/hadrath/watchlands/6x1.c": "Maereth",
+        "/areas/eledhel/hadrath/watchlands/16x8.c": "Daerwen",
+        "/areas/eledhel/hadrath/keep-interior/2x1.c": "Thalen"
+    ]);
+
+    foreach (string path, string name in residents)
+    {
+        object room = clone_object(path);
+        Harvested += ({ room });
+        move_object(Player, room);
+        int foundResident = 0;
+        foreach (object resident in all_inventory(room))
+        {
+            if (resident != Player &&
+                function_exists("isRealizationOfNpc", resident) &&
+                resident->isRealizationOfNpc())
+            {
+                ExpectTrue(resident->id(name), path);
+                foundResident++;
+                Spawned += ({ resident });
+            }
+        }
+        ExpectEq(1, foundResident, path);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void AladainUsesTheKeepTemplateWithoutBeingPlayerClaimable()
 {
     object service = getService("domain");
@@ -900,6 +1133,27 @@ void AladainUsesTheKeepTemplateWithoutBeingPlayerClaimable()
 
     mapping domain = service->getPlayerDomain(
         Player, "house aladain", holding["type"]);
+    ExpectEq("keep", domain["type"]);
+    ExpectTrue(sizeof(domain["layout"]) > 0);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void HadrathUsesTheKeepTemplateWithoutBeingPlayerClaimable()
+{
+    object service = getService("domain");
+    mapping holding = service->getAuthoredHolding("house hadrath");
+
+    ExpectTrue(mappingp(holding));
+    ExpectEq("house-hadrath", holding["id"]);
+    ExpectEq("House Hadrath", holding["name"]);
+    ExpectEq("Eledhel", holding["allegiance"]);
+    ExpectEq("/areas/eledhel/hadrath/grounds/0x2.c",
+        holding["entry point"]);
+    ExpectEq("keep", holding["type"]);
+    ExpectFalse(service->getPlayerHolding(Player, "house hadrath"));
+
+    mapping domain = service->getPlayerDomain(
+        Player, "house hadrath", holding["type"]);
     ExpectEq("keep", domain["type"]);
     ExpectTrue(sizeof(domain["layout"]) > 0);
 }
@@ -1420,26 +1674,38 @@ void TolDhurathEntryRouteIsReciprocal()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void TolDhurathApproachRegionsHaveBoundedLevels()
+protected void validateTolDhurathRouteDecorators(mapping routeDecorators,
+    object region)
+{
+    foreach (string path, string decorator in routeDecorators)
+    {
+        object room = load_object(path);
+        ExpectEq(-1, member(inherit_list(room),
+            "/lib/environment/generatedEnvironment.c"), path);
+        ExpectEq(decorator, room->decoratorType(0), path);
+
+        string **icon = getService("region")->getMapIcon(
+            region, decorator, "none", "ascii");
+        string rendered = "";
+        foreach (string *row in icon)
+        {
+            rendered += implode(row, "");
+        }
+        ExpectTrue(rendered != "         ", decorator);
+    }
+}
+
+void TolDhurathEntryAndFirstForestRegionsHaveBoundedLevels()
 {
     object entryRegion = clone_object(
         "/areas/tol-dhurath/entry/region.c");
     object forestRegion = clone_object(
         "/areas/tol-dhurath/forest-1/region.c");
-    object secondForestRegion = clone_object(
-        "/areas/tol-dhurath/forest-2/region.c");
-    object thirdForestRegion = clone_object(
-        "/areas/tol-dhurath/forest-3/region.c");
-    object templeRegion = clone_object(
-        "/areas/tol-dhurath/temple-exterior/region.c");
 
     ExpectEq(3, entryRegion->regionLevel());
     ExpectEq(4, forestRegion->regionLevel());
-    ExpectEq(4, secondForestRegion->regionLevel());
-    ExpectEq(5, thirdForestRegion->regionLevel());
-    ExpectEq(6, templeRegion->regionLevel());
 
-    mapping routeDecorators = ([
+    validateTolDhurathRouteDecorators(([
         "/areas/tol-dhurath/entry/17x0.c":
             "forest trail north-east",
         "/areas/tol-dhurath/entry/17x1.c":
@@ -1453,7 +1719,27 @@ void TolDhurathApproachRegionsHaveBoundedLevels()
         "/areas/tol-dhurath/forest-1/7x0.c":
             "forest trail north-south",
         "/areas/tol-dhurath/forest-1/0x6.c":
-            "forest trail south-west",
+            "forest trail south-west"
+    ]), forestRegion);
+
+    destruct(entryRegion);
+    destruct(forestRegion);
+}
+
+void TolDhurathSecondForestAndTempleRegionsHaveBoundedLevels()
+{
+    object secondForestRegion = clone_object(
+        "/areas/tol-dhurath/forest-2/region.c");
+    object thirdForestRegion = clone_object(
+        "/areas/tol-dhurath/forest-3/region.c");
+    object templeRegion = clone_object(
+        "/areas/tol-dhurath/temple-exterior/region.c");
+
+    ExpectEq(4, secondForestRegion->regionLevel());
+    ExpectEq(5, thirdForestRegion->regionLevel());
+    ExpectEq(6, templeRegion->regionLevel());
+
+    validateTolDhurathRouteDecorators(([
         "/areas/tol-dhurath/forest-2/24x6.c":
             "forest trail T-east",
         "/areas/tol-dhurath/forest-2/0x4.c":
@@ -1464,26 +1750,8 @@ void TolDhurathApproachRegionsHaveBoundedLevels()
             "forest trail east-west",
         "/areas/tol-dhurath/temple-exterior/24x8.c":
             "forest trail south-east"
-    ]);
-    foreach (string path, string decorator in routeDecorators)
-    {
-        object room = load_object(path);
-        ExpectEq(-1, member(inherit_list(room),
-            "/lib/environment/generatedEnvironment.c"), path);
-        ExpectEq(decorator, room->decoratorType(0), path);
+    ]), secondForestRegion);
 
-        string **icon = getService("region")->getMapIcon(
-            forestRegion, decorator, "none", "ascii");
-        string rendered = "";
-        foreach (string *row in icon)
-        {
-            rendered += implode(row, "");
-        }
-        ExpectTrue(rendered != "         ", decorator);
-    }
-
-    destruct(entryRegion);
-    destruct(forestRegion);
     destruct(secondForestRegion);
     destruct(thirdForestRegion);
     destruct(templeRegion);
@@ -1685,7 +1953,13 @@ void AuthoredWildlifeAndOutlawsUseTheirPlacedDifficulty()
         "/areas/minlach/shore/0x3.c":3,
         "/areas/argalen-keep/patrol-woods/18x3.c":4,
         "/areas/argalen-keep/patrol-coast/17x5.c":3,
-        "/areas/argalen-keep/patrol-coast/17x6.c":2
+        "/areas/argalen-keep/patrol-coast/17x6.c":2,
+        "/areas/eledhel/tirwen/0x1.c":3,
+        "/areas/eledhel/tirwen/5x1.c":3,
+        "/areas/eledhel/dhorlen/4x4.c":3,
+        "/areas/eledhel/hadrath/watchlands/0x6.c":3,
+        "/areas/eledhel/hadrath/watchlands/1x5.c":4,
+        "/areas/eledhel/hadrath/watchlands/15x9.c":4
     ]);
     foreach (string path, int level in levels)
     {
