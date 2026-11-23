@@ -7,6 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    addObject("/areas/eledhel/southern-city/characters/docks/"
+        "beryn.c");
     setTerrain("/lib/environment/terrain/pier.c");
     addFeature("/lib/environment/features/water/ocean.c", "east");
     addFeature("/lib/environment/features/water/ocean.c", "south");
@@ -14,4 +16,5 @@ public void Setup()
     addDecorator("dock");
     addExit("west", "/areas/eledhel/southern-city/21x3.c");
     addExit("east", "/areas/eledhel/southern-city/23x3.c");
+    addObject("/areas/eledhel/southern-city/characters/rope-mender.c");
 }

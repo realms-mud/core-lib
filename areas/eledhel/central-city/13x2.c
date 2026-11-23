@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("A cross street between the trade lane and plaza");
+    addObject("/areas/eledhel/central-city/characters/inn-arrival.c");
 
     addExit("west", "/areas/eledhel/central-city/12x2.c");
     addExit("east", "/areas/eledhel/central-city/14x2.c");

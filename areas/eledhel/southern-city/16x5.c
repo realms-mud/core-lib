@@ -7,6 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    addObject("/areas/eledhel/southern-city/characters/streets/"
+        "corwen.c");
     setTerrain("/lib/environment/terrain/city.c");
 
     addExit("east", "/areas/eledhel/southern-city/17x5.c");

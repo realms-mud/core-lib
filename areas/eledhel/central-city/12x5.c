@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("The western entrance to the central plaza");
+    addObject("/areas/eledhel/central-city/characters/plaza-attendant.c");
 
     addExit("north", "/areas/eledhel/central-city/12x6.c");
     addExit("south", "/areas/eledhel/central-city/12x4.c");

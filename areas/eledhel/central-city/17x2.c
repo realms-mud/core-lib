@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("The east lane meets the smithing street");
+    addObject("/areas/eledhel/central-city/characters/cartwright.c");
 
     addExit("west", "/areas/eledhel/central-city/16x2.c");
     addExit("east", "/areas/eledhel/central-city/18x2.c");

@@ -8,6 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    addBuildingWithDoor("/lib/environment/buildings/civic/court-house.c",
+        "south", "/areas/eledhel/southern-city/halls-of-justice/0x0.c",
+        "/lib/environment/doors/door.c");
 
     addExit("north", "/areas/eledhel/southern-city/20x8.c");
     addExit("west", "/areas/eledhel/southern-city/19x7.c");

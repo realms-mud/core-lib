@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("A small inn marks the end of the east lane");
+    addObject("/areas/eledhel/central-city/characters/inn-supplier.c");
     addBuilding("/lib/environment/buildings/shops/inn.c",
         "east");
 

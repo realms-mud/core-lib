@@ -7,6 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    addObject("/areas/eledhel/southern-city/characters/docks/"
+        "grevan.c");
     setTerrain("/lib/environment/terrain/pier.c");
     addFeature("/lib/environment/features/water/rocky-ocean-shore.c", "south");
     addFeature("/lib/environment/features/water/rocky-ocean-shore.c", "north");
@@ -14,4 +16,5 @@ public void Setup()
     addDecorator("dock");
     addExit("west", "/areas/eledhel/southern-city/19x2.c");
     addExit("east", "/areas/eledhel/southern-city/21x2.c");
+    addObject("/areas/eledhel/southern-city/characters/dock-foreman.c");
 }

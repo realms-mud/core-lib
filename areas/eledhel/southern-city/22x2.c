@@ -7,6 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    addObject("/areas/eledhel/southern-city/characters/docks/"
+        "aedran.c");
     setTerrain("/lib/environment/terrain/pier.c");
     addFeature("/lib/environment/features/water/ocean.c", "east");
     addFeature("/lib/environment/features/water/ocean.c", "south");

@@ -8,8 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/trades/market.c",
-        "east");
+    addBuildingWithDoor("/lib/environment/buildings/trades/market.c",
+        "east", "/areas/eledhel/southern-city/market/0x0.c",
+        "/lib/environment/doors/plank-door.c");
 
     addExit("west", "/areas/eledhel/southern-city/18x5.c");
     addExit("south", "/areas/eledhel/southern-city/19x4.c");

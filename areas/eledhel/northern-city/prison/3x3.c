@@ -9,5 +9,7 @@ public void Setup()
     setShortDescription("The prison's records and equipment store");
     addDecorator("keep interior floor");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");
+    addItem("/lib/environment/items/military/weapon-rack.c", "east");
+    addItem("/lib/environment/items/furniture/chest.c", "west");
     addExit("west", "/areas/eledhel/northern-city/prison/2x3.c");
 }

@@ -7,6 +7,8 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    addObject("/areas/eledhel/southern-city/characters/docks/"
+        "halen.c");
     setTerrain("/lib/environment/terrain/pier.c");
     addFeature("/lib/environment/features/water/rocky-ocean-shore.c", "south");
     addFeature("/lib/environment/features/water/rocky-ocean-shore.c", "north");

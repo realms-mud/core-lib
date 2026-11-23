@@ -1458,15 +1458,15 @@ void ArgalenVillageShopsHaveReciprocalPlankDoors()
 /////////////////////////////////////////////////////////////////////////////
 void CentralCityUnbuiltInteriorsRemainClosedFacades()
 {
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/14x0.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/14x1.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/14x5.c")->
-        getExitDirections()["default"], "east"));
+    ExpectEq("/areas/eledhel/central-city/leather-merchant/0x0.c",
+        load_object("/areas/eledhel/central-city/14x0.c")->
+            getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-tailor/0x0.c",
+        load_object("/areas/eledhel/central-city/14x1.c")->
+            getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/central-city/palace/0x2.c",
+        load_object("/areas/eledhel/central-city/14x5.c")->
+            getExitDirections()["default"]["east"]);
     ExpectFalse(member(load_object(
         "/areas/eledhel/central-city/17x0.c")->
         getExitDirections()["default"], "east"));
@@ -1493,15 +1493,6 @@ void CentralCityUnbuiltInteriorsRemainClosedFacades()
         getExitDirections()["default"], "east"));
     ExpectFalse(member(load_object(
         "/areas/eledhel/central-city/20x2.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/12x0.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/12x0.c")->
-        getExitDirections()["default"], "west"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/12x1.c")->
         getExitDirections()["default"], "east"));
 }
 
@@ -1791,26 +1782,12 @@ void SouthernCityMissingInteriorsRemainClosedFacades()
             "direction": "south"]),
         (["room": "/areas/eledhel/southern-city/13x2.c",
             "direction": "south"]),
-        (["room": "/areas/eledhel/southern-city/14x6.c",
-            "direction": "east"]),
-        (["room": "/areas/eledhel/southern-city/16x3.c",
-            "direction": "east"]),
-        (["room": "/areas/eledhel/southern-city/17x7.c",
-            "direction": "west"]),
-        (["room": "/areas/eledhel/southern-city/17x9.c",
-            "direction": "west"]),
         (["room": "/areas/eledhel/southern-city/19x1.c",
-            "direction": "east"]),
-        (["room": "/areas/eledhel/southern-city/19x5.c",
-            "direction": "east"]),
-        (["room": "/areas/eledhel/southern-city/19x6.c",
             "direction": "east"]),
         (["room": "/areas/eledhel/southern-city/1x5.c",
             "direction": "west"]),
         (["room": "/areas/eledhel/southern-city/20x9.c",
             "direction": "west"]),
-        (["room": "/areas/eledhel/southern-city/21x7.c",
-            "direction": "east"]),
         (["room": "/areas/eledhel/southern-city/2x1.c",
             "direction": "west"]),
         (["room": "/areas/eledhel/southern-city/3x5.c",
@@ -1839,6 +1816,10 @@ void SouthernCityMissingInteriorsRemainClosedFacades()
         ExpectFalse(member(room->getExitDirections()["default"],
             entrance["direction"]), entrance["room"]);
     }
+
+    ExpectEq("/areas/eledhel/southern-city/shipyard/0x0.c",
+        load_object("/areas/eledhel/southern-city/21x7.c")->
+            getExitDirections()["default"]["east"]);
 }
 
 /////////////////////////////////////////////////////////////////////////////

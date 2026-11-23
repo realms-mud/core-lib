@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("A straight paved block on the west avenue");
+    addObject("/areas/eledhel/central-city/characters/street-musician.c");
 
     addExit("west", "/areas/eledhel/central-city/7x5.c");
     addExit("east", "/areas/eledhel/central-city/9x5.c");

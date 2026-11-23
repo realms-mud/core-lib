@@ -20,6 +20,8 @@ public void Setup()
         "/areas/eledhel/northern-city/prison/1x2.c", "room");
     setCoordinate(2, 2,
         "/areas/eledhel/northern-city/prison/2x2.c", "room");
+    setCoordinate(3, 2,
+        "/areas/eledhel/northern-city/prison/cell/0x0.c", "room");
     setCoordinate(2, 3,
         "/areas/eledhel/northern-city/prison/2x3.c", "room");
     setCoordinate(3, 3,

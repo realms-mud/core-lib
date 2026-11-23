@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("An eastern approach to the temple and academy streets");
+    addObject("/areas/eledhel/central-city/characters/werric-visitor.c");
 
     addExit("north", "/areas/eledhel/central-city/12x7.c");
     addExit("south", "/areas/eledhel/central-city/12x5.c");

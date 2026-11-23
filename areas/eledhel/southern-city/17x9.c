@@ -8,7 +8,9 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
-    addBuilding("/lib/environment/buildings/shops/bowyer.c", "west");
+    addBuildingWithDoor("/lib/environment/buildings/shops/bowyer.c",
+        "west", "/areas/eledhel/southern-city/16x9.c",
+        "/lib/environment/doors/plank-door.c");
     addBuilding("/lib/environment/buildings/shops/weaponsmith.c",
         "east", "/areas/eledhel/southern-city/axe-and-hammer/0x1.c");
 

@@ -8,6 +8,8 @@ inherit "/lib/environment/environment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/city.c");
+    setShortDescription("A quieter block north of the temple approach");
+    addObject("/areas/eledhel/central-city/characters/temple-attendant.c");
 
     addExit("north", "/areas/eledhel/central-city/12x8.c");
     addExit("south", "/areas/eledhel/central-city/12x6.c");
