@@ -301,6 +301,49 @@ void MagicUsersGetResearchAdded()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ClericsGetTheirPersonaResearchAndTrait()
+{
+    Persona.SetUpPersonaOfLevel("cleric of xyris", 15);
+
+    ExpectTrue(Persona.isTraitOf(
+        "/lib/instances/traits/personas/clerics/cleric-of-xyris.c"));
+    ExpectTrue(member(Persona.completedResearch(),
+        "/lib/instances/research/personas/cleric-of-xyris/touch-of-decay.c") > -1);
+    ExpectTrue(member(Persona.completedResearch(),
+        "/lib/instances/research/personas/cleric-of-xyris/death's-embrace.c") > -1);
+    ExpectTrue(member(Persona.completedResearch(),
+        "/lib/instances/research/personas/cleric-of-xyris/soul-drain.c") > -1);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AllClericPersonasGetResearchAndTraits()
+{
+    string *personas = ({ "cleric of xyris", "cleric of seilyndria",
+        "cleric of bilanx", "cleric of ferianth", "cleric of ilyrth",
+        "cleric of werra", "druid" });
+    string category;
+    string traitPath;
+    object testPersona;
+
+    foreach(string personaName in personas)
+    {
+        testPersona = clone_object("/lib/realizations/monster");
+        testPersona.Name("Bob");
+        testPersona.Gender("male");
+        move_object(testPersona, this_object());
+        testPersona.SetUpPersonaOfLevel(personaName, 15);
+
+        category = (personaName == "druid") ? "druids" : "clerics";
+        traitPath = sprintf("/lib/instances/traits/personas/%s/%s.c",
+            category, regreplace(personaName, " ", "-", 1));
+
+        ExpectTrue(testPersona->isTraitOf(traitPath));
+        ExpectEq(3, sizeof(testPersona->completedResearch()));
+        destruct(testPersona);
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void WillNotAddResearchIfNotHighEnoughLevel()
 {
     Persona.SetUpPersonaOfLevel("aeromancer", 10);

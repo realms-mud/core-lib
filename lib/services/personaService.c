@@ -403,6 +403,22 @@ public nomask string getRandomPersona(string type, int level)
             ret = personas[random(sizeof(personas))];
             break;
         }
+        case "cleric":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "clerics" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+            break;
+        }
+        case "druid":
+        {
+            string *personas = filter(m_indices(blueprints),
+                (: $2[$1]["category"] == "druids" :), blueprints);
+
+            ret = personas[random(sizeof(personas))];
+            break;
+        }
         case "dragon":
         {
             string *personas = filter(m_indices(blueprints),
