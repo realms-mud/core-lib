@@ -8,6 +8,7 @@ inherit "/lib/environment/generatedEnvironment.c";
 public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
+    addDecorator("forest trail T-east");
     addFeature("/lib/environment/features/landforms/knoll.c", "north");
     addFeature("/lib/environment/features/water/ravine-dry-creek.c", "east");
     addFeature("/lib/environment/features/trees/maple-stand.c", "south");
@@ -16,4 +17,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "west");
     addExit("north", "/areas/tol-dhurath/forest-1/24x6.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("south", "/areas/argalen-keep/patrol-woods/0x4.c");
+    addFeature("/lib/environment/features/paths/path.c", "south");
 }

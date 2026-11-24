@@ -24,6 +24,31 @@ private void enterRoom(string roomPath)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void enterTrialFromCourtyard()
+{
+    enterRoom("/areas/tol-dhurath/temple-interior/7x4.c");
+
+    command("e", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("e", Player);
+    command("n", Player);
+    command("e", Player);
+    command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("n", Player);
+    command("e", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+    command("s", Player);
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private void traverseFirstUhrdalenConversation()
 {
     command("2", Player);
@@ -456,7 +481,8 @@ void Init()
     destruct(dataAccess);
     destruct(database);
 
-    ignoreList += ({ "enterRoom", "getStateMachine", "traverseFirstPassage",
+    ignoreList += ({ "enterRoom", "enterTrialFromCourtyard",
+        "getStateMachine", "traverseFirstPassage",
         "isInState", "openFirstPassage", "solveMagicSquare",
         "traverseFirstUhrdalenConversation", "runeAppeared",
         "traverseSecondUhrdalenConversation",
@@ -817,7 +843,31 @@ private void executeSealChallenge()
 /////////////////////////////////////////////////////////////////////////////
 void CanCompleteObedienceQuest()
 {
-    enterRoom("/areas/tol-dhurath/temple-interior/pedestal-1x1.c");
+    string openingQuestPath =
+        "/areas/tol-dhurath/state-machine/tol-dhurath-quest.c";
+    object openingQuest = load_object(openingQuestPath);
+    ExpectTrue(Player->beginQuest(openingQuestPath));
+    openingQuest->receiveEvent(Player, "met maiwyn");
+    openingQuest->receiveEvent(Player, "maiwyn helps");
+
+    enterTrialFromCourtyard();
+    ExpectEq(load_object(
+        "/areas/tol-dhurath/temple-interior/pedestal-1x1.c"),
+        environment(Player), "the courtyard route reaches the trial");
+
+    command("n", Player);
+    ExpectEq(load_object(
+        "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c"),
+        environment(Player), "the trial entrance has a return passage");
+    command("n", Player);
+    ExpectEq(load_object("/areas/tol-dhurath/temple-interior/12x3.c"),
+        environment(Player), "the return passage reaches the temple");
+    command("s", Player);
+    command("s", Player);
+    ExpectEq(load_object(
+        "/areas/tol-dhurath/temple-interior/pedestal-1x1.c"),
+        environment(Player), "the return passage reconnects to the trial");
+
     command("resetEverything", Player);
 
     executeFirstChallenge();
@@ -835,5 +885,27 @@ void CanCompleteObedienceQuest()
     executeFinalChallenge();
 
     executeSealChallenge();
+    ExpectTrue(isInState("quest complete"),
+        "the Test of Obedience releases Seilyndria");
+    ExpectTrue(Player->questIsCompleted(openingQuestPath),
+        "the Tol-Dhurath opening quest completes with the trial");
     ExpectEq(1000, Player->effectiveExperience());
+
+    command("w", Player);
+    ExpectEq(load_object(
+        "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c"),
+        environment(Player), "the released goddess's chamber has an exit");
+    command("n", Player);
+    ExpectEq(load_object("/areas/tol-dhurath/temple-interior/12x3.c"),
+        environment(Player), "the exit returns to the temple");
+
+    command("w", Player);
+    command("s", Player);
+    command("w", Player);
+    command("n", Player);
+    command("n", Player);
+    command("w", Player);
+    command("w", Player);
+    ExpectEq(load_object("/areas/tol-dhurath/temple-interior/7x4.c"),
+        environment(Player), "the player can return to the courtyard");
 }

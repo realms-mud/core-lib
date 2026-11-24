@@ -188,7 +188,7 @@ public nomask varargs int demoteWizardToPlayer(string wizardName)
 /////////////////////////////////////////////////////////////////////////////
 public nomask string StartLocation()
 {
-    return "/areas/eledhel/southern-city/12x2.c";
+    return "/areas/argalen-keep/keep-interior/5x1.c";
 }
 
 /////////////////////////////////////////////////////////////////////////////

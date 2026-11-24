@@ -14,6 +14,7 @@ public void Setup()
     addItem("/lib/environment/items/records/ledger-desk.c", "east");
     addItem("/lib/environment/items/lighting/oil-lamp.c", "east");
     addItem("/lib/environment/items/lighting/window.c", "north");
+    addObject("/areas/items/books/scions-of-dhuras.c");
     addObject("/areas/minlach/characters/orlen/orlen.c");
     addClue("household register", "watchtowers-names",
         "compareHouseholdRegister", "The household book repeats the "

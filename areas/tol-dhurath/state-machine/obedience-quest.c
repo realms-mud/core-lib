@@ -25,12 +25,25 @@ private void registerEventHandlers()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private void completeTolDhurathOpening(object player)
+{
+    string openingQuest =
+        "/areas/tol-dhurath/state-machine/tol-dhurath-quest.c";
+
+    if (objectp(player) && player->questIsActive(openingQuest))
+    {
+        load_object(openingQuest)->receiveEvent(player,
+            "obedience trial complete");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void Setup()
 {
     setName("The Test of Obedience");
     setType("primary");
-    setDescription("In order to retrieve the Heart of Decay, I have been "
-        "tasked with completing something called the 'Test of Obedience'");
+    setDescription("I must complete the Test of Obedience to reach the "
+        "sealed chamber beneath Tol-Dhurath.");
 
     addState("entered room", "I entered a room that appears to have "
         "been hewn out of solid amethyst.");
@@ -212,6 +225,7 @@ void activateFinalPassage(object player)
 void onQuestCompleted(object player)
 {
     notify("startEighthTest", player);
+    completeTolDhurathOpening(player);
 }
 
 /////////////////////////////////////////////////////////////////////////////

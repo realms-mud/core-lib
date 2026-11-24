@@ -15,14 +15,14 @@ protected void Setup()
         "their personal effects so their families can remember them "
         "as they were. Then help Berenar prepare the pyre.'");
     addTopicInterjection("honor the fallen",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "our dead", 1);
     addTopic("hunt the robed ones", "@D@Galadhel checks her bow. "
         "@S@'If they reach their masters, they will report what "
         "they learned here. We should follow while their trail is "
         "still warm.'");
     addTopicInterjection("hunt the robed ones",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "camp investigation", 1);
     addTopic("the prisoner", "@D@She keeps her arrow trained on "
         "the captive. @S@'We need answers, but we are not executioners. "

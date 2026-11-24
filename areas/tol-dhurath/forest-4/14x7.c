@@ -13,6 +13,11 @@ public void Setup()
 
     addExit("west", "/areas/tol-dhurath/forest-4/13x7.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
+    addExit("north", "/areas/tol-dhurath/forest-4/copper-hollow.c");
+    addFeature("/lib/environment/features/cave.c", "north");
+    addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("east", "/areas/tol-dhurath/forest-5/14x8.c");
+    addFeature("/lib/environment/features/paths/path.c", "east");
 
     addRandomCreature(({"beaver","knight of the storm","outlaw","chipmunk"}));
 }

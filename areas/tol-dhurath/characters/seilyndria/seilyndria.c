@@ -50,6 +50,8 @@ protected void Setup()
     registerEventHandler("revealName");
     registerEventHandler("playerGaveName");
     registerEvent(this_object());
+    registerEvent(load_object(
+        "/areas/tol-dhurath/state-machine/tol-dhurath-quest-events.c"));
 }
 
 /////////////////////////////////////////////////////////////////////////////

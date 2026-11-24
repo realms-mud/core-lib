@@ -66,7 +66,8 @@ protected void Setup()
         "rival those of the elven realms.\n\n"
         "The tower was razed during the Orcslayer Wars in "
         "Year 109 and rebuilt stronger. It stands to this day "
-        "as the order's seat.");
+        "as the order's seat. The Scions' later collapse left "
+        "the tower without its keepers and its halls abandoned.");
 
     addChapter("Argloth's Fall and the Order's Shame",
         "In Year 1843, Argloth's obsession with destroying "
@@ -82,15 +83,29 @@ protected void Setup()
         "The order survived, chastened. Our purpose became "
         "preservation rather than the pursuit of power.");
 
-    addChapter("The Order Today",
-        "The Scions of Dhuras continue to maintain the tower "
-        "and its libraries. We train warrior-scholars who "
-        "wield magic-infused weapons in defense of Hillgarath "
-        "and the alliance. We remain vigilant against the "
-        "darkness that consumed our founder.\n\n"
-        "Membership is open to those of martial aptitude who "
-        "also possess the spark of arcane talent. The order "
-        "prohibits membership in the Aegis Guard, fighters' "
-        "guilds, or monastic orders, for a Scion's path "
-        "demands undivided commitment.");
+    addChapter("The Order's Collapse",
+        "The Scions of Dhuras no longer operate as an order. "
+        "Their tower and halls stand abandoned, and no Circle "
+        "of Dhuras or recognized master remains to accept "
+        "members. Their records preserve the old discipline: "
+        "a Scion needed martial aptitude and the spark of "
+        "arcane talent, and could not belong to the Aegis "
+        "Guard, a fighters' guild, or a monastic order. Those "
+        "who would restore the order must begin without "
+        "pretending that its old leaders survived.");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public void onChapterRead(object reader, string chapter)
+{
+    string questPath = "/areas/minlach/quests/scions-restoration.c";
+
+    if (objectp(reader) && function_exists("beginQuest", reader) &&
+        reader->beginQuest(questPath))
+    {
+        object quest = load_object(questPath);
+        reader->onStateChanged(quest, reader->questState(questPath));
+        tell_object(reader, "Your journal records a new undertaking: "
+            "help Renveth restore the Scions of Dhuras.\n");
+    }
 }

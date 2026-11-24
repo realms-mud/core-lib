@@ -16,4 +16,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "east");
     addExit("north", "/areas/tol-dhurath/forest-2/12x7.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("west", "/areas/tol-dhurath/forest-2/hunting-tower.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
 }

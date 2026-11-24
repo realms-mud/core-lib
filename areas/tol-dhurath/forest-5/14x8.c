@@ -16,6 +16,8 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "north");
     addExit("south", "/areas/tol-dhurath/forest-5/14x7.c");
     addFeature("/lib/environment/features/paths/path.c", "south");
+    addExit("west", "/areas/tol-dhurath/forest-4/14x7.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
 
     addRandomCreature(({"ruffian","warg","otter","timber wolf","gray squirrel"}));
 }

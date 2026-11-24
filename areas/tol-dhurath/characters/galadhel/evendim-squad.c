@@ -16,7 +16,7 @@ protected void Setup()
         "not erase individual responsibility; it keeps blame from "
         "becoming an excuse to abandon one another.'");
     addTopicInterjection("shared responsibility",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "the Aegis unit", 1);
     addTopic("Tinwen scouts", "@D@Galadhel glances at the raven "
         "on her shoulder. @S@'Tinwen has a better view from above, "

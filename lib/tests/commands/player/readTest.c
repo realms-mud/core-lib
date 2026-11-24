@@ -58,6 +58,10 @@ void ReadNonexistentReportsMissing()
 void ReadBookShowsTableOfContents()
 {
     ExpectTrue(command("read test chronicle", Player));
+    ExpectFalse(Player->hasObservation(([
+        "type": "knowledge.book.read",
+        "subject": program_name(Book)
+    ])));
 
     string all = implode(Player.caughtMessages(), "\n");
     ExpectSubStringMatch("The Test Chronicle", all);
@@ -78,6 +82,10 @@ void ReadSelectingChapterDisplaysChapter()
         "used to test formatting and\\\nchapter retrieval.", all);
 
     ExpectSubStringMatch("Return", all);
+    ExpectTrue(Player->hasObservation(([
+        "type": "knowledge.book.read",
+        "subject": program_name(Book)
+    ])));
 }
 
 /////////////////////////////////////////////////////////////////////////////

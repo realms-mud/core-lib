@@ -44,7 +44,6 @@ protected void Setup()
     object generator = load_object("/tutorial/characters/aegis-equipment.c");
     generator.CreateAegisEquipment(this_object());
 
-    addConversation("/areas/tol-dhurath/characters/galadhel/startingConversation.c");
     addConversation(
         "/areas/tol-dhurath/characters/galadhel/return-to-aegis-camp.c");
     addConversation(
@@ -57,4 +56,10 @@ protected void Setup()
         "/areas/tol-dhurath/characters/galadhel/gift-training-break.c");
     addConversation(
         "/areas/tol-dhurath/characters/galadhel/galadhel-mantle.c");
+    addConversation(
+        "/areas/argalen-keep/characters/galadhel/startingConversation.c");
+
+    registerEventHandler("startTolDhurath");
+    registerEvent(load_object(
+        "/areas/tol-dhurath/state-machine/tol-dhurath-quest-events.c"));
 }

@@ -145,7 +145,7 @@ public nomask void limitHarvestByState(string state)
 }
 
 /////////////////////////////////////////////////////////////////////////////
-public nomask void limitHarvestByTool(string tool)
+public nomask void limitHarvestByTool(mixed tool)
 {
     addToLimitors("equipment", tool);
 }
@@ -154,6 +154,12 @@ public nomask void limitHarvestByTool(string tool)
 public nomask void limitHarvestByOneOfTools(string *tools)
 {
     addToLimitors("equipment", tools);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+public nomask void limitHarvestByQuest(string quest)
+{
+    addToLimitors("quests", quest);
 }
 
 /////////////////////////////////////////////////////////////////////////////

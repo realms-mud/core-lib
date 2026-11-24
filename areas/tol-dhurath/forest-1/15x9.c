@@ -12,8 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/water/canyon-stream.c", "west");
     addFeature("/lib/environment/features/trees/ash-stand.c", "south");
 
+    addExit("north", "/areas/tol-dhurath/northern-trail/20x0.c");
     addExit("west", "/areas/tol-dhurath/forest-1/14x9.c");
     addFeature("/lib/environment/features/paths/path.c", "west");
     addExit("east", "/areas/tol-dhurath/forest-1/16x9.c");
     addFeature("/lib/environment/features/paths/path.c", "east");
+    addFeature("/lib/environment/features/paths/path.c", "north");
 }

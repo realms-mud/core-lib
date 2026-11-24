@@ -9,6 +9,8 @@ public void Setup()
 {
     setTerrain("/lib/environment/terrain/forest.c");
     addFeature("/lib/environment/features/landforms/ridge.c", "south");
+    addFeature("/areas/tol-dhurath/features/abandoned-camp.c", "southwest");
+    addItem("/lib/environment/items/objects/packing-crate.c", "south");
 
     addExit("north", "/areas/tol-dhurath/forest-3/20x6.c");
     addFeature("/lib/environment/features/paths/path.c", "north");

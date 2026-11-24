@@ -14,6 +14,8 @@ public void Setup()
 
     addExit("north", "/areas/tol-dhurath/forest-1/14x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("south", "/areas/tol-dhurath/forest-1/14x6.c");
+    addFeature("/lib/environment/features/paths/path.c", "south");
 
     addRandomCreature(({"gray fox","red fox"}));
 }

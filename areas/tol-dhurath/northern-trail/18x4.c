@@ -1,0 +1,18 @@
+//*****************************************************************************
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD. All rights reserved.
+//*****************************************************************************
+inherit "/lib/environment/generatedEnvironment.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    setTerrain("/lib/environment/terrain/forest-clearing.c");
+    addFeature("/lib/environment/features/trees/beech-stand.c", "south");
+
+    addExit("west", "/areas/tol-dhurath/northern-trail/17x4.c");
+    addExit("east", "/areas/tol-dhurath/northern-trail/19x4.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
+    addFeature("/lib/environment/features/paths/path.c", "east");
+
+    addRandomCreature(({"white-tail deer","outlaw","red fox"}));
+}

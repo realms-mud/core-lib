@@ -12,6 +12,8 @@ void RunSelectedTests()
 {
     runSelectedTests(({
         "ArgalenKeepHasAccessibleGatedEntry",
+        "ArgalenFarmsteadHasATenantAndWorkingFeatures",
+        "ArgalenVillageResidentsHaveWorkingConversations",
         "ArgalenPatrolWoodsConnectsTheOpeningRoute",
         "ArgalenPatrolCoastConnectsTheSouthernRoad",
         "BuildingInteriorsHaveReciprocalDoorsAndLighting",

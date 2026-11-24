@@ -23,7 +23,7 @@ protected void Setup()
         "Halgaladh wants a method. Perhaps each of us must find "
         "a way that fits.'");
     addTopicInterjection("different methods",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "his method", 1);
     addTopic("the urgency", "@D@Her gaze moves to the windows. "
         "@S@'I feel that we are running out of time. I cannot "

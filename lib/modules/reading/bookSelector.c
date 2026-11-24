@@ -71,6 +71,8 @@ protected nomask void setUpUserForSelection()
 /////////////////////////////////////////////////////////////////////////////
 protected nomask int processSelection(string selection)
 {
+    string chapterName;
+
     if (User && member(Data, selection))
     {
         if (Data[selection]["type"] == "exit")
@@ -80,12 +82,27 @@ protected nomask int processSelection(string selection)
 
         if (Data[selection]["type"] == "chapter")
         {
+            chapterName = Data[selection]["name"];
             tell_object(User, configuration->decorate(
-                sprintf("\n  %s\n\n", Data[selection]["name"]),
+                sprintf("\n  %s\n\n", chapterName),
                 "heading", "selector", colorConfiguration) +
             configuration->decorate(
             format(Data[selection]["description"], 78) + "\n",
             "description", "selector", colorConfiguration));
+
+            if (objectp(Book) &&
+                function_exists("recordObservation", User))
+            {
+                User->recordObservation(([
+                    "type": "knowledge.book.read",
+                    "subject": program_name(Book),
+                    "context": ([ "chapter": chapterName ])
+                ]));
+            }
+            if (objectp(Book) && function_exists("onChapterRead", Book))
+            {
+                Book->onChapterRead(User, chapterName);
+            }
 
             Data = (["1": ([
                 "name": "Return",

@@ -28,7 +28,7 @@ protected void Setup()
         "not abandoned the Aegis, the kingdom, or the people who "
         "need us. I am still here, doing what I can.'");
     addTopicInterjection("still serving",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "our oath", 1);
     addTopic("uncertain cost", "@S@'I do not know what this choice "
         "will cost me. I know that uncertainty is not a reason to "

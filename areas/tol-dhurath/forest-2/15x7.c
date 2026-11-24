@@ -16,6 +16,10 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "south");
     addExit("north", "/areas/tol-dhurath/forest-2/15x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
+    addFeature("/lib/environment/features/paths/path.c", "east");
+    addBuildingWithDoor("/lib/environment/buildings/trades/foresters-lodge.c",
+        "east", "/areas/tol-dhurath/forest-2/waykeeper-lodge.c",
+        "/lib/environment/doors/plank-door.c");
 
     addRandomCreature(({"white-tail deer","ruffian","outlaw"}));
 }

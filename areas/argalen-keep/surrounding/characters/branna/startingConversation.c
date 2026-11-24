@@ -12,12 +12,11 @@ protected void Setup()
         "@S@'If you're here to gawk, the door's behind you. "
         "If you're here for steel, we can talk.'");
     addTopic("about branna", "@S@'I supply the keep's garrison "
-        "with arms and repairs. Lord Edran's captain, Tormund, he's "
-        "particular about his equipment - which suits me fine. A "
-        "demanding customer makes for better craft.' @D@She picks "
-        "the hammer back up. @S@'Lately they've been ordering more "
-        "than usual, though. Extra spearheads, arrowheads by the "
-        "bundle. Something's got them worried.'");
+        "with arms and repairs. The captain is particular about "
+        "maintenance, which suits me fine. A demanding customer "
+        "makes for better craft.' @D@She picks the hammer back up. "
+        "@S@'This week it was hinges, ploughshares, and a cracked "
+        "wagon pin. Boring work keeps a village standing.'");
     addTopic("the smithy", "@D@Branna taps the anvil with her "
         "hammer. @S@'I make what I can here and repair what people "
         "bring me. If the metal is sound, most things can be put "
@@ -25,6 +24,14 @@ protected void Setup()
     addTopic("good steel", "@S@'A good piece of steel is honest. "
         "It does not care who owns it, only whether it was made "
         "well and looked after.'");
+    addTopic("repairs", "@D@Branna taps the workbench with the "
+        "back of her hammer. @S@'I tell people what a repair will "
+        "cost before I start. A farmer cannot feed a family on "
+        "surprises, and a soldier cannot use a broken buckle.'");
+    addTopic("the village", "@S@'I know the sound of every cart "
+        "that uses this road. The western farmers have been hearing "
+        "unfamiliar wheels after dark. That is not proof of theft, "
+        "but I would check a loose axle before I let a rumor grow legs.'");
 
     addResponse("first conversation", "I'd like to see your wares.",
         "@D@She sets the hammer down and wipes her hands on her "
@@ -43,7 +50,11 @@ protected void Setup()
         "@S@'Set it on the bench. I will tell you what can be fixed "
         "before I take the hammer to it.'");
     addResponseTopic("first conversation", "Can you repair my weapon?",
-        "the smithy");
+        "repairs");
+    addResponse("first conversation", "How are things in the village?",
+        "@D@You ask what has changed in Branna's daily work.");
+    addResponseTopic("first conversation",
+        "How are things in the village?", "the village");
 
     addResponse("about branna", "What's got them worried?",
         "@D@Branna shrugs, the motion setting the tools on her belt "
@@ -62,4 +73,14 @@ protected void Setup()
     addResponse("good steel", "Can anyone learn the craft?",
         "@S@'Anyone can learn the steps. Skill comes from practice "
         "and knowing when to start over.'");
+    addResponse("repairs", "Can I help with a repair?",
+        "@S@'You can learn by watching, if you have the patience "
+        "to hold still and listen before reaching for a tool.'");
+    addResponseTopic("repairs", "Can I help with a repair?", "good steel");
+    addResponse("the village", "What have you heard?",
+        "@D@Branna lowers her voice, though she keeps working. "
+        "@S@'Harlan saw carts on the west track. I heard one of "
+        "them had a damaged wheel. That is all I know, and I would "
+        "rather ask than guess.'");
+    addResponseTopic("the village", "What have you heard?", "repairs");
 }

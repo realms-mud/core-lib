@@ -10,6 +10,9 @@ public void SetupGuild()
     guildName("Scion of Dhuras");
     guildClass("combat");
     addPreferredSkillType("combat");
+    addPrerequisite("/areas/minlach/quests/scions-restoration.c", ([
+        "type":"quest"
+    ]));
 
     addRank("neophyte", ([
         "name": "neophyte", 

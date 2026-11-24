@@ -11,6 +11,7 @@ void Init()
 void RunSelectedTests()
 {
     runSelectedTests(({
+        "ArgalenPatrolWoodsConnectsDirectlyToForestOne",
         "TolDhurathEntryRouteIsReciprocal",
         "TolDhurathEntryAndFirstForestRegionsHaveBoundedLevels",
         "TolDhurathTrailJunctionHasNoncombatPassersby"

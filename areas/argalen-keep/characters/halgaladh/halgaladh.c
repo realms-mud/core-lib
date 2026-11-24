@@ -56,4 +56,8 @@ protected void Setup()
         "/areas/tol-dhurath/characters/halgaladh/evendim-squad.c");
     addConversation(
         "/areas/tol-dhurath/characters/halgaladh/gift-training.c");
+
+    registerEventHandler("startTolDhurath");
+    registerEvent(load_object(
+        "/areas/tol-dhurath/state-machine/tol-dhurath-quest-events.c"));
 }

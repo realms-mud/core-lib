@@ -21,6 +21,4 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/7x3.c");
 
     addObject("/areas/tol-dhurath/characters/seilyndria/seilyndria.c");
-    addObject("/areas/tol-dhurath/characters/galadhel/galadhel.c");
-    addObject("/areas/tol-dhurath/characters/halgaladh/halgaladh.c");
 }

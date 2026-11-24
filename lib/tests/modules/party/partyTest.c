@@ -261,7 +261,7 @@ void CanAddNPC()
     party.joinParty(Member);
 
     object npc = 
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Creator);
 
     ExpectEq(({ Creator, Member }), party.members());
@@ -276,7 +276,7 @@ void AdvancingALevelIgnoresHenchmenAndNPCs()
     object party = Creator.getParty();
 
     object npc =
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Creator);
 
     object companion = clone_object("/lib/realizations/companion.c");
@@ -304,7 +304,7 @@ void FollowingShowsCorrectList()
     object party = Creator.getParty();
 
     object npc =
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Creator);
 
     object companion = clone_object("/lib/realizations/companion.c");
@@ -331,7 +331,7 @@ void MoveFollowersMovesAllFollowers()
     object party = Creator.getParty();
 
     object npc =
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Creator);
 
     object companion = clone_object("/lib/realizations/companion.c");
@@ -375,7 +375,7 @@ void PartyDetailsArePersisted()
     party = Creator.getParty();
 
     object npc =
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Creator);
 
     object companion = clone_object("/lib/realizations/companion.c");

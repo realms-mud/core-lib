@@ -12,7 +12,7 @@ protected void Setup()
         "moving when one of their handlers fell. That is a weakness "
         "we must understand before we meet them again.'");
     addTopicInterjection("camp investigation",
-        "/areas/tol-dhurath/characters/galadhel/galadhel.c",
+        "/areas/argalen-keep/characters/galadhel/galadhel.c",
         "camp aftermath", 1);
     addTopic("our dead", "@D@He lowers his gaze. @S@'These were "
         "our comrades. We should search for their personal effects "

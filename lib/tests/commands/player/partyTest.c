@@ -304,7 +304,7 @@ void PartyShowsNPCsAndHenchmen()
     Player.addExperience(1);
 
     object npc =
-        clone_object("/areas/tol-dhurath/characters/galadhel/galadhel.c");
+        clone_object("/areas/argalen-keep/characters/galadhel/galadhel.c");
     npc.setLeader(Player);
 
     object companion = clone_object("/lib/realizations/companion.c");

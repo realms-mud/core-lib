@@ -21,6 +21,11 @@ public void Setup()
     addExit("north",
         "/areas/tol-dhurath/temple-interior/pedestal-5x5.c",
         "quest complete");
+    addExit("west",
+        "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c",
+        "quest complete");
+    addDecorator("ruined interior north-west corner hallway",
+        "quest complete");
 
     addObject("/areas/tol-dhurath/objects/seal-blade.c");
 

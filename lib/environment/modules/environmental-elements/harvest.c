@@ -144,7 +144,7 @@ protected nomask void limitHarvestBySkill(string name, string skill,
 }
 
 /////////////////////////////////////////////////////////////////////////////
-protected nomask void harvestRequiresTool(string name, string tool)
+protected nomask void harvestRequiresTool(string name, mixed tool)
 {
     if (member(harvestData, name) && objectp(harvestData[name]))
     {
@@ -170,6 +170,21 @@ protected nomask void harvestRequiresOneOfTool(string name, string *tools)
         raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
             "It must be added via the harvestableResource(...) method before "
             "adding a required tool.\n", name));
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+protected nomask void harvestRequiresQuest(string name, string quest)
+{
+    if (member(harvestData, name) && objectp(harvestData[name]))
+    {
+        harvestData[name]->limitHarvestByQuest(quest);
+    }
+    else
+    {
+        raise_error(sprintf("EnvironmentalElement: Unknown resource (%O).\n"
+            "It must be added via the harvestableResource(...) method before "
+            "adding a required quest.\n", name));
     }
 }
 

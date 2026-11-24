@@ -148,7 +148,13 @@ This method ties an effect to the speaking of a given response. These effects ca
 - `([ "move": "/path/to/new/location.c" ])` The actor speaking will be moved to a new location
 - `([ "attack": 1 ])` The actor speaking will attack the respondent.
 - `([ "opinion": -5 ])` The actor speaking will have their opinion of the respondent altered by the supplied value.
-- `([ "give": "/path/to/item.c" ])` The actor speaking will give the respondent an item.
+- `([ "give": "/path/to/item.c" ])` The conversation owner will give the
+  respondent an item.
+- `([ "receive": "/path/to/item.c" ])` The respondent will give the
+  conversation owner an item. The response is available only while that item
+  is present in the respondent's deep inventory, including inside containers.
+  The item is transferred to the conversation owner, then the owner's optional
+  `onGiftReceived(respondent, item)` handler is called.
 
 `void addResponseTopic(string id, string selection, string topic)`
 

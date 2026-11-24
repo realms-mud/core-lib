@@ -14,4 +14,6 @@ public void Setup()
     addFeature("/lib/environment/features/paths/path.c", "east");
     addExit("north", "/areas/tol-dhurath/forest-5/14x8.c");
     addFeature("/lib/environment/features/paths/path.c", "north");
+    addExit("west", "/areas/tol-dhurath/forest-5/sunken-chapel.c");
+    addFeature("/lib/environment/features/paths/path.c", "west");
 }

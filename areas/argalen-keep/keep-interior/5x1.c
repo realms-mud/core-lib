@@ -7,11 +7,14 @@ inherit "/lib/environment/environment.c";
 /////////////////////////////////////////////////////////////////////////////
 public void Setup()
 {
+    cloneEnvironment();
     setStateMachine("/areas/argalen-keep/state-machine/argalen-keep-quest.c");
 
     setInterior("/lib/environment/interiors/courtyard.c");
     addItem("/lib/environment/items/furniture/bench.c", "north");
     addDecorator("keep interior floor");
+    addObject("/areas/argalen-keep/characters/galadhel/galadhel.c");
+    addObject("/areas/argalen-keep/characters/halgaladh/halgaladh.c");
 
     addExit("south",
         "/areas/argalen-keep/keep-interior/5x0.c");

@@ -76,7 +76,7 @@ private nomask int isValidPrerequisiteType(string type)
 {
     return (member(({ "research", "attribute", "skill", "quest", "guild",
         "race", "faction", "trait", "background", "combat statistic", "level",
-        "opinion", "state", "presence", "not present", "guild rank",
+        "opinion", "state", "quest state", "presence", "not present", "guild rank",
         "guilds at level", "guilds at rank", "spoken topics",
         "observation", "relationship", "any of" }), type) > -1);
 }
@@ -114,6 +114,13 @@ protected nomask int validPrerequisite(mapping prerequisite)
                         ret &&= stringp(key) && sizeof(key) &&
                             mappingp(condition) &&
                             validPrerequisite(condition);
+                    }
+                    if (ret && prerequisite["type"] == "quest state")
+                    {
+                        ret = member(prerequisite, "state key") &&
+                            stringp(prerequisite["state key"]) &&
+                            member(prerequisite, "value") &&
+                            stringp(prerequisite["value"]);
                     }
                 }
             }
@@ -801,6 +808,16 @@ private nomask int checkPrerequisiteList(object researcher, mapping required,
                         ret &&= researcher && member(prerequisiteData, "state key") &&
                             (researcher->stateFor(load_object(prerequisiteData["state key"])) ==
                             prerequisiteData["value"]);
+                        break;
+                    }
+                    case "quest state":
+                    {
+                        ret &&= researcher &&
+                            function_exists("questState", researcher) &&
+                            member(prerequisiteData, "state key") &&
+                            (researcher->questState(
+                                prerequisiteData["state key"]) ==
+                                prerequisiteData["value"]);
                         break;
                     }
                     case "presence":

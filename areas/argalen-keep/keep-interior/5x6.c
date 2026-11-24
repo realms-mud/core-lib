@@ -14,6 +14,8 @@ public void Setup()
     addItem("/lib/environment/items/furniture/canopy-bed.c", "west");
     addItem("/lib/environment/items/furniture/armoire.c", "east");
     addItem("/lib/environment/items/lighting/candelabra.c", "south");
+    addObject("/areas/argalen-keep/characters/lord-argalen/"
+        "lord-argalen.c");
     addDecorator("keep interior north alcove west entry");
 
     addExitWithDoor("south",

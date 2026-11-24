@@ -1238,6 +1238,49 @@ void ArgalenKeepHasAccessibleGatedEntry()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ArgalenFarmsteadHasATenantAndWorkingFeatures()
+{
+    object farmstead = clone_object(
+        "/areas/argalen-keep/surrounding/10x3.c");
+    move_object(Player, farmstead);
+
+    int residentCount = 0;
+    foreach (object resident in all_inventory(farmstead))
+    {
+        if (resident != Player &&
+            function_exists("isRealizationOfNpc", resident) &&
+            resident->isRealizationOfNpc())
+        {
+            ExpectTrue(resident->id("Harlan Reed"));
+            residentCount++;
+            Spawned += ({ resident });
+        }
+    }
+    ExpectEq(1, residentCount, "the farmstead has one named resident");
+
+    ExpectTrue(farmstead->isEnvironmentalElement("field drain"));
+    ExpectTrue(farmstead->isEnvironmentalElement("wooden fence"));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ArgalenVillageResidentsHaveWorkingConversations()
+{
+    string *residents = ({
+        "/areas/argalen-keep/surrounding/characters/aldric/aldric.c",
+        "/areas/argalen-keep/surrounding/characters/branna/branna.c",
+        "/areas/argalen-keep/surrounding/characters/marta/marta.c",
+        "/areas/argalen-keep/surrounding/characters/osric/osric.c"
+    });
+
+    foreach (string path in residents)
+    {
+        object resident = clone_object(path);
+        ExpectTrue(resident->isRealizationOfNpc(), path);
+        Spawned += ({ resident });
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void ArgalenPatrolWoodsConnectsTheOpeningRoute()
 {
     object region = load_object(
@@ -1665,6 +1708,22 @@ void TolDhurathEntryRouteIsReciprocal()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void ArgalenPatrolWoodsConnectsDirectlyToForestOne()
+{
+    object woods = load_object(
+        "/areas/argalen-keep/patrol-woods/0x4.c");
+    object forest = load_object(
+        "/areas/tol-dhurath/forest-1/24x5.c");
+
+    ExpectEq("/areas/tol-dhurath/forest-1/24x5.c",
+        woods->getExitDirections()["default"]["north"]);
+    ExpectEq("/areas/argalen-keep/patrol-woods/0x4.c",
+        forest->getExitDirections()["default"]["south"]);
+    ExpectEq("forest trail T-south", woods->decoratorType(0));
+    ExpectEq("forest trail T-east", forest->decoratorType(0));
+}
+
+/////////////////////////////////////////////////////////////////////////////
 protected void validateTolDhurathRouteDecorators(mapping routeDecorators,
     object region)
 {
@@ -1717,17 +1776,23 @@ void TolDhurathEntryAndFirstForestRegionsHaveBoundedLevels()
     destruct(forestRegion);
 }
 
-void TolDhurathSecondForestAndTempleRegionsHaveBoundedLevels()
+void TolDhurathLaterForestAndTempleRegionsHaveBoundedLevels()
 {
     object secondForestRegion = clone_object(
         "/areas/tol-dhurath/forest-2/region.c");
     object thirdForestRegion = clone_object(
         "/areas/tol-dhurath/forest-3/region.c");
+    object fourthForestRegion = clone_object(
+        "/areas/tol-dhurath/forest-4/region.c");
+    object fifthForestRegion = clone_object(
+        "/areas/tol-dhurath/forest-5/region.c");
     object templeRegion = clone_object(
         "/areas/tol-dhurath/temple-exterior/region.c");
 
     ExpectEq(4, secondForestRegion->regionLevel());
     ExpectEq(5, thirdForestRegion->regionLevel());
+    ExpectEq(6, fourthForestRegion->regionLevel());
+    ExpectEq(7, fifthForestRegion->regionLevel());
     ExpectEq(6, templeRegion->regionLevel());
 
     validateTolDhurathRouteDecorators(([
@@ -1745,6 +1810,8 @@ void TolDhurathSecondForestAndTempleRegionsHaveBoundedLevels()
 
     destruct(secondForestRegion);
     destruct(thirdForestRegion);
+    destruct(fourthForestRegion);
+    destruct(fifthForestRegion);
     destruct(templeRegion);
 }
 

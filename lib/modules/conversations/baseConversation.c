@@ -278,11 +278,51 @@ private nomask int validRelationshipEffect(mixed effect)
 }
 
 /////////////////////////////////////////////////////////////////////////////
+private nomask object itemFromInventory(string itemProgram, object actor)
+{
+    object ret = 0;
+
+    if (stringp(itemProgram) && objectp(actor))
+    {
+        object *items = deep_inventory(actor);
+        if (sizeof(items))
+        {
+            foreach(object item in items)
+            {
+                if (objectp(item) &&
+                    ((program_name(item) == itemProgram) ||
+                    (member(inherit_list(item), itemProgram) > -1)))
+                {
+                    ret = item;
+                    break;
+                }
+            }
+        }
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+private nomask int responseEffectHasRequiredItems(string id,
+    string response, object actor)
+{
+    int ret = 1;
+
+    if (member(topics[id]["responses"][response], "effect") &&
+        member(topics[id]["responses"][response]["effect"], "receive"))
+    {
+        ret = objectp(itemFromInventory(
+            topics[id]["responses"][response]["effect"]["receive"], actor));
+    }
+    return ret;
+}
+
+/////////////////////////////////////////////////////////////////////////////
 private int isValidEffect(mapping effectMap)
 {
     int ret = 0;
-    string *validEffects = ({ "opinion", "attack", "move", "give", "vanish",
-        "experience", "join", "trait", "relationship" });
+    string *validEffects = ({ "opinion", "attack", "move", "give", "receive",
+        "vanish", "experience", "join", "trait", "relationship" });
     string *effects = m_indices(effectMap);
     if (sizeof(effects))
     {
@@ -314,6 +354,7 @@ private int isValidEffect(mapping effectMap)
                 }
                 case "move":
                 case "give":
+                case "receive":
                 case "trait":
                 {
                     ret &&= stringp(effectMap[effect]) &&
@@ -563,6 +604,25 @@ private nomask void executeResponseEffect(mapping effects,
             owner->Name(), gift->query("name"), actor->Name()));
         move_object(gift, actor);
     }
+    if (member(effects, "receive"))
+    {
+        object gift = itemFromInventory(effects["receive"], actor);
+        if (objectp(gift))
+        {
+            if (function_exists("isEquipped", actor) &&
+                actor->isEquipped(gift))
+            {
+                actor->unequip(gift, 1);
+            }
+            move_object(gift, owner);
+            tell_room(environment(owner), sprintf("%s accepts %s from %s.\n",
+                owner->Name(), gift->query("name"), actor->Name()));
+            if (function_exists("onGiftReceived", owner))
+            {
+                owner->onGiftReceived(actor, gift);
+            }
+        }
+    }
     if (member(effects, "vanish"))
     {
         object *items = deep_inventory(owner);
@@ -626,9 +686,13 @@ public nomask int displayResponse(string choice, object actor, object owner)
     string key = objectp(actor) && mappingp(responseKeys[actor]) ?
         responseKeys[actor][choice] : 0;
     string id = stringp(key) ? regexplode(key, "#")[0] : 0;
-    if (objectp(owner) && stringp(key) &&
+    int prerequisitesMet = objectp(owner) && stringp(key) &&
         checkPrerequisites(actor, id, owner) &&
-        checkPrerequisites(actor, key, owner))
+        checkPrerequisites(actor, key, owner);
+    int effectsCanRun = prerequisitesMet &&
+        responseEffectHasRequiredItems(id, key, actor);
+
+    if (prerequisitesMet && effectsCanRun)
     {
         ret = 1;
 
@@ -669,6 +733,11 @@ public nomask int displayResponse(string choice, object actor, object owner)
                 actor, owner, ([ "topic":id, "response":key ]));
         }
     }
+    else if (prerequisitesMet && !effectsCanRun)
+    {
+        tell_object(actor,
+            "You no longer have the item needed to make this offer.\n");
+    }
     return ret;
 }
 
@@ -685,11 +754,13 @@ private nomask void displayResponses(string id, object actor, object owner)
         int elements = 0;
         foreach(string response in responses)
         {
-            int disabled = member(topics[id]["responses"][response], 
-                "always show") && 
-                !checkPrerequisites(actor, response, owner);
+            int prerequisitesMet = checkPrerequisites(actor, response, owner);
+            int effectsCanRun = prerequisitesMet &&
+                responseEffectHasRequiredItems(id, response, actor);
+            int disabled = member(topics[id]["responses"][response],
+                "always show") && !effectsCanRun;
 
-            if (checkPrerequisites(actor, response, owner) || disabled)
+            if (effectsCanRun || disabled)
             {
                 elements++;
                 string choice = to_string(elements);

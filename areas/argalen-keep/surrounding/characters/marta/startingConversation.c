@@ -13,14 +13,21 @@ protected void Setup()
         "then. I've got the best stock between here and the "
         "capital, and my prices are fair - don't let anyone tell "
         "you otherwise.'");
-    addTopic("village gossip", "@S@'What I don't know is what's "
-        "going on up at the keep. Lord Edran's been keeping to "
-        "himself more than usual, and his captain's been buying "
-        "up every scrap of dried food I can supply.' @D@She "
-        "frowns. @S@'You don't stockpile like that unless "
-        "you're expecting trouble. Or a siege.' @D@She shakes "
-        "her head. @S@'But what do I know? I'm just an old "
-        "woman who sells turnips.'");
+    addTopic("village gossip", "@S@'What I know is what passes "
+        "over this counter. The western farms have asked for more "
+        "lamp oil and axle grease, and fewer loads have come in "
+        "from the old track.' @D@She counts a few coins into a "
+        "wooden tray. @S@'That may mean nothing. It still changes "
+        "what I order for next week.'");
+    addTopic("keeping the market", "@D@Marta checks a chalk mark "
+        "beside the day's prices. @S@'I buy in small lots and keep "
+        "the account where my customers can see it. If the harvest "
+        "is poor, we stretch what we have. I will not charge a "
+        "neighbor twice because a cart arrived late.'");
+    addTopic("the western road", "@S@'Harlan Reed knows the farm "
+        "track better than I do. He says unfamiliar carts have been "
+        "moving after dusk, but he has not accused anyone. Ask him "
+        "what he saw before you ask me what it means.'");
 
     addResponse("first conversation", "Show me what you have.",
         "@D@She straightens up and gestures at the laden shelves "
@@ -37,12 +44,24 @@ protected void Setup()
         "been sneaking extra cream from the dairy.'");
     addResponseTopic("first conversation",
         "You seem to know everyone here.", "village gossip");
+    addResponse("first conversation", "How do you decide what to charge?",
+        "@D@You ask how Marta keeps the market fair.");
+    addResponseTopic("first conversation",
+        "How do you decide what to charge?", "keeping the market");
 
     addResponse("village gossip", "A siege? From whom?",
-        "@D@Marta waves a hand dismissively, but her eyes "
-        "betray concern. @S@'Who knows? Could be bandits "
-        "grown bold, could be something worse. There've been "
-        "noises from the old mines to the east - the kind "
-        "that make the goats nervous. And goats don't spook "
-        "easy.'");
+        "@D@Marta pauses over her ledger and gives you a firm look. "
+        "@S@'I said a late delivery, not a siege. Find out what "
+        "happened before you frighten people who have done nothing "
+        "wrong.'");
+    addResponseTopic("village gossip", "A siege? From whom?",
+        "the western road");
+    addResponse("keeping the market", "What if the delivery never comes?",
+        "@S@'Then I record the loss, speak with the carter, and "
+        "change the next order. There is no sense making a second "
+        "problem out of the first.'");
+    addResponse("the western road", "What should I ask Harlan?",
+        "@D@Marta points toward the farm lane. @S@'Ask what he "
+        "saw, when he saw it, and which way the carts went. Do "
+        "not ask him to guess at a stranger's intentions.'");
 }

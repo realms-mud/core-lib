@@ -14,13 +14,21 @@ public void Setup()
     addItem("/lib/environment/items/military/training-dummy.c", "east");
     addItem("/lib/environment/items/military/drill-field-marker.c", "south");
     addItem("/lib/environment/items/objects/notice-board.c", "north");
+    addItem("/areas/minlach/items/road-survey-board.c", "northeast");
     addObject("/areas/minlach/characters/bren/bren.c");
+    addObject("/areas/minlach/characters/basil/basil.c");
+    addObject("/areas/minlach/characters/renveth/renveth.c");
     addClue("watch signals", "place-at-the-wall", "readWatchSignals",
         "The slate identifies the alarm signals and a sheltered "
         "assembly point away from the open gate.");
     addClue("supply roster", "place-at-the-wall", "checkSupplyRoster",
         "The roster separates a guarded delivery, a latch repair, "
         "and an unconfirmed road rumor. They need different responses.");
+    addInvestigationClue("road survey board",
+        "/areas/minlach/quests/road-measure.c", "checkTownWatch",
+        "The watch roster shows which streets and gates are covered. "
+        "The local watch can coordinate with Basil, but its people "
+        "remain under Minlach's command.");
     addExit("south", "/areas/minlach/0x2.c");
     addBuildingWithDoor("/lib/environment/buildings/civic/archive.c",
         "north", "/areas/minlach/0x4.c",

@@ -8,6 +8,8 @@ inherit "/lib/tests/framework/testFixture.c";
 object Actor;
 object Owner;
 object Conversation;
+object ReceivedContainer;
+object ReceivedItem;
 
 /////////////////////////////////////////////////////////////////////////////
 void Init()
@@ -46,6 +48,14 @@ void Setup()
 /////////////////////////////////////////////////////////////////////////////
 void CleanUp()
 {
+    if (objectp(ReceivedItem))
+    {
+        destruct(ReceivedItem);
+    }
+    if (objectp(ReceivedContainer))
+    {
+        destruct(ReceivedContainer);
+    }
     destruct(Owner);
     destruct(Actor);
     destruct(Conversation);
@@ -679,6 +689,43 @@ void AddResponseEffectAllowsAndAppliesGiveWithItemPresent()
     ExpectFalse(Owner.isEquipped(weapon), "The sword is no longer equipped");
     ExpectFalse(present_clone(weapon, Owner), "The sword is not in Owner's inventory");
     ExpectTrue(present_clone(weapon, Actor), "Actor has the sword");
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void AddResponseEffectReceivesItemFromDeepInventory()
+{
+    Conversation.testAddTopic("test", "This is a test message");
+    Conversation.testAddResponse("test", "Offer the sword.",
+        "You offer the sword.");
+    Conversation.testAddResponseEffect("test", "Offer the sword.",
+        (["receive":"/lib/tests/support/items/testSword.c"]));
+
+    ReceivedContainer = clone_object("/lib/items/container.c");
+    ReceivedItem = clone_object("/lib/tests/support/items/testSword.c");
+    move_object(ReceivedContainer, Actor);
+    move_object(ReceivedItem, ReceivedContainer);
+
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    ExpectEq(1, sizeof(Conversation.responses(Actor)));
+    ExpectTrue(Conversation.displayResponse("1", Actor, Owner));
+    ExpectTrue(present(ReceivedItem, Owner));
+    ExpectFalse(present(ReceivedItem, ReceivedContainer));
+}
+
+/////////////////////////////////////////////////////////////////////////////
+void ReceiveResponseIsNotAvailableWithoutTheItem()
+{
+    Conversation.testAddTopic("test", "This is a test message");
+    Conversation.testAddResponse("test", "Offer the sword.",
+        "You offer the sword.");
+    Conversation.testAddResponseEffect("test", "Offer the sword.",
+        (["receive":"/lib/tests/support/items/testSword.c"]));
+
+    ExpectTrue(Conversation.speakMessage("test", Actor, Owner));
+    ExpectEq(0, sizeof(Conversation.responses(Actor)));
+    ExpectFalse(Conversation.displayResponse("1", Actor, Owner));
+    ExpectFalse(present_clone(
+        "/lib/tests/support/items/testSword.c", Owner));
 }
 
 /////////////////////////////////////////////////////////////////////////////

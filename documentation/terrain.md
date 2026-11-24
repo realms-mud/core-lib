@@ -264,7 +264,10 @@ You can restrict when and how resources can be harvested:
 - `limitHarvestByMoonPhase(string name, string moonPhase)`: Limited by moon phase
 - `limitHarvestByState(string name, string state)`: Limited by terrain state
 - `limitHarvestBySkill(string name, string skill, int value)`: Requires minimum skill level
-- `harvestRequiresTool(string name, string tool)`: Requires specific equipment
+- `harvestRequiresQuest(string name, string quest)`: Requires the character
+  to have completed the specified quest
+- `harvestRequiresTool(string name, mixed tool)`: Requires equipment by type
+  string or equipment requirement mapping, such as a specific blueprint
 - `harvestRequiresOneOfTool(string name, string *tools)`: Requires one of several tools
 
 Example:
@@ -276,7 +279,9 @@ harvestableResource("rare herbs",
     limitHarvestBySeason("rare herbs", "spring"); 
     limitHarvestByTimeOfDay("rare herbs", "dawn"); 
     limitHarvestBySkill("rare herbs", "herbalism", 50); 
+    harvestRequiresQuest("rare herbs", "/areas/quests/herb-survey.c");
     harvestRequiresTool("rare herbs", "herb knife");
+    harvestRequiresTool("copper ore", ([ "blueprint": "pick axe" ]));
 ```
 
 ##### Environmental Bonuses

@@ -10,7 +10,7 @@ protected void gateQuestResponse(string topic, string response,
 {
     addResponsePrerequisite(topic, response, ([
         "local assignment":([
-            "type":"state",
+            "type":"quest state",
             "state key":"/areas/minlach/quests/" + quest + ".c",
             "value":state
         ])

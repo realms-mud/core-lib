@@ -70,6 +70,8 @@ public void Setup()
         "/areas/tol-dhurath/forest-1/14x0.c", "path");
     setCoordinate(14, 2,
         "/areas/tol-dhurath/forest-1/14x2.c", "path");
+    setCoordinate(14, 6,
+        "/areas/tol-dhurath/forest-1/14x6.c", "room");
     setCoordinate(14, 7,
         "/areas/tol-dhurath/forest-1/14x7.c", "room");
     setCoordinate(14, 8,

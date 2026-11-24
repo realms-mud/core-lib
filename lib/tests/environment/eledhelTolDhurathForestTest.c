@@ -11,6 +11,6 @@ void Init()
 void RunSelectedTests()
 {
     runSelectedTests(({
-        "TolDhurathSecondForestAndTempleRegionsHaveBoundedLevels"
+        "TolDhurathLaterForestAndTempleRegionsHaveBoundedLevels"
     }));
 }

@@ -13,8 +13,9 @@ public void Setup()
     addFeature("/lib/environment/features/trees/spruce-stand.c", "north");
     addFeature("/lib/environment/features/water/brook.c", "east");
 
-    addDecorator("village road corner SW");
+    addDecorator("village road T-south");
 
     addExit("west", "/areas/northern-road/hrondil-approaches/23x4.c");
     addExit("south", "/areas/northern-road/hrondil-approaches/24x5.c");
+    addExit("east", "/areas/tol-dhurath/northern-trail/0x4.c");
 }

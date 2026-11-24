@@ -41,6 +41,7 @@ private void MaiwynIntroduced()
         "lifetime ago... ");
     addTopicEvent("gave name", "playerGaveName");
     addTopicEvent("gave name", "revealName");
+    addTopicEvent("gave name", "met maiwyn");
     addResponseTopic("first conversation", "I am...", "gave name");
     addResponse("gave name", "@I@Continue@E@", "@I@Continue@E@");
 
@@ -54,6 +55,7 @@ private void MaiwynIntroduced()
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
     addTopicEvent("gave title", "revealName");
+    addTopicEvent("gave title", "met maiwyn");
     addResponseTopic("first conversation", "I am an agent of the king...", 
         "gave title");
     addResponse("gave title", "I am...", "@D@@C@##InitiatorName## "
@@ -69,6 +71,7 @@ private void MaiwynIntroduced()
         "effort to hold back tears. @S@'I do not know much, but it feels like a "
         "lifetime ago... ");
     addTopicEvent("was rude", "revealName");
+    addTopicEvent("was rude", "met maiwyn");
     addResponseTopic("first conversation", "No, who are you?",
         "was rude");
     addResponse("was rude", "I am...", "@D@@C@##InitiatorName## "
@@ -208,7 +211,7 @@ private void MaiwynDiscussionOutlaws()
         "his devoted worship of his mistress - one he calls Seilyndria...");
 
     addTopicInterjection("the outlaws",
-        "/areas/tol-dhurath/characters/galadhel/galadhel.c",
+        "/areas/argalen-keep/characters/galadhel/galadhel.c",
         "seilyndria", 1);
     addResponseTopic("story part two", "About these outlaws...", "the outlaws");
     addResponseTopic("story more info", "About these outlaws...", "the outlaws");
@@ -273,7 +276,7 @@ private void MaiwynDiscussionOutlaws()
         "maiwyn offended");
 
     addTopicInterjection("maiwyn offended",
-        "/areas/tol-dhurath/characters/galadhel/galadhel.c",
+        "/areas/argalen-keep/characters/galadhel/galadhel.c",
         "maiwyn offended", 1);
     addResponse("maiwyn offended", "@I@Continue@E@", "@I@Continue@E@");
 
@@ -341,7 +344,7 @@ private void MaiwynDiscussionThisRuin()
         "Dhuras when they plundered and destroyed the contents of "
         "the catacombs.'");
     addTopicInterjection("the temple",
-        "/areas/tol-dhurath/characters/halgaladh/halgaladh.c",
+        "/areas/argalen-keep/characters/halgaladh/halgaladh.c",
         "scions of dhuras", 1);
     addResponseTopic("this ruin", "The temple...", "the temple");
     addResponse("the temple", "@I@Continue@E@", "@I@Continue@E@");

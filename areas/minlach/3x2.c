@@ -24,6 +24,10 @@ public void Setup()
     addClue("packet seal", "couriers-packet", "inspectPacketSeal",
         "The packet seal is intact. Only its outer routing slip "
         "has been replaced with a warehouse destination.");
+    addInvestigationClue("stores ledger",
+        "/areas/minlach/quests/road-measure.c", "checkAvailableStores",
+        "The account separates Minlach's reserve grain, lamp oil, and "
+        "repair stock from goods already promised to local households.");
     addExitWithDoor("west", "/areas/minlach/2x2.c",
         "/lib/environment/doors/plank-door.c");
     addExitWithDoor("north", "/areas/minlach/3x3.c",
