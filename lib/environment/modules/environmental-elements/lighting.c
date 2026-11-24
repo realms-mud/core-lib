@@ -197,6 +197,9 @@ protected nomask varargs void lightLevelWhenVisible(int value)
 protected nomask varargs void addSourceOfLight(int magnitude, string state, string period, string season)
 {
     string *states = ({ });
+    mapping sourceOfLight = setSourceOfLightByTime(magnitude, period,
+        season);
+
     if (state && (state != ""))
     {
         states = ({ state });
@@ -219,8 +222,33 @@ protected nomask varargs void addSourceOfLight(int magnitude, string state, stri
     {
         foreach(string stateItem in states)
         {
-            descriptionData["light"][stateItem] = 
-                setSourceOfLightByTime(magnitude, period, season);
+            if (!member(descriptionData["light"], stateItem) ||
+                !mappingp(descriptionData["light"][stateItem]))
+            {
+                descriptionData["light"][stateItem] = sourceOfLight;
+            }
+            else
+            {
+                foreach(string time in m_indices(sourceOfLight))
+                {
+                    if (!member(descriptionData["light"][stateItem], time) ||
+                        !mappingp(descriptionData["light"][stateItem][time]))
+                    {
+                        descriptionData["light"][stateItem][time] =
+                            sourceOfLight[time];
+                    }
+                    else
+                    {
+                        foreach(string seasonName in
+                            m_indices(sourceOfLight[time]))
+                        {
+                            descriptionData["light"][stateItem][time]
+                                [seasonName] =
+                                    sourceOfLight[time][seasonName];
+                        }
+                    }
+                }
+            }
         }
     }
 }

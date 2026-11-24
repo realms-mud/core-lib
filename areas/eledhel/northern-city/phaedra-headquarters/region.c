@@ -16,6 +16,8 @@ public void Setup()
 
     setCoordinate(2, 3,
         "/areas/eledhel/northern-city/phaedra-headquarters/2x3.c", "room");
+    setCoordinate(1, 3,
+        "/areas/eledhel/northern-city/phaedra-headquarters/1x3.c", "room");
     setCoordinate(2, 2,
         "/areas/eledhel/northern-city/phaedra-headquarters/2x2.c", "room");
     setCoordinate(1, 2,

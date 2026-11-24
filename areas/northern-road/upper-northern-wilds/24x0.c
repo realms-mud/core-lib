@@ -11,6 +11,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/promontory.c", "north");
     addFeature("/lib/environment/features/water/spring.c", "south");
     addItem("/lib/environment/items/objects/boundary-stone.c", "east");
-    addDecorator("village east-west road");
+    addFeature("/lib/environment/features/paths/dirt-road.c", "east");
+    addDecorator("village road T-north");
     addExit("west", "/areas/northern-road/upper-northern-wilds/23x0.c");
+    addExit("east", "/areas/northern-road/minlach-approaches/0x4.c");
+    addExit("north",
+        "/areas/northern-road/upper-northern-wilds/barrow-ridge/approach.c");
 }

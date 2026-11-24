@@ -16,4 +16,5 @@ public void Setup()
     addObject("/areas/eledhel/northern-city/characters/museum-curator.c");
     addExit("south", "/areas/eledhel/northern-city/17x8.c");
     addExit("east", "/areas/eledhel/northern-city/museum/1x0.c");
+    addExit("down", "/areas/eledhel/under-city/museum-branch/17x8.c");
 }

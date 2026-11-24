@@ -1,0 +1,15 @@
+//*****************************************************************************
+// Copyright (c) 2017-2026 - Allen Cummings, RealmsMUD. All rights reserved.
+//*****************************************************************************
+inherit "/areas/eledhel/under-city/underCityRoom.c";
+
+/////////////////////////////////////////////////////////////////////////////
+public void Setup()
+{
+    setInterior("/lib/environment/interiors/ruin-hallway.c");
+    addFeature("/lib/environment/features/water/stone-drainage-channel.c",
+        "west");
+    addItem("/lib/environment/items/objects/bucket.c", "north");
+    addExit("north", "/areas/eledhel/under-city/southern-city/6x3.c");
+    addExit("south", "/areas/eledhel/under-city/southern-city/6x1.c");
+}

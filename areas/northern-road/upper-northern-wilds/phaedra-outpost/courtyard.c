@@ -10,7 +10,9 @@ public void Setup()
     addFeature("/lib/environment/features/trees/spruce-stand.c", "north");
     addItem("/lib/environment/items/military/small-barricade.c", "south");
     addItem("/lib/environment/items/military/supply-crate.c", "west");
-    addObject("/areas/northern-road/upper-northern-wilds/characters/phaedra-sentry.c");
+    addItem("/lib/environment/items/objects/notice-board.c", "east");
+    addObject(
+        "/areas/northern-road/upper-northern-wilds/characters/nerys-ansel.c");
 
     addExit("south", "/areas/northern-road/upper-northern-wilds/0x0.c");
     addExit("north", "/areas/northern-road/upper-northern-wilds/phaedra-outpost/gatehouse.c");

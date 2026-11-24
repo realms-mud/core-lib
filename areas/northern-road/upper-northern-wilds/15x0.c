@@ -14,4 +14,6 @@ public void Setup()
     addDecorator("village east-west road");
     addExit("east", "/areas/northern-road/upper-northern-wilds/16x0.c");
     addExit("west", "/areas/northern-road/upper-northern-wilds/14x0.c");
+    addExit("south",
+        "/areas/northern-road/upper-northern-wilds/fishery/landing.c");
 }

@@ -8,7 +8,14 @@ public void Setup()
     setInterior("/lib/environment/interiors/stone-keep.c");
     setShortDescription("The pillared chamber at Phaedra headquarters");
     addDecorator("keep interior floor");
+    addItem("/lib/environment/items/columns/marble-pillar.c", "north");
+    addItem("/lib/environment/items/columns/marble-pillar.c", "south");
+    addItem("/lib/environment/items/columns/marble-pillar.c", "east");
+    addItem("/lib/environment/items/columns/marble-pillar.c", "west");
+    addItem("/lib/environment/items/military/weapon-rack.c", "north");
+    addItem("/lib/environment/items/military/training-dummy.c", "south");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "east");
+    addRandomCreature(({ "knight of the storm" }));
     addExit("north",
         "/areas/eledhel/northern-city/phaedra-headquarters/2x3.c");
     addExit("west",

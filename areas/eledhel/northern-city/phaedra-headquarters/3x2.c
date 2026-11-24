@@ -8,6 +8,8 @@ public void Setup()
     setInterior("/lib/environment/interiors/stone-keep.c");
     setShortDescription("The command chamber of Phaedra headquarters");
     addDecorator("keep interior floor");
+    addItem("/lib/environment/items/records/ledger-desk.c", "east");
+    addItem("/lib/environment/items/military/weapon-rack.c", "west");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");
     addObject("/areas/eledhel/northern-city/characters/phaedra-sergeant.c");
     addExit("west",

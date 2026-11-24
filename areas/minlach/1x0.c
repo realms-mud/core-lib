@@ -20,7 +20,9 @@ public void Setup()
         "The inspection board lists a loose latch, not a forced "
         "entry. A repair request has already been recorded.");
     addFeature("/lib/environment/features/paths/cobblestone-road.c", "north");
+    addFeature("/lib/environment/features/paths/cobblestone-road.c", "west");
 
     addExit("south", "/areas/eledhel/north-road/2x4.c");
+    addExit("west", "/areas/northern-road/minlach-approaches/24x4.c");
     addExit("north", "/areas/minlach/1x1.c");
 }

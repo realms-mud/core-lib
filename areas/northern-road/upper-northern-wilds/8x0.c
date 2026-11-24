@@ -12,7 +12,10 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/precipice.c", "north");
     addFeature("/lib/environment/features/trees/pine-stand.c", "south");
     addItem("/lib/environment/items/military/signal-fire.c", "northwest");
+    addItem("/lib/environment/items/objects/boundary-stone.c", "east");
     addDecorator("village east-west road");
     addExit("east", "/areas/northern-road/upper-northern-wilds/9x0.c");
     addExit("west", "/areas/northern-road/upper-northern-wilds/7x0.c");
+    addExit("north",
+        "/areas/northern-road/upper-northern-wilds/inland/wrecked-coach.c");
 }

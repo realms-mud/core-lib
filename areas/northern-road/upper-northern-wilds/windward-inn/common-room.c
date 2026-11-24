@@ -10,7 +10,9 @@ public void Setup()
     addItem("/lib/environment/items/furniture/long-table.c", "east");
     addItem("/lib/environment/items/lighting/hearth.c", "north");
     addItem("/lib/environment/items/furniture/bench.c", "west");
-    addObject("/areas/northern-road/upper-northern-wilds/characters/innkeeper.c");
+    addItem("/lib/environment/items/furniture/cabinet.c", "south");
+    addObject(
+        "/areas/northern-road/upper-northern-wilds/characters/mira-ellery.c");
 
     addExit("east", "/areas/northern-road/upper-northern-wilds/0x0.c");
     addExit("west", "/areas/northern-road/upper-northern-wilds/windward-inn/loft.c");

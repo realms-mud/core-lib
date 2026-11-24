@@ -15,4 +15,6 @@ public void Setup()
     addDecorator("village east-west road");
     addExit("east", "/areas/northern-road/upper-northern-wilds/13x0.c");
     addExit("west", "/areas/northern-road/upper-northern-wilds/11x0.c");
+    addExit("south",
+        "/areas/northern-road/upper-northern-wilds/bridge/north-bank.c");
 }

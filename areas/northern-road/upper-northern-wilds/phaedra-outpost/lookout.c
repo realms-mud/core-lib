@@ -10,6 +10,6 @@ public void Setup()
     addFeature("/lib/environment/features/landforms/precipice.c", "north");
     addItem("/lib/environment/items/military/beacon.c", "east");
     addItem("/lib/environment/items/military/signal-fire.c", "west");
-
+    addItem("/lib/environment/items/objects/boundary-stone.c", "south");
     addExit("down", "/areas/northern-road/upper-northern-wilds/phaedra-outpost/courtyard.c");
 }

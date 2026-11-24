@@ -6,7 +6,7 @@ inherit "/lib/environment/environment.c";
 private string EscapeQuest =
     "/areas/eledhel/under-city/escapeQuest.c";
 private string MapExit =
-    "/areas/eledhel/under-city/phaedra-branch/0x0.c";
+    "/areas/eledhel/under-city/phaedra-branch/2x3.c";
 private string MapProgram =
     "/areas/eledhel/northern-city/phaedra-headquarters/1x2.c";
 private string *expectedMoves = ({
@@ -25,6 +25,10 @@ public void Setup()
     setInterior("/lib/environment/interiors/stone-keep.c");
     setShortDescription("The Phaedra library of tactics and history");
     addDecorator("keep interior floor");
+    addItem(
+        "/lib/environment/items/objects/kingdom-relief-map.c", "north");
+    addItem("/lib/environment/items/furniture/book-shelf.c", "west");
+    addItem("/lib/environment/items/furniture/book-shelf.c", "south");
     addItem("/lib/environment/items/lighting/lit-sconce.c", "north");
     addExit("east",
         "/areas/eledhel/northern-city/phaedra-headquarters/2x2.c");

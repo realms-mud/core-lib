@@ -14,4 +14,5 @@ public void Setup()
         "/areas/eledhel/central-city/characters/aegis-recruiter.c");
     addExit("east", "/areas/eledhel/central-city/aegis-hall/1x0.c");
     addExit("south", "/areas/eledhel/central-city/aegis-hall/0x1.c");
+    addExit("down", "/areas/eledhel/under-city/aegis-branch/11x4.c");
 }

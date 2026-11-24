@@ -15,4 +15,5 @@ public void Setup()
         "/areas/eledhel/northern-city/characters/library-copyist.c");
     addExit("south", "/areas/eledhel/northern-city/18x8.c");
     addExit("east", "/areas/eledhel/northern-city/library/1x0.c");
+    addExit("down", "/areas/eledhel/under-city/library-branch/18x8.c");
 }
