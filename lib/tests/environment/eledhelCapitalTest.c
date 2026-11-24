@@ -11,7 +11,7 @@ void Init()
 void RunSelectedTests()
 {
     runSelectedTests(({
-        "CentralCityUnbuiltInteriorsRemainClosedFacades",
+        "CentralCityBuiltInteriorsOpenAndUnbuiltFacadesStayClosed",
         "CapitalNorthboundRouteIsBidirectional",
         "NorthernCityThroughRouteIsBidirectional",
         "NorthernCityArenaDistrictConnectsToTheAvenue",

@@ -11,6 +11,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/prison-cell.c");
     setShortDescription("A small holding cell with a narrow cot and "
         "iron bars looking onto the passage.");
+    addDecorator("keep interior west wall entry");
     addItem("/lib/environment/items/furniture/bed.c", "west");
     addExit("west", CellPassage);
 }

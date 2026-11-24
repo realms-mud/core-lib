@@ -44,6 +44,19 @@ void CleanUp()
 }
 
 /////////////////////////////////////////////////////////////////////////////
+void JoinScionGuild()
+{
+    string questPath = "/areas/minlach/quests/scions-restoration.c";
+    Player->beginQuest(questPath);
+    Player->advanceQuestState(questPath, "book delivered");
+    Player->advanceQuestState(questPath, "order restored");
+    ExpectTrue(Player->questIsCompleted(questPath),
+        "Scion restoration prerequisite is completed");
+    ExpectTrue(Player->joinGuild("Scion of Dhuras"),
+        "eligible player joins the Scion guild");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void GuildAdvancementLevelNotDisplayedIfYouCannotAdvance()
 {
     command("level up", Player);
@@ -62,7 +75,7 @@ void GuildAdvancementLevelNotDisplayedIfYouAreNotInGuild()
 /////////////////////////////////////////////////////////////////////////////
 void TopLevelGuildMenuDisplaysCorrectly()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
 
     Player.addExperience(2000);
@@ -80,7 +93,7 @@ void TopLevelGuildMenuDisplaysCorrectly()
 /////////////////////////////////////////////////////////////////////////////
 void DoesNotAllowForGuildsNotReadyForAdvancement()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.addExperience(2000);
     Player.joinGuild("fake fighter");
@@ -101,7 +114,7 @@ void DoesNotAllowForGuildsNotReadyForAdvancement()
 /////////////////////////////////////////////////////////////////////////////
 void CanAdvanceMultipleGuilds()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.joinGuild("fake fighter");
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
@@ -122,7 +135,7 @@ void CanAdvanceMultipleGuilds()
 /////////////////////////////////////////////////////////////////////////////
 void CanAdvanceInGuild()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.addExperience(2000);
     command("level up", Player);
@@ -150,7 +163,7 @@ void CanAdvanceInGuild()
 /////////////////////////////////////////////////////////////////////////////
 void CanUpdateAttributes()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.addExperience(2000);
     Player.addAttributePointsToSpend(1);
@@ -190,7 +203,7 @@ void CanUpdateAttributes()
 /////////////////////////////////////////////////////////////////////////////
 void CanUpdateSkills()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.advanceSkill("long sword", 4);
     Player.advanceSkill("dagger", 1);
@@ -262,7 +275,7 @@ void CanUpdateSkills()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearchChoice()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.advanceSkill("long sword", 5);
     Player.addExperience(2000);
@@ -309,7 +322,7 @@ void CanSelectResearchChoice()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearchWhenAllChoicesMade()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.advanceSkill("long sword", 5);
     Player.addExperience(2000);
@@ -342,7 +355,7 @@ void CanSelectResearchWhenAllChoicesMade()
 /////////////////////////////////////////////////////////////////////////////
 void CanSelectResearch()
 {
-    Player.joinGuild("Scion of Dhuras");
+    JoinScionGuild();
     destruct(present_clone("/lib/modules/guilds/advanceLevelSelector.c", Player));
     Player.advanceSkill("long sword", 5);
     Player.addExperience(2000);

@@ -15,6 +15,13 @@ string TolDhurathQuest =
     "/areas/tol-dhurath/state-machine/tol-dhurath-quest.c";
 
 /////////////////////////////////////////////////////////////////////////////
+void Init()
+{
+    getService("guilds");
+    load_object("/guilds/scion/scionOfDhuras.c");
+}
+
+/////////////////////////////////////////////////////////////////////////////
 void Setup()
 {
     Room = clone_object("/lib/tests/support/environment/fakeEnvironment.c");
@@ -97,6 +104,15 @@ void ReadingAndDeliveringTheBookBeforeTheReleaseRestoresTheOrder()
     Renveth->notifySynchronous("tolDhurathReleaseReported", Player);
 
     ExpectTrue(Player->questIsCompleted(RestorationQuest));
+    ExpectTrue(Player->has("quests"), "player has the quest module");
+    ExpectEq(({}), Player->memberOfGuilds(),
+        "player has no conflicting guild membership");
+    object scionGuild = getService("guilds")->guildObject("Scion of Dhuras");
+    ExpectTrue(scionGuild->checkPrerequisites(Player),
+        "completed restoration satisfies the guild prerequisite");
+    ExpectTrue(getService("guilds")->canJoinGuild(Player,
+        "Scion of Dhuras"),
+        "completed restoration satisfies the guild prerequisite");
     ExpectTrue(Player->joinGuild("Scion of Dhuras"),
         "restoration unlocks guild membership");
 }

@@ -63,7 +63,7 @@ void MonkPreloadsBeforeWorldContentToPreserveExistingExclusions()
 {
     object preload = clone_object(
         "/lib/tests/support/master/preloadHelper.c");
-    string *entries = preload.LoadInitFile("init/init_file", ({}));
+    string *entries = preload.LoadInitFile("/init/init_file", ({}));
     ExpectEq("/guilds/monk/monk.c", entries[0]);
     destruct(preload);
 }

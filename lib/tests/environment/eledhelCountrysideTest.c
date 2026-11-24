@@ -1499,7 +1499,7 @@ void ArgalenVillageShopsHaveReciprocalPlankDoors()
 }
 
 /////////////////////////////////////////////////////////////////////////////
-void CentralCityUnbuiltInteriorsRemainClosedFacades()
+void CentralCityBuiltInteriorsOpenAndUnbuiltFacadesStayClosed()
 {
     ExpectEq("/areas/eledhel/central-city/leather-merchant/0x0.c",
         load_object("/areas/eledhel/central-city/14x0.c")->
@@ -1510,30 +1510,30 @@ void CentralCityUnbuiltInteriorsRemainClosedFacades()
     ExpectEq("/areas/eledhel/central-city/palace/0x2.c",
         load_object("/areas/eledhel/central-city/14x5.c")->
             getExitDirections()["default"]["east"]);
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/17x0.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/17x0.c")->
-        getExitDirections()["default"], "west"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/17x1.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/17x1.c")->
-        getExitDirections()["default"], "west"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/20x0.c")->
-        getExitDirections()["default"], "west"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/20x0.c")->
-        getExitDirections()["default"], "east"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/20x1.c")->
-        getExitDirections()["default"], "west"));
-    ExpectFalse(member(load_object(
-        "/areas/eledhel/central-city/20x1.c")->
-        getExitDirections()["default"], "east"));
+    ExpectEq("/areas/eledhel/central-city/old-city-swordsmith/0x0.c",
+        load_object("/areas/eledhel/central-city/17x0.c")->
+            getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-saddlery/0x0.c",
+        load_object("/areas/eledhel/central-city/17x0.c")->
+            getExitDirections()["default"]["west"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-armorer/0x0.c",
+        load_object("/areas/eledhel/central-city/17x1.c")->
+            getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-tailor-two/0x0.c",
+        load_object("/areas/eledhel/central-city/17x1.c")->
+            getExitDirections()["default"]["west"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-dagger-smith/0x0.c",
+        load_object("/areas/eledhel/central-city/20x0.c")->
+            getExitDirections()["default"]["west"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-provisioner/0x0.c",
+        load_object("/areas/eledhel/central-city/20x0.c")->
+            getExitDirections()["default"]["east"]);
+    ExpectEq("/areas/eledhel/central-city/old-city-hammer-smith/0x0.c",
+        load_object("/areas/eledhel/central-city/20x1.c")->
+            getExitDirections()["default"]["west"]);
+    ExpectEq("/areas/eledhel/central-city/wayfarer-inn/0x0.c",
+        load_object("/areas/eledhel/central-city/20x1.c")->
+            getExitDirections()["default"]["east"]);
     ExpectFalse(member(load_object(
         "/areas/eledhel/central-city/20x2.c")->
         getExitDirections()["default"], "east"));

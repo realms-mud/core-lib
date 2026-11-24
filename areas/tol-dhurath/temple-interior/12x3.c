@@ -13,7 +13,7 @@ public void Setup()
     setInterior("/lib/environment/interiors/ruin-hallway.c");
     addFeature("/lib/environment/features/floors/ruined-marble-floor.c");
     addItem("/lib/environment/items/lighting/sconce.c", "west");
-    addDecorator("ruined interior east-west hallway north-south entry");
+    addDecorator("ruined interior east-west hallway north entry");
 
     addExit("west",
         "/areas/tol-dhurath/temple-interior/11x3.c");
@@ -21,6 +21,4 @@ public void Setup()
         "/areas/tol-dhurath/temple-interior/13x3.c");
     addExitWithDoor("north",
         "/areas/tol-dhurath/temple-interior/pedestal-5x0.c");
-    addExit("south",
-        "/areas/tol-dhurath/temple-interior/entry-to-pedestal.c");
 }
